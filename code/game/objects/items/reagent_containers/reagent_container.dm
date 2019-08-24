@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
 	throwforce = 3
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 5
 	var/init_reagent_flags
@@ -35,11 +35,11 @@
 /obj/item/reagent_container/proc/get_reagent_list_text()
 	if(reagents.reagent_list && reagents.reagent_list.len)
 		var/datum/reagent/R = reagents.reagent_list[1]
-		. = "[R.id]([R.volume]u)"
+		. = "[R.name]([R.volume]u)"
 		if(reagents.reagent_list.len < 2) return
 		for (var/i = 2, i <= reagents.reagent_list.len, i++)
 			R = reagents.reagent_list[i]
 			if(!R) continue
-			. += "; [R.id]([R.volume]u)"
+			. += "; [R.name]([R.volume]u)"
 	else
 		. = "No reagents"

@@ -47,7 +47,7 @@
 /obj/machinery/sleep_console/attack_ai(mob/living/user)
 	return attack_hand(user)
 
-/obj/machinery/sleep_console/attack_paw(mob/living/user)
+/obj/machinery/sleep_console/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/sleep_console/attack_hand(mob/living/user)
@@ -130,14 +130,15 @@
 		return FALSE
 	user.set_interaction(src)
 	if(href_list["chemical"] && connected && connected.occupant)
+		var/datum/reagent/R = text2path(href_list["chemical"])
 		if (connected.occupant.stat == DEAD)
 			to_chat(usr, "<span class='warning'>This person has no life for to preserve anymore.</span>")
-		else if(!(href_list["chemical"] in connected.available_chemicals))
+		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
-				connected.inject_chemical(user,href_list["chemical"],amount)
+				connected.inject_chemical(user, R, amount)
 	if (href_list["removebeaker"])
 		connected.remove_beaker()
 	if (href_list["togglefilter"])
@@ -170,7 +171,7 @@
 	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
-	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
+	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = FALSE
@@ -380,6 +381,8 @@
 	connected.stop_processing()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
+	else
+		icon_state = "sleeper_0"
 	return
 
 
@@ -426,11 +429,10 @@
 	set name = "Eject Sleeper"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.stat != 0)
+
+	if(usr.stat != CONSCIOUS)
 		return
-	if(orient == "RIGHT")
-		icon_state = "sleeper_0-r"
-	icon_state = "sleeper_0"
+	
 	go_out()
 
 
@@ -445,34 +447,48 @@
 		beaker.loc = usr.loc
 		beaker = null
 
-
-/obj/machinery/sleeper/verb/move_inside()
-	set name = "Enter Sleeper"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.stat || !ishuman(usr))
+/obj/machinery/sleeper/relaymove(mob/user)
+	if(user.incapacitated(TRUE)) 
 		return
+	go_out()
 
-	var/mob/living/carbon/human/user = usr
+/obj/machinery/sleeper/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if(M.stat != CONSCIOUS || !ishuman(M))
+		return
 
 	if(occupant)
 		to_chat(user, "<span class='notice'>The sleeper is already occupied!</span>")
 		return
 
-	if(ismob(user.pulledby))
-		var/mob/grabmob = user.pulledby
+	if(ismob(M.pulledby))
+		var/mob/grabmob = M.pulledby
 		grabmob.stop_pulling()
-	user.stop_pulling()
-	if(!user.forceMove(src))
+	M.stop_pulling()
+
+	if(!M.forceMove(src))
 		return
-	visible_message("[user] climbs into the sleeper.", 3)
-	occupant = usr
+
+	visible_message("[M] climbs into the sleeper.", null, null, 3)
+	occupant = M
+	
 	start_processing()
 	connected.start_processing()
+	
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
 
 	for(var/obj/O in src)
 		qdel(O)
+
+/obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
+	move_inside_wrapper(M, user)
+
+/obj/machinery/sleeper/verb/move_inside()
+	set name = "Enter Sleeper"
+	set category = "Object"
+	set src in oview(1)
+
+	move_inside_wrapper(usr, usr)

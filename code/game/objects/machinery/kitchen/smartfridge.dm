@@ -51,15 +51,7 @@
 /obj/machinery/smartfridge/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		if(!is_secure_fridge || CHECK_BITFIELD(obj_flags, EMAGGED))
-			return
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		locked = FALSE
-		to_chat(user, "You short out the product lock on [src].")
-
-	else if(isscrewdriver(I))
+	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
@@ -126,13 +118,13 @@
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
 		return TRUE
 
-/obj/machinery/smartfridge/attack_paw(mob/user)
+/obj/machinery/smartfridge/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/smartfridge/attack_ai(mob/user)
 	return 0
 
-/obj/machinery/smartfridge/attack_hand(mob/user)
+/obj/machinery/smartfridge/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -197,7 +189,7 @@
 		if (!in_range(src, usr))
 			return 0
 		if(is_secure_fridge)
-			if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED) && locked != -1)
+			if(!allowed(usr) && locked != -1)
 				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return 0
 		var/index = text2num(href_list["vend"])

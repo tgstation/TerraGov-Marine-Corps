@@ -44,9 +44,9 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.KnockDown(1)
+			M.knock_down(1)
 		else
-			M.Stun(1) //Otherwise we just get stunned.
+			M.stun(1) //Otherwise we just get stunned.
 		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
 
 // ***************************************
@@ -76,8 +76,9 @@
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
-	to_chat(src, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -151,7 +152,7 @@
 		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		L.KnockDown(1, 1)
+		L.knock_down(1, 1)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)

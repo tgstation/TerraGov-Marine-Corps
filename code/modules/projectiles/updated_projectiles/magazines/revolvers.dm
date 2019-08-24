@@ -8,7 +8,7 @@
 	flags_equip_slot = NONE
 	caliber = ".44"
 	icon_state = "m44"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/m44
 

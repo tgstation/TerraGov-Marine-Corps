@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead.
 
-	var/overflow_role = "Squad Marine"
+	var/overflow_role = SQUAD_MARINE
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
@@ -36,6 +36,10 @@ SUBSYSTEM_DEF(job)
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
 		if(!job)
+			continue
+		if(!job.config_check())
+			continue
+		if(!job.map_check())
 			continue
 		occupations += job
 		name_occupations[job.title] = job
@@ -77,9 +81,12 @@ SUBSYSTEM_DEF(job)
 		if(!job.player_old_enough(player.client))
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 			return FALSE
-		if(rank in JOBS_MARINES)
-			if(handle_squad(player, rank, latejoin))
-				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key] Rank: [rank]")
+		if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
+			JobDebug("AR job disallowed by gamemode, Player: [player], Job:[job.title]")
+			return FALSE
+		if(rank in GLOB.jobs_marines)
+			if(handle_initial_squad(player, rank, latejoin))
+				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Rank: [rank], Squad: [player.mind.assigned_squad]")
 			else
 				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
 				return FALSE
@@ -192,7 +199,6 @@ SUBSYSTEM_DEF(job)
 	else //Something gone wrong if we got here.
 		var/message = "DO: [player] fell through handling unassigned"
 		JobDebug(message)
-		log_game(message)
 		message_admins(message)
 		RejectPlayer(player)
 
@@ -223,8 +229,7 @@ SUBSYSTEM_DEF(job)
 			S = pick(GLOB.jobspawn_overrides[rank])
 		if(S)
 			SendToAtom(L, S, buckle = FALSE)
-		if(!S) //if there isn't a spawnpoint send them to latejoin, if there's no latejoin go yell at your mapper
-			log_world("Couldn't find a round start spawn point for [rank]")
+		if(!S)
 			SendToLateJoin(L)
 
 	if(job && L.mind)
@@ -235,10 +240,10 @@ SUBSYSTEM_DEF(job)
 				N.new_character = L
 			else
 				M = L
-		if(rank in JOBS_MARINES)
+		if(rank in GLOB.jobs_marines)
 			if(L.mind.assigned_squad)
 				var/datum/squad/S = L.mind.assigned_squad
-				S.put_marine_in_squad(L)
+				S.insert_into_squad(L)
 			else
 				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")
 	if(ishuman(L))

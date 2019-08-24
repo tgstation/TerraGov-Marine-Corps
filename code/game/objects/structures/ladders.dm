@@ -71,7 +71,7 @@
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return attack_hand(M)
 
-/obj/structure/ladder/attack_hand(mob/user)
+/obj/structure/ladder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -104,7 +104,7 @@
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
 
-/obj/structure/ladder/attack_paw(mob/user as mob)
+/obj/structure/ladder/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/structure/ladder/check_eye(mob/user)

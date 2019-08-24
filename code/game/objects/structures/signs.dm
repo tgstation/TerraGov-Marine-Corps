@@ -48,7 +48,7 @@
 	name = "sign"
 	desc = ""
 	icon = 'icons/obj/decals.dmi'
-	w_class = 3		//big
+	w_class = WEIGHT_CLASS_NORMAL		//big
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction
@@ -377,21 +377,21 @@
 //Marine signs
 
 /obj/structure/sign/ROsign
-	name = "\improper TGMC Requisitions Office Guidelines"
+	name = "\improper TGMC requisitions office guidelines"
 	desc = " 1. You are not entitled to service or equipment. Attachments are a privilege, not a right.\n 2. You must be fully dressed to obtain service. Cryosleep underwear is non-permissible.\n 3. The Requsitions Officer has the final say and the right to decline service. Only the Acting Captain may override his decisions.\n 4. Please treat your Requsitions staff with respect. They work hard."
 	icon_state = "roplaque"
 
 /obj/structure/sign/prop1
-	name = "\improper TGMC Poster"
-	desc = "The symbol of the TerraGov Marine Corps."
+	name = "\improper TerraGov poster"
+	desc = "The symbol of the Terran Goverment."
 	icon_state = "prop1"
 
 /obj/structure/sign/prop2
-	name = "\improper TGMC Poster"
+	name = "\improper TGMC poster"
 	desc = "A deeply faded poster of a group of glamorous TerraGov Marine Corps in uniform. Probably taken pre-Alpha."
 	icon_state = "prop2"
 
 /obj/structure/sign/prop3
-	name = "\improper TGMC Poster"
+	name = "\improper TGMC poster"
 	desc = "An old recruitment poster for the TGMC. Looking at it floods you with a mixture of pride and sincere regret."
 	icon_state = "prop3"

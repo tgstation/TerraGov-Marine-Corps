@@ -5,7 +5,7 @@
 	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 4
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -25,7 +25,7 @@
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 5.0
+	w_class = WEIGHT_CLASS_HUGE
 	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 500
 	var/rounds_max = 500
@@ -87,7 +87,7 @@
 			reloading = FALSE
 	return TRUE
 
-/obj/item/smartgun_powerpack/attack_hand(mob/user)
+/obj/item/smartgun_powerpack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(QDELETED(pcell))
@@ -134,7 +134,7 @@
 		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
 	else
 		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	playsound(user, 'sound/weapons/unload.ogg', 25, 1)
+	playsound(user, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 
 	reloading = FALSE
 	return TRUE
@@ -170,7 +170,7 @@
 	desc = "A large case containing an experiemental suit of B18 armor for the discerning specialist."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 3
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -186,7 +186,7 @@
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 12
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -217,7 +217,7 @@
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 9
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -246,7 +246,7 @@
 	desc = "A large case containing a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 2
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -263,7 +263,7 @@
 	desc = "A large case containing a heavy-caliber antitank missile launcher and missiles. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -294,7 +294,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	spec_set = "demolitionist"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -326,7 +326,7 @@
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -364,7 +364,7 @@
 	desc = "A large case containing Scout equipment; this one features the M4RA battle rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 22
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -402,7 +402,7 @@
 	desc = "A large case containing Scout equipment; this one features the ZX-76 assault shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 21
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -433,7 +433,7 @@
 	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "armor_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 9
 	slowdown = 1
 	can_hold = list()
@@ -459,7 +459,7 @@
 	desc = "A large case containing B18 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 6
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
@@ -481,7 +481,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	spec_set = "heavy grenadier"
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.

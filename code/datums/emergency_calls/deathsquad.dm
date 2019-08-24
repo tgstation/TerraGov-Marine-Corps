@@ -12,14 +12,13 @@
 /datum/emergency_call/deathsquad/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
-	var/list/names = list("Alpha","Beta", "Gamma", "Delta","Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omnicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
 
 	if(!istype(spawn_loc))
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	H.name = pick(names)
+	H.name = pick(SSstrings.get_list_from_file("greek_letters"))
 	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)

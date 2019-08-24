@@ -25,14 +25,11 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun)
-
-	var/brightness_on = 5 //Average attachable pocket light
-	var/flashlight_cooldown = 0 //Cooldown for toggling the light
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
-	w_class = 5
+	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
@@ -56,8 +53,8 @@
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
-	if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_marine_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else
@@ -69,13 +66,6 @@
 	if(loc != user)
 		turn_off_light(user)
 	return ..()
-
-/obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
-	if(flags_marine_armor & ARMOR_LAMP_ON)
-		set_light(0)
-		toggle_armor_light(wearer) //turn the light off
-		return TRUE
-	return FALSE
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
@@ -103,18 +93,6 @@
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
-/obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
-	//message_admins("TOGGLE ARMOR LIGHT DEBUG 1: flags_marine_armor: [flags_marine_armor] user: [user]")
-	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
-	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-		set_light(0)
-	else //Turn it on.
-		set_light(brightness_on)
-	flags_marine_armor ^= ARMOR_LAMP_ON
-	playsound(src,'sound/items/flashlight.ogg', 15, 1)
-	update_icon(user)
-	update_action_button_icons()
-
 /obj/item/clothing/suit/storage/marine/M3HB
 	name = "\improper M3-H pattern marine armor"
 	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of slowdown."
@@ -134,15 +112,12 @@
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	var/obj/item/weapon/gun/current_gun
-	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
-	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS
 	bypass_w_limit = list()
 	storage_slots = null
-	max_storage_space = 14
+	max_storage_space = 15 // Same as satchel
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
@@ -188,6 +163,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
+		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
@@ -200,7 +176,7 @@
 	icon_state = "admiral"
 	name = "\improper M3 pattern admiral armor"
 	desc = "A well-crafted suit of M3 Pattern Armor with a gold shine. It looks very expensive, but shockingly fairly easy to carry and wear."
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	armor = list("melee" = 50, "bullet" = 80, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25)
 
 /obj/item/clothing/suit/storage/marine/MP/RO
@@ -322,14 +298,14 @@
 
 	var/list/details = list()
 	var/dose_administered = null
-	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(kelotane)
-			wearer.reagents.add_reagent("kelotane",kelotane)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/kelotane,kelotane)
 		if(tricordrazine)
-			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
 		if(kelotane || tricordrazine) //Only report if we actually administer something
 			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
@@ -337,14 +313,15 @@
 			dose_administered = TRUE
 
 	if(wearer.getBruteLoss() > B18_automed_damage && !B18_brute_cooldown)
-		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("bicaridine") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("quickclot") + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
+		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(quickclot)
-			wearer.reagents.add_reagent("quickclot",quickclot)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/quickclot,quickclot)
 		if(bicaridine)
-			wearer.reagents.add_reagent("bicaridine",bicaridine)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/bicaridine,bicaridine)
 		if(tricordrazine)
-			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
 		if(quickclot || bicaridine || tricordrazine) //Only report if we actually administer something
 			details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage:[bicaridine ? " Bicaridine: [bicaridine]U |" : ""][quickclot ? " Quickclot: [quickclot]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
@@ -353,14 +330,15 @@
 			dose_administered = TRUE
 
 	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
-		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("dexalinplus") + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
-		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount("inaprovaline") + 0.5),0,REAGENTS_OVERDOSE * 2 * B18_CHEM_MOD)
+		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dexalinplus) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
+		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline) + 0.5),0,REAGENTS_OVERDOSE * 2 * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(dexalinplus)
-			wearer.reagents.add_reagent("dexalinplus",dexalinplus)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/dexalinplus,dexalinplus)
 		if(inaprovaline)
-			wearer.reagents.add_reagent("inaprovaline",inaprovaline)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/inaprovaline,inaprovaline)
 		if(tricordrazine)
-			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
 		if(dexalinplus || inaprovaline || tricordrazine) //Only report if we actually administer something
 			details +=("Low blood oxygen detected. Reoxygenating preparation administered. <b>Dosage:[dexalinplus ? " Dexalin Plus: [dexalinplus]U |" : ""][inaprovaline ? " Inaprovaline: [inaprovaline]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_oxy_cooldown = world.time + B18_CHEM_COOLDOWN
@@ -368,14 +346,15 @@
 			dose_administered = TRUE
 
 	if(wearer.getToxLoss() > B18_automed_damage && !B18_tox_cooldown)
-		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("dylovene") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("spaceacillin") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dylovene) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(dylovene)
-			wearer.reagents.add_reagent("dylovene",dylovene)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/dylovene,dylovene)
 		if(spaceacillin)
-			wearer.reagents.add_reagent("spaceacillin",spaceacillin)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,spaceacillin)
 		if(tricordrazine)
-			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
 		if(dylovene || spaceacillin || tricordrazine) //Only report if we actually administer something
 			details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage:[dylovene ? " Dylovene: [dylovene]U |" : ""][spaceacillin ? " Spaceacillin: [spaceacillin]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
@@ -384,12 +363,12 @@
 			dose_administered = TRUE
 
 	if(wearer.traumatic_shock > B18_automed_pain && !B18_pain_cooldown)
-		var/oxycodone = CLAMP(REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount("oxycodone") + 0.5),0,REAGENTS_OVERDOSE * 0.66 * B18_CHEM_MOD)
-		var/tramadol = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tramadol") + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
+		var/oxycodone = CLAMP(REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone) + 0.5),0,REAGENTS_OVERDOSE * 0.66 * B18_CHEM_MOD)
+		var/tramadol = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tramadol) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
 		if(oxycodone)
-			wearer.reagents.add_reagent("oxycodone",oxycodone)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/oxycodone,oxycodone)
 		if(tramadol)
-			wearer.reagents.add_reagent("tramadol",tramadol)
+			wearer.reagents.add_reagent(/datum/reagent/medicine/tramadol,tramadol)
 		if(oxycodone || tramadol) //Only report if we actually administer something
 			details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage:[oxycodone ? " Oxycodone: [oxycodone]U |" : ""][tramadol ? " Tramadol: [tramadol]U" : ""]</b></br>")
 			B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
@@ -583,7 +562,7 @@
 //=============================//PMCS\\==================================
 
 /obj/item/clothing/suit/storage/marine/veteran
-	flags_marine_armor = ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC
 	name = "\improper M4 pattern PMC armor"
@@ -639,10 +618,10 @@
 
 //===========================//DISTRESS\\================================
 
-/obj/item/clothing/suit/storage/marine/veteran/bear
-	name = "\improper H1 Iron Bears vest"
-	desc = "A protective vest worn by Iron Bears mercenaries."
-	icon_state = "bear_armor"
+/obj/item/clothing/suit/storage/marine/veteran/wolves
+	name = "\improper H1 Steel Wolves vest"
+	desc = "A protective vest worn by Steel Wolves mercenaries."
+	icon_state = "wolves_armor"
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
@@ -734,12 +713,10 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
-	var/brightness_on = 5 //Average attachable pocket light
-	var/flashlight_cooldown = 0 //Cooldown for toggling the light
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/armor_overlays["lamp"]
 	actions_types = list(/datum/action/item_action/toggle)
-	var/flags_faction_armor = ARMOR_LAMP_OVERLAY
 
 /obj/item/clothing/suit/storage/faction/Initialize(mapload, ...)
 	. = ..()
@@ -751,8 +728,8 @@
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
-	if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
-		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_faction_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
+	if(flags_armor_features & ARMOR_LAMP_OVERLAY)
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_armor_features & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else armor_overlays["lamp"] = null
@@ -778,21 +755,6 @@
 	if(!ishuman(user)) return FALSE
 	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
-
-/obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)
-	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
-	if(flags_faction_armor & ARMOR_LAMP_ON) //Turn it off.
-		set_light(0)
-	else //Turn it on.
-		set_light(brightness_on)
-
-	flags_faction_armor ^= ARMOR_LAMP_ON
-
-	playsound(src,'sound/items/flashlight.ogg', 15, 1)
-	update_icon(user)
-
-	update_action_button_icons()
-
 
 
 

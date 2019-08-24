@@ -1,11 +1,11 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
 	origin_tech = "combat=4;materials=3"
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	load_method = MAGAZINE //codex
@@ -51,7 +51,9 @@
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	fire_sound = "gun_pulse"
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x24mm caseless" //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
@@ -79,6 +81,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
@@ -132,7 +135,9 @@
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -143,6 +148,7 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
@@ -169,7 +175,10 @@
 	caliber = "7.62x93mm" //codex
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mar40.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mar40_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mar40_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/mar40_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -190,6 +199,7 @@
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
@@ -209,7 +219,6 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
 
 /obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -234,7 +243,10 @@
 	caliber = "5.56x45mm" //codex
 	max_shells = 20 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_m16.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -255,6 +267,7 @@
 						)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m16/set_gun_config_values()
@@ -280,8 +293,10 @@
 	max_shells = 300 //codex
 	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
 	origin_tech = "combat=5;materials=4"
-	fire_sound =  'sound/weapons/gun_rifle.ogg'
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -299,6 +314,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
@@ -328,11 +344,15 @@
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_type71.ogg'
+	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
+	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = 4
+	wield_delay = WIELD_DELAY_FAST
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/rifle/type71/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
@@ -346,10 +366,6 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
-/obj/item/weapon/gun/rifle/type71/toggle_burst()
-	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
-
-
 /obj/item/weapon/gun/rifle/type71/flamer
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
@@ -360,11 +376,11 @@
 	name = "\improper Type 71 pulse carbine"
 	icon_state = "type71c"
 	item_state = "type71c"
-	wield_delay = 2 //Carbine is more lightweight
+	wield_delay = WIELD_DELAY_VERY_FAST //Carbine is more lightweight
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando
-	name = "\improper Type 71 'Commando' pulse carbine"
+	name = "\improper Type 73 'Commando' pulse carbine"
 	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units and officer cadres."
 	icon_state = "type73"
 	item_state = "type73"

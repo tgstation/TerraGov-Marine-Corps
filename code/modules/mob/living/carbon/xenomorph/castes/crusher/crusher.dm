@@ -11,7 +11,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	drag_delay = 6 //pulling a big dead xeno is hard
-	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
 
 	is_charging = 1 //Crushers start with charging enabled
@@ -149,8 +148,7 @@
 	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	obj_integrity -= X.charge_speed * 80 //Should generally smash it unless not moving very fast.
-	healthcheck(user = X)
+	take_damage(X.charge_speed * 80) //Should generally smash it unless not moving very fast.
 
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 2 //Lose two turfs worth of speed
 
@@ -163,8 +161,7 @@
 	if(X.charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
 		X.stop_momentum(X.charge_dir)
 		return FALSE
-	obj_integrity -= X.charge_speed * 40 //Usually knocks it down.
-	healthcheck()
+	take_damage(X.charge_speed * 40) //Usually knocks it down.
 
 	X.charge_speed -= CHARGE_SPEED_BUILDUP //Lose one turf worth of speed
 
@@ -201,7 +198,7 @@
 	machine_stat = 1
 	DISABLE_BITFIELD(turret_flags, TURRET_ON)
 	update_icon()
-	update_health(X.charge_speed * 20)
+	take_damage(X.charge_speed * 20)
 	X.charge_speed -= CHARGE_SPEED_BUILDUP * 3 //Lose three turfs worth of speed
 	return TRUE
 
@@ -236,7 +233,7 @@
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 			"<span class='xenodanger'>We ram [src]!</span>")
-		KnockDown(X.charge_speed * 4)
+		knock_down(X.charge_speed * 4)
 		animation_flash_color(src)
 		X.diagonal_step(src, X.dir) //Occasionally fling it diagonally.
 		step_away(src, X, round(X.charge_speed))

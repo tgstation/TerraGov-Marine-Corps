@@ -1,24 +1,5 @@
-#define STYLE_STANDARD 1
-#define STYLE_BLUESPACE 2
-#define STYLE_CENTCOM 3
-#define STYLE_SYNDICATE 4
-#define STYLE_BLUE 5
-#define STYLE_CULT 6
-#define STYLE_MISSILE 7
-#define STYLE_RED_MISSILE 8
-#define STYLE_BOX 9
-#define STYLE_HONK 10
-#define STYLE_FRUIT 11
-#define STYLE_INVISIBLE 12
-#define STYLE_GONDOLA 13
-#define STYLE_SEETHROUGH 14
 
-#define POD_ICON_STATE 1
-#define POD_NAME 2
-#define POD_DESC 3
-#define POD_NUMBER 4
-
-#define POD_STYLES list(\
+GLOBAL_LIST_INIT(pod_styles, list(\
 	list("supplypod", "supply pod", "A Nanotrasen supply drop pod.", STYLE_STANDARD),\
 	list("bluespacepod", "bluespace supply pod" , "A Nanotrasen Bluespace supply pod. Teleports back to CentCom after delivery.", STYLE_BLUESPACE),\
 	list("centcompod", "\improper Centcom supply pod", "A Nanotrasen supply pod, this one has been marked with Central Command's designations. Teleports back to Centcom after delivery.", STYLE_CENTCOM),\
@@ -33,7 +14,7 @@
 	list("", "\improper S.T.E.A.L.T.H. pod MKVII", "A supply pod that, under normal circumstances, is completely invisible to conventional methods of detection. How are you even seeing this?", STYLE_INVISIBLE),\
 	list("gondolapod", "gondola", "The silent walker. This one seems to be part of a delivery agency.", STYLE_GONDOLA),\
 	list("", "", "", STYLE_SEETHROUGH)\
-)
+))
 
 
 /obj/structure/closet/supplypod
@@ -65,7 +46,7 @@
 	var/reversing = FALSE
 	var/fallDuration = 4
 	var/fallingSoundLength = 11
-	var/fallingSound = 'sound/weapons/mortar_long_whistle.ogg'
+	var/fallingSound = 'sound/weapons/guns/misc/mortar_long_whistle.ogg'
 	var/landingSound
 	var/openingSound
 	var/leavingSound
@@ -86,7 +67,7 @@
 	bluespace = TRUE
 	explosionSize = list(0, 0, 0, 0)
 	landingDelay = 20
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = RESIST_ALL
 
 
 /obj/structure/closet/supplypod/Initialize()
@@ -110,10 +91,10 @@
 		setStyle(STYLE_CENTCOM)
 		return
 	style = chosenStyle
-	icon_state = POD_STYLES[chosenStyle][POD_ICON_STATE]
+	icon_state = GLOB.pod_styles[chosenStyle][POD_ICON_STATE]
 	if(!adminNamed)
-		name = POD_STYLES[chosenStyle][POD_NAME]
-		desc = POD_STYLES[chosenStyle][POD_DESC]
+		name = GLOB.pod_styles[chosenStyle][POD_NAME]
+		desc = GLOB.pod_styles[chosenStyle][POD_DESC]
 	update_icon()
 
 
@@ -307,12 +288,12 @@
 		L.forceMove(src)
 	if(pod.effectStun)
 		for(var/mob/living/M in get_turf(src))
-			M.Stun(pod.landingDelay + 10)
+			M.stun(pod.landingDelay + 10)
 	if(pod.effectStealth)
 		icon_state = ""
 	if(pod.fallDuration == initial(pod.fallDuration) && pod.landingDelay + pod.fallDuration < pod.fallingSoundLength)
-		pod.fallingSoundLength = 3 
-		pod.fallingSound =  'sound/weapons/mortar_whistle.ogg'
+		pod.fallingSoundLength = 3
+		pod.fallingSound =  'sound/weapons/guns/misc/mortar_whistle.ogg'
 	var/soundStartTime = pod.landingDelay - pod.fallingSoundLength + pod.fallDuration
 	if(soundStartTime < 0)
 		soundStartTime = 1

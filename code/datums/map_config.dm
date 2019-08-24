@@ -132,7 +132,7 @@
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
 	if(json["announce_text"])
-		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", CONFIG_GET(string/ship_name))
+		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
 
 	defaulted = FALSE
 	return TRUE

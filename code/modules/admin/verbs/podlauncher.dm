@@ -60,6 +60,9 @@
 
 
 /datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/nanoui/master_ui, datum/topic_state/state = GLOB.admin_state)
+	if(!temp_pod)
+		SSnano.close_user_uis(user, src, ui_key)
+		return
 	var/list/data = list()
 	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? 1 : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0
 	data["bay"] = bay
@@ -260,10 +263,10 @@
 			temp_pod.setStyle(temp_pod.style)
 			. = TRUE
 			return
-		var/nameInput= input("Custom name", "Enter a custom name", POD_STYLES[temp_pod.style][POD_NAME]) as null|text
+		var/nameInput= input("Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) as null|text
 		if(isnull(nameInput))
 			return
-		var/descInput = input("Custom description", "Enter a custom desc", POD_STYLES[temp_pod.style][POD_DESC]) as null|text
+		var/descInput = input("Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) as null|text
 		if(isnull(descInput))
 			return
 		temp_pod.name = nameInput
@@ -556,6 +559,10 @@
 /datum/podlauncher/proc/on_set_interaction()
 	return
 
+
+/datum/podlauncher/proc/check_eye()
+	return
+
 			
 /datum/podlauncher/proc/on_unset_interaction()
 	qdel(src)
@@ -576,6 +583,10 @@
 
 
 /datum/podlauncher/InterceptClickOn(user, params, atom/target)
+	if(!temp_pod)
+		updateCursor(FALSE)
+		return FALSE
+
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
 	if(launcherActivated)

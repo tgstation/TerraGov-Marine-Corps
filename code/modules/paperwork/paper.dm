@@ -10,7 +10,7 @@
 	icon_state = "paper"
 	item_state = "paper"
 	throwforce = 0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_range = 1
 	throw_speed = 1
 	flags_equip_slot = ITEM_SLOT_HEAD
@@ -28,9 +28,9 @@
 	var/rigged = 0
 	var/spam_flag = 0
 
-	var/const/deffont = "Verdana"
-	var/const/signfont = "Times New Roman"
-	var/const/crayonfont = "Comic Sans MS"
+	var/const/deffont = PAPER_DEFAULT_FONT
+	var/const/signfont = PAPER_SIGN_FONT
+	var/const/crayonfont = PAPER_CRAYON_FONT
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
@@ -179,64 +179,9 @@
 
 
 /obj/item/paper/proc/parsepencode(t, obj/item/tool/pen/P, mob/user as mob, iscrayon = 0)
-//	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
+	t = parse_pencode(t, P, user, iscrayon) // Wrap the global proc
 
-	t = oldreplacetext(t, "\[center\]", "<center>")
-	t = oldreplacetext(t, "\[/center\]", "</center>")
-	t = oldreplacetext(t, "\[br\]", "<BR>")
-	t = oldreplacetext(t, "\[b\]", "<B>")
-	t = oldreplacetext(t, "\[/b\]", "</B>")
-	t = oldreplacetext(t, "\[i\]", "<I>")
-	t = oldreplacetext(t, "\[/i\]", "</I>")
-	t = oldreplacetext(t, "\[u\]", "<U>")
-	t = oldreplacetext(t, "\[/u\]", "</U>")
-	t = oldreplacetext(t, "\[large\]", "<font size=\"4\">")
-	t = oldreplacetext(t, "\[/large\]", "</font>")
-	t = oldreplacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[user ? user.real_name : "Anonymous"]</i></font>")
-	t = oldreplacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
-
-	t = oldreplacetext(t, "\[h1\]", "<H1>")
-	t = oldreplacetext(t, "\[/h1\]", "</H1>")
-	t = oldreplacetext(t, "\[h2\]", "<H2>")
-	t = oldreplacetext(t, "\[/h2\]", "</H2>")
-	t = oldreplacetext(t, "\[h3\]", "<H3>")
-	t = oldreplacetext(t, "\[/h3\]", "</H3>")
-
-	if(!iscrayon)
-		t = oldreplacetext(t, "\[*\]", "<li>")
-		t = oldreplacetext(t, "\[hr\]", "<HR>")
-		t = oldreplacetext(t, "\[small\]", "<font size = \"1\">")
-		t = oldreplacetext(t, "\[/small\]", "</font>")
-		t = oldreplacetext(t, "\[list\]", "<ul>")
-		t = oldreplacetext(t, "\[/list\]", "</ul>")
-		t = oldreplacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
-		t = oldreplacetext(t, "\[/table\]", "</td></tr></table>")
-		t = oldreplacetext(t, "\[grid\]", "<table>")
-		t = oldreplacetext(t, "\[/grid\]", "</td></tr></table>")
-		t = oldreplacetext(t, "\[row\]", "</td><tr>")
-		t = oldreplacetext(t, "\[cell\]", "<td>")
-		t = oldreplacetext(t, "\[logo\]", "<img src = 'ntlogo.png'>")
-		t = oldreplacetext(t, "\[date\]", "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")]")
-
-		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
-	else // If it is a crayon, and he still tries to use these, make them empty!
-		t = oldreplacetext(t, "\[*\]", "")
-		t = oldreplacetext(t, "\[hr\]", "")
-		t = oldreplacetext(t, "\[small\]", "")
-		t = oldreplacetext(t, "\[/small\]", "")
-		t = oldreplacetext(t, "\[list\]", "")
-		t = oldreplacetext(t, "\[/list\]", "")
-		t = oldreplacetext(t, "\[table\]", "")
-		t = oldreplacetext(t, "\[/table\]", "")
-		t = oldreplacetext(t, "\[row\]", "")
-		t = oldreplacetext(t, "\[cell\]", "")
-		t = oldreplacetext(t, "\[logo\]", "")
-
-		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
-
-//	t = oldreplacetext(t, "#", "") // Junk converted to nothing!
-
-//Count the fields
+	//Count the fields
 	var/laststart = 1
 	while(fields < 15)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
 	flags_equip_slot = NONE
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 
@@ -297,7 +297,7 @@
 		holstered = null
 		return TRUE
 
-/obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/holster/attack_hand(mob/living/user)
 	if (has_suit)	//if we are part of a suit
 		if (holstered)
 			unholster(user)
@@ -408,7 +408,7 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
 /obj/item/storage/internal/tie
@@ -455,7 +455,7 @@
 			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
 
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user)
+/obj/item/clothing/tie/storage/attack_hand(mob/living/user)
 	if(has_suit)
 		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]
@@ -600,8 +600,7 @@
 
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
-	Security agent - the user details can be imprinted on the badge with a Security-access ID card,
-	or they can be emagged to accept any ID for use in disguises.
+	Security agent - the user details can be imprinted on the badge with a Security-access ID card
 */
 
 /obj/item/clothing/tie/holobadge
@@ -627,18 +626,10 @@
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
-			return
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
-
-	else if(istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I
 
-		if(!(ACCESS_MARINE_BRIG in id_card.access) || !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(!(ACCESS_MARINE_BRIG in id_card.access))
 			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 

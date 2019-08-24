@@ -10,65 +10,73 @@
 
 
 /datum/supply_export/xemomorph/larva
-	cost = 0
+	cost = 15
 	export_obj = /mob/living/carbon/xenomorph/larva
 
 
 /datum/supply_export/xemomorph/drone
-	cost = 10
+	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/drone
 
 /datum/supply_export/xemomorph/runner
-	cost = 5
+	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/runner
 
 /datum/supply_export/xemomorph/defender
-	cost = 10
+	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/defender
 
 /datum/supply_export/xemomorph/sentinel
-	cost = 10
+	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/sentinel
 
 
 /datum/supply_export/xemomorph/carrier
-	cost = 20
+	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/carrier
 
 /datum/supply_export/xemomorph/hivelord
-	cost = 20
+	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/hivelord
 
 /datum/supply_export/xemomorph/hunter
-	cost = 15
+	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/hunter
 
 /datum/supply_export/xemomorph/warrior
-	cost = 15
+	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/warrior
 
 /datum/supply_export/xemomorph/spitter
-	cost = 15
+	cost = 40
 	export_obj = /mob/living/carbon/xenomorph/spitter
 
 
 /datum/supply_export/xemomorph/praetorian
-	cost = 30
+	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/praetorian
 
 /datum/supply_export/xemomorph/crusher
-	cost = 30
+	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/crusher
 
 /datum/supply_export/xemomorph/ravager
-	cost = 30
+	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/ravager
 
 /datum/supply_export/xemomorph/boiler
-	cost = 30
+	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/boiler
+
+/datum/supply_export/xemomorph/defiler
+	cost = 50
+	export_obj = /mob/living/carbon/xenomorph/Defiler
+
+/datum/supply_export/xemomorph/shrike
+	cost = 50
+	export_obj = /mob/living/carbon/xenomorph/shrike
 
 
 /datum/supply_export/xemomorph/queen
-	cost = 60
+	cost = 100
 	export_obj = /mob/living/carbon/xenomorph/queen

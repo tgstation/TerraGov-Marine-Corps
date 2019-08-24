@@ -38,13 +38,6 @@
 	tray.linked_ob = src
 
 
-
-
-/obj/structure/orbital_cannon/bullet_act()
-	return
-
-
-
 /obj/structure/orbital_cannon/update_icon()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
@@ -191,8 +184,8 @@
 
 	last_orbital_firing = world.time
 
-	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 
 	var/inaccurate_fuel = 0
 
@@ -227,7 +220,7 @@
 /obj/structure/orbital_tray
 	name = "loading tray"
 	desc = "The orbital cannon's loading tray."
-	icon = 'icons/Marine/almayer_props64.dmi'
+	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
@@ -252,9 +245,6 @@
 		linked_ob.tray = null
 		linked_ob = null
 	. = ..()
-
-/obj/structure/orbital_tray/bullet_act()
-	return
 
 
 /obj/structure/orbital_tray/update_icon()
@@ -334,7 +324,7 @@
 	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
-	icon = 'icons/Marine/almayer_props.dmi'
+	icon = 'icons/Marine/mainship_props.dmi'
 	var/is_solid_fuel = 0
 
 /obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
@@ -347,7 +337,7 @@
 
 		if(PC.loaded)
 			return TRUE
-			
+
 		forceMove(PC.linked_powerloader)
 		PC.loaded = src
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -435,11 +425,8 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-/obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
 
-
-/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/user)
+/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -551,13 +538,9 @@
 	flick("Railgun_firing",src)
 	cannon_busy = TRUE
 	last_firing = world.time
-	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
-	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
-
-
-/obj/structure/ship_rail_gun/bullet_act()
-	return

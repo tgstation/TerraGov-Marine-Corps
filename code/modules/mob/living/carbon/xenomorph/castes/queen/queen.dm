@@ -20,7 +20,6 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
-	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
@@ -43,7 +42,6 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/larva_growth,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
@@ -237,6 +235,6 @@
 // *********** Larva Mother
 // ***************************************
 
-/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers)
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.

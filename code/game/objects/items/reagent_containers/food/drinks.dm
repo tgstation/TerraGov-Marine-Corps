@@ -44,12 +44,10 @@
 			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+		visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")
 		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 			return
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+		visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -109,7 +107,7 @@
 	name = "golden cup"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 14
 	throwforce = 10
 	amount_per_transfer_from_this = 20
@@ -132,7 +130,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	list_reagents = list("milk" = 50)
+	list_reagents = list(/datum/reagent/consumable/drink/milk = 50)
 
 /* Flour is no longer a reagent
 /obj/item/reagent_container/food/drinks/flour
@@ -142,7 +140,7 @@
 	icon_state = "flour"
 	item_state = "flour"
 	center_of_mass = list(x=-10, y=-10)
-	list_reagents = list("flour" = 30)
+	list_reagents = list(/datum/reagent/consumable/flour = 30)
 */
 
 /obj/item/reagent_container/food/drinks/soymilk
@@ -151,19 +149,19 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	list_reagents = list("soymilk" = 50)
+	list_reagents = list(/datum/reagent/consumable/drink/milk/soymilk = 50)
 
 /obj/item/reagent_container/food/drinks/coffee
 	name = "\improper Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	list_reagents = list("coffee" = 30)
+	list_reagents = list(/datum/reagent/consumable/drink/coffee = 30)
 
 /obj/item/reagent_container/food/drinks/coffee/cafe_latte
 	name = "\improper Cafe Latte"
 	desc = "The beverage you're about to enjoy is hot."
-	list_reagents = list("cafe_latte" = 30)
+	list_reagents = list(/datum/reagent/consumable/drink/coffee/cafe_latte = 30)
 
 /obj/item/reagent_container/food/drinks/tea
 	name = "\improper Duke Purple Tea"
@@ -171,14 +169,14 @@
 	icon_state = "teacup"
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
-	list_reagents = list("tea" = 30)
+	list_reagents = list(/datum/reagent/consumable/drink/tea = 30)
 
 /obj/item/reagent_container/food/drinks/ice
 	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	list_reagents = list("ice" = 30)
+	list_reagents = list(/datum/reagent/consumable/drink/cold/ice = 30)
 
 /obj/item/reagent_container/food/drinks/h_chocolate
 	name = "\improper Dutch hot coco"
@@ -186,14 +184,14 @@
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
-	list_reagents = list("hot_coco" = 30)
+	list_reagents = list(/datum/reagent/consumable/drink/hot_coco = 30)
 
 /obj/item/reagent_container/food/drinks/dry_ramen
 	name = "cup ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
-	list_reagents = list("dry_ramen" = 30)
+	list_reagents = list(/datum/reagent/consumable/dry_ramen = 30)
 
 /obj/item/reagent_container/food/drinks/sillycup
 	name = "paper cup"
@@ -233,16 +231,16 @@
 /obj/item/reagent_container/food/drinks/flask/marine
 	name = "\improper TGMC flask"
 	desc = "A metal flask embossed with the TGMC logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
-	icon_state = "flask_uscm"
+	icon_state = "flask_tgmc"
 	center_of_mass = list("x"=17, "y"=8)
-	list_reagents = list("water" = 51, "hooch" = 9)
+	list_reagents = list(/datum/reagent/water = 51, /datum/reagent/consumable/ethanol/hooch = 9)
 
 /obj/item/reagent_container/food/drinks/flask/detflask
 	name = "detective's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	center_of_mass = list("x"=17, "y"=8)
-	list_reagents = list("whiskey" = 30)
+	list_reagents = list(/datum/reagent/consumable/ethanol/whiskey = 30)
 
 /obj/item/reagent_container/food/drinks/flask/barflask
 	name = "flask"

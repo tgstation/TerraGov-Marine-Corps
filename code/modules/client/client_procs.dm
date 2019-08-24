@@ -21,8 +21,9 @@
 		return
 
 	//Asset cache
+	var/job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = round(text2num(href_list["asset_cache_confirm_arrival"]))
+		job = round(text2num(href_list["asset_cache_confirm_arrival"]))
 		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
 		//into letting append to a list without limit.
 		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
@@ -69,6 +70,11 @@
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
+	//byond bug ID:2256651
+	if(job && (job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+
 
 	//Admin PM
 	if(href_list["priv_msg"])
@@ -113,12 +119,6 @@
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.
 		return null
 
-
-	if(!GLOB.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.", "Guest", "OK")
-		qdel(src)
-		return
-
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
@@ -147,6 +147,7 @@
 	prefs.parent = src
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	fps = prefs.clientfps
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")
@@ -301,10 +302,8 @@
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
 	log_access("Logout: [key_name(src)]")
-	if(isliving(mob))
-		var/mob/living/L = mob
-		L.begin_away()
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))
 			message_admins("Admin logout: [key_name(src)].")
@@ -322,6 +321,7 @@
 
 
 /client/Destroy()
+	. = ..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
 
@@ -555,17 +555,51 @@
 	return TRUE
 
 
+GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/handle_spam_prevention(message, mute_type)
-	if(CONFIG_GET(flag/automute_on) && !check_rights(R_ADMIN, FALSE) && last_message == message)
-		last_message_count++
-		if(last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "<span class='danger'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
+	//Performance
+	if(isnull(GLOB.automute_on))
+		GLOB.automute_on = CONFIG_GET(flag/automute_on)
+
+	total_message_count += 1
+
+	var/weight = SPAM_TRIGGER_WEIGHT_FORMULA(message)
+	total_message_weight += weight
+
+	var/message_cache = total_message_count
+	var/weight_cache = total_message_weight
+
+	if(last_message_time && world.time > last_message_time)
+		last_message_time = 0
+		total_message_count = 0
+		total_message_weight = 0
+
+	else if(!last_message_time)
+		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
+	
+	last_message = message
+
+	var/mute = message_cache >= SPAM_TRIGGER_AUTOMUTE || (weight_cache > SPAM_TRIGGER_WEIGHT_AUTOMUTE && message_cache != 1)
+	var/warning = message_cache >= SPAM_TRIGGER_WARNING || (weight_cache > SPAM_TRIGGER_WEIGHT_WARNING && message_cache != 1)
+
+	if(mute)
+		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
+			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
 			mute(src, mute_type, TRUE)
+		return TRUE
+
+	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
+		to_chat(src, "<span class='danger'>You are nearing the spam filter limit.</span>")
+
+/client/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("holder")
+			return FALSE
+		if("ckey")
+			return FALSE
+		if("key")
+			return FALSE
+		if("view")
+			change_view(var_value)
 			return TRUE
-		else if(last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "<span class='danger'>You are nearing the spam filter limit for identical messages.</span>")
-			return TRUE
-	else
-		last_message = message
-		last_message_count = 0
-		return FALSE
+	return ..()

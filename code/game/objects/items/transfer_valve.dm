@@ -128,10 +128,9 @@
 
 /obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)
-		toggle = 0
+		toggle = FALSE
 		toggle_valve()
-		spawn(50) // To stop a signal being spammed from a proxy sensor constantly going off or whatever
-			toggle = 1
+		addtimer(VARSET_CALLBACK(src, toggle, TRUE), 5 SECONDS) // To stop a signal being spammed from a proxy sensor constantly going off or whatever
 
 /obj/item/transfer_valve/update_icon()
 	overlays.Cut()
@@ -160,23 +159,7 @@
 /obj/item/transfer_valve/proc/toggle_valve()
 	if(valve_open==0 && (tank_one && tank_two))
 		valve_open = 1
-		var/turf/bombturf = get_turf(src)
-		var/area/A = get_area(bombturf)
 
-		var/attacher_name = ""
-		if(!attacher)
-			attacher_name = "Unknown"
-		else
-			attacher_name = "[attacher.name]([attacher.ckey])"
-
-		var/log_str = "Bomb valve opened in <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[bombturf.x];Y=[bombturf.y];Z=[bombturf.z]'>[A.name]</a> "
-		log_str += "with [attached_device ? attached_device : "no device"] attacher: [attacher_name]"
-
-		if(attacher)
-			log_str += "(<A HREF='?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
-
-		log_game(log_str)
-		message_admins(log_str)
 		merge_gases()
 		spawn(20) // In case one tank bursts
 			for (var/i=0,i<5,i++)

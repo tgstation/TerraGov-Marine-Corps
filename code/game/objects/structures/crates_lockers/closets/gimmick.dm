@@ -34,9 +34,7 @@
 	icon_closed = "syndicate1"
 	icon_opened = "syndicate1open"
 
-/obj/structure/closet/gimmick/russian/New()
-	..()
-	sleep(2)
+/obj/structure/closet/gimmick/russian/PopulateContents()
 	new /obj/item/clothing/head/ushanka(src)
 	new /obj/item/clothing/head/ushanka(src)
 	new /obj/item/clothing/head/ushanka(src)
@@ -56,9 +54,7 @@
 	icon_closed = "syndicate1"
 	icon_opened = "syndicate1open"
 
-/obj/structure/closet/gimmick/tacticool/New()
-	..()
-	sleep(2)
+/obj/structure/closet/gimmick/tacticool/PopulateContents()
 	new /obj/item/clothing/glasses/eyepatch(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/gloves/swat(src)
@@ -83,16 +79,11 @@
 	icon_opened = "syndicateopen"
 	anchored = TRUE
 
-/obj/structure/closet/thunderdome/New()
-	..()
-	sleep(2)
 
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"
 
-/obj/structure/closet/thunderdome/tdred/New()
-	..()
-	sleep(2)
+/obj/structure/closet/thunderdome/tdred/PopulateContents()
 	new /obj/item/clothing/suit/armor/tdome/red(src)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
 	new /obj/item/clothing/suit/armor/tdome/red(src)
@@ -115,9 +106,7 @@
 	icon_closed = "syndicate1"
 	icon_opened = "syndicate1open"
 
-/obj/structure/closet/thunderdome/tdgreen/New()
-	..()
-	sleep(2)
+/obj/structure/closet/thunderdome/tdgreen/PopulateContents()
 	new /obj/item/clothing/suit/armor/tdome/green(src)
 	new /obj/item/clothing/suit/armor/tdome/green(src)
 	new /obj/item/clothing/suit/armor/tdome/green(src)

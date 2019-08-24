@@ -2,8 +2,7 @@
 
 /datum/chemical_reaction/explosion_potassium
 	name = "Explosion"
-	id = "explosion_potassium"
-	required_reagents = list("water" = 1, "potassium" = 1)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
 	on_reaction(var/datum/reagents/holder, var/created_volume)
 		var/atom/location = holder.my_atom.loc
 		if(holder.my_atom && location) //It exists outside of null space.
@@ -33,8 +32,7 @@
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
-	id = "emp_pulse"
-	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 
 	on_reaction(var/datum/reagents/holder, var/created_volume)
 		var/location = get_turf(holder.my_atom)
@@ -45,93 +43,78 @@
 
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
-	id = "pttoxin"
-	results = list("pttoxin" = 2)
-	required_reagents = list("paracetamol" = 1, "tramadol" = 1)
+	results = list(/datum/reagent/toxin/pttoxin = 2)
+	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
-	id = "sdtoxin2"
-	results = list("sdtoxin" = 2)
-	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
+	results = list(/datum/reagent/toxin/sdtoxin = 2)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/dylovene = 1)
 
 /datum/chemical_reaction/sleeptoxin
 	name = "Soporific"
-	id = "sleeptoxin"
-	results = list("sleeptoxin" = 5)
-	required_reagents = list("chloralhydrate" = 1, "sugar" = 4)
+	results = list(/datum/reagent/toxin/sleeptoxin = 5)
+	required_reagents = list(/datum/reagent/toxin/chloralhydrate = 1, /datum/reagent/consumable/sugar = 4)
 
 /datum/chemical_reaction/mutagen
 	name = "Unstable mutagen"
-	id = "mutagen"
-	results = list("mutagen" = 3)
-	required_reagents = list("radium" = 1, "phosphorus" = 1, "chlorine" = 1)
+	results = list(/datum/reagent/toxin/mutagen = 3)
+	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/phosphorus = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/water //I can't believe we never had this.
 	name = "Water"
-	id = "water"
-	results = list("water" = 1)
-	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
+	results = list(/datum/reagent/water = 1)
+	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
-	id = "thermite"
-	results = list("thermite" = 3)
-	required_reagents = list("aluminum" = 10, "iron" = 10, "oxygen" = 10, "phoron" = 1)
+	results = list(/datum/reagent/thermite = 3)
+	required_reagents = list(/datum/reagent/aluminum = 10, /datum/reagent/iron = 10, /datum/reagent/oxygen = 10, /datum/reagent/toxin/phoron = 1)
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
-	id = "lexorin"
-	results = list("lexorin" = 3)
-	required_reagents = list("phoron" = 1, "hydrogen" = 1, "nitrogen" = 1)
+	results = list(/datum/reagent/toxin/lexorin = 3)
+	required_reagents = list(/datum/reagent/toxin/phoron = 1, /datum/reagent/hydrogen = 1, /datum/reagent/nitrogen = 1)
 
 /datum/chemical_reaction/space_drugs
 	name = "Space Drugs"
-	id = "space_drugs"
-	results = list("space_drugs" = 3)
-	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
+	results = list(/datum/reagent/space_drugs = 3)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1)
 
 /datum/chemical_reaction/lube
 	name = "Space Lube"
-	id = "lube"
-	results = list("lube" = 4)
-	required_reagents = list("water" = 1, "silicon" = 1, "oxygen" = 1)
+	results = list(/datum/reagent/lube = 4)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/silicon = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/pacid
 	name = "Polytrinic acid"
-	id = "pacid"
-	results = list("pacid" = 3)
-	required_reagents = list("sacid" = 1, "chlorine" = 1, "potassium" = 1)
+	results = list(/datum/reagent/toxin/acid/polyacid = 3)
+	required_reagents = list(/datum/reagent/toxin/acid = 1, /datum/reagent/chlorine = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/impedrezene
 	name = "Impedrezene"
-	id = "impedrezene"
-	results = list("impedrezene" = 2)
-	required_reagents = list("mercury" = 1, "oxygen" = 1, "sugar" = 1)
+	results = list(/datum/reagent/impedrezene = 2)
+	required_reagents = list(/datum/reagent/mercury = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
-	id = "virusfood"
-	results = list("virusfood" = 5)
-	required_reagents = list("water" = 1, "milk" = 1)
+	results = list(/datum/reagent/consumable/virus_food = 5)
+	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/consumable/drink/milk = 1)
 
 /datum/chemical_reaction/cryptobiolin
 	name = "Cryptobiolin"
-	id = "cryptobiolin"
-	results = list("cryptobiolin" = 3)
-	required_reagents = list("potassium" = 1, "oxygen" = 1, "sugar" = 1)
+	results = list(/datum/reagent/cryptobiolin = 3)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/oxygen = 1, /datum/reagent/consumable/sugar = 1)
 
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
-	id = "glycerol"
-	results = list("glycerol" = 1)
-	required_reagents = list("cornoil" = 3, "sacid" = 1)
+	results = list(/datum/reagent/glycerol = 1)
+	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/nitroglycerin
 	name = "Nitroglycerin"
-	id = "nitroglycerin"
-	results = list("nitroglycerin" = 2)
-	required_reagents = list("glycerol" = 1, "pacid" = 1, "sacid" = 1)
+	results = list(/datum/reagent/nitroglycerin = 2)
+	required_reagents = list(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/polyacid = 1, /datum/reagent/toxin/acid = 1)
 
 /datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
 	var/datum/effect_system/reagents_explosion/e = new()
@@ -149,8 +132,7 @@
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	id = "flash_powder"
-	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
+	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -161,17 +143,16 @@
 		switch(get_dist(M, location))
 			if(0 to 3)
 				if(M.flash_eyes())
-					M.KnockDown(15)
+					M.knock_down(15)
 
 			if(4 to 5)
 				if(M.flash_eyes())
-					M.Stun(5)
+					M.stun(5)
 
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	id = "napalm"
-	required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
+	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/toxin/acid = 1 )
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume, radius)
 	var/location = get_turf(holder.my_atom)
@@ -189,8 +170,7 @@
 
 /datum/chemical_reaction/chemsmoke
 	name = "Chemsmoke"
-	id = "chemsmoke"
-	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_reagents = list(/datum/reagent/potassium = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/phosphorus = 1)
 
 /datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume * 1.5), 1)
@@ -205,50 +185,42 @@
 
 /datum/chemical_reaction/chloralhydrate
 	name = "Chloral Hydrate"
-	id = "chloralhydrate"
-	results = list("chloralhydrate" = 1)
-	required_reagents = list("ethanol" = 1, "chlorine" = 3, "water" = 1)
+	results = list(/datum/reagent/toxin/chloralhydrate = 1)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 1, /datum/reagent/chlorine = 3, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/potassium_chloride
 	name = "Potassium Chloride"
-	id = "potassium_chloride"
-	results = list("potassium_chloride" = 2)
-	required_reagents = list("sodiumchloride" = 1, "potassium" = 1)
+	results = list(/datum/reagent/toxin/potassium_chloride = 2)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
-	results = list("potassium_chlorophoride" = 4)
-	required_reagents = list("potassium_chloride" = 1, "phoron" = 1, "chloralhydrate" = 1)
+	results = list(/datum/reagent/toxin/potassium_chlorophoride = 4)
+	required_reagents = list(/datum/reagent/toxin/potassium_chloride = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/toxin/chloralhydrate = 1)
 
 /datum/chemical_reaction/zombiepowder
 	name = "Zombie Powder"
-	id = "zombiepowder"
-	results = list("zombiepowder" = 2)
-	required_reagents = list("carpotoxin" = 5, "sleeptoxin" = 5, "copper" = 5)
+	results = list(/datum/reagent/toxin/zombiepowder = 2)
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 5, /datum/reagent/toxin/sleeptoxin = 5, /datum/reagent/copper = 5)
 
 /datum/chemical_reaction/rezadone
 	name = "Rezadone"
-	id = "rezadone"
-	results = list("rezadone" = 3)
-	required_reagents = list("carpotoxin" = 1, "cryptobiolin" = 1, "copper" = 1)
+	results = list(/datum/reagent/medicine/rezadone = 3)
+	required_reagents = list(/datum/reagent/toxin/carpotoxin = 1, /datum/reagent/cryptobiolin = 1, /datum/reagent/copper = 1)
 
 /datum/chemical_reaction/mindbreaker
 	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
-	results = list("mindbreaker" = 3)
-	required_reagents = list("silicon" = 1, "hydrogen" = 1, "dylovene" = 1)
+	results = list(/datum/reagent/toxin/mindbreaker = 3)
+	required_reagents = list(/datum/reagent/silicon = 1, /datum/reagent/hydrogen = 1, /datum/reagent/medicine/dylovene = 1)
 
 /datum/chemical_reaction/lipozine
 	name = "Lipozine"
-	id = "Lipozine"
-	results = list("lipozine" = 3)
-	required_reagents = list("sodiumchloride" = 1, "ethanol" = 1, "radium" = 1)
+	results = list(/datum/reagent/lipozine = 3)
+	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/radium = 1)
 
 /datum/chemical_reaction/phoronsolidification
 	name = "Solid Phoron"
-	id = "solidphoron"
-	required_reagents = list("iron" = 5, "frostoil" = 5, "phoron" = 20)
+	required_reagents = list(/datum/reagent/iron = 5, /datum/reagent/consumable/frostoil = 5, /datum/reagent/toxin/phoron = 20)
 
 /datum/chemical_reaction/phoronsolidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -257,8 +229,7 @@
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
-	id = "solidplastic"
-	required_reagents = list("pacid" = 10, "plasticide" = 20)
+	required_reagents = list(/datum/reagent/toxin/acid/polyacid = 10, /datum/reagent/toxin/plasticide = 20)
 
 /datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
 	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.my_atom),10)
@@ -266,9 +237,8 @@
 
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
-	id = "virusfood"
-	results = list("virusfood" = 15)
-	required_reagents = list("water" = 5, "milk" = 5, "oxygen" = 5)
+	results = list(/datum/reagent/consumable/virus_food = 15)
+	required_reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/drink/milk = 5, /datum/reagent/oxygen = 5)
 
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -277,15 +247,13 @@
 
 /datum/chemical_reaction/surfactant
 	name = "Foam surfactant"
-	id = "foam surfactant"
-	results = list("fluorosurfactant" = 5)
-	required_reagents = list("fluorine" = 2, "carbon" = 2, "sacid" = 1)
+	results = list(/datum/reagent/fluorosurfactant = 5)
+	required_reagents = list(/datum/reagent/fluorine = 2, /datum/reagent/carbon = 2, /datum/reagent/toxin/acid = 1)
 
 
 /datum/chemical_reaction/foam
 	name = "Foam"
-	id = "foam"
-	required_reagents = list("fluorosurfactant" = 1, "water" = 1)
+	required_reagents = list(/datum/reagent/fluorosurfactant = 1, /datum/reagent/water = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
@@ -301,8 +269,7 @@
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
-	id = "metalfoam"
-	required_reagents = list("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = list(/datum/reagent/aluminum = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid/polyacid = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
@@ -319,8 +286,7 @@
 
 /datum/chemical_reaction/ironfoam
 	name = "Iron Foam"
-	id = "ironlfoam"
-	required_reagents = list("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = list(/datum/reagent/iron = 3, /datum/reagent/foaming_agent = 1, /datum/reagent/toxin/acid = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
@@ -336,36 +302,30 @@
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"
-	id = "foaming_agent"
-	results = list("foaming_agent" = 1)
-	required_reagents = list("lithium" = 1, "hydrogen" = 1)
+	results = list(/datum/reagent/foaming_agent = 1)
+	required_reagents = list(/datum/reagent/lithium = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/ammonia
 	name = "Ammonia"
-	id = "ammonia"
-	results = list("ammonia" = 3)
-	required_reagents = list("hydrogen" = 3, "nitrogen" = 1)
+	results = list(/datum/reagent/ammonia = 3)
+	required_reagents = list(/datum/reagent/hydrogen = 3, /datum/reagent/nitrogen = 1)
 
 /datum/chemical_reaction/diethylamine
 	name = "Diethylamine"
-	id = "diethylamine"
-	results = list("diethylamine" = 2)
-	required_reagents = list("ammonia" = 1, "ethanol" = 1)
+	results = list(/datum/reagent/diethylamine = 2)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/consumable/ethanol = 1)
 
 /datum/chemical_reaction/space_cleaner
 	name = "Space cleaner"
-	id = "cleaner"
-	results = list("cleaner" = 2)
-	required_reagents = list("ammonia" = 1, "water" = 1)
+	results = list(/datum/reagent/space_cleaner = 2)
+	required_reagents = list(/datum/reagent/ammonia = 1, /datum/reagent/water = 1)
 
 /datum/chemical_reaction/plantbgone
 	name = "Plant-B-Gone"
-	id = "plantbgone"
-	results = list("plantbgone" = 5)
-	required_reagents = list("toxin" = 1, "water" = 4)
+	results = list(/datum/reagent/toxin/plantbgone = 5)
+	required_reagents = list(/datum/reagent/toxin = 1, /datum/reagent/water = 4)
 
 /datum/chemical_reaction/laughter
 	name = "laughter"
-	id = "laughter"
-	results = list("laughter" = 5)
-	required_reagents = list("sugar" = 1, "banana" = 1)
+	results = list(/datum/reagent/consumable/laughter = 5)
+	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/consumable/drink/banana = 1)

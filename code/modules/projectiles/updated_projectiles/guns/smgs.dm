@@ -1,12 +1,13 @@
 /obj/item/weapon/gun/smg
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
-	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_m39.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
+	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
 	load_method = MAGAZINE //codex
 	force = 8
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	movement_acc_penalty_mult = 3
 	wield_delay = WIELD_DELAY_FAST
 	attachable_allowed = list(
@@ -16,6 +17,7 @@
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_SMGS
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
@@ -63,6 +65,7 @@
 						/obj/item/attachable/gyro)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
@@ -90,6 +93,7 @@
 	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/smg/m39/elite/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
@@ -115,7 +119,9 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_mp5.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -126,6 +132,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 /obj/item/weapon/gun/smg/mp5/set_gun_config_values()
@@ -152,7 +159,7 @@
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_mp7.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -162,6 +169,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 /obj/item/weapon/gun/smg/mp7/set_gun_config_values()
@@ -187,9 +195,13 @@
 	caliber = ".32 ACP" //codex
 	max_shells = 20 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/gun_skorpion.ogg'
+	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
+	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/skorpion/set_gun_config_values()
@@ -220,7 +232,11 @@
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
 	origin_tech = "combat=3;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_ppsh.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ppsh_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ppsh_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
 	attachable_allowed = list(
 						/obj/item/attachable/compensator,
@@ -229,6 +245,7 @@
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/ppsh/set_gun_config_values()
@@ -256,9 +273,13 @@
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
 	origin_tech = "combat=3;materials=2"
-	fire_sound = 'sound/weapons/uzi.ogg'
+	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
+	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
@@ -286,7 +307,10 @@
 	caliber = "5.7x28mm" //codex
 	max_shells = 50 //codex
 	origin_tech = "combat=5;materials=4"
-	fire_sound = 'sound/weapons/gun_p90.ogg'
+	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
+	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/p90_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/p90
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -295,6 +319,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/p90/set_gun_config_values()

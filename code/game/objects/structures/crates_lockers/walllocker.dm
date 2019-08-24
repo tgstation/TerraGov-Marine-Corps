@@ -38,9 +38,7 @@
 
 /obj/structure/closet/walllocker/emerglocker/full // spawners
 
-/obj/structure/closet/walllocker/emerglocker/full/New()
-	. = ..()
-	sleep(2)
+/obj/structure/closet/walllocker/emerglocker/full/PopulateContents()
 	for(var/i in 1 to 2)
 		new /obj/item/tank/emergency_oxygen/double(src)
 		new /obj/item/clothing/mask/gas(src)
@@ -55,9 +53,7 @@
 
 /obj/structure/closet/walllocker/hydrant/full // spawners
 
-/obj/structure/closet/walllocker/hydrant/full/New()
-	. = ..()
-	sleep(2)
+/obj/structure/closet/walllocker/hydrant/full/PopulateContents()
 	new /obj/item/clothing/suit/fire/firefighter(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/flashlight(src)
@@ -75,9 +71,7 @@
 
 /obj/structure/closet/walllocker/medical_wall/full // spawners
 
-/obj/structure/closet/walllocker/medical_wall/full/New()
-	. = ..()
-	sleep(2)
+/obj/structure/closet/walllocker/medical_wall/full/PopulateContents()
 	new /obj/item/storage/firstaid/regular(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/dylovene(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/inaprovaline(src)
@@ -132,9 +126,7 @@
 
 /obj/structure/closet/secure_closet/walllocker/medical/full // spawners
 
-/obj/structure/closet/secure_closet/walllocker/medical/full/New()
-	. = ..()
-	sleep(2)
+/obj/structure/closet/secure_closet/walllocker/medical/full/PopulateContents()
 	new /obj/item/storage/syringe_case/tox(src)
 	new /obj/item/storage/syringe_case/oxy(src)
 	new /obj/item/storage/firstaid/adv(src)

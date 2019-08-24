@@ -24,7 +24,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_amount()
-	if(title in JOBS_COMMAND)
+	if(title in GLOB.jobs_command)
 		var/uerhh = CONFIG_GET(number/use_exp_restrictions_command_hours)
 		if(uerhh)
 			return uerhh * 60
@@ -32,16 +32,16 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_type()
-	if(title in JOBS_COMMAND)
+	if(title in GLOB.jobs_command)
 		if(CONFIG_GET(flag/use_exp_restrictions_command_department) && exp_type_department)
 			return exp_type_department
 	return exp_type
 
 
 /proc/job_is_xp_locked(jobtitle)
-	if(!CONFIG_GET(flag/use_exp_restrictions_command) && jobtitle in JOBS_COMMAND)
+	if(!CONFIG_GET(flag/use_exp_restrictions_command) && jobtitle in GLOB.jobs_command)
 		return FALSE
-	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(jobtitle in JOBS_COMMAND))
+	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(jobtitle in GLOB.jobs_command))
 		return FALSE
 	return TRUE
 
@@ -71,7 +71,7 @@ GLOBAL_PROTECT(exp_to_update)
 	return_text += "<UL>"
 	var/list/exp_data = list()
 	for(var/category in SSjob.name_occupations)
-		if(!(category in JOBS_REGULAR_ALL))
+		if(!(category in GLOB.jobs_regular_all))
 			continue
 		if(play_records[category])
 			exp_data[category] = text2num(play_records[category])
@@ -203,7 +203,7 @@ GLOBAL_PROTECT(exp_to_update)
 			play_records[EXP_TYPE_LIVING] += minutes
 			if(announce_changes)
 				to_chat(src,"<span class='notice'>You got: [minutes] Living EXP!</span>")
-			if(mob.mind.assigned_role)
+			if(mob.mind?.assigned_role)
 				for(var/job in SSjob.name_occupations)
 					if(mob.mind.assigned_role == job)
 						rolefound = TRUE

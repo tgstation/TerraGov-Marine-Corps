@@ -155,13 +155,14 @@
 
 				var/failed = FALSE
 
-				if(GLOB.latejoin.len)
-					var/turf/T = pick(GLOB.latejoin)
-					if(T)
-						to_chat(src, "<span class='notice'>Now teleporting.</span>")
-						observer.forceMove(T)
-					else
-						failed = TRUE
+				if(length(GLOB.latejoin))
+					var/i = pick(GLOB.latejoin)
+					var/turf/T = get_turf(i)
+					if(!T)
+						CRASH("Invalid latejoin spawn location type")
+
+					to_chat(src, "<span class='notice'>Now teleporting.</span>")
+					observer.forceMove(T)
 				else
 					failed = TRUE
 
@@ -228,8 +229,9 @@
 
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.attempt_to_join_as_larva(src))
-						close_spawn_windows()
+					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_larva(src)
+					if(new_xeno)
+						close_spawn_windows(new_xeno)
 				if("Living Xenomorph")
 					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 					if(new_xeno)
@@ -245,8 +247,10 @@
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-
-			SSticker?.mode.AttemptLateSpawn(src, href_list["job_selected"])
+			var/rank = href_list["job_selected"]
+			if(!SSticker?.mode.CanLateSpawn(src, rank))
+				return
+			SSticker?.mode.AttemptLateSpawn(src, rank)
 
 
 	if(href_list["showpoll"])
@@ -339,7 +343,7 @@
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
-	for(var/list/category in (list(JOBS_OFFICERS) + list(JOBS_REQUISITIONS) + list(JOBS_POLICE) + list(JOBS_MEDICAL) + list(JOBS_ENGINEERING) + list(JOBS_MARINES)))
+	for(var/list/category in (list(GLOB.jobs_officers) + list(GLOB.jobs_requisitions) + list(GLOB.jobs_police) + list(GLOB.jobs_medical) + list(GLOB.jobs_engineering) + list(GLOB.jobs_marines)))
 		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
 		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
 		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
@@ -348,7 +352,7 @@
 			var/datum/job/job_datum = SSjob.name_occupations[job]
 			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
 				var/command_bold = ""
-				if(job in JOBS_COMMAND)
+				if(job in GLOB.jobs_command)
 					command_bold = " command"
 				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
 		if(!length(dept_dat))
@@ -378,10 +382,12 @@
 	return FALSE
 
 
-/mob/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
+/mob/new_player/proc/close_spawn_windows(mob/user)
+	if(!user)
+		user = src
+	user << browse(null, "window=latechoices") //closes late choices window
+	user << browse(null, "window=playersetup") //closes the player setup window
+	user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
 
 
 /mob/new_player/get_species()
@@ -453,5 +459,7 @@
 	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
+		return FALSE
+	if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
 		return FALSE
 	return TRUE

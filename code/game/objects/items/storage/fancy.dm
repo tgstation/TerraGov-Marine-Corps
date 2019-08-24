@@ -88,7 +88,7 @@
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	storage_slots = 6
 	icon_type = "crayon"
 	can_hold = list(/obj/item/toy/crayon)
@@ -129,10 +129,11 @@
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
 	flags_equip_slot = ITEM_SLOT_BELT
-	storage_slots = 6
+	max_storage_space = 18
+	storage_slots = 18
 	can_hold = list(
 		/obj/item/clothing/mask/cigarette, 
 		/obj/item/tool/lighter)
@@ -196,9 +197,9 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/items/cigarettes.dmi'
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 2
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 7
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar

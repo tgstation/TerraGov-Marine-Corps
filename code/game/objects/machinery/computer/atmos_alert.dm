@@ -41,7 +41,7 @@
 	radio_connection = SSradio.add_object(src, receive_frequency, RADIO_ATMOSIA)
 
 
-/obj/machinery/computer/atmos_alert/attack_hand(mob/user)
+/obj/machinery/computer/atmos_alert/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -55,7 +55,7 @@
 
 /obj/machinery/computer/atmos_alert/process()
 	if(..())
-		src.updateDialog()
+		src.updateUsrDialog()
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	..()

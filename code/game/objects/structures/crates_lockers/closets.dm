@@ -10,6 +10,7 @@
 	icon_state = "closed"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
+	hit_sound = 'sound/effects/metalhit.ogg'
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -48,6 +49,11 @@
 		update_icon()
 	PopulateContents()
 
+
+/obj/structure/closet/deconstruct(disassembled = TRUE)
+	dump_contents()
+	return ..()
+	
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -164,20 +170,6 @@
 					A.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
-	if(obj_integrity > 999)
-		return TRUE
-	obj_integrity -= round(Proj.damage*0.3)
-	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-	if(obj_integrity <= 0)
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = loc
-		spawn(1)
-			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
-			qdel(src)
-
-	return TRUE
-
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message("<span class='warning'> [user] destroys the [src]. </span>")
@@ -186,14 +178,14 @@
 
 /obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_HARM && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		M.animation_attack_on(src)
+		M.do_attack_animation(src)
 		if(!opened && prob(70))
 			break_open()
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
-			"<span class='danger'>You smash \the [src] open!</span>", null, 5)
+			"<span class='danger'>We smash \the [src] open!</span>", null, 5)
 		else
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
-			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+			"<span class='danger'>We smash \the [src]!</span>", null, 5)
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
 		return attack_paw(M)
@@ -201,23 +193,24 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
+	if(I.flags_item & ITEM_ABSTRACT)
+		return FALSE
+	. = ..()
 	if(opened)
 		if(istype(I, /obj/item/grab))
 			var/obj/item/grab/G = I
 			if(!G.grabbed_thing)
 				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
 			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return ..()
-		if(I.flags_item & ITEM_ABSTRACT)
-			return ..()
-		user.transferItemToLoc(I, drop_location())
-		return ..()
+			return
+		if(.)
+			return TRUE
+		return user.transferItemToLoc(I, drop_location())
 
-	if(I.GetID())
+	var/obj/item/card/id/ID = user.get_idcard()
+	if(istype(ID))
 		if(!togglelock(user, TRUE))
 			toggle(user)
-
-	return ..()
 
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
@@ -300,11 +293,10 @@
 			lastbang = TRUE
 			for(var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
-			spawn(30)
-				lastbang = FALSE
+			addtimer(VARSET_CALLBACK(src, lastbang, FALSE), 3 SECONDS)
 
 
-/obj/structure/closet/attack_paw(mob/user as mob)
+/obj/structure/closet/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
@@ -352,7 +344,7 @@
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.last_special = world.time + CLICK_CD_BREAKOUT
+	user.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")
@@ -477,7 +469,7 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
-	Stun(origin.closet_stun_delay)//Action delay when going out of a closet
+	stun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying && stunned)
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!",
 		"<span class='warning'>You get out of [origin] and get your bearings!")

@@ -17,7 +17,6 @@
 	drag_delay = 3 //pulling a medium dead xeno is hard
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	xeno_explosion_resistance = 2 //some resistance against explosion stuns.
 	job = ROLE_XENO_QUEEN
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 

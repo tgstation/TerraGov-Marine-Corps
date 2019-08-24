@@ -20,8 +20,10 @@
 	layer = TABLE_LAYER
 	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
-	parts = /obj/item/frame/table
-
+	resistance_flags = XENO_DAMAGEABLE
+	hit_sound = 'sound/effects/metalhit.ogg'
+	var/parts = /obj/item/frame/table
+	var/status = 2
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/table_prefix = "" //used in update_icon()
 	var/reinforced = FALSE
@@ -29,16 +31,15 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 100
 
-/obj/structure/table/destroy_structure(deconstruct)
-	if(deconstruct)
-		if(parts)
-			new parts(loc)
+/obj/structure/table/deconstruct(disassembled)
+	if(disassembled)
+		new parts(loc)
 	else
 		if(reinforced)
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
 		new sheet_type(src)
-	qdel(src)
+	return ..()
 
 /obj/structure/table/proc/update_adjacent(location)
 	if(!location) location = src //location arg is used to correctly update neighbour tables when deleting a table.
@@ -61,7 +62,7 @@
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy_structure()
+			deconstruct(FALSE)
 
 /obj/structure/table/Destroy()
 	var/tableloc = loc
@@ -248,22 +249,8 @@
 		step(I, get_dir(I, src))
 
 /obj/structure/table/attack_alien(mob/living/carbon/xenomorph/M)
-	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-	M.animation_attack_on(src)
-	if(sheet_type == /obj/item/stack/sheet/wood)
-		playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
-	else
-		playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	obj_integrity -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
-	if(obj_integrity <= 0)
-		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		destroy_structure()
-	else
-		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
-		"<span class='danger'>You slash [src]!</span>", null, 5)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TABLE)
+	return ..()
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -283,7 +270,7 @@
 				return
 
 			if(prob(15))	
-				M.KnockDown(5)
+				M.knock_down(5)
 			M.apply_damage(8, def_zone = "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
@@ -293,11 +280,12 @@
 
 		else if(user.grab_level >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.KnockDown(5)
+			M.knock_down(5)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
+		return
 
-	else if(iswrench(I) && !reinforced)
+	if(iswrench(I) && ((reinforced && status == 1) || !reinforced))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 
@@ -307,13 +295,13 @@
 
 		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 		"<span class='notice'>You disassemble [src].</span>")
-		destroy_structure(1)
-
-	else if((I.flags_item & ITEM_ABSTRACT))
+		deconstruct(TRUE)
 		return
 
-	else
-		user.transferItemToLoc(I, loc)
+	if(.)
+		return TRUE
+	
+	return user.transferItemToLoc(I, loc)
 
 
 /obj/structure/table/proc/straight_table_check(direction)
@@ -455,6 +443,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/wood
 	table_prefix = "wood"
+	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 50
 /*
 * Gambling tables
@@ -466,6 +455,7 @@
 	sheet_type = /obj/item/stack/sheet/wood
 	parts = /obj/item/frame/table/gambling
 	table_prefix = "gamble"
+	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 50
 /*
 * Reinforced tables
@@ -475,7 +465,6 @@
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinftable"
 	max_integrity = 200
-	var/status = 2
 	reinforced = TRUE
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
@@ -528,9 +517,9 @@
 	icon_state = "prisontable"
 	table_prefix = "prison"
 
-/obj/structure/table/almayer
-	icon_state = "almtable"
-	table_prefix = "alm"
+/obj/structure/table/mainship
+	icon_state = "shiptable"
+	table_prefix = "ship"
 
 
 
@@ -550,7 +539,8 @@
 	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
-	parts = /obj/item/frame/rack
+	resistance_flags = XENO_DAMAGEABLE
+	var/parts = /obj/item/frame/rack
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target)
 	if(!density) //Because broken racks
@@ -565,31 +555,27 @@
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_held_item() != I)
-		return
+		return ..()
 	user.drop_held_item()
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
 /obj/structure/rack/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
-	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
-	"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	destroy_structure()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RACK)
+	return ..()
 
 /obj/structure/rack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(iswrench(I))
-		destroy_structure(1)
+		deconstruct(TRUE)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-
-	else if((I.flags_item & ITEM_ABSTRACT))
 		return
 
-	else
-		user.transferItemToLoc(I, loc)
+	if(.)
+		return TRUE
+
+	return user.transferItemToLoc(I, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)
@@ -598,13 +584,12 @@
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy_structure()
+			deconstruct(FALSE)
 
-/obj/structure/rack/destroy_structure(deconstruct)
-	if(deconstruct)
-		if(parts)
-			new parts(loc)
+/obj/structure/rack/deconstruct(disassembled = TRUE)
+	if(disassembled && parts)
+		new parts(loc)
 	else
 		new /obj/item/stack/sheet/metal(loc)
 	density = FALSE
-	qdel(src)
+	return ..()

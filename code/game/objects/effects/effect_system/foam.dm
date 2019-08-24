@@ -34,13 +34,10 @@
 		sleep(30)
 
 		if(metal)
-			var/obj/structure/foamedmetal/M = new(src.loc)
-			M.metal = metal
-			M.updateicon()
+			new /obj/structure/foamedmetal(loc)
 
 		flick("[icon_state]-disolve", src)
-		sleep(5)
-		qdel(src)
+		QDEL_IN(src, 5)
 
 
 // transfer any reagents to the floor
@@ -76,7 +73,7 @@
 			F.create_reagents(10)
 			if (reagents)
 				for(var/datum/reagent/R in reagents.reagent_list)
-					F.reagents.add_reagent(R.id, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
+					F.reagents.add_reagent(R.type, 1, safety = 1)		//added safety check since reagents in the foam have already had a chance to react
 
 // foam disolves when heated
 // except metal foams
@@ -84,8 +81,7 @@
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
 
-		spawn(5)
-			qdel(src)
+		QDEL_IN(src, 5)
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
@@ -125,7 +121,7 @@
 
 		if(carry && !metal)
 			for(var/datum/reagent/R in carry.reagent_list)
-				carried_reagents += R.id
+				carried_reagents += R.type
 
 	start()
 		spawn(0)
@@ -144,7 +140,7 @@
 					for(var/id in carried_reagents)
 						F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
 				else
-					F.reagents.add_reagent("water", 1, safety = 1)
+					F.reagents.add_reagent(/datum/reagent/water, 1, safety = 1)
 
 
 
@@ -160,57 +156,4 @@
 	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
-	var/metal = 1		// 1=aluminum, 2=iron
-
-/obj/structure/foamedmetal/Destroy()
-	density = FALSE
-	. = ..()
-
-/obj/structure/foamedmetal/proc/updateicon()
-	if(metal == 1)
-		icon_state = "metalfoam"
-	else
-		icon_state = "ironfoam"
-
-
-/obj/structure/foamedmetal/ex_act(severity)
-	qdel(src)
-
-/obj/structure/foamedmetal/bullet_act()
-	if(metal==1 || prob(50))
-		qdel(src)
-	return TRUE
-
-/obj/structure/foamedmetal/attack_paw(mob/user)
-	attack_hand(user)
-	return
-
-/obj/structure/foamedmetal/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
-	if(prob(33))
-		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		qdel(src)
-		return TRUE
-	else
-		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
-		"<span class='danger'>You tear some shreds off [src]!</span>", null, 5)
-
-/obj/structure/foamedmetal/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
-	return TRUE
-
-/obj/structure/foamedmetal/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!prob(I.force * 20 - metal * 25))
-		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
-		return
-
-	user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
-	qdel(src)
-
-
-/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-	if(air_group)
-		return FALSE
-	return !density
+	resistance_flags = XENO_DAMAGEABLE

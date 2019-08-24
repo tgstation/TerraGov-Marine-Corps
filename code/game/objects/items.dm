@@ -119,7 +119,7 @@
 	loc = T
 
 
-/obj/item/attack_hand(mob/user)
+/obj/item/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -136,21 +136,21 @@
 
 	throwing = FALSE
 
-	if(loc == user)
-		if(!user.dropItemToGround(src))
-			return
-	else
-		user.changeNext_move(CLICK_CD_RAPID)
+	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
+		return
+
+	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(QDELETED(src))
 		return
 
 	pickup(user)
 	if(!user.put_in_active_hand(src))
+		user.dropItemToGround(src)
 		dropped(user)
 
 
-/obj/item/attack_paw(mob/user)
+/obj/item/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
@@ -560,7 +560,7 @@
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click(mob/user)
+/obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
 	attack_self(user)
 
 
@@ -604,13 +604,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = !zoom
-		user.zoom_cooldown = world.time + 20
+		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
 	else //Otherwise we want to zoom in.
-		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
 			return
-		user.zoom_cooldown = world.time + 20
+		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(viewsize)

@@ -9,7 +9,7 @@
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 4
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 10
 	var/toxicity = 4
@@ -92,7 +92,7 @@
 	flags_item = NOBLUDGEON
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	matter = list("metal" = 50)
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
@@ -107,7 +107,7 @@
 	icon_state = "hatchet"
 	flags_atom = CONDUCT
 	force = 25.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20.0
 	throw_speed = 4
 	throw_range = 4
@@ -131,7 +131,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 3
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BACK

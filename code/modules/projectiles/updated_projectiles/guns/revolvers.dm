@@ -3,14 +3,14 @@
 
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
-	reload_sound = 'sound/weapons/gun_revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/gun_revolver_spun.ogg'
-	unload_sound = 'sound/weapons/gun_revolver_unload.ogg'
-	var/hand_reload_sound = 'sound/weapons/gun_revolver_load3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
 	var/trick_delay = 6
@@ -43,7 +43,7 @@
 	to_chat(user, "[current_mag?.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
-	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
 
 /obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -178,7 +178,6 @@
 			return in_chamber
 
 /obj/item/weapon/gun/revolver/load_into_chamber(mob/user)
-//		if(active_attachable) active_attachable = null
 	if(ready_in_chamber())
 		return in_chamber
 	rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
@@ -334,7 +333,7 @@
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
 	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/gun_ny.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
@@ -365,7 +364,7 @@
 	item_state = "sw357"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
@@ -402,7 +401,7 @@
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_mateba.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
@@ -433,7 +432,7 @@
 	icon_state = "a_mateba"
 	item_state = "a_mateba"
 
-/obj/item/weapon/gun/revolver/mateba/cmateba
+/obj/item/weapon/gun/revolver/mateba/captain
 	name = "\improper Mateba autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
 	icon_state = "c_mateba"
@@ -449,7 +448,7 @@
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(

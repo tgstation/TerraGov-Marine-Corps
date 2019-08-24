@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/turf/open/space,
+/turf/open/space/basic,
 /area/space)
 "aab" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -1683,7 +1683,6 @@
 "aek" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 4;
-	frequency = 1440;
 	id = "mix_in";
 	on = 1
 	},
@@ -1711,7 +1710,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	frequency = 1441;
 	id_tag = "nit_out";
 	on = 0;
 	pressure_checks = 2
@@ -1730,7 +1728,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	frequency = 1442;
 	id_tag = "oxyvent";
 	on = 0
 	},
@@ -2086,7 +2083,6 @@
 /area/sulaco/engineering/ce)
 "afa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	frequency = 1440;
 	id_tag = "mix_out";
 	on = 0;
 	pressure_checks = 2
@@ -2415,7 +2411,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -2504,7 +2500,6 @@
 /area/sulaco/engineering/atmos)
 "afZ" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1443;
 	input_tag = "waste_in";
 	name = "Waste Tank Control";
 	output_tag = "waste_out";
@@ -3186,7 +3181,6 @@
 /area/sulaco/engineering/atmos)
 "ahb" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1440;
 	input_tag = "mix_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_out";
@@ -3221,7 +3215,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1441;
 	name = "Nitrogen Control Console";
 	output_tag = "nit_out";
 	sensors = list("nit_sensor" = "Tank")
@@ -3244,7 +3237,6 @@
 	dir = 1
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1442;
 	name = "Oxygen Supply Console";
 	output_tag = "oxyvent";
 	sensors = list("oxy_sensor" = "Tank")
@@ -3288,7 +3280,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
 	external_pressure_bound = 0;
-	frequency = 1443;
 	id_tag = "waste_out";
 	name = "Waste Air Vent";
 	on = 0;
@@ -4070,7 +4061,7 @@
 /area/sulaco/cryosleep)
 "aiN" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4399,7 +4390,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1446;
 	input_tag = "co2inj";
 	name = "CO2 Control Computer";
 	sensors = list("co2_sensor" = "Tank")
@@ -4420,7 +4410,6 @@
 	},
 /obj/machinery/light/small,
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1445;
 	input_tag = "n2oinj";
 	name = "N2O Control Computer";
 	sensors = list("n2o_sensor" = "Tank")
@@ -4440,7 +4429,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1444;
 	input_tag = "phoinj";
 	name = "Phoron Control Computer";
 	sensors = list("pho_sensor" = "Tank")
@@ -4459,7 +4447,6 @@
 "ajv" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1443;
 	id = "waste_in";
 	name = "Waste Air Injector";
 	on = 0
@@ -4647,7 +4634,7 @@
 "ajO" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
 	icon_state = "white"
@@ -4782,7 +4769,7 @@
 /area/sulaco/cargo/office)
 "akd" = (
 /obj/structure/table,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -4939,7 +4926,7 @@
 /area/sulaco/bridge/office)
 "aku" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -5155,7 +5142,7 @@
 /area/sulaco/medbay)
 "akM" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clothing/glasses/hud/health,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5170,7 +5157,7 @@
 /obj/structure/table,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -5497,7 +5484,6 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	active_power_usage = 1500;
 	dir = 1;
-	frequency = 1446;
 	id = "co2inj";
 	name = "CO2 Waste Injector";
 	on = 0;
@@ -5509,7 +5495,6 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	active_power_usage = 1500;
 	dir = 1;
-	frequency = 1445;
 	id = "n2oinj";
 	name = "N2O Waste Injector";
 	on = 0;
@@ -5527,7 +5512,6 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	active_power_usage = 1500;
 	dir = 1;
-	frequency = 1444;
 	id = "phoinj";
 	name = "Phoron Injector";
 	on = 0;
@@ -5917,7 +5901,7 @@
 "amn" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -7397,7 +7381,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/item/radio/intercom/general{
 	icon_state = "intercom";
 	dir = 8
@@ -7770,7 +7754,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -8225,7 +8209,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -8489,7 +8473,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -9737,7 +9721,7 @@
 "atJ" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -9765,7 +9749,7 @@
 "atM" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -10490,7 +10474,6 @@
 "auS" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	dir = 8;
-	frequency = 1438;
 	icon_state = "map_injector";
 	id = "cooling_in";
 	name = "Coolant Injector";
@@ -11427,7 +11410,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -11628,7 +11611,7 @@
 "awS" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -12718,7 +12701,6 @@
 	dir = 1
 	},
 /obj/machinery/meter{
-	frequency = 1443;
 	name = "Engine Waste Intercooler"
 	},
 /turf/open/floor/plating{
@@ -12737,7 +12719,6 @@
 	active_power_usage = 15000;
 	dir = 8;
 	external_pressure_bound = 0;
-	frequency = 1438;
 	icon_state = "map_vent_in";
 	id_tag = "cooling_out";
 	initialize_directions = 2;
@@ -13238,7 +13219,6 @@
 /area/sulaco/engineering)
 "azq" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
-	frequency = 1438;
 	input_tag = "cooling_in";
 	name = "Core Cooling";
 	output_tag = "cooling_out";
@@ -13334,7 +13314,6 @@
 	dir = 4
 	},
 /obj/machinery/meter{
-	frequency = 1443;
 	name = "Engine Waste Intercooler"
 	},
 /turf/open/floor/plating,
@@ -14175,7 +14154,7 @@
 /area/sulaco/cap_office)
 "aAZ" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -15095,7 +15074,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -15905,7 +15884,7 @@
 	req_access_txt = "3"
 	},
 /obj/machinery/door/window/westleft,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/door_control{
 	id = "Secure Gate";
 	name = "Security Lockdown";
@@ -16390,7 +16369,6 @@
 	dir = 4
 	},
 /obj/machinery/meter{
-	frequency = 1443;
 	name = "Engine Waste Intercooler"
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -16436,7 +16414,7 @@
 /area/sulaco/marine/delta)
 "aFB" = (
 /obj/structure/table/woodentable,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
@@ -16926,7 +16904,7 @@
 /obj/item/storage/box/evidence,
 /obj/item/folder/red,
 /obj/item/folder/red,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor{
 	icon_state = "floor4"
@@ -17288,7 +17266,6 @@
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/machinery/meter{
-	frequency = 1443;
 	name = "Engine Waste Intercooler"
 	},
 /turf/open/floor/plating,
@@ -17304,7 +17281,6 @@
 "aHt" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/machinery/meter{
-	frequency = 1443;
 	name = "Engine Waste Intercooler"
 	},
 /turf/open/floor/plating,
@@ -17554,7 +17530,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
@@ -17660,7 +17636,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/structure/closet/walllocker/emerglocker{
 	dir = 1
 	},
@@ -18444,7 +18420,7 @@
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
 /obj/item/folder/red,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -18772,7 +18748,7 @@
 "aKs" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/clothing/glasses/sunglasses,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -19793,7 +19769,7 @@
 "aMA" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/machinery/camera/autoname,
 /obj/item/book/manual/marine_law,
 /turf/open/floor{
@@ -21403,7 +21379,7 @@
 	},
 /area/sulaco/hallway/central_hall3)
 "aPW" = (
-/turf/closed/wall/almayer/outer,
+/turf/closed/wall/mainship/outer,
 /area/space)
 "aPX" = (
 /obj/machinery/door/poddoor{
@@ -23335,7 +23311,7 @@
 "aUB" = (
 /obj/structure/table,
 /obj/structure/window/reinforced,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/autopsy_scanner,
 /turf/open/floor{
@@ -26879,7 +26855,7 @@
 "bcq" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_container/food/drinks/tea,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
@@ -27025,7 +27001,7 @@
 	},
 /area/sulaco/command/ai)
 "bcN" = (
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
@@ -27217,7 +27193,6 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector{
 	active_power_usage = 1500;
 	dir = 1;
-	frequency = 1441;
 	id = "phoinj";
 	name = "Phoron Injector";
 	on = 0;
@@ -27681,9 +27656,6 @@
 /area/sulaco/liaison/quarters)
 "beI" = (
 /obj/structure/rack,
-/obj/item/storage/lockbox/loyalty{
-	req_access = list(200)
-	},
 /obj/item/radio,
 /obj/item/storage/briefcase,
 /turf/open/floor/wood,

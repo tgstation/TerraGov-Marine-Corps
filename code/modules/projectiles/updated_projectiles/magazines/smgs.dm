@@ -10,10 +10,10 @@
 /obj/item/ammo_magazine/smg/m39
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
-	caliber = "10x20mm"
+	caliber = "10x20mm caseless"
 	icon_state = "m39"
 	max_rounds = 60
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/smg/m39
 
 /obj/item/ammo_magazine/smg/m39/ap
@@ -35,7 +35,7 @@
 	name = "\improper MP5 magazine (9mm)"
 	desc = "A 9mm magazine for the MP5."
 	default_ammo = /datum/ammo/bullet/smg
-	caliber = "9mm"
+	caliber = "9x19mm Parabellum"
 	icon_state = "mp5"
 	gun_type = /obj/item/weapon/gun/smg/mp5
 	max_rounds = 30 //Also comes in 10 and 40.
@@ -60,7 +60,7 @@
 /obj/item/ammo_magazine/smg/skorpion
 	name = "\improper CZ-81 magazine (.32ACP)"
 	desc = "A .32ACP caliber magazine for the CZ-81."
-	caliber = ".32ACP"
+	caliber = ".32 ACP"
 	icon_state = "skorpion"
 	gun_type = /obj/item/weapon/gun/smg/skorpion
 	max_rounds = 20 //Can also be 10.
@@ -91,7 +91,7 @@
 /obj/item/ammo_magazine/smg/uzi
 	name = "\improper GAL9 magazine (9mm)"
 	desc = "A magazine for the GAL9."
-	caliber = "9mm"
+	caliber = "9x19mm Parabellum"
 	icon_state = "uzi"
 	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/smg/uzi

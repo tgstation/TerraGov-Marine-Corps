@@ -29,7 +29,7 @@
 	var/corpseback = null
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Use CAPTAIN if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, centcomm etc ID
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
@@ -45,6 +45,7 @@
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	M.real_name = name
 	M.death(1) //Kills the new mob
+	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)
 	if(corpsesuit)
@@ -311,7 +312,7 @@
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Staff Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = CAPTAIN
 
 /obj/effect/landmark/corpsespawner/commander
 	name = "Commander"
@@ -325,7 +326,7 @@
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = CAPTAIN
 
 /obj/effect/landmark/corpsespawner/PMC
 	name = "Private Security Officer"

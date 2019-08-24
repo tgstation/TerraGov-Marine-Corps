@@ -3,7 +3,7 @@
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
 	item_state = "radio"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 
 	var/spamcheck = 0
@@ -27,30 +27,9 @@
 	if(!message)
 		return
 	message = capitalize(message)
-	log_game("[key_name(user)] used a megaphone to say: [message]")
-	user.log_talk(message, LOG_SAY)
+	user.log_talk(message, LOG_SAY, "(megaphone)")
 	if ((src.loc == user && usr.stat == 0))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			if(insults)
-				for(var/mob/O in (viewers(user)))
-					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
-				insults--
-			else
-				to_chat(user, "<span class='warning'>*BZZZZzzzzzt*</span>")
-		else
+		audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
 
-			for(var/mob/living/carbon/human/O in (viewers(user)))
-				O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>",2) // 2 stands for hearable message
-
-		spamcheck = 1
-		spawn(20)
-			spamcheck = 0
-		return
-
-/obj/item/megaphone/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(user, "<span class='warning'>You overload \the [src]'s voice synthesizer.</span>")
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		insults = rand(1, 3)
+		spamcheck = TRUE
+		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)

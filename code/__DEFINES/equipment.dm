@@ -17,6 +17,7 @@
 #define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
 #define NODECONSTRUCT			(1<<6)
 #define OVERLAY_QUEUED			(1<<7)
+#define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
 
 //==========================================================================================
 
@@ -92,7 +93,7 @@
 
 
 //===========================================================================================
-//Marine armor only, use for flags_marine_armor.
+//Marine armor only, use for flags_armor_features.
 #define ARMOR_SQUAD_OVERLAY		(1<<0)
 #define ARMOR_LAMP_OVERLAY		(1<<1)
 #define ARMOR_LAMP_ON			(1<<2)

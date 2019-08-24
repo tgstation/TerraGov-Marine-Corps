@@ -86,7 +86,7 @@
 			GLOB.round_statistics.ravager_ravage_victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
-			H.KnockDown(1, 1)
+			H.knock_down(1, 1)
 
 	victims = CLAMP(victims,0,3) //Just to be sure
 	X.rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.

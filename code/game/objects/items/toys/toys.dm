@@ -60,7 +60,7 @@
 			to_chat(user, "The [I] is empty.")
 			return
 
-		if(I.reagents.has_reagent("pacid", 1))
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
 			to_chat(user, "The acid chews through the balloon!")
 			I.reagents.reaction(user, TOUCH)
 			qdel(src)
@@ -80,10 +80,7 @@
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
 		src.icon_state = "burst"
-		spawn(5)
-			if(src)
-				qdel(src)
-	return
+		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
@@ -103,7 +100,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /*
 * Fake telebeacon
@@ -135,7 +132,7 @@
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "coloured")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
@@ -154,7 +151,7 @@
 	name = "snap pop"
 	desc = "Wow!"
 	icon_state = "snappop"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	throw_impact(atom/hit_atom)
 		..()
@@ -196,7 +193,7 @@
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", 10)
+	R.add_reagent(/datum/reagent/water, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -264,7 +261,7 @@
 		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -337,7 +334,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_purple
 	name = "purple therapy doll"
@@ -345,7 +342,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_blue
 	name = "blue therapy doll"
@@ -353,7 +350,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_yellow
 	name = "yellow therapy doll"
@@ -361,7 +358,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_orange
 	name = "orange therapy doll"
@@ -369,7 +366,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_green
 	name = "green therapy doll"
@@ -377,7 +374,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/toy/inflatable_duck
@@ -395,7 +392,7 @@
 	item_state = "beachball"
 	density = FALSE
 	anchored = FALSE
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	force = 0.0
 	throwforce = 0.0
 	throw_speed = 1
@@ -411,7 +408,7 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/items/dice.dmi'
 	icon_state = "d66"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
 	attack_verb = list("diced")
 
@@ -447,7 +444,7 @@
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throwforce = 3
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")
@@ -461,7 +458,7 @@
 /obj/item/toy/farwadoll
 	name = "Farwa plush doll"
 	desc = "A Farwa plush doll. It's soft and comforting!"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	icon_state = "farwaplush"
 	var/last_hug_time
 
@@ -481,6 +478,8 @@
 
 
 /obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
 	attack_hand(user)
 
 
@@ -509,7 +508,7 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.KnockDown(5)
+		L.knock_down(5)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

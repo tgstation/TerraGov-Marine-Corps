@@ -17,7 +17,7 @@
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob))
 				count_humans++
-				if(C.mob.mind.assigned_role in (JOBS_MARINES))
+				if(C.mob.mind.assigned_role in (GLOB.jobs_marines))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
@@ -103,7 +103,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
@@ -120,7 +120,7 @@
 				if(C.is_afk())
 					mentmsg += " (AFK)"
 
-				mentmsg += "[isobserver(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				mentmsg += "\n"
 				num_mentors_online++

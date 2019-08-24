@@ -4,7 +4,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
 	item_state = "flashlight"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
@@ -44,7 +44,7 @@
 
 /obj/item/flashlight/proc/turn_off_light(mob/bearer)
 	if(on)
-		on = 0
+		on = FALSE
 		update_brightness(bearer)
 		update_action_button_icons()
 		return 1
@@ -97,11 +97,12 @@
 							"<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
-			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
-				to_chat(user, "<span class='notice'>[M] pupils does not react to the light!</span>")
+			var/mob/living/carbon/C = M
+			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
+				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
 			else	//they're okay!
-				M.flash_eyes()
-				to_chat(user, "<span class='notice'>[M]'s pupils narrow.</span>")
+				C.flash_eyes()
+				to_chat(user, "<span class='notice'>[C]'s pupils narrow.</span>")
 	else
 		return ..()
 
@@ -113,7 +114,7 @@
 	item_state = ""
 	flags_atom = CONDUCT
 	brightness_on = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
 /obj/item/flashlight/drone
@@ -122,7 +123,7 @@
 	icon_state = "penlight"
 	item_state = ""
 	brightness_on = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
 
 //The desk lamps are a bit special
@@ -132,8 +133,8 @@
 	icon_state = "lamp"
 	item_state = "lamp"
 	brightness_on = 5
-	w_class = 4
-	on = 1
+	w_class = WEIGHT_CLASS_BULKY
+	on = TRUE
 	raillight_compatible = FALSE
 
 //Menorah!
@@ -143,7 +144,7 @@
 	icon_state = "menorah"
 	item_state = "menorah"
 	brightness_on = 2
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	on = TRUE
 
 //Green-shaded desk lamp
@@ -170,7 +171,7 @@
 /obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red TGMC issued flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
@@ -180,25 +181,13 @@
 	var/fuel = 0
 	var/on_damage = 7
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize()
+	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
-
-/obj/item/flashlight/flare/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	..()
-
-/obj/item/flashlight/flare/process()
-	fuel = max(fuel - 1, 0)
-	if(!fuel || !on)
-		turn_off()
-		if(!fuel)
-			icon_state = "[initial(icon_state)]-empty"
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	on = 0
+	on = FALSE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
@@ -207,6 +196,7 @@
 		update_brightness(U)
 	else
 		update_brightness(null)
+	icon_state = "[initial(icon_state)]-empty"
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 
@@ -224,19 +214,16 @@
 		force = on_damage
 		heat = 1500
 		damtype = "fire"
-		START_PROCESSING(SSobj, src)
+		addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
-/obj/item/flashlight/flare/on
-
-	New()
-
-		..()
-		on = 1
-		heat = 1500
-		update_brightness()
-		force = on_damage
-		damtype = "fire"
-		START_PROCESSING(SSobj, src)
+/obj/item/flashlight/flare/on/Initialize()
+	. = ..()
+	on = TRUE
+	heat = 1500
+	update_brightness()
+	force = on_damage
+	damtype = "fire"
+	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL
@@ -245,7 +232,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	brightness_on = 6
 	on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE

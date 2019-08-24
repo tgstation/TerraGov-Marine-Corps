@@ -11,9 +11,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/loaded       = FALSE // Has the client loaded the browser output area?
 	var/list/messageQueue //If they haven't loaded chat, this is where messages will go until they do
 	var/cookieSent   = FALSE // Has the client sent a cookie for analysis
-	var/broken       = FALSE
+	var/working      = TRUE
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
 	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
+	var/clientCSS = "" // This is a string var that stores client CSS.
 
 /datum/chatOutput/New(client/C)
 	owner = C
@@ -27,7 +28,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	if(!winexists(owner, "browseroutput")) // Oh goddamnit.
 		set waitfor = FALSE
-		broken = TRUE
+		working = FALSE
 		message_admins("Couldn't start chat for [key_name_admin(owner)]!")
 		. = FALSE
 		alert(owner.mob, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
@@ -91,6 +92,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(loaded)
 		return
 
+	if(!owner)
+		return FALSE
+
 	loaded = TRUE
 	showChat()
 
@@ -101,6 +105,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	messageQueue = null
 	sendClientData()
+	loadClientCSS()
 
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
@@ -173,6 +178,51 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 /datum/chatOutput/proc/debug(error)
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
+
+
+/mob/verb/update_client_css()
+	set category = "Preferences"
+	set name = "Update Custom CSS"
+
+	if(!client.chatOutput)
+		return
+	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
+	if(isnull(new_input) || length(new_input) > UPLOAD_LIMIT)
+		return
+	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
+	client.chatOutput.clientCSS = new_input
+	client.chatOutput.saveClientCSS()
+	client.chatOutput.syncClientCSS()
+
+// Load the CSS into the user browser
+/datum/chatOutput/proc/syncClientCSS()
+	var/css_data = _replacetext(clientCSS, ";", "||") // ; is a reserved key so lets just replace it and replace it back in js
+	var/list/ajax_data = list("clientCSS" = css_data)
+	ehjax_send(data = ajax_data)
+
+// Save the CSS locally on the client
+/datum/chatOutput/proc/saveClientCSS()
+	var/savefile/F = new()
+	WRITE_FILE(F["CSS"], clientCSS)
+	owner.Export(F)
+	qdel(F)
+
+// Load the CSS from the local client
+/datum/chatOutput/proc/loadClientCSS()
+	var/last_savefile = owner.Import()
+	if(!last_savefile)
+		saveClientCSS("")
+		return 
+	var/savefile/F = new(last_savefile)
+	READ_FILE(F["CSS"], clientCSS)
+	
+	if(length(clientCSS) > UPLOAD_LIMIT)
+		clientCSS = ""
+	clientCSS = sanitize_text(clientCSS, "")
+
+	syncClientCSS(clientCSS)
+
+
 //Global chat procs
 /proc/to_chat_immediate(target, message, handle_whitespace = TRUE)
 	if(!target || !message)
@@ -197,37 +247,27 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		// Do the double-encoding outside the loop to save nanoseconds
 		var/twiceEncoded = url_encode(url_encode(message))
 		for(var/I in target)
-			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
+			var/mob/M = I
+			var/client/C = istype(M) ? M.client : I
 
-			if(!C)
+			if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
+				SEND_TEXT(C, original_message)
 				continue
 
-			//Send it to the old style output window.
-			SEND_TEXT(C, original_message)
-
-			if(!C.chatOutput || C.chatOutput.broken) // A player who hasn't updated his skin file.
-				continue
-
-			if(!C.chatOutput.loaded)
-				//Client still loading, put their messages in a queue
+			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
 				C.chatOutput.messageQueue += message
 				continue
 
 			C << output(twiceEncoded, "browseroutput:output")
 	else
-		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
+		var/mob/M = target
+		var/client/C = istype(M) ? M.client : target
 
-		if(!C)
+		if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
+			SEND_TEXT(C, original_message)
 			return
 
-		//Send it to the old style output window.
-		SEND_TEXT(C, original_message)
-
-		if(!C.chatOutput || C.chatOutput.broken) // A player who hasn't updated his skin file.
-			return
-
-		if(!C.chatOutput.loaded)
-			//Client still loading, put their messages in a queue
+		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
 			C.chatOutput.messageQueue += message
 			return
 

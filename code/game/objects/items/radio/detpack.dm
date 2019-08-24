@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	frequency = 1457
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
 	on = FALSE
 	layer = MOB_LAYER - 0.1
@@ -41,8 +41,10 @@
 /obj/item/radio/detpack/Destroy()
 	if(sound_timer)
 		deltimer(sound_timer)
+		sound_timer = null
 	if(detonation_pending)
 		deltimer(detonation_pending)
+		detonation_pending = null
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -92,7 +94,7 @@
 		update_icon()
 
 
-/obj/item/radio/detpack/attack_hand(mob/user as mob)
+/obj/item/radio/detpack/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
 		return
@@ -133,10 +135,10 @@
 		log_explosion("[key_name(usr)] triggered [src] explosion at [AREACOORD(loc)].")
 		detonation_pending = addtimer(CALLBACK(src, .proc/do_detonate), timer SECONDS, TIMER_STOPPABLE)
 		if(timer > 10)
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP)
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_normal), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 			addtimer(CALLBACK(src, .proc/change_to_loud_sound), timer-10)
 		else
-			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
+			sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
 		update_icon()
 	else
 		armed = FALSE
@@ -304,10 +306,12 @@
 /obj/item/radio/detpack/proc/disarm()
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 		timer = DETPACK_TIMER_MIN
-	deltimer(sound_timer)
+	if(sound_timer)
+		deltimer(sound_timer)
+		sound_timer = null
 	if(detonation_pending)
 		deltimer(detonation_pending)
-	sound_timer = null
+		detonation_pending = null
 	update_icon()
 
 /obj/item/radio/detpack/proc/do_detonate()

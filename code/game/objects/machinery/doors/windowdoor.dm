@@ -4,7 +4,7 @@
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
-	resistance_flags = ACID_PROOF
+	resistance_flags = UNACIDABLE
 	var/base_state = "left"
 	max_integrity = 150 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
@@ -92,16 +92,13 @@
 		return TRUE
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
-	if(operating) //doors can still open when emag-disabled
+	if(operating)
 		return FALSE
 	switch(forced)
 		if(DOOR_NOT_FORCED)
 			if(!hasPower())
 				return FALSE
-		if(DOOR_FORCED_NORMAL)
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
-				return FALSE
-	if(!operating) //in case of emag
+	if(!operating)
 		operating = TRUE
 	icon_state = "[base_state]open"
 	do_animate("opening")
@@ -110,7 +107,7 @@
 
 	density = FALSE
 
-	if(operating == 1) //emag again
+	if(operating)
 		operating = FALSE
 	return TRUE
 
@@ -121,9 +118,6 @@
 	switch(forced)
 		if(DOOR_NOT_FORCED)
 			if(!hasPower())
-				return FALSE
-		if(DOOR_FORCED_NORMAL)
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
 				return FALSE
 	operating = TRUE
 	icon_state = base_state
@@ -138,69 +132,11 @@
 	return TRUE
 
 
-/obj/machinery/door/window/take_damage(damage)
-	src.obj_integrity = max(0, src.obj_integrity - damage)
-	if (src.obj_integrity <= 0)
-		new /obj/item/shard(loc)
-		var/obj/item/stack/cable_coil/CC = new(loc)
-		CC.amount = 2
-		var/obj/item/circuitboard/airlock/ae
-		if(!electronics)
-			ae = new/obj/item/circuitboard/airlock( src.loc )
-			if(!src.req_access)
-				src.check_access()
-			if(src.req_access.len)
-				ae.conf_access = src.req_access
-			else if (src.req_one_access.len)
-				ae.conf_access = src.req_one_access
-				ae.one_access = TRUE
-		else
-			ae = electronics
-			electronics = null
-			ae.loc = src.loc
-		if(operating == -1)
-			ae.icon_state = "door_electronics_smoked"
-			operating = 0
-		src.density = FALSE
-		qdel(src)
-		return
-
-/obj/machinery/door/window/bullet_act(obj/item/projectile/Proj)
-	if(Proj.ammo.damage)
-		take_damage(round(Proj.ammo.damage / 2))
-	return TRUE
-
-//When an object is thrown at the window
-/obj/machinery/door/window/hitby(AM as mob|obj)
-
-	..()
-	visible_message("<span class='danger'>The glass door was hit by [AM].</span>", 1)
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 40
-	else
-		tforce = AM:throwforce
-	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	take_damage(tforce)
-	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
-	return
+/obj/machinery/door/window/attack_ai(mob/living/silicon/ai/AI)
+	return try_to_activate_door(AI)
 
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-//Slashing windoors
-/obj/machinery/door/window/attack_alien(mob/living/carbon/xenomorph/M)
-	M.animation_attack_on(src)
-	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
-	"<span class='danger'>You smash against [src]!</span>", null, 5)
-	var/damage = 25
-	if(M.mob_size == MOB_SIZE_BIG)
-		damage = 40
-	take_damage(damage)
-
-/obj/machinery/door/window/attack_hand(mob/user)
+/obj/machinery/door/window/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -215,12 +151,6 @@
 	. = ..()
 
 	if(operating)
-		return TRUE
-
-	else if(density && istype(I, /obj/item/card/emag))
-		operating = -1
-		flick("[base_state]spark", src)
-		addtimer(CALLBACK(src, .proc/open), 6)
 		return TRUE
 
 	else if(operating == -1 && iscrowbar(I))
@@ -266,18 +196,6 @@
 		operating = 0
 		qdel(src)
 
-	else if(!(I.flags_item & NOBLUDGEON) && I.force && density)
-		var/aforce = I.force
-		user.changeNext_move(I.attack_speed)
-		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		visible_message("<span class='danger'>[src] was hit by [I].</span>")
-		if(I.damtype == BRUTE || I.damtype == BURN)
-			take_damage(aforce)
-		return TRUE
-
-	else
-		return try_to_activate_door(user)
-
 
 /obj/machinery/door/window/do_animate(animation)
 	switch(animation)
@@ -298,33 +216,33 @@
 	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
 
 
-//theseus brig doors
-/obj/machinery/door/window/brigdoor/theseus
+// Main ship brig doors
+/obj/machinery/door/window/brigdoor/mainship
 	name = "Cell"
 	id = "Cell"
 	max_integrity = 500
 
-/obj/machinery/door/window/brigdoor/theseus/cell_1
+/obj/machinery/door/window/brigdoor/mainship/cell_1
 	name = "Cell 1"
 	id = "Cell 1"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_2
+/obj/machinery/door/window/brigdoor/mainship/cell_2
 	name = "Cell 2"
 	id = "Cell 2"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_3
+/obj/machinery/door/window/brigdoor/mainship/cell_3
 	name = "Cell 3"
 	id = "Cell 3"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_4
+/obj/machinery/door/window/brigdoor/mainship/cell_4
 	name = "Cell 4"
 	id = "Cell 4"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_5
+/obj/machinery/door/window/brigdoor/mainship/cell_5
 	name = "Cell 5"
 	id = "Cell 5"
 
-/obj/machinery/door/window/brigdoor/theseus/cell_6
+/obj/machinery/door/window/brigdoor/mainship/cell_6
 	name = "Cell 6"
 	id = "Cell 6"
 

@@ -65,8 +65,9 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(world.time - M.last_bumped <= openspeed) return	//Can bump-open one airlock per second. This is to prevent shock spam.
-		M.last_bumped = world.time
+		if(M.cooldowns[COOLDOWN_BUMP]) 
+			return	//This is to prevent shock spam.
+		M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
@@ -102,46 +103,35 @@
 		else
 			flick("door_deny", src)
 
-/obj/machinery/door/attack_ai(mob/user)
+
+/obj/machinery/door/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 
-/obj/machinery/door/attack_paw(mob/user)
-	return src.attack_hand(user)
-
-
-/obj/machinery/door/attack_hand(mob/user)
+/obj/machinery/door/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	return try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
-	if(operating || CHECK_BITFIELD(obj_flags, EMAGGED))
+	if(operating)
 		return
+	var/can_open
 	if(!Adjacent(user))
-		user = null //so allowed(user) always succeeds
+		can_open = TRUE
 	if(!requiresID())
-		user = null //so allowed(user) always succeeds
+		can_open = TRUE
 	if(allowed(user))
+		can_open = TRUE
+	if(can_open)
 		if(density)
 			open()
 		else
 			close()
-		return
-	if(density)
+	else if(density)
 		flick("door_deny", src)
 
-
-/obj/machinery/door/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/card/emag))
-		if(!operating && density && is_operational())
-			flick("door_spark", src)
-			sleep(6)
-			open()
-		return TRUE
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )

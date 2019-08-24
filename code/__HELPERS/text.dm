@@ -114,18 +114,18 @@
 
 			// a  .. z
 			if(97 to 122)			//Lowercase Letters
-				if(last_char_group<2)		
+				if(last_char_group<2)
 					t_out += ascii2text(ascii_char-32)	//Force uppercase first character
-				else						
+				else
 					t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
 				last_char_group = 4
 
 			// 0  .. 9
 			if(48 to 57)			//Numbers
-				if(!last_char_group)		
+				if(!last_char_group)
 					continue	//suppress at start of string
-				if(!allow_numbers)			
+				if(!allow_numbers)
 					continue
 				t_out += ascii2text(ascii_char)
 				number_of_alphanumeric++
@@ -133,30 +133,30 @@
 
 			// '  -  .
 			if(39,45,46)			//Common name punctuation
-				if(!last_char_group) 
+				if(!last_char_group)
 					continue
 				t_out += ascii2text(ascii_char)
 				last_char_group = 2
 
 			// ~  |  @  :  #  $  %  &  *  +
 			if(126,124,64,58,35,36,37,38,42,43)			//Other symbols that we'll allow (mainly for AI)
-				if(!last_char_group)		
+				if(!last_char_group)
 					continue	//suppress at start of string
-				if(!allow_numbers)			
+				if(!allow_numbers)
 					continue
 				t_out += ascii2text(ascii_char)
 				last_char_group = 2
 
 			//Space
 			if(32)
-				if(last_char_group <= 1)	
+				if(last_char_group <= 1)
 					continue	//suppress double-spaces and spaces at start of string
 				t_out += ascii2text(ascii_char)
 				last_char_group = 1
 			else
 				return
 
-	if(number_of_alphanumeric < 2)	
+	if(number_of_alphanumeric < 2)
 		return		//protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
 
 	if(last_char_group == 1)
@@ -356,23 +356,19 @@
 		. += .(rest)
 
 
+GLOBAL_LIST_INIT(sanitize, list("<script", "/script>", "<iframe", "/iframe>", "<input", "<video", "<body", "<form", "<link", "<applet", "<frameset", "onerror",
+	"onpageshow", "onscroll", "onforminput", "oninput", "onstorage", "onresize", "onpopstate", "onpagehide", "ononline", "onoffline", "onmessage", "onload",
+	"onhashchange", "onbeforeunload", "onbeforeprint", "onafterprint", "onkeydown", "onkeyup", "onkeypress", "onfocus", "oncontextmenu", "onchange", "onblur",
+	"oninvalid", "onreset", "onsearch", "onselect", "onsubmit", "ondblclick", "onclick", "onmousedown", "onmousemove", "onmousewheel", "onwheel", "onmouseup",
+	"onmouseover", "onmouseout", "ondrop", "ondragstart", "ondragover", "ondragleave", "ondragenter", "ondragend", "ondrag", "onpaste", "oncut", "oncopy",
+	"ontoggle", "onvolumechange", "onwaiting", "ontimeupdate", "onsuspend", "onstalled", "onseeking", "onseeked", "onratechange", "onprogress", "onplaying",
+	"onplay", "onpause", "onloadstart", "onloadedmetadata", "onloadeddata", "onended", "onemptied", "ondurationchange", "oncuechange", "oncanplaythrough",
+	"oncanplay", "onabort", "<source", "<event-source"))
+GLOBAL_PROTECT(sanitize)
+
 /proc/noscript(text)
-	text = replacetext(text, "<script", "")
-	text = replacetext(text, "/script>", "")
-	text = replacetext(text, "<iframe", "")
-	text = replacetext(text, "/iframe>", "")
-	text = replacetext(text, "<input", "")
-	text = replacetext(text, "<video", "")
-	text = replacetext(text, "<body", "")
-	text = replacetext(text, "<form", "")
-	text = replacetext(text, "<link", "")
-	text = replacetext(text, "<applet", "")
-	text = replacetext(text, "<frameset", "")
-	text = replacetext(text, "onerror", "")
-	text = replacetext(text, "onpageshow", "")
-	text = replacetext(text, "onscroll", "")
-	text = replacetext(text, "onforminput", "")
-	text = replacetext(text, "oninput", "")
+	for(var/i in GLOB.sanitize)
+		text = replacetext(text, i, "")
 	return text
 
 

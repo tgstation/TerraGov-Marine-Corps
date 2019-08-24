@@ -28,7 +28,7 @@
 		return
 	interact(user)
 
-/obj/machinery/power/monitor/attack_hand(mob/user)
+/obj/machinery/power/monitor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -96,7 +96,7 @@
 		usr.unset_interaction()
 		return
 	if( href_list["update"] )
-		src.updateDialog()
+		src.updateUsrDialog()
 		return
 
 

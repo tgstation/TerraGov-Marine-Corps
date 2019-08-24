@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(ticker)
 
 	var/current_state = GAME_STATE_STARTUP	//State of current round used by process()
 	var/force_ending = FALSE					//Round was ended by admin intervention
+	var/bypass_checks = FALSE 				//Bypass mode init checks
+	var/setup_failed = FALSE 				//If the setup has failed at any point
 
 	var/start_immediately = FALSE //If true, there is no lobby phase, the game starts immediately.
 	var/setup_done = FALSE //All game setup done including mode post setup and
@@ -31,6 +33,9 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_end_events
 
 	var/tipped = FALSE
+	var/selected_tip
+
+	var/graceful = FALSE //Will this server gracefully shut down?
 
 	var/queue_delay = 0
 	var/list/queued_players = list()		//used for join queues when the server exceeds the hard population cap
@@ -55,7 +60,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
 				return
-			start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
@@ -85,7 +90,8 @@ SUBSYSTEM_DEF(ticker)
 					fire()
 
 		if(GAME_STATE_SETTING_UP)
-			if(!setup())
+			setup_failed = !setup()
+			if(setup_failed)
 				current_state = GAME_STATE_STARTUP
 				time_left = null
 				start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
@@ -114,25 +120,21 @@ SUBSYSTEM_DEF(ticker)
 	mode = config.pick_mode(GLOB.master_mode)
 
 	CHECK_TICK
-	if(!mode.can_start())
+	if(!mode.can_start() && !bypass_checks)
 		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
 		SSjob.ResetOccupations()
 		return FALSE
 
 	CHECK_TICK
-	var/success = mode.pre_setup()
-	if (!success)
-		if(GLOB.Debug2)
-			message_admins("<span class='notice'>DEBUG: Bypassing failing prestart checks...</span>")
-		else
-			QDEL_NULL(mode)
-			to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
-			SSjob.ResetOccupations()
-			return FALSE
+	if(!mode.pre_setup() && !bypass_checks)
+		QDEL_NULL(mode)
+		to_chat(world, "<b>Error in pre-setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
+		SSjob.ResetOccupations()
+		return FALSE
 
 	CHECK_TICK
-	if (!mode.setup())
+	if(!mode.setup() && !bypass_checks)
 		QDEL_NULL(mode)
 		to_chat(world, "<b>Error in setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
 		SSjob.ResetOccupations()
@@ -272,8 +274,16 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
-	var/datum/tgs_api/v3210/TGS = GLOB.tgs
-	if(istype(TGS) && TGS.reboot_mode == 1)
+	if(istype(GLOB.tgs, /datum/tgs_api/v3210))
+		var/datum/tgs_api/v3210/API = GLOB.tgs
+		if(API.reboot_mode == 2)
+			graceful = TRUE
+	else if(istype(GLOB.tgs, /datum/tgs_api/v4))
+		var/datum/tgs_api/v4/API = GLOB.tgs
+		if(API.reboot_mode == 1)
+			graceful = TRUE
+
+	if(graceful)
 		to_chat_immediate(world, "<h3><span class='boldnotice'>Shutting down...</span></h3>")
 		world.Reboot(FALSE)
 		return
@@ -303,16 +313,13 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/send_tip_of_the_round()
 	var/tip
-	GLOB.marinetips = world.file2list("strings/tips/marine.txt")
-	GLOB.xenotips = world.file2list("strings/tips/xeno.txt")
-	GLOB.metatips = world.file2list("strings/tips/meta.txt")
-	GLOB.joketips = world.file2list("strings/tips/meme.txt")
 
-
-	if(prob(95) && length(ALLTIPS))
+	if(selected_tip)
+		tip = selected_tip
+	else if(prob(95) && length(ALLTIPS))
 		tip = pick(ALLTIPS)
-	else if(length(GLOB.joketips))
-		tip = pick(GLOB.joketips)
+	else if(length(SSstrings.get_list_from_file("tips/meme")))
+		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
 		to_chat(world, "<br><span class='tip'>[html_encode(tip)]</span><br>")

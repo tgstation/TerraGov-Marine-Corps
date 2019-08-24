@@ -3,8 +3,8 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
-	var/list/configs
-	var/list/next_map_configs
+	var/list/datum/map_config/configs
+	var/list/datum/map_config/next_map_configs
 
 	var/list/map_templates = list()
 
@@ -28,7 +28,9 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)
 		configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
-		CONFIG_SET(string/ship_name, configs[SHIP_MAP].map_name)
+		for(var/i in GLOB.clients)
+			var/client/C = i
+			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()

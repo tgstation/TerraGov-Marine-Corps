@@ -6,9 +6,9 @@
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
-	var/no_destination_swap = 0
+	var/no_destination_swap = FALSE
 
-/obj/machinery/computer/shuttle/attack_hand(mob/user)
+/obj/machinery/computer/shuttle/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -37,7 +37,7 @@
 				dat += "<A href='?src=[REF(src)];request=1]'>Request Authorization</A><br>"
 	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
@@ -55,7 +55,7 @@
 		return TRUE
 
 	if(href_list["move"])
-		if(world.time < SSticker.round_start_time + SHUTTLE_LAUNCH_LOCK)
+		if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
 			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
@@ -69,13 +69,19 @@
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return TRUE
+		var/previous_status = M.mode
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
-				visible_message("Shuttle departing. Please stand away from the doors.")
+				if(previous_status != SHUTTLE_IDLE)
+					visible_message("<span class='notice'>Destination updated, recalculating route.</span>")
+				else
+					visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
 			if(1)
 				to_chat(usr, "<span class='warning'>Invalid shuttle requested.</span>")
+				return TRUE
 			else
 				to_chat(usr, "<span class='notice'>Unable to comply.</span>")
+				return TRUE
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))

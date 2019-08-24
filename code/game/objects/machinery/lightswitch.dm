@@ -38,10 +38,10 @@
 	to_chat(user, "It is [on? "on" : "off"].")
 
 
-/obj/machinery/light_switch/attack_paw(mob/user)
+/obj/machinery/light_switch/attack_paw(mob/living/carbon/monkey/user)
 	src.attack_hand(user)
 
-/obj/machinery/light_switch/attack_hand(mob/user)
+/obj/machinery/light_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

@@ -35,6 +35,11 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
 	var/ab = FALSE
 	var/list/L = params2list(params)
 
@@ -140,6 +145,9 @@
 	if(next_move > world.time)
 		return
 
+	if(!modifiers["catcher"] && A.IsObscured())
+		return
+
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/N = loc
 		N.click_action(A, src, params)
@@ -235,6 +243,25 @@
 
 /mob/living/DirectAccess(atom/target)
 	return ..() + GetAllContents()
+
+
+/atom/proc/IsObscured()
+	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
+		return FALSE
+	var/turf/T = get_turf_pixel(src)
+	if(!T)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+			return TRUE
+	return FALSE
+
+
+/turf/IsObscured()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+			return TRUE
+	return FALSE
 
 
 /atom/proc/AllowClick()
@@ -336,8 +363,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)
@@ -487,9 +516,10 @@
 		var/mob/living/carbon/human/H = usr
 		H.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client?.eye ? usr.client.eye : usr), usr.client)
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		T?.Click(location, control, params)
+		if(T)
+			T.Click(location, control, params)
 	. = TRUE
 
 

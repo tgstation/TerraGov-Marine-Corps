@@ -4,7 +4,7 @@
 	desc = "Some sort of egg."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "egg_item"
-	w_class = 6
+	w_class = WEIGHT_CLASS_GIGANTIC
 	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
@@ -35,7 +35,7 @@
 		plant_egg_in_containment(user, T)
 
 /obj/item/xeno_egg/proc/plant_egg_in_containment(mob/living/carbon/human/user, turf/T)
-	if(!istype(T, /turf/open/floor/almayer/research/containment))
+	if(!istype(T, /turf/open/floor/mainship/research/containment))
 		to_chat(user, "<span class='warning'>Best not to plant this thing outside of a containment cell.</span>")
 		return
 	for (var/obj/O in T)

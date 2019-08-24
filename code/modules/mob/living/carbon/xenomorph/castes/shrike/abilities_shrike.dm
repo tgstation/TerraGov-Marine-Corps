@@ -13,15 +13,29 @@
 
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+	if(!isnormalhive(caller.hive))
+		to_chat(caller, "<span class='warning'>Burrowed larva? What a strange concept... It's not for our hive.</span>")
+		return FALSE
+	var/datum/hive_status/normal/shrike_hive = caller.hive
+	if(!shrike_hive.stored_larva)
+		to_chat(caller, "<span class='warning'>Our hive currently has no burrowed to call forth!</span>")
+		return FALSE
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
-	notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
+	for(var/i in 1 to shrike_hive.stored_larva)
+		var/mob/M = get_alien_candidate()
+		if(!M)
+			break
 
-	addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
+		shrike_hive.spawn_larva(M, src)
+
+	if(shrike_hive.stored_larva)
+		RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
+		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
+		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
 
 	succeed_activate()
 	add_cooldown()
@@ -31,7 +45,7 @@
 	UnregisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 
 
-/datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers) //Should only register while a viable candidate.
+/datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos) //Should only register while a viable candidate.
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
 
@@ -84,6 +98,7 @@
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
 	succeed_activate()
+	add_cooldown()
 	victim.apply_effects(1, 2) 	// Stun
 	shake_camera(victim, 2, 1)
 
@@ -98,8 +113,6 @@
 			break
 		T = temp
 	victim.throw_at(T, fling_distance, 1, owner, TRUE)
-
-	add_cooldown()
 
 
 // ***************************************
@@ -169,7 +182,7 @@
 	playsound(victim,'sound/effects/magic.ogg', 75, 1)
 
 	victim.drop_all_held_items()
-	victim.Stun(2)
+	victim.stun(2)
 
 	psychic_hold = new(assailant, victim, src) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
 
@@ -248,11 +261,11 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetKnockedout(0)
-		patient.SetStunned(0)
-		patient.SetKnockeddown(0)
-		patient.SetStagger(0)
-		patient.SetSlowdown(0)
+		patient.set_knocked_out(0)
+		patient.set_stunned(0)
+		patient.set_knocked_down(0)
+		patient.set_stagger(0)
+		patient.set_slowdown(0)
 	patient.updatehealth()
 
 	owner.changeNext_move(CLICK_CD_RANGE)

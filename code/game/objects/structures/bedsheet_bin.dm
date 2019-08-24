@@ -14,7 +14,7 @@ LINEN BINS
 	throwforce = 1
 	throw_speed = 1
 	throw_range = 2
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 
 /obj/item/bedsheet/attack_self(mob/user as mob)
@@ -126,11 +126,11 @@ LINEN BINS
 
 
 
-/obj/structure/bedsheetbin/attack_paw(mob/user as mob)
+/obj/structure/bedsheetbin/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 
-/obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+/obj/structure/bedsheetbin/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

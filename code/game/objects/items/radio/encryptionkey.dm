@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
 
 
@@ -91,7 +91,7 @@
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
 
 
-/obj/item/encryptionkey/bears
+/obj/item/encryptionkey/wolves
 	name = "\improper UPP encryption key"
 	channels = list(RADIO_CHANNEL_UPP = TRUE)
 

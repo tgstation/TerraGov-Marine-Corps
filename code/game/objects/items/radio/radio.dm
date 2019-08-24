@@ -8,7 +8,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/on = TRUE
 	var/frequency = FREQ_COMMON //common chat
@@ -144,12 +144,12 @@
 		if (istype(loc, /mob))
 			interact(loc)
 		else
-			updateDialog()
+			updateUsrDialog()
 	else
 		if (istype(master.loc, /mob))
 			interact(master.loc)
 		else
-			updateDialog()
+			updateUsrDialog()
 
 
 /obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)

@@ -80,7 +80,7 @@
 
 
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user)
+/obj/machinery/suit_storage_unit/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -300,7 +300,7 @@
 	return attack_hand(user)
 
 
-/obj/machinery/suit_storage_unit/attack_paw(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_paw(mob/living/carbon/monkey/user)
 	to_chat(user, "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>")
 	return
 
@@ -309,8 +309,8 @@
 
 
 /obj/machinery/suit_storage_unit/carbon_unit
-	starting_suit_type = /obj/item/clothing/suit/space/uscm
-	starting_helmet_type = /obj/item/clothing/head/helmet/space/uscm
+	starting_suit_type = /obj/item/clothing/suit/space/tgmc
+	starting_helmet_type = /obj/item/clothing/head/helmet/space/tgmc
 	starting_mask_type = /obj/item/clothing/mask/breath
 	starting_tank_type = /obj/item/tank/oxygen
 

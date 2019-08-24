@@ -10,7 +10,7 @@
 	icon_state = "multitool"
 	flags_atom = CONDUCT
 	force = 5.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3

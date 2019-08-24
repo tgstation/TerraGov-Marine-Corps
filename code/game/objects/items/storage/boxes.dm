@@ -31,7 +31,7 @@
 	foldable = /obj/item/paper/crumpled
 	storage_slots = null
 	max_w_class = 2 //Changed because of in-game abuse
-	w_class = 4 //Changed becuase of in-game abuse
+	w_class = WEIGHT_CLASS_BULKY //Changed becuase of in-game abuse
 	var/spawn_type
 	var/spawn_number
 
@@ -44,7 +44,7 @@
 			new spawn_type(src)
 
 /obj/item/storage/box/survival
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/survival/Initialize(mapload, ...)
 	. = ..()
@@ -62,7 +62,7 @@
 	icon_state = "latex"
 	spawn_type = /obj/item/clothing/gloves/latex
 	spawn_number = 7
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/masks
 	name = "box of sterile masks"
@@ -70,7 +70,7 @@
 	icon_state = "sterile"
 	spawn_type = /obj/item/clothing/mask/surgical
 	spawn_number = 7
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/syringes
 	name = "box of syringes"
@@ -79,14 +79,14 @@
 	spawn_type = /obj/item/reagent_container/syringe
 	spawn_number = 7
 	icon_state = "syringe"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
 	spawn_type = /obj/item/reagent_container/glass/beaker
 	spawn_number = 7
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
@@ -94,7 +94,7 @@
 	icon_state = "flashbang"
 	spawn_type = /obj/item/explosive/grenade/flashbang
 	spawn_number = 7
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/emps
 	name = "box of emp grenades"
@@ -103,55 +103,19 @@
 	spawn_type = /obj/item/explosive/grenade/empgrenade
 	spawn_number = 5
 
-/obj/item/storage/box/trackimp
-	name = "boxed tracking implant kit"
-	desc = "Box full of scum-bag tracking utensils."
-	icon_state = "implant"
-
-/obj/item/storage/box/trackimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 4)
-		new /obj/item/implantcase/tracking(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-
-/obj/item/storage/box/chemimp
-	name = "boxed chemical implant kit"
-	desc = "Box of stuff used to implant chemicals."
-	icon_state = "implant"
-
-/obj/item/storage/box/chemimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 5)
-		new /obj/item/implantcase/chem(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
 	icon_state = "glasses"
 	spawn_type = /obj/item/clothing/glasses/regular
 	spawn_number = 7
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
 	spawn_type = /obj/item/reagent_container/food/drinks/drinkingglass
 	spawn_number = 6
-
-/obj/item/storage/box/cdeathalarm_kit
-	name = "Death Alarm Kit"
-	desc = "Box of stuff used to implant death alarms."
-	icon_state = "implant"
-	item_state = "syringe_kit"
-
-/obj/item/storage/box/cdeathalarm_kit/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/implanter(src)
-	for(var/i in 1 to 6)
-		new /obj/item/implantcase/death_alarm(src)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
@@ -171,7 +135,7 @@
 	icon_state = "donk_kit"
 	spawn_type = /obj/item/reagent_container/food/snacks/donkpocket
 	spawn_number = 6
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
@@ -245,7 +209,7 @@
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	flags_equip_slot = ITEM_SLOT_BELT
 	spawn_type = /obj/item/tool/match
 	spawn_number = 14
@@ -297,7 +261,7 @@
 /obj/item/storage/box/lights/tubes
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	spawn_type = /obj/item/light_bulb/tube/large
 	spawn_number = 21
 
@@ -326,7 +290,7 @@
 	name = "\improper M20 mine box"
 	desc = "A secure box holding anti-personel proximity mines."
 	icon_state = "minebox"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 10
 	spawn_type = /obj/item/explosive/mine
 	spawn_number = 5
@@ -344,10 +308,10 @@
 	name = "\improper M40 FLDP flare pack"
 	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
-	w_class = 3
-	max_storage_space = 10
+	w_class = WEIGHT_CLASS_NORMAL
+	max_storage_space = 14
 	spawn_type = /obj/item/explosive/grenade/flare
-	spawn_number = 5
+	spawn_number = 7
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -359,7 +323,7 @@
 	name = "\improper M40 HEDP grenade box"
 	desc = "A secure box holding 25 M40 HEDP grenades. High explosive, don't store near the flamer fuel."
 	icon_state = "nade"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 25
 	max_storage_space = 50
 	spawn_type = /obj/item/explosive/grenade/frag
@@ -380,10 +344,7 @@
 	name = "\improper HIDP incendiary grenade box"
 	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
 	icon_state = "nade_incendiary"
-	storage_slots = 15
-	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/incendiary
-	spawn_number = 15
 
 /obj/item/storage/box/nade_box/M15
 	name = "\improper M15 grenade box"
@@ -426,7 +387,7 @@
 	name = "\improper TGMC MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list()
 	storage_slots = 4
 	max_w_class = 0
@@ -457,6 +418,9 @@
 /obj/item/storage/box/MRE/remove_from_storage()
 	. = ..()
 	if(. && !contents.len && !gc_destroyed)
+		if(istype(loc, /obj/item/storage))
+			var/obj/item/storage/S = loc
+			S.remove_from_storage(src)
 		qdel(src)
 
 /obj/item/storage/box/MRE/update_icon()

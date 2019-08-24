@@ -7,7 +7,6 @@
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
-	resistance_flags = FIRE_PROOF
 	anchored = TRUE
 
 	var/list/network = list("marinemainship")
@@ -122,7 +121,7 @@
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	toggle_cam(user, TRUE)
-	obj_integrity = max_integrity
+	repair_damage(max_integrity)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -159,9 +158,9 @@
 		to_chat(X, "<span class='warning'>The camera is already disabled.</span>")
 		return
 
-	X.animation_attack_on(src)
+	X.do_attack_animation(src)
 	X.visible_message("<span class='danger'>[X] slashes \the [src]!</span>", \
-	"<span class='danger'>You slash \the [src]!</span>")
+	"<span class='danger'>We slash \the [src]!</span>")
 	playsound(loc, "alien_claw_metal", 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -308,16 +307,16 @@
 	c_tag = "[A.name] #[++id_by_area[A]]"
 
 
-//cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
-/obj/machinery/camera/autoname/almayer/dropship_one
+//cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
+/obj/machinery/camera/autoname/mainship/dropship_one
 	network = list("marinemainship", "dropship1")
 
 
-/obj/machinery/camera/autoname/almayer/dropship_two
+/obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
 
 
-/obj/machinery/camera/autoname/almayer
+/obj/machinery/camera/autoname/mainship
 	name = "military-grade camera"
 	network = list("marinemainship")
 

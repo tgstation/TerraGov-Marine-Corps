@@ -1,8 +1,4 @@
-GLOBAL_LIST_EMPTY(metatips)
-GLOBAL_LIST_EMPTY(marinetips)
-GLOBAL_LIST_EMPTY(xenotips)
-GLOBAL_LIST_EMPTY(joketips)
-#define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
+#define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta"))
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -144,7 +140,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
-		GLOB.chemical_reagents_list[D.id] = D
+		GLOB.chemical_reagents_list[path] = D
 
 	for(var/path in subtypesof(/datum/chemical_reaction))
 
@@ -162,6 +158,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			GLOB.chemical_reactions_list[id] += D
 			break // Don't bother adding ourselves to other reagent ids, it is redundant
 
+	for(var/path in typesof(/datum/namepool))
+		var/datum/namepool/NP = new path
+		GLOB.namepool[path] = NP
 
 	return TRUE
 

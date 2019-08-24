@@ -7,7 +7,7 @@
 /obj/item/reagent_container/glass/rag
 	name = "damp rag"
 	desc = "For cleaning up messes, you suppose."
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rag"
 	amount_per_transfer_from_this = 5
@@ -22,7 +22,7 @@
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		user.visible_message("<span class='warning'> \The [target] has been smothered with \the [src] by \the [user]!</span>", "<span class='warning'> You smother \the [target] with \the [src]!</span>", "You hear some struggling and muffled cries of surprise")
 		src.reagents.reaction(target, TOUCH)
-		spawn(5) src.reagents.clear_reagents()
+		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 		return
 	else
 		..()

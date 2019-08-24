@@ -19,7 +19,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 //Squad Marine
 /datum/job/marine/standard
-	title = "Squad Marine"
+	title = SQUAD_MARINE
 	paygrade = "E2"
 	comm_title = "Mar"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
@@ -36,7 +36,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 
 /datum/outfit/job/marine/standard
-	name = "Squad Marine"
+	name = SQUAD_MARINE
 	jobtype = /datum/job/marine/standard
 
 	id = /obj/item/card/id/dogtag
@@ -45,7 +45,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 //Squad Engineer
 /datum/job/marine/engineer
-	title = "Squad Engineer"
+	title = SQUAD_ENGINEER
 	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
@@ -63,7 +63,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 
 /datum/outfit/job/marine/engineer
-	name = "Squad Engineer"
+	name = SQUAD_ENGINEER
 	jobtype = /datum/job/marine/engineer
 
 	id = /obj/item/card/id/dogtag
@@ -72,7 +72,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 //Squad Corpsman
 /datum/job/marine/corpsman
-	title = "Squad Corpsman"
+	title = SQUAD_CORPSMAN
 	paygrade = "Corp"
 	comm_title = "Med"
 	total_positions = 16
@@ -90,7 +90,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 
 /datum/outfit/job/marine/corpsman
-	name = "Squad Corpsman"
+	name = SQUAD_CORPSMAN
 	jobtype = /datum/job/marine/corpsman
 
 	id = /obj/item/card/id/dogtag
@@ -99,8 +99,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 //Squad Smartgunner
 /datum/job/marine/smartgunner
-	title = "Squad Smartgunner"
-	paygrade = "E4"
+	title = SQUAD_SMARTGUNNER
+	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -116,7 +116,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 
 /datum/outfit/job/marine/smartgunner
-	name = "Squad Smartgunner"
+	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/marine/smartgunner
 
 	id = /obj/item/card/id/dogtag
@@ -125,8 +125,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 //Squad Specialist
 /datum/job/marine/specialist
-	title = "Squad Specialist"
-	paygrade = "E5"
+	title = SQUAD_SPECIALIST
+	paygrade = "E4"
 	comm_title = "Spec"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
@@ -145,7 +145,7 @@ You can serve a variety of roles, so choose carefully."})
 
 
 /datum/outfit/job/marine/specialist
-	name = "Squad Specialist"
+	name = SQUAD_SPECIALIST
 	jobtype = /datum/job/marine/specialist
 
 	id = /obj/item/card/id/dogtag
@@ -155,8 +155,8 @@ You can serve a variety of roles, so choose carefully."})
 
 //Squad Leader
 /datum/job/marine/leader
-	title = "Squad Leader"
-	paygrade = "E6"
+	title = SQUAD_LEADER
+	paygrade = "E5"
 	comm_title = "SL"
 	total_positions = 4
 	supervisors = "the acting field commander"
@@ -176,8 +176,20 @@ You are also in charge of communicating with command and letting them know about
 
 
 /datum/outfit/job/marine/leader
-	name = "Squad Leader"
+	name = SQUAD_LEADER
 	jobtype = /datum/job/marine/leader
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	if(!latejoin || !ishuman(C))
+		return
+	var/mob/living/carbon/human/H = C
+	if(!H.assigned_squad)
+		return
+	if(H.assigned_squad.squad_leader)
+		H.assigned_squad.demote_leader()
+	H.assigned_squad.promote_leader(H)

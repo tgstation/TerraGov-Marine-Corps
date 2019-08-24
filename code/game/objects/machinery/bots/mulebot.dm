@@ -13,8 +13,6 @@
 	anchored = TRUE
 	animate_movement=1
 	max_integrity = 150
-	fire_dam_coeff = 0.7
-	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400
 	var/control_freq = FREQ_AI
@@ -74,8 +72,6 @@
 		suffix = "#[count]"
 	name = "Mulebot ([suffix])"
 
-	verbs -= /atom/movable/verb/pull
-
 
 /obj/machinery/bot/mulebot/Destroy()
 	QDEL_NULL(wires)
@@ -83,33 +79,26 @@
 
 
 // attack by item
-// emag : lock/unlock,
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
 /obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		locked = !locked
-		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
-		flick("mulebot-emagged", src)
-		playsound(loc, 'sound/effects/sparks1.ogg', 25, 0)
-
-	else if(istype(I, /obj/item/cell) && open && !cell)
+	if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
 		if(!user.transferItemToLoc(C, src))
 			return
 
 		cell = C
-		updateDialog()
+		updateUsrDialog()
 
 	else if(iswrench(I))
 		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 			return
 
-		obj_integrity = min(max_integrity, obj_integrity + 25)
+		repair_damage(25)
 		user.visible_message("<span class='warning'> [user] repairs [src]!</span>", "<span class='notice'> You repair [src]!</span>")
 
 	else if(load && ismob(load))  // chance to knock off rider
@@ -125,11 +114,9 @@
 	unload(0)
 	switch(severity)
 		if(2)
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
-			wires &= ~(1 << rand(0,9))
+			wires.cut_all()
 		if(3)
-			wires &= ~(1 << rand(0,9))
+			wires.cut_random()
 	..()
 	return
 
@@ -138,11 +125,7 @@
 		unload(0)
 	if(prob(25))
 		src.visible_message("<span class='warning'> Something shorts out inside [src]!</span>")
-		var/index = 1<< (rand(0,9))
-		if(wires & index)
-			wires &= ~index
-		else
-			wires |= index
+		wires.cut_random()
 	..()
 	return 1
 
@@ -151,7 +134,7 @@
 	user.set_interaction(src)
 	interact(user, 1)
 
-/obj/machinery/bot/mulebot/attack_hand(mob/user)
+/obj/machinery/bot/mulebot/attack_hand(mob/living/user)
 	. = ..()
 	if (.)
 		return
@@ -242,7 +225,7 @@
 			if("lock", "unlock")
 				if(src.allowed(usr))
 					locked = !locked
-					updateDialog()
+					updateUsrDialog()
 				else
 					to_chat(usr, "<span class='warning'>Access denied.</span>")
 					return
@@ -256,17 +239,17 @@
 				else
 					return
 				visible_message("[usr] switches [on ? "on" : "off"] [src].")
-				updateDialog()
+				updateUsrDialog()
 
 
 			if("cellremove")
 				if(open && cell && !usr.get_active_held_item())
-					cell.updateicon()
+					cell.update_icon()
 					usr.put_in_active_hand(cell)
 					cell = null
 
 					usr.visible_message("<span class='notice'> [usr] removes the power cell from [src].</span>", "<span class='notice'> You remove the power cell from [src].</span>")
-					updateDialog()
+					updateUsrDialog()
 
 			if("cellinsert")
 				if(open && !cell)
@@ -277,23 +260,23 @@
 							C.forceMove(src)
 
 							usr.visible_message("<span class='notice'> [usr] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
-							updateDialog()
+							updateUsrDialog()
 
 
 			if("stop")
 				if(mode >=2)
 					mode = 0
-					updateDialog()
+					updateUsrDialog()
 
 			if("go")
 				if(mode == 0)
 					start()
-					updateDialog()
+					updateUsrDialog()
 
 			if("home")
 				if(mode == 0 || mode == 2)
 					start_home()
-					updateDialog()
+					updateUsrDialog()
 
 			if("destination")
 				refresh=0
@@ -310,7 +293,7 @@
 				if(new_id)
 					suffix = new_id
 					name = "Mulebot ([suffix])"
-					updateDialog()
+					updateUsrDialog()
 
 			if("sethome")
 				refresh=0
@@ -318,7 +301,7 @@
 				refresh=1
 				if(new_home)
 					home_destination = new_home
-					updateDialog()
+					updateUsrDialog()
 
 			if("unload")
 				if(load && mode !=1)
@@ -337,7 +320,7 @@
 				usr.unset_interaction()
 				usr << browse(null,"window=mulebot")
 
-		updateDialog()
+		updateUsrDialog()
 		//src.updateUsrDialog()
 	else
 		usr << browse(null, "window=mulebot")
@@ -351,7 +334,6 @@
 	return !open && cell && cell.charge > 0 && (!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 
 // mousedrop a crate to load the bot
-// can load anything if emagged
 
 /obj/machinery/bot/mulebot/MouseDrop_T(atom/movable/C, mob/user)
 
@@ -372,7 +354,7 @@
 	if(!wires.is_cut(WIRE_LOADCHECK) && !istype(C,/obj/structure/closet/crate))
 		src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 25, 0)
-		return		// if not emagged, only allow crates to be loaded
+		return
 
 	//I'm sure someone will come along and ask why this is here... well people were dragging screen items onto the mule, and that was not cool.
 	//So this is a simple fix that only allows a selection of item types to be considered. Further narrowing-down is below.
@@ -491,7 +473,7 @@
 			process_bot()
 
 	if(refresh) 
-		updateDialog()
+		updateUsrDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
 	//if(mode) to_chat(world, "Mode: [mode]")
@@ -545,8 +527,7 @@
 
 
 						if(mode==4)
-							spawn(1)
-								send_status()
+							INVOKE_NEXT_TICK(src, .proc/send_status)
 
 						if(destination == home_destination)
 							mode = 3
@@ -630,7 +611,7 @@
 	spawn(0)
 		new_destination = new_dest
 		post_signal(beacon_freq, "findbeacon", "delivery")
-		updateDialog()
+		updateUsrDialog()
 
 // starts bot moving to current destination
 /obj/machinery/bot/mulebot/proc/start()
@@ -659,7 +640,7 @@
 			// not loaded
 			if(auto_pickup)		// find a crate
 				var/atom/movable/AM
-				if(wires.is_cut(WIRE_LOADCHECK))		// if emagged, load first unanchored thing we find
+				if(wires.is_cut(WIRE_LOADCHECK))
 					for(var/atom/movable/A in get_step(loc, loaddir))
 						if(!A.anchored)
 							AM = A
@@ -692,8 +673,8 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.Stun(8)
-	L.KnockDown(5)
+	L.stun(8)
+	L.knock_down(5)
 	L.lying = TRUE
 
 
@@ -793,7 +774,7 @@
 				loaddir = 0
 			icon_state = "mulebot[!wires.is_cut(WIRE_AVOIDANCE)]"
 			calc_path()
-			updateDialog()
+			updateUsrDialog()
 
 // send a radio signal with a single data key/value pair
 /obj/machinery/bot/mulebot/proc/post_signal(freq, key, value)
@@ -851,23 +832,20 @@
 	..()
 
 
-/obj/machinery/bot/mulebot/explode()
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/mulebot/deconstruct(disassembled = TRUE)
+	new /obj/item/assembly/prox_sensor(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/cable_coil/cut(loc)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
-	if (cell)
-		cell.loc = Tsec
+	if(cell)
+		cell.forceMove(loc)
 		cell.update_icon()
-		cell = null
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	unload(0)
-	qdel(src)
+	new /obj/effect/decal/cleanable/blood/oil(loc)
+	unload(FALSE)
+	return ..()

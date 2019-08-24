@@ -12,7 +12,7 @@
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(src, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
+	to_chat(X, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/toggle_agility/action_activate()
@@ -159,7 +159,7 @@
 		if (!temp)
 			break
 		T = temp
-	X.animation_attack_on(H)
+	X.do_attack_animation(H)
 	X.flick_attack_overlay(H, "disarm")
 	H.throw_at(T, fling_distance, 1, X, 1)
 
@@ -178,7 +178,8 @@
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We gather enough strength to punch again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to punch again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -210,7 +211,7 @@
 	playsound(M, S, 50, 1)
 
 	M.punch_act(X, damage, target_zone)
-	X.animation_attack_on(M)
+	X.do_attack_animation(M)
 	X.flick_attack_overlay(M, "punch")
 	shake_camera(M, 2, 1)
 	step_away(M, X, 2)

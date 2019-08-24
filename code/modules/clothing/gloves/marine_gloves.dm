@@ -22,7 +22,7 @@
 	. = ..()
 	if(squad)
 		var/dat = ""
-		if(rank == "Squad Engineer")
+		if(rank == SQUAD_ENGINEER)
 			dat += "insulated "
 			siemens_coefficient = 0
 			desc = "Insulated marine tactical gloves that protect against electrical shocks."

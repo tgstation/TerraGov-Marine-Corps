@@ -5,7 +5,7 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "mmi_empty"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "biotech=3"
 
 	var/list/construction_cost = list("metal"=1000,"glass"=500)
@@ -31,8 +31,7 @@
 				to_chat(user, "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's a useless brain.</span>")
 				return
 
-			for(var/mob/V in viewers(src, null))
-				V.show_message(text("<span class='notice'> [user] sticks \a [O] into \the [src].</span>"))
+			visible_message("<span class='notice'>[user] sticks \a [O] into \the [src].</span>")
 
 			brainmob = O:brainmob
 			O:brainmob = null
@@ -40,7 +39,7 @@
 			brainmob.container = src
 			brainmob.stat = 0
 			GLOB.dead_mob_list -= brainmob//Update dem lists
-			GLOB.alive_mob_list += brainmob
+			GLOB.alive_living_list += brainmob
 
 			user.drop_held_item()
 			qdel(O)
@@ -75,7 +74,7 @@
 			var/obj/item/organ/brain/brain = new(user.loc)
 			brainmob.container = null//Reset brainmob mmi var.
 			brainmob.loc = brain//Throw mob into brain.
-			GLOB.alive_mob_list -= brainmob//Get outta here
+			GLOB.alive_living_list -= brainmob//Get outta here
 			brain.brainmob = brainmob//Set the brain to use the brainmob
 			brainmob = null//Set mmi brainmob var to null
 

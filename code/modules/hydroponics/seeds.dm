@@ -4,15 +4,16 @@
 	icon = 'icons/obj/items/seeds.dmi'
 	icon_state = "seed"
 	flags_atom = NONE
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/seed_type
 	var/datum/seed/seed
 	var/modified = FALSE
 
-/obj/item/seeds/Initialize()
+/obj/item/seeds/Initialize(mapload, update = TRUE)
 	. = ..()
-	update_seed()
+	if(update)
+		update_seed()
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()

@@ -5,7 +5,7 @@
 	BSQL_Debug("Result: [. == null ? "NULL" : "\"[.]\""]")
 
 /world/proc/_BSQL_Library_Path()
-	return system_type == MS_WINDOWS ? "BSQL.dll" : "libBSQL.so"
+	return system_type == MS_WINDOWS ? "BSQL.dll" : "./libBSQL.so"
 
 /world/proc/_BSQL_InitCheck(datum/BSQL_Connection/caller)
 	var/static/library_initialized = FALSE

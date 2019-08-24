@@ -15,7 +15,7 @@
 	name = "card"
 	desc = "Does card things."
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	var/associated_account_number = 0
 
 	var/list/files = list(  )
@@ -68,49 +68,7 @@
 	item_state = "card-id"
 	flags_item = NOBLUDGEON
 	origin_tech = "magnets=2;syndicate=2"
-	var/uses = 10
-	// List of devices that cost a use to emag.
-	var/list/devices = list(
-		/obj/item/robot_parts,
-		/obj/item/storage/lockbox,
-		/obj/item/storage/secure,
-		/obj/item/circuitboard,
-		/obj/item/eftpos,
-		/obj/item/lightreplacer,
-		/obj/item/taperecorder,
-		/obj/item/hailer,
-		/obj/item/megaphone,
-		/obj/item/clothing/tie/holobadge,
-		/obj/structure/closet/crate/secure,
-		/obj/structure/closet/secure_closet,
-		/obj/machinery/computer,
-		/obj/machinery/power,
-		/obj/machinery/deployable,
-		/obj/machinery/door_control,
-		/obj/machinery/vending,
-		/obj/machinery/bot,
-		/obj/machinery/door,
-		/obj/machinery/telecomms,
-		/obj/machinery/mecha_part_fabricator,
-		/obj/vehicle
-		)
 
-
-/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
-
-	for(var/type in devices)
-		if(istype(O,type))
-			uses--
-			break
-
-	if(uses<1)
-		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
-		user.drop_held_item()
-		new /obj/item/card/emag_broken(user.loc)
-		qdel(src)
-		return
-
-	..()
 
 /obj/item/card/id
 	name = "identification card"
@@ -148,14 +106,6 @@
 /obj/item/card/id/attack_self(mob/user as mob)
 	user.visible_message("[user] shows you: [icon2html(src, viewers(user))] [name]: assignment: [assignment]")
 
-	return
-
-/obj/item/card/id/GetAccess()
-	return access
-
-/obj/item/card/id/GetID()
-	return src
-
 
 /obj/item/card/id/proc/update_label(newname, newjob)
 	if(newname || newjob)
@@ -163,6 +113,9 @@
 		return
 
 	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.name = L.get_visible_name()
 
 
 /obj/item/card/id/verb/read()
@@ -255,26 +208,15 @@
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
 
+
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
 	icon_state = "gold"
 	item_state = "gold_id"
-	registered_name = "Captain"
-	assignment = "Captain"
-	New()
-		access = get_all_marine_access()
-		..()
-
-/obj/item/card/id/centcom
-	name = "\improper CentCom. ID"
-	desc = "An ID straight from Cent. Com."
-	icon_state = "centcom"
-	registered_name = "Central Command"
-	assignment = "General"
-	New()
-		access = get_all_centcom_access()
-		..()
+	registered_name = CAPTAIN
+	assignment = CAPTAIN
+	access = ALL_MARINE_ACCESS
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
@@ -318,7 +260,7 @@
 	desc = "A fallen marine's information dog tag."
 	icon_state = "dogtag_taken"
 	icon = 'icons/obj/items/card.dmi'
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/fallen_names[0]
 	var/fallen_assignements[0]
 
@@ -352,3 +294,11 @@
 			msg += ".</span>"
 
 			to_chat(user, msg)
+
+
+/obj/item/card/id/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(.)
+		switch(var_name)
+			if("assignment", "registered_name")
+				update_label()

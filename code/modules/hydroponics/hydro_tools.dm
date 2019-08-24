@@ -65,7 +65,7 @@
 
 		dat += "<br>This sample contains: "
 		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.id], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
+			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.type)] unit(s)"
 
 	dat += "<h2>Other Data</h2>"
 
@@ -172,7 +172,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	possible_transfer_amounts = null
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 	var/fertilizer //Reagent contained, if any.
 
@@ -194,14 +194,14 @@
 /obj/item/reagent_container/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	fertilizer = "eznutrient"
+	fertilizer = /datum/reagent/toxin/fertilizer/eznutrient
 
 /obj/item/reagent_container/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	fertilizer = "left4zed"
+	fertilizer = /datum/reagent/toxin/fertilizer/left4zed
 
 /obj/item/reagent_container/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	fertilizer = "robustharvest"
+	fertilizer = /datum/reagent/toxin/fertilizer/robustharvest

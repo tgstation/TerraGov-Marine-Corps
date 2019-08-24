@@ -10,7 +10,7 @@
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
-	if (last_chew + 75 > world.time)
+	if(cooldowns[COOLDOWN_CHEW])
 		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
 		return
 
@@ -36,7 +36,7 @@
 	if(O.take_damage_limb(1, 0, TRUE, TRUE))
 		H.UpdateDamageIcon()
 
-	last_chew = world.time
+	cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
 
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
@@ -61,7 +61,7 @@
 	A.attack_hand(src)
 
 
-/atom/proc/attack_hand(mob/user)
+/atom/proc/attack_hand(mob/living/user)
 	. = FALSE
 	add_fingerprint(user, "attack_hand")
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)

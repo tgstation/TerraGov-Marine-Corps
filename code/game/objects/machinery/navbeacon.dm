@@ -118,7 +118,7 @@
 					to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 				else
 					to_chat(user, "<span class='warning'>Access denied.</span>")
-				updateDialog()
+				updateUsrDialog()
 			else
 				to_chat(user, "You must open the cover first!")
 		return
@@ -190,13 +190,13 @@ Transponder Codes:<UL>"}
 
 				if (href_list["freq"])
 					freq = sanitize_frequency(freq + text2num(href_list["freq"]))
-					updateDialog()
+					updateUsrDialog()
 
 				else if(href_list["locedit"])
 					var/newloc = copytext(sanitize(input("Enter New Location", "Navigation Beacon", location) as text|null),1,MAX_MESSAGE_LEN)
 					if(newloc)
 						location = newloc
-						updateDialog()
+						updateUsrDialog()
 
 				else if(href_list["edit"])
 					var/codekey = href_list["code"]
@@ -214,12 +214,12 @@ Transponder Codes:<UL>"}
 					codes.Remove(codekey)
 					codes[newkey] = newval
 
-					updateDialog()
+					updateUsrDialog()
 
 				else if(href_list["delete"])
 					var/codekey = href_list["code"]
 					codes.Remove(codekey)
-					updateDialog()
+					updateUsrDialog()
 
 				else if(href_list["add"])
 
@@ -237,4 +237,4 @@ Transponder Codes:<UL>"}
 
 					codes[newkey] = newval
 
-					updateDialog()
+					updateUsrDialog()

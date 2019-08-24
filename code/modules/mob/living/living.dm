@@ -32,14 +32,14 @@
 
 /mob/living/proc/handle_stunned()
 	if(stunned)
-		AdjustStunned(-1)
+		adjust_stunned(-1)
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned
 
 /mob/living/proc/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
+		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 		if(!knocked_down && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return knocked_down
@@ -66,7 +66,7 @@
 
 /mob/living/proc/handle_knocked_out()
 	if(knocked_out)
-		AdjustKnockedout(-1)
+		adjust_knockedout(-1)
 	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
@@ -88,12 +88,15 @@
 	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
+	if(stat != DEAD)
+		GLOB.alive_living_list += src
 	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()
 	if(attack_icon)
 		qdel(attack_icon)
 		attack_icon = null
+	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
 	STOP_PROCESSING(SSmobs, src)
@@ -221,9 +224,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
 
@@ -231,9 +234,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(last_special >= world.time)
+	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
-	last_special = world.time + CLICK_CD_RESIST
+	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
 	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
 
@@ -311,13 +314,6 @@
 	if(isliving(AM))
 		var/mob/living/L = AM
 
-		//Leaping mobs just land on the tile, no pushing, no anything.
-		if(status_flags & LEAPING)
-			loc = L.loc
-			status_flags &= ~LEAPING
-			now_pushing = 0
-			return
-
 		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos can still push small Xenos
 			var/mob/living/carbon/xenomorph/X = L
 			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
@@ -393,26 +389,34 @@
 			return
 
 	now_pushing = 0
-	..()
-	if (!ismovableatom(AM))
-		return
-	if (!( now_pushing ))
-		now_pushing = 1
-		if (!( AM.anchored ))
-			var/t = get_dir(src, AM)
-			if (istype(AM, /obj/structure/window))
-				var/obj/structure/window/W = AM
-				if(W.is_full_window())
-					for(var/obj/structure/window/win in get_step(AM,t))
-						now_pushing = 0
-						return
-			step(AM, t)
-		now_pushing = 0
-
-
-/mob/living/Bumped(atom/movable/AM)
 	. = ..()
-	last_bumped = world.time
+	
+	if(ismovableatom(AM))
+		PushAM(AM)
+
+
+//Called when we want to push an atom/movable
+/mob/living/proc/PushAM(atom/movable/AM)
+	if(AM.anchored)
+		return TRUE
+	if(now_pushing)
+		return TRUE
+	if(moving_diagonally)// no pushing during diagonal moves.
+		return TRUE
+	if(!client && (mob_size < MOB_SIZE_SMALL))
+		return
+	now_pushing = TRUE
+	var/t = get_dir(src, AM)
+	if(istype(AM, /obj/structure/window))
+		var/obj/structure/window/W = AM
+		if(W.is_full_window())
+			for(var/obj/structure/window/win in get_step(W,t))
+				now_pushing = FALSE
+				return
+	if(pulling == AM)
+		stop_pulling()
+	step(AM, t)
+	now_pushing = FALSE
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower)
@@ -457,7 +461,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
@@ -502,7 +506,7 @@
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
 	if(!isxeno(src)||!isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(src)
@@ -517,7 +521,7 @@
 	alpha = initial(alpha)
 
 	if(!isxeno(src)|| !isanimal(src))
-		var/datum/atom_hud/security/advanced/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.add_to_hud(src)
@@ -553,12 +557,11 @@ value of dizziness ranges from 0 to 1000
 below 100 is not dizzy
 */
 
-/mob/living/carbon/Dizzy(amount)
+/mob/living/carbon/dizzy(amount)
 	dizziness = CLAMP(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
+		INVOKE_ASYNC(src, .proc/dizzy_process)
 
 /mob/living/proc/dizzy_process()
 	is_dizzy = TRUE
@@ -658,11 +661,6 @@ below 100 is not dizzy
 /mob/living/proc/clear_leader_tracking()
 	return
 
-// called when the client disconnects and is away.
-/mob/living/proc/begin_away()
-	set_away_time(world.time)
-
-
 /mob/living/reset_perspective(atom/A)
 	. = ..()
 	if(!.)
@@ -700,7 +698,7 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
+/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
@@ -716,10 +714,10 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
-		recently_pointed_to = world.time + 50
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		recently_pointed_to = world.time + 10
+		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
@@ -737,3 +735,47 @@ below 100 is not dizzy
 				holding = "They are holding \a [r_hand]"
 		holding += "."
 	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"
+
+
+//mob verbs are a lot faster than object verbs
+//for more info on why this is not atom/pull, see examinate() in mob.dm
+/mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+	set name = "Pull"
+	set category = "Object"
+
+	if(istype(AM) && Adjacent(AM))
+		start_pulling(AM)
+	else
+		stop_pulling()
+
+
+/mob/living/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("maxHealth")
+			if(!isnum(var_value) || var_value <= 0)
+				return FALSE
+		if("stat")
+			if((stat == DEAD) && (var_value < DEAD))//Bringing the dead back to life
+				GLOB.dead_mob_list -= src
+				GLOB.alive_living_list += src
+			if((stat < DEAD) && (var_value == DEAD))//Kill he
+				GLOB.alive_living_list -= src
+				GLOB.dead_mob_list += src
+	. = ..()
+	switch(var_name)
+		if("knockdown")
+			set_knocked_down(var_value)
+		if("stun")
+			set_stunned(var_value)
+		if("sleeping")
+			set_sleeping(var_value)
+		if("eye_blind")
+			set_blindness(var_value)
+		if("eye_blurry")
+			set_blurriness(var_value)
+		if("maxHealth")
+			updatehealth()
+		if("resize")
+			update_transform()
+		if("lighting_alpha")
+			sync_lighting_plane_alpha()

@@ -36,12 +36,12 @@
 			if(!locked)
 				open()
 			else
-				src.req_access = list()
-				src.req_access += pick(get_all_accesses())
+				req_access = list()
+				req_access += pick(ALL_ACCESS)
 	..()
 
 
-/obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
+/obj/structure/closet/secure_closet/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
 /obj/structure/closet/secure_closet/verb/verb_togglelock()

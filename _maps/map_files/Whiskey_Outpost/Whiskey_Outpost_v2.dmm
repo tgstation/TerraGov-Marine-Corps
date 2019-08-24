@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/open/space,
+/turf/open/space/basic,
 /area/space)
 "ab" = (
 /turf/closed/wall,
@@ -366,12 +366,12 @@
 /area/whiskey_outpost)
 "ba" = (
 /obj/structure/table,
-/obj/item/storage/box/wy_mre,
+/obj/item/storage/box/nt_mre,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "bb" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
@@ -1862,7 +1862,7 @@
 /area/whiskey_outpost)
 "eO" = (
 /obj/structure/table,
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /obj/item/tool/lighter/zippo,
 /turf/open/floor{
 	icon_state = "cafeteria";
@@ -1968,7 +1968,7 @@
 /area/whiskey_outpost)
 "fb" = (
 /obj/structure/table,
-/obj/item/storage/box/uscm_mre,
+/obj/item/storage/box/tgmc_mre,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "fc" = (
@@ -4060,7 +4060,7 @@
 /area/whiskey_outpost/outside/south)
 "lD" = (
 /obj/structure/table,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/folder/white,
 /turf/open/floor,

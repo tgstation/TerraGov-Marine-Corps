@@ -164,14 +164,14 @@
 	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
-		L.Stun(2)
+		L.stun(2)
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
 		update()
 
 //Monkeys can only pull the flush lever
-/obj/machinery/disposal/attack_paw(mob/user as mob)
+/obj/machinery/disposal/attack_paw(mob/living/carbon/monkey/user)
 	if(machine_stat & BROKEN)
 		return
 
@@ -183,7 +183,7 @@
 	interact(user, 1)
 
 //Human interact with machine
-/obj/machinery/disposal/attack_hand(mob/user as mob)
+/obj/machinery/disposal/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -281,7 +281,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.Stun(2)
+				L.stun(2)
 	update()
 
 //Pipe affected by explosion
@@ -339,11 +339,10 @@
 	if(flush_count >= flush_every_ticks)
 		if(contents.len)
 			if(mode == 2)
-				spawn(0)
-					flush()
+				INVOKE_ASYNC(src, .proc/flush)
 		flush_count = 0
 
-	updateDialog()
+	updateUsrDialog()
 
 	if(flush && disposal_pressure >= SEND_PRESSURE) //Flush can happen even without power
 		flush()
@@ -486,8 +485,7 @@
 	loc = D.trunk
 	active = 1
 	setDir(DOWN)
-	spawn(1)
-		move() //Spawn off the movement process
+	INVOKE_NEXT_TICK(src, .proc/move) //Spawn off the movement process
 
 //Movement process, persists while holder is moving through pipes
 /obj/structure/disposalholder/proc/move()
@@ -556,10 +554,10 @@
 
 	var/mob/living/U = user
 
-	if(U.stat || U.last_special <= world.time)
+	if(U.stat || U.cooldowns[COOLDOWN_DISPOSAL])
 		return
 
-	U.last_special = world.time + 100
+	U.cooldowns[COOLDOWN_DISPOSAL] = addtimer(VARSET_LIST_CALLBACK(U.cooldowns, COOLDOWN_DISPOSAL, null), 10 SECONDS)
 
 	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
 
@@ -577,6 +575,7 @@
 	dir = 0				//dir will contain dominant direction for junction pipes
 	max_integrity = 10 	//Health points 0-10
 	layer = DISPOSAL_PIPE_LAYER //Slightly lower than wires and other pipes
+	plane = FLOOR_PLANE
 	var/base_icon_state	//Initial icon state on map
 
 	//New pipe, set the icon_state as on map
@@ -696,59 +695,15 @@
 
 			qdel(H)
 
-//Call to break the pipe, will expel any holder inside at the time then delete the pipe
-//Remains : set to leave broken pipe pieces in place
-/obj/structure/disposalpipe/proc/broken(remains = 0)
-	if(remains)
-		for(var/D in GLOB.cardinals)
-			if(D & dpdir)
-				var/obj/structure/disposalpipe/broken/P = new(loc)
-				P.setDir(D)
-
-	invisibility = INVISIBILITY_MAXIMUM	//Make invisible (since we won't delete the pipe immediately)
-	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
-		//Holder was present
-		H.active = 0
-		var/turf/T = src.loc
-		if(T.density)
-			//Broken pipe is inside a dense turf (wall)
-			//This is unlikely, but just dump out everything into the turf in case
-			for(var/atom/movable/AM in H)
-				AM.loc = T
-				AM.pipe_eject(0)
-			qdel(H)
-			return
-
-		//Otherwise, do normal expel from turf
-		if(H && H.loc)
-			expel(H, T, 0)
-
-	spawn(2) //Delete pipe after 2 ticks to ensure expel proc finished
-		qdel(src)
-
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
-
 	switch(severity)
 		if(1)
-			broken(0)
-			return
+			qdel(src)
 		if(2)
-			obj_integrity -= rand(5, 15)
-			healthcheck()
-			return
+			take_damage(rand(5, 15))
 		if(3)
-			obj_integrity -= rand(0, 15)
-			healthcheck()
-			return
-
-//Test health for brokenness
-/obj/structure/disposalpipe/proc/healthcheck()
-	if(obj_integrity < -2)
-		broken(0)
-	else if(obj_integrity < 1)
-		broken(1)
+			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
@@ -819,13 +774,15 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-	New()
-		..()
-		if(icon_state == "pipe-s")
-			dpdir = dir|turn(dir, 180)
-		else
-			dpdir = dir|turn(dir, -90)
-		update()
+
+/obj/structure/disposalpipe/segment/Initialize()
+	. = ..()
+
+	if(icon_state == "pipe-s")
+		dpdir = dir|turn(dir, 180)
+	else
+		dpdir = dir|turn(dir, -90)
+	update()
 
 /obj/structure/disposalpipe/segment/corner
 	icon_state = "pipe-c"
@@ -834,10 +791,11 @@
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-	New()
-		..()
-		dpdir = dir
-		update()
+
+/obj/structure/disposalpipe/up/Initialize()
+	. = ..()
+	dpdir = dir
+	update()
 
 /obj/structure/disposalpipe/up/nextdir(fromdir)
 	var/nextdir
@@ -877,10 +835,11 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-	New()
-		..()
-		dpdir = dir
-		update()
+
+/obj/structure/disposalpipe/down/Initialize()
+	. = ..()
+	dpdir = dir
+	update()
 
 /obj/structure/disposalpipe/down/nextdir(fromdir)
 	var/nextdir
@@ -917,15 +876,15 @@
 		return null
 	return P
 
-// *** special cased almayer stuff because its all one z level ***
+// *** special cased marine ship stuff because its all one z level ***
 
-/obj/structure/disposalpipe/up/almayer
+/obj/structure/disposalpipe/up/mainship
 	var/id
 
-/obj/structure/disposalpipe/down/almayer
+/obj/structure/disposalpipe/down/mainship
 	var/id
 
-/obj/structure/disposalpipe/up/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/up/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -933,7 +892,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/down/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -953,7 +912,7 @@
 		return null
 	return P
 
-/obj/structure/disposalpipe/down/almayer/transfer(obj/structure/disposalholder/H)
+/obj/structure/disposalpipe/down/mainship/transfer(obj/structure/disposalholder/H)
 	var/nextdir = nextdir(H.dir)
 	H.setDir(nextdir)
 
@@ -961,7 +920,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.disposal_list)
+		for(var/obj/structure/disposalpipe/up/mainship/F in GLOB.disposal_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -981,22 +940,23 @@
 		return null
 	return P
 
-// *** end special cased almayer stuff ***
+// *** end special cased marine ship stuff ***
 
 //Z-Level stuff
 //A three-way junction with dir being the dominant direction
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-	New()
-		..()
-		if(icon_state == "pipe-j1")
-			dpdir = dir|turn(dir, -90)|turn(dir, 180)
-		else if(icon_state == "pipe-j2")
-			dpdir = dir|turn(dir, 90)|turn(dir, 180)
-		else //Pipe-y
-			dpdir = dir|turn(dir,90)|turn(dir, -90)
-		update()
+
+/obj/structure/disposalpipe/junction/Initialize()
+	. = ..()
+	if(icon_state == "pipe-j1")
+		dpdir = dir|turn(dir, -90)|turn(dir, 180)
+	else if(icon_state == "pipe-j2")
+		dpdir = dir|turn(dir, 90)|turn(dir, 180)
+	else //Pipe-y
+		dpdir = dir|turn(dir,90)|turn(dir, -90)
+	update()
 
 /obj/structure/disposalpipe/junction/flipped
 	icon_state = "pipe-j2"
@@ -1032,14 +992,14 @@
 	var/sort_tag = ""
 	var/partial = 0
 
-	New()
-		. = ..()
-		dpdir = dir|turn(dir, 180)
-		if(sort_tag) 
-			GLOB.tagger_locations |= sort_tag
-		updatename()
-		updatedesc()
-		update()
+/obj/structure/disposalpipe/tagger/Initialize()
+	. = ..()
+	dpdir = dir|turn(dir, 180)
+	if(sort_tag) 
+		GLOB.tagger_locations |= sort_tag
+	updatename()
+	updatedesc()
+	update()
 
 /obj/structure/disposalpipe/tagger/proc/updatedesc()
 	desc = initial(desc)
@@ -1091,15 +1051,15 @@
 	var/negdir = 0
 	var/sortdir = 0
 
-	New()
-		. = ..()
-		if(sortType) 
-			GLOB.tagger_locations |= sortType
+/obj/structure/disposalpipe/sortjunction/Initialize()
+	. = ..()
+	if(sortType) 
+		GLOB.tagger_locations |= sortType
 
-		updatedir()
-		updatename()
-		updatedesc()
-		update()
+	updatedir()
+	updatename()
+	updatedesc()
+	update()
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedesc()
 	desc = initial(desc)
@@ -1199,11 +1159,10 @@
 	icon_state = "pipe-t"
 	var/obj/linked 	//The linked obj/machinery/disposal or obj/disposaloutlet
 
-/obj/structure/disposalpipe/trunk/New()
-	..()
+/obj/structure/disposalpipe/trunk/Initialize()
+	. = ..()
 	dpdir = dir
-	spawn(1)
-		getlinked()
+	getlinked()
 	update()
 
 /obj/structure/disposalpipe/trunk/proc/getlinked()
@@ -1282,9 +1241,9 @@
 	dpdir = 0 //Broken pipes have dpdir = 0 so they're not found as 'real' pipes i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-	New()
-		..()
-		update()
+/obj/structure/disposalpipe/broken/Initialize()
+	. = ..()
+	update()
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()
@@ -1302,14 +1261,13 @@
 	var/turf/target	//This will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-	New()
-		..()
-
-		spawn(1)
-			target = get_ranged_target_turf(src, dir, 10)
-			var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
-			if(trunk)
-				trunk.linked = src	//Link the pipe trunk to self
+/obj/structure/disposaloutlet/Initialize()
+	. = ..()
+	
+	target = get_ranged_target_turf(src, dir, 10)
+	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
+	if(trunk)
+		trunk.linked = src	//Link the pipe trunk to self
 
 //Expel the contents of the holder object, then delete it. Called when the holder exits the outlet
 /obj/structure/disposaloutlet/proc/expel(obj/structure/disposalholder/H)

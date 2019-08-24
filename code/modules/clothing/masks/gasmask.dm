@@ -8,14 +8,14 @@
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	tint = TINT_HEAVY
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -39,7 +39,7 @@
 
 /obj/item/clothing/mask/gas/bear
 	name = "tactical balaclava"
-	desc = "A superior balaclava worn by the Iron Bears."
+	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "bear_mask"
 	anti_hug = 2
 	tint = TINT_NONE

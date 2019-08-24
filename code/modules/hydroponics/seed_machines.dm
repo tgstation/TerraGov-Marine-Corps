@@ -3,7 +3,7 @@
 	desc = "A small disk used for carrying data on plant genetics."
 	icon = 'icons/obj/items/disk.dmi'
 	icon_state = "botanydisk"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/list/genes = list()
 	var/genesource = "unknown"
@@ -55,13 +55,13 @@
 	if(world.time > last_action + action_time)
 		finished_task()
 
-/obj/machinery/botany/attack_paw(mob/user as mob)
+/obj/machinery/botany/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
 /obj/machinery/botany/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/botany/attack_hand(mob/user as mob)
+/obj/machinery/botany/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

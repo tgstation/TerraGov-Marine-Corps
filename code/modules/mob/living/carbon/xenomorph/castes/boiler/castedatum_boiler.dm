@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -44,7 +44,7 @@
 	// *** Boiler Abilities *** //
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"
@@ -77,7 +77,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -85,7 +85,7 @@
 	// *** Boiler Abilities *** //
 	bomb_strength = 1.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -113,7 +113,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -121,7 +121,7 @@
 	// *** Boiler Abilities *** //
 	bomb_strength = 2
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
@@ -147,7 +147,7 @@
 	max_health = 255
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
@@ -155,4 +155,4 @@
 	// *** Boiler Abilities *** //
 	bomb_strength = 2.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds

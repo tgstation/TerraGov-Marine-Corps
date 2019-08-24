@@ -24,10 +24,7 @@
 	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
 	var/unarmed_type =           /datum/unarmed_attack
 	var/secondary_unarmed_type = /datum/unarmed_attack/bite
-
-	var/language                  // Default racial language, if any.
-	// Default language is used when 'say' is used without modifiers.
-	var/default_language = /datum/language/common
+	var/default_language_holder = /datum/language_holder
 	var/speech_verb_override
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
@@ -104,6 +101,8 @@
 	var/lighting_alpha
 	var/see_in_dark
 
+	var/datum/namepool/namepool = /datum/namepool
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -159,10 +158,7 @@
 					"<span class='notice'>You hug [target] to make [target.p_them()] feel better!</span>", null, 4)
 
 /datum/species/proc/random_name(gender)
-	if(gender == FEMALE)
-		return capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
-	else
-		return capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
+	return GLOB.namepool[namepool].get_random_name(gender)
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -226,20 +222,19 @@
 
 /datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
 	if(CHECK_BITFIELD(species_flags, NO_CHEM_METABOLIZATION)) //explicit
-		H.reagents.del_reagent(chem.id) //for the time being
+		H.reagents.del_reagent(chem.type) //for the time being
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_POISON) && istype(chem, /datum/reagent/toxin))
-		H.reagents.remove_reagent(chem.id, chem.custom_metabolism * H.metabolism_efficiency)
+		H.reagents.remove_reagent(chem.type, chem.custom_metabolism * H.metabolism_efficiency)
 		return TRUE
 	if(CHECK_BITFIELD(species_flags, NO_OVERDOSE)) //no stacking
 		if(chem.overdose_threshold && chem.volume > chem.overdose_threshold)
-			H.reagents.remove_reagent(chem.id, chem.volume - chem.overdose_threshold)
+			H.reagents.remove_reagent(chem.type, chem.volume - chem.overdose_threshold)
 	return FALSE
 
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
-	default_language = /datum/language/common
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
@@ -310,7 +305,7 @@
 	name_plural = "Unathi"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	default_language = /datum/language/unathi
+	default_language_holder = /datum/language_holder/unathi
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -338,7 +333,7 @@
 	name_plural = "Tajaran"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	default_language = /datum/language/tajaran
+	default_language_holder = /datum/language_holder/tajaran
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 
@@ -362,7 +357,7 @@
 	name_plural = "Skrell"
 	icobase = 'icons/mob/human_races/r_skrell.dmi'
 	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	default_language = /datum/language/skrell
+	default_language_holder = /datum/language_holder/skrell
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
@@ -377,7 +372,7 @@
 	name_plural = "Moth"
 	icobase = 'icons/mob/human_races/r_moth.dmi'
 	deform = 'icons/mob/human_races/r_moth.dmi'
-	default_language = /datum/language/moth
+	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
 	speech_verb_override = "flutters"
 	show_paygrade = TRUE
@@ -393,14 +388,13 @@
 
 	reagent_tag = IS_MOTH
 
+	namepool = /datum/namepool/moth
+
 /datum/species/moth/handle_fire(mob/living/carbon/human/H)
 	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
 		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
 		H.moth_wings = "Burnt Off"
 		H.update_body()
-
-/datum/species/moth/random_name()
-	return "[pick(GLOB.moth_first)] [pick(GLOB.moth_last)]"
 
 /datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
 	H.remove_overlay(MOTH_WINGS_LAYER)
@@ -435,7 +429,7 @@
 	name_plural = "Vox"
 	icobase = 'icons/mob/human_races/r_vox.dmi'
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language = /datum/language/vox
+	default_language_holder = /datum/language_holder/vox
 	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
@@ -463,10 +457,6 @@
 	flesh_color = "#808D11"
 
 	reagent_tag = IS_VOX
-
-	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap
-		)
 
 	has_organ = list(
 		"heart" =    /datum/internal_organ/heart,
@@ -513,11 +503,6 @@
 
 	reagent_tag = IS_VOX
 
-	inherent_verbs = list(
-		/mob/living/carbon/human/proc/leap,
-		/mob/living/carbon/human/proc/gut,
-		/mob/living/carbon/human/proc/commune
-		)
 
 /datum/species/machine
 	name = "Machine"
@@ -525,7 +510,7 @@
 
 	icobase = 'icons/mob/human_races/r_machine.dmi'
 	deform = 'icons/mob/human_races/r_machine.dmi'
-	default_language = /datum/language/trader
+	default_language_holder = /datum/language_holder/machine
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
@@ -560,6 +545,7 @@
 	name = "Synthetic"
 	name_plural = "synthetics"
 
+	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
@@ -590,12 +576,28 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
 
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+
+
+/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.add_hud_to(H)
+
+
+/datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.remove_hud_from(H)
+	return ..()
+
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	deform = 'icons/mob/human_races/r_synthetic.dmi'
+	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
 	slowdown = 1.3 //Slower than later synths
@@ -625,6 +627,21 @@
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	see_in_dark = 6
+
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+
+
+/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.add_hud_to(H)
+
+
+/datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.remove_hud_from(H)
+	return ..()
 
 
 /mob/living/carbon/human/proc/reset_jitteriness()

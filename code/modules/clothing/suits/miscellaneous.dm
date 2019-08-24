@@ -103,7 +103,7 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
@@ -168,32 +168,7 @@
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
-*/
-/obj/item/clothing/suit/officer_cloak
-	name = "Officer Cloak"
-	desc = "A dashing cloak as befitting an officer."
-	icon_state = "officer_cloak" //with thanks to Baystation12
-	item_state = "officer_cloak" //with thanks to Baystation12
 
-/obj/item/clothing/suit/captain_cloak
-	name = "Captain's Cloak"
-	desc = "An opulant cloak detailed with your many accomplishments."
-	icon_state = "commander_cloak" //with thanks to Baystation12
-	item_state = "commander_cloak" //with thanks to Baystation12
-
-/obj/item/clothing/suit/officer_cloak_red
-	name = "Officer Cloak - Red"
-	desc = "A dashing cloak as befitting an officer. with fancy red trim."
-	icon_state = "officer_cloak_red" //with thanks to Baystation12
-	item_state = "officer_cloak_red" //with thanks to Baystation12
-
-/obj/item/clothing/suit/captain_cloak_red
-	name = "Captain's Cloak - Red"
-	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
-	icon_state = "commander_cloak_red" //with thanks to Baystation12
-	item_state = "commander_cloak_red" //with thanks to Baystation12
-
-/*
 * Misc
 */
 

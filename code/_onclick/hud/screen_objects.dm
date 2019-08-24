@@ -3,7 +3,7 @@
 	icon = 'icons/mob/screen/generic.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
-	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	resistance_flags = RESIST_ALL
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud // A reference to the owner HUD, if any.
@@ -569,7 +569,7 @@
 	if(!G)
 		return
 	var/obj/item/attachable/flashlight/F = G.rail
-	if(F?.activate_attachment(G, usr))
+	if(F?.activate_attachment(usr))
 		playsound(usr, F.activation_sound, 15, 1)
 
 /obj/screen/firearms/magazine
@@ -582,15 +582,15 @@
 	var/obj/item/weapon/gun/G = .
 	G?.empty_mag()
 
-/obj/screen/firearms/burstfire
-	name = "Toggle burst fire"
+/obj/screen/firearms/firemode
+	name = "Toggle fire mode"
 	icon_state = "gun_burst"
 	screen_loc = ui_gun_burst
 
-/obj/screen/firearms/burstfire/Click()
+/obj/screen/firearms/firemode/Click()
 	. = ..()
 	var/obj/item/weapon/gun/G = .
-	G?.toggle_burst()
+	G?.toggle_firemode()
 
 /obj/screen/firearms/unique
 	name = "Use unique action"

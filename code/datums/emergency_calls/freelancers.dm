@@ -4,7 +4,7 @@
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [CONFIG_GET(string/ship_name)].</b>")
+	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [SSmapping.configs[SHIP_MAP].map_name].</b>")
 	to_chat(H, "<B>Ensure they are not destroyed. Collect payment.</b>")
 
 
@@ -17,12 +17,8 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	if(H.gender == MALE)
-		H.name = pick(GLOB.first_names_male_clf) + " " + pick(GLOB.last_names_clf)
-		H.real_name = H.name
-	else
-		H.name = pick(GLOB.first_names_female_clf) + " " + pick(GLOB.last_names_clf)
-		H.real_name = H.name
+	H.name = GLOB.namepool[/datum/namepool/clf].random_name(H)
+	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

@@ -4,11 +4,11 @@
 
 //Floors
 
-/turf/open/floor/almayer
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "default"
 
-/turf/open/floor/almayer/mono
+/turf/open/floor/mainship/mono
 	icon_state = "mono"
 	icon_regular_floor = "mono"
 
@@ -37,53 +37,61 @@
 	icon_state = "asteroidfloor"
 
 //Cargo elevator
-/turf/open/floor/almayer/empty
+/turf/open/floor/mainship/empty
 	name = "empty space"
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
 
-/turf/open/floor/almayer/empty/is_weedable()
+/turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/almayer/empty/ex_act(severity) //Should make it indestructable
+/turf/open/floor/mainship/empty/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/open/floor/almayer/empty/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/almayer/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+/turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
 
 //Others
-/turf/open/floor/almayer/uscm
-	icon_state = "logo_c"
-	name = "\improper TGMC Logo"
+/turf/open/floor/mainship/terragov
+	icon_state = "logo_central"
+	name = "\improper TerraGov logo"
 
-/turf/open/floor/almayer/uscm/directional
-	icon_state = "logo_directional"
+/turf/open/floor/mainship/terragov/west
+	icon_state = "logo_directional_west"
 
+/turf/open/floor/mainship/terragov/south
+	icon_state = "logo_directional_south"
+
+/turf/open/floor/mainship/terragov/east
+	icon_state = "logo_directional_east"
+
+/turf/open/floor/mainship/terragov/north
+	icon_state = "logo_directional_north"
 
 
 // RESEARCH STUFF
 
-/turf/open/floor/almayer/research/containment/floor1
+/turf/open/floor/mainship/research/containment/floor1
 	icon_state = "containment_floor_1"
 
-/turf/open/floor/almayer/research/containment/floor2
+/turf/open/floor/mainship/research/containment/floor2
 	icon_state = "containment_floor_2"
 
-/turf/open/floor/almayer/research/containment/corner1
+/turf/open/floor/mainship/research/containment/corner1
 	icon_state = "containment_corner_1"
 
-/turf/open/floor/almayer/research/containment/corner2
+/turf/open/floor/mainship/research/containment/corner2
 	icon_state = "containment_corner_2"
 
-/turf/open/floor/almayer/research/containment/corner3
+/turf/open/floor/mainship/research/containment/corner3
 	icon_state = "containment_corner_3"
 
-/turf/open/floor/almayer/research/containment/corner4
+/turf/open/floor/mainship/research/containment/corner4
 	icon_state = "containment_corner_4"
 
 
@@ -94,13 +102,13 @@
 
 //Outerhull
 
-/turf/open/floor/theseus_hull
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship_hull
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "outerhull"
 	name = "hull"
 	hull_floor = TRUE
 
-/turf/open/floor/theseus_hull/dir
+/turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
 
 
@@ -113,40 +121,21 @@
 
 
 
-
-
-/turf/open/floor/airless
-	icon_state = "floor"
-	name = "airless floor"
-
-	New()
-		..()
-		name = "floor"
-
-/turf/open/floor/icefloor
-	icon_state = "floor"
-	name = "ice colony floor"
-
-	New()
-		..()
-		name = "floor"
-
 /turf/open/floor/freezer
 	icon_state = "freezerfloor"
 
 /turf/open/floor/light
 	name = "Light floor"
 	icon_state = "light_on"
-	floor_tile = new/obj/item/stack/tile/light
 
-	New()
-		floor_tile.New() //I guess New() isn't run on objects spawned without the definition of a turf to house them, ah well.
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
+/turf/open/floor/light/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/light
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/light/LateInitialize(mapload)
+	update_icon()
 
 
 /turf/open/floor/wood
@@ -161,9 +150,9 @@
 /turf/open/floor/vault
 	icon_state = "rockvault"
 
-	New(location,type)
-		..()
-		icon_state = "[type]vault"
+/turf/open/floor/vault/Initialize(mapload, state)
+	. = ..()
+	icon_state = "[state]vault"
 
 
 
@@ -237,17 +226,21 @@
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		icon_state = "grass[pick("1","2","3","4")]"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in GLOB.cardinals)
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/grass/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/grass
+	icon_state = "grass[pick("1","2","3","4")]"
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/grass/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in GLOB.cardinals)
+		if(!istype(get_step(src,direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/tile/white
 	icon_state = "white"
@@ -423,20 +416,21 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
-	floor_tile = new/obj/item/stack/tile/carpet
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		if(!icon_state)
-			icon_state = "carpet"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in list(1,2,4,8,5,6,9,10))
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/carpet/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/carpet
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/carpet/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in list(1,2,4,8,5,6,9,10))
+		if(!istype(get_step(src, direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
