@@ -277,7 +277,7 @@
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/bridgebunks
-	name = "\improper Intelligence Officer Bunks"
+	name = "\improper Staff Officer Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 

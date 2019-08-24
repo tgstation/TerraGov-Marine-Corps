@@ -144,12 +144,12 @@
 		if (istype(loc, /mob))
 			interact(loc)
 		else
-			updateDialog()
+			updateUsrDialog()
 	else
 		if (istype(master.loc, /mob))
 			interact(master.loc)
 		else
-			updateDialog()
+			updateUsrDialog()
 
 
 /obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)

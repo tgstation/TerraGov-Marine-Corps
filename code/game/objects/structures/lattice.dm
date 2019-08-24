@@ -6,6 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	layer = LATTICE_LAYER
+	plane = FLOOR_PLANE
 	//	flags = CONDUCT
 
 /obj/structure/lattice/New()

@@ -11,6 +11,9 @@
 	var/datum/action/innate/camera_off/off_action
 	var/datum/action/innate/camera_jump/jump_action
 	var/list/actions
+	var/mob/living/tracking_target
+	var/tracking = FALSE
+	var/cameraticks = 0
 
 
 /obj/machinery/computer/camera_advanced/Initialize()
@@ -158,6 +161,38 @@
 	eyeobj.setLoc(eyeobj.loc)
 
 
+/obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
+	if(!istype(target))
+		return
+
+	if(!target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		tracking_target = null
+		return
+
+	tracking_target = target
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	start_processing()
+
+
+/obj/machinery/computer/camera_advanced/process()
+	if(QDELETED(tracking_target))
+		return PROCESS_KILL
+
+	if(!tracking_target.can_track(current_user))
+		if(!cameraticks)
+			to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+		cameraticks++
+		if(cameraticks > 9)
+			tracking_target = null
+			to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+			return PROCESS_KILL
+	else
+		cameraticks = 0
+
+	eyeobj?.setLoc(get_turf(tracking_target))
+
+
 /mob/camera/aiEye/remote
 	name = "Inactive Camera Eye"
 	ai_detector_visible = FALSE
@@ -173,7 +208,7 @@
 
 /mob/camera/aiEye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING
-	user.sight = SEE_TURFS | SEE_BLACKNESS
+	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
 	user.see_in_dark = 2
 	return TRUE
 
@@ -190,36 +225,43 @@
 	return eye_user?.client
 
 
-/mob/camera/aiEye/remote/setLoc(T)
-	if(eye_user)
-		T = get_turf(T)
-		if (T)
-			forceMove(T)
-		else
-			moveToNullspace()
-		update_ai_detect_hud()
-		if(use_static != USE_STATIC_NONE)
+/mob/camera/aiEye/remote/setLoc(atom/target)
+	if(!eye_user)
+		return		
+	var/turf/T = get_turf(target)
+	if(T)
+		if(T.z != z && use_static != USE_STATIC_NONE)
 			GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-		if(visible_icon && eye_user.client)
-			eye_user.client.images -= user_image
-			var/atom/top
-			for(var/i in loc)
-				var/atom/A = i
-				if(!top)
-					top = loc
-				if(is_type_in_typecache(A.type, GLOB.ignored_atoms)) 
-					continue
-				if(A.layer > top.layer)
-					top = A
-				else if(A.plane > top.plane)
-					top = A
-			user_image = image(icon, top, icon_state, FLY_LAYER)
-			eye_user.client.images += user_image
+		forceMove(T)
+	else
+		moveToNullspace()
+	update_ai_detect_hud()
+	if(use_static != USE_STATIC_NONE)
+		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
+	if(visible_icon && eye_user.client)
+		eye_user.client.images -= user_image
+		var/atom/top
+		for(var/i in loc)
+			var/atom/A = i
+			if(!top)
+				top = loc
+			if(is_type_in_typecache(A.type, GLOB.ignored_atoms)) 
+				continue
+			if(A.layer > top.layer)
+				top = A
+			else if(A.plane > top.plane)
+				top = A
+		user_image = image(icon, top, icon_state, FLY_LAYER)
+		eye_user.client.images += user_image
 
 
 /mob/camera/aiEye/remote/relaymove(mob/user, direct)
 	var/initial = initial(sprint)
 	var/max_sprint = 50
+
+	if(istype(origin, /obj/machinery/computer/camera_advanced))
+		var/obj/machinery/computer/camera_advanced/CA = origin
+		CA.tracking_target = null
 
 	if(cooldown && cooldown < world.timeofday) // 3 seconds
 		sprint = initial
@@ -238,8 +280,8 @@
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_off"
+	background_icon_state = "template2"
+	action_icon_state = "camera_off"
 
 
 /datum/action/innate/camera_off/Activate()
@@ -253,8 +295,8 @@
 
 /datum/action/innate/camera_jump
 	name = "Jump To Camera"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_jump"
+	background_icon_state = "template2"
+	action_icon_state = "camera_jump"
 
 
 /datum/action/innate/camera_jump/Activate()

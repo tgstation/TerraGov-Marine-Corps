@@ -10,6 +10,7 @@
 	icon_state = "closed"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
+	hit_sound = 'sound/effects/metalhit.ogg'
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
 	var/overlay_welded = "welded"
@@ -48,6 +49,11 @@
 		update_icon()
 	PopulateContents()
 
+
+/obj/structure/closet/deconstruct(disassembled = TRUE)
+	dump_contents()
+	return ..()
+	
 
 //USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
@@ -164,20 +170,6 @@
 					A.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
-	if(obj_integrity > 999)
-		return TRUE
-	obj_integrity -= round(Proj.damage*0.3)
-	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-	if(obj_integrity <= 0)
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = loc
-		spawn(1)
-			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
-			qdel(src)
-
-	return TRUE
-
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message("<span class='warning'> [user] destroys the [src]. </span>")
@@ -201,24 +193,24 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
+	if(I.flags_item & ITEM_ABSTRACT)
+		return FALSE
+	. = ..()
 	if(opened)
 		if(istype(I, /obj/item/grab))
 			var/obj/item/grab/G = I
 			if(!G.grabbed_thing)
 				CRASH("/obj/item/grab without a grabbed_thing in tool_interact()")
 			MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
-			return ..()
-		if(I.flags_item & ITEM_ABSTRACT)
-			return ..()
-		user.transferItemToLoc(I, drop_location())
-		return ..()
+			return
+		if(.)
+			return TRUE
+		return user.transferItemToLoc(I, drop_location())
 
 	var/obj/item/card/id/ID = user.get_idcard()
 	if(istype(ID))
 		if(!togglelock(user, TRUE))
 			toggle(user)
-
-	return ..()
 
 
 /obj/structure/closet/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)

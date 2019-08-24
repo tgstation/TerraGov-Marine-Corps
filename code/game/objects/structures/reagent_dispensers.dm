@@ -108,8 +108,6 @@
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = !modded
 		if(modded)
-			message_admins("[ADMIN_TPMONTY(usr)] opened fueltank at [ADMIN_VERBOSEJMP(loc)], leaking fuel.")
-			log_game("[key_name(usr)] opened fueltank at [AREACOORD(loc)], leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
 
 	else if(istype(I, /obj/item/assembly_holder))
@@ -122,10 +120,6 @@
 			return
 
 		user.visible_message("<span class='notice'>[user] rigs [I] to \the [src].</span>", "<span class='notice'>You rig [I] to \the [src].</span>")
-		var/obj/item/assembly_holder/H = I
-		if(istype(H.a_left, /obj/item/assembly/igniter) || istype(H.a_right, /obj/item/assembly/igniter))
-			message_admins("[ADMIN_TPMONTY(usr)] rigged fueltank at [ADMIN_VERBOSEJMP(loc)] for explosion.")
-			log_game("[key_name(user)] rigged fueltank at [AREACOORD(loc)] for explosion.")
 		rig = I
 		user.transferItemToLoc(I, src)
 
@@ -145,8 +139,6 @@
 			user.visible_message("<span class='notice'>[user] refills [W].</span>", "<span class='notice'>You refill [W].</span>")
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		else
-			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(src.loc)].")
-			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion with a blowtorch.")
 			log_explosion("[key_name(user)] triggered a fueltank explosion with a blowtorch at [AREACOORD(user.loc)].")
 			var/self_message = user.a_intent != INTENT_HARM ? "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>" : "<span class='danger'>[src] catastrophically explodes in a wave of flames as you begin to weld it.</span>"
 			user.visible_message("<span class='warning'>[user] catastrophically fails at refilling \his [W.name]!</span>", self_message)
@@ -160,11 +152,6 @@
 	. = ..()
 
 	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
-		if(ismob(Proj.firer))
-			var/mob/shooter = Proj.firer
-			if(shooter.client)
-				message_admins("[ADMIN_TPMONTY(shooter)] shot a fueltank at [ADMIN_VERBOSEJMP(loc)], setting it off.")
-				log_game("[key_name(shooter)] shot a fueltank at [AREACOORD(loc)], setting it off.")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()

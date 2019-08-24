@@ -187,7 +187,7 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
-		M.emote("[M.friendly] [src]")
+		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
@@ -991,11 +991,6 @@
 
 		if(species.name && species.name == new_species) //we're already that species.
 			return
-		if(species.language)
-			remove_language(species.language)
-
-		if(species.default_language)
-			remove_language(species.default_language)
 
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
@@ -1010,13 +1005,8 @@
 
 	species.create_organs(src)
 
-	if(species.language)
-		grant_language(species.language)
-
-	if(species.default_language)
-		grant_language(species.default_language)
-		var/datum/language_holder/H = get_language_holder()
-		H.selected_default_language = species.default_language
+	if(species.default_language_holder)
+		language_holder = new species.default_language_holder(src)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1069,8 +1059,8 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+		if(istype(wear_suit, /obj/item/clothing/suit/storage))
+			var/obj/item/clothing/suit/storage/S = wear_suit
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
@@ -1380,3 +1370,14 @@
 		return
 
 	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+
+
+/mob/living/carbon/human/get_language_holder()
+	if(language_holder)
+		return language_holder
+	else if(species)
+		language_holder = new species.default_language_holder(src)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder

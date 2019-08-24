@@ -5,6 +5,7 @@
 	var/datum/armor/armor
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
+	var/integrity_failure = 0 //0 if we have no special broken behavior
 
 	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
@@ -19,8 +20,10 @@
 
 	var/explosion_resistance = 0
 
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-	var/obj_flags
+	var/resistance_flags = NONE
+	var/obj_flags = NONE
+	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
+	var/destroy_sound //Sound this object makes when destroyed.
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
@@ -70,33 +73,23 @@
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
 	var/is_in_use = FALSE
-	var/list/nearby = viewers(1, src)
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
+
+	var/mob/living/silicon/ai/AI
+	if(isAI(usr))
+		AI = usr
+		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_hand(M)
-	if (isAI(usr))
-		if (!(usr in nearby))
-			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-				is_in_use = TRUE
-				attack_ai(usr)
+			attack_ai(AI)
+
+	for(var/mob/M in viewers(1, src))
+		if(!M.client || M.interactee != src || M == AI)
+			continue
+		is_in_use = TRUE
+		attack_hand(M)
 
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(!CHECK_BITFIELD(obj_flags, IN_USE))
-		return
-	var/list/nearby = viewers(1, src)
-	var/is_in_use = FALSE
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
-			is_in_use = TRUE
-			interact(M)
-			
-	if(!is_in_use)
-		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 /obj/proc/interact(mob/user)
 	return
@@ -252,3 +245,11 @@
 /obj/on_set_interaction(mob/user)
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
+
+
+/obj/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("anchored")
+			setAnchored(var_value)
+			return TRUE
+	return ..()

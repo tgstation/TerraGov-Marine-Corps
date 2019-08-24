@@ -1,6 +1,6 @@
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "OOC") as text
+	var/message = input("", "OOC \"text\"") as null|text
 	ooc(message)
 
 
@@ -94,12 +94,12 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
 
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "LOOC") as text
+	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
 
 
@@ -188,7 +188,7 @@
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
-	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
+	if(chatOutput?.working && chatOutput.loaded)
 		chatOutput.stopMusic()
 
 

@@ -113,7 +113,8 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
@@ -217,7 +218,7 @@
 	if(X.fortify)
 		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.cooldown_id)
-			to_chat(src, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
+			to_chat(X, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
 		X.set_fortify(FALSE, TRUE)
 		FT.add_cooldown()

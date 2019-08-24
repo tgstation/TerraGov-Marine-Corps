@@ -27,7 +27,6 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
-	damage_cap = 3000
 	var/emergency = FALSE
 
 	tiles_with = list(
@@ -103,15 +102,15 @@
 		if(secondsMainPowerLost > 0)
 			if(!wires.is_cut(WIRE_POWER1) && !wires.is_cut(WIRE_POWER2))
 				secondsMainPowerLost -= 1
-				updateDialog()
+				updateUsrDialog()
 			cont = TRUE
 		if(secondsBackupPowerLost > 0)
 			if(!wires.is_cut(WIRE_BACKUP1) && !wires.is_cut(WIRE_BACKUP2))
 				secondsBackupPowerLost -= 1
-				updateDialog()
+				updateUsrDialog()
 			cont = TRUE
 	spawnPowerRestoreRunning = FALSE
-	updateDialog()
+	updateUsrDialog()
 	update_icon()
 
 
@@ -200,10 +199,6 @@
 
 
 /obj/machinery/door/airlock/attack_ai(mob/user)
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		to_chat(user, "<span class='warning'>Unable to interface: Airlock is unresponsive.</span>")
-		return
-
 	ui_interact(user)
 
 
@@ -564,7 +559,7 @@
 			if(!W.use_tool(src, user, 40, volume = 50, extra_checks = CALLBACK(src, .proc/weld_checks)))
 				return
 
-			obj_integrity = max_integrity
+			repair_damage(max_integrity)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
 			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
 								"<span class='notice'>You finish repairing the airlock.</span>")
@@ -804,13 +799,13 @@
 			return
 
 		secondsElectrified--
-		updateDialog()
+		updateUsrDialog()
 	// This is to protect against changing to permanent, mid loop.
 	if(secondsElectrified == MACHINE_NOT_ELECTRIFIED)
 		set_electrified(MACHINE_NOT_ELECTRIFIED)
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT)
-	updateDialog()
+	updateUsrDialog()
 
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)

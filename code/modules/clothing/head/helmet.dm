@@ -190,7 +190,7 @@
 						/obj/item/toy/handcard = "helmet_card_card",
 						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
 						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
@@ -199,11 +199,11 @@
 	storage_slots = 2
 	max_w_class = 1
 	bypass_w_limit = list(
-		/obj/item/clothing/glasses, 
+		/obj/item/clothing/glasses,
 		/obj/item/reagent_container/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 3
+	max_storage_space = 4
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -459,8 +459,8 @@
 	flags_inv_hide = NONE
 	flags_marine_helmet = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/bear
-	name = "\improper Iron Bear helmet"
+/obj/item/clothing/head/helmet/marine/veteran/wolves
+	name = "\improper Steel Wolves helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list("melee" = 90, "bullet" = 65, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)

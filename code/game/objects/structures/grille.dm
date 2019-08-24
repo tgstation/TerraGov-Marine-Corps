@@ -3,10 +3,12 @@
 	name = "grille"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
+	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
 	anchored = TRUE
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 10
 	var/destroyed = FALSE
@@ -19,9 +21,8 @@
 	var/width = 3
 	max_integrity = 50
 
-/obj/structure/grille/fence/New()
-
-	..()
+/obj/structure/grille/fence/Initialize()
+	. = ..()
 
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -45,13 +46,6 @@
 	icon='icons/obj/structures/fence_ns.dmi'
 	icon_state = "fence-ns"
 
-/obj/structure/grille/fence/healthcheck()
-	if(obj_integrity <= 0)
-		density = FALSE
-		destroyed = TRUE
-		new /obj/item/stack/rods(loc)
-		qdel(src)
-	return
 
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
@@ -60,65 +54,17 @@
 	if(ismob(user)) shock(user, 70)
 
 
-/obj/structure/grille/attack_paw(mob/living/carbon/monkey/user)
-	attack_hand(user)
-
-/obj/structure/grille/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-	var/damage_dealt = 5
-	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>We mangle [src]!</span>", \
-	"<span class='danger'>You hear twisting metal!</span>", 5)
-
-	if(shock(M, 70))
-		M.visible_message("<span class='danger'>ZAP! \The [M] spazzes wildly amongst a smell of burnt ozone.</span>", \
-		"<span class='danger'>ZAP! We twitch and dance like a monkey on hyperzine!</span>", \
-		"<span class='danger'>You hear a sharp ZAP and a smell of ozone.</span>")
-		return FALSE //Intended apparently ?
-
-	obj_integrity -= damage_dealt
-	healthcheck()
-
 /obj/structure/grille/attack_hand(mob/living/user)
-
+	. = ..()
+	if(.)
+		return
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
-	var/damage_dealt
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
-			damage_dealt = 5
-			user.visible_message("<span class='warning'>[user] mangles [src].</span>", \
-					"<span class='warning'>You mangle [src].</span>", \
-					"You hear twisting metal.")
-
-	if(!damage_dealt)
-		user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
+	user.visible_message("<span class='warning'>[user] kicks [src].</span>", \
 						"<span class='warning'>You kick [src].</span>", \
 						"You hear twisting metal.")
 
-	if(shock(user, 70))
-		return
-
-	damage_dealt += 1
-
-	obj_integrity -= damage_dealt
-	healthcheck()
-
-
-/obj/structure/grille/attack_animal(mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)
-		return
-
-	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-	M.visible_message("<span class='warning'>[M] smashes against [src].</span>", \
-					"<span class='warning'>You smash against [src].</span>", \
-					"You hear twisting metal.")
-
-	obj_integrity -= M.melee_damage_upper
-	healthcheck()
-	return
+	shock(user, 70)
 
 
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
@@ -130,15 +76,6 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
-
-	//Tasers and the like should not damage grilles.
-	if(Proj.ammo.damage_type == HALLOSS)
-		return FALSE
-
-	src.obj_integrity -= round(Proj.damage*0.3)
-	healthcheck()
-	return TRUE
 
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -208,38 +145,9 @@
 		to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
 		WD.update_icon()
 
-	else if(istype(I, /obj/item/shard))
-		obj_integrity -= I.force * 0.1
-
-	else if(!shock(user, 70))
-		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-		switch(I.damtype)
-			if("fire")
-				obj_integrity -= I.force
-			if("brute")
-				obj_integrity -= I.force * 0.1
-
-	healthcheck()
-
-
-/obj/structure/grille/proc/healthcheck()
-	if(obj_integrity <= 0)
-		if(!destroyed)
-			icon_state = "brokengrille"
-			density = FALSE
-			destroyed = 1
-			new /obj/item/stack/rods(loc)
-
-		else
-			if(obj_integrity <= -6)
-				new /obj/item/stack/rods(loc)
-				qdel(src)
-				return
-	return
 
 // shock user with probability prb (if all connections & power are working)
 // returns 1 if shocked, 0 otherwise
-
 /obj/structure/grille/proc/shock(mob/user as mob, prb)
 
 	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
@@ -261,11 +169,9 @@
 	return FALSE
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
-	if(!destroyed)
-		if(exposed_temperature > T0C + 1500)
-			obj_integrity -= 1
-			healthcheck()
-	..()
+	if(!destroyed && exposed_temperature > T0C + 1500)
+		take_damage(1, BURN, "fire")
+	return ..()
 
 
 

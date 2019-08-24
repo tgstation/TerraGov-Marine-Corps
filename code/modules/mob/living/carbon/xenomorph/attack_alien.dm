@@ -316,6 +316,3 @@
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
 	"<span class='danger'>We nudge our head against [src].</span>", null, 5)
-
-/obj/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	return //larva can't do anything by default

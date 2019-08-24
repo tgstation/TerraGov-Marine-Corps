@@ -36,6 +36,9 @@
 	if(check_click_intercept(params, A))
 		return
 
+	if(level_locked && A.z != z)
+		return
+
 	if(control_disabled || incapacitated())
 		return
 
@@ -61,9 +64,6 @@
 		return
 
 	if(world.time <= next_move)
-		return
-
-	if(level_locked && A.z != z)
 		return
 
 	A.attack_ai(src)
@@ -103,7 +103,6 @@
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
 */
-/* Questions: Instead of an Emag check on every function, can we not add to airlocks onclick if emag return? */
 
 
 /* Atom Procs */
@@ -120,12 +119,15 @@
 
 /* Holopads */
 /obj/machinery/holopad/AIAltClick(mob/living/silicon/ai/user)
+	if(z != user.z)
+		return
+
 	hangup_all_calls()
 
 
 /* Airlocks */
-/obj/machinery/door/airlock/AICtrlClick() // Bolts doors
-	if(obj_flags & EMAGGED)
+/obj/machinery/door/airlock/AICtrlClick(mob/living/silicon/ai/user) // Bolts doors
+	if(z != user.z)
 		return
 
 	if(locked)
@@ -134,8 +136,8 @@
 		bolt_drop(usr)
 
 
-/obj/machinery/door/airlock/AIAltClick() // Eletrifies doors.
-	if(obj_flags & EMAGGED)
+/obj/machinery/door/airlock/AIAltClick(mob/living/silicon/ai/user) // Eletrifies doors.
+	if(z != user.z)
 		return
 
 	if(!secondsElectrified)
@@ -144,15 +146,17 @@
 		shock_restore(usr)
 
 
-/obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
-	if(obj_flags & EMAGGED)
+/obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
+	if(z != user.z)
 		return
 
 	user_toggle_open(usr)
 
 
 /* APC */
-/obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
+/obj/machinery/power/apc/AICtrlClick(mob/living/silicon/ai/user) // turns off/on APCs.
+	if(z != user.z)
+		return
 	toggle_breaker(usr)
 
 

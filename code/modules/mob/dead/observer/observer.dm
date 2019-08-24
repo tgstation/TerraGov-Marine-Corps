@@ -162,7 +162,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	else if(href_list["claim"])
-		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
+		var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
 		if(!istype(target))
 			to_chat(usr, "<span class='warning'>Invalid target.</span>")
 			return
@@ -230,7 +230,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.key = key
 
 	if(!can_reenter_corpse)
-		set_away_time()
 		ghost.mind?.current = ghost
 
 	if(!T)
@@ -241,18 +240,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.forceMove(T)
 
 	return ghost
-
-
-/mob/proc/set_away_time(new_away)
-	return
-
-/mob/living/set_away_time(new_away = world.time)
-	away_time = new_away //Generic way to handle away time, currently unused.
-
-
-/mob/living/carbon/xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
-	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
-	handle_afk_takeover()
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -436,8 +423,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/list/namecounts = list()
 
 	for(var/x in sortNames(GLOB.alive_xeno_list))
-		var/mob/M = x
-		var/name = M.name
+		var/mob/living/carbon/xenomorph/X = x
+		var/name = X.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
@@ -445,16 +432,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			names.Add(name)
 			namecounts[name] = 1
 
-		if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-			name += " - [M.client.prefs.xeno_name]"
+		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			name += " - [X.client.prefs.xeno_name]"
 
 		if(admin)
-			if(M.client && M.client.is_afk())
+			if(X.client && X.client.is_afk())
 				name += " (AFK)"
-			else if(!M.client && (M.key || M.ckey))
+			else if(!X.client && (X.key || X.ckey))
 				name += " (DC)"
+				if(!timeleft(X.afk_timer_id))
+					name += " 15+min"
 
-		xenos[name] = M
+		xenos[name] = X
 
 	if(!length(xenos))
 		to_chat(usr, "<span class='warning'>There are no xenos at the moment.</span>")
@@ -481,31 +470,32 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/list/names = list()
 	var/list/namecounts = list()
 	for(var/x in sortNames(GLOB.alive_human_list))
-		var/mob/M = x
-		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy) || !M.name)
+		var/mob/living/carbon/human/H = x
+		if(!ishumanbasic(H) && !issynth(H) || istype(H, /mob/living/carbon/human/dummy) || !H.name)
 			continue
-		var/name = M.name
+		var/name = H.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if(M.real_name && M.real_name != M.name)
-			name += " as ([M.real_name])"
-		if(issynth(M))
+		if(H.real_name && H.real_name != H.name)
+			name += " as ([H.real_name])"
+		if(issynth(H))
 			name += " - Synth"
 		if(admin)
-			if(M.client && M.client.is_afk())
+			if(H.client && H.client.is_afk())
 				name += " (AFK)"
-			else if(!M.client && (M.key || M.ckey))
-				if(isaghost(M))
+			else if(!H.client && (H.key || H.ckey))
+				if(isaghost(H))
 					name += " (AGHOSTED)"
 				else
 					name += " (DC)"
+					if(!timeleft(H.afk_timer_id))
+						name += " 15+min"
 
-
-		humans[name] = M
+		humans[name] = H
 
 	if(!length(humans))
 		to_chat(usr, "<span class='warning'>There are no living humans at the moment.</span>")

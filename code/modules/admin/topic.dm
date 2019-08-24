@@ -334,6 +334,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 			if("ai")
 				newmob = M.change_mob_type(/mob/living/silicon/ai, location, null, delmob)
+				var/datum/job/J = SSjob.GetJobType(/datum/job/ai)
+				J.assign(newmob, preference_source = newmob.client)
 
 		C.holder.show_player_panel(newmob)
 
@@ -698,20 +700,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!ref)
 			return
 		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin || F.marked == usr.client)
+		if(!F || F.admin || F.marked == usr.client.key)
 			return
 
 		if(F.marked)
 			switch(alert("This fax has already been marked by [F.marked], do you want to replace them?", "Warning", "Replace", "Unmark", "Cancel"))
 				if("Replace")
-					F.marked = usr.client
+					F.marked = usr.client.key
 					message_staff("[key_name_admin(usr)] has re-marked a fax from [key_name_admin(F.sender)].")
 				if("Unmark")
 					F.marked = null
 					message_staff("[key_name_admin(usr)] has un-marked a fax from [key_name_admin(F.sender)].")
 			return
 
-		F.marked = usr.client
+		F.marked = usr.client.key
 		message_staff("[key_name_admin(usr)] has marked a fax from [key_name_admin(F.sender)].")
 
 
@@ -728,11 +730,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!F || F.admin)
 				return
 
-			if(F.marked && F.marked != usr.client)
+			if(F.marked && F.marked != usr.client.key)
 				to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
 				return
 			else if(!F.marked)
-				F.marked = usr.client
+				F.marked = usr.client.key
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 			
 			sender = F.sender
@@ -939,15 +941,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				if(alert("Are you sure you want to destroy the [CONFIG_GET(string/ship_name)] right now?", "Self-Destruct", "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [SSmapping.configs[SHIP_MAP].map_name] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
-				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
 
 			if("toggle_dest")
 				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
@@ -1120,6 +1122,34 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["say_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.say_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "say_log", "<div align='center'>Say Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["telecomms_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.telecomms_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "telecomms_log", "<div align='center'>Telecomms Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["game_log"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1130,6 +1160,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "game_log", "<div align='center'>Game Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
+	else if(href_list["manifest_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.manifest_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
@@ -1148,6 +1192,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		browser.open(FALSE)
 
 
+	else if(href_list["attack_log"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/dat
+
+		for(var/x in GLOB.attack_log)
+			dat += "[x]<br>"
+
+		var/datum/browser/browser = new(usr, "attack_log", "<div align='center'>Attack Log</div>")
+		browser.set_content(dat)
+		browser.open(FALSE)
+
+
 	else if(href_list["ffattack_log"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1157,7 +1215,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		for(var/x in GLOB.ffattack_log)
 			dat += "[x]<br>"
 
-		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Log</div>")
+		var/datum/browser/browser = new(usr, "ffattack_log", "<div align='center'>FF Attack Log</div>")
 		browser.set_content(dat)
 		browser.open(FALSE)
 
@@ -1750,7 +1808,14 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		switch(href_list["appearance"])
 			if("hairstyle")
-				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(GLOB.hair_styles_list)
+				var/list/valid_hairstyles = list()
+				for(var/hairstyle in GLOB.hair_styles_list)
+					var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
+					if(!(H.species.name in S.species_allowed))
+						continue
+
+					valid_hairstyles += hairstyle
+				change = input("Select the hair style.", "Edit Appearance") as null|anything in sortList(valid_hairstyles)
 				if(!change || !istype(H))
 					return
 				previous = H.h_style
@@ -1846,7 +1911,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				if(H.mind)
 					previous = H.mind.assigned_role
 					var/datum/job/J = SSjob.GetJob(change)
-					J.assign(H)
+					J.assign(H, preference_source = H.client)
 					if(href_list["doequip"])
 						H.set_equipment(J.title)
 						addition = ", equipping them"
@@ -1965,3 +2030,70 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		if(href_list["doset"])
 			Topic(usr.client.holder, list("admin_token" = RawHrefToken(TRUE), "rank" = "equipment", "mob" = REF(H)))
+
+
+	else if(href_list["xeno"])
+		if(!check_rights(R_FUN))
+			return
+
+		var/mob/living/carbon/xenomorph/X = locate(href_list["mob"]) in GLOB.xeno_mob_list
+		if(!istype(X))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		var/change
+		var/previous
+		var/old_keyname = key_name(X)
+
+		switch(href_list["xeno"])
+			if("hive")
+				previous = X.hivenumber
+
+				var/newhive = input("Select a hive.", "Xeno Panel") as null|anything in GLOB.hive_datums
+				if(!newhive)
+					return
+
+				var/datum/hive_status/S = GLOB.hive_datums[newhive]
+
+				change = S.hivenumber
+				if(previous == change)
+					return
+
+				if(!istype(X) || X.hivenumber != previous)
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.transfer_to_hive(change)
+			
+			if("nicknumber")
+				previous = X.nicknumber 
+
+				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
+				if(!change || change == previous)
+					return
+
+				if(!istype(X))
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.nicknumber = change
+				X.generate_name()
+
+			if("upgrade")
+				previous = X.xeno_caste.upgrade 
+
+				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
+				if(!change || change == previous)
+					return
+
+				if(!istype(X))
+					to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+					return
+
+				X.upgrade_xeno(change)
+
+		DIRECT_OUTPUT(usr, browse(null, "window=xeno_panel_[old_keyname]"))
+		usr.client.holder.xeno_panel(X)
+
+		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
+		message_admins("[ADMIN_TPMONTY(usr)] changed [href_list["xeno"]] of [ADMIN_TPMONTY(X)] from [previous] to [change].")

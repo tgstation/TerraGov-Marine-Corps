@@ -227,6 +227,7 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
+	plane = FLOOR_PLANE
 
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
@@ -256,16 +257,19 @@
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rasputin1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/ert
 	icon = 'icons/turf/ert_shuttle.dmi'
 	icon_state = "stan4"
+	plane = GAME_PLANE
 
 
 /turf/closed/shuttle/dropship1
 	name = "\improper Alamo"
 	icon = 'icons/turf/dropship.dmi'
 	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship1/transparent
 	opacity = FALSE
@@ -274,6 +278,7 @@
 	name = "\improper Normandy"
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "1"
+	plane = GAME_PLANE
 
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
@@ -282,50 +287,4 @@
 	name = "wall"
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "wall0"
-
-
-
-
-// Elevator walls (directional)
-/turf/closed/shuttle/elevator
-	icon = 'icons/turf/elevator.dmi'
-	icon_state = "wall"
-
-// Wall with gears that animate when elevator is moving
-/turf/closed/shuttle/elevator/gears
-	icon_state = "wall_gear"
-
-/turf/closed/shuttle/elevator/gears/proc/start()
-	icon_state = "wall_gear_animated"
-
-/turf/closed/shuttle/elevator/gears/proc/stop()
-	icon_state = "wall_gear"
-
-// Special wall icons
-/turf/closed/shuttle/elevator/research
-	icon_state = "wall_research"
-
-/turf/closed/shuttle/elevator/dorm
-	icon_state = "wall_dorm"
-
-/turf/closed/shuttle/elevator/freight
-	icon_state = "wall_freight"
-
-/turf/closed/shuttle/elevator/arrivals
-	icon_state = "wall_arrivals"
-
-// Elevator Buttons
-/turf/closed/shuttle/elevator/button
-	name = "elevator buttons"
-
-/turf/closed/shuttle/elevator/button/research
-	icon_state = "wall_button_research"
-
-/turf/closed/shuttle/elevator/button/dorm
-	icon_state = "wall_button_dorm"
-
-/turf/closed/shuttle/elevator/button/freight
-	icon_state = "wall_button_freight"
-
-/turf/closed/shuttle/elevator/button/arrivals
-	icon_state = "wall_button_arrivals"
+	plane = GAME_PLANE

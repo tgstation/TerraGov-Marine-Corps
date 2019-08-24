@@ -17,20 +17,6 @@
 //
 // It will need to be manually refilled with lights.
 // If it's part of a robot module, it will charge when the Robot is inside a Recharge Station.
-//
-// EMAGGED FEATURES
-//
-// NOTICE: The Cyborg cannot use the emagged Light Replacer and the light's explosion was nerfed. It cannot create holes in the station anymore.
-//
-// I'm not sure everyone will react the emag's features so please say what your opinions are of it.
-//
-// When emagged it will rig every light it replaces, which will explode when the light is on.
-// This is VERY noticable, even the device's name changes when you emag it so if anyone
-// examines you when you're holding it in your hand, you will be discovered.
-// It will also be very obvious who is setting all these lights off, since only Janitor Borgs and Janitors have easy
-// access to them, and only one of them can emag their device.
-//
-// The explosion cannot insta-kill anyone with 30% or more health.
 
 #define LIGHT_OK 0
 #define LIGHT_EMPTY 1
@@ -68,10 +54,7 @@
 /obj/item/lightreplacer/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,  /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		Emag()
-
-	else if(istype(I, /obj/item/stack/sheet/glass))
+	if(istype(I, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/G = I
 		if(uses >= max_uses)
 			to_chat(user, "<span class='warning'>[src] is full.")
@@ -102,9 +85,6 @@
 
 /obj/item/lightreplacer/attack_self(mob/user)
 	to_chat(usr, "It has [uses] lights remaining.")
-
-/obj/item/lightreplacer/update_icon()
-	icon_state = "lightreplacer[CHECK_BITFIELD(obj_flags, EMAGGED)]"
 
 
 /obj/item/lightreplacer/proc/Use(mob/user)
@@ -147,7 +127,6 @@
 
 			target.status = L2.status
 			target.switchcount = L2.switchcount
-			target.rigged = CHECK_BITFIELD(obj_flags, EMAGGED)
 			target.brightness = L2.brightness
 			target.on = target.has_power()
 			target.update()
@@ -163,15 +142,6 @@
 	else
 		to_chat(U, "There is a working [target.fitting] already inserted.")
 		return
-
-/obj/item/lightreplacer/proc/Emag()
-	TOGGLE_BITFIELD(obj_flags, EMAGGED)
-	playsound(src.loc, "sparks", 25, 1)
-	if(CHECK_BITFIELD(obj_flags, EMAGGED))
-		name = "Shortcircuited [initial(name)]"
-	else
-		name = initial(name)
-	update_icon()
 
 //Can you use it?
 

@@ -40,5 +40,8 @@
 	var/obj/item/tank/internal = null//Human/Monkey
 
 	var/blood_type
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 	var/overeatduration = 0		// How long this guy is overeating
+
+	var/afk_timer_id

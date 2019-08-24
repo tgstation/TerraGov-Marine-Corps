@@ -19,7 +19,8 @@
 			A.set_broken()
 		CHECK_TICK
 
-	for(var/mob/living/carbon/M in GLOB.alive_mob_list) //knock down mobs
+	for(var/i in GLOB.alive_living_list) //knock down mobs
+		var/mob/living/M = i
 		if(!is_mainship_level(M.z)) 
 			continue
 		if(M.buckled)
@@ -29,6 +30,11 @@
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
 			M.knock_down(3)
+		CHECK_TICK
+
+	for(var/i in GLOB.ai_list)
+		var/mob/living/silicon/ai/AI = i
+		AI.anchored = FALSE
 		CHECK_TICK
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
@@ -116,6 +122,11 @@
 	var/list/left_airlocks = list()
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
+
+
+	var/list/equipments = list()
+	var/list/installed_equipment = list()
+	var/list/selected_equipment = list()
 
 	var/hijack_state = HIJACK_STATE_NORMAL
 
@@ -358,9 +369,6 @@
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
-/obj/machinery/computer/shuttle/marine_dropship/attack_paw(mob/living/carbon/monkey/user)
-	attack_alien(user)
-
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		return
@@ -370,7 +378,7 @@
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
-		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [CONFIG_GET(string/ship_name)]</A><br>"
+		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.hijack_state = HIJACK_STATE_CALLED_DOWN
 		M.unlock_all()
 	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
@@ -379,38 +387,38 @@
 	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user)
+/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
+	if(!shuttle)
+		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
+		return 
+	
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
-	var/list/options = params2list(possible_destinations)
-	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
-	if(M)
-		var/destination_found
-		var/list/valid_destionations = list()
-		for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-			if(!options.Find(S.id))
-				continue
-			if(!M.check_dock(S, silent=TRUE))
-				continue
-			destination_found = TRUE
-			valid_destionations[S.name] = S
-		for(var/i in sortList(valid_destionations))
-			var/obj/docking_port/stationary/S = valid_destionations[i]
-			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
-		dat += "Left Doors: <a href='?src=[REF(src)];lock=left'>Lockdown</a> <a href='?src=[REF(src)];unlock=left'>Unlock</a><br>"
-		dat += "Right Doors: <a href='?src=[REF(src)];lock=right'>Lockdown</a> <a href='?src=[REF(src)];unlock=right'>Unlock</a><br>"
-		dat += "Rear Door: <a href='?src=[REF(src)];lock=rear'>Lockdown</a> <a href='?src=[REF(src)];unlock=rear'>Unlock</a><br>"
-		dat += "All Doors: <a href='?src=[REF(src)];lockdown=1'>Lockdown</a> <a href='?src=[REF(src)];release=1'>Unlock</a><br>"
-		if(!destination_found)
-			dat += "<B>Shuttle Locked</B><br>"
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
-	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 400, 300)
-	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-	popup.open()
+	var/list/data = list()
+	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
+	data["shuttle_mode"] = shuttle.mode
+	data["hijack_state"] = shuttle.hijack_state
+	data["ship_status"] = shuttle.getStatusText()
+
+	var/list/options = params2list(possible_destinations)
+	var/list/valid_destionations = list()
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(!options.Find(S.id))
+			continue
+		if(!shuttle.check_dock(S, silent=TRUE))
+			continue
+		valid_destionations += list(list("name" = S.name, "id" = S.id))
+	data["destinations"] = valid_destionations
+
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)	
+	if (!ui)	
+		ui = new(user, src, ui_key, "dropship_pilot_console.tmpl", "Pilot Control", 500, 600)	
+		ui.set_initial_data(data)	
+		ui.open()	
+		ui.set_auto_update(1)
 
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_ai(mob/living/silicon/ai/AI)
@@ -467,6 +475,7 @@
 		M.crashing = TRUE
 		M.hijack_state = HIJACK_STATE_CRASHING
 		M.unlock_all()
+		no_destination_swap = TRUE
 		priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 		to_chat(X, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")
 		X.hive.xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Rejoice!")
@@ -797,6 +806,16 @@
 	icon_state = "shuttle"
 
 
+/obj/machinery/computer/shuttle/shuttle_control/Initialize()
+	. = ..()
+	GLOB.shuttle_controls_list += src
+
+
+/obj/machinery/computer/shuttle/shuttle_control/Destroy()
+	GLOB.shuttle_controls_list -= src
+	return ..()
+
+
 /obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
@@ -845,3 +864,34 @@
 	icon_state = "shuttle"
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury
+	name = "\improper 'Canterbury' shuttle console"
+	desc = "The remote controls for the 'Canterbury' shuttle."
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	shuttleId = "tgs_canterbury"
+	possible_destinations = "canterbury_loadingdock"
+
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+		return
+	var/datum/game_mode/crash/C = SSticker.mode
+
+	var/nuke_set = FALSE
+	for(var/i in GLOB.nuke_list)
+		var/obj/machinery/nuclearbomb/bomb = i
+		if(bomb.timer_enabled)
+			nuke_set = TRUE
+			break
+
+	if(nuke_set && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
+		return
+
+	C.marines_evac = CRASH_EVAC_INPROGRESS
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)

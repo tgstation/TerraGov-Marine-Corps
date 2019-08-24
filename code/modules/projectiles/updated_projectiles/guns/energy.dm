@@ -84,7 +84,7 @@
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high

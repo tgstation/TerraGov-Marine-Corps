@@ -4,6 +4,11 @@
 	var/obj/target = null
 	var/obj/screen/action_button/button = null
 	var/mob/owner
+	var/action_icon = 'icons/mob/actions.dmi'
+	var/action_icon_state = "default"
+	var/background_icon = 'icons/mob/actions.dmi'
+	var/background_icon_state = "template"
+	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 
 /datum/action/New(Target)
 	target = Target
@@ -17,6 +22,7 @@
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
 		button.overlays += IMG
+	button.icon = icon(background_icon, background_icon_state)
 	button.source_action = src
 	button.name = name
 	if(desc)
@@ -25,15 +31,33 @@
 /datum/action/Destroy()
 	if(owner)
 		remove_action(owner)
-	qdel(button)
-	button = null
+	QDEL_NULL(button)
 	target = null
+	return ..()
 
 /datum/action/proc/should_show()
 	return TRUE
 
 /datum/action/proc/update_button_icon()
-	return
+	if(!button)
+		return
+
+	button.name = name
+	button.desc = desc
+
+	if(action_icon && action_icon_state)
+		button.cut_overlays(TRUE)
+		button.add_overlay(mutable_appearance(action_icon, action_icon_state))
+
+	if(background_icon_state)
+		button.icon_state = background_icon_state
+
+	if(can_use_action())
+		button.color = rgb(255, 255, 255, 255)
+	else
+		button.color = rgb(128, 0, 0, 128)
+	
+	return TRUE
 
 /datum/action/proc/action_activate()
 	return
@@ -105,4 +129,3 @@
 
 	if(reload_screen)
 		client.screen += hud_used.hide_actions_toggle
-

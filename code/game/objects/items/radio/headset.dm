@@ -495,10 +495,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = new /obj/item/encryptionkey/mcom
 
 
-/obj/item/radio/headset/distress/bears
-	name = "Iron Bear headset"
+/obj/item/radio/headset/distress/wolves
+	name = "Steel Wolves headset"
 	frequency = FREQ_CIV_GENERAL
-	keyslot = new /obj/item/encryptionkey/bears
+	keyslot = new /obj/item/encryptionkey/wolves
 
 
 /obj/item/radio/headset/distress/commando

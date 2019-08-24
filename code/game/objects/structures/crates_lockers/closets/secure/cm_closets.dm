@@ -282,7 +282,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/captain_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
@@ -318,7 +318,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/officer_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
