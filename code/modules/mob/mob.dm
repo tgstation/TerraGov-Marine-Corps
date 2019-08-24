@@ -365,40 +365,9 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	getFiles(
-		'html/postcardsmall.jpg',
-		'html/somerights20.png',
-		'html/88x31.png',
-		'html/bug-minus.png',
-		'html/cross-circle.png',
-		'html/hard-hat-exclamation.png',
-		'html/image-minus.png',
-		'html/image-plus.png',
-		'html/music-minus.png',
-		'html/music-plus.png',
-		'html/tick-circle.png',
-		'html/wrench-screwdriver.png',
-		'html/spell-check.png',
-		'html/burn-exclamation.png',
-		'html/chevron.png',
-		'html/chevron-expand.png',
-		'html/changelog.css',
-		'html/changelog.js',
-		'html/changelog.html',
-		'html/chrome-wrench.png',
-		'html/ban.png',
-		'html/coding.png',
-		'html/scales.png'
-		)
 
-	src << browse_rsc('html/changelog2015.html', "changelog2015.html")
-	src << browse_rsc('html/changelog2016.html', "changelog2016.html")
-	src << browse_rsc('html/changelog2017.html', "changelog2017.html")
-	src << browse_rsc('html/changelog20181.html', "changelog20181.html")
-	src << browse_rsc('html/changelog20182.html', "changelog20182.html")
-	src << browse_rsc('html/changelog.html', "changelog.html")
-
-
+	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
+	changelog.send(src)
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
@@ -774,23 +743,18 @@ mob/proc/yank_out_object()
 
 /mob/proc/add_emote_overlay(image/emote_overlay, remove_delay = TYPING_INDICATOR_LIFETIME)
 	emote_overlay.appearance_flags = APPEARANCE_UI_TRANSFORM
-	var/viewers = viewers()
-	for(var/mob/M in viewers)
-		if(!isobserver(M) && (M.stat != CONSCIOUS || isdeaf(M)))
-			continue
-		SEND_IMAGE(M, emote_overlay)
+	emote_overlay.plane = ABOVE_HUD_PLANE
+	emote_overlay.layer = ABOVE_HUD_LAYER
+	overlays += emote_overlay
 
 	if(remove_delay)
-		addtimer(CALLBACK(src, .proc/remove_emote_overlay, client, emote_overlay, viewers), remove_delay)
+		addtimer(CALLBACK(src, .proc/remove_emote_overlay, emote_overlay, TRUE), remove_delay)
 
 
-/mob/proc/remove_emote_overlay(client/C, image/emote_overlay, list/viewers)
-	if(C)
-		C.images -= emote_overlay
-	for(var/mob/M in viewers)
-		if(M.client)
-			M.client.images -= emote_overlay
-	qdel(emote_overlay)
+/mob/proc/remove_emote_overlay(image/emote_overlay, delete)
+	overlays -= emote_overlay
+	if(delete)
+		qdel(emote_overlay)
 
 
 /mob/proc/spin(spintime, speed)

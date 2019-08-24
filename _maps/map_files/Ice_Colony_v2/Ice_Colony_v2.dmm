@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aaa" = (
-/turf/open/space,
+/turf/open/space/basic,
 /area/space)
 "aab" = (
 /obj/machinery/landinglight/ds1/delayone{
@@ -36958,10 +36958,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/valley/south/excavation)
-"bTt" = (
-/obj/effect/multitile_spawner/cm_armored/tank,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/underground/caves/open)
 "bTu" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
@@ -40134,9 +40130,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
-"fVu" = (
-/turf/open/space/basic,
-/area/space)
 "fYM" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -40233,15 +40226,6 @@
 	dir = 2
 	},
 /turf/closed/ice_rock/southWall,
-/area/ice_colony/exterior/surface/cliff)
-"hTx" = (
-/obj/effect/turf_overlay/icerock{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
 "hVA" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -42990,9 +42974,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -43247,9 +43231,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -43504,9 +43488,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -43761,9 +43745,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -43962,7 +43946,7 @@ bFZ
 bTD
 bTD
 bFZ
-bTt
+bFZ
 bFZ
 aZF
 bjZ
@@ -44018,9 +44002,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -44275,9 +44259,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -44532,9 +44516,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -44789,9 +44773,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw
@@ -45046,9 +45030,9 @@ aaa
 aaa
 aaa
 aaa
-fVu
-fVu
-fVu
+aaa
+aaa
+aaa
 aaa
 aaa
 bSw

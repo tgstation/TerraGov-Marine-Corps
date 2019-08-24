@@ -103,7 +103,6 @@
 	The following criminally helpful code is just the previous code cleaned up;
 	I have no idea why it was in atoms.dm instead of respective files.
 */
-/* Questions: Instead of an Emag check on every function, can we not add to airlocks onclick if emag return? */
 
 
 /* Atom Procs */
@@ -131,9 +130,6 @@
 	if(z != user.z)
 		return
 
-	if(obj_flags & EMAGGED)
-		return
-
 	if(locked)
 		bolt_raise(usr)
 	else if(hasPower())
@@ -144,9 +140,6 @@
 	if(z != user.z)
 		return
 
-	if(obj_flags & EMAGGED)
-		return
-
 	if(!secondsElectrified)
 		shock_perm(usr)
 	else
@@ -155,9 +148,6 @@
 
 /obj/machinery/door/airlock/AIShiftClick(mob/living/silicon/ai/user)  // Opens and closes doors!
 	if(z != user.z)
-		return
-
-	if(obj_flags & EMAGGED)
 		return
 
 	user_toggle_open(usr)

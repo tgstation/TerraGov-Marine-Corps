@@ -1,9 +1,12 @@
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	layer = OBJ_LAYER
+	layer = BELOW_OBJ_LAYER
 	verb_say = "beeps"
 	verb_yell = "blares"
+	anchored = TRUE
+	obj_flags = CAN_BE_HIT
+	destroy_sound = 'sound/effects/metal_crash.ogg'
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
@@ -12,11 +15,9 @@
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
-	var/list/component_parts = list() //list of all the parts used to build it, if made from certain kinds of frames.
+	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 
 	var/wrenchable = FALSE
-	var/damage = 0
-	var/damage_cap = 1000 //The point where things start breaking down.
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
@@ -24,6 +25,7 @@
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
+	component_parts = list()
 
 
 /obj/machinery/Destroy()
@@ -32,47 +34,39 @@
 	return ..()
 
 
-/obj/machinery/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
-			return
-
-		if(!do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, src, BUSY_ICON_HOSTILE))
-			return
-		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-		qdel(src)
-
-
-/obj/machinery/proc/dropContents(list/subset)
-	var/turf/T = get_turf(src)
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		if(subset && !(AM in subset))
-			continue
-		AM.forceMove(T)
-
-
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
 
 
-/obj/machinery/proc/deconstruct()
-	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+/obj/machinery/deconstruct(disassembled = TRUE)
+	if(!(flags_atom & NODECONSTRUCT))
+		on_deconstruction()
+		if(length(component_parts))
+			spawn_frame(disassembled)
+			for(var/i in component_parts)
+				var/obj/item/I = i
+				I.forceMove(loc)
+			component_parts.Cut()
+	qdel(src)
+
+
+/obj/machinery/proc/spawn_frame(disassembled)
 	var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
+	. = M
+	M.setAnchored(anchored)
+	if(!disassembled)
+		M.take_damage(M.max_integrity * 0.5) //the frame is already half broken
 	M.state = 2
 	M.icon_state = "box_1"
-	for(var/obj/I in component_parts)
-		if(I.reliability != 100 && crit_fail)
-			I.crit_fail = 1
-		I.loc = loc
-	qdel(src)
-	return TRUE
 
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
+	return
+
+
+//called on deconstruction before the final deletion
+/obj/machinery/proc/on_deconstruction()
 	return
 
 
@@ -176,12 +170,6 @@
 
 /obj/machinery/attack_ai(mob/user)
 	return interact(user)
-
-
-//Xenomorphs can't use machinery, not even the "intelligent" ones
-//Exception is Queen and shuttles, because plot power
-/obj/machinery/attack_alien(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 
 
 /obj/machinery/attack_hand(mob/living/user)
@@ -450,20 +438,6 @@
 	if(occ["disabilities"] & NEARSIGHTED)
 		dat += text("<font color=#b54646>Retinal misalignment detected.</font><BR>")
 	return dat
-
-
-//Damage
-/obj/machinery/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
-		return
-
-	damage = max(0, damage + dam)
-
-	if(damage >= damage_cap)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		qdel(src)
-	else
-		update_icon()
 
 
 /obj/machinery/proc/remove_eye_control(mob/living/user)

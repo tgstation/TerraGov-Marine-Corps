@@ -1,53 +1,16 @@
 /obj/structure
 	icon = 'icons/obj/structures/structures.dmi'
-	var/climbable
+	var/climbable = FALSE
 	var/climb_delay = 50
-	var/parts
 	var/flags_barrier = 0
 	var/broken = FALSE //similar to machinery's stat BROKEN
+	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-
-/obj/structure/proc/destroy_structure(deconstruct)
-	if(parts)
-		new parts(loc)
-	density = FALSE
-	qdel(src)
+	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
 
-/obj/structure/proc/update_health()
-	return
-
-/obj/structure/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!istype(I, /obj/item/tool/pickaxe/plasmacutter) || user.action_busy || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-
-	var/obj/item/tool/pickaxe/plasmacutter/P = I
-	if(!P.start_cut(user, name, src))
-		return
-		
-	if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-		return
-
-	P.cut_apart(user, name, src)
-	qdel(src)
-
-//Default "structure" proc. This should be overwritten by sub procs.
-/obj/structure/attack_alien(mob/living/carbon/xenomorph/M)
-	return FALSE
-
-/obj/structure/attack_animal(mob/living/user)
-	. = ..()
-	if(user.wall_smash && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-		destroy_structure()
-
-/obj/structure/attack_paw(mob/living/carbon/monkey/user)
-	if(!CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		attack_hand(user)
 
 /obj/structure/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -236,17 +199,3 @@
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")
 		return FALSE
 	return TRUE
-
-
-//Damage
-/obj/structure/proc/take_damage(dam)
-	if(!dam || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE|UNACIDABLE))
-		return
-
-	obj_integrity = max(0, obj_integrity - dam)
-
-	if(obj_integrity <= 0)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		qdel(src)
-	else
-		update_icon()

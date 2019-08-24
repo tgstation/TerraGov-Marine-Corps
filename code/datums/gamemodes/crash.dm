@@ -54,6 +54,9 @@
 	var/current_specialists = 0
 	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
 
+	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
+	SL.total_positions = 1 // Force only one SL.
+
 	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
 	SG.total_positions = maximum_smartgunners
 
@@ -105,30 +108,22 @@
 
 	// Launch shuttle 
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!shuttle.check_dock(S, silent=TRUE))
+	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
+		if(!shuttle.check_dock(D, silent=TRUE))
 			continue
-		valid_docks += S.name
+		valid_docks += D
 
 	if(!length(valid_docks))
 		CRASH("No valid docks found for shuttle!")
 		return
-	var/dock = pick(valid_docks)
-
-	var/obj/docking_port/stationary/target
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name == dock)
-			target = S
-			break
-
-	if(!target)
+	var/obj/docking_port/stationary/target = pick(valid_docks)
+	if(!target || !istype(target))
 		CRASH("Unable to get a valid shuttle target!")
 		return
 		
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
-
 
 
 /datum/game_mode/crash/setup()
@@ -398,7 +393,7 @@
 		shake_camera(M, 110, 4)
 
 	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
-	var/nuketime = initial(C.runtime)
+	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 

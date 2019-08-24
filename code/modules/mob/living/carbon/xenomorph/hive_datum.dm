@@ -595,7 +595,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
-	return TRUE
+	return new_xeno
 
 
 // ***************************************

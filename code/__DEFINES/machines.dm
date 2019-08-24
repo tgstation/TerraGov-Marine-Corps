@@ -45,7 +45,6 @@
 
 #define DOOR_NOT_FORCED 0
 #define DOOR_FORCED_NORMAL 1
-#define DOOR_FORCED_EMAG 2
 
 
 //Cables directions and helping

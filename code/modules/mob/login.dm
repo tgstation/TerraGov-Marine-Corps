@@ -1,4 +1,6 @@
 /mob/Login()
+	if(!client) //Yes, this can happen. Thanks BYOND.
+		return
 	ip_address	= client.address
 	computer_id	= client.computer_id
 	GLOB.player_list |= src

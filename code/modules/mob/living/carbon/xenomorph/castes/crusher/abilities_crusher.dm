@@ -76,8 +76,9 @@
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
-	to_chat(src, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)

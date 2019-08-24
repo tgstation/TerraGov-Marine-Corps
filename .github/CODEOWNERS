@@ -19,3 +19,6 @@
 /code/controllers/stonedmc/ @spookydonut
 /code/modules/mob/living/carbon/xenomorph/ @spookydonut
 
+# PsyKzz
+/code/datum/gamemodes/ @psykzz
+
