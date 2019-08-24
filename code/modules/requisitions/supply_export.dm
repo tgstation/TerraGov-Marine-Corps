@@ -3,7 +3,7 @@
 
 
 /obj/structure/closet/crate/supply_export()
-	. = POINTS_PER_CRATE
+	. = 3
 	SSpoints.supply_points += .
 
 
