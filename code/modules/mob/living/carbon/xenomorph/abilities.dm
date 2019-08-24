@@ -602,7 +602,7 @@
 	var/turf/T2 = get_turf(A)
 	if(T == T2)
 		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>That's far too close!</span>")
+			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
 
 
