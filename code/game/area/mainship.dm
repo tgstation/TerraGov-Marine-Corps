@@ -366,6 +366,11 @@
 	icon_state = "delta"
 	fake_zlevel = 2 // lowerdeck
 
+/area/mainship/squads/general
+	name = "\improper Common Squads Preparation"
+	icon_state = "req"
+	fake_zlevel = 2 // lowerdeck
+
 /area/mainship/squads/req
 	name = "\improper Requisitions"
 	icon_state = "req"
