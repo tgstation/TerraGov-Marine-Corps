@@ -2032,16 +2032,8 @@
 	},
 /area/mainship/medical/medical_science)
 "afo" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/mainship/hardened,
-/obj/machinery/door_control{
-	id = "areslockdowninterior";
-	name = "ARES Lockdown";
-	pixel_x = 25;
-	req_one_access_txt = "19"
+/obj/machinery/door_control/ai/interior{
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -10686,11 +10678,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/door_control{
-	id = "areslockdownexterior";
-	name = "ARES Lockdown";
-	pixel_x = 25;
-	req_one_access_txt = "19"
+/obj/machinery/door_control/ai/exterior{
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -10702,11 +10691,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/door_control{
-	id = "areslockdownexterior";
-	name = "ARES Lockdown";
-	pixel_x = -25;
-	req_one_access_txt = "19"
+/obj/machinery/door_control/ai/exterior{
+	pixel_x = -25
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -10720,11 +10706,8 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "ayB" = (
-/obj/machinery/door_control{
-	id = "areslockdowninterior";
-	name = "ARES Lockdown";
-	pixel_x = -25;
-	req_one_access_txt = "19"
+/obj/machinery/door_control/ai/interior{
+	pixel_x = -25
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -11669,11 +11652,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "areslockdownexterior";
-	name = "\improper ARES Core Shutters"
-	},
+/obj/machinery/door/airlock/mainship/ai/glass,
+/obj/machinery/door/poddoor/mainship/ai/exterior,
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
@@ -11689,23 +11669,27 @@
 	},
 /area/mainship/command/airoom)
 "aAo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable,
 /obj/machinery/holopad,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
 /area/mainship/command/airoom)
 "aAp" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "areslockdowninterior";
-	name = "\improper ARES Core Shutters"
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
+/obj/machinery/door/airlock/mainship/ai,
+/obj/machinery/door/poddoor/mainship/ai/interior,
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
@@ -12684,7 +12668,11 @@
 	},
 /area/mainship/hull/upper_hull)
 "aCe" = (
-/obj/machinery/camera,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/mainship/hardened,
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
@@ -45856,6 +45844,17 @@
 	icon_state = "red"
 	},
 /area/mainship/living/cafeteria_starboard)
+"ggx" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/port_point_defense)
 "gjm" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -46087,6 +46086,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
+"hYf" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_point_defense)
 "ifF" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/plating/plating_catwalk,
@@ -46156,6 +46166,12 @@
 	icon_state = "orange"
 	},
 /area/mainship/living/starboard_emb)
+"iEC" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/port_point_defense)
 "iGN" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -46891,6 +46907,13 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
+"oap" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/port_point_defense)
 "olm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -47040,6 +47063,17 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/lower_medical)
+"pne" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/starboard_point_defense)
 "poE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -47181,6 +47215,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"qdh" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/port_point_defense)
 "qdw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47432,6 +47472,12 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/self_destruct)
+"sBM" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/starboard_point_defense)
 "sJO" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -47492,6 +47538,16 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
+"sXo" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship{
+	icon_state = "ai_floors"
+	},
+/area/mainship/command/airoom)
 "sXq" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship{
@@ -48185,6 +48241,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"ylX" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_point_defense)
 
 (1,1,1) = {"
 aaa
@@ -86547,7 +86614,7 @@ aoH
 apS
 vVX
 ayB
-pvn
+aAn
 aCf
 vVX
 apS
@@ -86804,8 +86871,8 @@ aoH
 apS
 awK
 aCe
-pvn
-pvn
+sXo
+aPf
 awK
 apS
 aoH
@@ -93579,13 +93646,13 @@ aVv
 aQX
 aRT
 aRT
-aRT
+ylX
 aQX
 aRT
 aVH
 aVS
 aVT
-aVS
+sBM
 aWi
 akn
 aWw
@@ -93639,13 +93706,13 @@ cbA
 cdI
 aGL
 ceN
-cfj
+oap
 ciT
 cfj
 ciU
 ciV
 ciW
-ciV
+ggx
 ciV
 ciV
 ciW
@@ -96149,13 +96216,13 @@ aVA
 aRz
 aRT
 aRT
-aRT
+hYf
 aRz
 aRT
 aVM
 aVM
 aRT
-aVM
+pne
 aRz
 aRT
 aRT
@@ -96209,13 +96276,13 @@ cdH
 ces
 ces
 ceO
-cbA
+iEC
 ces
 cbA
 cbA
 ces
 ceO
-ces
+qdh
 ces
 ces
 ceO
