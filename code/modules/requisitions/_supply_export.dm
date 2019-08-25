@@ -10,7 +10,6 @@
 /mob/living/carbon/xenomorph/supply_export()
 	switch(tier)
 		if(XENO_TIER_ZERO)
-			SSpoints.supply_points++
 			. = 1
 		if(XENO_TIER_ONE)
 			. = 5

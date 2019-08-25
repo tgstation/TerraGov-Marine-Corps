@@ -6,9 +6,15 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	var/atom/movable/vis_obj/fulton_baloon/baloon = new()
-	var/obj/effect/fulton_extraction_holder/holder_obj = new()
+	var/atom/movable/vis_obj/fulton_baloon/baloon
+	var/obj/effect/fulton_extraction_holder/holder_obj
 	var/active = FALSE
+
+
+/obj/item/fulton_extraction_pack/Initialize()
+	. = ..()
+	baloon = new()
+	holder_obj = new()
 
 
 /obj/item/fulton_extraction_pack/Destroy()
