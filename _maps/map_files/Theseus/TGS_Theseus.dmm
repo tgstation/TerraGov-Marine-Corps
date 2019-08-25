@@ -12542,6 +12542,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_side";
 	dir = 6
@@ -12558,6 +12563,11 @@
 	req_access_txt = "20";
 	req_one_access_txt = "0"
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "sterile_green_side"
@@ -12566,6 +12576,11 @@
 "aBW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_side";
@@ -12585,6 +12600,11 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/office/dark,
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -12602,6 +12622,11 @@
 /obj/machinery/door/airlock/mainship/research{
 	name = "\improper Research Pens"
 	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -12611,6 +12636,11 @@
 	dir = 9
 	},
 /obj/machinery/light,
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -12623,6 +12653,11 @@
 	},
 /obj/machinery/door/airlock/mainship/research{
 	name = "\improper Research Pens"
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -32698,7 +32733,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/holopad,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship,
 /area/mainship/living/briefing)
 "bBP" = (
 /obj/machinery/door/window/eastright/briefing,
@@ -32746,7 +32781,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/holopad,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bBV" = (
 /obj/machinery/light{
@@ -45717,6 +45752,16 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/charlie)
+"fDG" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "fHl" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -46184,6 +46229,16 @@
 	icon_state = "blue"
 	},
 /area/mainship/shipboard/ex_firing_range)
+"jwV" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/holopad,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "jzF" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -46361,6 +46416,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/captain_mess)
+"kVs" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "kWh" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_container/glass/beaker/cryoxadone,
@@ -47116,6 +47181,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"qdw" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "qdx" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -47935,6 +48018,19 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/shipboard/port_missiles)
+"xjQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "xkq" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -78228,7 +78324,7 @@ avv
 alz
 alz
 afr
-aBT
+qdw
 aDv
 xOp
 aDv
@@ -79256,7 +79352,7 @@ aoz
 alz
 afn
 aoz
-aBX
+xjQ
 aDy
 aEX
 aGD
@@ -79770,7 +79866,7 @@ aSx
 alz
 ayq
 aoz
-aBX
+xjQ
 aDA
 aEX
 aGF
@@ -80027,7 +80123,7 @@ aoz
 awC
 aoz
 aoz
-aBX
+xjQ
 aDB
 alz
 aGG
@@ -80284,7 +80380,7 @@ apK
 alz
 aSs
 awE
-aBX
+xjQ
 aDC
 alz
 agj
@@ -80798,7 +80894,7 @@ apP
 alz
 aoz
 aAf
-aBX
+xjQ
 alz
 apP
 apO
@@ -81312,7 +81408,7 @@ apP
 alz
 aSs
 aAh
-aoz
+fDG
 alz
 apP
 apO
@@ -81826,7 +81922,7 @@ alz
 alz
 aoz
 aAi
-aoz
+fDG
 alz
 alz
 apP
@@ -82083,7 +82179,7 @@ alz
 awD
 aoz
 aoz
-aoz
+fDG
 aDD
 alz
 alz
@@ -82339,8 +82435,8 @@ atB
 avw
 atx
 aoz
-aoz
-aoz
+jwV
+kVs
 aDE
 avw
 aGI
