@@ -543,7 +543,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat == UNCONSCIOUS)
+	if(lying && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
 
 	if(isliving(proj.firer))

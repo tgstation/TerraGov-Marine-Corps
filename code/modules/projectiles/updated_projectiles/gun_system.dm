@@ -16,7 +16,7 @@
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 
-	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash = new
+	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -125,6 +125,8 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after set_gun_config_values(), handle_starting_attachment() and setup_firemodes() to get the proper values set.
+
+	muzzle_flash = new()
 
 
 //Called by the gun's New(), set the gun variables' values.
@@ -1134,44 +1136,6 @@ and you're good to go.
 	if(!QDELETED(flash_loc))
 		flash_loc.vis_contents -= muzzle_flash
 	muzzle_flash.applied = FALSE
-
-/*
-	var/mutable_appearance/flash_img = new(muzzle_flash)
-	flash_img
-	var/matrix/rotate = matrix() //Change the flash angle.
-	rotate.Translate(0, 5)
-
-	var/image/I = image('icons/obj/items/projectiles.dmi', src, muzzle_flash, flash_loc.layer + 0.1)
-	var/matrix/rotate = matrix() //Change the flash angle.
-	rotate.Translate(0, 5)
-	rotate.Turn(angle)
-	I.transform = rotate
-	flick_overlay_view(I, flash_loc, 3)
-
-
-
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, x_offset = 0, y_offset = 5)
-	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle))
-		return //We have to check for null angle here, as 0 can also be an angle.
-	if(!istype(user) || !istype(user.loc,/turf))
-		return
-
-	var/prev_light = light_range
-	if(light_range <= muzzle_flash_lum)
-		set_light(muzzle_flash_lum)
-		spawn(10)
-			set_light(prev_light)
-
-	if(prob(65)) //Not all the time.
-		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		var/image/I = image('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer)
-		var/matrix/rotate = matrix() //Change the flash angle.
-		rotate.Translate(x,y)
-		rotate.Turn(angle)
-		I.transform = rotate
-
-		flick_overlay_view(I, user, 3)
-*/
 
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
