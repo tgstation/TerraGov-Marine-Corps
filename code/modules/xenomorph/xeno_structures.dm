@@ -1,4 +1,5 @@
 /obj/structure/resin
+	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 
@@ -38,6 +39,11 @@
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
+
+	var/static/number = 1
+	name = "[name] [number]"
+	number++
+
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
