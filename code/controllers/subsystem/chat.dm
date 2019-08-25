@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(chat)
 	if(target == world)
 		target = GLOB.clients
 
+	var/original_message = message
 	//Some macros remain in the string even after parsing and fuck up the eventual output
 	message = replacetext(message, "\improper", "")
 	message = replacetext(message, "\proper", "")
@@ -44,9 +45,11 @@ SUBSYSTEM_DEF(chat)
 
 	if(islist(target))
 		for(var/I in target)
-			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
+			var/mob/M = I
+			var/client/C = istype(M) ? M.client : I
 			
-			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
+			if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
+				SEND_TEXT(C, original_message)
 				continue
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
@@ -56,9 +59,11 @@ SUBSYSTEM_DEF(chat)
 			payload[C] += twiceEncoded
 
 	else
-		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
+		var/mob/M = target
+		var/client/C = istype(M) ? M.client : target
 
-		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
+		if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
+			SEND_TEXT(C, original_message)
 			return
 
 		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue

@@ -12,7 +12,7 @@
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(src, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
+	to_chat(X, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/toggle_agility/action_activate()
@@ -178,7 +178,8 @@
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We gather enough strength to punch again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to punch again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)

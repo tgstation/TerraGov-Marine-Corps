@@ -54,6 +54,9 @@
 	var/current_specialists = 0
 	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
 
+	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
+	SL.total_positions = 1 // Force only one SL.
+
 	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
 	SG.total_positions = maximum_smartgunners
 
@@ -217,7 +220,8 @@
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 
-	announce_bioscans(TRUE, 0, FALSE, TRUE) // Announce exact information to the xenos.
+	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 30 SECONDS)  // Announce exact information to the xenos.
 	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
 
 

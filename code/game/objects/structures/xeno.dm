@@ -75,11 +75,19 @@
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
-	Crossed(atom/movable/AM)
-		. = ..()
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			H.next_move_slowdown += slow_amt
+	
+/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	var/mob/living/carbon/human/H = AM
+
+	if(H.lying)
+		return
+
+	H.next_move_slowdown += slow_amt
+
 
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
