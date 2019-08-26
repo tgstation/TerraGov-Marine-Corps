@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Smartgun slowdown while wielded increased some to make it more defensive and less mobile.."
