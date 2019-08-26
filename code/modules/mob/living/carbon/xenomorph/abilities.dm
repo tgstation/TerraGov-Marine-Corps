@@ -605,18 +605,6 @@
 			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
 
-	var/facing = get_cardinal_dir(T, T2)
-	for(var/i in 1 to get_dist(T2, T))
-		var/turf/next_T = get_step(T, facing)
-		T = next_T
-		if(!T.density)
-			continue
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>There is something in the way!</span>")
-
-		return FALSE
-
-
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -680,7 +668,7 @@
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(A, X, X, X.ammo.max_range, X.ammo.shell_speed)
+	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
 	add_cooldown()
 

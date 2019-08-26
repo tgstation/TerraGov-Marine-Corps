@@ -110,7 +110,7 @@
 
 
 /obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
-	if(isxeno(mover))
+	if(isxeno(mover) || isobj(mover))
 		return TRUE
 	return FALSE
 

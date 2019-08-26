@@ -47,9 +47,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/penetration					= 0 		// How much armor it ignores before calculations take place
 	var/shrapnel_chance 			= 0 		// The % chance it will imbed in a human
-	var/shell_speed 				= 0 		// How fast the projectile moves
+	var/shell_speed 				= 2 		// How fast the projectile moves
 	var/bonus_projectiles_type 					// Type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
+	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
@@ -66,11 +67,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low		= CONFIG_GET(number/combat_define/min_proj_variance) 	// Same as with accuracy variance.
 	damage_var_high		= CONFIG_GET(number/combat_define/min_proj_variance)
 	damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
-	shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
-
-/datum/ammo/proc/do_at_half_range(obj/item/projectile/proj)
-	return
 
 /datum/ammo/proc/do_at_max_range(obj/item/projectile/proj)
 	return
@@ -186,28 +183,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier),damage_type)
 
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/original_P)
-	set waitfor = FALSE
+/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/item/projectile/new_proj = new /obj/item/projectile(original_P.shot_from)
-		new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
-		var/turf/new_target = null
+		var/obj/item/projectile/new_proj = new /obj/item/projectile(main_proj.loc)
+		if(bonus_projectiles_type)
+			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+		else //If no bonus type is defined then the extra projectiles are the same as the main one.
+			new_proj.generate_bullet(src)
+		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
-		new_proj.scatter = round(new_proj.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
+		 //Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? -(i + 1 / 2) : i / 2))
+		if(new_angle < 0)
+			new_angle += 380
+		else if(new_angle > 380)
+			new_angle -= 380
+		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
-		if(prob(new_proj.scatter))
-			var/scatter_x = rand(-1, 1)
-			var/scatter_y = rand(-1, 1)
-			new_target = locate(original_P.target_turf.x + round(scatter_x), original_P.target_turf.y + round(scatter_y), original_P.target_turf.z)
-			if(!istype(new_target))
-				continue	//If we didn't find anything, make another pass.
-			new_proj.original = new_target
-
-		new_proj.accuracy = round(new_proj.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
-
-		if(!new_target)
-			new_target = original_P.target_turf
-		new_proj.fire_at(new_target,original_P.firer, original_P.shot_from, new_proj.ammo.max_range, new_proj.ammo.shell_speed) //Fire!
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
 /datum/ammo/proc/stun_living(mob/living/target, obj/item/projectile/proj) //Taser proc to stun folks.
@@ -246,12 +238,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_bounce = "ballistic_bounce"
 	point_blank_range = 2
 	accurate_range_min = 0
+	shell_speed = 3
 
 /datum/ammo/bullet/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/base_hit_damage)
 	shrapnel_chance = CONFIG_GET(number/combat_define/low_shrapnel_chance)
-	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
 
 /*
 //================================================
@@ -347,12 +339,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	debilitate = list(4,4,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	shell_speed = 2
 
 /datum/ammo/bullet/pistol/mankey/New()
 	..()
 	damage = CONFIG_GET(number/combat_define/min_hit_damage)
 	damage_var_high = CONFIG_GET(number/combat_define/high_proj_variance)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
+
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/item/projectile/P)
 	if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
@@ -518,7 +511,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
 	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
 	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
@@ -563,10 +555,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/shotgun
 	hud_state_empty = "shotgun_empty"
+	shell_speed = 2
+
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
 	hud_state = "shotgun_slug"
+	shell_speed = 3
 
 /datum/ammo/bullet/shotgun/slug/New()
 	..()
@@ -589,7 +584,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
 	shrapnel_chance = 0
 	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/item/projectile/P)
 	if(!M || M == P.firer)
@@ -629,6 +623,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 8
 
 /datum/ammo/bullet/shotgun/flechette/New()
 	..()
@@ -640,7 +636,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
 	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
-	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -656,13 +651,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
 	penetration	= CONFIG_GET(number/combat_define/med_armor_penetration)
-	scatter = CONFIG_GET(number/combat_define/thirty_scatter_value) //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
 
 /datum/ammo/bullet/shotgun/buckshot/New()
 	..()
@@ -675,8 +671,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
 	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
-	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
+
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
 	knockback(M,P)
@@ -692,6 +687,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
+	shell_speed = 2
 
 /datum/ammo/bullet/shotgun/spread/New()
 	..()
@@ -704,8 +700,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
 	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
-	scatter = CONFIG_GET(number/combat_define/max_scatter_value)*1.5 //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/spread/masterkey/New()
 	..()
@@ -726,6 +720,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	accurate_range_min = 5
+	shell_speed = 4
 
 /datum/ammo/bullet/sniper/New()
 	..()
@@ -734,7 +729,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	scatter = -CONFIG_GET(number/combat_define/med_scatter_value)
 	damage = CONFIG_GET(number/combat_define/mhigh_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -780,7 +774,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	..()
 	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
 	damage = CONFIG_GET(number/combat_define/super_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed) + 1
 
 /*
 //================================================
@@ -900,9 +893,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
-	damage_falloff = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
 	var/datum/effect_system/smoke_spread/smoke
 
 /datum/ammo/rocket/New()
@@ -913,7 +907,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 	penetration = CONFIG_GET(number/combat_define/max_armor_penetration)
-	shell_speed = CONFIG_GET(number/combat_define/slow_shell_speed)
 
 /datum/ammo/rocket/set_smoke()
 	smoke = new
@@ -965,7 +958,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 	penetration = CONFIG_GET(number/combat_define/ltb_armor_penetration)
 	damage = CONFIG_GET(number/combat_define/ltb_hit_damage)
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 6)
@@ -1061,6 +1053,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = "laser"
+	shell_speed = 4
 
 /datum/ammo/energy/lasgun/New()
 	. = ..()
@@ -1068,7 +1061,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/llow_hit_damage)
 	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 	max_range = CONFIG_GET(number/combat_define/long_shell_range)
-	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
@@ -1106,12 +1098,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	var/spit_cost
 	armor_type = "bio"
+	shell_speed = 1
+
 
 /datum/ammo/xeno/New()
 	. = ..()
 	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
 	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
 	max_range = CONFIG_GET(number/combat_define/short_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
@@ -1127,7 +1120,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/New()
 	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
-	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
 	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
@@ -1216,11 +1208,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "alien_resin_build2"
 	sound_bounce	= "alien_resin_build3"
 
+
 /datum/ammo/xeno/sticky/New()
 	..()
-	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 	damage = CONFIG_GET(number/combat_define/base_hit_damage) //minor; this is mostly just to provide confirmation of a hit
 	max_range = CONFIG_GET(number/combat_define/max_shell_range)
+
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_resin(get_turf(M))
@@ -1230,6 +1223,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			return
 		C.add_slowdown(3) //slow em down
 		C.next_move_slowdown += 8 //really slow down their next move, as if they stepped in sticky doo doo
+
 
 /datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
 	var/turf/T = get_turf(O)
