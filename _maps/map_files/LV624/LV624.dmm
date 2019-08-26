@@ -327,14 +327,6 @@
 	dir = 10
 	},
 /area/lv624/ground/sand8)
-"abB" = (
-/obj/structure/mineral_door/resin,
-/turf/closed/mineral,
-/area/lv624/ground/caves/central1)
-"abC" = (
-/obj/structure/bed/nest,
-/turf/closed/mineral,
-/area/lv624/ground/caves/central1)
 "abD" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
@@ -38026,7 +38018,7 @@ abe
 abe
 abe
 abe
-abB
+abe
 abe
 abe
 abe
@@ -38283,7 +38275,7 @@ abe
 abe
 abe
 abe
-abC
+abe
 abe
 abe
 abe
