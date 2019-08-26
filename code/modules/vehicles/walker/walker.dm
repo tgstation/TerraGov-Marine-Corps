@@ -72,8 +72,8 @@
 /obj/vehicle/walker/prebuilt/Initialize()
 	. = ..()
 
-	left = new /obj/item/walker_gun/smartgun()
-	right = new /obj/item/walker_gun/flamer()
+	left = new /obj/item/walker_hardpoint/gun/smartgun()
+	right = new /obj/item/walker_hardpoint/gun/flamer()
 	left.ammo = new left.magazine_type()
 	right.ammo = new right.magazine_type()
 	left.owner = src
@@ -454,9 +454,8 @@
 		var/obj/item/mortal_shell/he/SH = W
 		rearm_mortar(SH, user)
 
-
-	else if(istype(W, /obj/item/walker_gun))
-		var/obj/item/walker_gun/WG = W
+	else if(istype(W, /obj/item/walker_hardpoint/gun))
+		var/obj/item/walker_hardpoint/gun/WG = W
 		install_gun(WG, user)
 
 	else if(iswelder(W))

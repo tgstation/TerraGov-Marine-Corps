@@ -132,7 +132,7 @@
 	icon_state = "big_ammo_box"
 	default_ammo = /datum/ammo/bullet/smartgun/walker
 	max_rounds = 700
-	gun_type = /obj/item/walker_gun/smartgun
+	gun_type = /obj/item/walker_hardpoint/gun/smartgun
 
 /obj/item/ammo_magazine/walker/smartgun/ap
 	name = "M56 Double-Barrel Magazine (AP)"
@@ -141,7 +141,7 @@
 	icon_state = "big_ammo_box_ap"
 	default_ammo = /datum/ammo/bullet/smartgun/walker/ap
 	max_rounds = 500
-	gun_type = /obj/item/walker_gun/smartgun
+	gun_type = /obj/item/walker_hardpoint/gun/smartgun
 
 /obj/item/ammo_magazine/walker/smartgun/incendiary
 	name = "M56 Double-Barrel \"Scorcher\" Magazine"
@@ -150,7 +150,7 @@
 	icon_state = "ammoboxslug"
 	default_ammo = /datum/ammo/bullet/smartgun/walker/incendiary
 	max_rounds = 500
-	gun_type = /obj/item/walker_gun/smartgun
+	gun_type = /obj/item/walker_hardpoint/gun/smartgun
 
 /obj/item/ammo_magazine/walker/hmg
 	name = "M30 Machine Gun Magazine"
@@ -158,7 +158,7 @@
 	icon_state = "ua571c"
 	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/machinegun/walker
-	gun_type = /obj/item/walker_gun/hmg
+	gun_type = /obj/item/walker_hardpoint/gun/hmg
 
 /obj/item/ammo_magazine/walker/flamer
 	name = "F40 Canister"
@@ -166,7 +166,7 @@
 	icon_state = "flametank_large"
 	max_rounds = 40
 	default_ammo = /datum/ammo/flamethrower
-	gun_type = /obj/item/walker_gun/flamer
+	gun_type = /obj/item/walker_hardpoint/gun/flamer
 
 ///////////////////
 // WALKER ARMOR	 //
