@@ -113,6 +113,8 @@
 		if(thing.Cross(mover))
 			continue
 		switch(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing))
+			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE //Stopped, bump no longer necessary.
 			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
 				continue //We've plowed through.
 			if(COMPONENT_MOVABLE_PREBUMP_ENTANGLED)

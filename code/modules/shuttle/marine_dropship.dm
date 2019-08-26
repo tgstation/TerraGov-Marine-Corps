@@ -564,7 +564,7 @@
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
 	density = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	opacity = TRUE
 
 /obj/structure/dropship_piece/ex_act(severity)

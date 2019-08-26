@@ -114,8 +114,9 @@
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
-	#define COMPONENT_MOVABLE_PREBUMP_PLOWED 1
-	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED 2
+	#define COMPONENT_MOVABLE_PREBUMP_STOPPED 1
+	#define COMPONENT_MOVABLE_PREBUMP_PLOWED 2
+	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED 3
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
