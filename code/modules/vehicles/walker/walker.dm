@@ -320,15 +320,6 @@
 			to_chat(pilot, "<span class='warning'>WARNING! [right.name] ammo magazine deployed.</span>")
 			visible_message("[name]'s systems deployed used magazine.","")
 
-/obj/vehicle/walker/verb/use_armor()
-	set name = "Activate Armor Subsystems"
-	set category = "Walker Interface"
-	set src = usr.loc
-
-	if(!armor_module)
-		return
-	armor_module.activate_hardpoint()
-
 /obj/vehicle/walker/verb/get_stats()
 	set name = "Status Display"
 	set category = "Walker Interface"
@@ -356,10 +347,6 @@
 	data["armor_name"] = "Standart"
 	if(armor_module)
 		data["armor_name"] = armor_module.name
-	data["armor_acid"] = 1 - dmg_multipliers["acid"]
-	data["armor_slash"] = 1 - dmg_mulipliers["slash"]
-	data["armor_bullet"] = 1 - dmg_mulipliers["bullet"]
-	data["armor_energy"] = 1 - dmg_mulipliers["energy"]
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -450,9 +437,6 @@
 		var/obj/item/ammo_magazine/walker/mag = W
 		rearm(mag, user)
 
-	if(istype(W, /obj/item/mortal_shell/he))
-		var/obj/item/mortal_shell/he/SH = W
-		rearm_mortar(SH, user)
 
 	else if(istype(W, /obj/item/walker_hardpoint/gun))
 		var/obj/item/walker_hardpoint/gun/WG = W
@@ -554,28 +538,6 @@
 	else
 		to_chat(user, "You cannot fit that magazine in any weapon.")
 		return
-
-
-/obj/vehicle/walker/proc/rearm_mortar(obj/item/mortal_shell/he/shell  as obj, mob/user as mob)
-	if(!armor_module)
-		to_chat(user, "Mortar module wasn't installed!")
-		return
-
-	if(!istype(armor_module, /obj/item/walker_armor/mortar))
-		to_chat(user, "Mortar module wasn't installed!")
-		return
-
-	var/obj/item/walker_armor/mortar/mr = armor_module
-	if(mr.shells == mr.max_shells)
-		to_chat(user, "Mortar module is full!")
-		return
-
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-		to_chat(user, "Your action was interrupted.")
-		return
-	mr.shells++
-	user.drop_held_item()
-	qdel(shell)
 
 /obj/vehicle/walker/proc/dismount(obj/item/tool/wrench/WR  as obj, mob/user as mob)
 	if(!left && !right)
