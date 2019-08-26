@@ -844,7 +844,8 @@
 
 	if(!holder && !current_ticket)
 		to_chat(src, "<span class='warning'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
-		to_chat(src, "<span class='notice'>Message: [msg]</span>")
+		if(msg)
+			to_chat(src, "<span class='notice'>Message: [msg]</span>")
 		return
 
 	var/client/recipient
