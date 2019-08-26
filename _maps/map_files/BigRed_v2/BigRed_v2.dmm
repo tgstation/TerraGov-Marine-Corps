@@ -2221,7 +2221,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
 "ahj" = (
 /obj/effect/decal/cleanable/dirt,

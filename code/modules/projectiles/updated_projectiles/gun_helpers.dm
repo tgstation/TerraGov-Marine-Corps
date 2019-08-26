@@ -186,8 +186,6 @@ should be alright.
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
-	if(target)
-		return
 
 	//There are only two ways to interact here.
 	if(flags_item & TWOHANDED)
@@ -402,14 +400,6 @@ should be alright.
 		overlays += I
 	else
 		attachable_overlays["mag"] = null
-
-
-/obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
-	overlays -= attachable_overlays["special"]
-	qdel(attachable_overlays["special"])
-	var/image/I = image(icon,src,new_icon_state)
-	attachable_overlays["special"] = I
-	overlays += I
 
 
 /obj/item/weapon/gun/proc/update_force_list()
