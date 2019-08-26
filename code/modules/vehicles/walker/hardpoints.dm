@@ -7,7 +7,7 @@
 
 	w_class = 12.0
 
-/obj/item/walker_hardpoint/proc/get_icon_image(var/hardpoint)
+/obj/item/walker_hardpoint/proc/get_icon_image(var/hardpoint="")
 	if(!owner)
 		return
 
@@ -172,7 +172,7 @@
 // WALKER ARMOR	 //
 ///////////////////
 
-/obj/item/walker_armor
+/obj/item/walker_hardpoint/armor
 	name = "walker armor"
 	icon = 'RU-TGMC/icons/obj/vehicles/mecha_guns.dmi'
 	var/equip_state = ""
@@ -199,7 +199,7 @@
 
 	w_class = 12.0
 
-/obj/item/walker_armor/proc/apply_effect()
+/obj/item/walker_hardpoint/armor/proc/apply_effect()
 	if(!owner)
 		return
 
@@ -217,7 +217,7 @@
 	owner.dmg_multipliers["blunt"] += dmg_multipliers["blunt"]
 	owner.dmg_multipliers["energy"] += dmg_multipliers["energy"]
 
-/obj/item/walker_armor/proc/remove_effect()
+/obj/item/walker_hardpoint/armor/proc/remove_effect()
 	if(!owner)
 		return
 
@@ -235,19 +235,7 @@
 	owner.dmg_multipliers["blunt"] -= dmg_multipliers["blunt"]
 	owner.dmg_multipliers["energy"] -= dmg_multipliers["energy"]
 
-/obj/item/walker_armor/proc/activate_hardpoint()
-	if(!owner)
-		return FALSE
-	return TRUE
-
-/obj/item/walker_armor/proc/get_icon_image()
-	if(!owner)
-		return
-
-	return image(owner.icon, icon_state)
-
-
-/obj/item/walker_armor/light
+/obj/item/walker_hardpoint/armor/light
 	name = "LA-14 \"Scatterpack\" Armor"
 	desc = "Light armor, usually used for scout walkers"
 	icon_state = "light"
@@ -271,7 +259,7 @@
 		"energy" = 1.0,
 		"abstract" = 0.0) //abstract for when you just want to hurt it
 
-/obj/item/walker_armor/heavy
+/obj/item/walker_hardpoint/armor/heavy
 	name = "HA-2 \"Raptor\" Armor"
 	desc = "Heavy armor, usually used for assault or defensive walkers"
 	icon_state = "heavy"
@@ -295,7 +283,7 @@
 		"energy" = -0.5,
 		"abstract" = 0.0) //abstract for when you just want to hurt it
 
-/obj/item/walker_armor/acid
+/obj/item/walker_hardpoint/armor/acid
 	name = "Civilian-grade Hazmat Armor"
 	desc = "Not armor per se, used mostly by civilian walkers. How this even got here?"
 	icon_state = "chem"

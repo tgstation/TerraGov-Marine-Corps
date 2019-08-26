@@ -463,7 +463,7 @@
 		var/obj/item/tool/weldingtool/weld = W
 		repair_walker(weld, user)
 
-	else if(istype(W, /obj/item/walker_armor))
+	else if(istype(W, /obj/item/walker_hardpoint/armor))
 		var/obj/item/walker_armor/AR = W
 		install_armor(AR,user)
 
@@ -474,7 +474,7 @@
 	else
 		. = ..()
 
-/obj/vehicle/walker/proc/install_armor(obj/item/walker_armor/W, mob/user as mob)
+/obj/vehicle/walker/proc/install_armor(obj/item/walker_hardpoint/armor/W, mob/user as mob)
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		to_chat(user, "You don't know how to mount armor.")
 		return
