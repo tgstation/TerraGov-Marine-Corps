@@ -41,18 +41,6 @@
 	return ..()
 
 
-/mob/living/carbon/revive()
-	if (handcuffed && !initial(handcuffed))
-		dropItemToGround(handcuffed)
-	update_handcuffed(initial(handcuffed))
-
-	if (legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
-
-	return ..()
-
-
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
