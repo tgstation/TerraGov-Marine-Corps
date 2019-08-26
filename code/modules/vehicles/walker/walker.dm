@@ -10,7 +10,7 @@
 /obj/vehicle/walker
 	name = "CW13 \"Megalodon\" Assault Walker"
 	desc = "Relatively new combat walker of \"Megalodon\"-series. Unlike its predecessor, \"Carharodon\"-series, slower, but relays on its tough armor and rapid-firing weapons."
-	icon = 'RU-TGMC/icons/obj/vehicles/mech-walker.dmi'
+	icon = 'icons/obj/vehicles/mech-walker.dmi'
 	icon_state = "mech"
 	layer = ABOVE_LYING_MOB_LAYER
 	opacity = TRUE

@@ -1,6 +1,6 @@
 /obj/item/walker_hardpoint
 	name = "walker gun"
-	icon = 'RU-TGMC/icons/obj/vehicles/mecha_guns.dmi'
+	icon = 'icons/obj/vehicles/mecha_guns.dmi'
 	var/equip_state = ""
 	w_class = 12.0
 	var/obj/vehicle/walker/owner = null
@@ -22,7 +22,6 @@
 
 /obj/item/walker_hardpoint/gun
 	name = "walker gun"
-	icon = 'RU-TGMC/icons/obj/vehicles/mecha_guns.dmi'
 
 	var/magazine_type = /obj/item/ammo_magazine/walker
 	var/obj/item/ammo_magazine/walker/ammo = null
@@ -174,7 +173,6 @@
 
 /obj/item/walker_hardpoint/armor
 	name = "walker armor"
-	icon = 'RU-TGMC/icons/obj/vehicles/mecha_guns.dmi'
 	var/equip_state = ""
 	w_class = 12.0
 	var/obj/vehicle/walker/owner = null
