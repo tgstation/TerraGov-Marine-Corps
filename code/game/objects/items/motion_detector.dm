@@ -331,3 +331,104 @@
 		icon_state = "minidetector_on_[detector_mode]"
 	else
 		icon_state = "minidetector_off"
+
+/obj/item/motiondetector/integrated
+	name = "Integrated tactical sensor"
+	desc = "A device that detects hostile movement; this one is specially integrated for M3-UL pattern armor. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
+	ping = FALSE //Stealth modo
+
+/obj/item/motiondetector/integrated/process()
+	if(!active)
+		deactivate()
+		return
+
+	if(!operator)
+		deactivate()
+		return
+
+	if(operator.stat == DEAD)
+		deactivate()
+		return
+
+	if(!operator.client)
+		deactivate()
+		return
+
+	recycletime--
+	if(!recycletime)
+		recycletime = initial(recycletime)
+		for(var/X in blip_pool) //we dump and remake the blip pool every few minutes
+			if(blip_pool[X])	//to clear blips assigned to mobs that are long gone.
+				qdel(blip_pool[X]) //the blips are garbage-collected and reused via rnew() below
+		blip_pool = list()
+
+	if(!detector_mode)
+		long_range_cooldown--
+		if(long_range_cooldown)
+			return
+		else
+			long_range_cooldown = initial(long_range_cooldown)
+
+	if(ping)
+		playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
+
+	var/detected
+	var/status
+	for(var/mob/living/M in orange(detector_range, operator))
+		if(!isturf(M.loc))
+			continue
+		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.get_target_lock(iff_signal)) //device checks for IFF data and status
+				if(M.stat == DEAD)
+					if(H.is_revivable() && H.get_ghost())
+						if(detect_revivable)
+							status = MOTION_DETECTOR_DEAD //Dead, but revivable.
+						else
+							continue
+					else
+						if(detect_fubar)
+							status = MOTION_DETECTOR_FUBAR //Dead and unrevivable; FUBAR
+						else
+							continue
+				else
+					if(detect_friendlies)
+						status = MOTION_DETECTOR_FRIENDLY
+					else
+						continue
+		if(world.time > M.last_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
+			continue //hasn't moved recently
+
+		detected = TRUE
+
+		show_blip(operator, M, status)
+
+		if(detected && ping)
+			playsound(loc, 'sound/items/tick.ogg', 50, 0, 7, 2)
+
+
+/obj/item/motiondetector/integrated/attack(mob/living/carbon/M, mob/living/user)
+	if(!ishuman(user))
+		return
+	user.set_interaction(src)
+	var/dat = {"<TT>
+
+<A href='?src=\ref[src];power=1'><B>Power Control:</B>  [active ? "On" : "Off"]</A><BR>
+<BR>
+<B>Detection Settings:</B><BR>
+<BR>
+<B>Detection Mode:</B> [detector_mode ? "Short Range" : "Long Range"]<BR>
+<A href='?src=\ref[src];detector_mode=1'><B>Set Detector Mode:</B> [detector_mode ? "Long Range" : "Short Range"]</A><BR>
+<BR>
+<B>Friendly Detection Status:</B> [detect_friendlies ? "ACTIVE" : "INACTIVE"]<BR>
+<A href='?src=\ref[src];detect_friendlies=1'><B>Set Friendly Detection:</B> [detect_friendlies ? "Off" : "On"]</A><BR>
+<BR>
+<B>Revivable Detection Status:</B> [detect_revivable ? "ACTIVE" : "INACTIVE"]<BR>
+<A href='?src=\ref[src];detect_revivable=1'><B>Set Revivable Detection:</B> [detect_revivable ? "Off" : "On"]</A><BR>
+<BR>
+<B>Unrevivable Detection Status:</B> [detect_fubar ? "ACTIVE" : "INACTIVE"]<BR>
+<A href='?src=\ref[src];detect_fubar=1'><B>Set Unrevivable Detection:</B> [detect_fubar ? "Off" : "On"]</A><BR>
+</TT>"}
+	user << browse(dat, "window=radio")
+	onclose(user, "radio")

@@ -132,6 +132,42 @@
 	icon_state = "6"
 	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 
+/obj/item/clothing/suit/storage/marine/M3UL
+	name = "\improper M3-UL pattern marine armor"
+	desc = "A standard Marine M3 Ultralite Pattern Chestplate. Even lesser encumbrance and protection, but comes with a inbuilt motion detector. Provides high protection against acids. Just be careful of machetes and bombs. Feels like nothing is here."
+	icon_state = "10"
+	armor = list("melee" = 15, "bullet" = 10, "laser" = 35, "energy" = 10, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 70)
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	var/mob/living/carbon/human/wearer = null
+	var/obj/item/motiondetector/integrated/M3UL_motiondetector = null
+
+/obj/item/clothing/suit/storage/marine/M3UL/Initialize(mapload, ...)
+	. = ..()
+	M3UL_motiondetector = new /obj/item/motiondetector/integrated
+
+/obj/item/clothing/suit/storage/marine/M3UL/Destroy()
+	wearer = null
+	qdel(M3UL_motiondetector)
+	. = ..()
+
+/obj/item/clothing/suit/storage/marine/M3UL/dropped(mob/user)
+	. = ..()
+	wearer = null
+	qdel(M3UL_motiondetector)
+
+/obj/item/clothing/suit/storage/marine/M3UL/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_WEAR_SUIT)
+		wearer = user
+		M3UL_motiondetector = new /obj/item/motiondetector/integrated
+
+/obj/item/clothing/suit/storage/marine/M3UL/verb/m3ul_tacticalsensor()
+	set name = " Configure M3UL Tactical Sensor"
+	set category = "M3UL Armor"
+	set src in usr
+
+	M3UL_motiondetector.attack(usr, usr, TRUE)
+
 /obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
