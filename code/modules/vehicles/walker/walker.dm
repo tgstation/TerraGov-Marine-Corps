@@ -475,7 +475,7 @@
 		armor_module.apply_effect()
 		update_icon()
 
-/obj/vehicle/walker/proc/install_gun(obj/item/walker_gun/W, mob/user as mob)
+/obj/vehicle/walker/proc/install_gun(obj/item/walker_hardpoint/gun/W, mob/user as mob)
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		to_chat(user, "You don't know how to mount weapon.")
 		return
@@ -644,7 +644,7 @@
 	else
 		attack_hand(M)
 
-/obj/vehicle/walker/healthcheck()
+/obj/vehicle/walker/proc/healthcheck()
 	if(obj_integrity > max_integrity)
 		obj_integrity = max_integrity
 		return
@@ -679,7 +679,7 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		take_damage(rand(10,30), "acid")
 
-/obj/vehicle/walker/proc/take_damage(dam, damtype = "blunt", hit_dir=null)
+/obj/vehicle/walker/take_damage(dam, damtype = "blunt", hit_dir=null)
 	if(!dam || dam <= 0)
 		return
 	if(!(damtype in list("explosive", "acid", "energy", "blunt", "slash", "bullet", "all", "abstract")))
