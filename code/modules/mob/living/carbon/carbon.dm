@@ -41,18 +41,6 @@
 	return ..()
 
 
-/mob/living/carbon/revive()
-	if (handcuffed && !initial(handcuffed))
-		dropItemToGround(handcuffed)
-	update_handcuffed(initial(handcuffed))
-
-	if (legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
-
-	return ..()
-
-
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
@@ -99,7 +87,8 @@
 		if(offhand && (offhand.flags_item & WIELDED))
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
-		else wielded_item.unwield(src) //Get rid of it.
+		else 
+			wielded_item.unwield(src) //Get rid of it.
 	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
 		wielded_item.zoom(src)
 	hand = !hand

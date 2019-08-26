@@ -125,6 +125,9 @@
 		eye_blind = blind_minimum
 		if(!eye_blind)
 			clear_fullscreen("blind")
+	else
+		eye_blind = max(eye_blind, 0)
+		clear_fullscreen("blind")
 
 /mob/living/proc/blur_eyes(amount)
 	if(amount>0)

@@ -1,31 +1,34 @@
-	/*##################################################################
-	Much improved now. Leaving the overall item procs here since they're
-	easier to find that way. Theoretically any item may be twohanded,
-	but only these items and guns benefit from it. ~N
-	####################################################################*/
-
 /obj/item/weapon/twohanded
-	var/force_wielded 	= 0
-	var/wieldsound 		= null
-	var/unwieldsound 	= null
+	var/force_wielded = 0
+	var/wieldsound
+	var/unwieldsound
 	flags_item = TWOHANDED
 
-	update_icon()
-		return
 
-	mob_can_equip(mob/user)
-		unwield(user)
-		return ..()
+/obj/item/weapon/twohanded/update_icon()
+	return
 
-	dropped(mob/user)
-		..()
-		unwield(user)
 
-	pickup(mob/user)
-		unwield(user)
+/obj/item/weapon/twohanded/mob_can_equip(mob/user)
+	unwield(user)
+	return ..()
+
+
+/obj/item/weapon/twohanded/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+
+/obj/item/weapon/twohanded/pickup(mob/user)
+	unwield(user)
+
 
 /obj/item/proc/wield(mob/user)
-	if( !(flags_item & TWOHANDED) || flags_item & WIELDED ) return
+	if(!(flags_item & TWOHANDED)) 
+		return
+
+	if(flags_item & WIELDED)
+		return
 
 	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
@@ -35,61 +38,81 @@
 		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
 		var/mob/living/carbon/human/wielder = user
 		var/datum/limb/hand = wielder.get_limb(check_hand)
-		if( !istype(hand) || !hand.is_usable() )
+		if(!istype(hand) || !hand.is_usable())
 			to_chat(user, "<span class='warning'>Your other hand can't hold [src]!</span>")
 			return
 
-	flags_item 	   ^= WIELDED
-	name 	   += " (Wielded)"
-	item_state += "_w"
-	place_offhand(user,initial(name))
-	return 1
+	ENABLE_BITFIELD(flags_item, WIELDED)
+	name = "[name] (Wielded)"
+	item_state = "[icon_state]_w"
+	place_offhand(user, name)
+	return TRUE
+
 
 /obj/item/proc/unwield(mob/user)
-	if( (flags_item|TWOHANDED|WIELDED) != flags_item) return //Have to be actually a twohander and wielded.
-	flags_item ^= WIELDED
-	name 	    = copytext(name,1,-10)
-	item_state  = copytext(item_state,1,-2)
-	remove_offhand(user)
-	return 1
+	if(!CHECK_MULTIPLE_BITFIELDS(flags_item, TWOHANDED|WIELDED))
+		return FALSE
 
-/obj/item/proc/place_offhand(mob/user,item_name)
+	DISABLE_BITFIELD(flags_item, WIELDED)
+	name = initial(name)
+	item_state = initial(item_state)
+	remove_offhand(user)
+	return TRUE
+
+
+/obj/item/proc/place_offhand(mob/user, item_name)
 	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
 	offhand.flags_item |= WIELDED
 	user.put_in_inactive_hand(offhand)
-	user.update_inv_l_hand(0)
+	user.update_inv_l_hand()
 	user.update_inv_r_hand()
+
 
 /obj/item/proc/remove_offhand(mob/user)
 	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
-	if(istype(offhand)) offhand.unwield(user)
-	user.update_inv_l_hand(0)
+	if(istype(offhand) && !QDELETED(offhand))
+		qdel(offhand)
+	user.update_inv_l_hand()
 	user.update_inv_r_hand()
+
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
-	if(!.) return
-	if(wieldsound) playsound(user, wieldsound, 15, 1)
-	force 		= force_wielded
+	if(!.) 
+		return
+
+	if(wieldsound) 
+		playsound(user, wieldsound, 15, 1)
+	
+	force = force_wielded
+
 
 /obj/item/weapon/twohanded/unwield(mob/user)
 	. = ..()
-	if(!.) return
-	if(unwieldsound) playsound(user, unwieldsound, 15, 1)
-	force 	 	= initial(force)
+	if(!.) 
+		return
+	
+	if(unwieldsound) 
+		playsound(user, unwieldsound, 15, 1)
+	
+	force = initial(force)
+
 
 /obj/item/weapon/twohanded/attack_self(mob/user)
-	..()
+	. = ..()
 	if(ismonkey(user))
 		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully!</span>")
 		return
 
-	if(flags_item & WIELDED) unwield(user)
-	else 				wield(user)
+	if(flags_item & WIELDED) 
+		unwield(user)
+	else
+		wield(user)
+
 
 ///////////OFFHAND///////////////
 /obj/item/weapon/twohanded/offhand
@@ -97,22 +120,32 @@
 	icon_state = "offhand"
 	name = "offhand"
 	flags_item = DELONDROP|TWOHANDED|WIELDED
+	resistance_flags = RESIST_ALL
 
-	unwield(var/mob/user)
-		if(flags_item & WIELDED)
-			flags_item &= ~WIELDED
-			user.temporarilyRemoveItemFromInventory(src)
-			qdel(src)
 
-	wield()
-		qdel(src) //This shouldn't even happen.
-
-	dropped(mob/user)
-		..()
-		//This hand should be holding the main weapon. If everything worked correctly, it should not be wielded.
-		//If it is, looks like we got our hand torn off or something.
+/obj/item/weapon/twohanded/offhand/Destroy()
+	if(ismob(loc))
+		var/mob/user = loc
 		var/obj/item/main_hand = user.get_active_held_item()
-		if(main_hand) main_hand.unwield(user)
+		if(main_hand)
+			main_hand.unwield(user)
+	return ..()
+
+
+/obj/item/weapon/twohanded/offhand/unwield(mob/user)
+	return
+
+
+/obj/item/weapon/twohanded/offhand/dropped(mob/user)
+	return
+
+
+/obj/item/weapon/twohanded/offhand/forceMove(atom/destination)
+	if(!ismob(destination))
+		qdel(src)
+	return ..()
+
+
 
 /*
 * Fireaxe
@@ -132,21 +165,20 @@
 	force_wielded = 45
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 
+
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
-	if(!.) return
+	if(!.) 
+		return
 	pry_capable = IS_PRY_CAPABLE_SIMPLE
+
 
 /obj/item/weapon/twohanded/fireaxe/unwield(mob/user)
 	. = ..()
-	if(!.) return
+	if(!.) 
+		return
 	pry_capable = 0
 
-/obj/item/weapon/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
-	if(!proximity) return
-	..()
-	if(A && (flags_item & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
-		qdel(A)
 
 /*
 * Double-Bladed Energy Swords - Cheridan
@@ -165,32 +197,15 @@
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	flags_atom = NOBLOODY
-	flags_item = NOSHIELD|TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 
-/obj/item/weapon/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
-	..()
-	if((flags_item & WIELDED) && prob(50))
-		spawn(0)
-			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2))
-				user.setDir(i)
-				sleep(1)
 
 /obj/item/weapon/twohanded/dualsaber/IsShield()
-	if(flags_item & WIELDED) return 1
+	return CHECK_BITFIELD(flags_item, WIELDED)
 
-/obj/item/weapon/twohanded/dualsaber/wield(mob/user)
-	. = ..()
-	if(!.) return
-	icon_state += "_w"
-
-/obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
-	. = ..()
-	if(!.) return
-	icon_state 	= copytext(icon_state,1,-2)
 
 /obj/item/weapon/twohanded/spear
 	name = "spear"
@@ -205,10 +220,8 @@
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
-	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
-
 
 
 /obj/item/weapon/twohanded/glaive
@@ -225,11 +238,11 @@
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
+
 
 /obj/item/weapon/twohanded/glaive/damaged
 	name = "war glaive"

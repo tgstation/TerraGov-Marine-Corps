@@ -188,7 +188,7 @@
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
-	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
+	if(chatOutput?.working && chatOutput.loaded)
 		chatOutput.stopMusic()
 
 
