@@ -1,0 +1,82 @@
+<!--
+Title: Walker UI
+-->
+
+<div">
+	<h2><span class="white">Main systems:</span></h2>
+</div>
+
+<div>
+	{{if data.integrity > 80}}
+		<h3><div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; color: green">
+		Integrity: {{:data.integrity}}%
+		{{:helper.displayBar(data.integrity, 0, 100, 'good')}}
+		</div></h3>
+	{{else data.integrity > 50}}
+		<h3><div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; color: yellow">
+		Integrity: {{:data.integrity}}%
+		{{:helper.displayBar(data.integrity, 0, 100, 'notgood')}}
+		</div></h3>
+	{{else data.integrity > 25}}
+		<h3><div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; color: orange">
+		Integrity: {{:data.integrity}}%
+		{{:helper.displayBar(data.integrity, 0, 100, 'average')}}
+		</div></h3>
+	{{else}}
+		<h3><div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; color: red">
+		SYSTEM ALERT! ARMOR INTEGRITY FAILING!<br>
+		Integrity: {{:data.integrity}}%
+		{{:helper.displayBar(data.integrity, 0, 100, 'bad')}}
+		</div></h3>
+	{{/if}}
+</div>
+
+<div>
+	<h2><span class="white">Weapon systems:</span></h2>
+</div>
+
+{{if data.left_name}}
+	<div>
+		<h3><span class="white">{{:data.left_name}}:</h3></span>
+		<div style="float: left; clear: both ; margin-bottom: 5px;">
+			{{:data.left_bul_left}}/{{:data.left_bul_full}} 
+			{{if data.left_bul_full > 3}}
+				{{if data.left_bul_left > 1}}
+					{{:helper.displayBar(data.left_bul_left, 0, data.left_bul_full, 'average')}}<br><br>
+					{{/if}}
+			{{/if}}
+		</div>
+	</div>
+{{else}}
+	<div style="color: white; font-weight: bold">
+		<div style="float: left; color: white;">
+			<h3><span class="orange">##MODULE NOT DETECTED!##</span><h3>
+			| Ammo: <span class="orange">##ERROR!##</span>
+		</div>
+	</div>
+{{/if}}
+
+{{if data.right_name}}
+	<div>
+		<h3><span class="white">{{:data.right_name}}:</h3></span>
+		<div style="float: left; clear: both ; margin-bottom: 5px;">
+			{{:data.right_bul_left}}/{{:data.right_bul_full}}
+			{{if data.right_bul_full > 3}}
+				{{if data.right_bul_left > 1}}
+					{{:helper.displayBar(data.right_bul_left, 0, data.right_bul_full, 'average')}}<br><br>
+					{{/if}}
+			{{/if}}
+		</div>
+	</div>
+{{else}}
+	<div style="color: white; font-weight: bold">
+		<div style="float: left; color: white;">
+			<h3><span class="orange">##MODULE NOT DETECTED!##</span><h3>
+			| Ammo: <span class="orange">##ERROR!##</span>
+		</div>
+	</div>
+{{/if}}
+
+<div>
+	<h3><span class="white">{{:data.armor_name}}:</h3></span>
+</div>
