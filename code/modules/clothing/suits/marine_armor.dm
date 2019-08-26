@@ -134,10 +134,32 @@
 
 /obj/item/clothing/suit/storage/marine/M3UL
 	name = "\improper M3-UL pattern marine armor"
-	desc = "A standard Marine M3 Ultralite Pattern Chestplate. Even lesser encumbrance and protection, but comes with a inbuilt motion detector. Provides high protection against acids. Just be careful of machetes and bombs. Feels like nothing is here."
+	desc = "A standard Marine M3 Ultralite Pattern Chestplate. Even lesser encumbrance and protection and cannot carry heavy weapons, but comes with a inbuilt motion detector. Provides high protection against acids and allows to be quickly taken on and off. Just be careful of machetes and bombs. Feels like nothing is here."
 	icon_state = "10"
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 35, "energy" = 10, "bomb" = 5, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 70)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	allowed = list(/obj/item/weapon/gun/energy,
+		/obj/item/weapon/gun/flamer,
+		/obj/item/weapon/gun/flare,
+		/obj/item/weapon/gun/pistol,
+		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/rifle/lmg,
+		/obj/item/weapon/gun/rifle/m16,
+		/obj/item/weapon/gun/rifle/m41a,
+		/obj/item/weapon/gun/rifle/m41MK1,
+		/obj/item/weapon/gun/rifle/mar40,
+		/obj/item/weapon/gun/rifle/type71,
+		/obj/item/weapon/gun/shotgun,
+		/obj/item/weapon/gun/smg,
+		/obj/item/weapon/gun/syringe,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage/bible,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/weapon/claymore,
+		/obj/item/storage/belt/gun)
+	time_to_unequip = 2 SECONDS
+	time_to_equip = 2 SECONDS
 	var/mob/living/carbon/human/wearer = null
 	var/obj/item/motiondetector/integrated/M3UL_motiondetector = null
 

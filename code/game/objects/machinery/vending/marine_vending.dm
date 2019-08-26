@@ -76,6 +76,7 @@
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
+					/obj/item/clothing/suit/storage/marine/M3UL = 5
 					/obj/item/storage/backpack/marine/standard = 15,
 					/obj/item/storage/backpack/marine/satchel = 15,
 					/obj/item/storage/large_holster/machete/full = 10,
