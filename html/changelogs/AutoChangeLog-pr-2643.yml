@@ -1,0 +1,9 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Reworked projectiles to use pixel movement (but not collisions, those are still tile-based), tracking the clicked pixel (unless a mob is clicked, in which case it will aim for the center of the target's tile for maximum accuracy, or unless scatter happens) in a straight line. For most bullets (rifles, SMGs, pistols, revolvers) the difference will be subtle at best, given how fast they are. It is more noticeable in tasers. For lasguns and faster projectiles the moving animation is outright disabled."
+  - bugfix: "Fixed a speed inconsistency of old projectiles, which would make bullet speed lower if you clicked closer to your own sprite."
+  - balance: "Tweaked accuracy to make the calculations a bit more sane. This may impact on it as reproducing the exact same behavior is hard, but it can be more easily adjusted now."
+  - balance: "Once a sniper acquires a target through its laser market it will no longer need to click on it to aim it. Any shots while active will be auto-targeted to it."
+  - balance: "Projectile speeds reduced all round the board. Xeno projectiles are slow, so you can see them traveling. Non-slug shotgun shells are slow and more visible. Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers are very fast, and even harder to see."
+  - balance: "Scatter is now angle-based, so it doesn't matter if the target (where you click) is near or far. Maximum scatter is 45 degrees in either direction. Extra projectiles (additional buckshot and flechettes) have a smoother, less random scatter, firing in a cone."
