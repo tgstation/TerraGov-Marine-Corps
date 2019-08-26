@@ -177,32 +177,32 @@
 		F.visible_message("<span class='danger'>[src.name] smashes through [F]!</span>")
 		take_damage(5, "abstract")
 		F.obj_integrity = 0
-		F.healthcheck()
+		F.deconstruct()
 	else if(istype(obstacle, /obj/structure/table))
 		var/obj/structure/table/T = obstacle
 		T.visible_message("<span class='danger'>[src.name] crushes [T]!</span>")
 		take_damage(5, "abstract")
-		T.destroy_structure(TRUE)
+		T.deconstruct(TRUE)
 	else if(istype(obstacle, /obj/structure/showcase))
 		var/obj/structure/showcase/S = obstacle
 		S.visible_message("<span class='danger'>[src.name] bulldozes over [S]!</span>")
 		take_damage(15, "abstract")
-		S.destroy_structure(TRUE)
+		S.deconstruct(TRUE)
 	else if(istype(obstacle, /obj/structure/rack))
 		var/obj/structure/rack/R = obstacle
 		R.visible_message("<span class='danger'>[src.name] smashes through the [R]!</span>")
 		take_damage(5, "abstract")
-		R.destroy_structure(TRUE)
+		R.deconstruct(TRUE)
 	else if(istype(obstacle, /obj/structure/window/framed))
 		var/obj/structure/window/framed/W = obstacle
 		W.visible_message("<span class='danger'>[src.name] crashes through the [W]!</span>")
 		take_damage(20, "abstract")
-		W.shatter_window(1)
+		W.deconstruct(TRUE)
 	else if(istype(obstacle, /obj/structure/window_frame))
 		var/obj/structure/window_frame/WF = obstacle
 		WF.visible_message("<span class='danger'>[src.name] runs over the [WF]!</span>")
 		take_damage(20, "abstract")
-		WF.Destroy()
+		WF.deconstruct(TRUE)
 	else
 		..()
 
