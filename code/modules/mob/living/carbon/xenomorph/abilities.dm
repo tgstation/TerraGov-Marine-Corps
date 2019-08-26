@@ -650,7 +650,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
-			to_chat(src, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
@@ -658,7 +658,8 @@
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)

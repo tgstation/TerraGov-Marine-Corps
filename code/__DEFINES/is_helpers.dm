@@ -6,6 +6,8 @@
 
 #define isatom(A) (isloc(A))
 
+#define isclient(A) (istype(A, /client))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
