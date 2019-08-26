@@ -264,7 +264,7 @@
 /obj/machinery/door/airlock/mainship/ai
 	name = "\improper AI Core"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
-	req_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS)
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door/airlock/mainship/ai/glass
 	name = "\improper AI Core"
