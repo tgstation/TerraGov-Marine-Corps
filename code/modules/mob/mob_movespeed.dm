@@ -130,10 +130,10 @@ Key procs
 		. = FALSE
 
 /**
-  * Sort the list of move speed modifiers
-  *
-  * Verifies it too. Sorts highest priority (first applied) to lowest priority (last applied)
-  */
+* Sort the list of move speed modifiers
+*
+* Verifies it too. Sorts highest priority (first applied) to lowest priority (last applied)
+*/
 /mob/proc/sort_movespeed_modlist()
 	if(!movespeed_modification)
 		return
