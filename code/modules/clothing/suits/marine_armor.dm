@@ -146,7 +146,7 @@
 		/obj/item/weapon/gun/rifle/lmg,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/m41a,
-		/obj/item/weapon/gun/rifle/m41MK1,
+		/obj/item/weapon/gun/rifle/m41aMK1,
 		/obj/item/weapon/gun/rifle/mar40,
 		/obj/item/weapon/gun/rifle/type71,
 		/obj/item/weapon/gun/shotgun,
