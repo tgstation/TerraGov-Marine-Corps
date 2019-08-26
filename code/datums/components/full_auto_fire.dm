@@ -141,6 +141,10 @@
 		target = params2turf(modifiers["screen-loc"], get_turf(source.eye), source)
 		if(!target)
 			CRASH("Failed to get the turf under clickcatcher")
+		//icon-x/y is relative to the object clicked. click_catcher may occupy several tiles. Here we convert them to the proper offsets relative to the tile.
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+		params = list2params(modifiers)
 	
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
@@ -332,7 +336,6 @@
 		akimbo_gun.Fire(target, shooter, params, FALSE, dual_wield)
 	apply_gun_modifiers(projectile_to_fire, target)
 	setup_bullet_accuracy(projectile_to_fire, shooter, shots_fired, dual_wield)
-	target = simulate_scatter(projectile_to_fire, target, get_turf(target), shooter)
 	var/list/mouse_control = params2list(params)
 	if(mouse_control["icon-x"])
 		projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
@@ -340,9 +343,10 @@
 		projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 	simulate_recoil(0 , shooter)
 	play_fire_sound(shooter)
-	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
+	var/firing_angle = get_angle_with_scatter(shooter, target, get_scatter(projectile_to_fire.scatter, shooter), projectile_to_fire.p_x, projectile_to_fire.p_y)
+	muzzle_flash(firing_angle, shooter)
+	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	last_fired = world.time
-	muzzle_flash(Get_Angle(shooter, target), shooter)
 	if(!reload_into_chamber(shooter))
 		click_empty(shooter)
 		return NONE

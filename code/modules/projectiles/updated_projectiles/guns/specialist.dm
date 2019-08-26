@@ -54,17 +54,13 @@
 	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
-		laser_target?.remove_laser()
-		laser_target = target
-		if(laser_target.apply_laser())
-			to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
-			targetmarker_primed = FALSE
-			targetmarker_on = TRUE
-			START_PROCESSING(SSobj, src)
-			accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
-		else
-			laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
+		if(target.apply_laser())
+			activate_laser_target(target, user)
 		return
+	if(!QDELETED(laser_target))
+		target = laser_target
 	return ..()
 
 
@@ -76,7 +72,7 @@
 	return TRUE
 
 
-/mob/living/carbon/proc/apply_laser()
+/atom/proc/apply_laser()
 	return FALSE
 
 /mob/living/carbon/human/apply_laser()
@@ -159,6 +155,30 @@
 	else
 		return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/activate_laser_target(atom/target, mob/living/user)
+	laser_target = target
+	to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
+	targetmarker_primed = FALSE
+	targetmarker_on = TRUE
+	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
+	START_PROCESSING(SSobj, src)
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/deactivate_laser_target()
+	UnregisterSignal(src, COMSIG_PROJ_SCANTURF)
+	laser_target.remove_laser()
+	laser_target = null
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	if(QDELETED(laser_target) || !isturf(laser_target.loc))
+		return NONE
+	if(get_turf(laser_target) == target_turf)
+		return COMPONENT_PROJ_SCANTURF_TARGETFOUND
+	return COMPONENT_PROJ_SCANTURF_TURFCLEAR
+
+
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
@@ -173,8 +193,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user)
 	if(targetmarker_on)
-		laser_target?.remove_laser()
-		laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
 		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
