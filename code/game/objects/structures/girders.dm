@@ -14,28 +14,25 @@
 	var/icon_prefix = "girder"
 
 
+#define GIRDER_DECONSTRUCTING (new_state < girder_state)
+
 /obj/structure/girder/proc/change_state(new_state)
 	if(new_state == girder_state)
 		return
-	var/deconstructing = (new_state < girder_state)
 	switch(new_state)
 		if(GIRDER_BROKEN)
 			if(girder_state != GIRDER_BROKEN_PATCHED)
 				modify_max_integrity(50, FALSE)
 		if(GIRDER_NORMAL)
-			if(!deconstructing)
+			if(GIRDER_DECONSTRUCTING)
+				reinforcement = null
+			else
 				modify_max_integrity(150)
-		if(GIRDER_BUILDING1_LOOSE)
-			if(deconstructing)
+		if(GIRDER_BUILDING1_SECURED)
+			if(GIRDER_DECONSTRUCTING)
 				modify_max_integrity(150)
-		if(GIRDER_BUILDING1)
-			if(!deconstructing)
-				modify_max_integrity((reinforcement == GIRDER_REINF_PLASTEEL) ? 300 : 200)
-		if(GIRDER_BUILDING2_LOOSE)
-			if(deconstructing)
-				modify_max_integrity((reinforcement == GIRDER_REINF_PLASTEEL) ? 300 : 200)
-		if(GIRDER_BUILDING2)
-			if(!deconstructing)
+		if(GIRDER_BUILDING1_WELDED)
+			if(!GIRDER_DECONSTRUCTING)
 				modify_max_integrity((reinforcement == GIRDER_REINF_PLASTEEL) ? 600 : 300)
 		if(GIRDER_WALL_BUILT)
 			return build_wall()
@@ -43,6 +40,7 @@
 	density = (girder_state >= GIRDER_NORMAL)
 	update_icon()
 
+#undef GIRDER_DECONSTRUCTING
 
 
 /obj/structure/girder/attackby(obj/item/I, mob/user, params)
@@ -71,30 +69,32 @@
 			if(GIRDER_NORMAL)
 				var/obj/item/stack/sheet/stack = I
 				var/reinforced = istype(I, GIRDER_REINF_PLASTEEL)
-				if(stack.amount < (reinforced ? 2 : 1))
+				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
-				if(QDELETED(stack) || stack.amount < (reinforced ? 2 : 1) || girder_state != GIRDER_NORMAL)
+				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != GIRDER_NORMAL)
 					return TRUE
-				stack.use(reinforced ? 2 : 1)
+				stack.use(reinforced ? 15 : 2)
 				to_chat(user, "<span class='notice'>You added the plating!</span>")
 				change_state(GIRDER_BUILDING1_LOOSE)
 				reinforcement = (reinforced ? GIRDER_REINF_PLASTEEL : GIRDER_REINF_METAL)
 				return TRUE
-			if(GIRDER_BUILDING1, GIRDER_BUILDING2)
+			if(GIRDER_BUILDING1_WELDED)
+				if(!istype(I, reinforcement))
+					return FALSE
 				var/obj/item/stack/sheet/stack = I
-				var/reinforced = istype(I, GIRDER_REINF_PLASTEEL)
-				if(stack.amount < (reinforced ? 2 : 1))
+				var/reinforced = (reinforcement == GIRDER_REINF_PLASTEEL)
+				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				var/old_girder_state = girder_state
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
-				if(QDELETED(stack) || stack.amount < (reinforced ? 2 : 1) || girder_state != old_girder_state)
+				if(QDELETED(stack) || stack.amount < (reinforced ? 15 : 2) || girder_state != old_girder_state)
 					return TRUE
-				stack.use(reinforced ? 2 : 1)
+				stack.use(reinforced ? 15 : 2)
 				to_chat(user, "<span class='notice'>You added the plating!</span>")
 				change_state(girder_state + 1)
 				return TRUE
@@ -108,7 +108,7 @@
 	if(!welder.isOn()) 
 		return FALSE
 	switch(girder_state)
-		if(GIRDER_BROKEN_PATCHED, GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE, GIRDER_BUILDING3_LOOSE)
+		if(GIRDER_BUILDING1_SECURED, GIRDER_BUILDING2_SECURED)
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
@@ -161,19 +161,6 @@
 	if(user.action_busy)
 		return FALSE
 	switch(girder_state)
-		if(GIRDER_BUILDING1, GIRDER_BUILDING2)
-			var/old_girder_state = girder_state
-			var/work_time = 3 SECONDS
-			if(reinforcement == GIRDER_REINF_PLASTEEL)
-				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
-				return TRUE
-			if(girder_state != old_girder_state)
-				return TRUE
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You pry the external reinforcement layer out of the girder!</span>")
-			change_state(girder_state + 1)
-			return TRUE
 		if(GIRDER_NORMAL)
 			if(!anchored)
 				return FALSE
@@ -186,6 +173,20 @@
 			to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 			anchored = FALSE
 			update_icon()
+			return TRUE
+		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE)
+			var/old_girder_state = girder_state
+			var/work_time = 3 SECONDS
+			if(reinforcement == GIRDER_REINF_PLASTEEL)
+				work_time += 3 SECONDS
+			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
+			if(girder_state != old_girder_state)
+				return TRUE
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You pry the external reinforcement layer out of the girder!</span>")
+			new reinforcement(loc) //This should come before change_state() as the var may get nulled there.
+			change_state(girder_state - 1)
 			return TRUE
 	return FALSE
 
@@ -201,12 +202,27 @@
 			to_chat(user, "<span class='notice'>Now dissassembling the girder</span>")
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
+			if(anchored || girder_state != GIRDER_NORMAL)
+				return TRUE
 			to_chat(user, "<span class='notice'>You finished dissassembling the girder!</span>")
 			new /obj/item/stack/sheet/metal(loc)
 			qdel(src)
 			return TRUE
-		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE, GIRDER_BUILDING3_LOOSE)
+		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE)
+			to_chat(user, "<span class='notice'>Now securing support struts</span>")
+			var/old_girder_state = girder_state
+			var/work_time = 3 SECONDS
+			if(reinforcement == GIRDER_REINF_PLASTEEL)
+				work_time += 3 SECONDS
+			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
+			if(girder_state != old_girder_state)
+				return TRUE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You secured the support struts!</span>")
+			change_state(girder_state + 1)
+			return TRUE
+		if(GIRDER_BUILDING1_SECURED, GIRDER_BUILDING2_SECURED)
 			to_chat(user, "<span class='notice'>Now unsecuring support struts</span>")
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
@@ -216,26 +232,38 @@
 				return TRUE
 			if(girder_state != old_girder_state)
 				return TRUE
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You unsecured the support struts!</span>")
 			change_state(girder_state - 1)
-			new reinforcement(loc)
-			if(girder_state == GIRDER_NORMAL)
-				reinforcement = null
 			return TRUE
-		if(GIRDER_BUILDING1, GIRDER_BUILDING2)
+	return FALSE
+
+
+/obj/structure/girder/wirecutter_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+	switch(girder_state)
+		if(GIRDER_BROKEN_PATCHED)
+			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>Now cutting the metal plate...</span>")
+			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
+			to_chat(user, "<span class='notice'>You finished cutting the metal plate!</span>")
+			new /obj/item/stack/sheet/metal(loc)
+			return TRUE
+		if(GIRDER_BUILDING1_WELDED)
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
-			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
-				return TRUE
+			to_chat(user, "<span class='notice'>Now cutting the support struts...</span>")
+			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return
 			if(girder_state != old_girder_state)
 				return TRUE
-			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You pry the external reinforcement layer out of the girder!</span>")
+			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+			to_chat(user, "<span class='notice'>You've cut the support struts!</span>")
 			change_state(girder_state - 1)
-			new reinforcement(loc)
-			return TRUE
 	return FALSE
 
 
@@ -261,22 +289,22 @@
 		if(GIRDER_BROKEN)
 			to_chat(user, "It's broken, but can be mended by applying a metal plate then welding it together. Or scrapped for metal by wrenching it loose.")
 		if(GIRDER_BROKEN_PATCHED)
-			to_chat(user, "It's broken, but can be mended by welding it. Or scrapped for metal by unscrewing the metal plate.")
+			to_chat(user, "It's broken, but can be mended by welding it. Or scrapped by cutting out the metal plate with a wirecutter.")
 		if(GIRDER_NORMAL)
 			if(anchored)
-				to_chat(user, "To continue building the wall, add a metal or plasteel plate to the girder. To unanchor it, use a crowbar.")
+				to_chat(user, "To start building the wall, add a two sheets of metal or fifteen of plasteel plate to the girder. To unanchor it, use a crowbar.")
 			else
 				to_chat(user, "To anchor it, wrench it down. Do disassemble it, use a screwdriver.")
 		if(GIRDER_BUILDING1_LOOSE)
-			to_chat(user, "To continue building the wall, secure the plates to the wall by welding. This step will have to be repeated twice after to finish it. To deconstruct it, use a screwdriver.")
-		if(GIRDER_BUILDING1)
-			to_chat(user, "To continue building the wall, add more [(istype(reinforcement, GIRDER_REINF_PLASTEEL)) ? "plasteel" : "metal"] plates to the girder. This step will have to be repeated once after. To deconstruct it, use a crowbar to pry them off.")
+			to_chat(user, "To continue building the wall, secure the inner plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar.")
+		if(GIRDER_BUILDING1_SECURED)
+			to_chat(user, "To continue building the wall, secure the inner plate layer by welding. To deconstruct it, use a screwdriver.")
+		if(GIRDER_BUILDING1_WELDED)
+			to_chat(user, "To continue building the wall, add [reinforcement == GIRDER_REINF_PLASTEEL ? "fifteen sheets of plasteel" : "two sheets of metal"] plates to the outer plate layer. To deconstruct it, use wirecutters.")
 		if(GIRDER_BUILDING2_LOOSE)
-			to_chat(user, "To continue building the wall, secure the plates to the wall by welding. This step will have to be repeated once after to finish it. To deconstruct it, use a screwdriver.")
-		if(GIRDER_BUILDING2)
-			to_chat(user, "To continue building the wall, add more [(istype(reinforcement, GIRDER_REINF_PLASTEEL)) ? "plasteel" : "metal"] plates to the girder. To deconstruct it, use a crowbar to pry them off.")
-		if(GIRDER_BUILDING3_LOOSE)
-			to_chat(user, "To finish building the wall, secure the plates to the wall by welding. To begin deconstructing it, use a screwdriver.")
+			to_chat(user, "To continue building the wall, secure the outer plate layer with a screwdriver. To deconstruct it, pry it off with a crowbar.")
+		if(GIRDER_BUILDING2_SECURED)
+			to_chat(user, "To finish building the wall, secure the outer plate layer by welding. To begin deconstructing it, use a screwdriver.")
 
 
 /obj/structure/girder/obj_break()
@@ -301,8 +329,8 @@
 				icon_state = "displaced"
 				return
 			icon_state = icon_prefix
-		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING1, GIRDER_BUILDING2_LOOSE, GIRDER_BUILDING2, GIRDER_BUILDING3_LOOSE)
-			if(istype(reinforcement, GIRDER_REINF_PLASTEEL))
+		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING1_SECURED, GIRDER_BUILDING1_WELDED, GIRDER_BUILDING2_LOOSE, GIRDER_BUILDING2_SECURED)
+			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				icon_state = "reinforced"
 				return
 			icon_state = icon_prefix
@@ -325,6 +353,6 @@
 
 /obj/structure/girder/reinforced
 	icon_state = "reinforced"
-	girder_state = GIRDER_BUILDING2
+	girder_state = GIRDER_BUILDING1_WELDED
 	reinforcement = GIRDER_REINF_PLASTEEL
-	max_integrity = 600
+	max_integrity = 500
