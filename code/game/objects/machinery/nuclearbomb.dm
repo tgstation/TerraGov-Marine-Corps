@@ -56,6 +56,7 @@
 
 /obj/machinery/nuclearbomb/start_processing()
 	. = ..()
+	GLOB.active_nuke_list += src
 	countdown.start()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
@@ -63,6 +64,7 @@
 /obj/machinery/nuclearbomb/stop_processing()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
+	GLOB.active_nuke_list -= src
 	return ..()
 
 
