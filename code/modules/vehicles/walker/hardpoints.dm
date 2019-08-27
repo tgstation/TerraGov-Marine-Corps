@@ -25,7 +25,7 @@
 
 	var/magazine_type = /obj/item/ammo_magazine/walker
 	var/obj/item/ammo_magazine/walker/ammo = null
-	var/fire_sound = "gun_smartgun"
+	var/fire_sound = "sound\weapons\guns\fire\smartgun2"
 	var/fire_delay = 0
 	var/last_fire = 0
 	var/burst = 1
@@ -49,8 +49,6 @@
 	var/obj/item/projectile/P
 	for(var/i = 1 to burst)
 		if(!owner.firing_arc(target))
-			if(i == 1)
-				return
 			return
 		P = new
 		P.generate_bullet(new ammo.default_ammo)
@@ -156,7 +154,7 @@
 	desc = "A armament M30 magazine"
 	icon_state = "ua571c"
 	max_rounds = 300
-	default_ammo = /datum/ammo/bullet/machinegun/walker
+	default_ammo = /datum/ammo/bullet/minigun
 	gun_type = /obj/item/walker_hardpoint/gun/hmg
 
 /obj/item/ammo_magazine/walker/flamer
@@ -173,9 +171,7 @@
 
 /obj/item/walker_hardpoint/armor
 	name = "walker armor"
-	var/equip_state = ""
 	w_class = 12.0
-	var/obj/vehicle/walker/owner = null
 
 	var/move_delay = 0
 

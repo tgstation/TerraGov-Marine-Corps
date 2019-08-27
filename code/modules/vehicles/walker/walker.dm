@@ -447,7 +447,7 @@
 		repair_walker(weld, user)
 
 	else if(istype(W, /obj/item/walker_hardpoint/armor))
-		var/obj/item/walker_armor/AR = W
+		var/obj/item/walker_hardpoint/armor/AR = W
 		install_armor(AR,user)
 
 	else if(iswrench(W))
@@ -744,7 +744,7 @@
 /obj/structure/walker_wreckage
 	name = "CW13 wreckage"
 	desc = "Remains of some unfortunate walker. Completely unrepairable."
-	icon = 'RU-TGMC/icons/obj/vehicles/mech-walker.dmi'
+	icon = 'icons/obj/vehicles/mech-walker.dmi'
 	icon_state = "mech-damaged"
 	density = TRUE
 	anchored = TRUE
