@@ -122,6 +122,23 @@
 	return ..()
 
 
+/obj/machinery/door/poddoor/mainship/umbilical
+	name = "Umbilical Airlock"
+	resistance_flags = RESIST_ALL
+
+
+/obj/machinery/door/poddoor/mainship/umbilical/north
+	id = "n_umbilical"
+
+
+/obj/machinery/door/poddoor/mainship/umbilical/south
+	id = "s_umbilical"
+
+
+/obj/machinery/door/poddoor/mainship/indestructible
+	resistance_flags = RESIST_ALL
+
+
 /obj/machinery/door/poddoor/timed_late
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	name = "Timed Emergency Shutters"
