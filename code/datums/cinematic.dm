@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 
 	//Actually play it
 	content()
-	
+
 	//Cleanup
 	sleep(cleanup_time)
 
@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke", screen)
 	sleep(runtime)
 	flick("station_explode_fade_red", screen)
-	cinematic_sound(sound('sound/effects/explosionfar.ogg'))
+	cinematic_sound(sound('sound/effects/explosionfar.ogg', channel = CHANNEL_CINEMATIC))
 	special()
 	screen.icon_state = "summary_nukewin"
 

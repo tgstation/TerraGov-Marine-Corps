@@ -421,7 +421,7 @@ mob/proc/get_standard_bodytemperature()
 		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
 	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
-		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume))
+		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
 	if(flashwindow)
 		window_flash(O.client)
 

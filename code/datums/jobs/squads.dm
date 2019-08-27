@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!target.client)
 		return
 	if(sender)
-		SEND_SOUND(squad_leader, sound('sound/effects/radiostatic.ogg'))
+		target.playsound_local(target, 'sound/effects/radiostatic.ogg')
 	to_chat(target, message)
 	return TRUE
 

@@ -340,4 +340,4 @@
 	SSticker.mode.transfer_xeno(picked, src)
 
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')

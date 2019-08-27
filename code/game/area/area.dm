@@ -13,7 +13,7 @@
 	var/unique = TRUE
 
 	var/powerupdate = 10
-	
+
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE
 
@@ -51,7 +51,7 @@
 		'sound/ambience/ambigen14.ogg')
 
 
-	
+
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -60,7 +60,7 @@
 	return ..()
 
 
-/area/Initialize(mapload, ...)	
+/area/Initialize(mapload, ...)
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
 	uid = ++global_uid
@@ -122,7 +122,7 @@
 	var/sound = pick(ambience)
 
 	if(!L.client.played)
-		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1018))
+		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENT))
 		L.client.played = TRUE
 		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
 
@@ -140,7 +140,7 @@
 /area/proc/reg_in_areas_in_z()
 	if(!length(contents))
 		return
-		
+
 	var/list/areas_in_z = SSmapping.areas_in_z
 	var/z
 	for(var/i in contents)

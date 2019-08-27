@@ -39,7 +39,7 @@
 	init_scales()
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
-	
+
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
@@ -95,7 +95,7 @@
 	GLOB.latejoin = shuttle.latejoins
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
-	
+
 	// Create xenos
 	var/number_of_xenos = length(xenomorphs)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
@@ -106,7 +106,7 @@
 		else
 			transform_xeno(M)
 
-	// Launch shuttle 
+	// Launch shuttle
 	var/list/valid_docks = list()
 	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
 		if(!shuttle.check_dock(D, silent=TRUE))
@@ -120,21 +120,21 @@
 	if(!target || !istype(target))
 		CRASH("Unable to get a valid shuttle target!")
 		return
-		
+
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
 
 
 /datum/game_mode/crash/setup()
-	SSjob.DivideOccupations() 
+	SSjob.DivideOccupations()
 
 	// For each player that has an assigned squad set it to alpha
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(player.ready && player.mind?.assigned_squad)
 			player.mind.assigned_squad = SSjob.squads[starting_squad]
-			
+
 	create_characters() //Create player characters
 	collect_minds()
 	reset_squads()
@@ -178,7 +178,7 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
-	
+
 
 /datum/game_mode/crash/proc/add_larva()
 	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
@@ -221,7 +221,7 @@
 		transfer_xeno(xeno_candidate, new_xeno)
 		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-		
+
 	return TRUE
 
 
@@ -262,19 +262,19 @@
 	switch(victory_options)
 		if(CRASH_DRAW)
 			message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
-			round_finished = MODE_CRASH_DRAW_DEATH 
+			round_finished = MODE_CRASH_DRAW_DEATH
 		if(CRASH_XENO_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
-			round_finished = MODE_CRASH_X_MAJOR 
+			round_finished = MODE_CRASH_X_MAJOR
 		if(CRASH_XENO_MINOR)
 			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-			round_finished = MODE_CRASH_X_MINOR 
+			round_finished = MODE_CRASH_X_MINOR
 		if(CRASH_MARINE_MINOR)
 			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-			round_finished = MODE_CRASH_M_MINOR 
+			round_finished = MODE_CRASH_M_MINOR
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-			round_finished = MODE_CRASH_M_MAJOR 
+			round_finished = MODE_CRASH_M_MAJOR
 
 	return FALSE
 
@@ -283,10 +283,10 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the TGS Canterbury and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	
+
 	// Music
-	var/xeno_track
-	var/human_track
+	var/sound/xeno_track
+	var/sound/human_track
 	switch(round_finished)
 		if(MODE_CRASH_X_MAJOR)
 			xeno_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
@@ -301,8 +301,11 @@
 			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
 			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 		if(MODE_CRASH_DRAW_DEATH)
-			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') 
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
+
+	human_track.channel = CHANNEL_CINEMATIC
+	xeno_track.channel = CHANNEL_CINEMATIC
 
 	for(var/i in GLOB.xeno_mob_list)
 		var/mob/M = i
@@ -312,6 +315,7 @@
 		var/mob/M = i
 		SEND_SOUND(M, human_track)
 
+	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		if(ishuman(M.mind.current))
@@ -322,9 +326,9 @@
 			SEND_SOUND(M, xeno_track)
 			continue
 
-		SEND_SOUND(M, pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'))
+		SEND_SOUND(M, ghost_sound)
 
-	
+
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
@@ -393,7 +397,8 @@
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
 	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
+	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
 
 	for(var/x in GLOB.player_list)
 		var/mob/M = x
