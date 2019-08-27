@@ -441,7 +441,7 @@
 	name = "Walker Pilot"
 	powerloader = SKILL_POWERLOADER_TRAINED
 	leadership = SKILL_LEAD_TRAINED
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"

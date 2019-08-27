@@ -458,7 +458,7 @@
 		. = ..()
 
 /obj/vehicle/walker/proc/install_armor(obj/item/walker_hardpoint/armor/W, mob/user as mob)
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
 		to_chat(user, "You don't know how to mount armor.")
 		return
 
@@ -476,7 +476,7 @@
 		update_icon()
 
 /obj/vehicle/walker/proc/install_gun(obj/item/walker_hardpoint/gun/W, mob/user as mob)
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
 		to_chat(user, "You don't know how to mount weapon.")
 		return
 	var/choice = input("On which hardpoint install gun.") in list("Left", "Right", "Cancel")
