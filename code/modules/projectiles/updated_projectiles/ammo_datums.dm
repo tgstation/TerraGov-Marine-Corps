@@ -818,6 +818,30 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
 	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
 
+/datum/ammo/bullet/smartgun/walker
+
+/datum/ammo/bullet/smartgun/walker/New()
+	..()
+	shrapnel_chance = CONFIG_GET(number/combat_define/low_shrapnel_chance)
+
+/datum/ammo/bullet/smartgun/walker/ap
+
+/datum/ammo/bullet/smartgun/walker/ap/New()
+	..()
+	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
+	shrapnel_chance = 0
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
+
+/datum/ammo/bullet/smartgun/walker/incendiary
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_INCENDIARY
+	damage_type = BURN
+
+/datum/ammo/bullet/smartgun/walker/incendiary/New()
+	..()
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/min_armor_penetration)
+
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
