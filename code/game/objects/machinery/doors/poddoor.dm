@@ -103,6 +103,20 @@
 		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
+/obj/machinery/door/poddoor/mainship/ai
+	name = "\improper AI Core Shutters"
+	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ai/exterior
+	name = "\improper AI Core Shutters"
+	id = "ailockdownexterior"
+	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ai/interior
+	name = "\improper AI Core Shutters"	
+	id = "ailockdowninterior"
+	icon_state = "pdoor0"
+
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
 	return ..()
