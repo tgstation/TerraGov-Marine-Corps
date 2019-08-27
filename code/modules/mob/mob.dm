@@ -201,7 +201,7 @@
 
 
 /mob/proc/movement_delay()
-	. = cached_multiplicative_slowdown + next_move_slowdown
+	. += cached_multiplicative_slowdown + next_move_slowdown
 	next_move_slowdown = 0
 
 
