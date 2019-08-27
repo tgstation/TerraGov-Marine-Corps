@@ -2,15 +2,10 @@
 	name = "walker gun"
 	icon = 'icons/obj/vehicles/mecha_guns.dmi'
 	var/equip_state = ""
-	w_class = 12.0
+	w_class = WEIGHT_CLASS_BULKY
 	var/obj/vehicle/walker/owner = null
 
-	w_class = 12.0
-
-/obj/item/walker_hardpoint/proc/get_icon_image(var/hardpoint="")
-	if(!owner)
-		return
-
+/obj/item/walker_hardpoint/proc/get_icon_image(var/hardpoint=null)
 	return image(owner.icon, equip_state + hardpoint)
 
 /obj/item/walker_hardpoint/proc/active_effect(var/atom/target)
@@ -25,7 +20,7 @@
 
 	var/magazine_type = /obj/item/ammo_magazine/walker
 	var/obj/item/ammo_magazine/walker/ammo = null
-	var/fire_sound = "sound\weapons\guns\fire\smartgun2"
+	var/fire_sound = 'sound/weapons/guns/fire/smartgun2.ogg'
 	var/fire_delay = 0
 	var/last_fire = 0
 	var/burst = 1
@@ -274,7 +269,7 @@
 ///////////////////
 
 /obj/item/ammo_magazine/walker
-	w_class = 12.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/ammo_magazine/walker/smartgun
 	name = "M56 Double-Barrel Magazine (Standart)"
@@ -325,7 +320,7 @@
 
 /obj/item/walker_hardpoint/armor
 	name = "walker armor"
-	w_class = 12.0
+	w_class = WEIGHT_CLASS_BULKY
 
 	var/move_delay = 0
 
@@ -345,7 +340,6 @@
 		"energy" = 0.0,
 		"abstract" = 0.0) //abstract for when you just want to hurt it
 
-	w_class = 12.0
 
 /obj/item/walker_hardpoint/armor/proc/apply_effect()
 	if(!owner)
@@ -387,6 +381,7 @@
 	name = "LA-14 \"Scatterpack\" Armor"
 	desc = "Light armor, usually used for scout walkers"
 	icon_state = "light"
+	equip_state = "light"
 
 	move_delay = -2
 
@@ -411,6 +406,7 @@
 	name = "HA-2 \"Raptor\" Armor"
 	desc = "Heavy armor, usually used for assault or defensive walkers"
 	icon_state = "heavy"
+	equip_state = "heavy"
 
 	move_delay = 3
 
@@ -435,6 +431,7 @@
 	name = "Civilian-grade Hazmat Armor"
 	desc = "Not armor per se, used mostly by civilian walkers. How this even got here?"
 	icon_state = "chem"
+	equip_state = "chem"
 
 	move_delay = 2
 

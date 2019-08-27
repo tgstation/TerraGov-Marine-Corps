@@ -91,7 +91,7 @@
 		var/image/right_gun = right.get_icon_image("-r")
 		overlays += right_gun
 
-	if(right)
+	if(armor_module)
 		var/image/armor = armor_module.get_icon_image()
 		overlays += armor
 
