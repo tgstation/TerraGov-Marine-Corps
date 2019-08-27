@@ -100,9 +100,15 @@
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
 	// By default byond will call Bump() on the first dense object in contents
 	//Then, check the turf itself
-	if(!CanPass(mover, src) && !(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_TURF, src) & COMPONENT_MOVABLE_PREBUMP_PLOWED))
-		mover.Bump(src)
-		return FALSE
+	if(!CanPass(mover, src))
+		switch(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_TURF, src))
+			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE //No need for a bump, already procesed.
+			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				//Continue. We've plowed through the obstacle.
+			else
+				mover.Bump(src)
+				return FALSE
 	var/atom/firstbump
 	for(var/i in contents)
 		if(QDELETED(mover))
