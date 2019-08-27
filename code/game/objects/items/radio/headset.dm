@@ -307,11 +307,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/st
 	name = "technician radio headset"
 	icon_state = "eng_headset"
-/obj/item/radio/headset/mainship/st/Initialize()
-	. = ..()
-	keyslot = new /obj/item/encryptionkey/engi(src)
-	keyslot2 = new /obj/item/encryptionkey/req(src)
-
+	keyslot = new /obj/item/encryptionkey/req	
+	keyslot2 = new /obj/item/encryptionkey/engi
 
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
