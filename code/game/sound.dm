@@ -91,7 +91,7 @@
 	SEND_SOUND(src, S)
 
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/S)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()
