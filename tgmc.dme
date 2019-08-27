@@ -1375,6 +1375,7 @@
 #include "code\modules\vehicles\multitile\tankvendor.dm"
 #include "code\modules\vehicles\walker\hardpoints.dm"
 #include "code\modules\vehicles\walker\walker.dm"
+#include "code\modules\vehicles\walker\walker_vendor.dm"
 #include "code\modules\xenomorph\xeno_structures.dm"
 #include "goon\code\datums\browserOutput.dm"
 #include "interface\interface.dm"
