@@ -547,7 +547,7 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "abv" = (
-/obj/effect/landmark/start/marine/cargotechnician,
+/obj/effect/landmark/start/marine/shiptech,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -11839,7 +11839,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "orangecorner";
 	dir = 1
@@ -32973,7 +32973,7 @@
 	dir = 4;
 	icon_state = "officechair_white"
 	},
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCw" = (
@@ -35365,7 +35365,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "bJN" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -35478,7 +35478,7 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "bKd" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "orange"
 	},
@@ -36461,7 +36461,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/cargotechnician,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "green";
 	dir = 2
@@ -36483,7 +36483,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/cargotechnician,
+/obj/effect/landmark/start/marine/shiptech,
 /obj/machinery/light{
 	dir = 4
 	},
