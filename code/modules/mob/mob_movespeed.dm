@@ -16,7 +16,7 @@ This list takes the following format
 				priority,
 				flags,
 				legacy slowdown/speedup amount,
-				movetype_flags
+				conflict
 			)
 		)
 ```
