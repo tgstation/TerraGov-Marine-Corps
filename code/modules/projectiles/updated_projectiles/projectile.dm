@@ -354,6 +354,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			turf_crossed_by = get_step(last_processed_turf, border_escaped_through)
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
@@ -393,6 +395,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			movement_dir -= border_escaped_through //Next scan should come from the other component cardinal direction.
 			for(var/j in uncross_scheduled) //We are leaving turf_crossed_by now.
 				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
@@ -410,6 +414,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
 			for(var/j in uncross_scheduled)
 				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
