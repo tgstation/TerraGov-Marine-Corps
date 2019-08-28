@@ -129,6 +129,7 @@
 		original_target = target
 		original_target_turf = get_turf(target)
 		if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
+			distance_travelled++
 			scan_a_turf(loc)
 			qdel(src)
 			return
@@ -481,24 +482,30 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!anchored) //unanchored structure offers no protection.
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
+	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
-	if(!(flags_atom & ON_BORDER))
-		return FALSE //window frames, unflipped tables
-	if(!(proj.dir & dir|REVERSE_DIR(dir)))
-		return FALSE //no effect if bullet direction is perpendicular to barricade
-	var/distance = proj.distance_travelled - 1
-	if(distance < proj.ammo.barricade_clear_distance)
-		return FALSE
-	var/coverage = 90 //maximum probability of blocking projectile
-	var/distance_limit = 6 //number of tiles needed to max out block probability
-	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
-	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - proj.accuracy/100))
-	return prob(hitchance)
+	. = coverage //Hitchance.
+	switch(.)
+		if(-INFINITY to 0)
+			return FALSE
+		if(100 to INFINITY)
+			return TRUE
+	if(flags_atom & ON_BORDER)
+		if(proj.dir & dir)
+			. *= 0.5 //Half the chance to hit a barricade that's facing the same way as the bullet.
+		else if(proj.dir & REVERSE_DIR(dir))
+			. *= 1.5 //Higher to hit an opposite one.
+		else
+			return FALSE //No effect if bullet direction is perpendicular to barricade.
+	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
+	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
+	if(!anchored)
+		. *= 0.5 //Half the protection from unaffixed structures.
+	return prob(.)
 
 
 /obj/structure/window/projectile_hit(obj/item/projectile/proj)
@@ -506,6 +513,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return TRUE
 
+/obj/machinery/door/window/projectile_hit(obj/item/projectile/proj)
+	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY || ((flags_atom & ON_BORDER) && !(proj.dir & dir|REVERSE_DIR(dir))))
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj)
 	return src == proj.original_target

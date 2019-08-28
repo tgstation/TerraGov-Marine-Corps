@@ -22,6 +22,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
+	coverage = 10
 	var/parts = /obj/item/frame/table
 	var/status = 2
 	var/sheet_type = /obj/item/stack/sheet/metal

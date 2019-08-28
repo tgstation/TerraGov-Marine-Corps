@@ -152,6 +152,7 @@
 				return TRUE
 			to_chat(user, "<span class='notice'>You secured the girder!</span>")
 			anchored = TRUE
+			modify_max_integrity(150)
 			update_icon()
 			return TRUE
 	return FALSE
@@ -172,6 +173,7 @@
 				return TRUE
 			to_chat(user, "<span class='notice'>You dislodged the girder!</span>")
 			anchored = FALSE
+			modify_max_integrity(50)
 			update_icon()
 			return TRUE
 		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE)
