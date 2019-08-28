@@ -309,14 +309,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
 				return TRUE
 			var/turf/turf_crossed_by
-			var/rel_pixel_x_pre = ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)
-			var/rel_pixel_y_pre = ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)
 			var/pixel_moves_until_crossing_x_border
 			var/pixel_moves_until_crossing_y_border
 			switch(movement_dir)
 				if(NORTHEAST)
-					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((33 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((33 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((33 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border) //Escapes vertically.
 						turf_crossed_by = get_step(last_processed_turf, NORTH)
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border) //Escapes horizontally.
@@ -324,8 +322,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					else //Escapes both borders at the same time, perfectly diagonal.
 						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, EAST)) //So choose at random to preserve behavior of no purely diagonal movements allowed.
 				if(SOUTHEAST)
-					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((0 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((33 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((0 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
 						turf_crossed_by = get_step(last_processed_turf, SOUTH)
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
@@ -333,8 +331,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					else
 						turf_crossed_by = get_step(last_processed_turf, pick(SOUTH, EAST))
 				if(SOUTHWEST)
-					pixel_moves_until_crossing_x_border = CEILING(((0 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((0 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((0 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((0 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
 						turf_crossed_by = get_step(last_processed_turf, SOUTH)
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
@@ -342,8 +340,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					else
 						turf_crossed_by = get_step(last_processed_turf, pick(SOUTH, WEST))
 				if(NORTHWEST)
-					pixel_moves_until_crossing_x_border = CEILING(((0 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((33 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((0 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((33 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
 						turf_crossed_by = get_step(last_processed_turf, NORTH)
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
@@ -362,7 +360,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
-			if(scan_a_turf(turf_crossed_by))
+			if(scan_a_turf(turf_crossed_by, (get_dir(last_processed_turf, turf_crossed_by) & get_dir(next_turf, turf_crossed_by)))) //We set to ignore the borders the bullet doesn't cross.
 				last_processed_turf = turf_crossed_by
 				if(pixel_moves_until_crossing_x_border <= pixel_moves_until_crossing_y_border) //Escapes through X or pure diagonal.
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
@@ -419,7 +417,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 #undef PROJ_ANIMATION_SPEED
 
 
-/obj/item/projectile/proc/scan_a_turf(turf/turf_to_scan)
+/obj/item/projectile/proc/scan_a_turf(turf/turf_to_scan, ignore_border)
 	if(turf_to_scan.density) //Handle wall hit.
 		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
@@ -440,7 +438,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		var/atom/movable/thing_to_hit = i
 
-		if(!thing_to_hit.projectile_hit(src)) //Calculated from combination of both ammo accuracy and gun accuracy.
+		if(!thing_to_hit.projectile_hit(src, ignore_border)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
@@ -458,14 +456,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 //returns probability for the projectile to hit us.
-/atom/proc/projectile_hit(obj/item/projectile/proj)
+/atom/proc/projectile_hit(obj/item/projectile/proj, ignore_border)
 	return FALSE
 
 /atom/proc/do_projectile_hit(obj/item/projectile/proj)
 	return
 
 
-/obj/projectile_hit(obj/item/projectile/proj)
+/obj/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(!density)
 		return FALSE
 	if(layer >= OBJ_LAYER || src == proj.original_target)
@@ -477,7 +475,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	bullet_act(proj)
 
 
-/obj/structure/projectile_hit(obj/item/projectile/proj)
+/obj/structure/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(!density) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
@@ -495,7 +493,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(100 to INFINITY)
 			return TRUE
 	if(flags_atom & ON_BORDER)
-		if(proj.dir & dir)
+		if(proj.dir & ignore_border)
+			return FALSE //Projectile is entering and leaving diagonally, so some borders are unaffected.
+		else if(proj.dir & dir)
 			. *= 0.5 //Half the chance to hit a barricade that's facing the same way as the bullet.
 		else if(proj.dir & REVERSE_DIR(dir))
 			. *= 1.5 //Higher to hit an opposite one.
@@ -508,30 +508,30 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return prob(.)
 
 
-/obj/structure/window/projectile_hit(obj/item/projectile/proj)
+/obj/structure/window/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY || ((flags_atom & ON_BORDER) && !(proj.dir & dir|REVERSE_DIR(dir))))
 		return FALSE
 	return TRUE
 
-/obj/machinery/door/window/projectile_hit(obj/item/projectile/proj)
+/obj/machinery/door/window/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY || ((flags_atom & ON_BORDER) && !(proj.dir & dir|REVERSE_DIR(dir))))
 		return FALSE
 	return TRUE
 
-/obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj)
+/obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj, ignore_border)
 	return src == proj.original_target
 
-/obj/effect/alien/egg/projectile_hit(obj/item/projectile/proj)
+/obj/effect/alien/egg/projectile_hit(obj/item/projectile/proj, ignore_border)
 	return src == proj.original_target
 
-/obj/effect/alien/resin/trap/projectile_hit(obj/item/projectile/proj)
+/obj/effect/alien/resin/trap/projectile_hit(obj/item/projectile/proj, ignore_border)
 	return src == proj.original_target
 
-/obj/item/clothing/mask/facehugger/projectile_hit(obj/item/projectile/proj)
+/obj/item/clothing/mask/facehugger/projectile_hit(obj/item/projectile/proj, ignore_border)
 	return src == proj.original_target
 
 
-/mob/living/projectile_hit(obj/item/projectile/proj)
+/mob/living/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(lying && src != proj.original_target)
 		return FALSE
 	if(proj.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && (isnestedhost(src) || stat == DEAD))
@@ -614,7 +614,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	bullet_act(proj)
 
 
-/mob/living/carbon/human/projectile_hit(obj/item/projectile/proj)
+/mob/living/carbon/human/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
 		return FALSE
 	if(mobility_aura)
@@ -626,7 +626,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return ..()
 
 
-/mob/living/carbon/xenomorph/projectile_hit(obj/item/projectile/proj)
+/mob/living/carbon/xenomorph/projectile_hit(obj/item/projectile/proj, ignore_border)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
 	if(mob_size == MOB_SIZE_BIG)
