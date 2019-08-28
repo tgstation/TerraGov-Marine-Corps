@@ -397,7 +397,7 @@
 
 
 /mob/living/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	if(density && ((src.mob_size == charger.mob_size && charger.is_charging <= CHARGE_MAX) || mob_size > charger.mob_size))
+	if(density && ((mob_size == charger.mob_size && charger.is_charging <= CHARGE_MAX) || mob_size > charger.mob_size))
 		charger.visible_message("<span class='danger'>[charger] rams into [src] and skids to a halt!</span>",
 		"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
 		charge_datum.do_stop_momentum(FALSE)
