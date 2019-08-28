@@ -455,9 +455,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return FALSE
 	if(pump_lock)
 		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
-			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-			to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
-			recent_notice = world.time
+			pump_fail_notice(user)
 		return TRUE
 
 	if(in_chamber) //eject the chambered round
@@ -472,7 +470,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.used_casings--
 		make_casing(type_of_casings)
 
-	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
+	pump_notice(user)
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
@@ -480,6 +478,13 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	return TRUE
 
+/obj/item/weapon/gun/shotgun/pump/proc/pump_fail_notice(mob/user)
+	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+	to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+	recent_notice = world.time
+
+/obj/item/weapon/gun/shotgun/pump/proc/pump_notice(mob/user)
+	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
@@ -606,52 +611,15 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
-	return work_the_bolt(user)
+	return pump_shotgun(user)
 
+/obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
+	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a shell to unlock it.</b></span>")
+	recent_notice = world.time
 
-/obj/item/weapon/gun/shotgun/pump/proc/work_the_bolt(mob/user)	//We can't fire bursts with pumps.
-	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
-		return FALSE
-
-	if(pump_lock)
-		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
-			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-			to_chat(user,"<span class='warning'><b>[src]'s bolt has already been worked, locking the action; fire or unload a cartridge to unlock it.</b></span>")
-			recent_notice = world.time
-		return TRUE
-
-	if(in_chamber) //eject the chambered round
-		in_chamber = null
-		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
-		new_handful.forceMove(get_turf(src))
-
-	ready_shotgun_tube()
-
-	if(current_mag.used_casings)
-		current_mag.used_casings--
-		make_casing(type_of_casings)
-
-	to_chat(user, "<span class='notice'><b>You work [src]'s action.</b></span>")
-	playsound(user, pump_sound, 25, 1)
-	recent_pump = world.time
-	if(in_chamber) //Lock only if we have ammo loaded.
-		pump_lock = TRUE
-
-	return TRUE
-
-
-/obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		pump_lock = FALSE //fired successfully; unlock the pump
-		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		in_chamber = null
-		//Time to move the tube position.
-		if(!current_mag.current_rounds && !in_chamber)
-			update_icon()//No rounds, nothing chambered.
-
-	return TRUE
+/obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
+	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
@@ -690,49 +658,12 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
 
 /obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
-	return work_the_lever(user)
+	return pump_shotgun(user)
 
+/obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
+	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+	to_chat(user,"<span class='warning'><b>[src] lever has already been worked, locking the lever; fire or unload a shell to unlock it.</b></span>")
+	recent_notice = world.time
 
-/obj/item/weapon/gun/shotgun/pump/proc/work_the_lever(mob/user)	//We can't fire bursts with pumps.
-	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
-		return FALSE
-
-	if(pump_lock)
-		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
-			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-			to_chat(user,"<span class='warning'><b>[src]'s lever has already been worked, locking the action; fire or unload a cartridge to unlock it.</b></span>")
-			recent_notice = world.time
-		return TRUE
-
-	if(in_chamber) //eject the chambered round
-		in_chamber = null
-		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
-		new_handful.forceMove(get_turf(src))
-
-	ready_shotgun_tube()
-
-	if(current_mag.used_casings)
-		current_mag.used_casings--
-		make_casing(type_of_casings)
-
-	to_chat(user, "<span class='notice'><b>You work [src]'s action.</b></span>")
-	playsound(user, pump_sound, 25, 1)
-	recent_pump = world.time
-	if(in_chamber) //Lock only if we have ammo loaded.
-		pump_lock = TRUE
-
-	return TRUE
-
-
-/obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
-	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
-		make_casing(active_attachable.type_of_casings)
-	else
-		pump_lock = FALSE //fired successfully; unlock the pump
-		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		in_chamber = null
-		//Time to move the tube position.
-		if(!current_mag.current_rounds && !in_chamber)
-			update_icon()//No rounds, nothing chambered.
-
-	return TRUE
+/obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
+	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
