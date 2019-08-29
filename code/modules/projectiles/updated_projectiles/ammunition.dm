@@ -502,24 +502,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 
-
-
-/obj/item/ammo_magazine/acp
-	name = "Box of .45 ACP"
-	icon_state = "box45" //With thanks to Eris
-	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45"
-	current_rounds = 50
-	max_rounds = 50
-
-/obj/item/ammo_magazine/magnum
-	name = "Box of .44 magnum"
-	icon_state = "box45" //Maybe change this
-	default_ammo = /datum/ammo/bullet/revolver
-	caliber = ".44"
-	current_rounds = 50
-	max_rounds = 50
-
 /obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
 	icon_state = "big_ammo_box_ap"
