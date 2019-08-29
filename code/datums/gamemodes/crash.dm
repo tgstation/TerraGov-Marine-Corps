@@ -384,7 +384,7 @@
 /datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
-	HS.xeno_message("We feel a sudden, chilly, dread. The hive is in danger, a nuclear device has been enabled[area_name ? " in [area_name]":""]. Something must be done!")
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
 
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
