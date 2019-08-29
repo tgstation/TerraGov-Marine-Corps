@@ -1,0 +1,4 @@
+author: "Ghommie"
+delete-after: True
+changes: 
+  - bugfix: "Patches up an issue with storage items and cryo. No more loadsa pills cluttering your stored items list, empty pill bottles, MREs etcetera."

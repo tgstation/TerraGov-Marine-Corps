@@ -102,8 +102,9 @@
 	. = ..()
 	if(.)
 		return
+
 	if(!allowed(usr))
-		return FALSE
+		return TRUE
 
 	usr.set_interaction(src)
 
@@ -115,8 +116,6 @@
 		update_icon()
 
 	updateUsrDialog()
-
-	return TRUE
 
 
 //icon update function
@@ -151,7 +150,7 @@
 	data += " <b> [id]</b><br/><br/>"
 
 	if(open_shutter)
-		data += "<a href='?src=\ref[src];shutter=0; open=0'>Close Shutter</a><br/>"
+		data += "<a href='?src=\ref[src];shutter=0'>Close Shutter</a><br/>"
 	else
 		data += "<a href='?src=\ref[src];shutter=1'>Open Shutter</a><br/>"
 
@@ -197,7 +196,6 @@
 
 	updateUsrDialog()
 
-	return TRUE
 
 /obj/machinery/door_display/research_cell/open_door()
 	if(machine_stat & (NOPOWER|BROKEN))

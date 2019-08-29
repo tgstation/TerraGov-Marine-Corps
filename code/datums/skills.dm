@@ -73,7 +73,7 @@
 
 /datum/skills/civilian/survivor/atmos
 	name = "Survivor Atmos Tech"
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 
 /datum/skills/civilian/survivor/marshal
@@ -135,7 +135,7 @@
 
 /datum/skills/synthetic
 	name = SYNTHETIC
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
@@ -154,7 +154,7 @@
 
 /datum/skills/early_synthetic
 	name = "Early Synthetic"
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
@@ -221,7 +221,7 @@
 
 /datum/skills/CE
 	name = CHIEF_SHIP_ENGINEER
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
@@ -233,16 +233,11 @@
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_TRAINED
 
-/datum/skills/MT
-	name = SHIP_ENGINEER
-	engineer = SKILL_ENGINEER_MT
+/datum/skills/ST
+	name = SHIP_TECH
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	powerloader = SKILL_POWERLOADER_MASTER
-
-/datum/skills/CT
-	name = CARGO_TECHNICIAN
-	construction = SKILL_CONSTRUCTION_METAL
-	powerloader = SKILL_POWERLOADER_PRO
 
 
 
@@ -408,7 +403,7 @@
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
 	medical = SKILL_MEDICAL_NOVICE
@@ -444,7 +439,7 @@
 
 /datum/skills/spatial_agent
 	name = "Spatial Agent"
-	engineer = SKILL_ENGINEER_MT
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED

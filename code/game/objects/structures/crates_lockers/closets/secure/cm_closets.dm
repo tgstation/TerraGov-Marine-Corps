@@ -492,8 +492,8 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
-/obj/structure/closet/secure_closet/cargotech
-	name = "Cargo Technician's Locker"
+/obj/structure/closet/secure_closet/shiptech
+	name = "Requisitions' Locker"
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"
@@ -502,7 +502,7 @@
 	icon_broken = "secure_broken_cargo"
 	icon_off = "secure_off_cargo"
 
-/obj/structure/closet/secure_closet/cargotech/PopulateContents()
+/obj/structure/closet/secure_closet/shiptech/PopulateContents()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/radio/headset/mainship/ct(src)
@@ -515,3 +515,4 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
+	new /obj/item/clothing/head/beanie(src)

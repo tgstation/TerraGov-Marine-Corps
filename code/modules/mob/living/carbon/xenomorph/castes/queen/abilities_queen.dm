@@ -50,15 +50,16 @@
 	INVOKE_ASYNC(src, .proc/do_hive_message, queensWord)
 
 /mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
+	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
 	if(SSticker?.mode)
 		hive.xeno_message("[queensWord]")
 		for(var/i in hive.get_watchable_xenos())
 			var/mob/living/carbon/xenomorph/X = i
-			SEND_SOUND(X, sound(get_sfx("queen"), wait = 0,volume = 50))
+			SEND_SOUND(X, queen_sound)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/G = i
-		SEND_SOUND(G, sound(get_sfx("queen"), wait = 0,volume = 50))
+		SEND_SOUND(G, queen_sound)
 		to_chat(G, "[queensWord]")
 
 	log_game("[key_name(src)] has created a Word of the Queen report: [queensWord]")

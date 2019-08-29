@@ -556,7 +556,7 @@
 
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
-	ears = new /obj/item/radio/headset/mainship/mt(src)
+	ears = new /obj/item/radio/headset/mainship/st(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
 	return ..()

@@ -883,15 +883,8 @@
 		return
 	var/datum/game_mode/crash/C = SSticker.mode
 
-	var/nuke_set = FALSE
-	for(var/i in GLOB.nuke_list)
-		var/obj/machinery/nuclearbomb/bomb = i
-		if(bomb.timer_enabled)
-			nuke_set = TRUE
-			break
-
-	if(nuke_set && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
+	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
 
-	C.marines_evac = CRASH_EVAC_INPROGRESS
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
 	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)

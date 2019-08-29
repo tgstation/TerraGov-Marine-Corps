@@ -309,7 +309,7 @@
 	var/path = usr.client.holder.browse_folders()
 	if(!path)
 		return
-	
+
 	usr.client.holder.recursive_download(path)
 
 
@@ -860,7 +860,7 @@
 
 	else if(istype(whom, /client))
 		recipient = whom
-		
+
 
 
 	if(irc)
@@ -952,7 +952,7 @@
 
 			//Play the bwoink if enabled.
 			if(recipient.prefs.toggles_sound & SOUND_ADMINHELP)
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
 		else  //PM sender is mentor/admin, recipient is not -> big red text
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src))
@@ -967,14 +967,14 @@
 					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
-					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
 					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
 					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
-					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
+					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
 				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
@@ -1118,7 +1118,7 @@
 	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
-	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
+	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
 	C.ircreplyamount = IRCREPLYCOUNT
 
