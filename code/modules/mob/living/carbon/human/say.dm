@@ -36,6 +36,9 @@
 	if(. != 0)
 		return .
 
+	if(isxeno(loc))
+		message = gibberish(message, 100)
+
 	switch(message_mode)
 		if(MODE_HEADSET)
 			if(wear_ear)
