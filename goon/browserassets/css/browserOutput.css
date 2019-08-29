@@ -98,22 +98,6 @@ a.popt {text-decoration: none;}
 }
 #newMessages:hover {background: #ccc;}
 #newMessages i {vertical-align: middle; padding-left: 3px;}
-#ping {
-	position: fixed;
-	top: 0;
-	right: 80px;
-	width: 45px;
-	background: #ddd;
-	height: 30px;
-	padding: 8px 0 2px 0;
-}
-#ping i {display: block; text-align: center;}
-#ping .ms {
-	display: block;
-	text-align: center;
-	font-size: 8pt;
-	padding-top: 2px;
-}
 #userBar {
 	position: fixed;
 	top: 0;

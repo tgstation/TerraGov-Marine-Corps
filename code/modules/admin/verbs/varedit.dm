@@ -693,7 +693,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(dir_text)
 			to_chat(src, "If a direction, direction is: [dir_text]")
 
-	var/value = vv_get_value(default_class = default)
+	var/value = vv_get_value(default, default, var_value, var_name = variable)
 	var/new_value = value["value"]
 	var/class = value["class"]
 

@@ -149,6 +149,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	if(istype(headset))
 		headset.set_frequency(radio_freq)
+		headset.recalculateChannels()
 		if(headset.sl_direction && H != squad_leader)
 			SSdirection.start_tracking(tracking_id, H)
 
@@ -290,7 +291,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
-	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
+	to_chat(squad_leader, "<font size='3' color='blue'>You're now the Squad Leader for [src]!</font>")
 
 
 /datum/squad/proc/format_message(message, mob/living/carbon/human/sender)
@@ -320,7 +321,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	if(!target.client)
 		return
 	if(sender)
-		SEND_SOUND(squad_leader, sound('sound/effects/radiostatic.ogg'))
+		target.playsound_local(target, 'sound/effects/radiostatic.ogg')
 	to_chat(target, message)
 	return TRUE
 

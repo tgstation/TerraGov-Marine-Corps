@@ -136,17 +136,17 @@
 
 	throwing = FALSE
 
-	if(loc == user)
-		if(!user.dropItemToGround(src))
-			return
-	else
-		user.changeNext_move(CLICK_CD_RAPID)
+	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
+		return
+
+	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(QDELETED(src))
 		return
 
 	pickup(user)
 	if(!user.put_in_active_hand(src))
+		user.dropItemToGround(src)
 		dropped(user)
 
 
@@ -197,9 +197,8 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if(user && user.client) //Dropped when disconnected, whoops
-		if(zoom) //binoculars, scope, etc
-			zoom(user, 11, 12)
+	if(user?.client && zoom) //Dropped when disconnected, whoops
+		zoom(user, 11, 12)
 
 	for(var/X in actions)
 		var/datum/action/A = X

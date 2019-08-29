@@ -273,7 +273,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_staff("Ticket [TicketHref("#[id]")] created.")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] created.")
-		marked = usr.client
+		marked = usr.client.key
 	else
 		MessageNoRecipient(msg)
 
@@ -367,12 +367,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	for(var/client/X in GLOB.admins)
 		if(tier == TICKET_MENTOR && check_other_rights(X, R_ADMINTICKET|R_MENTOR, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Mentor Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? FullMonty(ref_src) : HalfMonty(ref_src)] [check_other_rights(X, R_ADMINTICKET, FALSE) ? ClosureLinks(ref_src) : ClosureLinksMentor(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 		if(tier == TICKET_ADMIN && check_other_rights(X, R_ADMINTICKET, FALSE))
 			if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+				SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 			window_flash(X)
 			to_chat(X, "<span class='adminnotice'><span class='adminhelp'>Admin Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)] [ClosureLinks(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>")
 
@@ -444,7 +444,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				if(!is_mentor(X))
 					continue
 				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+					SEND_SOUND(X, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 				window_flash(X)
 	tier_cooldown = world.time + 5 SECONDS
 	log_admin_private("Ticket (#[id]) has been made [msg] by [key_name(usr)].")
@@ -457,7 +457,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
 	if(marked)
-		if(marked == usr.client)
+		if(marked == usr.client.key)
 			if(alert("Do you want to unmark this ticket?", "Confirmation", "Yes", "No") != "Yes")
 				return
 			marked = null
@@ -473,10 +473,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			message_staff("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
 		else if(tier == TICKET_ADMIN)
 			message_admins("Ticket [TicketHref("#[id]")] has been re-marked by [ADMIN_TPMONTY(usr)].")
-		marked = usr.client
+		marked = usr.client.key
 		log_admin_private("Ticket (#[id]) has been re-marked by [key_name(usr)].")
 		return
-	marked = usr.client
+	marked = usr.client.key
 	if(tier == TICKET_MENTOR)
 		message_staff("Ticket [TicketHref("#[id]")] has been marked by [ADMIN_TPMONTY(usr)].")
 	else if(tier == TICKET_ADMIN)
@@ -565,7 +565,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		initiator.giveadminhelpverb()
 
-		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
+		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 		if(tier == TICKET_MENTOR)
 			to_chat(initiator, "<font color='red' size='2'><b>- Mentorhelp Rejected! -</b></font>")
 			to_chat(initiator, "Your issue may have been non-sensical. Please try describing it more in detail.")

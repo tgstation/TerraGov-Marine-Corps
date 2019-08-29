@@ -6,6 +6,7 @@
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/circuitboard/computer/card"
+	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
 	var/authenticated = 0.0
@@ -45,13 +46,6 @@
 /obj/machinery/computer/marine_card/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-
-/obj/machinery/computer/marine_card/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-
-/obj/machinery/computer/marine_card/bullet_act()
-	return 0
 
 /obj/machinery/computer/marine_card/attack_hand(mob/living/user)
 	. = ..()
@@ -365,6 +359,7 @@
 	desc = "You can use this to change someone's squad."
 	icon_state = "guest"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
+	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 
@@ -385,13 +380,6 @@
 /obj/machinery/computer/squad_changer/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-
-/obj/machinery/computer/squad_changer/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-
-/obj/machinery/computer/squad_changer/bullet_act()
-	return 0
 
 /obj/machinery/computer/squad_changer/attack_hand(mob/living/user)
 	. = ..()

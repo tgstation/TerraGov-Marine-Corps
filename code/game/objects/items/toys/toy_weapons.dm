@@ -196,7 +196,6 @@
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
@@ -227,7 +226,6 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "katana"
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5

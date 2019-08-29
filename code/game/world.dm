@@ -191,12 +191,13 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
+	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : null
 
 	if(CONFIG_GET(string/server_name))
 		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</a></b>"
 		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</b>"
 		var/map_name = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : null
 		if(Master?.current_runlevel && GLOB.master_mode)
 			switch(map_name)

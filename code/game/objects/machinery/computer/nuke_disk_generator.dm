@@ -7,7 +7,7 @@
 /obj/machinery/computer/nuke_disk_generator
 	name = "nuke disk generator"
 	desc = "Used to generate the correct auth discs for the nuke."
-	icon_state = "request"
+	icon_state = "nuke_red"
 	circuit = /obj/item/circuitboard/computer/nuke_disk_generator
 
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
@@ -163,8 +163,10 @@
 
 /obj/machinery/computer/nuke_disk_generator/green
 	name = "green nuke disk generator"
+	icon_state = "nuke_green"
 	disk_type = /obj/item/disk/nuclear/green
 
 /obj/machinery/computer/nuke_disk_generator/blue
 	name = "blue nuke disk generator"
+	icon_state = "nuke_blue"
 	disk_type = /obj/item/disk/nuclear/blue

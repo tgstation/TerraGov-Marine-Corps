@@ -6,17 +6,23 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
+	hit_sound = "alien_resin_break"
 	anchored = TRUE
 	max_integrity = 1
+	resistance_flags = UNACIDABLE
+	obj_flags = CAN_BE_HIT
 	var/on_fire = FALSE
 
-/obj/effect/alien/proc/healthcheck()
-	if(obj_integrity <= 0)
-		qdel(src)
 
-/obj/effect/alien/proc/take_damage(amount)
-	obj_integrity = max(0, obj_integrity - amount)
-	healthcheck()
+/obj/effect/alien/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(user.a_intent == INTENT_HARM) //Already handled at the parent level.
+		return
+
+	if(obj_flags & CAN_BE_HIT)
+		return I.attack_obj(src, user)
+
 
 /obj/effect/alien/Crossed(atom/movable/O)
 	. = ..()
@@ -24,22 +30,15 @@
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()
-	take_damage(50)
-
-/obj/effect/alien/bullet_act(obj/item/projectile/Proj)
-	if(Proj.damtype == "fire")
-		take_damage(Proj.damage*2)
-	else
-		take_damage(Proj.damage*0.5)
-	return TRUE
+	take_damage(50, BURN, "fire")
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			take_damage(500)
-		if(2.0)
+		if(2)
 			take_damage((rand(140, 300)))
-		if(3.0)
+		if(3)
 			take_damage((rand(50, 100)))
 
 /obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -57,81 +56,12 @@
 	desc = "Looks like some kind of slimy growth."
 	icon_state = "Resin1"
 	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
 
-/obj/effect/alien/resin/hitby(AM as mob|obj)
-	..()
-	if(istype(AM,/mob/living/carbon/xenomorph))
-		return
-	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
-	"<span class='danger'>You hit \the [src].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else
-		tforce = AM:throwforce
-	if(istype(src, /obj/effect/alien/resin/sticky))
-		playsound(loc, "alien_resin_move", 25)
-	else
-		playsound(loc, "alien_resin_break", 25)
-	take_damage(tforce)
-
-/obj/effect/alien/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M)) //Larvae can't do shit
-		return 0
-	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>We claw \the [src].</span>")
-	if(istype(src, /obj/effect/alien/resin/sticky))
-		playsound(loc, "alien_resin_move", 25)
-	else
-		playsound(loc, "alien_resin_break", 25)
-	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
-
-/obj/effect/alien/resin/attack_animal(mob/living/M as mob)
-	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
-	"<span class='danger'>You tear \the [name].</span>")
-	if(istype(src, /obj/effect/alien/resin/sticky))
-		playsound(loc, "alien_resin_move", 25)
-	else
-		playsound(loc, "alien_resin_break", 25)
-	take_damage(40)
 
 /obj/effect/alien/resin/attack_hand(mob/living/user)
 	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
-
-/obj/effect/alien/resin/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand()
-
-/obj/effect/alien/resin/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(I.flags_item & NOBLUDGEON)
-		return
-
-	var/damage = I.force
-	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
-		multiplier += 1
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter))
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD, null, null, SFX = FALSE))
-			return
-		multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-		P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD) //Minimal energy cost.
-
-	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
-		multiplier *= 0.25
-
-	damage *= max(0,multiplier)
-	obj_integrity -= max(0, round(damage))
-
-	if(istype(src, /obj/effect/alien/resin/sticky))
-		playsound(loc, "alien_resin_move", 25)
-	else
-		playsound(loc, "alien_resin_break", 25)
-	healthcheck()
-
-
 
 
 /obj/effect/alien/resin/sticky
@@ -142,13 +72,22 @@
 	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
+	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
-	Crossed(atom/movable/AM)
-		. = ..()
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
-			H.next_move_slowdown += slow_amt
+	
+/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
+	. = ..()
+	if(!ishuman(AM))
+		return
+
+	var/mob/living/carbon/human/H = AM
+
+	if(H.lying)
+		return
+
+	H.next_move_slowdown += slow_amt
+
 
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
@@ -202,11 +141,6 @@
 		hugger = null
 		icon_state = "trap0"
 	..()
-
-/obj/effect/alien/resin/trap/bullet_act(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		return
-	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(!iscarbon(AM) || !hugger)
@@ -307,12 +241,7 @@
 		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
 		"<span class='xenowarning'>You claw at \the [src].</span>")
 		playsound(loc, "alien_resin_break", 25)
-		obj_integrity -= rand(40, 60)
-		if(obj_integrity <= 0)
-			user.visible_message("<span class='xenodanger'>\The [user] slices \the [src] apart.</span>", \
-			"<span class='xenodanger'>You slice \the [src] apart.</span>")
-		healthcheck()
-		return
+		take_damage(rand(40, 60))
 	else
 		return TryToSwitchState(user)
 
@@ -340,21 +269,11 @@
 		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
 		qdel(src)
 
-/obj/structure/mineral_door/resin/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage * 0.5
-	..()
-	healthcheck()
-	return TRUE
-
 /obj/structure/mineral_door/resin/flamer_fire_act()
-	obj_integrity -= 50
-	if(obj_integrity <= 0)
-		qdel(src)
+	take_damage(50, BURN, "fire")
 
 /turf/closed/wall/resin/fire_act()
-	take_damage(50)
-	if(damage >= damage_cap)
-		qdel(src)
+	take_damage(50, BURN, "fire")
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
 	if(isxeno(user))
@@ -419,10 +338,6 @@
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
 	return ..()
-
-/obj/structure/mineral_door/resin/proc/healthcheck()
-	if(src.obj_integrity <= 0)
-		src.Dismantle(1)
 
 
 //do we still have something next to us to support us?
@@ -497,10 +412,6 @@
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
-/obj/effect/alien/egg/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	to_chat(M, "<span class='xenowarning'>You nudge [src], but nothing happens.</span>")
-	return
-
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M)
 
 	if(!istype(M))
@@ -548,15 +459,6 @@
 		hugger.forceMove(loc)
 		hugger.fast_activate(TRUE)
 		hugger = null
-
-/obj/effect/alien/egg/bullet_act(obj/item/projectile/P)
-	..()
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
-		return
-	P.ammo.on_hit_obj(src,P)
-	var/amount = P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
-	take_damage(amount)
-	return TRUE
 
 /obj/effect/alien/egg/proc/update_status(new_stat)
 	if(new_stat)
@@ -607,30 +509,10 @@
 		update_status(EGG_GROWN)
 		deploy_egg_triggers()
 
-	else if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return
 
-	var/mob/living/L = user
-	L.do_attack_animation(src)
-	visible_message("<span class='danger'>\The [src] has been [length(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with \the [I] by [user].</span>")
-	var/damage = I.force
-	if(I.w_class < 4 || !I.sharp || I.force < 20) //only big strong sharp weapon are adequate
-		damage /= 4
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			return
-		damage = 15
-		playsound(loc, 'sound/items/welder.ogg', 25, 1)
-	else
-		playsound(loc, "alien_resin_break", 25)
-
-	take_damage(damage)
-
-
-/obj/effect/alien/egg/healthcheck()
-	if(obj_integrity <= 0)
-		Burst(TRUE)
+/obj/effect/alien/egg/deconstruct(disassembled = TRUE)
+	Burst(TRUE)
+	return ..()
 
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
 	Burst(TRUE)
@@ -724,27 +606,21 @@ TUNNEL
 		if(tunnel_desc)
 			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
-/obj/structure/tunnel/proc/healthcheck()
-	if(obj_integrity <= 0)
-		visible_message("<span class='danger'>[src] suddenly collapses!</span>")
-		if(other && isturf(other.loc))
-			visible_message("<span class='danger'>[other] suddenly collapses!</span>")
-			qdel(other)
-			other = null
-		qdel(src)
-
-/obj/structure/tunnel/bullet_act(obj/item/projectile/Proj)
-	return 0
+/obj/structure/tunnel/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	if(isturf(other?.loc))
+		visible_message("<span class='danger'>[other] suddenly collapses!</span>")
+		QDEL_NULL(other)
+	return ..()
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			obj_integrity -= 210
-		if(2.0)
-			obj_integrity -= 140
-		if(3.0)
-			obj_integrity -= 70
-	healthcheck()
+		if(1)
+			take_damage(210)
+		if(2)
+			take_damage(140)
+		if(3)
+			take_damage(70)
 
 /obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
@@ -758,8 +634,7 @@ TUNNEL
 	if(M.a_intent == INTENT_HARM && M == creator)
 		to_chat(M, "<span class='xenowarning'>We begin filling in our tunnel...</span>")
 		if(do_after(M, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
-			obj_integrity = 0
-			healthcheck()
+			deconstruct(FALSE)
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.

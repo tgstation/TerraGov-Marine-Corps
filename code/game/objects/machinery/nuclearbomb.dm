@@ -12,7 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = INDESTRUCTIBLE|UNACIDABLE|LAVA_PROOF|FIRE_PROOF|ACID_PROOF
+	resistance_flags = RESIST_ALL
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -56,6 +56,7 @@
 
 /obj/machinery/nuclearbomb/start_processing()
 	. = ..()
+	GLOB.active_nuke_list += src
 	countdown.start()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 
@@ -63,6 +64,7 @@
 /obj/machinery/nuclearbomb/stop_processing()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
+	GLOB.active_nuke_list -= src
 	return ..()
 
 
@@ -255,6 +257,7 @@
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
 				start_processing()
+				notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 			if(!lighthack)
 				icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
 		if(href_list["safety"])

@@ -1,6 +1,6 @@
 /client/verb/ooc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "OOC") as text
+	var/message = input("", "OOC \"text\"") as null|text
 	ooc(message)
 
 
@@ -99,7 +99,7 @@
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
-	var/message = input("", "LOOC") as text
+	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
 
 
@@ -188,7 +188,7 @@
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
-	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
+	if(chatOutput?.working && chatOutput.loaded)
 		chatOutput.stopMusic()
 
 

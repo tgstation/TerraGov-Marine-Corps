@@ -50,8 +50,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
-	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
+	var/customname = input("What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
+	var/input = input("This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "") as message|null
 	if(!input || !customname)
 		return
 
@@ -124,7 +124,7 @@
 		return
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
-		print_command_report(input, "[CONFIG_GET(string/ship_name)] Update", announce = FALSE)
+		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")
@@ -253,24 +253,23 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
-		if("Change")
-			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	new_info = noscript(new_info)
+	if(isnull(new_info) || GLOB.custom_info == new_info)
+		return
 
-			GLOB.custom_info = noscript(GLOB.custom_info)
+	if(!new_info)
+		log_admin("[key_name(usr)] has cleared the custom info.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+		return
 
-			if(!GLOB.custom_info)
-				return
+	GLOB.custom_info = new_info
 
-			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
+	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
-			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
-		if("Clear")
-			GLOB.custom_info = null
-			log_admin("[key_name(usr)] has cleared the custom info.")
-			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 
 
 /client/verb/custom_info()
@@ -294,7 +293,7 @@
 		return
 
 	var/heard_midi = 0
-	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = CHANNEL_MIDI)
 	uploaded_sound.priority = 250
 
 
@@ -395,7 +394,7 @@
 			var/client/C = M.client
 			if(!C?.prefs)
 				continue
-			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
 				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
@@ -428,7 +427,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || C.chatOutput.broken)
+		if(!C?.chatOutput.loaded || !C.chatOutput.working)
 			continue	
 		C.chatOutput.stopMusic()
 
@@ -835,7 +834,7 @@
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
-		
+
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
@@ -859,10 +858,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+/datum/admins/proc/xeno_panel(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Fun"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
+	set name = "Xeno Panel"
 
 	if(!check_rights(R_FUN))
 		return
@@ -870,43 +868,16 @@
 	if(!istype(X))
 		return
 
-	var/hivenumber_status = X.hivenumber
+	var/dat = "<br>"
 
-	var/list/namelist = list()
-	for(var/Y in GLOB.hive_datums)
-		var/datum/hive_status/H = GLOB.hive_datums[Y]
-		namelist += H.name
+	dat += "Hive: [X.hive.hivenumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=hive;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Nicknumber: [X.nicknumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=nicknumber;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Upgrade Tier: [X.xeno_caste.upgrade_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=upgrade;mob=[REF(X)]'>Edit</a><br>"
 
-	var/newhive = input("Select a hive.", "Change Hivenumber") as null|anything in namelist
-	if(!newhive)
-		return
+	var/datum/browser/browser = new(usr, "xeno_panel_[key_name(X)]", "<div align='center'>Xeno Panel [key_name(X)]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		if("Admeme")
-			newhivenumber = XENO_HIVE_ADMEME
-		else
-			return
-
-	if(!istype(X) || X.hivenumber != hivenumber_status)
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-		return
-		return
-
-	X.transfer_to_hive(newhivenumber)
-
-	log_admin("[key_name(usr)] changed hivenumber of [X] from [hivenumber_status] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
 
 
 /datum/admins/proc/release(obj/OB in world)
@@ -1030,20 +1001,14 @@
 		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/list/possible_destinations
-	if(shuttle_id == SSshuttle.canterbury.id)
-		possible_destinations = list("canterbury_dock")
-	else
-		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-
 	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
 	var/list/valid_docks = list()
 	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!possible_destinations.Find(S.id))
-			continue
+		if(istype(S, /obj/docking_port/stationary/transit))
+			continue // Don't use transit destinations
 		if(!D.check_dock(S, silent=TRUE))
 			continue
 		valid_docks["[S.name] ([i++])"] = S

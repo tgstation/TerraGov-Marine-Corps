@@ -86,6 +86,11 @@
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
 
+
+/obj/item/tool/soap/attack(mob/target, mob/user)
+	return
+
+
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.

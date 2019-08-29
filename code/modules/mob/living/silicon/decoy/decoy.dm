@@ -4,7 +4,7 @@
 
 /mob/living/silicon/decoy/ship_ai/Initialize(mapload, ...)
 	. = ..()
-	desc = "This is the artificial intelligence system for the [CONFIG_GET(string/ship_name)]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
+	desc = "This is the artificial intelligence system for the [SSmapping.configs[SHIP_MAP].map_name]. Like many other military-grade AI systems, this one was manufactured by NanoTrasen."
 
 
 //Should likely just replace this with an actual AI mob in the future. Might as well.

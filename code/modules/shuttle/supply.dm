@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
@@ -453,15 +453,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	onclose(user, "computer")
 
 
-/obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/card/emag) && !hacked)
-		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
-		hacked = 1
-		return
-	else
-		..()
-	return
-
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -548,7 +539,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSshuttle.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[CONFIG_GET(string/ship_name)] Supply Requisition Form</h3><hr>"
+		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
 		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"

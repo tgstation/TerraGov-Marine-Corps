@@ -686,40 +686,9 @@ GLOBAL_LIST_EMPTY(all_casters) //Global list that will contain reference to all 
 			src.updateUsrDialog()
 
 
-/obj/machinery/newscaster/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(isbroken)
-		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
-		visible_message("<b>[user.name]</b> further abuses the shattered [name].")
-		return
-
-	if(I.flags_item & NOBLUDGEON || !I.force)
-		return
-
-	if(I.force <15)
-		visible_message("[user] hits \the [src] with \the [I] with no visible effect." )
-		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		return
-
-	hitstaken++
-	if(hitstaken == 3)
-		visible_message("[user] smashes \the [src]!")
-		isbroken = TRUE
-		playsound(loc, 'sound/effects/glassbr3.ogg', 50, 1)
-	else
-		visible_message("[user] forcefully slams \the [src] with \the [I]!" )
-		playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
-
-	update_icon()
-
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
 	return src.attack_hand(user) //or maybe it'll have some special functions? No idea.
 
-
-/obj/machinery/newscaster/attack_paw(mob/living/carbon/monkey/user)
-	to_chat(user, "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>")
-	return
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
 	if(photo)

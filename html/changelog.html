@@ -33,34 +33,13 @@
 </table>
 
 
-<br><b>TerraGov Marine Corps Development Team</b>
+<br><b>TerraGov Marine Corps</b>
 <table align='center' class="top">
 	<tr>
 		<td valign='top'>
-			<font size='2'><b>Hosts:</b> MrStonedOne<br></font>
-			<font size='2'><b>Head Developers:</b> Ninjanomnom<br></font>
-			<font size='2'><b>Gameplay Designers:</b> Rohesie<br></font>
-			<font size='2'><b>Repo Maintainers:</b> Ninjanomnom, Rohesie, Qustinnus, Alterist, LaKiller8<br></font>
-			<font size='2'><b>Coders:</b> Ghommie, fosstar, Surrealistik, Jared-Fogle, JJRcop, Rohesie, JamesDenholm, Alterist, LetterN, Francinum, LaKiller8 <br></font>
-			<font size='2'><b>Spriters:</b> Ghommie, Alterist, Arachnidnexus, Jimminian95, DalekThePerson<br></font>
-			<font size='2'><b>Sounds:</b><br></font>
-			<font size='2'><b>Main Testers:</b> Anybody who has submitted an issue on the github's repository.<br></font>
+			<font size='2'><b>Staff:</b> <a href='https://tgstation13.org/phpBB/viewtopic.php?f=69&t=19855'>Here</a><br></font>
+			<font size='2'><b>Contributors:</b> <a href='https://github.com/tgstation/TerraGov-Marine-Corps/graphs/contributors'>Here</a><br></font>
 			<font size='2'><b>Thanks to:</b> The CM-SS13 devs, The Russian CM, Baystation 12, /tg/Station, /vg/station, NTstation, CDK Station devs, FacepunchStation, GoonStation devs and the original SpaceStation 13 developers.</font>
-		</td>
-	</tr>
-</table>
-
-<table align='center' class="top">
-	<tr>
-		<td valign='top'>
-			<div align='center'><font size='2'><br> Changelogs:
-			<a href="changelog2015.html">2015</a> |
-			<a href="changelog2016.html">2016</a> |
-			<a href="changelog2017.html">2017</a> |
-			<a href="changelog20181.html">2018 (till July)</a> |
-			<a href="changelog20182.html">2018 (till December)</a> |
-			<a href="changelog.html">2019</a><br></font>
-			</div>
 		</td>
 	</tr>
 </table>
@@ -73,6 +52,127 @@
 		
 		-->
 		<div class="commit sansserif">
+
+			<h2 class="date">28 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Xenos with devoured hosts can no longer cross the fog.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Marines lose when leaving without a nuke set on crash</li>
+			</ul>
+
+			<h2 class="date">26 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Reworked projectiles to use pixel movement (but not collisions, those are still tile-based), tracking the clicked pixel (unless a mob is clicked, in which case it will aim for the center of the target's tile for maximum accuracy, or unless scatter happens) in a straight line. For most bullets (rifles, SMGs, pistols, revolvers) the difference will be subtle at best, given how fast they are. It is more noticeable in tasers. For lasguns and faster projectiles the moving animation is outright disabled.</li>
+				<li class="bugfix">Fixed a speed inconsistency of old projectiles, which would make bullet speed lower if you clicked closer to your own sprite.</li>
+				<li class="balance">Tweaked accuracy to make the calculations a bit more sane. This may impact on it as reproducing the exact same behavior is hard, but it can be more easily adjusted now.</li>
+				<li class="balance">Once a sniper acquires a target through its laser market it will no longer need to click on it to aim it. Any shots while active will be auto-targeted to it.</li>
+				<li class="balance">Projectile speeds reduced all round the board. Xeno projectiles are slow, so you can see them traveling. Non-slug shotgun shells are slow and more visible. Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers are very fast, and even harder to see.</li>
+				<li class="balance">Scatter is now angle-based, so it doesn't matter if the target (where you click) is near or far. Maximum scatter is 45 degrees in either direction. Extra projectiles (additional buckshot and flechettes) have a smoother, less random scatter, firing in a cone.</li>
+				<li class="balance">Smartgun slowdown while wielded increased some to make it more defensive and less mobile..</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">(Crash Only) Xenos now start with the first tier already unlocked.</li>
+				<li class="balance">bullets are now able to pass the fog barriers</li>
+			</ul>
+
+			<h2 class="date">25 August 2019</h2>
+			<h3 class="author">Compadre Sonoliento(sprites) Kuro(Idea) MetroidLover(Editing and recoloring sprites) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">New B18 sprites with a darker look and glowing colored visor</li>
+			</ul>
+
+			<h2 class="date">23 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">M41A, lasgun, flechettes, smartgun and grenade launcher nerfed to different degrees to account for the xeno warding nerf.</li>
+			</ul>
+
+			<h2 class="date">22 August 2019</h2>
+			<h3 class="author">(Arachnidnexus) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">added new icons for the nuke disk generators</li>
+			</ul>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Full-auto and autoburst modes added, along with actions to toggle those. Dakka-dakka!</li>
+			</ul>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added some holopads around the Theseus.</li>
+			</ul>
+
+			<h2 class="date">19 August 2019</h2>
+			<h3 class="author">DalekThePerson updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Decreased the time it takes to dig into the ground and acid blob launch by 1 seconds each. And increases the cooldown between bombards by 10 seconds.</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Marines can now destroy almost anything using bullets.</li>
+				<li class="tweak">The AI can no longer toggle it's floor bolts, dropship crash disables them automatically.</li>
+			</ul>
+
+			<h2 class="date">17 August 2019</h2>
+			<h3 class="author">Francinum updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="soundadd">Faxes now sound reasonable.</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">The pizza ERT is now admin only.</li>
+			</ul>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Marine essential clothing sets now come with a boot knife included.</li>
+			</ul>
+
+			<h2 class="date">16 August 2019</h2>
+			<h3 class="author">Alterist updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">EAT Bars are now ENRG Bars, same "Great" taste, new packaging!</li>
+				<li class="imageadd">Jones now shows up on your head when you equip him</li>
+			</ul>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Queen larval growth has been removed.</li>
+			</ul>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added the G8 general utility pouch to the synth vendor.</li>
+				<li class="rscdel">Removed the HealthMate HUD from the Essential Synthetic Set</li>
+				<li class="balance">N2, N3, and M3 variant armors can now hold a machete scabbard.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">CAS has been re-enabled</li>
+			</ul>
+
+			<h2 class="date">12 August 2019</h2>
+			<h3 class="author">LaKiller8 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Xenos without night vision should now be able to tell if they are in a lit area better without being completely blinded.</li>
+				<li class="tweak">You can now change your AI name, remember to follow the rules folks!</li>
+			</ul>
+			<h3 class="author">MoXuT0 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">Added Terra Gov logo to briefing room of Theseus.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">tactical binoculars allow you to see in the dark</li>
+			</ul>
+
+			<h2 class="date">11 August 2019</h2>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Intelligence Officer has been reverted to Staff Officer.</li>
+			</ul>
+
 			<h2 class="date">09 August 2019</h2>
 			<h3 class="author">DoctorMad updated:</h3>
 			<ul class="changes bgimages16">
@@ -357,131 +457,6 @@
 			<h3 class="author">Rohesie (implementation) and Sleepy (sprites) updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="imageadd">Every job has gained an icon in the squad HUD, which should be default for everyone on the ship. Gold is for the ship crew (navy and attachées), silver for the deployed troops (marines). Blue is for command, light blue for medical, yellow for engineering, brown for requisitions, red for security.</li>
-			</ul>
-
-			<h2 class="date">21 June 2019</h2>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Speech bubble is now animated.</li>
-				<li class="imageadd">Pyro's backpack is now same color as other marine gear.</li>
-				<li class="tweak">Chief medical officer now spawns with unique hat. It also can be found in his closet.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Fixed the warrior grab move-resist delay, which was broken. To free yourself you need to move/resist twice and there's a cooldown of around 1 second between each. Button/macro and movement resists no longer stack.</li>
-				<li class="tweak">Resisting works a bit differently than usual, but nothing big. If you are bucklecuffed you'll try to remove the cuffs, and if you succeed you'll just be able to unbuckle as normal. If you are hand and legcuffed, you'll resist whatever was slapped first.</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">New observer actionss</li>
-				<li class="rscadd">Ghosts can now hold shift and use the mouse wheel to zoom in / out.</li>
-			</ul>
-			<h3 class="author">spookydonut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="admin">Removed legacy ban system support</li>
-			</ul>
-
-			<h2 class="date">17 June 2019</h2>
-			<h3 class="author">ma44 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Xenos with low plasma regen like runners will no longer be stuck at 0 plasma when running out of it</li>
-			</ul>
-
-			<h2 class="date">16 June 2019</h2>
-			<h3 class="author">LaKiller8 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Overwatch console cameras now act like AI eye.</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Queen screech is reduced by 30% when out of LOS.</li>
-				<li class="balance">Facehuggers will no longer attach to a host on fire.</li>
-			</ul>
-
-			<h2 class="date">15 June 2019</h2>
-			<h3 class="author">LaKiller8 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">The clown survivor has been removed.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Xenos and ghosts can see the larva progression on monkeys as well as humans now.</li>
-			</ul>
-
-			<h2 class="date">14 June 2019</h2>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed onmob icons for belts and added missing ones.</li>
-				<li class="tweak">B18 grenade belt is now named Mk II.</li>
-				<li class="bugfix">Fixed mine box having less space then it should.</li>
-				<li class="bugfix">Fixed numbers on flare pack icon.</li>
-			</ul>
-			<h3 class="author">ma44 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="refactor">Made xeno pheromone emitting less worse in terms of performance</li>
-			</ul>
-
-			<h2 class="date">13 June 2019</h2>
-			<h3 class="author">Ghommie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">Ported newer sprites for the average ss13 shuttle  shuttle propulsor & co. This doesn't concern neither Alamo, Normandy or escape pods.</li>
-			</ul>
-			<h3 class="author">spookydonut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Ports dropships to new shuttle system</li>
-				<li class="rscdel">Removed last of old shuttle stuff</li>
-				<li class="tweak">Queen now has a verb for calling down the shuttle, it will call it down to the closest LZ to the queen no matter what the shuttle is doing, can't calldown before 30 minutes or if more than 10% alive humans are on the ground.</li>
-				<li class="rscdel">Removed normandy for now</li>
-				<li class="rscadd">The Alamo can land at either LZ and fly between LZs</li>
-				<li class="rscdel">Removed CAS for now</li>
-				<li class="imageadd">half tile shuttle pieces now overlay properly on turfs, no more plating welded to the dropship as it flies.</li>
-			</ul>
-
-			<h2 class="date">12 June 2019</h2>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Queen acid upgraded to strong to match the Boiler's.</li>
-				<li class="balance">Boiler health and speed buffed only a tiny bit.</li>
-			</ul>
-
-			<h2 class="date">10 June 2019</h2>
-			<h3 class="author">Ghommie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixes more ammo datum smokes stuff, such as some borked rockets, apologises for the inconvenience.</li>
-				<li class="bugfix">Fixes the halloss from dirty smartgun bullets.</li>
-			</ul>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="soundadd">Added new firing sounds for various weapons.</li>
-				<li class="soundadd">Added new firing sounds when empty for pulse rifles, flamer and shotgun.</li>
-				<li class="soundadd">Added sounds for litting/unlitting flamethrower.</li>
-				<li class="soundadd">Added more explosion sound effects.</li>
-				<li class="imageadd">Added unique sprite for B18 gloves.</li>
-			</ul>
-
-			<h2 class="date">09 June 2019</h2>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Blood overlay for boots shouldn't obscure knife anymore.</li>
-				<li class="imageadd">Pyro boots now have slighly different icon from default marine boots.</li>
-			</ul>
-
-			<h2 class="date">08 June 2019</h2>
-			<h3 class="author">Ghommie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixes autodoc's incorporated radio ejecting itself upon occupant exit.</li>
-			</ul>
-			<h3 class="author">LaKiller8 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Newer players may start having illussions of a friendly ghost guiding them. This is an imaginary friend controlled by one of our fellow mentors.</li>
-			</ul>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed offset in smartgun's inhand icons.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">M39 SMGs now come with a little strap so you can carry them on your back.</li>
 			</ul>
 		</div>
 

@@ -54,17 +54,13 @@
 	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
-		laser_target?.remove_laser()
-		laser_target = target
-		if(laser_target.apply_laser())
-			to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
-			targetmarker_primed = FALSE
-			targetmarker_on = TRUE
-			START_PROCESSING(SSobj, src)
-			accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
-		else
-			laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
+		if(target.apply_laser())
+			activate_laser_target(target, user)
 		return
+	if(!QDELETED(laser_target))
+		target = laser_target
 	return ..()
 
 
@@ -76,7 +72,7 @@
 	return TRUE
 
 
-/mob/living/carbon/proc/apply_laser()
+/atom/proc/apply_laser()
 	return FALSE
 
 /mob/living/carbon/human/apply_laser()
@@ -159,6 +155,30 @@
 	else
 		return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/activate_laser_target(atom/target, mob/living/user)
+	laser_target = target
+	to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
+	targetmarker_primed = FALSE
+	targetmarker_on = TRUE
+	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
+	START_PROCESSING(SSobj, src)
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/deactivate_laser_target()
+	UnregisterSignal(src, COMSIG_PROJ_SCANTURF)
+	laser_target.remove_laser()
+	laser_target = null
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	if(QDELETED(laser_target) || !isturf(laser_target.loc))
+		return NONE
+	if(get_turf(laser_target) == target_turf)
+		return COMPONENT_PROJ_SCANTURF_TARGETFOUND
+	return COMPONENT_PROJ_SCANTURF_TURFCLEAR
+
+
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
@@ -173,8 +193,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user)
 	if(targetmarker_on)
-		laser_target?.remove_laser()
-		laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
 		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
@@ -340,12 +360,12 @@
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 16
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	wield_delay = 1.6 SECONDS
+	aim_slowdown = SLOWDOWN_ADS_SMARTGUN
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = 1 //Begin with the safety on.
+	var/restriction_toggled = TRUE //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -355,6 +375,7 @@
 						/obj/item/attachable/bipod)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
@@ -363,7 +384,7 @@
 	ammo_secondary = GLOB.ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
@@ -495,7 +516,7 @@
 		grenades += new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay)
+	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
@@ -873,18 +894,21 @@
 
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
-/obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
-
-	var/turf/backblast_loc = get_turf(get_step(user, turn(user.dir, 180)))
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/item/projectile/projectile_to_fire, atom/target)
+	. = ..()
+	var/turf/blast_source = get_turf(src)
+	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
+	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
 	smoke.set_up(0, backblast_loc)
 	smoke.start()
-	for(var/mob/living/carbon/C in backblast_loc)
-		if(!C.lying) //Have to be standing up to get the fun stuff
-			C.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-			C.stun(4) //For good measure
-			C.emote("pain")
+	for(var/mob/living/carbon/victim in backblast_loc)
+		if(victim.lying || victim.stat == DEAD) //Have to be standing up to get the fun stuff
+			continue
+		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
+		victim.knock_down(3) //For good measure
+		victim.emote("pain")
+		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
-		. = ..()
 
 /obj/item/weapon/gun/launcher/rocket/get_ammo_type()
 	if(!ammo)
@@ -930,7 +954,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
@@ -995,18 +1019,21 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE)
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-/obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
-	if(user.action_busy)
-		return
-	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(do_after(user, 5, TRUE, src, BUSY_ICON_DANGER)) //Half second wind up
-		return ..()
+
+obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
+		if(user.action_busy)
+			return
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+			return
+	return ..()
 
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -1018,7 +1045,8 @@
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 

@@ -1,4 +1,5 @@
 /obj/structure/resin
+	hit_sound = "alien_resin_break"
 	layer = RESIN_STRUCTURE_LAYER
 	resistance_flags = UNACIDABLE
 
@@ -16,23 +17,11 @@
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
 
-/obj/structure/resin/bullet_act(obj/item/projectile/proj)
-	take_damage(proj.damage * 0.5)
-	return TRUE
-
-/obj/structure/resin/attackby(obj/item/hitting_item, mob/user, params)
-	if(hitting_item.flags_item & NOBLUDGEON)
-		return attack_hand(user)
-	. = ..()
-	user.do_attack_animation(src)
-	playsound(src, "alien_resin_break", 25)
-	take_damage(hitting_item.force * 0.5)
-
 /obj/structure/resin/flamer_fire_act()
-	take_damage(10)
+	take_damage(10, BURN, "fire")
 
 /obj/structure/resin/fire_act()
-	take_damage(10)
+	take_damage(10, BURN, "fire")
 
 
 /obj/structure/resin/silo
@@ -50,6 +39,11 @@
 
 /obj/structure/resin/silo/Initialize()
 	. = ..()
+
+	var/static/number = 1
+	name = "[name] [number]"
+	number++
+
 	GLOB.xeno_resin_silos += src
 	center_turf = get_step(src, NORTHEAST)
 	if(!istype(center_turf))
@@ -92,15 +86,3 @@
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	silos += src
-
-/obj/structure/resin/silo/take_damage(damage)
-	if(!damage || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		return
-
-	obj_integrity = max(0, obj_integrity - damage)
-
-	if(obj_integrity <= 0)
-		playsound(src, 'sound/effects/alien_egg_burst.ogg', 35)
-		qdel(src)
-	else
-		update_icon()

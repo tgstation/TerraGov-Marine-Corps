@@ -133,7 +133,6 @@
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")

@@ -19,9 +19,9 @@
 	icon_state = "FC"
 	job = /datum/job/command/fieldcommander
 
-/obj/effect/landmark/start/marine/crash/intelligenceofficer
+/obj/effect/landmark/start/marine/crash/staffofficer
 	icon_state = "IO"
-	job = /datum/job/command/intelligenceofficer
+	job = /datum/job/command/staffofficer
 
 /obj/effect/landmark/start/marine/crash/pilotofficer
 	icon_state = "PO"
@@ -47,13 +47,9 @@
 	icon_state = "RO"
 	job = /datum/job/requisitions/officer
 
-/obj/effect/landmark/start/marine/crash/maintenancetech
-	icon_state = "SE"
+/obj/effect/landmark/start/marine/crash/shiptech
+	icon_state = "ST"
 	job = /datum/job/engineering/tech
-
-/obj/effect/landmark/start/marine/crash/cargotechnician
-	icon_state = "CT"
-	job = /datum/job/requisitions/tech
 
 /obj/effect/landmark/start/marine/crash/cmo
 	icon_state = "CMO"

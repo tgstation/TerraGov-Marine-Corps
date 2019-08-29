@@ -218,7 +218,7 @@ SUBSYSTEM_DEF(vote)
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, 'sound/ambience/alarm4.ogg')
+		SEND_SOUND(world, sound('sound/ambience/alarm4.ogg', channel = CHANNEL_NOTIFY))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(vote)
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 
 		var/avr = CONFIG_GET(flag/allow_vote_restart)
-		if(avr)
+		if(avr || admin)
 			. += "<a href='?src=[REF(src)];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
@@ -267,14 +267,16 @@ SUBSYSTEM_DEF(vote)
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
-		if(avm)
+		if(avm || admin)
 			. += "<a href='?src=[REF(src)];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
+
 		if(admin)
 			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
-		. += "</li>"
+		. += "</li><hr>"
+
 		if(admin)
 			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
 			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
@@ -340,7 +342,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote
 	name = "Vote!"
-	icon_icon_state = "vote"
+	action_icon_state = "vote"
 
 /datum/action/innate/vote/give_action(mob/M)
 	. = ..()

@@ -497,7 +497,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	
 /datum/asset/simple/logo
 	assets = list(
-		"ntlogo.png"	= 'html/ntlogo.png'
+		"ntlogo.png"	= 'html/ntlogo.png',
+		"tgmclogo.png"	= 'html/tgmclogo.png'
 	)
 
 

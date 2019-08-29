@@ -24,7 +24,7 @@
 
 /datum/job/command/captain/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"As the captain of the [CONFIG_GET(string/ship_name)] you are held by higher standard and are expected to act competently.
+	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
@@ -92,30 +92,30 @@ Make the TGMC proud!"})
 	suit_store = /obj/item/weapon/gun/smartgun
 
 
-//Intelligence Officer
-/datum/job/command/intelligenceofficer
-	title = INTELLIGENCE_OFFICER
+//Staff Officer
+/datum/job/command/staffofficer
+	title = STAFF_OFFICER
 	paygrade = "O4"
-	comm_title = "IO"
+	comm_title = "SO"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/SO
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	outfit = /datum/outfit/job/command/intelligenceofficer
+	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 
 
-/datum/job/command/intelligenceofficer/radio_help_message(mob/M)
+/datum/job/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
 
-/datum/outfit/job/command/intelligenceofficer
-	name = INTELLIGENCE_OFFICER
-	jobtype = /datum/job/command/intelligenceofficer
+/datum/outfit/job/command/staffofficer
+	name = STAFF_OFFICER
+	jobtype = /datum/job/command/staffofficer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/officer
@@ -343,32 +343,32 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 //Ship Engineer
 /datum/job/engineering/tech
-	title = SHIP_ENGINEER
-	comm_title = "SE"
+	title = SHIP_TECH
+	comm_title = "ST"
 	paygrade = "PO"
-	total_positions = 4
-	supervisors = "the chief ship engineer"
+	total_positions = 5
+	supervisors = "the chief ship engineer and the requisitions officer"
 	selection_color = "#fff5cc"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO)
-	skills_type = /datum/skills/MT
-	display_order = JOB_DISPLAY_ORDER_MAINTENANCE_TECH
+	skills_type = /datum/skills/ST
+	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/engineering/tech
 
 
 /datum/job/engineering/tech/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to make sure the ship is clean and the powergrid is operational.
-Start with the ship's engine, and don't forget radiation equipment."})
+	to_chat(M, {"Your job is to make sure the ship is operational, you should firstly focus on manning the
+requisitions line and later on to be ready to send supplies for marines who are groundside."})
 
 
 /datum/outfit/job/engineering/tech
-	name = SHIP_ENGINEER
+	name = SHIP_TECH
 	jobtype = /datum/job/engineering/tech
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
-	ears = /obj/item/radio/headset/mainship/mt
+	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
 	wear_suit = /obj/item/clothing/suit/storage/marine/MP
 	shoes = /obj/item/clothing/shoes/marine
@@ -426,45 +426,6 @@ A happy ship is a well-functioning ship."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-//Cargo Tech
-/datum/job/requisitions/tech
-	title = CARGO_TECHNICIAN
-	paygrade = "CMN"
-	comm_title = "CT"
-	total_positions = 2
-	supervisors = "the requisitions officer"
-	selection_color = "#BAAFD9"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/CT
-	display_order = JOB_DISPLAY_ORDER_CARGO_TECH
-	outfit = /datum/outfit/job/requisitions/tech
-
-
-/datum/job/requisitions/tech/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-Stay in your department when possible to ensure the marines have full access to the supplies they may require.
-Listen to the radio in case someone requests a supply drop via the overwatch system."})
-
-
-/datum/outfit/job/requisitions/tech
-	name = CARGO_TECHNICIAN
-	jobtype = /datum/job/requisitions/tech
-
-	id = /obj/item/card/id/silver
-	belt = /obj/item/clothing/tie/holster/m4a3
-	ears = /obj/item/radio/headset/mainship/ct
-	w_uniform = /obj/item/clothing/under/rank/cargotech
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
-	gloves = /obj/item/clothing/gloves/yellow
-	head = /obj/item/clothing/head/beanie
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/magazine/pistol/large/full
-	back = /obj/item/storage/backpack/marine/satchel
-
-
 /datum/job/medical
 	faction = "Marine"
 	exp_type_department = EXP_TYPE_MEDICAL
@@ -488,7 +449,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 /datum/job/medical/professor/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are the chief medical officer aboard the [CONFIG_GET(string/ship_name)], navy officer and supervisor to the medical department.
+	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."})
 
@@ -530,7 +491,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a military doctor stationed aboard the [CONFIG_GET(string/ship_name)].
+	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
 
@@ -652,20 +613,18 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(!H)
 		return FALSE
 
+	var/new_name
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
 			H.mind.cm_skills = new /datum/skills/early_synthetic
-		H.real_name = preference_source.prefs.synthetic_name
+		new_name = preference_source.prefs.synthetic_name
 
-	if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-		H.real_name = "David"
+	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
+		new_name = "David"
 		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
 
-	H.name = H.real_name
-
-	if(H.mind)
-		H.mind.name = H.real_name
+	H.fully_replace_character_name(H.name, new_name)
 
 	return ..()
 
@@ -708,8 +667,13 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	if(!length(GLOB.ai_spawn))
 		CRASH("attempted to spawn an AI with no landmark set")
 
+	if(!H.mind) //Could be a dummy.
+		return
+
 	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
 	H.mind.transfer_to(AI, TRUE)
+	if(preference_source?.prefs)
+		AI.fully_replace_character_name(AI.name, preference_source.prefs.ai_name)
 	qdel(H)
 
 

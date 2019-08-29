@@ -13,11 +13,6 @@
 	add_inherent_verbs()
 	add_abilities()
 
-	ENABLE_BITFIELD(sight, SEE_MOBS)
-	ENABLE_BITFIELD(sight, SEE_OBJS)
-	ENABLE_BITFIELD(sight, SEE_TURFS)
-	see_in_dark = XENO_NIGHTVISION_ENABLED
-
 	create_reagents(1000)
 	gender = NEUTER
 
@@ -269,7 +264,7 @@
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader. 
 		LL_dir.icon_state = "trackoff"
 		return
 
@@ -301,4 +296,4 @@
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	handle_afk_takeover()
+	addtimer(CALLBACK(src, .proc/handle_afk_takeover), 5 SECONDS)

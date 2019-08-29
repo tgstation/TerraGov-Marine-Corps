@@ -14,11 +14,11 @@
 		layer = PODDOOR_CLOSED_LAYER
 
 /obj/machinery/door/poddoor/shutters/open()
-	if(operating) //doors can still open when emag-disabled
+	if(operating)
 		return FALSE
 	if(!SSticker)
 		return FALSE
-	if(!operating) //in case of emag
+	if(!operating)
 		operating = TRUE
 	do_animate("opening")
 	icon_state = "shutter0"
@@ -31,7 +31,7 @@
 	layer = open_layer
 	set_opacity(FALSE)
 
-	if(operating) //emag again
+	if(operating)
 		operating = FALSE
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), 150)
@@ -109,14 +109,32 @@
 	icon_state = "shutter0"
 
 
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct
+	name = "Self Destruct Lockdown"
+	id = "sd_lockdown"
+	resistance_flags = RESIST_ALL
+
+
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint
+	name = "Checkpoint Shutters"
+
+
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/north
+	id = "northcheckpoint"
+
+
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south
+	id = "southcheckpoint"
+
+
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
@@ -125,7 +143,7 @@
 	name = "pressure shutters"
 	density = FALSE
 	opacity = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	icon_state = "shutter0"
 	open_layer = PODDOOR_CLOSED_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER

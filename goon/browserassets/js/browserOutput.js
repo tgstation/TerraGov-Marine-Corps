@@ -41,13 +41,10 @@ var opts = {
 	'highlightTerms': [],
 	'highlightLimit': 5,
 	'highlightColor': '#FFFF00', //The color of the highlighted message
-	'pingDisabled': false, //Has the user disabled the ping counter
 
 	//Ping display
-	'lastPang': 0, //Timestamp of the last response from the server.
-	'pangLimit': 35000,
-	'pingTime': 0, //Timestamp of when ping sent
-	'pongTime': 0, //Timestamp of when ping received
+	'lastPinged': 0, //Timestamp of the last response from the server.
+	'pingedLimit': 35000,
 	'noResponse': false, //Tracks the state of the previous ping request
 	'noResponseCount': 0, //How many failed pings?
 
@@ -251,7 +248,7 @@ function output(message, flag) {
 	}
 
 	if (flag !== 'internal')
-		opts.lastPang = Date.now();
+		opts.lastPinged = Date.now();
 
 	message = byondDecode(message).trim();
 
@@ -483,29 +480,15 @@ function handleClientData(ckey, ip, compid) {
 //Server calls this on ehjax response
 //Or, y'know, whenever really
 function ehjaxCallback(data) {
-	opts.lastPang = Date.now();
-	if (data == 'softPang') {
+	opts.lastPinged = Date.now();
+	if (data == 'ping') {
 		return;
-	} else if (data == 'pang') {
-		opts.pingCounter = 0; //reset
-		opts.pingTime = Date.now();
-		runByond('?_src_=chat&proc=ping');
-
-	} else if (data == 'pong') {
-		if (opts.pingDisabled) {return;}
-		opts.pongTime = Date.now();
-		var pingDuration = Math.ceil((opts.pongTime - opts.pingTime) / 2);
-		$('#pingMs').text(pingDuration+'ms');
-		pingDuration = Math.min(pingDuration, 255);
-		var red = pingDuration;
-		var green = 255 - pingDuration;
-		var blue = 0;
-		var hex = rgbToHex(red, green, blue);
-		$('#pingDot').css('color', '#'+hex);
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
+	} else if (data == 'shutdown') {
+		internalOutput('<div class="connectionClosed internal">The connection has been closed because the server is shutting down. See you next time!</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
 	} else {
@@ -685,7 +668,7 @@ $(function() {
 
 	//Hey look it's a controller loop!
 	setInterval(function() {
-		if (opts.lastPang + opts.pangLimit < Date.now() && !opts.restarting) { //Every pingLimit
+		if (opts.lastPinged + opts.pingedLimit < Date.now() && !opts.restarting) { //Every pingLimit
 				if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
 					opts.noResponse = true;
 					opts.noResponseCount++;
@@ -706,7 +689,6 @@ $(function() {
 	var savedConfig = {
 		'sfontSize': getCookie('fontsize'),
 		'slineHeight': getCookie('lineheight'),
-		'spingDisabled': getCookie('pingdisabled'),
 		'shighlightTerms': getCookie('highlightterms'),
 		'shighlightColor': getCookie('highlightcolor'),
 		'smusicVolume': getCookie('musicVolume'),
@@ -720,13 +702,6 @@ $(function() {
 	if (savedConfig.slineHeight) {
 		$("body").css('line-height', savedConfig.slineHeight);
 		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.slineHeight+'</span>', 'internal');
-	}
-	if (savedConfig.spingDisabled) {
-		if (savedConfig.spingDisabled == 'true') {
-			opts.pingDisabled = true;
-			$('#ping').hide();
-		}
-		internalOutput('<span class="internal boldnshit">Loaded ping display of: '+(opts.pingDisabled ? 'hidden' : 'visible')+'</span>', 'internal');
 	}
 	if (savedConfig.shighlightTerms) {
 		var savedTerms = $.parseJSON(savedConfig.shighlightTerms);
@@ -982,17 +957,6 @@ $(function() {
 		$("body").css({'line-height': lineheightvar});
 		setCookie('lineheight', lineheightvar, 365);
 		internalOutput('<span class="internal boldnshit">Line height set to '+lineheightvar+'</span>', 'internal');
-	});
-
-	$('#togglePing').click(function(e) {
-		if (opts.pingDisabled) {
-			$('#ping').slideDown('fast');
-			opts.pingDisabled = false;
-		} else {
-			$('#ping').slideUp('fast');
-			opts.pingDisabled = true;
-		}
-		setCookie('pingdisabled', (opts.pingDisabled ? 'true' : 'false'), 365);
 	});
 
 	$('#saveLog').click(function(e) {

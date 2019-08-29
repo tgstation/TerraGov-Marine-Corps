@@ -304,11 +304,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			handle_interface(master.loc)
 
 
-/obj/item/radio/headset/mainship/mt
-	name = "engineering radio headset"
+/obj/item/radio/headset/mainship/st
+	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot = new /obj/item/encryptionkey/engi
-
+	keyslot = new /obj/item/encryptionkey/req	
+	keyslot2 = new /obj/item/encryptionkey/engi
 
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
@@ -495,10 +495,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = new /obj/item/encryptionkey/mcom
 
 
-/obj/item/radio/headset/distress/bears
-	name = "Iron Bear headset"
+/obj/item/radio/headset/distress/wolves
+	name = "Steel Wolves headset"
 	frequency = FREQ_CIV_GENERAL
-	keyslot = new /obj/item/encryptionkey/bears
+	keyslot = new /obj/item/encryptionkey/wolves
 
 
 /obj/item/radio/headset/distress/commando

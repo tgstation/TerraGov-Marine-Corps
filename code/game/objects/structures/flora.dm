@@ -14,26 +14,12 @@
 			if(prob(50))
 				qdel(src)
 
-/obj/structure/flora/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/structure/flora/update_icon()
-	return
 
 /obj/structure/flora/flamer_fire_act()
-	if(on_fire)
-		return
-	on_fire = TRUE
-	START_PROCESSING(SSobj, src)
+	take_damage(25, BURN, "fire")
 
-/obj/structure/flora/process()
-	if(obj_integrity <= 0)
-		qdel(src)
-	if(!on_fire)
-		STOP_PROCESSING(SSobj, src)
-	else
-		obj_integrity -= 25
+/obj/structure/flora/fire_act()
+	take_damage(25, BURN, "fire")
 
 //TREES
 
@@ -48,20 +34,20 @@
 
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			obj_integrity -= 500
-		if(2.0)
-			obj_integrity -= (rand(140, 300))
-		if(3.0)
-			obj_integrity -= (rand(50, 100))
+		if(1)
+			take_damage(500)
+		if(2)
+			take_damage(rand(140, 300))
+		if(3)
+			take_damage(rand(50, 100))
 	START_PROCESSING(SSobj, src)
-	return
 
-/obj/structure/flora/tree/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage * 0.5
-	. = ..()
-	START_PROCESSING(SSobj, src)
-	return TRUE
+
+/obj/structure/flora/tree/deconstruct(disassembled = TRUE)
+	density = FALSE
+	var/obj/structure/flora/stump/S = new(loc)
+	S.name = "[name] stump"
+	return ..()
 
 
 /obj/structure/flora/tree/attackby(obj/item/I, mob/user, params)
@@ -90,30 +76,13 @@
 	qdel(src)
 
 /obj/structure/flora/tree/flamer_fire_act()
-	if(on_fire == FALSE)
-		on_fire = TRUE
-		set_light(5)
-	START_PROCESSING(SSobj, src)
-	update_icon()
+	take_damage(5, BURN, "fire")
 
 
 /obj/structure/flora/tree/update_icon()
 	overlays.Cut()
 	if(on_fire)
 		overlays += "fire"
-
-/obj/structure/flora/tree/process()
-	if(obj_integrity <= 0)
-		density = FALSE
-		var/obj/structure/flora/stump/S = new(loc)
-		S.name = "[name] stump"
-		STOP_PROCESSING(SSobj, src)
-		qdel(src)
-	if(!on_fire)
-		STOP_PROCESSING(SSobj, src)
-	else
-		obj_integrity -= 5
-	return ..()
 
 /obj/structure/flora/stump
 	name = "stump"
@@ -122,9 +91,6 @@
 	icon_state = "tree_stump"
 	density = FALSE
 	pixel_x = -16
-
-/obj/structure/flora/stump/flamer_fire_act()
-	return
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"

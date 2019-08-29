@@ -19,6 +19,16 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/door_control/ai
+	name = "AI Lockdown"
+
+/obj/machinery/door_control/ai/exterior
+	name = "AI Exterior Lockdown"
+	id = "ailockdownexterior"
+
+/obj/machinery/door_control/ai/interior
+	name = "AI Interior Lockdown"
+	id = "ailockdowninterior"
 
 /obj/machinery/door_control/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
@@ -28,12 +38,6 @@
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
-
-	else if(istype(I, /obj/item/card/emag))
-		req_access = list()
-		req_one_access = list()
-		playsound(loc, "sparks", 25, 1)
-
 	else 
 		return attack_hand(user)
 

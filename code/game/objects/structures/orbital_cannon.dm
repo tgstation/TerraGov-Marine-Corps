@@ -38,13 +38,6 @@
 	tray.linked_ob = src
 
 
-
-
-/obj/structure/orbital_cannon/bullet_act()
-	return
-
-
-
 /obj/structure/orbital_cannon/update_icon()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
@@ -205,8 +198,9 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
@@ -252,9 +246,6 @@
 		linked_ob.tray = null
 		linked_ob = null
 	. = ..()
-
-/obj/structure/orbital_tray/bullet_act()
-	return
 
 
 /obj/structure/orbital_tray/update_icon()
@@ -435,9 +426,6 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-/obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
-
 
 /obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
 	. = ..()
@@ -557,7 +545,3 @@
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
-
-
-/obj/structure/ship_rail_gun/bullet_act()
-	return

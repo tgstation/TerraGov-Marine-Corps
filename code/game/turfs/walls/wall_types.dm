@@ -7,8 +7,7 @@
 	icon_state = "testwall0"
 	walltype = "testwall"
 
-	damage = 0
-	damage_cap = 3000 //Wall will break down to girders if damage reaches this point
+	max_integrity = 3000 //Wall will break down to girders if damage reaches this point
 
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
@@ -117,7 +116,7 @@
 	icon_state = "sulaco0"
 	hull = 0 //Can't be deconstructed
 
-	damage_cap = 3000
+	max_integrity = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 	walltype = "sulaco" //Changes all the sprites and icons.
 
@@ -359,7 +358,7 @@
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
 	walltype = "resin"
-	damage_cap = 200
+	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
 
@@ -373,7 +372,7 @@
 	new /obj/effect/alien/weeds(.)
 
 /turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50)
+	take_damage(50, BURN, "fire")
 
 /turf/closed/wall/resin/proc/thicken()
 	ChangeTurf(/turf/closed/wall/resin/thick)
@@ -382,7 +381,7 @@
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
 	desc = "Weird slime solidified into a thick wall."
-	damage_cap = 300
+	max_integrity = 300
 	icon_state = "thickresin0"
 	walltype = "thickresin"
 
@@ -394,7 +393,7 @@
 	desc = "Weird slime translucent enough to let light pass through."
 	icon_state = "membrane0"
 	walltype = "membrane"
-	damage_cap = 120
+	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
 
@@ -405,15 +404,11 @@
 /turf/closed/wall/resin/membrane/thick
 	name = "thick resin membrane"
 	desc = "Weird thick slime just translucent enough to let light pass through."
-	damage_cap = 240
+	max_integrity = 240
 	icon_state = "thickmembrane0"
 	walltype = "thickmembrane"
 	alpha = 210
 
-/turf/closed/wall/resin/bullet_act(obj/item/projectile/Proj)
-	take_damage(Proj.damage*0.5)
-	..()
-	return TRUE
 
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
@@ -425,46 +420,17 @@
 			take_damage(rand(50, 100))
 
 
-/turf/closed/wall/resin/hitby(AM as mob|obj)
-	..()
-	if(istype(AM,/mob/living/carbon/xenomorph))
-		return
-	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>", \
-	"<span class='danger'>You hit \the [src].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else
-		tforce = AM:throwforce
-	playsound(src, "alien_resin_break", 25)
-	take_damage(max(0, damage_cap - tforce))
-
-
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M)) //Larvae can't do shit
-		return 0
 	M.do_attack_animation(src)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
-	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
-
-
-/turf/closed/wall/resin/attack_animal(mob/living/M)
-	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
-	"<span class='danger'>You tear \the [name].</span>")
-	playsound(src, "alien_resin_break", 25)
-	M.do_attack_animation(src)
-	take_damage(40)
+	take_damage(M.melee_damage_upper + 50) //Beef up the damage a bit
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
 	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 	return TRUE
-
-
-/turf/closed/wall/resin/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
