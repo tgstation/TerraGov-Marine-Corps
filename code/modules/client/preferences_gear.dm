@@ -36,8 +36,8 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	slot = SLOT_HEAD
 
 
-/datum/gear/beret_green
-	display_name = "TGMC beret (green)"
+/datum/gear/beret
+	display_name = "TGMC beret"
 	path = /obj/item/clothing/head/tgmcberet
 	cost = 3
 	slot = SLOT_HEAD
