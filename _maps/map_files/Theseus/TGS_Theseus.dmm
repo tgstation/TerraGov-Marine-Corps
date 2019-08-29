@@ -11694,6 +11694,12 @@
 	icon_state = "ai_floors"
 	},
 /area/mainship/command/airoom)
+"aAq" = (
+/obj/machinery/door/poddoor/mainship/umbilical/north{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical)
 "aAr" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -12688,6 +12694,23 @@
 	icon_state = "ai_floors"
 	},
 /area/mainship/command/airoom)
+"aCg" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/mainship/umbilical/north{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical)
+"aCh" = (
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south,
+/turf/open/floor/mainship{
+	icon_state = "redfull"
+	},
+/area/mainship/hallways/port_hallway)
 "aCi" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship{
@@ -20640,13 +20663,25 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "aTe" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "n_umbilical";
-	name = "\improper Umbillical Airlock"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south,
+/turf/open/floor/mainship{
+	icon_state = "redfull"
+	},
+/area/mainship/hallways/port_hallway)
 "aTf" = (
 /obj/structure/table/mainship,
 /obj/item/camera,
@@ -20659,18 +20694,11 @@
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aTh" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "n_umbilical";
-	name = "\improper Umbillical Airlock"
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
+/area/mainship/hallways/port_umbilical)
 "aTi" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -20685,6 +20713,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"aTk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_umbilical)
 "aTl" = (
 /obj/machinery/flasher{
 	id = "Cell 2";
@@ -20956,27 +20995,6 @@
 	dir = 8
 	},
 /area/mainship/shipboard/ex_firing_range)
-"aTN" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "s_umbilical";
-	name = "\improper Umbillical Airlock"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical)
-"aTO" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "s_umbilical";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_umbilical)
 "aTP" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -26069,11 +26087,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "bjj" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/north,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -26604,11 +26618,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "northcheckpoint";
-	name = "\improper Checkpoint Shutters"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/north,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -28743,9 +28753,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
 "bpZ" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/mainship/indestructible,
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
 "bqa" = (
@@ -37391,16 +37399,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/port_hallway)
-"bPD" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters"
-	},
-/turf/open/floor/mainship{
-	icon_state = "redfull"
-	},
-/area/mainship/hallways/port_hallway)
 "bPG" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/mono,
@@ -37806,30 +37804,6 @@
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
-	},
-/area/mainship/hallways/port_hallway)
-"bQp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/mainship{
-	icon_state = "redfull"
 	},
 /area/mainship/hallways/port_hallway)
 "bQq" = (
@@ -45844,17 +45818,6 @@
 	icon_state = "red"
 	},
 /area/mainship/living/cafeteria_starboard)
-"ggx" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/port_point_defense)
 "gjm" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -46013,6 +45976,17 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
+"hCj" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_point_defense)
 "hFS" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
@@ -46071,6 +46045,17 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_garden)
+"hTO" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/starboard_point_defense)
 "hVB" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -46086,17 +46071,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/officer_rnr)
-"hYf" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_point_defense)
 "ifF" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/plating/plating_catwalk,
@@ -46166,12 +46140,6 @@
 	icon_state = "orange"
 	},
 /area/mainship/living/starboard_emb)
-"iEC" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/port_point_defense)
 "iGN" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -46546,11 +46514,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -46907,13 +46871,6 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
-"oap" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/port_point_defense)
 "olm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
@@ -46963,6 +46920,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
+"oxS" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/port_point_defense)
 "oye" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -47009,6 +46977,16 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
+"oMg" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship{
+	icon_state = "ai_floors"
+	},
+/area/mainship/command/airoom)
 "oTf" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable{
@@ -47063,17 +47041,13 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/lower_medical)
-"pne" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+"pkU" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/camera/autoname/mainship{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/starboard_point_defense)
+/area/mainship/shipboard/port_point_defense)
 "poE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -47215,12 +47189,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
-"qdh" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/port_point_defense)
 "qdw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47384,11 +47352,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/bravo)
 "rGG" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -47398,6 +47362,12 @@
 /obj/item/clothing/glasses/mgoggles,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
+"rJq" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/port_point_defense)
 "rTf" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
@@ -47472,12 +47442,6 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/self_destruct)
-"sBM" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/starboard_point_defense)
 "sJO" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -47538,16 +47502,6 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
-"sXo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
-	},
-/area/mainship/command/airoom)
 "sXq" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship{
@@ -47586,6 +47540,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"twa" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/port_point_defense)
 "tEQ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47630,11 +47590,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -47682,6 +47638,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
+"unT" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/starboard_point_defense)
 "uwI" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship{
@@ -48185,6 +48152,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
+"xVX" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/shipboard/starboard_point_defense)
 "xXw" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -48241,17 +48214,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"ylX" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/starboard_point_defense)
 
 (1,1,1) = {"
 aaa
@@ -60760,9 +60722,9 @@ aaa
 aaa
 aaa
 aaa
-aTe
+aAq
 bab
-aTe
+aAq
 bby
 bcM
 bcM
@@ -60804,9 +60766,9 @@ bUO
 bUO
 bUO
 bYm
-aTN
+aTh
 caf
-aTN
+aTh
 aaa
 aaa
 aaa
@@ -61017,9 +60979,9 @@ aaa
 aaa
 aaa
 aaa
-aTe
+aAq
 bab
-aTe
+aAq
 bbz
 bcN
 bcN
@@ -61061,9 +61023,9 @@ bRZ
 bRZ
 bRZ
 bYn
-aTN
+aTh
 caf
-aTN
+aTh
 aaa
 aaa
 aaa
@@ -61274,9 +61236,9 @@ aaa
 aaa
 aaa
 aaa
-aTe
+aAq
 bab
-aTe
+aAq
 bbz
 bcN
 bcN
@@ -61318,9 +61280,9 @@ bRZ
 bRZ
 bRZ
 bYn
-aTN
+aTh
 caf
-aTN
+aTh
 aaa
 aaa
 aaa
@@ -61531,9 +61493,9 @@ aaa
 aaa
 aaa
 aaa
-aTe
+aAq
 bac
-aTh
+aCg
 bbA
 bcO
 bcO
@@ -61575,9 +61537,9 @@ bUP
 bUP
 bUP
 bYo
-aTO
+aTk
 cag
-aTN
+aTh
 aaa
 aaa
 aaa
@@ -81354,9 +81316,9 @@ bKL
 bMp
 bNQ
 blS
-bPD
-bQp
-bPD
+aCh
+aTe
+aCh
 bRF
 aDl
 bUh
@@ -86871,7 +86833,7 @@ aoH
 apS
 awK
 aCe
-sXo
+oMg
 aPf
 awK
 apS
@@ -93646,13 +93608,13 @@ aVv
 aQX
 aRT
 aRT
-ylX
+hCj
 aQX
 aRT
 aVH
 aVS
 aVT
-sBM
+xVX
 aWi
 akn
 aWw
@@ -93706,13 +93668,13 @@ cbA
 cdI
 aGL
 ceN
-oap
+pkU
 ciT
 cfj
 ciU
 ciV
 ciW
-ggx
+oxS
 ciV
 ciV
 ciW
@@ -96216,13 +96178,13 @@ aVA
 aRz
 aRT
 aRT
-hYf
+hTO
 aRz
 aRT
 aVM
 aVM
 aRT
-pne
+unT
 aRz
 aRT
 aRT
@@ -96276,13 +96238,13 @@ cdH
 ces
 ces
 ceO
-iEC
+twa
 ces
 cbA
 cbA
 ces
 ceO
-qdh
+rJq
 ces
 ces
 ceO
