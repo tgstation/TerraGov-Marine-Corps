@@ -180,7 +180,7 @@
 /obj/item/clothing/under/marine/veteran/wolves
 	name = "\improper Steel Wolves uniform"
 	desc = "A uniform worn by Steel Wolves mercenaries in the service of Mother Russia. Smells a little like an actual bear."
-	icon_state = "bear_jumpsuit"
+	icon_state = "wolf_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
