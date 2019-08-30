@@ -406,6 +406,30 @@
 	var/build_state = BARRICADE_METAL_FIRM
 
 
+/obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
+		if(obj_integrity > max_integrity * 0.3)
+			return
+
+		if(metal_sheets.get_amount() < 2)
+			to_chat(user, "<span class='warning'>You need two metal sheets to repair the base of [src].</span>")
+			return
+
+		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!metal_sheets.use(2))
+			return
+
+		repair_damage(max_integrity * 0.3)
+		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+
+
 /obj/structure/barricade/metal/examine(mob/user)
 	. = ..()
 	switch(build_state)
@@ -432,7 +456,7 @@
 			return TRUE
 
 	if(obj_integrity <= max_integrity * 0.3)
-		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
+		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more metal plates to be repaired.</span>")
 		return TRUE
 
 	if(obj_integrity == max_integrity)
@@ -445,7 +469,6 @@
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
-
 
 	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 	"<span class='notice'>You begin repairing the damage to [src].</span>")
@@ -651,10 +674,26 @@
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+	if(istype(I, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
+		if(obj_integrity > max_integrity * 0.3)
 			return
+
+		if(plasteel_sheets.get_amount() < 2)
+			to_chat(user, "<span class='warning'>You need two plasteel sheets to repair the base of [src].</span>")
+			return
+
+		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!plasteel_sheets.use(2))
+			return
+
+		repair_damage(max_integrity * 0.3)
+		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+		return
 
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
@@ -671,7 +710,7 @@
 				return
 
 		if(obj_integrity <= max_integrity * 0.3)
-			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
+			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more plasteel plates to be repaired.</span>")
 			return
 
 		if(obj_integrity == max_integrity)
