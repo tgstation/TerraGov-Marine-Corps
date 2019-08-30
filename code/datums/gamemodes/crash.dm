@@ -170,6 +170,7 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
@@ -393,6 +394,10 @@
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
+/datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/area_name = get_area_name(nuke)
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
 
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
