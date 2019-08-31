@@ -1,7 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Girders reworked. Wall construction formula tweaked. Marines can build reinforced walls now."
-  - tweak: "Structure hitchance tweaked. The direction they are facing matters once again (barricades, flipped tables). Even unflipped tables and window frames have a chance, though lower, to stop bullets. Accuracy modifiers, distance between shooter and obstacle, and effective accuracy range of the bullet all affect it."
-  - bugfix: "Windoors no longer block lasers."
-  - rscadd: "You can now repair beat-up barricades you couldn't before by adding two sheets of metal/plasteel to them and then welding them."
