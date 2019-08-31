@@ -18,7 +18,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -68,7 +68,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/combatLifesaver/upp
-	ears = /obj/item/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP
@@ -120,7 +120,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/marine/upp/full
-	ears = /obj/item/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy
@@ -171,7 +171,7 @@
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/korovin/standard
-	ears = /obj/item/radio/headset/distress/bears
+	ears = /obj/item/radio/headset/distress/wolves
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/UPP/heavy

@@ -44,13 +44,9 @@
 	icon_state = "RO"
 	job = /datum/job/requisitions/officer
 
-/obj/effect/landmark/start/marine/maintenancetech
+/obj/effect/landmark/start/marine/shiptech
 	icon_state = "SE"
 	job = /datum/job/engineering/tech
-
-/obj/effect/landmark/start/marine/cargotechnician
-	icon_state = "CT"
-	job = /datum/job/requisitions/tech
 
 /obj/effect/landmark/start/marine/cmo
 	icon_state = "CMO"

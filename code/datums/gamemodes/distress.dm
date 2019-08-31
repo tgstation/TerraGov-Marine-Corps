@@ -116,8 +116,8 @@
 	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	var/xeno_track
-	var/human_track
+	var/sound/xeno_track
+	var/sound/human_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
 			xeno_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
@@ -132,8 +132,11 @@
 			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
 			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 		if(MODE_INFESTATION_DRAW_DEATH)
-			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') 
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
+
+	human_track.channel = CHANNEL_CINEMATIC
+	xeno_track.channel = CHANNEL_CINEMATIC
 
 	for(var/i in GLOB.xeno_mob_list)
 		var/mob/M = i
@@ -143,6 +146,7 @@
 		var/mob/M = i
 		SEND_SOUND(M, human_track)
 
+	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		if(ishuman(M.mind.current))
@@ -153,7 +157,7 @@
 			SEND_SOUND(M, xeno_track)
 			continue
 
-		SEND_SOUND(M, pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'))
+		SEND_SOUND(M, ghost_sound)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
@@ -474,7 +478,7 @@
 		output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
 	output += "<p><a href='byond://?src=[REF(NP)];lobby_choice=observe'>Observe</A></p>"
-	
+
 	output += append_player_votes_link(NP)
 
 	output += "</div>"

@@ -293,7 +293,7 @@
 		return
 
 	var/heard_midi = 0
-	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = CHANNEL_MIDI)
 	uploaded_sound.priority = 250
 
 
@@ -394,7 +394,7 @@
 			var/client/C = M.client
 			if(!C?.prefs)
 				continue
-			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
+			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
 				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 				if(show)
 					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
@@ -427,7 +427,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || C.chatOutput.broken)
+		if(!C?.chatOutput.loaded || !C.chatOutput.working)
 			continue	
 		C.chatOutput.stopMusic()
 
@@ -834,7 +834,7 @@
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
-		
+
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
@@ -1001,20 +1001,14 @@
 		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/list/possible_destinations
-	if(shuttle_id == SSshuttle.canterbury?.id)
-		possible_destinations = list("canterbury_dock")
-	else
-		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-
 	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
 	var/list/valid_docks = list()
 	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!possible_destinations.Find(S.id))
-			continue
+		if(istype(S, /obj/docking_port/stationary/transit))
+			continue // Don't use transit destinations
 		if(!D.check_dock(S, silent=TRUE))
 			continue
 		valid_docks["[S.name] ([i++])"] = S

@@ -331,6 +331,7 @@
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
 	return ..()
 
+
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)
 		return TRUE //Already set!
@@ -338,11 +339,16 @@
 		update_icon() //make sure the user can see the lack of ammo.
 		return FALSE //Out of ammo.
 
-	in_chamber = new /obj/item/projectile(loc) //New bullet!
-	in_chamber.generate_bullet(ammo)
-	return 1
+	create_bullet()
+	return TRUE
 
-/obj/machinery/m56d_hmg/proc/process_shot()
+
+/obj/machinery/m56d_hmg/proc/create_bullet()
+	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber.generate_bullet(ammo)
+
+
+/obj/machinery/m56d_hmg/proc/process_shot(mob/user)
 	set waitfor = 0
 
 	if(isnull(target))
@@ -356,7 +362,7 @@
 		if(rounds > 3)
 			for(var/i = 1 to 3)
 				is_bursting = 1
-				fire_shot()
+				fire_shot(user)
 				sleep(2)
 			last_fired = TRUE
 			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
@@ -364,13 +370,13 @@
 		is_bursting = 0
 
 	if(!burst_fire && target && !last_fired)
-		fire_shot()
+		fire_shot(user)
 	if(burst_fire_toggled)
 		burst_fire = !burst_fire
 		burst_fire_toggled = FALSE
 	target = null
 
-/obj/machinery/m56d_hmg/proc/fire_shot() //Bang Bang
+/obj/machinery/m56d_hmg/proc/fire_shot(mob/user) //Bang Bang
 	if(!ammo)
 		return //No ammo.
 	if(last_fired)
@@ -396,11 +402,11 @@
 
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
-			in_chamber.original = target
+			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
+			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
 				muzzle_flash(angle)
@@ -494,7 +500,7 @@
 			to_chat(user, "<span class='warning'><b>*click*</b></span>")
 			playsound(src, 'sound/weapons/guns/fire/empty.ogg', 25, 1, 5)
 		else
-			process_shot()
+			process_shot(user)
 		return TRUE
 
 	if(burst_fire_toggled)

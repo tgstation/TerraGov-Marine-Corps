@@ -489,10 +489,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 	if(!(flags_magazine & AMMUNITION_REFILLABLE) || current_rounds < 1)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
-		return ..()
+		return
 	if(create_handful(user))
 		update_icon()
-		return ..()
 
 /obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user, params)
 	if(deployed == FALSE)

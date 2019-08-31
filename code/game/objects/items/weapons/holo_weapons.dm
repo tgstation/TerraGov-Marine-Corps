@@ -12,7 +12,7 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOBLUDGEON|NOSHIELD
+	flags_item = NOBLUDGEON
 	var/active = 0
 	var/sword_color
 

@@ -103,9 +103,40 @@
 		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
+/obj/machinery/door/poddoor/mainship/ai
+	name = "\improper AI Core Shutters"
+	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ai/exterior
+	name = "\improper AI Core Shutters"
+	id = "ailockdownexterior"
+	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ai/interior
+	name = "\improper AI Core Shutters"	
+	id = "ailockdowninterior"
+	icon_state = "pdoor0"
+
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
 	return ..()
+
+
+/obj/machinery/door/poddoor/mainship/umbilical
+	name = "Umbilical Airlock"
+	resistance_flags = RESIST_ALL
+
+
+/obj/machinery/door/poddoor/mainship/umbilical/north
+	id = "n_umbilical"
+
+
+/obj/machinery/door/poddoor/mainship/umbilical/south
+	id = "s_umbilical"
+
+
+/obj/machinery/door/poddoor/mainship/indestructible
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/door/poddoor/timed_late

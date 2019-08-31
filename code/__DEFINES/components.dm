@@ -150,6 +150,11 @@
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
 
+// /obj/item/projectile signals
+#define COMSIG_PROJ_SCANTURF "proj_scanturf"
+	#define COMPONENT_PROJ_SCANTURF_TURFCLEAR (1<<0)
+	#define COMPONENT_PROJ_SCANTURF_TARGETFOUND (1<<1)
+
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)

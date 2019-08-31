@@ -198,8 +198,9 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 

@@ -552,7 +552,7 @@
 	dir = 4;
 	icon_state = "officechair_white"
 	},
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -4826,7 +4826,7 @@
 	},
 /area/mainship/squads/delta)
 "alk" = (
-/obj/effect/landmark/start/marine/cargotechnician,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},

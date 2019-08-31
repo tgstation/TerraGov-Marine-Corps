@@ -99,14 +99,18 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/Get_Angle(atom/start, atom/end)//For beams.
-	if(!start || !end) 
-		return FALSE
-	if(!start.z || !end.z) 
-		return FALSE //Atoms are not on turfs.
-	var/dy
-	var/dx
-	dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
-	dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
+	if(!start || !end)
+		CRASH("Get_Angle called for inexisting atoms: [isnull(start) ? "null" : start] to [isnull(end) ? "null" : end].")
+	if(!start.z)
+		start = get_turf(start)
+		if(!start)
+			CRASH("Get_Angle called for inexisting atoms (start): [isnull(start.loc) ? "null loc" : start.loc] [start] to [isnull(end.loc) ? "null loc" : end.loc] [end].") //Atoms are not on turfs.
+	if(!end.z)
+		end = get_turf(end)
+		if(!end)
+			CRASH("Get_Angle called for inexisting atoms (end): [isnull(start.loc) ? "null loc" : start.loc] [start] to [isnull(end.loc) ? "null loc" : end.loc] [end].") //Atoms are not on turfs.
+	var/dy = (32 * end.y + end.pixel_y) - (32 * start.y + start.pixel_y)
+	var/dx = (32 * end.x + end.pixel_x) - (32 * start.x + start.pixel_x)
 	if(!dy)
 		return (dx >= 0) ? 90 : 270
 	. = arctan(dx / dy)
@@ -114,6 +118,49 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		. += 180
 	else if(dx < 0)
 		. += 360
+
+
+/proc/Get_Pixel_Angle(dx, dy)//for getting the angle when animating something's pixel_x and pixel_y
+	var/da = (90 - ATAN2(dx, dy))
+	return (da >= 0 ? da : da + 360)
+
+
+/proc/get_angle_with_scatter(atom/start, atom/end, scatter, x_offset = 16, y_offset = 16)
+	var/end_apx
+	var/end_apy
+	if(isliving(end)) //Center mass.
+		end_apx = ABS_COOR(end.x)
+		end_apy = ABS_COOR(end.y)
+	else //Exact pixel.
+		end_apx = ABS_COOR_OFFSET(end.x, x_offset)
+		end_apy = ABS_COOR_OFFSET(end.y, y_offset)
+	scatter = ( (rand(0, min(scatter, 45))) * (prob(50) ? 1 : -1) ) //Up to 45 degrees deviation to either side.
+	. = round((90 - ATAN2(end_apx - ABS_COOR(start.x), end_apy - ABS_COOR(start.y))), 1) + scatter
+	if(. < 0)
+		. += 360
+	else if(. >= 360)
+		. -= 360
+
+
+/proc/angle_to_dir(angle)
+	switch(angle)
+		if(338 to 360, 0 to 22)
+			return NORTH
+		if(23 to 67)
+			return NORTHEAST
+		if(68 to 112)
+			return EAST
+		if(113 to 157)
+			return SOUTHEAST
+		if(158 to 202)
+			return SOUTH
+		if(203 to 247)
+			return SOUTHWEST
+		if(248 to 292)
+			return WEST
+		if(293 to 337)
+			return NORTHWEST
+		
 
 
 /proc/LinkBlocked(turf/A, turf/B)

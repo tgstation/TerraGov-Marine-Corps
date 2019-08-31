@@ -362,16 +362,11 @@
 	leadership = SKILL_LEVEL_TRAINED
 	powerloader = SKILL_LEVEL_TRAINED
 
-/datum/skillset/MT
-	name = SHIP_ENGINEER
+/datum/skillset/ST
+	name = SHIP_TECH
 	engineer = SKILL_LEVEL_EXPERT
 	construction = SKILL_LEVEL_EXPERT
 	powerloader = SKILL_LEVEL_EXPERT
-
-/datum/skillset/CT
-	name = CARGO_TECHNICIAN
-	construction = SKILL_LEVEL_NOVICE
-	powerloader = SKILL_LEVEL_PROFESSIONAL
 
 
 

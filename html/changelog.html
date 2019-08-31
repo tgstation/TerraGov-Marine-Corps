@@ -53,6 +53,45 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">28 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Xenos with devoured hosts can no longer cross the fog.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Marines lose when leaving without a nuke set on crash</li>
+			</ul>
+
+			<h2 class="date">26 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Reworked projectiles to use pixel movement (but not collisions, those are still tile-based), tracking the clicked pixel (unless a mob is clicked, in which case it will aim for the center of the target's tile for maximum accuracy, or unless scatter happens) in a straight line. For most bullets (rifles, SMGs, pistols, revolvers) the difference will be subtle at best, given how fast they are. It is more noticeable in tasers. For lasguns and faster projectiles the moving animation is outright disabled.</li>
+				<li class="bugfix">Fixed a speed inconsistency of old projectiles, which would make bullet speed lower if you clicked closer to your own sprite.</li>
+				<li class="balance">Tweaked accuracy to make the calculations a bit more sane. This may impact on it as reproducing the exact same behavior is hard, but it can be more easily adjusted now.</li>
+				<li class="balance">Once a sniper acquires a target through its laser market it will no longer need to click on it to aim it. Any shots while active will be auto-targeted to it.</li>
+				<li class="balance">Projectile speeds reduced all round the board. Xeno projectiles are slow, so you can see them traveling. Non-slug shotgun shells are slow and more visible. Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers are very fast, and even harder to see.</li>
+				<li class="balance">Scatter is now angle-based, so it doesn't matter if the target (where you click) is near or far. Maximum scatter is 45 degrees in either direction. Extra projectiles (additional buckshot and flechettes) have a smoother, less random scatter, firing in a cone.</li>
+				<li class="balance">Smartgun slowdown while wielded increased some to make it more defensive and less mobile..</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">(Crash Only) Xenos now start with the first tier already unlocked.</li>
+				<li class="balance">bullets are now able to pass the fog barriers</li>
+			</ul>
+
+			<h2 class="date">25 August 2019</h2>
+			<h3 class="author">Compadre Sonoliento(sprites) Kuro(Idea) MetroidLover(Editing and recoloring sprites) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">New B18 sprites with a darker look and glowing colored visor</li>
+			</ul>
+
+			<h2 class="date">23 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">M41A, lasgun, flechettes, smartgun and grenade launcher nerfed to different degrees to account for the xeno warding nerf.</li>
+			</ul>
+
 			<h2 class="date">22 August 2019</h2>
 			<h3 class="author">(Arachnidnexus) updated:</h3>
 			<ul class="changes bgimages16">
@@ -418,28 +457,6 @@
 			<h3 class="author">Rohesie (implementation) and Sleepy (sprites) updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="imageadd">Every job has gained an icon in the squad HUD, which should be default for everyone on the ship. Gold is for the ship crew (navy and attachées), silver for the deployed troops (marines). Blue is for command, light blue for medical, yellow for engineering, brown for requisitions, red for security.</li>
-			</ul>
-
-			<h2 class="date">21 June 2019</h2>
-			<h3 class="author">MoXuT0 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Speech bubble is now animated.</li>
-				<li class="imageadd">Pyro's backpack is now same color as other marine gear.</li>
-				<li class="tweak">Chief medical officer now spawns with unique hat. It also can be found in his closet.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Fixed the warrior grab move-resist delay, which was broken. To free yourself you need to move/resist twice and there's a cooldown of around 1 second between each. Button/macro and movement resists no longer stack.</li>
-				<li class="tweak">Resisting works a bit differently than usual, but nothing big. If you are bucklecuffed you'll try to remove the cuffs, and if you succeed you'll just be able to unbuckle as normal. If you are hand and legcuffed, you'll resist whatever was slapped first.</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">New observer actionss</li>
-				<li class="rscadd">Ghosts can now hold shift and use the mouse wheel to zoom in / out.</li>
-			</ul>
-			<h3 class="author">spookydonut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="admin">Removed legacy ban system support</li>
 			</ul>
 		</div>
 

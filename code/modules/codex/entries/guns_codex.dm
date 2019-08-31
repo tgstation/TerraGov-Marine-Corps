@@ -1,9 +1,3 @@
-/obj/item/weapon/gun
-	var/general_codex_key = "guns"
-
-/obj/item/weapon/gun/energy
-	general_codex_key = "energy weapons"
-
 /obj/item/weapon/gun/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)

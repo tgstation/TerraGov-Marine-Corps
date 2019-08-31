@@ -149,7 +149,7 @@
 
 
 /datum/wires/proc/cut(wire)
-	if(!HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
+	if(usr && !HAS_SKILL_LEVEL(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL))
 		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
 		var/fumbling_time = 20 * D_GET_SKILL_DIFF(usr, SKILL_ENGINEERING, SKILL_LEVEL_PROFESSIONAL)
