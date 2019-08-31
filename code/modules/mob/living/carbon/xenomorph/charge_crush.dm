@@ -292,8 +292,19 @@
 		charge_datum.do_stop_momentum()
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 	if(anchored)
-		charge_datum.speed_down(3) //Lose three turfs worth of speed.
-		return (CHARGE_SPEED(charge_datum) * 80) //Damage to inflict.
+		if(flags_atom & ON_BORDER)
+			if(dir == REVERSE_DIR(charger.dir))
+				. = (CHARGE_SPEED(charge_datum) * 80) //Damage to inflict.
+				charge_datum.speed_down(3)
+				return
+			else
+				. = (CHARGE_SPEED(charge_datum) * 160)
+				charge_datum.speed_down(1)
+				return
+		else
+			. = (CHARGE_SPEED(charge_datum) * 240)
+			charge_datum.speed_down(2)
+			return
 
 	if(buckled_mob)
 		unbuckle()
