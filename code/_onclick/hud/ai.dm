@@ -59,6 +59,30 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.toggle_camera_light()
 
+/obj/screen/ai/deploy_shell
+	name = "Deploy to shell"
+	icon_state = "to be added"
+
+/obj/screen/ai/deploy_shell/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	AI.switch_borg()
+
+/obj/screen/ai/reconnect_shell
+	name = "Reconnect to last shell"
+	icon_state = "to be added"
+
+/obj/screen/ai/reconnect_shell/Click()
+	. = ..()
+	if(.)
+		return
+	var/mob/living/silicon/ai/AI = usr
+	if(AI.lastControlled)
+		AI.startControlling(AI.lastControlled)
+	else
+		to_chat(AI, "<span class='warning'>Cannot reconnect to last used shell, there is none.</span>")
 
 /obj/screen/ai/multicam
 	name = "Multicamera Mode"
@@ -85,6 +109,8 @@
 	var/mob/living/silicon/ai/AI = usr
 	AI.drop_new_multicam()
 
+/datum/hud/ai
+	var/list/
 
 /datum/hud/ai/New(mob/owner, ui_style, ui_color, ui_alpha = 230)
 	. = ..()
@@ -110,6 +136,16 @@
 	using.screen_loc = ui_ai_camera_light
 	static_inventory += using
 
+//Deploy shell
+	using = new /obj/screen/ai/deploy_shell()
+	using.screen_loc = ui_ai_deploy_shell
+	static_inventory += using
+
+//Reconnect to shell
+	using = new /obj/screen/ai/reconnect_shell()
+	using.screen_loc = ui_ai_reconnect_shell
+	static_inventory += using
+
 //Multicamera mode
 	using = new /obj/screen/ai/multicam()
 	using.screen_loc = ui_ai_multicam
@@ -119,3 +155,12 @@
 	using = new /obj/screen/ai/add_multicam()
 	using.screen_loc = ui_ai_add_multicam
 	static_inventory += using
+
+/datum/hud/ai/show_hud(version = 0, mob/viewmob)
+	. = ..()
+	if(!.)
+		return
+	var/mob/screenmob = viewmob || mymob
+	var/mob/living/silicon/ai/AI = screenmob
+
+	message_admins("[hud_version]")

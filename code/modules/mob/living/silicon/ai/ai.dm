@@ -96,6 +96,7 @@
 
 /mob/living/silicon/ai/Topic(href, href_list)
 	. = ..()
+	message_admins("Topic [.]")
 	if(.)
 		return
 
@@ -103,9 +104,11 @@
 		return
 
 	if(href_list["switchcamera"])
+		message_admins("Topic: switchcamera")
 		switchCamera(locate(href_list["switchcamera"]) in GLOB.cameranet.cameras)
 
 	else if(href_list["track"])
+		message_admins("Topic: track")
 		var/string = href_list["track"]
 		trackable_mobs()
 		var/list/trackeable = list()
@@ -125,19 +128,18 @@
 			
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
-	message_admins("switchCamera [controlling]")
 	if(QDELETED(C))
 		return FALSE
 
 	if(!tracking)
 		cameraFollow = null
 
+	if(controlling)
+		stopControlling("<span class='notice'>Disconnecting from shell, switching to camera.</span>")
+
 	if(QDELETED(eyeobj))
 		view_core()
 		return
-
-	if(controlling)
-		stopControlling(lastControlled)
 
 	eyeobj.setLoc(get_turf(C))
 	return TRUE
@@ -247,6 +249,7 @@
 
 
 /mob/living/silicon/ai/canUseTopic(atom/movable/AM, proximity, dexterity)
+	message_admins("canUseTopic")
 	if(control_disabled || incapacitated())
 		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
 		return FALSE
@@ -278,7 +281,7 @@
 	reset_perspective(borg)
 	borg.startControl(src)
 
-/mob/living/silicon/ai/proc/stopControlling(var/message = null)
+/mob/living/silicon/ai/proc/stopControlling(message = null)
 	if(!lastControlled || !controlling || !remote_control)
 		return
 	if(message)

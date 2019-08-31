@@ -161,13 +161,15 @@
 
 // Return to the Core.
 /mob/living/silicon/ai/proc/view_core()
-	message_admins("view_core()")
 	if(istype(current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = current
 		H.clear_holo(src)
 	else
 		current = null
 	cameraFollow = null
+
+	if(controlling)
+		stopControlling("<span class='notice'>Disconnecting from shell, returning to AI core.</span>")
 
 	unset_interaction()
 
