@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(ai)
 
 	var/prob_sidestep_melee = 25 //Probability of a xeno side stepping while in melee every time its suppose to move
 
-	var/prob_melee_slash = 0.5 //Default makes attacks that require prob() succeed 1/2th as often, good for stuff
+	var/prob_melee_slash_multiplier = 0.5 //Default makes attacks that require prob() succeed 1/2th as often, good for stuff
 
 	var/prioritize_nodes_with_enemies = FALSE //If xenos will beeline to nodes with seen enemies
 
@@ -28,11 +28,9 @@ SUBSYSTEM_DEF(ai)
 /datum/controller/subsystem/ai/fire(resume = FALSE)
 	if(!resume)
 		current_run = aidatums.Copy()
-	while(current_run.len)
-		var/datum/ai_behavior/aidatum = current_run[current_run.len]
-		if(!aidatum || QDELETED(aidatum))
-			aidatums -= aidatum
-			qdel(aidatum)
+	while(length(current_run))
+		var/datum/ai_behavior/aidatum = current_run[length(current_run)]
+		if(QDELETED(aidatum))
 			current_run.len--
 			continue
 		aidatum.Process()

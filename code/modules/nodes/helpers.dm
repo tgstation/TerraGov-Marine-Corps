@@ -3,12 +3,6 @@
 
 GLOBAL_LIST_EMPTY(allnodes)
 
-//If the input dir is diagonal, returns TRUE, otherwise FALSE
-/proc/IsDiagonal(direct)
-	if(direct in GLOB.cardinals)
-		return FALSE
-	return TRUE
-
 //Converts input direction to a list of either two same directions if the input is cardinal
 //Otherwise will return the two directions that make up the diagonal
 /proc/DiagonalToCardinal(direct)

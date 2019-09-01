@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(nodes_with_enemies)
 	alpha = 255
 
 /obj/effect/AINode/Initialize() //Add ourselve to the global list of nodes
-	..()
+	. = ..()
 	srcturf = loc
 	datumnode.parentnode = src
 	GLOB.allnodes += src

@@ -26,7 +26,7 @@
 	..()
 	if(SSai.is_pacifist || (!SSai.is_suicidal && (parent_ai.parentmob.health < (parent_ai.parentmob.maxHealth * SSai.retreat_health_threshold))))
 		weights = list(ENEMY_PRESENCE = -200, DANGER_SCALE = -1)
-	if(weights && weights.len)
+	if(length(weights))
 		next_node = parent_ai.current_node.GetBestAdjNode(weights)
 	else
 		next_node = pick(shuffle(parent_ai.current_node.datumnode.adjacent_nodes)) //Pick some random nodes
@@ -59,7 +59,7 @@
 		return
 
 	var/list/potential_enemies = cheap_get_humans_near(parent_ai.parentmob, 10)
-	if(potential_enemies.len)
+	if(length(potential_enemies))
 		if(get_dist(parent_ai.parentmob, parent_ai.current_node) < get_dist(parent_ai.parentmob, next_node))
 			parent_ai.current_node.add_to_notable_nodes(ENEMY_PRESENCE)
 			parent_ai.current_node.datumnode.set_weight(ENEMY_PRESENCE, potential_enemies.len)
@@ -106,7 +106,7 @@
 	parent_ai.current_node = next_node
 	next_node = get_node_towards(parent_ai.current_node, destination_node)
 	if(!next_node) //If get_node_towards doesn't have a valid path, then let's tell ma44 because he still doesn't have dijkstra
-		to_chat(world, "[parent_ai.parentmob.name] failed to get a new path at node [AREACOORD(parent_ai.current_node)] moving to [AREACOORD(destination_node)]")
+		stack_trace("[parent_ai.parentmob.name] failed to get a new path at node [AREACOORD(parent_ai.current_node)] moving to [AREACOORD(destination_node)]")
 		OnComplete()
 
 /datum/action_state/hunt_and_destroy //We look for nearby humans and hunt, if it died, look for more
@@ -154,7 +154,7 @@
 
 	if(!atomtowalkto)
 		var/list/potential_enemies = cheap_get_humans_near(parent_ai.parentmob, 10)
-		if(potential_enemies.len)
+		if(length(potential_enemies))
 			atomtowalkto = pick(shuffle(potential_enemies))
 		else
 			parent_ai.action_completed(NO_ENEMIES_FOUND) //No enemies located, back to scouting

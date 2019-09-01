@@ -25,10 +25,9 @@ SUBSYSTEM_DEF(ai_movement)
 /datum/controller/subsystem/ai_movement/fire(resumed = 0)
 
 	if(!resumed)
-		src.currentrun = lists_of_lists[current_deci_second]
+		currentrun = lists_of_lists[current_deci_second]
 
-	current_deci_second += 1
-	if(current_deci_second > 20)
+	if(++current_deci_second > 20)
 		current_deci_second = 1
 	if(lists_of_lists[current_deci_second].len)
 		if(!currentrun.len)

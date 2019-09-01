@@ -20,9 +20,6 @@ SUBSYSTEM_DEF(nodes)
 		var/obj/effect/AINode/node = current_run[current_run.len]
 		if(node.datumnode.get_weight(DANGER_SCALE) > 0)
 			node.datumnode.increment_weight(DANGER_SCALE, -1)
-		else
-			if(node.color == "#ff0000")
-				node.color = initial(node.color)
 
 		current_run.len--
 		if(TICK_CHECK)

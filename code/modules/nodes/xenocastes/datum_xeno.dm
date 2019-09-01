@@ -56,7 +56,7 @@
 
 	if(parentmob.next_move < world.time) //If we can attack again or not
 
-		if(istype(target, /obj/structure) || istype(target, /obj/machinery)) //We don't miss these targets from prob_melee_slash
+		if(istype(target, /obj/structure) || istype(target, /obj/machinery)) //We don't miss these targets from prob_melee_slash_multiplier
 			target.attack_alien(parentmob2)
 			parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 			return
@@ -67,7 +67,7 @@
 				target2.attack_alien(parentmob2)
 				parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 			else //The less the target moves, the easier to hit. Every second of not moving increases chance to hit by 75%, 30% chance to hit base
-				if(prob(((world.time - target2.last_move_intent) * 75) + 40) * SSai.prob_melee_slash)
+				if(prob(((world.time - target2.last_move_intent) * 75) + 40) * SSai.prob_melee_slash_multiplier)
 					target.attack_alien(parentmob2)
 					parentmob.next_move = world.time + parentmob2.xeno_caste.attack_delay
 					return
