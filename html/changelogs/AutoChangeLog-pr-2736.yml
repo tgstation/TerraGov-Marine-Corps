@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Crusher charge/crushing heavily refactored. There should be some differences in behavior, such as being able to break more things, dealing more consistent damage to objects (thus no longer deleting some and being stopped by others).  Interaction with crushing mobs also changed, should do a bit less damage and have an easier time plowing through them."
+  - balance: "Xeno bump delay removed. If xenos want to escape bodyblocking from smaller creatures (such as humans), all they need is to do is be on help intent."
