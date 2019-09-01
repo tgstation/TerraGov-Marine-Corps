@@ -49,23 +49,6 @@
 			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 
-/obj/structure/barricade/Bumped(atom/A)
-	..()
-
-	if(istype(A, /mob/living/carbon/xenomorph/crusher))
-
-		var/mob/living/carbon/xenomorph/crusher/C = A
-
-		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
-			return
-
-		if(crusher_resistant)
-			take_damage(C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI)
-
-		else if(!C.stat)
-			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			deconstruct(FALSE)
-
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
 		return TRUE

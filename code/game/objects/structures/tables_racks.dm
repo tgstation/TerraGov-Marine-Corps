@@ -59,7 +59,7 @@
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
@@ -581,7 +581,7 @@
 
 /obj/structure/rack/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")

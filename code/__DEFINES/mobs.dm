@@ -436,6 +436,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
+#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+
+//Charge-Crush
+#define CHARGE_OFF			0
+#define CHARGE_BUILDINGUP	1
+#define CHARGE_ON			2
+#define CHARGE_MAX			3
+
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
@@ -463,10 +471,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_WALK_INCREASE		1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 
-// xeno defines
-
-#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
-
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
 #define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
@@ -487,10 +491,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
 #define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
-
-#define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
-#define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
-#define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2

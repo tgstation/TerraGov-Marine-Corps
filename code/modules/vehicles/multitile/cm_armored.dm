@@ -594,18 +594,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	return ..()
 
-//Need to take damage from crushers, probably too little atm
-/obj/vehicle/multitile/root/cm_armored/Bumped(atom/A)
-	..()
-
-	if(istype(A, /mob/living/carbon/xenomorph/crusher))
-
-		var/mob/living/carbon/xenomorph/crusher/C = A
-
-		if(C.charge_speed < CHARGE_SPEED_MAX/(1.1)) //Arbitrary ratio here, might want to apply a linear transformation instead
-			return
-
-		take_damage_type(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI, "blunt", C)
 
 //Redistributes damage ratios based off of what things are attached (no armor means the armor doesn't mitigate any damage)
 /obj/vehicle/multitile/root/cm_armored/proc/update_damage_distribs()

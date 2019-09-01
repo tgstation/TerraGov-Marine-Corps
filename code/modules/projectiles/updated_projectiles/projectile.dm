@@ -854,7 +854,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/xenomorph/charger = src
-			affecting_armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			if(is_charging >= CHARGE_ON)
+				affecting_armor += round(charger.get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif

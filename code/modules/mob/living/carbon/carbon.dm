@@ -308,8 +308,8 @@
 		sleeping = 20 //Short nap
 
 
-/mob/living/carbon/Bump(atom/movable/AM, yes)
-	if(!yes || now_pushing)
+/mob/living/carbon/Bump(atom/movable/AM)
+	if(now_pushing)
 		return
 	. = ..()
 
