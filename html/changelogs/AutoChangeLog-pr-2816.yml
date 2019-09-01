@@ -1,0 +1,5 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - rscadd: "Real green beret added to custom loadout."
+  - bugfix: "Fixed the name of the TGMC beret in custom loadout. It's definitely not green."
