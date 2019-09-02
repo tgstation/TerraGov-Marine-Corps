@@ -15,6 +15,7 @@
 	selection_color = "#ccccff"
 	skills_type = /datum/skills/captain
 	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERIENCED

@@ -216,7 +216,7 @@
 	item_state = "gold_id"
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
-	access = list(ALL_MARINE_ACCESS, ACCESS_MARINE_TANK)
+	access = ALL_MARINE_ACCESS
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
