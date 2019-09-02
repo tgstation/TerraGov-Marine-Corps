@@ -150,7 +150,7 @@
 		livings += living
 
 	if(length(livings))
-		addtimer(CALLBACK(src, .proc/release_characters, livings), 3 SECONDS, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, .proc/release_characters, livings), 1 SECONDS, TIMER_CLIENT_TIME)
 
 
 /datum/game_mode/proc/release_characters(list/livings)
