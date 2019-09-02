@@ -156,9 +156,8 @@
 			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
 				continue
-		if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
-			if(M.current)
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
+		if(name == "Xenomorphs" && is_banned_from(M.ckey, ROLE_XENOMORPH))
+			to_chat(M, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
 			continue
 		valid_candidates += M
 
