@@ -14,8 +14,7 @@
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
 	skills_type = /datum/skills/captain
-	access = list(ALL_MARINE_ACCESS, ACCESS_MARINE_TANK)
-	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERIENCED
@@ -54,7 +53,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	paygrade = "MO4"
 	comm_title = "FCDR"
 	skills_type = /datum/skills/FO
-	access = list(ALL_MARINE_ACCESS, ACCESS_MARINE_TANK)
+	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
