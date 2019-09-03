@@ -1,5 +1,0 @@
-author: "Kuro"
-delete-after: True
-changes: 
-  - imageadd: "Every PFC armor along with the basic helmet now has a new sprite!"
-  - imageadd: "Redone all the squad color markings"
