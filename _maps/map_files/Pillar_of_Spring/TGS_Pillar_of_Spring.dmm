@@ -4654,7 +4654,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "nh" = (
-/obj/effect/landmark/start/marine/cargotechnician,
+/obj/effect/landmark/start/marine/shiptech,
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-c";
 	dir = 4
@@ -5281,7 +5281,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "oD" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -9832,7 +9832,7 @@
 /area/mainship/engineering/engineering_workshop)
 "zI" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /obj/structure/cable{
 	icon_state = "4-8";
 	d1 = 4;
@@ -10021,7 +10021,7 @@
 /area/mainship/engineering/engineering_workshop)
 "Ag" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/maintenancetech,
+/obj/effect/landmark/start/marine/shiptech,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Ah" = (
