@@ -42,6 +42,8 @@
 	if(!isliving(O))
 		return
 	var/mob/living/M = O
+	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
+		return
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	var/armor_block = null
 	var/def_zone = ran_zone()
@@ -193,34 +195,6 @@
 		if(3)
 			take_damage(rand(10, 33))
 	update_icon()
-
-/obj/structure/razorwire/Bumped(atom/A)
-	. = ..()
-
-	if(istype(A, /mob/living/carbon/xenomorph/crusher))
-
-		var/mob/living/carbon/xenomorph/crusher/C = A
-
-		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
-			return
-
-		take_damage(C.charge_speed * CRUSHER_CHARGE_RAZORWIRE_MULTI)
-
-
-		var/def_zone = ran_zone()
-		if(C.charge_speed >= CHARGE_SPEED_MAX)
-			C.visible_message("<span class='danger'>[C] plows through the barbed wire!</span>",
-			"<span class='danger'>You plow through the barbed wire!</span>", null, 5)
-
-		else if(obj_integrity > 0) //If we didn't destroy the barbed wire, we get tangled up.
-			C.stop_momentum(C.charge_dir)
-			razorwire_tangle(C, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
-
-		C.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, def_zone, null, null, 1)
-		C.visible_message("<span class='danger'>The barbed wire slices into [C]!</span>",
-		"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-		update_icon()
 
 
 /obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
