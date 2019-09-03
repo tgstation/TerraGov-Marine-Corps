@@ -109,15 +109,16 @@
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
-	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
+	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and weapon carrying capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS
-	bypass_w_limit = list()
-	storage_slots = null
-	max_storage_space = 15 // Same as satchel
+	bypass_w_limit = list(/obj/item/weapon/gun/,
+						/obj/item/storage/large_holster/machete)
+	storage_slots = 1
+	max_storage_space = 6 // Rifle, stock, extended barrel.
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
