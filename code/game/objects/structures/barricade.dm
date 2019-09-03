@@ -49,23 +49,6 @@
 			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 
-/obj/structure/barricade/Bumped(atom/A)
-	..()
-
-	if(istype(A, /mob/living/carbon/xenomorph/crusher))
-
-		var/mob/living/carbon/xenomorph/crusher/C = A
-
-		if(C.charge_speed < CHARGE_SPEED_MAX * 0.5)
-			return
-
-		if(crusher_resistant)
-			take_damage(C.charge_speed * CRUSHER_CHARGE_BARRICADE_MULTI)
-
-		else if(!C.stat)
-			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			deconstruct(FALSE)
-
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
 		return TRUE
@@ -151,25 +134,26 @@
 		is_wired = TRUE
 		climbable = FALSE
 
-	else if(iswirecutter(I))
-		if(!is_wired)
-			return
 
-		user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
-		"<span class='notice'>You begin removing the barbed wire on [src].</span>")
+/obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
+	if(!is_wired)
+		return FALSE
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-			return
+	user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",
+	"<span class='notice'>You begin removing the barbed wire on [src].</span>")
 
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
-		"<span class='notice'>You remove the barbed wire on [src].</span>")
-		overlays -= wired_overlay
-		modify_max_integrity(max_integrity - 50)
-		can_wire = TRUE
-		is_wired = FALSE
-		climbable = TRUE
-		new /obj/item/stack/barbed_wire(loc)
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
+
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
+	"<span class='notice'>You remove the barbed wire on [src].</span>")
+	overlays -= wired_overlay
+	modify_max_integrity(max_integrity - 50)
+	can_wire = TRUE
+	is_wired = FALSE
+	climbable = TRUE
+	new /obj/item/stack/barbed_wire(loc)
 
 
 /obj/structure/barricade/deconstruct(disassembled = TRUE)
@@ -324,7 +308,13 @@
 
 		if(!ET.folded)
 			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
-			deconstruct(TRUE)
+			var/deconstructed = TRUE
+			for(var/obj/effect/xenomorph/acid/A in loc)
+				if(A.acid_t != src)
+					continue
+				deconstructed = FALSE
+				break
+			deconstruct(deconstructed)
 
 /*----------------------*/
 // WOOD
@@ -379,6 +369,10 @@
 // METAL
 /*----------------------*/
 
+#define BARRICADE_METAL_LOOSE 0
+#define BARRICADE_METAL_ANCHORED 1
+#define BARRICADE_METAL_FIRM 2
+
 /obj/structure/barricade/metal
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
@@ -392,175 +386,215 @@
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = TRUE
-	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
+	var/build_state = BARRICADE_METAL_FIRM
 
-/obj/structure/barricade/metal/examine(mob/user)
-	..()
-	switch(build_state)
-		if(2)
-			to_chat(user, "<span class='info'>The protection panel is still tighly screwed in place.</span>")
-		if(1)
-			to_chat(user, "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>")
-		if(0)
-			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
+		if(obj_integrity > max_integrity * 0.3)
+			return
+
+		if(metal_sheets.get_amount() < 2)
+			to_chat(user, "<span class='warning'>You need two metal sheets to repair the base of [src].</span>")
+			return
+
+		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!metal_sheets.use(2))
+			return
+
+		repair_damage(max_integrity * 0.3)
+		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+
+
+/obj/structure/barricade/metal/examine(mob/user)
+	. = ..()
+	switch(build_state)
+		if(BARRICADE_METAL_FIRM)
+			to_chat(user, "<span class='info'>The protection panel is still tighly screwed in place.</span>")
+		if(BARRICADE_METAL_ANCHORED)
+			to_chat(user, "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>")
+		if(BARRICADE_METAL_LOOSE)
+			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
+
+
+/obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/WT = I
+
+	if(!WT.isOn())
+		return FALSE
+
 	for(var/obj/effect/xenomorph/acid/A in loc)
 		if(A.acid_t == src)
 			to_chat(user, "You can't get near that, it's melting!")
-			return
+			return TRUE
 
-	if(iswelder(I))
-		if(user.action_busy)
-			return
+	if(obj_integrity <= max_integrity * 0.3)
+		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more metal plates to be repaired.</span>")
+		return TRUE
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
-				return
+	if(obj_integrity == max_integrity)
+		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
+		return TRUE
 
-		var/obj/item/tool/weldingtool/WT = I
-		if(obj_integrity <= max_integrity * 0.3)
-			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
-			return
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
 
-		if(obj_integrity == max_integrity)
-			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
-			return
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
-		if(!WT.remove_fuel(0, user))
-			return
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return TRUE
 
-		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
+		return TRUE
 
-		var/old_loc = loc
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
-			return
+	if(!WT.remove_fuel(2, user))
+		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		return TRUE
 
-		if(!WT.remove_fuel(2, user))
-			return
+	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+	"<span class='notice'>You repair [src].</span>")
+	repair_damage(150)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	return TRUE
 
-		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-		"<span class='notice'>You repair [src].</span>")
-		repair_damage(150)
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
+/obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
 	switch(build_state)
-		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(isscrewdriver(I))
-				if(user.action_busy)
-					return
+		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
 
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+			user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
+			"<span class='notice'>You set [src]'s protection panel back.</span>")
+			build_state = BARRICADE_METAL_FIRM
+			return TRUE
 
-				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
-					return
+		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
+			if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
 
-				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
-				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
-				build_state = 1
-		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(isscrewdriver(I))
-				if(user.action_busy)
-					return
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
+			playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
 
-				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
-					return
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
 
-				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
-				"<span class='notice'>You set [src]'s protection panel back.</span>")
-				build_state = 2
+			user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
+			"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
+			build_state = BARRICADE_METAL_ANCHORED
+			return TRUE
 
-			else if(iswrench(I))
-				if(user.action_busy)
-					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
+/obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+	switch(build_state)
+		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+			if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
 
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
-					return
+			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
 
-				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
-				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
-				anchored = FALSE
-				build_state = 0
-				update_icon() //unanchored changes layer
-		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
-			if(iswrench(I))
-				if(user.action_busy)
-					return
+			user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
+			"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
+			build_state = BARRICADE_METAL_LOOSE
+			anchored = FALSE
+			modify_max_integrity(initial(max_integrity) * 0.5)
+			update_icon() //unanchored changes layer
+			return TRUE
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
-					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
+		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
+			if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+				var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
 
-				for(var/obj/structure/barricade/B in loc)
-					if(B != src && B.dir == dir)
-						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
-						return
+			for(var/obj/structure/barricade/B in loc)
+				if(B != src && B.dir == dir)
+					to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
+					return TRUE
 
-				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				if(!do_after(user, 10, TRUE, src, BUSY_ICON_BUILD))
-					return
+			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
 					
-				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
-				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
-				build_state = 1
-				anchored = TRUE
-				update_icon() //unanchored changes layer
+			user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
+			"<span class='notice'>You secure [src]'s anchor bolts.</span>")
+			build_state = BARRICADE_METAL_ANCHORED
+			anchored = TRUE
+			modify_max_integrity(initial(max_integrity))
+			update_icon() //unanchored changes layer
+			return TRUE
 
-			else if(iscrowbar(I))
-				if(user.action_busy)
-					return
 
-				if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
-					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
-					var/fumbling_time = 50 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
-					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-						return
+/obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+	switch(build_state)
+		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
+			if(user.mind?.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
 
-				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
-				"<span class='notice'>You start unseating [src]'s panels.</span>")
+			user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
+			"<span class='notice'>You start unseating [src]'s panels.</span>")
 
-				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-				if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-					return
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
 
-				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
-				"<span class='notice'>You take [src]'s panels apart.</span>")
-				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				deconstruct(TRUE) //Note : Handles deconstruction too !
+			user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
+			"<span class='notice'>You take [src]'s panels apart.</span>")
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+			var/deconstructed = TRUE
+			for(var/obj/effect/xenomorph/acid/A in loc)
+				if(A.acid_t != src)
+					continue
+				deconstructed = FALSE
+				break
+			deconstruct(deconstructed)
+			return TRUE
 
 
 /obj/structure/barricade/metal/ex_act(severity)
@@ -573,6 +607,11 @@
 			take_damage(rand(50, 100))
 
 	update_icon()
+
+
+#undef BARRICADE_METAL_LOOSE
+#undef BARRICADE_METAL_ANCHORED
+#undef BARRICADE_METAL_FIRM
 
 /*----------------------*/
 // PLASTEEL
@@ -618,10 +657,26 @@
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
+	if(istype(I, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
+		if(obj_integrity > max_integrity * 0.3)
 			return
+
+		if(plasteel_sheets.get_amount() < 2)
+			to_chat(user, "<span class='warning'>You need two plasteel sheets to repair the base of [src].</span>")
+			return
+
+		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!plasteel_sheets.use(2))
+			return
+
+		repair_damage(max_integrity * 0.3)
+		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+		return
 
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
@@ -638,7 +693,7 @@
 				return
 
 		if(obj_integrity <= max_integrity * 0.3)
-			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
+			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more plasteel plates to be repaired.</span>")
 			return
 
 		if(obj_integrity == max_integrity)
@@ -721,6 +776,7 @@
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = FALSE
+				modify_max_integrity(initial(max_integrity) * 0.5)
 				build_state = 0
 				update_icon() //unanchored changes layer
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
@@ -738,6 +794,7 @@
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = TRUE
+				modify_max_integrity(initial(max_integrity))
 				build_state = 1
 				update_icon() //unanchored changes layer
 
@@ -764,7 +821,13 @@
 				user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 				"<span class='notice'>You take [src]'s panels apart.</span>")
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				deconstruct(TRUE) //Note : Handles deconstruction too !
+				var/deconstructed = TRUE
+				for(var/obj/effect/xenomorph/acid/A in loc)
+					if(A.acid_t != src)
+						continue
+					deconstructed = FALSE
+					break
+				deconstruct(deconstructed)
 
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
@@ -840,7 +903,13 @@
 			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				deconstruct(TRUE)
+				var/deconstructed = TRUE
+				for(var/obj/effect/xenomorph/acid/A in loc)
+					if(A.acid_t != src)
+						continue
+					deconstructed = FALSE
+					break
+				deconstruct(deconstructed)
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags) )

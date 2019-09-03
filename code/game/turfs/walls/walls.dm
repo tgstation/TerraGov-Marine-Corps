@@ -240,8 +240,8 @@
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
-	G.icon_state = "girder[junctiontype]"
-	G.original = src.type
+	G.icon_prefix = "girder[junctiontype]"
+	G.update_icon()
 
 	if(destroyed_girder)
 		G.deconstruct(FALSE)

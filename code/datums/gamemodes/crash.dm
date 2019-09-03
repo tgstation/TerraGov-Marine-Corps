@@ -39,7 +39,7 @@
 	init_scales()
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
-	
+
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
@@ -95,7 +95,7 @@
 	GLOB.latejoin = shuttle.latejoins
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
-	
+
 	// Create xenos
 	var/number_of_xenos = length(xenomorphs)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
@@ -106,7 +106,7 @@
 		else
 			transform_xeno(M)
 
-	// Launch shuttle 
+	// Launch shuttle
 	var/list/valid_docks = list()
 	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
 		if(!shuttle.check_dock(D, silent=TRUE))
@@ -120,21 +120,21 @@
 	if(!target || !istype(target))
 		CRASH("Unable to get a valid shuttle target!")
 		return
-		
+
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
 
 
 /datum/game_mode/crash/setup()
-	SSjob.DivideOccupations() 
+	SSjob.DivideOccupations()
 
 	// For each player that has an assigned squad set it to alpha
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(player.ready && player.mind?.assigned_squad)
 			player.mind.assigned_squad = SSjob.squads[starting_squad]
-			
+
 	create_characters() //Create player characters
 	collect_minds()
 	reset_squads()
@@ -152,7 +152,6 @@
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
-
 	for(var/i in GLOB.shuttle_controls_list)
 		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
 		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
@@ -160,8 +159,18 @@
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
 
+	for(var/i in GLOB.alive_xeno_list)
+		if(isxenolarva(i)) // Larva
+			var/mob/living/carbon/xenomorph/larva/X = i
+			X.amount_grown = X.max_grown
+		else // Handles Shrike etc
+			var/mob/living/carbon/xenomorph/X = i
+			X.upgrade_stored = X.xeno_caste.upgrade_threshold
+		
+
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
@@ -170,7 +179,7 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
-	
+
 
 /datum/game_mode/crash/proc/add_larva()
 	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
@@ -213,7 +222,7 @@
 		transfer_xeno(xeno_candidate, new_xeno)
 		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-		
+
 	return TRUE
 
 
@@ -245,28 +254,28 @@
 				add_larva()
 			return FALSE
 
-	var/victory_options = (num_humans == 0 && num_xenos == 0)						<< 0 // Draw, for all other reasons
-	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 			<< 1 // XENO Major (All marines killed)
-	victory_options |= (marines_evac == CRASH_EVAC_COMPLETED && !planet_nuked)		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (marines_evac == CRASH_EVAC_NONE && planet_nuked)		<< 3 // Marine minor (Planet nuked, some human left on planet)
-	victory_options |= ((marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED) && planet_nuked) 		<< 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
+	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) << 1 // XENO Major (All marines killed)
+	victory_options |= (!planet_nuked && (marines_evac == CRASH_EVAC_COMPLETED || marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))	<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (planet_nuked && marines_evac == CRASH_EVAC_NONE) << 3 // Marine minor (Planet nuked, some human left on planet)
+	victory_options |= (planet_nuked && (marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED)) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 
 	switch(victory_options)
 		if(CRASH_DRAW)
 			message_admins("Round finished: [MODE_CRASH_DRAW_DEATH]")
-			round_finished = MODE_CRASH_DRAW_DEATH 
+			round_finished = MODE_CRASH_DRAW_DEATH
 		if(CRASH_XENO_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_X_MAJOR]")
-			round_finished = MODE_CRASH_X_MAJOR 
+			round_finished = MODE_CRASH_X_MAJOR
 		if(CRASH_XENO_MINOR)
 			message_admins("Round finished: [MODE_CRASH_X_MINOR]")
-			round_finished = MODE_CRASH_X_MINOR 
+			round_finished = MODE_CRASH_X_MINOR
 		if(CRASH_MARINE_MINOR)
 			message_admins("Round finished: [MODE_CRASH_M_MINOR]")
-			round_finished = MODE_CRASH_M_MINOR 
+			round_finished = MODE_CRASH_M_MINOR
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
-			round_finished = MODE_CRASH_M_MAJOR 
+			round_finished = MODE_CRASH_M_MAJOR
 
 	return FALSE
 
@@ -275,10 +284,10 @@
 	. = ..()
 	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the TGS Canterbury and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
-	
+
 	// Music
-	var/xeno_track
-	var/human_track
+	var/sound/xeno_track
+	var/sound/human_track
 	switch(round_finished)
 		if(MODE_CRASH_X_MAJOR)
 			xeno_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
@@ -293,8 +302,11 @@
 			xeno_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
 			human_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 		if(MODE_CRASH_DRAW_DEATH)
-			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') 
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
+
+	human_track.channel = CHANNEL_CINEMATIC
+	xeno_track.channel = CHANNEL_CINEMATIC
 
 	for(var/i in GLOB.xeno_mob_list)
 		var/mob/M = i
@@ -304,6 +316,7 @@
 		var/mob/M = i
 		SEND_SOUND(M, human_track)
 
+	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		if(ishuman(M.mind.current))
@@ -314,9 +327,9 @@
 			SEND_SOUND(M, xeno_track)
 			continue
 
-		SEND_SOUND(M, pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'))
+		SEND_SOUND(M, ghost_sound)
 
-	
+
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
 	announce_medal_awards()
@@ -381,11 +394,16 @@
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
+/datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/area_name = get_area_name(nuke)
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
 
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE
 	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
+	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
 
 	for(var/x in GLOB.player_list)
 		var/mob/M = x

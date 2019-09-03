@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines n
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
+GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
 

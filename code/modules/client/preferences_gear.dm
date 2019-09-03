@@ -36,8 +36,8 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	slot = SLOT_HEAD
 
 
-/datum/gear/beret_green
-	display_name = "TGMC beret (green)"
+/datum/gear/beret
+	display_name = "TGMC beret"
 	path = /obj/item/clothing/head/tgmcberet
 	cost = 3
 	slot = SLOT_HEAD
@@ -46,6 +46,13 @@ GLOBAL_LIST_EMPTY(gear_datums)
 /datum/gear/beret_tan
 	display_name = "TGMC beret (tan)"
 	path = /obj/item/clothing/head/tgmcberet/tan
+	cost = 3
+	slot = SLOT_HEAD
+
+
+/datum/gear/beret_green
+	display_name = "TGMC beret (green)"
+	path = /obj/item/clothing/head/tgmcberet/green
 	cost = 3
 	slot = SLOT_HEAD
 

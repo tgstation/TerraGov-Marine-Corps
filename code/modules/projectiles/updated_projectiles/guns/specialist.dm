@@ -54,17 +54,13 @@
 	if(targetmarker_primed)
 		if(!iscarbon(target))
 			return
-		laser_target?.remove_laser()
-		laser_target = target
-		if(laser_target.apply_laser())
-			to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
-			targetmarker_primed = FALSE
-			targetmarker_on = TRUE
-			START_PROCESSING(SSobj, src)
-			accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
-		else
-			laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
+		if(target.apply_laser())
+			activate_laser_target(target, user)
 		return
+	if(!QDELETED(laser_target))
+		target = laser_target
 	return ..()
 
 
@@ -76,7 +72,7 @@
 	return TRUE
 
 
-/mob/living/carbon/proc/apply_laser()
+/atom/proc/apply_laser()
 	return FALSE
 
 /mob/living/carbon/human/apply_laser()
@@ -159,6 +155,30 @@
 	else
 		return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/activate_laser_target(atom/target, mob/living/user)
+	laser_target = target
+	to_chat(user, "<span class='danger'>You focus your target marker on [target]!</span>")
+	targetmarker_primed = FALSE
+	targetmarker_on = TRUE
+	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
+	START_PROCESSING(SSobj, src)
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/deactivate_laser_target()
+	UnregisterSignal(src, COMSIG_PROJ_SCANTURF)
+	laser_target.remove_laser()
+	laser_target = null
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	if(QDELETED(laser_target) || !isturf(laser_target.loc))
+		return NONE
+	if(get_turf(laser_target) == target_turf)
+		return COMPONENT_PROJ_SCANTURF_TARGETFOUND
+	return COMPONENT_PROJ_SCANTURF_TURFCLEAR
+
+
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user)
 	if(!zoom) //Can only use and prime the laser targeter when zoomed.
 		to_chat(user, "<span class='warning'>You must be zoomed in to use your target marker!</span>")
@@ -173,8 +193,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user)
 	if(targetmarker_on)
-		laser_target?.remove_laser()
-		laser_target = null
+		if(laser_target)
+			deactivate_laser_target()
 		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
@@ -340,12 +360,12 @@
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 16
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	wield_delay = 1.6 SECONDS
+	aim_slowdown = SLOWDOWN_ADS_SMARTGUN
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
-	var/restriction_toggled = 1 //Begin with the safety on.
+	var/restriction_toggled = TRUE //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -934,7 +954,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
@@ -1004,6 +1024,16 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
+
+
+obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
+	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
+		if(user.action_busy)
+			return
+		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+			return
+	return ..()
 
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()

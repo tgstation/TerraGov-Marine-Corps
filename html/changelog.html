@@ -53,6 +53,77 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">03 September 2019</h2>
+			<h3 class="author">Kuro updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">Every PFC armor along with the basic helmet now has a new sprite!</li>
+				<li class="imageadd">Redone all the squad color markings</li>
+			</ul>
+
+			<h2 class="date">02 September 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Crusher charge/crushing heavily refactored. There should be some differences in behavior, such as being able to break more things, dealing more consistent damage to objects (thus no longer deleting some and being stopped by others).  Interaction with crushing mobs also changed, should do a bit less damage and have an easier time plowing through them.</li>
+				<li class="balance">Xeno bump delay removed. If xenos want to escape bodyblocking from smaller creatures (such as humans), all they need is to do is be on help intent.</li>
+			</ul>
+			<h3 class="author">grinkgo updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Real green beret added to custom loadout.</li>
+				<li class="bugfix">Fixed the name of the TGMC beret in custom loadout. It's definitely not green.</li>
+			</ul>
+
+			<h2 class="date">31 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Girders reworked. Wall construction formula tweaked. Marines can build reinforced walls now.</li>
+				<li class="tweak">Structure hitchance tweaked. The direction they are facing matters once again (barricades, flipped tables). Even unflipped tables and window frames have a chance, though lower, to stop bullets. Accuracy modifiers, distance between shooter and obstacle, and effective accuracy range of the bullet all affect it.</li>
+				<li class="bugfix">Windoors no longer block lasers.</li>
+				<li class="rscadd">You can now repair beat-up barricades you couldn't before by adding two sheets of metal/plasteel to them and then welding them.</li>
+			</ul>
+
+			<h2 class="date">30 August 2019</h2>
+			<h3 class="author">Ghommie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Patches up an issue with storage items and cryo. No more loadsa pills cluttering your stored items list, empty pill bottles, MREs etcetera.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">message to the xenos when crash nuke is set.</li>
+			</ul>
+
+			<h2 class="date">28 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Xenos with devoured hosts can no longer cross the fog.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Marines lose when leaving without a nuke set on crash</li>
+			</ul>
+
+			<h2 class="date">26 August 2019</h2>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Reworked projectiles to use pixel movement (but not collisions, those are still tile-based), tracking the clicked pixel (unless a mob is clicked, in which case it will aim for the center of the target's tile for maximum accuracy, or unless scatter happens) in a straight line. For most bullets (rifles, SMGs, pistols, revolvers) the difference will be subtle at best, given how fast they are. It is more noticeable in tasers. For lasguns and faster projectiles the moving animation is outright disabled.</li>
+				<li class="bugfix">Fixed a speed inconsistency of old projectiles, which would make bullet speed lower if you clicked closer to your own sprite.</li>
+				<li class="balance">Tweaked accuracy to make the calculations a bit more sane. This may impact on it as reproducing the exact same behavior is hard, but it can be more easily adjusted now.</li>
+				<li class="balance">Once a sniper acquires a target through its laser market it will no longer need to click on it to aim it. Any shots while active will be auto-targeted to it.</li>
+				<li class="balance">Projectile speeds reduced all round the board. Xeno projectiles are slow, so you can see them traveling. Non-slug shotgun shells are slow and more visible. Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers are very fast, and even harder to see.</li>
+				<li class="balance">Scatter is now angle-based, so it doesn't matter if the target (where you click) is near or far. Maximum scatter is 45 degrees in either direction. Extra projectiles (additional buckshot and flechettes) have a smoother, less random scatter, firing in a cone.</li>
+				<li class="balance">Smartgun slowdown while wielded increased some to make it more defensive and less mobile..</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">(Crash Only) Xenos now start with the first tier already unlocked.</li>
+				<li class="balance">bullets are now able to pass the fog barriers</li>
+			</ul>
+
+			<h2 class="date">25 August 2019</h2>
+			<h3 class="author">Compadre Sonoliento(sprites) Kuro(Idea) MetroidLover(Editing and recoloring sprites) updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">New B18 sprites with a darker look and glowing colored visor</li>
+			</ul>
+
 			<h2 class="date">23 August 2019</h2>
 			<h3 class="author">Rohesie updated:</h3>
 			<ul class="changes bgimages16">
@@ -393,37 +464,6 @@
 				<li class="balance">Xeno explosive resistance tweaked a little bit to be more streamlined on the progression of the explosion intensity. Shouldn't be very noticeable.</li>
 				<li class="balance">Removes the roundstart tanker jobs until the old tank is decommissioned and sold for scrap and we implement the new vehicles.</li>
 				<li class="balance">A bioscan now happens at the start of the game, providing rough information for both sides on what they will be facing and giving them a chance to prepare. No locations are shown, but the scanner is a bit more precise, giving only a +/- 1 variation.</li>
-			</ul>
-
-			<h2 class="date">30 June 2019</h2>
-			<h3 class="author">LaKiller8 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Hivemind size should now be more comparable to marine radio comms, also removed the italics.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Removed an unknown feature: cryobags actually had a lifetime of around an hour of holding mobs inside them. Maybe more.</li>
-				<li class="balance">Tarps now fade out gradually instead of in janky steps. They don't accept dead bodies in them anymore (and will spit out whoever dies inside them). You can now drag them even if closed, as long as they don't contain someone. They will no longer show the name of the person inside.</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">rebalanced boiler bombard, overall reduced 2 seconds from total time needed to fire, but also frontloaded most of the wait to toggling the ability, and reduced the wait when firing.</li>
-			</ul>
-
-			<h2 class="date">29 June 2019</h2>
-			<h3 class="author">Ghommie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">Added in directional sprites for intercoms.</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">The xenomorph hivemind members now use plural forms to refer to themselves. They have a hard time grasping concepts such as individuality. All are one, one is many.</li>
-				<li class="tweak">Improved feedback of the Summon Dropship xeno ruler ability. Nested and infected tallhosts no longer count towards the limit of marines on the ground to summon it.</li>
-				<li class="rscdel">Xenos can no longer play basketball unless fun_allowed is turned on. And, by default, fun is not allowed.</li>
-			</ul>
-			<h3 class="author">Rohesie (implementation) and Sleepy (sprites) updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">Every job has gained an icon in the squad HUD, which should be default for everyone on the ship. Gold is for the ship crew (navy and attachées), silver for the deployed troops (marines). Blue is for command, light blue for medical, yellow for engineering, brown for requisitions, red for security.</li>
 			</ul>
 		</div>
 

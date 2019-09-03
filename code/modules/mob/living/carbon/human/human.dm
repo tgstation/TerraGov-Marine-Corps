@@ -851,41 +851,6 @@
 	playsound(loc, song, 25, 1)
 
 
-/mob/living/carbon/human/revive()
-	for (var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = 0
-	name = get_visible_name()
-
-	if(species && !(species.species_flags & NO_BLOOD))
-		restore_blood()
-
-	//try to find the brain player in the decapitated head and put them back in control of the human
-	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.head_list)
-			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
-					if(H.brainmob.mind)
-						H.brainmob.mind.transfer_to(src)
-						qdel(H)
-
-	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
-
-	undefibbable = FALSE
-	
-	return ..()
-
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 	return L && L.is_bruised()

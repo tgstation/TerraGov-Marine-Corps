@@ -68,7 +68,7 @@
 #define SKILL_ENGINEER_METAL 	1	//metal barricade repair && c4 use
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 	3	//hacking&&planet engine fixing&&apc building (combat engi)
-#define SKILL_ENGINEER_MT 		4	//Telecomms fixing, faster engine fixing (MT)
+#define SKILL_ENGINEER_MASTER 	4	//Telecomms fixing, faster engine fixing (ST)
 //higher levels give faster engine repair.
 
 
@@ -116,8 +116,8 @@
 //proficiency with powerloader, changes powerloader speed.
 #define SKILL_POWERLOADER_DEFAULT	0
 #define SKILL_POWERLOADER_DABBLING	1 //Pilot
-#define SKILL_POWERLOADER_TRAINED	2 //CT, Req
-#define SKILL_POWERLOADER_PRO		3 //MT
+#define SKILL_POWERLOADER_TRAINED	2 //Req
+#define SKILL_POWERLOADER_PRO		3 //ST
 #define SKILL_POWERLOADER_MASTER	4 //CE
 
 

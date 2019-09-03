@@ -118,7 +118,7 @@
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
-		Goto(P.starting, move_to_delay, 3)
+		Goto(P.starting_turf, move_to_delay, 3)
 	return ..()
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
@@ -388,7 +388,7 @@
 	var/obj/item/projectile/P = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
-	P.fire_at(targeted_atom, src, src)
+	P.fire_at(targeted_atom, src)
 
 
 /mob/living/simple_animal/hostile/proc/CanSmashTurfs(turf/T)

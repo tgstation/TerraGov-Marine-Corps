@@ -37,10 +37,10 @@
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
 
-/obj/item/clothing/mask/gas/bear
+/obj/item/clothing/mask/gas/wolves
 	name = "tactical balaclava"
 	desc = "A superior balaclava worn by the Steel Wolves."
-	icon_state = "bear_mask"
+	icon_state = "wolf_mask"
 	anti_hug = 2
 	tint = TINT_NONE
 

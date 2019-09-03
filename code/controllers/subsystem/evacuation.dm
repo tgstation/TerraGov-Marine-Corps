@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(evacuation)
 	dest_status = NUKE_EXPLOSION_INACTIVE
 	for(i in dest_rods)
 		I = i
-		if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override)) 
+		if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override))
 			I.toggle(TRUE)
 	dest_master.toggle(TRUE)
 	dest_index = 1
@@ -165,12 +165,13 @@ SUBSYSTEM_DEF(evacuation)
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
 			dest_master.visible_message("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
 			return FALSE
-	
+
 	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 	GLOB.enter_allowed = FALSE
 	dest_status = NUKE_EXPLOSION_IN_PROGRESS
 	playsound(dest_master, 'sound/machines/alarm.ogg', 75, 0, 30)
-	SEND_SOUND(world, pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'))
+	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
 
 	var/list/z_levels = list(SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 	var/ship_intact = TRUE

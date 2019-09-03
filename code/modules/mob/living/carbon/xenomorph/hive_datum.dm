@@ -234,7 +234,7 @@
 	var/datum/hive_status/hive_removed_from = hive
 	if(hive_removed_from.living_xeno_queen == src)
 		hive_removed_from.living_xeno_queen = null
-		
+
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
@@ -245,7 +245,7 @@
 
 /mob/living/carbon/xenomorph/shrike/remove_from_hive()
 	var/datum/hive_status/hive_removed_from = hive
-		
+
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
@@ -480,11 +480,10 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 			"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			picked.mind.transfer_to(new_xeno, TRUE)
 
 			to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
-			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
+			new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 
 			stored_larva--
 
@@ -578,7 +577,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	return do_spawn_larva(xeno_candidate, get_turf(mother))
 
 
-/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)	
+/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)
 	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
 		to_chat(xeno_candidate, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 		return FALSE
@@ -591,7 +590,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
-	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
+	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
