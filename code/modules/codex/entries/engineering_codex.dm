@@ -30,7 +30,7 @@
 /datum/codex_entry/Det_Pack
 	associated_paths = list(/obj/item/radio/detpack)
 	mechanics_text = "How to use, in 6 steps.<br>\
-	<br>1. activate the det pack in your hand to open a window.<br>\
+	<br>1. Activate the det pack in your hand to open a window.<br>\
 	2. Check your Detonation Mode is set to the explosion you desire.<br>\
 	3. Turn your det pack ON.<br>\
 	4. Remember the frequency it is set to, or change it to one you desire.<br>\
