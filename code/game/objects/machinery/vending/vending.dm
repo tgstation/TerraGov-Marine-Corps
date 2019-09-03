@@ -63,6 +63,9 @@
 	var/isshared = FALSE
 	var/scan_id = TRUE
 
+	var/knockdown_threshold = 100
+
+
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
 	wires = new /datum/wires/vending(src)
@@ -669,3 +672,9 @@
 		throw_item.throw_at(target, 16, 3, src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target]!</span>")
 	. = TRUE
+
+
+/obj/machinery/vending/take_damage(dam)
+	if(density && dam >= knockdown_threshold)
+		tip_over()
+	return ..()

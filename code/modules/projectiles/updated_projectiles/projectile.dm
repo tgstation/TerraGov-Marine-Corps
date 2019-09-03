@@ -34,7 +34,8 @@
 	var/turf/original_target_turf = null // the original target's starting turf
 	var/atom/firer 		 = null // Who shot it
 
-	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
+	var/list/atom/permutated = list() // we've passed through these atoms, don't try to hit them again
+	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
 	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
@@ -64,6 +65,7 @@
 	shot_from = null
 	original_target = null
 	permutated = null
+	uncross_scheduled = null
 	original_target_turf = null
 	starting_turf = null
 	return ..()
@@ -129,6 +131,7 @@
 		original_target = target
 		original_target_turf = get_turf(target)
 		if(original_target_turf == loc) //Shooting from and towards the same tile. Why not?
+			distance_travelled++
 			scan_a_turf(loc)
 			qdel(src)
 			return
@@ -308,52 +311,70 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
 				return TRUE
 			var/turf/turf_crossed_by
-			var/rel_pixel_x_pre = ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)
-			var/rel_pixel_y_pre = ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)
 			var/pixel_moves_until_crossing_x_border
 			var/pixel_moves_until_crossing_y_border
+			var/border_escaped_through
 			switch(movement_dir)
 				if(NORTHEAST)
-					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((33 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((33 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((33 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border) //Escapes vertically.
-						turf_crossed_by = get_step(last_processed_turf, NORTH)
+						border_escaped_through = NORTH
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border) //Escapes horizontally.
-						turf_crossed_by = get_step(last_processed_turf, EAST)
+						border_escaped_through = EAST
 					else //Escapes both borders at the same time, perfectly diagonal.
-						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, EAST)) //So choose at random to preserve behavior of no purely diagonal movements allowed.
+						border_escaped_through = pick(NORTH, EAST) //So choose at random to preserve behavior of no purely diagonal movements allowed.
 				if(SOUTHEAST)
-					pixel_moves_until_crossing_x_border = CEILING(((33 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((0 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((33 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((0 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
-						turf_crossed_by = get_step(last_processed_turf, SOUTH)
+						border_escaped_through = SOUTH
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
-						turf_crossed_by = get_step(last_processed_turf, EAST)
+						border_escaped_through = EAST
 					else
-						turf_crossed_by = get_step(last_processed_turf, pick(SOUTH, EAST))
+						border_escaped_through = pick(SOUTH, EAST)
 				if(SOUTHWEST)
-					pixel_moves_until_crossing_x_border = CEILING(((0 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((0 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((0 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((0 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
-						turf_crossed_by = get_step(last_processed_turf, SOUTH)
+						border_escaped_through = SOUTH
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
-						turf_crossed_by = get_step(last_processed_turf, WEST)
+						border_escaped_through = WEST
 					else
-						turf_crossed_by = get_step(last_processed_turf, pick(SOUTH, WEST))
+						border_escaped_through = pick(SOUTH, WEST)
 				if(NORTHWEST)
-					pixel_moves_until_crossing_x_border = CEILING(((0 - rel_pixel_x_pre) / x_offset), 1)
-					pixel_moves_until_crossing_y_border = CEILING(((33 - rel_pixel_y_pre) / y_offset), 1)
+					pixel_moves_until_crossing_x_border = CEILING(((0 - ABS_PIXEL_TO_REL(apx + x_pixel_dist_travelled)) / x_offset), 1)
+					pixel_moves_until_crossing_y_border = CEILING(((33 - ABS_PIXEL_TO_REL(apy + y_pixel_dist_travelled)) / y_offset), 1)
 					if(pixel_moves_until_crossing_y_border < pixel_moves_until_crossing_x_border)
-						turf_crossed_by = get_step(last_processed_turf, NORTH)
+						border_escaped_through = NORTH
 					else if(pixel_moves_until_crossing_x_border < pixel_moves_until_crossing_y_border)
-						turf_crossed_by = get_step(last_processed_turf, WEST)
+						border_escaped_through = WEST
 					else
-						turf_crossed_by = get_step(last_processed_turf, pick(NORTH, WEST))
+						border_escaped_through = pick(NORTH, WEST)
+			turf_crossed_by = get_step(last_processed_turf, border_escaped_through)
+			for(var/j in uncross_scheduled)
+				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
+				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
+					continue
+				thing_to_uncross.do_projectile_hit(src)
+				end_of_movement = i
+				break
+			uncross_scheduled.len = 0
+			if(end_of_movement)
+				if(border_escaped_through & (NORTH|SOUTH))
+					x_pixel_dist_travelled += --pixel_moves_until_crossing_x_border * x_offset
+					y_pixel_dist_travelled += --pixel_moves_until_crossing_x_border * y_offset
+				else
+					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
+				break
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
 				ammo.on_hit_turf(turf_crossed_by, src)
 				turf_crossed_by.bullet_act(src)
-				if(pixel_moves_until_crossing_x_border <= pixel_moves_until_crossing_y_border)
+				if(border_escaped_through & (NORTH|SOUTH))
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				else
@@ -361,25 +382,57 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
-			if(scan_a_turf(turf_crossed_by))
+			if(scan_a_turf(turf_crossed_by, border_escaped_through))
 				last_processed_turf = turf_crossed_by
-				if(pixel_moves_until_crossing_x_border <= pixel_moves_until_crossing_y_border) //Escapes through X or pure diagonal.
+				if(border_escaped_through & (NORTH|SOUTH)) //Escapes through X.
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
-				else
+				else //Escapes through Y.
 					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
-		last_processed_turf = next_turf
+			movement_dir -= border_escaped_through //Next scan should come from the other component cardinal direction.
+			for(var/j in uncross_scheduled) //We are leaving turf_crossed_by now.
+				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
+				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
+					continue
+				thing_to_uncross.do_projectile_hit(src)
+				end_of_movement = i
+				break
+			uncross_scheduled.len = 0
+			if(end_of_movement)	//This is a bit overkill to deliver the right animation, but oh well.
+				if(border_escaped_through & (NORTH|SOUTH)) //Inverse logic than before. We now want to run the longer distance now.
+					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
+				else
+					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
+				break
+		if(length(uncross_scheduled)) //Time to exit the last turf entered, if the diagonal movement didn't handle it already.
+			for(var/j in uncross_scheduled)
+				var/atom/movable/thing_to_uncross = j
+				if(QDELETED(thing_to_uncross))
+					continue
+				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
+					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
+				thing_to_uncross.do_projectile_hit(src)
+				end_of_movement = i
+				break
+			uncross_scheduled.len = 0
+			if(end_of_movement)
+				break
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
+		last_processed_turf = next_turf
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.on_hit_turf(next_turf, src)
 			next_turf.bullet_act(src)
 			end_of_movement = i
 			break
-		if(scan_a_turf(next_turf))
+		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
 		if(distance_travelled >= proj_max_range)
@@ -418,7 +471,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 #undef PROJ_ANIMATION_SPEED
 
 
-/obj/item/projectile/proc/scan_a_turf(turf/turf_to_scan)
+/obj/item/projectile/proc/scan_a_turf(turf/turf_to_scan, cardinal_move)
 	if(turf_to_scan.density) //Handle wall hit.
 		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
@@ -439,7 +492,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		var/atom/movable/thing_to_hit = i
 
-		if(!thing_to_hit.projectile_hit(src)) //Calculated from combination of both ammo accuracy and gun accuracy.
+		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
@@ -457,14 +510,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 //returns probability for the projectile to hit us.
-/atom/proc/projectile_hit(obj/item/projectile/proj)
+/atom/proc/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return FALSE
 
 /atom/proc/do_projectile_hit(obj/item/projectile/proj)
 	return
 
 
-/obj/projectile_hit(obj/item/projectile/proj)
+/obj/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(!density)
 		return FALSE
 	if(layer >= OBJ_LAYER || src == proj.original_target)
@@ -476,51 +529,64 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	bullet_act(proj)
 
 
-/obj/structure/projectile_hit(obj/item/projectile/proj)
+/obj/structure/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(!density) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
-	if(!anchored) //unanchored structure offers no protection.
-		return FALSE
-	if(!throwpass)
-		return TRUE
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
-	if(!(flags_atom & ON_BORDER))
-		return FALSE //window frames, unflipped tables
-	if(!(proj.dir & dir|REVERSE_DIR(dir)))
-		return FALSE //no effect if bullet direction is perpendicular to barricade
-	var/distance = proj.distance_travelled - 1
-	if(distance < proj.ammo.barricade_clear_distance)
+	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
-	var/coverage = 90 //maximum probability of blocking projectile
-	var/distance_limit = 6 //number of tiles needed to max out block probability
-	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
-	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - proj.accuracy/100))
-	return prob(hitchance)
+	. = coverage //Hitchance.
+	if(flags_atom & ON_BORDER)
+		if(!(cardinal_move & REVERSE_DIR(dir))) //The bullet will only hit if the barricade and its movement are facing opposite directions.
+			if(!uncrossing)
+				proj.uncross_scheduled += src
+			return FALSE //No effect now, but we save the reference to check on exiting the tile.
+		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
+	if(!throwpass)
+		return TRUE
+	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
+	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
+	if(!anchored)
+		. *= 0.5 //Half the protection from unaffixed structures.
+	return prob(.)
 
 
-/obj/structure/window/projectile_hit(obj/item/projectile/proj)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY || ((flags_atom & ON_BORDER) && !(proj.dir & dir|REVERSE_DIR(dir))))
+/obj/structure/window/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
+	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
+		return FALSE
+	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
+		if(!uncrossing)
+			proj.uncross_scheduled += src
+		return FALSE
+	return TRUE
+
+/obj/machinery/door/window/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
+	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
+		return FALSE
+	if(flags_atom & ON_BORDER && !(cardinal_move & REVERSE_DIR(dir)))
+		if(!uncrossing)
+			proj.uncross_scheduled += src
 		return FALSE
 	return TRUE
 
 
-/obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj)
+/obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/egg/projectile_hit(obj/item/projectile/proj)
+/obj/effect/alien/egg/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/resin/trap/projectile_hit(obj/item/projectile/proj)
+/obj/effect/alien/resin/trap/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/item/clothing/mask/facehugger/projectile_hit(obj/item/projectile/proj)
+/obj/item/clothing/mask/facehugger/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 
-/mob/living/projectile_hit(obj/item/projectile/proj)
+/mob/living/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(lying && src != proj.original_target)
 		return FALSE
 	if(proj.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && (isnestedhost(src) || stat == DEAD))
@@ -603,7 +669,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	bullet_act(proj)
 
 
-/mob/living/carbon/human/projectile_hit(obj/item/projectile/proj)
+/mob/living/carbon/human/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
 		return FALSE
 	if(mobility_aura)
@@ -615,7 +681,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return ..()
 
 
-/mob/living/carbon/xenomorph/projectile_hit(obj/item/projectile/proj)
+/mob/living/carbon/xenomorph/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
 	if(mob_size == MOB_SIZE_BIG)
@@ -788,7 +854,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/xenomorph/charger = src
-			affecting_armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			if(is_charging >= CHARGE_ON)
+				affecting_armor += round(charger.get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
 			#if DEBUG_CREST_DEFENSE
 			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
 			#endif
