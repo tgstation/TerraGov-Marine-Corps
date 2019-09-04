@@ -29,6 +29,14 @@
 	return ..()
 
 
+/obj/machinery/faxmachine/deconstruct(disassembled = TRUE)
+	if(idscan)
+		idscan.forceMove(get_turf(src))
+		idscan = null
+
+	return ..()
+
+
 /obj/machinery/faxmachine/process()
 	return FALSE
 
