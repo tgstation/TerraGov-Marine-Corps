@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	//Handle aSL skill level and radio
 	if(squad_leader.job != SQUAD_LEADER)
 		if(squad_leader.mind)
-			squad_leader.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+			squad_leader.mind.cm_skills.leadership = SKILL_LEAD_TRAINED
 			squad_leader.mind.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
