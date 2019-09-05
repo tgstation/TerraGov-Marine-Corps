@@ -27,6 +27,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/Initialize()
 	. = ..()
+	if(keyslot)
+		keyslot = new keyslot(src)
+	if(keyslot2)
+		keyslot2 = new keyslot2(src)
 	recalculateChannels()
 
 
@@ -307,31 +311,31 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/st
 	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot = new /obj/item/encryptionkey/req	
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot = /obj/item/encryptionkey/req	
+	keyslot2 = /obj/item/encryptionkey/engi
 
 /obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
 	icon_state = "med_headset"
-	keyslot = new /obj/item/encryptionkey/med
+	keyslot = /obj/item/encryptionkey/med
 
 
 /obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
 	icon_state = "cargo_headset"
-	keyslot = new /obj/item/encryptionkey/req
+	keyslot = /obj/item/encryptionkey/req
 
 
 /obj/item/radio/headset/mainship/mmpo
 	name = "marine master at arms radio headset"
 	icon_state = "sec_headset"
-	keyslot = new /obj/item/encryptionkey/mmpo
+	keyslot = /obj/item/encryptionkey/mmpo
 
 
 /obj/item/radio/headset/mainship/cmpcom
 	name = "marine command master at arms radio headset"
 	icon_state = "sec_headset_alt"
-	keyslot = new /obj/item/encryptionkey/cmpcom
+	keyslot = /obj/item/encryptionkey/cmpcom
 	use_command = TRUE
 	command = TRUE
 
@@ -339,18 +343,18 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
 	icon_state = "com_headset_alt"
-	keyslot = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/mcom
 	use_command = TRUE
 	command = TRUE
 
 
 /obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
-	keyslot = new /obj/item/encryptionkey/mcom/ai
+	keyslot = /obj/item/encryptionkey/mcom/ai
 
 
 /obj/item/radio/headset/mainship/marine
-	keyslot = new /obj/item/encryptionkey/general
+	keyslot = /obj/item/encryptionkey/general
 	freerange = TRUE
 
 
@@ -370,15 +374,15 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		switch(rank)
 			if(SQUAD_LEADER)
 				dat += " leader"
-				keyslot2 = new /obj/item/encryptionkey/squadlead
+				keyslot2 = /obj/item/encryptionkey/squadlead
 				use_command = TRUE
 				command = TRUE
 			if(SQUAD_ENGINEER)
 				dat += " engineer"
-				keyslot2 = new /obj/item/encryptionkey/engi
+				keyslot2 = /obj/item/encryptionkey/engi
 			if(SQUAD_CORPSMAN)
 				dat += " corpsman"
-				keyslot2 = new /obj/item/encryptionkey/med
+				keyslot2 = /obj/item/encryptionkey/med
 		name = dat + " radio headset"
 	return ..()
 
@@ -391,19 +395,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
 /obj/item/radio/headset/mainship/marine/alpha/engi
 	name = "marine alpha engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
 /obj/item/radio/headset/mainship/marine/alpha/med
 	name = "marine alpha corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
@@ -415,19 +419,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
 /obj/item/radio/headset/mainship/marine/bravo/engi
 	name = "marine bravo engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
 /obj/item/radio/headset/mainship/marine/bravo/med
 	name = "marine bravo corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
@@ -439,19 +443,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/charlie/lead
 	name = "marine charlie leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
 /obj/item/radio/headset/mainship/marine/charlie/engi
 	name = "marine charlie engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
 /obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
@@ -463,19 +467,19 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/marine/delta/lead
 	name = "marine delta leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
 /obj/item/radio/headset/mainship/marine/delta/engi
 	name = "marine delta engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
 /obj/item/radio/headset/mainship/marine/delta/med
 	name = "marine delta corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 //Distress headsets.
@@ -486,32 +490,32 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/distress/dutch
 	name = "Dutch's Dozen headset"
-	keyslot = new /obj/item/encryptionkey/dutch
+	keyslot = /obj/item/encryptionkey/dutch
 
 
 /obj/item/radio/headset/distress/PMC
 	name = "PMC headset"
-	keyslot = new /obj/item/encryptionkey/PMC
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
 
 
 /obj/item/radio/headset/distress/wolves
 	name = "Steel Wolves headset"
 	frequency = FREQ_CIV_GENERAL
-	keyslot = new /obj/item/encryptionkey/wolves
+	keyslot = /obj/item/encryptionkey/wolves
 
 
 /obj/item/radio/headset/distress/commando
 	name = "Commando headset"
-	keyslot = new /obj/item/encryptionkey/commando
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/commando
+	keyslot2 = /obj/item/encryptionkey/mcom
 
 
 /obj/item/radio/headset/distress/imperial
 	name = "Imperial headset"
-	keyslot = new /obj/item/encryptionkey/imperial
+	keyslot = /obj/item/encryptionkey/imperial
 
 
 /obj/item/radio/headset/distress/som
 	name = "\improper Sons of Mars headset"
-	keyslot = new /obj/item/encryptionkey/som
+	keyslot = /obj/item/encryptionkey/som
