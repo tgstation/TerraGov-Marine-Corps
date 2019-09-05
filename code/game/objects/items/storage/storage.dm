@@ -144,11 +144,10 @@
 		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/storage/proc/close(mob/user)
 
+/obj/item/storage/proc/close(mob/user)
 	hide_from(user)
-	user.s_active = null
-	return
+
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
