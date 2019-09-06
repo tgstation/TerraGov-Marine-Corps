@@ -60,11 +60,12 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
 				return
-			start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			if(isnull(start_at))
+				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
-			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [CONFIG_GET(number/lobby_countdown)] seconds.</span>")
+			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
 			fire()
 
