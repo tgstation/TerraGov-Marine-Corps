@@ -1346,3 +1346,9 @@
 	else
 		language_holder = new initial_language_holder(src)
 		return language_holder
+
+
+/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(buckled)
+		return
+	return ..()
