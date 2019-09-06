@@ -85,9 +85,17 @@
 			else
 				interact(AI)
 
-	for(var/mob/M in range(1, src))
+	for(var/mob/M in view(1, src))
 		if(!M.client || M.interactee != src || M == AI)
 			continue
+		is_in_use = TRUE
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
+
+	if(ismob(loc))
+		var/mob/M = loc
 		is_in_use = TRUE
 		if(interaction_flags & INTERACT_UI_INTERACT)
 			ui_interact(M)

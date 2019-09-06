@@ -171,9 +171,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(slot == SLOT_EARS)
 		wearer = user
 		squadhud = GLOB.huds[DATA_HUD_SQUAD]
-		headset_hud_on = FALSE //So we always activate on equip.
-		sl_direction = FALSE
-		toggle_squadhud(wearer)
+		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
@@ -182,6 +180,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
+			disable_squadhud()
 			squadhud.remove_hud_from(user)
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
@@ -205,65 +204,56 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 
-/obj/item/radio/headset/mainship/proc/toggle_squadhud()
-	if(!ishuman(loc))
-		return
-
-	var/mob/living/carbon/human/user = loc
-
-	if(headset_hud_on)
-		squadhud.remove_hud_from(user)
-		if(sl_direction)
-			toggle_sl_direction()
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
-		headset_hud_on = FALSE
-	else
-		squadhud.add_hud_to(user)
-		headset_hud_on = TRUE
-		if(user.mind && user.assigned_squad)
-			if(!sl_direction)
-				toggle_sl_direction()
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+/obj/item/radio/headset/mainship/proc/enable_squadhud()
+	squadhud.add_hud_to(wearer)
+	headset_hud_on = TRUE
+	if(wearer.mind && wearer.assigned_squad && !sl_direction)
+		enable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
-/obj/item/radio/headset/mainship/proc/toggle_sl_direction()
-	if(!ishuman(loc))
-		return
-
-	var/mob/living/carbon/human/user = loc
-	
-	if(!headset_hud_on)
-		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
-		return
-
-	var/is_squadleader = (user.assigned_squad.squad_leader == user)
-	var/tracking_id = user.assigned_squad.tracking_id
+/obj/item/radio/headset/mainship/proc/disable_squadhud()
+	squadhud.remove_hud_from(wearer)
+	headset_hud_on = FALSE
 	if(sl_direction)
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 0
+		disable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
-		if(is_squadleader)
-			SSdirection.clear_leader(tracking_id)
-			SSdirection.stop_tracking("marine-sl", user)
+
+/obj/item/radio/headset/mainship/proc/enable_sl_direction()
+	if(!headset_hud_on)
+		to_chat(wearer, "<span class='warning'>You need to turn the HUD on first!</span>")
+		return
+
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 128
+		if(wearer.assigned_squad.squad_leader == wearer)
+			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
+			SSdirection.start_tracking("marine-sl", wearer)
 		else
-			SSdirection.stop_tracking(tracking_id, user)
-		sl_direction = FALSE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
-	else
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 128
-			if(is_squadleader)
-				SSdirection.set_leader(tracking_id, user)
-				SSdirection.start_tracking("marine-sl", user)
-			else
-				SSdirection.start_tracking(tracking_id, user)
+			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
 
-		sl_direction = TRUE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	sl_direction = TRUE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	
+
+/obj/item/radio/headset/mainship/proc/disable_sl_direction()
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 0
+
+	if(wearer.assigned_squad.squad_leader == wearer)
+		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
+		SSdirection.stop_tracking("marine-sl", wearer)
+	else
+		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
+	
+	sl_direction = FALSE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
 
 
 /obj/item/radio/headset/mainship/verb/configure_squadhud()
@@ -275,6 +265,18 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return FALSE
 
 	interact(usr)
+
+
+/obj/item/radio/headset/mainship/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!wearer)
+		return FALSE
+
+	return TRUE
+
 
 
 /obj/item/radio/headset/mainship/interact(mob/user)
@@ -299,10 +301,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 
 	if(href_list["headset_hud_on"])
-		toggle_squadhud()
+		if(headset_hud_on)
+			disable_squadhud()
+		else
+			enable_squadhud()
 
 	if(href_list["sl_direction"])
-		toggle_sl_direction()
+		if(sl_direction)
+			disable_sl_direction()
+		else
+			enable_sl_direction()
 
 	updateUsrDialog()
 

@@ -61,19 +61,19 @@
 
 
 /obj/item/radio/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
 	if(unscrewed)
 		return wires.interact(user)
 
 	var/dat
 
-	if(!istype(src, /obj/item/radio/headset)) //Headsets dont get a mic button
-		dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
 
-	dat += {"
-				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-				Frequency: 	[format_frequency(frequency)] "}
-
-	dat += "<br>"
+	dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
+	dat += "Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>"
+	dat += "Frequency: [format_frequency(frequency)]"
 
 	for(var/ch_name in channels)
 		dat += text_sec_channel(ch_name, channels[ch_name])
@@ -81,7 +81,6 @@
 	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
 	popup.open()
-
 
 
 /obj/item/radio/proc/text_sec_channel(chan_name, chan_stat)

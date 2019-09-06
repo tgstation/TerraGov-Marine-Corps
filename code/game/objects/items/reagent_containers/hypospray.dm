@@ -26,11 +26,6 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	core_name = "hypospray"
 
-/obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
-	if(user.incapacitated() || !user.dextrous)
-		return FALSE
-
-	interact(user)
 
 /obj/item/reagent_container/hypospray/proc/empty(mob/user)
 	if(alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
