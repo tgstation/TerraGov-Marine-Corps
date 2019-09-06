@@ -15,7 +15,6 @@
 	old_x = -16
 	//Ravager vars
 	var/rage = 0
-	var/rage_resist = 1.00
 	var/last_rage = null
 	var/next_damage = null
 
@@ -89,7 +88,3 @@
 	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
 	
 	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_NEXT_DAMAGE, null), 0.2 SECONDS)  // Limit how often this proc can trigger; once per 0.2 seconds
-	
-	damage_mod += damage * (1 - rage_resist) //reduce damage by rage resist %
-
-	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
