@@ -13,7 +13,10 @@
 	return ..()
 
 
-/datum/wires/airalarm/interactable(mob/user)
+/datum/wires/airalarm/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/alarm/A = holder
 	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && A.buildstage == 2)
 		return TRUE

@@ -200,3 +200,25 @@
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")
 		return FALSE
 	return TRUE
+
+
+/obj/structure/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!user.CanReach(src))
+		return FALSE
+
+	return TRUE
+
+
+/obj/structure/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!can_interact(user))
+		return
+
+	return interact(user)

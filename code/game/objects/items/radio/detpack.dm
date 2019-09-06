@@ -150,63 +150,46 @@
 	return
 
 /obj/item/radio/detpack/Topic(href, href_list)
-	//..()
-	if(usr.stat || usr.restrained())
+	. = ..()
+	if(.)
 		return
-	if((ishuman(usr) && usr.contents.Find(src)) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
-		usr.set_interaction(src)
-		if(href_list["freq"])
-			var/new_frequency = (frequency + text2num(href_list["freq"]))
-			if(new_frequency < 1200 || new_frequency > 1600)
-				new_frequency = sanitize_frequency(new_frequency)
-			set_frequency(new_frequency)
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-			else if(href_list["det_mode"])
-				det_mode = !( det_mode )
-				update_icon()
-			else if(href_list["power"])
-				on = !( on )
-				update_icon()
-			else
-				if(href_list["timer"])
-					timer += text2num(href_list["timer"])
-					timer = round(timer)
-					timer = CLAMP(timer,DETPACK_TIMER_MIN,DETPACK_TIMER_MAX)
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
+
+	if(href_list["code"])
+		code += text2num(href_list["code"])
+		code = CLAMP(round(code), 1, 100)
+	else if(href_list["det_mode"])
+		det_mode = !det_mode
+		update_icon()
+	else if(href_list["power"])
+		on = !on
+		update_icon()
+	
+	else if(href_list["timer"])
+		timer += text2num(href_list["timer"])
+		timer = CLAMP(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
+
+	updateUsrDialog()
 
 
-/obj/item/radio/detpack/attack_self(mob/user as mob, flag1)
 
-	if(!ishuman(user))
+/obj/item/radio/detpack/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
+
+	return TRUE
+
+
+/obj/item/radio/detpack/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
-	user.set_interaction(src)
-	var/dat = {"<TT>
+
+	var/dat = {"
 <A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
 <A href='?src=\ref[src];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
@@ -229,11 +212,11 @@
 <A href='byond://?src=\ref[src];timer=1'>+</A>
 <A href='byond://?src=\ref[src];timer=5'>+</A>
 <A href='byond://?src=\ref[src];timer=10'>+</A>
-<A href='byond://?src=\ref[src];timer=50'>+</A><BR>
-</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+<A href='byond://?src=\ref[src];timer=50'>+</A><BR>"}
+
+	var/datum/browser/popup = new(user, "detpack")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/radio/detpack/afterattack(atom/target, mob/user, flag)

@@ -12,6 +12,7 @@
 	var/href_token
 
 	var/deadmined
+	var/ghost_interact = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -384,6 +385,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/launch_pod,
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
+	/datum/admins/proc/ghost_interact,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
@@ -644,7 +646,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		return FALSE
 	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
 		return FALSE
-	if(!user.client.ai_interact)
+	if(!user.client.holder.ghost_interact)
 		return FALSE
 	return TRUE
 

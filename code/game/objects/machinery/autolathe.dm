@@ -38,13 +38,11 @@
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/interact(mob/user as mob)
-
-	if(..() || disabled)
+/obj/machinery/autolathe/interact(mob/user)
+	. = ..()
+	if(.)
 		return
 
-	if (shocked)
-		shock(user,50)
 
 	var/dat = "<center>"
 
@@ -105,8 +103,7 @@
 
 	var/datum/browser/popup = new(user, "autolathe", "<div align='center'>Autolathe</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "autolathe")
+	popup.open()
 
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
@@ -195,22 +192,11 @@
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
 
-/obj/machinery/autolathe/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/autolathe/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	user.set_interaction(src)
-	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")

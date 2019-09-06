@@ -119,6 +119,13 @@
 	loc = T
 
 
+/obj/item/attack_ghost(mob/dead/observer/user)
+	if(!can_interact(user))
+		return
+
+	return interact(user)
+
+
 /obj/item/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -149,9 +156,6 @@
 		user.dropItemToGround(src)
 		dropped(user)
 
-
-/obj/item/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -593,7 +597,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(!user.IsAdvancedToolUser())
+	else if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
 	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
@@ -861,3 +865,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())
+
+
+/obj/item/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!user.CanReach(src))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/attack_self(mob/user)
+	if(!can_interact(user))
+		return
+
+	interact(user)

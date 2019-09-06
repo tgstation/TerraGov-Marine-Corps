@@ -29,6 +29,8 @@
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
+	var/datum/wires/wires = null
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -591,13 +593,6 @@ Proc for attack log creation, because really why not
 	return
 
 
-//when a mob interact with something that gives them a special view,
-//check_eye() is called to verify that they're still eligible.
-//if they are not check_eye() usually reset the mob's view.
-/atom/proc/check_eye(mob/user)
-	return
-
-
 /atom/proc/drop_location()
 	var/atom/L = loc
 	if(!L)
@@ -639,6 +634,7 @@ Proc for attack log creation, because really why not
 	. = ..()
 	if(.)
 		return
+
 	add_fingerprint(usr, "topic")
 
 
@@ -657,3 +653,17 @@ Proc for attack log creation, because really why not
 			return TRUE
 
 	return ..()
+
+
+/atom/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if((interaction_flags & INTERACT_REQUIRES_DEXTERITY) && !user.dextrous)
+		return FALSE
+	
+	if((interaction_flags & INTERACT_CHECK_INCAPACITATED) && user.incapacitated())
+		return FALSE
+	
+	return TRUE

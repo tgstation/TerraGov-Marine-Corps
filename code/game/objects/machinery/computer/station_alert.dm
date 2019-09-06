@@ -17,27 +17,13 @@
 	return ..()
 
 
-/obj/machinery/computer/station_alert/attack_ai(mob/user)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
-	return
 
-
-/obj/machinery/computer/station_alert/attack_hand(mob/living/user)
+/obj/machinery/computer/station_alert/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
-	return
-
-
-/obj/machinery/computer/station_alert/interact(mob/user)
-	usr.set_interaction(src)
-	var/dat = "<META HTTP-EQUIV='Refresh' CONTENT='10'>"
-	dat += "<A HREF='?src=\ref[user];mach_close=alerts'>Close</A><br><br>"
+	
+	var/dat
 	for (var/cat in src.alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
 		var/list/L = src.alarms[cat]
@@ -58,8 +44,7 @@
 
 	var/datum/browser/popup = new(user, "alerts", "<div align='center'>Current Station Alerts</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "alerts")
+	popup.open()
 
 
 /obj/machinery/computer/station_alert/proc/triggerAlarm(class, area/A, O, alarmsource)

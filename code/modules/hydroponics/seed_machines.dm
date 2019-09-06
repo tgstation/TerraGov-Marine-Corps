@@ -8,8 +8,8 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/disk/botany/New()
-	..()
+/obj/item/disk/botany/Initialize()
+	. = ..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
@@ -34,7 +34,8 @@
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
+	interaction_flags = INTERACT_MACHINE_NANO
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
 	var/obj/item/disk/botany/loaded_disk //Currently loaded data disk.
@@ -55,17 +56,6 @@
 	if(world.time > last_action + action_time)
 		finished_task()
 
-/obj/machinery/botany/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/botany/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/botany/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
 
 /obj/machinery/botany/proc/finished_task()
 	active = 0
@@ -200,14 +190,11 @@
 		visible_message("[icon2html(src, viewers(src))] [src] beeps and spits out [loaded_disk].")
 		loaded_disk = null
 
-	usr.set_interaction(src)
 
 /obj/machinery/botany/extractor/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(href_list["scan_genome"])
 
@@ -329,5 +316,3 @@
 		for(var/datum/plantgene/gene in loaded_disk.genes)
 			seed.seed.apply_gene(gene)
 			seed.modified += rand(5,10)
-
-	usr.set_interaction(src)

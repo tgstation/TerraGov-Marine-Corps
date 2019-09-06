@@ -43,18 +43,13 @@
 		scan = I
 		to_chat(user, "You insert [I].")
 
-/obj/machinery/computer/med_data/attack_ai(user as mob)
-	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/med_data/attack_hand(mob/living/user)
+/obj/machinery/computer/med_data/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 	var/dat
-	if (src.temp)
+	if(src.temp)
 		dat = text("<TT>[src.temp]</TT><BR><BR><A href='?src=\ref[src];temp=1'>Clear Screen</A>")
 	else
 		dat = text("Confirm Identity: <A href='?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
@@ -136,8 +131,7 @@
 
 	var/datum/browser/popup = new(user, "med_rec", "<div align='center'>Medical Records</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "med_rec")
+	popup.open()
 
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
@@ -151,332 +145,328 @@
 	if (!( GLOB.datacore.medical.Find(src.active2) ))
 		src.active2 = null
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || issilicon(usr))
-		usr.set_interaction(src)
+	if (href_list["temp"])
+		src.temp = null
 
-		if (href_list["temp"])
-			src.temp = null
+	if (href_list["scan"])
+		if (src.scan)
 
-		if (href_list["scan"])
-			if (src.scan)
+			if(ishuman(usr))
+				scan.loc = usr.loc
 
-				if(ishuman(usr))
-					scan.loc = usr.loc
+				if(!usr.get_active_held_item())
+					usr.put_in_hands(scan)
 
-					if(!usr.get_active_held_item())
-						usr.put_in_hands(scan)
-
-					scan = null
-
-				else
-					src.scan.loc = src.loc
-					src.scan = null
+				scan = null
 
 			else
-				var/obj/item/I = usr.get_active_held_item()
-				if (istype(I, /obj/item/card/id))
-					if(usr.drop_held_item())
-						I.forceMove(src)
-						src.scan = I
+				src.scan.loc = src.loc
+				src.scan = null
 
-		else if (href_list["logout"])
-			src.authenticated = null
-			src.screen = null
+		else
+			var/obj/item/I = usr.get_active_held_item()
+			if (istype(I, /obj/item/card/id))
+				if(usr.drop_held_item())
+					I.forceMove(src)
+					src.scan = I
+
+	else if (href_list["logout"])
+		src.authenticated = null
+		src.screen = null
+		src.active1 = null
+		src.active2 = null
+
+	else if (href_list["login"])
+
+		if (isAI(usr))
+			src.active1 = null
+			src.active2 = null
+			src.authenticated = usr.name
+			src.rank = "AI"
+			src.screen = 1
+
+		else if (istype(src.scan, /obj/item/card/id))
 			src.active1 = null
 			src.active2 = null
 
-		else if (href_list["login"])
-
-			if (isAI(usr))
-				src.active1 = null
-				src.active2 = null
-				src.authenticated = usr.name
-				src.rank = "AI"
+			if (src.check_access(src.scan))
+				src.authenticated = src.scan.registered_name
+				src.rank = src.scan.assignment
 				src.screen = 1
 
-			else if (istype(src.scan, /obj/item/card/id))
-				src.active1 = null
-				src.active2 = null
+	if (src.authenticated)
 
-				if (src.check_access(src.scan))
-					src.authenticated = src.scan.registered_name
-					src.rank = src.scan.assignment
-					src.screen = 1
+		if(href_list["screen"])
+			src.screen = text2num(href_list["screen"])
+			if(src.screen < 1)
+				src.screen = 1
 
-		if (src.authenticated)
+			src.active1 = null
+			src.active2 = null
 
-			if(href_list["screen"])
-				src.screen = text2num(href_list["screen"])
-				if(src.screen < 1)
-					src.screen = 1
+		if (href_list["del_all"])
+			src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
 
-				src.active1 = null
-				src.active2 = null
+		if (href_list["del_all2"])
+			for(var/datum/data/record/R in GLOB.datacore.medical)
+				GLOB.datacore.medical -= R
+				qdel(R)
+				//Foreach goto(494)
+			src.temp = "All records deleted."
 
-			if (href_list["del_all"])
-				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
+		if (href_list["field"])
+			var/a1 = src.active1
+			var/a2 = src.active2
+			switch(href_list["field"])
+				if("fingerprint")
+					if (istype(src.active1, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please input fingerprint hash:", "Med. records", src.active1.fields["fingerprint"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
+							return
+						src.active1.fields["fingerprint"] = t1
+				if("sex")
+					if (istype(src.active1, /datum/data/record))
+						if (src.active1.fields["sex"] == "Male")
+							src.active1.fields["sex"] = "Female"
+						else
+							src.active1.fields["sex"] = "Male"
+				if("age")
+					if (istype(src.active1, /datum/data/record))
+						var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
+							return
+						src.active1.fields["age"] = t1
+				if("mi_dis")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please input minor disabilities list:", "Med. records", src.active2.fields["mi_dis"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["mi_dis"] = t1
+				if("mi_dis_d")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please summarize minor dis.:", "Med. records", src.active2.fields["mi_dis_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["mi_dis_d"] = t1
+				if("ma_dis")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please input major diabilities list:", "Med. records", src.active2.fields["ma_dis"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["ma_dis"] = t1
+				if("ma_dis_d")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please summarize major dis.:", "Med. records", src.active2.fields["ma_dis_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["ma_dis_d"] = t1
+				if("alg")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please state allergies:", "Med. records", src.active2.fields["alg"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["alg"] = t1
+				if("alg_d")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please summarize allergies:", "Med. records", src.active2.fields["alg_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["alg_d"] = t1
+				if("cdi")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please state diseases:", "Med. records", src.active2.fields["cdi"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["cdi"] = t1
+				if("cdi_d")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please summarize diseases:", "Med. records", src.active2.fields["cdi_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["cdi_d"] = t1
+				if("notes")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(html_encode(trim(input("Please summarize notes:", "Med. records", html_decode(src.active2.fields["notes"]), null)  as message)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["notes"] = t1
+				if("p_stat")
+					if (istype(src.active1, /datum/data/record))
+						src.temp = text("<B>Physical Condition:</B><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
+				if("m_stat")
+					if (istype(src.active1, /datum/data/record))
+						src.temp = text("<B>Mental Condition:</B><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
+				if("b_type")
+					if (istype(src.active2, /datum/data/record))
+						src.temp = text("<B>Blood Type:</B><BR>\n\t<A href='?src=\ref[];temp=1;b_type=an'>A-</A> <A href='?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=on'>O-</A> <A href='?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
+				if("b_dna")
+					if (istype(src.active2, /datum/data/record))
+						var/t1 = copytext(trim(sanitize(input("Please input DNA hash:", "Med. records", src.active2.fields["b_dna"], null)  as text)),1,MAX_MESSAGE_LEN)
+						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+							return
+						src.active2.fields["b_dna"] = t1
 
-			if (href_list["del_all2"])
-				for(var/datum/data/record/R in GLOB.datacore.medical)
-					GLOB.datacore.medical -= R
-					qdel(R)
-					//Foreach goto(494)
-				src.temp = "All records deleted."
+		if (href_list["p_stat"])
+			if (src.active1)
+				switch(href_list["p_stat"])
+					if("deceased")
+						src.active1.fields["p_stat"] = "*Deceased*"
+					if("ssd")
+						src.active1.fields["p_stat"] = "*SSD*"
+					if("active")
+						src.active1.fields["p_stat"] = "Active"
+					if("unfit")
+						src.active1.fields["p_stat"] = "Physically Unfit"
+					if("disabled")
+						src.active1.fields["p_stat"] = "Disabled"
 
-			if (href_list["field"])
-				var/a1 = src.active1
-				var/a2 = src.active2
-				switch(href_list["field"])
-					if("fingerprint")
-						if (istype(src.active1, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please input fingerprint hash:", "Med. records", src.active1.fields["fingerprint"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
-								return
-							src.active1.fields["fingerprint"] = t1
-					if("sex")
-						if (istype(src.active1, /datum/data/record))
-							if (src.active1.fields["sex"] == "Male")
-								src.active1.fields["sex"] = "Female"
-							else
-								src.active1.fields["sex"] = "Male"
-					if("age")
-						if (istype(src.active1, /datum/data/record))
-							var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
-								return
-							src.active1.fields["age"] = t1
-					if("mi_dis")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please input minor disabilities list:", "Med. records", src.active2.fields["mi_dis"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["mi_dis"] = t1
-					if("mi_dis_d")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please summarize minor dis.:", "Med. records", src.active2.fields["mi_dis_d"], null)  as message)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["mi_dis_d"] = t1
-					if("ma_dis")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please input major diabilities list:", "Med. records", src.active2.fields["ma_dis"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["ma_dis"] = t1
-					if("ma_dis_d")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please summarize major dis.:", "Med. records", src.active2.fields["ma_dis_d"], null)  as message)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["ma_dis_d"] = t1
-					if("alg")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please state allergies:", "Med. records", src.active2.fields["alg"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["alg"] = t1
-					if("alg_d")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please summarize allergies:", "Med. records", src.active2.fields["alg_d"], null)  as message)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["alg_d"] = t1
-					if("cdi")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please state diseases:", "Med. records", src.active2.fields["cdi"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["cdi"] = t1
-					if("cdi_d")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please summarize diseases:", "Med. records", src.active2.fields["cdi_d"], null)  as message)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["cdi_d"] = t1
-					if("notes")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(html_encode(trim(input("Please summarize notes:", "Med. records", html_decode(src.active2.fields["notes"]), null)  as message)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["notes"] = t1
-					if("p_stat")
-						if (istype(src.active1, /datum/data/record))
-							src.temp = text("<B>Physical Condition:</B><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
-					if("m_stat")
-						if (istype(src.active1, /datum/data/record))
-							src.temp = text("<B>Mental Condition:</B><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
-					if("b_type")
-						if (istype(src.active2, /datum/data/record))
-							src.temp = text("<B>Blood Type:</B><BR>\n\t<A href='?src=\ref[];temp=1;b_type=an'>A-</A> <A href='?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='?src=\ref[];temp=1;b_type=on'>O-</A> <A href='?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
-					if("b_dna")
-						if (istype(src.active2, /datum/data/record))
-							var/t1 = copytext(trim(sanitize(input("Please input DNA hash:", "Med. records", src.active2.fields["b_dna"], null)  as text)),1,MAX_MESSAGE_LEN)
-							if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-								return
-							src.active2.fields["b_dna"] = t1
-
-			if (href_list["p_stat"])
-				if (src.active1)
-					switch(href_list["p_stat"])
-						if("deceased")
-							src.active1.fields["p_stat"] = "*Deceased*"
-						if("ssd")
-							src.active1.fields["p_stat"] = "*SSD*"
-						if("active")
-							src.active1.fields["p_stat"] = "Active"
-						if("unfit")
-							src.active1.fields["p_stat"] = "Physically Unfit"
-						if("disabled")
-							src.active1.fields["p_stat"] = "Disabled"
-
-			if (href_list["m_stat"])
-				if (src.active1)
-					switch(href_list["m_stat"])
-						if("insane")
-							src.active1.fields["m_stat"] = "*Insane*"
-						if("unstable")
-							src.active1.fields["m_stat"] = "*Unstable*"
-						if("watch")
-							src.active1.fields["m_stat"] = "*Watch*"
-						if("stable")
-							src.active1.fields["m_stat"] = "Stable"
+		if (href_list["m_stat"])
+			if (src.active1)
+				switch(href_list["m_stat"])
+					if("insane")
+						src.active1.fields["m_stat"] = "*Insane*"
+					if("unstable")
+						src.active1.fields["m_stat"] = "*Unstable*"
+					if("watch")
+						src.active1.fields["m_stat"] = "*Watch*"
+					if("stable")
+						src.active1.fields["m_stat"] = "Stable"
 
 
-			if (href_list["b_type"])
-				if (src.active2)
-					switch(href_list["b_type"])
-						if("an")
-							src.active2.fields["b_type"] = "A-"
-						if("bn")
-							src.active2.fields["b_type"] = "B-"
-						if("abn")
-							src.active2.fields["b_type"] = "AB-"
-						if("on")
-							src.active2.fields["b_type"] = "O-"
-						if("ap")
-							src.active2.fields["b_type"] = "A+"
-						if("bp")
-							src.active2.fields["b_type"] = "B+"
-						if("abp")
-							src.active2.fields["b_type"] = "AB+"
-						if("op")
-							src.active2.fields["b_type"] = "O+"
+		if (href_list["b_type"])
+			if (src.active2)
+				switch(href_list["b_type"])
+					if("an")
+						src.active2.fields["b_type"] = "A-"
+					if("bn")
+						src.active2.fields["b_type"] = "B-"
+					if("abn")
+						src.active2.fields["b_type"] = "AB-"
+					if("on")
+						src.active2.fields["b_type"] = "O-"
+					if("ap")
+						src.active2.fields["b_type"] = "A+"
+					if("bp")
+						src.active2.fields["b_type"] = "B+"
+					if("abp")
+						src.active2.fields["b_type"] = "AB+"
+					if("op")
+						src.active2.fields["b_type"] = "O+"
 
 
-			if (href_list["del_r"])
-				if (active2)
-					src.temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
+		if (href_list["del_r"])
+			if (active2)
+				src.temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
 
-			if (href_list["del_r2"])
-				if (active2)
-					qdel(active2)
-					active2 = null
+		if (href_list["del_r2"])
+			if (active2)
+				qdel(active2)
+				active2 = null
 
-			if (href_list["d_rec"])
-				var/datum/data/record/R = locate(href_list["d_rec"])
-				var/datum/data/record/M = locate(href_list["d_rec"])
-				if (!( GLOB.datacore.general.Find(R) ))
-					src.temp = "Record Not Found!"
-					return
-				for(var/datum/data/record/E in GLOB.datacore.medical)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
-						M = E
-					else
-						//Foreach continue //goto(2540)
-				src.active1 = R
-				src.active2 = M
+		if (href_list["d_rec"])
+			var/datum/data/record/R = locate(href_list["d_rec"])
+			var/datum/data/record/M = locate(href_list["d_rec"])
+			if (!( GLOB.datacore.general.Find(R) ))
+				src.temp = "Record Not Found!"
+				return
+			for(var/datum/data/record/E in GLOB.datacore.medical)
+				if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+					M = E
+				else
+					//Foreach continue //goto(2540)
+			src.active1 = R
+			src.active2 = M
+			src.screen = 4
+
+		if (href_list["new"])
+			if ((istype(src.active1, /datum/data/record) && !( istype(src.active2, /datum/data/record) )))
+				var/datum/data/record/R = new /datum/data/record(  )
+				R.fields["name"] = src.active1.fields["name"]
+				R.fields["id"] = src.active1.fields["id"]
+				R.name = text("Medical Record #[]", R.fields["id"])
+				R.fields["b_type"] = "Unknown"
+				R.fields["b_dna"] = "Unknown"
+				R.fields["mi_dis"] = "None"
+				R.fields["mi_dis_d"] = "No minor disabilities have been declared."
+				R.fields["ma_dis"] = "None"
+				R.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
+				R.fields["alg"] = "None"
+				R.fields["alg_d"] = "No allergies have been detected in this patient."
+				R.fields["cdi"] = "None"
+				R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
+				R.fields["notes"] = "No notes."
+				GLOB.datacore.medical += R
+				src.active2 = R
 				src.screen = 4
 
-			if (href_list["new"])
-				if ((istype(src.active1, /datum/data/record) && !( istype(src.active2, /datum/data/record) )))
-					var/datum/data/record/R = new /datum/data/record(  )
-					R.fields["name"] = src.active1.fields["name"]
-					R.fields["id"] = src.active1.fields["id"]
-					R.name = text("Medical Record #[]", R.fields["id"])
-					R.fields["b_type"] = "Unknown"
-					R.fields["b_dna"] = "Unknown"
-					R.fields["mi_dis"] = "None"
-					R.fields["mi_dis_d"] = "No minor disabilities have been declared."
-					R.fields["ma_dis"] = "None"
-					R.fields["ma_dis_d"] = "No major disabilities have been diagnosed."
-					R.fields["alg"] = "None"
-					R.fields["alg_d"] = "No allergies have been detected in this patient."
-					R.fields["cdi"] = "None"
-					R.fields["cdi_d"] = "No diseases have been diagnosed at the moment."
-					R.fields["notes"] = "No notes."
-					GLOB.datacore.medical += R
+		if (href_list["add_c"])
+			if (!( istype(src.active2, /datum/data/record) ))
+				return
+			var/a2 = src.active2
+			var/t1 = copytext(trim(sanitize(input("Add Comment:", "Med. records", null, null)  as message)),1,MAX_MESSAGE_LEN)
+			if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
+				return
+			var/counter = 1
+			while(src.active2.fields[text("com_[]", counter)])
+				counter++
+			src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
+
+		if (href_list["del_c"])
+			if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
+				src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
+
+		if (href_list["search"])
+			var/t1 = stripped_input(usr, "Search String: (Name, DNA, or ID)", "Med. records")
+			if ((!( t1 ) || usr.stat || !( src.authenticated ) || usr.restrained() || ((!in_range(src, usr)) && !issilicon(usr))))
+				return
+			src.active1 = null
+			src.active2 = null
+			t1 = lowertext(t1)
+			for(var/datum/data/record/R in GLOB.datacore.medical)
+				if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
 					src.active2 = R
-					src.screen = 4
-
-			if (href_list["add_c"])
-				if (!( istype(src.active2, /datum/data/record) ))
-					return
-				var/a2 = src.active2
-				var/t1 = copytext(trim(sanitize(input("Add Comment:", "Med. records", null, null)  as message)),1,MAX_MESSAGE_LEN)
-				if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active2 != a2))
-					return
-				var/counter = 1
-				while(src.active2.fields[text("com_[]", counter)])
-					counter++
-				src.active2.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GAME_YEAR]<BR>[t1]")
-
-			if (href_list["del_c"])
-				if ((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))
-					src.active2.fields[text("com_[]", href_list["del_c"])] = "<B>Deleted</B>"
-
-			if (href_list["search"])
-				var/t1 = stripped_input(usr, "Search String: (Name, DNA, or ID)", "Med. records")
-				if ((!( t1 ) || usr.stat || !( src.authenticated ) || usr.restrained() || ((!in_range(src, usr)) && !issilicon(usr))))
-					return
-				src.active1 = null
-				src.active2 = null
-				t1 = lowertext(t1)
-				for(var/datum/data/record/R in GLOB.datacore.medical)
-					if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
-						src.active2 = R
-					else
-						//Foreach continue //goto(3229)
-				if (!( src.active2 ))
-					src.temp = text("Could not locate record [].", t1)
 				else
-					for(var/datum/data/record/E in GLOB.datacore.general)
-						if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
-							src.active1 = E
-						else
-							//Foreach continue //goto(3334)
-					src.screen = 4
-
-			if (href_list["print_p"])
-				if (!( src.printing ))
-					src.printing = 1
-					var/datum/data/record/record1 = null
-					var/datum/data/record/record2 = null
-					if ((istype(src.active1, /datum/data/record) && GLOB.datacore.general.Find(src.active1)))
-						record1 = active1
-					if ((istype(src.active2, /datum/data/record) && GLOB.datacore.medical.Find(src.active2)))
-						record2 = active2
-					sleep(50)
-					var/obj/item/paper/P = new /obj/item/paper( src.loc )
-					P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
-					if (record1)
-						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["fingerprint"], record1.fields["p_stat"], record1.fields["m_stat"])
-						P.name = text("Medical Record ([])", record1.fields["name"])
+					//Foreach continue //goto(3229)
+			if (!( src.active2 ))
+				src.temp = text("Could not locate record [].", t1)
+			else
+				for(var/datum/data/record/E in GLOB.datacore.general)
+					if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
+						src.active1 = E
 					else
-						P.info += "<B>General Record Lost!</B><BR>"
-						P.name = "Medical Record"
-					if (record2)
-						P.info += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: []<BR>\nDNA: []<BR>\n<BR>\nMinor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nMajor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nAllergies: []<BR>\nDetails: []<BR>\n<BR>\nCurrent Diseases: [] (per disease info placed in log/comment section)<BR>\nDetails: []<BR>\n<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", record2.fields["b_type"], record2.fields["b_dna"], record2.fields["mi_dis"], record2.fields["mi_dis_d"], record2.fields["ma_dis"], record2.fields["ma_dis_d"], record2.fields["alg"], record2.fields["alg_d"], record2.fields["cdi"], record2.fields["cdi_d"], decode(record2.fields["notes"]))
-						var/counter = 1
-						while(record2.fields[text("com_[]", counter)])
-							P.info += text("[]<BR>", record2.fields[text("com_[]", counter)])
-							counter++
-					else
-						P.info += "<B>Medical Record Lost!</B><BR>"
-					P.info += "</TT>"
-					src.printing = null
+						//Foreach continue //goto(3334)
+				src.screen = 4
 
-	src.updateUsrDialog()
-	return
+		if (href_list["print_p"])
+			if (!( src.printing ))
+				src.printing = 1
+				var/datum/data/record/record1 = null
+				var/datum/data/record/record2 = null
+				if ((istype(src.active1, /datum/data/record) && GLOB.datacore.general.Find(src.active1)))
+					record1 = active1
+				if ((istype(src.active2, /datum/data/record) && GLOB.datacore.medical.Find(src.active2)))
+					record2 = active2
+				sleep(50)
+				var/obj/item/paper/P = new /obj/item/paper( src.loc )
+				P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
+				if (record1)
+					P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", record1.fields["name"], record1.fields["id"], record1.fields["sex"], record1.fields["age"], record1.fields["fingerprint"], record1.fields["p_stat"], record1.fields["m_stat"])
+					P.name = text("Medical Record ([])", record1.fields["name"])
+				else
+					P.info += "<B>General Record Lost!</B><BR>"
+					P.name = "Medical Record"
+				if (record2)
+					P.info += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: []<BR>\nDNA: []<BR>\n<BR>\nMinor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nMajor Disabilities: []<BR>\nDetails: []<BR>\n<BR>\nAllergies: []<BR>\nDetails: []<BR>\n<BR>\nCurrent Diseases: [] (per disease info placed in log/comment section)<BR>\nDetails: []<BR>\n<BR>\nImportant Notes:<BR>\n\t[]<BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", record2.fields["b_type"], record2.fields["b_dna"], record2.fields["mi_dis"], record2.fields["mi_dis_d"], record2.fields["ma_dis"], record2.fields["ma_dis_d"], record2.fields["alg"], record2.fields["alg_d"], record2.fields["cdi"], record2.fields["cdi_d"], decode(record2.fields["notes"]))
+					var/counter = 1
+					while(record2.fields[text("com_[]", counter)])
+						P.info += text("[]<BR>", record2.fields[text("com_[]", counter)])
+						counter++
+				else
+					P.info += "<B>Medical Record Lost!</B><BR>"
+				P.info += "</TT>"
+				src.printing = null
+
+	updateUsrDialog()
 
 /obj/machinery/computer/med_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

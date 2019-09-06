@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
-	user.set_interaction(src)
+	. = ..()
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)
@@ -83,8 +83,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			keyslot2 = I
 
 		recalculateChannels()
-	else
-		return ..()
 
 
 /obj/item/radio/headset/examine(mob/user)
@@ -207,11 +205,16 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 
-/obj/item/radio/headset/mainship/proc/toggle_squadhud(mob/living/carbon/human/user)
+/obj/item/radio/headset/mainship/proc/toggle_squadhud()
+	if(!ishuman(loc))
+		return
+
+	var/mob/living/carbon/human/user = loc
+
 	if(headset_hud_on)
 		squadhud.remove_hud_from(user)
 		if(sl_direction)
-			toggle_sl_direction(user)
+			toggle_sl_direction()
 		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
 		headset_hud_on = FALSE
@@ -220,12 +223,17 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		headset_hud_on = TRUE
 		if(user.mind && user.assigned_squad)
 			if(!sl_direction)
-				toggle_sl_direction(user)
+				toggle_sl_direction()
 		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
 		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
-/obj/item/radio/headset/mainship/proc/toggle_sl_direction(mob/living/carbon/human/user)
+/obj/item/radio/headset/mainship/proc/toggle_sl_direction()
+	if(!ishuman(loc))
+		return
+
+	var/mob/living/carbon/human/user = loc
+	
 	if(!headset_hud_on)
 		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
@@ -263,50 +271,40 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	set category = "Object"
 	set src in usr
 
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+	if(!can_interact(usr))
 		return FALSE
 
-	handle_interface(usr)
+	interact(usr)
 
 
-/obj/item/radio/headset/mainship/proc/handle_interface(mob/living/carbon/human/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
+/obj/item/radio/headset/mainship/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat = {"
 	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
 	<BR>
 	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
-	<BR>
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+	<BR>"}
+
+	var/datum/browser/popup = new(user, "radio")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/radio/headset/mainship/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
 
-	if(!H.contents.Find(src) || !H.assigned_squad)
-		DIRECT_OUTPUT(H, browse(null, "window=radio"))
-		return
-
-	H.set_interaction(src)
 	if(href_list["headset_hud_on"])
-		toggle_squadhud(H)
+		toggle_squadhud()
 
-	else if(href_list["sl_direction"])
-		toggle_sl_direction(H)
+	if(href_list["sl_direction"])
+		toggle_sl_direction()
 
-	if(!master)
-		if(ishuman(loc))
-			handle_interface(loc)
-	else
-		if(ishuman(master.loc))
-			handle_interface(master.loc)
+	updateUsrDialog()
 
 
 /obj/item/radio/headset/mainship/st
