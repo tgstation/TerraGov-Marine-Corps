@@ -10,8 +10,13 @@
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
-/atom/proc/Adjacent(atom/neighbor) // basic inheritance, unused
+/datum/proc/Adjacent(atom/neighbor) // basic inheritance, unused
 	return FALSE
+
+
+/datum/wires/Adjacent(atom/neighbor)
+	return holder.Adjacent(neighbor)
+
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
 /area/Adjacent(atom/neighbor)

@@ -253,15 +253,10 @@
 
 
 /mob/living/silicon/ai/can_interact_with(datum/D)
-	if(istype(D, /datum/wires))
-		var/datum/wires/W = D
-		D = W.holder
-
 	if(!isatom(D))
 		return FALSE
 
 	var/atom/A = D
-
 	if(level_locked && A.z != z)
 		return FALSE
 

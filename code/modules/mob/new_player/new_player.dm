@@ -96,12 +96,6 @@
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-
-
-/mob/new_player/can_interact_with(datum/D)
-	if(D != src)
-		return FALSE
-	return TRUE
 	
 
 /mob/new_player/Topic(href, href_list[])
