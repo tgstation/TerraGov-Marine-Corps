@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	//Handle aSL skill level and radio
 	if(squad_leader.job != SQUAD_LEADER)
 		if(squad_leader.mind)
-			var/bonus = min(SKILL_LEVEL_TRAINED - GET_SKILL(squad_leader, SKILL_LEADERSHIP), 2)
+			var/bonus = SKILL_LEVEL_TRAINED - GET_SKILL(squad_leader, SKILL_LEADERSHIP)
 			if(bonus > 0)
 				ADD_SKILL_MOD(squad_leader, SKILL_LEADERSHIP, SKILL_MOD_ASSIGNED_SL, bonus)
 			squad_leader.mind.comm_title = "aSL"

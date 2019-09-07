@@ -170,6 +170,7 @@
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
@@ -253,11 +254,11 @@
 				add_larva()
 			return FALSE
 
-	var/victory_options = (num_humans == 0 && num_xenos == 0)						<< 0 // Draw, for all other reasons
-	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) 			<< 1 // XENO Major (All marines killed)
-	victory_options |= ((marines_evac == CRASH_EVAC_COMPLETED && !planet_nuked) || (marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))		<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (marines_evac == CRASH_EVAC_NONE && planet_nuked)		<< 3 // Marine minor (Planet nuked, some human left on planet)
-	victory_options |= ((marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED) && planet_nuked) 		<< 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
+	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) << 1 // XENO Major (All marines killed)
+	victory_options |= (!planet_nuked && (marines_evac == CRASH_EVAC_COMPLETED || marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))	<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (planet_nuked && marines_evac == CRASH_EVAC_NONE) << 3 // Marine minor (Planet nuked, some human left on planet)
+	victory_options |= (planet_nuked && (marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED)) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
 
 	switch(victory_options)
 		if(CRASH_DRAW)
@@ -393,6 +394,10 @@
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
+/datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/area_name = get_area_name(nuke)
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
 
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE

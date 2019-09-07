@@ -1765,10 +1765,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
+		var/oldname = H.real_name
+
 		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
-		log_admin("[key_name(src)] gave [key_name(H)] a random name.")
-		message_admins("[ADMIN_TPMONTY(usr)] gave a [ADMIN_TPMONTY(H)] random name.")
+		log_admin("[key_name(src)] randomized the name of [oldname] -> [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] randomized the name of [oldname] -> [ADMIN_TPMONTY(H)].")
 
 
 	else if(href_list["checkcontents"])
