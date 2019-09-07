@@ -50,7 +50,7 @@
 	do_climb(target)
 
 /obj/structure/proc/can_climb(mob/living/user)
-	if(!climbable || !can_touch(user))
+	if(!climbable || !can_interact(user))
 		return FALSE
 
 	var/turf/T = src.loc
@@ -185,21 +185,6 @@
 			H.UpdateDamageIcon()
 			H.updatehealth()
 	return
-
-/obj/structure/proc/can_touch(mob/user)
-	if(!user)
-		return FALSE
-	if(!Adjacent(user) || !isturf(user.loc))
-		return FALSE
-	if(user.restrained() || user.buckled)
-		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
-		return FALSE
-	if(user.incapacitated(TRUE) || user.lying)
-		return FALSE
-	if(issilicon(user))
-		to_chat(user, "<span class='notice'>You need hands for this.</span>")
-		return FALSE
-	return TRUE
 
 
 /obj/structure/can_interact(mob/user)

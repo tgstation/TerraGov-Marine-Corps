@@ -156,7 +156,7 @@
 	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
 
-/obj/item/radio/detpack/Adjacent(neighbor) //Snowflake detpacks.
+/obj/item/detpack/Adjacent(neighbor) //Snowflake detpacks.
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = get_turf(loc)

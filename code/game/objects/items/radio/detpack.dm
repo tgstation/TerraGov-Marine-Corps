@@ -1,4 +1,4 @@
-/obj/item/radio/detpack
+/obj/item/detpack
 	name = "detonation pack"
 	desc = "Programmable remotely triggered 'smart' explosive used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."
 	gender = PLURAL
@@ -6,13 +6,13 @@
 	icon_state = "detpack_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
-	frequency = 1457
 	w_class = WEIGHT_CLASS_SMALL
 	origin_tech = "syndicate=2"
-	on = FALSE
 	layer = MOB_LAYER - 0.1
+	var/frequency = 1457
+	var/on = FALSE
 	var/armed = FALSE
-	var/timer = 5.0
+	var/timer = 5
 	var/code = 2
 	var/det_mode = FALSE //FALSE for breach, TRUE for demolition.
 	var/atom/plant_target = null //which atom the detpack is planted on
@@ -22,7 +22,7 @@
 	var/sound_timer
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/radio/detpack/examine(mob/user)
+/obj/item/detpack/examine(mob/user)
 	. = ..()
 	var/list/details = list()
 	if(on)
@@ -38,7 +38,7 @@
 	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 
-/obj/item/radio/detpack/Destroy()
+/obj/item/detpack/Destroy()
 	if(sound_timer)
 		deltimer(sound_timer)
 		sound_timer = null
@@ -53,13 +53,13 @@
 		return ..()
 
 
-/obj/item/radio/detpack/set_frequency(new_frequency)
+/obj/item/detpack/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
 
 
-/obj/item/radio/detpack/update_icon()
+/obj/item/detpack/update_icon()
 	icon_state = "detpack_[plant_target ? "set_" : ""]"
 	if(on)
 		icon_state = "[icon_state][armed ? "armed" : "on"]"
@@ -67,7 +67,7 @@
 		icon_state = "[icon_state]off"
 
 
-/obj/item/radio/detpack/attackby(obj/item/I, mob/user, params)
+/obj/item/detpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(ismultitool(I) && armed)
@@ -94,7 +94,7 @@
 		update_icon()
 
 
-/obj/item/radio/detpack/attack_hand(mob/living/user)
+/obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
 		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
 		return
@@ -108,7 +108,7 @@
 		nullvars()
 	return ..()
 
-/obj/item/radio/detpack/proc/nullvars()
+/obj/item/detpack/proc/nullvars()
 	if(ismovableatom(plant_target) && plant_target.loc)
 		var/atom/movable/T = plant_target
 		if(T.drag_delay == 3)
@@ -120,7 +120,7 @@
 	boom = FALSE
 	update_icon()
 
-/obj/item/radio/detpack/receive_signal(datum/signal/signal)
+/obj/item/detpack/receive_signal(datum/signal/signal)
 	if(!signal || !on)
 		return
 
@@ -149,7 +149,7 @@
 		master.receive_signal()
 	return
 
-/obj/item/radio/detpack/Topic(href, href_list)
+/obj/item/detpack/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -160,6 +160,7 @@
 	else if(href_list["det_mode"])
 		det_mode = !det_mode
 		update_icon()
+	
 	else if(href_list["power"])
 		on = !on
 		update_icon()
@@ -172,7 +173,7 @@
 
 
 
-/obj/item/radio/detpack/can_interact(mob/user)
+/obj/item/detpack/can_interact(mob/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -184,7 +185,7 @@
 	return TRUE
 
 
-/obj/item/radio/detpack/interact(mob/user)
+/obj/item/detpack/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -219,7 +220,7 @@
 	popup.open()
 
 
-/obj/item/radio/detpack/afterattack(atom/target, mob/user, flag)
+/obj/item/detpack/afterattack(atom/target, mob/user, flag)
 	if(!flag)
 		return FALSE
 	if(istype(target, /obj/item) || istype(target, /mob))
@@ -273,20 +274,20 @@
 				T.drag_delay = 3
 		update_icon()
 
-/obj/item/radio/detpack/proc/change_to_loud_sound()
+/obj/item/detpack/proc/change_to_loud_sound()
 	if(sound_timer)
 		deltimer(sound_timer)
 		sound_timer = addtimer(CALLBACK(src, .proc/do_play_sound_loud), 1 SECONDS, TIMER_LOOP)
 
-/obj/item/radio/detpack/proc/do_play_sound_normal()
+/obj/item/detpack/proc/do_play_sound_normal()
 	timer--
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 50, FALSE)
 
-/obj/item/radio/detpack/proc/do_play_sound_loud()
+/obj/item/detpack/proc/do_play_sound_loud()
 	timer--
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
 
-/obj/item/radio/detpack/proc/disarm()
+/obj/item/detpack/proc/disarm()
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 		timer = DETPACK_TIMER_MIN
 	if(sound_timer)
@@ -297,7 +298,7 @@
 		detonation_pending = null
 	update_icon()
 
-/obj/item/radio/detpack/proc/do_detonate()
+/obj/item/detpack/proc/do_detonate()
 	detonation_pending = null
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
@@ -332,5 +333,5 @@
 	qdel(src)
 
 
-/obj/item/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
