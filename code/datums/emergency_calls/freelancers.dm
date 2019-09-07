@@ -4,11 +4,8 @@
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are part of a [pick(75;"distant", 25;"close")] family in a colony of [pick(75;"a space station", 25;"Earth")].</b>")
-	to_chat(H, "<B>However, due to a [pick("famine", "poverty", "disease outbreak")] in your colony, you abandoned her. You were then hired by [pick("your cousin, who is a freelancer", "some freelancers", "a group of freelancers")] to be part of a freelance mercenary group.</b>")
-	to_chat(H, "")
-	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. You hope you can come back alive to get your pay!</b>")
-	to_chat(H, "<B>Ensure they are not destroyed. Collect payment as long as you remain alive.</b>")
+	to_chat(H, "<B>Today, you have been contracted by the TGMC to assist the [SSmapping.configs[SHIP_MAP].map_name].</b>")
+	to_chat(H, "<B>Ensure they are not destroyed. Collect payment.</b>")
 
 
 /datum/emergency_call/freelancers/create_member(datum/mind/M)
@@ -36,7 +33,7 @@
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/leader)
 		SSjob.AssignRole(H, J.title)
 		J.assign_equip(H)
-		to_chat(H, "<span class='notice'>You are the Freelancer mercenary assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece to make sure they earn their payment!</notice>")
+		to_chat(H, "<span class='notice'>You are the Freelancer leader!</notice>")
 		return
 
 	if(medics < max_medics)
@@ -44,10 +41,10 @@
 		SSjob.AssignRole(H, J.title)
 		J.assign_equip(H)
 		medics++
-		to_chat(H, "<span class='notice'>You are a Freelancer mercenary medic assigned to this group to respond to the TGMC distress signal sent nearby. Do not let your teammates fall in battle!</notice>")
+		to_chat(H, "<span class='notice'>You are a Freelancer medic!</notice>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)
 	SSjob.AssignRole(H, J.title)
 	J.assign_equip(H)
-	to_chat(H, "<span class='notice'>You are a Freelancer mercenary assigned to this group to respond to the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice>")
+	to_chat(H, "<span class='notice'>You are a Freelancer mercenary!</notice>")

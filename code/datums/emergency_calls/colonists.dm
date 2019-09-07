@@ -4,8 +4,7 @@
 
 
 /datum/emergency_call/colonist/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are a simple colonist hoping to be something else.</b>")
-	to_chat(H, "<B>Follow all instructions assigned by the staff or your leader in-character.</b>")
+	to_chat(H, "<B>You are a colonist!</b>")
 
 
 /datum/emergency_call/colonist/create_member(datum/mind/M)
@@ -28,4 +27,3 @@
 	var/datum/job/J = SSjob.GetJobType(/datum/job/other/colonist)
 	SSjob.AssignRole(H, J.title)
 	J.assign_equip(H)
-	to_chat(H, "<span class='notice'>You are a colonist. You... wait for further orders!</span>")
