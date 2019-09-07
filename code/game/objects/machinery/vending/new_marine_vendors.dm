@@ -244,7 +244,7 @@
 							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/M3harness, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -331,7 +331,7 @@
 							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/M3harness, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/tech, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/tech, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -396,7 +396,7 @@
 							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
 							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/M3harness, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/corpsman, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -1146,7 +1146,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/reagent_container/hypospray/advanced/oxycodone
 						)
 
-		
+
 
 
 
