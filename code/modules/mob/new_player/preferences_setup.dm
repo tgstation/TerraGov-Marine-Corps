@@ -161,6 +161,9 @@
 		if(!firstspace || firstspace == name_length)
 			real_name += " " + pick(SSstrings.get_list_from_file("names/last_name"))
 
+	if(!good_eyesight)
+		ENABLE_BITFIELD(character.disabilities, NEARSIGHTED)
+
 	character.real_name = real_name
 	character.name = character.real_name
 
