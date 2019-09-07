@@ -756,4 +756,4 @@ below 100 is not dizzy
 
 
 /mob/living/can_interact_with(datum/D)
-	return Adjacent(D)
+	return D.Adjacent(src)
