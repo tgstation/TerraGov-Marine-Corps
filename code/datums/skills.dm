@@ -244,7 +244,6 @@
 
 /datum/skills/pfc/pmc
 	name = "PMC Private"
-	police = SKILL_POLICE_MP
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
@@ -288,7 +287,6 @@
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
-	police = SKILL_POLICE_MP
 
 
 /datum/skills/specialist
@@ -303,7 +301,7 @@
 
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
-	police = SKILL_POLICE_MP
+	engineer = SKILL_ENGINEER_METAL
 
 
 /datum/skills/specialist/upp
@@ -336,7 +334,6 @@
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
-	police = SKILL_POLICE_MP
 
 
 
