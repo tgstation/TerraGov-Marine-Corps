@@ -16,7 +16,7 @@
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 
-	var/muzzle_flash 	= "muzzle_flash"
+	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -72,19 +72,10 @@
 
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 
-	//Targeting.
-	var/tmp/list/mob/living/target				//List of who yer targeting.
-	var/tmp/mob/living/last_moved_mob			//Used to fire faster at more than one person.
-	var/tmp/lock_time 		= -100
-	var/automatic 			= 0					//Used to determine if you can target multiple people.
-	var/tmp/told_cant_shoot = 0					//So that it doesn't spam them with the fact they cannot hit them.
-	var/firerate 			= 0					//0 for keep shooting until aim is lowered
-												//1 for one bullet after target moves and aim is lowered
-
 	//Attachments.
-	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
-	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
-	var/attachable_allowed[]		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
+	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
+	var/list/attachable_offset 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
+	var/list/attachable_allowed		= null		//Must be the exact path to the attachment present in the list. Empty list for a default.
 	var/obj/item/attachable/muzzle 	= null		//Attachable slots. Only one item per slot.
 	var/obj/item/attachable/rail 	= null
 	var/obj/item/attachable/under 	= null
@@ -103,6 +94,8 @@
 
 	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
 
+	var/general_codex_key = "guns"
+
 
 //----------------------------------------------------------
 				//				    \\
@@ -114,7 +107,6 @@
 /obj/item/weapon/gun/Initialize(mapload, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
-	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
 	if(current_mag)
 		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
 			current_mag = null
@@ -133,6 +125,8 @@
 
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after set_gun_config_values(), handle_starting_attachment() and setup_firemodes() to get the proper values set.
+
+	muzzle_flash = new()
 
 
 //Called by the gun's New(), set the gun variables' values.
@@ -161,16 +155,22 @@
 
 
 /obj/item/weapon/gun/Destroy()
-	in_chamber 		= null
-	ammo 			= null
-	current_mag 	= null
-	target 			= null
-	last_moved_mob 	= null
-	muzzle 			= null
-	rail 			= null
-	under 			= null
-	stock 			= null
-	attachable_overlays = null
+	ammo = null
+	active_attachable = null
+	if(muzzle)
+		QDEL_NULL(muzzle)
+	if(rail)
+		QDEL_NULL(rail)
+	if(under)
+		QDEL_NULL(under)
+	if(stock)
+		QDEL_NULL(stock)
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
+	if(current_mag)
+		QDEL_NULL(current_mag)
+	if(muzzle_flash)
+		QDEL_NULL(muzzle_flash)
 	return ..()
 
 /obj/item/weapon/gun/emp_act(severity)
@@ -287,22 +287,23 @@
 	do_wield(user, wdelay)
 	return TRUE
 
-/obj/item/weapon/gun/unwield(mob/user)
 
-	if((flags_item|TWOHANDED|WIELDED) != flags_item)
-		return //Have to be actually a twohander and wielded.
+/obj/item/weapon/gun/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
 	if(zoom)
 		zoom(user)
-	flags_item ^= WIELDED
-	name 	    = copytext(name, 1, -10)
-	item_state  = copytext(item_state, 1, -2)
-	update_slowdown()
-	remove_offhand(user)
 
-	var/obj/screen/ammo/A = user.hud_used.ammo
-	A.remove_hud(user)
+	update_slowdown()
+
+	var/obj/screen/ammo/A = user.hud_used?.ammo
+	if(A)
+		A.remove_hud(user)
 
 	return TRUE
+
 
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
@@ -509,7 +510,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 /obj/item/weapon/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)
 		return ..() //It's adjacent, is the user, or is on the user's person
-	if(!istype(A))
+	if(QDELETED(A))
 		return
 	if(flags_gun_features & GUN_BURST_FIRING)
 		return
@@ -604,8 +605,6 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	set waitfor = 0
-	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
-		return
 
 	if(!able_to_fire(user))
 		return
@@ -613,13 +612,10 @@ and you're good to go.
 	if(gun_on_cooldown(user))
 		return
 
-	var/turf/curloc = get_turf(user) //In case the target or we are expired.
-	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc)
-		return //Something has gone wrong...
-	var/atom/original_target = target //This is for burst mode, in case the target changes per scatter chance in between fired bullets.
+	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
+		return
 
-	
+	var/turf/targloc = get_turf(target)
 
 	/*
 	This is where burst is established for the proceeding section. Which just means the proc loops around that many times.
@@ -647,6 +643,11 @@ and you're good to go.
 			click_empty(user)
 			break
 
+		if(QDELETED(target)) //This can happen on burstfire, as it's a sleeping proc.
+			if(QDELETED(targloc))
+				break
+			target = targloc //If the original targets gets destroyed, fire at its location.
+
 		var/recoil_comp = 0 //used by bipod and akimbo firing
 
 		//checking for a gun in other hand to fire akimbo
@@ -670,8 +671,7 @@ and you're good to go.
 			if(mouse_control["icon-y"])
 				projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
 
-		target = original_target ? original_target : targloc
-		target = simulate_scatter(projectile_to_fire, target, targloc, user)
+		var/firing_angle = get_angle_with_scatter((user || get_turf(src)), target, get_scatter(projectile_to_fire.scatter, user), projectile_to_fire.p_x, projectile_to_fire.p_y)
 
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
@@ -679,26 +679,17 @@ and you're good to go.
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
-		if(user)
+		if(!QDELETED(user))
 			play_fire_sound(user)
-
-		if(get_turf(target) != get_turf(user))
+			muzzle_flash(firing_angle, user)
 			simulate_recoil(recoil_comp, user)
 
-			//This is where the projectile leaves the barrel and deals with projectile code only.
-			//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-			projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed)
-			//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-			last_fired = world.time
 
-		else // This happens in very rare circumstances when you're moving a lot while burst firing, so I'm going to toss it up to guns jamming.
-			clear_jam(projectile_to_fire,user)
-			break
-
-		//>>POST PROCESSING AND CLEANUP BEGIN HERE.<<
-		if(target) //If we had a target, let's do a muzzle flash.
-			var/angle = round(Get_Angle(user,target))
-			muzzle_flash(angle,user)
+		//This is where the projectile leaves the barrel and deals with projectile code only.
+		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
+		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		last_fired = world.time
 
 		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
 		if(!reload_into_chamber(user)) // It has to return a bullet, otherwise it's empty.
@@ -979,29 +970,25 @@ and you're good to go.
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 
-/obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, mob/user)
-	var/total_scatter = projectile_to_fire.scatter
 
-	if(total_scatter <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
-		return target
 
-	var/targdist = get_dist(target, get_turf(src))
+
+/obj/item/weapon/gun/proc/get_scatter(starting_scatter, mob/user)
+	. = starting_scatter //projectile_to_fire.scatter
+
+	if(. <= 0) //Not if the gun doesn't scatter at all, or negative scatter.
+		return 0
 
 	switch(gun_firemode)
-		if(GUN_FIREMODE_BURSTFIRE) //Much higher chance on a burst.
+		if(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC) //Much higher chance on a burst or similar.
 			if(flags_item & WIELDED && wielded_stable())
-				total_scatter += burst_amount * burst_scatter_mult
+				. += burst_amount * burst_scatter_mult
 			else
-				total_scatter += burst_amount * burst_scatter_mult * 5
-			if(targdist > world.view) //Long range burst shots have more chance to scatter.
-				total_scatter += 25
-		if(GUN_FIREMODE_SEMIAUTO)
-			if(targdist < 4) //No scatter on single fire for close targets.
-				return target
+				. += burst_amount * burst_scatter_mult * 5
 
 	if(user?.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
-			total_scatter += CONFIG_GET(number/combat_define/low_scatter_value)
+			. += CONFIG_GET(number/combat_define/low_scatter_value)
 		else
 			var/scatter_tweak = 0
 			switch(gun_skill_category)
@@ -1020,30 +1007,10 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					scatter_tweak = user.mind.cm_skills.spec_weapons
 			if(scatter_tweak)
-				total_scatter -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
+				. -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
-	if(prob(total_scatter)) //Scattered?
-		var/scatter_x = abs(16 - projectile_to_fire.p_x) //The value starts in pixels, depending on where the user clicked.
-		var/scatter_y = abs(16 - projectile_to_fire.p_y) //Distance to the center of the tile.
-		switch(get_dir(get_turf(src), target)) //Projectile direction.
-			if(NORTH, SOUTH)
-				scatter_x += total_scatter //The higher the scatter chance, the higher deviation.
-			if(EAST, WEST)
-				scatter_y += total_scatter
-			if(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-				scatter_x += total_scatter * 0.5
-				scatter_y += total_scatter * 0.5
-		
-		scatter_x = min(rand(0, round(scatter_x / 32) + 1), targdist - 1) //Value is turned into tiles.
-		scatter_y = min(rand(0, round(scatter_y / 32) + 1), targdist - 1)
-
-		if(scatter_x || scatter_y) //Scattered!
-			var/turf/new_target = locate(targloc.x + (rand(0, 1) ? scatter_x : -scatter_x), targloc.y + (rand(0, 1) ? scatter_y : -scatter_y), targloc.z) //Locate an adjacent turf.
-			if(new_target)
-				target = new_target//Looks like we found a turf.
-
-	projectile_to_fire.original = target
-	return target
+	if(!prob(.)) //RNG at work.
+		return 0
 
 
 /obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
@@ -1082,27 +1049,95 @@ and you're good to go.
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE
 
-/obj/item/weapon/gun/proc/muzzle_flash(angle,mob/user, x_offset = 0, y_offset = 5)
-	if(!muzzle_flash || flags_gun_features & GUN_SILENCED || isnull(angle))
-		return //We have to check for null angle here, as 0 can also be an angle.
-	if(!istype(user) || !istype(user.loc,/turf))
+
+/obj/item/weapon/gun/proc/muzzle_flash(angle, atom/movable/flash_loc)
+	if(!muzzle_flash || muzzle_flash.applied)
 		return
-
 	var/prev_light = light_range
-	if(light_range <= muzzle_flash_lum)
+	if(light_range < muzzle_flash_lum)
 		set_light(muzzle_flash_lum)
-		spawn(10)
-			set_light(prev_light)
+		addtimer(CALLBACK(src, /atom.proc/set_light, prev_light), 1 SECONDS)
 
-	if(prob(65)) //Not all the time.
-		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		var/image/I = image('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer)
-		var/matrix/rotate = matrix() //Change the flash angle.
-		rotate.Translate(x,y)
-		rotate.Turn(angle)
-		I.transform = rotate
+	//Offset the pixels.
+	switch(angle)
+		if(0, 360)
+			muzzle_flash.pixel_x = 0
+			muzzle_flash.pixel_y = 4
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(1 to 44)
+			muzzle_flash.pixel_x = round(4 * ((angle) / 45))
+			muzzle_flash.pixel_y = 4
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(45)
+			muzzle_flash.pixel_x = 4
+			muzzle_flash.pixel_y = 4
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(46 to 89)
+			muzzle_flash.pixel_x = 4
+			muzzle_flash.pixel_y = round(4 * ((90 - angle) / 45))
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(90)
+			muzzle_flash.pixel_x = 4
+			muzzle_flash.pixel_y = 0
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(91 to 134)
+			muzzle_flash.pixel_x = 4
+			muzzle_flash.pixel_y = round(-3 * ((angle - 90) / 45))
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(135)
+			muzzle_flash.pixel_x = 4
+			muzzle_flash.pixel_y = -3
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(136 to 179)
+			muzzle_flash.pixel_x = round(4 * ((180 - angle) / 45))
+			muzzle_flash.pixel_y = -3
+			muzzle_flash.layer = ABOVE_MOB_LAYER
+		if(180)
+			muzzle_flash.pixel_x = 0
+			muzzle_flash.pixel_y = -3
+			muzzle_flash.layer = ABOVE_MOB_LAYER
+		if(181 to 224)
+			muzzle_flash.pixel_x = round(-3 * ((angle - 180) / 45))
+			muzzle_flash.pixel_y = -3
+			muzzle_flash.layer = ABOVE_MOB_LAYER
+		if(225)
+			muzzle_flash.pixel_x = -3
+			muzzle_flash.pixel_y = -3
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(226 to 269)
+			muzzle_flash.pixel_x = -3
+			muzzle_flash.pixel_y = round(-3 * ((270 - angle) / 45))
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(270)
+			muzzle_flash.pixel_x = -3
+			muzzle_flash.pixel_y = 0
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(271 to 314)
+			muzzle_flash.pixel_x = -3
+			muzzle_flash.pixel_y = round(4 * ((angle - 270) / 45))
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(315)
+			muzzle_flash.pixel_x = -3
+			muzzle_flash.pixel_y = 4
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+		if(316 to 359)
+			muzzle_flash.pixel_x = round(-3 * ((360 - angle) / 45))
+			muzzle_flash.pixel_y = 4
+			muzzle_flash.layer = initial(muzzle_flash.layer)
+	
+	muzzle_flash.transform = null
+	muzzle_flash.transform = turn(muzzle_flash.transform, angle)
+	flash_loc.vis_contents += muzzle_flash
+	muzzle_flash.applied = TRUE
 
-		flick_overlay_view(I, user, 3)
+	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
+
+
+/obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
+	if(!QDELETED(flash_loc))
+		flash_loc.vis_contents -= muzzle_flash
+	muzzle_flash.applied = FALSE
+
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))

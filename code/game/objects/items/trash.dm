@@ -94,6 +94,7 @@
 	icon_state = "fortune" //Thank you Alterist
 
 /obj/item/trash/fortunecookie/Initialize(mapload, ...)
+	. = ..()
 	desc = "The fortune reads. <br><span class='tip'>[pick(SSstrings.get_list_from_file("tips/marine"))]</span>"
 
 /obj/item/trash/c_tube

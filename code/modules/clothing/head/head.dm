@@ -48,6 +48,9 @@
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
 
+/obj/item/clothing/head/tgmcberet/green
+	icon_state = "beretgreen"	
+
 /obj/item/clothing/head/tgmcberet/wo
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."

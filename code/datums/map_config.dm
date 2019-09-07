@@ -47,7 +47,7 @@
 		if(default)
 			configs[i] = config
 			continue
-		if(!config.LoadConfig(filename, error_if_missing))
+		if(!config.LoadConfig(filename, error_if_missing, i))
 			qdel(config)
 			config = new /datum/map_config
 		if(delete_after)
@@ -56,7 +56,7 @@
 	return configs
 
 #define CHECK_EXISTS(X) if(!istext(json[X])) { log_world("[##X] missing from json!"); return; }
-/datum/map_config/proc/LoadConfig(filename, error_if_missing)
+/datum/map_config/proc/LoadConfig(filename, error_if_missing, maptype)
 	if(!fexists(filename))
 		if(error_if_missing)
 			log_world("map_config not found: [filename]")
@@ -131,7 +131,7 @@
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE
 
-	if(json["announce_text"])
+	if(json["announce_text"] && maptype == SHIP_MAP)
 		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
 
 	defaulted = FALSE

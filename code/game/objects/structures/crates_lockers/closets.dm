@@ -193,6 +193,8 @@
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
+	if(I.flags_item & ITEM_ABSTRACT)
+		return FALSE
 	. = ..()
 	if(opened)
 		if(istype(I, /obj/item/grab))
@@ -469,8 +471,8 @@
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
 	stun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying && stunned)
-		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!",
-		"<span class='warning'>You get out of [origin] and get your bearings!")
+		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!</span>",
+		"<span class='warning'>You get out of [origin] and get your bearings!</span>")
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
 

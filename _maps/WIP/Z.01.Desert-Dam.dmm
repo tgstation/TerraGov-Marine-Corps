@@ -30689,20 +30689,20 @@
 	},
 /area/desert_dam/building/mining/boxing_room)
 "bzb" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor{
 	icon_state = "darkbrown2";
 	dir = 1
 	},
 /area/desert_dam/building/mining/locker_room)
 "bzc" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor{
 	icon_state = "darkbrown2"
 	},
 /area/desert_dam/building/mining/locker_room)
 "bzd" = (
-/obj/structure/closet/secure_closet/cargotech,
+/obj/structure/closet/secure_closet/shiptech,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4

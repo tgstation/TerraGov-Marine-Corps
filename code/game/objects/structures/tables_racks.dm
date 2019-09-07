@@ -22,8 +22,9 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
+	coverage = 10
 	var/parts = /obj/item/frame/table
-
+	var/status = 2
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/table_prefix = "" //used in update_icon()
 	var/reinforced = FALSE
@@ -58,7 +59,7 @@
 
 /obj/structure/table/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
@@ -285,7 +286,7 @@
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(iswrench(I) && !reinforced)
+	if(iswrench(I) && ((reinforced && status == 1) || !reinforced))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 
@@ -465,7 +466,6 @@
 	desc = "A square metal surface resting on four legs. This one has side panels, making it useful as a desk, but impossible to flip."
 	icon_state = "reinftable"
 	max_integrity = 200
-	var/status = 2
 	reinforced = TRUE
 	table_prefix = "reinf"
 	parts = /obj/item/frame/table/reinforced
@@ -581,7 +581,7 @@
 
 /obj/structure/rack/Crossed(atom/movable/O)
 	..()
-	if(istype(O,/mob/living/carbon/xenomorph/ravager) || istype(O,/mob/living/carbon/xenomorph/crusher))
+	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")

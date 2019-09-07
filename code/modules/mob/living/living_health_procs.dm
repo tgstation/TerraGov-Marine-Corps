@@ -171,6 +171,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	disabilities = 0
 
 	// fix blindness and deafness
+	set_drugginess(0)
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
@@ -215,13 +216,60 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	setShock_Stage(0)
 	drunkenness = 0
 	disabilities = 0
+
+	if(handcuffed && !initial(handcuffed))
+		dropItemToGround(handcuffed)
+	update_handcuffed(initial(handcuffed))
+
+	if(legcuffed && !initial(legcuffed))
+		dropItemToGround(legcuffed)
+	update_legcuffed(initial(legcuffed))
+
 	return ..()
 
 /mob/living/carbon/human/revive()
-	restore_blood() //restore all of a human's blood
+	for(var/datum/limb/O in limbs)
+		if(O.limb_status & LIMB_ROBOT)
+			O.limb_status = LIMB_ROBOT
+		else
+			O.limb_status = NONE
+		O.perma_injury = 0
+		O.germ_level = 0
+		O.wounds.Cut()
+		O.heal_damage(1000, 1000, TRUE, TRUE)
+		O.reset_limb_surgeries()
+
+	var/datum/limb/head/h = get_limb("head")
+	h.disfigured = FALSE
+	name = get_visible_name()
+
+	if(species && !(species.species_flags & NO_BLOOD))
+		restore_blood()
+
+	//try to find the brain player in the decapitated head and put them back in control of the human
+	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
+		for(var/i in GLOB.head_list)
+			var/obj/item/limb/head/H = i
+			if(!H.brainmob)
+				continue
+
+			if(H.brainmob.real_name != real_name)
+				continue
+
+			if(!H.brainmob.mind)
+				continue
+
+			H.brainmob.mind.transfer_to(src)
+			qdel(H)
+
+	for(var/datum/internal_organ/I in internal_organs)
+		I.damage = 0
+
 	reagents.clear_reagents() //and clear all reagents in them
 	undefibbable = FALSE
 	chestburst = 0
+	update_body()
+	update_hair()
 	return ..()
 
 /mob/living/carbon/xenomorph/revive()

@@ -583,6 +583,10 @@
 
 
 /datum/podlauncher/InterceptClickOn(user, params, atom/target)
+	if(!temp_pod)
+		updateCursor(FALSE)
+		return FALSE
+
 	var/list/pa = params2list(params)
 	var/left_click = pa.Find("left")
 	if(launcherActivated)

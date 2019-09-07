@@ -95,46 +95,62 @@
 	return
 
 
-
-
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if (!mover || !isturf(mover.loc))
-		return 1
-
-
-	//First, check objects to block exit that are not on the border
-	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags_atom & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
-			if(!obstacle.CheckExit(mover, src))
-				mover.Bump(obstacle, 1)
-				return 0
-
-	//Now, check objects to block exit that are on the border
-	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags_atom & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
-			if(!border_obstacle.CheckExit(mover, src))
-				mover.Bump(border_obstacle, 1)
-				return 0
-
-	//Next, check objects to block entry that are on the border
-	for(var/obj/border_obstacle in src)
-		if(border_obstacle.flags_atom & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc) && (forget != border_obstacle))
-				mover.Bump(border_obstacle, 1)
-				return 0
-
+/turf/Enter(atom/movable/mover, atom/oldloc)
+	// Do not call ..()
+	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
+	// By default byond will call Bump() on the first dense object in contents
 	//Then, check the turf itself
-	if (!CanPass(mover, src))
-		mover.Bump(src, 1)
-		return 0
+	if(!CanPass(mover, src))
+		switch(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_TURF, src))
+			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE //No need for a bump, already procesed.
+			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				//Continue. We've plowed through the obstacle.
+			else
+				mover.Bump(src)
+				return FALSE
+	var/atom/firstbump
+	for(var/i in contents)
+		if(QDELETED(mover))
+			return FALSE //We were deleted, do not attempt to proceed with movement.
+		if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
+			continue
+		var/atom/movable/thing = i
+		if(thing.Cross(mover))
+			continue
+		switch(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing))
+			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE //Stopped, bump no longer necessary.
+			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				continue //We've plowed through.
+			if(COMPONENT_MOVABLE_PREBUMP_ENTANGLED)
+				return TRUE //We've entered the tile and gotten entangled inside it.
+		if(QDELETED(mover)) //Mover deleted from Cross/CanPass, do not proceed.
+			return FALSE
+		else if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_atom & ON_BORDER) && !(firstbump.flags_atom & ON_BORDER)))
+			firstbump = thing
+	if(QDELETED(mover)) //Mover deleted from Cross/CanPass/Bump, do not proceed.
+		return FALSE
+	if(firstbump)
+		mover.Bump(firstbump)
+		return FALSE
+	return TRUE
 
-	//Finally, check objects/mobs to block entry that are not on the border
-	for(var/atom/movable/obstacle in src)
-		if(!(obstacle.flags_atom & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc) && (forget != obstacle))
-				mover.Bump(obstacle, 1)
-				return 0
-	return 1 //Nothing found to block so return success!
+
+/turf/Exit(atom/movable/mover, atom/newloc)
+	. = ..()
+	if(!. || QDELETED(mover))
+		return FALSE
+	for(var/i in contents)
+		if(i == mover)
+			continue
+		var/atom/movable/thing = i
+		if(!thing.Uncross(mover, newloc))
+			if(thing.flags_atom & ON_BORDER)
+				mover.Bump(thing)
+				return FALSE
+		if(QDELETED(mover))
+			return FALSE		//We were deleted.
 
 
 /turf/Entered(atom/movable/A)
