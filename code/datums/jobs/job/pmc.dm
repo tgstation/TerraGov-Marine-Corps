@@ -1,6 +1,6 @@
 /datum/job/pmc
-	access = ALL_MARINE_ACCESS
-	minimal_access = ALL_MARINE_ACCESS
+	access = ALL_PMC_ACCESS
+	minimal_access = ALL_PMC_ACCESS
 	skills_type = /datum/skills/pfc/pmc
 	faction = "Nanotrasen"
 
