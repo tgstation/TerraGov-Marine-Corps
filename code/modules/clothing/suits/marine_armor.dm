@@ -112,7 +112,7 @@
 	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
 	icon_state = "10"
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	slowdown = NONE
+	slowdown = 0
 	flags_atom = NONE
 
 /obj/item/clothing/suit/storage/marine/M3IS
