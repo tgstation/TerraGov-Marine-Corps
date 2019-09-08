@@ -22,6 +22,12 @@
 	var/sound_timer
 	var/datum/radio_frequency/radio_connection
 
+
+/obj/item/detpack/Initialize()
+	. = ..()
+	set_frequency(frequency)
+
+
 /obj/item/detpack/examine(mob/user)
 	. = ..()
 	var/list/details = list()
@@ -145,18 +151,20 @@
 		disarm()
 		update_icon()
 
-	if(master && !wires.is_cut(WIRE_RX))
-		master.receive_signal()
-	return
 
 /obj/item/detpack/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 
-	if(href_list["code"])
+	if(href_list["freq"])
+		var/new_frequency = (frequency + text2num(href_list["freq"]))
+		set_frequency(new_frequency)
+
+	else if(href_list["code"])
 		code += text2num(href_list["code"])
 		code = CLAMP(round(code), 1, 100)
+	
 	else if(href_list["det_mode"])
 		det_mode = !det_mode
 		update_icon()
