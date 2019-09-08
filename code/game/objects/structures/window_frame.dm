@@ -3,6 +3,7 @@
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
 	icon = 'icons/obj/structures/window_frames.dmi'
 	icon_state = "window0_frame"
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
