@@ -35,7 +35,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/Destroy()
-	QDEL_NULL(keyslot2)
+	if(keyslot2)
+		QDEL_NULL(keyslot2)
 	return ..()
 
 

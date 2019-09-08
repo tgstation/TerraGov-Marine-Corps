@@ -47,8 +47,10 @@
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
-	QDEL_NULL(keyslot)
-	QDEL_NULL(wires)
+	if(keyslot)
+		QDEL_NULL(keyslot)
+	if(wires)
+		QDEL_NULL(wires)
 	return ..()
 
 
