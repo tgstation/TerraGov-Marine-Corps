@@ -597,19 +597,36 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(!user.dextrous)
+		return
+
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		return
+
+	if(!zoom && user.get_total_tint() >= TINT_HEAVY)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_held_item() != src)
+		return
+
+	if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-	else if(zoom) //If we are zoomed out, reset that parameter.
+		return
+
+	if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
-		zoom = !zoom
+		zoom = FALSE
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
+		
+		if(user.interactee == src)
+			user.unset_interaction()
+
+		if(user.client)
+			user.client.change_view(world.view)
+			user.client.pixel_x = 0
+			user.client.pixel_y = 0
+
 	else //Otherwise we want to zoom in.
 		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
 			return
@@ -637,18 +654,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoom = !zoom
+		zoom = TRUE
 		if(user.interactee)
 			user.unset_interaction()
 		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
-		return
 
-	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
-	if(user.client)
-		user.client.change_view(world.view)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))
