@@ -511,8 +511,8 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when aiming
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	aim_speed_mod = 1 //Extra slowdown when aiming
+	wield_delay_mod = 0.6 SECONDS
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE
@@ -548,7 +548,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "miniscope_a"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = 0.4 SECONDS
 	zoom_offset = 5
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
@@ -589,7 +589,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "Default parent object, not meant for use."
 	icon_state = "stock"
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_VERY_FAST
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 2
 	pixel_shift_x = 30
@@ -599,7 +599,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M37 wooden stock"
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = 0.4 SECONDS
 	matter = null
 	icon_state = "stock"
 	accuracy_mod = 0.15
@@ -630,7 +630,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "wooden stock"
 	desc = "A standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
@@ -644,7 +644,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "mosin wooden stock"
 	desc = "A non-standard long wooden stock for Slavic firearms."
 	icon_state = "mosinstock"
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
@@ -657,7 +657,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M41A1 skeleton stock"
 	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	wield_delay_mod = 0.6 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "riflestock"
@@ -680,7 +680,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "M39 submachinegun stock"
 	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = 0.4 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "smgstock"
@@ -698,7 +698,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "stock"
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = 0.4 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "vp70stock" // Thank you to Manezinho
@@ -744,7 +744,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_VERY_FAST
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = -5
 	size_mod = 2
 	icon_state = "44stock"
@@ -1085,7 +1085,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = 0.4 SECONDS
 	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
@@ -1103,7 +1103,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
-	wield_delay_mod = -WIELD_DELAY_FAST
+	wield_delay_mod = -0.4 SECONDS
 	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
@@ -1148,7 +1148,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	wield_delay_mod = 0.6 SECONDS
 	size_mod = 2
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -1164,8 +1164,8 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
-		master_gun.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-		master_gun.wield_delay -= WIELD_DELAY_FAST
+		master_gun.aim_slowdown -= 1
+		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
@@ -1189,8 +1189,8 @@ Defined in conflicts.dm of the #defines folder.
 		master_user = user
 		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
 		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
-		master_gun.aim_slowdown += SLOWDOWN_ADS_SCOPE
-		master_gun.wield_delay += WIELD_DELAY_FAST
+		master_gun.aim_slowdown += 1
+		master_gun.wield_delay += 0.4 SECONDS
 		master_gun.accuracy_mult += deployment_accuracy_mod
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod

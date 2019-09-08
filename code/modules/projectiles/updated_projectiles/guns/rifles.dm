@@ -9,16 +9,13 @@
 	force = 15
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	load_method = MAGAZINE //codex
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
-	wield_delay = WIELD_DELAY_NORMAL
+	aim_slowdown = 0.35
+	wield_delay = 0.6 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 
-	fire_delay = 6
 	burst_amount = 3
-	burst_delay = 2
-	accuracy_mult = 1
+	burst_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
-	scatter = 20
 	scatter_unwielded = 40
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
@@ -84,13 +81,8 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 	fire_delay = 4
-	burst_amount = 3
-	burst_delay = 1.5
+	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.6
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4
 
 
 //variant without ugl attachment
@@ -109,15 +101,9 @@
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
-	fire_delay = 4
-	burst_amount = 3
-	burst_delay = 2
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
-	accuracy_mult_unwielded = 0.6
-	scatter = 20
-	scatter_unwielded = 40
 	damage_mult = 1.5
-	recoil_unwielded = 4
 
 
 //-------------------------------------------------------
@@ -145,14 +131,8 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 6
 	burst_amount = 4
-	burst_delay = 2
 	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.6
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4
 
 
 
@@ -194,14 +174,8 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 6
 	burst_amount = 4
-	burst_delay = 2
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.6
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4
 
 
 /obj/item/weapon/gun/rifle/mar40/carbine
@@ -212,12 +186,8 @@
 
 	fire_delay = 5
 	burst_amount = 4
-	burst_delay = 2
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4
 
 
 //-------------------------------------------------------
@@ -258,15 +228,8 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 6
-	burst_amount = 3
-	burst_delay = 2
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.6
-	scatter = 20
-	scatter_unwielded = 40
 	damage_mult = 1.05
-	recoil_unwielded = 4
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -278,7 +241,7 @@
 	item_state = "m41ae2"
 	caliber = "10x24mm caseless" //codex
 	max_shells = 300 //codex
-	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
+	wield_delay = 0.6 SECONDS + 0.2 SECONDS
 	origin_tech = "combat=5;materials=4"
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -307,8 +270,7 @@
 
 	fire_delay = 5
 	burst_amount = 4
-	burst_delay = 1
-	accuracy_mult = 1
+	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	scatter = 15
 	scatter_unwielded = 80
@@ -334,18 +296,14 @@
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = WIELD_DELAY_FAST
+	wield_delay = 0.4 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 	fire_delay = 5
 	burst_amount = 2
-	burst_delay = 2
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.8
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -358,7 +316,7 @@
 	name = "\improper Type 71 pulse carbine"
 	icon_state = "type71c"
 	item_state = "type71c"
-	wield_delay = WIELD_DELAY_VERY_FAST //Carbine is more lightweight
+	wield_delay = 0.2 SECONDS //Carbine is more lightweight
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando
@@ -372,9 +330,5 @@
 
 	fire_delay = 5
 	burst_amount = 2
-	burst_delay = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
-	scatter = 20
-	scatter_unwielded = 40
-	recoil_unwielded = 4

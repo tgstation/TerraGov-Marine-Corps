@@ -5,9 +5,9 @@
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
-	aim_slowdown = SLOWDOWN_ADS_SCOPE
+	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_SPEC
-	wield_delay = WIELD_DELAY_SLOW
+	wield_delay = 1 SECONDS
 
 //Pow! Headshot
 
@@ -41,7 +41,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 25
+	fire_delay = 2.5 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
@@ -239,8 +239,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 25
-	burst_amount = 1
+	fire_delay = 2.5 SECONDS
 	accuracy_mult = 1.50
 	scatter = 15
 	recoil = 5
@@ -285,7 +284,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 
-	fire_delay = 12
+	fire_delay = 1.2 SECONDS
 	burst_amount = 2
 	accuracy_mult = 0.85
 	scatter = 15
@@ -327,9 +326,9 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
-	fire_delay = 4
+	fire_delay = 0.4 SECONDS
 	burst_amount = 2
-	burst_delay = 1
+	burst_delay = 0.1 SECONDS
 	burst_accuracy_mult = 0.9
 	accuracy_mult = 1.05
 	scatter = 15
@@ -354,7 +353,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 1.6 SECONDS
-	aim_slowdown = SLOWDOWN_ADS_SMARTGUN
+	aim_slowdown = 1.5
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
@@ -372,11 +371,9 @@
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-	fire_delay = 4
+	fire_delay = 0.4 SECONDS
 	burst_amount = 3
-	burst_delay = 1
 	accuracy_mult = 1.15
-	scatter = 20
 	damage_falloff_mult = 0.5
 
 
@@ -462,11 +459,8 @@
 	attachable_allowed = list() //Cannot be upgraded.
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-	fire_delay = 3
-	burst_amount = 3
-	burst_delay = 1
+	fire_delay = 0.3 SECONDS
 	accuracy_mult = 1.1
-	scatter = 20
 
 
 //-------------------------------------------------------
@@ -491,7 +485,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	aim_slowdown = 1
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -501,11 +495,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 20
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
+	fire_delay = 2 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
@@ -625,10 +615,10 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = WIELD_DELAY_VERY_FAST
+	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_allowed = list()
@@ -637,9 +627,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 10.5
-	accuracy_mult = 1
-	scatter = 20
+	fire_delay = 1.05 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
@@ -763,8 +751,8 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 	wield_delay = 12
-	wield_penalty = WIELD_DELAY_VERY_SLOW
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -777,9 +765,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-	fire_delay = 10
-	accuracy_mult = 1
-	scatter = 20
+	fire_delay = 1 SECONDS
 	recoil = 3
 
 
@@ -923,16 +909,14 @@
 	load_method = MAGAZINE //codex
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
-	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
+	aim_slowdown = 2.75
 	attachable_allowed = list()
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-	fire_delay = 6
-	burst_delay = 4
+	fire_delay = 0.6 SECONDS
+	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
-	scatter = 20
-	recoil = 3
 
 //-------------------------------------------------------
 //SCOUT SHOTGUN
@@ -949,7 +933,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
+	aim_slowdown = 0.75
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -967,16 +951,10 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/scout)
 
-	fire_delay = 20
-	burst_amount = 2
-	burst_delay = 0.1 //basically instantaneous two shots
+	fire_delay = 2 SECONDS
+	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	burst_accuracy_mult = 0.7
 	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.5
-	scatter = 20
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -1000,7 +978,7 @@
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	aim_slowdown = 1
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
@@ -1010,11 +988,6 @@
 
 	fire_delay = 3
 	burst_amount = 10
-	burst_delay = 1
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5

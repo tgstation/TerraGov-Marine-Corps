@@ -13,7 +13,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
+	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off

@@ -22,8 +22,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	type_of_casings = "shell"
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
-	wield_delay = WIELD_DELAY_NORMAL //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
+	aim_slowdown = 0.35
+	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 6

@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
 	movement_acc_penalty_mult = 2
-	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
+	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
@@ -61,9 +61,7 @@
 
 	fire_delay = 2
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 1
 	scatter = 15
-	scatter_unwielded = 20
 
 
 /obj/item/weapon/gun/pistol/m4a3/custom
@@ -74,9 +72,6 @@
 
 	fire_delay = 1.5
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 	damage_mult = 1.1
 
 //-------------------------------------------------------
@@ -100,8 +95,6 @@
 	fire_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 20
 	damage_mult = 1.15
 	recoil_unwielded = 2
 
@@ -119,12 +112,6 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 1.5
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
-	damage_mult = 1.15
-	recoil_unwielded = 2
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -145,11 +132,6 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 2
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
-	damage_mult = 1
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
 	name = "\improper Beretta 93R pistol"
@@ -171,12 +153,8 @@
 
 	fire_delay = 1.5
 	burst_amount = 3
-	burst_delay = 1
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 1
-	scatter = 20
 	scatter_unwielded = 25
-	damage_mult = 1
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
@@ -195,8 +173,6 @@
 	fire_delay = 6
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 1.15
-	scatter = 20
-	scatter_unwielded = 20
 	damage_mult = 0.5
 
 
@@ -230,9 +206,6 @@
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
 	fire_delay = 7
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
 	scatter_unwielded = 25
 	damage_mult = 1.2
 	recoil = 2
@@ -272,8 +245,6 @@
 	fire_delay = 5
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 1.5
-	scatter = 20
-	scatter_unwielded = 20
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -308,10 +279,6 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 10
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -342,10 +309,6 @@
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 2
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
@@ -367,10 +330,6 @@
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 	fire_delay = 10
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 	damage_mult = 1.5
 	recoil = 2
 	recoil_unwielded = 3
@@ -408,11 +367,8 @@
 
 	fire_delay = 3
 	burst_amount = 3
-	burst_delay = 1
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
-	scatter = 20
-	scatter_unwielded = 20
 	damage_mult = 1.4
 	recoil_unwielded = 2
 
@@ -438,11 +394,9 @@
 
 	fire_delay = 3
 	burst_amount = 3
-	burst_delay = 3
+	burst_delay = 0.3 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 20
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -467,11 +421,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 	fire_delay = 4
 	burst_amount = 3
-	burst_delay = 1
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -496,12 +445,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
 	fire_delay = 3
-	burst_delay = 2
+	burst_delay = 0.2 SECONDS
 	burst_amount = 2
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 1
-	scatter = 20
-	scatter_unwielded = 20
 
 
 /obj/item/weapon/gun/pistol/knife
@@ -517,7 +462,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
 	movement_acc_penalty_mult = 10
-	wield_delay = WIELD_DELAY_VERY_FAST
+	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS

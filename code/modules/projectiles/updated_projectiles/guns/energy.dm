@@ -92,7 +92,6 @@
 
 	fire_delay = 10
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 1
 	scatter = 10
 	scatter_unwielded = 15
 
@@ -129,8 +128,8 @@
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
-	aim_slowdown = SLOWDOWN_ADS_LASGUN
-	wield_delay = WIELD_DELAY_SLOW
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 
 	fire_delay = 3
@@ -173,8 +172,6 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
-	fire_delay = 3
-	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25

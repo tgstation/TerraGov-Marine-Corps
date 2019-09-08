@@ -9,7 +9,7 @@
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
 	movement_acc_penalty_mult = 3
-	wield_delay = WIELD_DELAY_FAST
+	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
@@ -19,6 +19,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_SMGS
+
+	fire_delay = 0.3 SECONDS
+	burst_amount = 3
+	recoil_unwielded = 2
+
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	return cock(user)
@@ -68,14 +73,10 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
-	fire_delay = 3
-	burst_delay = 1
-	burst_amount = 3
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.9
 	scatter = 15
 	scatter_unwielded = 25
-	recoil_unwielded = 2
 
 
 
@@ -93,15 +94,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 3
-	burst_delay = 1
 	burst_amount = 4
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
-	scatter = 20
 	scatter_unwielded = 40
 	damage_mult = 1.1
-	recoil_unwielded = 2
 
 
 
@@ -132,15 +129,14 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
-	fire_delay = 2
-	burst_delay = 2
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.2 SECONDS
 	burst_amount = 4
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 1.25
 	scatter = 25
 	scatter_unwielded = 40
 	damage_mult = 1.2
-	recoil_unwielded = 2
 
 
 //-------------------------------------------------------
@@ -168,14 +164,13 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 	fire_delay = 4
-	burst_delay = 2
+	burst_delay = 0.2 SECONDS
 	burst_amount = 4
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 1.25
 	scatter = 35
 	scatter_unwielded = 45
 	damage_mult = 1.4
-	recoil_unwielded = 2
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -197,15 +192,11 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
-	fire_delay = 3
-	burst_delay = 2
-	burst_amount = 3
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.75
-	scatter = 20
 	scatter_unwielded = 40
 	damage_mult = 1.3
-	recoil_unwielded = 2
 
 
 /obj/item/weapon/gun/smg/skorpion/upp
@@ -239,14 +230,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
-	fire_delay = 1
-	burst_delay = 1
+	fire_delay = 0.1 SECONDS
 	burst_amount = 6
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.65
 	scatter = 35
 	scatter_unwielded = 55
-	recoil_unwielded = 2
 
 
 
@@ -270,15 +259,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-	fire_delay = 1.5
-	burst_delay = 1
+	fire_delay = 0.15 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.85
 	scatter = 40
 	scatter_unwielded = 60
 	damage_mult = 0.7
-	recoil_unwielded = 2
 	movement_acc_penalty_mult = 0.1
 
 //-------------------------------------------------------
@@ -307,12 +293,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 	
-	fire_delay = 5
-	burst_delay = 2
-	burst_amount = 3
+	fire_delay = 0.5 SECONDS
+	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 1.1
-	scatter = 20
 	scatter_unwielded = 60
 	damage_mult = 1.1
-	recoil_unwielded = 2

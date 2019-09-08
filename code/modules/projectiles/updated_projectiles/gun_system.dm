@@ -27,6 +27,7 @@
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
 	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
+	var/last_fired = 0							//When it was last fired, related to world.time.
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -40,37 +41,35 @@
 	//Basic stats.
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
-	var/damage_falloff_mult 		= 1				//Same as above, for damage bleed (falloff)
+	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
+	var/recoil_unwielded 		= 0
 	var/scatter					= 20				//How much the bullet scatters when fired.
+	var/scatter_unwielded 		= 20
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_accuracy_mult		= 1				//Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
-
 	var/accuracy_mod			= 0.05				//accuracy modifier, used by most attachments.
-	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
-	var/recoil_unwielded 				= 0
-	var/scatter_unwielded 				= 20
-
+	var/accuracy_mult_unwielded = 1		//same vars as above but for unwielded firing.
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
-	var/last_fired = 0							//When it was last fired, related to world.time.
-
-	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
-	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
-	var/wield_penalty	= WIELD_DELAY_VERY_FAST	//Extra wield delay for untrained operators
-	var/wield_time		= 0						//Storing value for above
-
+	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
+
+	//Slowdowns
+	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
+	var/wield_delay		= 0.4 SECONDS		//How long between wielding and firing in tenths of seconds
+	var/wield_penalty	= 0.2 SECONDS	//Extra wield delay for untrained operators
+	var/wield_time		= 0						//Storing value for above
+
+
 	//Energy Weapons
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
-
-	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 
 	//Attachments.
 	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.

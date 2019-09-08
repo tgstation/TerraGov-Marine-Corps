@@ -20,14 +20,12 @@
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
+	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
 
 	movement_acc_penalty_mult = 2
 	fire_delay = 2
-	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
 	scatter_unwielded = 25
 	recoil = 2
 	recoil_unwielded = 3
@@ -342,11 +340,6 @@
 						/obj/item/attachable/extended_barrel)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
-	fire_delay = 2
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.8
-	scatter = 20
-	scatter_unwielded = 25
 	damage_mult = 1.05
 	recoil = 0
 	recoil_unwielded = 0
@@ -375,10 +368,6 @@
 						/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-	fire_delay = 2
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.85
-	scatter = 20
 	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 0
@@ -408,16 +397,12 @@
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	fire_delay = 7
+	fire_delay = 0.7 SECONDS
 	burst_amount = 2
-	burst_delay = 4
-	accuracy_mult = 1
+	burst_delay = 0.4 SECONDS
 	accuracy_mult_unwielded = 0.6
-	scatter = 20
 	scatter_unwielded = 20
 	damage_mult = 1.05
-	recoil = 2
-	recoil_unwielded = 3
 
 
 
@@ -455,13 +440,8 @@
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
-	fire_delay = 12
+	fire_delay = 1.2 SECONDS
 	burst_amount = 3
-	burst_delay = 5
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.8
-	scatter = 20
+	burst_delay = 0.5 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05
-	recoil = 2
-	recoil_unwielded = 3
