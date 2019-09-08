@@ -64,7 +64,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 15
 	scatter_unwielded = 20
-	damage_mult = 0.05
+
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
@@ -77,7 +77,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.15
+	damage_mult = 1.1
 
 //-------------------------------------------------------
 //M1911
@@ -102,7 +102,7 @@
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.15
+	damage_mult = 1.15
 	recoil_unwielded = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
@@ -123,7 +123,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.15
+	damage_mult = 1.15
 	recoil_unwielded = 2
 
 //-------------------------------------------------------
@@ -149,7 +149,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
+	damage_mult = 1
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
 	name = "\improper Beretta 93R pistol"
@@ -176,7 +176,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 25
-	damage_mult = 0.05
+	damage_mult = 1
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
@@ -197,7 +197,7 @@
 	accuracy_mult_unwielded = 1.15
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = -0.45
+	damage_mult = 0.5
 
 
 //-------------------------------------------------------
@@ -234,7 +234,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 25
-	damage_mult = 0.25
+	damage_mult = 1.2
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -274,7 +274,6 @@
 	accuracy_mult_unwielded = 1.5
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -313,7 +312,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -348,7 +346,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
@@ -374,7 +371,7 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.55
+	damage_mult = 1.5
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -416,7 +413,7 @@
 	accuracy_mult_unwielded = 0.95
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.45
+	damage_mult = 1.4
 	recoil_unwielded = 2
 
 //-------------------------------------------------------
@@ -446,7 +443,6 @@
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -476,7 +472,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 3
 
@@ -507,7 +502,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
+
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper Knife"

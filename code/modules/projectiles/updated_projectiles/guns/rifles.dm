@@ -20,7 +20,6 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
@@ -91,7 +90,6 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4
 
 
@@ -118,7 +116,7 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.55
+	damage_mult = 1.5
 	recoil_unwielded = 4
 
 
@@ -154,7 +152,6 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.1
 	recoil_unwielded = 4
 
 
@@ -204,7 +201,6 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4
 
 
@@ -221,7 +217,6 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4
 
 
@@ -270,7 +265,7 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.1
+	damage_mult = 1.05
 	recoil_unwielded = 4
 
 //-------------------------------------------------------
@@ -317,7 +312,6 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 15
 	scatter_unwielded = 80
-	damage_mult = 0.05
 	recoil_unwielded = 5
 
 
@@ -351,7 +345,6 @@
 	accuracy_mult_unwielded = 0.8
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4
 
 
@@ -384,5 +377,4 @@
 	accuracy_mult_unwielded = 0.8
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil_unwielded = 4

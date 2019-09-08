@@ -39,7 +39,7 @@
 
 	//Basic stats.
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
-	var/damage_mult 			= 0.05				//Same as above, for damage.
+	var/damage_mult 			= 1				//Same as above, for damage.
 	var/damage_falloff_mult 		= 1				//Same as above, for damage bleed (falloff)
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
 	var/scatter					= 20				//How much the bullet scatters when fired.

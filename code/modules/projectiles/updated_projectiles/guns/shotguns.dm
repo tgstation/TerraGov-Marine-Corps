@@ -31,7 +31,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -205,7 +204,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -243,7 +241,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = -0.2  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
+	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -284,7 +282,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -378,7 +375,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.45
+	damage_mult = 1.4
 	recoil = 3
 	recoil_unwielded = 5
 
@@ -422,7 +419,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 14
@@ -526,7 +522,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 12
@@ -560,7 +555,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 1
 	scatter = 15
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 12
@@ -598,7 +592,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 12
@@ -644,7 +637,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 6

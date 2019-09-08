@@ -44,7 +44,6 @@
 	fire_delay = 25
 	burst_amount = 1
 	accuracy_mult = 1.50
-	damage_mult = 0.05
 	recoil = 2
 
 
@@ -244,7 +243,6 @@
 	burst_amount = 1
 	accuracy_mult = 1.50
 	scatter = 15
-	damage_mult = 0.05
 	recoil = 5
 
 
@@ -291,7 +289,6 @@
 	burst_amount = 2
 	accuracy_mult = 0.85
 	scatter = 15
-	damage_mult = 0.05
 	recoil = 2
 
 
@@ -336,7 +333,6 @@
 	burst_accuracy_mult = 0.9
 	accuracy_mult = 1.05
 	scatter = 15
-	damage_mult = 0.05
 	recoil = 2
 
 //-------------------------------------------------------
@@ -381,7 +377,6 @@
 	burst_delay = 1
 	accuracy_mult = 1.15
 	scatter = 20
-	damage_mult = 0.05
 	damage_falloff_mult = 0.5
 
 
@@ -472,7 +467,6 @@
 	burst_delay = 1
 	accuracy_mult = 1.1
 	scatter = 20
-	damage_mult = 0.05
 
 
 //-------------------------------------------------------
@@ -512,7 +506,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
@@ -647,7 +640,6 @@
 	fire_delay = 10.5
 	accuracy_mult = 1
 	scatter = 20
-	damage_mult = 0.05
 
 
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
@@ -788,7 +780,6 @@
 	fire_delay = 10
 	accuracy_mult = 1
 	scatter = 20
-	damage_mult = 0.05
 	recoil = 3
 
 
@@ -941,7 +932,6 @@
 	burst_amount = 4
 	accuracy_mult = 0.8
 	scatter = 20
-	damage_mult = 0.05
 	recoil = 3
 
 //-------------------------------------------------------
@@ -985,7 +975,6 @@
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -1026,7 +1015,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = 20
 	scatter_unwielded = 20
-	damage_mult = 0.05
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5

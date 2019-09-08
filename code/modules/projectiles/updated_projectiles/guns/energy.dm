@@ -95,7 +95,6 @@
 	accuracy_mult_unwielded = 1
 	scatter = 10
 	scatter_unwielded = 15
-	damage_mult = 0.05
 
 
 /obj/item/weapon/gun/energy/taser/update_icon()
@@ -137,7 +136,6 @@
 	fire_delay = 3
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.6
-	damage_mult = 0.05
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
 
@@ -178,7 +176,6 @@
 	fire_delay = 3
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
-	damage_mult = 0.05
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 
