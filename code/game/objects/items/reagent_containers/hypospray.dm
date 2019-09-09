@@ -9,9 +9,8 @@
 	item_state = "hypo"
 	icon_state = "hypo_base"
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(1,3,5,10,15)
-	volume = 60
 	possible_transfer_amounts = null
+	volume = 60
 	init_reagent_flags = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
@@ -44,8 +43,6 @@
 	name = "[core_name] ([str])"
 	label = str
 
-/obj/item/reagent_container/hypospray/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
 /obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)
 	if(!A.reagents)
@@ -243,7 +240,11 @@
 		label(usr)
 
 	else if(href_list["set_transfer"])
-		set_APTFT()
+		var/N = input("Amount per transfer from this:", "[src]") as null|anything in list(1, 3, 5, 10, 15)
+		if(!N)
+			return
+			
+		amount_per_transfer_from_this = N
 
 	else if(href_list["flush"])
 		empty(usr)
