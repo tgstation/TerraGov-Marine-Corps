@@ -117,8 +117,9 @@
 /obj/item/storage/internal/suit/marine/M3IS
 	bypass_w_limit = list(/obj/item/weapon/gun/,
 						/obj/item/storage/large_holster/machete)
+	cant_hold = list()
 	storage_slots = 1
-	max_storage_space = 6 // Rifle, stock, extended barrel.
+	max_storage_space = 8 // Rifle, stock, extended barrel, grip/bipod.
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
