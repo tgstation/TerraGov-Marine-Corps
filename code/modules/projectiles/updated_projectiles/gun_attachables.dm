@@ -666,14 +666,14 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/m16
-    name = "M16 Composite Stock"
-    desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
-    icon_state = "m16stock"
-    wield_delay_mod = 0.4 SECONDS
-    pixel_shift_x = 32
-    pixel_shift_y = 13
-    matter = null
-    flags_attach_features = NONE
+	name = "M16 Composite Stock"
+	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
+	icon_state = "m16stock"
+	wield_delay_mod = 0.4 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	matter = null
+	flags_attach_features = NONE
 
 
 /obj/item/attachable/stock/rifle
