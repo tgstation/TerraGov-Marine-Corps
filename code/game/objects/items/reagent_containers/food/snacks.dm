@@ -695,7 +695,7 @@
 	filling_color = "#D63C3C"
 
 /obj/item/reagent_container/food/snacks/human/burger
-	name = "-burger"
+	name = "burger"
 	desc = "A bloody burger."
 	icon_state = "hamburger"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)
