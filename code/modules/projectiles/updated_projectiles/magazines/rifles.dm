@@ -71,11 +71,11 @@
 
 /obj/item/ammo_magazine/rifle/m16
 	name = "\improper M16 magazine (5.56x45mm)"
-	desc = "A 5.56x45mm magazine for the M16 assault rifle."
+	desc = "A 5.56x45mm magazine for the M16 assault rifle platform."
 	caliber = "5.56x45mm"
-	icon_state = "mar40" //PLACEHOLDER
+	icon_state = "m16" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 20 //Also comes in 30 and 100 round Beta-C mag.
+	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
 

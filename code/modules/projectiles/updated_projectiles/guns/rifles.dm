@@ -147,7 +147,7 @@
 	caliber = "7.62x93mm" //codex
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/guns/fire/mar40.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mar40_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mar40_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/mar40_cocked.ogg'
@@ -176,6 +176,8 @@
 
 	burst_amount = 4
 	accuracy_mult = 1.15
+	fire_delay = 0.25 SECONDS
+	damage_mult = 0.8
 
 
 /obj/item/weapon/gun/rifle/mar40/carbine
@@ -184,22 +186,23 @@
 	icon_state = "mar30"
 	item_state = "mar30"
 
-	fire_delay = 5
+	fire_delay = 0.23 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
+	damage_mult = 0.8
 
 
 //-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
-	name = "\improper M16 rifle"
-	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm."
+	name = "\improper FN M16A4"
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	caliber = "5.56x45mm" //codex
-	max_shells = 20 //codex
+	max_shells = 30 //codex
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
@@ -215,21 +218,28 @@
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun
-						)
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/m16sight,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
-	accuracy_mult = 1.05
-	damage_mult = 1.05
+	damage_mult = 0.8
+	fire_delay = 0.20 SECONDS
+	burst_delay = 0.14 SECONDS
+	
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -300,10 +310,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 5
+	fire_delay = 0.35 SECONDS
 	burst_amount = 2
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.8
+	damage_mult = 0.9
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -328,7 +339,8 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
 
-	fire_delay = 5
+	fire_delay = 0.3 SECONDS
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	damage_mult = 0.9

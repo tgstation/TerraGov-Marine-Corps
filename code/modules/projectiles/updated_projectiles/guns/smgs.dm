@@ -163,7 +163,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
-	fire_delay = 4
+	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
 	accuracy_mult = 1.05
@@ -262,9 +262,9 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.85
-	scatter = 40
+	scatter = 30
 	scatter_unwielded = 60
-	damage_mult = 0.7
+	damage_mult = 0.8
 	movement_acc_penalty_mult = 0.1
 
 //-------------------------------------------------------
@@ -293,7 +293,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 	
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.35 SECONDS
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 1.1

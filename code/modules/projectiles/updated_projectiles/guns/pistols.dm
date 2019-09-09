@@ -59,7 +59,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 2
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	scatter = 15
 
@@ -70,7 +70,7 @@
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
-	fire_delay = 1.5
+	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	damage_mult = 1.1
 
@@ -92,7 +92,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 2
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
@@ -111,7 +111,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 1.5
+	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -131,7 +131,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-	fire_delay = 2
+	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
 	name = "\improper Beretta 93R pistol"
@@ -151,7 +151,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire)
 
-	fire_delay = 1.5
+	fire_delay = 0.15 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.15
 	scatter_unwielded = 25
@@ -170,7 +170,7 @@
 									/obj/item/attachable/suppressor
 									)
 
-	fire_delay = 6
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 1.15
 	damage_mult = 0.5
@@ -205,7 +205,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
-	fire_delay = 7
+	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
 	damage_mult = 1.2
 	recoil = 2
@@ -242,9 +242,12 @@
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
-	fire_delay = 5
-	accuracy_mult = 1.4
+	fire_delay = 0.4 SECONDS
+	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
+	scatter = 5
+	scatter_unwielded = 10
+	damage_mult = 1.3
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -278,9 +281,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
-	fire_delay = 10
+	fire_delay = 1.0 SECONDS
 	recoil = 2
 	recoil_unwielded = 3
+	accuracy_mult = 1.4
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -308,7 +312,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
-	fire_delay = 2
+	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
@@ -329,10 +333,12 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
-	fire_delay = 10
+	fire_delay = 1.0 SECONDS
 	damage_mult = 1.5
 	recoil = 2
 	recoil_unwielded = 3
+	accuracy_mult = 1.5
+	scatter = 10
 
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
@@ -365,7 +371,7 @@
 						/obj/item/attachable/stock/vp70)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
-	fire_delay = 3
+	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
@@ -392,7 +398,7 @@
 	force = 8
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
-	fire_delay = 3
+	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	burst_delay = 0.3 SECONDS
 	accuracy_mult = 1.15
@@ -419,7 +425,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	force = 15
 	attachable_allowed = list()
 
-	fire_delay = 4
+	fire_delay = 0.4 SECONDS
 	burst_amount = 3
 	recoil = 2
 	recoil_unwielded = 3
@@ -444,7 +450,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
-	fire_delay = 3
+	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 2
 
