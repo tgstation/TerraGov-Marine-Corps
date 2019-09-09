@@ -15,9 +15,8 @@
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
+	fire_delay = 9
 
-/obj/item/weapon/gun/flare/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
