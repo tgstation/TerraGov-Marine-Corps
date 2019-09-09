@@ -626,15 +626,6 @@ This handles stuff like swapping seats, pulling people out of the tank, all that
 					"<span class='notice'>you forcibly pull [occupant] out of [src].</span>", null, 6)
 	occupant.set_knocked_down(4)
 
-/obj/vehicle/tank/Bumped(atom/A) //Don't ..() because then you can shove the tank into a wall.
-	if(isliving(A))
-		if(istype(A, /mob/living/carbon/xenomorph/crusher))
-			var/mob/living/carbon/xenomorph/crusher/C = A
-			take_damage(C.charge_speed * CRUSHER_CHARGE_TANK_MULTI)
-		return
-	else
-		. = ..()
-
 /obj/vehicle/tank/bullet_act(obj/item/projectile/Proj)
 	. = ..()
 	update_icon()
