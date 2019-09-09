@@ -198,7 +198,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
-		return M.attack_alien() //harmless nibbling.
+		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
 

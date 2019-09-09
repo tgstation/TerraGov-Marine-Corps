@@ -60,11 +60,12 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_STARTUP)
 			if(Master.initializations_finished_with_no_players_logged_in && !length(GLOB.clients))
 				return
-			start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
+			if(isnull(start_at))
+				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
 			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
-			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [CONFIG_GET(number/lobby_countdown)] seconds.</span>")
+			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
 			fire()
 
@@ -139,7 +140,7 @@ SUBSYSTEM_DEF(ticker)
 		to_chat(world, "<b>Error in setup for [GLOB.master_mode].</b> Reverting to pre-game lobby.")
 		SSjob.ResetOccupations()
 		return FALSE
-	
+
 	CHECK_TICK
 	mode.announce()
 
@@ -333,7 +334,7 @@ SUBSYSTEM_DEF(ticker)
 		listclearnulls(queued_players)
 		for(var/mob/new_player/NP in queued_players)
 			to_chat(NP, "<span class='userdanger'>The alive players limit has been released!<br><a href='?src=[REF(NP)];lobby_choice=late_join;override=1'>[html_encode(">>Join Game<<")]</a></span>")
-			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
+			SEND_SOUND(NP, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 			NP.LateChoices()
 		queued_players.Cut()
 		queue_delay = 0
@@ -348,7 +349,7 @@ SUBSYSTEM_DEF(ticker)
 			if(living_player_count() < hpc)
 				if(next_in_line?.client)
 					to_chat(next_in_line, "<span class='userdanger'>A slot has opened! You have approximately 20 seconds to join. <a href='?src=[REF(next_in_line)];lobby_choice=latejoin;override=1'>\>\>Join Game\<\<</a></span>")
-					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
+					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg', channel = CHANNEL_NOTIFY))
 					next_in_line.LateChoices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he

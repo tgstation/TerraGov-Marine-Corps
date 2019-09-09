@@ -104,6 +104,9 @@
 	if(length(stomach_contents)) //Only one thing in the stomach at a time, please
 		to_chat(src, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
 		return NONE
+	for(var/obj/effect/forcefield/fog in range(1, src))
+		to_chat(src, "<span class='warning'>You are too close to the fog.</span>")
+		return NONE
 
 	visible_message("<span class='danger'>[src] starts to devour [prey]!</span>", \
 	"<span class='danger'>You start to devour [prey]!</span>", null, 5)

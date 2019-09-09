@@ -231,25 +231,7 @@
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
 		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
-	if(is_charging)
-		if(legcuffed)
-			is_charging = 0
-			stop_momentum()
-			to_chat(src, "<span class='xenodanger'>We can't charge with that thing on our leg!</span>")
-		else
-			. -= charge_speed
-			charge_timer = 2
-			if(charge_speed == 0)
-				charge_dir = dir
-				handle_momentum()
-			else
-				if(charge_dir != dir || moving_diagonally || (direct in GLOB.diagonals))
-					stop_momentum() //This should disallow rapid turn bumps
-				else
-					handle_momentum()
-
 //Stealth handling
-
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
@@ -445,89 +427,6 @@
 
 	. = ..()
 
-
-//This is depricated. Use handle_collision() for all future speed changes. ~Bmc777
-/mob/living/carbon/xenomorph/proc/stop_momentum(direction, stunned)
-	if(!lastturf) return FALSE //Not charging.
-	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Message now happens without a stun condition
-		visible_message("<span class='danger'>[src] skids to a halt!</span>",
-		"<span class='xenowarning'>We skid to a halt.</span>", null, 5)
-	last_charge_move = 0 //Always reset last charge tally
-	charge_speed = 0
-	charge_roar = 0
-	lastturf = null
-	flags_pass = 0
-	update_icons()
-
-//Why the elerloving fuck was this a Crusher only proc ? AND WHY IS IT NOT CAST ON THE RECEIVING ATOM ? AAAAAAA
-/mob/living/carbon/xenomorph/proc/diagonal_step(atom/movable/A, direction)
-	if(!A) return FALSE
-	switch(direction)
-		if(EAST, WEST) step(A, pick(NORTH,SOUTH))
-		if(NORTH,SOUTH) step(A, pick(EAST,WEST))
-
-/mob/living/carbon/xenomorph/proc/handle_momentum()
-	if(throwing)
-		return FALSE
-
-	if(last_charge_move && last_charge_move < world.time - 5) //If we haven't moved in the last 500 ms, break charge on next move
-		stop_momentum(charge_dir)
-
-	if(stat || pulledby || !loc || !isturf(loc))
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(!is_charging)
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(lastturf && (loc == lastturf || loc.z != lastturf.z)) //Check if the Crusher didn't move from his last turf, aka stopped
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/ground/river) || moving_diagonally)
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(pulling && charge_speed > CHARGE_SPEED_BUILDUP) stop_pulling()
-
-	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
-	else
-		stop_momentum(charge_dir)
-		return FALSE
-
-	last_charge_move = world.time //Index the world time to the last charge move
-
-	if(charge_speed < CHARGE_SPEED_MAX)
-		charge_speed += CHARGE_SPEED_BUILDUP //Speed increases each step taken. Caps out at 14 tiles
-		if(charge_speed == CHARGE_SPEED_MAX) //Should only fire once due to above instruction
-			if(!charge_roar)
-				emote("roar")
-				charge_roar = 1
-
-	noise_timer = noise_timer ? --noise_timer : 3
-
-	if(noise_timer == 3 && charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-		playsound(loc, "alien_charge", 50)
-
-	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-
-		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isxeno(M) && M.stat != DEAD && !isnestedhost(M))
-				visible_message("<span class='danger'>[src] runs [M] over!</span>",
-				"<span class='danger'>We run [M] over!</span>", null, 5)
-
-				M.take_overall_damage(charge_speed * 10) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
-				animation_flash_color(M)
-
-		var/shake_dist = min(round(charge_speed * 5), 8)
-		for(var/mob/living/carbon/M in range(shake_dist))
-			if(M.client && !isxeno(M))
-				shake_camera(M, 1, 1)
-
-	lastturf = isturf(loc) && !isspaceturf(loc) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
-
-	update_icons()
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)

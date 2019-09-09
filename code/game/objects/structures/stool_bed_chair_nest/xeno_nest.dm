@@ -33,6 +33,12 @@
 		M.forceMove(loc)
 
 
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent != INTENT_HARM)
+		return attack_hand(X)
+	return ..()
+
+
 /obj/structure/bed/nest/manual_unbuckle(mob/living/user)
 	if(!buckled_mob || buckled_mob.buckled != src)
 		return

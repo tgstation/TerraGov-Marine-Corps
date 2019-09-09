@@ -13,7 +13,7 @@
 	caliber = "10x20mm caseless"
 	icon_state = "m39"
 	max_rounds = 60
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/m39
 
 /obj/item/ammo_magazine/smg/m39/ap
@@ -35,7 +35,7 @@
 	name = "\improper MP5 magazine (9mm)"
 	desc = "A 9mm magazine for the MP5."
 	default_ammo = /datum/ammo/bullet/smg
-	caliber = "9x19mm Parabellum"
+	caliber = "9x21mm IMI"
 	icon_state = "mp5"
 	gun_type = /obj/item/weapon/gun/smg/mp5
 	max_rounds = 30 //Also comes in 10 and 40.
@@ -91,7 +91,7 @@
 /obj/item/ammo_magazine/smg/uzi
 	name = "\improper GAL9 magazine (9mm)"
 	desc = "A magazine for the GAL9."
-	caliber = "9x19mm Parabellum"
+	caliber = "9x21mm IMI"
 	icon_state = "uzi"
 	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/smg/uzi

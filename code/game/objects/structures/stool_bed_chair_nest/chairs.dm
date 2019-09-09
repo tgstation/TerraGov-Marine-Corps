@@ -120,6 +120,21 @@
 /obj/structure/bed/chair/comfy/lime
 	color = rgb(255,251,0)
 
+/obj/structure/bed/chair/sofa
+	name = "comfy sofa"
+	desc = "It looks comfy."
+	icon_state = "sofamiddle"
+
+
+/obj/structure/bed/chair/sofa/left
+	icon_state = "sofaend_left"
+
+/obj/structure/bed/chair/sofa/right
+	icon_state = "sofaend_right"
+
+/obj/structure/bed/chair/sofa/corner
+	icon_state = "sofacorner"
+
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	drag_delay = 1 //Pulling something on wheels is easy

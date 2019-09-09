@@ -110,7 +110,12 @@
 
 
 /obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
-	if(isxeno(mover) || isobj(mover))
+	if(isobj(mover))
+		return TRUE
+	if(isxeno(mover))
+		var/mob/living/carbon/xenomorph/moving_xeno = mover
+		if(length(moving_xeno.stomach_contents))
+			return FALSE
 		return TRUE
 	return FALSE
 

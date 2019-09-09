@@ -123,6 +123,10 @@
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return fail_activate()
+
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
