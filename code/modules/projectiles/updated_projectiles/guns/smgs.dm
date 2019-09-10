@@ -299,3 +299,4 @@
 	accuracy_mult_unwielded = 1.1
 	scatter_unwielded = 60
 	damage_mult = 1.1
+	scatter = 10
