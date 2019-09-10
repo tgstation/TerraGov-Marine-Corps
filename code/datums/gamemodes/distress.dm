@@ -120,21 +120,23 @@
 	var/sound/human_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
-			xeno_track = sound(pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg'))
-			human_track = sound(pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg'))
+			xeno_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			human_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
 		if(MODE_INFESTATION_M_MAJOR)
-			xeno_track = sound(pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg'))
-			human_track = sound(pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg'))
+			xeno_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
+			human_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 		if(MODE_INFESTATION_X_MINOR)
-			xeno_track = sound(pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg'))
-			human_track = sound(pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg'))
+			xeno_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
+			human_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
 		if(MODE_INFESTATION_M_MINOR)
-			xeno_track = sound(pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg'))
-			human_track = sound(pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg'))
+			xeno_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
+			human_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
 		if(MODE_INFESTATION_DRAW_DEATH)
-			xeno_track = sound(pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg'))
-			human_track = sound(pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg'))
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
+			human_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
 
+	xeno_track = sound(xeno_track)
+	human_track = sound(human_track)
 	human_track.channel = CHANNEL_CINEMATIC
 	xeno_track.channel = CHANNEL_CINEMATIC
 
