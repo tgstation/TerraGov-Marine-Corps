@@ -669,6 +669,17 @@ Defined in conflicts.dm of the #defines folder.
 	name = "M16 Composite Stock"
 	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
 	icon_state = "m16stock"
+	wield_delay_mod = 0.5 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	matter = null
+	flags_attach_features = NONE
+
+
+	/obj/item/attachable/stock/ak47
+	name = "AK-47 Wooden Stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+	icon_state = "ak47stock"
 	wield_delay_mod = 0.4 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13

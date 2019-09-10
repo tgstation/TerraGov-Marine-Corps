@@ -142,8 +142,8 @@
 /obj/item/weapon/gun/rifle/mar40
 	name = "\improper AK-47 rifle"
 	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
-	icon_state = "mar40"
-	item_state = "mar40"
+	icon_state = "ak47"
+	item_state = "ak47"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
@@ -161,7 +161,8 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1.15
 	fire_delay = 0.25 SECONDS
