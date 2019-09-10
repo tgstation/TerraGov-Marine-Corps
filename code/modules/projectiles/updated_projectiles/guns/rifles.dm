@@ -192,7 +192,7 @@
 	caliber = "5.56x45mm" //codex
 	max_shells = 30 //codex
 	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
+	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
