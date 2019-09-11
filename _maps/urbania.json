@@ -1,0 +1,8 @@
+{
+    "map_name": "urbania",
+    "map_path": "map_files/urbania",
+    "map_file": "urbania.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A urban settlement a sent out a distress beacon, the planet seems to be earthen with trees and grass growing"
+}
