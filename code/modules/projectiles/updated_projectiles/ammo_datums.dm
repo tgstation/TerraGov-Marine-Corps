@@ -459,12 +459,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, 40, 0, 1, 1)
 
-/datum/ammo/bullet/rifle/mar40
+/datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
-	accuracy = -10
+	accuracy = -15
 	damage = 50
-	penetration = -10
+	penetration = 10
 
 /*
 //================================================

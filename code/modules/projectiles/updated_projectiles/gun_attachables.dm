@@ -676,7 +676,7 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 
 
-	/obj/item/attachable/stock/ak47
+/obj/item/attachable/stock/ak47
 	name = "AK-47 Wooden Stock"
 	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
 	icon_state = "ak47stock"

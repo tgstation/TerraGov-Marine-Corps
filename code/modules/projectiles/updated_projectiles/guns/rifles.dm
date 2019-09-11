@@ -137,49 +137,49 @@
 
 
 //-------------------------------------------------------
-//MAR-40 AK/FN FAL clone
+//Literally just the
 
-/obj/item/weapon/gun/rifle/mar40
+/obj/item/weapon/gun/rifle/ak47
 	name = "\improper AK-47 rifle"
 	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
-	icon_state = "mar40"
-	item_state = "mar40"
+	icon_state = "ak47"
+	item_state = "ak47"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
-	unload_sound = 'sound/weapons/guns/interact/mar40_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mar40_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/mar40_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/mar40
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/ak47
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/stock/slavic,
-						/obj/item/attachable/scope/slavic)
+						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 19, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
 	fire_delay = 0.25 SECONDS
 	damage_mult = 0.8
 
 
-/obj/item/weapon/gun/rifle/mar40/carbine
+/obj/item/weapon/gun/rifle/ak47/carbine
 	name = "\improper MAR-30 battle carbine"
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	fire_delay = 0.23 SECONDS
-	burst_amount = 4
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
 	damage_mult = 0.8
+	
 
 
 //-------------------------------------------------------
