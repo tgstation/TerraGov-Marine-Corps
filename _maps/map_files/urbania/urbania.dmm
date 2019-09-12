@@ -341,9 +341,12 @@
 /turf/open/floor/wood/broken,
 /area/prison/library)
 "bx" = (
-/obj/machinery/door/airlock/glass,
-/turf/open/floor/wood,
-/area/prison/library)
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
 "by" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -371,9 +374,12 @@
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "bD" = (
-/obj/item/book/manual/detective,
-/turf/open/floor/wood,
-/area/prison/library)
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "bE" = (
 /obj/effect/forcefield/fog,
 /obj/effect/forcefield,
@@ -506,17 +512,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "ci" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphault,
-/area/bigredv2)
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "cj" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/shuttle/plating,
@@ -1142,11 +1143,14 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "es" = (
-/obj/machinery/door/airlock/glass,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/multi_tile/glass{
+	icon_state = "door_closed";
+	dir = 2
 	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -1288,8 +1292,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/quartermaster/storage)
 "eS" = (
-/turf/closed/wall/r_wall,
-/area/bigredv2)
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/mainship/research/containment,
+/area/prison/research)
 "eT" = (
 /obj/structure/platform,
 /turf/open/floor/mainship/research,
@@ -1303,12 +1309,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/quartermaster/storage)
 "eV" = (
-/obj/docking_port/stationary/crashmode,
-/obj/machinery/r_n_d/protolathe,
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 4
 	},
-/area/bigredv2)
+/turf/open/floor/mainship/research/containment,
+/area/prison/research)
 "eW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -1328,101 +1334,113 @@
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "eZ" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/mainship/research/containment,
+/area/prison/research)
 "fa" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
-	dir = 4
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
 "fb" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
+/obj/effect/decal/cleanable/blood/drip,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
 "fc" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/machinery/light{
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fe" = (
+/obj/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"ff" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fg" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fh" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fi" = (
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research/containment,
+/area/prison/security/checkpoint/highsec)
+"fj" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"fd" = (
-/turf/open/floor/marking/delivery,
-/area/bigredv2)
-"fe" = (
-/obj/effect/decal/mecha_wreckage/ripley,
-/turf/open/floor/marking/delivery,
-/area/bigredv2)
-"ff" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"fg" = (
-/obj/effect/decal/cleanable/molten_item,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"fh" = (
-/obj/structure/closet/crate,
-/turf/open/floor/marking/delivery,
-/area/bigredv2)
-"fi" = (
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"fj" = (
-/obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/area/prison/security/checkpoint/highsec)
 "fk" = (
-/obj/machinery/r_n_d/circuit_imprinter,
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/obj/machinery/button/door{
+	id = 1
 	},
-/area/bigredv2)
+/turf/closed/wall,
+/area/prison/security/checkpoint/highsec)
 "fl" = (
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "fm" = (
-/obj/structure/closet/crate/radiation,
-/turf/open/floor/marking/delivery,
-/area/bigredv2)
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor/plating/asteroidwarning,
+/area/quartermaster/storage)
 "fn" = (
-/obj/structure/closet/crate/mortar_ammo,
-/turf/open/floor/marking/delivery,
-/area/bigredv2)
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidwarning,
+/area/quartermaster/storage)
 "fo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/research/containment,
@@ -1593,29 +1611,40 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "fT" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "fU" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 5
-	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "fV" = (
-/obj/machinery/r_n_d/protolathe,
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/area/bigredv2)
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "fW" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1625,12 +1654,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/quartermaster/storage)
 "fX" = (
-/obj/structure/stairs{
-	icon_state = "rampbottom";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
 	},
-/turf/open/floor/grass,
-/area/bigredv2)
+/area/quartermaster/storage)
 "fY" = (
 /obj/machinery/light{
 	dir = 1
@@ -1639,10 +1667,9 @@
 /area/bigred/uground/lambda_labs/hydro_lab)
 "fZ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "ga" = (
 /obj/structure/stairs,
 /obj/machinery/light{
@@ -1665,12 +1692,17 @@
 /turf/open/floor,
 /area/bigred/uground/lambda_labs/hydro_lab)
 "gd" = (
-/turf/open/floor,
-/area/bigredv2)
+/obj/item/attachable/stock/rifle,
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "ge" = (
-/obj/machinery/door/poddoor/shutters/mainship,
-/turf/open/floor,
-/area/bigredv2)
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "gf" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light,
@@ -1740,39 +1772,6 @@
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "gn" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"go" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gp" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gq" = (
-/obj/machinery/power/apc,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/wood,
-/area/prison/library)
-"gr" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
 	dir = 8
@@ -1787,8 +1786,53 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
+"go" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
+"gp" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"gq" = (
+/obj/machinery/power/apc,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/wood,
+/area/prison/library)
+"gr" = (
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/prison/library)
 "gs" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable/yellow{
@@ -1823,6 +1867,29 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "gw" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/prison/library)
+"gx" = (
+/obj/item/book/manual/detective,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/prison/library)
+"gy" = (
+/obj/item/book,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/prison/library)
+"gz" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
 	dir = 8
@@ -1832,9 +1899,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor/mainship/research,
 /area/bigredv2)
-"gx" = (
+"gA" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
 	dir = 8
@@ -1848,9 +1916,13 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
-"gy" = (
+"gB" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
 	dir = 1
@@ -1860,42 +1932,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gz" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 9
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gA" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 8
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gB" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 10
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
@@ -1943,6 +1982,55 @@
 "gH" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"gI" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"gJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"gK" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
 	dir = 6
 	},
 /obj/structure/cable/yellow{
@@ -1950,44 +2038,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gI" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gK" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
 	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
@@ -2008,198 +2061,152 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "gN" = (
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable/yellow{
-	d1 = 4;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-8"
 	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
 "gO" = (
-/obj/machinery/door/airlock/glass,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
 	},
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
 "gP" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
 	dir = 4
 	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable/yellow{
-	d1 = 2;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
 	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "gQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "gR" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
+/obj/structure/rack,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 5
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "gS" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
+/obj/structure/rack,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "gT" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"gU" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
+"gV" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer3/laptop,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"gW" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	icon_state = "pdoor1";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 6
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
+"gX" = (
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gU" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"gV" = (
-/obj/structure/platform_decoration{
-	icon_state = "platform_deco";
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"gY" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	icon_state = "pdoor1";
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"gW" = (
-/obj/machinery/r_n_d/circuit_imprinter,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"gX" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
-"gY" = (
-/obj/effect/decal/cleanable/ash,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "gZ" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"ha" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 4
-	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"ha" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
 	},
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "hb" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
-	dir = 5
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"hc" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -2207,12 +2214,25 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor/mainship/research,
+/area/bigredv2)
+"hc" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "hd" = (
 /obj/machinery/power/apc,
@@ -2241,68 +2261,46 @@
 "hg" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
-	dir = 8
+	dir = 5
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "hh" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hi" = (
+/obj/effect/landmark/corpsespawner/engineer,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hj" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
-"hi" = (
-/obj/machinery/door/airlock/colony/medical/hydroponics{
-	icon_state = "door_closed";
-	dir = 2
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor,
-/area/bigred/uground/lambda_labs/hydro_lab)
-"hj" = (
-/obj/structure/table/reinforced,
-/obj/machinery/power/apc,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/plating/asteroidfloor,
+/area/quartermaster/storage)
 "hk" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
 /turf/open/floor,
-/area/bigred/uground/lambda_labs/hydro_lab)
+/area/engine/engineering)
 "hl" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
@@ -2321,13 +2319,12 @@
 /turf/open/floor,
 /area/bigred/uground/lambda_labs/hydro_lab)
 "hn" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
 	},
 /turf/open/floor,
-/area/bigred/uground/lambda_labs/hydro_lab)
+/area/engine/engineering)
 "ho" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2344,24 +2341,18 @@
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "hq" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
 	},
-/obj/machinery/light,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/bigredv2)
+/turf/open/floor/plating/asteroidwarning,
+/area/quartermaster/storage)
 "hr" = (
-/obj/machinery/conveyor{
-	icon_state = "conveyor0";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
 	},
-/obj/machinery/light,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "hs" = (
 /obj/effect/forcefield/fog,
@@ -2376,20 +2367,24 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "hu" = (
-/obj/machinery/button/door{
-	id = 2
+/obj/structure/fence,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
 	},
-/turf/closed/wall/r_wall,
+/turf/open/floor/grass,
 /area/bigredv2)
 "hv" = (
 /obj/effect/forcefield,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "hw" = (
-/obj/effect/landmark/corpsespawner/PMC,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/mainship/research/containment,
-/area/prison/research)
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
+/turf/open/floor/grass,
+/area/bigredv2)
 "hx" = (
 /obj/effect/landmark/corpsespawner/PMC,
 /obj/effect/decal/cleanable/blood/splatter,
@@ -2417,6 +2412,1070 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/research/containment,
 /area/prison/security/checkpoint/highsec)
+"hD" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"hE" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"hF" = (
+/turf/closed/wall,
+/area/engine/engineering)
+"hG" = (
+/obj/machinery/door/airlock/colony/engineering{
+	icon_state = "door_closed";
+	dir = 2
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hH" = (
+/turf/open/floor,
+/area/engine/engineering)
+"hI" = (
+/obj/machinery/power/apc,
+/turf/open/floor,
+/area/engine/engineering)
+"hJ" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hK" = (
+/obj/structure/stairs{
+	icon_state = "rampbottom";
+	dir = 1
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hL" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hM" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hN" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hO" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"hP" = (
+/obj/machinery/power/smes,
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hQ" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable/yellow,
+/turf/open/floor,
+/area/engine/engineering)
+"hR" = (
+/obj/effect/decal/remains/robot,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hS" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"hT" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"hU" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/prison/library)
+"hV" = (
+/obj/machinery/power/smes,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hW" = (
+/obj/structure/catwalk,
+/turf/open/floor,
+/area/engine/engineering)
+"hX" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"hY" = (
+/obj/structure/platform,
+/turf/open/floor,
+/area/engine/engineering)
+"hZ" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/obj/structure/platform,
+/turf/open/floor,
+/area/engine/engineering)
+"ia" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/storage)
+"ib" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"ic" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor,
+/area/engine/engineering)
+"id" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor,
+/area/engine/engineering)
+"ie" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/engine/engineering)
+"if" = (
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"ig" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/grass,
+/area/bigredv2)
+"ih" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "platingdmg1"
+	},
+/area/engine/engineering)
+"ii" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"ij" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"ik" = (
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/engine/engineering)
+"il" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/engine/engineering)
+"im" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable/yellow,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"in" = (
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/engine/engineering)
+"io" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/engine/engineering)
+"ip" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"iq" = (
+/turf/open/floor{
+	icon_state = "platingdmg1"
+	},
+/area/engine/engineering)
+"ir" = (
+/obj/effect/decal/remains/robot,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"is" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/decal/remains/robot,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"it" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor,
+/area/engine/engineering)
+"iu" = (
+/obj/structure/platform,
+/turf/open/floor{
+	icon_state = "platingdmg1"
+	},
+/area/engine/engineering)
+"iv" = (
+/obj/structure/platform,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/engine/engineering)
+"iw" = (
+/obj/structure/platform,
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"ix" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
+"iy" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"iz" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/cargo)
+"iA" = (
+/obj/docking_port/stationary/crashmode,
+/obj/machinery/r_n_d/protolathe,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iB" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iC" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = 2
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iD" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iE" = (
+/obj/structure/table/reinforced,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iF" = (
+/obj/structure/table/reinforced,
+/obj/machinery/power/apc,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iG" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iH" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iI" = (
+/obj/machinery/r_n_d/protolathe,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iJ" = (
+/obj/structure/stairs{
+	icon_state = "rampbottom";
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/maintenance/cargo)
+"iK" = (
+/turf/open/floor,
+/area/maintenance/cargo)
+"iL" = (
+/obj/machinery/door/poddoor/shutters/mainship,
+/turf/open/floor,
+/area/maintenance/cargo)
+"iM" = (
+/turf/open/floor/marking/delivery,
+/area/maintenance/cargo)
+"iN" = (
+/obj/effect/decal/mecha_wreckage/ripley,
+/turf/open/floor/marking/delivery,
+/area/maintenance/cargo)
+"iO" = (
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iQ" = (
+/obj/effect/decal/cleanable/molten_item,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iR" = (
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/engine/engineering)
+"iS" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iT" = (
+/obj/structure/closet/crate,
+/turf/open/floor/marking/delivery,
+/area/maintenance/cargo)
+"iU" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iV" = (
+/obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iW" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iX" = (
+/obj/effect/decal/cleanable/ash,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"iY" = (
+/obj/structure/closet/crate/radiation,
+/turf/open/floor/marking/delivery,
+/area/maintenance/cargo)
+"iZ" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"ja" = (
+/obj/machinery/r_n_d/circuit_imprinter,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jc" = (
+/obj/structure/closet/crate/mortar_ammo,
+/turf/open/floor/marking/delivery,
+/area/maintenance/cargo)
+"jd" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"je" = (
+/obj/machinery/conveyor{
+	icon_state = "conveyor0";
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jf" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jg" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/colony/engineering,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "platingdmg3"
+	},
+/area/engine/engineering)
+"jh" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor{
+	icon_state = "panelscorched"
+	},
+/area/engine/engineering)
+"ji" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jj" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"jk" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"jl" = (
+/obj/machinery/door/airlock/glass,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"jm" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jn" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"jo" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jp" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jq" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphault,
+/area/bigredv2)
+"jr" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"js" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jt" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 1
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"ju" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics{
+	icon_state = "door_closed";
+	dir = 2
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jv" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jw" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jx" = (
+/obj/effect/decal/cleanable/molten_item,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jy" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jA" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jB" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jC" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jD" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jE" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jF" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/maintenance/cargo)
+"jG" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "floorscorched2"
+	},
+/area/bigredv2)
+"jH" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jI" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/bigred/uground/lambda_labs/hydro_lab)
+"jJ" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"jK" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
 
 (1,1,1) = {"
 aa
@@ -3234,7 +4293,7 @@ ap
 ap
 ap
 au
-ap
+eV
 ap
 ap
 aP
@@ -3434,9 +4493,9 @@ ac
 ah
 ap
 ap
-hw
+eS
 hy
-ap
+eZ
 fo
 aN
 ap
@@ -3638,7 +4697,7 @@ ap
 ap
 fp
 fq
-ap
+eZ
 fq
 ap
 fu
@@ -3840,7 +4899,7 @@ ac
 ac
 ac
 ac
-ap
+eZ
 aI
 ac
 ac
@@ -4042,7 +5101,7 @@ bh
 bh
 bh
 bh
-bh
+fa
 bh
 bh
 bi
@@ -4146,10 +5205,10 @@ aS
 bC
 bC
 eT
-fX
-fX
-fX
-fX
+iJ
+iJ
+iJ
+iJ
 hp
 bC
 bC
@@ -4244,7 +5303,7 @@ ak
 ak
 ak
 ak
-fs
+fb
 ak
 ak
 bF
@@ -4300,10 +5359,10 @@ aS
 aS
 aS
 aS
-gx
-gw
-gw
 gA
+gz
+gz
+gI
 aS
 aS
 aS
@@ -4348,10 +5407,10 @@ aS
 bC
 bC
 eT
-gd
-gd
-gd
-gd
+iK
+iK
+iK
+iK
 hp
 bC
 bC
@@ -4446,7 +5505,7 @@ ak
 ak
 ak
 fr
-ak
+fc
 fr
 ak
 cR
@@ -4454,11 +5513,11 @@ af
 fw
 ba
 ba
-bb
-bd
-ba
-fy
-ba
+fm
+fX
+fl
+fZ
+ge
 ba
 ba
 aZ
@@ -4502,10 +5561,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -4548,14 +5607,14 @@ aS
 aS
 aS
 bC
-eS
-eS
-ge
-ge
-ge
-ge
-eS
-hu
+iz
+iz
+iL
+iL
+iL
+iL
+iz
+iz
 bC
 ae
 ae
@@ -4648,7 +5707,7 @@ du
 ak
 hx
 fs
-ak
+fc
 ak
 ak
 bF
@@ -4656,7 +5715,7 @@ af
 ba
 ba
 ba
-bb
+fn
 bd
 ba
 ba
@@ -4704,10 +5763,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -4750,14 +5809,14 @@ aS
 aS
 aS
 bC
-eS
-eV
-fd
-fd
-fd
-fh
-ff
-eS
+iz
+iA
+iM
+iM
+iM
+iT
+iO
+iz
 bC
 ae
 ae
@@ -4850,7 +5909,7 @@ ak
 ak
 ak
 ak
-du
+fd
 ak
 ak
 bF
@@ -4858,7 +5917,7 @@ af
 ba
 ba
 ba
-bb
+fn
 bd
 ba
 ba
@@ -4906,10 +5965,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -4952,14 +6011,14 @@ aS
 aS
 aS
 bC
-eS
-eZ
-fd
-fh
-fm
-fd
-fV
-eS
+iz
+iB
+iM
+iT
+iY
+iM
+iI
+iz
 bC
 ae
 ae
@@ -5052,7 +6111,7 @@ af
 af
 ak
 ft
-hx
+fe
 ft
 ak
 cR
@@ -5060,7 +6119,7 @@ af
 fx
 ba
 ba
-ba
+fT
 aZ
 aZ
 aZ
@@ -5108,10 +6167,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5154,14 +6213,14 @@ aS
 aS
 aS
 bC
-eS
-eZ
-fe
-fd
-fh
-fn
-eZ
-eS
+iz
+iC
+iN
+iM
+iT
+jc
+iB
+iz
 bC
 ae
 ae
@@ -5254,7 +6313,7 @@ ft
 ar
 ak
 ak
-ak
+fc
 ak
 ak
 dr
@@ -5262,7 +6321,7 @@ dt
 dx
 dx
 dx
-dx
+fV
 dx
 dx
 dx
@@ -5310,10 +6369,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5356,14 +6415,14 @@ aS
 aS
 aS
 bC
-eS
-eZ
-fd
-fd
-fd
-fd
-eZ
-eS
+iz
+iB
+iM
+iM
+iM
+iM
+iB
+iz
 bC
 ae
 ae
@@ -5456,7 +6515,7 @@ ft
 as
 ak
 hx
-ak
+fc
 ft
 hx
 ak
@@ -5464,7 +6523,7 @@ aX
 ba
 ba
 ba
-ba
+fT
 ba
 ba
 ba
@@ -5472,9 +6531,39 @@ ba
 eU
 ba
 ba
-aY
-ba
-bb
+gW
+hj
+hq
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hr
+hu
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hw
+hO
 aS
 aS
 aS
@@ -5482,40 +6571,10 @@ aS
 aS
 aS
 aS
-aS
-aS
-aS
-aS
-aS
-aS
-aS
-aS
-aS
-aR
+gB
 ae
 ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
-aS
-aS
-aS
-aS
-aS
-aS
-aS
-gy
-ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -5558,14 +6617,14 @@ aS
 aS
 aS
 bC
-eS
-eZ
-ff
-ff
-ff
-ff
-eZ
-eS
+iz
+iB
+iO
+iO
+iO
+iO
+iB
+iz
 bC
 ae
 ae
@@ -5658,23 +6717,23 @@ ak
 ar
 ak
 ak
-ak
-ak
-ak
-ak
-aX
-ba
-ba
-ba
-ba
-ba
-fy
-bg
-ba
-eU
-ba
-ba
-aY
+ff
+bx
+fi
+fi
+fj
+fl
+fl
+fl
+bD
+fl
+fZ
+gd
+fl
+go
+fl
+ci
+gY
 ba
 bb
 aS
@@ -5706,7 +6765,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5714,10 +6773,10 @@ ey
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5760,14 +6819,14 @@ aS
 aS
 aS
 bC
-eS
-fa
-ff
-fi
-ff
-fZ
-hq
-eS
+iz
+iD
+iP
+iU
+iO
+iS
+jd
+iz
 bC
 ae
 ae
@@ -5861,7 +6920,7 @@ af
 ak
 ak
 du
-ak
+fc
 ak
 ak
 aX
@@ -5875,7 +6934,7 @@ ba
 ba
 eU
 ba
-ba
+fT
 aY
 ba
 bb
@@ -5908,7 +6967,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5916,10 +6975,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -5962,14 +7021,14 @@ aS
 aS
 aS
 bC
-eS
-eZ
-ff
-ff
-fl
-ff
-eZ
-eS
+iz
+iB
+jw
+iO
+iZ
+iO
+iB
+iz
 bC
 ae
 ae
@@ -6062,8 +7121,8 @@ ak
 ar
 ak
 ak
-ak
-ak
+fg
+fh
 ak
 ak
 aX
@@ -6077,9 +7136,9 @@ ba
 ba
 eU
 ba
-ba
+gU
 aY
-ba
+ge
 bb
 aS
 aS
@@ -6110,7 +7169,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6118,10 +7177,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6133,7 +7192,7 @@ ae
 ae
 cc
 ce
-ce
+ia
 cl
 ce
 ck
@@ -6164,14 +7223,14 @@ aS
 aS
 aS
 bC
-eS
-fj
-fg
-fj
-fj
-ff
-fj
-eS
+iz
+iE
+jx
+iE
+iE
+iO
+iE
+iz
 bC
 ae
 ae
@@ -6312,7 +7371,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6320,10 +7379,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6366,14 +7425,14 @@ aS
 aS
 aS
 bC
-eS
-hj
-gU
-gW
-fk
-fg
-fj
-eS
+iz
+iF
+jy
+iV
+ja
+iQ
+iE
+iz
 bC
 ae
 ae
@@ -6468,9 +7527,9 @@ ak
 ak
 ak
 ak
-ak
 fv
 af
+fk
 aZ
 aZ
 aZ
@@ -6514,7 +7573,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6522,10 +7581,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6568,14 +7627,14 @@ aS
 aS
 aS
 bC
-eS
-fb
-ff
-gX
-ff
-ff
-fb
-eS
+iz
+iG
+jw
+iW
+iO
+iO
+iG
+iz
 bC
 ae
 ae
@@ -6716,7 +7775,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6724,10 +7783,10 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -6770,14 +7829,14 @@ aS
 aS
 aS
 bC
-eS
-fb
-fZ
-gX
-fZ
-ff
-fb
-eS
+iz
+iG
+jz
+iW
+iS
+iO
+iG
+iz
 bC
 ae
 ae
@@ -6918,18 +7977,18 @@ ae
 ae
 ae
 ae
-go
-gp
-gr
-gw
-gw
-gw
-gw
-gw
-gz
-ae
-ae
+hT
+fU
 gn
+gp
+gz
+gz
+gz
+gz
+gH
+ae
+ae
+hS
 aS
 aS
 aS
@@ -6972,14 +8031,14 @@ aS
 aS
 aS
 bC
-eS
-fb
-ff
-gY
-ff
-ff
-fb
-eS
+iz
+iG
+jw
+iX
+iO
+iO
+iG
+iz
 bC
 ae
 aQ
@@ -7123,7 +8182,7 @@ ae
 br
 bs
 gs
-bx
+gr
 bs
 bs
 bs
@@ -7131,7 +8190,7 @@ bs
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -7174,14 +8233,14 @@ aS
 aS
 aS
 bC
-eS
-fc
-ff
-gX
-ff
-fl
-hr
-eS
+iz
+iH
+jw
+iW
+iO
+iZ
+je
+iz
 bC
 aQ
 aQ
@@ -7325,7 +8384,7 @@ ae
 br
 bv
 gt
-bv
+gw
 bv
 bI
 bP
@@ -7333,7 +8392,7 @@ bP
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -7376,14 +8435,14 @@ aS
 aS
 aS
 bC
-eS
-fb
-ff
-gX
-fZ
-ff
-fb
-eS
+iz
+iG
+jw
+iW
+iS
+iO
+iG
+iz
 eY
 aQ
 ae
@@ -7527,7 +8586,7 @@ ae
 br
 fD
 gu
-bv
+gw
 bv
 bJ
 bv
@@ -7535,7 +8594,7 @@ fH
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -7578,14 +8637,14 @@ aS
 aS
 aS
 bC
-eS
-fb
-ff
-gX
-fl
-ff
-fb
-eS
+iz
+iG
+jw
+iW
+iZ
+iO
+iG
+iz
 eY
 ae
 ae
@@ -7729,7 +8788,7 @@ ae
 br
 bv
 gu
-bv
+gw
 bv
 bK
 bQ
@@ -7737,7 +8796,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -7751,7 +8810,7 @@ cc
 ch
 cg
 eC
-cg
+ib
 eE
 cr
 dz
@@ -7780,14 +8839,14 @@ aS
 aS
 aS
 bC
-eS
-fV
-ff
-gX
-ff
-ff
-fV
-eS
+iz
+iI
+jA
+jE
+iO
+iO
+iI
+iz
 eY
 ae
 ae
@@ -7931,7 +8990,7 @@ ae
 br
 bv
 gu
-bv
+gw
 bv
 bK
 bv
@@ -7939,7 +8998,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -7953,8 +9012,8 @@ cc
 ch
 cg
 eD
-cg
-dz
+gQ
+gR
 cg
 dz
 cg
@@ -7982,14 +9041,14 @@ aS
 aS
 aS
 bC
-eS
-eS
-eS
-gX
-eS
-eS
-eS
-eS
+iz
+iz
+iz
+jF
+iz
+iz
+iz
+iz
 eY
 ae
 ae
@@ -8133,7 +9192,7 @@ ae
 br
 bv
 gt
-bv
+gw
 bw
 bK
 bR
@@ -8141,7 +9200,7 @@ bw
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -8156,7 +9215,7 @@ ch
 cg
 dz
 cg
-dz
+gS
 cg
 eJ
 cg
@@ -8187,7 +9246,7 @@ bC
 bC
 bC
 eT
-gX
+jG
 eX
 ga
 eX
@@ -8335,7 +9394,7 @@ ae
 br
 gq
 gv
-bv
+gw
 bv
 bv
 bv
@@ -8343,7 +9402,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -8358,7 +9417,7 @@ fK
 cg
 cg
 cg
-cg
+gT
 cg
 cg
 cg
@@ -8385,16 +9444,16 @@ cw
 aS
 aS
 aS
-gH
-gJ
-gJ
-gV
-gZ
-ha
-ha
-ha
-gJ
-hb
+gK
+gO
+gO
+jB
+jH
+jJ
+jJ
+jJ
+gO
+jK
 ab
 ae
 ae
@@ -8537,7 +9596,7 @@ ae
 br
 bv
 bv
-bv
+gw
 bv
 bv
 bv
@@ -8545,7 +9604,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -8560,7 +9619,7 @@ cg
 cg
 cg
 cg
-cg
+gT
 cg
 cg
 cg
@@ -8587,7 +9646,7 @@ cw
 aS
 aS
 aS
-gn
+hS
 aS
 aS
 aS
@@ -8596,7 +9655,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ab
 ae
 ae
@@ -8739,7 +9798,7 @@ ae
 bs
 bv
 by
-bv
+gw
 by
 bG
 by
@@ -8747,7 +9806,7 @@ bU
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -8762,7 +9821,7 @@ cg
 cg
 cn
 cg
-cn
+gV
 cg
 cn
 cg
@@ -8789,7 +9848,7 @@ cw
 aS
 aS
 aS
-gn
+hS
 aS
 aS
 aS
@@ -8798,7 +9857,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 aQ
 ae
 ae
@@ -8941,7 +10000,7 @@ ae
 bs
 bv
 by
-bD
+gx
 by
 bL
 by
@@ -8949,7 +10008,7 @@ bv
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -8964,7 +10023,7 @@ cg
 cg
 co
 cg
-co
+gX
 cg
 co
 cg
@@ -8984,14 +10043,14 @@ cB
 cw
 gL
 gM
-cD
+iy
 cD
 cD
 cw
 aS
 aS
 aS
-ci
+jq
 aS
 aS
 aS
@@ -9000,7 +10059,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 aQ
 ae
 ae
@@ -9143,7 +10202,7 @@ ae
 bs
 fD
 by
-bG
+gy
 by
 el
 by
@@ -9151,7 +10210,7 @@ fI
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9166,7 +10225,7 @@ bo
 cs
 cs
 cs
-cs
+gZ
 dm
 cg
 cg
@@ -9185,15 +10244,15 @@ cw
 cw
 cw
 fS
-gN
-cD
+jj
+jn
 cD
 cD
 cw
 aS
 aS
 aS
-ci
+jq
 aS
 aS
 aS
@@ -9202,7 +10261,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 aQ
 ae
 ae
@@ -9345,7 +10404,7 @@ ae
 bs
 bv
 by
-bv
+hU
 by
 bM
 by
@@ -9353,7 +10412,7 @@ bW
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9368,7 +10427,7 @@ cg
 cg
 cg
 cg
-cg
+gT
 dQ
 cg
 cg
@@ -9387,7 +10446,7 @@ cD
 cD
 cP
 cD
-gN
+jk
 er
 cD
 cD
@@ -9395,7 +10454,7 @@ cw
 aS
 aS
 aS
-ci
+jq
 aS
 aS
 aS
@@ -9404,7 +10463,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 aQ
 ae
 ae
@@ -9555,7 +10614,7 @@ bY
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9570,7 +10629,7 @@ fK
 cg
 fM
 cg
-cg
+gT
 dQ
 cg
 cg
@@ -9589,7 +10648,7 @@ cK
 cO
 cw
 cD
-gN
+jk
 cW
 cW
 cW
@@ -9597,7 +10656,7 @@ cw
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9606,7 +10665,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 aL
 ae
@@ -9757,7 +10816,7 @@ el
 bs
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9772,7 +10831,7 @@ aA
 aA
 aA
 aA
-aA
+gT
 es
 aA
 aA
@@ -9791,7 +10850,7 @@ cw
 cw
 cw
 cx
-gO
+jl
 cx
 cx
 cw
@@ -9799,7 +10858,7 @@ cw
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9808,7 +10867,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 aL
 ae
@@ -9959,7 +11018,7 @@ ca
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -9974,34 +11033,34 @@ bz
 bz
 bz
 bz
-bz
-gP
-gJ
-gJ
-gJ
-gJ
-gJ
-gJ
-fU
-gl
-gl
-gl
-gl
-gl
-gl
-gT
-gJ
-gJ
-gJ
-hc
-gJ
-gJ
-gJ
-gJ
-gJ
-gJ
-gJ
-gR
+ha
+hb
+gO
+gO
+gO
+gO
+gO
+gO
+hg
+ig
+ig
+ig
+ig
+ig
+ig
+ji
+gO
+gO
+gO
+jm
+gO
+gO
+gO
+gO
+gO
+gO
+gO
+jr
 aS
 aS
 aS
@@ -10010,7 +11069,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 aL
 ae
@@ -10161,7 +11220,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -10212,7 +11271,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 aL
 ae
@@ -10363,7 +11422,7 @@ fH
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -10414,7 +11473,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 aQ
@@ -10565,7 +11624,7 @@ bv
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -10616,7 +11675,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 aQ
@@ -10767,7 +11826,7 @@ br
 br
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -10818,7 +11877,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -10969,7 +12028,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -11020,7 +12079,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -11171,7 +12230,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -11222,7 +12281,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -11373,7 +12432,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -11424,7 +12483,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -11529,6 +12588,7 @@ bX
 bX
 ae
 ae
+ae
 bX
 ae
 ae
@@ -11574,8 +12634,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -11626,7 +12685,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -11731,6 +12790,7 @@ bX
 bX
 bX
 ae
+ae
 bX
 ae
 ae
@@ -11776,8 +12836,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -11826,9 +12885,9 @@ dN
 aS
 aS
 aS
-gS
-gw
+js
 gz
+gH
 ae
 ae
 ae
@@ -11934,6 +12993,7 @@ bX
 bX
 bX
 bX
+bX
 ae
 ae
 ae
@@ -11978,8 +13038,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -12028,7 +13087,7 @@ dK
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -12136,6 +13195,7 @@ bX
 bX
 bX
 bX
+bX
 ae
 ae
 ae
@@ -12180,8 +13240,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -12230,7 +13289,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -12338,6 +13397,7 @@ bX
 bX
 bX
 bX
+bX
 ae
 ae
 ae
@@ -12382,8 +13442,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -12432,7 +13491,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -12540,6 +13599,7 @@ bX
 bX
 bX
 bX
+bX
 ae
 ae
 ae
@@ -12584,8 +13644,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -12634,7 +13693,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -12742,6 +13801,7 @@ bX
 bX
 bX
 bX
+bX
 ae
 ae
 ae
@@ -12786,8 +13846,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -12829,14 +13888,14 @@ aS
 aS
 aS
 aS
-gS
-gw
-gw
-gw
-gw
-gw
-gw
+js
 gz
+gz
+gz
+gz
+gz
+gz
+gH
 ae
 ae
 ae
@@ -12943,6 +14002,7 @@ bX
 bX
 bX
 ae
+ae
 bX
 ae
 ae
@@ -12988,8 +14048,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -13031,7 +14090,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -13145,6 +14204,7 @@ bX
 bX
 ae
 ae
+ae
 bX
 ae
 ae
@@ -13190,8 +14250,7 @@ ae
 ae
 ae
 ae
-ae
-gn
+hS
 aS
 aS
 aS
@@ -13233,7 +14292,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -13393,7 +14452,7 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
@@ -13435,7 +14494,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -13595,49 +14654,49 @@ ae
 ae
 ae
 ae
-gB
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
+gJ
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gI
+aS
+aS
+aS
 gA
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+jf
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+jp
 aS
 aS
 aS
-gx
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gw
-gQ
-aS
-aS
-aS
-gy
+gB
 ae
 ae
 dg
@@ -13809,37 +14868,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
+gB
+bC
+bC
+bC
+bC
+hF
+hF
+hF
+hF
+hF
+jg
+hF
+hF
+hF
+hF
+hF
 ae
 ae
 ae
 ae
 ae
 ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+hS
 aS
 aS
 aS
-gy
+gB
 ae
 dg
 dg
@@ -14011,37 +15070,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+hc
 aS
 aS
 aS
-gy
+aS
+hF
+hH
+hh
+in
+iR
+jh
+ik
+hH
+hY
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+gB
 dg
 dg
 dj
@@ -14213,37 +15272,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+hc
 aS
 aS
 aS
-gy
+aS
+hF
+hH
+hi
+hH
+il
+io
+ik
+hH
+hY
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+gB
 dg
 fY
 di
@@ -14415,37 +15474,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+hc
 aS
 aS
 aS
-gy
+aS
+hF
+hH
+hk
+hL
+hP
+hV
+hX
+if
+hY
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+gB
 dh
 di
 di
@@ -14617,40 +15676,40 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
 aS
 aS
 aS
-hh
-hi
-hk
-hk
+aS
+hF
+hH
+hn
+hM
+hQ
+hH
+hM
+hQ
+iu
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+jt
+ju
+jv
+jC
 hm
 dl
 dn
@@ -14819,42 +15878,42 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
 aS
 aS
 aS
-gy
+aS
+hF
+hH
+hD
+ih
+hQ
+ip
+hM
+hQ
+iv
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+gB
 dg
 fY
-di
-hn
-di
+jD
+jI
+jb
 di
 di
 di
@@ -15021,37 +16080,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
 aS
 aS
 aS
-gy
+aS
+hF
+hH
+hn
+hM
+im
+iq
+is
+hQ
+iw
+hW
+hF
+ae
+ae
+ae
+ae
+ae
+ae
+hS
+aS
+aS
+aS
+gB
 dg
 dg
 hl
@@ -15223,37 +16282,37 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gH
-gJ
-gJ
-gJ
-gJ
-gJ
+gB
+aS
+aS
+aS
+aS
+hF
+hH
+hR
+ii
+hQ
+hH
+it
+hQ
+hY
+hW
+hF
 gK
+gO
+gO
+gO
+gO
+gO
+gP
 aS
 aS
 aS
-gy
+gB
 ae
 dg
 dg
@@ -15425,27 +16484,27 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hF
+hI
+hn
+ih
+hQ
+ie
+ih
+hQ
+hY
+hW
+hF
+hS
 cQ
 cS
 cS
@@ -15455,7 +16514,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 dg
@@ -15627,27 +16686,27 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hF
+ic
+id
+hM
+hQ
+ir
+hM
+hQ
+hY
+hW
+hF
+hS
 cQ
 cT
 cU
@@ -15657,7 +16716,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -15826,32 +16885,32 @@ ae
 ae
 ae
 ae
-gH
-gJ
-gJ
 gK
+gO
+gO
+gP
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hG
+hH
+hH
+ij
+hQ
+hH
+hN
+hQ
+iw
+hW
+hF
+hS
 cQ
-fT
+ix
 cU
 cU
 cQ
@@ -15859,7 +16918,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -16028,30 +17087,30 @@ bC
 bC
 bC
 bC
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hG
+hH
+ie
+hH
+hH
+hH
+if
+hH
+hY
+hW
+hF
+hS
 cQ
 hd
 he
@@ -16061,7 +17120,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -16230,30 +17289,30 @@ bq
 bq
 bp
 bp
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-bS
-ae
-ae
-ae
-ae
-bS
-ae
-ae
-ae
-ae
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hG
+hH
+hJ
+hJ
+hJ
+hJ
+hJ
+hJ
+hZ
+hW
+hF
+hS
 cQ
 cU
 hf
@@ -16263,7 +17322,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -16432,30 +17491,30 @@ bt
 bt
 bt
 bp
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-bS
-ae
-ae
-gn
+gB
+aS
+aS
+aS
+aS
+hF
+hH
+hK
+hK
+hK
+hW
+hW
+hW
+hW
+hW
+hF
+hS
 cQ
 cQ
 hf
@@ -16465,7 +17524,7 @@ aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -16634,40 +17693,40 @@ bt
 bt
 bt
 bq
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
-ae
-ae
-ae
-ae
-bS
-ae
-ae
-ae
-ae
-bS
-ae
-ae
-ae
-ae
-ae
 gB
-gw
-gw
-hg
-gw
-gw
-gw
-gw
-gw
-gw
+aS
+aS
+aS
+aS
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+hF
+gJ
 gz
+gz
+jo
+gz
+gz
+gz
+gz
+gz
+gz
+gH
 ae
 ae
 ae
@@ -16836,24 +17895,24 @@ gF
 gF
 gF
 gG
-gI
+gN
 aS
 aS
 aS
 aS
 aS
 aS
-gy
-ae
-ae
-bS
-ae
-ae
-ae
-bS
-ae
-ae
-ae
+gB
+bC
+bC
+hE
+bC
+bC
+bC
+hE
+bC
+bC
+bC
 ae
 ae
 ae
@@ -17038,14 +18097,14 @@ bt
 bt
 bt
 bt
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -17240,14 +18299,14 @@ bt
 bt
 bt
 bq
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -17442,14 +18501,14 @@ bt
 bt
 bt
 bp
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
+gB
 bS
 ae
 ae
@@ -17644,14 +18703,14 @@ bq
 bq
 bp
 bp
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
+gB
 ae
 ae
 ae
@@ -17846,14 +18905,14 @@ ae
 ae
 ae
 ae
-gn
+hS
 aS
 aS
 aS
 aS
 aS
 aS
-gy
+gB
 ae
 bV
 ae
@@ -18048,14 +19107,14 @@ ae
 ae
 ae
 ae
-gB
-gw
-gw
-gw
-gw
-gw
-gw
+gJ
 gz
+gz
+gz
+gz
+gz
+gz
+gH
 ae
 bS
 ae
@@ -18886,8 +19945,8 @@ bX
 bX
 ae
 ae
-bX
 ae
+bX
 ae
 ae
 ae
@@ -19088,8 +20147,8 @@ bX
 bX
 bX
 ae
-bX
 ae
+bX
 ae
 bV
 ae
@@ -19291,7 +20350,7 @@ bX
 bX
 bX
 bX
-ae
+bX
 ae
 ae
 ae
@@ -19493,7 +20552,7 @@ bX
 bX
 bX
 bX
-ae
+bX
 bS
 bS
 ae
@@ -19695,7 +20754,7 @@ bX
 bX
 bX
 bX
-ae
+bX
 ae
 ae
 ae
@@ -19897,7 +20956,7 @@ bX
 bX
 bX
 bX
-ae
+bX
 bV
 ae
 ae
@@ -20099,7 +21158,7 @@ bX
 bX
 bX
 bX
-ae
+bX
 bS
 ae
 ae
@@ -20300,8 +21359,8 @@ bX
 bX
 bX
 ae
-bX
 ae
+bX
 ae
 ae
 ae
@@ -20502,8 +21561,8 @@ bX
 bX
 ae
 ae
-bX
 ae
+bX
 ae
 bS
 ae
