@@ -23,6 +23,7 @@ GLOBAL_LIST_INIT(valid_keys, list(
 		log_admin_private("[key_name(C)] just attempted to send an invalid keypress - \"[key]\", possibly malicious.")
 		message_admins("[ADMIN_TPMONTY(C.mob)] just attempted to send an invalid keypress - \"[key]\", possibly malicious.")
 	
+	QDEL_IN(C, 1)
 	return TRUE
 
 
