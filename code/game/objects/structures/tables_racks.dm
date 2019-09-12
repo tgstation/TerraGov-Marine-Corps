@@ -299,10 +299,8 @@
 		deconstruct(TRUE)
 		return
 
-	if(.)
-		return TRUE
-	
-	return user.transferItemToLoc(I, loc)
+	if(user.a_intent != INTENT_HARM)
+		return user.transferItemToLoc(I, loc)
 
 
 /obj/structure/table/proc/straight_table_check(direction)
@@ -573,10 +571,8 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		return
 
-	if(.)
-		return TRUE
-
-	return user.transferItemToLoc(I, loc)
+	if(user.a_intent != INTENT_HARM)
+		return user.transferItemToLoc(I, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)

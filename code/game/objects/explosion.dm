@@ -105,14 +105,17 @@
 				items += A.GetAllContents()
 			for(var/O in items)
 				var/atom/A = O
-				if(!QDELETED(A))
-					A.ex_act(dist)
+				if(QDELETED(A))
+					continue
+				A.ex_act(dist)
 
 		if(dist > 0)
 			T.ex_act(dist)
 			for(var/i in T)
 				var/atom/movable/AM = i
-				AM?.ex_act(dist)
+				if(QDELETED(AM))
+					continue
+				AM.ex_act(dist)
 
 
 		//------- TURF FIRES -------
