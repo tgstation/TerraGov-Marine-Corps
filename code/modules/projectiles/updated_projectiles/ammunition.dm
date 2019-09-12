@@ -540,15 +540,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(!istype(I, /obj/item/ammo_magazine/handful))
+		return
+
+	var/obj/item/ammo_magazine/handful/H = I
+
 	if(!deployed)
 		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
 		return
-	
-	if(!istype(I, /obj/item/ammo_magazine/handful))
-		return
-	
-	var/obj/item/ammo_magazine/handful/H = I
-	
+
 	if(H.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
