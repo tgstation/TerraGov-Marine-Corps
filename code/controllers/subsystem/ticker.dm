@@ -44,13 +44,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 
-	login_music = pick(
-		'sound/music/SpaceHero.ogg',
-		'sound/music/ManOfWar.ogg',
-		'sound/music/PraiseTheLord.ogg',
-		'sound/music/BloodUponTheRisers.ogg',
-		'sound/music/DawsonChristian.ogg',
-	)
+	login_music = 'sound/music/Lovesong.ogg'
 
 	return ..()
 
@@ -64,8 +58,8 @@ SUBSYSTEM_DEF(ticker)
 				start_at = time_left || world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C)
-			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of [CONFIG_GET(string/server_name)]!</span>")
-			to_chat(world, "<span class='role_body'>Please, setup your character and select ready. Game will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
+			to_chat(world, "<span class='round_body'>Welcome to the pre-game lobby of the TGMC Ball!</span>")
+			to_chat(world, "<span class='role_body'>Please, setup your character and get ready. We will start in [round(time_left / 10) || CONFIG_GET(number/lobby_countdown)] seconds.</span>")
 			current_state = GAME_STATE_PREGAME
 			fire()
 
@@ -74,10 +68,6 @@ SUBSYSTEM_DEF(ticker)
 				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
-
-			if(time_left <= 300 && !tipped)
-				send_tip_of_the_round()
-				tipped = TRUE
 
 			//countdown
 			if(time_left < 0)
@@ -108,14 +98,10 @@ SUBSYSTEM_DEF(ticker)
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "shipmap", "SERVER"), 2 SECONDS)
-				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "groundmap", "SERVER"), 63 SECONDS)
-				addtimer(CALLBACK(src, .proc/Reboot), 63 SECONDS)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, "<span class='boldnotice'><b>Enjoy the game!</b></span>")
 	var/init_start = world.timeofday
 	//Create and announce mode
 	mode = config.pick_mode(GLOB.master_mode)
@@ -255,12 +241,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/load_mode()
-	var/mode = trim(file2text("data/mode.txt"))
-	if(mode)
-		GLOB.master_mode = mode
-	else
-		GLOB.master_mode = "Extended"
-	log_game("Saved mode is '[GLOB.master_mode]'")
+	GLOB.master_mode = "Ball"
 
 
 /datum/controller/subsystem/ticker/proc/save_mode(the_mode)

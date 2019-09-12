@@ -85,21 +85,6 @@
 	back = /obj/item/storage/backpack/satchel/sec
 
 
-//Civilian
-/datum/job/survivor/civilian
-	title = "Civilian"
-	outfit = /datum/outfit/job/survivor/civilian
-
-
-/datum/outfit/job/survivor/civilian
-	name = "Civilian"
-	jobtype = /datum/job/survivor/civilian
-
-	w_uniform = /obj/item/clothing/under/pj/red
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
-
-
 //Chef
 /datum/job/survivor/chef
 	title = "Chef"

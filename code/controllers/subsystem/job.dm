@@ -248,29 +248,13 @@ SUBSYSTEM_DEF(job)
 				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		//Give them an account in the database.
-		var/datum/money_account/A = create_account(H.real_name, rand(50,500) * 10, null)
-		if(H.mind)
-			var/remembered_info = ""
-			remembered_info += "<b>Your account number is:</b> #[A.account_number]<br>"
-			remembered_info += "<b>Your account pin is:</b> [A.remote_access_pin]<br>"
-			remembered_info += "<b>Your account funds are:</b> $[A.money]<br>"
-			if(length(A.transaction_log))
-				var/datum/transaction/T = A.transaction_log[1]
-				remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
-			H.mind.store_memory(remembered_info)
-			H.mind.initial_account = A
 		if(M.client)
 			H.equip_preference_gear(M.client)
 		else if(H.client)
 			H.equip_preference_gear(H.client)
 	if(job)
 		job.radio_help_message(M)
-		if(job.req_admin_notify)
-			to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
-		if(CONFIG_GET(number/minimal_access_threshold))
-			to_chat(M, "<span class='notice'><b>As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only your job's necessities"] have been added to your ID card.</b></span>")
-	
+
 	if(job && L)
 		job.after_spawn(L, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
 

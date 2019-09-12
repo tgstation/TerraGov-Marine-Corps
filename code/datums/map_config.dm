@@ -42,7 +42,7 @@
 	var/list/configs = list()
 
 	for(var/i in maptypes)
-		var/filename = MAP_TO_FILENAME[i]
+		var/filename = "_maps/ball.json"
 		var/datum/map_config/config = new
 		if(default)
 			configs[i] = config

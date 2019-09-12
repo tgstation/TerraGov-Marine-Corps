@@ -69,7 +69,7 @@
 
 /obj/effect/landmark/start/marine/crash/synthetic
 	icon_state = "Synth"
-	job = /datum/job/civilian/synthetic
+	job = /datum/job/synthetic
 
 /obj/effect/landmark/start/marine/crash/squadmarine
 	icon_state = "PFC"

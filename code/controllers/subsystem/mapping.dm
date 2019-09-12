@@ -27,24 +27,17 @@ SUBSYSTEM_DEF(mapping)
 //dlete dis once #39770 is resolved
 /datum/controller/subsystem/mapping/proc/HACK_LoadMapConfig()
 	if(!configs)
-		configs = load_map_configs(ALL_MAPTYPES, error_if_missing = FALSE)
+		configs = load_map_configs(list(GROUND_MAP), error_if_missing = FALSE)
 		for(var/i in GLOB.clients)
 			var/client/C = i
-			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - [SSmapping.configs[SHIP_MAP].map_name]'")
+			winset(C, null, "mainwindow.title='[CONFIG_GET(string/title)] - Ball!'")
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
 	HACK_LoadMapConfig()
+	
 	if(initialized)
 		return
 
-	for(var/i in ALL_MAPTYPES)
-		var/datum/map_config/MC = configs[i]
-		if(MC.defaulted)
-			var/old_config = configs[i]
-			configs[i] = global.config.defaultmaps[i]
-			if(!configs || configs[i].defaulted)
-				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
-				configs[i] = old_config
 	loadWorld()
 	repopulate_sorted_areas()
 	preloadTemplates()
@@ -156,12 +149,8 @@ SUBSYSTEM_DEF(mapping)
 	ground_start = world.maxz + 1
 
 	var/datum/map_config/ground_map = configs[GROUND_MAP]
-	INIT_ANNOUNCE("Loading [ground_map.map_name]...")
 	LoadGroup(FailedZs, ground_map.map_name, ground_map.map_path, ground_map.map_file, ground_map.traits, ZTRAITS_GROUND)
 
-	var/datum/map_config/ship_map = configs[SHIP_MAP]
-	INIT_ANNOUNCE("Loading [ship_map.map_name]...")
-	LoadGroup(FailedZs, ship_map.map_name, ship_map.map_path, ship_map.map_file, ship_map.traits, ZTRAITS_MAIN_SHIP)
 
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_map_name = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET map_name = '[ground_map.map_name]' WHERE id = [GLOB.round_id]")

@@ -181,7 +181,6 @@ GLOBAL_PROTECT(exp_specialmap)
 	to_chat(M, {"
 <span class='role_body'>|______________________|</span>
 <span class='role_header'>You are a: [title]!</span>
-<span class='role_body'>As a [title] you answer to [supervisors]. Special circumstances may change this.</span>
 <span class='role_body'>|______________________|</span>
 "})
 	to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")

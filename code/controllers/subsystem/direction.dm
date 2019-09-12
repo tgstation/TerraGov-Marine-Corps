@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(direction)
 
 /datum/controller/subsystem/direction/Initialize(start_timeofday)
 	. = ..()
+	return
 	// Static squads/factions can be defined here for tracking
 	init_squad(null, null, "marine-sl")
 	for (var/hivenumber in GLOB.hive_datums)
@@ -32,6 +33,7 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/stat_entry()
+	return
 	var/mobcount = 0
 	for(var/L in processing_mobs)
 		mobcount += length(processing_mobs[L])
@@ -39,6 +41,7 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/fire(resumed = FALSE)
+	return
 	if(!resumed)
 		currentrun = deepCopyList(processing_mobs)
 
@@ -60,6 +63,7 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/proc/clear_run(squad_id)
+	return
 	var/mob/living/L
 	while(currentrun[squad_id].len)
 		L = currentrun[squad_id][currentrun[squad_id].len]
@@ -74,6 +78,7 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/proc/start_tracking(squad_id, mob/living/carbon/C)
+	return
 	if(!C)
 		stack_trace("SSdirection.start_tracking called with a null mob")
 		return FALSE
@@ -86,6 +91,7 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/proc/stop_tracking(squad_id, mob/living/carbon/C, force = FALSE)
+	return
 	if(!mobs_in_processing[C])
 		return TRUE // already removed
 	var/tracking_id = mobs_in_processing[C]
@@ -100,16 +106,19 @@ SUBSYSTEM_DEF(direction)
 
 
 /datum/controller/subsystem/direction/proc/set_leader(squad_id, mob/living/carbon/C)
+	return
 	if(leader_mapping[squad_id])
 		clear_leader(squad_id)
 	leader_mapping[squad_id] = C
 
 
 /datum/controller/subsystem/direction/proc/clear_leader(squad_id)
+	return
 	leader_mapping[squad_id] = null
 
 
 /datum/controller/subsystem/direction/proc/init_squad(datum/squad/S, mob/L, tracking_id)
+	return
 	if(!tracking_id)
 		tracking_id = "faction_[last_faction_id++]"
 	processing_mobs[tracking_id] = list()

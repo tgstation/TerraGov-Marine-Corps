@@ -206,9 +206,8 @@ You could use MTs help to repair and replace hardpoints."})
 
 /datum/job/police
 	selection_color = "#ffdddd"
-	supervisors = "the acting captain"
 	faction = "Marine"
-	total_positions = 1
+	total_positions = 10
 	exp_type_department = EXP_TYPE_POLICE
 
 
@@ -219,20 +218,11 @@ You could use MTs help to repair and replace hardpoints."})
 	comm_title = "MA"
 	total_positions = 5
 	selection_color = "#ffdddd"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/police/officer
-
-
-/datum/job/police/officer/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
-Failure to do so may result in a job ban.
-Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
-In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"})
-
 
 
 /datum/outfit/job/police/officer
@@ -595,21 +585,20 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 
 //Synthetic
-/datum/job/civilian/synthetic
+/datum/job/synthetic
 	title = SYNTHETIC
+	faction = "Marine"
 	comm_title = "Syn"
-	supervisors = "the acting captain"
 	selection_color = "#aaee55"
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
-	display_order = JOB_DISPLAY_ORDER_SYNTHETIC
-	outfit = /datum/outfit/job/civilian/synthetic
-	exp_requirements = XP_REQ_EXPERIENCED
-	exp_type = EXP_TYPE_REGULAR_ALL
+	total_positions = -1
+	display_order = 2
+	outfit = /datum/outfit/job/synthetic
 
 
-/datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
+/datum/job/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
 	if(!H)
 		return FALSE
 
@@ -629,16 +618,9 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	return ..()
 
 
-/datum/job/civilian/synthetic/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC Departments and Personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
-As a Synthetic you answer to the acting captain. Special circumstances may change this!"})
-
-
-/datum/outfit/job/civilian/synthetic
+/datum/outfit/job/synthetic
 	name = SYNTHETIC
-	jobtype = /datum/job/civilian/synthetic
+	jobtype = /datum/job/synthetic
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/utility/full
@@ -649,6 +631,63 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/civ
+	title = CIVILIAN
+	faction = "Marine"
+	selection_color = "#f2c577"
+	skills_type = /datum/skills/synthetic
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
+	total_positions = -1
+	display_order = 1
+	outfit = /datum/outfit/job/civ
+
+
+/datum/outfit/job/civ
+	name = CIVILIAN
+	jobtype = /datum/job/civ
+
+	id = /obj/item/card/id
+	ears = /obj/item/radio/headset/mainship
+	w_uniform = /obj/item/clothing/under/rank/synthetic
+	shoes = /obj/item/clothing/shoes/white
+	gloves = /obj/item/clothing/gloves/yellow
+	r_store = /obj/item/storage/pouch/general/medium
+	l_store = /obj/item/storage/pouch/general/medium
+	back = /obj/item/storage/backpack/marine/satchel
+
+
+/datum/job/xenomorph
+	title = XENOMORPH
+	faction = "Marine"
+	total_positions = -1
+	selection_color = "#ed4c4c"
+	display_order = 3
+
+
+/datum/job/xenomorph/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
+	if(!H.mind) //Could be a dummy.
+		return
+
+	H.moveToNullspace()
+	H.hud_used.show_hud(HUD_STYLE_NOHUD)
+
+	var/xenos = list("Runner" = /mob/living/carbon/xenomorph/runner, "Drone" = /mob/living/carbon/xenomorph/drone, "Sentinel" = /mob/living/carbon/xenomorph/sentinel, "Defender" = /mob/living/carbon/xenomorph/defender,
+		"Hunter" = /mob/living/carbon/xenomorph/hunter, "Warrior" = /mob/living/carbon/xenomorph/warrior, "Spitter" = /mob/living/carbon/xenomorph/spitter, "Hivelord" = /mob/living/carbon/xenomorph/hivelord, "Carrier" = /mob/living/carbon/xenomorph/carrier,
+		"Ravager" = /mob/living/carbon/xenomorph/ravager, "Praetorian" = /mob/living/carbon/xenomorph/praetorian, "Boiler" = /mob/living/carbon/xenomorph/boiler, "Defiler" = /mob/living/carbon/xenomorph/Defiler, "Crusher" = /mob/living/carbon/xenomorph/crusher,
+		"Shrike" = /mob/living/carbon/xenomorph/shrike)
+	var/xeno_type = input(H, "Which xeno would you like to be?", "Xeno Type") in list("Runner", "Drone", "Sentinel", "Defender", "Hunter", "Warrior", "Spitter", "Hivelord", "Carrier")
+	var/xeno_path = xenos[xeno_type]
+	
+	var/mob/living/carbon/xenomorph/X = new xeno_path(pick(GLOB.xeno_spawn))
+	H.mind.transfer_to(X, TRUE)
+	qdel(H)
+
+
+/datum/job/xenomorph/override_latejoin_spawn()
+	return TRUE
 
 
 /datum/job/ai

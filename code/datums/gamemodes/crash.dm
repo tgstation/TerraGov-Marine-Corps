@@ -28,7 +28,7 @@
 	// All marine roles, MD, Synth, and FC
 	valid_job_types = subtypesof(/datum/job/marine) + list(
 		/datum/job/medical/professor,
-		/datum/job/civilian/synthetic,
+		/datum/job/synthetic,
 		/datum/job/command/fieldcommander
 	)
 

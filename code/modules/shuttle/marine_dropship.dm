@@ -98,7 +98,6 @@
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Theseus Hangar Pad Two"
 	id = "normandy"
-	roundstart_template = /datum/map_template/shuttle/dropship/two
 
 #define HIJACK_STATE_NORMAL 0
 #define HIJACK_STATE_CALLED_DOWN 1

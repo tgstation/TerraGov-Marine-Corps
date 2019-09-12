@@ -1,0 +1,8 @@
+{
+    "map_name": "TGMC Ball",
+    "map_path": "map_files/ball",
+    "map_file": "ball.dmm",
+    "shuttles": {
+    },
+    "announce_text": "Enjoy!"
+}

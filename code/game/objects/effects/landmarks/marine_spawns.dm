@@ -66,7 +66,18 @@
 
 /obj/effect/landmark/start/marine/synthetic
 	icon_state = "Synth"
-	job = /datum/job/civilian/synthetic
+	job = /datum/job/synthetic
+
+
+/obj/effect/landmark/start/marine/civilian
+	icon_state = "PFC"
+	job = /datum/job/civ
+
+
+/obj/effect/landmark/start/marine/xenomorph
+	icon_state = "CL"
+	job = /datum/job/xenomorph
+
 
 /obj/effect/landmark/start/marine/squadmarine
 	icon_state = "PFC"
