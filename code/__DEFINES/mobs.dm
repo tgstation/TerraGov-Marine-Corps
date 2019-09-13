@@ -582,5 +582,4 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 // Xeno Cooldowns
 // -- Ravager
-#define COOLDOWN_RAV_LAST_RAGE		"last_rage"
 #define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"
