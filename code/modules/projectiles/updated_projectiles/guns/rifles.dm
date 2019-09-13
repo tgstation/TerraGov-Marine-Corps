@@ -137,7 +137,7 @@
 
 
 //-------------------------------------------------------
-//Literally just the
+//Literally just the AK-47
 
 /obj/item/weapon/gun/rifle/ak47
 	name = "\improper AK-47 rifle"
