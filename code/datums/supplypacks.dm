@@ -1656,6 +1656,18 @@ AMMO
 	containername = "\improper incendiary scout ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_scout_smart
+	name "M4RA scout smart magazines crate (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/rifle/m4ra/smart,
+					/obj/item/ammo_magazine/rifle/m4ra/smart,
+					/obj/item/ammo_magazine/rifle/m4ra/smart
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = obj/structure/closet/crate/ammo
+	containername = "\improper smart scout ammo crate"
+	group = "Ammo"
+	
 /datum/supply_packs/ammo_sniper_regular
 	name = "M42A sniper magazines crate (x6)"
 	contains = list(
