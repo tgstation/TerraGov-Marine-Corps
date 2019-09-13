@@ -1453,8 +1453,6 @@
 	},
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = 17
 	},
 /turf/open/floor/mainship{
@@ -1699,8 +1697,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = -17
 	},
 /turf/open/floor/mainship{
@@ -2088,9 +2084,7 @@
 	},
 /area/mainship/medical/operating_room_one)
 "hl" = (
-/obj/structure/closet/secure_closet/personal/patient{
-	name = "morgue closet"
-	},
+/obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "hm" = (
@@ -2099,9 +2093,7 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -2798,10 +2790,7 @@
 "iY" = (
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/marine/corporateliaison,
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /obj/item/toy/farwadoll{
 	pixel_x = 5
 	},
@@ -3656,10 +3645,7 @@
 /obj/item/clothing/under/redpyjamas{
 	pixel_y = 5
 	},
-/obj/structure/bed{
-	desc = "For prime comfort.";
-	name = "fancy bed"
-	},
+/obj/structure/bed/fancy,
 /obj/item/bedsheet/captain,
 /obj/effect/landmark/start/marine/captain,
 /mob/living/simple_animal/cat/Jones,
@@ -3676,8 +3662,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = 17
 	},
 /turf/open/floor/mainship{
@@ -3689,8 +3673,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = -17
 	},
 /obj/machinery/light{
@@ -3730,8 +3712,6 @@
 "lw" = (
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = -17
 	},
 /obj/structure/cable{
@@ -3806,10 +3786,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
 "lH" = (
-/obj/machinery/door/window/brigdoor/northright{
-	dir = 8;
-	id = "Cell 2";
-	name = "Cell 2"
+/obj/machinery/door/window/brigdoor/mainship/cell_2{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
@@ -4064,8 +4042,6 @@
 	},
 /obj/machinery/computer/security/marinemainship{
 	dir = 8;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = -17
 	},
 /obj/item/clipboard{
@@ -4998,9 +4974,7 @@
 /area/mainship/squads/req)
 "oB" = (
 /obj/structure/table/mainship,
-/obj/item/tool/stamp{
-	name = "Quartermaster's stamp"
-	},
+/obj/item/tool/stamp/qm,
 /obj/item/tool/stamp/denied,
 /obj/item/folder/black_random,
 /obj/item/tool/hand_labeler,
@@ -5451,10 +5425,7 @@
 	},
 /area/mainship/shipboard/brig)
 "pM" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 2";
-	name = "Cell 2"
-	},
+/obj/structure/closet/secure_closet/brig/cell/cell2,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -5916,10 +5887,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "qU" = (
-/obj/machinery/flasher{
-	id = "Cell 2";
-	name = "Cell 2 Flash"
-	},
+/obj/machinery/flasher/cell2,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "qV" = (
@@ -6058,21 +6026,15 @@
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "rp" = (
-/obj/machinery/flasher{
-	id = "Cell 1";
-	name = "Cell 1 Flash"
-	},
+/obj/machinery/flasher/cell1,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "rq" = (
-/obj/machinery/door/window/brigdoor/northright{
-	name = "Cell 1";
-	icon_state = "rightsecure";
-	dir = 8;
-	id = "Cell 1"
+/obj/machinery/door/window/brigdoor/mainship/cell_1{
+	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
@@ -6177,10 +6139,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/brig_cells)
 "rF" = (
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 1";
-	name = "Cell 1"
-	},
+/obj/structure/closet/secure_closet/brig/cell/cell1,
 /obj/machinery/firealarm{
 	dir = 1
 	},
@@ -6311,8 +6270,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = 17
 	},
 /obj/item/folder/red,
@@ -8486,21 +8443,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "xe" = (
-/obj/structure/prop/mainship/sensor_computer1{
-	name = "self destruct status computer"
-	},
+/obj/structure/prop/mainship/sensor_computer1/sd,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "xf" = (
-/obj/structure/prop/mainship/sensor_computer2{
-	name = "self destruct regulator"
-	},
+/obj/structure/prop/mainship/sensor_computer2/sd,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "xg" = (
-/obj/structure/prop/mainship/sensor_computer3{
-	name = "tempature regulator"
-	},
+/obj/structure/prop/mainship/sensor_computer3/sd,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "xh" = (
@@ -8589,7 +8540,6 @@
 "xw" = (
 /obj/machinery/atmospherics/components/trinary/mixer{
 	dir = 4;
-	name = "Gas mixer N2/O2";
 	on = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -9224,9 +9174,7 @@
 	},
 /area/mainship/hull/lower_hull)
 "zd" = (
-/obj/machinery/power/monitor{
-	name = "Core Power Monitoring"
-	},
+/obj/machinery/power/monitor/core,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -10524,9 +10472,7 @@
 	},
 /area/mainship/command/telecomms)
 "Ce" = (
-/obj/machinery/power/monitor{
-	name = "Main Power Grid Monitoring"
-	},
+/obj/machinery/power/monitor/grid,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
@@ -16096,8 +16042,6 @@
 "MI" = (
 /obj/machinery/computer/security/marinemainship{
 	dir = 4;
-	name = "Ship Security Cameras";
-	network = list("mainship");
 	pixel_x = 17
 	},
 /obj/machinery/camera/autoname/mainship{
@@ -16166,9 +16110,7 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/obj/item/reagent_container/spray/cleaner{
-	name = "Surgery Cleaner";
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+/obj/item/reagent_container/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
