@@ -94,7 +94,7 @@
 	openspeed = 17
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-
+//mainship poddoors
 /obj/machinery/door/poddoor/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
@@ -116,6 +116,19 @@
 	name = "\improper AI Core Shutters"	
 	id = "ailockdowninterior"
 	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ammo
+	name = "\improper Ammunition Storage"
+	id = "ammo2"	
+
+/obj/machinery/door/poddoor/mainship/cic
+	name = "\improper Combat Information Center Blast Door"
+	id = "cic_lockdown"
+	icon_state = "pdoor0"	
+
+/obj/machinery/door/poddooor/mainship/hangar
+	name = "\improper Hangar Lockdown"
+	id = "hangar_lockdown"	
 
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
