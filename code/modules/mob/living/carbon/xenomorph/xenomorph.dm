@@ -60,6 +60,7 @@
 	health = maxHealth
 	speed = xeno_caste.speed
 	armor = getArmor(arglist(xeno_caste.armor))
+	actions = xeno_caste.actions
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us

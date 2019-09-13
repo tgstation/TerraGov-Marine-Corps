@@ -100,6 +100,8 @@
 	// *** Defiler Abilities *** //
 	var/neuro_claws_amount
 
+	var/actions = list()
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"

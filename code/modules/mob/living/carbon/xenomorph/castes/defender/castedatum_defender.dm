@@ -46,6 +46,15 @@
 	crest_defense_armor = 35
 	fortify_armor = 70
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/toggle_crest_defense,
+		/datum/action/xeno_action/fortify,
+		/datum/action/xeno_action/activable/forward_charge,
+		/datum/action/xeno_action/activable/tail_sweep
+		)
+
 /datum/xeno_caste/defender/young
 	upgrade_name = "Young"
 
@@ -147,3 +156,12 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 45
 	fortify_armor = 90
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/toggle_crest_defense,
+		/datum/action/xeno_action/fortify,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/tail_sweep
+		)
