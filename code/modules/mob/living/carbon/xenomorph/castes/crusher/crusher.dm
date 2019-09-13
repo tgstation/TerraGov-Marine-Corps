@@ -18,13 +18,6 @@
 	old_x = -16
 	old_y = -3
 
-	/*actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/stomp,
-		/datum/action/xeno_action/ready_charge,
-		/datum/action/xeno_action/activable/cresttoss,
-		)*/
 
 
 /mob/living/carbon/xenomorph/crusher/ex_act(severity)
