@@ -317,28 +317,32 @@
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "bp" = (
-/turf/closed/wall/mainship,
-/area/lv624/lazarus/hallway_one)
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/plating/ground/desertdam/asphault,
+/area/bigredv2)
 "bq" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor,
+/turf/open/floor/plating/ground/desertdam/asphault,
 /area/lv624/lazarus/hallway_one)
 "br" = (
 /turf/closed/wall,
 /area/prison/library)
 "bs" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor,
-/area/prison/library)
+/turf/closed/wall,
+/area/bigredv2/outside/e)
 "bt" = (
 /turf/open/floor,
 /area/lv624/lazarus/hallway_one)
 "bu" = (
-/obj/structure/ladder{
-	height = 1;
-	id = 2
-	},
-/turf/open/floor,
+/turf/open/floor/mainship/research,
 /area/lv624/lazarus/hallway_one)
 "bv" = (
 /turf/open/floor/wood,
@@ -459,8 +463,7 @@
 /turf/open/ground/grass,
 /area/bigredv2)
 "bT" = (
-/obj/machinery/door/airlock/multi_tile/glass,
-/turf/open/floor,
+/turf/open/ground/grass,
 /area/lv624/lazarus/hallway_one)
 "bU" = (
 /obj/item/book/manual/ripley_build_and_repair,
@@ -490,11 +493,7 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "cb" = (
-/obj/structure/ladder{
-	height = 1;
-	id = 1
-	},
-/turf/open/floor,
+/turf/closed/wall,
 /area/lv624/lazarus/hallway_one)
 "cc" = (
 /turf/closed/wall,
@@ -1102,9 +1101,12 @@
 /turf/open/floor/mainship/research/containment,
 /area/prison/security/checkpoint/highsec)
 "ef" = (
-/obj/machinery/computer/nuke_disk_generator,
-/turf/open/floor/mainship/research/containment,
-/area/prison/security/checkpoint/highsec)
+/obj/machinery/door/airlock/colony/medical{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "eg" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
@@ -1142,7 +1144,7 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "en" = (
-/obj/effect/landmark/corpsespawner,
+/obj/structure/table/mainship,
 /turf/open/floor,
 /area/lv624/lazarus/hallway_one)
 "eo" = (
@@ -1547,17 +1549,11 @@
 /turf/open/floor/wood/broken,
 /area/prison/library)
 "fF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/turf/closed/wall,
+/area/bigredv2)
 "fG" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/turf/closed/wall/mainship,
+/area/bigredv2)
 "fH" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -1960,37 +1956,27 @@
 /turf/open/floor/mainship/research,
 /area/bigredv2)
 "gC" = (
-/obj/machinery/power/apc,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/area/bigredv2)
 "gD" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/bed/chair{
+	icon_state = "chair";
+	dir = 1
 	},
 /turf/open/floor,
 /area/lv624/lazarus/hallway_one)
 "gE" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/hallway_one)
 "gF" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/curtain,
 /turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/area/bigredv2)
 "gG" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
@@ -2089,19 +2075,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "gN" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply,
-/turf/open/floor/mainship/research,
+/turf/open/floor,
 /area/bigredv2)
 "gO" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -2443,12 +2417,11 @@
 /turf/closed/wall,
 /area/engine/engineering)
 "hG" = (
-/obj/machinery/door/airlock/colony/engineering{
-	icon_state = "door_closed";
-	dir = 2
+/obj/structure/bed/chair{
+	dir = 4
 	},
-/turf/open/floor,
-/area/engine/engineering)
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "hH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/asteroidfloor,
@@ -4289,18 +4262,10 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/medical)
 "lH" = (
-/obj/machinery/door/airlock/multi_tile/glass,
-/obj/machinery/atmospherics/pipe/simple/supply{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/medical)
+/obj/structure/table/mainship,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "lI" = (
 /obj/structure/bed/chair/office/dark{
 	icon_state = "officechair_dark";
@@ -4328,33 +4293,24 @@
 /turf/open/floor/grimy,
 /area/desert_dam/building/dorms)
 "lL" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/ladder{
+	height = 1;
+	id = 2
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/area/bigredv2)
 "lM" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/area/bigredv2)
 "lN" = (
-/obj/machinery/door/airlock/multi_tile/glass,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply,
 /turf/open/floor,
-/area/lv624/lazarus/hallway_one)
+/area/bigredv2)
 "lO" = (
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -4529,8 +4485,7 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "mn" = (
-/obj/item/reagent_container/food/drinks/cans/cola,
-/turf/open/floor,
+/turf/open/floor/tile/white,
 /area/lv624/lazarus/hallway_one)
 "mo" = (
 /obj/effect/decal/cleanable/blood,
@@ -4558,24 +4513,9 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "mr" = (
-/obj/effect/decal/warning_stripes/thin{
-	icon_state = "thin";
-	dir = 10
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply{
-	icon_state = "pipe11-2";
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/obj/structure/table/mainship,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "ms" = (
 /obj/effect/landmark/corpsespawner,
 /obj/effect/decal/cleanable/blood,
@@ -4713,9 +4653,8 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "mK" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/wood,
-/area/bigredv2/outside/bar)
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "mL" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/wood,
@@ -4730,18 +4669,11 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "mN" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/atmospherics/pipe/simple/supply{
-	icon_state = "pipe11-2";
-	dir = 10
+/obj/structure/bed/chair{
+	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
 "mO" = (
 /obj/machinery/atmospherics/pipe/simple/supply,
 /obj/structure/cable/yellow{
@@ -5158,6 +5090,647 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_offices)
+"nK" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nL" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nM" = (
+/obj/machinery/status_display,
+/turf/closed/wall,
+/area/bigredv2/outside/e)
+"nN" = (
+/obj/machinery/door/airlock/colony/medical,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nO" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nP" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nQ" = (
+/obj/machinery/power/apc,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nR" = (
+/obj/structure/table/mainship,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nT" = (
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nV" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nW" = (
+/obj/machinery/door/airlock/multi_tile/glass,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nX" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"nY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"nZ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oa" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ob" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oc" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NS-center"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/scoreboard{
+	id = "basketball";
+	pixel_y = 30
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"od" = (
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oe" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"of" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"og" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oh" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oi" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NS-center"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ok" = (
+/obj/structure/bed/chair/comfy{
+	icon_state = "comfychair";
+	dir = 1
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"ol" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 4;
+	icon_state = "hoop";
+	id = "basketball";
+	side = "left"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"om" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NS-center"
+	},
+/obj/effect/decal/warning_stripes,
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"on" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NS-center"
+	},
+/obj/effect/decal/warning_stripes,
+/obj/item/toy/beach_ball/basketball,
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oo" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 8;
+	icon_state = "hoop";
+	id = "basketball";
+	side = "right"
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"op" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oq" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 1
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"or" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"os" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ot" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ou" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ov" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "NS-center"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ow" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"ox" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oy" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oz" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
+"oA" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oB" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphault,
+/area/bigredv2)
+"oC" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oD" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphault,
+/area/bigredv2)
+"oE" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor,
+/area/prison/library)
+"oF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oG" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oH" = (
+/obj/machinery/door/airlock/multi_tile/engineering,
+/turf/open/floor,
+/area/engine/engineering)
+"oI" = (
+/turf/open/floor,
+/area/engine/engineering)
+"oJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/multi_tile/medical,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/medical)
+"oK" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oL" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 6
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oM" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oN" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oO" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oP" = (
+/obj/machinery/atmospherics/pipe/manifold/supply,
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oR" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oS" = (
+/obj/structure/table/mainship,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile,
+/area/bigredv2/outside/e)
+"oT" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oU" = (
+/obj/effect/decal/warning_stripes/thin{
+	icon_state = "thin";
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply{
+	icon_state = "manifold-2";
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"oV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/bigredv2/outside/e)
+"oW" = (
+/turf/open/floor/tile/white,
+/area/bigredv2)
+"oX" = (
+/obj/item/reagent_container/food/drinks/cans/cola,
+/turf/open/floor,
+/area/bigredv2)
+"oY" = (
+/obj/structure/fence,
+/turf/open/floor/tile/white,
+/area/bigredv2)
+"oZ" = (
+/obj/machinery/door/airlock/multi_tile/glass,
+/turf/open/floor,
+/area/bigredv2)
+"pa" = (
+/obj/structure/fence,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/hallway_one)
+"pb" = (
+/turf/open/ground/river,
+/area/lv624/lazarus/hallway_one)
+"pc" = (
+/obj/machinery/power/apc,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor,
+/area/bigredv2)
+"pd" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor,
+/area/bigredv2)
+"pe" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor,
+/area/bigredv2)
+"pf" = (
+/obj/structure/ladder{
+	height = 1;
+	id = 1
+	},
+/turf/open/floor,
+/area/bigredv2)
+"pg" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor,
+/area/bigredv2)
+"ph" = (
+/obj/effect/landmark/corpsespawner,
+/turf/open/floor,
+/area/bigredv2)
+"pi" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor,
+/area/bigredv2)
+"pj" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/bigredv2)
+"pk" = (
+/obj/machinery/door/airlock/multi_tile/glass,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply,
+/turf/open/floor,
+/area/bigredv2)
+"pl" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/atmospherics/pipe/manifold/supply,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"pm" = (
+/obj/structure/largecrate/supply/medicine/medkits,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/medical)
+"pn" = (
+/obj/structure/bed/roller,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/medical)
 
 (1,1,1) = {"
 aa
@@ -6257,7 +6830,7 @@ kh
 jL
 aE
 iR
-kn
+pm
 kn
 lh
 lm
@@ -6867,7 +7440,7 @@ kn
 kn
 kn
 kn
-kn
+pn
 iR
 lr
 lm
@@ -7277,7 +7850,7 @@ ls
 lw
 lB
 lF
-lH
+oJ
 kA
 aS
 aS
@@ -9862,13 +10435,13 @@ aE
 aE
 aE
 br
-bs
+oE
 gs
 gr
-bs
-bs
-bs
-bs
+oE
+oE
+oE
+oE
 br
 aE
 aE
@@ -10414,7 +10987,7 @@ mG
 (27,1,1) = {"
 aa
 af
-ef
+ak
 ak
 ak
 ak
@@ -11250,17 +11823,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+ax
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+op
 aE
 aE
 aE
@@ -11452,17 +12025,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 ep
 ep
@@ -11477,7 +12050,7 @@ bz
 bz
 bz
 bz
-bs
+oE
 bv
 by
 gw
@@ -11485,7 +12058,7 @@ by
 bG
 by
 bU
-bs
+oE
 aE
 aE
 hS
@@ -11654,17 +12227,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 eq
 hi
@@ -11673,13 +12246,13 @@ lZ
 me
 mf
 mk
-mK
+oz
 aF
 aS
 aS
 aS
 aS
-bs
+oE
 bv
 by
 gx
@@ -11687,7 +12260,7 @@ by
 bL
 by
 bv
-bs
+oE
 aE
 aE
 hS
@@ -11856,17 +12429,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 er
@@ -11875,13 +12448,13 @@ er
 er
 eq
 er
-mK
+oz
 aF
 aS
 aS
 aS
 aS
-bs
+oE
 fD
 by
 gy
@@ -11889,7 +12462,7 @@ by
 el
 by
 fI
-bs
+oE
 aE
 aE
 hS
@@ -12058,17 +12631,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 hi
@@ -12077,13 +12650,13 @@ hi
 hi
 hi
 mp
-mK
+oz
 aF
 aS
 aS
 aS
 aS
-bs
+oE
 bv
 by
 hU
@@ -12091,7 +12664,7 @@ by
 bM
 by
 bW
-bs
+oE
 aE
 aE
 hS
@@ -12260,17 +12833,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 hJ
@@ -12279,13 +12852,13 @@ hJ
 hJ
 hJ
 hJ
-mK
+oz
 aF
 aS
 aS
 aS
 aS
-bs
+oE
 el
 by
 mm
@@ -12293,7 +12866,7 @@ by
 bN
 by
 bY
-bs
+oE
 aE
 aE
 hS
@@ -12462,17 +13035,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 eq
 er
@@ -12487,7 +13060,7 @@ aS
 aS
 aS
 aS
-bs
+oE
 bv
 by
 bH
@@ -12495,7 +13068,7 @@ by
 mo
 by
 el
-bs
+oE
 aE
 aE
 hS
@@ -12664,17 +13237,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 hf
 lR
@@ -12683,7 +13256,7 @@ ma
 ma
 mj
 mH
-mK
+oz
 kz
 aS
 aS
@@ -12866,17 +13439,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 er
@@ -13068,17 +13641,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 hJ
@@ -13087,7 +13660,7 @@ hJ
 hJ
 hJ
 hJ
-mK
+oz
 kB
 aS
 aS
@@ -13270,17 +13843,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 hi
@@ -13289,7 +13862,7 @@ hi
 hi
 hi
 mJ
-mK
+oz
 kB
 aS
 aS
@@ -13472,17 +14045,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 er
@@ -13491,7 +14064,7 @@ er
 er
 er
 er
-mK
+oz
 kB
 aS
 aS
@@ -13499,11 +14072,11 @@ aS
 aS
 br
 br
-bs
-bs
-bs
-bs
-bs
+oE
+oE
+oE
+oE
+oE
 br
 br
 aE
@@ -13674,17 +14247,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 er
 hi
@@ -13693,13 +14266,13 @@ md
 me
 mf
 mk
-mK
+oz
 kB
-aS
-aS
-aS
-aS
-kH
+oD
+oD
+oD
+oD
+oF
 aE
 aE
 aE
@@ -13876,17 +14449,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 ep
 ep
 ep
@@ -14078,17 +14651,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -14280,17 +14853,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -14482,17 +15055,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -14684,17 +15257,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -14886,17 +15459,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -15088,17 +15661,17 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+cL
 aE
 aE
 aE
@@ -15290,27 +15863,27 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-mN
+aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+oq
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+kE
+oA
 mO
 mO
 mO
@@ -15492,27 +16065,27 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
 aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+oB
 aS
 aS
 aS
@@ -15694,27 +16267,27 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
 aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+oB
 aS
 aS
 aS
@@ -15896,27 +16469,27 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
 aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+oB
 aS
 aS
 aS
@@ -16098,27 +16671,27 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
 aF
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+oB
 aS
 aS
 aS
@@ -16300,43 +16873,43 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
 mi
+oG
 bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-bB
-mr
+oL
+gz
+gz
+oR
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+oT
+bp
+bp
+bp
+bp
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+gz
+oU
 gz
 gz
 gz
@@ -16491,6 +17064,28 @@ aE
 aE
 aE
 aE
+bs
+bs
+nK
+nK
+nK
+bs
+bs
+bs
+nK
+nK
+nK
+bs
+bs
+nK
+oM
+nV
+nK
+bs
+bs
+bs
+bs
+bs
 aE
 aE
 aE
@@ -16500,34 +17095,12 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+bC
 aE
 aE
 aE
@@ -16693,6 +17266,43 @@ aE
 aE
 aE
 aE
+bs
+hG
+mK
+hG
+mK
+hG
+bs
+hG
+mK
+hG
+mK
+hG
+bs
+mK
+oM
+mK
+mK
+bs
+mK
+oS
+mK
+bs
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+bC
+aS
+aS
+aS
+aS
+bC
 aE
 aE
 aE
@@ -16706,52 +17316,15 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+bC
+bC
+bC
+bC
+bC
+bC
+bC
+bC
 hS
 aS
 aS
@@ -16895,6 +17468,28 @@ aE
 aE
 aE
 aE
+bs
+lH
+mK
+mr
+mK
+mr
+bs
+mr
+mK
+lH
+mK
+mr
+bs
+nQ
+oN
+mK
+mK
+ef
+nX
+mr
+ok
+nK
 aE
 aE
 aE
@@ -16904,56 +17499,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+fG
+fG
+gC
+gC
+gC
+gC
+fG
+fG
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+fG
+fG
+gC
+gC
+gC
+gC
+fG
+fG
 hS
 aS
 aS
@@ -17097,6 +17670,28 @@ aE
 aE
 aE
 aE
+bs
+hG
+mK
+hG
+mK
+nO
+bs
+hG
+mK
+hG
+mK
+hG
+bs
+mK
+oO
+mK
+mK
+bs
+mK
+mK
+nL
+bs
 aE
 aE
 aE
@@ -17106,56 +17701,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+fG
+gN
+gN
+lM
+gN
+gN
+gN
+fG
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+fG
+pc
+gN
+lM
+gN
+gN
+gN
+fG
 hS
 aS
 aS
@@ -17299,6 +17872,30 @@ aE
 aE
 aE
 aE
+bs
+nR
+mK
+mr
+mK
+mr
+bs
+nR
+mK
+mr
+nL
+mr
+bs
+mK
+oO
+mK
+mK
+bs
+bs
+bs
+bs
+bs
+bs
+bs
 aE
 aE
 aE
@@ -17306,58 +17903,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+gC
+gN
+gN
+gN
+gN
+gN
+gN
+gC
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+gC
+pd
+gN
+ph
+gN
+gN
+gN
+gC
 hS
 aS
 aS
@@ -17501,6 +18074,30 @@ aE
 aE
 aE
 aE
+bs
+hG
+mK
+hG
+mK
+hG
+bs
+hG
+nL
+hG
+mK
+hG
+bs
+oK
+oO
+mK
+mK
+bs
+nY
+oh
+ol
+oh
+or
+bs
 aE
 aE
 aE
@@ -17508,59 +18105,35 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-hS
+gC
+gN
+gN
+gN
+gN
+gN
+gN
+oZ
+bC
+bC
+bC
+bC
+bC
+gC
+pe
+pg
+pg
+pg
+pi
+pj
+pk
+pl
 aS
 aS
 aS
@@ -17703,6 +18276,30 @@ aE
 aE
 aE
 aE
+bs
+mr
+nL
+mr
+mK
+mr
+bs
+mr
+mK
+mr
+mK
+mr
+bs
+mK
+oO
+mK
+mK
+bs
+nZ
+ob
+od
+od
+os
+bs
 aE
 aE
 aE
@@ -17710,58 +18307,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+gC
+gN
+gN
+gN
+gN
+gN
+gN
+gN
+bC
+bC
+bC
+bC
+bC
+gC
+gN
+gN
+gN
+gN
+gN
+gN
+gN
 hS
 aS
 aS
@@ -17905,6 +18478,30 @@ aE
 aE
 aE
 aE
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+oO
+mK
+mK
+bs
+oa
+og
+om
+od
+ot
+bs
 aE
 aE
 aE
@@ -17912,58 +18509,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+gC
+gN
+gN
+gN
+gN
+oX
+gN
+gC
 aE
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+gC
+gN
+gN
+gN
+gN
+gN
+gN
+gC
 hS
 aS
 aS
@@ -18107,6 +18680,30 @@ aE
 aE
 aE
 aE
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+oO
+mK
+mK
+nW
+ob
+od
+oe
+od
+ou
+bs
 aE
 aE
 aE
@@ -18114,58 +18711,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+fG
+lL
+gN
+lN
+gN
+gN
+gN
+fG
 aE
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+fG
+pf
+gN
+lN
+gN
+gN
+gN
+fG
 hS
 aS
 aS
@@ -18309,6 +18882,30 @@ aE
 aE
 aE
 aE
+bs
+bs
+nM
+nN
+bs
+bs
+bs
+bs
+nM
+nN
+bs
+bs
+bs
+mK
+oO
+mK
+mK
+mK
+ob
+od
+od
+od
+ou
+bs
 aE
 aE
 aE
@@ -18316,58 +18913,34 @@ aE
 aE
 aE
 aE
+bC
+aS
+aS
+aS
+aS
+bC
+aE
+fG
+fG
+gC
+gC
+gC
+gC
+fG
+fG
 aE
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+fG
+fG
+gC
+gC
+gC
+gC
+fG
+fG
 hS
 aS
 aS
@@ -18511,43 +19084,43 @@ aE
 aE
 aE
 aE
+bs
+mK
+nS
+nT
+nT
+nT
+nT
+nT
+nT
+oC
+nT
+nT
+nT
+nT
+oP
+mK
+mK
+bs
+ob
+od
+od
+od
+ou
+bs
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+bC
+bC
+bC
+aS
+aS
+aS
+aS
+bC
 aE
 aE
 aE
@@ -18579,7 +19152,7 @@ aS
 aS
 aS
 aS
-hG
+hF
 he
 he
 ij
@@ -18713,62 +19286,62 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bs
+mK
+mK
+mK
+nU
+nL
+mK
+mK
+mK
+mK
+nU
+mK
+mK
+mK
+oO
+mK
+mK
+bs
+oc
+oi
+on
+oe
+ov
+bs
 aE
 aE
 aE
 aE
 bC
+aS
+aS
+aS
+aS
+aS
+aS
+aS
 bC
-bC
-bC
-bC
-bC
-bC
-bC
-bC
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
+aE
 hS
 aS
 aS
@@ -18781,7 +19354,7 @@ aS
 aS
 aS
 aS
-hG
+oH
 he
 hH
 he
@@ -18915,62 +19488,62 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-bp
-bp
-bq
-bq
-bq
-bq
-bp
-bp
+bs
+bs
+nM
+nN
+bs
+bs
+bs
+bs
+nM
+nN
+bs
+bs
+bs
+mK
+oO
+mK
+mK
+bs
+ob
+od
+od
+od
+ou
+bs
 aE
 aE
 aE
 aE
 bC
-bp
-bp
+aS
+aS
+aS
+aS
+aS
+aS
 bq
-bq
-bq
-bq
-bp
-bp
+bu
+bT
+bT
+bT
+bT
+bT
+bT
+aE
+aE
+aE
+aE
+aE
+bT
+bT
+bT
+bT
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -18983,7 +19556,7 @@ aS
 aS
 aS
 aS
-hG
+oI
 he
 hI
 hI
@@ -19117,62 +19690,62 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-bp
-bt
-bt
-fF
-bt
-bt
-bt
-bp
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+oQ
+mK
+mK
+bs
+oV
+od
+od
+od
+ou
+bs
 aE
 aE
 aE
 aE
 bC
-bp
-gC
-bt
-fF
-bt
-bt
-bt
-bp
+aS
+aS
+aS
+aS
+aS
+aS
+bq
+bu
+cb
+cb
+cb
+cb
+cb
+cb
+oY
+oY
+oY
+oY
+oY
+pa
+pa
+pa
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -19319,62 +19892,62 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-bq
-bt
-bt
-bt
-bt
-bt
-bt
-bq
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+mK
+mK
+mK
+mK
+bs
+mK
+mK
+mK
+mK
+bs
+ob
+od
+od
+od
+ou
+bs
 aE
 aE
 aE
 aE
 bC
+aS
+aS
+aS
+aS
+aS
+aS
 bq
+bu
+en
 gD
 bt
-en
 bt
-bt
-bt
-bq
+cb
+mn
+oW
+oW
+oW
+oW
+oW
+mn
+mn
+mn
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -19521,63 +20094,63 @@ aE
 aE
 aE
 aE
+bs
+mr
+mK
+mr
+mK
+mr
+bs
+mr
+mK
+mr
+mK
+mr
+bs
+oK
+mK
+mK
+mK
+bs
+oe
+nZ
+oi
+oh
+ow
+bs
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
 bq
+bu
+en
 bt
 bt
 bt
-bt
-bt
-bt
+cb
+mn
+oW
+oW
+aT
+aT
+aT
+pb
+pb
+mn
+pa
 bT
-bC
-bC
-bC
-bC
-bC
-bq
-gE
-gF
-gF
-gF
-lL
-lM
-lN
-gN
+bT
+bT
+bT
+hS
 aS
 aS
 aS
@@ -19723,62 +20296,62 @@ aE
 aE
 aE
 aE
+bs
+mN
+mK
+mN
+mK
+mN
+bs
+mN
+mK
+mN
+nL
+mN
+bs
+mK
+mK
+mK
+mK
+bs
+of
+ob
+od
+od
+ox
+bs
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
 bq
+bu
 bt
 bt
 bt
 bt
-bt
-bt
-bt
-bC
-bC
-bC
-bC
-bC
-bq
-bt
-bt
-bt
-bt
-bt
-bt
-bt
+cb
+mn
+oW
+oW
+aT
+aT
+aT
+pb
+pb
+mn
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -19925,62 +20498,62 @@ aE
 aE
 aE
 aE
+bs
+nR
+mK
+mr
+nL
+mr
+bs
+nR
+mK
+mr
+mK
+mr
+bs
+mK
+mK
+mK
+mK
+bs
+og
+oj
+oo
+oj
+oy
+bs
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
 bq
+bu
+cb
+cb
+cb
 bt
-bt
-bt
-bt
+cb
 mn
-bt
-bq
-aE
-aE
-aE
-aE
-aE
-bq
-bt
-bt
-bt
-bt
-bt
-bt
-bq
+oW
+oW
+aT
+aT
+aT
+pb
+pb
+mn
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -20127,62 +20700,62 @@ aE
 aE
 aE
 aE
+bs
+mN
+mK
+mN
+mK
+mN
+bs
+mN
+mK
+mN
+mK
+nP
+bs
+bs
+bs
+bs
+bs
+bs
+bs
+bs
+bs
+bs
+bs
+bs
 aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-bp
+bC
+aS
+aS
+aS
+aS
+aS
+aS
+bq
 bu
-bt
-fG
-bt
-bt
-bt
-bp
-aE
-aE
-aE
-aE
-aE
-bp
 cb
+gE
+gE
 bt
-fG
 bt
-bt
-bt
-bp
+mn
+oW
+oW
+aT
+aT
+aT
+pb
+pb
+mn
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -20329,6 +20902,19 @@ aE
 aE
 aE
 aE
+bs
+mr
+nL
+mr
+mK
+mr
+bs
+mr
+mK
+mr
+mK
+mr
+bs
 aE
 aE
 aE
@@ -20344,47 +20930,34 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-bp
-bp
+bC
+aS
+aS
+aS
+aS
+aS
+aS
 bq
-bq
-bq
-bq
-bp
-bp
-aE
-aE
-aE
-aE
-aE
-bp
-bp
-bq
-bq
-bq
-bq
-bp
-bp
+bu
+cb
+bt
+bt
+bt
+bt
+mn
+oW
+oW
+aT
+aT
+aT
+pb
+pb
+mn
+pa
+bT
+bT
+bT
+bT
 hS
 aS
 aS
@@ -20531,6 +21104,19 @@ aE
 aE
 aE
 aE
+bs
+mN
+mK
+mN
+mK
+mN
+bs
+mN
+nL
+mN
+mK
+mN
+bs
 aE
 aE
 aE
@@ -20546,43 +21132,30 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+bC
+fF
+gF
+fF
+gF
+fF
+oW
+oW
+oW
+aT
+aT
+aT
+aT
+aT
+oW
+oY
 aE
 aE
 aE
@@ -20733,6 +21306,19 @@ aE
 aE
 aE
 aE
+bs
+bs
+nK
+nK
+nK
+bs
+bs
+bs
+nK
+nK
+nK
+bs
+bs
 aE
 aE
 aE
@@ -20748,43 +21334,30 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+bC
+fF
+gN
+fF
+gN
+fF
+oW
+oW
+oW
+aT
+aT
+aT
+aT
+aT
+oW
+oY
 aE
 aE
 aE
@@ -20963,30 +21536,30 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+bC
+fF
+gN
+fF
+gN
+fF
+oW
+oW
+oW
+oW
+oW
+oW
+oW
+oW
+oW
+oY
 aE
 aE
 aE
@@ -21165,30 +21738,30 @@ aE
 aE
 aE
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+bC
+bC
+bC
+bC
+bC
+bC
+bC
+bC
+bC
+fF
+fF
+fF
+fF
+fF
+fF
+oY
+oY
+oY
+oY
+oY
+oY
+oY
+oY
+oY
 aE
 aE
 aE
