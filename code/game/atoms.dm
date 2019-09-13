@@ -542,6 +542,8 @@ Proc for attack log creation, because really why not
 			return weld_cut_act(user, I)
 		if(TOOL_ANALYZER)
 			return analyzer_act(user, I)
+		if(TOOL_FULTON)
+			return fulton_act(user, I)
 
 
 // Tool-specific behavior procs. To be overridden in subtypes.
@@ -576,6 +578,12 @@ Proc for attack log creation, because really why not
 
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
 	return FALSE
+
+/atom/proc/fulton_act(mob/living/user, obj/item/I)
+	if(!isturf(loc))
+		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
+	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	return TRUE
 
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
