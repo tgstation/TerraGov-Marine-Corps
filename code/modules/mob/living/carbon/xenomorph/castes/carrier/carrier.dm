@@ -17,7 +17,7 @@
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16
 
-	actions = list(
+	/*actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
@@ -26,7 +26,7 @@
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
 		/datum/action/xeno_action/toggle_pheromones
-		)
+		)*/
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

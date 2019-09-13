@@ -46,6 +46,16 @@
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/activable/bombard,
+		/datum/action/xeno_action/toggle_long_range,
+		/datum/action/xeno_action/toggle_bomb,
+		/datum/action/xeno_action/activable/spray_acid/line/boiler
+		)
+
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"
 

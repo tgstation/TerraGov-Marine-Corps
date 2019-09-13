@@ -42,6 +42,13 @@
 	armor = list("melee" = 80, "bullet" = 40, "laser" = 40, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
 
 	// *** Crusher Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/stomp,
+		/datum/action/xeno_action/ready_charge,
+		/datum/action/xeno_action/activable/cresttoss,
+		)
 
 /datum/xeno_caste/crusher/young
 	upgrade_name = "Young"

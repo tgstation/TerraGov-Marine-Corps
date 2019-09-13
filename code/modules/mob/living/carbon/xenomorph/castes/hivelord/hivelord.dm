@@ -16,7 +16,7 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	var/list/tunnels = list() //list of active tunnels
-	actions = list(
+	/*actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
@@ -28,7 +28,7 @@
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/xeno_spit
-		)
+		)*/
 
 // ***************************************
 // *********** Init

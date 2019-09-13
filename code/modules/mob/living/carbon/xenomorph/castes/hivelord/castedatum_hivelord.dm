@@ -48,6 +48,21 @@
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
+		/datum/action/xeno_action/activable/transfer_plasma/improved,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/build_tunnel,
+		/datum/action/xeno_action/toggle_speed,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/xeno_spit
+		)
+		
 /datum/xeno_caste/hivelord/young
 	upgrade_name = "Young"
 
