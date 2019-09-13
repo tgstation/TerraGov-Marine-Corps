@@ -45,7 +45,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 
@@ -92,7 +91,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 3
-	origin_tech = "combat=1"
 	attack_verb = list("stung")
 	hitsound = ""
 
@@ -134,7 +132,6 @@
 	desc = "The <span class='warning'> glowing \black nettle incites <span class='warning'><B>rage</B>\black in you just from looking at it!</span>"
 	name = "deathnettle"
 	icon_state = "deathnettle"
-	origin_tech = "combat=3"
 	potency_divisior = 2.5
 
 /obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)

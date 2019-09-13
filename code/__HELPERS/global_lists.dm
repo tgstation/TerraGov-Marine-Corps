@@ -129,13 +129,13 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		GLOB.autolathe_categories |= recipe.category
 
 		var/obj/item/I = new recipe.path
-		if(I.matter && !recipe.resources) //This can be overidden in the datums.
+		if(I.materials && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
-			for(var/material in I.matter)
+			for(var/material in I.materials)
 				if(istype(I,/obj/item/stack/sheet))
-					recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+					recipe.resources[material] = I.materials[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
 				else
-					recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+					recipe.resources[material] = round(I.materials[material]*1.25) // More expensive to produce than they are to recycle.
 			qdel(I)
 
 	for(var/path in subtypesof(/datum/reagent))

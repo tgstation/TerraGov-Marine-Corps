@@ -10,8 +10,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list("metal" = 500)
-	origin_tech = "materials=1"
 	var/dispenser = 0
 	breakouttime = 2 MINUTES
 	var/single_use = 0 //determines if handcuffs will be deleted on removal

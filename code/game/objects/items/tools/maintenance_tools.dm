@@ -27,8 +27,6 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	matter = list("metal" = 150)
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
 
@@ -49,7 +47,6 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
 	tool_behaviour = TOOL_SCREWDRIVER
 
@@ -109,8 +106,6 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 80)
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("pinched", "nipped")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
@@ -151,13 +146,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
-
-
-	//Cost to make in the autolathe
-	matter = list("metal" = 70, "glass" = 30)
-
-	//R&D tech level
-	origin_tech = "engineering=1"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 30)
 
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
@@ -368,22 +357,21 @@
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
 	max_fuel = 40
-	matter = list("metal" = 70, "glass" = 60)
-	origin_tech = "engineering=2"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 60)
+
 
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 70, "glass" = 120)
-	origin_tech = "engineering=3"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
+
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 70, "glass" = 120)
-	origin_tech = "engineering=4;phorontech=3"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
 	var/last_gen = 0
 
 
@@ -409,8 +397,6 @@
 	throwforce = 7.0
 	item_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 50)
-	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR

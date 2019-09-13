@@ -18,9 +18,6 @@ REAGENT SCANNER
 	w_class = WEIGHT_CLASS_SMALL
 	item_state = "electronic"
 
-	matter = list("metal" = 150)
-
-	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/t_scanner/attack_self(mob/user)
 
@@ -68,8 +65,6 @@ REAGENT SCANNER
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list("metal" = 200)
-	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/hud_mode = 1
 	var/skill_threshold = SKILL_MEDICAL_PRACTICED
@@ -516,9 +511,6 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list("metal" = 30,"glass" = 20)
-
-	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/analyzer/attack_self(mob/user as mob)
 
@@ -556,9 +548,6 @@ REAGENT SCANNER
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list("metal" = 30,"glass" = 20)
-
-	origin_tech = "magnets=2;biotech=2"
 	var/details = 0
 	var/recent_fail = 0
 
@@ -612,7 +601,7 @@ REAGENT SCANNER
 	name = "advanced mass-spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = "magnets=4;biotech=2"
+
 
 /obj/item/reagent_scanner
 	name = "reagent scanner"
@@ -625,9 +614,7 @@ REAGENT SCANNER
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	matter = list("metal" = 30,"glass" = 20)
 
-	origin_tech = "magnets=2;biotech=2"
 	var/details = 0
 	var/recent_fail = 0
 
@@ -669,4 +656,3 @@ REAGENT SCANNER
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
-	origin_tech = "magnets=4;biotech=2"

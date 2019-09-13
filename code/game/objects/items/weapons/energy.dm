@@ -19,7 +19,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT|NOBLOODY
-	origin_tech = "combat=3"
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -55,7 +54,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = NOBLOODY
-	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1

@@ -17,8 +17,6 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	matter = list("glass" = 10,"metal" = 10)
-
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	var/bullets = 7.0
 
@@ -64,8 +62,6 @@
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
 	icon_state = "cap_ammo"
 	w_class = WEIGHT_CLASS_TINY
-
-	matter = list("metal" = 10,"glass" = 10)
 
 	var/amount_left = 7
 

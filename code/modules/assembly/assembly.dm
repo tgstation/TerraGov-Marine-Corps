@@ -12,7 +12,6 @@
 	icon_state = ""
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 100)
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 7
