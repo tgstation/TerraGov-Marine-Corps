@@ -168,6 +168,7 @@
 	light_power = FLASH_LIGHT_POWER
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
+	interaction_flags = INTERACT_REQUIRES_DEXTERITY
 	var/flash_enabled = TRUE
 	var/state_on = "camera"
 	var/state_off = "camera_off"
@@ -197,7 +198,7 @@
 
 
 /obj/item/camera/AltClick(mob/user)
-	if(!user.canUseTopic(src, TRUE))
+	if(!can_interact(user))
 		return
 	adjust_zoom(user)
 

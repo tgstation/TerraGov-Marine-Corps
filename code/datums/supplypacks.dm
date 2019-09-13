@@ -612,12 +612,12 @@ WEAPONS
 /datum/supply_packs/detpack
 	name = "detpack explosives crate (x6)"
 	contains = list(
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,

@@ -83,11 +83,12 @@
 	update_icon()
 
 
-/obj/machinery/biogenerator/interact(mob/user as mob)
-	if(machine_stat & BROKEN)
+/obj/machinery/biogenerator/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
+
+	var/dat
 	if (processing)
 		dat += "<FONT COLOR=red>Biogenerator is processing! Please wait...</FONT>"
 	else
@@ -110,8 +111,6 @@
 					dat += "<A href='?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>(300)</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>(400)</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>(400)</FONT><BR>"
-					//dat += "Other<BR>"
-					//dat += "<A href='?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
 				else
 					dat += "<BR><FONT COLOR=red>No beaker inside. Please insert a beaker.</FONT><BR>"
 			if("nopoints")
@@ -123,15 +122,10 @@
 			if("void")
 				dat += "<FONT COLOR=red>Error: No growns inside.</FONT><BR>Please, put growns into reactor.<BR>"
 				dat += "<A href='?src=\ref[src];action=menu'>Return to menu</A>"
-	user << browse(dat, "window=biogenerator")
-	onclose(user, "biogenerator")
-	return
 
-/obj/machinery/biogenerator/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	interact(user)
+	var/datum/browser/popup = new(user, "biogenerator", "<div align='center'>Biogenerator</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 /obj/machinery/biogenerator/proc/activate()
 	if (usr.stat != 0)
@@ -220,18 +214,13 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & BROKEN) return
-	if(usr.stat || usr.restrained()) return
-	if(!in_range(src, usr)) return
-
-	usr.set_interaction(src)
 
 	switch(href_list["action"])
 		if("activate")
 			activate()
 		if("detach")
 			if(beaker)
-				beaker.loc = src.loc
+				beaker.forceMove(get_turf(src))
 				beaker = null
 				update_icon()
 		if("create")

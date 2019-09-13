@@ -217,7 +217,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!electronics)
 					to_chat(user, "<span class='warning'>The assembly is missing electronics.</span>")
 					return
-				user << browse(null, "window=windoor_access")
+				DIRECT_OUTPUT(user, browse(null, "window=windoor_access"))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 

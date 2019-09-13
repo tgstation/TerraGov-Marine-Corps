@@ -8,15 +8,18 @@
 	message_admins("[ADMIN_TPMONTY(usr)] clicked an href with [msg] authorization key.")
 
 
+/datum/admins/can_interact(mob/user)
+	if(user.client != owner || !check_rights(NONE))
+		log_admin("[key_name(user)] tried to use the admin panel without authorization.")
+		message_admins("[ADMIN_TPMONTY(user)] tried to use the admin panel without authorization.")
+		return FALSE
+
+	return TRUE
+
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-
-	if(usr.client != owner || !check_rights(NONE))
-		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		message_admins("[ADMIN_TPMONTY(usr)] tried to use the admin panel without authorization.")
 		return
 
 	if(!CheckAdminHref(href, href_list))

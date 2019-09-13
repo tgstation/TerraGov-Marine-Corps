@@ -13,7 +13,6 @@
 	var/total_message_weight = 0 //The total weight of the messages sent per a time period.
 	var/ircreplyamount = 0
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
-	var/ai_interact = FALSE
 
 	//Preferences related
 	var/datum/preferences/prefs 	= null

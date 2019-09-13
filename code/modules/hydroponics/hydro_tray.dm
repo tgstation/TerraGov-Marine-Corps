@@ -621,8 +621,6 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(usr,/mob/living/silicon))
-		return
 
 	if(harvest)
 		harvest(user)

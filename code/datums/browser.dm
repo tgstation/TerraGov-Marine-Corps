@@ -389,7 +389,7 @@
 
 
 /datum/browser/modal/preflikepicker/Topic(href,href_list)
-	if(href_list["close"] || !user || !user.client)
+	if(href_list["close"] || !user?.client)
 		opentime = 0
 		return
 	if(href_list["task"] == "input")

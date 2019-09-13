@@ -395,8 +395,7 @@
 // ai attack - make lights flicker, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
+	flicker(1)
 
 
 //Xenos smashing lights
