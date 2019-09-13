@@ -89,6 +89,15 @@
 	opacity = FALSE
 	glass = TRUE
 
+/obj/machinery/door/airlock/multi_tile/mainship/generic/canteen
+	name = "\improper Canteen"
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/cryo
+	name = "\improper Cryogenics Bay"	
+
+/obj/machinery/door/airlock/multi_tile/mainship/generic/garden
+	name = "\improper Garden"	
+
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/2x1medidoor.dmi'
@@ -96,6 +105,9 @@
 	glass = TRUE
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
+
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay
+	name = "\improper Medical Bay"	
 
 /obj/machinery/door/airlock/multi_tile/mainship/research
 	name = "\improper Research Airlock"

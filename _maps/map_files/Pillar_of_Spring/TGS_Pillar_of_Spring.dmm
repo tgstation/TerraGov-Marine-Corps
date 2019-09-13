@@ -167,10 +167,8 @@
 	},
 /area/mainship/hallways/hangar)
 "aE" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "ammo2";
-	name = "\improper Ammunition Storage"
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -178,10 +176,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "ammo2";
-	name = "\improper Ammunition Storage"
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -267,10 +263,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
 	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "ammo2";
-	name = "\improper Ammunition Storage"
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -714,11 +708,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "cu" = (
-/obj/machinery/door_control{
-	id = "ammo2";
-	name = "Ammo Storage";
+/obj/machinery/door_control/mainship/ammo{
 	pixel_x = 30;
-	req_one_access_txt = "2;3;7;12;19;22";
 	throw_range = 15
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -869,11 +860,8 @@
 	},
 /area/mainship/hallways/hangar)
 "da" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -913,11 +901,8 @@
 	},
 /area/mainship/medical/lower_medical)
 "dv" = (
-/obj/machinery/door/airlock/mainship/medical{
-	dir = 4;
-	name = "Morgue";
-	req_access_txt = "20";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/morgue{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -1214,11 +1199,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "ex" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -1247,13 +1229,8 @@
 	},
 /area/mainship/medical/operating_room_one)
 "ez" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -1276,15 +1253,11 @@
 	},
 /area/mainship/hallways/hangar)
 "eC" = (
-/obj/machinery/door_control{
-	id = "Solid_Fuel";
-	name = "Solid Fuel Storage";
+/obj/machinery/door_control/mainship/fuel{
 	pixel_x = -25
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "Solid_Fuel";
-	name = "\improper Solid Fuel Storage"
+/obj/machinery/door/poddoor/shutters/mainship/hangar/fuel{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -1324,11 +1297,8 @@
 	},
 /area/mainship/command/self_destruct)
 "eH" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -1339,10 +1309,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "eI" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "Solid_Fuel";
-	name = "\improper Solid Fuel Storage"
+/obj/machinery/door/poddoor/shutters/mainship/hangar/fuel{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -1684,9 +1652,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "fT" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	name = "Bathroom"
+/obj/machinery/door/airlock/mainship/generic/bathroom{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -1896,8 +1863,7 @@
 /area/mainship/medical/cryo_tubes)
 "gG" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	name = "Maintenance Hatch"
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -1939,9 +1905,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gO" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	name = "Toilet"
+/obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -1972,11 +1937,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "gT" = (
-/obj/machinery/door/poddoor/mainship{
-	name = "\improper Umbillical Airlock";
-	icon_state = "pdoor1";
-	dir = 8;
-	id = "s_umbilical"
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
@@ -2240,11 +2202,8 @@
 	},
 /area/mainship/medical/operating_room_one)
 "hu" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	name = "\improper Chemistry Laboratory";
-	req_access_txt = "20";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -2316,11 +2275,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "hE" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	name = "\improper CMO's Office";
-	req_access_txt = "5";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/glass/CMO{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -2356,9 +2312,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "hJ" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 2";
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/medical/or2{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -2376,12 +2330,8 @@
 	},
 /area/mainship/medical/chemistry)
 "hK" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	name = "\improper Medical Research Wing";
-	icon_state = "door_closed";
-	dir = 1;
-	id = "researchdoorext";
-	id_tag = "researchdoorext"
+/obj/machinery/door/airlock/mainship/research/glass/wing{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -2469,9 +2419,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "hP" = (
-/obj/machinery/door/airlock/mainship/research{
-	name = "\improper Research Pens"
-	},
+/obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
 	dir = 8
@@ -2481,9 +2429,8 @@
 	},
 /area/mainship/medical/medical_science)
 "hQ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	name = "Bathroom"
+/obj/machinery/door/airlock/mainship/generic/bathroom{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -2492,9 +2439,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "hR" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 2";
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/medical/or/or2{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -2570,11 +2515,8 @@
 /area/mainship/medical/lower_medical)
 "hZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
-	id = "researchlockdownext";
-	name = "Research Lockdown";
-	pixel_x = -7;
-	req_access_txt = "5"
+/obj/machinery/door_control/mainship/research/lockdown{
+	pixel_x = -7
 	},
 /obj/item/book/manual/medical_diagnostics_manual,
 /obj/item/clothing/glasses/hud/health,
@@ -2628,10 +2570,8 @@
 	},
 /area/mainship/medical/lower_medical)
 "ih" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
-	name = "\improper Pilot's Quarters";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot/quarters{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/cable{
@@ -3269,9 +3209,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "ko" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2;
-	name = "\improper Canteen"
+/obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/multi_tile{
 	icon_state = "door_open";
@@ -3312,9 +3251,7 @@
 	},
 /area/mainship/hallways/port_hallway)
 "kr" = (
-/obj/machinery/door/airlock/mainship/research{
-	name = "\improper Research Pens"
-	},
+/obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
 	dir = 8
@@ -4147,10 +4084,8 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "mq" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
-	name = "\improper Pilot's Office";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
@@ -4442,11 +4377,8 @@
 	icon_state = "left";
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "ROlobby1";
-	name = "\improper RO Line 1"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro1{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -4467,10 +4399,8 @@
 	icon_state = "left";
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "ROlobby2";
-	name = "\improper RO Line 2"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro2{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -4494,9 +4424,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "nj" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Bay"
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/machinery/door/firedoor/multi_tile{
 	icon_state = "door_open";
 	dir = 8
@@ -4514,11 +4442,8 @@
 	icon_state = "door_open";
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "ROlobby1";
-	name = "\improper RO Line 1"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro1{
+	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
@@ -4549,10 +4474,8 @@
 /area/mainship/squads/req)
 "np" = (
 /obj/structure/window/framed/mainship,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "ROlobby2";
-	name = "\improper RO Line 2"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro2{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -4783,15 +4706,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "nS" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	id = "Containment Cell 3";
-	locked = 1;
-	name = "\improper Containment Cell 3"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "Containment Cell 3";
-	name = "\improper Containment Cell 3"
+/obj/machinery/door/airlock/mainship/research/glass/containment,
+/obj/machinery/door/poddoor/shutters/mainship/containment{
+	dir = 4
 	},
 /turf/open/space,
 /area/mainship/medical/medical_science)
@@ -4872,9 +4789,8 @@
 	},
 /area/mainship/medical/operating_room_one)
 "nY" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 2;
-	name = "\improper Medical Bay"
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5170,11 +5086,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "oM" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "sd_lockdown";
-	name = "\improper Self Destruct Lockdown"
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -5457,11 +5370,7 @@
 	},
 /area/mainship/command/cic)
 "pC" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	name = "Animal Control Closet";
-	req_access_txt = "14";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/medical/glass/animalcontrol,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -5507,11 +5416,8 @@
 "pI" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cmp,
-/obj/machinery/door_control{
-	id = "Brig Armoury";
-	name = "Brig Armoury";
-	pixel_y = -40;
-	req_access_txt = "3"
+/obj/machinery/door_control/mainship/brigarmory{
+	pixel_y = -40
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/chief_mp_office)
@@ -5572,11 +5478,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "pP" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	name = "\improper Self Destruct Lockdown";
-	icon_state = "shutter1";
-	dir = 8;
-	id = "sd_lockdown"
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -6384,17 +6287,11 @@
 	},
 /area/mainship/command/telecomms)
 "rT" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Telecommunications";
-	req_access_txt = "6"
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -6712,9 +6609,8 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "sI" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 2;
-	name = "\improper Officer's Quarters"
+/obj/machinery/door/airlock/mainship/command/officer{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -7302,11 +7198,7 @@
 /area/mainship/hallways/starboard_umbilical)
 "uc" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
-	id = "southcheckpoint";
-	name = "South Checkpoint Shutters";
-	req_one_access_txt = "2;3;12;19"
-	},
+/obj/machinery/door_control/mainship/checkpoint/south,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "ud" = (
@@ -7454,9 +7346,8 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "uu" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 2;
-	name = "\improper Combat Information Center"
+/obj/machinery/door/airlock/mainship/command/cic{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -7696,13 +7587,8 @@
 	},
 /area/mainship/hallways/stern_hallway)
 "vd" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -7843,25 +7729,17 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
-	id = "CIC Lockdown";
-	name = "CIC Lockdown";
+/obj/machinery/door_control/mainship/cic{
 	pixel_x = -7;
-	pixel_y = 9;
-	req_access_txt = "1"
+	pixel_y = 9
 	},
-/obj/machinery/door_control{
-	id = "Hangar Lockdown";
-	name = "Hangar Lockdown";
+/obj/machinery/door_control/mainship/cic/hangar{
 	pixel_x = -7;
 	pixel_y = 2
 	},
-/obj/machinery/door_control{
-	id = "bot_armory";
-	name = "Armory Lockdown";
+/obj/machinery/door_control/mainship/cic/armory{
 	pixel_x = -7;
-	pixel_y = -5;
-	req_access_txt = "1"
+	pixel_y = -5
 	},
 /obj/machinery/light,
 /obj/item/radio,
@@ -7993,9 +7871,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/machinery/door_control{
-	id = "tcomms";
-	name = "Telecommunications Entrance";
+/obj/machinery/door_control/mainship/tcomms{
 	pixel_y = 25
 	},
 /obj/structure/bed/chair/office/light,
@@ -8112,9 +7988,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
 "wa" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 8;
-	name = "\improper Pilot's Room"
+/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
+	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
@@ -8882,10 +8757,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "bot_armory";
-	name = "\improper Armory Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 2
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -9439,8 +9312,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "zr" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "\improper Engineering Storage";
+/obj/machinery/door/airlock/mainship/engineering/storage{
 	icon_state = "door_closed";
 	dir = 8
 	},
@@ -9556,8 +9428,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engine_monitoring)
 "zH" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "\improper Engineering Storage";
+/obj/machinery/door/airlock/mainship/engineering/storage{
 	icon_state = "door_closed";
 	dir = 8
 	},
@@ -9764,8 +9635,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Ah" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Cryogenics Bay";
+/obj/machinery/door/airlock/multi_tile/mainship/generic/cryo{
 	icon_state = "door_closed";
 	dir = 8
 	},
@@ -9959,11 +9829,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "AE" = (
-/obj/machinery/door/poddoor/mainship{
-	name = "\improper Umbillical Airlock";
-	icon_state = "pdoor1";
-	dir = 2;
-	id = "s_umbilical"
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
@@ -9971,10 +9838,8 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "bot_armory";
-	name = "\improper Armory Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 2
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -9982,26 +9847,20 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "bot_armory";
-	name = "\improper Armory Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 2
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/upper_engineering)
 "AH" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "bot_armory";
-	name = "\improper Armory Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "AI" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "bot_armory";
-	name = "\improper Armory Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
@@ -10023,10 +9882,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "AK" = (
-/obj/machinery/door/airlock/mainship/secure{
-	dir = 4;
-	name = "\improper Evacuation Airlock";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/secure/evac{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
@@ -10537,10 +10394,7 @@
 	},
 /area/mainship/medical/medical_science)
 "BM" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Quarters";
-	req_access_txt = "200"
-	},
+/obj/machinery/door/airlock/mainship/generic/corporate/quarters,
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
 	dir = 8
@@ -10809,9 +10663,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "Cu" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	name = "\improper Security Cells";
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/security/glass/cells{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -11242,13 +11094,8 @@
 	icon_state = "door_open";
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11279,9 +11126,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Dl" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Garden Area"
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic/garden,
 /obj/machinery/door/firedoor/multi_tile,
 /obj/structure/cable{
 	d1 = 1;
@@ -11397,13 +11242,8 @@
 	icon_state = "door_open";
 	dir = 8
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11499,13 +11339,8 @@
 	},
 /area/mainship/hallways/stern_hallway)
 "DC" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
-	dir = 4;
-	icon_state = "shutter0";
-	id = "southcheckpoint";
-	name = "\improper Checkpoint Shutters";
-	opacity = 0
+/obj/machinery/door/poddoor/shutters/mainship/open/checkpoint/south{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -12012,11 +11847,7 @@
 /area/mainship/living/briefing)
 "EF" = (
 /obj/structure/table/woodentable,
-/obj/machinery/door_control{
-	id = "cl_shutters";
-	name = "Privacy Shutters";
-	req_access_txt = "200"
-	},
+/obj/machinery/door_control/mainship/corporate,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -12068,12 +11899,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "EL" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	name = "\improper Medical Research Wing";
-	icon_state = "door_closed";
-	dir = 1;
-	id = "researchdoorext";
-	id_tag = "researchdoorext"
+/obj/machinery/door/airlock/mainship/research/glass/wing{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -12153,23 +11980,11 @@
 	icon_state = "door_open";
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "ROlobby1";
-	name = "\improper RO Line 1"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 1
 	},
-/obj/machinery/door_control{
-	id = "ROlobby1";
-	name = "RO Line 1 Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "1;21"
-	},
-/obj/machinery/door_control{
-	id = "ROlobby1";
-	name = "RO Line 1 Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "1;21"
+/obj/machinery/door_control/mainship/req/ro1{
+	pixel_y = -25
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
@@ -12764,11 +12579,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Gr" = (
-/obj/machinery/door_control{
-	id = "ROlobby2";
-	name = "RO Line 2 Shutters";
-	pixel_y = 27;
-	req_one_access_txt = "1;21"
+/obj/machinery/door_control/mainship/req/ro2{
+	pixel_y = 27
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -13056,18 +12868,14 @@
 	icon_state = "door_open";
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "cl_shutters";
-	name = "\improper Privacy Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/corporate{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "GV" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
-	name = "\improper Pilot's Office";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13182,9 +12990,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "Hd" = (
-/obj/machinery/door/airlock/mainship/security{
-	name = "\improper Security Checkpoint";
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/security/checkpoint{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -13495,8 +13301,8 @@
 	},
 /area/mainship/engineering/engine_core)
 "HF" = (
-/obj/machinery/door/airlock/mainship/maint{
-	name = "\improper Core Hatch"
+/obj/machinery/door/airlock/mainship/maint/core{
+	
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -13587,17 +13393,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "HN" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 2;
-	name = "\improper Combat Information Center"
+/obj/machinery/door/airlock/mainship/command/cic{
+	dir = 2
 	},
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 2;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -13658,13 +13458,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "HQ" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 2;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -13674,9 +13469,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "HR" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	dir = 4;
-	name = "\improper Security Office"
+/obj/machinery/door/airlock/mainship/security/glass/office{
+	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -13778,13 +13572,8 @@
 	},
 /area/mainship/command/cic)
 "Ia" = (
-/obj/machinery/door/poddoor/mainship{
-	density = 0;
-	dir = 2;
-	icon_state = "pdoor0";
-	id = "CIC Lockdown";
-	name = "\improper Combat Information Center Blast Door";
-	opacity = 0
+/obj/machinery/door/poddoor/mainship/cic{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -14436,9 +14225,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "Js" = (
-/obj/machinery/door/airlock/mainship/command{
-	name = "\improper Briefing Room"
-	},
+/obj/machinery/door/airlock/mainship/command/brief,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -15109,9 +14896,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Ku" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Bathroom"
-	},
+/obj/machinery/door/airlock/mainship/generic/bathroom,
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
 	dir = 8
@@ -15426,9 +15211,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "KT" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Cryogenics Bay";
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/multi_tile/mainship/generic/cryo{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/multi_tile{
@@ -15900,10 +15683,8 @@
 /area/mainship/hull/lower_hull)
 "LJ" = (
 /obj/structure/window/framed/mainship,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "cl_shutters";
-	name = "\improper Privacy Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/corporate{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -16406,11 +16187,8 @@
 	},
 /area/mainship/medical/operating_room_two)
 "MS" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Corporate Liason Office";
-	icon_state = "door_closed";
-	dir = 8;
-	req_access_txt = "200"
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -16431,10 +16209,8 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "cl_shutters";
-	name = "\improper Privacy Shutters"
+/obj/machinery/door/poddoor/shutters/mainship/corporate{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -16759,9 +16535,8 @@
 	icon_state = "door_open";
 	dir = 8
 	},
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 4;
-	name = "\improper Disposals"
+/obj/machinery/door/airlock/mainship/engineering/disposals{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -16770,9 +16545,8 @@
 	icon_state = "door_open";
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2;
-	name = "\improper Engineering Workshop"
+/obj/machinery/door/airlock/mainship/engineering/workshop{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
@@ -16786,9 +16560,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Engineering Engine Monitoring"
-	},
+/obj/machinery/door/airlock/mainship/engineering/engine,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "NE" = (
@@ -16909,9 +16681,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2;
-	name = "\improper Engineering Workshop"
+/obj/machinery/door/airlock/mainship/engineering/workshop{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
@@ -17012,8 +16783,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Atmospherics Wing";
+/obj/machinery/door/airlock/mainship/engineering/atmos{
 	icon_state = "door_closed";
 	dir = 8
 	},
@@ -17976,9 +17746,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Uw" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1;
-	name = "Bathroom"
+/obj/machinery/door/airlock/mainship/generic/bathroom{
+	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -18149,9 +17918,8 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Wi" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 2;
-	name = "\improper Combat Information Center"
+/obj/machinery/door/airlock/mainship/command/cic{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
