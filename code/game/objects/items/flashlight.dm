@@ -61,10 +61,6 @@
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
 
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
-
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 
