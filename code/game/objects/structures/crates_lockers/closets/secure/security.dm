@@ -298,6 +298,17 @@
 	anchored = TRUE
 	var/id = null
 
+/obj/structure/closet/secure_closet/brig/cell
+	name = "Cell Locker"
+
+/obj/structure/closet/secure_closet/brig/cell/cell1
+	name = "Cell 1"	
+	id = "Cell 1"	
+
+/obj/structure/closet/secure_closet/brig/cell/cell2
+	name = "Cell 2"
+	id = "Cell 2"
+
 
 /obj/structure/closet/secure_closet/brig/Initialize()
 	. = ..()

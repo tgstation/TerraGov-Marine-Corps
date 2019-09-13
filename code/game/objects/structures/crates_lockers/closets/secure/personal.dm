@@ -13,7 +13,10 @@
 	new /obj/item/radio/headset( src )
 
 /obj/structure/closet/secure_closet/personal/patient
-	name = "patient's closet"
+	name = "Patient's Closet"
+
+/obj/structure/closet/secure_closet/personal/morgue
+	name = "Morgue Closet"
 
 /obj/structure/closet/secure_closet/personal/patient/Initialize()
 	. = ..()

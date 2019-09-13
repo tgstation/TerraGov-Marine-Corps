@@ -173,6 +173,9 @@
 	matter = list("metal" = 60)
 	attack_verb = list("stamped")
 
+/obj/item/tool/stamp/qm
+	name = "Quartermaster's Stamp"	
+
 /obj/item/tool/stamp/captain
 	name = "captain's rubber stamp"
 	icon_state = "stamp-cap"

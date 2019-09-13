@@ -13,6 +13,12 @@
 	var/base_state = "mflash"
 	anchored = TRUE
 
+/obj/machinery/flasher/cell1
+	name = "Cell 1 Flash"
+
+/obj/machinery/flasher/cell2
+	name = "Cell 2 Flash"
+
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
