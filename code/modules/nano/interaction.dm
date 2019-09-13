@@ -1,24 +1,32 @@
-GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
-
-/datum/topic_state/default/href_list(mob/user)
-	return list()
-
-
-/datum/topic_state/default/can_use_topic(src_object, mob/user)
-	return user.default_can_use_topic(src_object)
-
-
-/mob/proc/default_can_use_topic(src_object)
+/mob/proc/can_use_nano(src_object)
 	return STATUS_CLOSE // By default no mob can do anything with NanoUI
 
 
-/mob/dead/observer/default_can_use_topic(src_object)
-	if(!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a million windows open by limiting to objects in range
+/mob/proc/shared_nano_interaction()
+	if(stat || !client)
+		return STATUS_CLOSE						// no updates, close the interface
+	else if(incapacitated())
+		return STATUS_UPDATE					// update only (orange visibility)
+	return STATUS_INTERACTIVE
+
+
+/mob/living/silicon/ai/shared_nano_interaction()
+	if(incapacitated())
 		return STATUS_CLOSE
+	return ..()
+
+
+/mob/dead/observer/can_use_nano(src_object)
+	if(!client || (isatom(src_object) && get_dist(src_object, src) > client.view))	// Preventing ghosts from having a million windows open by limiting to objects in range
+		return STATUS_CLOSE
+	if(IsAdminGhost(src))
+		return STATUS_INTERACTIVE
+	if(istype(src_object, /datum/podlauncher))
+		return STATUS_INTERACTIVE
 	return STATUS_UPDATE									// Ghosts can view updates
 
 
-/mob/living/silicon/ai/default_can_use_topic(src_object)
+/mob/living/silicon/ai/can_use_nano(src_object)
 	. = shared_nano_interaction()
 	if(. != STATUS_INTERACTIVE)
 		return
@@ -66,7 +74,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	return STATUS_CLOSE
 
 
-/mob/living/default_can_use_topic(src_object)
+/mob/living/can_use_nano(src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)
@@ -75,14 +83,14 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 		return STATUS_UPDATE
 
 
-/mob/living/carbon/xenomorph/default_can_use_topic(src_object)
+/mob/living/carbon/xenomorph/can_use_nano(src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)
 			. = min(., loc.contents_nano_distance(src_object, src))
 
 
-/mob/living/carbon/human/default_can_use_topic(src_object)
+/mob/living/carbon/human/can_use_nano(src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)

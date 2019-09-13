@@ -162,6 +162,6 @@
 
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/radio/detpack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)

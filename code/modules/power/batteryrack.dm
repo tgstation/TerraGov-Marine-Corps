@@ -128,11 +128,6 @@
 		component_parts += I
 		RefreshParts()
 		to_chat(user, "<span class='notice'>You upgrade the [src] with [I].</span>")
-	
-	else
-		user.set_interaction(src)
-		interact(user)
-		return TRUE
 
 
 //The shitty one that will blow up.

@@ -817,7 +817,7 @@ and you're good to go.
 		return FALSE
 	if(!ismob(user)) //Could be an object firing the gun.
 		return TRUE
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))

@@ -16,13 +16,7 @@
 	. = ..()
 	scanscrubbers()
 
-/obj/machinery/computer/area_atmos/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/area_atmos/attack_paw(mob/living/carbon/monkey/user)
-	return
-
-/obj/machinery/computer/area_atmos/attack_hand(mob/living/user)
+/obj/machinery/computer/area_atmos/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -67,37 +61,23 @@
 		<body>
 			<center><h1>Area Air Control</h1></center>
 			<font color="red">[status]</font><br>
-			<a href="?src=\ref[src];scan=1">Scan</a>
+			<a href="?src=[REF(src)];scan=1">Scan</a>
 			<table border="1" width="90%">"}
-/*	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in connectedscrubbers)
-		dat += {"
-				<tr>
-					<td>
-						[scrubber.name]<br>
-						Pressure: [round(scrubber.pressure, 0.01)] kPa<br>
-						Flow Rate: [round(scrubber.last_flow_rate,0.1)] L/s<br>
-					</td>
-					<td width="150">
-						<a class="green" href="?src=\ref[src];scrub=\ref[scrubber];toggle=1">Turn On</a>
-						<a class="red" href="?src=\ref[src];scrub=\ref[scrubber];toggle=0">Turn Off</a><br>
-						Load: [round(scrubber.last_power_draw)] W
-					</td>
-				</tr>"}*/
 
 	dat += {"
 			</table><br>
 			<i>[zone]</i>
 		</body>
 	</html>"}
-	user << browse("[dat]", "window=miningshuttle;size=400x400")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Atmos Alert</div>", 400, 400)
+	popup.set_content(dat)
+	popup.open()
 	status = ""
 
 /obj/machinery/computer/area_atmos/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
-
 
 	if(href_list["scan"])
 		scanscrubbers()

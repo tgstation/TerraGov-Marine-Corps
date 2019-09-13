@@ -79,6 +79,7 @@
 	var/obj/item/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	var/turf/listed_turf	//the current turf being examined in the stat panel
+	var/dextrous = FALSE //Has enough dexterity to interact with advanced objects?
 
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default

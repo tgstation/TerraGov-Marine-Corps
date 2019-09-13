@@ -5,17 +5,15 @@
 	icon_state = "igniter1"
 	plane = FLOOR_PLANE
 	var/id = null
-	var/on = 1.0
+	var/on = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/igniter/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/igniter/attack_ai(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/igniter/attack_paw(mob/living/carbon/monkey/user)
-	return
 
 /obj/machinery/igniter/attack_hand(mob/living/user)
 	. = ..()
@@ -23,24 +21,18 @@
 		return
 
 	use_power(50)
-	src.on = !( src.on )
-	src.icon_state = text("igniter[]", src.on)
-	return
-
-/obj/machinery/igniter/process()	//ugh why is this even in process()?
-//	if (src.on && !(machine_stat & NOPOWER) )
-//		var/turf/location = src.loc
-//		if (isturf(location))
-//			location.hotspot_expose(1000,500,1)
-	return 1
-
-/obj/machinery/igniter/New()
-	..()
+	on = !on
 	icon_state = "igniter[on]"
 
+
+/obj/machinery/igniter/Initialize()
+	. = ..()
+	icon_state = "igniter[on]"
+
+
 /obj/machinery/igniter/update_icon()
-	if(!( machine_stat & NOPOWER) )
-		icon_state = "igniter[src.on]"
+	if(is_operational())
+		icon_state = "igniter[on]"
 	else
 		icon_state = "igniter0"
 
@@ -84,11 +76,6 @@
 			else
 				icon_state = "[base_state]-p"
 
-/obj/machinery/sparker/attack_ai()
-	if (src.anchored)
-		return src.ignite()
-	else
-		return
 
 /obj/machinery/sparker/proc/ignite()
 	if (!(powered()))
@@ -104,9 +91,6 @@
 	s.start()
 	src.last_spark = world.time
 	use_power(1000)
-//	var/turf/location = src.loc
-//	if (isturf(location))
-//		location.hotspot_expose(1000,500,1)
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
@@ -116,11 +100,9 @@
 	ignite()
 	..(severity)
 
-/obj/machinery/ignition_switch/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/ignition_switch/attack_ai(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/ignition_switch/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
 /obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()

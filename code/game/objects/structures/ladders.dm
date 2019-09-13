@@ -107,6 +107,27 @@
 /obj/structure/ladder/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
+
+/obj/structure/ladder/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(.)
+		return
+	if(up && down)
+		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+			if("Up")
+				user.forceMove(get_turf(up))
+			if("Down")
+				user.forceMove(get_turf(down))
+			if("Cancel")
+				return
+
+	else if(up)
+		user.forceMove(get_turf(up))
+
+	else if(down)
+		user.forceMove(get_turf(down))
+
+
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
 	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)

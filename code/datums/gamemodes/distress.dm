@@ -304,11 +304,11 @@
 						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
 						/obj/item/cell/lasgun/M43 = round(scale * 30),
 						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
-						/obj/item/ammo_magazine/shotgunbox = round(scale * 3),
+						/obj/item/shotgunbox = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
-						/obj/item/ammo_magazine/shotgunbox/buckshot = round(scale * 3),
+						/obj/item/shotgunbox/buckshot = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
+						/obj/item/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)

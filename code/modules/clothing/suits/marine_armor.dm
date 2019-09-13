@@ -433,14 +433,18 @@
 	set category = "B18 Armor"
 	set src in usr
 
-	if(usr.incapacitated() || usr != wearer )
-		return 0
+	if(!can_interact(usr))
+		return FALSE
 
-	handle_interface(usr)
+	interact(usr)
 
-/obj/item/clothing/suit/storage/marine/specialist/proc/handle_interface(mob/living/carbon/human/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
+
+/obj/item/clothing/suit/storage/marine/specialist/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat = {"
 	<A href='?src=\ref[src];B18_automed_on=1'>Turn Automed System: [B18_automed_on ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
@@ -465,63 +469,47 @@
 	<A href='byond://?src=\ref[src];B18_automed_pain=1'>+1</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=5'>+5</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=10'>+10</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>
+	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>"}
+	
+	var/datum/browser/popup = new(user, "b18")
+	popup.set_content(dat)
+	popup.open()
 
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
-		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		if(href_list["B18_automed_on"])
-			if(B18_automed_on)
-				b18automed_turn_off(usr)
-			else
-				b18automed_turn_on(usr)
 
-		else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
-			B18_analyzer.attack(usr, usr, TRUE)
-
-		else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
-			B18_analyzer.hud_mode = !B18_analyzer.hud_mode
-			switch (B18_analyzer.hud_mode)
-				if(TRUE)
-					to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
-				if(FALSE)
-					to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
-
-		else if(href_list["B18_automed_damage"])
-			B18_automed_damage += text2num(href_list["B18_automed_damage"])
-			B18_automed_damage = round(B18_automed_damage)
-			B18_automed_damage = CLAMP(B18_automed_damage,B18_DAMAGE_MIN,B18_DAMAGE_MAX)
-		else if(href_list["B18_automed_pain"])
-			B18_automed_pain += text2num(href_list["B18_automed_pain"])
-			B18_automed_pain = round(B18_automed_pain)
-			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
-		if(!( master ))
-			if(ishuman(loc))
-				handle_interface(loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, src))
-					if(M.client)
-						handle_interface(M)
+	if(href_list["B18_automed_on"])
+		if(B18_automed_on)
+			b18automed_turn_off(usr)
 		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, master))
-					if(M.client)
-						handle_interface(M)
-	else
-		usr << browse(null, "window=radio")
+			b18automed_turn_on(usr)
+
+	else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
+		B18_analyzer.attack(usr, usr, TRUE)
+
+	else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
+		B18_analyzer.hud_mode = !B18_analyzer.hud_mode
+		switch (B18_analyzer.hud_mode)
+			if(TRUE)
+				to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
+			if(FALSE)
+				to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
+
+	else if(href_list["B18_automed_damage"])
+		B18_automed_damage += text2num(href_list["B18_automed_damage"])
+		B18_automed_damage = round(B18_automed_damage)
+		B18_automed_damage = CLAMP(B18_automed_damage,B18_DAMAGE_MIN,B18_DAMAGE_MAX)
+	else if(href_list["B18_automed_pain"])
+		B18_automed_pain += text2num(href_list["B18_automed_pain"])
+		B18_automed_pain = round(B18_automed_pain)
+		B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
+
+	updateUsrDialog()
+		
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"

@@ -64,8 +64,6 @@
 		if(was_on)
 			turn_on()
 
-/obj/machinery/bot/attack_ai(mob/user as mob)
-	attack_hand(user)
 
 /******************************************************************/
 // Navigation procs

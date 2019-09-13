@@ -76,9 +76,6 @@
 		update_icon()
 	add_avail(lastgen)
 
-/obj/machinery/power/generator/attack_ai(mob/user)
-	if(machine_stat & (BROKEN|NOPOWER)) return
-	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -89,63 +86,23 @@
 		use_power = anchored
 		reconnect()
 
-/obj/machinery/power/generator/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
-	interact(user)
-
 
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
-		user.unset_interaction()
-		user << browse(null, "window=teg")
-		return
-
-	user.set_interaction(src)
-
-	var/t = "<PRE><B>Thermo-Electric Generator</B><HR>"
-
-	if(circ1 && circ2)
-		t += "Output : [round(lastgen)] W<BR><BR>"
-
-		t += "<B>Primary Circulator (top or right)</B><BR>"
-//		t += "Inlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Inlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
-//		t += "Outlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Outlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
-
-		t += "<B>Secondary Circulator (bottom or left)</B><BR>"
-//		t += "Inlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Inlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
-//		t += "Outlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Outlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
-
-	else
-		t += "Unable to connect to circulators.<br>"
-		t += "Ensure both are in position and wrenched into place."
-
-	t += "<BR>"
-	t += "<HR>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> <A href='?src=\ref[src];close=1'>Close</A>"
-
-	user << browse(t, "window=teg;size=460x300")
-	onclose(user, "teg")
-	return 1
-
-
-/obj/machinery/power/generator/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if( href_list["close"] )
-		usr << browse(null, "window=teg")
-		usr.unset_interaction()
-		return 0
 
-	updateUsrDialog()
-	return 1
+	var/dat
+
+	if(circ1 && circ2)
+		dat += "Output : [round(lastgen)] W<BR><BR>"
+	else
+		dat += "Unable to connect to circulators.<br>"
+		dat += "Ensure both are in position and wrenched into place."
+
+	var/datum/browser/popup = new(user, "teg", "<div align='center'>Thermo-Electric Generator</div>", 460, 300)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/power/generator/verb/rotate_clock()

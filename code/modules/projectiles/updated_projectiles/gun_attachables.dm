@@ -315,9 +315,6 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 		if(loc == user)
 			user.dropItemToGround(src)
 		var/obj/item/weapon/combat_knife/F = new(loc)
@@ -482,9 +479,6 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/flashlight/F = new(user)

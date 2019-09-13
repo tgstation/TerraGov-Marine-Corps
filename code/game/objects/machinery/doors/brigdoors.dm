@@ -144,16 +144,8 @@
 
 	return
 
-//Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
 
-
-//Allows humans to use door_timer
-//Opens dialog window when someone clicks on door timer
-// Allows altering timer and the timing boolean.
-// Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(mob/living/user)
+/obj/machinery/door_timer/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -166,12 +158,8 @@
 	var/setsecond = round((timetoset / 10) % 60)
 	var/setminute = round(((timetoset / 10) - setsecond) / 60)
 
-	user.set_interaction(src)
-
-	// dat
 	var/dat
 
-	dat += "Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
@@ -200,12 +188,9 @@
 		else
 			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
 
-	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
-
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Photocopier</div>", 400, 500)
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Timer System</div>", 400, 500)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "computer")
+	popup.open()
 
 
 //Function for using door_timer dialog input, checks if user has permission
@@ -219,10 +204,6 @@
 	. = ..()
 	if(.)
 		return
-	if(!src.allowed(usr))
-		return 0
-
-	usr.set_interaction(src)
 
 	if(href_list["timing"])
 		src.timing = text2num(href_list["timing"])
@@ -248,10 +229,8 @@
 		if(href_list["change"])
 			src.timer_start()
 
-	src.updateUsrDialog()
-	src.update_icon()
-
-	return 1
+	updateUsrDialog()
+	update_icon()
 
 
 //icon update function

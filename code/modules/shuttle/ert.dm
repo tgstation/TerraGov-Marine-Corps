@@ -102,7 +102,6 @@
 				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else
 			dat += "<A href='?src=[REF(src)];depart=1'>Depart</A><br>"
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -113,13 +112,14 @@
 	. = ..()
 	if(.)
 		return
+	
 	if(href_list["depart"])
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()
 		M.departing = TRUE
 		M.setTimer(M.ignitionTime)
-	if(usr)
-		ui_interact(usr)
+
+	updateUsrDialog()
 
 /obj/machinery/computer/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(port && (shuttleId == initial(shuttleId) || override))

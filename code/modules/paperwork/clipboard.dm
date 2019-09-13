@@ -11,7 +11,8 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	flags_equip_slot = ITEM_SLOT_BELT
 
-/obj/item/clipboard/New()
+/obj/item/clipboard/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
@@ -39,7 +40,7 @@
 	if(haspen)
 		overlays += "clipboard_pen"
 	overlays += "clipboard_over"
-	return
+
 
 /obj/item/clipboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -57,8 +58,12 @@
 		update_icon()
 
 
-/obj/item/clipboard/attack_self(mob/user as mob)
-	var/dat = "<title>Clipboard</title>"
+/obj/item/clipboard/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat
 	if(haspen)
 		dat += "<A href='?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"
 	else
@@ -76,15 +81,14 @@
 	for(var/obj/item/photo/Ph in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
-	user << browse(dat, "window=clipboard")
-	onclose(user, "clipboard")
-	return
+	var/datum/browser/popup = new(user, "clipboard", "<div align='center'>Clipboard</div>")
+	popup.set_content(dat)
+	popup.open()
+
 
 /obj/item/clipboard/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if((usr.stat || usr.restrained()))
 		return
 
 	if(src.loc == usr)

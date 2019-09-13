@@ -124,18 +124,6 @@
 		qdel(src)
 		return TRUE
 
-/obj/machinery/r_n_d/server/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if (disabled)
-		return
-	if (shocked)
-		shock(user,50)
-	return
-
-
-
 
 /obj/machinery/r_n_d/server/centcom
 	name = "Centcom Central R&D Database"
@@ -183,7 +171,6 @@
 	if(.)
 		return
 
-	usr.set_interaction(src)
 	if(!allowed(usr))
 		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
@@ -247,15 +234,12 @@
 		temp_server.files.RefreshResearch()
 
 	updateUsrDialog()
-	return
 
-/obj/machinery/computer/rdservercontrol/attack_hand(mob/living/user)
+
+/obj/machinery/computer/rdservercontrol/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	user.set_interaction(src)
 	var/dat = ""
 
 	switch(screen)
