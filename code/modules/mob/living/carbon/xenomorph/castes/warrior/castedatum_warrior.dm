@@ -41,6 +41,15 @@
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/punch
+		)
+
 /datum/xeno_caste/warrior/young
 	upgrade_name = "Young"
 

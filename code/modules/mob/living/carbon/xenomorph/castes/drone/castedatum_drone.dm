@@ -43,6 +43,20 @@
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/transfer_plasma,
+		/datum/action/xeno_action/activable/salvage_plasma,
+		/datum/action/xeno_action/activable/corrosive_acid/drone,
+		/datum/action/xeno_action/activable/larval_growth_sting,
+		/datum/action/xeno_action/toggle_pheromones
+		)
+
 /datum/xeno_caste/drone/young
 	upgrade_name = "Young"
 
