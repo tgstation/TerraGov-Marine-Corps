@@ -384,6 +384,8 @@
 	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)

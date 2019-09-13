@@ -459,6 +459,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, 40, 0, 1, 1)
 
+/datum/ammo/bullet/rifle/m4ra/smart
+	name = "A19 high velocity smart bullet"
+	hud_state = "hivelo_iff"
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
+	damage = 30
+	penetration = 50
+
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
