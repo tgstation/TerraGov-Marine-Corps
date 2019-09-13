@@ -120,21 +120,23 @@
 	var/sound/human_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
-			xeno_track = sound(pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg'))
-			human_track = sound(pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg'))
+			xeno_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			human_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
 		if(MODE_INFESTATION_M_MAJOR)
-			xeno_track = sound(pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg'))
-			human_track = sound(pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg'))
+			xeno_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
+			human_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 		if(MODE_INFESTATION_X_MINOR)
-			xeno_track = sound(pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg'))
-			human_track = sound(pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg'))
+			xeno_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
+			human_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
 		if(MODE_INFESTATION_M_MINOR)
-			xeno_track = sound(pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg'))
-			human_track = sound(pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg'))
+			xeno_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
+			human_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
 		if(MODE_INFESTATION_DRAW_DEATH)
-			xeno_track = sound(pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg'))
-			human_track = sound(pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg'))
+			xeno_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
+			human_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
 
+	xeno_track = sound(xeno_track)
+	human_track = sound(human_track)
 	human_track.channel = CHANNEL_CINEMATIC
 	xeno_track.channel = CHANNEL_CINEMATIC
 
@@ -302,11 +304,11 @@
 						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
 						/obj/item/cell/lasgun/M43 = round(scale * 30),
 						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
-						/obj/item/ammo_magazine/shotgunbox = round(scale * 3),
+						/obj/item/shotgunbox = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
-						/obj/item/ammo_magazine/shotgunbox/buckshot = round(scale * 3),
+						/obj/item/shotgunbox/buckshot = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
+						/obj/item/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)

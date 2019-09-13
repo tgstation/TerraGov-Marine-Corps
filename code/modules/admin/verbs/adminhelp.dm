@@ -899,7 +899,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/stealthmins = adm["stealth"]
 	var/list/powerlessmins = adm["noflags"]
 	var/list/allmins = adm["total"]
-	if(!length(afkmins) && !length(stealthmins) && !length(powerlessmins))
+	if(!length(activemins) && !length(afkmins) && !length(stealthmins) && !length(powerlessmins))
 		return "No admins online"
 
 	return "Present admins: ([english_list(activemins)]) | Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"

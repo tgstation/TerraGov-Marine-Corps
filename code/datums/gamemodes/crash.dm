@@ -306,6 +306,8 @@
 			xeno_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 			human_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg')
 
+	xeno_track = sound(xeno_track)
+	human_track = sound(human_track)
 	human_track.channel = CHANNEL_CINEMATIC
 	xeno_track.channel = CHANNEL_CINEMATIC
 

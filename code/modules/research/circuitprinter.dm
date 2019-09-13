@@ -136,8 +136,3 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				uranium_amount += amount * 2000
 	busy = 0
 	src.updateUsrDialog()
-
-
-//This is to stop these machines being hackable via clicking.
-/obj/machinery/r_n_d/circuit_imprinter/attack_hand(mob/living/user)
-	return TRUE

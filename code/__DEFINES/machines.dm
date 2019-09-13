@@ -124,3 +124,6 @@
 #define TURRET_MANUAL		(1<<8)
 #define TURRET_IMMOBILE		(1<<9)
 #define TURRET_COOLDOWN		(1<<10)
+
+#define SQUAD_LOCK	(1<<0)
+#define JOB_LOCK	(1<<1)

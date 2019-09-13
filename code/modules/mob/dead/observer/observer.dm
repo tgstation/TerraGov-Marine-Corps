@@ -19,6 +19,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -843,10 +844,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_used.show_hud(hud_used.hud_version)
 
 
-/mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
-	return IsAdminGhost(usr)
-
-
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
@@ -873,3 +870,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		for(var/path in subtypesof(/datum/action/observer_action))
 			var/datum/action/observer_action/A = new path()
 			A.give_action(src)
+
+
+/mob/dead/observer/incapacitated(ignore_restrained)
+	return FALSE
+
+
+/mob/dead/observer/can_interact_with(datum/D)
+	return (D == src || IsAdminGhost(src))

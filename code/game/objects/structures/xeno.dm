@@ -654,6 +654,10 @@ TUNNEL
 		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
+	if(length(M.stomach_contents))
+		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
+		return
+
 	var/distance = get_dist( get_turf(src), get_turf(other) )
 	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 	var/area/A = get_area(other)

@@ -165,7 +165,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	if(.)
 		return
 
-	usr.set_interaction(src)
 	if(href_list["menu"]) //Switches menu screens. Converts a sent text string into a number. Saves a LOT of code.
 		var/temp_screen = text2num(href_list["menu"])
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || src.allowed(usr)) //Unless you are making something, you need access.
@@ -519,14 +518,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/rdconsole/attack_hand(mob/living/user)
+/obj/machinery/computer/rdconsole/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-
-	user.set_interaction(src)
 	var/dat = ""
 	files.RefreshResearch()
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected.

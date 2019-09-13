@@ -181,7 +181,3 @@ Note: Must be placed west/left of and R&D console to function.
 				new stacktype(loc, amount)
 		busy = FALSE
 		updateUsrDialog()
-
-//This is to stop these machines being hackable via clicking.
-/obj/machinery/r_n_d/protolathe/attack_hand(mob/living/user)
-	return TRUE

@@ -28,7 +28,7 @@
 	antag_text = "In theory, you could hold an open flame to this pack and produce some pretty catastrophic results. The trick is getting out of the blast radius."
 
 /datum/codex_entry/Det_Pack
-	associated_paths = list(/obj/item/radio/detpack)
+	associated_paths = list(/obj/item/detpack)
 	mechanics_text = "How to use, in 6 steps.<br>\
 	<br>1. Activate the det pack in your hand to open a window.<br>\
 	2. Check your Detonation Mode is set to the explosion you desire.<br>\

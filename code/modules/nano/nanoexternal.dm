@@ -36,7 +36,7 @@
 *
 * @return nothing
 */
-/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
+/datum/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE, datum/nanoui/master_ui = null)
 	return
 
 // Used by SSnano (/datum/controller/subsystem/processing/nano) to track UIs opened by this mob

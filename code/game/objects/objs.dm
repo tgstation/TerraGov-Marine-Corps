@@ -12,6 +12,7 @@
 	var/crit_fail = 0
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
+	interaction_flags = INTERACT_OBJ_DEFAULT
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
@@ -79,20 +80,30 @@
 		AI = usr
 		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_ai(AI)
+			if(interaction_flags & INTERACT_UI_INTERACT)
+				ui_interact(AI)
+			else
+				interact(AI)
 
-	for(var/mob/M in viewers(1, src))
+	for(var/mob/M in view(1, src))
 		if(!M.client || M.interactee != src || M == AI)
 			continue
 		is_in_use = TRUE
-		attack_hand(M)
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
+
+	if(ismob(loc))
+		var/mob/M = loc
+		is_in_use = TRUE
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
 
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
-
-
-/obj/proc/interact(mob/user)
-	return
 
 
 /obj/proc/hide(h)

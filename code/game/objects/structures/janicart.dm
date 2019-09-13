@@ -103,11 +103,10 @@
 
 
 
-/obj/structure/janitorialcart/attack_hand(mob/living/user)
+/obj/structure/janitorialcart/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
 	var/dat
 	if(mybag)
 		dat += "<a href='?src=\ref[src];garbage=1'>[mybag.name]</a><br>"

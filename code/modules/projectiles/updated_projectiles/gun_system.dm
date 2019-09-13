@@ -27,6 +27,7 @@
 	var/cocked_sound 	= null
 	var/cock_cooldown	= 0						//world.time value, to prevent COCK COCK COCK COCK
 	var/cock_delay		= 3 SECONDS				//Delay before we can cock again
+	var/last_fired = 0							//When it was last fired, related to world.time.
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
@@ -38,39 +39,37 @@
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
-	var/accuracy_mult 			= 0				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
+	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
-	var/damage_falloff_mult 		= 1				//Same as above, for damage bleed (falloff)
+	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
-	var/scatter					= 0				//How much the bullet scatters when fired.
+	var/recoil_unwielded 		= 0
+	var/scatter					= 20				//How much the bullet scatters when fired.
+	var/scatter_unwielded 		= 20
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
 	var/burst_accuracy_mult		= 1				//Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
-
-	var/accuracy_mod			= 0				//accuracy modifier, used by most attachments.
-	var/accuracy_mult_unwielded 		= 1		//same vars as above but for unwielded firing.
-	var/recoil_unwielded 				= 0
-	var/scatter_unwielded 				= 0
-
+	var/accuracy_mod			= 0.05				//accuracy modifier, used by most attachments.
+	var/accuracy_mult_unwielded = 1		//same vars as above but for unwielded firing.
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
-
-	var/fire_delay = 0							//For regular shots, how long to wait before firing again.
-	var/last_fired = 0							//When it was last fired, related to world.time.
-
-	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
-	var/wield_delay		= WIELD_DELAY_FAST		//How long between wielding and firing in tenths of seconds
-	var/wield_penalty	= WIELD_DELAY_VERY_FAST	//Extra wield delay for untrained operators
-	var/wield_time		= 0						//Storing value for above
-
+	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
+	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
 	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 
+
+	//Slowdowns
+	var/aim_slowdown	= 0						//Self explanatory. How much does aiming (wielding the gun) slow you
+	var/wield_delay		= 0.4 SECONDS		//How long between wielding and firing in tenths of seconds
+	var/wield_penalty	= 0.2 SECONDS	//Extra wield delay for untrained operators
+	var/wield_time		= 0						//Storing value for above
+
+
 	//Energy Weapons
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
-
-	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 
 	//Attachments.
 	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
@@ -118,32 +117,14 @@
 			load_into_chamber()
 	else
 		ammo = GLOB.ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
-	set_gun_config_values()
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
 	handle_starting_attachment()
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after set_gun_config_values(), handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
 	muzzle_flash = new()
-
-
-//Called by the gun's New(), set the gun variables' values.
-//Each gun gets its own version of the proc instead of adding/substracting
-//amounts to get specific values in each gun subtype's New().
-//This makes reading each gun's values MUCH easier.
-/obj/item/weapon/gun/proc/set_gun_config_values()
-	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-
-
-
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -836,7 +817,7 @@ and you're good to go.
 		return FALSE
 	if(!ismob(user)) //Could be an object firing the gun.
 		return TRUE
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
@@ -859,7 +840,7 @@ and you're good to go.
 		added_delay = active_attachable.attachment_firing_delay
 	else if(user?.mind?.cm_skills)
 		if(!user.mind.cm_skills.firearms) //no training in any firearms
-			added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
+			added_delay += 3 //untrained humans fire more slowly.
 		else
 			switch(gun_skill_category)
 				if(GUN_SKILL_HEAVY_WEAPONS)
@@ -920,8 +901,8 @@ and you're good to go.
 
 	else if(user && world.time - user.last_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
-		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * 0.15))
+		gun_scatter += max(0, movement_acc_penalty_mult * 5)
 
 	if(gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
 		gun_accuracy_mult = max(0.1, gun_accuracy_mult * burst_accuracy_mult)
@@ -957,7 +938,7 @@ and you're good to go.
 					if(GUN_SKILL_SPEC)
 						skill_accuracy = user.mind.cm_skills.spec_weapons
 			if(skill_accuracy)
-				gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+				gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 		projectile_to_fire.firer = user
 		if(iscarbon(user))
@@ -988,7 +969,7 @@ and you're good to go.
 
 	if(user?.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
-			. += CONFIG_GET(number/combat_define/low_scatter_value)
+			. += 15
 		else
 			var/scatter_tweak = 0
 			switch(gun_skill_category)
@@ -1007,7 +988,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					scatter_tweak = user.mind.cm_skills.spec_weapons
 			if(scatter_tweak)
-				. -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
+				. -= scatter_tweak * 15
 
 	if(!prob(.)) //RNG at work.
 		return 0
@@ -1025,7 +1006,7 @@ and you're good to go.
 	if(user?.mind?.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
+			total_recoil += 2
 		else
 			var/recoil_tweak
 			switch(gun_skill_category)
@@ -1044,7 +1025,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					recoil_tweak = user.mind.cm_skills.spec_weapons
 			if(recoil_tweak)
-				total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
+				total_recoil -= recoil_tweak * 2
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE

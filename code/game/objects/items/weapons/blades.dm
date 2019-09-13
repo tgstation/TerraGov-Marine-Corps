@@ -94,9 +94,6 @@
 			var/obj/item/stack/cable_coil/CC = I
 			if (CC.use(5))
 				to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
-				if(istype(loc, /obj/item/storage))
-					var/obj/item/storage/S = loc
-					S.remove_from_storage(src)
 				if(loc == user)
 					user.temporarilyRemoveItemFromInventory(src)
 				var/obj/item/attachable/bayonet/F = new(src.loc)
