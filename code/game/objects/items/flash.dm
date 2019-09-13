@@ -150,8 +150,6 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	var/construction_cost = list("metal"=750,"glass"=750)
-	var/construction_time=100
 
 /obj/item/flash/synthetic/attack(mob/living/M as mob, mob/user as mob)
 	..()

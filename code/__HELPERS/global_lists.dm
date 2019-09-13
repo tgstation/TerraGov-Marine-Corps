@@ -123,6 +123,12 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	shuffle(GLOB.fruit_icon_states)
 	shuffle(GLOB.reagent_effects)
 
+
+	for(var/path in subtypesof(/datum/material))
+		var/datum/material/M = new path
+		GLOB.materials[path] = M
+
+
 	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
 		var/datum/autolathe/recipe/recipe = new R
 		GLOB.autolathe_recipes += recipe

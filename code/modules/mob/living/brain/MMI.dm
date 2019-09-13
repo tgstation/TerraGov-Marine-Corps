@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /obj/item/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
@@ -7,8 +5,6 @@
 	icon_state = "mmi_empty"
 	w_class = WEIGHT_CLASS_NORMAL
 
-	var/list/construction_cost = list("metal"=1000,"glass"=500)
-	var/construction_time = 75
 	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 
 	req_access = list(ACCESS_MARINE_RESEARCH)

@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(materials)
+
 /datum/material
 	var/name
 

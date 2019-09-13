@@ -8,8 +8,8 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 
-	var/list/stored_material =  list("metal" = 0, "glass" = 0)
-	var/list/storage_capacity = list("metal" = 0, "glass" = 0)
+	var/list/stored_material =  list(/datum/material/metal = 0, /datum/material/glass = 0)
+	var/list/storage_capacity = list(/datum/material/metal = 0, /datum/material/glass = 0)
 	var/show_category = "All"
 
 	var/hacked = FALSE
@@ -51,7 +51,8 @@
 	var/material_bottom = "<tr>"
 
 	for(var/material in stored_material)
-		material_top += "<td width = '25%' align = center><b>[material]</b></td>"
+		var/datum/material/M = GLOB.materials[material]
+		material_top += "<td width = '25%' align = center><b>[M.name]</b></td>"
 		material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 	dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
@@ -86,7 +87,8 @@
 					comma = 1
 				else
 					material_string += ", "
-				material_string += "[R.resources[material]] [material]"
+				var/datum/material/M = GLOB.materials[material]
+				material_string += "[R.resources[material]] [M.name]"
 			material_string += ".<br></td>"
 
 			//Build list of multipliers for sheets.
@@ -263,24 +265,25 @@
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
-	..()
+	. = ..()
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		tot_rating += MB.rating
 
-	storage_capacity["metal"] = tot_rating  * 25000
-	storage_capacity["glass"] = tot_rating  * 12500
+	storage_capacity[/datum/material/metal] = tot_rating  * 25000
+	storage_capacity[/datum/material/glass] = tot_rating  * 12500
 
 /obj/machinery/autolathe/deconstruct()
-	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
+	var/list/sheets = list(/datum/material/metal = /obj/item/stack/sheet/metal, /datum/material/glass = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)
 		var/T = sheets[mat]
 		var/obj/item/stack/sheet/S = new T
 		if(stored_material[mat] > S.perunit)
 			S.amount = round(stored_material[mat] / S.perunit)
-			S.loc = loc
-	..()
+			S.forceMove(loc)
+	
+	return ..()
 
 
 /obj/machinery/autolathe/proc/reset(wire)
