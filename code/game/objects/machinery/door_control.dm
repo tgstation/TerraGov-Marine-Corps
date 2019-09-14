@@ -173,6 +173,10 @@
 	name = "Solid Fuel Storage"
 	id = "solid_fuel"	
 
+/obj/machinery/door_control/mainship/hangar
+	name = "Hangar Shutters"	
+	id = "hangar_shutters"
+
 /obj/machinery/door_control/mainship/research
 	name = "Medical Research Wing"
 	id = "researchdoorext"
@@ -199,7 +203,7 @@
 
 /obj/machinery/door_control/mainship/cic
 	name = "CIC Lockdown"
-	id = cic_lockdown
+	id = "cic_lockdown"
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CAPTAIN)	
 
 /obj/machinery/door_control/mainship/cic/armory

@@ -2304,7 +2304,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "hJ" = (
-/obj/machinery/door/airlock/mainship/medical/or2{
+/obj/machinery/door/airlock/mainship/medical/or/or2{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
@@ -4682,7 +4682,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "nS" = (
-/obj/machinery/door/airlock/mainship/research/glass/containment,
 /obj/machinery/door/poddoor/shutters/mainship/containment{
 	dir = 4
 	},
