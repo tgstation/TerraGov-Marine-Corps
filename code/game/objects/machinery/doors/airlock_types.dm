@@ -402,16 +402,16 @@
 	name = "\improper Medical Research Wing"
 	id = "researchdoorext"
 
-/obj/machiery/door/airlock/mainship/research/glass/cell
+/obj/machinery/door/airlock/mainship/research/glass/cell
 	name = "\improper Containment Cell"
 	id = "containmentcell"
-	locked = 1
+	locked = TRUE
 
-/obj/machiery/door/airlock/mainship/research/glass/cell/cell1
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1
 	name = "\improper Containment Cell 1"
 	id = "containmentcell_1"
 
-/obj/machiery/door/airlock/mainship/research/glass/cell/cell2
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell2
 	name = "\improper Containment Cell 2"
 	id = "containmentcell_2"	
 
