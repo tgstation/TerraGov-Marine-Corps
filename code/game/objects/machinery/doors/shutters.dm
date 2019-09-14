@@ -151,7 +151,8 @@
 //mainship shutters
 /obj/machinery/door/poddoor/shutters/mainship/hangar
 	name = "\improper Hangar Shutters"
-	id = 
+	id = "hangar_shutters"
+	
 /obj/machinery/door/poddoor/shutters/mainship/hangar/fuel
 	name = "\improper Solid Fuel Storage"
 	id = "solid_fuel"
