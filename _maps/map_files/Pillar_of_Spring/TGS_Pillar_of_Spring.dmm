@@ -1169,19 +1169,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"es" = (
-/turf/closed/shuttle/escapepod,
-/area/mainship/command/self_destruct)
-"et" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall1"
-	},
-/area/mainship/command/self_destruct)
-"eu" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall2"
-	},
-/area/mainship/command/self_destruct)
 "ev" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1322,11 +1309,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"eK" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall3"
-	},
-/area/mainship/command/self_destruct)
 "eL" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1381,17 +1363,6 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/self_destruct)
-"eS" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall12"
-	},
-/area/mainship/command/self_destruct)
-"eT" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor7"
-	},
-/area/mainship/command/self_destruct)
 "eU" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/starboard_missiles)
@@ -1440,12 +1411,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fd" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
-	},
-/area/mainship/command/self_destruct)
 "fe" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -1460,45 +1425,6 @@
 	icon_state = "emerald"
 	},
 /area/mainship/command/cic)
-"ff" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor9"
-	},
-/area/mainship/command/self_destruct)
-"fg" = (
-/obj/machinery/door/airlock/evacuation,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin5"
-	},
-/area/mainship/command/self_destruct)
-"fh" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin5"
-	},
-/area/mainship/command/self_destruct)
-"fi" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor1"
-	},
-/area/mainship/command/self_destruct)
-"fj" = (
-/obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
-	dir = 4
-	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
-/area/mainship/command/self_destruct)
-"fk" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall4"
-	},
-/area/mainship/command/self_destruct)
 "fl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1522,44 +1448,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fn" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall10"
-	},
-/area/mainship/command/self_destruct)
-"fo" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor12"
-	},
-/area/mainship/command/self_destruct)
-"fp" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
-	},
-/area/mainship/command/self_destruct)
 "fq" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/box/MRE,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fr" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor10"
-	},
-/area/mainship/command/self_destruct)
 "fs" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1568,11 +1462,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"ft" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall14"
-	},
-/area/mainship/command/self_destruct)
 "fu" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
@@ -1582,21 +1471,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"fv" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall6"
-	},
-/area/mainship/command/self_destruct)
-"fw" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall9"
-	},
-/area/mainship/command/self_destruct)
-"fx" = (
-/turf/closed/shuttle/escapepod{
-	icon_state = "wall7"
-	},
-/area/mainship/command/self_destruct)
 "fy" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-05"
@@ -3153,11 +3027,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"kd" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/mainship/command/self_destruct)
 "ke" = (
 /obj/structure/dropship_equipment/medevac_system,
 /obj/effect/decal/warning_stripes/thin{
@@ -6245,9 +6114,7 @@
 	},
 /area/mainship/command/telecomms)
 "rT" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	
-	},
+/obj/machinery/door/airlock/mainship/secure/tcomms,
 /obj/machinery/door/poddoor/mainship/cic{
 	dir = 4
 	},
@@ -8109,13 +7976,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
-"wv" = (
-/obj/structure/table/mainship,
-/obj/item/tank/emergency_oxygen/double,
-/obj/item/clothing/mask/breath,
-/obj/item/radio,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
 "ww" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -9993,6 +9853,10 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/mainship,
 /area/mainship/living/briefing)
+"Bd" = (
+/obj/docking_port/stationary/ert_big,
+/turf/open/space,
+/area/shuttle/distress/arrive_s_hangar)
 "Be" = (
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -11513,16 +11377,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/medical/lower_medical)
-"DY" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/mainship/hull/lower_hull)
 "DZ" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -12268,12 +12122,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
-"FO" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
-/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "FP" = (
@@ -13246,9 +13094,7 @@
 	},
 /area/mainship/engineering/engine_core)
 "HF" = (
-/obj/machinery/door/airlock/mainship/maint/core{
-	
-	},
+/obj/machinery/door/airlock/mainship/maint/core,
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
 	dir = 8
@@ -16757,12 +16603,12 @@
 "Oy" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/starboard_umbilical)
-"OA" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/tool,
-/obj/machinery/camera/autoname/mainship,
+"Oz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_umbilical)
+/area/mainship/command/self_destruct)
 "OB" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
@@ -17352,6 +17198,16 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/telecomms)
+"QU" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/mainship/hull/lower_hull)
 "QW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -18075,6 +17931,9 @@
 /obj/effect/landmark/start/marine/staffofficer,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"Zw" = (
+/turf/open/floor/plating/mainship,
+/area/mainship/command/self_destruct)
 "ZG" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -38600,7 +38459,7 @@ cj
 cj
 cj
 cj
-cj
+Bd
 cj
 cj
 cj
@@ -52468,7 +52327,7 @@ xl
 xf
 xL
 OF
-Mb
+OF
 Mb
 Mb
 Mb
@@ -52724,10 +52583,10 @@ lV
 jb
 xg
 jb
+jb
 oM
 Nw
 JF
-tG
 ew
 ew
 ew
@@ -52981,9 +52840,9 @@ wn
 jb
 xh
 jb
+jb
 oM
 La
-ad
 ad
 ad
 ad
@@ -53238,10 +53097,10 @@ jb
 jb
 xi
 jb
+jb
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -53495,10 +53354,10 @@ eX
 eX
 eX
 eX
+jb
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -53752,10 +53611,10 @@ eY
 jb
 jb
 xM
+jb
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -54009,10 +53868,10 @@ wo
 ww
 jb
 eY
+jb
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -54266,10 +54125,10 @@ fG
 wx
 xj
 xN
+ww
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -54523,10 +54382,10 @@ fG
 wx
 xk
 xO
+wx
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -54780,10 +54639,10 @@ Mw
 Lc
 Ld
 Le
+Oz
 oM
 La
 ad
-aa
 aa
 aa
 aa
@@ -55038,9 +54897,9 @@ AK
 OF
 OF
 OF
+OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -55287,17 +55146,17 @@ uB
 tA
 In
 tA
-uB
 OF
-es
-eS
-fg
-fn
-fw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 aH
 ad
-aa
 aa
 aa
 aa
@@ -55544,17 +55403,17 @@ uC
 tA
 In
 tA
-uC
 OF
-et
-eT
-fh
-fo
-fx
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -55801,17 +55660,17 @@ vD
 tA
 In
 tA
-wv
 OF
-eu
-fd
-fh
-fp
-fx
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -56058,17 +55917,17 @@ eo
 tA
 In
 tA
-OA
 OF
-eu
-fd
-fh
-fp
-fx
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -56315,17 +56174,17 @@ MG
 tA
 In
 tA
-FO
 OF
-eu
-fd
-fh
-fp
-fx
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -56572,17 +56431,17 @@ uG
 tA
 In
 tA
-uG
 OF
-eu
-ff
-fh
-fr
-fx
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -56829,17 +56688,17 @@ uG
 tA
 In
 tA
-uG
 OF
-eK
-eu
-fi
-es
-fv
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -57086,17 +56945,17 @@ uG
 Ij
 Ip
 Iq
-uG
 OF
-kd
-et
-fj
-ft
-kd
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -57343,17 +57202,17 @@ gV
 tA
 vA
 tA
-gV
 OF
-kd
-eK
-fk
-fv
-kd
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 OF
 La
 ad
-aa
 aa
 aa
 aa
@@ -57600,17 +57459,17 @@ uI
 gT
 gT
 gT
-Oy
+OF
 OF
 AC
 AC
 AC
 AC
 AC
+OF
 OF
 LA
 ad
-aa
 aa
 aa
 aa
@@ -57857,17 +57716,17 @@ Bj
 Bk
 Bk
 Bk
-Bj
+QU
 yd
-DY
-DY
-DY
-DY
-DY
+QU
+QU
+QU
+QU
+QU
+QU
 JF
 dW
 ad
-aa
 aa
 aa
 aa
@@ -58114,17 +57973,17 @@ uK
 gT
 gT
 gT
-uK
-ad
-AD
-AD
-AD
-AD
-AD
 ad
 ad
+AD
+AD
+AD
+AD
+AD
 ad
-aa
+ad
+ad
+ad
 aa
 aa
 aa
