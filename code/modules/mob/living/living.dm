@@ -93,6 +93,12 @@
 	START_PROCESSING(SSmobs, src)
 
 /mob/living/Destroy()
+	for(var/i in embedded_objects)
+		var/obj/item/embedded = i
+		if(embedded.embedding.embedded_flags & EMBEDDEED_DEL_ON_HOLDER_DEL)
+			qdel(embedded) //This should remove the object from the list via temporarilyRemoveItemFromInventory() => COMSIG_ITEM_DROPPED.
+		else
+			embedded.unembed_ourself() //This should remove the object from the list directly.
 	if(attack_icon)
 		qdel(attack_icon)
 		attack_icon = null

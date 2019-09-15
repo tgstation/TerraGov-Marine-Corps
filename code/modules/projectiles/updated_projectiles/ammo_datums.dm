@@ -542,7 +542,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -3
 	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration	= 30
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -554,7 +554,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -3
 	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration	= 30
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -571,7 +571,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -7
 	damage_var_high = 7
 	damage_falloff = 5
-	penetration	= -10
+	penetration = 0
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -594,7 +594,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -7
 	damage_var_high = 7
 	damage_falloff = 5
-	penetration	= -10
+	penetration = 0
 
 /datum/ammo/bullet/shotgun/spread/masterkey
 	damage = 30
@@ -640,7 +640,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	damage = 90
 	damage_var_high = 3
-	penetration = -10
+	penetration = 0
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/M,obj/item/projectile/P)
 	burst(get_turf(M),P,damage_type)

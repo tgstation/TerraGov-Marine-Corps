@@ -109,7 +109,7 @@
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	user.visible_message("<span class='warning'>[user]'s hand slips, stabbing \the [tool] into [target]'s eye!</span>", \
 	"<span class='warning'>Your hand slips, stabbing \the [tool] into [target]'s eye!</span>")
-	target.apply_damage(10, BRUTE, affected, sharp = 1)
+	target.apply_damage(10, BRUTE, affected, 0, TRUE)
 	E.take_damage(5, 0)
 	target.updatehealth()
 

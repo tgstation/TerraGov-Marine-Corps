@@ -936,20 +936,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
-/datum/limb/proc/embed(obj/item/W, silent = 0)
-	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
-		return
-	if(!silent)
-		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
-	implants += W
-	owner.embedded_flag = 1
-	owner.verbs += /mob/proc/yank_out_object
-	W.add_mob_blood(owner)
-	if(ismob(W.loc))
-		var/mob/living/H = W.loc
-		H.drop_held_item()
-	if(W)
-		W.forceMove(owner)
 
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
 

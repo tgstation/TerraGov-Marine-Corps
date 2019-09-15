@@ -90,7 +90,7 @@
 	return ..()
 
 
-/mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
+/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone)
 	return
 
 
