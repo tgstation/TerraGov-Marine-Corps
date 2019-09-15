@@ -94,17 +94,12 @@
 	var/locked = 1
 
 
-/obj/item/circuitboard/airlock/attack_self(mob/user as mob)
-	if (!ishuman(user) && !issilicon(user))
-		return ..()
-
-	var/mob/living/carbon/human/H = user
-	if(H.getBrainLoss() >= 60)
+/obj/item/circuitboard/airlock/interact(mob/user)
+	. = ..()
+	if(.)
 		return
 
-	var/t1 = text("<B>Access control</B><br>\n")
-
-
+	var/t1
 	if (last_configurator)
 		t1 += "Operator: [last_configurator]<br>"
 
@@ -131,45 +126,39 @@
 			else
 				t1 += "<a style='color: red' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 
-	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
-
-	user << browse(t1, "window=airlock_electronics")
-	onclose(user, "airlock")
+	var/datum/browser/popup = new(user, "airlock_electronics", "<div align='center'>Access Control</div>")
+	popup.set_content(t1)
+	popup.open()
 
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
-		return
-	if (href_list["close"])
-		usr << browse(null, "window=airlock")
-		return
 
-	if (href_list["login"])
-		if(istype(usr,/mob/living/silicon))
-			src.locked = 0
-			src.last_configurator = usr.name
+	if(href_list["login"])
+		if(istype(usr, /mob/living/silicon))
+			locked = 0
+			last_configurator = usr.name
 		else
 			var/obj/item/I = usr.get_active_held_item()
-			if (I && src.check_access(I))
-				src.locked = 0
-				src.last_configurator = I:registered_name
+			if(I && check_access(I))
+				locked = FALSE
+				last_configurator = I:registered_name
 
 	if(locked)
 		return
 
-	if (href_list["logout"])
-		locked = 1
+	if(href_list["logout"])
+		locked = TRUE
 
-	if (href_list["one_access"])
+	if(href_list["one_access"])
 		one_access = !one_access
 
-	if (href_list["access"])
+	if(href_list["access"])
 		toggle_access(href_list["access"])
 
-	attack_self(usr)
+	updateUsrDialog()
 
 
 /obj/item/circuitboard/airlock/proc/toggle_access(acc)

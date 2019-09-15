@@ -16,16 +16,12 @@
 		return ..()
 
 
-/obj/machinery/computer/telecomms/attack_hand(mob/living/user)
+/obj/machinery/telecomms/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	interact(user)
-
-
-/obj/machinery/telecomms/interact(mob/user)
 	// You need a multitool to use this, or be silicon
-	if(!issilicon(user))
+	if(iscarbon(user))
 		// istype returns false if the value is null
 		if(!istype(user.get_active_held_item(), /obj/item/multitool))
 			return
@@ -83,9 +79,7 @@
 
 	var/datum/browser/browser = new(user, "tcommachine", "<div align='center'>[src] Access</div>", 520, 500)
 	browser.set_content(dat)
-	browser.open(TRUE)
-
-	return TRUE
+	browser.open()
 
 
 // Returns a multitool from a user depending on their mobtype.
@@ -136,16 +130,15 @@
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
 	if(href_list["change_freq"])
 		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
-		if(canAccess(usr))
-			if(newfreq)
-				if(findtext(num2text(newfreq), "."))
-					newfreq *= 10 // shift the decimal one place
-				if(newfreq < 10000)
-					change_frequency = newfreq
-					temp = "<font color = #efef88>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
-			else
-				change_frequency = 0
-				temp = "<font color = #efef88>-% Frequency changing deactivated %-</font>"
+		if(newfreq)
+			if(findtext(num2text(newfreq), "."))
+				newfreq *= 10 // shift the decimal one place
+			if(newfreq < 10000)
+				change_frequency = newfreq
+				temp = "<font color = #efef88>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
+		else
+			change_frequency = 0
+			temp = "<font color = #efef88>-% Frequency changing deactivated %-</font>"
 
 
 /obj/machinery/telecomms/Topic(href, href_list)
@@ -153,7 +146,7 @@
 	if(.)
 		return
 
-	if(!issilicon(usr))
+	if(iscarbon(usr))
 		if(!istype(usr.get_active_held_item(), /obj/item/multitool))
 			return
 
@@ -167,12 +160,12 @@
 				update_power()
 			if("id")
 				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
-				if(newid && canAccess(usr))
+				if(newid)
 					id = newid
 					temp = "<font color = #efef88>-% New ID assigned: \"[id]\" %-</font>"
 			if("network")
 				var/newnet = stripped_input(usr, "Specify the new network for this machine. This will break all current links.", src, network)
-				if(newnet && canAccess(usr))
+				if(newnet)
 					if(length(newnet) > 15)
 						temp = "<font color = #efef88>-% Too many characters in new network tag %-</font>"
 					else
@@ -183,7 +176,7 @@
 						temp = "<font color = #efef88>-% New network tag assigned: \"[network]\" %-</font>"
 			if("freq")
 				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
-				if(newfreq && canAccess(usr))
+				if(newfreq)
 					if(findtext(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
 					if(!(newfreq in freq_listening) && newfreq < 10000)
@@ -230,11 +223,4 @@
 		P.buffer = null
 
 	Options_Topic(href, href_list)
-	usr.set_interaction(src)
 	updateUsrDialog()
-
-
-/obj/machinery/telecomms/proc/canAccess(mob/user)
-	if(issilicon(user) || in_range(user, src))
-		return TRUE
-	return FALSE

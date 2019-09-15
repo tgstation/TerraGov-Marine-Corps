@@ -685,19 +685,6 @@ below 100 is not dizzy
 	return name
 
 
-/mob/living/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(proximity && !in_range(AM, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	if(!dexterity)
-		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return FALSE
-	return TRUE
-
-
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
@@ -766,3 +753,7 @@ below 100 is not dizzy
 			update_transform()
 		if("lighting_alpha")
 			sync_lighting_plane_alpha()
+
+
+/mob/living/can_interact_with(datum/D)
+	return D.Adjacent(src)

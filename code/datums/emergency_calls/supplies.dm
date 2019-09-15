@@ -23,8 +23,8 @@
 						list(/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
-							/obj/item/radio/detpack, \
-							/obj/item/radio/detpack, \
+							/obj/item/detpack, \
+							/obj/item/detpack, \
 							/obj/item/assembly/signaler \
 							), \
 						list(/obj/item/weapon/gun/rifle/m41a, \

@@ -3,6 +3,7 @@
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
 	icon = 'icons/obj/structures/window_frames.dmi'
 	icon_state = "window0_frame"
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
@@ -23,7 +24,10 @@
 		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if(climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S?.climbable)
 		return TRUE
 	return FALSE
 

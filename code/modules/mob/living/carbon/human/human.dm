@@ -231,7 +231,6 @@
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
 	<BR>
 	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
@@ -356,12 +355,6 @@
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
-
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-
 
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
@@ -970,6 +963,8 @@
 
 	species.create_organs(src)
 
+	dextrous = species.has_fine_manipulation
+
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
 
@@ -1300,19 +1295,6 @@
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
 		GLOB.datacore.manifest_inject(src)
 
-	return TRUE
-
-
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
-	. = ..()
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!Adjacent(AM) && (AM.loc != src))
-		if(!proximity)
-			return TRUE
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
 	return TRUE
 
 

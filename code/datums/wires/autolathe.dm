@@ -12,10 +12,12 @@
 	return ..()
 
 
-/datum/wires/autolathe/interactable(mob/user)
+/datum/wires/autolathe/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/autolathe/A = holder
-	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
-		return TRUE
+	return CHECK_BITFIELD(A.machine_stat, PANEL_OPEN)
 
 
 /datum/wires/autolathe/get_status()

@@ -23,8 +23,8 @@
 
 
 
-/obj/machinery/suit_storage_unit/New()
-	..()
+/obj/machinery/suit_storage_unit/Initialize()
+	. = ..()
 	if(starting_suit_type)
 		inserted_suit = new starting_suit_type(src)
 	if(starting_helmet_type)
@@ -80,14 +80,12 @@
 
 
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/living/user)
+/obj/machinery/suit_storage_unit/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 	var/dat
-	if(machine_stat & NOPOWER)
-		return
-		dat+= "<HR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
+
 	if(isUV) //The thing is running its cauterisation cycle. You have to wait.
 		dat+= "<font color ='red'><B>Unit is cauterising contents with UV ray. Please wait.</font></B><BR>"
 
@@ -114,44 +112,37 @@
 		dat+= "<HR><font color='black'>Unit is: [isopen ? "Open" : "Closed"] - <A href='?src=\ref[src];toggle_open=1'>[isopen ? "Close" : "Open"] Unit</A></font><BR>"
 
 		dat += "<A href='?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
-		dat += "<BR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
 
 	var/datum/browser/popup = new(user, "suit_storage_unit", "<div align='center'>Suit storage unit</div>", 400, 500)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "suit_storage_unit")
+	popup.open()
 
 
 /obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
 	. = ..()
 	if(.)
 		return
-	if (Adjacent(usr))
-		usr.set_interaction(src)
-		if (href_list["dispense_helmet"])
-			dispense_helmet()
-			updateUsrDialog()
-			update_icon()
-		if (href_list["dispense_suit"])
-			dispense_suit()
-			updateUsrDialog()
-			update_icon()
-		if (href_list["dispense_mask"])
-			dispense_mask()
-			updateUsrDialog()
-			update_icon()
-		if (href_list["dispense_tank"])
-			dispense_tank()
-			updateUsrDialog()
-			update_icon()
-		if (href_list["toggle_open"])
-			toggle_open()
-			updateUsrDialog()
-			update_icon()
-		if (href_list["start_UV"])
-			start_UV(usr)
-			updateUsrDialog()
-			update_icon()
+
+	if(href_list["dispense_helmet"])
+		dispense_helmet()
+
+	if(href_list["dispense_suit"])
+		dispense_suit()
+
+	if(href_list["dispense_mask"])
+		dispense_mask()
+
+	if(href_list["dispense_tank"])
+		dispense_tank()
+
+	if(href_list["toggle_open"])
+		toggle_open()
+
+	if(href_list["start_UV"])
+		start_UV(usr)
+		
+	updateUsrDialog()
+	update_icon()
 
 
 
@@ -293,19 +284,6 @@
 
 	update_icon()
 	updateUsrDialog()
-
-
-
-/obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-
-/obj/machinery/suit_storage_unit/attack_paw(mob/living/carbon/monkey/user)
-	to_chat(user, "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>")
-	return
-
-
-
 
 
 /obj/machinery/suit_storage_unit/carbon_unit

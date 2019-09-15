@@ -31,25 +31,26 @@
 		icon_state = "nboard0[notices]"	//update sprite
 		to_chat(user, "<span class='notice'>You pin the paper to the noticeboard.</span>")
 
-/obj/structure/noticeboard/attack_hand(mob/living/user)
+
+/obj/structure/noticeboard/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	var/dat = "<B>Noticeboard</B><BR>"
+	
+	var/dat
 	for(var/obj/item/paper/P in src)
 		dat += "<A href='?src=\ref[src];read=\ref[P]'>[P.name]</A> <A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A><BR>"
-	user << browse("<HEAD><TITLE>Notices</TITLE></HEAD>[dat]","window=noticeboard")
-	onclose(user, "noticeboard")
+
+	var/datum/browser/popup = new(user, "noticeboard", "<div align='center'>Noticeboard</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/structure/noticeboard/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
 	if(href_list["remove"])
-		if((usr.stat || usr.restrained()))	//For when a player is handcuffed while they have the notice window open
-			return
 		var/obj/item/P = locate(href_list["remove"])
 		if((P && P.loc == src))
 			P.loc = get_turf(src)	//dump paper on the floor because you're a clumsy fuck
@@ -57,8 +58,6 @@
 			icon_state = "nboard0[notices]"
 
 	if(href_list["write"])
-		if((usr.stat || usr.restrained())) //For when a player is handcuffed while they have the notice window open
-			return
 		var/obj/item/P = locate(href_list["write"])
 
 		if((P && P.loc == src)) //ifthe paper's on the board
@@ -79,4 +78,3 @@
 			else
 				usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY><TT>[P.info]</TT></BODY></HTML>", "window=[P.name]")
 				onclose(usr, "[P.name]")
-	return

@@ -44,16 +44,12 @@
 	src.path = new()
 	src.updateUsrDialog()
 
-/obj/machinery/bot/floorbot/attack_hand(mob/living/user)
+/obj/machinery/bot/floorbot/interact(mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
-	usr.set_interaction(src)
-	interact(user)
 
-/obj/machinery/bot/floorbot/interact(mob/user as mob)
 	var/dat
-	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel is [src.open ? "opened" : "closed"]<BR>"
 	dat += "Tiles left: [src.amount]<BR>"
@@ -69,9 +65,9 @@
 			bmode = "Disabled"
 		dat += "<BR><BR>Bridge Mode : <A href='?src=\ref[src];operation=bridgemode'>[bmode]</A><BR>"
 
-	user << browse("<HEAD><TITLE>Repairbot v1.0 controls</TITLE></HEAD>[dat]", "window=autorepair")
-	onclose(user, "autorepair")
-	return
+	var/datum/browser/popup = new(user, "floorbot", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
@@ -102,7 +98,7 @@
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
+
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)
@@ -132,7 +128,9 @@
 					targetdirection = null
 				else
 					targetdirection = null
-			src.updateUsrDialog()
+	
+	updateUsrDialog()
+
 
 /obj/machinery/bot/floorbot/process()
 	set background = 1
