@@ -84,8 +84,6 @@
 		updateicon()
 		stop_processing()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
-	return
 
 /obj/machinery/cell_charger/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

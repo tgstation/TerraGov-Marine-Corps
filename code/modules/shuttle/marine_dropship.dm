@@ -381,21 +381,32 @@
 		dat += "<A href='?src=[REF(src)];hijack=1'>Launch to [SSmapping.configs[SHIP_MAP].map_name]</A><br>"
 		M.hijack_state = HIJACK_STATE_CALLED_DOWN
 		M.unlock_all()
-	dat += "<a href='?src=[REF(X)];mach_close=computer'>Close</a>"
+
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
+
+
+/obj/machinery/computer/shuttle/marine_dropship/can_interact(mob/user)
+	. = ..()
+
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/X = user
+		if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+			return FALSE
+
+	else if(!allowed(user))
+		return FALSE
+
+	return TRUE
+
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(!shuttle)
 		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
 		return 
-	
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied!</span>")
-		return
 
 	var/list/data = list()
 	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
@@ -419,10 +430,6 @@
 		ui.set_initial_data(data)	
 		ui.open()	
 		ui.set_auto_update(1)
-
-
-/obj/machinery/computer/shuttle/marine_dropship/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
@@ -450,14 +457,15 @@
 		else if(href_list["unlock"])
 			M.unlock_airlocks(href_list["unlock"])
 		return
-	
-	else if(!isxeno(usr))
-		return
+
 	if(!is_ground_level(M.z))
 		return
-	var/mob/living/carbon/xenomorph/X = usr
-	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
+
+	if(!isxeno(usr))
 		return
+
+	var/mob/living/carbon/xenomorph/X = usr
+
 	if(href_list["hijack"])
 		if(X.hive.living_xeno_ruler != X)
 			to_chat(X, "<span class='warning'>Only the ruler of the hive may attempt this.</span>")
@@ -834,16 +842,11 @@
 			dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		if(!destination_found)
 			dat += "<B>Shuttle Locked</B><br>"
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
-
-
-/obj/machinery/computer/shuttle/shuttle_control/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship1

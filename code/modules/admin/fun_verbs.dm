@@ -1072,3 +1072,16 @@
 
 	log_admin("[key_name(usr)] set a tip of the round: [tip]")
 	message_admins("[ADMIN_TPMONTY(usr)] set a tip of the round.")
+
+
+/datum/admins/proc/ghost_interact()
+	set category = "Fun"
+	set name = "Ghost Interact"
+
+	if(!check_rights(R_FUN))
+		return
+
+	usr.client.holder.ghost_interact = !usr.client.holder.ghost_interact
+
+	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")

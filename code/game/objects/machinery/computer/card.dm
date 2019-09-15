@@ -6,6 +6,7 @@
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/circuitboard/computer/card"
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
 	var/mode = 0.0
@@ -78,23 +79,8 @@
 	SSnano.update_uis(src)
 	attack_hand(user)
 
-/obj/machinery/computer/card/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/computer/card/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/card/attack_hand(mob/living/user)
-	. = ..()
-	if(.) 
-		return
-	if(machine_stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
 
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
-
-	user.set_interaction(src)
-
 	var/data[0]
 	data["src"] = "\ref[src]"
 	data["ship_name"] = SSmapping.configs[SHIP_MAP].map_name

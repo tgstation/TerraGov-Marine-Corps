@@ -29,7 +29,7 @@
 	if(active)
 		return
 
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 

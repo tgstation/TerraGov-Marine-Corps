@@ -73,7 +73,7 @@ nanoui is used to open and update nano browser uis
 *
 * @return /nanoui new nanoui object
 */
-/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null, datum/nanoui/master_ui = null, datum/topic_state/state = GLOB.default_state)
+/datum/nanoui/New(nuser, nsrc_object, nui_key, ntemplate_filename, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null, datum/nanoui/master_ui = null)
 	user = nuser
 	src_object = nsrc_object
 	ui_key = nui_key
@@ -82,7 +82,6 @@ nanoui is used to open and update nano browser uis
 	src.master_ui = master_ui
 	if(master_ui)
 		master_ui.children += src
-	src.state = state
 
 	// add the passed template filename as the "main" template, this is required
 	add_template("main", ntemplate_filename)
@@ -104,7 +103,6 @@ nanoui is used to open and update nano browser uis
 /datum/nanoui/Destroy()
 	user = null
 	src_object = null
-	state = null
 	return ..()
 
 /**
@@ -152,11 +150,10 @@ nanoui is used to open and update nano browser uis
 * @return 1 if closed, null otherwise.
 */
 /datum/nanoui/proc/update_status(push_update = FALSE)
-	var/atom/host = src_object?.nano_host()
-	if(!host)
+	if(QDELETED(src_object))
 		close()
 		return TRUE
-	var/new_status = host.CanUseTopic(user, state)
+	var/new_status = user.can_use_nano(src_object)
 	if(master_ui)
 		new_status = min(new_status, master_ui.status)
 
@@ -457,7 +454,6 @@ nanoui is used to open and update nano browser uis
 	for(var/datum/nanoui/child in children)
 		child.close()
 	children.Cut()
-	state = null
 	master_ui = null
 	qdel(src)
 
@@ -517,7 +513,7 @@ nanoui is used to open and update nano browser uis
 		set_show_map(text2num(href_list["showMap"]))
 		map_update = TRUE
 
-	if((src_object && src_object.Topic(href, href_list, state)) || map_update)
+	if((src_object && src_object.Topic(href, href_list)) || map_update)
 		SSnano.update_uis(src_object) // update all UIs attached to src_object
 
 /**
@@ -550,4 +546,4 @@ nanoui is used to open and update nano browser uis
 * @return nothing
 */
 /datum/nanoui/proc/update(force_open = FALSE)
-	src_object.ui_interact(user, ui_key, src, force_open, master_ui, state)
+	src_object.ui_interact(user, ui_key, src, force_open, master_ui)

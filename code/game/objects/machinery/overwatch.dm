@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
+	interaction_flags = INTERACT_MACHINE_DEFAULT
 
 	var/state = OW_MAIN
 	var/x_offset_s = 0
@@ -61,16 +62,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
+
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
-
-
-/obj/machinery/computer/camera_advanced/overwatch/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/living/carbon/monkey/user) //why monkey why
-	return attack_hand(user)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
@@ -80,21 +74,22 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon_state = "generic_camera"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/living/user)
+/obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!allowed(user))
+		return FALSE
+	
+	return TRUE
+
+
+/obj/machinery/computer/camera_advanced/overwatch/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You don't have access.</span>")
-		return
-	interact(user)
 
-
-/obj/machinery/computer/camera_advanced/overwatch/interact(mob/living/user)
-	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
-		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
-		return
-	user.set_interaction(src)
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
@@ -207,10 +202,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
 
-	var/datum/browser/popup = new(user, "squad_overwatch", "<div align='center'>[current_squad.name] Overwatch Console</div>", 550, 550)
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "squad_overwatch")
+	popup.open()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
@@ -220,9 +214,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(!href_list["operation"])
 		return
-
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
-		usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		// main interface
@@ -260,18 +251,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				var/obj/item/card/id/ID = H.get_idcard()
 				visible_message("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
 		if("logout")
-			if(current_squad)
-				current_squad.overwatch_officer = null //Reset the squad's officer.
-			var/mob/living/carbon/human/H = operator
-			var/obj/item/card/id/ID = H.get_idcard()
-			current_squad?.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			if(!current_squad)
+				return
+			var/obj/item/card/id/ID = operator.get_idcard()
+			current_squad.overwatch_officer = null //Reset the squad's officer.
+			current_squad.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
 			visible_message("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
 			state = OW_MAIN
 		if("logout_main")
-			var/mob/living/carbon/human/H = operator
-			var/obj/item/card/id/ID = H.get_idcard()
+			var/obj/item/card/id/ID = operator.get_idcard()
 			visible_message("<span class='boldnotice'>Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
@@ -410,7 +400,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	updateUsrDialog()
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
-	user.set_interaction(src)
+	. = ..()
+	if(.)
+		return
+
 	var/dat
 	if(!operator)
 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
@@ -472,10 +465,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
-	var/datum/browser/popup = new(user, "main_overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "main_overwatch")
+	popup.open()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)

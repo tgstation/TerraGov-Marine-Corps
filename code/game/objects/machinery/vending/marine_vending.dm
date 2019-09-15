@@ -52,8 +52,8 @@
 		products2 = list(/obj/item/clothing/mask/rebreather/scarf = 10, /obj/item/clothing/mask/rebreather = 10)
 	build_inventory(products2)
 
-/obj/machinery/vending/marine/New()
-	..()
+/obj/machinery/vending/marine/Initialize()
+	. = ..()
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
@@ -144,8 +144,8 @@
 /obj/machinery/vending/marine/cargo_guns/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_guns/New()
-	..()
+/obj/machinery/vending/marine/cargo_guns/Initialize()
+	. = ..()
 	GLOB.cargo_guns_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -189,11 +189,11 @@
 					/obj/item/ammo_magazine/rifle/extended = 5,
 					/obj/item/cell/lasgun/M43 = 15,
 					/obj/item/cell/lasgun/M43/highcap = 5,
-					/obj/item/ammo_magazine/shotgunbox = 3,
+					/obj/item/shotgunbox = 3,
 					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/ammo_magazine/shotgunbox/buckshot = 3,
+					/obj/item/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
+					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/smartgun_powerpack = 2
 					)
@@ -211,8 +211,8 @@
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_ammo/New()
-	..()
+/obj/machinery/vending/marine/cargo_ammo/Initialize()
+	. = ..()
 	GLOB.cargo_ammo_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -248,7 +248,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/New()
+/obj/machinery/vending/lasgun/Initialize()
 	. = ..()
 	update_icon()
 
@@ -511,14 +511,6 @@
 			)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_special/New()
-
-	if(shared_products.len == 0)
-		var/i
-
-		for(i in shared)
-			shared_products.Add(new /datum/data/vending_product())
-	..()
 
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper ColMarTech Engineer System Vendor"
@@ -544,14 +536,6 @@
 				)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_engi/New()
-
-	if(shared_products.len == 0)
-		var/i
-
-		for(i in shared)
-			shared_products.Add(new /datum/data/vending_product())
-	..()
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper ColMarTech Smartgun Vendor"
@@ -662,8 +646,8 @@
 						/obj/item/attachable/attached_gun/grenade = 5
 					)
 
-/obj/machinery/vending/attachments/New()
-	..()
+/obj/machinery/vending/attachments/Initialize()
+	. = ..()
 	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
@@ -737,8 +721,8 @@
 					/obj/item/clothing/gloves/white = 50,
 					)
 
-/obj/machinery/vending/uniform_supply/New()
-	..()
+/obj/machinery/vending/uniform_supply/Initialize()
+	. = ..()
 	var/products2[]
 	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
 		switch(squad_tag)

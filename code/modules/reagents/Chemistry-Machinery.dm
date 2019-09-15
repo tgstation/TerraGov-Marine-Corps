@@ -8,6 +8,7 @@
 	idle_power_usage = 40
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -75,11 +76,6 @@
 * @return nothing
 */
 /obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",datum/nanoui/ui = null, force_open = 0)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	if(user.stat || user.restrained())
-		return
-
 	// this is the data which will be sent to the ui
 	var/data[0]
 	data["amount"] = amount
@@ -124,8 +120,6 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return FALSE // don't update UIs attached to this object
 
 	if(href_list["amount"])
 		amount = round(text2num(href_list["amount"]), 5) // round to nearest 5
@@ -154,8 +148,8 @@
 			B.loc = loc
 			beaker = null
 
-	attack_hand(usr)
-	return TRUE // update UIs attached to this object
+	updateUsrDialog()
+
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -175,22 +169,6 @@
 	else if(istype(I, /obj/item/reagent_container/glass))
 		to_chat(user, "Take the lid off [I] first.")
 
-/obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/chem_dispenser/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/chem_dispenser/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(machine_stat & BROKEN)
-		return
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
-		return
-	ui_interact(user)
 
 /obj/machinery/chem_dispenser/soda
 	icon_state = "soda_dispenser"
@@ -262,8 +240,8 @@
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
 
-/obj/machinery/chem_master/New()
-	..()
+/obj/machinery/chem_master/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
 	R.my_atom = src
@@ -316,27 +294,15 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
 	if(!ishuman(usr))
 		return
+
 	var/mob/living/carbon/human/user = usr
-	if(user.stat || user.restrained())
-		return
-	if(!in_range(src, user))
-		return
-
-	user.set_interaction(src)
-
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
 			loaded_pill_bottle.loc = loc
 			loaded_pill_bottle = null
-	else if(href_list["close"])
-		user << browse(null, "window=chem_master")
-		user.unset_interaction()
-		return
 
 	if(beaker)
 		if (href_list["analyze"])
@@ -547,17 +513,14 @@
 			bottlesprite = href_list["bottle_sprite"]
 		else if(href_list["autoinjector_sprite"])
 			autoinjectorsprite = href_list["autoinjector_sprite"]
-	//src.updateUsrDialog()
-	attack_hand(user)
+	
+	updateUsrDialog()
 
 
-/obj/machinery/chem_master/attack_hand(mob/living/user)
+/obj/machinery/chem_master/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & BROKEN)
-		return
-	user.set_interaction(src)
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
@@ -576,7 +539,6 @@
 			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
-		dat += "<A href='?src=\ref[src];close=1'>Close</A>"
 	else
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
 		if(loaded_pill_bottle)
@@ -619,8 +581,7 @@
 
 	var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Chemmaster menu</div>", 575, 450)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "chem_master")
+	popup.open()
 
 
 /obj/machinery/chem_master/condimaster
@@ -760,20 +721,11 @@
 	updateUsrDialog()
 	return FALSE
 
-/obj/machinery/reagentgrinder/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
-/obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
-	return FALSE
-
-/obj/machinery/reagentgrinder/attack_hand(mob/living/user)
+/obj/machinery/reagentgrinder/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
-	interact(user)
-
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
 	var/is_chamber_empty = 0
 	var/is_beaker_ready = 0
 	var/processing_chamber = ""
@@ -817,15 +769,13 @@
 
 	var/datum/browser/popup = new(user, "reagentgrinder", "<div align='center'>All-In-One Grinder</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "reagentgrinder")
+	popup.open()
 
 
 /obj/machinery/reagentgrinder/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
 	switch(href_list["action"])
 		if ("grind")
 			grind()
@@ -835,8 +785,7 @@
 			eject()
 		if ("detach")
 			detach()
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
 
 /obj/machinery/reagentgrinder/proc/detach()
 
