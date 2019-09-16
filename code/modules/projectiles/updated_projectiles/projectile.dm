@@ -723,7 +723,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
-	to_chat(world, "Initial damage: [damage]")
 
 	if(check_proj_block(proj, damage * 0.65))
 		proj.ammo.on_shield_block(src)
@@ -743,10 +742,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/living_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_living_armor(proj.armor_type, proj.def_zone, proj.dir)
 	if(living_armor)
-		to_chat(world, "Initial armor: [living_armor]")
 		var/penetration = proj.ammo.penetration
 		if(penetration)
-			to_chat(world, "Initial penetration: [penetration]")
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
@@ -776,7 +773,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
 	if(damage)
-		to_chat(world, "Final damage: [damage]")
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
 		if(shrapnel_roll)
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
