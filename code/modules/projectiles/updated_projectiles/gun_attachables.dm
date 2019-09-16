@@ -662,7 +662,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.5 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 
 
@@ -673,7 +672,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.4 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 
 
