@@ -39,7 +39,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
+	armor = list("melee" = 80, "bullet" = 40, "laser" = 40, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
 
 	// *** Crusher Abilities *** //
 
@@ -77,7 +77,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 5, "acid" = 90)
+	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 5, "acid" = 90)
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -108,7 +108,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 10, "acid" = 95)
+	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 10, "acid" = 95)
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -136,5 +136,5 @@
 	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
-	armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)
+	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)
 	

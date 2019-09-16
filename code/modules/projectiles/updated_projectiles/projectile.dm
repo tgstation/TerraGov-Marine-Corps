@@ -9,8 +9,9 @@
 #define BULLET_FEEDBACK_FIRE (1<<2)
 #define BULLET_FEEDBACK_SCREAM (1<<3)
 #define BULLET_FEEDBACK_SHRAPNEL (1<<4)
+#define BULLET_FEEDBACK_IMMUNE (1<<5)
 
-#define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor)+0.1)) //Armor offers diminishing returns.
+#define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -312,7 +313,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			y_pixel_dist_travelled += 32 * y_offset
 			continue //Pixel movement only, didn't manage to change turf.
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
-		
+		if(dir != movement_dir)
+			setDir(movement_dir)
+
 		if(ISDIAGONALDIR(movement_dir)) //Diagonal case. We need to check the turf to cross to get there.
 			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do it will cause an infinite processing loop due to division by zero, so better safe than sorry.
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
@@ -720,6 +723,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+	to_chat(world, "Initial damage: [damage]")
 
 	if(check_proj_block(proj, damage * 0.65))
 		proj.ammo.on_shield_block(src)
@@ -739,22 +743,30 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/living_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_living_armor(proj.armor_type, proj.def_zone, proj.dir)
 	if(living_armor)
+		to_chat(world, "Initial armor: [living_armor]")
 		var/penetration = proj.ammo.penetration
 		if(penetration)
+			to_chat(world, "Initial penetration: [penetration]")
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 			living_armor -= penetration
-		if(living_armor <= 0) //Armor fully penetrated.
-			feedback_flags |= BULLET_FEEDBACK_PEN
-		else
-			damage = max(0, damage - (living_armor * 0.1)) //Hard armor, damage soak. 10% of the armor's value.
-			if(!damage) //Damage fully soaked.
+		switch(living_armor)
+			if(-INFINITY to 0) //Armor fully penetrated.
+				feedback_flags |= BULLET_FEEDBACK_PEN
+			if(100 to INFINITY) //Damage invulnerability.
+				damage = 0
 				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_SOAK
+				feedback_flags |= BULLET_FEEDBACK_IMMUNE
 			else
-				damage *= DAMAGE_REDUCTION_COEFFICIENT(living_armor) //Soft armor/padding, damage reduction.
+				damage = max(0, damage - (living_armor * 0.1)) //Hard armor, damage soak. 10% of the armor's value.
+				if(!damage) //Damage fully soaked.
+					bullet_soak_effect(proj)
+					feedback_flags |= BULLET_FEEDBACK_SOAK
+				else
+					living_armor *= 0.9 //Remove the 10% that was used to soak damage.
+					damage -= damage * living_armor * 0.01 //Soft armor/padding, damage reduction.
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		living_armor = get_living_armor("fire", proj.def_zone) //This value could potentially be negative, indicating fire weakness.
@@ -764,6 +776,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
 	if(damage)
+		to_chat(world, "Final damage: [damage]")
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
 		if(shrapnel_roll)
 			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
@@ -975,7 +988,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		victim_feedback = "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
 
-	if(feedback_flags & BULLET_FEEDBACK_SOAK)
+	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
+		victim_feedback += " Your armor deflects the impact!"
+	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
 		victim_feedback += " Your armor absorbs the impact!"
 	else 
 		if(feedback_flags & BULLET_FEEDBACK_PEN)
@@ -1013,9 +1028,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		victim_feedback = "We are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
 
-	if(feedback_flags & BULLET_FEEDBACK_SOAK)
+	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += " Our exoskeleton deflects it!"
 		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton deflects it!"
+	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
+		victim_feedback += " Our exoskeleton absorbs it!"
+		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton absorbs it!"
 	else if(feedback_flags & BULLET_FEEDBACK_PEN)
 		victim_feedback += " Our exoskeleton was penetrated!"
 
@@ -1035,6 +1053,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 #undef BULLET_FEEDBACK_FIRE
 #undef BULLET_FEEDBACK_SCREAM
 #undef BULLET_FEEDBACK_SHRAPNEL
+#undef BULLET_FEEDBACK_IMMUNE
 
 #undef BULLET_MESSAGE_NO_SHOOTER
 #undef BULLET_MESSAGE_HUMAN_SHOOTER
