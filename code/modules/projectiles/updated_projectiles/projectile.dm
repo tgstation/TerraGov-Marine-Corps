@@ -743,7 +743,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/living_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_living_armor(proj.armor_type, proj.def_zone, proj.dir)
 	if(living_armor)
 		var/penetration = proj.ammo.penetration
-		if(penetration)
+		if(penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
