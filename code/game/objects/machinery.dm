@@ -146,14 +146,14 @@
 
 /obj/machinery/can_interact(mob/user)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
 
 	if(!is_operational())
-		return TRUE
+		return FALSE
 		
 	if(usr.incapacitated() || usr.lying)
-		return TRUE
+		return FALSE
 
 	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
 		return FALSE
