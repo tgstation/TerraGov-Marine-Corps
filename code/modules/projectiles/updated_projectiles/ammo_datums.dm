@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 25
 	accuracy = 10
-	penetration= 30
+	penetration = 30
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -10
 	accuracy_var_low = 7
 	damage = 40
-	penetration= 5
+	penetration = 5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/incendiary
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	debilitate = list(0,0,0,0,0,0,0,2)
 	accuracy = 15
 	damage = 35
-	penetration= 10
+	penetration = 10
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/mankey
@@ -351,7 +351,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy revolver bullet"
 	hud_state = "revolver_heavy"
 	damage = 50
-	penetration= 5
+	penetration = 5
 	accuracy = -15
 
 /datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -364,7 +364,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 55
 	damage_var_low = 3
 	damage_var_high = 7
-	penetration= 10
+	penetration = 10
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
 	staggerstun(M, P, 5, 0, 1, 2, 2)
@@ -391,13 +391,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
 	damage = 20
-	penetration= 40 //40 AP
+	penetration = 40
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
 	hud_state = "smg_light"
 	damage = 30
-	penetration= -5
+	penetration = 5
 	accuracy = -10
 
 /*
@@ -542,7 +542,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -3
 	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration = 30
+	penetration = 50
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -554,7 +554,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_var_low = -3
 	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration = 30
+	penetration = 50
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -567,7 +567,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 90
+	damage = 70
 	damage_var_low = -7
 	damage_var_high = 7
 	damage_falloff = 5
