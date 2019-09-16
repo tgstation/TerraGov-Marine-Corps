@@ -8,8 +8,7 @@
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
@@ -84,7 +83,6 @@
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
 	max_shells = 10 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
@@ -224,7 +222,6 @@
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
 	max_shells = 12 //codex
-	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/guns/fire/c99.ogg'
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
@@ -292,7 +289,6 @@
 	item_state = "holdout"
 	caliber = ".22 LR" //codex
 	max_shells = 5 //codex
-	origin_tech = "combat=2;materials=1"
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
 	w_class = WEIGHT_CLASS_TINY
@@ -344,7 +340,6 @@
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
@@ -382,7 +377,6 @@
 	item_state = "vp78"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
-	origin_tech = "combat=4;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/pistol_large.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
@@ -413,7 +407,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/auto9.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
@@ -434,7 +427,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "c70"
 	caliber = ".70 Mankey" //codex
 	max_shells = 300 //codex
-	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	current_mag = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/guns/fire/chimp70.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
@@ -456,8 +448,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25

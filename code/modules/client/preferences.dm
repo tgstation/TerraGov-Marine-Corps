@@ -120,6 +120,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
+	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	

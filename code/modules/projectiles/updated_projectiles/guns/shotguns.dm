@@ -8,7 +8,6 @@ can cause issues with ammo types getting mixed up during the burst.
 */
 
 /obj/item/weapon/gun/shotgun
-	origin_tech = "combat=4;materials=3"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 14.0
 	caliber = "12 gauge shotgun shells" //codex
@@ -188,7 +187,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	max_shells = 5 //codex
-	origin_tech = "combat=4;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	attachable_allowed = list(
@@ -221,7 +219,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
@@ -260,7 +257,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	max_shells = 2 //codex
-	origin_tech = "combat=4;materials=2"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
 	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'

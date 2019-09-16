@@ -1,25 +1,23 @@
 /obj
-	//Used to store information about the contents of the object.
-	var/list/matter
-
-	var/datum/armor/armor
-	var/obj_integrity	//defaults to max_integrity
-	var/max_integrity = 500
-	var/integrity_failure = 0 //0 if we have no special broken behavior
-
-	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
-	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
-	var/crit_fail = 0
 	animate_movement = 2
 	speech_span = SPAN_ROBOT
 	interaction_flags = INTERACT_OBJ_DEFAULT
+
+	var/list/materials
+
+	var/datum/armor/armor
+
+	var/obj_integrity	//defaults to max_integrity
+	var/max_integrity = 500
+	var/integrity_failure = 0 //0 if we have no special broken behavior
+	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
+	var/crit_fail = 0
+
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
-
-	var/explosion_resistance = 0
 
 	var/resistance_flags = NONE
 	var/obj_flags = NONE
