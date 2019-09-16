@@ -44,13 +44,15 @@
 
 
 /mob/living/embed_item(obj/item/embedding, target_zone, silent)
-	embedded_objects += list(embedding = loc)
+	embedded_objects += embedding
+	embedded_objects[embedding] = loc
 
 
 /mob/living/carbon/human/embed_item(obj/item/embedding, target_zone, silent)
 	var/datum/limb/affected_limb = (istype(target_zone, /datum/limb) ? target_zone : get_limb(check_zone(target_zone)))
 	affected_limb.limb_embed(embedding, silent)
-	embedded_objects += list(embedding = affected_limb)
+	embedded_objects += embedding
+	embedded_objects[embedding] = affected_limb
 
 
 /datum/limb/proc/limb_embed(obj/item/embedding, silent)

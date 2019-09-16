@@ -93,11 +93,9 @@
 
 			if(!W || !src) return
 
-			if(W.sharp) //Projectile is suitable for pinning.
+			if(W.sharp && prob(W.embedding.embed_chance)) //Projectile is suitable for pinning.
 				//Handles embedding for non-humans and simple_animals.
-				O.loc = src
-				embedded += O
-				verbs += /mob/living/proc/yank_out_object
+				W.embed_into(src)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(turf/T, speed)

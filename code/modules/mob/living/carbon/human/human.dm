@@ -855,18 +855,6 @@
 		L.damage = L.min_bruised_damage
 
 
-
-/mob/living/carbon/human/get_visible_implants(class = 0)
-
-	var/list/visible_implants = list()
-	for(var/datum/limb/organ in limbs)
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/shard/shrapnel))
-				visible_implants += O
-
-	return(visible_implants)
-
-
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
