@@ -193,41 +193,6 @@
 	if(.)
 		return
 
-	if (in_range(src, usr) && isturf(loc) && ishuman(usr))
-		usr.set_interaction(src)
-		if (href_list["vend"])
-
-			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
-
-			var/idx=text2num(href_list["vend"])
-
-			var/list/L = listed_products[idx]
-			var/mob/living/carbon/human/H = usr
-			var/cost = L[2]
-
-			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I)) //not wearing an ID
-				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
-
-			if(I.registered_name != H.real_name)
-				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
-
-			if(vendor_role && I.rank != vendor_role)
-				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
-				if(icon_deny)
-					flick(icon_deny, src)
-				return
-
 	if(href_list["vend"])
 		if(!allowed(usr))
 			to_chat(usr, "<span class='warning'>Access denied.</span>")
@@ -261,7 +226,7 @@
 					to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
 					return
 				else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-					to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
+					to_chat(usr, "<span class='warning'>You don't have the required skills to use specialist sets.</span>")
 					return
 				var/p_name = L[1]
 				if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
@@ -272,75 +237,55 @@
 					to_chat(usr, "<span class='warning'>That set is already taken</span>")
 					return
 
-			var/bitf = L[4]
-			if(bitf)
-				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
-					if(!H.mind || H.mind.assigned_role != SQUAD_SPECIALIST)
-						to_chat(H, "<span class='warning'>Only specialists can take specialist sets.</span>")
-						return
-					else if(!H.mind.cm_skills || H.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-						to_chat(H, "<span class='warning'>You don't have the required skills to use specialist sets.</span>")
-						return
-					var/p_name = L[1]
-					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
-						p_name = "Scout Set"
-					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
-						p_name = "Heavy Armor Set"
-					if(!GLOB.available_specialist_sets.Find(p_name))
-						to_chat(H, "<span class='warning'>That set is already taken</span>")
-						return
-
-				if(I.marine_buy_flags & bitf)
-					if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
+			if(I.marine_buy_flags & bitf)
+				if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
+					if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
+						I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
+					else
+						I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
+				else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
+					if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
+						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
 					else
 						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
 				else
-					to_chat(H, "<span class='warning'>You can't buy things from this category anymore.</span>")
-					return
+					I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
+			else
+				to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
+				return
 
-			var/type_p = L[3]
+		var/type_p = L[3]
 
-			var/item = new type_p(loc)
-			if(isitem(item))
-				var/obj/item/O = item
-				usr.put_in_hands(O)
+		var/item = new type_p(loc)
+		if(isitem(item))
+			var/obj/item/O = item
+			usr.put_in_hands(O)
 
-			if(icon_vend)
-				flick(icon_vend, src)
+		if(icon_vend)
+			flick(icon_vend, src)
 
-			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
-				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
-				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
-				if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-					new /obj/item/clothing/mask/rebreather/scarf(loc)
+		if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
+			var/mob/living/carbon/human/H = usr
+			new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
+			new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
+			if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+				new /obj/item/clothing/mask/rebreather/scarf(loc)
 
-			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
-				if(vendor_role == SQUAD_SPECIALIST && H.mind && H.mind.assigned_role == SQUAD_SPECIALIST)
-					var/p_name = L[1]
-					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
-						p_name = "Scout Set"
-					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
-						p_name = "Heavy Armor Set"
-					if(p_name)
-						H.specset = p_name
-						I.assignment = p_name
-					else
-						CRASH("Selected specialist armour does not have a name set")
-						return
-					H.update_action_buttons()
-					GLOB.available_specialist_sets -= p_name
-
-			if(use_points)
-				I.marine_points -= cost
+		if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			var/p_name = L[1]
+			if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+				p_name = "Scout Set"
+			else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+				p_name = "Heavy Armor Set"
+			if(p_name)
+				H.specset = p_name
+				I.assignment = p_name
+			else
+				CRASH("Selected specialist armour does not have a name set")
+				return
+			H.update_action_buttons()
+			GLOB.available_specialist_sets -= p_name
 
 		if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
 			var/mob/living/carbon/human/H = usr
@@ -955,7 +900,7 @@
 			list("Plasma cutter", 20, /obj/item/tool/pickaxe/plasmacutter, null, "standard"),
 			list("UA-580 point defense sentry kit", 26, /obj/item/storage/box/minisentry, null, "standard"),
 			list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "standard"),
-			list("Detonation pack", 5, /obj/item/radio/detpack, null, "standard"),
+			list("Detonation pack", 5, /obj/item/detpack, null, "standard"),
 			list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "standard"),
 			list("Range Finder", 10, /obj/item/binoculars/tactical/range, null, "standard"),
 			list("High capacity powercell", 1, /obj/item/cell/high, null, "standard"),
