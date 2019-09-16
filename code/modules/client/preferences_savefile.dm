@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	37
+#define SAVEFILE_VERSION_MAX	38
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -88,6 +88,9 @@
 
 	if(savefile_version < 37)
 		WRITE_FILE(S["ai_name"], "ARES v3.2")
+
+	if(savefile_version < 38)
+		WRITE_FILE(S["menuoptions"], list())
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE

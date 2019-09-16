@@ -1,5 +1,4 @@
 /obj/item/weapon/gun/smg
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
@@ -89,7 +88,6 @@
 	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
-	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -112,7 +110,6 @@
 	item_state = "mp5"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
@@ -149,7 +146,6 @@
 	item_state = "mp7"
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
@@ -182,7 +178,6 @@
 	item_state = "skorpion"
 	caliber = ".32 ACP" //codex
 	max_shells = 20 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
@@ -213,7 +208,6 @@
 	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
-	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
@@ -249,7 +243,6 @@
 	item_state = "uzi"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
@@ -277,7 +270,6 @@
 	item_state = "FP9000"
 	caliber = "5.7x28mm" //codex
 	max_shells = 50 //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
 	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'

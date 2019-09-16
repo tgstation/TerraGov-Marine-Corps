@@ -3,7 +3,6 @@
 /obj/item/weapon/gun/rifle
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
-	origin_tech = "combat=4;materials=3"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -97,7 +96,6 @@
 	desc = "A refined and redesigned version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
 	icon_state = "m41a2"
 	item_state = "m41a2"
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
@@ -146,7 +144,6 @@
 	item_state = "ak47"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
-	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
@@ -192,7 +189,6 @@
 	item_state = "m16"
 	caliber = "5.56x45mm" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
@@ -241,7 +237,6 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 300 //codex
 	wield_delay = 0.6 SECONDS + 0.2 SECONDS
-	origin_tech = "combat=5;materials=4"
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -289,7 +284,6 @@
 	item_state = "type71"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
-	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
 	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'

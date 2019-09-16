@@ -33,7 +33,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
 	flags_atom = CONDUCT
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 1000)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
@@ -305,7 +305,6 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
-	matter = list("metal" = 1000)
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.05
 	size_mod = 1
@@ -441,7 +440,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "flashlight_a"
 	light_mod = 7
 	slot = "rail"
-	matter = list("metal" = 50,"glass" = 20)
+	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
@@ -605,7 +604,6 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.4 SECONDS
-	matter = null
 	icon_state = "stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
@@ -638,7 +636,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 	accuracy_mod = 0.05
 	recoil_mod = -3
@@ -652,7 +649,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 	recoil_mod = -3
 	scatter_mod = -20
@@ -778,7 +774,6 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "44stock"
 	pixel_shift_x = 35
 	pixel_shift_y = 19
-	matter = null
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20

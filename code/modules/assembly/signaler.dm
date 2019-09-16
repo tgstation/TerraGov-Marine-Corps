@@ -3,7 +3,7 @@
 	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter = list("metal" = 400, "glass" = 120)
+	materials = list(/datum/material/metal = 400, /datum/material/glass = 120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
 
