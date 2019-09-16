@@ -170,15 +170,16 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/New()
+/obj/machinery/light/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
-/obj/machinery/light/small/built/New()
+
+/obj/machinery/light/small/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
@@ -394,19 +395,8 @@
 // ai attack - make lights flicker, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
+	flicker(1)
 
-/obj/machinery/light/attack_animal(mob/living/M)
-	if(M.melee_damage_upper == 0)
-		return
-	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
-		return
-	else if (status == LIGHT_OK||status == LIGHT_BURNED)
-		visible_message("<span class='warning'>[M] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
-		broken()
-	return
 
 //Xenos smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
@@ -558,7 +548,6 @@
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	matter = list("metal" = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
 
@@ -572,7 +561,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -586,7 +575,7 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
@@ -595,7 +584,6 @@
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list("glass" = 100)
 	brightness = 5
 
 // update the icon state and description of the light

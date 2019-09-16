@@ -30,6 +30,8 @@
 	var/list/cooldowns = list()
 
 	//Movement
+	var/list/movespeed_modification // List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm
+	var/cached_multiplicative_slowdown // The calculated mob speed slowdown based on the modifiers list.
 	var/next_click	= 0
 	var/next_move = 0
 	var/next_move_slowdown = 0	// Amount added during the next movement_delay(), then is reset.
@@ -77,6 +79,7 @@
 	var/obj/item/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	var/turf/listed_turf	//the current turf being examined in the stat panel
+	var/dextrous = FALSE //Has enough dexterity to interact with advanced objects?
 
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default

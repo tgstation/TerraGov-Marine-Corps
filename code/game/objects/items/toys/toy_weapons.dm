@@ -17,8 +17,6 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	matter = list("glass" = 10,"metal" = 10)
-
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	var/bullets = 7.0
 
@@ -64,8 +62,6 @@
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
 	icon_state = "cap_ammo"
 	w_class = WEIGHT_CLASS_TINY
-
-	matter = list("metal" = 10,"glass" = 10)
 
 	var/amount_left = 7
 
@@ -196,7 +192,6 @@
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
@@ -227,7 +222,6 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "katana"
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5

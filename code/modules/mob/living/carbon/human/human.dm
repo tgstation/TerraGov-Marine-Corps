@@ -231,7 +231,6 @@
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
 	<BR>
 	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
@@ -356,12 +355,6 @@
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
-
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-
 
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
@@ -851,41 +844,6 @@
 	playsound(loc, song, 25, 1)
 
 
-/mob/living/carbon/human/revive()
-	for (var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = 0
-	name = get_visible_name()
-
-	if(species && !(species.species_flags & NO_BLOOD))
-		restore_blood()
-
-	//try to find the brain player in the decapitated head and put them back in control of the human
-	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.head_list)
-			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
-					if(H.brainmob.mind)
-						H.brainmob.mind.transfer_to(src)
-						qdel(H)
-
-	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
-
-	undefibbable = FALSE
-	
-	return ..()
-
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 	return L && L.is_bruised()
@@ -1004,6 +962,8 @@
 		oldspecies.post_species_loss(src)
 
 	species.create_organs(src)
+
+	dextrous = species.has_fine_manipulation
 
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
@@ -1338,19 +1298,6 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
-	. = ..()
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!Adjacent(AM) && (AM.loc != src))
-		if(!proximity)
-			return TRUE
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE
-
-
 /mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
@@ -1381,3 +1328,9 @@
 	else
 		language_holder = new initial_language_holder(src)
 		return language_holder
+
+
+/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(buckled)
+		return
+	return ..()

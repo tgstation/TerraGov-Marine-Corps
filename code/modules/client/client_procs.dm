@@ -98,6 +98,10 @@
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
+		if("vote")
+			return SSvote.Topic(href, href_list)
+		if("codex")
+			return SScodex.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
@@ -302,6 +306,7 @@
 //  DISCONNECT  //
 //////////////////
 /client/Del()
+	SEND_SIGNAL(src, COMSIG_CLIENT_DISCONNECTED)
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		if(check_rights(R_ADMIN, FALSE))

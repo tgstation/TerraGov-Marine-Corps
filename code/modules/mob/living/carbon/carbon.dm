@@ -41,18 +41,6 @@
 	return ..()
 
 
-/mob/living/carbon/revive()
-	if (handcuffed && !initial(handcuffed))
-		dropItemToGround(handcuffed)
-	update_handcuffed(initial(handcuffed))
-
-	if (legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
-
-	return ..()
-
-
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/user)
 	user.changeNext_move(CLICK_CD_MELEE) //Adds some lag to the 'attack'
 
@@ -99,10 +87,12 @@
 		if(offhand && (offhand.flags_item & WIELDED))
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
-		else wielded_item.unwield(src) //Get rid of it.
+		else 
+			wielded_item.unwield(src) //Get rid of it.
 	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
 		wielded_item.zoom(src)
 	hand = !hand
+	SEND_SIGNAL(src, COMSIG_CARBON_SWAPPED_HANDS)
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		hud_used.l_hand_hud_object.update_icon(hand)
 		hud_used.r_hand_hud_object.update_icon(!hand)
@@ -267,11 +257,9 @@
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 
-/mob/living/carbon/show_inv(mob/living/carbon/user as mob)
+/mob/living/carbon/show_inv(mob/living/carbon/user)
 	user.set_interaction(src)
 	var/dat = {"
-	<B><HR><FONT size=3>[name]</FONT></B>
-	<BR><HR>
 	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
@@ -279,11 +267,11 @@
 	<BR>[(handcuffed ? "<A href='?src=\ref[src];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : "<A href='?src=\ref[src];item=handcuffs'>Not Handcuffed</A>")]
 	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=325x500")
-	onclose(user, "mob[name]")
-	return
+	
+	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
+	popup.set_content(dat)
+	popup.open()
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
@@ -318,8 +306,8 @@
 		sleeping = 20 //Short nap
 
 
-/mob/living/carbon/Bump(atom/movable/AM, yes)
-	if(!yes || now_pushing)
+/mob/living/carbon/Bump(atom/movable/AM)
+	if(now_pushing)
 		return
 	. = ..()
 

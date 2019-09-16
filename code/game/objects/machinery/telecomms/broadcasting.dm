@@ -145,7 +145,7 @@
 		return
 	var/compression = data["compression"]
 	if(compression > 0)
-		message = Gibberish(message, compression + 40)
+		message = gibberish(message, compression + 40)
 
 	// Assemble the list of radios
 	var/list/radios = list()

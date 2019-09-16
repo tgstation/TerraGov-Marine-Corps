@@ -41,13 +41,10 @@ var opts = {
 	'highlightTerms': [],
 	'highlightLimit': 5,
 	'highlightColor': '#FFFF00', //The color of the highlighted message
-	'pingDisabled': false, //Has the user disabled the ping counter
 
 	//Ping display
-	'lastPang': 0, //Timestamp of the last response from the server.
-	'pangLimit': 35000,
-	'pingTime': 0, //Timestamp of when ping sent
-	'pongTime': 0, //Timestamp of when ping received
+	'lastPinged': 0, //Timestamp of the last response from the server.
+	'pingedLimit': 35000,
 	'noResponse': false, //Tracks the state of the previous ping request
 	'noResponseCount': 0, //How many failed pings?
 
@@ -251,7 +248,7 @@ function output(message, flag) {
 	}
 
 	if (flag !== 'internal')
-		opts.lastPang = Date.now();
+		opts.lastPinged = Date.now();
 
 	message = byondDecode(message).trim();
 
@@ -483,29 +480,15 @@ function handleClientData(ckey, ip, compid) {
 //Server calls this on ehjax response
 //Or, y'know, whenever really
 function ehjaxCallback(data) {
-	opts.lastPang = Date.now();
-	if (data == 'softPang') {
+	opts.lastPinged = Date.now();
+	if (data == 'ping') {
 		return;
-	} else if (data == 'pang') {
-		opts.pingCounter = 0; //reset
-		opts.pingTime = Date.now();
-		runByond('?_src_=chat&proc=ping');
-
-	} else if (data == 'pong') {
-		if (opts.pingDisabled) {return;}
-		opts.pongTime = Date.now();
-		var pingDuration = Math.ceil((opts.pongTime - opts.pingTime) / 2);
-		$('#pingMs').text(pingDuration+'ms');
-		pingDuration = Math.min(pingDuration, 255);
-		var red = pingDuration;
-		var green = 255 - pingDuration;
-		var blue = 0;
-		var hex = rgbToHex(red, green, blue);
-		$('#pingDot').css('color', '#'+hex);
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
+	} else if (data == 'shutdown') {
+		internalOutput('<div class="connectionClosed internal">The connection has been closed because the server is shutting down. See you next time!</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
 	} else {
@@ -685,7 +668,7 @@ $(function() {
 
 	//Hey look it's a controller loop!
 	setInterval(function() {
-		if (opts.lastPang + opts.pangLimit < Date.now() && !opts.restarting) { //Every pingLimit
+		if (opts.lastPinged + opts.pingedLimit < Date.now() && !opts.restarting) { //Every pingLimit
 				if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
 					opts.noResponse = true;
 					opts.noResponseCount++;
@@ -704,29 +687,21 @@ $(function() {
 	*
 	******************************************/
 	var savedConfig = {
-		'sfontSize': getCookie('fontsize'),
-		'slineHeight': getCookie('lineheight'),
-		'spingDisabled': getCookie('pingdisabled'),
+		fontsize: getCookie('fontsize'),
+		lineheight: getCookie('lineheight'),
 		'shighlightTerms': getCookie('highlightterms'),
 		'shighlightColor': getCookie('highlightcolor'),
 		'smusicVolume': getCookie('musicVolume'),
 		'smessagecombining': getCookie('messagecombining'),
 	};
 
-	if (savedConfig.sfontSize) {
-		$messages.css('font-size', savedConfig.sfontSize);
-		internalOutput('<span class="internal boldnshit">Loaded font size setting of: '+savedConfig.sfontSize+'</span>', 'internal');
+	if (savedConfig.fontsize) {
+		$messages.css('font-size', savedConfig.fontsize);
+		internalOutput('<span class="internal boldnshit">Loaded font size setting of: '+savedConfig.fontsize+'</span>', 'internal');
 	}
-	if (savedConfig.slineHeight) {
-		$("body").css('line-height', savedConfig.slineHeight);
-		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.slineHeight+'</span>', 'internal');
-	}
-	if (savedConfig.spingDisabled) {
-		if (savedConfig.spingDisabled == 'true') {
-			opts.pingDisabled = true;
-			$('#ping').hide();
-		}
-		internalOutput('<span class="internal boldnshit">Loaded ping display of: '+(opts.pingDisabled ? 'hidden' : 'visible')+'</span>', 'internal');
+	if (savedConfig.lineheight) {
+		$("body").css('line-height', savedConfig.lineheight);
+		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.lineheight+'</span>', 'internal');
 	}
 	if (savedConfig.shighlightTerms) {
 		var savedTerms = $.parseJSON(savedConfig.shighlightTerms);
@@ -947,59 +922,38 @@ $(function() {
 	});
 
 	$('#decreaseFont').click(function(e) {
-		var fontSize = parseInt($messages.css('font-size'));
-		fontSize = fontSize - 1 + 'px';
-		$messages.css({'font-size': fontSize});
-		setCookie('fontsize', fontSize, 365);
-		internalOutput('<span class="internal boldnshit">Font size set to '+fontSize+'</span>', 'internal');
+		savedConfig.fontsize = Math.max(parseInt(savedConfig.fontsize || 13) - 1, 1) + 'px';
+		$messages.css({'font-size': savedConfig.fontsize});
+		setCookie('fontsize', savedConfig.fontsize, 365);
+		internalOutput('<span class="internal boldnshit">Font size set to '+savedConfig.fontsize+'</span>', 'internal');
 	});
 
 	$('#increaseFont').click(function(e) {
-		var fontSize = parseInt($messages.css('font-size'));
-		fontSize = fontSize + 1 + 'px';
-		$messages.css({'font-size': fontSize});
-		setCookie('fontsize', fontSize, 365);
-		internalOutput('<span class="internal boldnshit">Font size set to '+fontSize+'</span>', 'internal');
+		savedConfig.fontsize = (parseInt(savedConfig.fontsize || 13) + 1) + 'px';
+		$messages.css({'font-size': savedConfig.fontsize});
+		setCookie('fontsize', savedConfig.fontsize, 365);
+		internalOutput('<span class="internal boldnshit">Font size set to '+savedConfig.fontsize+'</span>', 'internal');
 	});
 
 	$('#decreaseLineHeight').click(function(e) {
-		var Heightline = parseFloat($("body").css('line-height'));
-		var Sizefont = parseFloat($("body").css('font-size'));
-		var lineheightvar = Heightline / Sizefont
-		lineheightvar -= 0.1;
-		lineheightvar = lineheightvar.toFixed(1)
-		$("body").css({'line-height': lineheightvar});
-		setCookie('lineheight', lineheightvar, 365);
-		internalOutput('<span class="internal boldnshit">Line height set to '+lineheightvar+'</span>', 'internal');
+		savedConfig.lineheight = Math.max(parseFloat(savedConfig.lineheight || 1.2) - 0.1, 0.1).toFixed(1);
+		$("body").css({'line-height': savedConfig.lineheight});
+		setCookie('lineheight', savedConfig.lineheight, 365);
+		internalOutput('<span class="internal boldnshit">Line height set to '+savedConfig.lineheight+'</span>', 'internal');
 	});
 
 	$('#increaseLineHeight').click(function(e) {
-		var Heightline = parseFloat($("body").css('line-height'));
-		var Sizefont = parseFloat($("body").css('font-size'));
-		var lineheightvar = Heightline / Sizefont
-		lineheightvar += 0.1;
-		lineheightvar = lineheightvar.toFixed(1)
-		$("body").css({'line-height': lineheightvar});
-		setCookie('lineheight', lineheightvar, 365);
-		internalOutput('<span class="internal boldnshit">Line height set to '+lineheightvar+'</span>', 'internal');
-	});
-
-	$('#togglePing').click(function(e) {
-		if (opts.pingDisabled) {
-			$('#ping').slideDown('fast');
-			opts.pingDisabled = false;
-		} else {
-			$('#ping').slideUp('fast');
-			opts.pingDisabled = true;
-		}
-		setCookie('pingdisabled', (opts.pingDisabled ? 'true' : 'false'), 365);
+		savedConfig.lineheight = (parseFloat(savedConfig.lineheight || 1.2) + 0.1).toFixed(1);
+		$("body").css({'line-height': savedConfig.lineheight});
+		setCookie('lineheight', savedConfig.lineheight, 365);
+		internalOutput('<span class="internal boldnshit">Line height set to '+savedConfig.lineheight+'</span>', 'internal');
 	});
 
 	$('#saveLog').click(function(e) {
 		// Requires IE 10+ to issue download commands. Just opening a popup
 		// window will cause Ctrl+S to save a blank page, ignoring innerHTML.
 		if (!window.Blob) {
-			output('<span class="big red">This function is only supported on IE 10+. Upgrade if possible.</span>', 'internal');
+			output('<span class="big red">This function is only supported on IE 10 and up. Upgrade if possible.</span>', 'internal');
 			return;
 		}
 

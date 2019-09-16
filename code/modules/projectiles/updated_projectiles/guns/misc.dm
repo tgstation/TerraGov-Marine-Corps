@@ -9,15 +9,13 @@
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
-	origin_tech = "combat=1;materials=2"
 	ammo = /datum/ammo/flare
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
+	fire_delay = 9
 
-/obj/item/weapon/gun/flare/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
@@ -99,7 +97,7 @@
 	force = 4.0
 	var/list/syringes = new/list()
 	var/max_syringes = 1
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 
 /obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
 	if(user == loc)

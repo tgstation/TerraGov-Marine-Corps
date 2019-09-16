@@ -31,20 +31,21 @@
 	if(!usr)
 		return
 
-	if(!reagents.total_volume)
-		if(M == usr)
-			to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
-		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-		usr.dropItemToGround(src)	//so icons update :[
+	if(reagents.total_volume)
+		return
 
-		if(trash)
-			if(ispath(trash,/obj/item))
-				var/obj/item/TrashItem = new trash(usr)
-				usr.put_in_hands(TrashItem)
-			else if(istype(trash,/obj/item))
-				usr.put_in_hands(trash)
-		qdel(src)
-	return
+	if(M == usr)
+		to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
+	else
+		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
+	
+	usr.dropItemToGround(src)	//so icons update :[
+
+	if(trash)
+		var/obj/item/T = new trash
+		usr.put_in_hands(T)
+	
+	qdel(src)
 
 /obj/item/reagent_container/food/snacks/attack_self(mob/user as mob)
 	return
@@ -694,7 +695,7 @@
 	filling_color = "#D63C3C"
 
 /obj/item/reagent_container/food/snacks/human/burger
-	name = "-burger"
+	name = "burger"
 	desc = "A bloody burger."
 	icon_state = "hamburger"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6)

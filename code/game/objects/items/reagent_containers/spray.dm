@@ -19,10 +19,6 @@
 	volume = 250
 
 
-/obj/item/reagent_container/spray/New()
-	..()
-	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
-
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
@@ -164,7 +160,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = "combat=3;materials=3;engineering=3"
 
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!

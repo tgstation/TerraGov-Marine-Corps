@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	matter = list("metal" = 50,"glass" = 20)
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
@@ -44,7 +44,7 @@
 
 /obj/item/flashlight/proc/turn_off_light(mob/bearer)
 	if(on)
-		on = 0
+		on = FALSE
 		update_brightness(bearer)
 		update_action_button_icons()
 		return 1
@@ -60,10 +60,6 @@
 		if(on)
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
-
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
@@ -134,7 +130,7 @@
 	item_state = "lamp"
 	brightness_on = 5
 	w_class = WEIGHT_CLASS_BULKY
-	on = 1
+	on = TRUE
 	raillight_compatible = FALSE
 
 //Menorah!
@@ -181,25 +177,13 @@
 	var/fuel = 0
 	var/on_damage = 7
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize()
+	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
-
-/obj/item/flashlight/flare/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	..()
-
-/obj/item/flashlight/flare/process()
-	fuel = max(fuel - 1, 0)
-	if(!fuel || !on)
-		turn_off()
-		if(!fuel)
-			icon_state = "[initial(icon_state)]-empty"
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/flashlight/flare/proc/turn_off()
 	fuel = 0 //Flares are one way; if you turn them off, you're snuffing them out.
-	on = 0
+	on = FALSE
 	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
@@ -208,6 +192,7 @@
 		update_brightness(U)
 	else
 		update_brightness(null)
+	icon_state = "[initial(icon_state)]-empty"
 
 /obj/item/flashlight/flare/attack_self(mob/user)
 
@@ -225,19 +210,16 @@
 		force = on_damage
 		heat = 1500
 		damtype = "fire"
-		START_PROCESSING(SSobj, src)
+		addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
-/obj/item/flashlight/flare/on
-
-	New()
-
-		..()
-		on = 1
-		heat = 1500
-		update_brightness()
-		force = on_damage
-		damtype = "fire"
-		START_PROCESSING(SSobj, src)
+/obj/item/flashlight/flare/on/Initialize()
+	. = ..()
+	on = TRUE
+	heat = 1500
+	update_brightness()
+	force = on_damage
+	damtype = "fire"
+	addtimer(CALLBACK(src, .proc/turn_off), fuel)
 
 /obj/item/flashlight/slime
 	gender = PLURAL

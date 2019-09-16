@@ -29,6 +29,8 @@
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
+	var/datum/wires/wires = null
+
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
@@ -542,6 +544,8 @@ Proc for attack log creation, because really why not
 			return weld_cut_act(user, I)
 		if(TOOL_ANALYZER)
 			return analyzer_act(user, I)
+		if(TOOL_FULTON)
+			return fulton_act(user, I)
 
 
 // Tool-specific behavior procs. To be overridden in subtypes.
@@ -577,6 +581,12 @@ Proc for attack log creation, because really why not
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
 	return FALSE
 
+/atom/proc/fulton_act(mob/living/user, obj/item/I)
+	if(!isturf(loc))
+		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
+	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	return TRUE
+
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
@@ -588,13 +598,6 @@ Proc for attack log creation, because really why not
 
 //the sight changes to give to the mob whose perspective is set to that atom (e.g. A mob with nightvision loses its nightvision while looking through a normal camera)
 /atom/proc/update_remote_sight(mob/living/user)
-	return
-
-
-//when a mob interact with something that gives them a special view,
-//check_eye() is called to verify that they're still eligible.
-//if they are not check_eye() usually reset the mob's view.
-/atom/proc/check_eye(mob/user)
 	return
 
 
@@ -639,6 +642,7 @@ Proc for attack log creation, because really why not
 	. = ..()
 	if(.)
 		return
+
 	add_fingerprint(usr, "topic")
 
 
@@ -657,3 +661,17 @@ Proc for attack log creation, because really why not
 			return TRUE
 
 	return ..()
+
+
+/atom/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if((interaction_flags & INTERACT_REQUIRES_DEXTERITY) && !user.dextrous)
+		return FALSE
+	
+	if((interaction_flags & INTERACT_CHECK_INCAPACITATED) && user.incapacitated())
+		return FALSE
+	
+	return TRUE

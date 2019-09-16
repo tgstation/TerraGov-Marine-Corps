@@ -8,13 +8,12 @@
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
 	movement_acc_penalty_mult = 2
-	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your pistol to be two-handed, it will still be fast to aim
+	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list(
@@ -59,13 +58,10 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 2
+	accuracy_mult = 1.15
+	scatter = 15
+
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
@@ -73,13 +69,9 @@
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
-/obj/item/weapon/gun/pistol/m4a3/custom/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
+	fire_delay = 1.5
+	accuracy_mult = 1.15
+	damage_mult = 1.1
 
 //-------------------------------------------------------
 //M1911
@@ -91,7 +83,6 @@
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
 	max_shells = 10 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
@@ -99,14 +90,11 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m1911/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 2
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	damage_mult = 1.15
+	recoil_unwielded = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
@@ -121,14 +109,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m1911/custom/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 1.5
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -148,13 +129,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/b92fs/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 2
 
 /obj/item/weapon/gun/pistol/b92fs/raffica
 	name = "\improper Beretta 93R pistol"
@@ -174,15 +149,10 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire)
 
-/obj/item/weapon/gun/pistol/b92fs/raffica/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 1.5
+	burst_amount = 3
+	accuracy_mult = 1.15
+	scatter_unwielded = 25
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
@@ -197,13 +167,11 @@
 									/obj/item/attachable/lasersight,
 									/obj/item/attachable/suppressor
 									)
-/obj/item/weapon/gun/pistol/b92fs/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/max_hit_damage_mult)
+
+	fire_delay = 6
+	accuracy_mult = 1.20
+	accuracy_mult_unwielded = 1.15
+	damage_mult = 0.5
 
 
 //-------------------------------------------------------
@@ -235,15 +203,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 20, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/med_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	fire_delay = 7
+	scatter_unwielded = 25
+	damage_mult = 1.2
+	recoil = 2
+	recoil_unwielded = 4
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	icon_state = "g_deagle"
@@ -258,7 +222,6 @@
 	item_state = "pk9"
 	caliber = ".22 LR" //codex
 	max_shells = 12 //codex
-	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/guns/fire/c99.ogg'
 	unload_sound = 'sound/weapons/guns/interact/c99_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/c99_reload.ogg'
@@ -276,13 +239,9 @@
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
-/obj/item/weapon/gun/pistol/c99/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 5
+	accuracy_mult = 1.4
+	accuracy_mult_unwielded = 1.5
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -316,15 +275,9 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/kt42/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 10
+	recoil = 2
+	recoil_unwielded = 3
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -336,7 +289,6 @@
 	item_state = "holdout"
 	caliber = ".22 LR" //codex
 	max_shells = 5 //codex
-	origin_tech = "combat=2;materials=1"
 	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/holdout
 	w_class = WEIGHT_CLASS_TINY
@@ -352,13 +304,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 2
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
@@ -379,15 +325,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
-/obj/item/weapon/gun/pistol/highpower/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/max_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 10
+	damage_mult = 1.5
+	recoil = 2
+	recoil_unwielded = 3
 
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
@@ -399,7 +340,6 @@
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
@@ -420,16 +360,12 @@
 						/obj/item/attachable/stock/vp70)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
-/obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/high_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 3
+	burst_amount = 3
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.95
+	damage_mult = 1.4
+	recoil_unwielded = 2
 
 //-------------------------------------------------------
 //VP78
@@ -441,7 +377,6 @@
 	item_state = "vp78"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
-	origin_tech = "combat=4;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/pistol_large.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
@@ -451,17 +386,13 @@
 	force = 8
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
-/obj/item/weapon/gun/pistol/vp78/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 3
+	burst_amount = 3
+	burst_delay = 0.3 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	recoil = 2
+	recoil_unwielded = 3
 
 //-------------------------------------------------------
 /*
@@ -476,23 +407,15 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "auto9"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 50 //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/auto9.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
 
-/obj/item/weapon/gun/pistol/auto9/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 4
+	burst_amount = 3
+	recoil = 2
+	recoil_unwielded = 3
 
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
@@ -504,7 +427,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	item_state = "c70"
 	caliber = ".70 Mankey" //codex
 	max_shells = 300 //codex
-	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
 	current_mag = /obj/item/ammo_magazine/pistol/chimp
 	fire_sound = 'sound/weapons/guns/fire/chimp70.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
@@ -514,15 +436,10 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 
-/obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 3
+	burst_delay = 0.2 SECONDS
+	burst_amount = 2
+
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper Knife"
@@ -531,13 +448,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 25
 	movement_acc_penalty_mult = 10
-	wield_delay = WIELD_DELAY_VERY_FAST
+	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/pistol_service.ogg'
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS

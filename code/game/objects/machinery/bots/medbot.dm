@@ -75,15 +75,12 @@
 	src.icon_state = "medibot[src.on]"
 	src.updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
-/obj/machinery/bot/medbot/attack_hand(mob/living/user)
+/obj/machinery/bot/medbot/interact(mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	var/dat
-	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel is [src.open ? "opened" : "closed"]<BR>"
 	dat += "Beaker: "
@@ -119,15 +116,15 @@
 
 		dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a><br>"
 
-	user << browse("<HEAD><TITLE>Medibot v1.0 controls</TITLE></HEAD>[dat]", "window=automed")
-	onclose(user, "automed")
-	return
+	var/datum/browser/popup = new(user, "medbot", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/bot/medbot/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
+
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
 			turn_off()
@@ -169,8 +166,8 @@
 	else if ((href_list["declaretreatment"]) && (!src.locked || issilicon(usr)))
 		src.declare_treatment = !src.declare_treatment
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 /obj/machinery/bot/medbot/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -412,29 +409,21 @@
 	visible_message("[src] beeps, \"[message]\"")
 	return
 
-/obj/machinery/bot/medbot/explode()
-	src.on = 0
-	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
+/obj/machinery/bot/medbot/deconstruct(disassembled = TRUE)
+	new /obj/item/storage/firstaid(loc)
+	new /obj/item/assembly/prox_sensor(loc)
+	new /obj/item/healthanalyzer(loc)
 
-	new /obj/item/storage/firstaid(Tsec)
+	if(reagent_glass)
+		reagent_glass.forceMove(loc)
 
-	new /obj/item/assembly/prox_sensor(Tsec)
-
-	new /obj/item/healthanalyzer(Tsec)
-
-	if(src.reagent_glass)
-		src.reagent_glass.loc = Tsec
-		src.reagent_glass = null
-
-	if (prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
+	if(prob(50))
+		new /obj/item/robot_parts/l_arm(loc)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	return ..()
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
 	if ((istype(M, /obj/machinery/door)) && (!isnull(src.botcard)))

@@ -1,9 +1,3 @@
-/obj/item/weapon/gun
-	var/general_codex_key = "guns"
-
-/obj/item/weapon/gun/energy
-	general_codex_key = "energy weapons"
-
 /obj/item/weapon/gun/get_antag_info()
 	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
 	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
@@ -94,7 +88,7 @@
 	if(scatter_unwielded)
 		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
 	if(movement_acc_penalty_mult)
-		traits += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)) * 100]%"
+		traits += "Movement unwielded penalty modifier: -[(movement_acc_penalty_mult * 0.15) * 100]%"
 	if(fire_delay)
 		traits += "Time between single-fire: [fire_delay / 10] seconds"
 	if(wield_delay)

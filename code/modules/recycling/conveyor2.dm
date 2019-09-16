@@ -233,7 +233,7 @@
 		C.setmove()
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/attack_hand(mob/living/user)
+/obj/machinery/conveyor_switch/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -266,7 +266,7 @@
 	desc = "A conveyor control switch. It appears to only go in one direction."
 
 // attack with hand, switch position
-/obj/machinery/conveyor_switch/oneway/attack_hand(mob/living/user)
+/obj/machinery/conveyor_switch/oneway/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -275,7 +275,7 @@
 	else
 		position = 0
 
-	operated = 1
+	operated = TRUE
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us

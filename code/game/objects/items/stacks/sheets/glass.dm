@@ -15,8 +15,7 @@
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	matter = list("glass" = 3750)
-	origin_tech = "materials=1"
+	materials = list(/datum/material/glass = 3750)
 	merge_type = /obj/item/stack/sheet/glass
 
 	var/created_window = /obj/structure/window
@@ -24,8 +23,6 @@
 	var/is_reinforced = 0
 	var/list/construction_options = list("One Direction", "Full Window")
 
-/obj/item/stack/sheet/glass/cyborg
-	matter = null
 
 /obj/item/stack/sheet/glass/attack_self(mob/user)
 	construct_window(user)
@@ -65,7 +62,7 @@
 /obj/item/stack/sheet/glass/proc/construct_window(mob/user)
 	if(!user || !src)	return 0
 	if(!istype(user.loc,/turf)) return 0
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 0
 	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
@@ -152,16 +149,12 @@
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 
-
-	matter = list("metal" = 1875,"glass" = 3750)
-	origin_tech = "materials=2"
+	materials = list(/datum/material/metal = 1875, /datum/material/glass = 3750)
 
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = 1
 	construction_options = list("One Direction", "Full Window", "Windoor")
 
-/obj/item/stack/sheet/glass/reinforced/cyborg
-	matter = null
 
 /*
 * Phoron Glass sheets
@@ -171,8 +164,7 @@
 	desc = "Phoron glass is a silicate-phoron alloy turned into a non-crystalline solid. It is transparent just like glass, even if visibly tainted pink, and very resistant to damage and heat."
 	singular_name = "phoron glass sheet"
 	icon_state = "sheet-phoronglass"
-	matter = list("glass" = 7500)
-	origin_tech = "materials=3;phorontech=2"
+	materials = list(/datum/material/glass = 7500)
 	created_window = /obj/structure/window/phoronbasic
 	reinforced_type = /obj/item/stack/sheet/glass/phoronrglass
 
@@ -184,8 +176,7 @@
 	desc = "Reinforced phoron glass is made out of squares of silicate-phoron alloy glass layered on a metallic rod matrice. It is insanely resistant to both physical shock and heat."
 	singular_name = "reinforced phoron glass sheet"
 	icon_state = "sheet-phoronrglass"
-	matter = list("glass" = 7500,"metal" = 1875)
+	materials = list(/datum/material/glass = 7500, /datum/material/metal = 1875)
 
-	origin_tech = "materials=4;phorontech=2"
 	created_window = /obj/structure/window/phoronreinforced
 	is_reinforced = 1

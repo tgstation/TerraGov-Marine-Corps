@@ -6,6 +6,8 @@
 
 #define isatom(A) (isloc(A))
 
+#define isclient(A) (istype(A, /client))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -124,6 +126,8 @@
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isgun(A) (istype(A, /obj/item/weapon/gun))
+
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
 #define iswelder(I) (istype(I, /obj/item/tool/weldingtool))
@@ -177,7 +181,7 @@
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
-#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.key, 2)])
+#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.ckey, 2)])
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

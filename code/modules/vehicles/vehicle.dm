@@ -6,6 +6,7 @@
 	anchored = TRUE
 	animate_movement = FORWARD_STEPS
 	can_buckle = TRUE
+	resistance_flags = XENO_DAMAGEABLE
 
 	var/on = FALSE
 	max_integrity = 100
@@ -31,6 +32,10 @@
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
 		return
+
+	if(direction in GLOB.diagonals)
+		return
+
 	if(world.time > last_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
@@ -69,65 +74,20 @@
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 			return
 
-		obj_integrity = min(max_integrity, obj_integrity + 10)
+		repair_damage(10)
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
-		
-	else if(I.force)
-		switch(I.damtype)
-			if("fire")
-				obj_integrity -= I.force * fire_dam_coeff
-			if("brute")
-				obj_integrity -= I.force * brute_dam_coeff
-		playsound(loc, "smash.ogg", 25, 1)
-		user.visible_message("<span class='danger'>[user] hits [src] with [I].</span>","<span class='danger'>You hit [src] with [I].</span>")
-		healthcheck()
 
-
-/obj/vehicle/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src)
-		playsound(loc, "alien_claw_metal", 25, 1)
-		M.flick_attack_overlay(src, "slash")
-		obj_integrity -= 15
-		playsound(src.loc, "alien_claw_metal", 25, 1)
-		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>We slash [src].</span>", null, 5)
-		healthcheck()
-	else
-		attack_hand(M)
-
-/obj/vehicle/attack_animal(mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)
-		return
-	obj_integrity -= M.melee_damage_upper
-	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
-	log_combat(M, src, "attacked")
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
-	healthcheck()
-
-/obj/vehicle/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage
-	..()
-	healthcheck()
-	return TRUE
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			explode()
-			return
-		if(2.0)
-			obj_integrity -= rand(5,10)*fire_dam_coeff
-			obj_integrity -= rand(10,20)*brute_dam_coeff
-			healthcheck()
-			return
-		if(3.0)
-			if (prob(50))
-				obj_integrity -= rand(1,5)*fire_dam_coeff
-				obj_integrity -= rand(1,5)*brute_dam_coeff
-				healthcheck()
-				return
-	return
+		if(1)
+			deconstruct(FALSE)
+		if(2)
+			take_damage(rand(5, 10) * fire_dam_coeff)
+		if(3)
+			if(prob(50))
+				take_damage(rand(1, 5) * fire_dam_coeff)
+				take_damage(rand(1, 5) * brute_dam_coeff)
 
 /obj/vehicle/emp_act(severity)
 	var/was_on = on
@@ -158,16 +118,16 @@
 	update_icon()
 
 
-/obj/vehicle/proc/explode()
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
-
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/rods(Tsec)
-	new /obj/item/stack/cable_coil/cut(Tsec)
+/obj/vehicle/deconstruct(disassembled = TRUE)
+	if(!disassembled)
+		visible_message("<span class='danger'>[src] blows apart!</span>")
+	
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/rods(loc)
+	new /obj/item/stack/cable_coil/cut(loc)
 
 	if(cell)
-		cell.forceMove(Tsec)
+		cell.forceMove(loc)
 		cell.update_icon()
 		cell = null
 
@@ -175,14 +135,10 @@
 		buckled_mob.apply_effects(5, 5)
 		unbuckle()
 
-	new /obj/effect/spawner/gibspawner/robot(Tsec)
-	new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	new /obj/effect/spawner/gibspawner/robot(loc)
+	new /obj/effect/decal/cleanable/blood/oil(loc)
 
-	qdel(src)
-
-/obj/vehicle/proc/healthcheck()
-	if(obj_integrity <= 0)
-		explode()
+	return ..()
 
 /obj/vehicle/proc/powercheck()
 	if(!cell && !powered)

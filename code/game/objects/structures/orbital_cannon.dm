@@ -38,13 +38,6 @@
 	tray.linked_ob = src
 
 
-
-
-/obj/structure/orbital_cannon/bullet_act()
-	return
-
-
-
 /obj/structure/orbital_cannon/update_icon()
 	if(chambered_tray)
 		icon_state = "OBC_chambered"
@@ -205,8 +198,9 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-	for(var/M in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
-		SEND_SOUND(M, 'sound/effects/OB_incoming.ogg')
+	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
+		var/mob/M = i
+		M.playsound_local(target, 'sound/effects/OB_incoming.ogg', falloff = 2)
 
 	notify_ghosts("<b>[user]</b> has just fired \the <b>[src]</b> !", source = T, action = NOTIFY_JUMP)
 
@@ -252,9 +246,6 @@
 		linked_ob.tray = null
 		linked_ob = null
 	. = ..()
-
-/obj/structure/orbital_tray/bullet_act()
-	return
 
 
 /obj/structure/orbital_tray/update_icon()
@@ -435,11 +426,8 @@
 /obj/machinery/computer/orbital_cannon_console/ex_act()
 	return
 
-/obj/machinery/computer/orbital_cannon_console/bullet_act()
-	return
 
-
-/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
+/obj/machinery/computer/orbital_cannon_console/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -451,9 +439,7 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	user.set_interaction(src)
-
-	var/dat = "<font size=5><center>Orbital Cannon System Control Console</center></font><HR>"
+	var/dat
 	if(!GLOB.marine_main_ship?.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
 	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
@@ -486,8 +472,10 @@
 
 		dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
 
-	user << browse(dat, "window=orbital_console;size=500x350")
-	onclose(user, "orbital_console")
+
+	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/computer/orbital_cannon_console/Topic(href, href_list)
@@ -510,12 +498,8 @@
 	else if(href_list["back"])
 		orbital_window_page = 0
 
-	else if(href_list["close"])
-		usr << browse(null, "window=orbital_console")
-		usr.unset_interaction()
+	updateUsrDialog()
 
-//	updateUsrDialog()
-	attack_hand(usr)
 
 /obj/structure/ship_rail_gun
 	name = "\improper Rail Gun"
@@ -557,7 +541,3 @@
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
 	cannon_busy = FALSE
-
-
-/obj/structure/ship_rail_gun/bullet_act()
-	return

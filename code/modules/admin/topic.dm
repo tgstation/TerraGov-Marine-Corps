@@ -8,15 +8,18 @@
 	message_admins("[ADMIN_TPMONTY(usr)] clicked an href with [msg] authorization key.")
 
 
+/datum/admins/can_interact(mob/user)
+	if(user.client != owner || !check_rights(NONE))
+		log_admin("[key_name(user)] tried to use the admin panel without authorization.")
+		message_admins("[ADMIN_TPMONTY(user)] tried to use the admin panel without authorization.")
+		return FALSE
+
+	return TRUE
+
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-
-	if(usr.client != owner || !check_rights(NONE))
-		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		message_admins("[ADMIN_TPMONTY(usr)] tried to use the admin panel without authorization.")
 		return
 
 	if(!CheckAdminHref(href, href_list))
@@ -700,20 +703,20 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!ref)
 			return
 		var/datum/fax/F = GLOB.faxes[ref]
-		if(!F || F.admin || F.marked == usr.client)
+		if(!F || F.admin || F.marked == usr.client.key)
 			return
 
 		if(F.marked)
 			switch(alert("This fax has already been marked by [F.marked], do you want to replace them?", "Warning", "Replace", "Unmark", "Cancel"))
 				if("Replace")
-					F.marked = usr.client
+					F.marked = usr.client.key
 					message_staff("[key_name_admin(usr)] has re-marked a fax from [key_name_admin(F.sender)].")
 				if("Unmark")
 					F.marked = null
 					message_staff("[key_name_admin(usr)] has un-marked a fax from [key_name_admin(F.sender)].")
 			return
 
-		F.marked = usr.client
+		F.marked = usr.client.key
 		message_staff("[key_name_admin(usr)] has marked a fax from [key_name_admin(F.sender)].")
 
 
@@ -730,11 +733,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(!F || F.admin)
 				return
 
-			if(F.marked && F.marked != usr.client)
+			if(F.marked && F.marked != usr.client.key)
 				to_chat(usr, "<span class='warning'>This fax has already been marked by [F.marked], please unmark it to be able to proceed.")
 				return
 			else if(!F.marked)
-				F.marked = usr.client
+				F.marked = usr.client.key
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 			
 			sender = F.sender
@@ -941,15 +944,15 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
 
 			if("use_dest")
-				if(alert("Are you sure you want to destroy the [CONFIG_GET(string/ship_name)] right now?", "Self-Destruct", "Yes", "No") != "Yes")
+				if(alert("Are you sure you want to destroy the [SSmapping.configs[SHIP_MAP].map_name] right now?", "Self-Destruct", "Yes", "No") != "Yes")
 					return
 
 				if(!SSevacuation.initiate_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
 
-				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
-				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [CONFIG_GET(string/ship_name)].")
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
 
 			if("toggle_dest")
 				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
@@ -1170,7 +1173,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		var/dat
 
-		for(var/x in GLOB.access_log)
+		for(var/x in GLOB.manifest_log)
 			dat += "[x]<br>"
 
 		var/datum/browser/browser = new(usr, "manifest_log", "<div align='center'>Manifest Log</div>")
@@ -1765,10 +1768,12 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 			return
 
+		var/oldname = H.real_name
+
 		H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
-		log_admin("[key_name(src)] gave [key_name(H)] a random name.")
-		message_admins("[ADMIN_TPMONTY(usr)] gave a [ADMIN_TPMONTY(H)] random name.")
+		log_admin("[key_name(src)] randomized the name of [oldname] -> [key_name(H)].")
+		message_admins("[ADMIN_TPMONTY(usr)] randomized the name of [oldname] -> [ADMIN_TPMONTY(H)].")
 
 
 	else if(href_list["checkcontents"])

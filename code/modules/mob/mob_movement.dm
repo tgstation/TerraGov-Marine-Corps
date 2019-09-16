@@ -14,13 +14,10 @@
 
 
 /client/verb/attack_self()
-	set hidden = TRUE
-
-	if(!isliving(mob))
-		return
-
-	var/mob/living/L = mob
-	L.mode()
+	set hidden = 1
+	if(mob)
+		mob.mode()
+	return
 
 
 /client/verb/toggle_throw_mode()
@@ -91,7 +88,7 @@
 	var/mob/living/L = mob  //Already checked for isliving earlier
 
 	var/double_delay = FALSE
-	if(direct in GLOB.diagonals)
+	if(ISDIAGONALDIR(direct))
 		double_delay = TRUE
 
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
@@ -137,6 +134,9 @@
 				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
 			if(MOVE_INTENT_WALK)
 				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
+		
+		SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
+
 		move_delay += L.movement_delay(direct)
 		//We are now going to move
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
@@ -150,7 +150,7 @@
 			move_delay = world.time + (move_delay * SQRTWO)
 		else
 			move_delay = world.time + move_delay
-		return .
+
 
 ///Process_Spacemove
 ///Called by /client/Move()

@@ -38,23 +38,10 @@
 	var/stat_msg2
 
 
-/obj/machinery/computer/communications/Initialize(mapload)
-	. = ..()
-	start_processing()
-
-/obj/machinery/computer/communications/process()
-	. = ..()
-	if(!.)
-		return
-	if(state != STATE_STATUSDISPLAY)
-		updateUsrDialog()
-
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		if("main")
@@ -134,7 +121,7 @@
 					return FALSE
 
 				if(!SSticker?.mode)
-					to_chat(usr, "<span class='warning'>The [CONFIG_GET(string/ship_name)]'s distress beacon must be activated prior to evacuation taking place.</span>")
+					to_chat(usr, "<span class='warning'>The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
 				if(GLOB.marine_main_ship.security_level < SEC_LEVEL_RED)
@@ -210,10 +197,11 @@
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
+				var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 				for(var/i in GLOB.admins)
 					var/client/C = i
 					if(check_other_rights(C, R_ADMIN, FALSE))
-						SEND_SOUND(C, 'sound/effects/sos-morse-code.ogg')
+						SEND_SOUND(C, S)
 						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. Humans: [AllMarines], Xenos: [AllXenos]. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
 				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
@@ -306,28 +294,17 @@
 		if("changeseclevel")
 			state = STATE_ALERT_LEVEL
 
-		else 
+		else
 			return FALSE
 
 	updateUsrDialog()
 
-/obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
-/obj/machinery/computer/communications/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/communications/attack_hand(mob/living/user)
+/obj/machinery/computer/communications/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
-	if(!istype(loc.loc, /area/mainship/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
-		to_chat(usr, "<span class='warning'>Unable to establish a connection.</span>")
-		return FALSE
-
-	user.set_interaction(src)
 	var/dat
 	if(SSevacuation.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [SSevacuation.get_status_panel_eta()]<BR>"
@@ -355,10 +332,10 @@
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>LOG IN</A> \]"
 
 		if(STATE_EVACUATION)
-			dat += "Are you sure you want to evacuate the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
+			dat += "Are you sure you want to evacuate the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_start'>Confirm</A>\]"
 
 		if(STATE_EVACUATION_CANCEL)
-			dat += "Are you sure you want to cancel the evacuation of the [CONFIG_GET(string/ship_name)]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
+			dat += "Are you sure you want to cancel the evacuation of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
 			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
@@ -420,7 +397,7 @@
 			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
-	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
+	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]\]"
 
 	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
 	popup.set_content(dat)

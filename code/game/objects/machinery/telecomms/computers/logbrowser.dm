@@ -112,8 +112,6 @@
 	if(.)
 		return
 
-	usr.set_interaction(src)
-
 	if(href_list["viewserver"])
 		screen = 1
 		for(var/obj/machinery/telecomms/T in servers)
@@ -166,9 +164,4 @@
 				servers = list()
 				temp = "<font color = #88bff7>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
 
-	updateUsrDialog()
-
-
-/obj/machinery/computer/telecomms/server/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	updateUsrDialog()

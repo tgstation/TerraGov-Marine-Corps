@@ -612,12 +612,12 @@ WEAPONS
 /datum/supply_packs/detpack
 	name = "detpack explosives crate (x6)"
 	contains = list(
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,
@@ -1335,7 +1335,7 @@ AMMO
 /datum/supply_packs/ammoboxslug
 	name = "Slug Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox
+					/obj/item/shotgunbox
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1345,7 +1345,7 @@ AMMO
 /datum/supply_packs/ammoboxbuckshot
 	name = "Buckshot Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox/buckshot
+					/obj/item/shotgunbox/buckshot
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1355,7 +1355,7 @@ AMMO
 /datum/supply_packs/ammoboxflechette
 	name = "Flechette Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox/flechette
+					/obj/item/shotgunbox/flechette
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo

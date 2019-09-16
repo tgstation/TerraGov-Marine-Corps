@@ -3,7 +3,6 @@
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -13,7 +12,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
+	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
@@ -24,9 +23,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-
-/obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
+	fire_delay = 35
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)

@@ -1,5 +1,4 @@
 /obj/item/weapon/gun/smg
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
@@ -9,7 +8,7 @@
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
 	movement_acc_penalty_mult = 3
-	wield_delay = WIELD_DELAY_FAST
+	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
@@ -17,7 +16,13 @@
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_SMGS
+
+	fire_delay = 0.3 SECONDS
+	burst_amount = 3
+	recoil_unwielded = 2
+
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	return cock(user)
@@ -64,18 +69,13 @@
 						/obj/item/attachable/gyro)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
-/obj/item/weapon/gun/smg/m39/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/mlow_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.9
+	scatter = 15
+	scatter_unwielded = 25
 
 
 
@@ -88,20 +88,15 @@
 	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
-	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
-/obj/item/weapon/gun/smg/m39/elite/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	burst_amount = 4
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	scatter_unwielded = 40
+	damage_mult = 1.1
 
 
 
@@ -115,7 +110,6 @@
 	item_state = "mp5"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
@@ -129,19 +123,17 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
-/obj/item/weapon/gun/smg/mp5/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/high_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/med_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.2 SECONDS
+	burst_amount = 4
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 1.25
+	scatter = 25
+	scatter_unwielded = 40
+	damage_mult = 1.2
 
 
 //-------------------------------------------------------
@@ -154,7 +146,6 @@
 	item_state = "mp7"
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
@@ -165,19 +156,17 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
-/obj/item/weapon/gun/smg/mp7/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/high_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 4
+	burst_delay = 0.2 SECONDS
+	burst_amount = 4
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 1.25
+	scatter = 35
+	scatter_unwielded = 45
+	damage_mult = 1.4
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -189,26 +178,20 @@
 	item_state = "skorpion"
 	caliber = ".32 ACP" //codex
 	max_shells = 20 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/skorpion_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
-/obj/item/weapon/gun/smg/skorpion/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	burst_delay = 0.2 SECONDS
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.75
+	scatter_unwielded = 40
+	damage_mult = 1.3
 
 
 /obj/item/weapon/gun/smg/skorpion/upp
@@ -225,7 +208,6 @@
 	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
-	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
@@ -239,19 +221,15 @@
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
-/obj/item/weapon/gun/smg/ppsh/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/max_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 0.1 SECONDS
+	burst_amount = 6
+	accuracy_mult = 0.95
+	accuracy_mult_unwielded = 0.65
+	scatter = 35
+	scatter_unwielded = 55
 
 
 
@@ -265,28 +243,22 @@
 	item_state = "uzi"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-/obj/item/weapon/gun/smg/uzi/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
-
-	movement_acc_penalty_mult = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	fire_delay = 0.15 SECONDS
+	burst_amount = 4
+	accuracy_mult_unwielded = 0.85
+	scatter = 40
+	scatter_unwielded = 60
+	damage_mult = 0.7
+	movement_acc_penalty_mult = 0.1
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90
@@ -298,7 +270,6 @@
 	item_state = "FP9000"
 	caliber = "5.7x28mm" //codex
 	max_shells = 50 //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
 	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
@@ -311,18 +282,12 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
-/obj/item/weapon/gun/smg/p90/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
-
-//-------------------------------------------------------
+	
+	fire_delay = 0.5 SECONDS
+	burst_delay = 0.2 SECONDS
+	accuracy_mult = 1.4
+	accuracy_mult_unwielded = 1.1
+	scatter_unwielded = 60
+	damage_mult = 1.1

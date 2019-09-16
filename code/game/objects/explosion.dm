@@ -52,6 +52,7 @@
 						M.playsound_local(epicenter, 'sound/effects/explosionsmallfar.ogg', far_volume, 1, frequency, falloff = 5)
 
 	var/close = trange(world.view + round(devastation_range, 1), epicenter)
+	var/sound/S = sound('sound/effects/explosionfar.ogg', channel = open_sound_channel())
 	//To all distanced mobs play a different sound
 	for(var/mob/M in GLOB.mob_list)
 		if(M.z != epicenter.z)
@@ -64,8 +65,8 @@
 			var/mob/living/L = M
 			if(L.ear_deaf > 0 || isspaceturf(L.loc))
 				continue
-		
-		SEND_SOUND(M, 'sound/effects/explosionfar.ogg')
+
+		SEND_SOUND(M, S)
 
 
 	if(adminlog)
@@ -104,14 +105,17 @@
 				items += A.GetAllContents()
 			for(var/O in items)
 				var/atom/A = O
-				if(!QDELETED(A))
-					A.ex_act(dist)
+				if(QDELETED(A))
+					continue
+				A.ex_act(dist)
 
 		if(dist > 0)
 			T.ex_act(dist)
 			for(var/i in T)
 				var/atom/movable/AM = i
-				AM?.ex_act(dist)
+				if(QDELETED(AM))
+					continue
+				AM.ex_act(dist)
 
 
 		//------- TURF FIRES -------

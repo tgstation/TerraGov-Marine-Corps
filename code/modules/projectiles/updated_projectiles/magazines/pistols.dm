@@ -45,6 +45,13 @@
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
+/obj/item/ammo_magazine/acp
+	name = "Box of .45 ACP"
+	icon_state = "box45" //With thanks to Eris
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = ".45"
+	current_rounds = 50
+	max_rounds = 50
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -192,8 +199,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	default_ammo = /datum/ammo/bullet/pistol/mankey
 	caliber = ".70 Mankey"
 	icon_state = "c70"
-	origin_tech = "combat=8;materials=8;syndicate=8;bluespace=8"
-	matter = list("metal" = 3000)
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
 

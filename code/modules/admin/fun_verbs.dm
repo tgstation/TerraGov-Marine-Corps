@@ -124,7 +124,7 @@
 		return
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
-		print_command_report(input, "[CONFIG_GET(string/ship_name)] Update", announce = FALSE)
+		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")
@@ -293,7 +293,7 @@
 		return
 
 	var/heard_midi = 0
-	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = CHANNEL_MIDI)
 	uploaded_sound.priority = 250
 
 
@@ -329,78 +329,79 @@
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
-	if(!istext(web_sound_input))
+	if(!istext(web_sound_input) || !length(web_sound_input))
+		return
+	
+	web_sound_input = trim(web_sound_input)
+
+	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+		to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
+		to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
 		return
 
 	var/web_sound_url = ""
 	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
-	if(length(web_sound_input))
-		web_sound_input = trim(web_sound_input)
-		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
-			to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
-			return
-		var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
-		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
-		var/errorlevel = output[SHELLEO_ERRORLEVEL]
-		var/stdout = output[SHELLEO_STDOUT]
-		var/stderr = output[SHELLEO_STDERR]
-		if(!errorlevel)
-			var/list/data
-			try
-				data = json_decode(stdout)
-			catch(var/exception/e)
-				to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+	
+	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(web_sound_input)]\"")
+	var/errorlevel = output[SHELLEO_ERRORLEVEL]
+	var/stdout = output[SHELLEO_STDOUT]
+	var/stderr = output[SHELLEO_STDERR]
+	
+	if(errorlevel)
+		to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		return
+
+	var/list/data = list()
+	try
+		data = json_decode(stdout)
+	catch(var/exception/e)
+		to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+		return
+	
+	if(data["url"])
+		web_sound_url = data["url"]
+		title = data["title"]
+		music_extra_data["start"] = data["start_time"]
+		music_extra_data["end"] = data["end_time"]
+		switch(alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", "Yes", "No", "Cancel"))
+			if("Yes")
+				show = TRUE
+			if("Cancel")
 				return
-			if(data["url"])
-				web_sound_url = data["url"]
-				title = "[data["title"]]"
-				music_extra_data["start"] = data["start_time"]
-				music_extra_data["end"] = data["end_time"]
-				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
-				switch(res)
-					if("Yes")
-						if(data["webpage_url"])
-							show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
-					if("Cancel")
-						return
+
+	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+		to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
+		to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+		return
+
+	var/list/targets
+	var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
+	switch(style)
+		if("Globally")
+			targets = GLOB.mob_list
+		if("Xenos")
+			targets = GLOB.xeno_mob_list + GLOB.dead_mob_list
+		if("Marines")
+			targets = GLOB.human_mob_list + GLOB.dead_mob_list
+		if("Locally")
+			targets = viewers(usr.client.view, usr)
 		else
-			to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
-
-		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-			to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
-			to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
 			return
 
-		var/lst
-		var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
-		switch(style)
-			if("Globally")
-				lst = GLOB.mob_list
-			if("Xenos")
-				lst = GLOB.xeno_mob_list + GLOB.dead_mob_list
-			if("Marines")
-				lst = GLOB.human_mob_list + GLOB.dead_mob_list
-			if("Locally")
-				lst = viewers(usr.client.view, usr)
+	for(var/i in targets)
+		var/mob/M = i
+		var/client/C = M?.client
+		if(!C?.prefs)
+			continue
+		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
+			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+			if(show)
+				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
 
-		if(!lst)
-			return
-
-		for(var/m in lst)
-			var/mob/M = m
-			var/client/C = M.client
-			if(!C?.prefs)
-				continue
-			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
-				if(show)
-					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
-
-		log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
-		message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
+	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
+	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
 
 
 /datum/admins/proc/sound_stop()
@@ -427,7 +428,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || C.chatOutput.broken)
+		if(!C?.chatOutput.loaded || !C.chatOutput.working)
 			continue	
 		C.chatOutput.stopMusic()
 
@@ -834,7 +835,7 @@
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
-		
+
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
@@ -1001,20 +1002,14 @@
 		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/list/possible_destinations
-	if(shuttle_id == SSshuttle.canterbury?.id)
-		possible_destinations = list("canterbury_dock")
-	else
-		possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-
 	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
 		return
 
 	var/list/valid_docks = list()
 	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!possible_destinations.Find(S.id))
-			continue
+		if(istype(S, /obj/docking_port/stationary/transit))
+			continue // Don't use transit destinations
 		if(!D.check_dock(S, silent=TRUE))
 			continue
 		valid_docks["[S.name] ([i++])"] = S
@@ -1048,7 +1043,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as anything in subtypesof(/datum/cinematic)
+	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as null|anything in subtypesof(/datum/cinematic)
 	if(!choice)
 		return
 
@@ -1077,3 +1072,16 @@
 
 	log_admin("[key_name(usr)] set a tip of the round: [tip]")
 	message_admins("[ADMIN_TPMONTY(usr)] set a tip of the round.")
+
+
+/datum/admins/proc/ghost_interact()
+	set category = "Fun"
+	set name = "Ghost Interact"
+
+	if(!check_rights(R_FUN))
+		return
+
+	usr.client.holder.ghost_interact = !usr.client.holder.ghost_interact
+
+	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")

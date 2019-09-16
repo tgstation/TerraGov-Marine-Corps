@@ -5,18 +5,17 @@
 	icon_state = "densecrate"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
+	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 
-/obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
-	new /obj/item/stack/sheet/wood(src)
+
+/obj/structure/largecrate/deconstruct(disassembled = TRUE)
 	spawn_stuff()
-	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
-	"<span class='danger'>We smash \the [src] apart!</span>", \
-	"<span class='danger'>You hear splitting wood!</span>", 5)
-	qdel(src)
+	return ..()
+
 
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
@@ -26,12 +25,11 @@
 	. = ..()
 
 	if(iscrowbar(I))
-		new /obj/item/stack/sheet/wood(src)
-		spawn_stuff()
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							"<span class='notice'>You pry open \the [src].</span>", \
 							"<span class='notice'>You hear splitting wood.</span>")
-		qdel(src)
+		new /obj/item/stack/sheet/wood(src)
+		deconstruct(TRUE)
 		return
 	
 	if(istype(I, /obj/item/powerloader_clamp))
@@ -104,8 +102,8 @@
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/New()
-	..()
+/obj/structure/largecrate/random/Initialize()
+	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
 	while(num_things)
@@ -125,14 +123,20 @@
 	desc = "A stack of black storage cases."
 	icon_state = "case_double"
 
-/obj/structure/largecrate/random/case/double/Del()
+/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE)
 	new /obj/structure/largecrate/random/case(loc)
-	..()
+	new /obj/structure/largecrate/random/case(loc)
+	return ..()
 
 /obj/structure/largecrate/random/case/small
 	name = "small cases"
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
+
+
+/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
+	new /obj/item/stack/sheet/metal/small_stack(src)
+	return ..()
 
 
 /obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
@@ -142,43 +146,25 @@
 		var/obj/item/tool/weldingtool/WT = I
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
-
-		new /obj/item/stack/sheet/metal/small_stack(src)
 		WT.remove_fuel(1, user)
-		var/turf/T = get_turf(src)
-		for(var/obj/O in contents)
-			O.forceMove(T)
 		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
 							"<span class='notice'>You weld open \the [src].</span>", \
 							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		qdel(src)
-
+		deconstruct(TRUE)
 	else
 		return attack_hand(user)
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
+/obj/structure/largecrate/random/barrel/examine(mob/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return TRUE
-
-
-/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
-	X.do_attack_animation(src)
-	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	new /obj/item/stack/sheet/metal/small_stack(src)
-	var/turf/T = get_turf(src)
-	for(var/obj/O in contents)
-		O.forceMove(T)
-	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
-	"<span class='danger'>We smash \the [src] apart!</span>", \
-	"<span class='danger'>You hear metal being smashed!</span>", 5)
-	qdel(src)
 
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
+	hit_sound = 'sound/effects/metalhit.ogg'
 
 /obj/structure/largecrate/random/barrel/blue
 	name = "blue barrel"
@@ -230,9 +216,9 @@
 	icon_state = "secure_crate"
 	strapped = FALSE
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
+/obj/structure/largecrate/random/barrel/examine(mob/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
-	return TRUE
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
@@ -258,8 +244,8 @@
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/New()
-	..()
+/obj/structure/largecrate/guns/Initialize()
+	. = ..()
 	var/gun_type
 	var/i = 0
 	while(++i <= num_guns)

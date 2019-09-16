@@ -37,7 +37,6 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/gift
@@ -60,7 +59,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOSHIELD
 	attack_verb = list("bludgeoned", "whacked", "disciplined")
 
 /obj/item/staff/broom
@@ -87,7 +85,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOSHIELD
 
 /obj/item/skub
 	desc = "It's skub."

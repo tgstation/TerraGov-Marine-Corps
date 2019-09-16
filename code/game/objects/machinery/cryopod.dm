@@ -17,7 +17,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/cryotypes = list(CRYO_REQ, CRYO_ALPHA, CRYO_BRAVO, CRYO_CHARLIE, CRYO_DELTA)
 	var/mode = CRYOCONSOLE_ITEM_LIST
 	var/category = CRYO_REQ
@@ -50,22 +50,13 @@
 	cryotypes = list(CRYO_DELTA)
 	category = CRYO_DELTA
 
-/obj/machinery/computer/cryopod/attack_paw(mob/living/carbon/monkey/user)
-	attack_hand()
 
-/obj/machinery/computer/cryopod/attack_ai(mob/living/silicon/ai/AI)
-	attack_hand(AI)
-
-/obj/machinery/computer/cryopod/attack_hand(mob/living/user)
+/obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
 
-	user.set_interaction(src)
-
-	if(!(SSticker))
+	if(!SSticker)
 		return
 
 	var/dat = "<hr/><br/><b>Cryogenic Oversight Control for [initial(category)]</b><br/>"
@@ -118,16 +109,13 @@
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "cryopod_console")
+	popup.open()
 
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 	. =..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
@@ -153,7 +141,7 @@
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
-	return
+
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
@@ -198,6 +186,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL
 
 	var/mob/living/occupant //Person waiting to be despawned.
 	var/orient_right = FALSE // Flips the sprite.
@@ -320,7 +309,7 @@
 
 	return ..()
 
-/obj/item/proc/store_in_cryo(list/items)
+/obj/item/proc/store_in_cryo(list/items, nullspace_it = TRUE)
 
 	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
 	if(locate(/mob) in src)
@@ -336,46 +325,45 @@
 	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
 		items -= src
 		qdel(src)
-	else
-		loc = null
+	else if(nullspace_it)
+		moveToNullspace()
 	return items
 
-/obj/item/storage/store_in_cryo(list/items)
+/obj/item/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in src)
 		var/obj/item/I = O
-		remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
+		I.store_in_cryo(items, FALSE)
 	return ..()
 
-/obj/item/clothing/suit/storage/store_in_cryo(list/items)
+/obj/item/clothing/suit/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in pockets)
 		var/obj/item/I = O
 		pockets.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/under/store_in_cryo(list/items)
+/obj/item/clothing/under/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(hastie)
 		var/obj/item/TIE = hastie
 		remove_accessory()
 		items = TIE.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items)
+/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(knife)
 		items = knife.store_in_cryo(items)
 		knife = null
 		update_icon()
 	return ..()
 
-/obj/item/clothing/tie/storage/store_in_cryo(list/items)
+/obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in hold)
 		var/obj/item/I = O
 		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/tie/holster/store_in_cryo(list/items)
+/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(holstered)
 		items = holstered.store_in_cryo(items)
 		holstered = null
@@ -428,7 +416,7 @@
 	go_out()
 
 /obj/machinery/cryopod/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) 
+	if(user.incapacitated(TRUE))
 		return
 	go_out()
 
@@ -466,7 +454,7 @@
 	else
 		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
 		"<span class='notice'>You start climbing into [src].</span>")
-		
+
 
 	var/mob/initiator = helper ? helper : user
 	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))

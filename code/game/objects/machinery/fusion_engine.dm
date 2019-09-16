@@ -269,7 +269,7 @@
 			to_chat(user, "<span class='info'>The power gauge reads: [power_gen_percent]%</span>")
 		if(fusion_cell)
 			to_chat(user, "<span class='info'>You can see a fuel cell in the receptacle.</span>")
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT)
+			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MASTER)
 				switch(fusion_cell.fuel_amount)
 					if(0 to 10)
 						to_chat(user, "<span class='danger'>The fuel cell is critically low.</span>")

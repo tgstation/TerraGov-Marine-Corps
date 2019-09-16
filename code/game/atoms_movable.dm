@@ -192,19 +192,19 @@
 /atom/movable/Bump(atom/A)
 	if(!A)
 		CRASH("Bump was called with no argument.")
-	if(throwing)
-		throw_impact(A)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 	. = ..()
-	if(QDELETED(A))
-		return
+	if(throwing)
+		throw_impact(A)
+		. = TRUE
+		if(QDELETED(A))
+			return
 	A.Bumped(src)
 
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
-	. = TRUE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
 	return CanPass(AM, AM.loc, TRUE)
 
@@ -335,6 +335,7 @@
 
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin)
+	set waitfor = FALSE
 	if(!target || !src)	
 		return FALSE
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
@@ -430,16 +431,6 @@
 		throwing = FALSE
 		thrower = null
 		throw_source = null
-
-
-//things the user's machine must do just after we set the user's machine.
-/atom/movable/proc/on_set_interaction(mob/user)
-	return
-
-
-//things the user's machine must do just before we unset the user's machine.
-/atom/movable/proc/on_unset_interaction(mob/user)
-	return
 
 
 //called when a mob tries to breathe while inside us.

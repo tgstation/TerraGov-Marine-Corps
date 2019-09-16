@@ -35,6 +35,7 @@
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	resistance_flags = UNACIDABLE
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -309,10 +310,7 @@
 /obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(issilicon(user) && get_dist(src, user) > 1)
-		return attack_hand(user)
-
-	else if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
+	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
@@ -438,21 +436,6 @@
 		
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
-	else if(istype(I, /obj/item/frame/apc) && opened)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
-			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return
-
-		if(opened == APC_COVER_REMOVED)
-			opened = APC_COVER_OPENED
-		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
-		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		qdel(I)
-		update_icon()
-
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
@@ -474,9 +457,24 @@
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
 		qdel(I)
-		machine_stat &= ~BROKEN
+		DISABLE_BITFIELD(machine_stat, BROKEN)
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
+		update_icon()
+
+	else if(istype(I, /obj/item/frame/apc) && opened)
+		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
+
+		if(opened == APC_COVER_REMOVED)
+			opened = APC_COVER_OPENED
+		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
+		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
+		qdel(I)
 		update_icon()
 
 	else
@@ -652,14 +650,6 @@
 
 	interact(user)
 
-/obj/machinery/power/apc/interact(mob/user)
-	if(!user)
-		return
-	user.set_interaction(src)
-
-	//Open the APC NanoUI
-	ui_interact(user)
-	return
 
 /obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	if(!user)
@@ -757,7 +747,7 @@
 			update()
 
 
-/obj/machinery/power/apc/Topic(href, href_list, usingUI = 1)
+/obj/machinery/power/apc/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -797,8 +787,7 @@
 		SSnano.close_user_uis(usr, src)
 		return FALSE
 
-	if(usingUI)
-		updateUsrDialog()
+	updateUsrDialog()
 
 	return TRUE
 

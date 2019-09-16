@@ -68,9 +68,12 @@
 #define GUN_POLICE				(1<<12)
 #define GUN_BURST_FIRING		(1<<13)
 #define GUN_ALLOW_SYNTHETIC		(1<<14)
+#define GUN_HAS_AUTOBURST		(1<<15)
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
-#define GUN_FIREMODE_BURSTFIRE "burst fire mode"
+#define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
+#define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
+#define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
 //Gun attachable related flags.
 //flags_attach_features
@@ -94,23 +97,7 @@
 #define SLOWDOWN_ARMOR_HEAVY		1
 #define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
-#define SLOWDOWN_ADS_SHOTGUN			0.35
-#define SLOWDOWN_ADS_RIFLE				0.35
-#define SLOWDOWN_ADS_LASGUN				0.75
-#define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
-#define SLOWDOWN_ADS_SCOPE				1
-#define SLOWDOWN_ADS_SPECIALIST_MED		1
-#define SLOWDOWN_ADS_INCINERATOR		1.75
-#define SLOWDOWN_ADS_SPECIALIST_HEAVY	1.75
-#define SLOWDOWN_ADS_SUPERWEAPON		2.75
 
-//Wield delays, in milliseconds. 10 is 1 second
-#define WIELD_DELAY_VERY_FAST		2
-#define WIELD_DELAY_FAST			4
-#define WIELD_DELAY_NORMAL			6
-#define WIELD_DELAY_SLOW			10
-#define WIELD_DELAY_VERY_SLOW		16
-#define WIELD_DELAY_HORRIBLE		20
 //=================================================
 
 //Define detpack
@@ -175,6 +162,23 @@
 
 #define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
 #define EGG_MAX_GROWTH_TIME 15 SECONDS
+
+
+//We will round to this value in damage calculations.
+#define DAMAGE_PRECISION 0.1
+
+//Autofire component
+#define AUTOFIRE_STAT_SLEEPING (1<<0) //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
+// VV wake_up() VV
+// ^^ sleep_up() ^^
+#define AUTOFIRE_STAT_IDLE (1<<1) //Compatible firemode is in the gun. Wait until it's held in the user hands.
+// VV autofire_on() VV
+// ^^ autofire_off() ^^
+#define AUTOFIRE_STAT_ALERT	(1<<2) //Gun is active and in the user hands. Wait until user does a valid click.
+// VV start_autofiring() VV
+// ^^ stop_autofiring() ^^
+#define AUTOFIRE_STAT_FIRING (1<<3) //Dakka-dakka-dakka.
+
 
 //Xeno Overlays Indexes//////////
 #define X_LASER_LAYER			9

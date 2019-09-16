@@ -94,7 +94,7 @@
 		to_chat(src, "<span class='notice'>You will no longer hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))
 			return
-		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+		mob.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 
 /client/verb/toggle_ooc_self()
@@ -128,8 +128,7 @@
 		to_chat(src, "<span class='notice'>You will now hear ambient sounds.</span>")
 	else
 		to_chat(src, "<span class='notice'>You will no longer hear ambient sounds.</span>")
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
+		mob.stop_sound_channel(CHANNEL_AMBIENT)
 
 
 /client/verb/toggle_special(role in BE_SPECIAL_FLAGS)

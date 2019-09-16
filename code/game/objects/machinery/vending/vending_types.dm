@@ -272,7 +272,6 @@
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
-	delay_product_spawn = 1
 
 	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
 					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3,/obj/item/seeds/soyaseed = 3,
@@ -366,22 +365,23 @@
 	var/static/list/shared_products = list()
 	isshared = TRUE
 
-/obj/machinery/vending/shared_vending/New()
-	..()
+/obj/machinery/vending/shared_vending/Initialize()
+	. = ..()
 
-	build_shared_inventory(shared,0,1)
+	if(length(shared_products))
+		build_shared_inventory(shared)
+	else
+		build_inventory(shared)
+	
 
-/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist,hidden=0,req_coin=0)
-
-	if(delay_product_spawn)
-		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.
-
+/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist, hidden = FALSE, req_coin = TRUE)
 	var/i = 1
 
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		var/price = prices[typepath]
-		if(isnull(amount)) amount = 1
+		if(isnull(amount)) 
+			amount = 1
 
 		var/obj/item/temp_path = typepath
 		var/datum/data/vending_product/R = shared_products[i]
@@ -393,29 +393,19 @@
 
 			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/explosive/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/storage) )
 				R.display_color = "black"
-//			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
-//				R.display_color = "green"
-//			else if(ispath(typepath,/obj/item/reagent_container) || ispath(typepath,/obj/item/stack/medical))
-//				R.display_color = "blue"
 			else
 				R.display_color = "white"
 
 		if(hidden)
-			R.category=CAT_HIDDEN
+			R.category = CAT_HIDDEN
 			hidden_records += R
 		else if(req_coin)
-			R.category=CAT_COIN
+			R.category = CAT_COIN
 			coin_records += R
 		else
-			R.category=CAT_NORMAL
+			R.category = CAT_NORMAL
 			product_records += R
-
-		if(delay_product_spawn)
-			sleep(5) //sleep(1) did not seem to cut it, so here we are.
 
 		R.product_name = initial(temp_path.name)
 
-		i++;
-
-//		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
-	return
+		i++

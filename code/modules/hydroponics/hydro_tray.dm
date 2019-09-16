@@ -132,13 +132,6 @@
 	update_icon()
 	start_processing()
 
-/obj/machinery/portable_atmospherics/hydroponics/bullet_act(obj/item/projectile/Proj)
-
-	//Don't act on seeds like dionaea that shouldn't change.
-	if(seed && seed.immutable > 0)
-		return 0
-
-	..()
 
 /obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target)
 	if(!density) return 1
@@ -627,8 +620,6 @@
 /obj/machinery/portable_atmospherics/hydroponics/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
-		return
-	if(istype(usr,/mob/living/silicon))
 		return
 
 	if(harvest)

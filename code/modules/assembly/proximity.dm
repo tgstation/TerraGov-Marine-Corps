@@ -2,7 +2,7 @@
 	name = "proximity sensor"
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
-	matter = list("metal" = 800, "glass" = 200)
+	materials = list(/datum/material/metal = 800, /datum/material/glass = 200)
 	attachable = TRUE
 
 	var/scanning = FALSE
@@ -120,31 +120,40 @@
 		holder.update_icon()
 
 
-/obj/item/assembly/prox_sensor/ui_interact(mob/user)//TODO: Change this to the wires thingy
+/obj/item/assembly/prox_sensor/can_interact(mob/user)
 	. = ..()
-	if(is_secured(user))
-		var/second = time % 60
-		var/minute = (time - second) / 60
-		var/dat = "<TT><B>Proximity Sensor</B></TT>"
-		if(!scanning)
-			dat += "<BR>[(timing ? "<A href='?src=[REF(src)];time=0'>Arming</A>" : "<A href='?src=[REF(src)];time=1'>Not Arming</A>")] [minute]:[second]"
-			dat += "<BR><A href='?src=[REF(src)];tp=-30'>-</A> <A href='?src=[REF(src)];tp=-1'>-</A> <A href='?src=[REF(src)];tp=1'>+</A> <A href='?src=[REF(src)];tp=30'>+</A>"
-		dat += "<BR><A href='?src=[REF(src)];scanning=[scanning?"0'>Armed":"1'>Unarmed (Movement sensor active when armed!)"]</A>"
-		dat += "<BR>Detection range: <A href='?src=[REF(src)];sense=down'>-</A> [sensitivity] <A href='?src=[REF(src)];sense=up'>+</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
-		user << browse(dat, "window=prox")
-		onclose(user, "prox")
+	if(!.)
+		return FALSE
+
+	if(!is_secured(user))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/assembly/prox_sensor/interact(mob/user)
+	. = ..()
+	if(.)
 		return
+
+	var/second = time % 60
+	var/minute = (time - second) / 60
+	var/dat
+	if(!scanning)
+		dat += "<BR>[(timing ? "<A href='?src=[REF(src)];time=0'>Arming</A>" : "<A href='?src=[REF(src)];time=1'>Not Arming</A>")] [minute]:[second]"
+		dat += "<BR><A href='?src=[REF(src)];tp=-30'>-</A> <A href='?src=[REF(src)];tp=-1'>-</A> <A href='?src=[REF(src)];tp=1'>+</A> <A href='?src=[REF(src)];tp=30'>+</A>"
+	dat += "<BR><A href='?src=[REF(src)];scanning=[scanning?"0'>Armed":"1'>Unarmed (Movement sensor active when armed!)"]</A>"
+	dat += "<BR>Detection range: <A href='?src=[REF(src)];sense=down'>-</A> [sensitivity] <A href='?src=[REF(src)];sense=up'>+</A>"
+	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
+
+	var/datum/browser/popup = new(user, "prox", name)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/assembly/prox_sensor/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if(!usr.canUseTopic(src, TRUE))
-		usr << browse(null, "window=prox")
-		onclose(usr, "prox")
 		return
 
 	if(href_list["sense"])
@@ -162,9 +171,4 @@
 		time += tp
 		time = min(max(round(time), 0), 600)
 
-	if(href_list["close"])
-		usr << browse(null, "window=prox")
-		return
-
-	if(usr)
-		attack_self(usr)
+	updateUsrDialog()
