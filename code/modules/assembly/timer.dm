@@ -2,7 +2,7 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-	matter = list("metal" = 500, "glass" = 50)
+	materials = list(/datum/material/metal = 500, /datum/material/glass = 50)
 	attachable = TRUE
 	interaction_flags = INTERACT_REQUIRES_DEXTERITY
 

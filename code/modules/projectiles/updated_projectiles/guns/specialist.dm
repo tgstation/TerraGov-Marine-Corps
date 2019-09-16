@@ -18,7 +18,6 @@
 	item_state = "m42a"
 	max_shells = 15 //codex
 	caliber = "10x28mm"
-	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
@@ -225,7 +224,6 @@
 	item_state = "m42c"
 	max_shells = 6 //codex
 	caliber = "10x99mm"
-	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
@@ -263,7 +261,6 @@
 	item_state = "svd"
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
-	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
@@ -301,7 +298,6 @@
 	item_state = "m4ra"
 	max_shells = 15 //codex
 	caliber = "10x24mm caseless" //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -345,7 +341,6 @@
 	item_state = "m56"
 	max_shells = 100 //codex
 	caliber = "10x28mm Caseless" //codex
-	origin_tech = "combat=6;materials=5"
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
@@ -453,7 +448,6 @@
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
 	attachable_allowed = list() //Cannot be upgraded.
@@ -474,8 +468,6 @@
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 6000)
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
@@ -609,8 +601,7 @@
 	max_shells = 1 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 7000)
+	materials = list(/datum/material/metal = 7000)
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
@@ -744,8 +735,7 @@
 	max_shells = 1 //codex
 	caliber = "84mm rockets" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=6;materials=5"
-	matter = list("metal" = 10000)
+	materials = list(/datum/material/metal = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
@@ -907,7 +897,6 @@
 	max_shells = 4 //codex
 	caliber = "84mm rockets" //codex
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 	aim_slowdown = 2.75
 	attachable_allowed = list()
@@ -929,7 +918,6 @@
 	max_shells = 10 //codex
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = GUN_SKILL_SPEC
@@ -967,7 +955,6 @@
 	max_shells = 500 //codex
 	caliber = "7.62x51mm" //codex
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'

@@ -24,7 +24,7 @@
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
 
-	matter = list("glass" = 25,"metal" = 75)
+	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
 	var/list/secure_radio_connections

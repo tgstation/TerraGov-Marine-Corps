@@ -17,7 +17,6 @@
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
-	origin_tech = "materials=1"
 
 
 /obj/item/stack/New(loc, new_amount)

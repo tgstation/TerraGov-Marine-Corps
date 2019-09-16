@@ -15,8 +15,6 @@
 	force = 8
 	throwforce = 4
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 50)
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
@@ -148,7 +146,6 @@
 	throwforce = 2
 	item_state = "crowbar"
 	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
-	origin_tech = "engineering=1"
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20

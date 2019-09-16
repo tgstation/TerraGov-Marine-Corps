@@ -75,7 +75,6 @@
 	icon_state = "material"
 	item_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=3;engineering=3"
 	toggleable = 1
 	vision_flags = SEE_OBJS
 

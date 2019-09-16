@@ -11,7 +11,7 @@
 	force = 5
 	throwforce = 8
 	item_state = "shard-glass"
-	matter = list("glass" = 3750)
+	materials = list(/datum/material/glass = 3750)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	var/source_sheet_type = /obj/item/stack/sheet/glass
 	var/shardsize
@@ -97,7 +97,7 @@
 	name = "shrapnel"
 	icon_state = "shrapnel"
 	desc = "A bunch of tiny bits of shattered metal."
-	matter = list("metal" = 50)
+	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
 
 
