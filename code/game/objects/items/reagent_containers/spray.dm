@@ -160,7 +160,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = "combat=3;materials=3;engineering=3"
 
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!

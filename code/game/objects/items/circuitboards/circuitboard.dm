@@ -5,8 +5,7 @@
 	icon_state = "id_mod"
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	matter = list("metal" = 50, "glass" = 50)
-	origin_tech = "programming=2"
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 50)
 	var/build_path = null
 	var/is_general_board = FALSE
 
@@ -54,7 +53,6 @@
 
 /obj/item/circuitboard/aicore
 	name = "Circuit board (AI Core)"
-	origin_tech = "programming=4;biotech=2"
 
 
 /obj/item/circuitboard/airalarm
@@ -86,7 +84,6 @@
 	name = "airlock electronics"
 	icon_state = "door_electronics"
 	w_class = WEIGHT_CLASS_SMALL //It should be tiny! -Agouri
-	matter = list("metal" = 50,"glass" = 50)
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
 	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
@@ -181,11 +178,9 @@
 /obj/item/circuitboard/airlock/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
-	origin_tech = "programming=3"
 
 
 /obj/item/circuitboard/general
 	name = "general circuit board"
 	desc = "A reconfigurable general circuitboard that can switch between multiple pre-programmed modes by way of a multitool."
-	origin_tech = "programming=3"
 	is_general_board = TRUE

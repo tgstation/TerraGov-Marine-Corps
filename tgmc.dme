@@ -205,6 +205,7 @@
 #include "code\datums\holocall.dm"
 #include "code\datums\map_config.dm"
 #include "code\datums\marine_main_ship.dm"
+#include "code\datums\materials.dm"
 #include "code\datums\medal_awards.dm"
 #include "code\datums\mind.dm"
 #include "code\datums\mutable_appearance.dm"

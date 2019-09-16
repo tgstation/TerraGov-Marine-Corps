@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "syndicate=2"
 	layer = MOB_LAYER - 0.1
 	var/frequency = 1457
 	var/on = FALSE
