@@ -23,9 +23,9 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New()
-	..()
-	if (fixture_type == "bulb")
+/obj/machinery/light_construct/Initialize()
+	. = ..()
+	if(fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
@@ -601,8 +601,8 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light_bulb/New()
-	..()
+/obj/item/light_bulb/Initialize()
+	. = ..()
 	switch(name)
 		if("light tube")
 			brightness = rand(6,9)
@@ -664,7 +664,8 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/landinglight/New()
+/obj/machinery/landinglight/Initialize()
+	. = ..()
 	turn_off()
 
 /obj/machinery/landinglight/proc/turn_off()

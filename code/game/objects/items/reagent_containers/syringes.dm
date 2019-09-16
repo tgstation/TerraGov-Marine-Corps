@@ -369,7 +369,7 @@
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
-/obj/item/reagent_container/syringe/inaprovaline/New()
+/obj/item/reagent_container/syringe/inaprovaline/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -379,7 +379,7 @@
 	desc = "Contains anti-toxins."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
-/obj/item/reagent_container/syringe/dylovene/New()
+/obj/item/reagent_container/syringe/dylovene/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -389,7 +389,7 @@
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
-/obj/item/reagent_container/syringe/antiviral/New()
+/obj/item/reagent_container/syringe/antiviral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -399,7 +399,7 @@
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
-/obj/item/reagent_container/syringe/drugs/New()
+/obj/item/reagent_container/syringe/drugs/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -407,7 +407,7 @@
 /obj/item/reagent_container/syringe/ld50_syringe/choral
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_container/syringe/ld50_syringe/choral/New()
+/obj/item/reagent_container/syringe/ld50_syringe/choral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -417,7 +417,7 @@
 	desc = "Contains inaprovaline & dylovene."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
-/obj/item/reagent_container/syringe/mixed/New()
+/obj/item/reagent_container/syringe/mixed/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()

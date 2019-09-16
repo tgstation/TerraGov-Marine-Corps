@@ -13,8 +13,8 @@
 	var/volume = 10000 //in liters
 	var/gas_type = 0
 
-/obj/machinery/atmospherics/components/unary/tank/New()
-	..()
+/obj/machinery/atmospherics/components/unary/tank/Initialize()
+	. = ..()
 	setPipingLayer(piping_layer)
 
 

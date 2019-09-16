@@ -16,10 +16,10 @@
 
 	var/mutable_appearance/center
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/New()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/Initialize()
+	. = ..()
 	icon_state = ""
 	center = mutable_appearance(icon, "manifold4w_center")
-	return ..()
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w/SetInitDirections()
 	initialize_directions = initial(initialize_directions)

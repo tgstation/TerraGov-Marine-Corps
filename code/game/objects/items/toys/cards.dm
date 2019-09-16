@@ -11,9 +11,8 @@
 
 	var/list/cards = list()
 
-/obj/item/toy/deck/New()
-	..()
-
+/obj/item/toy/deck/Initialize()
+	. = ..()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 

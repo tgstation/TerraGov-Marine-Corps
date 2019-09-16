@@ -17,10 +17,10 @@
 
 	var/mutable_appearance/center
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/New()
+/obj/machinery/atmospherics/pipe/heat_exchanging/manifold/Initialize()
+	. = ..()
 	icon_state = ""
 	center = mutable_appearance(icon, "manifold_center")
-	return ..()
 
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold/SetInitDirections()
 	initialize_directions = NORTH|SOUTH|EAST|WEST

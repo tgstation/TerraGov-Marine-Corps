@@ -10,8 +10,8 @@
 	var/morgue_open = 0
 
 
-/obj/structure/morgue/New()
-	..()
+/obj/structure/morgue/Initialize()
+	. = ..()
 	connected = new tray_path(src)
 
 /obj/structure/morgue/Destroy()
@@ -119,10 +119,10 @@
 	var/obj/structure/morgue/linked_morgue = null
 	throwpass = TRUE
 
-/obj/structure/morgue_tray/New(loc, obj/structure/morgue/morgue_source)
+/obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
+	. = ..()
 	if(morgue_source)
 		linked_morgue = morgue_source
-	..()
 
 /obj/structure/morgue_tray/Destroy()
 	. = ..()
