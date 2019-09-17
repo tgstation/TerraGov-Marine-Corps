@@ -1048,7 +1048,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 			list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "standard"),
 			list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "standard"),
 			list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "standard"),
-			list("Detonation pack", 5, /obj/item/radio/detpack, null, "standard"),
+			list("Detonation pack", 5, /obj/item/detpack, null, "standard"),
 			list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "standard"),
 			list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "standard"),
 			list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "standard"),
