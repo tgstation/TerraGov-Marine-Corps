@@ -428,7 +428,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "m16sight"
 	attach_icon = "m16sight_a"
 	slot = "rail"
-	accuracy_mod = 0.10
+	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.05
 	movement_acc_penalty_mod = -0.1
 
