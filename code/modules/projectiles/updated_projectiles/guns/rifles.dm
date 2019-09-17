@@ -170,7 +170,7 @@
 	icon_state = "mar30"
 	item_state = "mar30"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
+	starting_attachment_types = null
 
 	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
@@ -222,7 +222,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
 	damage_mult = 0.8
-	fire_delay = 0.20 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_delay = 0.14 SECONDS
 	
 

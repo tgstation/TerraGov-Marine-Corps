@@ -169,7 +169,7 @@
 									)
 
 	fire_delay = 0.6 SECONDS
-	accuracy_mult = 1.20
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 1.15
 	damage_mult = 0.5
 
@@ -278,7 +278,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
-	fire_delay = 1.0 SECONDS
+	fire_delay = 1 SECONDS
 	recoil = 2
 	recoil_unwielded = 3
 	accuracy_mult = 1.4
@@ -329,7 +329,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 18, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
-	fire_delay = 1.0 SECONDS
+	fire_delay = 1 SECONDS
 	damage_mult = 1.5
 	recoil = 2
 	recoil_unwielded = 3
