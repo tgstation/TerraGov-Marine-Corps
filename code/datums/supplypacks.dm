@@ -1799,8 +1799,8 @@ AMMO
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/ammo_magazine/rifle/mar40,
-					/obj/item/ammo_magazine/rifle/mar40/extended,
+					/obj/item/ammo_magazine/rifle/ak47,
+					/obj/item/ammo_magazine/rifle/ak47/extended,
 					)
 	cost = RO_PRICE_NORMAL
 	contraband = 1

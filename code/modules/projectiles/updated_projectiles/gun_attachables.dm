@@ -422,6 +422,17 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = -0.1
 
 
+/obj/item/attachable/m16sight
+	name = "M16 iron sights"
+	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
+	icon_state = "m16sight"
+	attach_icon = "m16sight_a"
+	slot = "rail"
+	accuracy_mod = 0.1
+	accuracy_unwielded_mod = 0.05
+	movement_acc_penalty_mod = -0.1
+
+
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
@@ -642,6 +653,27 @@ Defined in conflicts.dm of the #defines folder.
 	recoil_mod = -3
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
+
+
+/obj/item/attachable/stock/m16
+	name = "M16 Composite Stock"
+	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
+	icon_state = "m16stock"
+	wield_delay_mod = 0.5 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
+
+/obj/item/attachable/stock/ak47
+	name = "AK-47 Wooden Stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+	icon_state = "ak47stock"
+	wield_delay_mod = 0.4 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
 
 /obj/item/attachable/stock/rifle
 	name = "\improper M41A1 skeleton stock"
