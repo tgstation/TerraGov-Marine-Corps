@@ -248,7 +248,7 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	updatehealth()
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

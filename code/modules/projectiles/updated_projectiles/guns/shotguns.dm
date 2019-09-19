@@ -620,7 +620,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
-	pump_sound = 'sound/weapons/guns/interact/mar40_cocked.ogg'//good enough for now.
+	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,

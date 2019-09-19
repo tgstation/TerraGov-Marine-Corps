@@ -175,7 +175,7 @@
 
 	//stun effects
 	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
-		L.stun_effect_act(stun, agony, target_zone, src)
+		L.stun_effect_act(stun, agony, target_zone)
 		if(!L.knocked_down)
 			L.knock_down(4)
 
