@@ -70,13 +70,13 @@
 		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/obj/machinery/cell_charger/attack_hand(mob/user)
+/obj/machinery/cell_charger/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	if(charging)
 		usr.put_in_hands(charging)
-		charging.updateicon()
+		charging.update_icon()
 
 		src.charging = null
 		user.visible_message("[user] removes the cell from the charger.", "You remove the cell from the charger.")
@@ -84,8 +84,6 @@
 		updateicon()
 		stop_processing()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
-	return
 
 /obj/machinery/cell_charger/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))

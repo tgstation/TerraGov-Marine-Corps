@@ -1,8 +1,4 @@
-GLOBAL_LIST_EMPTY(metatips)
-GLOBAL_LIST_EMPTY(marinetips)
-GLOBAL_LIST_EMPTY(xenotips)
-GLOBAL_LIST_EMPTY(joketips)
-#define ALLTIPS (GLOB.marinetips + GLOB.xenotips + GLOB.joketips + GLOB.metatips)
+#define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta"))
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -127,24 +123,30 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	shuffle(GLOB.fruit_icon_states)
 	shuffle(GLOB.reagent_effects)
 
+
+	for(var/path in subtypesof(/datum/material))
+		var/datum/material/M = new path
+		GLOB.materials[path] = M
+
+
 	for(var/R in typesof(/datum/autolathe/recipe)-/datum/autolathe/recipe)
 		var/datum/autolathe/recipe/recipe = new R
 		GLOB.autolathe_recipes += recipe
 		GLOB.autolathe_categories |= recipe.category
 
 		var/obj/item/I = new recipe.path
-		if(I.matter && !recipe.resources) //This can be overidden in the datums.
+		if(I.materials && !recipe.resources) //This can be overidden in the datums.
 			recipe.resources = list()
-			for(var/material in I.matter)
+			for(var/material in I.materials)
 				if(istype(I,/obj/item/stack/sheet))
-					recipe.resources[material] = I.matter[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
+					recipe.resources[material] = I.materials[material] //Doesn't take more if it's just a sheet or something. Get what you put in.
 				else
-					recipe.resources[material] = round(I.matter[material]*1.25) // More expensive to produce than they are to recycle.
+					recipe.resources[material] = round(I.materials[material]*1.25) // More expensive to produce than they are to recycle.
 			qdel(I)
 
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
-		GLOB.chemical_reagents_list[D.id] = D
+		GLOB.chemical_reagents_list[path] = D
 
 	for(var/path in subtypesof(/datum/chemical_reaction))
 
@@ -162,6 +164,9 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			GLOB.chemical_reactions_list[id] += D
 			break // Don't bother adding ourselves to other reagent ids, it is redundant
 
+	for(var/path in typesof(/datum/namepool))
+		var/datum/namepool/NP = new path
+		GLOB.namepool[path] = NP
 
 	return TRUE
 

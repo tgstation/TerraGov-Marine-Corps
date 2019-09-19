@@ -9,9 +9,6 @@
 	icon_state = "snow_0"
 	hull_floor = TRUE
 
-/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	return //Larvae can't do shit
-
 //Xenos digging up snow
 /turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)
@@ -21,7 +18,7 @@
 			return FALSE
 
 		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
-		"<span class='notice'>You start clearing out \the [src].</span>", null, 5)
+		"<span class='notice'>We start clearing out \the [src].</span>", null, 5)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 		if(!do_after(M, 25, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
@@ -31,7 +28,7 @@
 			return
 
 		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
-		"<span class='notice'>You clear out \the [src].</span>", null, 5)
+		"<span class='notice'>We clear out \the [src].</span>", null, 5)
 		slayer -= 1
 		update_icon(1, 0)
 

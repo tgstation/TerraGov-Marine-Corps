@@ -15,7 +15,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	caliber = "12g" //All shotgun rounds are 12g right now.
 	gun_type = /obj/item/weapon/gun/shotgun
 	max_rounds = 25 // Real shotgun boxes are usually 5 or 25 rounds. This works with the new system, five handfuls.
-	w_class = WEIGHT_CLASS_NORMAL // Can't throw it in your pocket, friend.
+	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 
 /obj/item/ammo_magazine/shotgun/incendiary
 	name = "box of incendiary slugs"
@@ -79,6 +79,12 @@ also doesn't really matter. You can only reload them with handfuls.
 	default_ammo = /datum/ammo/bullet/sniper/svd
 	caliber = "7.62x54mmR"
 	max_rounds = 5
+
+/obj/item/ammo_magazine/internal/shotgun/pump/lever
+	name = "tubular magazine"
+	default_ammo = /datum/ammo/bullet/revolver
+	caliber = ".44"
+	max_rounds = 10
 
 /obj/item/ammo_magazine/internal/shotgun/double
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot

@@ -13,6 +13,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
+	interaction_flags = INTERACT_OBJ_NANO
 
 	var/req_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/points = 40
@@ -20,12 +21,11 @@
 	var/use_points = TRUE
 	var/fabricating = 0
 	var/broken = 0
-	var/list/purchase_log = list()
 
 	var/list/listed_products = list()
 
 
-/obj/item/portable_vendor/attack_hand(mob/user)
+/obj/item/portable_vendor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -33,43 +33,32 @@
 		attack_self(user)
 
 
-/obj/item/portable_vendor/attack_self(mob/user)
-
-	if(!ishuman(user))
-		return
-
-	var/mob/living/carbon/human/H = user
+/obj/item/portable_vendor/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 
 	if(broken)
-		to_chat(user, "<span class='notice'>[src] is irrepairably broken.</span>")
-		return
+		return FALSE
 
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
-		return
+		return FALSE
 
-	var/obj/item/card/id/I = H.wear_id
-	if(!istype(I)) //not wearing an ID
-		to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
-		return
+	if(isliving(user))
+		var/obj/item/card/id/I = user.get_idcard()
+		if(!istype(I))
+			return FALSE
 
-	if(I.registered_name != H.real_name)
-		to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
-		return
+		if(I.registered_name != user.real_name)
+			return FALSE
 
-	if(req_role && I.rank != req_role)
-		to_chat(H, "<span class='warning'>This device isn't for you.</span>")
-		return
+		if(req_role && I.rank != req_role)
+			return FALSE
 
-
-	user.set_interaction(src)
-	ui_interact(user)
+	return TRUE
 
 
 /obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
-
-	if(!ishuman(user)) return
-
 	var/list/display_list = list()
 
 
@@ -110,65 +99,43 @@
 	. = ..()
 	if(.)
 		return
-	if(broken)
-		return
-	if(usr.incapacitated())
-		return
 
-	if (in_range(src, usr) && ishuman(usr))
-		usr.set_interaction(src)
-		if (href_list["vend"])
+	if(href_list["vend"])
 
-			if(!allowed(usr))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
-				return
+		if(!allowed(usr))
+			to_chat(usr, "<span class='warning'>Access denied.</span>")
+			return
 
-			var/mob/living/carbon/human/H = usr
-			var/obj/item/card/id/I = H.wear_id
-			if(!istype(I)) //not wearing an ID
-				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
-				return
+		var/idx = text2num(href_list["vend"])
 
-			if(I.registered_name != H.real_name)
-				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
-				return
+		var/list/L = listed_products[idx]
+		var/cost = L[2]
 
-			if(req_role && I.rank != req_role)
-				to_chat(H, "<span class='warning'>This device isn't for you.</span>")
-				return
-
-			var/idx=text2num(href_list["vend"])
-
-			var/list/L = listed_products[idx]
-			var/cost = L[2]
-
-			if(use_points && points < cost)
-				to_chat(H, "<span class='warning'>Not enough points.</span>")
+		if(use_points && points < cost)
+			to_chat(usr, "<span class='warning'>Not enough points.</span>")
 
 
-			var/turf/T = loc
-			if(T.contents.len > 25)
-				to_chat(H, "<span class='warning'>The floor is too cluttered, make some space.</span>")
-				return
+		var/turf/T = get_turf(src)
+		if(length(T.contents) > 25)
+			to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+			return
 
 
-			if(use_points)
-				points -= cost
+		if(use_points)
+			points -= cost
 
-			purchase_log += "[usr] ([usr.ckey]) bought [L[1]]."
-
-			playsound(src, "sound/machines/fax.ogg", 5)
-			fabricating = 1
+		playsound(src, "sound/machines/fax.ogg", 5)
+		fabricating = TRUE
+		update_overlays()
+		spawn(30)
+			var/type_p = L[3]
+			var/obj/IT = new type_p(get_turf(src))
+			if(loc == usr)
+				usr.put_in_hands(IT)
+			fabricating = FALSE
 			update_overlays()
-			spawn(30)
-				var/type_p = L[3]
-				var/obj/IT = new type_p(get_turf(src))
-				if(loc == H)
-					H.put_in_any_hand_if_possible(IT)
-				fabricating = 0
-				update_overlays()
 
-		ui_interact(usr) //updates the nanoUI window
+	updateUsrDialog()
 
 
 /obj/item/portable_vendor/proc/update_overlays()
@@ -185,14 +152,14 @@
 	points = min(max_points, points+0.05)
 
 
-/obj/item/portable_vendor/New()
-	..()
+/obj/item/portable_vendor/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_overlays()
 
 /obj/item/portable_vendor/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 
 /obj/item/portable_vendor/proc/malfunction()
@@ -239,7 +206,7 @@
 							list("INCENTIVES", 0, null, null, null),
 							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which regulates nociception and sensory function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus malfunction with gradually increasing frequency. Personal use not recommended."),
 							list("Ultrazine Pills", 20, /obj/item/storage/pill_bottle/restricted/ultrazine, "white", "Highly-addictive stimulant. Enhances short-term physical performance, particularly running speed. Effects last approximately 10 minutes per pill. More than two pills at a time will result in overdose. Withdrawal causes extreme discomfort and hallucinations. Long-term use results in halluciations and organ failure. Conditional distribution secures subject compliance. Not for personal use."),
-							list("Cash", 5, /obj/item/spacecash/c1000, "white", "$1000 USD, unmarked bills"),
+							list("Cash", 2, /obj/item/spacecash/c500, "white", "$500 USD, unmarked bills"),
 							list("Cigars", 5, /obj/item/storage/fancy/cigar, "white", "Case of premium cigars, untampered."),
 							list("De Void of Soul", 51, /obj/item/clothing/under/liaison_suit/galaxy_blue, "white", "The latest in ultrafashion. for those with a cool demeanor."),
 							list("Pulsar Gonne", 51, /obj/item/clothing/under/liaison_suit/galaxy_red, "white", "The latest in ultrafashion. for those with a fiery temper.")

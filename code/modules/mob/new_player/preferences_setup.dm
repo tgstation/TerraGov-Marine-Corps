@@ -126,6 +126,12 @@
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
 
+	if(previewJob)
+		// Silicons only need a very basic preview since there is no customization for them.
+		if(istype(previewJob, /datum/job/ai))
+			parent.show_character_previews(image('icons/mob/ai.dmi', icon_state = "ai", dir = SOUTH))
+			return
+
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin)
@@ -153,7 +159,10 @@
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace || firstspace == name_length)
-			real_name += " " + pick(GLOB.last_names)
+			real_name += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+
+	if(!good_eyesight)
+		ENABLE_BITFIELD(character.disabilities, NEARSIGHTED)
 
 	character.real_name = real_name
 	character.name = character.real_name

@@ -17,8 +17,6 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	matter = list("glass" = 10,"metal" = 10)
-
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	var/bullets = 7.0
 
@@ -53,20 +51,17 @@
 			return
 		if (src.bullets < 1)
 			user.show_message("<span class='warning'> *click* *click*</span>", 2)
-			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
+			playsound(user, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 			return
-		playsound(user, 'sound/weapons/gunshot.ogg', 15, 1)
+		playsound(user, 'sound/weapons/guns/fire/gunshot.ogg', 15, 1)
 		src.bullets--
-		for(var/mob/O in viewers(user, null))
-			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
+		visible_message("<span class='danger'>[user] fires a cap gun at [target]!</span>", null, "<span class='warning'> You hear a gunshot</span>")
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
 	icon_state = "cap_ammo"
 	w_class = WEIGHT_CLASS_TINY
-
-	matter = list("metal" = 10,"glass" = 10)
 
 	var/amount_left = 7
 
@@ -128,8 +123,7 @@
 					for(var/mob/living/M in D.loc)
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
-						for(var/mob/O in viewers(world.view, D))
-							O.show_message(text("<span class='warning'> [] was hit by the foam dart!</span>", M), 1)
+						visible_message("<span class='warning'>[M] was hit by the foam dart!</span>")
 						new /obj/item/toy/crossbow_ammo(M.loc)
 						qdel(D)
 						return
@@ -150,9 +144,8 @@
 			return
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
-			L.KnockDown(5)
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
+			L.knock_down(5)
+			visible_message("<span class='warning'>[user] realized they were out of ammo and starting scrounging for some!</span>")
 
 
 	attack(mob/M as mob, mob/user as mob)
@@ -160,11 +153,8 @@
 // ******* Check
 
 		if (src.bullets > 0 && M.lying)
-
-			for(var/mob/O in viewers(M, null))
-				if(O.client)
-					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'> You hear the sound of foam against skull</span>", 2)
-					O.show_message(text("<span class='warning'> [] was hit in the head by the foam dart!</span>", M), 1)
+			visible_message("<span class='danger'>[user] casually lines up a shot with [M]'s head and pulls the trigger!</span>", null, "<span class='warning'>You hear the sound of foam against skull</span>")
+			visible_message("<span class='warning'>[M] was hit in the head by the foam dart!</span>")
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
@@ -172,7 +162,7 @@
 		else if(M.lying && !bullets && isliving(M))
 			var/mob/living/L = M
 			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
-			L.KnockDown(5)
+			L.knock_down(5)
 		return
 
 /obj/item/toy/crossbow_ammo
@@ -202,7 +192,6 @@
 	item_state = "sword0"
 	var/active = 0.0
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOSHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	attack_self(mob/user as mob)
@@ -233,7 +222,6 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "katana"
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 5
 	throwforce = 5

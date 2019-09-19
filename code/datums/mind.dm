@@ -60,7 +60,6 @@
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
-		current.set_away_time()
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
 			new_character.ghostize(TRUE)						//we'll need to ghostize so that key isn't mobless.
@@ -87,7 +86,11 @@
 
 
 /datum/mind/proc/store_memory(new_text)
-	memory += "[new_text]<br>"
+	var/combined = length(memory + new_text)
+	if(combined > MAX_PAPER_MESSAGE_LEN)
+		memory = copytext(memory, combined - MAX_PAPER_MESSAGE_LEN, combined)
+	else
+		memory += "[new_text]<br>"
 
 
 /datum/mind/proc/wipe_memory()

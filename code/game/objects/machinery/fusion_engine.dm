@@ -21,8 +21,14 @@
 	var/fail_rate = 5 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
-	var/obj/item/fuelCell/fusion_cell = new //Starts with a fuel cell loaded in.  Maybe replace with the plasma tanks in the future and have it consume plasma?  Possibly remove this later if it's irrelevent...
+	var/obj/item/fuelCell/fusion_cell
 	var/fuel_rate = 0 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
+
+
+/obj/machinery/power/fusion_engine/Initialize()
+	. = ..()
+	fusion_cell = new(src)
+
 
 /obj/machinery/power/fusion_engine/preset/Initialize()
 	. = ..()
@@ -88,7 +94,7 @@
 		fusion_cell.take(fuel_rate) //Consumes fuel
 		update_icon()
 
-/obj/machinery/power/fusion_engine/attack_hand(mob/user)
+/obj/machinery/power/fusion_engine/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -228,7 +234,7 @@
 			user.visible_message("<span class='warning'>[user] fumbles around figuring out [src]'s fuel receptacle.</span>",
 			"<span class='warning'>You fumble around figuring out [src]'s fuel receptacle.</span>")
 			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
-			if(!do_after(user, fumbling_time, src, BUSY_ICON_UNSKILLED))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] starts prying [src]'s fuel receptacle open.</span>",
@@ -263,7 +269,7 @@
 			to_chat(user, "<span class='info'>The power gauge reads: [power_gen_percent]%</span>")
 		if(fusion_cell)
 			to_chat(user, "<span class='info'>You can see a fuel cell in the receptacle.</span>")
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT)
+			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MASTER)
 				switch(fusion_cell.fuel_amount)
 					if(0 to 10)
 						to_chat(user, "<span class='danger'>The fuel cell is critically low.</span>")

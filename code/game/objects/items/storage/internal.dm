@@ -10,7 +10,7 @@
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 	..()
 
-/obj/item/storage/internal/attack_hand()
+/obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()

@@ -4,7 +4,7 @@
 	icon_state = "beacon"
 	item_state = "signaler"
 	var/code = "electronic"
-	origin_tech = "bluespace=1"
+
 
 /obj/item/radio/beacon/Initialize()
 	. = ..()
@@ -28,5 +28,4 @@
 
 /obj/item/radio/beacon/bacon //Probably a better way of doing this, I'm lazy.
 	proc/digest_delay()
-		spawn(600)
-			qdel(src)
+		QDEL_IN(src, 1 MINUTES)

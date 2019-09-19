@@ -27,8 +27,6 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	matter = list("metal" = 150)
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	tool_behaviour = TOOL_WRENCH
 
@@ -49,7 +47,6 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
 	tool_behaviour = TOOL_SCREWDRIVER
 
@@ -109,8 +106,6 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 80)
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("pinched", "nipped")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
@@ -151,13 +146,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	tool_behaviour = TOOL_WELDER
-
-
-	//Cost to make in the autolathe
-	matter = list("metal" = 70, "glass" = 30)
-
-	//R&D tech level
-	origin_tech = "engineering=1"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 30)
 
 	//blowtorch specific stuff
 	var/welding = 0 	//Whether or not the blowtorch is off(0), on(1) or currently welding(2)
@@ -167,7 +156,7 @@
 
 /obj/item/tool/weldingtool/Initialize()
 	. = ..()
-	create_reagents(max_fuel, null, list("fuel" = max_fuel))
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	return
 
 
@@ -188,7 +177,7 @@
 	if(get_fuel() < used)
 		return FALSE
 
-	reagents.remove_reagent("fuel", used)
+	reagents.remove_reagent(/datum/reagent/fuel, used)
 	check_fuel()
 	return TRUE
 
@@ -280,7 +269,7 @@
 
 //Returns the amount of fuel in the welder
 /obj/item/tool/weldingtool/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(/datum/reagent/fuel)
 
 
 //Removes fuel from the blowtorch. If a mob is passed, it will perform an eyecheck on the mob. This should probably be renamed to use()
@@ -288,7 +277,7 @@
 	if(!welding || !check_fuel())
 		return 0
 	if(get_fuel() >= amount)
-		reagents.remove_reagent("fuel", amount)
+		reagents.remove_reagent(/datum/reagent/fuel, amount)
 		check_fuel()
 		if(M)
 			eyecheck(M)
@@ -368,22 +357,21 @@
 /obj/item/tool/weldingtool/largetank
 	name = "industrial blowtorch"
 	max_fuel = 40
-	matter = list("metal" = 70, "glass" = 60)
-	origin_tech = "engineering=2"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 60)
+
 
 /obj/item/tool/weldingtool/hugetank
 	name = "high-capacity industrial blowtorch"
 	max_fuel = 80
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 70, "glass" = 120)
-	origin_tech = "engineering=3"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
+
 
 /obj/item/tool/weldingtool/experimental
 	name = "experimental blowtorch"
 	max_fuel = 40 //?
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 70, "glass" = 120)
-	origin_tech = "engineering=4;phorontech=3"
+	materials = list(/datum/material/metal = 70, /datum/material/glass = 120)
 	var/last_gen = 0
 
 
@@ -409,8 +397,6 @@
 	throwforce = 7.0
 	item_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 50)
-	origin_tech = "engineering=1"
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
@@ -443,7 +429,7 @@ Welding backpack
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -451,8 +437,6 @@ Welding backpack
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding & prob(50))
-			message_admins("[ADMIN_TPMONTY(user)] triggered a weldpack explosion at [ADMIN_VERBOSEJMP(src.loc)].")
-			log_game("[key_name(user)] triggered a weldpack explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(get_turf(src),-1,0,2)

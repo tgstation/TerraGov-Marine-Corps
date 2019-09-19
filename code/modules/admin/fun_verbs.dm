@@ -50,8 +50,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
-	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
+	var/customname = input("What do you want it to be called?.", "Queen Mother Report", "Queen Mother")
+	var/input = input("This should be a message from the ruler of the Xenomorph race.", "Queen Mother Report", "") as message|null
 	if(!input || !customname)
 		return
 
@@ -124,7 +124,7 @@
 		return
 
 	if(alert(usr, "Do you want to print out a paper at the communications consoles?",, "Yes", "No") == "Yes")
-		print_command_report(input, "[CONFIG_GET(string/ship_name)] Update", announce = FALSE)
+		print_command_report(input, "[SSmapping.configs[SHIP_MAP].map_name] Update", announce = FALSE)
 
 	switch(alert("Should this be announced to the general population?", "Announce", "Yes", "No", "Cancel"))
 		if("Yes")
@@ -253,24 +253,23 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom info?", "Custom Info") as null|anything in list("Change", "Clear"))
-		if("Change")
-			GLOB.custom_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	var/new_info = input(usr, "Set the custom information players get on joining or via the OOC tab.", "Custom Info", GLOB.custom_info) as message|null
+	new_info = noscript(new_info)
+	if(isnull(new_info) || GLOB.custom_info == new_info)
+		return
 
-			GLOB.custom_info = noscript(GLOB.custom_info)
+	if(!new_info)
+		log_admin("[key_name(usr)] has cleared the custom info.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+		return
 
-			if(!GLOB.custom_info)
-				return
+	GLOB.custom_info = new_info
 
-			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
-			to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
+	to_chat(world, "<h1 class='alert'>Custom Information</h1>")
+	to_chat(world, "<span class='alert'>[GLOB.custom_info]</span>")
 
-			log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
-			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
-		if("Clear")
-			GLOB.custom_info = null
-			log_admin("[key_name(usr)] has cleared the custom info.")
-			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
+	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
 
 
 /client/verb/custom_info()
@@ -294,7 +293,7 @@
 		return
 
 	var/heard_midi = 0
-	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = CHANNEL_MIDI)
 	uploaded_sound.priority = 250
 
 
@@ -330,78 +329,79 @@
 		return
 
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
-	if(!istext(web_sound_input))
+	if(!istext(web_sound_input) || !length(web_sound_input))
+		return
+	
+	web_sound_input = trim(web_sound_input)
+
+	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
+		to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
+		to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
 		return
 
 	var/web_sound_url = ""
 	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
-	if(length(web_sound_input))
-		web_sound_input = trim(web_sound_input)
-		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(usr, "<span class='warning'>Non-http(s) URIs are not allowed.</span>")
-			to_chat(usr, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full url from the website.</span>")
-			return
-		var/shell_scrubbed_input = shell_url_scrub(web_sound_input)
-		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_scrubbed_input]\"")
-		var/errorlevel = output[SHELLEO_ERRORLEVEL]
-		var/stdout = output[SHELLEO_STDOUT]
-		var/stderr = output[SHELLEO_STDERR]
-		if(!errorlevel)
-			var/list/data
-			try
-				data = json_decode(stdout)
-			catch(var/exception/e)
-				to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+	
+	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(web_sound_input)]\"")
+	var/errorlevel = output[SHELLEO_ERRORLEVEL]
+	var/stdout = output[SHELLEO_STDOUT]
+	var/stderr = output[SHELLEO_STDERR]
+	
+	if(errorlevel)
+		to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
+		return
+
+	var/list/data = list()
+	try
+		data = json_decode(stdout)
+	catch(var/exception/e)
+		to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
+		return
+	
+	if(data["url"])
+		web_sound_url = data["url"]
+		title = data["title"]
+		music_extra_data["start"] = data["start_time"]
+		music_extra_data["end"] = data["end_time"]
+		switch(alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", "Yes", "No", "Cancel"))
+			if("Yes")
+				show = TRUE
+			if("Cancel")
 				return
-			if(data["url"])
-				web_sound_url = data["url"]
-				title = "[data["title"]]"
-				music_extra_data["start"] = data["start_time"]
-				music_extra_data["end"] = data["end_time"]
-				var/res = alert(usr, "Show the title of and link to this song to the players?\n[title]",, "Yes", "No", "Cancel")
-				switch(res)
-					if("Yes")
-						if(data["webpage_url"])
-							show = "<a href=\"[data["webpage_url"]]\">[title]</a>"
-					if("Cancel")
-						return
+
+	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
+		to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
+		to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
+		return
+
+	var/list/targets
+	var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
+	switch(style)
+		if("Globally")
+			targets = GLOB.mob_list
+		if("Xenos")
+			targets = GLOB.xeno_mob_list + GLOB.dead_mob_list
+		if("Marines")
+			targets = GLOB.human_mob_list + GLOB.dead_mob_list
+		if("Locally")
+			targets = viewers(usr.client.view, usr)
 		else
-			to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
-
-		if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
-			to_chat(usr, "<span class='warning'>BLOCKED: Content URL not using http(s) protocol</span>")
-			to_chat(usr, "<span class='warning'>The media provider returned a content URL that isn't using the HTTP or HTTPS protocol</span>")
 			return
 
-		var/lst
-		var/style = input("Do you want to play this globally or to the xenos/marines?") as null|anything in list("Globally", "Xenos", "Marines", "Locally")
-		switch(style)
-			if("Globally")
-				lst = GLOB.mob_list
-			if("Xenos")
-				lst = GLOB.xeno_mob_list + GLOB.dead_mob_list
-			if("Marines")
-				lst = GLOB.human_mob_list + GLOB.dead_mob_list
-			if("Locally")
-				lst = viewers(usr.client.view, usr)
+	for(var/i in targets)
+		var/mob/M = i
+		var/client/C = M?.client
+		if(!C?.prefs)
+			continue
+		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
+			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
+			if(show)
+				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
 
-		if(!lst)
-			return
-
-		for(var/m in lst)
-			var/mob/M = m
-			var/client/C = M.client
-			if(!C?.prefs)
-				continue
-			if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-				C.chatOutput.sendMusic(web_sound_url, music_extra_data)
-				if(show)
-					to_chat(C, "<span class='boldnotice'>An admin played: [show]</span>")
-
-		log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
-		message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
+	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
+	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
 
 
 /datum/admins/proc/sound_stop()
@@ -428,7 +428,7 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || C.chatOutput.broken)
+		if(!C?.chatOutput.loaded || !C.chatOutput.working)
 			continue	
 		C.chatOutput.stopMusic()
 
@@ -537,8 +537,7 @@
 	if(!method)
 		return
 
-	for(var/mob/V in hearers(O))
-		V.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
+	O.audible_message("<b>[O]</b> [method], \"[message]\"")
 	if(usr.control_object)
 		usr.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
 
@@ -836,7 +835,7 @@
 		if(alert("This mob has a player inside, are you sure you want to proceed?", "Offer Mob", "Yes", "No") != "Yes")
 			return
 		L.ghostize(FALSE)
-		
+
 	else if(L in GLOB.offered_mob_list)
 		switch(alert("This mob has been offered, do you want to re-announce it?", "Offer Mob", "Yes", "Remove", "Cancel"))
 			if("Cancel")
@@ -860,10 +859,9 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has offered [ADMIN_TPMONTY(L)].")
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+/datum/admins/proc/xeno_panel(mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	set category = "Fun"
-	set name = "Change Hivenumber"
-	set desc = "Set the hivenumber of a xenomorph."
+	set name = "Xeno Panel"
 
 	if(!check_rights(R_FUN))
 		return
@@ -871,46 +869,19 @@
 	if(!istype(X))
 		return
 
-	var/hivenumber_status = X.hivenumber
+	var/dat = "<br>"
 
-	var/list/namelist = list()
-	for(var/Y in GLOB.hive_datums)
-		var/datum/hive_status/H = GLOB.hive_datums[Y]
-		namelist += H.name
+	dat += "Hive: [X.hive.hivenumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=hive;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Nicknumber: [X.nicknumber] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=nicknumber;mob=[REF(X)]'>Edit</a><br>"
+	dat += "Upgrade Tier: [X.xeno_caste.upgrade_name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];xeno=upgrade;mob=[REF(X)]'>Edit</a><br>"
 
-	var/newhive = input("Select a hive.", "Change Hivenumber") as null|anything in namelist
-	if(!newhive)
-		return
-
-	var/newhivenumber
-	switch(newhive)
-		if("Normal")
-			newhivenumber = XENO_HIVE_NORMAL
-		if("Corrupted")
-			newhivenumber = XENO_HIVE_CORRUPTED
-		if("Alpha")
-			newhivenumber = XENO_HIVE_ALPHA
-		if("Beta")
-			newhivenumber = XENO_HIVE_BETA
-		if("Zeta")
-			newhivenumber = XENO_HIVE_ZETA
-		if("Admeme")
-			newhivenumber = XENO_HIVE_ADMEME
-		else
-			return
-
-	if(!istype(X) || X.hivenumber != hivenumber_status)
-		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-		return
-		return
-
-	X.transfer_to_hive(newhivenumber)
-
-	log_admin("[key_name(usr)] changed hivenumber of [X] from [hivenumber_status] to [newhive].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] from [hivenumber_status] to [newhive].")
+	var/datum/browser/browser = new(usr, "xeno_panel_[key_name(X)]", "<div align='center'>Xeno Panel [key_name(X)]</div>")
+	browser.set_content(dat)
+	browser.open(FALSE)
 
 
-/datum/admins/proc/release()
+
+/datum/admins/proc/release(obj/OB in world)
 	set category = null
 	set name = "Release Obj"
 
@@ -977,46 +948,30 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	if(istype(usr, /mob/camera/imaginary_friend))
-		var/mob/camera/imaginary_friend/IF = usr
-		IF.deactivate()
+	var/client/C = usr.client
+
+	if(istype(C.mob, /mob/camera/imaginary_friend))
+		var/mob/camera/imaginary_friend/IF = C.mob
+		IF.ghostize()
 		return
 
-	if(is_mentor(usr.client) && !isobserver(usr))
-		to_chat(usr, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
-		return
+	if(!isobserver(C.mob))
+		if(is_mentor(C))
+			to_chat(C, "<span class='warning'>Can only become an imaginary friend while observing.</span>")
+			return
+		C.holder.admin_ghost()
 
-	if(!isobserver(usr))
-		usr.client.holder.admin_ghost()
-
-	var/mob/living/L
-	switch(input("Select by:", "Imaginary Friend") as null|anything in list("Key", "Mob"))
-		if("Key")
-			var/client/C = input("Please, select a key.", "Imaginary Friend") as null|anything in sortKey(GLOB.clients)
-			if(!C)
-				return
-			L = C.mob
-		if("Mob")
-			var/mob/M = input("Please, select a mob.", "Imaginary Friend") as null|anything in sortNames(GLOB.mob_living_list)
-			if(!M)
-				return
-			L = M
-
-	if(!isobserver(usr))
-		return
-
-	if(!istype(L))
-		to_chat("<span class='warning'>Selected mob is not alive.</span>")
+	var/mob/living/L = C.holder.apicker("Select by:", "Imaginary Friend", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(L) || !isobserver(C.mob))
 		return
 
 	var/mob/camera/imaginary_friend/IF = new(get_turf(L), L)
-	usr.mind.transfer_to(IF)
+	C.mob.mind.transfer_to(IF)
 
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(L)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(L)].")
 
 
-	
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
 	set name = "Force Dropship"
@@ -1024,53 +979,61 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!length(SSshuttle.dropships))
+	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
 		return
 
-	var/obj/docking_port/mobile/marine_dropship/D = SSshuttle.dropships[1]
+	var/list/available_shuttles = list()
+	for(var/i in SSshuttle.mobile)
+		var/obj/docking_port/mobile/M = i
+		available_shuttles["[M.name] ([M.id])"] = M.id
 
-	if(!istype(D))
+	var/answer = input(usr, "Which shuttle do you want to move?", "Force Dropship") as null|anything in available_shuttles
+	var/shuttle_id = available_shuttles[answer]
+	if(!shuttle_id)
 		return
 
-	if(D.mode != SHUTTLE_IDLE && alert("Shuttle is not idle, move anyway?", "Active Shuttle", "Yes", "No") != "Yes")
+	var/obj/docking_port/mobile/D
+	for(var/i in SSshuttle.mobile)
+		var/obj/docking_port/mobile/M = i
+		if(M.id == shuttle_id)
+			D = M
+
+	if(!D)
+		to_chat(usr, "<span class='warning'>Unable to find shuttle</span>")
 		return
 
-	var/instant = FALSE
+	if(D.mode != SHUTTLE_IDLE && alert("[D.name] is not idle, move anyway?", "Force Dropship", "Yes", "No") != "Yes")
+		return
 
-	if(alert("Move Shuttle instantly??", "Instant Move", "Yes", "No") == "Yes")
-		instant = TRUE
-
-	var/list/possible_destinations = list("lz1", "lz2", "alamo", "normandy")
-	var/list/validdocks = list()
-
+	var/list/valid_docks = list()
+	var/i = 1
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(!possible_destinations.Find(S.id))
-			continue
+		if(istype(S, /obj/docking_port/stationary/transit))
+			continue // Don't use transit destinations
 		if(!D.check_dock(S, silent=TRUE))
 			continue
-		validdocks += S.name
+		valid_docks["[S.name] ([i++])"] = S
 
-	if(!length(validdocks))
+	if(!length(valid_docks))
 		to_chat(usr, "<span class='warning'>No valid destinations found!</span>")
 		return
 
-	var/dock = input("Choose the destination.", "Choose Destination") as null|anything in validdocks
+	var/dock = input("Choose the destination.", "Force Dropship") as null|anything in valid_docks
+	if(!dock)
+		return
 
-	var/obj/docking_port/stationary/target
-
-	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
-		if(S.name != dock)
-			continue
-		target = S
-
+	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
 		return
 
+	var/instant = FALSE
+	if(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No") == "Yes")
+		instant = TRUE
+
 	SSshuttle.moveShuttleToDock(D.id, target, !instant)
 
-	log_admin("[key_name(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved dropship [D],[D.id] to [target], [target.id][instant?" instantly":""].")
-
+	log_admin("[key_name(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
 
 
 /datum/admins/proc/play_cinematic()
@@ -1080,7 +1043,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as anything in subtypesof(/datum/cinematic)
+	var/datum/cinematic/choice = input(usr, "Choose a cinematic to play.", "Play Cinematic") as null|anything in subtypesof(/datum/cinematic)
 	if(!choice)
 		return
 
@@ -1088,3 +1051,37 @@
 
 	log_admin("[key_name(usr)] played the [choice] cinematic.")
 	message_admins("[ADMIN_TPMONTY(usr)] played the [choice] cinematic.")
+
+
+/datum/admins/proc/set_tip()
+	set category = "Fun"
+	set name = "Set Tip"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/tip = input(usr, "Please specify your tip that you want to send to the players.", "Tip") as message|null
+	if(!tip)
+		return
+
+	SSticker.selected_tip = tip
+
+	//If we've already tipped, then send it straight away.
+	if(SSticker.tipped)
+		SSticker.send_tip_of_the_round()
+
+	log_admin("[key_name(usr)] set a tip of the round: [tip]")
+	message_admins("[ADMIN_TPMONTY(usr)] set a tip of the round.")
+
+
+/datum/admins/proc/ghost_interact()
+	set category = "Fun"
+	set name = "Ghost Interact"
+
+	if(!check_rights(R_FUN))
+		return
+
+	usr.client.holder.ghost_interact = !usr.client.holder.ghost_interact
+
+	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")

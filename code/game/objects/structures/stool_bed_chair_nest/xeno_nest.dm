@@ -7,9 +7,10 @@
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
+	hit_sound = "alien_resin_break"
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	max_integrity = 100
 	var/on_fire = 0
 	var/resisting_time = 0
@@ -31,14 +32,11 @@
 		to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
 		M.forceMove(loc)
 
-	else if(I.flags_item & NOBLUDGEON) 
-		return
 
-	obj_integrity = max(0, obj_integrity - I.force)
-	playsound(loc, "alien_resin_break", 25)
-	user.visible_message("<span class='warning'>\The [user] hits \the [src] with \the [I]!</span>", \
-	"<span class='warning'>You hit \the [src] with \the [I]!</span>")
-	healthcheck()
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent != INTENT_HARM)
+		return attack_hand(X)
+	return ..()
 
 
 /obj/structure/bed/nest/manual_unbuckle(mob/living/user)
@@ -53,9 +51,7 @@
 		"<span class='notice'>\The [user] pulls you free from \the [src].</span>",\
 		"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		if(ishuman(buckled_mob))
-			var/mob/living/carbon/human/H = buckled_mob
-			H.last_unbuckled = world.time
+		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_NEST, null), NEST_UNBUCKLED_COOLDOWN)
 		unbuckle()
 		return
 
@@ -101,7 +97,7 @@
 		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.last_unbuckled + NEST_UNBUCKLED_COOLDOWN > world.time)
+		if(H.cooldowns[COOLDOWN_NEST])
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return
 		if(!H.lying)
@@ -161,38 +157,15 @@
 		overlays += image("icon_state"="nest_overlay","layer"=LYING_MOB_LAYER + 0.1)
 
 
-/obj/structure/bed/nest/proc/healthcheck()
-	if(obj_integrity <= 0)
-		density = FALSE
-		qdel(src)
-
 /obj/structure/bed/nest/flamer_fire_act()
-	obj_integrity -= 50
-	healthcheck()
+	take_damage(50, BURN, "fire")
 
 /obj/structure/bed/nest/fire_act()
-	obj_integrity -= 50
-	healthcheck()
+	take_damage(50, BURN, "fire")
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M)) //Larvae can't do shit
-		return
-	if(M.a_intent == INTENT_HARM)
-		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \
-		"<span class='danger'>You claw at \the [src].</span>")
-		playsound(loc, "alien_resin_break", 25)
-		obj_integrity -= (M.melee_damage_upper + 25) //Beef up the damage a bit
-		healthcheck()
-		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_NEST)
-	else
-		attack_hand(M)
-
-/obj/structure/bed/nest/attack_animal(mob/living/L)
-	L.visible_message("<span class='danger'>\The [L] tears at \the [src]!", \
-	"<span class='danger'>You tear at \the [src].")
-	playsound(loc, "alien_resin_break", 25)
-	obj_integrity -= 40
-	healthcheck()
+	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_NEST)
+	return ..()
 
 
 #undef NEST_RESIST_TIME

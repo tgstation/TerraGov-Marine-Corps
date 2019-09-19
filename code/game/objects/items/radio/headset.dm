@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	icon_state = "headset"
 	item_state = "headset"
-	matter = list("metal" = 75)
+	materials = list(/datum/material/metal = 75)
 	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
@@ -27,16 +27,21 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/Initialize()
 	. = ..()
+	if(keyslot)
+		keyslot = new keyslot(src)
+	if(keyslot2)
+		keyslot2 = new keyslot2(src)
 	recalculateChannels()
 
 
 /obj/item/radio/headset/Destroy()
-	QDEL_NULL(keyslot2)
+	if(keyslot2)
+		QDEL_NULL(keyslot2)
 	return ..()
 
 
 /obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
-	user.set_interaction(src)
+	. = ..()
 
 	if(isscrewdriver(I))
 		if(keyslot || keyslot2)
@@ -78,8 +83,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			keyslot2 = I
 
 		recalculateChannels()
-	else
-		return ..()
 
 
 /obj/item/radio/headset/examine(mob/user)
@@ -146,7 +149,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 //MARINE HEADSETS
-/obj/item/radio/headset/almayer
+/obj/item/radio/headset/mainship
 	name = "marine radio headset"
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
@@ -159,26 +162,25 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/sl_direction = FALSE
 
 
-/obj/item/radio/headset/almayer/Initialize()
+/obj/item/radio/headset/mainship/Initialize()
 	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
 
-/obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
+/obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
 		squadhud = GLOB.huds[DATA_HUD_SQUAD]
-		headset_hud_on = FALSE //So we always activate on equip.
-		sl_direction = FALSE
-		toggle_squadhud(wearer)
+		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
 
 
-/obj/item/radio/headset/almayer/dropped(mob/living/carbon/human/user)
+/obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
+			disable_squadhud()
 			squadhud.remove_hud_from(user)
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
@@ -188,7 +190,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 
-/obj/item/radio/headset/almayer/Destroy()
+/obj/item/radio/headset/mainship/Destroy()
 	if(wearer && headset_hud_on)
 		if(wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
@@ -202,157 +204,168 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	return ..()
 
 
-/obj/item/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
-	if(headset_hud_on)
-		squadhud.remove_hud_from(user)
-		if(sl_direction)
-			toggle_sl_direction(user)
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
-		headset_hud_on = FALSE
-	else
-		squadhud.add_hud_to(user)
-		headset_hud_on = TRUE
-		if(user.mind && user.assigned_squad)
-			if(!sl_direction)
-				toggle_sl_direction(user)
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+/obj/item/radio/headset/mainship/proc/enable_squadhud()
+	squadhud.add_hud_to(wearer)
+	headset_hud_on = TRUE
+	if(wearer.mind && wearer.assigned_squad && !sl_direction)
+		enable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
-/obj/item/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+/obj/item/radio/headset/mainship/proc/disable_squadhud()
+	squadhud.remove_hud_from(wearer)
+	headset_hud_on = FALSE
+	if(sl_direction)
+		disable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+
+/obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		to_chat(wearer, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
 
-	var/is_squadleader = (user.assigned_squad.squad_leader == user)
-	var/tracking_id = user.assigned_squad.tracking_id
-	if(sl_direction)
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 0
-
-		if(is_squadleader)
-			SSdirection.clear_leader(tracking_id)
-			SSdirection.stop_tracking("marine-sl", user)
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 128
+		if(wearer.assigned_squad.squad_leader == wearer)
+			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
+			SSdirection.start_tracking("marine-sl", wearer)
 		else
-			SSdirection.stop_tracking(tracking_id, user)
-		sl_direction = FALSE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
+
+	sl_direction = TRUE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	
+
+/obj/item/radio/headset/mainship/proc/disable_sl_direction()
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 0
+
+	if(wearer.assigned_squad.squad_leader == wearer)
+		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
+		SSdirection.stop_tracking("marine-sl", wearer)
 	else
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 128
-			if(is_squadleader)
-				SSdirection.set_leader(tracking_id, user)
-				SSdirection.start_tracking("marine-sl", user)
-			else
-				SSdirection.start_tracking(tracking_id, user)
-
-		sl_direction = TRUE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
+	
+	sl_direction = FALSE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
-/obj/item/radio/headset/almayer/verb/configure_squadhud()
+
+/obj/item/radio/headset/mainship/verb/configure_squadhud()
 	set name = "Configure Headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+	if(!can_interact(usr))
 		return FALSE
 
-	handle_interface(usr)
+	interact(usr)
 
 
-/obj/item/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
-	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
-	<BR>
-	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
-	<BR>
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+/obj/item/radio/headset/mainship/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!wearer)
+		return FALSE
+
+	return TRUE
 
 
-/obj/item/radio/headset/almayer/Topic(href, href_list)
+
+/obj/item/radio/headset/mainship/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+
+	var/dat = {"
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<BR>"}
+
+	var/datum/browser/popup = new(user, "radio")
+	popup.set_content(dat)
+	popup.open()
+
+
+/obj/item/radio/headset/mainship/Topic(href, href_list)
+	. = ..()
+	if(.)
 		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		var/mob/living/carbon/human/user = usr
-		if(href_list["headset_hud_on"])
-			toggle_squadhud(user)
 
-		else if(href_list["sl_direction"])
-			toggle_sl_direction(user)
-
-		if(!master)
-			if(ishuman(loc))
-				handle_interface(loc)
+	if(href_list["headset_hud_on"])
+		if(headset_hud_on)
+			disable_squadhud()
 		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-	else
-		usr << browse(null, "window=radio")
+			enable_squadhud()
+
+	if(href_list["sl_direction"])
+		if(sl_direction)
+			disable_sl_direction()
+		else
+			enable_sl_direction()
+
+	updateUsrDialog()
 
 
-/obj/item/radio/headset/almayer/mt
-	name = "engineering radio headset"
+/obj/item/radio/headset/mainship/st
+	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot = new /obj/item/encryptionkey/engi
+	keyslot = /obj/item/encryptionkey/req
+	keyslot2 = /obj/item/encryptionkey/engi
 
-
-/obj/item/radio/headset/almayer/doc
+/obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
 	icon_state = "med_headset"
-	keyslot = new /obj/item/encryptionkey/med
+	keyslot = /obj/item/encryptionkey/med
 
 
-/obj/item/radio/headset/almayer/ct
+/obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
 	icon_state = "cargo_headset"
-	keyslot = new /obj/item/encryptionkey/req
+	keyslot = /obj/item/encryptionkey/req
 
 
-/obj/item/radio/headset/almayer/mmpo
+/obj/item/radio/headset/mainship/mmpo
 	name = "marine master at arms radio headset"
 	icon_state = "sec_headset"
-	keyslot = new /obj/item/encryptionkey/mmpo
+	keyslot = /obj/item/encryptionkey/mmpo
 
 
-/obj/item/radio/headset/almayer/cmpcom
+/obj/item/radio/headset/mainship/cmpcom
 	name = "marine command master at arms radio headset"
 	icon_state = "sec_headset_alt"
-	keyslot = new /obj/item/encryptionkey/cmpcom
+	keyslot = /obj/item/encryptionkey/cmpcom
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/mcom
+/obj/item/radio/headset/mainship/mcom
 	name = "marine command radio headset"
 	icon_state = "com_headset_alt"
-	keyslot = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/mcom
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/mcom/silicon
+/obj/item/radio/headset/mainship/mcom/silicon
 	name = "silicon radio"
-	keyslot = new /obj/item/encryptionkey/mcom/ai
+	keyslot = /obj/item/encryptionkey/mcom/ai
 
 
-/obj/item/radio/headset/almayer/marine
-	keyslot = new /obj/item/encryptionkey/general
+/obj/item/radio/headset/mainship/marine
+	keyslot = /obj/item/encryptionkey/general
 	freerange = TRUE
 
 
-/obj/item/radio/headset/almayer/marine/Initialize(mapload, squad, rank)
+/obj/item/radio/headset/mainship/marine/Initialize(mapload, squad, rank)
 	if(squad)
 		icon_state = "headset_marine_[lowertext(squad)]"
 		var/dat = "marine [lowertext(squad)]"
@@ -368,112 +381,112 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		switch(rank)
 			if(SQUAD_LEADER)
 				dat += " leader"
-				keyslot2 = new /obj/item/encryptionkey/squadlead
+				keyslot2 = /obj/item/encryptionkey/squadlead
 				use_command = TRUE
 				command = TRUE
 			if(SQUAD_ENGINEER)
 				dat += " engineer"
-				keyslot2 = new /obj/item/encryptionkey/engi
+				keyslot2 = /obj/item/encryptionkey/engi
 			if(SQUAD_CORPSMAN)
 				dat += " corpsman"
-				keyslot2 = new /obj/item/encryptionkey/med
+				keyslot2 = /obj/item/encryptionkey/med
 		name = dat + " radio headset"
 	return ..()
 
 
-/obj/item/radio/headset/almayer/marine/alpha
+/obj/item/radio/headset/mainship/marine/alpha
 	name = "marine alpha radio headset"
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
 
-/obj/item/radio/headset/almayer/marine/alpha/lead
+/obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/marine/alpha/engi
+/obj/item/radio/headset/mainship/marine/alpha/engi
 	name = "marine alpha engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
-/obj/item/radio/headset/almayer/marine/alpha/med
+/obj/item/radio/headset/mainship/marine/alpha/med
 	name = "marine alpha corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/bravo
+/obj/item/radio/headset/mainship/marine/bravo
 	name = "marine bravo radio headset"
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
 
-/obj/item/radio/headset/almayer/marine/bravo/lead
+/obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/marine/bravo/engi
+/obj/item/radio/headset/mainship/marine/bravo/engi
 	name = "marine bravo engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
-/obj/item/radio/headset/almayer/marine/bravo/med
+/obj/item/radio/headset/mainship/marine/bravo/med
 	name = "marine bravo corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/charlie
+/obj/item/radio/headset/mainship/marine/charlie
 	name = "marine charlie radio headset"
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
 
 
-/obj/item/radio/headset/almayer/marine/charlie/lead
+/obj/item/radio/headset/mainship/marine/charlie/lead
 	name = "marine charlie leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/marine/charlie/engi
+/obj/item/radio/headset/mainship/marine/charlie/engi
 	name = "marine charlie engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
-/obj/item/radio/headset/almayer/marine/charlie/med
+/obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/delta
+/obj/item/radio/headset/mainship/marine/delta
 	name = "marine delta radio headset"
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 
 
-/obj/item/radio/headset/almayer/marine/delta/lead
+/obj/item/radio/headset/mainship/marine/delta/lead
 	name = "marine delta leader radio headset"
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
 	use_command = TRUE
 	command = TRUE
 
 
-/obj/item/radio/headset/almayer/marine/delta/engi
+/obj/item/radio/headset/mainship/marine/delta/engi
 	name = "marine delta engineer radio headset"
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
 
-/obj/item/radio/headset/almayer/marine/delta/med
+/obj/item/radio/headset/mainship/marine/delta/med
 	name = "marine delta corpsman radio headset"
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 //Distress headsets.
@@ -484,32 +497,32 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/distress/dutch
 	name = "Dutch's Dozen headset"
-	keyslot = new /obj/item/encryptionkey/dutch
+	keyslot = /obj/item/encryptionkey/dutch
 
 
 /obj/item/radio/headset/distress/PMC
 	name = "PMC headset"
-	keyslot = new /obj/item/encryptionkey/PMC
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
 
 
-/obj/item/radio/headset/distress/bears
-	name = "Iron Bear headset"
+/obj/item/radio/headset/distress/wolves
+	name = "Steel Wolves headset"
 	frequency = FREQ_CIV_GENERAL
-	keyslot = new /obj/item/encryptionkey/bears
+	keyslot = /obj/item/encryptionkey/wolves
 
 
 /obj/item/radio/headset/distress/commando
 	name = "Commando headset"
-	keyslot = new /obj/item/encryptionkey/commando
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/commando
+	keyslot2 = /obj/item/encryptionkey/mcom
 
 
 /obj/item/radio/headset/distress/imperial
 	name = "Imperial headset"
-	keyslot = new /obj/item/encryptionkey/imperial
+	keyslot = /obj/item/encryptionkey/imperial
 
 
 /obj/item/radio/headset/distress/som
 	name = "\improper Sons of Mars headset"
-	keyslot = new /obj/item/encryptionkey/som
+	keyslot = /obj/item/encryptionkey/som

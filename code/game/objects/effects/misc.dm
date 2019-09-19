@@ -92,8 +92,8 @@
 	return ..()
 
 
-/obj/effect/forcefield/fog/attack_hand(mob/M)
-	to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
+/obj/effect/forcefield/fog/attack_hand(mob/living/user)
+	to_chat(user, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
 	return TRUE
 
 
@@ -101,12 +101,24 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/attack_paw(M)
-	return attack_hand(M)
+/obj/effect/forcefield/fog/attack_paw(mob/living/carbon/monkey/user)
+	return attack_hand(user)
 
 
 /obj/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
+
+
+/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
+	if(isobj(mover))
+		return TRUE
+	if(isxeno(mover))
+		var/mob/living/carbon/xenomorph/moving_xeno = mover
+		if(length(moving_xeno.stomach_contents))
+			return FALSE
+		return TRUE
+	return FALSE
+
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier

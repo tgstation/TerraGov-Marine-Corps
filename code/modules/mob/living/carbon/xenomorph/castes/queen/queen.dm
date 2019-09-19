@@ -42,7 +42,6 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/larva_growth,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 	inherent_verbs = list(
@@ -107,30 +106,6 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-//Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
-/mob/living/carbon/xenomorph/queen/Bump(atom/A, yes)
-	set waitfor = 0
-
-	//if(charge_speed < CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE || !is_charging) return ..()
-
-	if(stat || !A || !istype(A) || A == src || !yes) return FALSE
-
-	if(now_pushing) return FALSE//Just a plain ol turf, let's return.
-
-	/*if(dir != charge_dir) //We aren't facing the way we're charging.
-		stop_momentum()
-		return ..()
-
-	if(!handle_collision(A))
-		if(!A.charge_act(src)) //charge_act is depricated and only here to handle cases that have not been refactored as of yet.
-			return ..()*/
-
-	var/turf/T = get_step(src, dir)
-	if(!T || !get_step_to(src, T)) //If it still exists, try to push it.
-		return ..()
-
-	lastturf = null //Reset this so we can properly continue with momentum.
-	return TRUE
 
 /mob/living/carbon/xenomorph/queen/update_canmove()
 	. = ..()
@@ -195,7 +170,8 @@
 	. = ..()
 	if(.)
 		return
-	if (href_list["watch_xeno_number"])
+
+	if(href_list["watch_xeno_number"])
 		if(!check_state())
 			return
 		if(!ovipositor)
@@ -210,7 +186,7 @@
 			else
 				set_queen_overwatch(X)
 			break
-		return
+
 
 // ***************************************
 // *********** Death
@@ -236,6 +212,6 @@
 // *********** Larva Mother
 // ***************************************
 
-/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers)
+/mob/living/carbon/xenomorph/queen/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	if(!incapacitated(TRUE))
 		mothers += src //Adding us to the list.

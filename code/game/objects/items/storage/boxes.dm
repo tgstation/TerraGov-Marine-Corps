@@ -103,30 +103,6 @@
 	spawn_type = /obj/item/explosive/grenade/empgrenade
 	spawn_number = 5
 
-/obj/item/storage/box/trackimp
-	name = "boxed tracking implant kit"
-	desc = "Box full of scum-bag tracking utensils."
-	icon_state = "implant"
-
-/obj/item/storage/box/trackimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 4)
-		new /obj/item/implantcase/tracking(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-
-/obj/item/storage/box/chemimp
-	name = "boxed chemical implant kit"
-	desc = "Box of stuff used to implant chemicals."
-	icon_state = "implant"
-
-/obj/item/storage/box/chemimp/Initialize(mapload, ...)
-	. = ..()
-	for(var/i in 1 to 5)
-		new /obj/item/implantcase/chem(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
 	desc = "This box contains nerd glasses."
@@ -140,18 +116,6 @@
 	desc = "It has a picture of drinking glasses on it."
 	spawn_type = /obj/item/reagent_container/food/drinks/drinkingglass
 	spawn_number = 6
-
-/obj/item/storage/box/cdeathalarm_kit
-	name = "Death Alarm Kit"
-	desc = "Box of stuff used to implant death alarms."
-	icon_state = "implant"
-	item_state = "syringe_kit"
-
-/obj/item/storage/box/cdeathalarm_kit/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/implanter(src)
-	for(var/i in 1 to 6)
-		new /obj/item/implantcase/death_alarm(src)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
@@ -345,9 +309,9 @@
 	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 10
+	max_storage_space = 14
 	spawn_type = /obj/item/explosive/grenade/flare
-	spawn_number = 5
+	spawn_number = 7
 
 /obj/item/storage/box/m94/update_icon()
 	icon_state = initial(icon_state)
@@ -380,10 +344,7 @@
 	name = "\improper HIDP incendiary grenade box"
 	desc = "A secure box holding 25 incendiary grenades. Warning: highly flammable!!."
 	icon_state = "nade_incendiary"
-	storage_slots = 15
-	max_storage_space = 30
 	spawn_type = /obj/item/explosive/grenade/incendiary
-	spawn_number = 15
 
 /obj/item/storage/box/nade_box/M15
 	name = "\improper M15 grenade box"

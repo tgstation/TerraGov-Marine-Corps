@@ -23,7 +23,7 @@
 	set_light(0)
 
 	//Removing from turf
-/obj/item/lightstick/attack_hand(mob/user)
+/obj/item/lightstick/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

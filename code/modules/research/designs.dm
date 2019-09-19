@@ -49,17 +49,6 @@ datum/design						//Datum for object designs, used in construction
 	var/category = null //Primarily used for Mech Fabricators, but can be used for anything
 
 
-//A proc to calculate the reliability of a design based on tech levels and innate modifiers.
-//Input: A list of /datum/tech; Output: The new reliabilty.
-datum/design/proc/CalcReliability(var/list/temp_techs)
-	var/new_reliability = reliability_mod + reliability_base
-	for(var/datum/tech/T in temp_techs)
-		if(T.id in req_tech)
-			new_reliability += T.level
-	new_reliability = between(reliability_base, new_reliability, 100)
-	reliability = new_reliability
-	return
-
 
 ///////////////////Computer Boards///////////////////////////////////
 
@@ -1730,7 +1719,6 @@ datum/design/security_hud
 	icon_state = "datadisk2"
 	item_state = "card-id"
 	w_class = WEIGHT_CLASS_TINY
-	matter = list("metal" = 30,"glass" = 10)
 	var/datum/design/blueprint
 
 /obj/item/disk/design_disk/New()

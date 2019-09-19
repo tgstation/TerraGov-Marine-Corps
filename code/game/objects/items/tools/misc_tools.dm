@@ -79,7 +79,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 10)
 	var/colour = "black"	//what colour the ink is!
 
 
@@ -116,7 +115,6 @@
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
 /obj/item/tool/pen/sleepypen/Initialize()
@@ -139,7 +137,6 @@
 */
 /obj/item/tool/pen/paralysis
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
 /obj/item/tool/pen/paralysis/attack(mob/living/M as mob, mob/user as mob)
@@ -155,7 +152,7 @@
 
 /obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
-	create_reagents(50, OPENCONTAINER, list("zombiepowder" = 10, "cryptobiolin" = 15))
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 
@@ -170,7 +167,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 60)
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/captain
@@ -214,5 +210,5 @@
 	icon_state = "stamp-cent"
 
 
-/obj/item/tool/stamp/attack_paw(mob/user as mob)
+/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

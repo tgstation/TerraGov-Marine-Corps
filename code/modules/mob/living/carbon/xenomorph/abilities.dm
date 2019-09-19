@@ -123,6 +123,10 @@
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return fail_activate()
+
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
@@ -373,7 +377,7 @@
 	GLOB.round_statistics.larval_growth_stings++
 
 	add_cooldown()
-	X.recurring_injection(A, "xeno_growthtoxin", XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
 
 // ***************************************
 // *********** Spitter-y abilities
@@ -605,18 +609,6 @@
 			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
 
-	var/facing = get_cardinal_dir(T, T2)
-	for(var/i in 1 to get_dist(T2, T))
-		var/turf/next_T = get_step(T, facing)
-		T = next_T
-		if(!T.density)
-			continue
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>There is something in the way!</span>")
-
-		return FALSE
-
-
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -641,6 +633,7 @@
 	mechanics_text = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	ability_name = "xeno spit"
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
+	plasma_cost = 10
 
 /datum/action/xeno_action/activable/xeno_spit/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -649,7 +642,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
-			to_chat(src, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
@@ -657,7 +650,8 @@
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
@@ -678,7 +672,7 @@
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(A, X, X, X.ammo.max_range, X.ammo.shell_speed)
+	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
 	add_cooldown()
 
@@ -746,7 +740,7 @@
 
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 
-	X.recurring_injection(A, "xeno_toxin", XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 
 
 // ***************************************

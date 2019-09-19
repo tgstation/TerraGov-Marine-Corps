@@ -10,12 +10,11 @@
 	density = FALSE
 	anchored = TRUE
 	layer = BUSH_LAYER
-	var/indestructable = 0
 	var/stump = 0
 	max_integrity = 100
 
-/obj/structure/bush/New()
-	obj_integrity = rand(50,75)
+/obj/structure/bush/Initialize()
+	. = ..()
 	if(prob(75))
 		opacity = TRUE
 
@@ -73,41 +72,24 @@
 		var/damage = rand(2, 5)
 		if(istype(I, /obj/item/weapon/claymore/mercsword))
 			damage = rand(8, 18)
-		if(indestructable)
+		if(resistance_flags & INDESTRUCTIBLE)
 			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
 			return
 
 		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
 		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
-		obj_integrity -= damage
-		if(obj_integrity < 0)
-			to_chat(user, "<span class='notice'>You clear away [src].</span>")
-		healthcheck()
+		take_damage(damage)
 
-/obj/structure/bush/proc/healthcheck()
-	if(obj_integrity < 35 && opacity)
-		opacity = FALSE
-	if(obj_integrity < 0)
-		if(prob(10))
-			icon_state = "stump[rand(1,2)]"
-			name = "cleared foliage"
-			desc = "There used to be dense undergrowth here."
-			stump = 1
-			pixel_x = rand(-6,6)
-			pixel_y = rand(-6,6)
-		else
-			qdel(src)
 
 /obj/structure/bush/flamer_fire_act(heat)
-	obj_integrity -= 30
-	healthcheck(src)
+	take_damage(30, BURN, "fire")
 
 //*******************************//
 // Strange, fruit-bearing plants //
 //*******************************//
 
 GLOBAL_LIST_INIT(fruit_icon_states, list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg"))
-GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_drugs","mindbreaker","zombiepowder","impedrezene"))
+GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medicine/dylovene,/datum/reagent/toxin/sleeptoxin,/datum/reagent/space_drugs,/datum/reagent/toxin/mindbreaker,/datum/reagent/impedrezene))
 
 /obj/item/reagent_container/food/snacks/grown/jungle_fruit
 	name = "jungle fruit"
@@ -141,7 +123,7 @@ GLOBAL_LIST_INIT(reagent_effects, list("toxin","dylovene","sleeptoxin","space_dr
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

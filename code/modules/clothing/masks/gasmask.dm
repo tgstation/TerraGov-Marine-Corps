@@ -15,7 +15,7 @@
 	siemens_coefficient = 0.9
 	tint = TINT_HEAVY
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -37,10 +37,10 @@
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
 
-/obj/item/clothing/mask/gas/bear
+/obj/item/clothing/mask/gas/wolves
 	name = "tactical balaclava"
-	desc = "A superior balaclava worn by the Iron Bears."
-	icon_state = "bear_mask"
+	desc = "A superior balaclava worn by the Steel Wolves."
+	icon_state = "wolf_mask"
 	anti_hug = 2
 	tint = TINT_NONE
 
@@ -74,7 +74,7 @@
 	var/mode = 0// 0==Scouter|1==Night Vision|2==Thermal|3==Meson
 	var/voice = "Unknown"
 	var/vchange = 0//This didn't do anything before. It now checks if the mask has special functions/N
-	origin_tech = "syndicate=4"
+
 
 /obj/item/clothing/mask/gas/voice/space_ninja
 	name = "ninja mask"

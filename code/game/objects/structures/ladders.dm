@@ -71,7 +71,7 @@
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return attack_hand(M)
 
-/obj/structure/ladder/attack_hand(mob/user)
+/obj/structure/ladder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -104,8 +104,29 @@
 	user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
 
-/obj/structure/ladder/attack_paw(mob/user as mob)
+/obj/structure/ladder/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
+
+
+/obj/structure/ladder/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(.)
+		return
+	if(up && down)
+		switch(alert("Go up or down the ladder?", "Ladder", "Up", "Down", "Cancel"))
+			if("Up")
+				user.forceMove(get_turf(up))
+			if("Down")
+				user.forceMove(get_turf(down))
+			if("Cancel")
+				return
+
+	else if(up)
+		user.forceMove(get_turf(up))
+
+	else if(down)
+		user.forceMove(get_turf(down))
+
 
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?

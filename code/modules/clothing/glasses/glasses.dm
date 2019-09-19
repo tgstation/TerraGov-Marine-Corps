@@ -4,7 +4,7 @@
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
-	var/prescription = 0
+	var/prescription = FALSE
 	var/toggleable = 0
 	var/active = 1
 	flags_inventory = COVEREYES
@@ -75,16 +75,15 @@
 	icon_state = "material"
 	item_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=3;engineering=3"
 	toggleable = 1
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "marine RPG glasses"
+	name = "regulation prescription glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
-	icon_state = "mBCG"
-	item_state = "mBCG"
-	prescription = 1
+	icon_state = "glasses"
+	item_state = "glasses"
+	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -118,7 +117,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"
@@ -220,7 +219,7 @@
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -289,4 +288,14 @@
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
+/obj/item/clothing/glasses/sunglasses/aviator
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses."
+	icon_state = "aviator"
+	item_state = "aviator"
 
+/obj/item/clothing/glasses/sunglasses/aviator/yellow
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses. Comes with yellow lens."
+	icon_state = "aviator_yellow"
+	item_state = "aviator_yellow"

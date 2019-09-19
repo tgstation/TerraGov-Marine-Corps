@@ -17,7 +17,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/cryotypes = list(CRYO_REQ, CRYO_ALPHA, CRYO_BRAVO, CRYO_CHARLIE, CRYO_DELTA)
 	var/mode = CRYOCONSOLE_ITEM_LIST
 	var/category = CRYO_REQ
@@ -50,22 +50,13 @@
 	cryotypes = list(CRYO_DELTA)
 	category = CRYO_DELTA
 
-/obj/machinery/computer/cryopod/attack_paw()
-	attack_hand()
 
-/obj/machinery/computer/cryopod/attack_ai()
-	attack_hand()
-
-/obj/machinery/computer/cryopod/attack_hand(mob/user = usr)
+/obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
 
-	user.set_interaction(src)
-
-	if(!(SSticker))
+	if(!SSticker)
 		return
 
 	var/dat = "<hr/><br/><b>Cryogenic Oversight Control for [initial(category)]</b><br/>"
@@ -118,16 +109,13 @@
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "cryopod_console")
+	popup.open()
 
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 	. =..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
@@ -153,7 +141,7 @@
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
-	return
+
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
@@ -198,6 +186,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL
 
 	var/mob/living/occupant //Person waiting to be despawned.
 	var/orient_right = FALSE // Flips the sprite.
@@ -316,11 +305,11 @@
 			if(istype(J, /datum/job/marine/leader))
 				assigned_squad.num_leaders--
 		assigned_squad.count--
-		assigned_squad.clean_marine_from_squad(src, TRUE) //Remove from squad recods, if any.
+		assigned_squad.remove_from_squad(src)
 
-	. = ..()
+	return ..()
 
-/obj/item/proc/store_in_cryo(list/items)
+/obj/item/proc/store_in_cryo(list/items, nullspace_it = TRUE)
 
 	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
 	if(locate(/mob) in src)
@@ -336,46 +325,45 @@
 	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
 		items -= src
 		qdel(src)
-	else
-		loc = null
+	else if(nullspace_it)
+		moveToNullspace()
 	return items
 
-/obj/item/storage/store_in_cryo(list/items)
+/obj/item/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in src)
 		var/obj/item/I = O
-		remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
+		I.store_in_cryo(items, FALSE)
 	return ..()
 
-/obj/item/clothing/suit/storage/store_in_cryo(list/items)
+/obj/item/clothing/suit/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in pockets)
 		var/obj/item/I = O
 		pockets.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/under/store_in_cryo(list/items)
+/obj/item/clothing/under/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(hastie)
 		var/obj/item/TIE = hastie
 		remove_accessory()
 		items = TIE.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items)
+/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(knife)
 		items = knife.store_in_cryo(items)
 		knife = null
 		update_icon()
 	return ..()
 
-/obj/item/clothing/tie/storage/store_in_cryo(list/items)
+/obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in hold)
 		var/obj/item/I = O
 		hold.remove_from_storage(I, loc)
 		items = I.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/tie/holster/store_in_cryo(list/items)
+/obj/item/clothing/tie/holster/store_in_cryo(list/items, nullspace_it = TRUE)
 	if(holstered)
 		items = holstered.store_in_cryo(items)
 		holstered = null
@@ -418,7 +406,6 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/verb/eject()
-
 	set name = "Eject Pod"
 	set category = "Object"
 	set src in view(0)
@@ -427,42 +414,54 @@
 		return
 
 	go_out()
-	return
+
+/obj/machinery/cryopod/relaymove(mob/user)
+	if(user.incapacitated(TRUE))
+		return
+	go_out()
+
+/obj/machinery/cryopod/proc/move_inside_wrapper(mob/living/M, mob/user)
+	if(user.stat != CONSCIOUS || !(ishuman(M) || ismonkey(M)))
+		return
+
+	if(!QDELETED(occupant))
+		to_chat(user, "<span class='warning'>[src] is occupied.</span>")
+		return
+
+	climb_in(M, user)
+
+/obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
+	if(!isliving(M))
+		return
+	move_inside_wrapper(M, user)
 
 /obj/machinery/cryopod/verb/move_inside()
 	set name = "Enter Pod"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))
-		return
+	move_inside_wrapper(usr, usr)
 
-	if(!QDELETED(occupant))
-		to_chat(usr, "<span class='warning'>[src] is occupied.</span>")
-		return
+/obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
+	if(helper && user != helper)
+		var/sec_left = timeleft(user.afk_timer_id)
+		if(!user.client && sec_left)
+			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
+			return
 
-	climb_in(usr)
-
-/obj/machinery/cryopod/proc/climb_in(mob/user, mob/helper)
-	if(helper)
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
 		"<span class='notice'>You start putting [user] into [src].</span>")
 	else
 		user.visible_message("<span class='notice'>[user] starts climbing into [src].</span>",
 		"<span class='notice'>You start climbing into [src].</span>")
 
-	var/mob/doafterman = helper ? helper : user
-	if(!do_after(doafterman, 20, TRUE, user, BUSY_ICON_GENERIC))
-		return
-	if(helper)
-		var/obj/item/grab/G = helper.get_active_held_item()
-		if(!istype(G) || G.grabbed_thing != user)
-			return
-	else if(!user.client)
+
+	var/mob/initiator = helper ? helper : user
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return
 
 	if(!QDELETED(occupant))
-		to_chat(doafterman, "<span class='warning'>[src] is occupied.</span>")
+		to_chat(initiator, "<span class='warning'>[src] is occupied.</span>")
 		return
 
 	user.forceMove(src)
@@ -477,7 +476,6 @@
 	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
 
 /obj/machinery/cryopod/proc/go_out()
-
 	if(QDELETED(occupant))
 		return
 

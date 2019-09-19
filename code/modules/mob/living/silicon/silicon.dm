@@ -5,11 +5,12 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	speech_span = SPAN_ROBOT
+	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
 
 	var/obj/machinery/camera/builtInCamera = null
-	var/obj/item/radio/headset/almayer/mcom/silicon/radio = null
+	var/obj/item/radio/headset/mainship/mcom/silicon/radio = null
 
 	var/list/HUD_toggled = list(0, 0, 0)
 
@@ -78,10 +79,10 @@
 	switch(severity)
 		if(1)
 			take_limb_damage(20)
-			Stun(rand(5, 10))
+			stun(rand(5, 10))
 		if(2)
 			take_limb_damage(10)
-			Stun(rand(1, ))
+			stun(rand(1, ))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
@@ -91,10 +92,6 @@
 
 /mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
 	return
-
-
-/mob/living/silicon/IsAdvancedToolUser()
-	return TRUE
 
 
 /mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = FALSE)
@@ -228,7 +225,7 @@
 			user.start_pulling(src)
 
 		else
-			user.animation_attack_on(src)
+			user.do_attack_animation(src)
 			playsound(loc, 'sound/effects/bang.ogg', 10, 1)
 			visible_message("<span class='danger'>[user] punches [src], but doesn't leave a dent.</span>", \
 				"<span class='warning'>[user] punches [src], but doesn't leave a dent.</span>")

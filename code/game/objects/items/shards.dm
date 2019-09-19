@@ -11,7 +11,7 @@
 	force = 5
 	throwforce = 8
 	item_state = "shard-glass"
-	matter = list("glass" = 3750)
+	materials = list(/datum/material/glass = 3750)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	var/source_sheet_type = /obj/item/stack/sheet/glass
 	var/shardsize
@@ -74,7 +74,7 @@
 		var/mob/living/M = AM
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(!M.buckled)
-			to_chat(M, "<span class='danger'>You step on \the [src]!</span>")
+			to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 
@@ -85,7 +85,7 @@
 					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
 					if(affecting.limb_status & LIMB_ROBOT)
 						return
-					H.KnockDown(3)
+					H.knock_down(3)
 					if(affecting.take_damage_limb(5))
 						H.UpdateDamageIcon()
 					H.updatehealth()
@@ -97,7 +97,7 @@
 	name = "shrapnel"
 	icon_state = "shrapnel"
 	desc = "A bunch of tiny bits of shattered metal."
-	matter = list("metal" = 50)
+	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
 
 

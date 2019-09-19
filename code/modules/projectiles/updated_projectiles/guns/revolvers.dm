@@ -4,13 +4,12 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
-	fire_sound = 'sound/weapons/gun_44mag.ogg'
-	reload_sound = 'sound/weapons/gun_revolver_cocked.ogg'
-	cocked_sound = 'sound/weapons/gun_revolver_spun.ogg'
-	unload_sound = 'sound/weapons/gun_revolver_unload.ogg'
-	var/hand_reload_sound = 'sound/weapons/gun_revolver_load3.ogg'
+	materials = list(/datum/material/metal = 2000)
+	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
+	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
+	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
 	var/trick_delay = 6
@@ -20,30 +19,27 @@
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
-	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
+	wield_delay = 0.2 SECONDS //If you modify your revolver to be two-handed, it will still be fast to aim
 	gun_skill_category = GUN_SKILL_PISTOLS
+
 	movement_acc_penalty_mult = 2
+	fire_delay = 2
+	accuracy_mult_unwielded = 0.85
+	scatter_unwielded = 25
+	recoil = 2
+	recoil_unwielded = 3
+
 
 /obj/item/weapon/gun/revolver/Initialize()
 	. = ..()
 	replace_cylinder(current_mag.current_rounds)
-
-/obj/item/weapon/gun/revolver/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag?.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
-	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
 
 /obj/item/weapon/gun/revolver/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -178,7 +174,6 @@
 			return in_chamber
 
 /obj/item/weapon/gun/revolver/load_into_chamber(mob/user)
-//		if(active_attachable) active_attachable = null
 	if(ready_in_chamber())
 		return in_chamber
 	rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
@@ -333,8 +328,7 @@
 	item_state = "ny762"
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
-	origin_tech = "combat=3;materials=1;syndicate=3"
-	fire_sound = 'sound/weapons/gun_ny.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
 	attachable_allowed = list(
@@ -344,13 +338,7 @@
 						/obj/item/attachable/extended_barrel)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
-/obj/item/weapon/gun/revolver/upp/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	damage_mult = 1.05
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -365,7 +353,7 @@
 	item_state = "sw357"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	attachable_allowed = list(
@@ -378,13 +366,7 @@
 						/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-/obj/item/weapon/gun/revolver/small/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	scatter_unwielded = 20
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -401,8 +383,7 @@
 	item_state = "mateba"
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
-	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_mateba.ogg'
+	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15
 	attachable_allowed = list(
@@ -413,17 +394,12 @@
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-/obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 0.7 SECONDS
+	burst_amount = 2
+	burst_delay = 0.4 SECONDS
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 20
+	damage_mult = 1.05
 
 
 
@@ -433,7 +409,7 @@
 	icon_state = "a_mateba"
 	item_state = "a_mateba"
 
-/obj/item/weapon/gun/revolver/mateba/cmateba
+/obj/item/weapon/gun/revolver/mateba/captain
 	name = "\improper Mateba autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
 	icon_state = "c_mateba"
@@ -449,7 +425,7 @@
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex
 	max_shells = 6 //codex
-	fire_sound = 'sound/weapons/gun_revolver_small.ogg'
+	fire_sound = 'sound/weapons/guns/fire/revolver_small.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/cmb
 	force = 12
 	attachable_allowed = list(
@@ -461,14 +437,8 @@
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
-/obj/item/weapon/gun/revolver/cmb/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 1.2 SECONDS
+	burst_amount = 3
+	burst_delay = 0.5 SECONDS
+	scatter_unwielded = 20
+	damage_mult = 1.05

@@ -18,13 +18,12 @@
 		return
 
 	var/oldkey = M.key
-
-	M.ghostize(TRUE)
+	var/mob/dead/observer/ghost = M.ghostize(TRUE)
 	M.key = "@[oldkey]"
 
-	log_admin("[key_name(usr)] admin ghosted at [AREACOORD(usr)].")
+	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
-		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
+		message_admins("[ADMIN_TPMONTY(ghost)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
@@ -88,8 +87,11 @@
 	if(!istype(mob_received))
 		return
 
-	if(isliving(mob_received) && mob_received.client && alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
-		return
+	if(isliving(mob_received) && mob_received.client)
+		if(alert("[key_name(mob_received)] is already playing, do you want to proceed?", "Give Mob", "Yes", "No") != "Yes")
+			return
+		else
+			mob_received.ghostize()
 
 	if(!istype(given_living))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
@@ -307,7 +309,7 @@
 	var/path = usr.client.holder.browse_folders()
 	if(!path)
 		return
-	
+
 	usr.client.holder.recursive_download(path)
 
 
@@ -513,7 +515,7 @@
 	if(check_other_rights(src, R_DBRANKS, FALSE))
 		color = "headminsay"
 
-	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>"
+	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
@@ -550,11 +552,11 @@
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C) && mob.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[holder.rank.name]:</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 
 /client/proc/get_dsay()
@@ -810,9 +812,8 @@
 
 	if(AH && AH.tier == TICKET_ADMIN && !check_rights(R_ADMINTICKET, FALSE))
 		return
-
 	if(AH && !AH.marked)
-		AH.marked = usr.client
+		AH.marked = usr.client.key
 		if(AH.tier == TICKET_MENTOR)
 			message_staff("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 		else if(AH.tier == TICKET_ADMIN)
@@ -820,7 +821,7 @@
 				return
 			message_admins("[key_name_admin(src)] has marked and started replying to [key_name_admin(C, FALSE, FALSE)]'s ticket.")
 
-	else if(AH && AH.marked != usr.client)
+	else if(AH && AH.marked != usr.client.key)
 		to_chat(usr, "<span class='warning'>This ticket has already been marked by [AH.marked], click the mark button to replace them.</span>")
 		return
 	var/msg = input("Message:", "Private message to [key_name(C, FALSE, FALSE)]") as message|null
@@ -843,7 +844,8 @@
 
 	if(!holder && !current_ticket)
 		to_chat(src, "<span class='warning'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</span>")
-		to_chat(src, "<span class='notice'>Message: [msg]</span>")
+		if(msg)
+			to_chat(src, "<span class='notice'>Message: [msg]</span>")
 		return
 
 	var/client/recipient
@@ -858,7 +860,7 @@
 
 	else if(istype(whom, /client))
 		recipient = whom
-		
+
 
 
 	if(irc)
@@ -950,7 +952,7 @@
 
 			//Play the bwoink if enabled.
 			if(recipient.prefs.toggles_sound & SOUND_ADMINHELP)
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
 		else  //PM sender is mentor/admin, recipient is not -> big red text
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src))
@@ -965,14 +967,14 @@
 					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
-					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
 					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
 					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
 					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
-					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg'))
+					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
 				admin_ticket_log(recipient, "<font color='#a7f2ef'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
@@ -1116,7 +1118,7 @@
 	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
-	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
+	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
 	C.ircreplyamount = IRCREPLYCOUNT
 

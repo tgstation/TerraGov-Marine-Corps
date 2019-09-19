@@ -5,10 +5,10 @@
 	intact_tile = FALSE
 
 
-/turf/open/floor/plating/almayer
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/plating/mainship
+	icon = 'icons/turf/mainship.dmi'
 
-/turf/open/floor/plating/almayer/striped
+/turf/open/floor/plating/mainship/striped
 	icon_state = "plating_striped"
 
 /turf/open/floor/plating/airless
@@ -30,7 +30,7 @@
 
 
 /turf/open/floor/plating/plating_catwalk
-	icon = 'icons/turf/almayer.dmi'
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "plating_catwalk"
 	var/base_state = "plating" //Post mapping
 	name = "catwalk"
@@ -46,7 +46,7 @@
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
 	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = GAME_PLANE
+	I.plane = FLOOR_PLANE
 	if(covered)
 		overlays += I
 	else

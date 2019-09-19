@@ -389,7 +389,7 @@
 
 
 /datum/browser/modal/preflikepicker/Topic(href,href_list)
-	if(href_list["close"] || !user || !user.client)
+	if(href_list["close"] || !user?.client)
 		opentime = 0
 		return
 	if(href_list["task"] == "input")
@@ -492,3 +492,7 @@
 			usr = src.mob
 			src.Topic(href, params2list(href), hsrc)	// this will direct to the atom's
 			return										// Topic() proc via client.Topic()
+	// no atomref specified (or not found)
+	// so just reset the user mob's machine var
+	if(mob)
+		mob.unset_interaction()

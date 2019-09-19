@@ -49,7 +49,7 @@
 					/obj/item/reagent_container/food/drinks/cans/aspen = 20,/obj/item/reagent_container/food/drinks/bottle/davenport = 3)
 	contraband = list(/obj/item/reagent_container/food/drinks/tea = 10)
 	vend_delay = 15
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 	//product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this station?"
 	//product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 
@@ -86,7 +86,7 @@
 					/obj/item/reagent_container/food/snacks/packaged_burrito = 12,
 					/obj/item/reagent_container/food/snacks/packaged_hdogs =12,
 					/obj/item/reagent_container/food/snacks/kepler_crisps = 12,
-					/obj/item/reagent_container/food/snacks/eat_bar = 12,
+					/obj/item/reagent_container/food/snacks/enrg_bar = 12,
 					/obj/item/reagent_container/food/snacks/wrapped/booniebars = 6,
 					/obj/item/reagent_container/food/snacks/wrapped/chunk = 6,
 					/obj/item/reagent_container/food/snacks/wrapped/barcardine = 6)
@@ -122,8 +122,7 @@
 					/obj/item/reagent_container/food/drinks/cans/souto/grape/diet = 5,
 					/obj/item/reagent_container/food/drinks/cans/waterbottle = 2,
 					/obj/item/reagent_container/food/drinks/cans/cola = 10)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-
+	idle_power_usage = 200
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
@@ -137,11 +136,14 @@
 					/obj/item/tool/lighter/random = 25,
 					/obj/item/tool/lighter/zippo = 10)
 
+	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
+
 	premium = list(/obj/item/storage/fancy/cigar = 25)
 	prices = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 15,
 					/obj/item/storage/box/matches = 1,
 					/obj/item/tool/lighter/random = 2,
-					/obj/item/tool/lighter/zippo = 20)
+					/obj/item/tool/lighter/zippo = 20,
+					/obj/item/clothing/mask/cigarette/cigar/havana = 50)
 
 /obj/machinery/vending/cigarette/colony
 	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
@@ -193,7 +195,7 @@
 
 	contraband = list(/obj/item/reagent_container/glass/bottle/toxin = 1)
 
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 
 
 //This one's from bay12
@@ -270,7 +272,6 @@
 	//product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	//product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
-	delay_product_spawn = 1
 
 	products = list(/obj/item/seeds/bananaseed = 3,/obj/item/seeds/berryseed = 3,/obj/item/seeds/carrotseed = 3,/obj/item/seeds/chantermycelium = 3,/obj/item/seeds/chiliseed = 3,
 					/obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3,/obj/item/seeds/soyaseed = 3,
@@ -308,7 +309,7 @@
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_container/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/reagent_container/food/drinks/drinkingglass/cola = 20)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211
 
 /obj/machinery/vending/tool
 	name = "YouTool"
@@ -343,9 +344,6 @@
 					/obj/item/t_scanner = 12, /obj/item/cell = 8, /obj/item/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
 					/obj/item/light_bulb/tube = 10, /obj/item/stock_parts/scanning_module = 5,/obj/item/stock_parts/micro_laser = 5,
 					/obj/item/stock_parts/matter_bin = 5,/obj/item/stock_parts/manipulator = 5,/obj/item/stock_parts/console_screen = 5)
-	// There was an incorrect entry (cablecoil/power).  I improvised to cablecoil/heavyduty.
-	// Another invalid entry, /obj/item/circuitry.  I don't even know what that would translate to, removed it.
-	// The original products list wasn't finished.  The ones without given quantities became quantity 5.  -Sayu
 
 //This one's from bay12
 /obj/machinery/vending/robotics
@@ -358,10 +356,6 @@
 					/obj/item/cell/high = 12, /obj/item/assembly/prox_sensor = 3,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
 					/obj/item/tool/surgery/scalpel = 2,/obj/item/tool/surgery/circular_saw = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/tool/screwdriver = 5,/obj/item/tool/crowbar = 5)
-	//everything after the power cell had no amounts, I improvised.  -Sayu
-
-
-
 
 
 // All instances of this vendor will share a single inventory for items in the shared list.
@@ -371,22 +365,23 @@
 	var/static/list/shared_products = list()
 	isshared = TRUE
 
-/obj/machinery/vending/shared_vending/New()
-	..()
+/obj/machinery/vending/shared_vending/Initialize()
+	. = ..()
 
-	build_shared_inventory(shared,0,1)
+	if(length(shared_products))
+		build_shared_inventory(shared)
+	else
+		build_inventory(shared)
+	
 
-/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist,hidden=0,req_coin=0)
-
-	if(delay_product_spawn)
-		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.
-
+/obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist, hidden = FALSE, req_coin = TRUE)
 	var/i = 1
 
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		var/price = prices[typepath]
-		if(isnull(amount)) amount = 1
+		if(isnull(amount)) 
+			amount = 1
 
 		var/obj/item/temp_path = typepath
 		var/datum/data/vending_product/R = shared_products[i]
@@ -398,29 +393,19 @@
 
 			if(ispath(typepath,/obj/item/weapon/gun) || ispath(typepath,/obj/item/ammo_magazine) || ispath(typepath,/obj/item/explosive/grenade) || ispath(typepath,/obj/item/weapon/gun/flamer) || ispath(typepath,/obj/item/storage) )
 				R.display_color = "black"
-//			else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
-//				R.display_color = "green"
-//			else if(ispath(typepath,/obj/item/reagent_container) || ispath(typepath,/obj/item/stack/medical))
-//				R.display_color = "blue"
 			else
 				R.display_color = "white"
 
 		if(hidden)
-			R.category=CAT_HIDDEN
+			R.category = CAT_HIDDEN
 			hidden_records += R
 		else if(req_coin)
-			R.category=CAT_COIN
+			R.category = CAT_COIN
 			coin_records += R
 		else
-			R.category=CAT_NORMAL
+			R.category = CAT_NORMAL
 			product_records += R
-
-		if(delay_product_spawn)
-			sleep(5) //sleep(1) did not seem to cut it, so here we are.
 
 		R.product_name = initial(temp_path.name)
 
-		i++;
-
-//		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
-	return
+		i++

@@ -38,11 +38,11 @@
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------
-/obj/vehicle/train/explode()
-	if (tow)
+/obj/vehicle/train/deconstruct(disassembled = TRUE)
+	if(tow)
 		tow.unattach()
 	unattach()
-	..()
+	return ..()
 
 
 //-------------------------------------------

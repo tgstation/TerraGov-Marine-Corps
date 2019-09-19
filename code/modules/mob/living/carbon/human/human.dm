@@ -5,7 +5,7 @@
 	real_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD,ID_HUD,WANTED_HUD,IMPLOYAL_HUD,IMPCHEM_HUD,IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
@@ -59,8 +59,6 @@
 	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
-	sec_hud_set_ID()
-	sec_hud_set_implants()
 	sec_hud_set_security_status()
 	hud_set_squad()
 	hud_set_order()
@@ -73,7 +71,7 @@
 
 
 /mob/living/carbon/human/Destroy()
-	assigned_squad?.clean_marine_from_squad(src, FALSE)
+	assigned_squad?.remove_from_squad(src)
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
@@ -121,36 +119,33 @@
 			throw_at(target, 200, 4)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 60 * armor
-				ear_deaf += 240 * armor
+				adjust_ear_damage(60 * armor, 240 * armor)
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			KnockOut(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 30 * armor
-				ear_deaf += 120 * armor
+				adjust_ear_damage(30 * armor, 120 * armor)
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			KnockDown(4 * armor)
+			knock_down(4 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
 			f_loss += (rand(40, 50) * armor)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				ear_damage += 10 * armor
-				ear_deaf += 30 * armor
+				adjust_ear_damage(10 * armor, 30 * armor)
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			KnockDown(2 * armor)
+			knock_down(2 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR
@@ -192,7 +187,7 @@
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
-		M.emote("[M.friendly] [src]")
+		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
@@ -236,7 +231,6 @@
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
 	<BR>
 	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
@@ -362,12 +356,6 @@
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
 
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-
-
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
 		if(!usr.incapacitated() && Adjacent(usr))
@@ -414,10 +402,10 @@
 				if(placing)
 					if(place_item && place_item == usr.get_active_held_item())
 						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-							dropItemToGround(place_item)
+							usr.dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
@@ -856,41 +844,6 @@
 	playsound(loc, song, 25, 1)
 
 
-/mob/living/carbon/human/revive()
-	for (var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = 0
-	name = get_visible_name()
-
-	if(species && !(species.species_flags & NO_BLOOD))
-		restore_blood()
-
-	//try to find the brain player in the decapitated head and put them back in control of the human
-	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.head_list)
-			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
-					if(H.brainmob.mind)
-						H.brainmob.mind.transfer_to(src)
-						qdel(H)
-
-	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
-
-	undefibbable = FALSE
-	
-	return ..()
-
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 	return L && L.is_bruised()
@@ -996,11 +949,6 @@
 
 		if(species.name && species.name == new_species) //we're already that species.
 			return
-		if(species.language)
-			remove_language(species.language)
-
-		if(species.default_language)
-			remove_language(species.default_language)
 
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
@@ -1015,13 +963,10 @@
 
 	species.create_organs(src)
 
-	if(species.language)
-		grant_language(species.language)
+	dextrous = species.has_fine_manipulation
 
-	if(species.default_language)
-		grant_language(species.default_language)
-		var/datum/language_holder/H = get_language_holder()
-		H.selected_default_language = species.default_language
+	if(species.default_language_holder)
+		language_holder = new species.default_language_holder(src)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1074,9 +1019,9 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
-			S.set_light(0)
+		if(istype(wear_suit, /obj/item/clothing/suit/storage))
+			var/obj/item/clothing/suit/storage/S = wear_suit
+			S.turn_off_light(src)
 			light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/G in contents)
@@ -1093,7 +1038,7 @@
 			FL.turn_off(src)
 	if(misc)
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.set_light(0)
+			H.turn_off()
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
@@ -1144,15 +1089,9 @@
 
 
 /mob/living/carbon/human/proc/randomize_appearance()
-	if(prob(50))
-		gender = FEMALE
-		name = pick(GLOB.first_names_female) + " " + pick(GLOB.last_names)
-		real_name = name
-	else
-		gender = MALE
-		name = pick(GLOB.first_names_male) + " " + pick(GLOB.last_names)
-		real_name = name
-
+	gender = pick(MALE, FEMALE)
+	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+	real_name = name
 
 	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
 		if("black")
@@ -1332,41 +1271,9 @@
 		assigned_squad = S
 		return FALSE
 
-	else if(assigned_squad)
-		assigned_squad.clean_marine_from_squad(src)
-		assigned_squad = null
-
-	var/datum/job/J = SSjob.GetJob(mind.assigned_role)
-	var/datum/outfit/job/O = new J.outfit
-	O.handle_id(src)
-
-	S.put_marine_in_squad(src)
-
-	//Crew manifest
-	for(var/i in GLOB.datacore.general)
-		var/datum/data/record/R = i
-		if(R.fields["name"] == real_name)
-			R.fields["squad"] = S.name
-			break
-
-	if(istype(wear_id, /obj/item/card/id))
-		var/obj/item/card/id/ID = wear_id
-		ID.assigned_fireteam = 0
-
-	//Headset frequency.
-	if(istype(wear_ear, /obj/item/radio/headset/almayer/marine))
-		var/obj/item/radio/headset/almayer/marine/E = wear_ear
-		E.set_frequency(S.radio_freq)
-	else
-		if(wear_ear)
-			dropItemToGround(wear_ear)
-		var/obj/item/radio/headset/almayer/marine/E = new
-		equip_to_slot_or_del(E, SLOT_EARS)
-		E.set_frequency(S.radio_freq)
-		update_icons()
-
-	hud_set_squad()
-
+	if(assigned_squad)
+		assigned_squad.remove_from_squad(src)
+	S.insert_into_squad(src)
 	return TRUE
 
 
@@ -1391,20 +1298,7 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
-	. = ..()
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!Adjacent(AM) && (AM.loc != src))
-		if(!proximity)
-			return TRUE
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE
-
-
-/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/almayer/H)
+/mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
 
@@ -1414,12 +1308,29 @@
 /mob/living/carbon/human/update_camera_location(oldloc)
 	oldloc = get_turf(oldloc)
 
-	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/almayer) || oldloc == get_turf(src))
+	if(!wear_ear || !istype(wear_ear, /obj/item/radio/headset/mainship) || oldloc == get_turf(src))
 		return
 
-	var/obj/item/radio/headset/almayer/H = wear_ear
+	var/obj/item/radio/headset/mainship/H = wear_ear
 
 	if(QDELETED(H.camera))
 		return
 
 	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+
+
+/mob/living/carbon/human/get_language_holder()
+	if(language_holder)
+		return language_holder
+	else if(species)
+		language_holder = new species.default_language_holder(src)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder
+
+
+/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(buckled)
+		return
+	return ..()

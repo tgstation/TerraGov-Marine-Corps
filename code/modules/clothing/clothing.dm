@@ -2,31 +2,11 @@
 	name = "clothing"
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/tint = TINT_NONE // headgear, mask and glasses, forvision impairment overlays
-	var/list/uniform_restricted //Need to wear this uniform to equip this
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-//BS12: Species-restricted clothing check.
-//CM Update : Restricting armor to specific uniform
-/obj/item/clothing/mob_can_equip(M as mob, slot)
-
-	//if we can't equip the item anyway, don't bother with species_restricted (cuts down on spam)
-	if (!..())
-		return 0
-
-	if(ishuman(M))
-
-		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/under/U = H.w_uniform
-
-		//some clothes can only be worn when wearing specific uniforms
-		if(uniform_restricted && (!is_type_in_list(U, uniform_restricted) || !U))
-			to_chat(H, "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>")
-			return 0
-
-	return 1
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
@@ -68,28 +48,6 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_wear_suit()
-
-/obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
-	//if we can't equip the item anyway, don't bother with other checks.
-	. = ..()
-	if(!.)
-		return FALSE
-
-	if(!ishuman(M))
-		return TRUE
-
-	var/mob/living/carbon/human/H = M
-
-	if(!istype(H.w_uniform, /obj/item/clothing/under))
-		return FALSE
-
-	var/obj/item/clothing/under/U = H.w_uniform
-	//some uniforms prevent you from wearing any suits but certain types
-	if(U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-		to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
-		return FALSE
-
-	return TRUE
 
 
 /////////////////////////////////////////////////////////

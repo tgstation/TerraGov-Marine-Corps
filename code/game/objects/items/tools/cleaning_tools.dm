@@ -18,7 +18,7 @@
 	create_reagents(5)
 
 /turf/proc/clean(atom/source)
-	if(source.reagents.has_reagent("water", 1))
+	if(source.reagents.has_reagent(/datum/reagent/water, 1))
 		clean_blood()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
@@ -85,6 +85,11 @@
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
+
+
+/obj/item/tool/soap/attack(mob/target, mob/user)
+	return
+
 
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return

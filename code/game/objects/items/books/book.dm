@@ -17,22 +17,28 @@
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
-/obj/item/book/attack_self(mob/user as mob)
+
+/obj/item/book/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	
 	if(carved)
-		if(store)
-			to_chat(user, "<span class='notice'>[store] falls out of [title]!</span>")
-			store.loc = get_turf(src.loc)
-			store = null
-			return
+		if(!store)
+			visible_message("<span class='notice'>The pages of [title] have been cut out!</span>")
 		else
-			to_chat(user, "<span class='notice'>The pages of [title] have been cut out!</span>")
-			return
-	if(src.dat)
-		user << browse("<TT><I>Owner: [author].</I></TT> <BR>" + "[dat]", "window=book;size=800x600")
-		user.visible_message("[user] opens \"[src.title]\".")
-		onclose(user, "book")
-	else
-		to_chat(user, "This book is completely blank!")
+			visible_message("<span class='notice'>[store] falls out of [title]!</span>")
+			store.forceMove(get_turf(loc))
+			store = null
+		return
+	
+	if(isliving(user))
+		user.visible_message("[user] opens \"[title]\".")
+
+	var/datum/browser/popup = new(user, "book", "<div align='center'>Owner: [author]</div>", 800, 600)
+	popup.set_content(dat)
+	popup.open()
+
 
 /obj/item/book/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -104,22 +110,21 @@
 
 
 /obj/item/book/codebook
-	name = "Theseus Code Book"
+	name = "Ship Code Book"
 	unique = TRUE
 	dat = ""
 
 
-/obj/item/book/codebook/Initialize(mapload, ...)
-	var/letters = list("Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu",\
-		"Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
+/obj/item/book/codebook/Initialize()
+	. = ..()
 	var/number
 	var/letter
 	dat = "<table><tr><th>Call</th><th>Response<th></tr>"
 	for(var/i in 1 to 10)
-		letter = pick(letters)
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
 		number = rand(100, 999)
 		dat += "<tr><td>[letter]-[number]</td>"
-		letter = pick(letters)
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
 		number = rand(100, 999)
 		dat += "<td>[letter]-[number]</td></tr>"
 

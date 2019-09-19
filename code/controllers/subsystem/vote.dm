@@ -14,7 +14,6 @@ SUBSYSTEM_DEF(vote)
 	var/list/choices = list()
 	var/list/voted = list()
 	var/list/voting = list()
-	var/list/generated_actions = list()
 
 
 /datum/controller/subsystem/vote/fire()
@@ -24,7 +23,7 @@ SUBSYSTEM_DEF(vote)
 		if(time_remaining < 0)
 			result()
 			for(var/client/C in voting)
-				C << browse(null, "window=vote;can_close=0")
+				C << browse(null, "window=vote")
 			reset()
 		else
 			var/datum/browser/client_popup
@@ -43,6 +42,7 @@ SUBSYSTEM_DEF(vote)
 	choices.Cut()
 	voted.Cut()
 	voting.Cut()
+	remove_action_buttons()
 
 
 /datum/controller/subsystem/vote/proc/get_result()
@@ -103,6 +103,7 @@ SUBSYSTEM_DEF(vote)
 	else
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
+	remove_action_buttons()
 	to_chat(world, "<br><font color='purple'>[text]</font>")
 	return .
 
@@ -217,9 +218,16 @@ SUBSYSTEM_DEF(vote)
 			text += "<br>[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		SEND_SOUND(world, 'sound/ambience/alarm4.ogg')
+		SEND_SOUND(world, sound('sound/ambience/alarm4.ogg', channel = CHANNEL_NOTIFY))
 		to_chat(world, "<br><font color='purple'><b>[text]</b><br>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.<br>You have [DisplayTimeText(vp)] to vote.</font>")
 		time_remaining = round(vp/10)
+		for(var/c in GLOB.clients)
+			var/client/C = c
+			var/datum/action/innate/vote/V = new
+			if(question)
+				V.name = "Vote: [question]"
+			C.player_details.player_actions += V
+			V.give_action(C.mob)
 		return TRUE
 	return FALSE
 
@@ -242,54 +250,61 @@ SUBSYSTEM_DEF(vote)
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0
-			. += "<li><a href='?src=[REF(src)];vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
+			. += "<li><a href='?_src_=vote;vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
 		. += "</ul><hr>"
 		if(admin)
-			. += "(<a href='?src=[REF(src)];vote=cancel'>Cancel Vote</a>) "
+			. += "(<a href='?_src_=vote;vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 
 		var/avr = CONFIG_GET(flag/allow_vote_restart)
-		if(avr)
-			. += "<a href='?src=[REF(src)];vote=restart'>Restart</a>"
+		if(avr || admin)
+			. += "<a href='?_src_=vote;vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		if(admin)
-			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
+			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
-		if(avm)
-			. += "<a href='?src=[REF(src)];vote=gamemode'>GameMode</a>"
+		if(avm || admin)
+			. += "<a href='?_src_=vote;vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
-		if(admin)
-			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
-		. += "</li>"
 		if(admin)
-			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
-			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
-			. += "<li><a href='?src=[REF(src)];vote=custom'>Custom</a></li>"
+			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
+
+		. += "</li><hr>"
+
+		if(admin)
+			. += "<li><a href='?_src_=vote;vote=groundmap'>Ground Map Vote</a></li>"
+			. += "<li><a href='?_src_=vote;vote=shipmap'>Ship Map Vote</a></li>"
+			. += "<li><a href='?_src_=vote;vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
-	. += "<a href='?src=[REF(src)];vote=close' style='position:absolute;right:50px'>Close</a>"
+	. += "<a href='?_src_=vote;vote=close'>Close</a>"
 	return .
 
 
-/datum/controller/subsystem/vote/Topic(href, href_list[], hsrc)
+/datum/controller/subsystem/vote/can_interact(mob/user)
+	return TRUE
+
+
+/datum/controller/subsystem/vote/Topic(href, list/href_list, hsrc)
 	. = ..()
 	if(.)
 		return
-	if(!usr || !usr.client)
+
+	if(!usr?.client)
 		return
 
 	switch(href_list["vote"])
 		if("close")
 			voting -= usr.client
-			usr << browse(null, "window=vote")
+			DIRECT_OUTPUT(usr, browse(null, "window=vote"))
 			return
 		if("cancel")
-			if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(check_other_rights(usr.client, R_ADMIN, FALSE) && alert(usr, "Are you sure you want to cancel the vote?", "Cancel Vote", "Yes", "No") == "Yes")
 				reset()
 				to_chat(world, "<b><font color='purple'>The vote has been cancelled.</font></b>")
 		if("toggle_restart")
@@ -326,3 +341,34 @@ SUBSYSTEM_DEF(vote)
 	popup.set_window_options("can_close=0")
 	popup.set_content(SSvote.interface(client))
 	popup.open(FALSE)
+
+/datum/controller/subsystem/vote/proc/remove_action_buttons()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_REMOVE_VOTE_BUTTON)
+
+/datum/action/innate/vote
+	name = "Vote!"
+	action_icon_state = "vote"
+
+/datum/action/innate/vote/give_action(mob/M)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
+
+/datum/action/innate/vote/proc/remove_vote_action(datum/source)
+	if(remove_from_client())
+		remove_action(owner)
+	qdel(src)
+
+/datum/action/innate/vote/action_activate()
+	owner.vote()
+	remove_vote_action()
+
+/datum/action/innate/vote/proc/remove_from_client()
+	if(!owner)
+		return FALSE
+	if(owner.client)
+		owner.client.player_details.player_actions -= src
+	else if(owner.ckey)
+		var/datum/player_details/P = GLOB.player_details[owner.ckey]
+		if(P)
+			P.player_actions -= src
+	return TRUE

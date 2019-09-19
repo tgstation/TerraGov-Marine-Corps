@@ -30,10 +30,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_form = GHOST_DEFAULT_FORM
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
+	var/observer_actions = TRUE
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/hotkeys = TRUE
+	var/focus_chat = FALSE
+	var/clientfps = 0
 
 	// Custom Keybindings
 	var/list/key_bindings = null
@@ -44,6 +46,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//Xenomorph specific preferences
 	var/xeno_name = "Undefined"
+
+	//AI specific preferences
+	var/ai_name = "ARES v3.2"
 
 	//Character preferences
 	var/real_name = ""
@@ -115,13 +120,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	menuoptions = list()
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	
 
-/datum/preferences/proc/load_default_keybindings(client/C)
+/datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	hotkeys = (choice == "Hotkey")
-	key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	focus_chat = (choice == "Classic")
+	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
 
 
@@ -200,9 +207,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "<b>Synthetic Type:</b>"
 	dat += "<a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a>"
-	dat += "<br><br>"
+	dat += "<br>"
 	dat += "<b>Xenomorph name:</b>"
 	dat += "<a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a>"
+	dat += "<br>"
+	dat += "<b>AI name:</b>"
+	dat += "<a href='?_src_=prefs;preference=ai_name'>[ai_name]</a>"
 	dat += "<br><br>"
 
 
@@ -233,8 +243,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<h2>Occupation Choices:</h2>"
 
-	var/n = 0
 	for(var/role in BE_SPECIAL_FLAGS)
+		var/n = BE_SPECIAL_FLAGS[role]
 		var/ban_check_name
 
 		switch(role)
@@ -250,8 +260,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
 		else
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[be_special & (1 << n) ? "Yes" : "No"]</a><br>"
-		n++
+			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[CHECK_BITFIELD(be_special, n) ? "Yes" : "No"]</a><br>"
 
 	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
 
@@ -315,8 +324,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<h2>Game Settings:</h2>"
 	dat += "<b>Window Flashing:</b> <a href='?_src_=prefs;preference=windowflashing'>[windowflashing ? "Yes" : "No"]</a><br>"
-	dat += "<b>Hotkey mode:</b> <a href='?_src_=prefs;preference=hotkeys'>[(hotkeys) ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
+	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 
 
 
@@ -337,7 +347,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	onclose(user, "preferences_window", src)
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 16, list/splitJobs, widthPerColumn = 305, height = 620)
+/datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs, widthPerColumn = 305, height = 620)
 	if(!SSjob)
 		return
 
@@ -522,7 +532,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bound_key = user_binds[kb.name]
 			bound_key = (bound_key) ? bound_key : "Unbound"
 
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [hotkeys ? kb.hotkey_key : kb.classic_key] )</a>"
+			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [focus_chat ? kb.hotkey_key : kb.classic_key] )</a>"
 			HTML += "<br>"
 
 	HTML += "<br><br>"
@@ -580,6 +590,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
+			ShowChoices(user)			
+			return TRUE
 
 		if("synth_name")
 			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null
@@ -597,11 +609,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("xeno_name")
 			var/newname = input(user, "Choose your Xenomorph name:", "Xenomorph Name") as text|null
-			newname = reject_bad_name(newname)
-			if(!newname)
-				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
-				return
-			xeno_name = newname
+			if(newname == "")
+				xeno_name = "Undefined"
+			else
+				newname = reject_bad_name(newname)
+				if(!newname)
+					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+					return
+				xeno_name = newname
+
+		if("ai_name")
+			var/newname = input(user, "Choose your AI name:", "AI Name") as text|null
+			if(newname == "")
+				ai_name = "ARES v3.2"
+			else
+				newname = reject_bad_name(newname, TRUE)
+				if(!newname)
+					to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
+					return
+				ai_name = newname
 
 		if("name_real")
 			var/newname = input(user, "Choose your character's name:", "Character Name") as text|null
@@ -667,7 +693,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("be_special")
 			var/flag = text2num(href_list["flag"])
-			be_special ^= (1 << flag)
+			TOGGLE_BITFIELD(be_special, flag)
 
 		if("jobmenu")
 			SetChoices(user)
@@ -913,12 +939,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("windowflashing")
 			windowflashing = !windowflashing
 
-		if("hotkeys")
-			hotkeys = !hotkeys
-			if(hotkeys)
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED] mainwindow.macro=default")
+		if("focus_chat")
+			focus_chat = !focus_chat
+			if(focus_chat)
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 			else
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED] mainwindow.macro=old_default")
+				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
+
+		if("clientfps")
+			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
+			if(isnull(desiredfps))
+				return
+			desiredfps = CLAMP(desiredfps, 0, 240)
+			clientfps = desiredfps
+			parent.fps = desiredfps
 
 		if("tooltips")
 			tooltips = !tooltips
@@ -977,6 +1011,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				new_key = "Numpad[new_key]"
 
 			var/full_key = "[AltMod][CtrlMod][ShiftMod][new_key]"
+			if(!key_bindings[old_key])
+				key_bindings[old_key] = list()
 			key_bindings[old_key] -= kb_name
 			key_bindings[full_key] += list(kb_name)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
@@ -994,8 +1030,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if (choice == "Cancel")
 				ShowKeybindings(user)
 				return
-			hotkeys = (choice == "Hotkey")
-			key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+			focus_chat = (choice == "Classic")
+			key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 			save_preferences()
 			ShowKeybindings(user)
 			return

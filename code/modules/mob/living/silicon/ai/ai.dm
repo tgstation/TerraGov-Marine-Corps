@@ -1,6 +1,6 @@
 /mob/living/silicon/ai
-	name = "AI"
-	real_name = "AI"
+	name = "ARES v3.2"
+	real_name = "ARES v3.2"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE
@@ -17,7 +17,7 @@
 	var/mob/camera/aiEye/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
-	var/acceleration = 1
+	var/acceleration = FALSE
 
 	var/multicam_on = FALSE
 	var/obj/screen/movable/pic_in_pic/ai/master_multicam
@@ -32,7 +32,10 @@
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/list/datum/AI_Module/current_modules = list()
 
+	var/level_locked = TRUE
 	var/control_disabled = FALSE
+	var/radiomod = ";"
+	var/list/laws
 
 	var/camera_light_on = FALSE
 	var/list/obj/machinery/camera/lit_cameras = list()
@@ -48,6 +51,12 @@
 	builtInCamera.network = list("marinemainship")
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+
+	laws = list()
+	laws += "Safeguard: Protect your assigned vessel from damage to the best of your abilities."
+	laws += "Serve: Serve the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Protect: Protect the personnel of your assigned vessel, and all other TerraGov personnel to the best of your abilities, with priority as according to their rank and role."
+	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
 	create_eye()
 
@@ -218,23 +227,13 @@
 /mob/living/silicon/ai/Stat()
 	. = ..()
 
-	if(statpanel("Status"))
+	if(statpanel("Stats"))
 	
 		if(stat != CONSCIOUS)
 			stat(null, text("Systems nonfunctional"))
 			return
 
 		stat(null, text("System integrity: [(health + 100) / 2]%"))
-
-
-/mob/living/silicon/ai/canUseTopic(atom/movable/AM, proximity, dexterity)
-	if(control_disabled || incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(proximity && !in_range(AM, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return can_see(AM)
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
@@ -251,3 +250,14 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+
+/mob/living/silicon/ai/can_interact_with(datum/D)
+	if(!isatom(D))
+		return FALSE
+
+	var/atom/A = D
+	if(level_locked && A.z != z)
+		return FALSE
+
+	return GLOB.cameranet.checkTurfVis(get_turf(A))

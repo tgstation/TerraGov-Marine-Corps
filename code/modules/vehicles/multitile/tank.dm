@@ -136,7 +136,7 @@
 /obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(mob/M)
 	if(!M || M != gunner)
 		return FALSE
-	if(!M.IsAdvancedToolUser())
+	if(!M.dextrous)
 		to_chat(M, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	return !M.incapacitated()
@@ -163,7 +163,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.KnockDown(4)
+	L.knock_down(4)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -181,7 +181,7 @@
 		handle_harm_attack(M, occupant)
 		return
 
-	if(!M.IsAdvancedToolUser())
+	if(!M.dextrous)
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return
 	if(!allowed(M))
@@ -287,10 +287,7 @@
 				ST.update_icon(1, 0)
 
 	if(next_sound_play < world.time)
-		if(!CONFIG_GET(flag/tank_mouth_noise))
-			playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
-		else
-			playsound(src, 'sound/ambience/tank_driving_joke.ogg', vol = 20, sound_range = 30)
+		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 20, sound_range = 30)
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn

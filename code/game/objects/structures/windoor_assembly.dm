@@ -79,7 +79,7 @@ obj/structure/windoor_assembly/Destroy()
 				user.visible_message("[user] dissassembles the windoor assembly.", "You start to dissassemble the windoor assembly.")
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
-				if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				if(!src || !WT.isOn()) 
@@ -129,7 +129,7 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				to_chat(user, "<span class='notice'>You start to reinforce the windoor with rods.</span>")
-				if(!do_after(user,40, TRUE, 5, BUSY_ICON_BUILD) || secure)
+				if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD) || secure)
 					return
 
 				if(!R.use(4))
@@ -217,7 +217,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!electronics)
 					to_chat(user, "<span class='warning'>The assembly is missing electronics.</span>")
 					return
-				user << browse(null, "window=windoor_access")
+				DIRECT_OUTPUT(user, browse(null, "window=windoor_access"))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 

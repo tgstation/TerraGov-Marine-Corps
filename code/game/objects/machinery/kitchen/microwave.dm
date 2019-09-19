@@ -121,37 +121,30 @@
 
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
-			if(!(R.id in acceptable_reagents))
+			if(!(R.type in acceptable_reagents))
 				to_chat(user, "<span class='warning'>Your [I] contains components unsuitable for cookery.</span>")
 				return TRUE
+
+		return FALSE
 
 	else if(istype(I, /obj/item/grab))
 		return TRUE
 
 	else
 		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
-		
-	updateUsrDialog()
+
 	return TRUE
 
-/obj/machinery/microwave/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/microwave/attack_ai(mob/user as mob)
-	return 0
-
-/obj/machinery/microwave/attack_hand(mob/user as mob)
-	. = ..()
-	if(.)
-		return
-	user.set_interaction(src)
-	interact(user)
 
 /*******************
 *   Microwave Menu
 ********************/
 
-/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/microwave/interact(mob/user) // The microwave Menu
+	. = ..()
+	if(.)
+		return
+
 	var/dat = ""
 	if(src.broken > 0)
 		dat = {"<TT>Bzzzzttttt</TT>"}
@@ -194,9 +187,9 @@
 
 		for (var/datum/reagent/R in reagents.reagent_list)
 			var/display_name = R.name
-			if (R.id == "capsaicin")
+			if (R.type == /datum/reagent/consumable/capsaicin)
 				display_name = "Hotsauce"
-			if (R.id == "frostoil")
+			if (R.type == /datum/reagent/consumable/frostoil)
 				display_name = "Coldsauce"
 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
@@ -211,8 +204,7 @@
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "microwave")
+	popup.open()
 
 
 
@@ -355,24 +347,21 @@
 				amount+=O.reagents.get_reagent_amount(id)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(/datum/reagent/carbon, amount)
+	ffuu.reagents.add_reagent(/datum/reagent/toxin, amount/10)
 	return ffuu
+
 
 /obj/machinery/microwave/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 
-	usr.set_interaction(src)
-	if(src.operating)
-		src.updateUsrDialog()
-		return
-
 	switch(href_list["action"])
-		if ("cook")
+		if("cook")
 			cook()
 
-		if ("dispose")
+		if("dispose")
 			destroy_contents()
-	return
+	
+	updateUsrDialog()

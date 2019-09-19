@@ -84,7 +84,7 @@
 
 
 /mob/living/simple_animal/corgi/puppy/mrwiggles
-	name = " Mr. Wiggles"
+	name = "Mr. Wiggles"
 	real_name = "Mr. Wiggles"
 	desc = "It's Mr. Wiggles!"
 

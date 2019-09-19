@@ -231,25 +231,7 @@
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
 		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
-	if(is_charging)
-		if(legcuffed)
-			is_charging = 0
-			stop_momentum()
-			to_chat(src, "<span class='xenodanger'>We can't charge with that thing on our leg!</span>")
-		else
-			. -= charge_speed
-			charge_timer = 2
-			if(charge_speed == 0)
-				charge_dir = dir
-				handle_momentum()
-			else
-				if(charge_dir != dir || moving_diagonally || (direct in GLOB.diagonals))
-					stop_momentum() //This should disallow rapid turn bumps
-				else
-					handle_momentum()
-
 //Stealth handling
-
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
@@ -299,7 +281,7 @@
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
+					S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		return TRUE
 
@@ -311,13 +293,13 @@
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
 						if(H.check_shields(15, "the pounce")) //Human shield block.
-							KnockDown(3)
+							knock_down(3)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.KnockDown(1)
+					M.knock_down(1)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -384,15 +366,13 @@
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(see_in_dark == XENO_NIGHTVISION_DISABLED)
+	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		see_in_dark = XENO_NIGHTVISION_ENABLED
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
 	else
-		lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
-		see_in_dark = XENO_NIGHTVISION_DISABLED
+		lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 		ENABLE_BITFIELD(sight, SEE_MOBS)
 		DISABLE_BITFIELD(sight, SEE_OBJS)
 		DISABLE_BITFIELD(sight, SEE_TURFS)
@@ -448,89 +428,6 @@
 	. = ..()
 
 
-//This is depricated. Use handle_collision() for all future speed changes. ~Bmc777
-/mob/living/carbon/xenomorph/proc/stop_momentum(direction, stunned)
-	if(!lastturf) return FALSE //Not charging.
-	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE) //Message now happens without a stun condition
-		visible_message("<span class='danger'>[src] skids to a halt!</span>",
-		"<span class='xenowarning'>We skid to a halt.</span>", null, 5)
-	last_charge_move = 0 //Always reset last charge tally
-	charge_speed = 0
-	charge_roar = 0
-	lastturf = null
-	flags_pass = 0
-	update_icons()
-
-//Why the elerloving fuck was this a Crusher only proc ? AND WHY IS IT NOT CAST ON THE RECEIVING ATOM ? AAAAAAA
-/mob/living/carbon/xenomorph/proc/diagonal_step(atom/movable/A, direction)
-	if(!A) return FALSE
-	switch(direction)
-		if(EAST, WEST) step(A, pick(NORTH,SOUTH))
-		if(NORTH,SOUTH) step(A, pick(EAST,WEST))
-
-/mob/living/carbon/xenomorph/proc/handle_momentum()
-	if(throwing)
-		return FALSE
-
-	if(last_charge_move && last_charge_move < world.time - 5) //If we haven't moved in the last 500 ms, break charge on next move
-		stop_momentum(charge_dir)
-
-	if(stat || pulledby || !loc || !isturf(loc))
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(!is_charging)
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(lastturf && (loc == lastturf || loc.z != lastturf.z)) //Check if the Crusher didn't move from his last turf, aka stopped
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(dir != charge_dir || m_intent == MOVE_INTENT_WALK || istype(loc, /turf/open/ground/river) || moving_diagonally)
-		stop_momentum(charge_dir)
-		return FALSE
-
-	if(pulling && charge_speed > CHARGE_SPEED_BUILDUP) stop_pulling()
-
-	if(plasma_stored > 5) plasma_stored -= round(charge_speed) //Eats up plasma the faster you go, up to 0.5 per tile at max speed
-	else
-		stop_momentum(charge_dir)
-		return FALSE
-
-	last_charge_move = world.time //Index the world time to the last charge move
-
-	if(charge_speed < CHARGE_SPEED_MAX)
-		charge_speed += CHARGE_SPEED_BUILDUP //Speed increases each step taken. Caps out at 14 tiles
-		if(charge_speed == CHARGE_SPEED_MAX) //Should only fire once due to above instruction
-			if(!charge_roar)
-				emote("roar")
-				charge_roar = 1
-
-	noise_timer = noise_timer ? --noise_timer : 3
-
-	if(noise_timer == 3 && charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-		playsound(loc, "alien_charge", 50)
-
-	if(charge_speed > CHARGE_SPEED_BUILDUP * CHARGE_TURFS_TO_CHARGE)
-
-		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isxeno(M) && M.stat != DEAD && !isnestedhost(M))
-				visible_message("<span class='danger'>[src] runs [M] over!</span>",
-				"<span class='danger'>We run [M] over!</span>", null, 5)
-
-				M.take_overall_damage(charge_speed * 10) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
-				animation_flash_color(M)
-
-		var/shake_dist = min(round(charge_speed * 5), 8)
-		for(var/mob/living/carbon/M in range(shake_dist))
-			if(M.client && !isxeno(M))
-				shake_camera(M, 1, 1)
-
-	lastturf = isturf(loc) && !isspaceturf(loc) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
-
-	update_icons()
-
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
 
@@ -573,8 +470,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	obj_integrity -= rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X)
-	update_health(TRUE)
+	take_damage(rand(40,60) + SPRAY_STRUCTURE_UPGRADE_BONUS(X))
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -593,7 +489,7 @@
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 
-	acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+	cooldowns[COOLDOWN_ACID] = TRUE
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
@@ -605,7 +501,7 @@
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(null, damage, null, null, null, armor_block)
 	emote("scream")
-	KnockDown(1)
+	knock_down(1)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return
@@ -686,9 +582,10 @@
 	xeno_mobhud = !xeno_mobhud
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
 	if(xeno_mobhud)
-		H.add_hud_to(usr)
+		H.add_hud_to(src)
 	else
-		H.remove_hud_from(usr)
+		H.remove_hud_from(src)
+	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
 
 
 /mob/living/carbon/xenomorph/verb/middle_mousetoggle()
@@ -703,7 +600,7 @@
 		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>")
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = "xeno_toxin", channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
 	var/datum/reagent/body_tox
@@ -716,7 +613,7 @@
 		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
-		animation_attack_on(C)
+		do_attack_animation(C)
 		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
 		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		C.reagents.add_reagent(toxin, transfer_amount)

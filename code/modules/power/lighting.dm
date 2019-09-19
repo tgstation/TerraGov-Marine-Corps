@@ -170,15 +170,16 @@
 	light_type = /obj/item/light_bulb/tube/large
 	brightness = 12
 
-/obj/machinery/light/built/New()
+/obj/machinery/light/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
-/obj/machinery/light/small/built/New()
+
+/obj/machinery/light/small/built/Initialize()
+	. = ..()
 	status = LIGHT_EMPTY
-	update(0)
-	..()
+	update(FALSE)
 
 // create a new lighting fixture
 /obj/machinery/light/Initialize(mapload, ...)
@@ -394,34 +395,22 @@
 // ai attack - make lights flicker, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
+	flicker(1)
 
-/obj/machinery/light/attack_animal(mob/living/M)
-	if(M.melee_damage_upper == 0)
-		return
-	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
-		return
-	else if (status == LIGHT_OK||status == LIGHT_BURNED)
-		for(var/mob/O in viewers(src))
-			O.show_message("<span class='warning'> [M.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
-		broken()
-	return
 
 //Xenos smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.animation_attack_on(src)
+	M.do_attack_animation(src)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
-	"<span class='danger'>You smash [src]!</span>", null, 5)
+	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
 
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 
-/obj/machinery/light/attack_hand(mob/user)
+/obj/machinery/light/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -432,8 +421,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> [user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
+			visible_message("<span class='warning'>[user] smashed the light!</span>", null, "You hear a tinkle of breaking glass")
 			broken()
 			return
 
@@ -560,7 +548,6 @@
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	matter = list("metal" = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
 
@@ -574,7 +561,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -588,7 +575,7 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
@@ -597,7 +584,6 @@
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list("glass" = 100)
 	brightness = 5
 
 // update the icon state and description of the light
@@ -635,11 +621,7 @@
 
 		to_chat(user, "You inject the solution into the [src].")
 
-		if(S.reagents.has_reagent("phoron", 5))
-
-			log_game("[key_name(user)] injected a light with phoron, rigging it to explode.")
-			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
-
+		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
 			rigged = TRUE
 
 		S.reagents.clear_reagents()
@@ -694,14 +676,14 @@
 
 /obj/machinery/landinglight/ds1/Initialize(mapload, ...)
 	. = ..()
-	id = "[CONFIG_GET(string/ship_name)] Dropship 1"
+	id = "alamo"
 
 /obj/machinery/landinglight/ds2
 
 
 /obj/machinery/landinglight/ds2/Initialize(mapload, ...)
 	. = ..()
-	id = "[CONFIG_GET(string/ship_name)] Dropship 2" // ID for landing zone
+	id = "normandy" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

@@ -35,11 +35,10 @@
 	else
 		icon_state = "drone_fab_idle"
 
-/obj/machinery/tank_part_fabricator/attack_hand(mob/user)
+/obj/machinery/tank_part_fabricator/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
 	var/dat
 	if(screen == TANKFAB_BUSY)
 		dat += "<i>[src] is busy. Please wait for completion of the current operation...</i>"
@@ -237,7 +236,7 @@
 	tank_points -= cost
 	if(istype(loaded_mod, /obj/item/hardpoint))
 		var/obj/item/hardpoint/H = loaded_mod
-		H.obj_integrity = H.max_integrity
+		H.repair_damage(H.max_integrity)
 		if(H.ammo)
 			H.ammo.current_rounds = H.ammo.max_rounds
 			H.ammo.update_icon()
@@ -252,8 +251,6 @@
 	. =..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>[src] is busy. Please wait for completion of previous operation.</span>")

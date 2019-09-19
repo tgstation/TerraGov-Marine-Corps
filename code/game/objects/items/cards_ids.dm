@@ -59,7 +59,7 @@
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
-	origin_tech = "magnets=2;syndicate=2"
+
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
@@ -67,50 +67,7 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	flags_item = NOBLUDGEON
-	origin_tech = "magnets=2;syndicate=2"
-	var/uses = 10
-	// List of devices that cost a use to emag.
-	var/list/devices = list(
-		/obj/item/robot_parts,
-		/obj/item/storage/lockbox,
-		/obj/item/storage/secure,
-		/obj/item/circuitboard,
-		/obj/item/eftpos,
-		/obj/item/lightreplacer,
-		/obj/item/taperecorder,
-		/obj/item/hailer,
-		/obj/item/megaphone,
-		/obj/item/clothing/tie/holobadge,
-		/obj/structure/closet/crate/secure,
-		/obj/structure/closet/secure_closet,
-		/obj/machinery/computer,
-		/obj/machinery/power,
-		/obj/machinery/deployable,
-		/obj/machinery/door_control,
-		/obj/machinery/vending,
-		/obj/machinery/bot,
-		/obj/machinery/door,
-		/obj/machinery/telecomms,
-		/obj/machinery/mecha_part_fabricator,
-		/obj/vehicle
-		)
 
-
-/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
-
-	for(var/type in devices)
-		if(istype(O,type))
-			uses--
-			break
-
-	if(uses<1)
-		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
-		user.drop_held_item()
-		new /obj/item/card/emag_broken(user.loc)
-		qdel(src)
-		return
-
-	..()
 
 /obj/item/card/id
 	name = "identification card"
@@ -185,7 +142,6 @@
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_ILLEGAL_PIRATE)
-	origin_tech = "syndicate=3"
 	var/registered_user=null
 
 /obj/item/card/id/syndicate/New(mob/user as mob)
@@ -336,3 +292,11 @@
 			msg += ".</span>"
 
 			to_chat(user, msg)
+
+
+/obj/item/card/id/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(.)
+		switch(var_name)
+			if("assignment", "registered_name")
+				update_label()

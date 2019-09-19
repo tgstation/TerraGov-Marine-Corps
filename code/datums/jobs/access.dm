@@ -2,8 +2,12 @@
 	//check if it doesn't require any access at all
 	if(check_access())
 		return TRUE
+	
 	if(issilicon(M))
 		return TRUE //Silicons can access whatever they want
+
+	if(IsAdminGhost(M))
+		return TRUE
 
 	var/obj/item/card/id/I = M.get_idcard() //if they are holding or wearing a card that has access, that works.
 	if(check_access(I))
@@ -35,7 +39,7 @@
 					continue
 				req_one_access += n
 
-	if(!length(req_one_access) && !length(req_one_access)) 
+	if(!length(req_access) && !length(req_one_access)) 
 		return TRUE
 
 	if(!istype(ID)) 
@@ -97,15 +101,15 @@
 		if(0) 
 			return "All"
 		if(1) 
-			return "[CONFIG_GET(string/ship_name)] Security"//security
+			return "[SSmapping.configs[SHIP_MAP].map_name] Security"//security
 		if(2) 
-			return "[CONFIG_GET(string/ship_name)] Medbay"//medbay
+			return "[SSmapping.configs[SHIP_MAP].map_name] Medbay"//medbay
 		if(3) 
-			return "[CONFIG_GET(string/ship_name)] Research"//research
+			return "[SSmapping.configs[SHIP_MAP].map_name] Research"//research
 		if(4) 
-			return "[CONFIG_GET(string/ship_name)] Engineering"//engineering and maintenance
+			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"//engineering and maintenance
 		if(5) 
-			return "[CONFIG_GET(string/ship_name)] Command"//command
+			return "[SSmapping.configs[SHIP_MAP].map_name] Command"//command
 		if(6) 
 			return "Marines"//marine prep
 		if(7) 
@@ -123,19 +127,19 @@
 		if(ACCESS_MARINE_CMO)
 			return "CMO's Office"
 		if(ACCESS_MARINE_MEDBAY)
-			return "[CONFIG_GET(string/ship_name)] Medbay"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Medbay"
 		if(ACCESS_MARINE_RESEARCH)
-			return "[CONFIG_GET(string/ship_name)] Research"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Research"
 		if(ACCESS_MARINE_CE)
 			return "CE's Office"
 		if(ACCESS_MARINE_ENGINEERING)
-			return "[CONFIG_GET(string/ship_name)] Engineering"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"
 		if(ACCESS_MARINE_CAPTAIN)
 			return "Captain's Quarters"
 		if(ACCESS_MARINE_LOGISTICS)
-			return "[CONFIG_GET(string/ship_name)] Logistics"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Logistics"
 		if(ACCESS_MARINE_BRIDGE)
-			return "[CONFIG_GET(string/ship_name)] Bridge"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Bridge"
 		if(ACCESS_MARINE_PREP)
 			return "Marine Prep"
 		if(ACCESS_MARINE_ENGPREP)
@@ -173,7 +177,7 @@
 		if(ACCESS_CIVILIAN_PUBLIC)
 			return "Civilian"
 		if(ACCESS_IFF_MARINE)
-			return "[CONFIG_GET(string/ship_name)] Identification"
+			return "[SSmapping.configs[SHIP_MAP].map_name] Identification"
 
 /proc/get_centcom_access_desc(A)
 	switch(A)
@@ -219,6 +223,8 @@
 			. = size ? "Dr. " : "Doctor"
 		if("CCMO")
 			. = size ? "Prof. " : "Professor"
+		if("CMN")
+			. = size ? "CMN" : "Crewman"
 		if("PMC1")
 			. = size ? "PMC " : "PM Contractor"
 		if("PMC2")

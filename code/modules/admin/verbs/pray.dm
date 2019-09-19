@@ -20,8 +20,8 @@
 	if(mind?.assigned_role && mind.assigned_role == CORPORATE_LIAISON)
 		liaison = TRUE
 
-	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
-	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
+	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
+	mentor_msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 
 
 	for(var/client/C in GLOB.admins)
@@ -35,10 +35,13 @@
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
 
+	log_prayer(msg)
+
 
 /proc/tgmc_message(text, mob/sender)
 	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
+	var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, "<span class='notice'><b><font color='purple'>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(sender)]'>REPLY</a>): [text]</b></span>")
-			SEND_SOUND(C, 'sound/effects/sos-morse-code.ogg')
+			SEND_SOUND(C, S)

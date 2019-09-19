@@ -59,7 +59,7 @@
 		manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_hand(mob/user as mob)
+/obj/effect/plantsegment/attack_hand(mob/living/user)
 	.  = ..()
 	if(.)
 		return
@@ -73,7 +73,7 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_paw(mob/user as mob)
+/obj/effect/plantsegment/attack_paw(mob/living/carbon/monkey/user)
 	manual_unbuckle(user)
 
 
@@ -283,12 +283,13 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/New()
-	if(!istype(src.loc,/turf/open/floor))
-		qdel(src)
+/obj/effect/plant_controller/Initialize()
+	. = ..()
+	
+	if(!istype(loc,/turf/open/floor))
+		return INITIALIZE_HINT_QDEL
 
-	spawn(0)
-		spawn_piece(src.loc)
+	spawn_piece(loc)
 
 	START_PROCESSING(SSobj, src)
 

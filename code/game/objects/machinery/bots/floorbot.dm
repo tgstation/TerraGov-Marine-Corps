@@ -44,16 +44,12 @@
 	src.path = new()
 	src.updateUsrDialog()
 
-/obj/machinery/bot/floorbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/floorbot/interact(mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
-	usr.set_interaction(src)
-	interact(user)
 
-/obj/machinery/bot/floorbot/interact(mob/user as mob)
 	var/dat
-	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];operation=start'>[src.on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel is [src.open ? "opened" : "closed"]<BR>"
 	dat += "Tiles left: [src.amount]<BR>"
@@ -69,9 +65,9 @@
 			bmode = "Disabled"
 		dat += "<BR><BR>Bridge Mode : <A href='?src=\ref[src];operation=bridgemode'>[bmode]</A><BR>"
 
-	user << browse("<HEAD><TITLE>Repairbot v1.0 controls</TITLE></HEAD>[dat]", "window=autorepair")
-	onclose(user, "autorepair")
-	return
+	var/datum/browser/popup = new(user, "floorbot", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
@@ -88,11 +84,9 @@
 		updateicon()
 
 	else if(istype(W, /obj/item/card/id))
-		if(allowed(user) && !open && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(allowed(user) && !open)
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] \the [src] behaviour controls.</span>")
-		else if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>ERROR</span>")
 		else if(open)
 			to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
 		else
@@ -100,16 +94,11 @@
 		updateUsrDialog()
 
 
-/obj/machinery/bot/floorbot/Emag(mob/user as mob)
-	..()
-	if(open && !locked)
-		if(user) to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-
 /obj/machinery/bot/floorbot/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
+
 	switch(href_list["operation"])
 		if("start")
 			if (src.on)
@@ -139,7 +128,9 @@
 					targetdirection = null
 				else
 					targetdirection = null
-			src.updateUsrDialog()
+	
+	updateUsrDialog()
+
 
 /obj/machinery/bot/floorbot/process()
 	set background = 1
@@ -169,7 +160,7 @@
 	if(prob(5))
 		visible_message("[src] makes an excited booping beeping sound!")
 
-	if((!src.target || src.target == null) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+	if((!src.target || src.target == null))
 		if(targetdirection != null)
 			/*
 			for (var/turf/open/space/D in view(7,src))
@@ -202,7 +193,7 @@
 					src.target = T
 					break
 
-	if((!src.target || src.target == null) && CHECK_BITFIELD(obj_flags, EMAGGED))
+	if((!src.target || src.target == null))
 		if(!src.target || src.target == null)
 			for (var/turf/open/floor/D in view(7,src))
 				if(!(D in floorbottargets) && D != src.oldtarget && D.floor_tile)
@@ -238,22 +229,8 @@
 			src.eattile(src.target)
 		else if(istype(src.target, /obj/item/stack/sheet/metal))
 			src.maketile(src.target)
-		else if(istype(src.target, /turf/) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		else if(istype(src.target, /turf/))
 			repair(src.target)
-		else if(CHECK_BITFIELD(obj_flags, EMAGGED) && istype(src.target,/turf/open/floor))
-			var/turf/open/floor/F = src.target
-			src.anchored = TRUE
-			src.repairing = 1
-			if(prob(90))
-				F.break_tile_to_plating()
-			else
-				F.ReplaceWithLattice()
-			visible_message("<span class='warning'> [src] makes an excited booping sound.</span>")
-			spawn(50)
-				src.amount ++
-				src.anchored = FALSE
-				src.repairing = 0
-				src.target = null
 		src.path = new()
 		return
 
@@ -338,34 +315,19 @@
 	else
 		src.icon_state = "floorbot[src.on]e"
 
-/obj/machinery/bot/floorbot/explode()
-	src.on = 0
-	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
-	var/turf/Tsec = get_turf(src)
-
-	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(Tsec)
-	N.contents = list()
-
-	new /obj/item/assembly/prox_sensor(Tsec)
-
-	if (prob(50))
-		new /obj/item/robot_parts/l_arm(Tsec)
-
-	while (amount)//Dumps the tiles into the appropriate sized stacks
-		if(amount >= 16)
-			var/obj/item/stack/tile/plasteel/T = new (Tsec)
-			T.amount = 16
-			amount -= 16
-		else
-			var/obj/item/stack/tile/plasteel/T = new (Tsec)
-			T.amount = src.amount
-			amount = 0
+/obj/machinery/bot/floorbot/deconstruct(disassembled = TRUE)
+	new /obj/item/storage/toolbox/mechanical(loc)
+	new /obj/item/assembly/prox_sensor(loc)
+	if(prob(50))
+		new /obj/item/robot_parts/l_arm(loc)
+	var/obj/item/stack/tile/plasteel/T = new(loc)
+	T.amount = amount
+	T.update_icon()
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	return ..()
 
 
 /obj/item/storage/toolbox/mechanical/attackby(obj/item/I, mob/user, params)

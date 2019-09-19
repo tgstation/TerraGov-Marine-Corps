@@ -3,13 +3,14 @@
 	desc = "A big hole in the wall that used to sport a large window. Can be vaulted through"
 	icon = 'icons/obj/structures/window_frames.dmi'
 	icon_state = "window0_frame"
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
-	var/obj/structure/window/framed/almayer/window_type = /obj/structure/window/framed/almayer
+	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
@@ -23,7 +24,10 @@
 		/obj/structure/window_frame)
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+	if(climbable && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
+		return TRUE
+	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
+	if(S?.climbable)
 		return TRUE
 	return FALSE
 
@@ -51,10 +55,8 @@
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE
-	update_nearby_icons()
-	for(var/obj/effect/alien/weeds/weedwall/frame/WF in loc)
-		qdel(WF)
-	. = ..()
+	update_nearby_icons()	
+	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -102,20 +104,20 @@
 		var/oldloc = loc
 		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc) 
 			return
-		M.KnockDown(2)
+		M.knock_down(2)
 		user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
 		"<span class='notice'>You pull [M] onto [src].</span>")
 		M.forceMove(loc)
 
 
-/obj/structure/window_frame/almayer
-	icon_state = "alm_window0_frame"
-	basestate = "alm_window"
+/obj/structure/window_frame/mainship
+	icon_state = "ship_window0_frame"
+	basestate = "ship_window"
 
-/obj/structure/window_frame/almayer/white
+/obj/structure/window_frame/mainship/white
 	icon_state = "white_window0_frame"
 	basestate = "white_window"
-	window_type = /obj/structure/window/framed/almayer/white
+	window_type = /obj/structure/window/framed/mainship/white
 
 /obj/structure/window_frame/colony
 	icon_state = "col_window0_frame"

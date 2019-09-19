@@ -18,6 +18,7 @@
 				hud_used.move_intent.icon_state = "walking"
 		legcuffed = restraints
 		legcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/item/restraints/.proc/resisted_against)
+		SEND_SIGNAL(src, COMSIG_LIVING_LEGCUFFED, restraints)
 	else if (legcuffed)
 		legcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 		legcuffed = null
@@ -35,7 +36,6 @@
 	else if (I == wear_mask)
 		wear_mask = null
 		wear_mask_update(I)
-		sec_hud_set_ID()
 	else if(I == handcuffed)
 		update_handcuffed(null)
 	else if(I == legcuffed)

@@ -2,6 +2,8 @@
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
+	materials = list(/datum/material/metal = 50)
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
@@ -119,7 +121,14 @@
 	loc = T
 
 
-/obj/item/attack_hand(mob/user)
+/obj/item/attack_ghost(mob/dead/observer/user)
+	if(!can_interact(user))
+		return
+
+	return interact(user)
+
+
+/obj/item/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -136,22 +145,19 @@
 
 	throwing = FALSE
 
-	if(loc == user)
-		if(!user.dropItemToGround(src))
-			return
-	else
-		user.changeNext_move(CLICK_CD_RAPID)
+	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
+		return
+
+	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(QDELETED(src))
 		return
 
 	pickup(user)
 	if(!user.put_in_active_hand(src))
+		user.dropItemToGround(src)
 		dropped(user)
 
-
-/obj/item/attack_paw(mob/user)
-	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -197,9 +203,8 @@
 // apparently called whenever an item is removed from a slot, container, or anything else.
 //the call happens after the item's potential loc change.
 /obj/item/proc/dropped(mob/user)
-	if(user && user.client) //Dropped when disconnected, whoops
-		if(zoom) //binoculars, scope, etc
-			zoom(user, 11, 12)
+	if(user?.client && zoom) //Dropped when disconnected, whoops
+		zoom(user, 11, 12)
 
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -560,7 +565,7 @@
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click(mob/user)
+/obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
 	attack_self(user)
 
 
@@ -594,23 +599,40 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(!user.IsAdvancedToolUser())
+		return
+
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		return
+
+	if(!zoom && user.get_total_tint() >= TINT_HEAVY)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_held_item() != src)
+		return
+
+	if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-	else if(zoom) //If we are zoomed out, reset that parameter.
+		return
+
+	if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
-		zoom = !zoom
-		user.zoom_cooldown = world.time + 20
+		zoom = FALSE
+		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
+		
+		if(user.interactee == src)
+			user.unset_interaction()
+
+		if(user.client)
+			user.client.change_view(world.view)
+			user.client.pixel_x = 0
+			user.client.pixel_y = 0
+
 	else //Otherwise we want to zoom in.
-		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
 			return
-		user.zoom_cooldown = world.time + 20
+		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(viewsize)
@@ -634,18 +656,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoom = !zoom
+		zoom = TRUE
 		if(user.interactee)
 			user.unset_interaction()
 		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
-		return
 
-	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
-	if(user.client)
-		user.client.change_view(world.view)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))
@@ -862,3 +878,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())
+
+
+/obj/item/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!user.CanReach(src))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/attack_self(mob/user)
+	if(!can_interact(user))
+		return
+
+	interact(user)

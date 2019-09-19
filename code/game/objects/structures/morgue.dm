@@ -46,10 +46,10 @@
 		ex_act(severity)
 	qdel(src)
 
-/obj/structure/morgue/attack_paw(mob/user)
+/obj/structure/morgue/attack_paw(mob/living/carbon/monkey/user)
 	toggle_morgue(user)
 
-/obj/structure/morgue/attack_hand(mob/user)
+/obj/structure/morgue/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -134,10 +134,10 @@
 	. = ..()
 	linked_morgue = null
 
-/obj/structure/morgue_tray/attack_paw(mob/user)
+/obj/structure/morgue_tray/attack_paw(mob/living/carbon/monkey/user)
 	return src.attack_hand(user)
 
-/obj/structure/morgue_tray/attack_hand(mob/user)
+/obj/structure/morgue_tray/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -154,8 +154,7 @@
 		return
 	O.forceMove(loc)
 	if (user != O)
-		for(var/mob/B in viewers(user, 3))
-			B.show_message("<span class='warning'> [user] stuffs [O] into [src]!</span>", 1)
+		visible_message("<span class='warning'>[user] stuffs [O] into [src]!</span>", null, null, 3)
 
 
 
@@ -246,7 +245,7 @@
 * Crematorium switch
 */
 
-/obj/machinery/crema_switch/attack_hand(mob/user)
+/obj/machinery/crema_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return

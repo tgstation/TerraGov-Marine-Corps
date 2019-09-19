@@ -20,7 +20,8 @@
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
 	//Handles different chems' influence on pulse
-	for(var/datum/reagent/R in reagents.reagent_list)
+	for(var/i in reagents.reagent_list)
+		var/datum/reagent/R = i
 		if(R.trait_flags & BRADYCARDICS)
 			if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
 				temp--

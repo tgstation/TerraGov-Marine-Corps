@@ -76,7 +76,7 @@
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
-	playsound(src, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
+	playsound(src, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	visible_message("<span class='xenowarning'>\The [src] sprays out a stream of flame from its mouth!</span>", \
 	"<span class='xenowarning'>We unleash a spray of fire on our enemies!</span>")
 	used_fire_breath = world.time

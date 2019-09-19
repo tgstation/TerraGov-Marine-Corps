@@ -19,21 +19,22 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/door_control/ai
+	name = "AI Lockdown"
 
-/obj/machinery/door_control/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+/obj/machinery/door_control/ai/exterior
+	name = "AI Exterior Lockdown"
+	id = "ailockdownexterior"
+
+/obj/machinery/door_control/ai/interior
+	name = "AI Interior Lockdown"
+	id = "ailockdowninterior"
 
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
-
-	else if(istype(I, /obj/item/card/emag))
-		req_access = list()
-		req_one_access = list()
-		playsound(loc, "sparks", 25, 1)
-
 	else 
 		return attack_hand(user)
 
@@ -42,13 +43,9 @@
 		if(D.id_tag == src.id)
 			if(specialfunctions & OPEN)
 				if (D.density)
-					spawn(0)
-						D.open()
-						return
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
 				else
-					spawn(0)
-						D.close()
-						return
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
 			if(desiredstate == 1)
 				if(specialfunctions & IDSCAN)
 					D.aiDisabledIdScanner = 1
@@ -77,7 +74,7 @@
 			else
 				INVOKE_ASYNC(M, /obj/machinery/door/.proc/close)
 
-/obj/machinery/door_control/attack_hand(mob/user)
+/obj/machinery/door_control/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -125,8 +122,6 @@
 /obj/machinery/driver_button/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
 
-/obj/machinery/driver_button/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
 
 /obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -136,7 +131,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/driver_button/attack_hand(mob/user as mob)
+/obj/machinery/driver_button/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -152,17 +147,13 @@
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
-			spawn(0)
-				M.open()
-				return
+			INVOKE_ASYNC(M, /obj/machinery/door.proc/open)
 
 	sleep(50)
 
 	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == src.id)
-			spawn(0)
-				M.close()
-				return
+			INVOKE_ASYNC(M, /obj/machinery/door.proc/close)
 
 	icon_state = "launcherbtt"
 	active = 0

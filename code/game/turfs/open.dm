@@ -66,21 +66,21 @@
 // Beach
 
 /turf/open/beach
-	name = "Beach"
+	name = "beach"
 	icon = 'icons/misc/beach.dmi'
 
 
 /turf/open/beach/sand
-	name = "Sand"
+	name = "sand"
 	icon_state = "sand"
 
 /turf/open/beach/coastline
-	name = "Coastline"
+	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
 
 /turf/open/beach/water
-	name = "Water"
+	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
 
@@ -89,13 +89,18 @@
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
 
 /turf/open/beach/water2
-	name = "Water"
+	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
 
 /turf/open/beach/water2/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
+/turf/open/beach/sea
+	name = "sea"
+	icon_state = "seadeep"
+	can_bloody = FALSE
 
 
 //Nostromo turfs

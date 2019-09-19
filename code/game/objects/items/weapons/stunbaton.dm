@@ -9,7 +9,6 @@
 	edge = 0
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	origin_tech = "combat=2"
 	attack_verb = list("beaten")
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CAPTAIN, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)
 	var/stunforce = 10
@@ -59,7 +58,7 @@
 	else
 		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
 
-/obj/item/weapon/baton/attack_hand(mob/user)
+/obj/item/weapon/baton/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -80,7 +79,7 @@
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
 			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
-			H.KnockDown(20)
+			H.knock_down(20)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)
 			return FALSE
@@ -108,7 +107,7 @@
 		if(!bcell)
 			return
 
-		bcell.updateicon()
+		bcell.update_icon()
 		bcell.forceMove(loc)
 		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 		status = 0
@@ -178,7 +177,7 @@
 	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
 		L.stun_effect_act(stun, agony, target_zone, src)
 		if(!L.knocked_down)
-			L.KnockDown(4)
+			L.knock_down(4)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
@@ -219,7 +218,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	var/charges = 12
 	var/status = 0
-	origin_tech = "combat=2"
 
 
 /obj/item/weapon/stunprod/suicide_act(mob/user)
@@ -255,7 +253,7 @@
 
 	if(status && isliving(M))
 		var/mob/living/L = M
-		L.KnockDown(6)
+		L.knock_down(6)
 		charges -= 2
 		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
 
@@ -291,7 +289,7 @@
 	if(!isliving(M))
 		return
 	var/mob/living/L = M
-	L.KnockDown(14)
+	L.knock_down(14)
 
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)

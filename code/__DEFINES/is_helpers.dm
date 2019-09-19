@@ -6,6 +6,8 @@
 
 #define isatom(A) (isloc(A))
 
+#define isclient(A) (istype(A, /client))
+
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
@@ -45,6 +47,7 @@
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
+#define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
@@ -81,6 +84,7 @@
 #define isxenolarva(A) (istype(A, /mob/living/carbon/xenomorph/larva))
 #define isxenoqueen(A) (istype(A, /mob/living/carbon/xenomorph/queen))
 #define isxenoshrike(A) (istype(A, /mob/living/carbon/xenomorph/shrike))
+#define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -121,6 +125,8 @@
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
 #define isitem(A) (istype(A, /obj/item))
+
+#define isgun(A) (istype(A, /obj/item/weapon/gun))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
@@ -170,10 +176,15 @@
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
+#define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
 
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
+#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.ckey, 2)])
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+
+// Xeno hives
+#define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))

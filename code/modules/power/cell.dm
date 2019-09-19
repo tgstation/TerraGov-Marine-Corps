@@ -6,20 +6,19 @@
 	. = ..()
 	charge = maxcharge
 
-	updateicon()
+	update_icon()
 
-/obj/item/cell/proc/updateicon()
-	overlays.Cut()
-
+/obj/item/cell/update_icon()
+	cut_overlays()
 	if(charge < 0.01)
 		return
-	else if(charge/maxcharge >=0.995)
-		overlays += image('icons/obj/power.dmi', "cell-o2")
+	else if(charge / maxcharge >= 0.995)
+		add_overlay("cell-o2")
 	else
-		overlays += image('icons/obj/power.dmi', "cell-o1")
+		add_overlay("cell-o1")
 
 /obj/item/cell/proc/percent()		// return % charge of cell
-	return 100.0*charge/maxcharge
+	return 100 * (charge / maxcharge)
 
 /obj/item/cell/proc/fully_charged()
 	return (charge == maxcharge)
@@ -64,16 +63,6 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			to_chat(user, "<span class='danger'>This power cell looks jury rigged to explode!</span>")
 
-/*
-/obj/item/cell/attack_self(mob/user as mob)
-//	if(ishuman(user))
-//		var/mob/living/carbon/human/H = user
-//		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
-//		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
-//
-//		SNG.drain("CELL",src,H.wear_suit)
-	return ..()
-*/
 
 /obj/item/cell/attack_self(mob/user as mob)
 	if(rigged)
@@ -111,7 +100,7 @@
 
 		to_chat(user, "You inject the solution into the power cell.")
 
-		if(S.reagents.has_reagent("phoron", 5))
+		if(S.reagents.has_reagent(/datum/reagent/toxin/phoron, 5))
 			rigged = TRUE
 		S.reagents.clear_reagents()
 

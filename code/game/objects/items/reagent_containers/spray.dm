@@ -19,10 +19,6 @@
 	volume = 250
 
 
-/obj/item/reagent_container/spray/New()
-	..()
-	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
-
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
@@ -54,11 +50,6 @@
 
 	playsound(src.loc, 'sound/effects/spray2.ogg', 25, 1, 3)
 
-	for(var/X in reagents.reagent_list)
-		var/datum/reagent/R = X
-		if(R.spray_warning)
-			log_game("[key_name(user)] fired [R.name] from \a [src] in [AREACOORD(src.loc)].")
-			message_admins("[ADMIN_TPMONTY(user)] sprayed [R.name] from \a [src].")
 
 /obj/item/reagent_container/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
@@ -102,7 +93,7 @@
 	if(isturf(usr.loc))
 		to_chat(usr, "<span class='notice'>You empty \the [src] onto the floor.</span>")
 		reagents.reaction(usr.loc)
-		spawn(5) src.reagents.clear_reagents()
+		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 
 //space cleaner
 /obj/item/reagent_container/spray/cleaner
@@ -117,14 +108,14 @@
 
 /obj/item/reagent_container/spray/cleaner/Initialize()
 	. = ..()
-	reagents.add_reagent("cleaner", volume)
+	reagents.add_reagent(/datum/reagent/space_cleaner, volume)
 
 
 /obj/item/reagent_container/spray/surgery
 	name = "sterilizing spray"
 	desc = "Infection and necrosis are a thing of the past!"
 	volume = 100
-	list_reagents = list("cleaner" = 50, "sterilizine" = 50)
+	list_reagents = list(/datum/reagent/space_cleaner = 50, /datum/reagent/sterilizine = 50)
 
 
 //pepperspray
@@ -136,7 +127,7 @@
 	possible_transfer_amounts = null
 	volume = 40
 	safety = TRUE
-	list_reagents = list("condensedcapsaicin" = 40)
+	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
 /obj/item/reagent_container/spray/pepper/examine(mob/user)
 	..()
@@ -157,7 +148,7 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
-	list_reagents = list("water" = 10)
+	list_reagents = list(/datum/reagent/water = 10)
 
 //chemsprayer
 /obj/item/reagent_container/spray/chemsprayer
@@ -169,7 +160,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = "combat=3;materials=3;engineering=3"
 
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
@@ -217,7 +207,7 @@
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	list_reagents = list("plantbgone" = 100)
+	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 
 /obj/item/reagent_container/spray/plantbgone/afterattack(atom/A, mob/user, proximity)

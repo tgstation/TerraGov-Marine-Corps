@@ -9,6 +9,7 @@
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
+	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
 
 
 #ifdef TESTING
@@ -24,6 +25,7 @@
 // This should be overridden to remove all references pointing to the object being destroyed.
 // Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
 /datum/proc/Destroy(force=FALSE, ...)
+	SHOULD_CALL_PARENT(1)
 	tag = null
 	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null	//ensure prompt GCing of weakref.
@@ -159,8 +161,37 @@
 		return returned
 
 
-/datum/Topic(href, href_list[])
+/datum/Topic(href, list/href_list)
 	. = ..()
 	if(.)
 		return
+
+	if(!can_interact(usr))
+		return TRUE
+
 	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
+
+
+/datum/proc/can_interact(mob/user)
+	if(!user.can_interact_with(src))
+		return FALSE
+	return TRUE
+
+
+/datum/proc/on_set_interaction(mob/user)
+	return
+
+
+/datum/proc/on_unset_interaction(mob/user)
+	return
+
+
+/datum/proc/check_eye()
+	return
+
+
+/datum/proc/interact(mob/user) //Return value = handled (same as attack_hand)
+	user.set_interaction(src)
+	if(interaction_flags & INTERACT_UI_INTERACT)
+		return ui_interact(user)
+	return FALSE

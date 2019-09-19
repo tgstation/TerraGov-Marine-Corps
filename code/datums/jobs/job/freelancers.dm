@@ -24,7 +24,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/frelancer
-	suit_store = /obj/item/weapon/gun/rifle/mar40
+	suit_store = /obj/item/weapon/gun/rifle/ak47
 	r_store = /obj/item/storage/pouch/general
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack
@@ -35,11 +35,11 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
@@ -87,11 +87,11 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
@@ -134,7 +134,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/frelancer/beret
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/mar40/carbine
+	suit_store = /obj/item/weapon/gun/rifle/ak47/carbine
 	r_store = /obj/item/storage/pouch/general/medium
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/lightpack
@@ -145,11 +145,11 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/ak47, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)

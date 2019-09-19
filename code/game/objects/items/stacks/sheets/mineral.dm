@@ -15,33 +15,33 @@ Mineral Sheets
 */
 
 GLOBAL_LIST_INIT(sandstone_recipes, list ( \
-	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("pile of dirt", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 1 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("sandstone door", /obj/structure/mineral_door/sandstone, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(silver_recipes, list ( \
-	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(diamond_recipes, list ( \
-	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(uranium_recipes, list ( \
-	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(gold_recipes, list ( \
-	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(phoron_recipes, list ( \
-	new/datum/stack_recipe("phoron door", /obj/structure/mineral_door/transparent/phoron, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("phoron door", /obj/structure/mineral_door/transparent/phoron, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	))
 
 GLOBAL_LIST_INIT(plastic_recipes, list ( \
-	new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("plastic ashtray", /obj/item/ashtray/plastic, 2, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
+	new/datum/stack_recipe("plastic ashtray", /obj/item/ashtray/plastic, 2, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	new/datum/stack_recipe("plastic fork", /obj/item/tool/kitchen/utensil/pfork, 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic spoon", /obj/item/tool/kitchen/utensil/pspoon, 1, on_floor = 1), \
 	new/datum/stack_recipe("plastic knife", /obj/item/tool/kitchen/utensil/pknife, 1, on_floor = 1), \
@@ -49,7 +49,7 @@ GLOBAL_LIST_INIT(plastic_recipes, list ( \
 	))
 
 GLOBAL_LIST_INIT(iron_recipes, list ( \
-	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, max_per_turf = STACK_RECIPE_ONE_PER_TILE, on_floor = TRUE), \
 	null, \
 	))
 
@@ -70,7 +70,6 @@ obj/item/stack/sheet/mineral/iron
 	desc = "Iron is the most basic building material in space, a metal solid at room temperature, easy to shape and available in immense quantities."
 	singular_name = "iron sheet"
 	icon_state = "sheet-silver"
-	origin_tech = "materials=1"
 	sheettype = "iron"
 	color = "#333333"
 	perunit = 3750
@@ -87,7 +86,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	icon_state = "sheet-sandstone"
 	throw_speed = 4
 	throw_range = 5
-	origin_tech = "materials=1"
 	sheettype = "sandstone"
 
 
@@ -100,7 +98,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Diamond is a specific arrangement of carbon created under extreme pressure and heat. Valued for its look and properties, despite artificial manufacturing possibilities."
 	singular_name = "diamond gem"
 	icon_state = "sheet-diamond"
-	origin_tech = "materials=6"
 	perunit = 3750
 	sheettype = "diamond"
 
@@ -114,7 +111,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Uranium is a radioactive metal of the actinide series. Valued as reactor fuel for fission-type generators, and as a primer for fusion bombs."
 	singular_name = "uranium rod"
 	icon_state = "sheet-uranium"
-	origin_tech = "materials=5"
 	perunit = 2000
 	sheettype = "uranium"
 
@@ -128,7 +124,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already hard enough."
 	singular_name = "phoron ingot"
 	icon_state = "sheet-phoron"
-	origin_tech = "phorontech=2;materials=2"
 	perunit = 2000
 	sheettype = "phoron"
 	merge_type = /obj/item/stack/sheet/mineral/phoron
@@ -152,7 +147,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Plastic is a synthetic polymer, manufactured from organic and inorganic components into a malleable and light fabric. It can be used for a wide range of objects."
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
-	origin_tech = "materials=3"
 	perunit = 2000
 
 
@@ -172,7 +166,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Gold is a transition metal. A relatively rare metal, known for its color, shine, chemical and electrical properties, it is sought after for both cosmetic, engineering and scientific uses."
 	singular_name = "gold ingot"
 	icon_state = "sheet-gold"
-	origin_tech = "materials=4"
 	perunit = 2000
 	sheettype = "gold"
 	number_of_extra_variants = 2
@@ -187,7 +180,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Silver is a transition metal. It is known for its namesake silver, gray color. It is used both for cosmetics as a cheaper alternative to gold, or for engineering."
 	singular_name = "silver ingot"
 	icon_state = "sheet-silver"
-	origin_tech = "materials=3"
 	perunit = 2000
 	sheettype = "silver"
 	number_of_extra_variants = 2
@@ -204,7 +196,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Platinum is a transition metal. Relatively rare and pretty, it is used for its cosmetic value and chemical properties as a catalytic agent. It is also used in electrodes."
 	singular_name = "platinum ingot"
 	icon_state = "sheet-platinum"
-	origin_tech = "materials=2"
 	sheettype = "platinum"
 	perunit = 2000
 	number_of_extra_variants = 2
@@ -216,7 +207,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Metallic hydrogen is regular hydrogen in a near-solid state, turned into an ingot under immense pressures. The exact procedure to create and stabilize such ingots is still a trade secret."
 	singular_name = "hydrogen ingot"
 	icon_state = "sheet-mythril"
-	origin_tech = "materials=6;powerstorage=5;magnets=5"
 	sheettype = "mhydrogen"
 	perunit = 2000
 
@@ -228,7 +218,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	singular_name = "tritium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "tritium"
-	origin_tech = "materials=5"
 	color = "#777777"
 	perunit = 2000
 
@@ -239,6 +228,5 @@ obj/item/stack/sheet/mineral/iron/New()
 	singular_name = "tritium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "osmium"
-	origin_tech = "materials=5"
 	color = "#9999FF"
 	perunit = 2000

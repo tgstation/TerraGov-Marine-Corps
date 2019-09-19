@@ -14,6 +14,8 @@
 	var/last_dam = -1
 	var/supported = FALSE
 
+	var/datum/armor/armor
+
 	var/display_name
 	var/list/wounds = list()
 	var/number_wounds = 0 // cache the number of wounds, which is NOT wounds.len!
@@ -62,9 +64,8 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
+	armor = getArmor()
 	return ..()
-
-
 
 /*
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
@@ -76,7 +77,7 @@
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 
 	if (!germ_level || antibiotics < MIN_ANTIBIOTICS)
 		return
@@ -400,7 +401,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	handle_antibiotics()
 
 /datum/limb/proc/handle_germ_sync()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 	for(var/datum/wound/W in wounds)
 		//Open wounds can become infected
 		if (owner.germ_level > W.germ_level && W.infection_check() && W.damage)
@@ -414,7 +415,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			germ_level++
 
 /datum/limb/proc/handle_germ_effects()
-	var/antibiotics = owner.reagents.get_reagent_amount("spaceacillin")
+	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 //LEVEL 0
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE && prob(60))	//this could be an else clause, but it looks cleaner this way
 		germ_level--	//since germ_level increases at a rate of 1 per second with dirty wounds, prob(60) should give us about 5 minutes before level one.
@@ -500,14 +501,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		// Internal wounds get worse over time. Low temperatures (cryo) stop them.
 		if(W.internal && owner.bodytemperature >= 170 && !(owner.in_stasis == STASIS_IN_BAG))
-			var/bicardose = owner.reagents.get_reagent_amount("bicaridine")
-			var/inaprovaline = owner.reagents.get_reagent_amount("inaprovaline")
-			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount("quickclot")))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
+			var/bicardose = owner.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)
+			var/inaprovaline = owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
+			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
 
-			if(!owner.reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
+			if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 				owner.blood_volume = max(0, owner.blood_volume - wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 				if(prob(1 * wound_update_accuracy))
 					owner.custom_pain("You feel a stabbing pain in your [display_name]!", 1)
@@ -682,6 +683,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.dropItemToGround(owner.head, null, TRUE)
 				owner.dropItemToGround(owner.wear_ear, null, TRUE)
 				owner.dropItemToGround(owner.wear_mask, null, TRUE)
+				owner.update_hair()
 			if(ARM_RIGHT)
 				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
 				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
@@ -932,13 +934,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(prob(10))
 			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
-			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-			spark_system.set_up(5, 0, owner)
-			spark_system.attach(owner)
-			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
-				spark_system = null
+			new /datum/effect_system/spark_spread(owner, owner, 5, 0, TRUE, 1 SECONDS)
 
 /datum/limb/proc/embed(obj/item/W, silent = 0)
 	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))

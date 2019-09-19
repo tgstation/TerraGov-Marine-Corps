@@ -3,15 +3,16 @@
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	fire_sound = "gun_flamethrower"
-	dry_fire_sound = 'sound/weapons/gun_flamethrower_empty.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
+	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
+	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
@@ -22,9 +23,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-
-/obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
+	fire_delay = 35
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -46,7 +45,7 @@
 
 
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user, lit ? 'sound/weapons/gun_flamethrower_off.ogg' : 'sound/weapons/gun_flamethrower_on.ogg', 25, 1)
+	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
 	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
@@ -65,6 +64,9 @@
 	set waitfor = 0
 
 	if(!able_to_fire(user))
+		return
+
+	if(gun_on_cooldown(user))
 		return
 
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
@@ -422,12 +424,11 @@
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", max_water)
+	R.add_reagent(/datum/reagent/water, max_water)
 
 	var/obj/item/attachable/hydro_cannon/G = new(src)
 	G.icon_state = ""
 	G.Attach(src)
-	update_attachable(G.slot)
 	G.icon_state = initial(G.icon_state)
 
 /obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)
@@ -572,14 +573,14 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act()
+	T.flamer_fire_act(burnlevel, firelevel)
 
 	var/j = 0
 	for(var/i in T)
 		if(++j >= 11)
 			break
 		var/atom/A = i
-		A.flamer_fire_act()
+		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return

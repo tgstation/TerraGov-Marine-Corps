@@ -1,29 +1,23 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
-	origin_tech = "combat=4;materials=3"
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/cocked.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	load_method = MAGAZINE //codex
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
-	wield_delay = WIELD_DELAY_NORMAL
+	aim_slowdown = 0.35
+	wield_delay = 0.6 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 
-/obj/item/weapon/gun/rifle/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
+	burst_amount = 3
+	burst_delay = 0.2 SECONDS
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 40
+	recoil_unwielded = 4
+	damage_falloff_mult = 0.5
 
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
@@ -51,7 +45,9 @@
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	fire_sound = "gun_pulse"
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x24mm caseless" //codex
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
@@ -79,19 +75,13 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	fire_delay = 4
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
 
 
 //variant without ugl attachment
@@ -106,21 +96,12 @@
 	desc = "A refined and redesigned version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
 	icon_state = "m41a2"
 	item_state = "m41a2"
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
-
-/obj/item/weapon/gun/rifle/m41a/elite/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/max_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	burst_delay = 0.2 SECONDS
+	accuracy_mult = 1.5
+	damage_mult = 1.5
 
 
 //-------------------------------------------------------
@@ -132,7 +113,9 @@
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -143,98 +126,72 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	burst_amount = 4
+	accuracy_mult = 0.95
 
 
 
 //-------------------------------------------------------
-//MAR-40 AK/FN FAL clone
 
-/obj/item/weapon/gun/rifle/mar40
-	name = "\improper MAR-40 battle rifle"
-	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "mar40"
-	item_state = "mar40"
-	caliber = "7.62x93mm" //codex
+/obj/item/weapon/gun/rifle/ak47
+	name = "\improper AK-47 rifle"
+	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
+	icon_state = "ak47"
+	item_state = "ak47"
+	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
-	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/mar40
+	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/ak47
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/stock/slavic,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/slavic)
+						/obj/item/attachable/flashlight)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
-/obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	accuracy_mult = 1.05
+	fire_delay = 0.25 SECONDS
+	damage_mult = 0.8
 
 
-/obj/item/weapon/gun/rifle/mar40/carbine
+/obj/item/weapon/gun/rifle/ak47/carbine
 	name = "\improper MAR-30 battle carbine"
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	fire_sound = 'sound/weapons/gun_mar40.ogg'
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = null
 
-/obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	fire_delay = 0.23 SECONDS
+	accuracy_mult = 0.9
+	accuracy_mult_unwielded = 0.5
+	damage_mult = 0.8
+	
 
 
 //-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
-	name = "\improper M16 rifle"
-	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm."
+	name = "\improper FN M16A4"
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	caliber = "5.56x45mm" //codex
-	max_shells = 20 //codex
-	origin_tech = "combat=4;materials=3"
-	fire_sound = 'sound/weapons/gun_m16.ogg'
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -245,28 +202,28 @@
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun
-						)
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/m16sight,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
-/obj/item/weapon/gun/rifle/m16/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	damage_mult = 0.8
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.14 SECONDS
+	
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -278,10 +235,11 @@
 	item_state = "m41ae2"
 	caliber = "10x24mm caseless" //codex
 	max_shells = 300 //codex
-	wield_delay = WIELD_DELAY_NORMAL + WIELD_DELAY_VERY_FAST
-	origin_tech = "combat=5;materials=4"
-	fire_sound =  'sound/weapons/gun_rifle.ogg'
-	dry_fire_sound = 'sound/weapons/gun_m41a_empty.ogg'
+	wield_delay = 0.6 SECONDS + 0.2 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
@@ -299,19 +257,17 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
-/obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/max_recoil_value)
+	fire_delay = 5
+	burst_amount = 4
+	burst_delay = 0.1 SECONDS
+	accuracy_mult_unwielded = 0.5
+	scatter = 15
+	scatter_unwielded = 80
+	recoil_unwielded = 5
 
 
 //-------------------------------------------------------
@@ -327,27 +283,20 @@
 	item_state = "type71"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
-	origin_tech = "combat=4;materials=2;syndicate=4"
-	fire_sound = 'sound/weapons/gun_type71.ogg'
+	fire_sound = 'sound/weapons/guns/fire/type71.ogg'
+	unload_sound = 'sound/weapons/guns/interact/type71_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = 4
+	wield_delay = 0.4 SECONDS
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-
-/obj/item/weapon/gun/rifle/type71/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-
-
-/obj/item/weapon/gun/rifle/type71/toggle_burst()
-	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
+	fire_delay = 0.35 SECONDS
+	burst_amount = 2
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.8
+	damage_mult = 0.9
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -360,11 +309,11 @@
 	name = "\improper Type 71 pulse carbine"
 	icon_state = "type71c"
 	item_state = "type71c"
-	wield_delay = 2 //Carbine is more lightweight
+	wield_delay = 0.2 SECONDS //Carbine is more lightweight
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando
-	name = "\improper Type 71 'Commando' pulse carbine"
+	name = "\improper Type 73 'Commando' pulse carbine"
 	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units and officer cadres."
 	icon_state = "type73"
 	item_state = "type73"
@@ -372,15 +321,8 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
 
-/obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-
-//-------------------------------------------------------
+	fire_delay = 0.3 SECONDS
+	burst_amount = 2
+	accuracy_mult = 2
+	accuracy_mult_unwielded = 0.8
+	damage_mult = 0.9

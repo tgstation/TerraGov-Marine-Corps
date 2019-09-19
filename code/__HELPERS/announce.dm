@@ -17,7 +17,7 @@
 			announcement += "<h1 class='alert'>Priority Announcement</h1>"
 			if(title && title != "Announcement")
 				announcement += "<br><h2 class='alert'>[html_encode(title)]</h2>"
-		
+
 		if(ANNOUNCEMENT_COMMAND)
 			announcement += "<h1 class='alert'>Command Announcement</h1>"
 
@@ -25,7 +25,7 @@
 	announcement += "<br><span class='alert'>[html_encode(message)]</span><br>"
 	announcement += "<br>"
 
-	var/s = sound(sound)
+	var/s = sound(sound, channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/i in receivers)
 		var/mob/M = i
 		if(!isnewplayer(M) && !isdeaf(M))
@@ -51,11 +51,10 @@
 	if(!message)
 		return
 
+	var/sound/S = alert ? sound('sound/misc/notice1.ogg') : sound('sound/misc/notice2.ogg')
+	S.channel = CHANNEL_ANNOUNCEMENTS
 	for(var/i in receivers)
 		var/mob/M = i
 		if(!isnewplayer(M) && !isdeaf(M))
 			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
-			if(alert)
-				SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
-			else
-				SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+			SEND_SOUND(M, S)

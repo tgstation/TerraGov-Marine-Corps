@@ -85,7 +85,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_tripod"
 	anchored = FALSE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
@@ -221,7 +221,7 @@
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
@@ -234,8 +234,8 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	var/health = 200
-	var/health_max = 200
+	obj_integrity = 200
+	max_integrity = 200
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
@@ -309,7 +309,7 @@
 	stop_processing()
 	. = ..()
 
-/obj/machinery/marine_turret/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -333,7 +333,6 @@
 			"<span class='notice'>You set [src] upright.</span>")
 			machine_stat = 0
 			update_icon()
-			update_health()
 		return
 
 	if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
@@ -353,8 +352,8 @@
 		"is_on" = CHECK_BITFIELD(turret_flags, TURRET_ON),
 		"rounds" = rounds,
 		"rounds_max" = rounds_max,
-		"health" = health,
-		"health_max" = health_max,
+		"health" = obj_integrity,
+		"health_max" = max_integrity,
 		"has_cell" = (cell ? 1 : 0),
 		"cell_charge" = cell ? cell.charge : 0,
 		"cell_maxcharge" = cell ? cell.maxcharge : 0,
@@ -531,7 +530,7 @@
 		if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 			if(user.interactee == src)
 				user.unset_interaction()
-				user << browse(null, "window=turret")
+				DIRECT_OUTPUT(user, browse(null, "window=turret"))
 		else
 			if(user.interactee == src)
 				attack_hand(user)
@@ -596,11 +595,11 @@
 
 	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
-		if(health < 0 || machine_stat)
+		if(obj_integrity < 0 || machine_stat)
 			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
 			return
 
-		if(health >= health_max)
+		if(obj_integrity >= max_integrity)
 			to_chat(user, "<span class='warning'>[src] isn't in need of repairs.</span>")
 			return
 
@@ -614,7 +613,7 @@
 
 		user.visible_message("<span class='notice'>[user] repairs [src].</span>",
 		"<span class='notice'>You repair [src].</span>")
-		update_health(-50)
+		repair_damage(50)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	else if(iscrowbar(I))
@@ -670,7 +669,7 @@
 			if(!do_after(user, work_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-		playsound(loc, 'sound/weapons/unload.ogg', 25, 1)
+		playsound(loc, 'sound/weapons/guns/interact/smartgun_unload.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] swaps a new [I] into [src].</span>",
 		"<span class='notice'>You swap a new [I] into [src].</span>")
 		user.drop_held_item()
@@ -681,9 +680,6 @@
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
 		qdel(I)
-
-	else if(I.force)
-		update_health(I.force / 2)
 
 
 /obj/machinery/marine_turret/update_icon()
@@ -697,7 +693,7 @@
 	var/image/ammo_empty = image('icons/Marine/sentry.dmi', src, "sentry_ammo_empty")
 
 	overlays.Cut()
-	if(machine_stat && health > 0) //Knocked over
+	if(machine_stat && obj_integrity > 0) //Knocked over
 		DISABLE_BITFIELD(turret_flags, TURRET_ON)
 		density = FALSE
 		icon_state = "sentry_fallen"
@@ -735,41 +731,31 @@
 	else
 		stop_processing()
 
-/obj/machinery/marine_turret/proc/update_health(damage) //Negative damage restores health.
 
-	health = CLAMP(health - damage, 0, health_max) //Sanity; health can't go below 0 or above max
+/obj/machinery/marine_turret/deconstruct(disassembled = TRUE)
+	if(!disassembled)
+		explosion(loc, -1, -1, 2, 0)
+	return ..()
+	
 
-	if(damage > 0) //We don't report repairs.
-		if(CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY) || health <= 0) ) //Alert friendlies
+
+/obj/machinery/marine_turret/take_damage(dam)
+	if(dam > 0) //We don't report repairs.
+		if(CHECK_BITFIELD(turret_flags, TURRET_ON) && CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && (world.time > (last_damage_alert + SENTRY_DAMAGE_ALERT_DELAY) || obj_integrity <= 0) ) //Alert friendlies
 			sentry_alert(SENTRY_ALERT_DAMAGE)
 			last_damage_alert = world.time
 
-	if(health > health_max) //Sanity
-		health = health_max
-
-	if(health <= 0 && machine_stat != 2)
-		machine_stat = 2
-		visible_message("<span class='warning'>The [name] starts spitting out sparks and smoke!")
-		playsound(loc, 'sound/mecha/critdestrsyndi.ogg', 25, 1)
-		for(var/i in 1 to 6)
-			setDir(pick(NORTH, SOUTH, EAST, WEST))
-			sleep(2)
-		spawn(10)
-			if(src && loc)
-				explosion(loc, -1, -1, 2, 0)
-				if(!gc_destroyed)
-					qdel(src)
-		return
-
-	if(!machine_stat && damage > 0 && !CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
+	if(!machine_stat && dam > 0 && !CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE))
 		if(prob(10))
 			spark_system.start()
-		if(damage > knockdown_threshold) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
+		if(dam > knockdown_threshold) //Knockdown is certain if we deal this much in one hit; no more RNG nonsense, the fucking thing is bolted.
 			visible_message("<span class='danger'>The [name] is knocked over!</span>")
 			machine_stat = 1
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && CHECK_BITFIELD(turret_flags, TURRET_ON))
 				sentry_alert(SENTRY_ALERT_FALLEN)
-	update_icon()
+	
+	return ..()
+
 
 /obj/machinery/marine_turret/proc/check_power(power)
 	if (!cell || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -780,7 +766,7 @@
 		cell.charge = 0
 		sentry_alert(SENTRY_ALERT_BATTERY)
 		visible_message("<span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
-		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, 1)
 		set_light(0)
 		update_icon()
 		return FALSE
@@ -799,48 +785,27 @@
 				setDir(pick(NORTH, SOUTH, EAST, WEST))
 				sleep(2)
 			DISABLE_BITFIELD(turret_flags, TURRET_ON)
-	if(health > 0)
-		update_health(25)
+	take_damage(25)
 	update_icon()
 	return
 
 /obj/machinery/marine_turret/ex_act(severity)
-	if(health <= 0)
-		return
 	switch(severity)
 		if(1)
-			update_health(rand(90, 150))
+			take_damage(rand(90, 150))
 		if(2)
-			update_health(rand(50, 150))
+			take_damage(rand(50, 150))
 		if(3)
-			update_health(rand(30, 100))
+			take_damage(rand(30, 100))
 
 
-/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M)) return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	if(prob(10))
-		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
-			new /obj/effect/decal/cleanable/blood/oil(loc)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
-	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_SENTRY)
-
-/obj/machinery/marine_turret/bullet_act(obj/item/projectile/Proj) //Nope.
-	visible_message("[src] is hit by the [Proj.name]!")
-
-	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Fix for xenomorph spit doing baby damage.
-		update_health(round(Proj.damage * 0.33))
-	else
-		update_health(round(Proj.damage * 0.1))
-	return TRUE
+/obj/machinery/marine_turret/attack_alien(mob/living/carbon/xenomorph/X)
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_SENTRY)
+	return ..()
 
 /obj/machinery/marine_turret/process()
 
-	if(health > 0 && machine_stat != 1)
+	if(obj_integrity > 0 && machine_stat != 1)
 		machine_stat = 0
 	if(!anchored)
 		return
@@ -873,12 +838,19 @@
 	return
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
-	if(in_chamber) return 1 //Already set!
-	if(!CHECK_BITFIELD(turret_flags, TURRET_ON) || !cell || rounds == 0 || machine_stat == 1) return 0
+	if(in_chamber)
+		return TRUE //Already set!
+	if(!CHECK_BITFIELD(turret_flags, TURRET_ON) || !cell || rounds == 0 || machine_stat & (NOPOWER|BROKEN))
+		return FALSE
 
-	in_chamber = new /obj/item/projectile(loc) //New bullet!
+	create_bullet()
+	return TRUE
+
+
+/obj/machinery/marine_turret/proc/create_bullet()
+	in_chamber = new /obj/item/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
-	return 1
+
 
 /obj/machinery/marine_turret/proc/process_shot()
 	set waitfor = 0
@@ -957,12 +929,12 @@
 				in_chamber.ammo.penetration = round(in_chamber.ammo.penetration * 1.5, 0.01)
 
 			//Setup projectile
-			in_chamber.original = target
+			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
 
 			//Shoot at the thing
-			playsound(loc, 'sound/weapons/gun_rifle.ogg', 75, 1)
+			playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, 1)
 			in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 			if(target)
 				var/angle = round(Get_Angle(src,target))
@@ -971,7 +943,7 @@
 			rounds--
 			if(rounds == 0)
 				visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-				playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 50, FALSE)
+				playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
 				if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
 					sentry_alert(SENTRY_ALERT_AMMO)
 
@@ -1070,7 +1042,6 @@
 	rounds = 50000
 
 
-
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
@@ -1085,7 +1056,7 @@
 	rounds = 500
 
 
-/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -1140,6 +1111,18 @@
 		deployment_system = null
 	. = ..()
 
+/obj/machinery/marine_turret/premade/canterbury
+	name = "UA-577 Gauss Dropship Turret"
+	burst_size = 6
+	burst_delay = 15
+	ammo = /datum/ammo/bullet/turret
+
+obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+	. = ..()
+	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
+		ENABLE_BITFIELD(turret_flags, TURRET_ON)
+		update_icon()
+
 /obj/item/ammo_magazine/sentry/premade/dropship
 	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
 	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
@@ -1164,7 +1147,7 @@
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)
-			var/percent = max(0,(health / max(1,health_max))*100)
+			var/percent = max(0, (obj_integrity / max(1, max_integrity)) * 100)
 			if(percent)
 				notice = "<b>ALERT! [src] at: [get_area(src)] has taken damage. Coordinates: (X: [x], Y: [y]). Remaining Structural Integrity: [percent]%</b>"
 			else
@@ -1184,8 +1167,8 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	health = 155
-	health_max = 155
+	obj_integrity = 155
+	max_integrity = 155
 	rounds = 500
 	rounds_max = 500
 	knockdown_threshold = 70 //lighter, not as well secured.
@@ -1221,7 +1204,7 @@
 	to_chat(user, "<span class='notice'>You fold up and retrieve [src].</span>")
 	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
-	P.obj_integrity = obj_integrity //track the health
+	P.obj_integrity = obj_integrity
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()

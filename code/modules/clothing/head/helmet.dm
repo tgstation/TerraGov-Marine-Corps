@@ -190,20 +190,22 @@
 						/obj/item/toy/handcard = "helmet_card_card",
 						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
 						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 2
+	storage_slots = 4
 	max_w_class = 1
 	bypass_w_limit = list(
-		/obj/item/clothing/glasses, 
-		/obj/item/reagent_container/food/drinks/flask)
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_container/food/drinks/flask,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 3
+	max_storage_space = 4
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -211,7 +213,7 @@
 	pockets = new pockets(src)
 
 
-/obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
+/obj/item/clothing/head/helmet/marine/attack_hand(mob/living/user)
 	if(pockets.handle_attack_hand(user))
 		return ..()
 
@@ -295,6 +297,7 @@
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
+	icon_state = "grenadier_helmet"
 	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
@@ -458,8 +461,8 @@
 	flags_inv_hide = NONE
 	flags_marine_helmet = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/bear
-	name = "\improper Iron Bear helmet"
+/obj/item/clothing/head/helmet/marine/veteran/wolves
+	name = "\improper Steel Wolves helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list("melee" = 90, "bullet" = 65, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)

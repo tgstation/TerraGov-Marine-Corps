@@ -13,7 +13,7 @@
 	var/unique = TRUE
 
 	var/powerupdate = 10
-	
+
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE
 
@@ -51,7 +51,7 @@
 		'sound/ambience/ambigen14.ogg')
 
 
-	
+
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -60,7 +60,7 @@
 	return ..()
 
 
-/area/Initialize(mapload, ...)	
+/area/Initialize(mapload, ...)
 	icon_state = "" //Used to reset the icon overlay, I assume.
 	layer = AREAS_LAYER
 	uid = ++global_uid
@@ -122,7 +122,7 @@
 	var/sound = pick(ambience)
 
 	if(!L.client.played)
-		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = 1018))
+		SEND_SOUND(L, sound(sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENT))
 		L.client.played = TRUE
 		addtimer(CALLBACK(L.client, /client/proc/ResetAmbiencePlayed), 600)
 
@@ -140,7 +140,7 @@
 /area/proc/reg_in_areas_in_z()
 	if(!length(contents))
 		return
-		
+
 	var/list/areas_in_z = SSmapping.areas_in_z
 	var/z
 	for(var/i in contents)
@@ -164,16 +164,19 @@
 
 
 /area/proc/poweralert(state, obj/source)
-	if(state != poweralm)
-		poweralm = state
-		if(istype(source))	//Only report power alarms on the z-level where the source is located.
-			var/list/cameras = list()
-			for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
-				if(a.z == source.z)
-					if(state == 1)
-						a.cancelAlarm("Power", src, source)
-					else
-						a.triggerAlarm("Power", src, cameras, source)
+	if(state == poweralm)
+		return
+
+	poweralm = state
+
+	for(var/i in GLOB.alert_consoles)
+		var/obj/machinery/computer/station_alert/SA = i
+		if(SA.z != source.z)
+			continue
+		if(state == 1)
+			SA.cancelAlarm("Power", src, source)
+		else
+			SA.triggerAlarm("Power", src, null, source)
 
 
 /area/proc/atmosalert(danger_level)
@@ -206,8 +209,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(!E.density)
-			spawn(0)
-				E.close()
+			INVOKE_ASYNC(E, /obj/machinery/door.proc/close)
 
 
 /area/proc/air_doors_open()
@@ -218,8 +220,7 @@
 		if(E.operating)
 			E.nextstate = OPEN
 		else if(E.density)
-			spawn(0)
-				E.open()
+			INVOKE_ASYNC(E, /obj/machinery/door.proc/open)
 
 
 /area/proc/firealert()
@@ -234,8 +235,7 @@
 				if(D.operating)
 					D.nextstate = FIREDOOR_CLOSED
 				else if(!D.density)
-					spawn()
-						D.close()
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/close)
 		var/list/cameras = list()
 		for (var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.triggerAlarm("Fire", src, cameras, src)
@@ -252,8 +252,7 @@
 				if(D.operating)
 					D.nextstate = OPEN
 				else if(D.density)
-					spawn(0)
-					D.open()
+					INVOKE_ASYNC(D, /obj/machinery/door.proc/open)
 
 		for(var/obj/machinery/computer/station_alert/a in GLOB.machines)
 			a.cancelAlarm("Fire", src, src)

@@ -152,14 +152,22 @@
 
 
 /mob/camera/imaginary_friend/proc/deactivate()
-	icon = human_image
 	log_admin("[key_name(src)] stopped being imaginary friend of [key_name(owner)].")
 	message_admins("[ADMIN_TPMONTY(src)] stopped being imaginary friend of [ADMIN_TPMONTY(owner)].")
 	ghostize()
 	qdel(src)
 
 
-/mob/camera/imaginary_friend/toggle_typing_indicator(emoting)
+/mob/camera/imaginary_friend/ghostize()
+	icon = human_image
+	return ..()
+
+
+/mob/camera/imaginary_friend/add_typing_indicator(emoting)
+	return
+
+
+/mob/camera/imaginary_friend/remove_typing_indicator(emoting)
 	return
 
 
@@ -167,8 +175,8 @@
 	name = "Join"
 	desc = "Join your owner, following them from inside their mind."
 
-	icon_icon_state = "joinmob"
-	button_icon_state = "template2"
+	action_icon_state = "joinmob"
+	background_icon_state = "template2"
 
 
 /datum/action/innate/imaginary_join/Activate()
@@ -180,8 +188,8 @@
 	name = "Hide"
 	desc = "Hide yourself from your owner's sight."
 
-	icon_icon_state = "hidemob"
-	button_icon_state = "template2"
+	action_icon_state = "hidemob"
+	background_icon_state = "template2"
 
 
 /datum/action/innate/imaginary_hide/Activate()
@@ -191,7 +199,7 @@
 	I.Show()
 	name = "Hide"
 	desc = "Hide yourself from your owner's sight."
-	icon_icon_state = "hidemob"
+	action_icon_state = "hidemob"
 	update_button_icon()
 
 
@@ -202,5 +210,5 @@
 	I.Show()
 	name = "Show"
 	desc = "Become visible to your owner."
-	icon_icon_state = "unhidemob"
+	action_icon_state = "unhidemob"
 	update_button_icon()

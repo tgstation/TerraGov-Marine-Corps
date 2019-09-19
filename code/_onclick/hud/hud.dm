@@ -29,7 +29,7 @@
 	var/obj/screen/use_attachment
 	var/obj/screen/toggle_raillight
 	var/obj/screen/eject_mag
-	var/obj/screen/toggle_burst
+	var/obj/screen/toggle_firemode
 	var/obj/screen/unique_action
 
 	var/obj/screen/zone_sel
@@ -108,7 +108,7 @@
 	use_attachment = null
 	toggle_raillight = null
 	eject_mag = null
-	toggle_burst = null
+	toggle_firemode = null
 	unique_action = null
 
 	zone_sel = null

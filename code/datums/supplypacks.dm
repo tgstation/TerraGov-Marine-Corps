@@ -107,7 +107,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/flares
-	name = "flare packs crate (x20)"
+	name = "flare packs crate (x28)"
 	contains = list(
 					/obj/item/storage/box/m94,
 					/obj/item/storage/box/m94,
@@ -361,7 +361,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/ap
 					)
-	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
+	name = "surplus rifles crate (M41A1 x2, M41A1 ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
@@ -478,7 +478,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_mines
-	name = "claymore mines crate (x8)"
+	name = "claymore mines crate (x10)"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/storage/box/explosive_mines
@@ -555,7 +555,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate (x15)"
+	name = "M40 HIDP incendiary explosive grenade box crate (x25)"
 	contains = list(
 					/obj/item/storage/box/nade_box/HIDP
 					)
@@ -565,7 +565,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_m15
-	name = "M15 fragmentation grenade box crate (x25)"
+	name = "M15 fragmentation grenade box crate (x15)"
 	contains = list(
 					/obj/item/storage/box/nade_box/M15
 					)
@@ -612,12 +612,12 @@ WEAPONS
 /datum/supply_packs/detpack
 	name = "detpack explosives crate (x6)"
 	contains = list(
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
-					/obj/item/radio/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
+					/obj/item/detpack,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,
 					/obj/item/assembly/signaler,
@@ -1243,33 +1243,33 @@ AMMO
 *******************************************************************************/
 
 /datum/supply_packs/ammobox
-	name = "M41A Ammo Box Crate"
+	name = "M41A1 Ammo Box Crate"
 	contains = list(
 					/obj/item/ammobox
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A ammo box crate"
+	containername = "\improper M41A1 ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammoboxap
-	name = "M41A Ammo AP Box Crate"
+	name = "M41A1 Ammo AP Box Crate"
 	contains = list(
 					/obj/item/ammobox/ap
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A AP ammo box crate"
+	containername = "\improper M41A1 AP ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammoboxext
-	name = "M41A Ext Ammo Box Crate"
+	name = "M41A1 Ext Ammo Box Crate"
 	contains = list(
 					/obj/item/ammobox/ext
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A Ext ammo box crate"
+	containername = "\improper M41A1 Ext ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammoboxm39
@@ -1335,7 +1335,7 @@ AMMO
 /datum/supply_packs/ammoboxslug
 	name = "Slug Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox
+					/obj/item/shotgunbox
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1345,7 +1345,7 @@ AMMO
 /datum/supply_packs/ammoboxbuckshot
 	name = "Buckshot Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox/buckshot
+					/obj/item/shotgunbox/buckshot
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1355,7 +1355,7 @@ AMMO
 /datum/supply_packs/ammoboxflechette
 	name = "Flechette Ammo Box Crate"
 	contains = list(
-					/obj/item/ammo_magazine/shotgunbox/flechette
+					/obj/item/shotgunbox/flechette
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1363,7 +1363,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular
-	name = "regular magazines crate (M41A x5, M4A3 x2, M44 x2, M39 x2, M37A2 x1)"
+	name = "regular magazines crate (M41A1 x5, M4A3 x2, M44 x2, M39 x2, M37A2 x1)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
@@ -1385,7 +1385,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular_m41a
-	name = "regular M41A magazines crate (x8)"
+	name = "regular M41A1 magazines crate (x8)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
@@ -1398,7 +1398,7 @@ AMMO
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A regular ammo crate"
+	containername = "\improper M41A1 regular ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular_m4a3
@@ -1480,7 +1480,7 @@ AMMO
 
 
 /datum/supply_packs/ammo_extended
-	name = "extended magazines crate (M41A x2, M4A3 x2, M39 x2)"
+	name = "extended magazines crate (M41A1 x2, M4A3 x2, M39 x2)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/extended,
 					/obj/item/ammo_magazine/rifle/extended,
@@ -1495,7 +1495,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_extended_m41a
-	name = "extended M41A magazines crate (x6)"
+	name = "extended M41A1 magazines crate (x6)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/extended,
 					/obj/item/ammo_magazine/rifle/extended,
@@ -1506,7 +1506,7 @@ AMMO
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A extended ammo crate"
+	containername = "\improper M41A1 extended ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_extended_m4a3
@@ -1542,7 +1542,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_ap
-	name = "armor piercing magazines crate (M41A x2, M4A3 x2, M39 x2)"
+	name = "armor piercing magazines crate (M41A1 x2, M4A3 x2, M39 x2)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/ap,
@@ -1557,7 +1557,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_ap_m41a
-	name = "armor piercing M41A magazines crate (x6)"
+	name = "armor piercing M41A1 magazines crate (x6)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/ap,
@@ -1568,7 +1568,7 @@ AMMO
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A armor piercing ammo crate"
+	containername = "\improper M41A1 armor piercing ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_ap_m4a3
@@ -1747,23 +1747,23 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle
-	name = "large M41A ammo box crate (x400 rounds)"
+	name = "large M41A1 ammo box crate (x400 rounds)"
 	contains = list(
 					/obj/item/big_ammo_box
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A ammo box crate"
+	containername = "\improper M41A1 ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle_ap
-	name = "large armor piercing M41A ammo box crate (x400 AP rounds)"
+	name = "large armor piercing M41A1 ammo box crate (x400 AP rounds)"
 	contains = list(
 					/obj/item/big_ammo_box/ap
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A ammo box crate"
+	containername = "\improper M41A1 ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_smg
@@ -1799,8 +1799,8 @@ AMMO
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/ammo_magazine/rifle/mar40,
-					/obj/item/ammo_magazine/rifle/mar40/extended,
+					/obj/item/ammo_magazine/rifle/ak47,
+					/obj/item/ammo_magazine/rifle/ak47/extended,
 					)
 	cost = RO_PRICE_NORMAL
 	contraband = 1
@@ -2174,7 +2174,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_weapons
-	name = "weapons pouches crate (1x bayonet, pistol, explosive)"
+	name = "weapons pouches crate (1x bayonet, sidearm, explosive)"
 	contains = list(
 					/obj/item/storage/pouch/bayonet,
 					/obj/item/storage/pouch/pistol,
@@ -2315,7 +2315,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "surgery crate (x1 surgical tray)"
+	name = "surgery crate (x1 surgical tray, 1x surgical vest)"
 	contains = list(
 					/obj/item/storage/surgical_tray,
 					/obj/item/clothing/tie/storage/white_vest
@@ -2358,7 +2358,7 @@ MEDICAL
 	group = "Medical"
 
 /datum/supply_packs/hypospray
-	name = "hypospray crate (x5 hyposprays)"
+	name = "advanced hypospray crate (x5 advanced hyposprays)"
 	contains = list(
 					/obj/item/reagent_container/hypospray/advanced,
 					/obj/item/reagent_container/hypospray/advanced,
@@ -2368,7 +2368,7 @@ MEDICAL
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
-	containername = "\improper hypospray crate"
+	containername = "\improper advanced hypospray crate"
 	access = ACCESS_MARINE_MEDBAY
 	group = "Medical"
 

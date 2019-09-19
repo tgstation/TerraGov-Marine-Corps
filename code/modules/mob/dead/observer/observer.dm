@@ -19,6 +19,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	sight = SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -96,10 +97,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	grant_all_languages()
 
-	for(var/path in subtypesof(/datum/action/observer_action))
-		var/datum/action/observer_action/A = new path()
-		A.give_action(src)
-
 	return ..()
 
 
@@ -166,7 +163,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	else if(href_list["claim"])
-		var/mob/living/target = locate(href_list["claim"]) in GLOB.mob_list
+		var/mob/living/target = locate(href_list["claim"]) in GLOB.offered_mob_list
 		if(!istype(target))
 			to_chat(usr, "<span class='warning'>Invalid target.</span>")
 			return
@@ -184,9 +181,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(href_list["join_larva"])
 		if(!isobserver(usr))
 			return
-		var/mob/dead/observer/A = usr
+		var/mob/dead/observer/ghost = usr
 
-		SSticker.mode.attempt_to_join_as_larva(A)
+		switch(alert(ghost, "What would you like to do?", "Burrowed larva source available", "Join as Larva", "Cancel"))
+			if("Join as Larva")
+				SSticker.mode.attempt_to_join_as_larva(ghost)
 		return
 
 	else if(href_list["preference"])
@@ -219,10 +218,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.real_name = mind.name
 	else if(real_name)
 		ghost.real_name = real_name
-	else if(gender == MALE)
-		ghost.real_name = capitalize(pick(GLOB.first_names_male)) + " " + capitalize(pick(GLOB.last_names))
 	else
-		ghost.real_name = capitalize(pick(GLOB.first_names_female)) + " " + capitalize(pick(GLOB.last_names))
+		ghost.real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
 	ghost.name = ghost.real_name
 	ghost.gender = gender
@@ -234,7 +231,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.key = key
 
 	if(!can_reenter_corpse)
-		set_away_time()
 		ghost.mind?.current = ghost
 
 	if(!T)
@@ -245,18 +241,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.forceMove(T)
 
 	return ghost
-
-
-/mob/proc/set_away_time(new_away)
-	return
-
-/mob/living/set_away_time(new_away = world.time)
-	away_time = new_away //Generic way to handle away time, currently unused.
-
-
-/mob/living/carbon/xenomorph/set_away_time(new_away = -XENO_AFK_TIMER)
-	away_time = new_away //Xenos who force-ghost can be immediately taken by observers.
-	handle_afk_takeover()
 
 
 /mob/dead/observer/Move(atom/newloc, direct)
@@ -440,8 +424,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/list/namecounts = list()
 
 	for(var/x in sortNames(GLOB.alive_xeno_list))
-		var/mob/M = x
-		var/name = M.name
+		var/mob/living/carbon/xenomorph/X = x
+		var/name = X.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
@@ -449,16 +433,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			names.Add(name)
 			namecounts[name] = 1
 
-		if(M.client?.prefs?.xeno_name && M.client.prefs.xeno_name != "Undefined")
-			name += " - [M.client.prefs.xeno_name]"
+		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
+			name += " - [X.client.prefs.xeno_name]"
 
 		if(admin)
-			if(M.client && M.client.is_afk())
+			if(X.client && X.client.is_afk())
 				name += " (AFK)"
-			else if(!M.client && (M.key || M.ckey))
+			else if(!X.client && (X.key || X.ckey))
 				name += " (DC)"
+				if(!timeleft(X.afk_timer_id))
+					name += " 15+min"
 
-		xenos[name] = M
+		xenos[name] = X
 
 	if(!length(xenos))
 		to_chat(usr, "<span class='warning'>There are no xenos at the moment.</span>")
@@ -485,31 +471,32 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/list/names = list()
 	var/list/namecounts = list()
 	for(var/x in sortNames(GLOB.alive_human_list))
-		var/mob/M = x
-		if(!ishumanbasic(M) && !issynth(M) || istype(M, /mob/living/carbon/human/dummy) || !M.name)
+		var/mob/living/carbon/human/H = x
+		if(!ishumanbasic(H) && !issynth(H) || istype(H, /mob/living/carbon/human/dummy) || !H.name)
 			continue
-		var/name = M.name
+		var/name = H.name
 		if(name in names)
 			namecounts[name]++
 			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
-		if(M.real_name && M.real_name != M.name)
-			name += " as ([M.real_name])"
-		if(issynth(M))
+		if(H.real_name && H.real_name != H.name)
+			name += " as ([H.real_name])"
+		if(issynth(H))
 			name += " - Synth"
 		if(admin)
-			if(M.client && M.client.is_afk())
+			if(H.client && H.client.is_afk())
 				name += " (AFK)"
-			else if(!M.client && (M.key || M.ckey))
-				if(isaghost(M))
+			else if(!H.client && (H.key || H.ckey))
+				if(isaghost(H))
 					name += " (AGHOSTED)"
 				else
 					name += " (DC)"
+					if(!timeleft(H.afk_timer_id))
+						name += " 15+min"
 
-
-		humans[name] = M
+		humans[name] = H
 
 	if(!length(humans))
 		to_chat(usr, "<span class='warning'>There are no living humans at the moment.</span>")
@@ -652,29 +639,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	. = ..()
 	pixel_y = 0
 	animate(src, pixel_y = 2, time = 10, loop = -1)
-
-
-/mob/dead/observer/verb/analyze_air()
-	set category = "Ghost"
-	set name = "Analyze Air"
-
-	if(!istype(loc, /turf))
-		return
-
-	var/turf/T = loc
-
-	var/pressure = T.return_pressure()
-	var/env_temperature = T.return_temperature()
-	var/env_gas = T.return_gas()
-
-	to_chat(src, "<span class='boldnotice'>Results:</span>")
-	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, "<span class='notice'>Pressure: [round(pressure, 0.1)] kPa</span>")
-	else
-		to_chat(src, "<span class='warning'>Pressure: [round(pressure, 0.1)] kPa</span>")
-
-	to_chat(src, "<span class='notice'>Gas type: [env_gas]</span>")
-	to_chat(src, "<span class='notice'>Temperature: [round(env_temperature - T0C, 0.1)]&deg;C</span>")
 
 
 /mob/dead/observer/verb/toggle_zoom()
@@ -880,10 +844,37 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_used.show_hud(hud_used.hud_version)
 
 
-/mob/dead/observer/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = FALSE)
-	return IsAdminGhost(usr)
-
-
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
 		return "You can also see a g-g-g-g-ghooooost!"
+
+
+/mob/dead/observer/verb/toggle_actions()
+	set category = "Ghost"
+	set name = "Toggle Static Action Buttons"
+
+	client.prefs.observer_actions = !client.prefs.observer_actions
+	client.prefs.save_preferences()
+
+
+	to_chat(src, "<span class='notice'>You will [client.prefs.observer_actions ? "now" : "no longer"] get the static observer action buttons.</span>")
+
+	if(!client.prefs.observer_actions)
+		for(var/datum/action/observer_action/A in actions)
+			A.remove_action(src)
+
+	else if(/datum/action/observer_action in actions)
+		return
+
+	else
+		for(var/path in subtypesof(/datum/action/observer_action))
+			var/datum/action/observer_action/A = new path()
+			A.give_action(src)
+
+
+/mob/dead/observer/incapacitated(ignore_restrained)
+	return FALSE
+
+
+/mob/dead/observer/can_interact_with(datum/D)
+	return (D == src || IsAdminGhost(src))

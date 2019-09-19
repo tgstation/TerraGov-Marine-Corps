@@ -12,6 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/capacity = 5e6		//Maximum amount of power it can hold
 	var/charge = 1e6		//Current amount of power it holds
 
@@ -185,17 +186,6 @@
 	return FALSE
 
 
-/obj/machinery/power/smes/attack_ai(mob/user)
-	ui_interact(user)
-
-
-/obj/machinery/power/smes/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
-
-
 /obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -296,23 +286,14 @@
 	. = ..()
 	if(.)
 		return
-	if (usr.stat || usr.restrained() )
-		return
-
-//to_chat(world, "[href] ; [href_list[href]]")
-
-	if (!istype(src.loc, /turf) && !istype(usr, /mob/living/silicon/))
-		return FALSE // Do not update ui
 
 	if(href_list["cmode"])
 		input_attempt = !input_attempt
 		update_icon()
-		return TRUE
 
 	else if(href_list["online"])
 		output_attempt = !output_attempt
 		update_icon()
-		return TRUE
 
 	else if(href_list["input"])
 		switch( href_list["input"] )
@@ -323,7 +304,6 @@
 			if("set")
 				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
 		input_level = CLAMP(input_level,0,input_level_max)
-		return TRUE
 
 	else if( href_list["output"] )
 		switch( href_list["output"] )
@@ -334,15 +314,12 @@
 			if("set")
 				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
 		output_level = CLAMP(output_level,0,output_level_max)
-		return TRUE
 
-	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
+			visible_message("<span class='warning'>\The [src] is making strange noises!</span>", null, "<span class='warning'> You hear sizzling electronics.</span>")
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new(src)
 			smoke.set_up(1, loc)

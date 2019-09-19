@@ -17,7 +17,6 @@
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
-	origin_tech = "materials=1"
 
 
 /obj/item/stack/New(loc, new_amount)
@@ -73,21 +72,17 @@
 	to_chat(user, "There are [amount] [singular_name]\s in the stack.")
 
 
-/obj/item/stack/attack_self(mob/user)
-	interact(user)
-
-
-/obj/item/stack/interact(mob/user, sublist)
-	ui_interact(user, sublist)
-
-
-/obj/item/stack/ui_interact(mob/user, recipes_sublist)
+/obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()
+	if(.)
+		return
+
 	if(!recipes)
 		return
+
 	if(QDELETED(src) || get_amount() <= 0)
-		user << browse(null, "window=stack")
-	user.set_interaction(src) //for correct work of onclose
+		DIRECT_OUTPUT(user, browse(null, "window=stack"))
+
 	var/list/recipe_list = recipes
 	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
@@ -134,15 +129,14 @@
 
 	var/datum/browser/popup = new(user, "stack", name, 400, 400)
 	popup.set_content(t1)
-	popup.open(FALSE)
-	onclose(user, "stack")
+	popup.open()
 
 
 /obj/item/stack/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr.get_active_held_item() != src)
+	if(usr.get_active_held_item() != src)
 		return
 	if(href_list["sublist"] && !href_list["make"])
 		interact(usr, text2num(href_list["sublist"]))
@@ -215,9 +209,19 @@
 		return FALSE
 	var/turf/T = get_turf(usr)
 
-	if(R.one_per_turf && (locate(R.result_type) in T))
-		to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
-		return FALSE
+	switch(R.max_per_turf)
+		if(STACK_RECIPE_ONE_PER_TILE)
+			if(locate(R.result_type) in T)
+				to_chat(usr, "<span class='warning'>There is another [R.title] here!</span>")
+				return FALSE
+		if(STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE)
+			for(var/obj/thing in T)
+				if(!istype(thing, R.result_type))
+					continue
+				if(thing.dir != usr.dir)
+					continue
+				to_chat(usr, "<span class='warning'>You can't build \the [R.title] on top of another!</span>")
+				return FALSE
 	if(R.on_floor)
 		if(!isfloorturf(T))
 			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
@@ -227,13 +231,17 @@
 				continue
 			if(istype(AM,/obj/structure/table))
 				continue
-			if(istype(AM,/obj/structure/window))
-				var/obj/structure/window/W = AM
-				if(!W.is_full_window() && W.dir != usr.dir)
+			if(!AM.density)
+				continue
+			if(AM.flags_atom & ON_BORDER && AM.dir != usr.dir)
+				if(istype(AM, /obj/structure/window))
+					var/obj/structure/window/W = AM
+					if(!W.is_full_window())
+						continue
+				else
 					continue
-			if(AM.density)
-				to_chat(usr, "<span class='warning'>Theres a [AM.name] here. You cant make a [R.title] here!</span>")
-				return FALSE
+			to_chat(usr, "<span class='warning'>There is a [AM.name] right where you want to place \the [R.title], blocking the construction.</span>")
+			return FALSE
 	return TRUE
 
 
@@ -294,18 +302,20 @@
 
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/item/stack/attack_hand(mob/user)
+/obj/item/stack/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() == src)
 		return change_stack(user, 1)
 	return ..()
 
 
 /obj/item/stack/AltClick(mob/user)
-	if(!user.canUseTopic(src))
+	if(isxeno(user))
+		return ..()
+	if(!can_interact(user))
 		return ..() //Alt click on turf if not human or too far away.
 	var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [get_amount()])") as null|num)
 	stackmaterial = min(get_amount(), stackmaterial) //The amount could have changed since the input started.
-	if(stackmaterial < 1 || !user.canUseTopic(src)) //In case we were transformed or moved away since the input started.
+	if(stackmaterial < 1 || !can_interact(user)) //In case we were transformed or moved away since the input started.
 		return
 	change_stack(user, stackmaterial)
 	to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")
@@ -338,19 +348,19 @@
 	var/res_amount = 1
 	var/max_res_amount = 1
 	var/time = 0
-	var/one_per_turf = FALSE
+	var/max_per_turf = STACK_RECIPE_INFINITE_PER_TILE
 	var/on_floor = FALSE
 	var/skill_req = FALSE //whether only people with sufficient construction skill can build this.
 
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = FALSE, on_floor = FALSE, skill_req = FALSE)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, max_per_turf = STACK_RECIPE_INFINITE_PER_TILE, on_floor = FALSE, skill_req = FALSE)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
 	src.res_amount = res_amount
 	src.max_res_amount = max_res_amount
 	src.time = time
-	src.one_per_turf = one_per_turf
+	src.max_per_turf = max_per_turf
 	src.on_floor = on_floor
 	src.skill_req = skill_req
 

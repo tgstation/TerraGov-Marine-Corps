@@ -108,11 +108,11 @@
 		return
 
 	var/ruler_healing_penalty = 0.5
-	if(hive?.living_xeno_ruler?.loc?.z == T.z) //if the living queen's z-level is the same as ours.
+	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WIHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying || resting)
+		if(lying || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
@@ -286,12 +286,12 @@
 
 /mob/living/carbon/xenomorph/handle_stunned()
 	if(stunned)
-		AdjustStunned(-2)
+		adjust_stunned(-2)
 	return stunned
 
 /mob/living/carbon/xenomorph/handle_knocked_down()
 	if(knocked_down && client)
-		AdjustKnockeddown(-5)
+		adjust_knocked_down(-5)
 	return knocked_down
 
 /mob/living/carbon/xenomorph/handle_slowdown()
@@ -305,27 +305,37 @@
 		#endif
 	return slowdown
 
+
 /mob/living/carbon/xenomorph/add_slowdown(amount)
-	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
+	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
+		return 0
+	slowdown = adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/xenomorph/crusher/add_slowdown(amount)
-	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
+
+/mob/living/carbon/xenomorph/adjust_stagger(amount)
+	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
-	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
-	return slowdown
+	return ..()
+
 
 /mob/living/carbon/xenomorph/proc/handle_halloss()
 	if(halloss)
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
-	if(client || world.time - away_time < XENO_AFK_TIMER)
+	if(QDELETED(src)) // Deleted by an admin.
 		return
-	if(isaghost(src) && GLOB.directory[key]) // If aghosted, and admin still online
+	if(client)
+		return
+	if(isclientedaghost(src)) // If aghosted, and admin still online
 		return
 	if(stat == DEAD)
 		return
+
+	if(afk_timer_id)
+		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
+		afk_timer_id = null
 
 	var/mob/picked = get_alien_candidate()
 	if(!picked)
@@ -334,4 +344,4 @@
 	SSticker.mode.transfer_xeno(picked, src)
 
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')

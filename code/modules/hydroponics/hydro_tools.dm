@@ -46,7 +46,7 @@
 		to_chat(user, "<span class='warning'>[src] can tell you nothing about [target].</span>")
 		return
 
-	var/dat = "<h3>Plant data for [target]</h3>"
+	var/dat
 	user.visible_message("<span class='notice'> [user] runs the scanner over [target].</span>")
 
 	dat += "<h2>General Data</h2>"
@@ -65,7 +65,7 @@
 
 		dat += "<br>This sample contains: "
 		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.id], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
+			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.type)] unit(s)"
 
 	dat += "<h2>Other Data</h2>"
 
@@ -155,10 +155,9 @@
 	if(grown_seed.flowers)
 		dat += "<br>It has [grown_seed.flower_colour ? "<font color='[grown_seed.flower_colour]'>flowers</font>" : "flowers"]."
 
-	if(dat)
-		user << browse(dat,"window=plant_analyzer")
-
-	return
+	var/datum/browser/popup = new(user, "plant_analyzer", "<div align='center'>Plant data for [target]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 
@@ -194,14 +193,14 @@
 /obj/item/reagent_container/glass/fertilizer/ez
 	name = "bottle of E-Z-Nutrient"
 	icon_state = "bottle16"
-	fertilizer = "eznutrient"
+	fertilizer = /datum/reagent/toxin/fertilizer/eznutrient
 
 /obj/item/reagent_container/glass/fertilizer/l4z
 	name = "bottle of Left 4 Zed"
 	icon_state = "bottle18"
-	fertilizer = "left4zed"
+	fertilizer = /datum/reagent/toxin/fertilizer/left4zed
 
 /obj/item/reagent_container/glass/fertilizer/rh
 	name = "bottle of Robust Harvest"
 	icon_state = "bottle15"
-	fertilizer = "robustharvest"
+	fertilizer = /datum/reagent/toxin/fertilizer/robustharvest

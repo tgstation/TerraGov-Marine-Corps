@@ -41,21 +41,19 @@
 	radio_connection = SSradio.add_object(src, receive_frequency, RADIO_ATMOSIA)
 
 
-/obj/machinery/computer/atmos_alert/attack_hand(mob/user)
+/obj/machinery/computer/atmos_alert/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	user.set_interaction(src)
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Main Overwatch Console</div>")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Atmos Alert</div>")
 	popup.set_content(return_text())
-	popup.open(FALSE)
-	onclose(user, "computer")
+	popup.open()
 
 
 /obj/machinery/computer/atmos_alert/process()
 	if(..())
-		src.updateDialog()
+		src.updateUsrDialog()
 
 /obj/machinery/computer/atmos_alert/update_icon()
 	..()
