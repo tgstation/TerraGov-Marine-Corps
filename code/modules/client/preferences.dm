@@ -132,6 +132,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	save_preferences()
 
 
+/datum/preferences/can_interact(mob/user)
+	return TRUE
+
+
 /datum/preferences/proc/ShowChoices(mob/user)
 	if(!user?.client)
 		return
