@@ -24,10 +24,6 @@ fi
 
 cp tgmc.dmb tgmc.rsc $1/
 cp -r _maps/* $1/_maps/
-cp icons/default_title.dmi $1/icons/
-cp -r sound/chatter/* $1/sound/chatter/
-cp -r sound/voice/complionator/* $1/sound/voice/complionator/
-cp -r sound/instruments/* $1/sound/instruments/
 cp -r strings/* $1/strings/
 
 #remove .dm files from _maps
