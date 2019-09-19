@@ -59,7 +59,7 @@
 	name = "broken cryptographic sequencer"
 	icon_state = "emag"
 	item_state = "card-id"
-	origin_tech = "magnets=2;syndicate=2"
+
 
 /obj/item/card/emag
 	desc = "It's a card with a magnetic strip attached to some circuitry."
@@ -67,7 +67,6 @@
 	icon_state = "emag"
 	item_state = "card-id"
 	flags_item = NOBLUDGEON
-	origin_tech = "magnets=2;syndicate=2"
 
 
 /obj/item/card/id
@@ -143,7 +142,6 @@
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_ILLEGAL_PIRATE)
-	origin_tech = "syndicate=3"
 	var/registered_user=null
 
 /obj/item/card/id/syndicate/New(mob/user as mob)

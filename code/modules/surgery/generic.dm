@@ -219,7 +219,7 @@
 	else
 		user.visible_message("<span class='warning'>[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>")
-	target.apply_damage(12, BRUTE, affected, sharp = 1)
+	target.apply_damage(12, BRUTE, affected, 0, TRUE)
 	affected.update_wounds()
 
 

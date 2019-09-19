@@ -20,8 +20,8 @@
 /obj/machinery/power/monitor/grid
 	name = "Main Power Grid Monitoring"		
 
-/obj/machinery/power/monitor/New()
-	..()
+/obj/machinery/power/monitor/Initialize()
+	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc
 	if(isturf(T))
@@ -29,31 +29,13 @@
 	if(attached)
 		powernet = attached.powernet
 
-/obj/machinery/power/monitor/attack_ai(mob/user)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
 
-/obj/machinery/power/monitor/attack_hand(mob/living/user)
+/obj/machinery/power/monitor/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
 
-/obj/machinery/power/monitor/interact(mob/user)
-
-	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN|NOPOWER)) )
-		if (!issilicon(user))
-			user.unset_interaction()
-			user << browse(null, "window=powcomp")
-			return
-
-
-	user.set_interaction(src)
 	var/t
-
 	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 
@@ -91,19 +73,6 @@
 	popup.set_content(t)
 	popup.open(FALSE)
 	onclose(user, "powcomp")
-
-
-/obj/machinery/power/monitor/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if( href_list["close"] )
-		usr << browse(null, "window=powcomp")
-		usr.unset_interaction()
-		return
-	if( href_list["update"] )
-		src.updateUsrDialog()
-		return
 
 
 /obj/machinery/power/monitor/update_icon()

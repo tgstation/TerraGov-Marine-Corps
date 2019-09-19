@@ -170,7 +170,8 @@
 	. = ..()
 	if(.)
 		return
-	if (href_list["watch_xeno_number"])
+
+	if(href_list["watch_xeno_number"])
 		if(!check_state())
 			return
 		if(!ovipositor)
@@ -185,7 +186,7 @@
 			else
 				set_queen_overwatch(X)
 			break
-		return
+
 
 // ***************************************
 // *********** Death

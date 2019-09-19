@@ -17,7 +17,6 @@
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
-	origin_tech = "materials=1"
 
 
 /obj/item/stack/New(loc, new_amount)
@@ -73,21 +72,17 @@
 	to_chat(user, "There are [amount] [singular_name]\s in the stack.")
 
 
-/obj/item/stack/attack_self(mob/user)
-	interact(user)
-
-
-/obj/item/stack/interact(mob/user, sublist)
-	ui_interact(user, sublist)
-
-
-/obj/item/stack/ui_interact(mob/user, recipes_sublist)
+/obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()
+	if(.)
+		return
+
 	if(!recipes)
 		return
+
 	if(QDELETED(src) || get_amount() <= 0)
-		user << browse(null, "window=stack")
-	user.set_interaction(src) //for correct work of onclose
+		DIRECT_OUTPUT(user, browse(null, "window=stack"))
+
 	var/list/recipe_list = recipes
 	if(recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
 		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
@@ -134,15 +129,14 @@
 
 	var/datum/browser/popup = new(user, "stack", name, 400, 400)
 	popup.set_content(t1)
-	popup.open(FALSE)
-	onclose(user, "stack")
+	popup.open()
 
 
 /obj/item/stack/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr.get_active_held_item() != src)
+	if(usr.get_active_held_item() != src)
 		return
 	if(href_list["sublist"] && !href_list["make"])
 		interact(usr, text2num(href_list["sublist"]))
@@ -317,11 +311,11 @@
 /obj/item/stack/AltClick(mob/user)
 	if(isxeno(user))
 		return ..()
-	if(!user.canUseTopic(src))
+	if(!can_interact(user))
 		return ..() //Alt click on turf if not human or too far away.
 	var/stackmaterial = round(input(user,"How many sheets do you wish to take out of this stack? (Maximum  [get_amount()])") as null|num)
 	stackmaterial = min(get_amount(), stackmaterial) //The amount could have changed since the input started.
-	if(stackmaterial < 1 || !user.canUseTopic(src)) //In case we were transformed or moved away since the input started.
+	if(stackmaterial < 1 || !can_interact(user)) //In case we were transformed or moved away since the input started.
 		return
 	change_stack(user, stackmaterial)
 	to_chat(user, "<span class='notice'>You take [stackmaterial] sheets out of the stack</span>")

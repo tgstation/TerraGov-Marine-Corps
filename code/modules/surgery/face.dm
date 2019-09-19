@@ -100,7 +100,7 @@
 /datum/surgery_step/face/fix_face/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing skin on [target]'s face with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, tearing skin on [target]'s face with \the [tool]!</span>")
-	target.apply_damage(10, BRUTE, affected, sharp = 1)
+	target.apply_damage(10, BRUTE, affected, 0, TRUE)
 	target.updatehealth()
 
 

@@ -272,7 +272,7 @@
 
 			if(prob(15))	
 				M.knock_down(5)
-			M.apply_damage(8, def_zone = "head")
+			M.apply_damage(8, BRUTE, "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
 			log_combat(user, M, "slammed", "", "against \the [src]")
@@ -324,7 +324,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!can_touch(usr) || ismouse(usr))
+	if(!can_interact(usr))
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
@@ -369,7 +369,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!can_touch(usr))
+	if(!can_interact(usr))
 		return
 
 	if(!unflipping_check())

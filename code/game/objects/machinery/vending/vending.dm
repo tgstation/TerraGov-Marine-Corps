@@ -21,10 +21,10 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/vend_power_usage = 150 //actuators and stuff
 
 	var/active = TRUE //No sales pitches if off!
-	var/delay_product_spawn // If set, uses sleep() in product spawn proc (mostly for seeds to retrieve correct names).
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
@@ -313,12 +313,6 @@
 		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
-/obj/machinery/vending/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/vending/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
 /obj/machinery/vending/proc/GetProductIndex(datum/data/vending_product/P)
 	var/list/plist
 	switch(P.category)
@@ -344,27 +338,21 @@
 			stack_trace("UNKNOWN PRODUCT: PID: [pid], CAT: [category] INSIDE [type]!")
 			return null
 
-/obj/machinery/vending/attack_hand(mob/living/user)
+/obj/machinery/vending/can_interact(mob/user)
 	. = ..()
-	if(.)
-		return
+	if(!.)
+		return FALSE
+	
 	if(tipped_level == 2)
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
-		if(do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
-			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
-			flip_back()
-			return
+		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
+			return FALSE
+			
+		user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
+		flip_back()
+		return TRUE
 
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-
-	user.set_interaction(src)
-
-	if(src.seconds_electrified != 0)
-		if(shock(user, 100))
-			return
-
-	ui_interact(user)
+	return TRUE
 
 
 
@@ -390,8 +378,6 @@
 		"vendor_name" = name,
 		"currently_vending_name" = currently_vending ? sanitize(currently_vending.product_name) : null,
 		"premium_length" = premium.len,
-		"ewallet" = ewallet ? ewallet.name : null,
-		"ewallet_worth" = ewallet ? ewallet.worth : null,
 		"coin" = coin ? coin.name : null,
 		"displayed_records" = display_list,
 		"isshared" = isshared
@@ -409,76 +395,39 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	if(usr.incapacitated())
-		return
 
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+	if(href_list["remove_coin"])
 		if(!coin)
 			to_chat(usr, "There is no coin in this machine.")
 			return
 
-		coin.loc = src.loc
-		if(!usr.get_active_held_item())
-			usr.put_in_hands(coin)
-		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+		coin.forceMove(loc)
 		coin = null
+		usr.put_in_hands(coin)
+		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 
-	if(href_list["remove_ewallet"] && !istype(usr,/mob/living/silicon))
-		if (!ewallet)
-			to_chat(usr, "There is no charge card in this machine.")
-			return
-		ewallet.loc = src.loc
-		if(!usr.get_active_held_item())
-			usr.put_in_hands(ewallet)
-		to_chat(usr, "<span class='notice'>You remove the [ewallet] from the [src]</span>")
-		ewallet = null
-
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		usr.set_interaction(src)
-		if ((href_list["vend"]) && vend_ready && !currently_vending)
-
-			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
-				flick(src.icon_deny,src)
-				return
-
-			var/idx=text2num(href_list["vend"])
-			var/cat=text2num(href_list["cat"])
-
-			var/datum/data/vending_product/R = GetProductByID(idx,cat)
-			if (!R || !istype(R) || !R.product_path || R.amount <= 0)
-				return
-
-			if(R.price == null)
-				src.vend(R, usr)
-			else
-				if (ewallet)
-					if (R.price <= ewallet.worth)
-						ewallet.worth -= R.price
-						src.vend(R, usr)
-					else
-						to_chat(usr, "<span class='warning'>The ewallet doesn't have enough money to pay for that.</span>")
-						src.currently_vending = R
-						src.updateUsrDialog()
-				else
-					src.currently_vending = R
-					src.updateUsrDialog()
+	if((href_list["vend"]) && vend_ready && !currently_vending)
+		if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
+			to_chat(usr, "<span class='warning'>Access denied.</span>")
+			flick(icon_deny, src)
 			return
 
-		else if (href_list["cancel_buying"])
-			src.currently_vending = null
-			src.updateUsrDialog()
+		var/idx = text2num(href_list["vend"])
+		var/cat = text2num(href_list["cat"])
+
+		var/datum/data/vending_product/R = GetProductByID(idx,cat)
+		if(!istype(R) || !R.product_path || R.amount <= 0)
 			return
 
-		else if ((href_list["togglevoice"]) && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			src.shut_up = !src.shut_up
+		if(R.price == null)
+			vend(R, usr)
+		else
+			currently_vending = R
 
-		ui_interact(usr) //updates the nanoUI window
-		updateUsrDialog() //updates the wires window
-	else
-		usr << browse(null, "window=vending")
+	else if(href_list["cancel_buying"])
+		currently_vending = null
+		
+	updateUsrDialog()
 
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)

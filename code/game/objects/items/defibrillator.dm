@@ -17,7 +17,7 @@
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks = new
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
-	origin_tech = "biotech=3"
+
 
 /obj/item/defibrillator/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")

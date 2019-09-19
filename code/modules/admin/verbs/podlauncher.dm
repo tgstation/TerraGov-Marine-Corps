@@ -9,11 +9,11 @@
 	if(!P.bay || !P.podarea)
 		return
 
-	P.ui_interact(usr)
-	usr.set_interaction(P)
+	P.interact(usr)
 
 
 /datum/podlauncher
+	interaction_flags = INTERACT_UI_INTERACT
 	var/static/list/ignored_atoms = typecacheof(list(null, /mob/dead, /obj/effect/landmark, /obj/docking_port, /obj/effect/particle_effect/sparks, /obj/effect/DPtarget, /obj/effect/supplypod_selector, /atom/movable/lighting_object))
 	var/turf/oldTurf
 	var/client/holder
@@ -59,8 +59,13 @@
 	return ..()
 
 
-/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE, datum/nanoui/master_ui, datum/topic_state/state = GLOB.admin_state)
+/datum/podlauncher/can_interact(mob/user)
+	return TRUE
+
+
+/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!temp_pod)
+		to_chat(user, "<span class='warning'>Pod has been deleted, closing the menu.</span>")
 		SSnano.close_user_uis(user, src, ui_key)
 		return
 	var/list/data = list()
@@ -100,7 +105,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "podlauncher.tmpl", "Launch Pod", 1000, 700, null, master_ui, state)
+		ui = new(user, src, ui_key, "podlauncher.tmpl", "Launch Pod", 1000, 700)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -555,16 +560,8 @@
 		refreshBay()
 		. = TRUE
 
-
-/datum/podlauncher/proc/on_set_interaction()
-	return
-
-
-/datum/podlauncher/proc/check_eye()
-	return
-
 			
-/datum/podlauncher/proc/on_unset_interaction()
+/datum/podlauncher/on_unset_interaction()
 	qdel(src)
 
 

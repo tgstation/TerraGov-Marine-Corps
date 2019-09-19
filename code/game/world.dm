@@ -2,20 +2,15 @@
 
 
 GLOBAL_VAR(restart_counter)
-//TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
-GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
-
 
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	hub_password = "kMZy3U5jJHSiBQjr"
-
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_telecomms_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
 
-	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
+	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
 	GLOB.revdata = new
 

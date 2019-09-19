@@ -273,7 +273,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
-		/obj/item/radio/detpack,
+		/obj/item/detpack,
 		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full

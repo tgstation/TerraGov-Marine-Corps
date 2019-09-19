@@ -313,10 +313,10 @@
 	new /obj/item/ammo_magazine/rocket/wp(src)
 	new /obj/item/explosive/mine(src)
 	new /obj/item/explosive/mine(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
 
 

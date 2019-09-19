@@ -124,11 +124,10 @@
 		if (add)
 			.+=cur
 
-/obj/machinery/computer/forensic_scanning/attack_hand(mob/living/user)
+/obj/machinery/computer/forensic_scanning/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
 
 	var/dat
 	if(!authenticated)
@@ -190,8 +189,7 @@
 
 	var/datum/browser/popup = new(user, "fscanner", "<div align='center'>Forensic Console</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "fscanner")
+	popup.open()
 
 
 /obj/machinery/computer/forensic_scanning/Topic(href,href_list)

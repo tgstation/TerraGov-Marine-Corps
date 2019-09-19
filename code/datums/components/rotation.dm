@@ -141,7 +141,7 @@
 
 
 /datum/component/simple_rotation/proc/default_can_user_rotate(mob/living/user, rotation_type)
-	if(!istype(user) || !user.canUseTopic(parent, TRUE, TRUE))
+	if(!istype(user) || !parent.can_interact(user))
 		return FALSE
 	return TRUE
 

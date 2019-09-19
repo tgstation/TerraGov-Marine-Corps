@@ -9,9 +9,8 @@
 	item_state = "hypo"
 	icon_state = "hypo_base"
 	amount_per_transfer_from_this = 5
-	possible_transfer_amounts = list(1,3,5,10,15)
-	volume = 60
 	possible_transfer_amounts = null
+	volume = 60
 	init_reagent_flags = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
@@ -26,11 +25,6 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	core_name = "hypospray"
 
-/obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
-	if(user.incapacitated() || !user.IsAdvancedToolUser())
-		return FALSE
-
-	handle_interface(user)
 
 /obj/item/reagent_container/hypospray/proc/empty(mob/user)
 	if(alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
@@ -49,8 +43,6 @@
 	name = "[core_name] ([str])"
 	label = str
 
-/obj/item/reagent_container/hypospray/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
 /obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)
 	if(!A.reagents)
@@ -182,9 +174,13 @@
 	init_reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
-/obj/item/reagent_container/hypospray/proc/handle_interface(mob/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
+
+/obj/item/reagent_container/hypospray/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat = {"
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
@@ -195,15 +191,18 @@
 	<B>Current Transfer Amount [amount_per_transfer_from_this]</B><BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
-	<BR>
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+	<BR>"}
+	
+	var/datum/browser/popup = new(user, "hypospray")
+	popup.set_content(dat)
+	popup.open()
 
-/obj/item/reagent_container/hypospray/advanced/handle_interface(mob/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
+
+/obj/item/reagent_container/hypospray/advanced/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	var/dat = {"
 	<B><A href='?src=\ref[src];autolabeler=1'>Activate Autolabeler</A></B><BR>
 	<B>Current Label:</B> [label]<BR>
 	<BR>
@@ -217,96 +216,51 @@
 	<BR>
 	<BR>
 	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
-	<BR>
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+	<BR>"}
 
-//Interface for the hypo
+	var/datum/browser/popup = new(user, "hypospray")
+	popup.set_content(dat)
+	popup.open()
+
+
 /obj/item/reagent_container/hypospray/Topic(href, href_list)
-	//..()
-	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
+	. = ..()
+	if(.)
 		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		if(href_list["inject_mode"])
-			if(inject_mode)
-				to_chat(usr, "<span class='notice'>[src] has been set to draw mode. It will now drain reagents.</span>")
-			else
-				to_chat(usr, "<span class='notice'>[src] has been set to inject mode. It will now inject reagents.</span>")
-			inject_mode = !inject_mode
-			update_icon()
 
-		else if(href_list["autolabeler"])
-			label(usr)
-
-		else if(href_list["set_transfer"])
-			set_APTFT()
-
-		else if(href_list["flush"])
-			empty(usr)
-
-		if(!( master ))
-			if(ishuman(loc))
-				handle_interface(loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, src))
-					if(M.client)
-						handle_interface(M)
+	if(href_list["inject_mode"])
+		if(inject_mode)
+			to_chat(usr, "<span class='notice'>[src] has been set to draw mode. It will now drain reagents.</span>")
 		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, master))
-					if(M.client)
-						handle_interface(M)
-	else
-		usr << browse(null, "window=radio")
+			to_chat(usr, "<span class='notice'>[src] has been set to inject mode. It will now inject reagents.</span>")
+		inject_mode = !inject_mode
+		update_icon()
 
-//Interface for the hypo
+	else if(href_list["autolabeler"])
+		label(usr)
+
+	else if(href_list["set_transfer"])
+		var/N = input("Amount per transfer from this:", "[src]") as null|anything in list(1, 3, 5, 10, 15)
+		if(!N)
+			return
+			
+		amount_per_transfer_from_this = N
+
+	else if(href_list["flush"])
+		empty(usr)
+
+	updateUsrDialog()
+
+
 /obj/item/reagent_container/hypospray/advanced/Topic(href, href_list)
-	//..()
-	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
+	. = ..()
+	if(.)
 		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		if(href_list["inject_mode"])
-			if(inject_mode)
-				to_chat(usr, "<span class='notice'>[src] has been set to draw mode. It will now drain reagents.</span>")
-			else
-				to_chat(usr, "<span class='notice'>[src] has been set to inject mode. It will now inject reagents.</span>")
-			inject_mode = !inject_mode
-			update_icon()
 
-		else if(href_list["autolabeler"])
-			label(usr)
+	if(href_list["displayreagents"])
+		display_reagents(usr)
 
-		else if(href_list["set_transfer"])
-			set_APTFT()
 
-		else if(href_list["displayreagents"])
-			display_reagents(usr)
-
-		else if(href_list["flush"])
-			empty(usr)
-
-		if(!( master ))
-			if(ishuman(loc))
-				handle_interface(loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, src))
-					if(M.client)
-						handle_interface(M)
-		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, master))
-					if(M.client)
-						handle_interface(M)
-	else
-		usr << browse(null, "window=radio")
 
 /obj/item/reagent_container/hypospray/advanced/tricordrazine
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)

@@ -40,7 +40,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5

@@ -3,18 +3,12 @@
 	desc = "A shuttle control computer."
 	icon_state = "syndishuttle"
 	req_access = list( )
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
 	var/no_destination_swap = FALSE
 
-/obj/machinery/computer/shuttle/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(!user || user.incapacitated())
-		return
-	ui_interact(user)
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
 	. = ..()
@@ -35,7 +29,6 @@
 			if(admin_controlled)
 				dat += "Authorized personnel only<br>"
 				dat += "<A href='?src=[REF(src)];request=1]'>Request Authorization</A><br>"
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>[M ? M.name : "shuttle"]</div>", 300, 200)
 	popup.set_content("<center>[dat]</center>")

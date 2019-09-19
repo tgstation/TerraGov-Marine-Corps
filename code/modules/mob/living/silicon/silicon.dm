@@ -5,6 +5,7 @@
 	verb_exclaim = "declares"
 	verb_yell = "alarms"
 	speech_span = SPAN_ROBOT
+	dextrous = TRUE
 
 	initial_language_holder = /datum/language_holder/synthetic
 
@@ -89,12 +90,8 @@
 	return ..()
 
 
-/mob/living/silicon/stun_effect_act(stun_amount, agony_amount)
+/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone)
 	return
-
-
-/mob/living/silicon/IsAdvancedToolUser()
-	return TRUE
 
 
 /mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = FALSE)

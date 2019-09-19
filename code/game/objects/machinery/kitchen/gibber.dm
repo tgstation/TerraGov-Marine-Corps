@@ -44,13 +44,11 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
 	if(operating)
 		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
-	else
-		src.startgibbing(user)
+	
+	startgibbing(user)
 
 /obj/machinery/gibber/attackby(obj/item/grab/I, mob/user, param)
 	. = ..()
