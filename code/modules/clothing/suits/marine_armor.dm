@@ -133,7 +133,10 @@
 	name = "\improper M3-P pattern marine armor"
 	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
 	icon_state = "6"
-	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 45)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
 /obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
