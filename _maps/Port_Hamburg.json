@@ -1,0 +1,8 @@
+{
+    "map_name": "Port Hamburg",
+    "map_path": "map_files/Port_Hamburg",
+    "map_file": "Port_Hamburg.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a large W-Y Arms Manufacturing colony, known as Port Hamburg. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the colony. TGMC, gear up and get ready to respond!"
+}

@@ -1,0 +1,8 @@
+{
+    "map_name": "Tyson_Station",
+    "map_path": "map_files/Tyson_Station",
+    "map_file": "Tyson_Station.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a Large Refurbished Deep space outpost, known as Tyson station. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the Station. TGMC, gear up and get ready to respond!"
+}
