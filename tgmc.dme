@@ -1356,7 +1356,6 @@
 #include "code\modules\surgery\organs_internal.dm"
 #include "code\modules\surgery\robolimbs.dm"
 #include "code\modules\surgery\surgery.dm"
-#include "code\modules\tgs\event_handler.dm"
 #include "code\modules\tgs\includes.dm"
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\vehicles\cargo_train.dm"
