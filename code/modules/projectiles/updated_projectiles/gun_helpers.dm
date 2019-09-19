@@ -195,6 +195,14 @@ should be alright.
 			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
 				harness_return(user)
 				return 1
+		else if(istype(src,/obj/item/weapon/gun/minigun))
+			var/obj/item/I = owner.wear_suit
+			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
+				var/obj/item/B = owner.belt
+				if(istype(B,/obj/item/minigun_harness))
+					harness_return(user)
+					return 1
+
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
