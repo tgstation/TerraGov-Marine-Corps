@@ -12,10 +12,8 @@ fi
 mkdir -p \
     $1/_maps \
     $1/icons \
-    $1/sound/chatter \
-    $1/sound/voice/complionator \
-    $1/sound/instruments \
-    $1/strings
+    $1/strings \
+    $1/config
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
@@ -23,6 +21,7 @@ if [ -d ".git" ]; then
 fi
 
 cp tgmc.dmb tgmc.rsc $1/
+cp -r config/* $1/config/
 cp -r _maps/* $1/_maps/
 cp -r strings/* $1/strings/
 
