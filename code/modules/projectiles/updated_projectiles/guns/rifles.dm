@@ -79,7 +79,7 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 4
+	fire_delay = 0.4 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 
@@ -160,7 +160,6 @@
 
 	accuracy_mult = 1.05
 	fire_delay = 0.25 SECONDS
-	damage_mult = 0.8
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
@@ -174,7 +173,6 @@
 	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
-	damage_mult = 0.8
 	
 
 
@@ -262,7 +260,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
 	fire_delay = 5
-	burst_amount = 4
+	burst_amount = 3
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	scatter = 15
@@ -296,7 +294,6 @@
 	burst_amount = 2
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.8
-	damage_mult = 0.9
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -325,4 +322,3 @@
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
-	damage_mult = 0.9

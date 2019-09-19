@@ -456,8 +456,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	accuracy = -15
-	damage = 50
-	penetration = 0
+	damage = 30
+	penetration = 20
 
 /*
 //================================================
