@@ -133,7 +133,6 @@
 	accuracy_mult_unwielded = 1.25
 	scatter = 25
 	scatter_unwielded = 40
-	damage_mult = 1.2
 
 
 //-------------------------------------------------------
@@ -166,7 +165,7 @@
 	accuracy_mult_unwielded = 1.25
 	scatter = 35
 	scatter_unwielded = 45
-	damage_mult = 1.4
+	damage_mult = 1.2
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
