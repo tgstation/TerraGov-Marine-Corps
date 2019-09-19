@@ -8429,7 +8429,6 @@
 /area/lv624/lazarus/secure_storage)
 "axO" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -8442,7 +8441,6 @@
 	})
 "axQ" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -8506,7 +8504,6 @@
 /area/lv624/lazarus/secure_storage)
 "axW" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -8544,7 +8541,6 @@
 	})
 "axY" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/structure/cable/yellow{

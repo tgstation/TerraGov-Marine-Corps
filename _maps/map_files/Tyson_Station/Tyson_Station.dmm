@@ -1021,7 +1021,6 @@
 /area/hallway/secondary/entry)
 "adG" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /turf/open/floor/carpet{
@@ -1082,7 +1081,6 @@
 /area/security/main)
 "adP" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 1
 	},
 /obj/effect/landmark/start/surv_spawn,
@@ -1097,7 +1095,6 @@
 /area/hallway/secondary/entry)
 "adR" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 1
 	},
 /turf/open/floor/carpet{
@@ -5704,7 +5701,6 @@
 /area/shuttle/drop2/lz2)
 "ati" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9037,7 +9033,6 @@
 /area/crew_quarters/toilet)
 "aDk" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -9075,7 +9070,6 @@
 /area/crew_quarters/locker)
 "aDq" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -14604,7 +14598,6 @@
 /area/lv624/lazarus/captain)
 "aVt" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor{
@@ -14617,7 +14610,6 @@
 /area/hallway/primary/aft)
 "aVv" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /turf/open/floor{
@@ -14707,7 +14699,6 @@
 /area/hydroponics)
 "aVI" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 1
 	},
 /turf/open/floor{
@@ -15155,7 +15146,6 @@
 /area/bridge/meeting_room)
 "aWZ" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -15619,7 +15609,6 @@
 /area/crew_quarters/bar)
 "aYp" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
@@ -17230,7 +17219,6 @@
 /area/hydroponics)
 "bcb" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -18543,7 +18531,6 @@
 /area/hallway/primary/aft)
 "bex" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -19448,7 +19435,6 @@
 /area/crew_quarters/bar)
 "bgX" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /obj/item/stack/sheet/cardboard,
