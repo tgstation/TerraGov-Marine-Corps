@@ -20,7 +20,7 @@ matrix:
         - tools/travis/install_build_tools.sh
         - tools/travis/install_spaceman_dmm.sh dreamchecker
       script:
-        - tools/travis/check_filedirs.sh tgstation.dme
+        - tools/travis/check_filedirs.sh tgmc.dme
         - tools/travis/check_changelogs.sh
         - find . -name "*.php" -print0 | xargs -0 -n1 php -l
         - tools/travis/check_grep.sh

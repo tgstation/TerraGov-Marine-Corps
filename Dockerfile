@@ -65,7 +65,7 @@ FROM dm_base as build
 
 COPY . .
 
-RUN DreamMaker -max_errors 0 tgstation.dme && tools/deploy.sh /deploy
+RUN DreamMaker -max_errors 0 tgmc.dme && tools/deploy.sh /deploy
 
 FROM dm_base
 
@@ -91,6 +91,6 @@ COPY --from=build /deploy ./
 #bsql fexists memes
 RUN ln -s /tgstation/libBSQL.so /root/.byond/bin/libBSQL.so
 
-VOLUME [ "/tgstation/config", "/tgstation/data" ]
+VOLUME [ "/tgmc/config", "/tgmc/data" ]
 
-ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
+ENTRYPOINT [ "DreamDaemon", "tgmc.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
