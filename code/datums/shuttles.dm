@@ -128,3 +128,6 @@
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = "tgs_canterbury"
+
+/datum/map_template/shuttle/escape_shuttle
+	shuttle_id = "escape_shuttle"

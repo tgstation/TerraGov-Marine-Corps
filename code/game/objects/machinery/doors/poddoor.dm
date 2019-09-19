@@ -124,7 +124,6 @@
 /obj/machinery/door/poddoor/mainship/cic
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
-	icon_state = "pdoor0"	
 
 /obj/machinery/door/poddooor/mainship/hangar
 	name = "\improper Hangar Lockdown"
