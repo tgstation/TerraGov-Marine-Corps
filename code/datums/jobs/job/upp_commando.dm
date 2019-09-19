@@ -32,7 +32,7 @@
 	back = /obj/item/storage/backpack/lightpack
 
 
-/datum/outfit/job/upp/commando/stanard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/upp/commando/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/upp, SLOT_IN_SUIT)
@@ -79,7 +79,7 @@
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	suit_store = /obj/item/weapon/gun/rifle/type71/carbine/commando
 	r_store = /obj/item/storage/pouch/medkit
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -104,6 +104,10 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/advanced/oxycodone, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/advanced/tricordrazine, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/glass/bottle/tricordrazine, SLOT_IN_L_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
