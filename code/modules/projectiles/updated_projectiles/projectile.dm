@@ -104,7 +104,6 @@
 	scatter		= ammo.scatter
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
-	damage     *= rand(95 - ammo.damage_var_low, 105 + ammo.damage_var_high) * 0.01
 	damage_falloff = ammo.damage_falloff
 	armor_type = ammo.armor_type
 
@@ -544,6 +543,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
+	if(!throwpass)
+		return TRUE
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
@@ -555,8 +556,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				proj.uncross_scheduled += src
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
-	if(!throwpass)
-		return TRUE
 	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
 	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
@@ -581,7 +580,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.uncross_scheduled += src
 		return FALSE
 	return TRUE
-
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target

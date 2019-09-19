@@ -41,8 +41,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/max_range 					= 20 		// This will de-increment a counter on the bullet
 	var/scatter  					= 0 		// How much the ammo scatters when burst fired, added to gun scatter, along with other mods
 	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
-	var/damage_var_low				= 1 		// Same as with accuracy variance
-	var/damage_var_high				= 1
 	var/damage_falloff 				= 1 		// How much damage the bullet loses per turf traveled
 	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/penetration					= 0 		// How much armor it ignores before calculations take place
@@ -308,7 +306,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	shell_speed = 2
 	damage = 15
-	damage_var_high = 9
 
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -362,8 +359,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver_impact"
 	accuracy_var_high = 10
 	damage = 55
-	damage_var_low = 3
-	damage_var_high = 7
 	penetration = 10
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -382,8 +377,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 30
-	damage_var_low = 7
-	damage_var_high = 9
 	accurate_range = 5
 	damage_falloff = 1
 
@@ -412,7 +405,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
 	damage = 40
-	penetration = 5
+	penetration = 0
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -464,7 +457,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle_heavy"
 	accuracy = -15
 	damage = 50
-	penetration = 10
+	penetration = 0
 
 /*
 //================================================
@@ -539,8 +532,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 35
-	damage_var_low = -3
-	damage_var_high = 3
 	damage_falloff = 0.5
 	penetration = 50
 
@@ -551,8 +542,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 35
-	damage_var_low = -3
-	damage_var_high = 3
 	damage_falloff = 0.5
 	penetration = 50
 
@@ -568,8 +557,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 	max_range = 10
 	damage = 70
-	damage_var_low = -7
-	damage_var_high = 7
 	damage_falloff = 5
 	penetration = 0
 
@@ -591,8 +578,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 	max_range = 10
 	damage = 50
-	damage_var_low = -7
-	damage_var_high = 7
 	damage_falloff = 5
 	penetration = 0
 
@@ -639,7 +624,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	iff_signal = ACCESS_IFF_MARINE
 	damage = 90
-	damage_var_high = 3
 	penetration = 0
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -700,7 +684,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
-	penetration = 20
+	penetration = 10
 	damage_falloff = 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
@@ -735,7 +719,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	accurate_range = 5
 	damage = 50
-	penetration = 20
+	penetration = 0
 	shrapnel_chance = 25
 
 /*
@@ -897,8 +881,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage_var_low = 3
-	damage_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
 	name = "laser bolt"
@@ -947,8 +929,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 15
-	damage_var_low = 3
-	damage_var_high = 5
 
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
@@ -1071,8 +1051,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	armor_type = "acid"
 	damage = 20
-	damage_var_low = 3
-	damage_var_high = 7
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
@@ -1164,7 +1142,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
-	damage_var_high = 10
 	damage_type = BURN
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
