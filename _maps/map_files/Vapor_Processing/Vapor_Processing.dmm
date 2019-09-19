@@ -6967,10 +6967,6 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research)
-"ty" = (
-/turf/open/floor,
-/turf/open/floor/plating/dmg2,
-/area/lv624/lazarus/research)
 "tz" = (
 /turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/research)
@@ -7301,7 +7297,6 @@
 	dir = 4
 	},
 /turf/open/floor/grass,
-/turf/open/floor/plating/dmg2,
 /area/lv624/ground/compound/se)
 "ux" = (
 /obj/effect/decal/cleanable/blood,
@@ -14508,7 +14503,7 @@ nh
 mo
 mo
 nI
-ty
+tz
 uv
 tQ
 mw

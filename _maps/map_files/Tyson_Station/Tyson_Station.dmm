@@ -5397,7 +5397,6 @@
 /turf/open/floor,
 /area/security/lobby)
 "asn" = (
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/maintenance/fpmaint)
 "aso" = (
@@ -6124,7 +6123,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/maintenance/fpmaint)
 "aul" = (
@@ -6155,7 +6153,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/maintenance/fpmaint)
 "aup" = (
@@ -9528,7 +9525,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/maintenance/fpmaint)
 "aEQ" = (
@@ -21435,7 +21431,6 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/bigred/ground/central_hall)
 "bmb" = (
@@ -21452,7 +21447,6 @@
 	icon_state = "2-4"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
 /turf/open/floor/plating/dmg2,
 /area/maintenance/aft)
 "bmc" = (
@@ -21468,7 +21462,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/turf/open/floor,
 /turf/open/floor/plating/dmg2,
 /area/hallway/primary/aft)
 "bme" = (
@@ -21484,12 +21477,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor,
 /turf/open/floor/plating/dmg2,
 /area/hallway/primary/aft)
 "bmf" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor,
 /turf/open/floor/plating/dmg2,
 /area/hallway/primary/aft)
 "bmg" = (
