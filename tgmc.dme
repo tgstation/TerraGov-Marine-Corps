@@ -1360,6 +1360,7 @@
 #include "code\modules\surgery\surgery.dm"
 #include "code\modules\tgs\includes.dm"
 #include "code\modules\tooltip\tooltip.dm"
+#include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\cargo_train.dm"
 #include "code\modules\vehicles\powerloader.dm"
 #include "code\modules\vehicles\train.dm"

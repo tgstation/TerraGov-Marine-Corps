@@ -15,6 +15,11 @@
 	msg = "## WARNING: [msg]"
 	log_world(msg)
 
+#ifdef UNIT_TESTS
+/proc/log_test(text)
+	WRITE_LOG(GLOB.test_log, text)
+	SEND_TEXT(world.log, text)
+#endif
 
 /* Items with private are stripped from public logs. */
 /proc/log_admin(text)
