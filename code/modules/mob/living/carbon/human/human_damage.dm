@@ -359,7 +359,7 @@ This function restores all limbs.
 		if(EO.name == zone)
 			return EO
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, sharp = 0, edge = 0, obj/used_weapon = null)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE)
 
 	if(blocked >= 1) //total negation
 		return 0
