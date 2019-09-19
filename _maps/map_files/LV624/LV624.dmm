@@ -18705,8 +18705,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/mar40/carbine,
-/obj/item/weapon/gun/rifle/mar40/carbine,
+/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47/carbine,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "boq" = (
@@ -18717,10 +18717,10 @@
 /area/lv624/lazarus/secure_storage)
 "bor" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bos" = (

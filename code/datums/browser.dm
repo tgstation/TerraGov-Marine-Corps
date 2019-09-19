@@ -154,6 +154,10 @@
 	set_content(output)
 
 
+/datum/browser/can_interact(mob/user)
+	return TRUE
+
+
 /datum/browser/modal/alert/Topic(href,href_list)
 	. = ..()
 	if(.)

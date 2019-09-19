@@ -77,7 +77,7 @@
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, tearing flesh on [target]'s [affected.display_name]!</span>", \
 		"<span class='warning'>Your hand slips, tearing flesh on [target]'s [affected.display_name]!</span>")
-		target.apply_damage(10, BRUTE, affected, sharp = 1)
+		target.apply_damage(10, BRUTE, affected, 0, TRUE)
 		target.updatehealth()
 
 
@@ -153,5 +153,5 @@
 /datum/surgery_step/limb/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s [affected.display_name]!</span>", \
 	"<span class='warning'>Your hand slips, damaging connectors on [target]'s [affected.display_name]!</span>")
-	target.apply_damage(10, BRUTE, affected, sharp = 1)
+	target.apply_damage(10, BRUTE, affected, 0, TRUE)
 	target.updatehealth()
