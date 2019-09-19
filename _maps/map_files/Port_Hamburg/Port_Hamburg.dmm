@@ -8661,7 +8661,6 @@
 "ayk" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (NORTH)";
 	icon_state = "bulb1";
 	dir = 1
 	},
@@ -10685,7 +10684,6 @@
 /area/lv624/lazarus/sleep_male)
 "aDY" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -13550,7 +13548,6 @@
 /area/lv624/ground/compound/se)
 "aLp" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
 	dir = 8
 	},
@@ -16281,7 +16278,6 @@
 /area/lv624/lazarus/sleep_male)
 "aUM" = (
 /obj/structure/bed/chair/wood/wings{
-	tag = "icon-wooden_chair_wings (NORTH)";
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
@@ -16512,7 +16508,6 @@
 /area/lv624/ground/jungle3)
 "aVu" = (
 /obj/structure/bed/chair/wood/wings{
-	tag = "icon-wooden_chair_wings (NORTH)";
 	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
@@ -17323,7 +17318,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -17742,7 +17736,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -18151,7 +18144,6 @@
 	})
 "aZJ" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -18174,7 +18166,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -18232,7 +18223,6 @@
 	})
 "aZS" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
 	dir = 8
 	},
@@ -18256,7 +18246,6 @@
 	})
 "aZV" = (
 /obj/structure/toilet{
-	tag = "icon-toilet00 (NORTH)";
 	icon_state = "toilet00";
 	dir = 1
 	},
@@ -18561,7 +18550,6 @@
 /area/lv624/lazarus/quartstorage)
 "baO" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
 	dir = 8
 	},
@@ -18571,7 +18559,6 @@
 	})
 "baP" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -18611,7 +18598,6 @@
 /area/lv624/lazarus/quart)
 "baV" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -18621,7 +18607,6 @@
 /area/lv624/ground/compound/c)
 "baW" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
 	dir = 8
 	},
@@ -19167,7 +19152,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19239,7 +19223,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19262,7 +19245,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19282,7 +19264,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19302,7 +19283,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19321,7 +19301,6 @@
 	dir = 9
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19347,7 +19326,6 @@
 /area/lv624/ground/jungle4)
 "bcL" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (WEST)";
 	icon_state = "bulb1";
 	dir = 8
 	},
@@ -19359,7 +19337,6 @@
 	})
 "bcN" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},
@@ -19371,7 +19348,6 @@
 	})
 "bcO" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (EAST)";
 	icon_state = "bulb1";
 	dir = 4
 	},

@@ -949,21 +949,18 @@
 /obj/item/tool/surgery/surgicaldrill,
 /turf/open/floor/mainship{
 	dir = 1;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/security/main)
 "adu" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
 /area/hallway/secondary/entry)
 "adv" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -972,7 +969,6 @@
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
@@ -1029,7 +1025,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -1087,7 +1082,6 @@
 /area/security/main)
 "adP" = (
 /obj/structure/bed/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
 	icon_state = "comfychair";
 	dir = 1
 	},
@@ -1103,7 +1097,6 @@
 /area/hallway/secondary/entry)
 "adR" = (
 /obj/structure/bed/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
 	icon_state = "comfychair";
 	dir = 1
 	},
@@ -3468,7 +3461,6 @@
 /area/security/armoury)
 "amj" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor,
@@ -3723,7 +3715,6 @@
 /area/security/brig)
 "amW" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -4022,7 +4013,6 @@
 /area/crew_quarters/sleep/bedrooms)
 "anM" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor/wood,
@@ -4254,7 +4244,6 @@
 /area/crew_quarters)
 "aoz" = (
 /obj/machinery/shower{
-	tag = "icon-shower (EAST)";
 	icon_state = "shower";
 	dir = 4
 	},
@@ -4583,7 +4572,6 @@
 /area/crew_quarters)
 "apC" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5495,7 +5483,6 @@
 /area/hallway/secondary/entry)
 "asD" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor,
@@ -5613,7 +5600,6 @@
 /obj/structure/bed/chair/comfy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -5728,7 +5714,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -6540,7 +6525,7 @@
 "avs" = (
 /obj/structure/window/framed/colony,
 /obj/item/storage/fancy/cigarettes/lucky_strikes{
-	step_x = 31
+	pixel_x = 31
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6718,7 +6703,6 @@
 /obj/item/flashlight/lamp/green,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -6790,7 +6774,6 @@
 /area/crew_quarters)
 "awm" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor/tile/dark/blue2/corner,
@@ -8401,7 +8384,6 @@
 "aBm" = (
 /obj/effect/plantsegment,
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /turf/open/floor,
@@ -8835,7 +8817,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -8873,7 +8854,6 @@
 /obj/structure/closet/secure_closet/hop,
 /obj/structure/closet/secure_closet,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
@@ -8932,7 +8912,6 @@
 /obj/structure/closet/secure_closet/captain,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
@@ -8959,7 +8938,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -8985,7 +8963,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -9001,7 +8978,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -9019,7 +8995,6 @@
 	dir = 9
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -9049,12 +9024,10 @@
 /area/security/brig)
 "aDj" = (
 /obj/machinery/shower{
-	tag = "icon-shower (EAST)";
 	icon_state = "shower";
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
-	tag = "icon-fwindow (NORTH)";
 	icon_state = "fwindow";
 	dir = 1
 	},
@@ -9077,7 +9050,6 @@
 "aDm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
@@ -9116,7 +9088,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -9169,7 +9140,6 @@
 /area/lv624/lazarus/captain)
 "aDC" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -9223,7 +9193,6 @@
 /area/security/brig)
 "aDM" = (
 /obj/structure/toilet{
-	tag = "icon-toilet00 (WEST)";
 	icon_state = "toilet00";
 	dir = 8
 	},
@@ -9282,7 +9251,6 @@
 /area/hallway/primary/starboard)
 "aDX" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /obj/machinery/power/apc/drained{
@@ -9548,7 +9516,6 @@
 "aET" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
@@ -9556,7 +9523,6 @@
 "aEU" = (
 /obj/structure/bed/chair,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -9565,14 +9531,12 @@
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEW" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
@@ -9611,7 +9575,6 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -9641,7 +9604,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -9713,7 +9675,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -9739,7 +9700,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -9770,7 +9730,6 @@
 /area/lv624/lazarus/internal_affairs)
 "aFE" = (
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
@@ -9795,7 +9754,6 @@
 "aFH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -10812,7 +10770,6 @@
 	dir = 4
 	},
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-22"
 	},
 /obj/machinery/light{
@@ -12306,16 +12263,14 @@
 /area/mainship/hallways/port_hallway)
 "aNX" = (
 /turf/open/floor/mainship{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/medical/medbay2)
 "aNY" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship{
 	dir = 2;
-	icon_state = "sterile_green_corner";
-	tag = "icon-sterile_green_corner (NORTH)"
+	icon_state = "sterile_green_corner"
 	},
 /area/medical/medbay2)
 "aNZ" = (
@@ -12534,8 +12489,7 @@
 	},
 /turf/open/floor/mainship{
 	dir = 8;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/medical/medbay2)
 "aOD" = (
@@ -12545,8 +12499,7 @@
 	},
 /turf/open/floor/mainship{
 	dir = 4;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/medical/medbay2)
 "aOE" = (
@@ -12681,8 +12634,7 @@
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship{
 	dir = 2;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/medical/medbay2)
 "aPe" = (
@@ -12691,8 +12643,7 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/mainship{
 	dir = 2;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/medical/medbay2)
 "aPf" = (
@@ -12701,7 +12652,6 @@
 /obj/item/reagent_container/spray/surgery,
 /obj/item/autopsy_scanner,
 /turf/open/floor/mainship{
-	tag = "icon-sterile_green_corner (EAST)";
 	icon_state = "sterile_green_corner";
 	dir = 4
 	},
@@ -12929,7 +12879,6 @@
 /area/medical/chemistry)
 "aPU" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-22"
 	},
 /turf/open/floor/tile/bar,
@@ -13063,8 +13012,7 @@
 /obj/effect/spawner/random/bomb_supply,
 /turf/open/floor/mainship{
 	dir = 2;
-	icon_state = "sterile_green_side";
-	tag = "icon-sterile_green_side"
+	icon_state = "sterile_green_side"
 	},
 /area/medical/chemistry)
 "aQp" = (
@@ -13298,7 +13246,6 @@
 /area/lv624/lazarus/atmos)
 "aRh" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (NORTH)";
 	icon_state = "term";
 	dir = 1
 	},
@@ -13552,7 +13499,6 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -13743,7 +13689,6 @@
 /area/security/warden)
 "aSE" = (
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -14139,7 +14084,6 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -14543,7 +14487,6 @@
 	d2 = 8
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -14560,7 +14503,6 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -14587,20 +14529,17 @@
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
 "aVj" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
 "aVk" = (
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -14669,7 +14608,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -14683,7 +14621,6 @@
 	dir = 8
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -14726,7 +14663,6 @@
 	},
 /obj/effect/landmark/corpsespawner/commander,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -14771,12 +14707,10 @@
 /area/hydroponics)
 "aVI" = (
 /obj/structure/bed/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
 	icon_state = "comfychair";
 	dir = 1
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -14804,7 +14738,6 @@
 /obj/effect/spawner/random/powercell,
 /obj/item/reagent_container/food/snacks/mushroompizzaslice,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -14973,7 +14906,6 @@
 "aWj" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -15180,7 +15112,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -15200,7 +15131,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -15651,14 +15581,12 @@
 /obj/structure/bed/chair/comfy,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
 "aYj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -15686,7 +15614,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -15697,7 +15624,6 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -16483,7 +16409,6 @@
 /area/lv624/lazarus/engineering)
 "baq" = (
 /obj/machinery/power/terminal{
-	tag = "icon-term (NORTH)";
 	icon_state = "term";
 	dir = 1
 	},
@@ -16610,7 +16535,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_container/food/snacks/orangecakeslice,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -16878,7 +16802,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
@@ -17293,7 +17216,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -17317,7 +17239,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -17425,7 +17346,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -17450,7 +17370,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -17523,7 +17442,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
@@ -17564,7 +17482,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
@@ -17593,7 +17510,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHEAST)";
 	icon_state = "carpetside";
 	dir = 5
 	},
@@ -17621,7 +17537,6 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTHWEST)";
 	icon_state = "carpetside";
 	dir = 9
 	},
@@ -17672,7 +17587,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (WEST)";
 	icon_state = "carpetside";
 	dir = 8
 	},
@@ -18416,7 +18330,6 @@
 	d2 = 8
 	},
 /turf/open/floor/mainship{
-	tag = "icon-sterile_green_corner (NORTH)";
 	icon_state = "sterile_green_corner";
 	dir = 1
 	},
@@ -18432,8 +18345,7 @@
 	d2 = 8
 	},
 /turf/open/floor/mainship{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/medical/medbay2)
 "bee" = (
@@ -18495,7 +18407,6 @@
 	dir = 1
 	},
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-22"
 	},
 /obj/machinery/power/apc/drained,
@@ -18632,7 +18543,6 @@
 /area/hallway/primary/aft)
 "bex" = (
 /obj/structure/bed/chair/comfy{
-	tag = "icon-comfychair (NORTH)";
 	icon_state = "comfychair";
 	dir = 1
 	},
@@ -18642,7 +18552,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
@@ -19000,7 +18909,6 @@
 "bfE" = (
 /obj/effect/plantsegment,
 /obj/structure/flora/pottedplant{
-	tag = "icon-plant-10";
 	icon_state = "plant-21"
 	},
 /obj/effect/landmark/corpsespawner/security,
@@ -19350,7 +19258,6 @@
 "bgn" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (EAST)";
 	icon_state = "carpetside";
 	dir = 4
 	},
@@ -19359,7 +19266,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHEAST)";
 	icon_state = "carpetside";
 	dir = 6
 	},
@@ -19530,7 +19436,6 @@
 /obj/structure/table/woodentable,
 /obj/item/stack/sheet/cloth,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -19538,7 +19443,6 @@
 /obj/structure/table/woodentable,
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -19549,7 +19453,6 @@
 	},
 /obj/item/stack/sheet/cardboard,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -19561,7 +19464,6 @@
 /obj/item/stack/sheet/mineral/uranium,
 /obj/item/stack/sheet/mineral/uranium,
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -19967,8 +19869,7 @@
 	},
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/mainship{
-	icon_state = "dark_sterile";
-	tag = "icon-sterile"
+	icon_state = "dark_sterile"
 	},
 /area/medical/medbay2)
 "bil" = (
@@ -19985,8 +19886,7 @@
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/mainship{
 	dir = 8;
-	icon_state = "sterile_green_corner";
-	tag = "icon-sterile_green_corner"
+	icon_state = "sterile_green_corner"
 	},
 /area/medical/medbay2)
 "bip" = (
@@ -20111,7 +20011,6 @@
 	d2 = 8
 	},
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (NORTH)";
 	icon_state = "bulb1";
 	dir = 1
 	},
@@ -20164,7 +20063,6 @@
 /area/security/vacantoffice)
 "biQ" = (
 /obj/machinery/light/small{
-	tag = "icon-bulb1 (NORTH)";
 	icon_state = "bulb1";
 	dir = 1
 	},
@@ -20491,7 +20389,6 @@
 	dir = 4
 	},
 /turf/open/floor{
-	tag = "icon-darkredcorners2";
 	icon_state = "darkredcorners2"
 	},
 /area/crew_quarters/bar)
@@ -20538,7 +20435,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -20579,7 +20475,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (NORTH)";
 	icon_state = "carpetside";
 	dir = 1
 	},
@@ -20874,7 +20769,6 @@
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
@@ -20885,7 +20779,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	tag = "icon-carpetside (SOUTHWEST)";
 	icon_state = "carpetside";
 	dir = 10
 	},
