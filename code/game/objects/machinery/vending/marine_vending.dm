@@ -678,6 +678,7 @@
 					/obj/item/clothing/suit/storage/marine/M3P = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/M3E = 10,
+					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
 					/obj/item/clothing/mask/rebreather = 10,
