@@ -75,11 +75,11 @@
 	var/mob/living/carrier = source
 	if(!isturf(carrier.loc) || carrier.buckled)
 		return //People can safely move inside a vehicle or on a roller bed/chair.
-	. = carrier.embedded_objects[src]
-	if(. == carrier)
+	var/embedded_thing = carrier.embedded_objects[src]
+	if(embedded_thing == carrier)
 		//carbon stuff
-	else if(istype(., /datum/limb))
-		var/datum/limb/limb_loc = .
+	else if(istype(embedded_thing, /datum/limb))
+		var/datum/limb/limb_loc = embedded_thing
 		limb_loc.process_embedded(src)
 	else
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
