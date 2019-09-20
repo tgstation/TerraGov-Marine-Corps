@@ -471,7 +471,7 @@
 		if(CHARGE_CRUSH)
 			knock_down(CHARGE_SPEED(charge_datum) * 4)
 		if(CHARGE_BULL_HEADBUTT)
-			knock_down(CHARGE_SPEED(charge_datum) * 2)
+			knock_down(CHARGE_SPEED(charge_datum) * 3)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
