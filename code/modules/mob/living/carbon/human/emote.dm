@@ -392,10 +392,10 @@
 /datum/emote/living/carbon/human/gored/get_sound(mob/living/carbon/human/user)
 	if(!user.species)
 		return
-	if(user.species.paincries[user.gender])
-		return user.species.paincries[user.gender]
-	if(user.species.paincries[NEUTER])
-		return user.species.paincries[NEUTER]
+	if(user.species.goredcries[user.gender])
+		return user.species.goredcries[user.gender]
+	if(user.species.goredcries[NEUTER])
+		return user.species.goredcries[NEUTER]
 
 
 /datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
