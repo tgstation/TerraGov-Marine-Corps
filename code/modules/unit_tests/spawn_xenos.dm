@@ -9,18 +9,18 @@
 	
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
-		X.update(1)
+		X.upgrade_xeno(1)
 
 	sleep(10)
 	
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
-		X.update(2)
+		X.upgrade_xeno(2)
 
 	sleep(10)
 	
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
-		X.update(3)
+		X.upgrade_xeno(3)
 
 	sleep(10)
