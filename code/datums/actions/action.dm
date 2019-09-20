@@ -81,6 +81,7 @@
 	M.update_action_buttons()
 	M.actions_by_path[type] = src
 
+
 /datum/action/proc/remove_action(mob/M)
 	if(M.client)
 		M.client.screen -= button
