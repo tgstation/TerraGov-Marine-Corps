@@ -26,6 +26,7 @@
 	var/steps_for_charge = 5
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 40
+	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -134,7 +135,7 @@
 /datum/action/xeno_action/ready_charge/proc/do_stop_momentum(message = TRUE)
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(message && valid_steps_taken >= steps_for_charge) //Message now happens without a stun condition
-		charger.visible_message("<span class='danger'>[src] skids to a halt!</span>",
+		charger.visible_message("<span class='danger'>[charger] skids to a halt!</span>",
 		"<span class='xenowarning'>We skid to a halt.</span>", null, 5)
 	valid_steps_taken = 0
 	next_move_limit = 0
@@ -499,13 +500,15 @@
 			return COMPONENT_MOVABLE_PREBUMP_PLOWED
 	
 		if(CHARGE_BULL_GORE)
-			attack_alien(charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
-			emote_gored()
-			var/turf/destination = get_step(loc, charger.dir)
-			if(destination)
-				throw_at(destination, 1, 1, charger, FALSE)
-			charger.visible_message("<span class='danger'>[charger] gores [src]!</span>",
-				"<span class='xenowarning'>We gore[src] and skid to a halt!</span>")
+			if(world.time > charge_datum.next_special_attack)
+				charge_datum.next_special_attack = world.time + 2 SECONDS
+				attack_alien(charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				emote_gored()
+				var/turf/destination = get_step(loc, charger.dir)
+				if(destination)
+					throw_at(destination, 1, 1, charger, FALSE)
+				charger.visible_message("<span class='danger'>[charger] gores [src]!</span>",
+					"<span class='xenowarning'>We gore [src] and skid to a halt!</span>")
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
