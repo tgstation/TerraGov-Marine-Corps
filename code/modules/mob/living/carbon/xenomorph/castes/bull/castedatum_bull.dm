@@ -69,7 +69,7 @@
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
-/datum/xeno_caste/warrior/elder
+/datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
 	caste_desc = "A bright red alien with a matching temper. It looks pretty strong."
 
