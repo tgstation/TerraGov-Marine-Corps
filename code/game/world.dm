@@ -51,8 +51,23 @@ GLOBAL_VAR(restart_counter)
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
+	if(TEST_RUN_PARAMETER in params)
+		HandleTestRun()
+
 	return ..()
 
+/world/proc/HandleTestRun()
+	//trigger things to run the whole process
+	Master.sleep_offline_after_initializations = FALSE
+	SSticker.start_immediately = TRUE
+	CONFIG_SET(number/round_end_countdown, 0)
+	var/datum/callback/cb
+#ifdef UNIT_TESTS
+	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+#else
+	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
+#endif
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
