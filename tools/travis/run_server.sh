@@ -2,10 +2,12 @@
 set -euo pipefail
 
 tools/deploy.sh travis_test
-mkdir travis_test/config
+mkdir -p travis_test/config
 
 #test config
 cp tools/travis/travis_config.txt travis_test/config/config.txt
+cp config/maps.txt travis_test/config/maps.txt
+cp config/shipmaps.txt travis_test/config/maps.txt
 
 cd travis_test
 ln -s $HOME/libmariadb/libmariadb.so libmariadb.so
