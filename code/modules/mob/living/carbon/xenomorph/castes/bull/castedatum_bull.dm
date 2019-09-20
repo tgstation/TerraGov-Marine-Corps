@@ -38,6 +38,13 @@
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/ready_charge/bull_charge,
+		/datum/action/xeno_action/toggle_charge_type
+		)
+
 /datum/xeno_caste/bull/young
 	upgrade_name = "Young"
 
