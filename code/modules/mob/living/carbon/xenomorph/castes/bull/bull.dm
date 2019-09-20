@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/bull
 	caste_base_type = /mob/living/carbon/xenomorph/bull
 	name = "Bull"
-	desc = "A huge alien with an enormous armored head crest."
+	desc = "A bright red alien with a matching temper."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Bull Walking"
 	health = 160
@@ -9,9 +9,7 @@
 	plasma_stored = 200
 	speed = -1
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_BASETYPE
-	drag_delay = 6 //pulling a big dead xeno is hard
-	mob_size = MOB_SIZE_BIG
+	upgrade = XENO_UPGRADE_ZERO
 
 	pixel_x = -16
 	pixel_y = -3

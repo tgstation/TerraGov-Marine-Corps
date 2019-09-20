@@ -466,8 +466,11 @@
 		step(src, charger.dir)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-	if(charge_datum.charge_type & (CHARGE_CRUSH|CHARGE_BULL_HEADBUTT))
-		knock_down(CHARGE_SPEED(charge_datum) * 4)
+	switch(charge_datum.charge_type)
+		if(CHARGE_CRUSH)
+			knock_down(CHARGE_SPEED(charge_datum) * 4)
+		if(CHARGE_BULL_HEADBUTT)
+			knock_down(CHARGE_SPEED(charge_datum) * 2)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
