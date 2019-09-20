@@ -163,13 +163,13 @@ they're not supposed to be thrown. Either way, this fix
 should be alright.
 */
 /obj/item/weapon/gun/proc/harness_check(mob/user)
-    if(user && ishuman(user))
-        var/mob/living/carbon/human/owner = user
-        if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
-            var/obj/item/I = owner.wear_suit
-            if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
-                harness_return(user)
-                return 1
+	if(user && ishuman(user))
+		var/mob/living/carbon/human/owner = user
+		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
+			var/obj/item/I = owner.wear_suit
+			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
+				harness_return(user)
+				return 1
 
 /obj/item/weapon/gun/minigun/harness_check(mob/user)
 	if(user && ishuman(user))
