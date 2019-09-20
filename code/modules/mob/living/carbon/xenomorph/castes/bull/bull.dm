@@ -16,13 +16,6 @@
 	old_x = -16
 	old_y = -3
 
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/ready_charge/bull_charge,
-		/datum/action/xeno_action/toggle_charge_type
-		)
-
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()
 	if(is_charging >= CHARGE_ON)
