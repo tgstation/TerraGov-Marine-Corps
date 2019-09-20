@@ -13,7 +13,7 @@ Format:
 endmap
 
 map lv624
-		default
+	default
 endmap
 
 map urbania 
