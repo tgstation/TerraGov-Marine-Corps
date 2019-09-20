@@ -9,6 +9,7 @@
 	"<span class='xenonotice'>We begin to twist and contort.</span>")
 	do_jitter_animation(1000)
 	set_datum()
+	add_abilities()
 
 	switch(upgrade)
 		//FIRST UPGRADE

@@ -47,6 +47,21 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/grow_ovipositor,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/toggle_pheromones
+		)
+
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_ZERO
 
