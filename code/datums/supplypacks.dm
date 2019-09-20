@@ -243,7 +243,8 @@ WEAPONS
 /datum/supply_packs/specminigun
 	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
 	contains = list(
-					/obj/item/weapon/gun/minigun
+					/obj/item/weapon/gun/minigun,
+					/obj/item/minigun_harness
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
