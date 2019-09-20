@@ -43,7 +43,7 @@
 	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/attachable/stock/smg, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/advanced/oxycodone, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
@@ -89,7 +89,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/advanced/oxycodone, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/mine/pmc, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 
@@ -137,7 +137,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/advanced/tricordrazine, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_BACKPACK)
 
 
 //PMC Leader
