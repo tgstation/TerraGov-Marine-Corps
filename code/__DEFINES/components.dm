@@ -318,6 +318,21 @@
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
+// /datum/component/plasma signals
+#define COMPONENT_CHECK_PLASMA_AMOUNT "check_plasma_amount"
+	#define COMPONENT_PLASMA_SUFFICIENT 1
+	#define COMPONENT_PLASMA_INSUFFICIENT 2
+#define COMPONENT_ADD_PLASMA_AMOUNT "add_plasma_amount"
+	#define COMPONENT_PLASMA_OVERFLOW 1
+	#define COMPONENT_PLASMA_ADDED 2
+#define COMPONENT_REMOVE_PLASMA_AMOUNT "remove_plasma_amount"
+	#define COMPONENT_PLASMA_ZEROED 1
+	#define COMPONENT_PLASMA_REMOVED 2
+#define COMPONENT_TRANSFER_PLASMA_FROM "transfer_plasma_from"
+	#define COMPONENT_TARGET_PLASMALESS 1
+	#define COMPONENT_PLASMA_TRANSFERRED 2
+
+
 /*******Non-Signal Component Related Defines*******/
 
 //Redirection component init flags

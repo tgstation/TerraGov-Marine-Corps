@@ -233,6 +233,7 @@
 #include "code\datums\components\component.dm"
 #include "code\datums\components\full_auto_fire.dm"
 #include "code\datums\components\orbiter.dm"
+#include "code\datums\components\plasma.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\signal_redirect.dm"
 #include "code\datums\components\squeak.dm"
