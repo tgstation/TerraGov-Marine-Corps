@@ -23,8 +23,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 /datum/chatOutput/proc/start()
 	//Check for existing chat
-	if(!owner)
+	if(QDELETED(owner))
 		return FALSE
+
+	if(!istype(owner))
+		CRASH("chatOutput/proc/start() called with owner of type: [owner?.type]")
 
 	if(!winexists(owner, "browseroutput")) // Oh goddamnit.
 		set waitfor = FALSE
