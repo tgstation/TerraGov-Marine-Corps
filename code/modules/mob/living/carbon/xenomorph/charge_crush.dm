@@ -1,6 +1,11 @@
 #define CHARGE_SPEED(charger) (min(charger.valid_steps_taken, charger.max_steps_buildup) * charger.speed_per_step)
 #define CHARGE_MAX_SPEED (speed_per_step * max_steps_buildup)
 
+#define CHARGE_CRUSH (1<<0)
+#define CHARGE_BULL (1<<1)
+#define CHARGE_BULL_HEADBUTT (1<<2)
+#define CHARGE_BULL_GORE (1<<3)
+
 // ***************************************
 // *********** Charge
 // ***************************************
@@ -8,16 +13,19 @@
 /datum/action/xeno_action/ready_charge
 	name = "Toggle Charging"
 	action_icon_state = "ready_charge"
-	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
+	mechanics_text = "Toggles the movement-based charge on and off."
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
+	var/charge_type = CHARGE_CRUSH
 	var/next_move_limit = 0
 	var/turf/lastturf = null
 	var/charge_dir = null
 	var/charge_ability_on = FALSE
 	var/valid_steps_taken = 0
+	var/crush_sound = "punch"
 	var/speed_per_step = 0.15
 	var/steps_for_charge = 5
 	var/max_steps_buildup = 14
+	var/crush_living_damage = 40
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -186,24 +194,29 @@
 
 	if(valid_steps_taken > steps_for_charge)
 		charger.plasma_stored -= round(CHARGE_SPEED(src)) //Eats up plasma the faster you go.
-		if(MODULUS(valid_steps_taken, 4) == 0)
-			playsound(charger, "alien_charge", 50)
 
-		var/shake_dist = min(round(CHARGE_SPEED(src) * 5), 8)
-		for(var/mob/living/carbon/victim in range(shake_dist, charger))
-			if(isxeno(victim))
-				continue
-			if(victim.stat == DEAD)
-				continue
-			if(victim.client)
-				shake_camera(victim, 1, 1)
-			if(victim.loc != charger.loc || !victim.lying || isnestedhost(victim))
-				continue
-			charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
-				"<span class='danger'>We run [victim] over!</span>", null, 5)
-			victim.take_overall_damage(CHARGE_SPEED(src) * 10)
-			animation_flash_color(victim)
-	
+		switch(charge_type)
+			if(CHARGE_CRUSH) //Xeno Crusher
+				if(MODULUS(valid_steps_taken, 4) == 0)
+					playsound(charger, "alien_charge", 50)
+				var/shake_dist = min(round(CHARGE_SPEED(src) * 5), 8)
+				for(var/mob/living/carbon/victim in range(shake_dist, charger))
+					if(isxeno(victim))
+						continue
+					if(victim.stat == DEAD)
+						continue
+					if(victim.client)
+						shake_camera(victim, 1, 1)
+					if(victim.loc != charger.loc || !victim.lying || isnestedhost(victim))
+						continue
+					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
+						"<span class='danger'>We run [victim] over!</span>", null, 5)
+					victim.take_overall_damage(CHARGE_SPEED(src) * 10)
+					animation_flash_color(victim)
+			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
+				if(MODULUS(valid_steps_taken, 4) == 0)
+					playsound(charger, "alien_footstep_large", 50)
+
 	lastturf = charger.loc
 
 
@@ -223,6 +236,11 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
+
+	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE) && !isliving(crushed))
+		do_stop_momentum()
+		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+
 	. = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
 	switch(.)
 		if(null)
@@ -231,6 +249,24 @@
 			return //Already handled, no need to continue.
 	
 	var/preserved_name = crushed.name
+
+	if(isliving(crushed))
+		var/mob/living/crushed_living = crushed
+		
+		playsound(crushed_living.loc, crush_sound, 25, 1)
+		if(crushed_living.buckled)
+			crushed_living.buckled.unbuckle()
+		animation_flash_color(crushed_living)
+
+		if(. > 0)
+			log_combat(charger, crushed_living, "xeno charged")
+			crushed_living.apply_damage(., BRUTE, "chest")
+			if(QDELETED(crushed_living))
+				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
+				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
+				return COMPONENT_MOVABLE_PREBUMP_PLOWED
+
+		return crushed_living.post_crush_act(charger, src)
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
@@ -242,24 +278,6 @@
 			return COMPONENT_MOVABLE_PREBUMP_PLOWED
 		
 		return crushed_obj.post_crush_act(charger, src)
-
-	if(isliving(crushed))
-		var/mob/living/crushed_living = crushed
-		
-		playsound(crushed_living.loc, "punch", 25, 1)
-		if(crushed_living.buckled)
-			crushed_living.buckled.unbuckle()
-		animation_flash_color(crushed_living)
-
-		if(. > 0)
-			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(., BRUTE)
-			if(QDELETED(crushed_living))
-				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
-				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
-				return COMPONENT_MOVABLE_PREBUMP_PLOWED
-
-		return crushed_living.post_crush_act(charger, src)
 
 	if(isturf(crushed))
 		var/turf/crushed_turf = crushed
@@ -276,6 +294,39 @@
 		"<span class='xenowarning'>We ram into [crushed_turf] and skid to a halt!</span>")
 		do_stop_momentum(FALSE)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+
+
+/datum/action/xeno_action/ready_charge/bull_charge
+	charge_type = CHARGE_BULL
+	speed_per_step = 0.1
+	steps_for_charge = 3
+	max_steps_buildup = 10
+	crush_living_damage = 40 // This is multiplied by speed, which in this case will range from 0.1 to 1.
+
+
+/datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, .proc/toggle_charge_type)
+
+
+/datum/action/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE)
+	return ..()
+
+
+/datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source)
+	switch(charge_type)
+		if(CHARGE_BULL)
+			charge_type = CHARGE_BULL_HEADBUTT
+			to_chat(owner, "<span class='notice'>Now headbutting on impact.</span>")
+		if(CHARGE_BULL_HEADBUTT)
+			charge_type = CHARGE_BULL_GORE
+			crush_sound = "alien_tail_attack"
+			to_chat(owner, "<span class='notice'>Now goring on impact.</span>")
+		if(CHARGE_BULL_GORE)
+			charge_type = CHARGE_BULL
+			crush_sound = initial(crush_sound)
+			to_chat(owner, "<span class='notice'>Now charging normally.</span>")
 
 
 // ***************************************
@@ -312,7 +363,7 @@
 
 
 /mob/living/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	return (stat == DEAD ? 0 : CHARGE_SPEED(charge_datum) * 40)
+	return (stat == DEAD ? 0 : CHARGE_SPEED(charge_datum) * charge_datum.crush_living_damage)
 
 
 //Special override case. May not call the parent.
@@ -415,7 +466,8 @@
 		step(src, charger.dir)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-	knock_down(CHARGE_SPEED(charge_datum) * 4)
+	if(charge_datum.charge_type & (CHARGE_CRUSH|CHARGE_BULL_HEADBUTT))
+		knock_down(CHARGE_SPEED(charge_datum) * 4)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -423,23 +475,69 @@
 			"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-	var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
-	var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)	
-	var/turf/destination = loc
-	var/turf/temp
+	switch(charge_datum.charge_type)
+		if(CHARGE_CRUSH, CHARGE_BULL)
+			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
+			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)	
+			var/turf/destination = loc
+			var/turf/temp
 
-	for(var/i in 1 to fling_dist)
-		temp = get_step(destination, fling_dir)
-		if(!temp)
-			break
-		destination = temp
-	if(destination != loc)
-		throw_at(destination, fling_dist, 1, charger, TRUE)
+			for(var/i in 1 to fling_dist)
+				temp = get_step(destination, fling_dir)
+				if(!temp)
+					break
+				destination = temp
+			if(destination != loc)
+				throw_at(destination, fling_dist, 1, charger, TRUE)
 
-	charger.visible_message("<span class='danger'>[charger] rams [src]!</span>",
-	"<span class='xenodanger'>We ram [src]!</span>")
-	charge_datum.speed_down(1) //Lose one turf worth of speed.
-	return COMPONENT_MOVABLE_PREBUMP_PLOWED
+			charger.visible_message("<span class='danger'>[charger] rams [src]!</span>",
+			"<span class='xenodanger'>We ram [src]!</span>")
+			charge_datum.speed_down(1) //Lose one turf worth of speed.
+			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+	
+		if(CHARGE_BULL_GORE)
+			attack_alien(charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+			emote_gored()
+			var/turf/destination = get_step(loc, charger.dir)
+			if(destination)
+				throw_at(destination, 1, 1, charger, FALSE)
+			charger.visible_message("<span class='danger'>[charger] gores [src]!</span>",
+				"<span class='xenowarning'>We gore[src] and skid to a halt!</span>")
+
+		if(CHARGE_BULL_HEADBUTT)
+			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
+			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)	
+			var/turf/destination = loc
+			var/turf/temp
+
+			for(var/i in 1 to fling_dist)
+				temp = get_step(destination, fling_dir)
+				if(!temp)
+					break
+				destination = temp
+			if(destination != loc)
+				throw_at(destination, fling_dist, 1, charger, TRUE)
+
+			charger.visible_message("<span class='danger'>[charger] rams into [src] and flings [p_them()] away!</span>",
+				"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
+
+	charge_datum.do_stop_momentum(FALSE)
+	return COMPONENT_MOVABLE_PREBUMP_STOPPED
+
+
+/mob/living/proc/emote_gored()
+	return
+
+
+/mob/living/carbon/human/emote_gored()
+	if(species.species_flags & NO_PAIN)
+		return
+	emote("gored")
+
+
+/mob/living/carbon/xenomorph/emote_gored()
+	emote(prob(70) ? "hiss" : "roar")
+
 
 #undef CHARGE_SPEED
 #undef CHARGE_MAX_SPEED

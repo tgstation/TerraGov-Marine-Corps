@@ -380,3 +380,27 @@
 		return
 	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
 	user.add_emote_overlay(pain)
+
+
+/datum/emote/living/carbon/human/gored
+	key = "gored"
+	message = "gags out in pain!"
+	emote_type = EMOTE_AUDIBLE
+	flags_emote = EMOTE_FORCED_AUDIO
+
+
+/datum/emote/living/carbon/human/gored/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.paincries[user.gender])
+		return user.species.paincries[user.gender]
+	if(user.species.paincries[NEUTER])
+		return user.species.paincries[NEUTER]
+
+
+/datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
+	user.add_emote_overlay(pain)
