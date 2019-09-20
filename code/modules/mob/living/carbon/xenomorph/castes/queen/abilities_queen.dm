@@ -16,7 +16,7 @@
 		return
 	if(cooldowns[COOLDOWN_ORDER])
 		return
-	plasma_stored -= 50
+	SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 50)
 	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
 
 	if(txt)
@@ -36,7 +36,7 @@
 	set desc = "Send a message to all aliens in the hive that is big and visible"
 	if(!check_plasma(50))
 		return
-	plasma_stored -= 50
+	SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 50)
 	if(health <= 0)
 		to_chat(src, "<span class='warning'>We can't do that while unconcious.</span>")
 		return 0
@@ -548,7 +548,7 @@
 	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		to_chat(X, "<span class='warning'>We can't give that caste plasma.</span>")
 		return
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
+	if(SEND_SIGNAL(target, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL)
 		to_chat(X, "<span class='warning'>[target] is at full plasma.</span>")
 		return
 	if(X.check_plasma(600))

@@ -43,7 +43,6 @@
 /mob/living/carbon/xenomorph/ravager/ravenger
 	caste_base_type = /mob/living/carbon/xenomorph/ravager/ravenger
 	desc = "It's a goddamn dragon! Run! RUUUUN!"
-	plasma_stored = 200
 	upgrade = XENO_UPGRADE_THREE
 	var/used_fire_breath = 0
 	actions = list(

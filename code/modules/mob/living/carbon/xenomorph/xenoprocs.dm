@@ -127,8 +127,9 @@
 	else //Upgrade process finished or impossible
 		stat(null, "Upgrade Progress (FINISHED)")
 
-	if(xeno_caste.plasma_max > 0)
-		stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_HAS_PLASMA)
+		var/datum/component/plasma/P = GetComponent(/datum/component/plasma)
+		stat(null, "Plasma: [P.plasma_stored]/[P.plasma_max]")
 
 	if(hivenumber != XENO_HIVE_CORRUPTED)
 		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
@@ -189,17 +190,17 @@
 		return 0
 
 	if(value)
-		if(plasma_stored < value)
-			to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+		if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_AMOUNT, value) & COMPONENT_PLASMA_INSUFFICIENT)
+			to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma stored.</span>")
 			return 0
 	return 1
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)
-	plasma_stored = max(plasma_stored - value, 0)
+	SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, value)
 	update_action_button_icons()
 
 /mob/living/carbon/xenomorph/proc/gain_plasma(value)
-	plasma_stored = min(plasma_stored + value, xeno_caste.plasma_max)
+	SEND_SIGNAL(src, COMPONENT_ADD_PLASMA_AMOUNT, value)
 	update_action_button_icons()
 
 
@@ -304,10 +305,10 @@
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
 						if(!savage_used)
-							if(plasma_stored >= 10)
+							if((SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_AMOUNT, 10) & COMPONENT_PLASMA_SUFFICIENT))
 								Savage(M)
 							else
-								to_chat(src, "<span class='xenodanger'>We attempt to savage our victim, but we need [10-plasma_stored] more plasma.</span>")
+								to_chat(src, "<span class='xenodanger'>We attempt to savage our victim, but we need more plasma.</span>")
 						else
 							to_chat(src, "<span class='xenodanger'>We attempt to savage our victim, but we aren't yet ready.</span>")
 
@@ -459,7 +460,7 @@
 
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
-		use_plasma(min(rand(1,2), plasma_stored))
+		SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, rand(1,2))
 
 
 
@@ -528,7 +529,7 @@
 		to_chat(src, "<span class='warning'>We can't salvage plasma from here!</span>")
 		return
 
-	if(plasma_stored >= xeno_caste.plasma_max)
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL)
 		to_chat(src, "<span class='notice'>Our plasma reserves are already at full capacity and can't hold any more.</span>")
 		return
 
@@ -540,13 +541,13 @@
 		to_chat(src, "<span class='warning'>We need to be closer to [target].</span>")
 		return
 
-	if(!(target.plasma_stored))
+	if(SEND_SIGNAL(target, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_EMPTY)
 		to_chat(src, "<span class='notice'>[target] doesn't have any plasma left to salvage.</span>")
 		return
 
 	to_chat(src, "<span class='notice'>We start salvaging plasma from [target].</span>")
 
-	while(target.plasma_stored && plasma_stored < xeno_caste.plasma_max)
+	while((SEND_SIGNAL(target, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_HAS_PLASMA) && !(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL))
 		if(!do_after(src, salvage_delay, TRUE, null, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
@@ -562,13 +563,8 @@
 			to_chat(src, "<span class='xenowarning'>Our muscles fail to respond as we try to shake up the shock!</span>")
 			break
 
-		if(target.plasma_stored < amount)
-			amount = target.plasma_stored //Just take it all.
+		SEND_SIGNAL(src, COMPONENT_TRANSFER_PLASMA_FROM, target, amount, PLASMA_SALVAGE_MULTIPLIER)
 
-		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
-		target.use_plasma(amount)
-		gain_plasma(absorbed_amount)
-		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
 		if(prob(50))
 			playsound(src, "alien_drool", 25)
 

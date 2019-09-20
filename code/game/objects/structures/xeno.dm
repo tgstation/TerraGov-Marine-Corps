@@ -429,7 +429,7 @@
 				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
 				"<span class='xenonotice'>We clear the hatched egg.</span>")
 				playsound(src.loc, "alien_resin_break", 25)
-				M.plasma_stored++
+				SEND_SIGNAL(M, COMPONENT_ADD_PLASMA_AMOUNT, 1)
 				qdel(src)
 		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")

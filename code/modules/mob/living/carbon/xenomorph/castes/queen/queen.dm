@@ -12,7 +12,6 @@
 	maxHealth = 300
 	amount_grown = 0
 	max_grown = 10
-	plasma_stored = 300
 	speed = 0.6
 	pixel_x = -16
 	old_x = -16
@@ -56,7 +55,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/queen/handle_decay()
 	if(prob(20+abs(3*upgrade_as_number())))
-		use_plasma(min(rand(1,2), plasma_stored))
+		SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, rand(1,2))
 
 /mob/living/carbon/xenomorph/queen/Life()
 	. = ..()

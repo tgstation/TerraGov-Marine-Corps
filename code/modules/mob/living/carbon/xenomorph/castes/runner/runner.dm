@@ -6,7 +6,6 @@
 	icon_state = "Runner Walking"
 	health = 100
 	maxHealth = 100
-	plasma_stored = 50
 	speed = -1.7
 	flags_pass = PASSTABLE
 	tier = XENO_TIER_ONE

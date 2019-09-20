@@ -6,7 +6,6 @@
 	icon_state = "Drone Walking"
 	health = 120
 	maxHealth = 120
-	plasma_stored = 350
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
 	speed = -0.8

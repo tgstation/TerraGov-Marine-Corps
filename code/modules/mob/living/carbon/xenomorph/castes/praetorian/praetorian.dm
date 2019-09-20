@@ -6,7 +6,6 @@
 	icon_state = "Praetorian Walking"
 	health = 210
 	maxHealth = 210
-	plasma_stored = 200
 	speed = -0.1
 	pixel_x = -16
 	old_x = -16

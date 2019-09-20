@@ -6,7 +6,6 @@
 	icon_state = "Crusher Walking"
 	health = 300
 	maxHealth = 300
-	plasma_stored = 200
 	speed = 0.1
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO

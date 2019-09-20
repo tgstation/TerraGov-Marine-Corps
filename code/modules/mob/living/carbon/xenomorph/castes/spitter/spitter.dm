@@ -6,7 +6,6 @@
 	icon_state = "Spitter Walking"
 	health = 180
 	maxHealth = 180
-	plasma_stored = 150
 	speed = -0.5
 	pixel_x = -12
 	old_x = -12

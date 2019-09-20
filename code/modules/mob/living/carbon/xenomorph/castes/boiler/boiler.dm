@@ -6,7 +6,6 @@
 	icon_state = "Boiler Walking"
 	health = 200
 	maxHealth = 200
-	plasma_stored = 450
 	pixel_x = -16
 	old_x = -16
 	mob_size = MOB_SIZE_BIG

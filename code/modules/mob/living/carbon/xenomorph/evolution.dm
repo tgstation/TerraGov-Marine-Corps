@@ -98,7 +98,7 @@
 		to_chat(src, "<span class='warning'>We must be at full health to evolve.</span>")
 		return
 
-	if(plasma_stored < xeno_caste.plasma_max)
+	if(!(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL))
 		to_chat(src, "<span class='warning'>We must be at full plasma to evolve.</span>")
 		return
 

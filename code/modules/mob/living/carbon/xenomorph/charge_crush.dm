@@ -162,7 +162,7 @@
 	if(lastturf && (!isturf(lastturf) || isspaceturf(lastturf) || (charger.loc == lastturf))) //Check if the Crusher didn't move from his last turf, aka stopped
 		return FALSE
 
-	if(charger.plasma_stored < CHARGE_MAX_SPEED)
+	if(SEND_SIGNAL(charger, COMPONENT_CHECK_PLASMA_AMOUNT, CHARGE_MAX_SPEED) & COMPONENT_PLASMA_INSUFFICIENT)
 		return FALSE
 	
 	return TRUE
@@ -185,7 +185,8 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src)) //Eats up plasma the faster you go.
+		//Eats up plasma the faster you go.
+		SEND_SIGNAL(charger, COMPONENT_REMOVE_PLASMA_AMOUNT, round(CHARGE_SPEED(src)))
 		if(MODULUS(valid_steps_taken, 4) == 0)
 			playsound(charger, "alien_charge", 50)
 

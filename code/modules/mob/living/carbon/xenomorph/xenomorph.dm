@@ -55,7 +55,7 @@
 		CRASH("error with caste datum")
 	xeno_caste = X
 
-	plasma_stored = xeno_caste.plasma_max
+	AddComponent(/datum/component/plasma, xeno_caste.plasma_max)
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
 	speed = xeno_caste.speed

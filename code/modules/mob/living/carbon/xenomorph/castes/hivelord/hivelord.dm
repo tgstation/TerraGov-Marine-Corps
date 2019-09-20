@@ -6,7 +6,6 @@
 	icon_state = "Hivelord Walking"
 	health = 250
 	maxHealth = 250
-	plasma_stored = 200
 	pixel_x = -16
 	old_x = -16
 	speed = 0.4
@@ -39,8 +38,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/hivelord/handle_living_plasma_updates()
 	if(speed_activated)
-		plasma_stored -= 30
-		if(plasma_stored < 0)
+		if(SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 30) & COMPONENT_PLASMA_ZEROED)
 			speed_activated = FALSE
 			to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
 	..()

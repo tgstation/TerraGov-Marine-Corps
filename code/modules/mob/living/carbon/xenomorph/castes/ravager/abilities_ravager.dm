@@ -128,7 +128,9 @@
 	to_chat(X, "<span class='xenodanger'>We recoup our health, our tapped rage restoring our body, flesh and chitin reknitting themselves...</span>")
 	X.adjustFireLoss(-CLAMP( (X.getFireLoss()) * (0.25 + current_rage * 0.015), 0, X.getFireLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
 	X.adjustBruteLoss(-CLAMP( (X.getBruteLoss()) * (0.25 + current_rage * 0.015), 0, X.getBruteLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
-	X.plasma_stored += CLAMP( (X.xeno_caste.plasma_max - X.plasma_stored) * (0.25 + current_rage * 0.015), 0, X.xeno_caste.plasma_max - X.plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
+	var/datum/component/plasma/P = X.GetComponent(/datum/component/plasma)
+	if(P)
+		P.plasma_stored += CLAMP( (P.plasma_max - P.plasma_stored) * (0.25 + current_rage * 0.015), 0, P.plasma_max - P.plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
 	X.updatehealth()
 	X.hud_set_plasma()
 

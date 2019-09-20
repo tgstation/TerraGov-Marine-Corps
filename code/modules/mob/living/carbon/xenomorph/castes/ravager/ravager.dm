@@ -6,7 +6,6 @@
 	icon_state = "Ravager Walking"
 	health = 200
 	maxHealth = 200
-	plasma_stored = 50
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_THREE

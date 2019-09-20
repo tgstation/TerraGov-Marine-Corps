@@ -13,7 +13,7 @@
 	..()
 
 	if(stat == DEAD) //Dead, nothing else to do but this.
-		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
+		if((SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_AMOUNT, 1) & COMPONENT_PLASMA_SUFFICIENT) && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
 		else
 			SSmobs.stop_processing(src)
@@ -137,16 +137,13 @@
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-	if(plasma_stored == xeno_caste.plasma_max)
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL)
 		return
 
 	if(current_aura)
-		if(plasma_stored < 5)
-			use_plasma(plasma_stored)
+		if(SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 5) & COMPONENT_PLASMA_ZEROED)
 			current_aura = null
 			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
-		else
-			use_plasma(5)
 
 	if(locate(/obj/effect/alien/weeds) in T)
 		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) // Empty recovery aura will always equal 0
@@ -252,7 +249,10 @@
 	// Plasma Hud
 	if(hud_used && hud_used.alien_plasma_display)
 		if(stat != DEAD)
-			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, xeno_caste.plasma_max, plasma_stored, 0, list("full", "empty"))
+			var/datum/component/plasma/P = GetComponent(/datum/component/plasma)
+			if(!P)
+				hud_used.alien_plasma_display.icon_state = "power_display_empty"
+			var/bucket = get_bucket(XENO_HUD_ICON_BUCKETS, P.plasma_max, P.plasma_stored, 0, list("full", "empty"))
 			hud_used.alien_plasma_display.icon_state = "power_display_[bucket]"
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"

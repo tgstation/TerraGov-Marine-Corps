@@ -314,18 +314,12 @@
 	if(!can_use_ability(A))
 		return fail_activate()
 
-	var/amount = plasma_transfer_amount
-	if(X.plasma_stored < plasma_transfer_amount)
-		amount = X.plasma_stored //Just use all of it
+	var/ret = SEND_SIGNAL(A, COMPONENT_TRANSFER_PLASMA_FROM, plasma_transfer_amount, X)
 
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
+	if(ret == COMPONENT_PLASMA_FULL)
 		to_chat(X, "<span class='xenowarning'>[target] already has full plasma.</span>")
 		return
 
-	X.use_plasma(amount)
-	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
-	to_chat(X, "<span class='xenowarning'>We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max].</span>")
 	playsound(X, "alien_drool", 25)
 
 //Xeno Larval Growth Sting
@@ -640,9 +634,9 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.ammo?.spit_cost > X.plasma_stored)
+	if(X.ammo?.spit_cost && (SEND_SIGNAL(X, COMPONENT_CHECK_PLASMA_AMOUNT, X.ammo?.spit_cost) & COMPONENT_PLASMA_INSUFFICIENT))
 		if(!silent)
-			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost] plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()

@@ -6,7 +6,6 @@
 	icon_state = "Hunter Running"
 	health = 150
 	maxHealth = 150
-	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	var/last_stealth = null
@@ -82,7 +81,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
 		sneak_bonus = round(max(sneak_bonus - HUNTER_SNEAKATTACK_RUN_REDUCTION, 1.25), 0.01) //Rapidly lose sneak attack damage while running and stealthed
-	if(!plasma_stored)
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_EMPTY)
 		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
@@ -110,7 +109,7 @@
 	else
 		alpha = HUNTER_STEALTH_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!plasma_stored)
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_EMPTY)
 		to_chat(src, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
@@ -132,8 +131,8 @@
 	if(!T || !istype(T))
 		return
 	if(current_aura)
-		plasma_stored -= 5
-	if(plasma_stored == xeno_caste.plasma_max)
+		SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 5)
+	if(SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_FULL)
 		return
 	var/modifier = 1
 	if(stealth && last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
@@ -141,18 +140,15 @@
 	else
 		modifier = 0.5
 	if(locate(/obj/effect/alien/weeds) in T)
-		plasma_stored += xeno_caste.plasma_gain * modifier
+		SEND_SIGNAL(src, COMPONENT_ADD_PLASMA_AMOUNT, xeno_caste.plasma_gain * modifier)
 		if(recovery_aura)
-			plasma_stored += round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
+			//Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
+			SEND_SIGNAL(src, COMPONENT_ADD_PLASMA_AMOUNT, round(xeno_caste.plasma_gain * recovery_aura * 0.25 * modifier))
 	else if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z) //We only regenerate plasma off weeds while on the same Z level as the ruler; if one's alive
-		plasma_stored++
-	if(plasma_stored > xeno_caste.plasma_max)
-		plasma_stored = xeno_caste.plasma_max
-	else if(plasma_stored < 0)
-		plasma_stored = 0
-		if(current_aura)
-			current_aura = null
-			to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
+		SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, 1)
+	if(current_aura && SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_STATUS) & COMPONENT_PLASMA_STATUS_EMPTY)
+		current_aura = null
+		to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 

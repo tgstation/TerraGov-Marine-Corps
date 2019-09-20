@@ -10,7 +10,6 @@
 	wall_smash = FALSE
 	health = 240
 	maxHealth = 240
-	plasma_stored = 300
 	speed = -0.2
 	pixel_x = -16
 	old_x = -16
@@ -29,7 +28,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/shrike/handle_decay()
 	if(prob(20+abs(3*upgrade_as_number())))
-		use_plasma(min(rand(1,2), plasma_stored))
+		SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, rand(1,2))
 
 
 // ***************************************

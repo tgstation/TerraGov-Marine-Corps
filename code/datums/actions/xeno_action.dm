@@ -92,7 +92,7 @@
 			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && (SEND_SIGNAL(X, COMPONENT_CHECK_PLASMA_AMOUNT, plasma_cost) & COMPONENT_PLASMA_INSUFFICIENT))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We don't have enough plasma to do this!</span>")
 		return FALSE

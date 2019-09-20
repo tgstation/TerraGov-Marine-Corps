@@ -21,9 +21,9 @@
 	if(H.stat == DEAD || isnestedhost(H) )
 		return FALSE
 	var/mob/living/carbon/xenomorph/defender/X = owner
-	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+	if(X.crest_defense && (SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_AMOUNT, plasma_cost * 2) & COMPONENT_PLASMA_INSUFFICIENT))
 		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2)] plasma!</span>")
 		return FALSE
 	if(get_dist(X, H) > 2)
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
@@ -107,9 +107,9 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+	if(X.crest_defense && (SEND_SIGNAL(src, COMPONENT_CHECK_PLASMA_AMOUNT, plasma_cost * 2) & COMPONENT_PLASMA_INSUFFICIENT))
 		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2)] plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()

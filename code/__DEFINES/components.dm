@@ -319,6 +319,10 @@
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
 // /datum/component/plasma signals
+#define COMPONENT_CHECK_PLASMA_STATUS "check_plasma_status"
+	#define COMPONENT_PLASMA_STATUS_EMPTY 1
+	#define COMPONENT_PLASMA_STATUS_FULL 2
+	#define COMPONENT_HAS_PLASMA 4
 #define COMPONENT_CHECK_PLASMA_AMOUNT "check_plasma_amount"
 	#define COMPONENT_PLASMA_SUFFICIENT 1
 	#define COMPONENT_PLASMA_INSUFFICIENT 2
@@ -331,6 +335,7 @@
 #define COMPONENT_TRANSFER_PLASMA_FROM "transfer_plasma_from"
 	#define COMPONENT_TARGET_PLASMALESS 1
 	#define COMPONENT_PLASMA_TRANSFERRED 2
+	#define COMPONENT_PLASMA_FULL 4
 
 
 /*******Non-Signal Component Related Defines*******/

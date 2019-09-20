@@ -52,10 +52,14 @@
 	use_plasma(10) //Base cost of the Savage
 	src.visible_message("<span class='danger'>\ [src] savages [M]!</span>", \
 	"<span class='xenodanger'>We savage [M]!</span>", null, 5)
-	var/extra_dam = min(15, plasma_stored * 0.2)
+	var/datum/component/plasma/P = GetComponent(/datum/component/plasma)
+	var/extra_dam = 0
+	if(P)
+		extra_dam = min(15, P.plasma_stored * 0.2)
 	GLOB.round_statistics.runner_savage_attacks++
 	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
-	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	//Expend plasma equal to 4 times the extra damage.
+	SEND_SIGNAL(src, COMPONENT_REMOVE_PLASMA_AMOUNT, extra_dam * 5)
 	savage_used = TRUE
 	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
 

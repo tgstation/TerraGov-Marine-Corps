@@ -612,7 +612,7 @@
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
 		return
-	plasma_stored = xeno_caste.plasma_max
+	SEND_SIGNAL(src, COMPONENT_ADD_PLASMA_AMOUNT, INFINITY)
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
 	if(charge)
 		charge.clear_cooldown() //Reset charge cooldown

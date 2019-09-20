@@ -313,7 +313,11 @@
 	if(stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
-		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
+		var/datum/component/plasma/P = GetComponent(/datum/component/plasma)
+		if(!P)
+			holder.icon_state = "plasma0"
+			return
+		var/amount = round(P.plasma_stored * 100 / P.plasma_max, 10)
 		holder.icon_state = "plasma[amount]"
 
 
