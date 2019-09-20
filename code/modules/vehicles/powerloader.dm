@@ -4,8 +4,6 @@
 	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
-	anchored = TRUE
-	density = TRUE
 	move_delay = 8
 	max_integrity = 200
 	var/panel_open = FALSE
@@ -278,7 +276,4 @@
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
-	density = TRUE
-	anchored = FALSE
-	opacity = FALSE
 	resistance_flags = XENO_DAMAGEABLE

@@ -1,16 +1,9 @@
-///////////////////////////////////
-////////  Mecha wreckage   ////////
-///////////////////////////////////
-
-
 /obj/effect/decal/mecha_wreckage
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
 	hit_sound = 'sound/effects/metal_crash.ogg'
 	density = TRUE
-	anchored = FALSE
-	opacity = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 
 
