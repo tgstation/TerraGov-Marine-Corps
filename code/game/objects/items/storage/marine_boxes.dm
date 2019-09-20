@@ -498,7 +498,7 @@
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 
-obj/item/minigun_harness
+/obj/item/minigun_harness
 	name = "\improper M45 heavy-duty harness"
 	desc = "A large belt with shoulder straps and clamps to hook onto a minigun, meant to keep the user from dropping their weapon."
 	icon = 'icons/obj/clothing/belts.dmi'
@@ -506,6 +506,10 @@ obj/item/minigun_harness
 	item_state = "heavy_harness"
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
+	time_to_equip = 20
+
+/obj/item/minigun_harness/equipped(mob/living/carbon/human/user, slot)
+	playsound(src,'sound/machines/click.ogg', 15, 0, 1)
 
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
