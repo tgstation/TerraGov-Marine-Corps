@@ -2,5 +2,7 @@
 *.dmm merge=dmm
 *.dmi merge=dmi
 
+* text eol=lf
+
 # force changelog merging to use union
 html/changelog.html merge=union
