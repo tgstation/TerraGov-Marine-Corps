@@ -51,8 +51,23 @@ GLOBAL_VAR(restart_counter)
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
+	if(TEST_RUN_PARAMETER in params)
+		HandleTestRun()
+
 	return ..()
 
+/world/proc/HandleTestRun()
+	//trigger things to run the whole process
+	Master.sleep_offline_after_initializations = FALSE
+	SSticker.start_immediately = TRUE
+	CONFIG_SET(number/round_end_countdown, 0)
+	var/datum/callback/cb
+#ifdef UNIT_TESTS
+	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+#else
+	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
+#endif
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -122,6 +137,26 @@ GLOBAL_VAR(restart_counter)
 	handler = new handler()
 	return handler.TryRun(input)
 
+/world/proc/FinishTestRun()
+	set waitfor = FALSE
+	var/list/fail_reasons
+	if(GLOB)
+		if(GLOB.total_runtimes != 0)
+			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+#ifdef UNIT_TESTS
+		if(GLOB.failed_any_test)
+			LAZYADD(fail_reasons, "Unit Tests failed!")
+#endif
+		if(!GLOB.log_directory)
+			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+	else
+		fail_reasons = list("Missing GLOB!")
+	if(!fail_reasons)
+		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
+	else
+		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+	sleep(0)	//yes, 0, this'll let Reboot finish and prevent byond memes
+	qdel(src)	//shut it down
 
 /world/Reboot(ping)
 	if(ping)
@@ -160,6 +195,10 @@ GLOBAL_VAR(restart_counter)
 
 	Master.Shutdown()
 	TgsReboot()
+
+	if(TEST_RUN_PARAMETER in params)
+		FinishTestRun()
+		return
 
 	var/linkylink = CONFIG_GET(string/server)
 	if(linkylink)
