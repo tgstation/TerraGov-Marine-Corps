@@ -25,11 +25,11 @@
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
-	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
 	if(cooldown_id)
 		deltimer(cooldown_id)
+	return ..()
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
