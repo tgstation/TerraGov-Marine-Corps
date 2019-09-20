@@ -12,12 +12,6 @@
 	var/last_stealth = null
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/pounce/hunter,
-		/datum/action/xeno_action/stealth,
-		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

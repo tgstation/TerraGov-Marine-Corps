@@ -41,6 +41,16 @@
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = DEFILER_CLAW_AMOUNT
 
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
+		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/neuroclaws
+		)
+
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
 

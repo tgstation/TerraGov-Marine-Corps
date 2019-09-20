@@ -107,6 +107,14 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
+/obj/item/clothing/suit/storage/marine/harness
+	name = "\improper M3 pattern marine harness"
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	icon_state = "10"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slowdown = 0
+	flags_atom = NONE
+
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and weapon carrying capacity."
