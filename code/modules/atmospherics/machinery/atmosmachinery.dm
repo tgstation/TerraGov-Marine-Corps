@@ -43,7 +43,7 @@
 		if(L.can_ventcrawl())
 			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
 
-/obj/machinery/atmospherics/Initialize(mapload, process = TRUE, setdir)
+/obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	. = ..()
 	if(!isnull(setdir))
 		setDir(setdir)

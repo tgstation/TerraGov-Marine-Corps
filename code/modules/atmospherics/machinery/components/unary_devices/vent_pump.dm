@@ -32,7 +32,7 @@
 
 	pipe_state = "uvent"
 
-/obj/machinery/atmospherics/components/unary/vent_pump/Initialize()
+/obj/machinery/atmospherics/components/unary/vent_pump/New()
 	. = ..()
 	if(!id_tag)
 		id_tag = assign_uid_vents()

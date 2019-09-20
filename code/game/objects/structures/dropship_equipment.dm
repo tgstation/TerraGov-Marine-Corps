@@ -268,7 +268,7 @@
 	if(!deployed_turret)
 		deployed_turret = new(src)
 		deployed_turret.deployment_system = src
-	return ..()
+
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()

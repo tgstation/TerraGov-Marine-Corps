@@ -3,9 +3,9 @@
 /obj/item/storage/internal
 	var/obj/item/master_item
 
-/obj/item/storage/internal/Initialize(mapload, obj/item/MI)
+/obj/item/storage/internal/Initialize()
 	. = ..()
-	master_item = MI
+	master_item = loc
 	name = master_item.name
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
