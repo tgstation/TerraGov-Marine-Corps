@@ -126,8 +126,6 @@
 //Actual dropship equipments
 
 /obj/structure/dropship_equipment
-	density = TRUE
-	anchored = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed

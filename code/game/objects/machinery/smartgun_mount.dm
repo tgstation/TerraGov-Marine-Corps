@@ -113,8 +113,6 @@
 	desc = "A foldable tripod mount for the M56D, provides stability to the M56D."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_mount"
-	anchored = TRUE
-	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	var/gun_mounted = FALSE //Has the gun been mounted?
@@ -220,11 +218,9 @@
 	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
-	anchored = TRUE
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
-	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
-	use_power = 0
+	use_power = NO_POWER_USE
 	max_integrity = 200
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700

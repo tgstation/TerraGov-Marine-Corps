@@ -152,8 +152,6 @@
 	desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "sleeper_0"
-	density = TRUE
-	anchored = TRUE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
 	var/available_chemicals = list(/datum/reagent/medicine/inaprovaline = "Inaprovaline", /datum/reagent/toxin/sleeptoxin = "Soporific", /datum/reagent/medicine/paracetamol = "Paracetamol", /datum/reagent/medicine/bicaridine = "Bicaridine", /datum/reagent/medicine/kelotane = "Kelotane", /datum/reagent/medicine/dylovene = "Dylovene", /datum/reagent/medicine/dexalin = "Dexalin", /datum/reagent/medicine/tricordrazine = "Tricordrazine", /datum/reagent/medicine/spaceacillin = "Spaceacillin")

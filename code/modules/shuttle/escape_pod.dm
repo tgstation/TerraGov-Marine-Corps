@@ -247,8 +247,6 @@
 	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
 	icon_state = "door_locked"
 	resistance_flags = RESIST_ALL
-	density = TRUE
-	opacity = TRUE
 	locked = TRUE
 	var/linked_to_shuttle = FALSE
 

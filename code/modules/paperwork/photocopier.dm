@@ -3,7 +3,6 @@
 	desc = "Used to copy important documents and anatomy studies."
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "bigscanner"
-	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	active_power_usage = 200

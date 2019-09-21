@@ -1,12 +1,7 @@
-/*
-	Basically just an empty shell for receiving and broadcasting radio messages. Not
-	very flexible, but it gets the job done.
-*/
 /obj/machinery/telecomms/allinone
 	name = "telecommunications mainframe"
 	icon_state = "comm_server"
 	desc = "A compact machine used for portable subspace telecommunications processing."
-	density = TRUE
 	use_power = NO_POWER_USE
 	idle_power_usage = 0
 

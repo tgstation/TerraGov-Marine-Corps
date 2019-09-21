@@ -32,8 +32,6 @@
 /obj/machinery/botany
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = TRUE
-	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	interaction_flags = INTERACT_MACHINE_NANO
 

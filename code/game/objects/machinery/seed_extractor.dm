@@ -3,8 +3,6 @@
 	desc = "Extracts and bags seeds from produce."
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "sextractor"
-	density = TRUE
-	anchored = TRUE
 
 
 /obj/machinery/seed_extractor/attackby(obj/item/I, mob/user, params)
