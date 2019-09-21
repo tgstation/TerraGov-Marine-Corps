@@ -2,9 +2,7 @@
 	name = "fax machine"
 	icon = 'icons/obj/machines/library.dmi'
 	icon_state = "fax"
-	anchored = TRUE
-	density = TRUE
-	use_power = TRUE
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP

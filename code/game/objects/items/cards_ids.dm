@@ -144,8 +144,8 @@
 	access = list(ACCESS_ILLEGAL_PIRATE)
 	var/registered_user=null
 
-/obj/item/card/id/syndicate/New(mob/user as mob)
-	..()
+/obj/item/card/id/syndicate/Initialize(mapload, mob/user)
+	. = ..()
 	if(!isnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
 		registered_name = ishuman(user) ? user.real_name : user.name
 	else

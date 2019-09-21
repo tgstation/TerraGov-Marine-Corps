@@ -3,11 +3,9 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "processor"
 	layer = ABOVE_TABLE_LAYER
-	density = TRUE
-	anchored = TRUE
 	var/broken = 0
 	var/processing = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 50
 

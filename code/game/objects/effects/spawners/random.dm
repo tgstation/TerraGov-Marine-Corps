@@ -7,11 +7,13 @@
 
 
 // creates a new object and deletes itself
-/obj/effect/spawner/random/New()
-	..()
-	if (!prob(spawn_nothing_percentage))
+/obj/effect/spawner/random/Initialize()
+	. = ..()
+	
+	if(!prob(spawn_nothing_percentage))
 		spawn_item()
-	qdel(src)
+	
+	return INITIALIZE_HINT_QDEL
 
 
 // this function should return a specific item to spawn

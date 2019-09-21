@@ -198,9 +198,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/current_state
 
 
-/obj/effect/statclick/ticket_list/New(loc, name, state)
+/obj/effect/statclick/ticket_list/Initialize(mapload, name, state)
+	. = ..()
 	current_state = state
-	return ..()
 
 
 /obj/effect/statclick/ticket_list/Click()

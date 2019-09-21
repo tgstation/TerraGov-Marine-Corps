@@ -1,11 +1,8 @@
-
 /obj/structure/table/holotable
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon_state = "table"
-	density = TRUE
-	anchored = TRUE
-	throwpass = 1	//You can throw objects over this, despite it's density.
+	throwpass = TRUE
 
 
 /obj/structure/table/holotable/attack_paw(mob/living/carbon/monkey/user)
@@ -50,9 +47,7 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
-	density = TRUE
 	layer = WINDOW_LAYER
-	anchored = TRUE
 	flags_atom = ON_BORDER
 
 
@@ -83,9 +78,7 @@
 	desc = "Boom, Shakalaka!"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "hoop"
-	anchored = TRUE
-	density = TRUE
-	throwpass = 1
+	throwpass = TRUE
 	var/side = ""
 	var/id = ""
 

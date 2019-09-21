@@ -17,31 +17,28 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
-/obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/medic/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC corpsman snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type, new_name, new_protection)
+	return ..()
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
 
-/obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/engineer/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC engineer snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type, new_name, new_protection)
+	return ..()
 
 /obj/item/clothing/under/marine/sniper
 	name = "\improper TGMC sniper uniform"
 	rollable_sleeves = FALSE
 
-/obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
-	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
-	)
-	..(loc,expected_type, override_icon_state, new_name, new_protection)
+/obj/item/clothing/under/marine/sniper/Initialize(mapload, expected_type = type, list/new_name = list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
+	list/new_protection = list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE), list/override_icon_state = list(MAP_ICE_COLONY = "s_marine_sniper"))
+	return ..()
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
@@ -49,12 +46,12 @@
 	rollable_sleeves = FALSE
 
 /*
-/obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/tanker/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC tanker snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
-	..(loc,expected_type, override_icon_state, new_name, new_protection)
+	return ..()
 */
 
 /obj/item/clothing/under/marine/mp

@@ -110,10 +110,10 @@
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/mob/living/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/New(loc, mob/living/builder)
+/obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
+	. = ..()
 	if(builder)
 		linked_carrier = builder
-	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	if(isxeno(user))
@@ -538,8 +538,8 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	var/obj/effect/alien/egg/linked_egg
 
-/obj/effect/egg_trigger/New(loc, obj/effect/alien/egg/source_egg)
-	..()
+/obj/effect/egg_trigger/Initialize(mapload, obj/effect/alien/egg/source_egg)
+	. = ..()
 	linked_egg = source_egg
 
 

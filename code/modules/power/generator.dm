@@ -1,9 +1,7 @@
-
 /obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
-	density = TRUE
 	anchored = FALSE
 
 	use_power = 1

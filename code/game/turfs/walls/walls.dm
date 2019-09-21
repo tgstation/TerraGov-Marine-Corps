@@ -6,8 +6,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
-	
-	opacity = TRUE
+
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
@@ -70,14 +69,6 @@
 			//update junction type of nearby walls
 			if(iswallturf(T))
 				T.relativewall()
-
-			//nearby glowshrooms updated
-			for(var/obj/effect/glowshroom/shroom in T)
-				if(!shroom.floor) //shrooms drop to the floor
-					shroom.floor = 1
-					shroom.icon_state = "glowshroomf"
-					shroom.pixel_x = 0
-					shroom.pixel_y = 0
 
 		for(var/obj/O in src) //Eject contents!
 			if(istype(O, /obj/structure/sign/poster))

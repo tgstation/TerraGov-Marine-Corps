@@ -173,10 +173,10 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
-/obj/structure/cryofeed/New()
+/obj/structure/cryofeed/Initialize()
+	. = ..()
 	if(orient_right)
 		icon_state = "cryo_rear[orient_right ? "-r" : ""]"
-	return ..()
 
 //Cryopods themselves.
 /obj/machinery/cryopod
@@ -184,8 +184,6 @@
 	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep', a form of non-cryogenic statis used on most ships, linked to a long-term hypersleep bay on a lower level."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
-	density = TRUE
-	anchored = TRUE
 	resistance_flags = RESIST_ALL
 
 	var/mob/living/occupant //Person waiting to be despawned.

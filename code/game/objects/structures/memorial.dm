@@ -14,13 +14,10 @@ This memorial has been designed for him and any future contributors to perish.
 	desc = "Here rests an unknown contributor\nUnknown by name or rank\nWhose PRs will not be forgotten"
 	icon = 'icons/obj/structures/memorial.dmi'
 	icon_state = "memorial"
-	density = TRUE
-	anchored = TRUE
+
 
 /obj/structure/prop/mainship/valmoric
 	name = "Tomb of the Unknown Soldier"
 	desc = "HERE RESTS IN\nHONORED GLORY\nA SOLDIER\nKNOWN BUT TO GOD"
 	icon = 'icons/obj/structures/memorial.dmi'
 	icon_state = "memorial2"
-	density = TRUE
-	anchored = TRUE

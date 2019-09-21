@@ -1,23 +1,20 @@
-
 /obj/machinery/gibber
 	name = "Gibber"
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	anchored = TRUE
-	density = TRUE
 	var/operating = 0 //Is it on?
 	var/dirty = 0 // Does it need cleaning?
 	var/gibtime = 40 // Time from starting until meat appears
 	var/mob/living/occupant // Mob who has been put inside
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 500
 
 
-/obj/machinery/gibber/New()
-	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+/obj/machinery/gibber/Initialize()
+	. = ..()
+	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
 /obj/machinery/gibber/update_icon()
 	overlays.Cut()

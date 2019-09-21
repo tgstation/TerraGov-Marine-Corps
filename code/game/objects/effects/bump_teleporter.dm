@@ -9,10 +9,10 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 	invisibility = INVISIBILITY_MAXIMUM 		//nope, can't see this
 	anchored = TRUE
 	density = TRUE
-	opacity = FALSE
 
-/obj/effect/bump_teleporter/New()
-	..()
+
+/obj/effect/bump_teleporter/Initialize()
+	. = ..()
 	GLOB.bump_teleporters += src
 
 /obj/effect/bump_teleporter/Destroy()

@@ -8,6 +8,8 @@
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
+	density = TRUE
+	anchored = TRUE
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE

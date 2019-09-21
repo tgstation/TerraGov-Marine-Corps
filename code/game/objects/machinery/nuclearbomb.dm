@@ -10,8 +10,6 @@
 	desc = "You probably shouldn't stick around to see if this is armed."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-	density = TRUE
-	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	var/deployable = TRUE
 	var/extended = FALSE

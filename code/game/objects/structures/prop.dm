@@ -1,11 +1,3 @@
-//----- Marine ship machinery file -----//
-// Put any new machines in here before map is released and everything moved to their proper positions.
-
-
-
-//----- Marine ship props -----//
-//Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art
-
 /obj/item/prop/mainship
 	name = "GENERIC SHIP PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
@@ -28,8 +20,8 @@
 	desc = "A small computer hooked up into the ship's systems."
 
 	density = FALSE
-	anchored = TRUE
-	use_power = 1
+
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 
 	icon = 'icons/obj/machines/computer.dmi'
@@ -69,9 +61,7 @@
 	name = "map table"
 	desc = "A table that displays a map of the current target location"
 
-	density = TRUE
-	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 
 	icon = 'icons/obj/machines/computer.dmi'
@@ -82,8 +72,7 @@
 /obj/structure/prop/mainship
 	name = "GENERIC SHIP PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
-	density = TRUE
-	anchored = TRUE
+
 
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
@@ -203,11 +192,9 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "cannon_cables"
 	density = FALSE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = LADDER_LAYER
-
-/obj/structure/prop/mainship/cannon_cables/ex_act()
-	return
+	resistance_flags = RESIST_ALL
 
 
 /obj/structure/prop/mainship/cannon_cable_connector
@@ -215,7 +202,4 @@
 	desc = "A connector for the large cannon cables."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "cannon_cable_connector"
-	density = TRUE
-
-/obj/structure/prop/mainship/cannon_cable_connector/ex_act()
-	return
+	resistance_flags = RESIST_ALL
