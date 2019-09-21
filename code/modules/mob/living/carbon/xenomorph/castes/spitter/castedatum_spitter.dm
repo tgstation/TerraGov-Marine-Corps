@@ -43,6 +43,15 @@
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/spray_acid/line,
+		)
+
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
 

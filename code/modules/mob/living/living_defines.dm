@@ -106,3 +106,5 @@
 
 	var/blood_volume = 0 //how much blood the mob has
 	var/heart_multi = 1 //Multiplier.
+
+	var/list/embedded_objects = list()

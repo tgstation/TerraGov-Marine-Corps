@@ -51,6 +51,8 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
+	var/datum/embedding_behavior/embedding
+	var/mob/living/embedded_into
 
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
@@ -84,6 +86,11 @@
 	if(w_class <= 3) //pulling small items doesn't slow you down much
 		drag_delay = 1
 
+	if(!embedding)
+		embedding = getEmbeddingBehavior()
+	else if(islist(embedding))
+		embedding = getEmbeddingBehavior(arglist(embedding))
+
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
@@ -94,6 +101,8 @@
 	for(var/X in actions)
 		qdel(X)
 	master = null
+	embedding = null
+	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
 	return ..()
 
 

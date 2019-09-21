@@ -42,7 +42,7 @@
 /datum/surgery_step/brain/bone_chips/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, jabbing \the [tool] in [target]'s brain!</span>", \
 	"<span class='warning'>Your hand slips, jabbing \the [tool] in [target]'s brain!</span>")
-	target.apply_damage(30, BRUTE, "head", 1, sharp = 1)
+	target.apply_damage(30, BRUTE, "head", 0, TRUE)
 	target.updatehealth()
 
 
@@ -73,5 +73,5 @@
 /datum/surgery_step/brain/hematoma/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, bruising [target]'s brain with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, bruising [target]'s brain with \the [tool]!</span>")
-	target.apply_damage(20, BRUTE, "head", 1, sharp = 1)
+	target.apply_damage(20, BRUTE, "head", 0, TRUE)
 	target.updatehealth()

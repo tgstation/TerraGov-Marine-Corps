@@ -26,7 +26,6 @@
 	var/bloody_hands = 0
 	var/track_blood = 0
 	var/feet_blood_color
-	var/list/embedded = list()
 	var/list/cooldowns = list()
 
 	//Movement

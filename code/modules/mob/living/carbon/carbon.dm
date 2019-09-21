@@ -51,7 +51,7 @@
 	if (shock_damage<1)
 		return 0
 
-	src.apply_damage(shock_damage, BURN, def_zone, used_weapon="Electrocution")
+	apply_damage(shock_damage, BURN, def_zone)
 
 	playsound(loc, "sparks", 25, 1)
 	if (shock_damage > 10)
