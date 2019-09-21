@@ -101,8 +101,11 @@
 
 	return TRUE
 
+
 /datum/action/xeno_action/fail_activate()
-	update_button_icon()
+	if(button)
+		update_button_icon()
+
 
 /datum/action/xeno_action/proc/succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -214,10 +217,13 @@
 
 //override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(QDELETED(owner))
+		return FALSE
+
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && (!X.selected_ability || X.selected_ability != src))
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_SELECTED_ABILITY) && X.selected_ability != src)
 		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
