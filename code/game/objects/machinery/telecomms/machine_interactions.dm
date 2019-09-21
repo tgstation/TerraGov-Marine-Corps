@@ -5,6 +5,7 @@
 
 */
 /obj/machinery/telecomms
+	density = TRUE
 	var/temp = "" // output message
 
 

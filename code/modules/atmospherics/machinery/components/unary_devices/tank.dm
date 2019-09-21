@@ -7,6 +7,7 @@
 	desc = "A large vessel containing pressurized gas."
 
 	max_integrity = 800
+	density = TRUE
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF
 

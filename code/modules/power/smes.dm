@@ -6,6 +6,7 @@
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
+	density = TRUE
 	use_power = NO_POWER_USE
 	interaction_flags = INTERACT_MACHINE_NANO
 	var/capacity = 5e6		//Maximum amount of power it can hold

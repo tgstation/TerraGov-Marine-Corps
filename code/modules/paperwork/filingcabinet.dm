@@ -3,6 +3,7 @@
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "filingcabinet"
+	density = TRUE
 
 
 /obj/structure/filingcabinet/chestdrawer

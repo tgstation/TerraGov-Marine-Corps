@@ -6,7 +6,6 @@
 	var/coverage = 50 //Percentage area covered by the structure. Increases bullet blockage chance.
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-	density = TRUE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)

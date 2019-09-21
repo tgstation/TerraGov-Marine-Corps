@@ -6,6 +6,7 @@
 	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
+	density = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
 	bound_height = 64
@@ -221,6 +222,7 @@
 	desc = "The orbital cannon's loading tray."
 	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "cannon_tray"
+	density = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
@@ -317,6 +319,7 @@
 
 /obj/structure/ob_ammo
 	name = "theoretical ob ammo"
+	density = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -500,6 +503,7 @@
 	desc = "A powerful ship-to-ship weapon sometimes used for ground support at reduced efficiency."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "Railgun"
+	density = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
 	bound_height = 64

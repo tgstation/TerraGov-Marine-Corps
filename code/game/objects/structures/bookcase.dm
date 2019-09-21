@@ -2,6 +2,8 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
+	anchored = TRUE
+	density = TRUE
 	opacity = TRUE
 
 /obj/structure/bookcase/Initialize()

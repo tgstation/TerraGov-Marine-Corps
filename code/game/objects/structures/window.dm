@@ -4,6 +4,7 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "window"
 	hit_sound = 'sound/effects/Glasshit.ogg'
+	density = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE

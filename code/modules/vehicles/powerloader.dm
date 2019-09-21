@@ -276,4 +276,6 @@
 	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
+	density = TRUE
+	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE

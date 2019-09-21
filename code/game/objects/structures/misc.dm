@@ -3,6 +3,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
+	density = TRUE
 
 
 /obj/structure/showcase/ex_act(severity)
@@ -30,6 +31,7 @@
 	desc = "Fill it with water, but don't forget a mop!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
+	density = TRUE
 	anchored = FALSE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
@@ -59,6 +61,8 @@
 	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
 	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
 	layer = ABOVE_MOB_LAYER
+	density = TRUE
+	anchored = TRUE
 
 
 /obj/structure/shipmast/attack_hand(mob/living/user)

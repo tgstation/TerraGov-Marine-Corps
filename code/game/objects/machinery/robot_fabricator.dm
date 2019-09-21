@@ -2,3 +2,6 @@
 	name = "Robotic Fabricator"
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
+	density = TRUE
+	anchored = TRUE
+	use_power = NO_POWER_USE

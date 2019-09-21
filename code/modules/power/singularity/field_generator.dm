@@ -4,3 +4,5 @@
 	icon = 'icons/obj/machines/field_generator.dmi'
 	icon_state = "Field_Gen"
 	anchored = FALSE
+	density = TRUE
+	use_power = NO_POWER_USE

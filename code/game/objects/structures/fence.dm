@@ -3,6 +3,8 @@
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
+	density = TRUE
+	anchored = TRUE
 	layer = WINDOW_LAYER
 	max_integrity = 100
 	resistance_flags = XENO_DAMAGEABLE

@@ -2,7 +2,6 @@
 	name = "table"
 	desc = "A square piece of metal standing on four metal legs. It can not move."
 	icon_state = "table"
-	throwpass = TRUE
 
 
 /obj/structure/table/holotable/attack_paw(mob/living/carbon/monkey/user)
@@ -47,7 +46,9 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
+	density = TRUE
 	layer = WINDOW_LAYER
+	anchored = TRUE
 	flags_atom = ON_BORDER
 
 
@@ -78,7 +79,9 @@
 	desc = "Boom, Shakalaka!"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "hoop"
-	throwpass = TRUE
+	anchored = TRUE
+	density = TRUE
+	throwpass = 1
 	var/side = ""
 	var/id = ""
 

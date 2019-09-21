@@ -3,3 +3,5 @@
 	icon_state = "fab-idle"
 	name = "Exosuit Fabricator"
 	desc = "Nothing is being built."
+	density = TRUE
+	anchored = TRUE

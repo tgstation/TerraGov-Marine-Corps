@@ -8,6 +8,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/metalhit.ogg'
 	var/icon_closed = "closed"

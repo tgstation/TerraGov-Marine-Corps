@@ -4,6 +4,8 @@
 	icon = 'icons/mecha/mecha.dmi'
 	hit_sound = 'sound/effects/metal_crash.ogg'
 	density = TRUE
+	anchored = FALSE
+	opacity = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 
 

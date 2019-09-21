@@ -5,8 +5,10 @@
 	icon_state = "blue"
 	bound_width = 32
 	bound_height = 64
+	density = TRUE
 	max_integrity = 200
 	opacity = TRUE
+	anchored = TRUE
 
 /obj/structure/cargo_container/attack_hand(mob/living/user)
 	. = ..()

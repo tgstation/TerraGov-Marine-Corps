@@ -1,12 +1,15 @@
 /obj/structure/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
+	density = TRUE
+	anchored = TRUE
 
 
 /obj/structure/shuttle/window
 	name = "shuttle window"
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "1"
+	opacity = FALSE
 	resistance_flags = RESIST_ALL
 	layer = WINDOW_LAYER
 

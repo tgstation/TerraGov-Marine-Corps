@@ -4,6 +4,7 @@
 	icon = 'icons/obj/structures/barbedwire.dmi'
 	icon_state = "barbedwire_x"
 	var/base_icon_state = "barbedwire_x"
+	density = TRUE
 	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
 	climbable = TRUE

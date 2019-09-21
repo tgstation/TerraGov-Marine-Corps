@@ -1,5 +1,7 @@
 /obj/structure/ship_ammo
 	icon = 'icons/Marine/mainship_props.dmi'
+	density = TRUE
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
