@@ -1,14 +1,9 @@
-//The Marine mortar, the M402 Mortar
-//Works like a contemporary crew weapon mortar
-
 /obj/structure/mortar
 	name = "\improper M402 mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
-	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	density = TRUE
+	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
 	var/targ_y = 0
@@ -288,7 +283,7 @@
 	icon_state = "mortar_ammo_smk"
 	var/datum/effect_system/smoke_spread/bad/smoke
 
-/obj/item/mortal_shell/smoke/New()
+/obj/item/mortal_shell/smoke/Initialize()
 	. = ..()
 	smoke = new(src)
 

@@ -65,7 +65,8 @@
 		return 1
 	return 0
 
-/obj/item/weapon/energy/sword/New()
+/obj/item/weapon/energy/sword/Initialize()
+	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
 

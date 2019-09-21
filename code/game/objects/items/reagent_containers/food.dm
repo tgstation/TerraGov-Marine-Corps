@@ -9,11 +9,11 @@
 
 	var/list/center_of_mass = newlist() //Center of mass
 
-/obj/item/reagent_container/food/New()
-	..()
-	if (!pixel_x && !pixel_y)
-		src.pixel_x = rand(-6.0, 6) //Randomizes postion
-		src.pixel_y = rand(-6.0, 6)
+/obj/item/reagent_container/food/Initialize()
+	. = ..()
+	if(!pixel_x && !pixel_y)
+		pixel_x = rand(-6, 6) //Randomizes postion
+		pixel_y = rand(-6, 6)
 
 /obj/item/reagent_container/food/afterattack(atom/A, mob/user, proximity, params)
 	if(proximity && params && istype(A, /obj/structure/table) && center_of_mass.len)

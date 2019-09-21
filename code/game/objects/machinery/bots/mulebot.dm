@@ -1,17 +1,8 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-// Mulebot - carries crates around for Quartermaster
-// Navigates via floor navbeacons
-// Remote Controlled from QM's PDA
-
-
 /obj/machinery/bot/mulebot
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	density = TRUE
-	anchored = TRUE
-	animate_movement=1
+	animate_movement = 1
 	max_integrity = 150
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400

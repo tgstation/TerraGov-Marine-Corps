@@ -1,7 +1,6 @@
 /obj/machinery/portable_atmospherics/scrubber
 	name = "portable air scrubber"
 	icon_state = "pscrubber:0"
-	density = TRUE
 
 	var/on = FALSE
 	var/volume_rate = 1000

@@ -31,8 +31,6 @@
 	name = "\improper Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
-	density = TRUE
-	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_access_txt = "0"
@@ -1028,7 +1026,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set
 	var/list/spawned_gear_list
 
-/obj/effect/essentials_set/New(loc)
+/obj/effect/essentials_set/Initialize()
 	. = ..()
 	for(var/typepath in spawned_gear_list)
 		if(spawned_gear_list[typepath])

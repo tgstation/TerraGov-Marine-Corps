@@ -571,7 +571,6 @@
 // half-tile structure pieces
 /obj/structure/dropship_piece
 	icon = 'icons/obj/structures/dropship_structures.dmi'
-	density = TRUE
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
 

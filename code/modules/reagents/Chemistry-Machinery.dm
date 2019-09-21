@@ -1,13 +1,8 @@
 /obj/machinery/chem_dispenser
 	name = "chem dispenser"
-	density = TRUE
-	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
-	use_power = 0
-	idle_power_usage = 40
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
-	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 	interaction_flags = INTERACT_MACHINE_NANO
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
@@ -43,8 +38,8 @@
 	else
 		recharged -= 1
 
-/obj/machinery/chem_dispenser/New()
-	..()
+/obj/machinery/chem_dispenser/Initialize()
+	. = ..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 	start_processing()
@@ -596,24 +591,18 @@
 	name = "Disease Analyser"
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
-	anchored = TRUE
-	density = TRUE
 
 
 /obj/machinery/computer/pandemic
 	name = "PanD.E.M.I.C 2200"
-	density = TRUE
-	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
-	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/circuitboard/computer/pandemic
 
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 /obj/machinery/reagentgrinder
-
 	name = "All-In-One Grinder"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
@@ -670,10 +659,10 @@
 
 	var/list/holdingitems = list()
 
-/obj/machinery/reagentgrinder/New()
-	..()
+/obj/machinery/reagentgrinder/Initialize()
+	. = ..()
 	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
-	return
+
 
 /obj/machinery/reagentgrinder/update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))

@@ -1,12 +1,7 @@
-//These machines are mostly just here for debugging/spawning. Skeletons of the feature to come.
-
 /obj/machinery/bioprinter
 	name = "bio/synthetic printer"
 	desc = "It's a machine that can either grow replacement or manufacture synthetic organs."
 	icon = 'icons/obj/surgery.dmi'
-
-	anchored = TRUE
-	density = TRUE
 
 	icon_state = "bioprinter"
 

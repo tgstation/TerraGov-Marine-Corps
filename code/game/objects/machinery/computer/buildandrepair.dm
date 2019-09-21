@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /obj/structure/computerframe
 	density = FALSE
 	anchored = FALSE
@@ -7,8 +5,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
 	var/state = 0
-	var/obj/item/circuitboard/computer/circuit = null
-//	weight = 1.0E8
+	var/obj/item/circuitboard/computer/circuit
 
 /obj/structure/computerframe/attackby(obj/item/I, mob/user, params)
 	switch(state)

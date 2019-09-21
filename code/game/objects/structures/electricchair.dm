@@ -4,8 +4,8 @@
 	icon_state = "echair1"
 	var/last_time = 1.0
 
-/obj/structure/bed/chair/e_chair/New()
-	..()
+/obj/structure/bed/chair/e_chair/Initialize()
+	. = ..()
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
 
 

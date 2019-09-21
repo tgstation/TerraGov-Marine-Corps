@@ -56,7 +56,8 @@
 		qdel(src)
 
 
-/obj/effect/landmark/newplayer_start/New()
+/obj/effect/landmark/newplayer_start/Initialize()
+	. = ..()
 	GLOB.newplayer_start += loc
 	return
 

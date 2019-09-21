@@ -1,21 +1,17 @@
-/*
-* Morgue
-*/
 /obj/structure/morgue
 	name = "morgue"
 	desc = "Used to keep bodies in untill someone fetches them."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = TRUE
 	var/obj/structure/morgue_tray/connected = null
 	var/morgue_type = "morgue"
 	var/tray_path = /obj/structure/morgue_tray
 	var/morgue_open = 0
-	anchored = TRUE
 
-/obj/structure/morgue/New()
-	..()
+
+/obj/structure/morgue/Initialize()
+	. = ..()
 	connected = new tray_path(src)
 
 /obj/structure/morgue/Destroy()
@@ -119,16 +115,14 @@
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = TRUE
 	layer = OBJ_LAYER
 	var/obj/structure/morgue/linked_morgue = null
-	anchored = TRUE
-	throwpass = 1
+	throwpass = TRUE
 
-/obj/structure/morgue_tray/New(loc, obj/structure/morgue/morgue_source)
+/obj/structure/morgue_tray/Initialize(mapload, obj/structure/morgue/morgue_source)
+	. = ..()
 	if(morgue_source)
 		linked_morgue = morgue_source
-	..()
 
 /obj/structure/morgue_tray/Destroy()
 	. = ..()

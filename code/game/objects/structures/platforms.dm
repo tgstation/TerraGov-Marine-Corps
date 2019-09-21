@@ -1,21 +1,17 @@
-/*
-* Platforms
-*/
 /obj/structure/platform
 	name = "platform"
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform"
 	climbable = TRUE
-	anchored = TRUE
-	density = TRUE
 	throwpass = TRUE //You can throw objects over this, despite its density.
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
-/obj/structure/platform/New()
+/obj/structure/platform/Initialize()
+	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
 	switch(dir)
 		if(SOUTH)
@@ -28,7 +24,6 @@
 		if(WEST)
 			I.pixel_x = -16
 	overlays += I
-	..()
 
 /obj/structure/platform/CheckExit(atom/movable/O, turf/target)
 	if(O && O.throwing)
@@ -64,7 +59,8 @@ obj/structure/platform_decoration
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
-/obj/structure/platform_decoration/New()
+/obj/structure/platform_decoration/Initialize()
+	. = ..()
 	switch(dir)
 		if (NORTH)
 			layer = ABOVE_MOB_LAYER
@@ -74,4 +70,3 @@ obj/structure/platform_decoration
 			layer = ABOVE_MOB_LAYER
 		if (SOUTHWEST)
 			layer = ABOVE_MOB_LAYER
-	.. ()

@@ -6,8 +6,6 @@
 
 /obj/structure/mineral_door
 	name = "mineral door"
-	density = TRUE
-	anchored = TRUE
 	opacity = TRUE
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
@@ -19,8 +17,8 @@
 	var/hardness = 1
 	var/oreAmount = 7
 
-/obj/structure/mineral_door/New(location)
-	..()
+/obj/structure/mineral_door/Initialize()
+	. = ..()
 	icon_state = mineralType
 	name = "[mineralType] door"
 

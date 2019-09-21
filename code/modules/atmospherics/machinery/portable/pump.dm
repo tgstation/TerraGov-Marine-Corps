@@ -7,7 +7,6 @@
 /obj/machinery/portable_atmospherics/pump
 	name = "portable air pump"
 	icon_state = "psiphon:0"
-	density = TRUE
 
 	var/on = FALSE
 	var/direction = PUMP_OUT

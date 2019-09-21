@@ -28,13 +28,17 @@ They're all essentially identical when it comes to getting the job done.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
 
-/obj/item/ammo_magazine/New(loc, spawn_empty)
-	..()
+/obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
+	. = ..()
 	base_mag_icon = icon_state
-	if(spawn_empty) current_rounds = 0
+	if(spawn_empty) 
+		current_rounds = 0
+	
 	switch(current_rounds)
-		if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
-		if(0) icon_state += "_e" //In case it spawns empty instead.
+		if(-1) 
+			current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
+		if(0) 
+			icon_state += "_e" //In case it spawns empty instead.
 
 /obj/item/ammo_magazine/update_icon(round_diff = 0)
 	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
@@ -244,11 +248,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
 
-/obj/item/ammo_casing/New()
-	..()
-	pixel_x = rand(-2.0, 2) //Want to move them just a tad.
-	pixel_y = rand(-2.0, 2)
-	icon_state += "[rand(1,number_of_states)]" //Set the icon to it.
+/obj/item/ammo_casing/Initialize()
+	. = ..()
+	pixel_x = rand(-2, 2) //Want to move them just a tad.
+	pixel_y = rand(-2, 2)
+	icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/item/ammo_casing/update_icon()
