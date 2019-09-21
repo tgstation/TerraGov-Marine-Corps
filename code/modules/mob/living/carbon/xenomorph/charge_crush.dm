@@ -6,6 +6,8 @@
 #define CHARGE_BULL_HEADBUTT (1<<2)
 #define CHARGE_BULL_GORE (1<<3)
 
+#define STOP_CRUSHER_ON_DEL (1<<0)
+
 // ***************************************
 // *********** Charge
 // ***************************************
@@ -272,11 +274,15 @@
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
 		playsound(crushed_obj.loc, "punch", 25, 1)
+		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		crushed_obj.take_damage(.)
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")
-			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+			if(crushed_behavior & STOP_CRUSHER_ON_DEL)
+				return COMPONENT_MOVABLE_PREBUMP_STOPPED
+			else
+				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 		
 		return crushed_obj.post_crush_act(charger, src)
 
@@ -545,5 +551,17 @@
 	emote(prob(70) ? "hiss" : "roar")
 
 
+/obj/proc/crushed_special_behavior()
+	return NONE
+
+
+/obj/structure/window/framed/crushed_special_behavior()
+	if(window_frame)
+		return STOP_CRUSHER_ON_DEL
+	else ..()
+
+
 #undef CHARGE_SPEED
 #undef CHARGE_MAX_SPEED
+
+#undef STOP_CRUSHER_ON_DEL
