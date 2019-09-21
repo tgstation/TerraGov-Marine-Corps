@@ -3,7 +3,8 @@
 	use_power = FALSE
 	density = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 
 
@@ -39,19 +40,11 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return FALSE
-	ui_interact(user)
-
-
 /obj/machinery/self_destruct/console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return FALSE
+
 	switch(href_list["command"])
 		if("dest_start")
 			to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")

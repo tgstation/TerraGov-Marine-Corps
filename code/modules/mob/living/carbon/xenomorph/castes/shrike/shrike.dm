@@ -19,22 +19,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	job = ROLE_XENO_QUEEN
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/lay_egg,
-		/datum/action/xeno_action/call_of_the_burrowed,
-		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/psychic_cure,
-		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/activable/psychic_fling,
-		/datum/action/xeno_action/activable/psychic_choke,
-		/datum/action/xeno_action/toggle_pheromones
-		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,		
 		/mob/living/carbon/xenomorph/proc/calldown_dropship

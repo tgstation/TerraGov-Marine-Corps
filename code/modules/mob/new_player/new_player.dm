@@ -96,6 +96,7 @@
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
+	
 
 /mob/new_player/Topic(href, href_list[])
 	. = ..()
@@ -385,8 +386,8 @@
 /mob/new_player/proc/close_spawn_windows(mob/user)
 	if(!user)
 		user = src
-	user << browse(null, "window=latechoices") //closes late choices window
-	user << browse(null, "window=playersetup") //closes the player setup window
+	DIRECT_OUTPUT(user, browse(null, "window=latechoices")) //closes late choices window
+	DIRECT_OUTPUT(user, browse(null, "window=playersetup")) //closes the player setup window
 	user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 

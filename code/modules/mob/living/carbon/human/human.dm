@@ -6,7 +6,6 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 
 /mob/living/carbon/human/Initialize()
@@ -231,7 +230,6 @@
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
 	<BR>
 	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
@@ -356,12 +354,6 @@
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
-
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-
 
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
@@ -863,40 +855,6 @@
 		L.damage = L.min_bruised_damage
 
 
-
-/mob/living/carbon/human/get_visible_implants(class = 0)
-
-	var/list/visible_implants = list()
-	for(var/datum/limb/organ in limbs)
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/shard/shrapnel))
-				visible_implants += O
-
-	return(visible_implants)
-
-/mob/living/carbon/human/proc/handle_embedded_objects()
-
-	for(var/datum/limb/organ in limbs)
-		if(organ.limb_status & LIMB_SPLINTED || organ.limb_status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
-			continue
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
-				// All kinds of embedded objects cause bleeding.
-				var/msg = null
-				switch(rand(1,3))
-					if(1)
-						msg ="<span class='warning'>A spike of pain jolts your [organ.display_name] as you bump [O] inside.</span>"
-					if(2)
-						msg ="<span class='warning'>Your movement jostles [O] in your [organ.display_name] painfully.</span>"
-					if(3)
-						msg ="<span class='warning'>[O] in your [organ.display_name] twists painfully as you move.</span>"
-				to_chat(src, msg)
-
-				organ.take_damage_limb(rand(1, 2))
-				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.limb_status |= LIMB_BLEEDING
-					if(prob(10)) src.adjustToxLoss(1)
-
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
@@ -969,6 +927,8 @@
 		oldspecies.post_species_loss(src)
 
 	species.create_organs(src)
+
+	dextrous = species.has_fine_manipulation
 
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
@@ -1300,19 +1260,6 @@
 	if(!GLOB.datacore.manifest_update(oldname, newname, job))
 		GLOB.datacore.manifest_inject(src)
 
-	return TRUE
-
-
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
-	. = ..()
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!Adjacent(AM) && (AM.loc != src))
-		if(!proximity)
-			return TRUE
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
 	return TRUE
 
 

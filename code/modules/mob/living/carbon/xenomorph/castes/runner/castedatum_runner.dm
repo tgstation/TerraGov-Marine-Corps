@@ -1,4 +1,5 @@
 /datum/xeno_caste/runner
+	/mob/living/carbon/xenomorph
 	caste_name = "Runner"
 	display_name = "Runner"
 	upgrade_name = ""
@@ -46,6 +47,15 @@
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
+
+	// *** Abilities *** ///
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/toggle_savage,
+		)
 
 /datum/xeno_caste/runner/young
 	upgrade_name = "Young"

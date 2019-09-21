@@ -11,8 +11,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	matter = list("metal" = 50000)
-	origin_tech = "engineering=4;materials=2"
 
 
 /obj/item/ammo_rcd
@@ -24,5 +22,4 @@
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	origin_tech = "materials=2"
-	matter = list("metal" = 30000, "glass" = 15000)
+	materials = list(/datum/material/metal = 30000, /datum/material/glass = 15000)

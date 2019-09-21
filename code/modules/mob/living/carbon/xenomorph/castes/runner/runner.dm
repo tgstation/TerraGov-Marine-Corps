@@ -14,13 +14,6 @@
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
 	hit_and_run = 0
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/pounce,
-		/datum/action/xeno_action/toggle_savage,
-		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

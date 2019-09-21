@@ -120,6 +120,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	// We don't have a savefile or we failed to load them
 	random_character()
+	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
 	
@@ -129,6 +130,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	focus_chat = (choice == "Classic")
 	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 	save_preferences()
+
+
+/datum/preferences/can_interact(mob/user)
+	return TRUE
 
 
 /datum/preferences/proc/ShowChoices(mob/user)

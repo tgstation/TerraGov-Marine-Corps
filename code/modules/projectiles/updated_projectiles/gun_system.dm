@@ -4,8 +4,7 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
-	matter = list("metal" = 5000)
-	origin_tech = "combat=1"					//Guns generally have their own unique levels.
+	materials = list(/datum/material/metal = 5000)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4
@@ -776,7 +775,7 @@ and you're good to go.
 	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
 	if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
-		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
+		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 		user.death()
 		to_chat(user, "<span class='highdanger'>Your life flashes before you as your spirit is torn from your body!</span>")
@@ -788,7 +787,7 @@ and you're good to go.
 		to_chat(user, "<span class = 'notice'>Ow...</span>")
 		user.apply_effect(110, AGONY, 0)
 	else
-		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
+		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(100, OXY)
 		if(ishuman(user) && user == M)
 			var/mob/living/carbon/human/HM = user
@@ -817,7 +816,7 @@ and you're good to go.
 		return FALSE
 	if(!ismob(user)) //Could be an object firing the gun.
 		return TRUE
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	if(!(flags_gun_features & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))

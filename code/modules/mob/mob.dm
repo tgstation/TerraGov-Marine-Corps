@@ -343,18 +343,15 @@
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
-	<B><HR><FONT size=3>[name]</FONT></B>
-	<BR><HR>
 	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[];size=325x500", name))
-	onclose(user, "mob[name]")
-	return
+	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
+	popup.set_content(dat)
+	popup.open()
 
 
 /mob/vv_get_dropdown()
@@ -379,12 +376,8 @@
 	. = ..()
 	if(.)
 		return
-	if(href_list["mach_close"])
-		var/t1 = text("window=[href_list["mach_close"]]")
-		unset_interaction()
-		src << browse(null, t1)
 
-	else if(href_list["default_language"])
+	if(href_list["default_language"])
 		var/language = text2path(href_list["default_language"])
 		var/datum/language_holder/H = get_language_holder()
 
@@ -513,12 +506,6 @@
 	return TRUE
 
 
-
-
-/mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
-	return FALSE
-
-
 /proc/is_species(A, species_datum)
 	. = FALSE
 	if(ishuman(A))
@@ -533,108 +520,12 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-/mob/proc/get_visible_implants(class = 0)
-	var/list/visible_implants = list()
-	for(var/obj/item/O in embedded)
-		if(O.w_class > class)
-			visible_implants += O
-	return visible_implants
-
-mob/proc/yank_out_object()
-	set category = "Object"
-	set name = "Yank out object"
-	set desc = "Remove an embedded item at the cost of bleeding and pain."
-	set src in view(1)
-
-	if(!isliving(usr) || usr.next_move > world.time)
-		return
-	usr.next_move = world.time + 20
-
-	if(usr.stat)
-		to_chat(usr, "You are unconcious and cannot do that!")
-		return
-
-	if(usr.restrained())
-		to_chat(usr, "You are restrained and cannot do that!")
-		return
-
-	var/mob/S = src
-	var/mob/U = usr
-	var/list/valid_objects = list()
-	var/self = null
-
-	if(S == U)
-		self = 1 // Removing object from yourself.
-
-	valid_objects = get_visible_implants(0)
-	if(!valid_objects.len)
-		if(self)
-			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
-		else
-			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
-		return
-
-	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
-
-	if(self)
-		if(get_active_held_item())
-			to_chat(src, "<span class='warning'>You need an empty hand for this!</span>")
-			return FALSE
-		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
-	else
-		if(get_active_held_item())
-			to_chat(U, "<span class='warning'>You need an empty hand for this!</span>")
-			return FALSE
-		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
-
-	if(!do_after(U, 80, TRUE, S, BUSY_ICON_GENERIC) || !istype(selection))
-		return
-
-	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
-	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>", null, 5)
-	valid_objects = get_visible_implants(0)
-	if(valid_objects.len == 1) //Yanking out last object - removing verb.
-		src.verbs -= /mob/proc/yank_out_object
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		var/datum/limb/affected
-
-		for(var/datum/limb/E in H.limbs) //Grab the limb holding the implant.
-			for(var/obj/item/O in E.implants)
-				if(O == selection)
-					affected = E
-					break
-
-		if(!affected) //Somehow, something fucked up. Somewhere.
-			return
-
-		affected.implants -= selection
-		H.shock_stage+=20
-		affected.take_damage_limb((selection.w_class * 3), 0, FALSE, TRUE)
-
-		if(prob(selection.w_class * 5)) //I'M SO ANEMIC I COULD JUST -DIE-.
-			var/datum/wound/internal_bleeding/I = new (min(selection.w_class * 5, 15))
-			affected.wounds += I
-			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
-
-		if (ishuman(U))
-			var/mob/living/carbon/human/human_user = U
-			human_user.bloody_hands(H)
-
-	selection.loc = get_turf(src)
-	return 1
 
 /mob/proc/update_stat()
 	return
 
 /mob/proc/can_inject()
 	return reagents
-
-/mob/proc/canUseTopic(atom/movable/AM)
-	return FALSE
 
 /mob/proc/get_idcard(hand_first)
 	return
@@ -860,3 +751,7 @@ mob/proc/yank_out_object()
 
 /mob/proc/get_photo_description(obj/item/camera/camera)
 	return "a ... thing?"
+
+
+/mob/proc/can_interact_with(datum/D)
+	return (D == src)

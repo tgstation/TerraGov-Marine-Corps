@@ -10,6 +10,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/icon_on = "smartfridge"
 	var/icon_off = "smartfridge-off"
@@ -118,32 +119,19 @@
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
 		return TRUE
 
-/obj/machinery/smartfridge/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
-/obj/machinery/smartfridge/attack_ai(mob/user)
-	return 0
-
-/obj/machinery/smartfridge/attack_hand(mob/living/user)
+/obj/machinery/smartfridge/can_interact(mob/user)
 	. = ..()
-	if(.)
-		return
-	if(machine_stat & NOPOWER)
-		to_chat(user, "<span class='warning'>[src] has no power.</span>")
-		return
-	if(seconds_electrified != 0)
-		if(shock(user, 100))
-			return
+	if(!.)
+		return FALSE
 
-	ui_interact(user)
+	if(is_secure_fridge && !allowed(usr) && locked != -1)
+		return FALSE
 
-/*******************
-*   SmartFridge Menu
-********************/
+	return TRUE
+
 
 /obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	user.set_interaction(src)
-
 	var/data[0]
 	data["contents"] = null
 	data["panel_open"] = CHECK_BITFIELD(machine_stat, PANEL_OPEN)
@@ -173,25 +161,7 @@
 	if(.) 
 		return
 
-	var/mob/user = usr
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
-
-
-	if (href_list["close"])
-		user.unset_interaction()
-		ui.close()
-		return 0
-
 	if (href_list["vend"])
-		if(machine_stat & NOPOWER)
-			to_chat(usr, "<span class='warning'>[src] has no power.</span>.")
-			return 0
-		if (!in_range(src, usr))
-			return 0
-		if(is_secure_fridge)
-			if(!allowed(usr) && locked != -1)
-				to_chat(usr, "<span class='warning'>Access denied.</span>")
-				return 0
 		var/index = text2num(href_list["vend"])
 		var/amount = text2num(href_list["amount"])
 		var/K = item_quants[index]
@@ -204,7 +174,7 @@
 			var/i = amount
 			for(var/obj/O in contents)
 				if(O.name == K)
-					O.loc = loc
+					O.forceMove(loc)
 					i--
 					if (i <= 0)
 						return 1

@@ -81,8 +81,7 @@
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
-	origin_tech = "combat=1;materials=1"
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
@@ -116,10 +115,8 @@
 /obj/item/weapon/gun/energy/lasgun
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
-	origin_tech = "combat=5;materials=4"
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
-	matter = list("metal" = 2000)
 	load_method = CELL //codex
 
 	ammo = /datum/ammo/energy/lasgun

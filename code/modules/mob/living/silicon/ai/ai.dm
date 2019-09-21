@@ -236,16 +236,6 @@
 		stat(null, text("System integrity: [(health + 100) / 2]%"))
 
 
-/mob/living/silicon/ai/canUseTopic(atom/movable/AM, proximity, dexterity)
-	if(control_disabled || incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(proximity && !in_range(AM, src))
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return can_see(AM)
-
-
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)
 	. = ..()
 
@@ -260,3 +250,14 @@
 	. = ..()
 	if(.)
 		end_multicam()
+
+
+/mob/living/silicon/ai/can_interact_with(datum/D)
+	if(!isatom(D))
+		return FALSE
+
+	var/atom/A = D
+	if(level_locked && A.z != z)
+		return FALSE
+
+	return GLOB.cameranet.checkTurfVis(get_turf(A))
