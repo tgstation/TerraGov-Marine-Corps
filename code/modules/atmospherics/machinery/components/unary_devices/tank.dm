@@ -14,7 +14,7 @@
 	var/gas_type = 0
 
 /obj/machinery/atmospherics/components/unary/tank/New()
-	..()
+	. = ..()
 	setPipingLayer(piping_layer)
 
 

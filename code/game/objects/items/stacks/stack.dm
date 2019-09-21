@@ -19,7 +19,7 @@
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
 
 
-/obj/item/stack/New(loc, new_amount)
+/obj/item/stack/Initialize(mapload, new_amount)
 	. = ..()
 	if(new_amount)
 		amount = new_amount

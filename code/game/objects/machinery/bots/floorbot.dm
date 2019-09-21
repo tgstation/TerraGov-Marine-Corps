@@ -25,9 +25,9 @@
 	var/targetdirection
 
 
-/obj/machinery/bot/floorbot/New()
-	..()
-	src.updateicon()
+/obj/machinery/bot/floorbot/Initialize()
+	. = ..()
+	updateicon()
 	start_processing()
 
 /obj/machinery/bot/floorbot/turn_on()

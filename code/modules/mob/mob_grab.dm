@@ -14,8 +14,8 @@
 	var/last_upgrade = 0 //used for cooldown between grab upgrades.
 
 
-/obj/item/grab/New()
-	..()
+/obj/item/grab/Initialize()
+	. = ..()
 	last_upgrade = world.time
 
 /obj/item/grab/dropped(mob/user)

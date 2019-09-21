@@ -283,7 +283,7 @@
 	icon_state = "mortar_ammo_smk"
 	var/datum/effect_system/smoke_spread/bad/smoke
 
-/obj/item/mortal_shell/smoke/New()
+/obj/item/mortal_shell/smoke/Initialize()
 	. = ..()
 	smoke = new(src)
 

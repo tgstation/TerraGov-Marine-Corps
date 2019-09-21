@@ -41,10 +41,10 @@
 	var/failmsg = ""
 	var/charge = 1
 
-/obj/item/lightreplacer/New()
+/obj/item/lightreplacer/Initialize()
+	. = ..()
 	uses = max_uses
 	failmsg = "The [name]'s refill light blinks red."
-	..()
 
 /obj/item/lightreplacer/examine(mob/user)
 	..()
