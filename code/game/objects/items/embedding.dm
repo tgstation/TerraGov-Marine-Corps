@@ -23,7 +23,14 @@
 
 /mob/living/proc/unembed_item(obj/item/embedding)
 	embedded_objects -= embedding
-	if(!length(embedded_objects))
+	var/yankable_embedded = FALSE
+	for(var/i in embedded_objects)
+		var/obj/item/embedded_obj = i
+		if(!(embedded_obj.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+			continue
+		yankable_embedded = TRUE
+		break
+	if(!yankable_embedded)
 		verbs -= /mob/living/proc/yank_out_object
 
 
@@ -31,7 +38,14 @@
 	var/datum/limb/affected_limb = embedded_objects[embedding]
 	affected_limb.unembed(embedding)
 	embedded_objects -= embedding
-	if(!length(embedded_objects))
+	var/yankable_embedded = FALSE
+	for(var/i in embedded_objects)
+		var/obj/item/embedded_obj = i
+		if(!(embedded_obj.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+			continue
+		yankable_embedded = TRUE
+		break
+	if(!yankable_embedded)
 		verbs -= /mob/living/proc/yank_out_object
 
 
@@ -66,7 +80,8 @@
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [embedding] sticks in the wound!</span>")
 	implants += embedding
-	owner.verbs += /mob/living/proc/yank_out_object
+	if(embedding.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT)
+		owner.verbs += /mob/living/proc/yank_out_object
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
 
