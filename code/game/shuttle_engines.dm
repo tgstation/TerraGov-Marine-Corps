@@ -2,24 +2,18 @@
 	name = "shuttle"
 	icon = 'icons/turf/shuttle.dmi'
 
+
 /obj/structure/shuttle/window
 	name = "shuttle window"
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "1"
-	density = TRUE
-	opacity = FALSE
-	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	layer = WINDOW_LAYER
 
-/obj/structure/shuttle/window/fire_act(exposed_temperature, exposed_volume)
-	return
 
 /obj/structure/shuttle/engine
 	name = "engine"
-	density = TRUE
-	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/shuttle/engine/heater
 	name = "heater"

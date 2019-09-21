@@ -9,7 +9,6 @@
 	name = "processor unit"
 	icon_state = "processor"
 	desc = "This machine is used to process large quantities of information."
-	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	circuit = /obj/item/circuitboard/machine/telecomms/processor

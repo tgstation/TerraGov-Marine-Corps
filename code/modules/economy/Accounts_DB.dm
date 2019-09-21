@@ -1,10 +1,8 @@
-
 /obj/machinery/account_database
 	name = "Accounts uplink terminal"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "aiupload"
-	density = TRUE
 	req_one_access = list(ACCESS_MARINE_CAPTAIN)
 	interaction_flags = INTERACT_MACHINE_NANO
 	var/receipt_num

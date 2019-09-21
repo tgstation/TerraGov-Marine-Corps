@@ -4,7 +4,6 @@
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE
-	density = TRUE
 	canmove = FALSE
 	job = "AI"
 	status_flags = CANSTUN|CANKNOCKOUT
