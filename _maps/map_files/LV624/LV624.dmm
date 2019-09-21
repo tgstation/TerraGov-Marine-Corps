@@ -19989,13 +19989,6 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
-"edp" = (
-/obj/item/reagent_container/food/snacks/worm{
-	step_x = 15;
-	step_y = 19
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle7)
 "evP" = (
 /obj/structure/sign/atmosplaque{
 	dir = 1
@@ -20353,6 +20346,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"sUi" = (
+/obj/item/reagent_container/food/snacks/worm,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "sWZ" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 1
@@ -45306,7 +45303,7 @@ alb
 arp
 atQ
 arl
-edp
+arl
 avl
 avE
 awa
@@ -56878,7 +56875,7 @@ atX
 arW
 arW
 atQ
-arl
+sUi
 aro
 arV
 atX
