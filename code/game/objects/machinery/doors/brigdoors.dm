@@ -1,14 +1,3 @@
-// TODO: Make this a child of door_display. ~Bmc777
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-// Brig Door control displays.
-//  Description: This is a controls the timer for the brig doors, displays the timer on itself and
-//               has a popup window when used, allowing to set the timer.
-//  Code Notes: Combination of old brigdoor.dm code from rev4407 and the status_display.dm code
-//  Date: 01/September/2010
-//  Programmer: Veryinky
-/////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/machinery/door_timer
 	name = "Door Timer"
 	icon = 'icons/obj/status_display.dmi'
@@ -193,13 +182,6 @@
 	popup.open()
 
 
-//Function for using door_timer dialog input, checks if user has permission
-// href_list to
-//  "timing" turns on timer
-//  "tp" value to modify timer
-//  "fc" activates flasher
-// 	"change" resets the timer to the timetoset amount while the timer is counting down
-// Also updates dialog window and timer icon
 /obj/machinery/door_timer/Topic(href, href_list)
 	. = ..()
 	if(.)
