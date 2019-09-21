@@ -8,10 +8,9 @@
 	var/read_only = 0 //Well,it's still a floppy disk
 
 //Disk stuff.
-/obj/item/disk/data/New()
-	..()
-	var/diskcolor = pick(0,1,2)
-	src.icon_state = "datadisk[diskcolor]"
+/obj/item/disk/data/Initialize()
+	. = ..()
+	icon_state = "datadisk[rand(0, 2)]"
 
 /obj/item/disk/data/attack_self(mob/user as mob)
 	src.read_only = !src.read_only

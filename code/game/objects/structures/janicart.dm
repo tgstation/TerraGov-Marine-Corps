@@ -17,8 +17,8 @@
 	var/signs = 0	//maximum capacity hardcoded below
 
 
-/obj/structure/janitorialcart/New()
-	..()
+/obj/structure/janitorialcart/Initialize()
+	. = ..()
 	mybucket = new(src)
 	update_icon()
 

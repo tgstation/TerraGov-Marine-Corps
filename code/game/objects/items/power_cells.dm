@@ -25,8 +25,8 @@
 	maxcharge = 500
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
-/obj/item/cell/crap/empty/New()
-	..()
+/obj/item/cell/crap/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/secborg
@@ -34,8 +34,8 @@
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 40)
 
-/obj/item/cell/secborg/empty/New()
-	..()
+/obj/item/cell/secborg/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/apc
@@ -49,8 +49,8 @@
 	maxcharge = 10000
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 60)
 
-/obj/item/cell/high/empty/New()
-	..()
+/obj/item/cell/high/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/super
@@ -59,8 +59,8 @@
 	maxcharge = 20000
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 70)
 
-/obj/item/cell/super/empty/New()
-	..()
+/obj/item/cell/super/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/hyper
@@ -69,8 +69,8 @@
 	maxcharge = 30000
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 80)
 
-/obj/item/cell/hyper/empty/New()
-	..()
+/obj/item/cell/hyper/empty/Initialize()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/infinite

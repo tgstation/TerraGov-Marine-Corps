@@ -342,11 +342,9 @@
 /client/proc/send_assets()
 	//get the common files
 	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/browser/common.css',
-		'html/browser/scannernew.css',
-		'html/browser/latechoices.css'
+		'html/browser/search.js',
+		'html/browser/panels.css',
+		'html/browser/common.css'
 		)
 	spawn(10) //removing this spawn causes all clients to not get verbs.
 		//Precache the client with all other assets slowly, so as to not block other browse() calls

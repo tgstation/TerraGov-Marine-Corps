@@ -8,8 +8,8 @@
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/obj/effect/acid_hole/New(loc)
-	..()
+/obj/effect/acid_hole/Initialize()
+	. = ..()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src

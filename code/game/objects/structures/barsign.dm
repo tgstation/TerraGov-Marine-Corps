@@ -3,8 +3,8 @@
 	icon_state = "off"
 	anchored = TRUE
 
-/obj/structure/sign/double/barsign/New()
-	..()
+/obj/structure/sign/double/barsign/Initialize()
+	. = ..()
 	ChangeSign(pick(
 	"pinkflamingo",
 	"magmasea",

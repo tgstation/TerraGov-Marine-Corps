@@ -120,8 +120,8 @@
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/New(loc, target)
-	..(loc)
+/obj/effect/xenomorph/acid/Initialize(mapload, target)
+	. = ..()
 	acid_t = target
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)
