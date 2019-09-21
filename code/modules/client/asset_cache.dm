@@ -394,11 +394,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/group/IRV
-	children = list(
-		/datum/asset/simple/jquery
-	)
-
 
 /datum/asset/simple/changelog
 	assets = list(
@@ -435,22 +430,21 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js',
+		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
 	)
-
 
 
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'goon/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'goon/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'goon/browserassets/css/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'goon/browserassets/css/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
-		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
+		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
+		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
+		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
+		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css'
 	)
 
 
