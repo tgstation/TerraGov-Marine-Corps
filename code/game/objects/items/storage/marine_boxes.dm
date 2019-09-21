@@ -506,7 +506,7 @@
 	item_state = "heavy_harness"
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
-	time_to_equip = 20
+	time_to_equip = 2 SECONDS
 
 /obj/item/minigun_harness/equipped(mob/living/carbon/human/user, slot)
 	playsound(src,'sound/machines/click.ogg', 15, 0, 1)
