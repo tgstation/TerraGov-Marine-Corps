@@ -2,7 +2,9 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	animate_movement = 1
+	density = TRUE
+	anchored = TRUE
+	animate_movement=1
 	max_integrity = 150
 	var/atom/movable/load = null		// the loaded crate (usually)
 	var/beacon_freq = 1400

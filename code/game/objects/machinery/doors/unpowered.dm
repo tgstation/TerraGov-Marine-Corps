@@ -14,3 +14,5 @@
 	icon = 'icons/turf/shuttle.dmi'
 	name = "Shuttle Airlock"
 	icon_state = "door1"
+	opacity = TRUE
+	density = TRUE

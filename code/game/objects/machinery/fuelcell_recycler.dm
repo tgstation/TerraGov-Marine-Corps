@@ -3,13 +3,15 @@
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "recycler"
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 5
 	active_power_usage = 15000
 	bound_height = 32
 	bound_width = 32
 	var/obj/item/fuelCell/cell_left = null
 	var/obj/item/fuelCell/cell_right = null
-	resistance_flags = RESIST_ALL
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/fuelcell_recycler/attackby(obj/item/I, mob/user, params)
 	. = ..()

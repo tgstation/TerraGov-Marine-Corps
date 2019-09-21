@@ -1,7 +1,11 @@
+//these are probably broken
+
 /obj/machinery/floodlight
 	name = "Emergency Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
+	anchored = TRUE
+	density = TRUE
 	var/on = 0
 	var/obj/item/cell/cell = null
 	var/use = 0
@@ -17,8 +21,18 @@
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
-
-
+/*
+/obj/machinery/floodlight/process()
+	if(on && cell)
+		if(cell.charge >= use)
+			cell.use(use)
+		else
+			on = 0
+			updateicon()
+			SetLuminosity(0)
+			src.visible_message("<span class='warning'>[src] shuts down due to lack of power!</span>")
+			return
+*/
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/floodlight/attack_hand(mob/living/user)
 	. = ..()
@@ -127,4 +141,4 @@
 	name = "Outpost Light"
 	icon_state = "flood01"
 	on = TRUE
-	use_power = NO_POWER_USE
+	use_power = FALSE

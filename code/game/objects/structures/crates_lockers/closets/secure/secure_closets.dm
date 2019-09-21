@@ -2,8 +2,10 @@
 	name = "secure locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon_state = "secure1"
+	density = TRUE
 	opened = FALSE
 	locked = TRUE
+	broken = FALSE
 	closet_flags = CLOSET_IS_SECURE
 	var/large = 1
 	icon_closed = "secure"

@@ -12,6 +12,8 @@
 	icon_state = "off"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
 	resistance_flags = UNACIDABLE
+	anchored = TRUE
+	density = TRUE
 
 	var/power_gen_percent = 0 //80,000W at full capacity
 	var/buildstate = FUSION_ENGINE_NO_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default

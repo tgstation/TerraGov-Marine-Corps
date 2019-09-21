@@ -1,3 +1,6 @@
+// the SMES
+// stores power
+
 #define SMESMAXCHARGELEVEL 200000
 #define SMESMAXOUTPUT 200000
 #define SMESRATE 0.05			// rate of internal charge to external power
@@ -6,6 +9,8 @@
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
+	density = TRUE
+	anchored = TRUE
 	use_power = NO_POWER_USE
 	interaction_flags = INTERACT_MACHINE_NANO
 	var/capacity = 5e6		//Maximum amount of power it can hold

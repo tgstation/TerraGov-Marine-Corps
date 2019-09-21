@@ -513,6 +513,17 @@
 	potency = 30
 	plantname = "glowshroom"
 
+/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/attack_self(mob/user as mob)
+	if(istype(user.loc,/turf/open/space))
+		return
+	var/obj/effect/glowshroom/planted = new /obj/effect/glowshroom(user.loc)
+
+	planted.delay = 50
+	planted.endurance = 100
+	planted.potency = potency
+	qdel(src)
+
+	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
 
 
 // *************************************

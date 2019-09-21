@@ -1,4 +1,5 @@
 /obj/structure/flora
+	anchored = TRUE
 	max_integrity = 25
 	var/on_fire = FALSE
 
@@ -25,6 +26,7 @@
 /obj/structure/flora/tree
 	name = "tree"
 	desc = "A large tree."
+	density = TRUE
 	pixel_x = -16
 	max_integrity = 500
 	layer = ABOVE_FLY_LAYER

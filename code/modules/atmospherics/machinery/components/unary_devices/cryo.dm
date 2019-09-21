@@ -4,6 +4,7 @@
 	name = "cryo cell"
 	icon = 'icons/obj/machines/cryogenics2.dmi'
 	icon_state = "cell-off"
+	density = TRUE
 	max_integrity = 350
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 30, "acid" = 30)
 	layer = ABOVE_WINDOW_LAYER

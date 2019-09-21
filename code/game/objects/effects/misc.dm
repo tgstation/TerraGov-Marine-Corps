@@ -69,6 +69,7 @@
 
 /obj/effect/forcefield
 	anchored = TRUE
+	opacity = FALSE
 	density = TRUE
 
 
@@ -121,6 +122,7 @@
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier
+	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = UNACIDABLE | INDESTRUCTIBLE

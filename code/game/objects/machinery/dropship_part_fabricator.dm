@@ -1,13 +1,16 @@
+
+
+
 /obj/machinery/dropship_part_fabricator
 	name = "dropship part fabricator"
 	desc = "A large automated 3D printer for producing new dropship parts."
-	use_power = IDLE_POWER_USE
-
+	density = TRUE
+	anchored = TRUE
+	use_power = 1
 	idle_power_usage = 20
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
 	var/busy = FALSE
-
 
 /obj/machinery/dropship_part_fabricator/update_icon()
 	if(machine_stat & NOPOWER)

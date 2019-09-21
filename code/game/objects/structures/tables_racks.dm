@@ -1,8 +1,22 @@
+/* Tables and Racks
+* Contains:
+*		Tables
+*		Wooden tables
+*		Reinforced tables
+*		Racks
+*/
+
+
+/*
+* Tables
+*/
 /obj/structure/table
 	name = "table"
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
+	density = TRUE
+	anchored = TRUE
 	layer = TABLE_LAYER
 	throwpass = TRUE	//You can throw objects over this, despite it's density.")
 	climbable = TRUE
@@ -519,7 +533,9 @@
 	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
+	density = TRUE
 	layer = TABLE_LAYER
+	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE

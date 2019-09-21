@@ -1,5 +1,7 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
+	anchored = TRUE
+	opacity = FALSE
 	density = FALSE
 	layer = WALL_OBJ_LAYER
 
@@ -217,10 +219,13 @@
 	desc = "A direction sign, pointing out which way the escape shuttle dock is."
 	icon_state = "direction_evac"
 
-/obj/structure/sign/safety
+/obj/structure/sign/safety/
 	name = "sign"
 	icon = 'icons/obj/safety_signs.dmi'
 	desc = "A sign warning of a particular hazard"
+	anchored = TRUE
+	opacity = FALSE
+	density = FALSE
 
 /obj/structure/sign/safety/airlock
 	name = "\improper Airlock"

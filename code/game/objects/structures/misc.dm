@@ -3,7 +3,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
@@ -23,6 +24,7 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "monorail"
 	density = FALSE
+	anchored = TRUE
 	layer = ATMOS_PIPE_LAYER + 0.01
 
 /obj/structure/mopbucket
@@ -30,6 +32,7 @@
 	desc = "Fill it with water, but don't forget a mop!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
+	density = TRUE
 	anchored = FALSE
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
@@ -59,7 +62,8 @@
 	icon_state = "shipmast" //Thank you to Spyroshark and Arachnidnexus
 	desc = "A piece of old earth that was. The plaque reads<br><br><span class='name'>HMS Victory Sailed 1765 to 1922.</span><br><span class='name'>Relaunched 2393.</span><br><span class='name'>On loan from the First Sea Lord.</span><br><br>"
 	layer = ABOVE_MOB_LAYER
-
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/shipmast/attack_hand(mob/living/user)
 	. = ..()
@@ -140,7 +144,8 @@ obj/item/alienjar
 	icon = 'icons/obj/structures/structures.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
-
+	density = FALSE
+	opacity = FALSE
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
@@ -148,6 +153,7 @@ obj/item/alienjar
 	icon = 'icons/obj/stationobjs.dmi' //Change this.
 	icon_state = "plasticflaps"
 	density = FALSE
+	anchored = TRUE
 	layer = MOB_LAYER
 
 /obj/structure/plasticflaps/CanPass(atom/A, turf/T)

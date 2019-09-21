@@ -7,6 +7,8 @@
 /obj/machinery/teleport
 	name = "teleport"
 	icon = 'icons/obj/stationobjs.dmi'
+	density = TRUE
+	anchored = TRUE
 
 
 /obj/machinery/teleport/hub

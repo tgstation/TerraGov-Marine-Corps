@@ -1,3 +1,8 @@
+
+
+//Xeno-style acids
+//Ideally we'll consolidate all the "effect" objects here
+//Also need to change the icons
 /obj/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
@@ -8,6 +13,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "splatter"
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
 /obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
@@ -18,6 +25,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acidblob"
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 
 /obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
@@ -28,6 +37,8 @@
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acid2"
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
@@ -87,6 +98,8 @@
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid_normal"
+	density = FALSE
+	opacity = FALSE
 	anchored = TRUE
 	var/atom/acid_t
 	var/ticks = 0
