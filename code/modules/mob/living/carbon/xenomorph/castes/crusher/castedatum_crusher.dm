@@ -33,7 +33,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
+	deevolves_to = /mob/living/carbon/xenomorph/bull
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -81,8 +81,6 @@
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
-
 	// *** Defense *** //
 	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 5, "acid" = 90)
 
@@ -112,8 +110,6 @@
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
-
 	// *** Defense *** //
 	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 10, "acid" = 95)
 
@@ -139,8 +135,6 @@
 
 	// *** Health *** //
 	max_health = 350
-
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
 	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)

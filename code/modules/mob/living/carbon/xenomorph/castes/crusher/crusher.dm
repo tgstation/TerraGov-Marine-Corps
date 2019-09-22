@@ -34,3 +34,9 @@
 		icon_state = "Crusher Charging"
 		return TRUE
 	return FALSE
+
+
+/mob/living/carbon/xenomorph/crusher/handle_special_wound_states()
+	. = ..()
+	if(is_charging >= CHARGE_ON)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="crusher_wounded_charging", "layer"=-X_WOUND_LAYER)
