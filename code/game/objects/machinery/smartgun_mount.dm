@@ -483,6 +483,8 @@
 	target = object
 	if(!istype(target))
 		return FALSE
+	if(user != operator)
+		CRASH("InterceptClickOn called by user ([user]) different from operator ([operator]).")
 	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
 		return FALSE
 	if(get_dist(target, loc) > 15)
