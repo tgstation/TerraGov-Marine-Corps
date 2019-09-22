@@ -58,7 +58,6 @@
 
 /obj/effect/landmark/newplayer_start/New() //This can't be Initialize() or players will start in a wrong loc at roundstart.
 	GLOB.newplayer_start += loc
-	return
 
 
 /obj/effect/landmark/start/ai_spawn
