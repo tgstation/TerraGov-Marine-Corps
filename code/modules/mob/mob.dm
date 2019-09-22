@@ -513,6 +513,13 @@
 		if(istype(H.species, species_datum))
 			. = TRUE
 
+/proc/is_species_in_list(A, list/species_list)
+	. = FALSE
+	if(!ishuman(A))
+		return FALSE
+	var/mob/living/carbon/human/H = A
+	return (length(species_list) && is_type_in_typecache(H.species, species_list))
+
 /mob/proc/get_species()
 	return ""
 

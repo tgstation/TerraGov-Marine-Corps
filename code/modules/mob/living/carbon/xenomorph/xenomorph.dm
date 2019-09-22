@@ -40,8 +40,7 @@
 
 	update_action_button_icons()
 
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
-
+	AddComponent(/datum/component/ability/devour, list(/mob/living/carbon/human, /mob/living/carbon/monkey), list(/datum/species/synthetic, /datum/species/early_synthetic))
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)

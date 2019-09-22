@@ -14,7 +14,7 @@
 		return
 	X.lay_down()
 	return succeed_activate()
-
+/*
 // Regurgitate
 /datum/action/xeno_action/regurgitate
 	name = "Regurgitate"
@@ -37,7 +37,7 @@
 	var/mob/living/carbon/xenomorph/spewer = owner
 	spewer.empty_gut(TRUE)
 
-	return succeed_activate()
+	return succeed_activate()*/
 
 // ***************************************
 // *********** Drone-y abilities

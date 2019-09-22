@@ -1,6 +1,6 @@
 /mob/living/carbon/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+	RegisterSignal(src, COMSIG_MOVABLE_DEVOURED, .proc/on_devour_by_xeno)
 
 
 /mob/living/carbon/Destroy()

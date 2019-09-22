@@ -299,7 +299,6 @@
 		qdel(A)
 
 	var/list/immobile_abilities = list(\
-		/datum/action/xeno_action/regurgitate,\
 		/datum/action/xeno_action/remove_eggsac,\
 		/datum/action/xeno_action/activable/screech,\
 		/datum/action/xeno_action/psychic_whisper,\
@@ -352,7 +351,6 @@
 
 	var/list/mobile_abilities = list(
 		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,

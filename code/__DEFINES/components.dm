@@ -117,6 +117,7 @@
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		-1
 	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		-2
 	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		-3
+#define COMSIG_MOVABLE_DEVOURED "movable_devoured"
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
@@ -179,7 +180,6 @@
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
 
 //mob/living/carbon signals
-#define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
 
 // /mob/living/carbon/human signals
