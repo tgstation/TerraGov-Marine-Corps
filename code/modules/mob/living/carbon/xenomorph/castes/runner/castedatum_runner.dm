@@ -1,5 +1,4 @@
 /datum/xeno_caste/runner
-	/mob/living/carbon/xenomorph
 	caste_name = "Runner"
 	display_name = "Runner"
 	upgrade_name = ""

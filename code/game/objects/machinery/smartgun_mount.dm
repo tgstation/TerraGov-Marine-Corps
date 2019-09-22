@@ -406,17 +406,17 @@
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
-			if(target)
+			if(!QDELETED(target))
 				var/angle = round(Get_Angle(src,target))
 				muzzle_flash(angle)
+			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
 			in_chamber = null
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
 				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
-	return
+
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.
 	if(isnull(angle))

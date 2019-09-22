@@ -112,6 +112,11 @@
 		if(QDELETED(real_src))
 			return
 
+	#ifdef NULL_CLIENT_BUG_CHECK
+	if(QDELETED(usr))
+		return
+	#endif
+
 	return ..()	//redirect to hsrc.Topic()
 
 
