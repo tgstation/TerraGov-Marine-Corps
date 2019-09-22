@@ -101,10 +101,8 @@
 
 	return TRUE
 
-
 /datum/action/xeno_action/fail_activate()
-		update_button_icon()
-
+	update_button_icon()
 
 /datum/action/xeno_action/proc/succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
