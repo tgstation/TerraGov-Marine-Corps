@@ -70,8 +70,8 @@
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
-	to_chat(user, "There are [amount] [singular_name]\s in the [stack_name].")
-
+	if(amount > 1)
+		to_chat(user, "There are [amount] [singular_name]\s in the [stack_name].")
 
 /obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()
