@@ -8,6 +8,8 @@
 	icon = 'icons/turf/geothermal.dmi'
 	icon_state = "weld"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
+	anchored = TRUE
+	density = TRUE
 	resistance_flags = UNACIDABLE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
@@ -285,6 +287,8 @@
 	name = "Colony Floodlight"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodoff"
+	density = TRUE
+	anchored = TRUE
 	var/damaged = FALSE //Can be smashed by xenos
 	var/is_lit = FALSE //whether the floodlight is switched to on or off. Does not necessarily mean it emits light.
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE

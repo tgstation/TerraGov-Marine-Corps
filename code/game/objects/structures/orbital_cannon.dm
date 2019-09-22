@@ -6,6 +6,8 @@
 	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
+	density = TRUE
+	anchored = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
 	bound_height = 64
@@ -221,12 +223,14 @@
 	desc = "The orbital cannon's loading tray."
 	icon = 'icons/Marine/mainship_props64.dmi'
 	icon_state = "cannon_tray"
+	density = TRUE
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	layer = LADDER_LAYER + 0.01
 	bound_width = 64
 	bound_height = 32
-	resistance_flags = RESIST_ALL
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	pixel_y = -9
 	pixel_x = -6
 	var/obj/structure/ob_ammo/warhead/warhead
@@ -317,6 +321,8 @@
 
 /obj/structure/ob_ammo
 	name = "theoretical ob ammo"
+	density = TRUE
+	anchored = TRUE
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
@@ -500,11 +506,13 @@
 	desc = "A powerful ship-to-ship weapon sometimes used for ground support at reduced efficiency."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "Railgun"
+	density = TRUE
+	anchored = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
 	bound_height = 64
 	bound_y = 64
-	resistance_flags = RESIST_ALL
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
 	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo

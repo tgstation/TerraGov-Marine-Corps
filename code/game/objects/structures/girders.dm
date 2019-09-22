@@ -2,6 +2,8 @@
 	name = "girder"
 	icon_state = "girder"
 	desc = "A large structural assembly made out of metal. It requires some layers of metal before it can be considered a wall."
+	anchored = TRUE
+	density = TRUE
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'

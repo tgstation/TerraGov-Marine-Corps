@@ -1,9 +1,12 @@
+
 /obj/machinery/microwave
 	name = "Microwave"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = ABOVE_TABLE_LAYER
-	use_power = IDLE_POWER_USE
+	density = TRUE
+	anchored = TRUE
+	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/operating = 0 // Is it on?

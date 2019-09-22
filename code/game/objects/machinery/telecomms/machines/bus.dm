@@ -11,6 +11,7 @@
 	name = "bus mainframe"
 	icon_state = "bus"
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
+	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	netspeed = 40

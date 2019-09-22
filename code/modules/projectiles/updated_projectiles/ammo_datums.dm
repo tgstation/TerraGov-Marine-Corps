@@ -156,18 +156,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 
-/datum/ammo/proc/burst(atom/target, obj/item/projectile/proj, damage_type = BRUTE, radius = 1, modifier = 0.5, attack_type = "bullet", apply_armor = TRUE)
+/datum/ammo/proc/airburst(atom/target, obj/item/projectile/proj)
 	if(!target || !proj)
-		CRASH("burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	for(var/mob/living/carbon/victim in orange(radius,target))
+		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in orange(1, target))
 		if(proj.firer == victim)
 			continue
-		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>","[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
-		if(apply_armor)
-			var/armor_block = victim.run_armor_check(null, attack_type)
-			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier), damage_type, null, armor_block)
-		else
-			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier),damage_type)
+		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>",
+			"[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
+		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
+		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block)
 
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
@@ -452,6 +450,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, 40, 0, 1, 1)
 
+/datum/ammo/bullet/rifle/m4ra/smart
+	name = "A19 high velocity smart bullet"
+	hud_state = "hivelo_iff"
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
+	damage = 30
+	penetration = 50
+
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
@@ -510,15 +516,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 5
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M,obj/item/projectile/P)
-	burst(get_turf(M),P,damage_type)
-	knockback(M,P)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
+	knockback(victim, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/O,obj/item/projectile/P)
-	burst(get_turf(P),P,damage_type)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/item/projectile/proj)
+	airburst(target_obj, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/T,obj/item/projectile/P)
-	burst(get_turf(T),P,damage_type)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/item/projectile/proj)
+	airburst(target_turf, proj)
 
 
 /datum/ammo/bullet/shotgun/flechette
@@ -626,8 +632,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 0
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/M,obj/item/projectile/P)
-	burst(get_turf(M),P,damage_type)
+/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
@@ -1052,8 +1058,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "acid"
 	damage = 20
 
-/datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
-	burst(M,P,damage_type)
+/datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -1144,8 +1150,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
-	burst(M,P,damage_type)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()

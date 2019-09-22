@@ -4,6 +4,8 @@
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
 	hit_sound = 'sound/effects/grillehit.ogg'
+	density = TRUE
+	anchored = TRUE
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE

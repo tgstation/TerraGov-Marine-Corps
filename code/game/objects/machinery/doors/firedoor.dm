@@ -13,12 +13,13 @@
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
+	opacity = FALSE
 	density = FALSE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
 	power_channel = ENVIRON
-	use_power = IDLE_POWER_USE
+	use_power = TRUE
 	idle_power_usage = 5
 
 	var/blocked = FALSE

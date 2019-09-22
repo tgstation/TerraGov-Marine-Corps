@@ -1,11 +1,16 @@
+// the power monitoring computer
+// for the moment, just report the status of all APCs in the same powernet
 /obj/machinery/power/monitor
 	name = "power monitoring computer"
 	desc = "It monitors power levels across the station."
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "power"
 
+	//computer stuff
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
-	use_power = IDLE_POWER_USE
+	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
 

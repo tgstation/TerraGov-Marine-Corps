@@ -1,8 +1,10 @@
+//Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
 /obj/machinery/power/port_gen
 	name = "Placeholder Generator"	//seriously, don't use this. It can't be anchored without VV magic.
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "portgen0"
+	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
 	interaction_flags = INTERACT_MACHINE_NANO

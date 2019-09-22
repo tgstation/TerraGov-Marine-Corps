@@ -8,6 +8,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
+	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	hit_sound = 'sound/effects/metalhit.ogg'
 	var/icon_closed = "closed"
@@ -32,7 +33,8 @@
 	var/close_sound = 'sound/machines/click.ogg'
 
 	var/closet_stun_delay = 1
-	var/broken = FALSE
+
+	anchored = TRUE
 
 
 /obj/structure/closet/Initialize(mapload, ...)

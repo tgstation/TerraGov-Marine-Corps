@@ -1,3 +1,5 @@
+// It is a gizmo that flashes a small area
+
 /obj/machinery/flasher
 	name = "Mounted flash"
 	desc = "A wall-mounted flashbulb device."
@@ -9,7 +11,7 @@
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
 	var/strength = 10 //How knocked down targets are when flashed.
 	var/base_state = "mflash"
-
+	anchored = TRUE
 
 /obj/machinery/flasher/portable //Portable version of the flasher. Only flashes when anchored
 	name = "portable flasher"
@@ -18,6 +20,7 @@
 	strength = 8
 	anchored = FALSE
 	base_state = "pflash"
+	density = TRUE
 
 
 /obj/machinery/flasher/update_icon()

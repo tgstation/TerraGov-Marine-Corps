@@ -11,6 +11,8 @@
 
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
 
+	opacity = TRUE
+	density = TRUE
 
 /turf/closed/wall/mainship/handle_icon_junction(junction)
 	if (!walltype)
