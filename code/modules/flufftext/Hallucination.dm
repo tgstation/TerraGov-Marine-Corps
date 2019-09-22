@@ -311,7 +311,7 @@ proc/check_panel(mob/M)
 		else if(src.dir == WEST)
 			qdel(src.currentimage)
 			src.currentimage = new /image(left,src)
-		to_chat(my_target, currentimage)
+		SEND_IMAGE(my_target, currentimage)
 
 
 	proc/attack_loop()

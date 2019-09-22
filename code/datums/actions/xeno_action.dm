@@ -217,9 +217,6 @@
 
 //override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
-	if(QDELETED(owner))
-		return FALSE
-
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/xenomorph/X = owner
