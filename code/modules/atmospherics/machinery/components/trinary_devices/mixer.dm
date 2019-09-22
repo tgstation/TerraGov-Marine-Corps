@@ -5,7 +5,7 @@
 	name = "gas mixer"
 	desc = "Very useful for mixing gasses."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 
 	var/target_pressure = ONE_ATMOSPHERE
 	var/node1_concentration = 0.5

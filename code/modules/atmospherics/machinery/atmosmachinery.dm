@@ -18,7 +18,8 @@
 	power_channel = ENVIRON
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
 	max_integrity = 200
-	var/can_unwrench = 0
+	resistance_flags = RESIST_ALL
+	var/can_unwrench = FALSE
 	var/initialize_directions = 0
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
@@ -175,20 +176,8 @@
 		pipe.setPipingLayer(piping_layer) //align it with us
 		return TRUE
 
-	else if(iswrench(I)) // this is just until someone ports the tg tool handling code
-		. = wrench_act(user, I)
+	return ..()
 
-	else if(ismultitool(I))
-		. = multitool_act(user, I)
-
-	else if(isscrewdriver(I))
-		. = screwdriver_act(user, I)	
-
-	else if(iswelder(I))
-		. = welder_act(user, I)
-		
-	if(!.)
-		return ..()
 
 /obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
 	if(!can_unwrench(user))
@@ -200,8 +189,8 @@
 		return TRUE
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-		return FALSE
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
 
 	user.visible_message( \
 		"[user] unfastens \the [src].", \

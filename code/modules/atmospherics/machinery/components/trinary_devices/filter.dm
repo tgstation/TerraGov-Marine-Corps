@@ -5,7 +5,7 @@
 	name = "gas filter"
 	desc = "Very useful for filtering gasses."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 
 	var/target_pressure = ONE_ATMOSPHERE
 	var/filter_type = null
