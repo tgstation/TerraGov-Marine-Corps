@@ -9,14 +9,19 @@
 	if(!ismob(parent))
 		return COMPONENT_INCOMPATIBLE
 	button = new /datum/action/ability/regurgitate
-	button.give_action(parent)
 	if(islist(devour_types_permitted))
 		src.devour_types_permitted = typecacheof(devour_types_permitted)
 	if(islist(species_forbidden))
 		src.species_forbidden = typecacheof(species_forbidden)
 
+/datum/component/ability/devour/Destroy(force, silent)
+	QDEL_NULL(button)
+	deltimer(release_timer)
+	return ..()
+
 /datum/component/ability/devour/RegisterWithParent()
 	. = ..()
+	button.give_action(parent)
 	RegisterSignal(parent, COMSIG_GRAB_SELF_ATTACK, .proc/devour)
 	RegisterSignal(parent, COMSIG_XENOABILITY_REGURGITATE, .proc/release)
 	RegisterSignal(parent, list(
@@ -27,6 +32,8 @@
 
 /datum/component/ability/devour/UnregisterFromParent()
 	. = ..()
+	button.remove_action(parent)
+	remove_devoured()
 	UnregisterFromParent(parent, list(
 		COMSIG_GRAB_SELF_ATTACK,
 		COMSIG_XENOABILITY_REGURGITATE,
@@ -87,7 +94,6 @@
 			as_living.blind_eyes(1)
 
 	SEND_SIGNAL(grab, COMSIG_MOVABLE_DEVOURED, P)
-
 
 	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 
