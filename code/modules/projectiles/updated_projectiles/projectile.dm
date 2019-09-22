@@ -903,30 +903,40 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		livings_list += L
 
 	if(!length(livings_list))
-		return TRUE
+		return FALSE
 
 	var/mob/living/picked_mob = pick(livings_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
-	return TRUE
+		return TRUE
+	return FALSE
 
 
 // walls can get shot and damaged, but bullets (vs energy guns) do much less.
-/turf/closed/wall/bullet_act(obj/item/projectile/P)
+/turf/closed/wall/bullet_act(obj/item/projectile/proj)
 	. = ..()
-	if(!.)
+	if(.)
 		return
-	var/damage = P.damage
-	if(damage < 1) return
 
-	switch(P.ammo.damage_type)
-		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
-		else return
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
+	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+	if(damage < 1)
+		return FALSE
+
+	switch(proj.ammo.damage_type)
+		if(BRUTE)
+			damage = proj.ammo.flags_ammo_behavior & (AMMO_ENERGY|AMMO_BALLISTIC) ? CEILING(damage * 0.2, 1) : damage
+		if(BURN)
+			damage = proj.ammo.flags_ammo_behavior & (AMMO_ENERGY|AMMO_BALLISTIC) ? CEILING(damage * 0.2, 1) : damage
+		else
+			return FALSE
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		current_bulletholes++
+
+	if(prob(30))
+		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
 	take_damage(damage)
-	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
-	return 1
+	return TRUE
 
 
 //----------------------------------------------------------
