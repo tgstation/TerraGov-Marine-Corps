@@ -21,8 +21,8 @@
 	var/bullets = 7.0
 
 	examine(mob/user)
+		. = ..()
 		desc = "There are [bullets] caps\s left. Looks almost like the real thing! Ages 8 and up."
-		..()
 
 	attackby(obj/item/toy/gun_ammo/A as obj, mob/user as mob)
 

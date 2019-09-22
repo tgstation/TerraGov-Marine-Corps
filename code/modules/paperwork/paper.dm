@@ -57,10 +57,8 @@
 	icon_state = "paper"
 
 /obj/item/paper/examine(mob/user)
-//	..()	//We don't want them to see the dumb "this is a paper" thing every time.
-// I didn't like the idea that people can read tiny pieces of paper from across the room.
-// Now you need to be next to the paper in order to read it.
-	if(in_range(user, src) || isobserver(user))
+	. = ..()
+	if(in_range(user, src) || isobserver(user)) //You need to be next to the paper in order to read it.
 		if(!(isobserver(user) || ishuman(user) || issilicon(user)))
 			// Show scrambled paper if they aren't a ghost, human, or silicone.
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
@@ -69,7 +67,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		to_chat(user, "<span class='notice'>It is too far away.</span>")
+		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
 	return
 
 /obj/item/paper/verb/rename()

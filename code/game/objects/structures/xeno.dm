@@ -116,14 +116,13 @@
 		linked_carrier = builder
 
 /obj/effect/alien/resin/trap/examine(mob/user)
+	. = ..()
 	if(isxeno(user))
-		to_chat(user, "A hole for a little one to hide in ambush.")
+		to_chat(user, "It's a hole for a little one to hide in ambush.")
 		if(hugger)
 			to_chat(user, "There's a little one inside.")
 		else
 			to_chat(user, "It's empty.")
-	else
-		..()
 
 
 /obj/effect/alien/resin/trap/flamer_fire_act()

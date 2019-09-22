@@ -50,12 +50,14 @@
 		w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
-	if(amount == 1)
-		to_chat(user, "A short piece of power cable.")
-	else if(amount == 2)
-		to_chat(user, "A piece of power cable.")
-	else
-		to_chat(user, "A coil of power cable. There are [amount] lengths of cable in the coil.")
+	switch(amount)
+		if(1)
+			desc = "A short piece of power cable."
+		if(2)
+			desc = "A piece of power cable."
+		else
+			desc = "A coil of power cable. There are [amount] lengths of cable in the coil."
+	. = ..()
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
