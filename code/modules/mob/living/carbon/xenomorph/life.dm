@@ -64,10 +64,6 @@
 		see_in_dark = 8
 	update_canmove()
 
-	//Deal with devoured things and people
-	if(length(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
-		empty_gut()
-
 	return TRUE
 
 

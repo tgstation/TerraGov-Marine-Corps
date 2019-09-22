@@ -19,12 +19,21 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_GRAB_SELF_ATTACK, .proc/devour)
 	RegisterSignal(parent, COMSIG_XENOABILITY_REGURGITATE, .proc/release)
+	RegisterSignal(parent, list(
+		COMSIG_MOB_DEATH, 
+		COMSIG_XENOMORPH_EVOLVE,
+		COMSIG_XENOMORPH_DEEVOLVE
+		), .proc/remove_devoured)
 
 /datum/component/ability/devour/UnregisterFromParent()
 	. = ..()
 	UnregisterFromParent(parent, list(
 		COMSIG_GRAB_SELF_ATTACK,
-		COMSIG_XENOABILITY_REGURGITATE
+		COMSIG_XENOABILITY_REGURGITATE,
+		COMSIG_LIVING_EXITED_VENT,
+		COMSIG_MOB_DEATH, 
+		COMSIG_XENOMORPH_EVOLVE,
+		COMSIG_XENOMORPH_DEEVOLVE
 	))
 
 /datum/component/ability/devour/proc/devour(datum/source)
@@ -96,27 +105,40 @@
 		return FALSE
 	return TRUE
 
-/datum/component/ability/devour/proc/release(warning = FALSE)
+/datum/component/ability/devour/proc/release(datum/source)
+	UnregisterSignal(parent, COMSIG_LIVING_EXITED_VENT)
 	if(!devoured)
 		return
+
+	if(isliving(parent))
+		var/mob/living/L = parent
+		if(L.is_ventcrawling)
+			if(!timeleft(release_timer)) // triggered by timer
+				RegisterSignal(parent, COMSIG_LIVING_EXITED_VENT, .proc/release)
+				return // spew them out when we leave a vent
+			to_chat(parent, "<span class='warning'>You can't regurgitate here!</span>")
+			return COMSIG_KB_ACTIVATED
 
 	var/mob/P = parent
 	P.visible_message("<span class='xenowarning'>\The [P] hurls out the contents of their stomach!</span>", \
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
-	
+
+	remove_devoured()
+
+	return COMSIG_KB_ACTIVATED
+
+/datum/component/ability/devour/proc/remove_devoured(datum/source)
+	var/mob/P = parent
 	devoured.forceMove(get_turf(P))
 	SEND_SIGNAL(devoured, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, parent)
 	devoured = null
-	if(release_timer)
-		deltimer(release_timer)
+	deltimer(release_timer)
 	release_timer = null
 
 	for(var/x in P.contents)
 		var/atom/movable/stowaway = x
 		stowaway.forceMove(get_turf(src))
 		stack_trace("[stowaway] found in [P]'s contents. It shouldn't have ended there.")
-
-	return COMSIG_KB_ACTIVATED
 
 // Regurgitate
 /datum/action/ability/regurgitate

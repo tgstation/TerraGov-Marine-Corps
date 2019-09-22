@@ -665,7 +665,7 @@
 	for(var/obj/item/W in T.contents) //Drop stuff
 		T.dropItemToGround(W)
 
-	T.empty_gut(FALSE, TRUE)
+	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVE)
 
 	if(T.mind)
 		T.mind.transfer_to(new_xeno)

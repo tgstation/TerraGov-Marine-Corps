@@ -93,6 +93,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 				pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 
 			forceMove(vent_found)
+			SEND_SIGNAL(src, COMSIG_LIVING_ENTERED_VENT)
 	else
 		to_chat(src, "<span class='warning'>This ventilation duct is not connected to anything!</span>")
 

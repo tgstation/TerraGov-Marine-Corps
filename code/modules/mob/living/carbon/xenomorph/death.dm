@@ -3,10 +3,6 @@
 	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 /mob/living/carbon/xenomorph/death(gibbed)
-	if(length(stomach_contents))
-		empty_gut()
-		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
-
 	var/msg = "lets out a waning guttural screech, green blood bubbling from its maw."
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.

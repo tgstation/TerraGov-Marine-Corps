@@ -178,6 +178,8 @@
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 #define COMSIG_LIVING_DO_MOVE_TURFTOTURF	"living_do_move_turftoturf"	//from the base of /client/Move()
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
+#define COMSIG_LIVING_ENTERED_VENT "living_entered_vent"
+#define COMSIG_LIVING_EXITED_VENT "living_exited_vent"
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -199,6 +201,9 @@
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
 #define COMSIG_WARRIOR_CTRL_CLICK_ATOM "warrior_ctrl_click_atom"
 	#define COMSIG_WARRIOR_USED_LUNGE 1
+
+#define COMSIG_XENOMORPH_EVOLVE "xenomorph_evolve"
+#define COMSIG_XENOMORPH_DEEVOLVE "xenomorph_deevolve"
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 

@@ -342,29 +342,6 @@
 		return FALSE
 	return ..()
 
-//Bleuugh
-
-/mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
-	if(warning)
-		if(length(stomach_contents))
-			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
-			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
-		else
-			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
-
-	for(var/x in stomach_contents)
-		var/atom/movable/passenger = x
-		stomach_contents.Remove(passenger)
-		passenger.forceMove(get_turf(src))
-		SEND_SIGNAL(passenger, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
-
-	if(content_cleanup)
-		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
-			var/atom/movable/stowaway = x
-			stowaway.forceMove(get_turf(src))
-			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
-
-
 /mob/living/carbon/xenomorph/proc/toggle_nightvision()
 	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
 		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
