@@ -3,6 +3,9 @@
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
+	singular_name = "cable length"
+	stack_name = "coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
@@ -48,16 +51,6 @@
 		w_class = WEIGHT_CLASS_TINY
 	else
 		w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/stack/cable_coil/examine(mob/user)
-	switch(amount)
-		if(1)
-			desc = "A short piece of power cable."
-		if(2)
-			desc = "A piece of power cable."
-		else
-			desc = "A coil of power cable. There are [amount] lengths of cable in the coil."
-	. = ..()
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
