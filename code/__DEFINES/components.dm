@@ -269,6 +269,10 @@
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
 
+#define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
+#define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"
+#define COMSIG_XENOABILITY_BULLGORE "xenoability_bullgore"
+
 #define COMSIG_XENOABILITY_HEADBUTT "xenoability_headbutt"
 #define COMSIG_XENOABILITY_TAIL_SWEEP "xenoability_tail_sweep"
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"

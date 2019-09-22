@@ -321,19 +321,26 @@
 	return ..()
 
 
-/datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source)
-	switch(charge_type)
+/datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
+	if(charge_type == new_charge_type)
+		return
+
+	var/mob/living/carbon/xenomorph/charger = owner
+	if(charger.is_charging >= CHARGE_ON)
+		do_stop_momentum()
+
+	switch(new_charge_type)
 		if(CHARGE_BULL)
-			charge_type = CHARGE_BULL_HEADBUTT
-			to_chat(owner, "<span class='notice'>Now headbutting on impact.</span>")
-		if(CHARGE_BULL_HEADBUTT)
-			charge_type = CHARGE_BULL_GORE
-			crush_sound = "alien_tail_attack"
-			to_chat(owner, "<span class='notice'>Now goring on impact.</span>")
-		if(CHARGE_BULL_GORE)
 			charge_type = CHARGE_BULL
 			crush_sound = initial(crush_sound)
 			to_chat(owner, "<span class='notice'>Now charging normally.</span>")
+		if(CHARGE_BULL_HEADBUTT)
+			charge_type = CHARGE_BULL_HEADBUTT
+			to_chat(owner, "<span class='notice'>Now headbutting on impact.</span>")
+		if(CHARGE_BULL_GORE)
+			charge_type = CHARGE_BULL_GORE
+			crush_sound = "alien_tail_attack"
+			to_chat(owner, "<span class='notice'>Now goring on impact.</span>")
 
 
 // ***************************************
