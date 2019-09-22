@@ -103,7 +103,6 @@
 
 
 /datum/action/xeno_action/fail_activate()
-	if(button)
 		update_button_icon()
 
 
