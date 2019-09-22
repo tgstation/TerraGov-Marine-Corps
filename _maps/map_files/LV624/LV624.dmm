@@ -20346,6 +20346,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"sUi" = (
+/obj/item/reagent_container/food/snacks/worm,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "sWZ" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 1
@@ -56871,7 +56875,7 @@ atX
 arW
 arW
 atQ
-arl
+sUi
 aro
 arV
 atX
