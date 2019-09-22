@@ -173,7 +173,7 @@
 
 
 /datum/proc/can_interact(mob/user)
-	if(!user.can_interact_with(src)) //This is used by Topic and can thus be called with an outdated or inexistent user.
+	if(!user.can_interact_with(src))
 		return FALSE
 	return TRUE
 
