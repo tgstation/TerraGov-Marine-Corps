@@ -6,9 +6,9 @@
 	plane = ABOVE_HUD_PLANE
 
 
-/obj/screen/buildmode/Initialize(mapload)
+/obj/screen/buildmode/New(bld)
 	. = ..()
-	bd = loc
+	bd = bld
 
 
 /obj/screen/buildmode/Destroy()
@@ -70,7 +70,7 @@
 	var/datum/buildmode_mode/modetype
 
 
-/obj/screen/buildmode/modeswitch/Initialize(mapload, mt)
+/obj/screen/buildmode/modeswitch/New(bld, mt)
 	. = ..()
 	modetype = mt
 	icon_state = "buildmode_[initial(modetype.key)]"
@@ -87,7 +87,7 @@
 	icon_state = "build"
 
 
-/obj/screen/buildmode/dirswitch/Initialize(mapload, dir)
+/obj/screen/buildmode/dirswitch/New(bld, dir)
 	. = ..()
 	src.dir = dir
 	name = dir2text(dir)
