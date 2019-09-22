@@ -13,7 +13,7 @@
 	if(islist(devour_types_permitted))
 		src.devour_types_permitted = typecacheof(devour_types_permitted)
 	if(islist(species_forbidden))
-		src.devour_types_permitted = typecacheof(species_forbidden)
+		src.species_forbidden = typecacheof(species_forbidden)
 
 /datum/component/ability/devour/RegisterWithParent()
 	. = ..()
@@ -34,6 +34,8 @@
 	var/turf/T = get_turf(parent)
 	for(var/i in T)
 		var/atom/A = i
+		if(A == parent)
+			continue
 		if(A.density)
 			to_chat(parent, "<span class='danger'>You can't do that here!</span>")
 			return NONE
