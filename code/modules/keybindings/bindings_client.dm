@@ -4,6 +4,15 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	//Keys longer than 1 aren't printable, so we process them normally, regardless of Focus Chat.
+	//Otherwise, return focus to chat window if it isn't already, and relay the character.
+	//This needs to be processed as soon as possible for timing reasons, including making assumptions.
+	//This shouldn't fire if things go right anyways.
+	if(prefs.focus_chat && length(_key) == 1)
+		winset(src, null, "input.focus=true")
+		winset(src, null, "input.text=[url_encode(_key)]")
+		return
+
 	if(length(key) > 32)
 		log_admin("[key_name(src)] just attempted to send an invalid keypress with length over 32 characters, likely malicious.")
 		message_admins("[ADMIN_TPMONTY(mob)] just attempted to send an invalid keypress with length over 32 characters, likely malicious.")
@@ -13,19 +22,14 @@
 	keys_held[current_key_address + 1] = _key
 
 	keys_held[_key] = world.time
-	
+
 	current_key_address = ((current_key_address + 1) % 10)
 
 	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
 
-	//Keys longer than 1 aren't printable, so we process them normally, regardless of Focus Chat.
-	//Otherwise, return focus to chat window if it isn't already, and relay the character.
-	if(prefs.focus_chat && !winget(src, null, "input.focus") && length(_key) == 1)
-		winset(src, null, "input.focus=true")
-		winset(src, null, "input.text=[url_encode(_key)]")
-		return
+
 
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
