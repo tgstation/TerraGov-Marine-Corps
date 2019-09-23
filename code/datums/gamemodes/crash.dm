@@ -171,7 +171,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
-	RegisterSignal(SSdcs, COMSIG_XENOMORPH_EVOLVING, .proc/on_xeno_evolve)
+	RegisterSignal(SSdcs, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 

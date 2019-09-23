@@ -264,8 +264,6 @@
 			qdel(new_xeno)
 		return
 
-	SEND_GLOBAL_SIGNAL(COMSIG_XENOMORPH_EVOLVING, new_xeno)
-
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
@@ -310,8 +308,11 @@
 
 	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
-	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
+
+	SEND_GLOBAL_SIGNAL(COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
+
+	qdel(src)
 
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA
