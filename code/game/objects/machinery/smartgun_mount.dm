@@ -432,6 +432,39 @@
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
 
+
+/obj/machinery/m56d_hmg/interact(mob/user)
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/human_user = user
+	if(user.interactee == src)
+		user.unset_interaction()
+		visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>",
+			"<span class='notice'>You decided to let someone else have a go on the MG </span>")
+		return TRUE
+	if(get_step(src, REVERSE_DIR(dir)) != user.loc)
+		to_chat(user, "<span class='warning'>You should be behind [src] to man it!</span>")
+		return TRUE
+	if(operator) //If there is already a operator then they're manning it.
+		if(!operator.interactee)
+			stack_trace("/obj/machinery/m56d_hmg/interact called by user [user] with an operator with a null interactee: [operator].")
+			operator = null //this shouldn't happen, but just in case
+		else
+			to_chat(user, "<span class='warning'>Someone's already controlling it.</span>")
+			return TRUE
+	if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
+		to_chat(user, "<span class='warning'>You're already busy!</span>")
+		return TRUE
+	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+		return TRUE
+
+	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>",
+		"<span class='notice'>You man the gun!</span>")
+
+	return ..()
+
+
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr))
 		return
