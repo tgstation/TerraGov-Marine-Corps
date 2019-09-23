@@ -546,7 +546,7 @@
 	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
-	var/light_color = "red"
+	var/light_color = "LIGHT_COLOR_LAVA"
 	var/light_intensity = 3
 	switch(flame_color)
 		if("red")
