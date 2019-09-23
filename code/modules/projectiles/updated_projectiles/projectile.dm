@@ -912,23 +912,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 
-// walls can get shot and damaged, but bullets (vs energy guns) do much less.
+// walls can get shot and damaged, but bullets do much less.
 /turf/closed/wall/bullet_act(obj/item/projectile/proj)
 	. = ..()
 	if(.)
 		return
 
-	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
-	if(damage < 1)
-		return FALSE
+	var/damage
 
 	switch(proj.ammo.damage_type)
-		if(BRUTE)
-			damage = proj.ammo.flags_ammo_behavior & (AMMO_ENERGY|AMMO_BALLISTIC) ? CEILING(damage * 0.2, 1) : damage
-		if(BURN)
-			damage = proj.ammo.flags_ammo_behavior & (AMMO_ENERGY|AMMO_BALLISTIC) ? CEILING(damage * 0.2, 1) : damage
+		if(BRUTE, BURN)
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
+			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else
 			return FALSE
+
+	if(damage < 1)
+		return FALSE
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		current_bulletholes++
