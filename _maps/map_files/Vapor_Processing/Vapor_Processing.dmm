@@ -3,8 +3,8 @@
 "ac" = (/turf/closed/wall/indestructible/mineral,/area/lv624/ground/caves/central2)
 "ad" = (/turf/open/floor,/area/shuttle/drop2/lz2)
 "ae" = (/turf/closed/wall,/area/maintenance/apmaint)
-"af" = (/turf/open/ground,/area/space)
-"ag" = (/turf/closed/mineral,/area/space)
+"af" = (/turf/open/ground/grass/grass2,/area/lv624/ground/caves/east1)
+"ag" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Evan Kark"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "ah" = (/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
 "ai" = (/obj/machinery/floodlight/landing,/turf/open/floor/plating/asteroidfloor,/area/shuttle/drop2/lz2)
 "aj" = (/obj/machinery/landinglight/ds2/delaytwo,/obj/structure/barricade/wooden{dir = 1},/turf/open/floor/plating/asteroidwarning{dir = 2},/area/shuttle/drop2/lz2)
@@ -16,33 +16,33 @@
 "ap" = (/obj/structure/barricade/wooden{dir = 8},/obj/machinery/landinglight/ds2/delaythree{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
 "aq" = (/turf/open/floor/plating,/area/shuttle/drop2/lz2)
 "ar" = (/obj/structure/barricade/wooden{dir = 4},/obj/machinery/landinglight/ds2/delayone{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
-"as" = (/turf/open/floor/plating,/area/shuttle/drop2/LV624)
-"at" = (/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/obj/machinery/landinglight/ds2{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"as" = (/obj/docking_port/stationary/marine_dropship/lz2,/turf/open/floor/plating,/area/shuttle/drop2/lz2)
+"at" = (/obj/structure/barricade/wooden{dir = 8},/obj/machinery/landinglight/ds2{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
 "au" = (/obj/structure/barricade/wooden{dir = 4},/obj/machinery/landinglight/ds2{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "av" = (/obj/structure/dispenser,/turf/open/floor,/area/shuttle/drop2/lz2)
-"aw" = (/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/obj/machinery/landinglight/ds2/delayone{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"aw" = (/obj/structure/barricade/wooden{dir = 8},/obj/machinery/landinglight/ds2/delayone{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
 "ax" = (/obj/machinery/camera/autoname/lz_camera,/turf/open/floor/plating,/area/shuttle/drop2/lz2)
 "ay" = (/obj/structure/barricade/wooden{dir = 4},/obj/machinery/landinglight/ds2/delaythree{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "az" = (/obj/structure/largecrate,/turf/open/floor,/area/shuttle/drop2/lz2)
-"aA" = (/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/obj/machinery/landinglight/ds2/delaytwo{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"aA" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Drew Bellel"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "aB" = (/obj/structure/barricade/wooden{dir = 4},/obj/machinery/landinglight/ds2/delaytwo{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aC" = (/obj/structure/closet/emcloset,/turf/open/floor/plating,/area/maintenance/apmaint)
-"aD" = (/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/obj/machinery/landinglight/ds2/delaythree{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"aD" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Jac Mester"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "aE" = (/obj/structure/closet/firecloset,/turf/open/floor/plating,/area/maintenance/apmaint)
 "aF" = (/obj/machinery/landinglight/ds2{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aG" = (/obj/machinery/landinglight/ds2/delayone{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
-"aH" = (/obj/effect/landmark/random_item/crap,/turf/open/floor/plating,/area/shuttle/drop2/LV624)
+"aH" = (/turf/closed/wall/resin,/area/lv624/ground/caves/central2)
 "aI" = (/obj/machinery/landinglight/ds2/delaythree{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aJ" = (/obj/machinery/landinglight/ds2/delaytwo{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
 "aK" = (/obj/effect/landmark/monkey_spawn,/obj/machinery/landinglight/ds2/delaytwo{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aL" = (/obj/machinery/landinglight/ds2/delayone{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aM" = (/obj/machinery/landinglight/ds2/delaytwo{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 8},/area/shuttle/drop2/lz2)
 "aN" = (/obj/machinery/light{dir = 4},/turf/open/floor,/area/shuttle/drop2/lz2)
-"aO" = (/obj/machinery/landinglight/ds2/delayone{dir = 4},/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
-"aP" = (/obj/machinery/landinglight/ds2/delaytwo{dir = 4},/obj/structure/barricade/wooden/lv_snowflake{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
-"aQ" = (/obj/effect/landmark/random_item/crap,/turf/open/floor/plating,/area/shuttle/drop2/lz2)
+"aO" = (/obj/machinery/landinglight/ds2/delayone{dir = 4},/obj/structure/barricade/wooden{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"aP" = (/obj/machinery/landinglight/ds2/delaytwo{dir = 4},/obj/structure/barricade/wooden{dir = 8},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
+"aQ" = (/turf/closed/wall/resin/membrane,/area/lv624/ground/caves/central2)
 "aR" = (/obj/structure/barricade/wooden{dir = 8},/obj/machinery/landinglight/ds2/delaytwo{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 4},/area/shuttle/drop2/lz2)
-"aS" = (/obj/effect/landmark/shuttle_loc/marine_trg/landing{name = "2"},/turf/open/floor/plating,/area/shuttle/drop2/lz2)
+"aS" = (/obj/structure/mineral_door/resin,/turf/open/ground,/area/lv624/ground/caves/central2)
 "aT" = (/obj/structure/barricade/wooden,/obj/machinery/landinglight/ds2/delaythree{dir = 1},/turf/open/floor/plating/asteroidwarning{dir = 1},/area/shuttle/drop2/lz2)
 "aU" = (/obj/structure/barricade/wooden,/obj/machinery/landinglight/ds2{dir = 1},/turf/open/floor/plating/asteroidwarning{dir = 1},/area/shuttle/drop2/lz2)
 "aV" = (/obj/structure/barricade/wooden,/obj/machinery/landinglight/ds2/delayone{dir = 1},/turf/open/floor/plating/asteroidwarning{dir = 1},/area/shuttle/drop2/lz2)
@@ -53,23 +53,23 @@
 "ba" = (/turf/open/floor/plating,/area/maintenance/apmaint)
 "bb" = (/turf/open/ground,/area/lv624/ground/caves/west1)
 "bc" = (/turf/open/ground,/area/lv624/ground/caves/central2)
-"bd" = (/obj/item/alien_embryo,/turf/open/ground,/area/space)
+"bd" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/tgmccap/req; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Lee Hesto"},/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "be" = (/obj/machinery/light{dir = 4},/turf/open/floor/plating,/area/maintenance/apmaint)
 "bf" = (/turf/open/floor/grass,/area/lv624/ground/compound/n)
 "bg" = (/turf/closed/mineral,/area/lv624/ground/caves/west1)
 "bh" = (/turf/closed/mineral,/area/lv624/ground/caves/central2)
 "bi" = (/obj/effect/landmark/lv624/fog_blocker,/turf/open/floor/plating,/area/maintenance/apmaint)
-"bj" = (/obj/machinery/door/airlock/multi_tile/almayer/generic{dir = 1; name = "\improper Airlock"; req_access_txt = "0"},/turf/open/floor/plating,/area/maintenance/apmaint)
+"bj" = (/obj/machinery/door/airlock/multi_tile/mainship/generic{dir = 1; name = "\improper Airlock"; req_access_txt = "0"},/turf/open/floor/plating,/area/maintenance/apmaint)
 "bk" = (/obj/machinery/colony_floodlight,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
 "bl" = (/obj/effect/alien/weeds/node,/turf/open/ground,/area/lv624/ground/caves/central2)
 "bm" = (/turf/closed/gm/dense,/area/lv624/ground/compound/n)
-"bn" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/n)
+"bn" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ellis Bark"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "bo" = (/obj/structure/cargo_container/horizontal{dir = 1},/turf/open/floor,/area/shuttle/drop2/lz2)
 "bp" = (/obj/structure/cargo_container/horizontal{dir = 4},/turf/open/floor,/area/shuttle/drop2/lz2)
 "bq" = (/obj/structure/dispenser,/turf/open/floor/plating,/area/maintenance/apmaint)
 "br" = (/obj/structure/cargo_container/horizontal,/turf/open/floor,/area/shuttle/drop2/lz2)
 "bs" = (/turf/closed/wall,/area/lv624/lazarus/hydroponics)
-"bt" = (/obj/machinery/door/airlock/multi_tile/almayer/generic,/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
+"bt" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
 "bu" = (/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
 "bv" = (/obj/machinery/light{dir = 1},/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
 "bw" = (/obj/structure/largecrate/random,/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
@@ -103,28 +103,28 @@
 "bY" = (/obj/machinery/landinglight/ds1/delaythree{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "bZ" = (/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "ca" = (/obj/machinery/landinglight/ds1/delayone{dir = 8},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
-"cb" = (/turf/open/floor/plating,/area/shuttle/drop1/LV624)
+"cb" = (/obj/docking_port/stationary/marine_dropship/lz1,/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "cc" = (/obj/machinery/landinglight/ds1{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "cd" = (/obj/machinery/camera/autoname/lz_camera,/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "ce" = (/obj/machinery/landinglight/ds1{dir = 8},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "cf" = (/obj/machinery/landinglight/ds1/delayone{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "cg" = (/obj/machinery/landinglight/ds1/delaythree{dir = 8},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "ch" = (/obj/machinery/landinglight/ds1/delaytwo{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
-"ci" = (/obj/effect/landmark/huntergames_secondary_spawn,/turf/open/floor/plating,/area/shuttle/drop1/LV624)
+"ci" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/miner{corpseback = null; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Olgin Vekin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "cj" = (/obj/machinery/landinglight/ds1/delaytwo{dir = 8},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
-"ck" = (/obj/effect/landmark/random_item/crap,/turf/open/floor/plating,/area/shuttle/drop1/LV624)
+"ck" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Chang Lin"},/obj/item/weapon/gun/pistol/holdout,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "cl" = (/obj/structure/largecrate/random,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/plating,/area/lv624/lazarus/hydroponics)
 "cm" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/closed/wall,/area/lv624/lazarus/hydroponics)
 "cn" = (/obj/structure/largecrate/random,/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
-"co" = (/obj/effect/landmark/huntergames_secondary_spawn,/obj/machinery/landinglight/ds1/delayone{dir = 4},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
+"co" = (/obj/effect/alien/weeds/node,/turf/closed/wall/resin/membrane,/area/lv624/ground/caves/central2)
 "cp" = (/obj/machinery/door/airlock/colony,/turf/open/floor/plating,/area/maintenance/apmaint)
 "cq" = (/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/maintenance/apmaint)
 "cr" = (/obj/effect/landmark/lv624/fog_blocker,/turf/open/ground,/area/lv624/ground/compound/n)
 "cs" = (/turf/open/ground,/area/lv624/ground/compound/n)
-"ct" = (/obj/structure/mineral_door/resin,/turf/open/ground,/area/space)
+"ct" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Wes Uvin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "cu" = (/obj/machinery/door/airlock/engineering,/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
-"cv" = (/obj/effect/alien/weeds/node,/turf/open/ground,/area/space)
-"cw" = (/obj/effect/landmark/shuttle_loc/marine_trg/landing{name = "1"},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
+"cv" = (/obj/structure/bed/nest,/turf/open/ground,/area/lv624/ground/caves/central2)
+"cw" = (/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "cx" = (/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
 "cy" = (/obj/machinery/landinglight/ds1/delaythree{dir = 1},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
 "cz" = (/obj/machinery/landinglight/ds1{dir = 1},/turf/open/floor/plating,/area/shuttle/drop1/lz1)
@@ -133,8 +133,8 @@
 "cC" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
 "cD" = (/obj/item/alien_embryo,/turf/open/ground,/area/lv624/ground/caves/east1)
 "cE" = (/obj/machinery/light,/turf/open/floor/plating,/area/maintenance/apmaint)
-"cF" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
-"cG" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
+"cF" = (/obj/structure/table/flipped,/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
+"cG" = (/obj/structure/table/flipped,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
 "cH" = (/obj/machinery/light{dir = 8},/turf/open/floor/plating,/area/maintenance/apmaint)
 "cI" = (/obj/machinery/light{dir = 8},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
 "cJ" = (/obj/effect/landmark/lv624/fog_blocker,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
@@ -153,12 +153,12 @@
 "cW" = (/obj/machinery/door/airlock/glass_research,/turf/open/floor/plating,/area/lv624/lazarus/internal_affairs)
 "cX" = (/obj/machinery/atm,/turf/closed/wall,/area/lv624/lazarus/internal_affairs)
 "cY" = (/obj/machinery/atm,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/lv624/lazarus/internal_affairs)
-"cZ" = (/obj/machinery/door/airlock/multi_tile/almayer/generic,/turf/open/floor/plating,/area/maintenance/apmaint)
+"cZ" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/plating,/area/maintenance/apmaint)
 "da" = (/obj/machinery/vending/coffee,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"db" = (/obj/structure/table/almayer,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"dc" = (/obj/structure/table/almayer,/obj/machinery/microwave,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"dd" = (/obj/structure/table/almayer,/obj/item/storage/donut_box,/obj/machinery/power/apc/drained,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"de" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-22"},/obj/machinery/light{dir = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/shuttle/drop2/lz2)
+"db" = (/obj/structure/table/mainship,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/shuttle/drop2/lz2)
+"dc" = (/obj/structure/table/mainship,/obj/machinery/microwave,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
+"dd" = (/obj/structure/table/mainship,/obj/item/storage/donut_box,/obj/machinery/power/apc/drained,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
+"de" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{icon_state = "plant-22"},/obj/machinery/light{dir = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/shuttle/drop2/lz2)
 "df" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor,/area/shuttle/drop2/lz2)
 "dg" = (/obj/structure/largecrate/random,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/light{dir = 1},/turf/open/floor/grimy,/area/lv624/lazarus/internal_affairs)
 "dh" = (/obj/structure/largecrate/random,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/grimy,/area/lv624/lazarus/internal_affairs)
@@ -184,8 +184,8 @@
 "dB" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/grass,/area/lv624/ground/compound/n)
 "dC" = (/obj/machinery/vending/cigarette,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
 "dD" = (/obj/structure/bed/chair{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"dE" = (/obj/structure/table/almayer,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
-"dF" = (/obj/structure/table/reinforced/flipped{dir = 1},/obj/machinery/computer/shuttle_control/dropship2,/turf/open/floor/marking/warning{dir = 1},/area/shuttle/drop2/lz2)
+"dE" = (/obj/structure/table/mainship,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
+"dF" = (/obj/structure/table/reinforced/flipped{dir = 1},/obj/machinery/computer/shuttle/shuttle_control,/turf/open/floor/marking/warning{dir = 1},/area/shuttle/drop2/lz2)
 "dG" = (/obj/structure/bed/chair{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop2/lz2)
 "dH" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor,/area/shuttle/drop2/lz2)
 "dI" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plating,/area/maintenance/apmaint)
@@ -198,7 +198,7 @@
 "dP" = (/obj/structure/table/flipped,/obj/machinery/cell_charger,/turf/open/floor/grimy,/area/lv624/lazarus/internal_affairs)
 "dQ" = (/obj/machinery/light{dir = 1},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
 "dR" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/n)
-"dS" = (/obj/effect/landmark/huntergames_secondary_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/n)
+"dS" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpsehelmet = /obj/item/clothing/head/welding; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ted Jarka"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "dT" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/gm/dense,/area/lv624/ground/compound/n)
 "dU" = (/obj/machinery/light,/turf/open/floor/grimy,/area/lv624/lazarus/internal_affairs)
 "dV" = (/obj/structure/fence,/turf/open/floor/grass,/area/lv624/ground/caves/central1)
@@ -207,20 +207,20 @@
 "dY" = (/obj/machinery/door/airlock/glass,/turf/open/floor/plating,/area/medical/medbay2)
 "dZ" = (/turf/open/ground/grass/grass2,/area/lv624/ground/caves/central1)
 "ea" = (/turf/closed/gm/dense,/area/lv624/ground/caves/central1)
-"eb" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor/grass,/area/lv624/ground/caves/central1)
-"ec" = (/obj/structure/table/almayer,/obj/machinery/computer/med_data/laptop,/obj/machinery/light{dir = 1},/turf/open/floor/tile/white,/area/medical/medbay2)
-"ed" = (/obj/structure/table/almayer,/obj/item/storage/fancy/candle_box,/obj/item/tool/lighter/random,/turf/open/floor/tile/white,/area/medical/medbay2)
+"eb" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Everett Mison"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"ec" = (/obj/structure/table/mainship,/obj/machinery/computer/med_data/laptop,/obj/machinery/light{dir = 1},/turf/open/floor/tile/white,/area/medical/medbay2)
+"ed" = (/obj/structure/table/mainship,/obj/item/storage/fancy/candle_box,/obj/item/tool/lighter/random,/turf/open/floor/tile/white,/area/medical/medbay2)
 "ee" = (/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/medical/medbay2)
 "ef" = (/obj/structure/closet/secure_closet/medical2,/obj/item/storage/box/gloves{pixel_x = -5; pixel_y = -5},/turf/open/floor/tile/bar,/area/medical/medbay2)
 "eg" = (/obj/machinery/robotic_fabricator,/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/bar,/area/medical/medbay2)
-"eh" = (/obj/machinery/light{dir = 1},/obj/machinery/alarm,/obj/effect/decal/cleanable/dirt,/obj/machinery/dna_scannernew,/turf/open/floor/tile/bar,/area/medical/medbay2)
+"eh" = (/obj/machinery/light{dir = 1},/obj/machinery/alarm,/obj/effect/decal/cleanable/dirt,/turf/open/floor/tile/bar,/area/medical/medbay2)
 "ei" = (/obj/machinery/bioprinter{stored_metal = 1000},/turf/open/floor/tile/bar,/area/medical/medbay2)
 "ej" = (/obj/structure/table,/obj/item/tool/surgery/FixOVein,/obj/item/storage/surgical_tray,/obj/item/tool/surgery/bonesetter,/obj/item/tool/surgery/circular_saw,/obj/item/tool/surgery/scalpel,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/open/floor/tile/blue/whitebluefull,/area/medical/medbay2)
 "ek" = (/obj/structure/table,/obj/item/tool/surgery/cautery,/obj/item/reagent_container/spray/cleaner,/obj/item/tool/surgery/cautery,/obj/item/tool/surgery/retractor,/obj/item/tool/surgery/surgicaldrill,/turf/open/floor/tile/blue/whitebluefull,/area/medical/medbay2)
-"el" = (/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper West Compound"})
-"em" = (/turf/closed/gm/dense,/area/lv624/ground/compound{name = "\improper West Compound"})
-"en" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper West Compound"})
-"eo" = (/turf/open/ground,/area/lv624/ground/compound{name = "\improper West Compound"})
+"el" = (/turf/open/floor/grass,/area/lv624/ground/caves/east1)
+"em" = (/turf/closed/gm/dense,/area/lv624/ground/caves/east1)
+"en" = (/obj/effect/decal/cleanable/blood,/turf/open/ground,/area/lv624/ground/caves/east1)
+"eo" = (/obj/machinery/colony_floodlight,/turf/open/ground/grass/grass2,/area/lv624/ground/caves/east1)
 "ep" = (/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "eq" = (/turf/closed/gm/dense,/area/lv624/ground/compound/c)
 "er" = (/obj/effect/landmark/start/surv_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/c)
@@ -244,22 +244,22 @@
 "eJ" = (/obj/machinery/optable,/obj/item/tank/anesthetic,/obj/item/clothing/mask/breath/medical,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/tile/bar,/area/medical/medbay2)
 "eK" = (/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
 "eL" = (/turf/closed/wall,/area/lv624/lazarus/quartstorage)
-"eM" = (/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper East Compound"})
-"eN" = (/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper East Compound"})
-"eO" = (/turf/open/ground,/area/lv624/ground/compound{name = "\improper East Compound"})
+"eM" = (/obj/effect/landmark/monkey_spawn,/turf/open/ground,/area/lv624/ground/caves/east1)
+"eN" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/grass,/area/lv624/ground/compound/c)
+"eO" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "eP" = (/obj/structure/bed/chair/office/light,/turf/open/floor/tile/white,/area/medical/medbay2)
 "eQ" = (/obj/machinery/computer/med_data,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/tile/green/whitegreenfull,/area/medical/medbay2)
 "eR" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "eS" = (/obj/structure/ore_box,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
 "eT" = (/obj/structure/closet/secure_closet/miner,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
-"eU" = (/turf/closed/gm/dense,/area/lv624/ground/compound{name = "\improper East Compound"})
+"eU" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/gm/dense,/area/lv624/ground/compound/c)
 "eV" = (/obj/structure/morgue{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/tile/white,/area/medical/medbay2)
 "eW" = (/obj/machinery/computer/crew,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/window/reinforced{dir = 1},/turf/open/floor/tile/green/whitegreenfull,/area/medical/medbay2)
 "eX" = (/obj/structure/table,/obj/item/reagent_container/hypospray/advanced,/obj/item/reagent_scanner,/obj/item/healthanalyzer,/obj/structure/window/reinforced{dir = 4},/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/medical/medbay2)
 "eY" = (/obj/structure/table,/obj/item/flashlight/lamp,/obj/item/reagent_container/spray,/turf/open/floor/tile/white,/area/medical/medbay2)
 "eZ" = (/obj/structure/table,/obj/machinery/light{dir = 4},/obj/item/defibrillator,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/tile/green/whitegreenfull,/area/medical/medbay2)
-"fa" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
-"fb" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
+"fa" = (/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Wes Uvin"},/turf/open/floor/grass,/area/lv624/ground/caves/east1)
+"fb" = (/obj/machinery/light{dir = 8},/turf/open/floor/grass,/area/lv624/ground/compound/se)
 "fc" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/lv624/lazarus/quartstorage)
 "fd" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/lv624/lazarus/quartstorage)
 "fe" = (/obj/structure/ore_box,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 8},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
@@ -269,10 +269,10 @@
 "fi" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/closed/wall,/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "fj" = (/turf/closed/wall,/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "fk" = (/turf/closed/wall,/area/lv624/ground/compound/c)
-"fl" = (/obj/machinery/colony_floodlight,/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper East Compound"})
+"fl" = (/turf/closed/gm/dense,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "fm" = (/obj/machinery/door/airlock/multi_tile/medical,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/medical/medbay2)
 "fn" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/medical/medbay2)
-"fo" = (/obj/machinery/colony_floodlight,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
+"fo" = (/obj/effect/landmark/start/surv_spawn,/turf/open/ground,/area/lv624/ground/compound/c)
 "fp" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/lv624/lazarus/quartstorage)
 "fq" = (/obj/machinery/power/terminal,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/light{dir = 8},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
 "fr" = (/obj/machinery/power/geothermal,/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
@@ -280,19 +280,19 @@
 "ft" = (/obj/structure/powerloader_wreckage,/turf/open/ground,/area/lv624/ground/compound/c)
 "fu" = (/obj/structure/dispenser,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "fv" = (/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Marshal Logan Bills"},/turf/open/floor/plating,/area/maintenance/apmaint)
-"fw" = (/obj/structure/closet/secure_closet/cargotech,/obj/machinery/light{dir = 1},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
-"fx" = (/obj/structure/closet/secure_closet/cargotech,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
-"fy" = (/obj/effect/landmark/monkey_spawn,/turf/open/ground,/area/lv624/ground/compound{name = "\improper East Compound"})
+"fw" = (/obj/structure/closet/secure_closet/shiptech,/obj/machinery/light{dir = 1},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
+"fx" = (/obj/structure/closet/secure_closet/shiptech,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
+"fy" = (/turf/open/ground/grass/grass2,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "fz" = (/turf/closed/wall/indestructible/mineral,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "fA" = (/turf/closed/mineral,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "fB" = (/turf/open/ground,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "fC" = (/turf/closed/wall,/area/lv624/lazarus/medbay)
 "fD" = (/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "fE" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/closed/wall,/area/lv624/lazarus/medbay)
-"fF" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
-"fG" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
-"fH" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
-"fI" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/gm/dense,/area/lv624/ground/compound{name = "\improper West Compound"})
+"fF" = (/obj/machinery/light{dir = 4},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/c)
+"fG" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 4},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/c)
+"fH" = (/obj/machinery/colony_floodlight,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/grass,/area/lv624/ground/compound/c)
+"fI" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/c)
 "fJ" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/c)
 "fK" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/closed/wall,/area/lv624/lazarus/quartstorage)
 "fL" = (/obj/machinery/power/smes/buildable,/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
@@ -301,7 +301,7 @@
 "fO" = (/obj/machinery/door/airlock/glass_mining,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "fP" = (/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "fQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
-"fR" = (/obj/effect/landmark/huntergames_secondary_spawn,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper West Compound"})
+"fR" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ted Koso"},/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
 "fS" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/lv624/lazarus/medbay)
 "fT" = (/turf/closed/wall,/area/lv624/lazarus/quart)
 "fU" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/closed/wall,/area/lv624/lazarus/quart)
@@ -324,40 +324,34 @@
 "gl" = (/obj/structure/closet/secure_closet/medical3,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "gm" = (/obj/structure/closet/secure_closet/medical_doctor,/obj/machinery/light{dir = 1},/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "gn" = (/obj/structure/closet/secure_closet/medical_doctor,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
-"go" = (/turf/closed/wall/resin/ondirt,/area/space)
-"gp" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Evan Kark"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gq" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Drew Bellel"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gr" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Jac Mester"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gs" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/tgmccap/req; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Lee Hesto"},/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/space)
-"gt" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ellis Bark"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gu" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/miner{corpseback = null; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Olgin Vekin"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gv" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Chang Lin"},/obj/item/weapon/gun/pistol/holdout,/turf/open/floor/plating/ground/dirt,/area/space)
-"gw" = (/obj/effect/alien/weeds/node,/turf/closed/wall/resin/membrane/ondirt,/area/space)
-"gx" = (/turf/closed/wall/resin/membrane/ondirt,/area/space)
-"gy" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Wes Uvin"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gz" = (/obj/structure/bed/nest,/turf/open/ground,/area/space)
-"gA" = (/turf/open/floor/plating/ground/dirt,/area/space)
-"gB" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpsehelmet = /obj/item/clothing/head/welding; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ted Jarka"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gC" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Everett Mison"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gD" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ted Koso"},/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/space)
-"gE" = (/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/space)
-"gF" = (/obj/structure/mineral_door/resin,/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/space)
-"gG" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/miner{corpseback = /obj/item/storage/backpack; corpsehelmet = /obj/item/clothing/head/flatcap; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Terrin Yin"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gH" = (/obj/structure/mineral_door/resin,/turf/open/floor/plating/ground/dirt,/area/space)
-"gI" = (/obj/structure/bed/nest,/turf/open/floor/plating/ground/dirt,/area/space)
-"gJ" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Marko Quin"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gK" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/flatcap; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Jackson Martin"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gL" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsehelmet = /obj/item/clothing/head/tgmccap/req; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Olin Berus"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gM" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Maxwell Ligis"},/obj/item/weapon/gun/shotgun/pump/cmb,/turf/open/floor/plating/ground/dirt,/area/space)
-"gN" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/soft/grey; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Innio Morris"},/turf/open/floor/plating/ground/dirt,/area/space)
-"gO" = (/obj/structure/table,/obj/effect/landmark/random_item/good,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
+"go" = (/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gp" = (/obj/structure/mineral_door/resin,/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gq" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/miner{corpseback = /obj/item/storage/backpack; corpsehelmet = /obj/item/clothing/head/flatcap; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Terrin Yin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gr" = (/obj/effect/landmark/xeno_silo_spawn,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gs" = (/obj/structure/mineral_door/resin,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gt" = (/obj/structure/bed/nest,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gu" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Marko Quin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gv" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/flatcap; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Jackson Martin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gw" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsehelmet = /obj/item/clothing/head/tgmccap/req; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Olin Berus"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gx" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Maxwell Ligis"},/obj/item/weapon/gun/shotgun/pump/cmb,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gy" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsehelmet = /obj/item/clothing/head/soft/grey; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Innio Morris"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gz" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsehelmet = /obj/item/clothing/head/helmet/riot; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Fors Ilin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gA" = (/obj/effect/landmark/xeno_silo_spawn,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
+"gB" = (/obj/effect/landmark/nuke_spawn,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"gC" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/ground,/area/lv624/ground/compound/c)
+"gD" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/ground,/area/lv624/ground/compound/c)
+"gE" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/se)
+"gF" = (/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
+"gG" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsebelt = null; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Edgar Nogi"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/central2)
+"gH" = (/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ethan Peser"},/turf/open/floor,/area/shuttle/drop1/lz1)
+"gI" = (/obj/structure/closet/emcloset,/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Maxwell Ligis"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
+"gO" = (/obj/structure/table,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "gP" = (/obj/machinery/power/apc/drained,/obj/structure/cable/yellow,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "gQ" = (/obj/structure/largecrate/random,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
-"gR" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsehelmet = /obj/item/clothing/head/helmet/riot; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Fors Ilin"},/turf/open/floor/plating/ground/dirt,/area/space)
 "gS" = (/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quart)
 "gT" = (/obj/structure/ore_box,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "gU" = (/obj/effect/landmark/corpsespawner/miner{corpseback = /obj/item/storage/backpack; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Roester Kalin"},/turf/open/ground,/area/lv624/ground/caves/central2)
-"gV" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
+"gV" = (/obj/structure/table/flipped,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "gW" = (/obj/structure/reagent_dispensers/fueltank,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "gX" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "gY" = (/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
@@ -391,9 +385,9 @@
 "hA" = (/obj/structure/closet/secure_closet/chemical,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "hB" = (/obj/structure/closet/secure_closet/CMO,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "hC" = (/obj/structure/closet/secure_closet/medical1,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
-"hD" = (/obj/structure/table,/obj/item/paper_bin,/obj/item/tool/pen,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
+"hD" = (/obj/structure/table,/obj/structure/paper_bin,/obj/item/tool/pen,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "hE" = (/obj/structure/bed/chair{dir = 8},/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
-"hF" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
+"hF" = (/obj/structure/table/flipped,/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "hG" = (/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "hH" = (/obj/machinery/autolathe,/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "hI" = (/obj/machinery/door/airlock/medical,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
@@ -410,17 +404,16 @@
 "hT" = (/turf/closed/wall,/area/lv624/lazarus/security)
 "hU" = (/obj/structure/filingcabinet,/obj/machinery/light{dir = 8},/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "hV" = (/obj/structure/table/flipped,/obj/effect/spawner/random/tech_supply,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
-"hW" = (/obj/effect/decal/cleanable/blood,/turf/open/ground,/area/lv624/ground/compound{name = "\improper East Compound"})
 "hX" = (/obj/effect/landmark/corpsespawner/syndicatesoldier,/turf/open/ground,/area/lv624/ground/caves/east1)
 "hY" = (/obj/effect/landmark/corpsespawner/miner{corpseback = null; corpseidjob = "Laborer"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Bren Foras"},/turf/open/ground,/area/lv624/ground/caves/central1)
 "hZ" = (/obj/structure/largecrate,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
-"ia" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/machinery/light{dir = 8},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"ib" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/machinery/light{dir = 4},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
+"ia" = (/obj/structure/table/flipped,/obj/machinery/light{dir = 8},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
+"ib" = (/obj/structure/table/flipped,/obj/machinery/light{dir = 4},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "ic" = (/obj/machinery/vending/engivend,/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
 "id" = (/obj/structure/closet/secure_closet/atmos_personal,/obj/machinery/light{dir = 4},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "ie" = (/obj/structure/closet/secure_closet/RD,/obj/machinery/light{dir = 8},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "if" = (/obj/structure/closet/secure_closet/marshal,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
-"ig" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
+"ig" = (/obj/structure/table/flipped,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "ih" = (/obj/structure/closet/secure_closet/hos,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "ii" = (/obj/machinery/recharge_station,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "ij" = (/obj/structure/rack,/obj/machinery/light,/obj/effect/spawner/random/technology_scanner,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
@@ -432,7 +425,6 @@
 "ip" = (/obj/machinery/door/airlock/glass,/obj/effect/decal/cleanable/blood,/turf/open/floor/plating,/area/medical/medbay2)
 "iq" = (/obj/machinery/power/terminal,/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "ir" = (/obj/machinery/vending/coffee,/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
-"is" = (/obj/machinery/light{dir = 8},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper East Compound"})
 "it" = (/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "iu" = (/obj/structure/closet/secure_closet/detective,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "iv" = (/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Drew Bellel"},/turf/open/floor/tile/white,/area/medical/medbay2)
@@ -442,7 +434,7 @@
 "iz" = (/obj/machinery/power/smes/buildable,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "iA" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "iB" = (/turf/closed/wall,/area/lv624/lazarus/canteen)
-"iC" = (/obj/machinery/vending/wallmed1,/turf/closed/wall,/area/lv624/lazarus/canteen)
+"iC" = (/obj/machinery/vending/nanomed,/turf/closed/wall,/area/lv624/lazarus/canteen)
 "iD" = (/obj/structure/closet/firecloset,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
 "iE" = (/obj/effect/landmark/corpsespawner/syndicatecommando,/turf/open/ground,/area/lv624/ground/caves/east1)
 "iF" = (/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ben Harris"},/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/medical/medbay2)
@@ -451,7 +443,6 @@
 "iI" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/landmark/corpsespawner/engineer/rig,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
 "iJ" = (/obj/structure/dispenser,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 6},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "iK" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"iL" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper East Compound"})
 "iM" = (/obj/machinery/door/airlock/silver,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "iN" = (/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/machinery/power/apc/drained,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "iO" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
@@ -461,8 +452,7 @@
 "iS" = (/obj/structure/table/flipped,/obj/machinery/chem_dispenser/soda,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "iT" = (/obj/machinery/processor,/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "iU" = (/obj/machinery/gibber,/obj/machinery/light{dir = 1},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
-"iV" = (/obj/effect/landmark/start/surv_spawn,/turf/open/ground,/area/lv624/ground/compound{name = "\improper West Compound"})
-"iW" = (/obj/machinery/vending/wallmed1,/turf/closed/wall,/area/lv624/lazarus/comms)
+"iW" = (/obj/machinery/vending/nanomed,/turf/closed/wall,/area/lv624/lazarus/comms)
 "iX" = (/turf/closed/wall,/area/lv624/lazarus/comms)
 "iY" = (/obj/structure/largecrate/supply/supplies/mre,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
 "iZ" = (/obj/structure/largecrate/supply/supplies/plasteel,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
@@ -474,7 +464,7 @@
 "jf" = (/obj/machinery/vending/engineering,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
 "jg" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
 "jh" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
-"ji" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
+"ji" = (/obj/structure/table/flipped,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "jj" = (/obj/structure/closet/secure_closet/engineering_welding,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 4},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "jk" = (/obj/structure/closet/secure_closet/engineering_electrical,/obj/machinery/light{dir = 8},/turf/open/floor/prison/whitepurple,/area/lv624/lazarus/engineering)
 "jl" = (/obj/machinery/vending/tool,/turf/open/floor/prison/yellow/full,/area/lv624/lazarus/engineering)
@@ -487,7 +477,7 @@
 "js" = (/obj/machinery/light{dir = 1},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "jt" = (/obj/structure/table/flipped,/obj/machinery/reagentgrinder,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "ju" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
-"jv" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
+"jv" = (/obj/structure/table/flipped,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "jw" = (/obj/machinery/door/airlock/glass_mining,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 6},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
 "jx" = (/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "jy" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage)
@@ -512,16 +502,16 @@
 "jR" = (/obj/machinery/computer/general_air_control,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "jS" = (/obj/structure/closet/emcloset,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
 "jT" = (/obj/structure/largecrate/supply/supplies/water,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
-"jU" = (/obj/structure/table/reinforced,/obj/effect/landmark/random_item/good,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
+"jU" = (/obj/structure/table/reinforced,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "jV" = (/obj/structure/bed/chair/office/light{dir = 8},/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "jW" = (/obj/structure/bed/chair/office/light{dir = 1},/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "jX" = (/obj/structure/table/reinforced,/obj/item/clothing/under/CM_uniform,/obj/item/clothing/suit/armor/det_suit,/obj/item/binoculars,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
-"jY" = (/obj/structure/table/reinforced,/obj/item/handcuffs,/obj/item/storage/firstaid/adv,/obj/machinery/light/small,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
+"jY" = (/obj/structure/table/reinforced,/obj/item/restraints/handcuffs,/obj/item/storage/firstaid/adv,/obj/machinery/light/small,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "jZ" = (/obj/machinery/vending/coffee,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
-"ka" = (/obj/structure/table/almayer,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
-"kb" = (/obj/structure/table/almayer,/obj/machinery/microwave,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
-"kc" = (/obj/structure/table/almayer,/obj/item/storage/donut_box,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
-"kd" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-22"},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"ka" = (/obj/structure/table/mainship,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"kb" = (/obj/structure/table/mainship,/obj/machinery/microwave,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"kc" = (/obj/structure/table/mainship,/obj/item/storage/donut_box,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"kd" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{icon_state = "plant-22"},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "ke" = (/obj/structure/table/flipped,/obj/machinery/computer/security,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "kf" = (/obj/structure/table/flipped,/obj/machinery/computer/prisoner,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "kg" = (/obj/structure/table/flipped,/obj/machinery/computer/guestpass,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
@@ -532,7 +522,6 @@
 "kl" = (/obj/item/folder/red,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "km" = (/obj/effect/spawner/newbomb/timer,/obj/structure/table/flipped,/obj/machinery/light{dir = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
 "kn" = (/obj/structure/largecrate/random,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
-"ko" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper West Compound"})
 "kp" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/lv624/lazarus/canteen)
 "kq" = (/obj/machinery/vending/snack,/obj/machinery/light{dir = 8},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "kr" = (/obj/effect/decal/cleanable/blood,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/lv624/lazarus/canteen)
@@ -549,15 +538,14 @@
 "kC" = (/obj/machinery/vending/cigarette,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "kD" = (/obj/structure/bed/chair{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "kE" = (/obj/effect/spawner/newbomb/timer,/obj/structure/table/flipped,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
-"kF" = (/obj/structure/table/almayer,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"kF" = (/obj/structure/table/mainship,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "kG" = (/obj/structure/bed/chair{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
-"kH" = (/obj/machinery/door/airlock/multi_tile/almayer/generic,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
+"kH" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "kI" = (/obj/effect/spawner/newbomb/timer,/obj/structure/table/flipped,/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/prison/sterilewhite,/area/lv624/lazarus/fitness)
 "kJ" = (/obj/machinery/door/airlock/glass_command,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "kK" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "kL" = (/obj/machinery/door/airlock/engineering,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"kM" = (/obj/effect/landmark/huntergames_secondary_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
-"kN" = (/obj/machinery/door/airlock/multi_tile/almayer/generic,/turf/open/floor/plating,/area/lv624/lazarus/security)
+"kN" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/plating,/area/lv624/lazarus/security)
 "kO" = (/turf/open/floor/plating,/area/lv624/lazarus/security)
 "kP" = (/obj/structure/fence,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
 "kQ" = (/turf/open/ground,/area/lv624/ground/compound/sw)
@@ -570,14 +558,12 @@
 "kX" = (/obj/machinery/colony_floodlight,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
 "kY" = (/turf/closed/gm/dense,/area/lv624/ground/compound/sw)
 "kZ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
-"la" = (/obj/machinery/computer/NTresearch,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "lb" = (/obj/machinery/computer/aifixer,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "lc" = (/obj/machinery/computer/mecha,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "ld" = (/obj/machinery/computer/rdconsole,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "le" = (/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "lf" = (/turf/closed/gm/dense,/area/lv624/ground/compound{name = "\improper South Compound"})
 "lg" = (/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
-"lh" = (/turf/open/ground,/area/lv624/ground/compound{name = "\improper South Compound"})
 "li" = (/turf/open/floor/grass,/area/lv624/ground/compound/se)
 "lj" = (/turf/open/ground,/area/lv624/ground/compound/se)
 "lk" = (/obj/effect/landmark/start/surv_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/se)
@@ -585,17 +571,14 @@
 "lm" = (/turf/closed/gm/dense,/area/lv624/ground/compound/se)
 "ln" = (/obj/effect/landmark/lv624/fog_blocker,/turf/open/ground,/area/lv624/ground/compound/sw)
 "lo" = (/obj/structure/table/flipped,/obj/machinery/computer/communications,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
-"lp" = (/obj/effect/landmark/corpsespawner/engineer{corpseback = /obj/item/storage/backpack; corpseidjob = "Engineer"; corpseshoes = /obj/item/clothing/shoes/black; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Wes Uvin"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper East Compound"})
 "lq" = (/obj/structure/largecrate/random,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "lr" = (/obj/machinery/computer/rdservercontrol,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
-"ls" = (/obj/machinery/colony_floodlight,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "lt" = (/turf/closed/wall,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
-"lu" = (/obj/machinery/door/airlock/multi_tile/almayer/generic,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
+"lu" = (/obj/machinery/door/airlock/multi_tile/mainship/generic,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lv" = (/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
-"lw" = (/obj/machinery/vending/wallmed1,/turf/closed/wall,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
+"lw" = (/obj/machinery/vending/nanomed,/turf/closed/wall,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lx" = (/obj/structure/ore_box,/obj/machinery/light,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 2"})
 "ly" = (/obj/effect/landmark/corpsespawner/clown,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
-"lz" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor/grass,/area/lv624/ground/compound/se)
 "lA" = (/obj/structure/closet/emcloset,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lB" = (/obj/structure/janitorialcart,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lC" = (/obj/structure/dispenser,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
@@ -606,7 +589,7 @@
 "lH" = (/turf/closed/wall,/area/storage/tools)
 "lI" = (/obj/structure/closet/firecloset,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lJ" = (/obj/item/attachable/hydro_cannon,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
-"lK" = (/obj/machinery/door/airlock/multi_tile/almayer/generic{dir = 1; name = "\improper Airlock"; req_access_txt = "0"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
+"lK" = (/obj/machinery/door/airlock/multi_tile/mainship/generic{dir = 1; name = "\improper Airlock"; req_access_txt = "0"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lL" = (/obj/machinery/light,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lM" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "lN" = (/obj/effect/landmark/monkey_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
@@ -614,7 +597,6 @@
 "lP" = (/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc/drained,/turf/open/floor,/area/storage/tools)
 "lQ" = (/turf/open/floor,/area/storage/tools)
 "lR" = (/obj/effect/decal/cleanable/blood,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
-"lS" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "lT" = (/turf/closed/wall,/area/lv624/lazarus/robotics)
 "lU" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/storage/tools)
 "lV" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/storage/tools)
@@ -646,7 +628,7 @@
 "mv" = (/turf/open/floor{icon_state = "floorscorched2"},/area/storage/tools)
 "mw" = (/turf/open/floor,/area/lv624/lazarus/research)
 "mx" = (/obj/effect/landmark/monkey_spawn,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/lv624/lazarus/research)
-"my" = (/obj/machinery/vending/wallmed1,/turf/closed/wall,/area/lv624/lazarus/robotics)
+"my" = (/obj/machinery/vending/nanomed,/turf/closed/wall,/area/lv624/lazarus/robotics)
 "mz" = (/obj/machinery/door/airlock/multi_tile/research,/turf/open/floor,/area/lv624/lazarus/robotics)
 "mA" = (/obj/machinery/vending/robotics,/turf/open/floor,/area/lv624/lazarus/research)
 "mB" = (/obj/structure/cargo_container/red,/turf/open/floor,/area/shuttle/drop1/lz1)
@@ -658,11 +640,11 @@
 "mH" = (/obj/effect/spawner/random/tool,/turf/open/floor,/area/lv624/lazarus/research)
 "mI" = (/obj/effect/landmark/start/surv_spawn,/obj/machinery/light{dir = 8},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "mJ" = (/obj/machinery/light{dir = 4},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"mK" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/crap,/turf/open/floor,/area/storage/tools)
+"mK" = (/obj/structure/table/flipped,/turf/open/floor,/area/storage/tools)
 "mL" = (/obj/structure/table/flipped,/obj/effect/spawner/random/bomb_supply,/turf/open/floor,/area/storage/tools)
-"mM" = (/obj/machinery/vending/wallmed1,/turf/closed/wall,/area/lv624/lazarus/research)
+"mM" = (/obj/machinery/vending/nanomed,/turf/closed/wall,/area/lv624/lazarus/research)
 "mN" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/grass,/area/lv624/ground/compound/c)
-"mO" = (/obj/structure/rack,/obj/effect/landmark/random_item/good,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
+"mO" = (/obj/structure/rack,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "mP" = (/obj/machinery/light,/turf/open/floor,/area/storage/tools)
 "mQ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/lv624/lazarus/research)
 "mR" = (/obj/machinery/vending/tool,/turf/open/floor,/area/lv624/lazarus/research)
@@ -675,12 +657,11 @@
 "mY" = (/obj/machinery/portable_atmospherics/pump,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 8},/turf/open/floor,/area/lv624/lazarus/research)
 "mZ" = (/obj/effect/spawner/random/toolbox,/obj/structure/table,/obj/machinery/light{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
 "na" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/storage/tools)
-"nb" = (/obj/machinery/colony_floodlight,/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
 "nc" = (/obj/machinery/mecha_part_fabricator,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/lv624/lazarus/research)
 "nd" = (/turf/closed/wall,/area/maintenance/substation)
 "ne" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/closed/wall,/area/maintenance/substation)
-"nf" = (/obj/machinery/door/poddoor/almayer{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor,/area/storage/tools)
-"ng" = (/obj/machinery/door/poddoor/almayer{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor{icon_state = "floorscorched2"},/area/storage/tools)
+"nf" = (/obj/machinery/door/poddoor/mainship{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor,/area/storage/tools)
+"ng" = (/obj/machinery/door/poddoor/mainship{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor{icon_state = "floorscorched2"},/area/storage/tools)
 "nh" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/lv624/lazarus/research)
 "ni" = (/obj/machinery/portable_atmospherics/scrubber,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/lv624/lazarus/research)
 "nj" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/lv624/lazarus/research)
@@ -691,11 +672,10 @@
 "no" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor/grass,/area/lv624/ground/compound/se)
 "np" = (/obj/machinery/power/smes/buildable,/turf/open/floor,/area/maintenance/substation)
 "nq" = (/obj/effect/landmark/corpsespawner/engineer,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quart)
-"nr" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/item/rsf,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
-"ns" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
+"nr" = (/obj/structure/table/flipped,/obj/item/rsf,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "nt" = (/obj/machinery/pipedispenser,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 8},/turf/open/floor,/area/lv624/lazarus/research)
 "nu" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/se)
-"nv" = (/obj/structure/table,/obj/effect/landmark/random_item/crap,/turf/open/floor,/area/maintenance/substation)
+"nv" = (/obj/structure/table,/turf/open/floor,/area/maintenance/substation)
 "nw" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/open/floor,/area/maintenance/substation)
 "nx" = (/turf/open/floor,/area/maintenance/substation)
 "ny" = (/obj/machinery/mech_bay_recharge_port,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/lv624/lazarus/research)
@@ -705,7 +685,7 @@
 "nC" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/maintenance/substation)
 "nD" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/maintenance/substation)
 "nE" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/lv624/lazarus/research)
-"nF" = (/obj/structure/table/flipped,/obj/effect/spawner/random/tech_supply,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/landmark/random_item/good,/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
+"nF" = (/obj/structure/table/flipped,/obj/effect/spawner/random/tech_supply,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
 "nG" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/closed/wall,/area/lv624/lazarus/research)
 "nH" = (/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc/drained{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
 "nI" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor,/area/lv624/lazarus/research)
@@ -731,8 +711,8 @@
 "oc" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/maintenance/substation)
 "od" = (/obj/effect/landmark/monkey_spawn,/turf/open/floor,/area/maintenance/substation)
 "oe" = (/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"of" = (/turf/closed/wall/resin/ondirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
-"og" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/item/rsp,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
+"of" = (/turf/closed/wall/resin,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
+"og" = (/obj/structure/table/flipped,/obj/item/rsp,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "oh" = (/obj/structure/closet/secure_closet/quartermaster,/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "oi" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/maintenance/substation)
 "oj" = (/turf/closed/wall/r_wall,/area/maintenance/substation)
@@ -740,7 +720,7 @@
 "ol" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/wood/broken,/area/crew_quarters/sleep/bedrooms)
 "om" = (/obj/structure/mineral_door/wood,/turf/open/floor/wood/broken,/area/crew_quarters/sleep/bedrooms)
 "on" = (/obj/effect/alien/weeds/node,/turf/open/floor/grass,/area/lv624/ground/compound/se)
-"oo" = (/obj/effect/alien/weeds/node,/turf/closed/wall/resin/ondirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
+"oo" = (/obj/effect/alien/weeds/node,/turf/closed/wall/resin,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "op" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Kegan Mills"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "oq" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Marshal Logan Bills"},/obj/effect/alien/weeds/node,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "or" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Harry Trent"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
@@ -748,19 +728,18 @@
 "ot" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/floor,/area/shuttle/drop1/lz1)
 "ou" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/closed/wall,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "ov" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/closed/wall,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
-"ow" = (/obj/structure/table,/obj/effect/landmark/random_item/crap,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/maintenance/substation)
+"ow" = (/obj/structure/table,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/maintenance/substation)
 "ox" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/light{dir = 4},/turf/open/floor,/area/maintenance/substation)
 "oy" = (/obj/machinery/colony_floodlight_switch{pixel_y = 30},/obj/effect/decal/warning_stripes{pixel_y = 30},/turf/open/floor/tile/dark,/area/maintenance/substation)
 "oz" = (/obj/machinery/recharger,/turf/open/floor,/area/lv624/lazarus/research)
 "oA" = (/obj/machinery/seed_extractor,/turf/open/floor,/area/lv624/lazarus/research)
 "oB" = (/obj/structure/reagent_dispensers/water_cooler,/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"oC" = (/turf/closed/wall/resin/membrane/ondirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
+"oC" = (/turf/closed/wall/resin/membrane,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "oD" = (/obj/structure/bed/nest,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "oE" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/shuttle/drop1/lz1)
-"oF" = (/obj/structure/table/flipped,/obj/effect/landmark/random_item/good,/obj/item/radio,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
+"oF" = (/obj/structure/table/flipped,/obj/item/radio,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "oG" = (/obj/machinery/power/terminal,/obj/structure/cable/yellow,/turf/open/floor,/area/maintenance/substation)
 "oH" = (/obj/machinery/door/airlock/glass_engineering,/obj/effect/decal/cleanable/blood,/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"oI" = (/obj/effect/landmark/random_item/good,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "oJ" = (/obj/structure/closet/secure_closet/personal,/obj/machinery/light{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
 "oK" = (/obj/structure/mineral_door/resin,/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "oL" = (/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
@@ -777,7 +756,6 @@
 "oW" = (/obj/structure/cargo_container,/turf/open/floor,/area/shuttle/drop1/lz1)
 "oX" = (/obj/structure/cargo_container{dir = 1},/turf/open/floor,/area/shuttle/drop1/lz1)
 "oY" = (/obj/structure/cargo_container{dir = 4},/turf/open/floor,/area/shuttle/drop1/lz1)
-"oZ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
 "pa" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "pb" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/scientist{corpseback = null; corpsebelt = /obj/item/weapon/gun/pistol/holdout; corpseshoes = /obj/item/clothing/shoes/black; corpsesuit = /obj/item/clothing/suit/storage/labcoat; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Luther Yovin"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "pc" = (/obj/structure/cable/yellow,/obj/machinery/power/apc/drained{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
@@ -789,17 +767,16 @@
 "pi" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Mio Linno"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "pj" = (/obj/structure/bed/nest,/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ethan Peser"},/turf/open/floor/plating/ground/dirt,/area/lv624/ground/caves/east1{name = "\improper South Eastern Caves"})
 "pk" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"pl" = (/obj/effect/decal/cleanable/blood,/turf/open/ground,/area/lv624/ground/compound{name = "\improper West Compound"})
 "pm" = (/obj/structure/rack,/obj/effect/spawner/random/technology_scanner,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
-"pn" = (/obj/structure/table/flipped,/obj/item/reagent_container/glass/beaker,/obj/effect/landmark/random_item/good,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
+"pn" = (/obj/structure/table/flipped,/obj/item/reagent_container/glass/beaker,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "po" = (/obj/structure/closet/jcloset,/obj/machinery/light{dir = 1},/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
 "pp" = (/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/lv624/lazarus/canteen)
 "pq" = (/obj/structure/rack,/obj/effect/spawner/random/bomb_supply,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/tile/whiteyellow/full,/area/lv624/lazarus/quart)
 "pr" = (/obj/machinery/washing_machine,/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
 "ps" = (/obj/structure/closet/gmcloset,/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"pt" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
+"pt" = (/obj/structure/bed/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 1},/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
 "pu" = (/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
-"pv" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"pv" = (/obj/structure/bed/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 1},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "pw" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/reagent_dispensers/fueltank,/turf/open/floor,/area/shuttle/drop1/lz1)
 "px" = (/obj/structure/bed/roller,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "py" = (/obj/structure/bed,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
@@ -809,23 +786,19 @@
 "pC" = (/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "pD" = (/obj/item/attachable/hydro_cannon,/obj/machinery/light{dir = 1},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "pE" = (/obj/machinery/light{dir = 8},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
-"pF" = (/obj/item/stool,/obj/effect/landmark/random_item/good,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "pG" = (/obj/structure/closet/open,/obj/item/clothing/under/colonist,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"pH" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
-"pI" = (/obj/structure/closet/firecloset,/obj/machinery/light{dir = 1},/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/robotics)
+"pI" = (/obj/structure/closet/firecloset,/obj/machinery/light{dir = 1},/turf/open/floor,/area/lv624/lazarus/robotics)
 "pJ" = (/obj/structure/closet,/obj/item/storage/fancy/cigarettes/dromedaryco,/obj/machinery/light,/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
 "pK" = (/turf/closed/wall,/area/shuttle/drop1/lz1)
 "pL" = (/obj/effect/landmark/lv624/fog_blocker,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
-"pM" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "pN" = (/obj/machinery/vending/coffee,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"pO" = (/obj/structure/table/almayer,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"pP" = (/obj/structure/table/almayer,/obj/machinery/microwave,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"pQ" = (/obj/structure/table/almayer,/obj/item/storage/donut_box,/obj/machinery/power/apc/drained,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"pR" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-22"},/obj/machinery/light{dir = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/shuttle/drop1/lz1)
+"pO" = (/obj/structure/table/mainship,/obj/item/pizzabox/meat{pixel_y = 8},/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/shuttle/drop1/lz1)
+"pP" = (/obj/structure/table/mainship,/obj/machinery/microwave,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
+"pQ" = (/obj/structure/table/mainship,/obj/item/storage/donut_box,/obj/machinery/power/apc/drained,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
+"pR" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/flora/pottedplant{icon_state = "plant-22"},/obj/machinery/light{dir = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/wood,/area/shuttle/drop1/lz1)
 "pS" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/shuttle/drop1/lz1)
 "pT" = (/obj/structure/largecrate,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/shuttle/drop1/lz1)
 "pU" = (/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor,/area/shuttle/drop1/lz1)
-"pV" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/se)
 "pW" = (/obj/machinery/vending/snack,/obj/machinery/light{dir = 8},/turf/open/floor/wood,/area/shuttle/drop1/lz1)
 "pX" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
 "pY" = (/turf/open/floor/wood,/area/shuttle/drop1/lz1)
@@ -833,18 +806,16 @@
 "qa" = (/obj/machinery/door/window,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
 "qb" = (/obj/structure/closet/firecloset,/obj/machinery/light,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "qc" = (/turf/open/floor/grass,/area/lv624/ground/compound/sw)
-"qd" = (/obj/effect/landmark/monkey_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
 "qe" = (/obj/machinery/vending/cigarette,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
 "qf" = (/obj/structure/bed/chair{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"qg" = (/obj/structure/table/almayer,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"qh" = (/obj/machinery/computer/shuttle_control/dropship1{onboard = 0},/obj/structure/table/reinforced/flipped{dir = 1},/turf/open/floor/marking/warning{dir = 1},/area/shuttle/drop1/lz1)
+"qg" = (/obj/structure/table/mainship,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
+"qh" = (/obj/machinery/computer/shuttle/shuttle_control,/obj/structure/table/reinforced/flipped{dir = 1},/turf/open/floor/marking/warning{dir = 1},/area/shuttle/drop1/lz1)
 "qi" = (/obj/structure/bed/chair{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/effect/spawner/random/tech_supply,/turf/open/floor/wood,/area/shuttle/drop1/lz1)
-"qj" = (/obj/effect/landmark/huntergames_primary_spawn,/turf/open/ground/grass/grass2,/area/lv624/ground/compound/sw)
 "qk" = (/obj/structure/table/flipped,/obj/machinery/chem_dispenser/beer,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/item/reagent_container/food/drinks/shaker,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "ql" = (/obj/item/reagent_container/food/drinks/bottle/goldschlager,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "qm" = (/obj/structure/window/reinforced,/obj/item/attachable/hydro_cannon,/obj/item/tool/kitchen/rollingpin,/obj/item/tool/kitchen/tray,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "qn" = (/obj/structure/window/reinforced,/obj/item/tool/kitchen/knife,/obj/item/tool/kitchen/tray,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
-"qo" = (/obj/structure/closet/emcloset,/obj/machinery/light{dir = 1},/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/robotics)
+"qo" = (/obj/structure/closet/emcloset,/obj/machinery/light{dir = 1},/turf/open/floor,/area/lv624/lazarus/robotics)
 "qp" = (/obj/structure/table/flipped,/obj/item/reagent_container/glass/beaker,/obj/item/reagent_container/food/drinks/drinkingglass,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "qq" = (/obj/structure/table/flipped,/obj/item/reagent_container/glass/rag,/obj/item/reagent_container/food/drinks/drinkingglass,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "qr" = (/obj/structure/table/flipped,/obj/item/reagent_container/food/drinks/drinkingglass,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
@@ -856,7 +827,7 @@
 "qx" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/item/stool,/turf/open/floor/carpet,/area/lv624/lazarus/canteen)
 "qy" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/item/taperecorder,/obj/structure/table/reinforced,/turf/open/floor{icon_state = "red"},/area/lv624/lazarus/security)
 "qz" = (/obj/structure/closet/emcloset,/turf/open/floor/grimy,/area/lv624/lazarus/internal_affairs)
-"qA" = (/obj/structure/table/almayer,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/obj/item/reagent_container/food/drinks/bottle/whiskey,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
+"qA" = (/obj/structure/table/mainship,/obj/item/toy/deck,/obj/effect/spawner/random/tech_supply,/obj/item/reagent_container/food/drinks/bottle/whiskey,/turf/open/floor/wood,/area/lv624/lazarus/canteen)
 "qB" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/lv624/lazarus/canteen)
 "qC" = (/obj/structure/window/framed/colony,/turf/open/floor{dir = 2; icon_state = "whitegreen"},/area/lv624/lazarus/medbay)
 "qD" = (/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/lv624/lazarus/engineering)
@@ -873,7 +844,6 @@
 "qO" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/closet/secure_closet/scientist,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "qP" = (/obj/structure/closet/jcloset,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "qQ" = (/obj/structure/reagent_dispensers/water_cooler,/obj/structure/cable/yellow,/obj/machinery/power/apc/drained,/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
-"qR" = (/obj/structure/closet/radiation,/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/research)
 "qS" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/table/flipped,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "qT" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/table/flipped,/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "qU" = (/obj/machinery/power/apc/drained,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/obj/structure/bed/chair/office/light{dir = 1},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
@@ -886,16 +856,12 @@
 "rb" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor{dir = 1; icon_state = "whiteyellowcorner"},/area/lv624/lazarus/quart)
 "rc" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/closed/wall,/area/lv624/lazarus/quart)
 "rd" = (/obj/machinery/door_control{id = "secure_blast"; name = "Vault Access"; pixel_x = 25; req_access_txt = "0"},/turf/open/floor,/area/lv624/lazarus/research)
-"re" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
-"rf" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
-"rg" = (/obj/machinery/door/poddoor/almayer{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor,/area/lv624/lazarus/research)
-"rh" = (/obj/machinery/door/poddoor/almayer{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor{icon_state = "floorscorched2"},/area/lv624/lazarus/research)
+"rg" = (/obj/machinery/door/poddoor/mainship{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor,/area/lv624/lazarus/research)
+"rh" = (/obj/machinery/door/poddoor/mainship{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/turf/open/floor{icon_state = "floorscorched2"},/area/lv624/lazarus/research)
 "ri" = (/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/lv624/lazarus/security)
 "rj" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/window/framed/colony,/turf/open/floor/plating,/area/lv624/lazarus/security)
-"rk" = (/obj/machinery/light{dir = 4},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper West Compound"})
 "rl" = (/obj/machinery/light{dir = 8},/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "rm" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/ground,/area/lv624/ground/compound/c)
-"rn" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 4},/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper West Compound"})
 "ro" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/light{dir = 8},/turf/open/floor/grass,/area/lv624/ground/compound/c)
 "rp" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/closed/wall,/area/lv624/lazarus/quartstorage{name = "\improper Cargo Bay 3"})
 "rq" = (/obj/structure/closet/emcloset,/turf/open/floor,/area/storage/tools)
@@ -955,7 +921,6 @@
 "ss" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/closet/secure_closet/captain,/obj/machinery/light{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "st" = (/obj/structure/window/framed/colony,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/plating,/area/lv624/lazarus/engineering)
 "su" = (/obj/effect/landmark/corpsespawner/doctor{corpseback = null; corpsegloves = /obj/item/clothing/gloves/latex; corpseidjob = "Doctor"; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ted Koso"},/turf/open/ground,/area/lv624/ground/compound/sw)
-"sv" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "sw" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "sx" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "sy" = (/obj/machinery/computer/area_atmos,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
@@ -966,12 +931,9 @@
 "sD" = (/obj/machinery/computer/telecomms/monitor,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "sE" = (/obj/machinery/power/monitor{name = "Main Power Grid Monitoring"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
 "sF" = (/obj/machinery/power/monitor{name = "Core Power Monitoring"},/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{dir = 4; icon_state = "whiteblue"},/area/lv624/lazarus/comms)
-"sG" = (/obj/machinery/colony_floodlight,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
-"sH" = (/obj/effect/landmark/corpsespawner/security{corpsehelmet = /obj/item/clothing/head/helmet/riot; corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Fors Ilin"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "sI" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 6},/turf/open/floor,/area/storage/tools)
 "sJ" = (/obj/structure/table/flipped,/obj/effect/spawner/random/powercell,/obj/machinery/light{dir = 1},/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor,/area/storage/tools)
 "sK" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor,/area/storage/tools)
-"sL" = (/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Ethan Peser"},/turf/open/floor,/area/shuttle/drop1/lz1)
 "sM" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/closed/wall,/area/storage/tools)
 "sN" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/turf/open/floor{icon_state = "floorscorched2"},/area/storage/tools)
 "sO" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor{icon_state = "floorscorched2"},/area/storage/tools)
@@ -979,7 +941,7 @@
 "sQ" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/storage/tools)
 "sR" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/closed/wall,/area/storage/tools)
 "sS" = (/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,/turf/closed/wall,/area/storage/tools)
-"sT" = (/obj/machinery/door/poddoor/almayer{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/storage/tools)
+"sT" = (/obj/machinery/door/poddoor/mainship{dir = 4; id = "secure_blast"; name = "\improper Secure Armory Blast Door"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/storage/tools)
 "sU" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
 "sV" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
 "sW" = (/obj/machinery/light{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
@@ -992,9 +954,7 @@
 "td" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/effect/decal/cleanable/blood/oil,/turf/open/floor,/area/storage/tools)
 "te" = (/obj/effect/landmark/monkey_spawn,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor,/area/lv624/lazarus/research)
 "tf" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/closed/wall,/area/lv624/lazarus/engineering)
-"tg" = (/obj/effect/landmark/corpsespawner/security{corpseuniform = /obj/item/clothing/under/colonist; name = "Colonist Jac Mester"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "th" = (/obj/structure/table/flipped,/obj/effect/spawner/random/bomb_supply,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/storage/tools)
-"ti" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/ground/grass/grass2,/area/lv624/ground/compound{name = "\improper South Compound"})
 "tj" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/closed/wall,/area/maintenance/substation)
 "tk" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor,/area/lv624/lazarus/research)
 "tl" = (/obj/machinery/firealarm,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor,/area/maintenance/substation)
@@ -1010,7 +970,6 @@
 "tv" = (/turf/open/floor/plating/dmg3,/area/lv624/lazarus/research)
 "tw" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/plating/dmg1,/area/lv624/lazarus/research)
 "tx" = (/obj/machinery/door_control{id = "secure_blast"; name = "Vault Access"; pixel_x = 25; req_access_txt = "0"},/turf/open/floor/plating/dmg3,/area/lv624/lazarus/research)
-"ty" = (/turf/open/floor,/turf/open/floor/plating/dmg2,/area/lv624/lazarus/research)
 "tz" = (/turf/open/floor/plating/dmg2,/area/lv624/lazarus/research)
 "tA" = (/turf/open/floor/plating/dmg3,/area/lv624/ground/compound/se)
 "tB" = (/obj/effect/decal/cleanable/blood/oil,/turf/open/floor,/area/maintenance/substation)
@@ -1020,7 +979,7 @@
 "tF" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/dmg3,/area/lv624/lazarus/research)
 "tG" = (/obj/machinery/light,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor,/area/lv624/lazarus/research)
 "tH" = (/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/shuttle/drop1/lz1)
-"tI" = (/obj/structure/table,/obj/effect/spawner/random/tool,/obj/effect/landmark/random_item/good,/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
+"tI" = (/obj/structure/table,/obj/effect/spawner/random/tool,/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "tJ" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/ground/grass/grass2,/area/lv624/ground/compound/se)
 "tK" = (/obj/structure/window/framed/wood,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
 "tL" = (/obj/effect/spawner/random/toolbox,/obj/structure/table,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 1},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
@@ -1036,144 +995,138 @@
 "tV" = (/obj/machinery/light{dir = 8},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/obj/effect/decal/cleanable/blood/xtracks,/turf/open/floor,/area/maintenance/substation)
 "tW" = (/obj/effect/spawner/random/toolbox,/obj/structure/table,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
 "tX" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"tY" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/ground,/area/lv624/ground/compound{name = "\improper South Compound"})
 "tZ" = (/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/lv624/lazarus/research)
 "ua" = (/obj/structure/closet/emcloset,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/floor,/area/maintenance/substation)
 "ub" = (/obj/structure/closet/firecloset,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor,/area/maintenance/substation)
 "uc" = (/obj/structure/bed,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,/turf/open/floor/wood/broken,/area/crew_quarters/sleep/bedrooms)
 "ud" = (/obj/structure/closet/toolcloset,/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{dir = 8},/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"ue" = (/obj/machinery/light{dir = 1},/obj/effect/landmark/corpsespawner/security{corpsebelt = null; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Edgar Nogi"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
-"uf" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/ground,/area/lv624/ground/compound{name = "\improper South Compound"})
-"ug" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/grass,/area/lv624/ground/compound{name = "\improper South Compound"})
 "uh" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/closed/wall/wood,/area/crew_quarters/sleep_male)
-"ui" = (/obj/structure/table,/obj/effect/spawner/random/tech_supply,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/landmark/random_item/good,/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
-"uj" = (/obj/effect/landmark/random_item/crap,/obj/structure/table,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"ui" = (/obj/structure/table,/obj/effect/spawner/random/tech_supply,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
+"uj" = (/obj/structure/table,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "uk" = (/obj/effect/landmark/start/surv_spawn,/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "ul" = (/obj/structure/closet/jcloset,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 5},/turf/open/floor/wood/broken,/area/crew_quarters/sleep/bedrooms)
-"um" = (/obj/structure/closet/emcloset,/obj/effect/landmark/corpsespawner/security{corpsebelt = /obj/item/weapon/gun/revolver/cmb; corpsesuit = /obj/item/clothing/suit/storage/CMB; corpseuniform = /obj/item/clothing/under/CM_uniform; name = "Deputy Maxwell Ligis"},/turf/open/floor/plating,/area/maintenance/apmaint{name = "Cargo Maintenance South"})
 "un" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,/turf/open/floor/tile/purple/whitepurplecorner{dir = 4},/area/lv624/lazarus/fitness)
 "uo" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/tile/purple/whitepurplecorner{dir = 4},/area/lv624/lazarus/fitness)
 "up" = (/obj/machinery/atmospherics/components/unary/vent_pump/layer1{dir = 8; on = 1},/turf/open/floor/tile/purple/whitepurplecorner{dir = 4},/area/lv624/lazarus/fitness)
-"uq" = (/obj/structure/table,/obj/effect/spawner/random/toolbox,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 9},/obj/effect/landmark/random_item/good,/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
+"uq" = (/obj/structure/table,/obj/effect/spawner/random/toolbox,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 9},/turf/open/floor/prison/yellow,/area/lv624/lazarus/engineering)
 "ur" = (/obj/effect/decal/cleanable/blood,/turf/open/ground,/area/lv624/ground/compound/se)
-"us" = (/obj/structure/closet/radiation,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/research)
+"us" = (/obj/structure/closet/radiation,/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/lv624/lazarus/research)
 "ut" = (/obj/effect/decal/cleanable/blood,/turf/open/floor{icon_state = "floorscorched2"},/area/lv624/lazarus/research)
 "uu" = (/obj/structure/window_frame/wood,/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
 "uv" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/effect/decal/cleanable/blood/gibs/xeno,/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/lv624/lazarus/research)
-"uw" = (/turf/open/floor/grass,/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/plating/dmg2,/area/lv624/ground/compound/se)
+"uw" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/turf/open/floor/grass,/area/lv624/ground/compound/se)
 "ux" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/wood,/area/crew_quarters/sleep/bedrooms)
-"uy" = (/obj/structure/closet/emcloset,/obj/machinery/light,/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/research)
-"uz" = (/obj/structure/closet/firecloset,/obj/machinery/light,/obj/effect/landmark/random_item/good,/turf/open/floor,/area/lv624/lazarus/research)
-"uA" = (/obj/structure/table,/obj/effect/landmark/random_item/good,/obj/machinery/light{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/effect/spawner/random/toolbox,/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
-"uB" = (/obj/structure/table,/obj/effect/landmark/random_item/good,/obj/effect/spawner/random/toolbox,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uC" = (/obj/effect/landmark/random_item/crap,/obj/structure/table,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"uy" = (/obj/structure/closet/emcloset,/obj/machinery/light,/turf/open/floor,/area/lv624/lazarus/research)
+"uz" = (/obj/structure/closet/firecloset,/obj/machinery/light,/turf/open/floor,/area/lv624/lazarus/research)
+"uA" = (/obj/structure/table,/obj/machinery/light{dir = 1},/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{dir = 4},/obj/effect/spawner/random/toolbox,/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
+"uB" = (/obj/structure/table,/obj/effect/spawner/random/toolbox,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"uC" = (/obj/structure/table,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 "uD" = (/obj/structure/window_frame/wood,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uE" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/obj/machinery/door/window,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uF" = (/obj/structure/closet,/obj/item/tool/crowbar,/obj/item/clothing/gloves/yellow,/obj/item/stack/medical/bruise_pack,/obj/structure/window/reinforced{dir = 4},/obj/machinery/light,/obj/effect/landmark/random_item/good,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uG" = (/obj/structure/closet,/obj/structure/window/reinforced{dir = 4},/obj/effect/spawner/random/toolbox,/obj/effect/landmark/random_item/good,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uH" = (/obj/structure/closet/open,/obj/item/clothing/under/colonist,/obj/structure/window/reinforced{dir = 4},/obj/effect/landmark/random_item/good,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
-"uI" = (/obj/structure/closet,/obj/item/clothing/glasses/sunglasses,/obj/structure/window/reinforced{dir = 4},/obj/effect/landmark/random_item/good,/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
+"uE" = (/obj/structure/bed/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 1},/obj/machinery/door/window,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"uF" = (/obj/structure/closet,/obj/item/tool/crowbar,/obj/item/clothing/gloves/yellow,/obj/item/stack/medical/bruise_pack,/obj/structure/window/reinforced{dir = 4},/obj/machinery/light,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"uG" = (/obj/structure/closet,/obj/structure/window/reinforced{dir = 4},/obj/effect/spawner/random/toolbox,/turf/open/floor/wood,/area/crew_quarters/sleep_male)
+"uI" = (/obj/structure/closet,/obj/item/clothing/glasses/sunglasses,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/wood/broken,/area/crew_quarters/sleep_male)
 "uJ" = (/obj/machinery/door/window,/obj/machinery/door/window{dir = 8},/turf/open/floor/wood,/area/crew_quarters/sleep_male)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaadadadadadadadadadadadadadadadadadadadadadaeaeaeaeahahabababababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaadavavadadadadazadadazazazadazadadadadadadaeaCaEaeahahahahabababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaadazadadadazazazadadadadadadadadadadavadaNaefvbaaeahahahahahabababababbbbbbbbbbbababababbbbbbbbbbbbbbcacacacacacacacacacacacacacacacacacacacacacacacacacacacaagpgqgragagagagbdafafaaaaaaaaaaaaaaaaaaaa
-aaadavadadadadadadadadadadadadadadadadadadadaebabeaeahahahahahbfbfababbbbbababbgbbbgbgbbbbbbbgbgbgbgbgbcbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhgogxctgxgogogogoafcvafafaaagagagagaaaaaaaa
-aaadadazadaiajakalamanakalamajakaoaiadavadadbabibabaahahahahahbfbfbbbbbbabababbgbbbbbbbbbgbgbgababbgbgbcbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbcbcbcbcbcbcbcbcbcbcbcbcgobdafafgsgtgugoafafafafaaagagagagaaaaaaaa
-aaadadadadapaqaqaqaqaqaqaqaqaqaqaqaradadadadbjbibabjahahbkahahbfbfabababababababbbbgbgbgbgabababbgbgbgbcbcbcbcbcbcbcbcbcbcbhbhbhbhbcbcbcbcbcbcbcbcbcbcblbcbcbcgogvgwgxgxgxgygoafafafafafaaagagagaaaaaaaa
-aaadadadadapaqaqaqasasasasasaqaqaqaradadadadaebabeaeahahahahahbfbfabababababababbbbgbgabababbgbgbgbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcctgzgxgAgAgxgBgoafafafafafaaagagagaaaaaaaa
-aaadadazadataqaqaqasasasasasaqaqaqauadadadavaebabaaebmahahahahbfbfbnababababababbbbgbgababbgbgbbbbbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcctgCgxgAgAgxgxgoafafafcvafaaagagagaaaaaaaa
-aaadadadadawaqaxaqasasasasasaqaxaqayadboadadaebabaaebmahahahahbfbfbfababababbbbbbbbbbgabbgbgbbbbbbbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcacacacacacacacacbcblctgDgxgAgEgAgAgFafafafbdafagagagagaaaaaaaa
-aaadazadadaAaqasasasasasasasasasaqaBadbpadadaebqbaaebmbmahahahahahbfbbbbbbbbbbabbgbbbgabbgbgbbbbbbbbbbacacacacacacacbcbcbcbcbcbcbcbcacacacacbhbhbhbhbhbhacbcbcctgGgxgAgAgAgAgHafcvafafafagagagagaaaaaaaa
-aaadazadadaDasasasasasasasasasasasaradbradadaebabaaeahbmbmahahahahbfababfMabababbgbbbgabbgbbbbbbbbbbabacbhbhbhbhbhbhbhbcbcbcbcbcbcbcacbhbhbhbhbhbhbhbhbhbcblbcctgIgxgAgAgxgxgoafafafafaaagagagagaaaaaaaa
-aaadadadadatasasasasasasasasasasasaFadadadaNbsbtbubsbsbsbmahahahahbfabababababababbbbgabbgbbbbbbbbbbabbhbhbhbhbhbhbhbhbcbcbcbcbcbcacbhbhbhbhbcbcbcbcbcbcbcbcbcgogJgxgAgAgxgKgoafafafaaaaagagagagaaaaaaaa
-aaadadadadaGasasasasasaHasasasasasaIadadadadbsbububvclcmbmbmahahahahbfababababababbbababbgbbbbbbbbababbhbhbhbhbhbhbhbhbcbcbcbcbcbcacbhbhbcbcbcbcbcbcbcbcbcacbcgogLgxgxgwgxgMgoafafafaaaaagagagagaaaaaaaa
-aaadavadadaJaqasasasasasasasasasaqaKadadadadbsbxbububwiRahahahahahahbfbfababababbbbbababbgbbbbbbbbabbgbhgUbcbcbhbhbhbcbcbcbcbcbcacacbhbcbcbcbcblbcbcbcbcbcacacgogNgIafafafgRgoafafafafaaagagagagaaaaaaaa
-aaadadadadaDaqasasasasasasaHasasaqaLadadadadbsbybububwiRahahbkahahahahbfababbbbbbbababababbbbbbbababbgbcbcbcbcbcbhbhbcbcbcbcbcbcacbhbhbcbcbcbzbcbcbcblbcbcbcacaggogxgxctgxgogoagafafafafaaagagagaaaaaaaa
-aaadadavadataxasasasasasasasasasaxaFadadazadbsbybububAiRahahahahahahbfbmbmbmbbababababababbbbbbbabbgbgbBbBbBbBbBbBbCbCbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbGbGbHbIbJbKbFbGbGbGbEbEbEbFbGbGbGbFbFbFaa
-aaadadadadawaqasasasasasasasasaHaqaIadavazadbsbubububLiRahahahahahbfbfahbfbfbfabababababbbbbbbbbabbgbbbBbBbBbBbBbBbCbCbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbGbGbGbGbGbEbFbGbGbGbGbEbEbEbFbGbGbFbFbFaa
-aaadazadadaAaqasasasasasasasasasaqaMadadazadbsbMbNbObPiRahahahbQbQbQbQbQbQbQbQbfabababbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbBbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbFbFbFbFbFbEbFbFbFbFbGbGbEbEbFbGbGbFbFbFaa
-aaadazadadaDaqaqasasasasasasasaqaqaLadadadaNbsbsbsbsbsjHjLjLjLjMkmknkEkIcnbRbQbfababbbbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbCbCbBbBbBbBbBbCbCbCbBbBbEbKbEbEbEbEbEbGbGbGbGbGbEbEbKbEbEbEbFbGbGbEbEbFbGbGbFbFbFaa
-aaadadazadatasasasasasasasasasasasauadadazadcpbacqcpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbCbCbCbBbBbBbBbDbCbCbBbBbEbEbEbEbEbEbEbGbGbGbEbEbEbEbEbEbEbEbFbGbGbEbEbFbGbGbFbFbFaa
-aaadadazadaOasasasasasasasasasasasayadadadadcpbabacpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbbbabababbgbgbBbBbBbBbBbBbBbCbCbCbBbBbBbBbBbDbCbCbBbEbEbEbEbEbEbGbGbGbEbEbEbEbEcDbEbEbEbFbFbFbEbEbFbGbGbFbFbFaa
-aaadadazadaPasasasasasasasasasasasaBadadadadcpbacEcpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbabbgbgbgbgbgbBbBbBbBbBbBbCbCbCbDbBbBbBbBbBbBbDbCbCbEbEbEbEbEbGbGbGbGbEbEbEbEbKbEbEbEbGbGbFbEbEbEbFbGbGbFbFbFaa
-aaadazadadaDasasasasasasasasasasasaravadadadaeaeaeaeahahahahahbQcFcFcxcxcGcFbQbfababababababbgbgbgbgbgbCbCbBbBbBbCbCbDbDbBbBbBbBbBbBbBbBbDbCbGbGbEbEbGbGbGbGbEbEbEbEbEbEbEbGbGbGbFbFbEbEbEbFbGbGbFbFbFaa
-aaadadavadataqaxasasasasasasasaxaqauadadadadaecHbaaecIahahahahbQbScxcxcxcCbSbQbfbmabababababababababbgbCbCbCbCbCbCbDbBbBbBbBbBbBbBbBbBbBbBbDbGbGbGbGbGbGbGbGbGbEbEbEbGbGbGbGbFbFbEbEbEbEbFbGbGbGbFbFbFaa
-aaadadadadawaqaQaqasaqaqaqasaqaqaqayadadazadbabababacJbkahahahbQcKcxcxcxcCcKbQbfbmababababababbbbbbbabbDbDbDbCbCbDbBbBbBbBbBbBbBbBbBbBbBbBbBbFbFbFbGbGbGbGbGbGbGbGbGbGbFbFbFbEbEbEbEbEbFbGbGbGbGbFbFbFaa
-aaadadadadaRaSasasasaqaqaqasasasaqaBadadazadbjbababjcJahbmbmahbQbQbQcxbQcLbQbQbfbmabababababbbbbabhjbbbBbBbDbCbDbBbBbBbBbBbBbDbDbDbBbBbBbBbBbEbEbFbFbFbFbFbGbGbGbFbFbFbEbEbEbEbEbEbEbFbGbGbGbGbGbFbFbFaa
-aaadazazadaiaTaUaVaWaXaYaZaWaXaUaVaiadadadaNaecHbaaecIahbmahahahahcscscscMahbfbfbnabababababbbababababbDbBbBbDbBbBbBbBbBbBbDbCbCbCbCbBbBbBbBbEbEbEbEbEbEbFbFbFbFbFbEbEbEbEbEbEbEbEbEbEbFbFbFbFbGbFbFbFaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+aaadadadadadadadadadadadadadadadadadadadadadaeaeaeaeahahabababababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+aaadavavadadadadazadadazazazadazadadadadadadaeaCaEaeahahahahabababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacac
+aaadazadadadazazazadadadadadadadadadadavadaNaefvbaaeahahahahahabababababbbbbbbbbbbababababbbbbbbbbbbbbbcacacacacacacacacacacacacacacacacacacacacacacacacacacacacagaAaDbhbhbhbhbzbcbcacacacacacacacacacac
+aaadavadadadadadadadadadadadadadadadadadadadaebabeaeahahahahahbfbfababbbbbababbgbbbgbgbbbbbbbgbgbgbgbgbcbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhaHaQaSaQaHaHaHaHbcblbcbcacbhbhbhbhacacacac
+aaadadazadaiajakalamanakalamajakaoaiadavadadbabibabaahahahahahbfbfbbbbbbabababbgbbbbbbbbbgbgbgababbgbgbcbhbhbhbhbhbhbhbhbhbhbhbhbhbhbhbcbcbcbcbcbcbcbcbcbcbcbcaHbzbcbcbdbnciaHbcbcbcbcacbhbhbhbhacacacac
+aaadadadadapaqaqaqaqaqaqaqaqaqaqaqaradadadadbjbibabjahahbkahahbfbfabababababababbbbgbgbgbgabababbgbgbgbcbcbcbcbcbcbcbcbcbcbhbhbhbhbcbcbcbcbcbcbcbcbcbcblbcbcbcaHckcoaQaQaQctaHbcbcbcbcbcacbhbhbhacacacac
+aaadadadadapaqaqaqaqaqaqaqaqaqaqaqaradadadadaebabeaeahahahahahbfbfabababababababbbbgbgabababbgbgbgbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcaScvaQcwcwaQdSaHbcbcbcbcbcacbhbhbhacacacac
+aaadadazadataqaqaqaqaqaqaqaqaqaqaqauadadadavaebabaaebmahahahahbfbfbfababababababbbbgbgababbgbgbbbbbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcaSebaQcwcwaQaQaHbcbcbcblbcacbhbhbhacacacac
+aaadadadadawaqaxaqaqaqaqaqaqaqaxaqayadboadadaebabaaebmahahahahbfbfbfababababbbbbbbbbbgabbgbgbbbbbbbbbbbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcacacacacacacacacbcblaSfRaQcwgocwcwgpbcbcbcbzbcbhbhbhbhacacacac
+aaadazadadaRaqaqaqaqaqaqaqaqaqaqaqaBadbpadadaebqbaaebmbmahahahahahbfbbbbbbbbbbabbgbbbgabbgbgbbbbbbbbbbacacacacacacacbcbcbcbcbcbcbcbcacacacacbhbhbhbhbhbhacbcbcaSgqaQcwgrcwcwgsbcblbcbcbcbhbhbhbhacacacac
+aaadazadadapaqaqaqaqaqaqaqaqaqaqaqaradbradadaebabaaeahbmbmahahahahbfababfMabababbgbbbgabbgbbbbbbbbbbabacbhbhbhbhbhbhbhbcbcbcbcbcbcbcacbhbhbhbhbhbhbhbhbhbcblbcaSgGaQcwcwaQaQaHbcbcbcbcacbhbhbhbhacacacac
+aaadadadadataqaqaqaqaqaqaqaqaqaqaqaFadadadaNbsbtbubsbsbsbmahahahahbfabababababababbbbgabbgbbbbbbbbbbabbhbhbhbhbhbhbhbhbcbcbcbcbcbcacbhbhbhbhbcbcbcbcbcbcbcbcbcaHguaQcwcwaQgvaHbcbcbcacacbhbhbhbhacacacac
+aaadadadadaGaqaqaqaqaqaqaqaqaqaqaqaIadadadadbsbububvclcmbmbmahahahahbfababababababbbababbgbbbbbbbbababbhbhbhbhbhbhbhbhbcbcbcbcbcbcacbhbhbcbcbcbcbcbcbcbcbcacbcaHgwaQaQcoaQgxaHbcbcbcacacbhbhbhbhacacacac
+aaadavadadaJaqaqaqaqaqaqaqaqaqaqaqaKadadadadbsbxbububwiRahahahahahahbfbfababababbbbbababbgbbbbbbbbabbgbhgUbcbcbhbhbhbcbcbcbcbcbcacacbhbcbcbcbcblbcbcbcbcbcacacaHgygtbcbcbcgzaHbcbcbcbcacbhbhbhbhacacacac
+aaadadadadapaqaqaqaqaqaqaqaqaqaqaqaLadadadadbsbybububwiRahahbkahahahahbfababbbbbbbababababbbbbbbababbgbcbcbcbcbcbhbhbcbcbcbcbcbcacbhbhbcbcbcbzbcbcbcblbcbcbcacbhaHaQaQaSaQaHaHbhbcbcbcbcacbhbhbhacacacac
+aaadadavadataxaqaqaqaqasaqaqaqaqaxaFadadazadbsbybububAiRahahahahahahbfbmbmbmbbababababababbbbbbbabbgbgbBbBbBbBbBbBbCbCbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbGbGbHbIbJbKbFbGbGbGbEbEbEbFbGbGbGbFbFbFaa
+aaadadadadawaqaqaqaqaqaqaqaqaqaqaqaIadavazadbsbubububLiRahahahahahbfbfahbfbfbfabababababbbbbbbbbabbgbbbBbBbBbBbBbBbCbCbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbGbGbGbGbGbEbFbGbGbGbGbEbEbEbFbGbGbFbFbFaa
+aaadazadadaRaqaqaqaqaqaqaqaqaqaqaqaMadadazadbsbMbNbObPiRahahahbQbQbQbQbQbQbQbQbfabababbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbBbBbBbBbBbBbDbCbCbBbBbBbEbEbEbEbEbEbEbEbFbFbFbFbFbFbEbFbFbFbFbGbGbEbEbFbGbGbFbFbFaa
+aaadazadadapaqaqaqaqaqaqaqaqaqaqaqaLadadadaNbsbsbsbsbsjHjLjLjLjMkmknkEkIcnbRbQbfababbbbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbCbCbBbBbBbBbBbCbCbCbBbBbEbKbEbEbEbEbEbGbGbGbGbGbEbEbKbEbEbEbFbGbGbEbEbFbGbGbFbFbFaa
+aaadadazadataqaqaqaqaqaqaqaqaqaqaqauadadazadcpbacqcpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbbbbbbbabbgbbbBbBbBbBbBbBbBbCbCbCbBbBbBbBbDbCbCbBbBbEbEbEbEbEbEbEbGbGbGbEbEbEbEbEbEbEbEbFbGbGbEbEbFbGbGbFbFbFaa
+aaadadazadaOaqaqaqaqaqaqaqaqaqaqaqayadadadadcpbabacpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbbbabababbgbgbBbBbBbBbBbBbBbCbCbCbBbBbBbBbBbDbCbCbBbEbEbEbEbEbEbGbGbGbEbEbEbEbEcDbEbEbEbFbFbFbEbEbFbGbGbFbFbFaa
+aaadadazadaPaqaqaqaqaqaqaqaqaqaqaqaBadadadadcpbacEcpcrcscscscscucxcxcxcxcCcxcucsbbbbbbbbbbabbgbgbgbgbgbBbBbBbBbBbBbCbCbCbDbBbBbBbBbBbBbDbCbCbEbEbEbEbEbGbGbGbGbEbEbEbEbKbEbEbEbGbGbFbEbEbEbFbGbGbFbFbFaa
+aaadazadadapaqaqaqaqaqaqaqaqaqaqaqaravadadadaeaeaeaeahahahahahbQcFcFcxcxcGcFbQbfababababababbgbgbgbgbgbCbCbBbBbBbCbCbDbDbBbBbBbBbBbBbBbBbDbCbGbGbEbEbGbGbGbGbEbEbEbEbEbEbEbGbGbGbFbFbEbEbEbFbGbGbFbFbFaa
+aaadadavadataqaxaqaqaqaqaqaqaqaxaqauadadadadaecHbaaecIahahahahbQbScxcxcxcCbSbQbfbmabababababababababbgbCbCbCbCbCbCbDbBbBbBbBbBbBbBbBbBbBbBbDbGbGbGbGbGbGbGbGbGbEbEbEbGbGbGbGbFbFbEbEbEbEbFbGbGbGbFbFbFaa
+aaadadadadawaqaqaqaqaqaqaqaqaqaqaqayadadazadbabababacJbkahahahbQcKcxcxcxcCcKbQbfbmababababababbbbbbbabbDbDbDbCbCbDbBbBbBbBbBbBbBbBbBbBbBbBbBbFbFbFbGbGbGbGbGbGbGbGbGbGbFbFbFbEbEbEbEbEbFbGbGbGbGbFbFbFaa
+aaadadadadaRaqaqaqaqaqaqaqaqaqaqaqaBadadazadbjbababjcJahbmbmahbQbQbQcxbQcLbQbQbfbmabababababbbbbabhjbbbBbBbDbCbDbBbBbBbBbBbBbDbDbDbBbBbBbBbBbEbEbFbFbFbFbFbGbGbGbFbFbFbEbEbEbEbEbEbEbFbGbGbGbGbGbFbFbFaa
+aaadazazadaiaTaUaVaWaXaYaZaWaXaUaVaiadadadaNaecHbaaecIahbmahahahahcscscscMahbfbfbfabababababbbababababbDbBbBbDbBbBbBbBbBbBbDbCbCbCbCbBbBbBbBbEbEbEbEbEbEbFbFbFbFbFbEbEbEbEbEbEbEbEbEbEbFbFbFbFbGbFbFbFaa
 aaadadadadadadadadadadadadadadadadadazadadadaebqbaaeahahbmahahahcNcscscscMahahahbfababababbbbbababababbDbDbBbBbBbBbBbBbBbDbCbChMbBbBbDbBbBbBbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbFbGbFbFbFaa
 aaadadadadadadcOadadadadcOadadadadadadcPadadaebqbaaeahbmbmahahcscscscscscMbfahbfbfbfababbbbbabababababbDbDbDbBbBbBbBbBbDbCbCbBbBbBbBbBbDbDbDbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbEbFbGbFbFbFaa
 aaadadadcQcRcSadadadcOadadadadadcOadadadadadaebabaaeahbmahcscsahahcscscscMahbfahahbfabbbbbababababababbDbDbDbBbBbBbBbDbDbDbCbCbBbBbBbBbBbBbDbFbEbEbEbEbEbEbEbEbEbEbEbEbEbFbGbFbEbEbEbEbEbEbEbEbFbFbFbFaa
 aaadadadcTcTcTcTcTcTadcUadadadcUadadadadadadaebabaaeahahcscsahcVcVcVcWcXcYcVcVbfahbfbfcsababbmbmbmababbDbDbDbBbBbBbBbBbDbDbDbCbCbBbBbBbBbBbBbFbFbEbEbEbEbEbEbFbFbFbFbFbFbFbGbEbEbEbEbEbEbEbEbEbEbFbFbFaa
 aaaecZbaaedadbdcdddedfaecpcpcpaeaeaeaeaeaeaeaebabaaeahcscsahahcVdgdhdididjdkcVdlahahbfcsbfbfbfbmbmbmabbDbDbDbDbBbBbBbBbDbDbDbDbCbCbBbBbBbBbBbEbFbEbEbEbEbFbFbGbGbGbGbGbGbGbGbEbEbEbEbEbEbEbEbEbEbFbFbFaa
-aaaecHbaaedmdndodpdqdrdsbababadtdudvaCaeaCbadwbababacrcscscscscVdxdydzdzdzdAcVdBahahbfbfbfbfbfbfbnbmabbDbDbDbDbBbBbBbBbDbDbDbDbDbCbCbCbBbBbBbEbEbEbEbEbEbFbGbGbGbGbGbGbGbGhXbEbEbEbEbEbEbEbEbEbEbEbFbFaa
+aaaecHbaaedmdndodpdqdrdsbababadtdudvaCaeaCbadwbababacrcscscscscVdxdydzdzdzdAcVdBahahbfbfbfbfbfbfbfbmabbDbDbDbDbBbBbBbBbDbDbDbDbDbCbCbCbBbBbBbEbEbEbEbEbEbFbGbGbGbGbGbGbGbGhXbEbEbEbEbEbEbEbEbEbEbEbFbFaa
 aaaebabaaedCdDdEdFdGdHdIdJdJdJdJdJdKdLdMdLdJdJdNdvbjcrcscscscscWdzdzdzdzdzdAcVdBbfahahbkahahahahbfbmabbDbDbDbDbDbBbBbBbDbDbDbDbDbDbDbCbCbBbBbGbGbGbEbEbEbEbFbGbGbGbGbGbGbGbEbEbEbEbEbEbEbEbEbEbEbEbFbFaa
 aaaecZbaaeaeaeaeaeaeaeaecpcpcpaeaeaeaeaeaeaeaeaedOaecscscscscscVdPdydzdzdydAcVdBbfbfbfbfahahbmahbfbfabbDbDbDbDbDbBbBbBbDbDbDbDbDbDhYbDbDbCbCbGbGbGbEbEbEbEbEbFbFbFbFbFbGbGbGbEbEbEbEbEbEbEbEbEbEbEbFbFaa
 aaahcJcJahahahahahahahdQcrcrcrdQahahahahahahahahcMahahahcscsahcVdzdzdzdzdydAcVdBbfdRbfahahbmbmahahbfbfbDbDbDbDbDbBbBbBbDbDbDbDbDbDbBbBbBbDbCbGbGbFbFbEbEbEbEbEbFbFbFbFbFbGbGbEbEbEbEbEbEbEbEbEbEbEbFbFaa
-aaaaahahdSahahahahahahahcsiocsahahahahahahahahahdTbmbkahcscsahcVqzdzdUdzdydAcVdBahahahahbmbmbfbfahahahbDbDbDbDdVbBbBbBdVdWbDbDbDbDbDbBbBbBbDbFbFbEbEbEbEbEbEbEbFbFbFbFbFbFbFbEbEbEbEbEbEbEbEbEbGbEbFbFaa
-aaaaahahahahahahahdXdXdXdYipdYdXdXdXdXdXdXdXahbmdTbmahahcscsahcVcVcVcVcVcVcVcVdBahahahbmbmbfbfbfahahahbDdWdZdZdVbBbBbBeadWebbDbDbDbDbBbDbBbBbEbEbEbFbFbEbEbEbEbEbFbFbFbFbFbFbEbGbGbGbGbEbEbEbGbEbEbFbFaa
-aaaaaaahahahahahahdXecedeeeeeeefegeheiejekdXelemeneleleleoeoelepeqeperepepepepeseteteqeqepepepetepetetepepeteteqeueueueqeqepepbDbDbBbBbDbDbDbFbFbFbFbFbFbEbEbEbEbFbFbFbFbFbFbEbFbFbGbGbGbGbGbGbEbFbFbFaa
-aaaaaaaaaaahahahahdXiveveeeeeeewexexeyezeAdXemeleneleleleoeoeleteqeqepepepepetesetetepepepepepetetepepepepepeqeBeueueueCepepepbBbBbBbDbDbDbDbFbFbFbFbFbFbEbEbEbEbFbFbFbFbFixbEbFbFbFbGbGbGbGiEbEbFbFbFaa
-aaaaaaaaaaaaahahahdXeDeedXeFeeeGeHeIeJeWdXdXemeleneKememeoeoeletepeqeqepepetetesepepeLeLeLeLeLetetetetepeqepepeCeueueueBeqepeubBbDbDbDbDbDbDbFbFbFbFbFeMeNeOeOeOeNeNbFbFbFbEbEbFbFbFbFbGbGbGbEbEbFbFbFaa
-aaaaaaaaaaaaaaaaahdXeDiFdXeEeeiGeeeeePeQdXememeleneKeKemeoeoeoeueueueuepeteteteRepepeLeSeTeTeLepepeqepeqepepepeCeueueueBeqepeubDbDbDbDbDbDbDbFbFbFbFeMeUeUeOeOeOeMeMeNbFbFbFbEbFbFbFbFbFbGbGbGbEbFbFbFaa
-aaaaaaaaaaaaaaaaaadXeVeedXeEeXeeiHhLeYeZdXemeKelfafbeKeKeoeoeoeueueueuetetetepfcfdfdfdfeffiIfdfgfgfhfhfhfifjfjfjeueueufkeBeCeCbDbDeueOeOeOeOeOeOeOeOeOeOeOeOhWeOfleMeMeUbFbFbEbFbFbFbFbFbFbGbGbEbFbFbFaa
-aaaaaaaaaaaaaaaaaadXdXdXdXdXdXfmeedXdXfndXeKeKfofaeKeKeKeKememetetepeuetetetepfpfqfreLeSfsfseLfteufjfuiJjvfwfxfjeulYeueueueueueueueueOfyeOeOeOeOeOeOeOeOeOeOeOeOeMeMeUeUeNbFbEfzfzfzfzfzfzfzfAfBfzfzfzaa
-aaaaaaaaaaaaaaaaaaemeKeKeKeKfCfDfDfEfFfGfFfFfFfFfHfFfFfFfFfFfIfgfJfgfgfJfJfgfgfKfLfsjwjyfsfsfNeueufOfPjIfQfPfPfOeueueueueulYeueueueueOeOeOeOeOeOeOeOeOeOeOeOeOeOeNeMeUeNeOafbEfzfzfzfzfzfzfzfzfBfzfzfzaa
-aaaaaaaaaaaaaaaaaaemfReKeKfCfCfDfDfSfCfCfCfCfCfCfCqCqCfCfCfCfCfCetepepetepepfTfUfVfTkzfTfTfWfTfXeufjfPjIfQfPfPfOeulYeueueueueueueueueNeOeNeMeMeNeMeUeUlpfYfYfZfYfYeNeNeOeNeNeNeNfzfzfzfzfzfzfzfBfzfzfzaa
-aaaaaaaaaaaaaaaaememeKeKeKfCgafDfDfSgbgcgdgegfggghgigjgkglgmgnfCetepepetetepfTgOgPgQlqgQgQgSfTeuepfjgTlxgVgWgXfjepeueueueqeteteqepepfYfZfYeNeNeUeMeMeMfYgYgYgZmbgYfYeNeNeNeUeMeMeNfzfzfzfzfBfBfBfBfzfzaa
-aaaaaaaaaaaaaaeKemeKeKeKeKfChalyfDhbhchdhehffDfDfDfDfDfDlRfDfDfCepepepetetepfThghhhimShkhlnqfTeumNfjfjnBhmfjfjfjeplYeueuephnetetepfYhogZhpfYeNeMeMeMfYfYhqgYgZgYhrfYfYeNeNeMeMeMeMeNfzfzfzfBfzfzfBfBfzaa
-aaaaaaaaaaaaeKeKeKeKememeKfChshtlRlRfDfDfDfDhuhvhwhxhyhzhAhBhCfCepeuepetepetfThDhEhhnYnZoQgSfTeuepepeppaeRepepepepeueueuepepetetetepfYfZfYeNeMeMeNfYhFhGhGpepkfYhGhGhHfYeNeNeUeMeMeMeNfzfzfBfzfzfzfBfzaa
-aaaaaaaaaaaaeKeKeKeKeKemeKfCfCfCfChIfCfCfCfCfCfCfCqCqCfCfCfCfCfCepeueuethJetfThKhhmOpmpqqMrbrcrmrprprprshPhOhOhOhOeueueuepepepepepfYhFgZhQfYeNeNfYfYhRhGhSrtgZfYhHhGqWfYfYeNeUeUeMeMeMeNfzfBfzfzfzfBfzaa
-aaaaaaaaaahThThThThTeKemeKeKeKeKeKeoeKeKeKeKeKeKeKeKeKeKeKeKeKepeteueuetetetfThUhhhhhhhhhhgSfTeuhOhVnFrurvhZhZhZhOeueulYepepfYepfYiagZgZgZibfYfYicgYhGhGidrtgZfYiehGhGgYgYfYeNeUeUeMeMeMeOfBfzfzfzfBfBaa
-aaaaaaaaaaifnrogihhTeKeKeKememememeoeKemememeKfoeKeKeKememeKemeteteueuetetepfTiimOijhNikohgSfWeuilimimrwimimimimileueueuepfYinfYhFgZrxryiqgZhFfYirgYfYfYfYrtgZfYfYfYfYgYgYfYiseNeNeNeUeNeOeUfzfzfzfzfBaa
-aaaaaaaaaaifititiuhTeKeKeKeKeKeKeKeoemeKemememeKememememeKeoeoeueueueueteterfTfTfTfTfTfTfTfTfTeuhOrzimrwrAimimimhOeueueueufZgZfZgZiwrBiyiziAgZgZgZrCpkgZgZrDgZgZgZrCpkgZgZoHeOeOeOeOeOeNeUeUeNfzfzfzfBaa
-aaaaaaaaaaoFitrEighTeKfoeKeKeKeKeKeoeoiBiBiCiBiBiBppppppiBeoeoeueueueueueueueueueueueueueueueulYrFrGrHrIrHrJrKrHrprmrmrmrLrMrNrMrOrPrQrMrMrRrSrMrTrUrMrMrMrVrWrMrMrXfYgYgYfYiseNeNeNeNeNeUeNiLeNfzfzfBaa
-aaaaaaaaaaigititighTeKeKeKiBppppiBiBiMiBiNiOiPiQqkiSiTiUppeoiVetepfkfkepetetepiWiXepetetetetepeprYiDimiYimiZimimhOeueueueperfYetfYjajbjbjcjdjejejfjgjhjijjrZiAfYjkhHhGgYjlfYeNeNeUeNeUeMeMeMeMeMeNfzfBaa
-aaaahThThThTjmithThTeKeleliBjnjojpjqjrjsjrsajtjrsbqljuoIpppleoepiXscsdiXepepiXsesfiXetetetetepeprYjzimjAimjAimjBhOeueueuepepepetetfYqXgZqYfYeNeNfYfYhGhGhGrtiKfYhGhGhGfYfYeNeNeUeUeNeNeMeMeMeMeMeNjCfBaa
-aaaahTjDjEjFititjGhTeliBiBiBqmqnsgsajrjKjrjrpnqpqqqrqsqtppeoeoiXjNshjxjOiXiXjPshjQjRiXeteteteteprYjSsijTimjTimjBhOeueueuetetetetetepfYfZfYeNeNeNeNfYhFqZhGsjskfYhGqZrafYeNeNeUeUeMeMeNeMeMeMeNeNeNjCfBaa
-aaaahTjUjVjWitjXjYhTeliBjZkakbkckdjrjJqujrjrpBqwpFqwqxqwiBeoeoiXkeshjxkfiXiXkgshjQkhiXepetetetetrYhOhOhOhOhOhOhOhOeueueuetetetepepfYhogZhpfYeNeMeMeNfYfYhqsliKgYsmfYfYeNeNeUeUeNeMeMeMeUeUeNeNeUeNjCfBaa
-aakirikjkkklitjWqyrjkokpkqkrksktkuiOkvkwiOiOkxiOiOiOkysniMeoeorkiXshjxiXrlepiXsojQiXepepepetetetpaepepepepepepepepeueueueteteteqepeNfYfZfYeNeNeNeMeNeNfYgYsliKgYgYfYeNeNeMeMeMeMeMeUeUeUeNeNeUeUeNfzfBaa
-aakihThThTkAititkBhTeliBkCkDqAkFkGiBiBiBkHjriBiBiBppqBppiBeoeoeokJshjxkJeueukJshjQiXepepkKepetetspetepepetetepepepeueueuetepeqeqepeNeNeOeNeNeNeNeMeMeNeNfYrtkLfYfYeNeNeNeMeUeMeMeUeUeNeNeNeNeNeOeOfBfBaa
-aakikMkihThTkNkOhThTkiiBiBiBppppiBiBkPkQkQsqkQkPkikikRkSkSkSkTrnkUsrkVkUrofgkUsskWiXepepepepepetspeteteteteteteteteueueueqeqepepepeOeNeOeNeOeNeNeMeMeNeNeNstiKqDeNeNeMeNeMeMeMeUeUeNeNeNeNeNeOeOeUfBfBaa
-aakikikikikQkQkQsukikikikikikikikikikPkQkQkQqEkPkikikikXkikYkZiXlashjxlbiXiXlcshjxldiXpHlelelflesvlglglglglglelglglhlhlhlfleleleleliljlililklililllllllllistiKqDlllllilllmlilmlmlililililililjlmlmfzfBaa
-aakikikikikQlnlnkQkikikikikikikikikikPkQlnlnkQkPkikikikikikYkZiXloswsxsyszszsAsBjxlriXlelflflflesvlelglglelglglglglhlhlhlflelelslelililililjlililllllililistiKqDlilllllllllilmljljlililililjlililifzfBaa
-aaltltltltltlulvltltltltltltltltltltltltlulvltltlwltkikikYkYkZkiiXsCsDiXleleiXsEsFiXlelelflflflesGlelglglglglglflflhlhlhleleleleleljlililililililllllllllistiKqDlilllllmlllilililjljljljljljlililzfzfBaa
-aaltlAqFlBlvlvlvlvlvlvlClvsHlClDlEltlFqSlvlvqTqUlGltkikYkYkikZkikilHlHlHlHleleiXiXlelelflflflflesvlelelelglglglglelhlhlhlelelelhlelililililililllllllllllistiKqDlilllllllllllilmlililililililililifzfBaa
-aaltlIlJlvlKlvlvlLlvlvlvlvlvlvlvlvltlvlLlvlvlLlvlMltkikYlNkikZkilHlOlPsIsJlHlelelelelflelflelelesvlSlelelelelelglglhlhlhlelelelTlTqGqGlTlTlilililllllllilistiKqDlllilmlmlllllllllllllllllllllilifzfzfBaa
-aaltltltltltlulvltltltltltltltltltltltltlulvltlvlMltkYkYkikikRlUlVlVlWsKlXlQlHlelelelelelelelelesvlelelelelelelelglhlhlhlelelTpIlZmalZlZqolTlilllllllllllistqvqDlllililmlllllllllmlllllmlmlmlmlmfzfzfBaa
-aamcmcmcmcmcmcsLmdmcmcmcmcmcmemdmcmcmcmcmcmcltlvlMltkikikikilHmflQmgmhsKlXlQmilHlHlHlHlHlHlHlHlHsMlHlHlHlHlHlHlHlHnfnfnflHlHqRmkmllZlZmmlTmnmolllllilllllistiKqDllllmplmlmlimqlllllmlmlmlilililifzfzfBaa
+aaaaahahahahahahahahahahcsiocsahahahahahahahahahdTbmbkahcscsahcVqzdzdUdzdydAcVdBahahahahbmbmbfbfahahahbDbDbDbDdVbBbBbBdVdWbDbDbDbDbDbBbBbBbDbFbFbEbEbEbEbEbEbEbFbFbFbFbFbFbFbEbEbEbEbEbEbEbEbEbGbEbFbFaa
+aaaaahahahahahahahdXdXdXdYipdYdXdXdXdXdXdXdXahbmdTbmahahcscsahcVcVcVcVcVcVcVcVdBahahahbmbmbfbfbfahahahbDdWdZdZdVbBbBbBeadWdWbDbDbDbDbBbDbBbBbEbEbEbFbFbEbEbEbEbEbFbFbFbFbFbFbEbGbGbGbGbEbEbEbGbEbEbFbFaa
+aaaaaaahahahahahahdXecedeeeeeeefegeheiejekdXeteqeseteteteueuetepeqeperepepepepeseteteqeqepepepetepetetepepeteteqeueueueqeqepepbDbDbBbBbDbDbDbFbFbFbFbFbFbEbEbEbEbFbFbFbFbFbFbEbFbFbGbGbGbGbGbGbEbFbFbFaa
+aaaaaaaaaaahahahahdXiveveeeeeeewexexeyezeAdXeqeteseteteteueueteteqeqepepepepetesetetepepepepepetetepepepepepeqeBeueueueCepepepbBbBbBbDbDbDbDbFbFbFbFbFbFbEbEbEbEbFbFbFbFbFixbEbFbFbFbGbGbGbGiEbEbFbFbFaa
+aaaaaaaaaaaaahahahdXeDeedXeFeeeGeHeIeJeWdXdXeqetesepeqeqeueuetetepeqeqepepetetesepepeLeLeLeLeLetetetetepeqepepeCeueueueBeqepeubBbDbDbDbDbDbDbFbFbFbFbFafelbEbEbEelelbFbFbFbEbEbFbFbFbFbGbGbGbEbEbFbFbFaa
+aaaaaaaaaaaaaaaaahdXeDiFdXeEeeiGeeeeePeQdXeqeqetesepepeqeueueueueueueuepeteteteRepepeLeSeTeTeLepepeqepeqepepepeCeueueueBeqepeubDbDbDbDbDbDbDbFbFbFbFafemembEbEbEafafelbFbFbFbEbFbFbFbFbFbGbGbGbEbFbFbFaa
+aaaaaaaaaaaaaaaaaadXeVeedXeEeXeeiHhLeYeZdXeqepeteRkKepepeueueueueueueuetetetepfcfdfdfdfeffiIfdfgfgfhfhfhfifjfjfjeueueufkeBeCeCbDbDeubEbEbEbEbEbEbEbEbEbEbEbEenbEeoafafembFbFbEbFbFbFbFbFbFbGbGbEbFbFbFaa
+aaaaaaaaaaaaaaaaaadXdXdXdXdXdXfmeedXdXfndXepephneRepepepepeqeqetetepeuetetetepfpfqfreLeSfsfseLfteufjfuiJjvfwfxfjeulYeueueueueueueueubEeMbEbEbEbEbEbEbEbEbEbEbEbEafafememelbFbEfzfzfzfzfzfzfzfAfBfzfzfzaa
+aaaaaaaaaaaaaaaaaaeqepepepeKfCfDfDfEfgeNfgfgfgfgeOfgfgfgfgfgeUfgfJfgfgfJfJfgfgfKfLfsjwjyfsfsfNeueufOfPjIfQfPfPfOeueueueueulYeueueueubEbEbEbEbEbEbEbEbEbEbEbEbEbEelafemelbEbEbEfzfzfzfzfzfzfzfzfBfzfzfzaa
+aaaaaaaaaaaaaaaaaaeqepepepfCfCfDfDfSfCfCfCfCfCfCfCqCqCfCfCfCfCfCetepepetepepfTfUfVfTkzfTfTfWfTfXeufjfPjIfQfPfPfOeulYeueueueueueueueuelbEelafafelafememfafYfYfZfYfYelelbEelelelelbFbFfzfzfzfzfzfBfzfzfzaa
+aaaaaaaaaaaaaaaaeqeqepepepfCgafDfDfSgbgcgdgegfggghgigjgkglgmgnfCetepepetetepfTgOgPgQlqgQgQgSfTeuepfjgTlxgVgWgXfjepeueueueqeteteqepepfYfZfYelelemafafaffYgYgYgZmbgYfYelelelemafafelbFfzfzfzfBfBfBfBfzfzaa
+aaaaaaaaaaaaaaepeqepepepepfChalyfDhbhchdhehffDfDfDfDfDfDlRfDfDfCepepepetetepfThghhhimShkhlnqfTeumNfjfjnBhmfjfjfjeplYeueuephnetetepfYhogZhpfYelafafaffYfYhqgYgZgYhrfYfYlililllllllllifzfzfzfBfzfzfBfBfzaa
+aaaaaaaaaaaaepepepepeqeqepfChshtlRlRfDfDfDfDhuhvhwhxhyhzhAhBhCfCepeuepetepetfThDhEhhnYnZoQgSfTeuepepeppaeRepepepepeueueuepepetetetepfYfZfYelafafelfYhFhGhGpepkfYhGhGhHfYlililmlllllllifzfzfBfzfzfzfBfzaa
+aaaaaaaaaaaaepepepepepeqepfCfCfCfChIfCfCfCfCfCfCfCqCqCfCfCfCfCfCepeueuethJetfThKhhmOpmpqqMrbrcrmrprprprshPhOhOhOhOeueueuepepepepepfYhFgZhQfYelelfYfYhRhGhSrtgZfYhHhGqWfYfYlilmlmlllllllifzfBfzfzfzfBfzaa
+aaaaaaaaaahThThThThTepeqepepepepepeuepepepepepepepepepepepepepepeteueuetetetfThUhhhhhhhhhhgSfTeuhOhVnFrurvhZhZhZhOeueulYepepfYepfYiagZgZgZibfYfYicgYhGhGidrtgZfYiehGhGgYgYfYlilmlmllllllfBfBfzfzfzfBfBaa
+aaaaaaaaaaifnrogihhTepepepeqeqeqeqeuepeqeqeqephnepepepeqeqepeqeteteueuetetepfTiimOijhNikohgSfWeuilimimrwimimimimileueueuepfYinfYhFgZrxryiqgZhFfYirgYfYfYfYrtgZfYfYfYfYgYgYfYfblilililmlifBflfzfzfzfzfBaa
+aaaaaaaaaaifititiuhTepepepepepepepeueqepeqeqeqepeqeqeqeqepeueueueueueueteterfTfTfTfTfTfTfTfTfTeuhOrzimrwrAimimimhOeueueueufZgZfZgZiwrBiyiziAgZgZgZrCpkgZgZrDgZgZgZrCpkgZgZoHljljljljljliflfljCfzfzfzfBaa
+aaaaaaaaaaoFitrEighTephnepepepepepeueuiBiBiCiBiBiBppppppiBeueueueueueueueueueueueueueueueueueulYrFrGrHrIrHrJrKrHrprmrmrmrLrMrNrMrOrPrQrMrMrRrSrMrTrUrMrMrMrVrWrMrMrXfYgYgYfYfblililililifljCjCjCfzfzfBaa
+aaaaaaaaaaigititighTepepepiBppppiBiBiMiBiNiOiPiQqkiSiTiUppeufoetepfkfkepetetepiWiXepetetetetepeprYiDimiYimiZimimhOeueueueperfYetfYjajbjbjcjdjejejfjgjhjijjrZiAfYjkhHhGgYjlfYlililmlilmllfyfyfyfyjCfzfBaa
+aaaahThThThTjmithThTepetetiBjnjojpjqjrjsjrsajtjrsbqljujrpplYeuepiXscsdiXepepiXsesfiXetetetetepeprYjzimjAimjAimjBhOeueueuepepepetetfYqXgZqYfYepepfYfYhGhGhGrtiKfYhGhGhGfYfYlililmlmlilillfyfyfyfyjCjCfBaa
+aaaahTjDjEjFititjGhTetiBiBiBqmqnsgsajrjKjrjrpnqpqqqrqsqtppeueuiXjNshjxjOiXiXjPshjQjRiXeteteteteprYjSsijTimjTimjBhOeueueuetetetetetepfYfZfYepepepepfYhFqZhGsjskfYhGqZrafYlililmlmlllllillfyfyjCjCjCjCfBaa
+aaaahTjUjVjWitjXjYhTetiBjZkakbkckdjrjJqujrjrpBqwqwqwqxqwiBeueuiXkeshjxkfiXiXkgshjQkhiXepetetetetrYhOhOhOhOhOhOhOhOeueueuetetetepepfYhogZhpfYepetetepfYfYhqsliKgYsmfYfYlililmlmlilllllllmfljCjCfljCjCfBaa
+aakirikjkkklitjWqyrjfJkpkqkrksktkuiOkvkwiOiOkxiOiOiOkysniMeueufFiXshjxiXrlepiXsojQiXepepepetetetpaepepepepepepepepeueueueteteteqepepfYfZfYepepepetepepfYgYsliKgYgYfYlililllllllllllmlmlmjCjCflfljCfzfBaa
+aakihThThTkAititkBhTetiBkCkDqAkFkGiBiBiBkHjriBiBiBppqBppiBeueueukJshjxkJeueukJshjQiXepepkKepetetspetepepetetepepepeueueuetepeqeqepepepeuepepepepetetepepfYrtkLfYfYlilililllmlllllmlmlilijCjCjCfBfBfBfBaa
+aakikikihThTkNkOhThTkiiBiBiBppppiBiBkPkQkQsqkQkPkikikRkSkSkSkTfGkUsrkVkUrofgkUsskWiXepepepepepetspeteteteteteteteteueueueqeqepepepeuepeuepeuepepetetepepepstiKqDlililllilllllllmlmlilililililjljlmfBfBaa
+aakikikikikQkQkQsukikikikikikikikikikPkQkQkQqEkPkikikikXkikYkZiXjxshjxlbiXiXlcshjxldiXmNepepeqeppaetetetetetepeteteueueueqepepepepliljlililklililllllllllistiKqDlllllilllmlilmlmlililililililjlmlmfzfBaa
+aakikikikikQlnlnkQkikikikikikikikikikPkQlnlnkQkPkikikikikikYkZiXloswsxsyszszsAsBjxlriXepeqeqeqeppaepetetepeteteteteueueueqepephneplililililjlililllllililistiKqDlilllllllllilmljljlililililjlililifzfBaa
+aaltltltltltlulvltltltltltltltltltltltltlulvltltlwltkikikYkYkZkiiXsCsDiXepepiXsEsFiXepepeqeqeqepfHepeteteteteteqeqeueueuepepepepepljlililililililllllllllistiKqDlilllllmlllilililjljljljljljlililifzfBaa
+aaltlAqFlBlvlvlvlvlvlvlClvlvlClDlEltlFqSlvlvqTqUlGltkikYkYkikZkikilHlHlHlHepepiXiXepepeqeqeqeqeppaepepepetetetetepeueueuepepepeueplililililililllllllllllistiKqDlilllllllllllilmlililililililililifzfBaa
+aaltlIlJlvlKlvlvlLlvlvlvlvlvlvlvlvltlvlLlvlvlLlvlMltkikYlNkikZkilHlOlPsIsJlHepepepepeqepeqepepeppakKepepepepepeteteueueuepepeplTlTqGqGlTlTlilililllllllilistiKqDlllilmlmlllllllllllllllllllllilifzfzfBaa
+aaltltltltltlulvltltltltltltltltltltltltlulvltlvlMltkYkYkikikRlUlVlVlWsKlXlQlHepepepepepepepepeppaepepepepepepepeteueueuepeplTpIlZmalZlZqolTlilllllllllllistqvqDlllililmlllllllllmlllllmlmlmlmlmfzfzfBaa
+aamcmcmcmcmcmcgHmdmcmcmcmcmcmemdmcmcmcmcmcmcltlvlMltkikikikilHmflQmgmhsKlXlQmilHlHlHlHlHlHlHlHlHsMlHlHlHlHlHlHlHlHnfnfnflHlHmjmkmllZlZmmlTmnmolllllilllllistiKqDllllmplmlmlimqlllllmlmlmlilililifzfzfBaa
 aamcmcmcmcmcmemcmcmcmcmcmcmrmcmsmcmemcmcmcmcltmtlMltmukPkPlHmgmgmgmgmhsKlXlQlQlQngmvmvmvmvmvmvmvsNsOmvmvmvmvmvmvmvmvmvmvmvngmwmxmymzlZlTmAmwmolilllilililistiKqDlilllllilmlllllllmlmlilililililifzfzfBaa
 aamcmemcmrmemcmcmcmBmCmDmcmcmcmsmcmcmcmcmemclvlvlMlvlnkQkQlQlQtclQlQmhsPsQsQsQsQsRsRsRsRsRsRsRsRsSsRsRsRsRsRsRsRsRsTsTsTsRsRsUsVsWsXsYmFmwmwqHlilllifYfYfYrtkLfYfYlilllllllllllllmlililjljljljlifzfBfBaa
 aamcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmctHmcmcmclKlvlMlKlnkQkQlQlQlQlQlQmhsKlQmGlQlQlHlHlHlHlHlHlHlHsMlHlHlHlHlHlHlHlHnfnfnflHlHmwmEmwsZrdmomHmwqHlllllifYmIgZrDiKmJfYlililllmllllllllliljljlillljljljfBfzaa
-aamcmcmemcbTbUbVbWbXbUbVbWbXbUbVbWbTmcmcmcmcltmtlMltmukPkPlHmKmKmKmKmhsKmLlQtalQngmvmvmvmvmvmvmvsNsOmvmvmvmvmvmvmvmvmvmvmvngmwtbmwsZmwmMmHmwmolllllifYgZtIrtuigZfZljljlllllllllllilmljllllllljljlifzfzaa
-aamcmememcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmcmcltlDlMltkikikikilHmPlQmKmhsKmLlQmPlHlHlHlHlHlHlHlHlHsMlHlHlHlHlHlHlHlHnfnfnflHlHmjmQmwsZmwqImomRmolilllifYgZpeuqmTgZfZurljurlllilmlllllllilllllllilmlmjCfzaa
-aamcmcmcmcbYbZbZbZcbcbcbcbcbbZbZbZcamcmcmemcltltqVltkikikikikilHlQlQmhtdmLlQlHlglelelelelelelelesvlelelelelelflglglhlhlhlelgmomUmwtemwmwmWmolililllifYgZtfpkmTgZfZljljljlllllmlmlllllilllllllllmlljCjCaa
-aamcmcmcmscccdbZbZcbcbcbcbcbbZbZcdcemcmcmemXlttglMltkikikikikikilHrqrrsPthlHlelglglglelelelgleletilglflglglglglglglhlhlhlelgmomYmwsZmwmwmZmolilllllifYhogZgZiKmJfYliljljlilllilmlllllllllllllmlmlijCjCaa
-aamcmcmcmccfbZbZbZcbcbcbcbcbbZbZbZcgmcmcmemcltlClMltkikXkikikYkikilHnasMlHlelelelflflgnblglglglgtilelflflelglelelglhlhlhlslgmoncmwsZtZtbmWmolimqlllifYfYfYfYmTfYfYliljljlilllmlmllllllmqlllmlmlilzjCfzaa
-aamcmcmcmcchbZcbcbcicbcbcbcbcbcbbZcjmcmcmcmcltlvlMltkikikYkYkikikindnetjndlelelelelflglglglglglgsvlelelglglelelglglhlhlhrerfnhninjtknjnknlnhnmnnnnnnnmnmnmnnnolilililjljlililmlllllllllllllllllllljCfzaa
-aamrmcmcmcbYcbcbcbcbcbcbckcbcbcbcbcamsmcmcmrltlClMltkYkYkYkikikindnpnetlqJndlelelglglglglglelelgtilglglglelelglglelhlhlhoZlemontmwsZmwmwmZmollllllllllllllllnullllliljljmplilmlllllmlmlllllllllllijCfzaa
-aamcmemcmccccbcbcbcbcbcbcbcbcbcbcbcemcmctmmcltlvlMltkikikikikindnvnwnetnoinxndlglglglelelelelelesvlelglglflelglelelhlhlhnslemonymwsZmwmwmWmolllllllilililillnullllliljljlilmlmlllmlmlllllllllllllifzfzaa
-aamcmcmcmccfcbcbcbcbcbcbcbcicbcbcbcgmcmemcmcltlvlMltkikikikindnvnvnznAtoqKnCnCnDnhnhnhnhnhnhnhnhtpnhnhnhnhnhnhnhnhrgrgrgnEnhusnGnHtqtrqImonImollllllnJnJnJnJnKnJnJliljljlilmlllllmlllllllllililifzfzfzaa
-aamcmcmcmcchbZcbcbcbcbcbcbcbcbcbbZcjmcmemcmXltmtlMltkPkPkPndnxnxnxnLnMtnndnNnxnxrhnOnOnOnOnOnOnOtsttnOnOnOutnOnOnOnOtunOnPrhmwtvtwtqtxmonQtytztAlllluunRnSnTnUnVnJliljljlilllllllllllllllmlmlilifzfzfzaa
-aamcmemrmcbYbZcbcbcbcbcbcbcbcbcbbZcamcmcmcmclvlvlMlvlnkQkQnxnxtBnxnWnXtnndnxnxnxmomomomomomomomotCmomomomomomomomorgrgrgmQmotvmwtDtEtFtGsUuvtFuwtJtJtKtLtMnJnUobnJliljljlllllllllllllllmlmlililifzfzfzaa
-aamcmcmcmcbTcdcbcbcbcbcbcbcbcbcbcdbTmcmrmcmclKlvlMlKlnkQkQnxnxnxnxocnXtnndnxodnxmomomomomomomomotCmomomomomomomomorgrgrgmQmomwtbtNtOtPmomHtQtztAllllnJtRnJnJnUuxnJljljljlillmqlllmlmlmllllofofofofofofaa
-aamcmcmcmscfbZcbcbcicbcbcbcbcbcbbZcgmcmcmcmcltqNqOltkPkPkPndnxnxnxoitStTojnNnxnxrhnOnOutnOnOnOnOtsttnOnOnOnOnOnOnOnOnOtunPrhmwmwmookmwmomHmwmolilllluutUnSnToloaomljurljlllllllllmllllonliooopoqorosofaa
-aamcmemcmcchbZcbcbcbcbcbcbcbcbcbbZcjmctmmeotououovoukSkSkSkSnDowowoxndtVoynxnxndmomomomomomomomotCmomomomomomomomorgrgrgmQmoqRmomwtZmwozmooAmollllllqLtWtXnJoloBnJljljljlllllllllllllililiofoCoCoCoDofaa
-aamcmemcmcbYbZbZcbcbcbcbcbcbcbbZbZcamcmcmcoEltqPlBltkYkYlNkikindnvoGndtTnxnxndlelelelelelelelelhtYlhlhlhlhlhlhlhlhlhlhlhnslemouytZmwmVmwuzmolilllllinJtRnJnJnUoJnJllljljlilllllllllilililjoKoLoLoCoMofaa
-aamcmcmcmccccbcbcbcbcbcicbcbcbcbcbcemcmcmcoNltoOlvoPkikYkYkYkikindnpnduaubndlelelelflflelelelhlhtYlhlhlhlhlhlhlhlhlhlhlhnslelemomookmwmomolillllliliuuucoRnTnUoSnJllljljlilllllllllililjljoToLoUoCoVofaa
-aamcmemcmccocbcbcbcbcbcbcbcbcbcbcbcgoWoXoYoEltlCqFltkXkikikikikilgndndndndlelelelflflelelslelhlhtYlhlhlhlhlhlhlhlhlhlhlhoZlglglelelhlhlelelllllllmliqLudtXnJnUoSnJllljljllllllllllljljljliofoLoLoCpbofaa
-aamcmcmcmcchcbcbcbcbcbcbcbcbcbcbcbcjmcmcmcoEltltltltkikikikikikilglglglelelelelelelelelelelhlhlhtYlhlglglglglSlelelelelenslelglelelhlhlelelllllilmlinJtRnJnJpcoSnJllljljpdlllllmllllllllllofoCoCoCoDfAaa
-aamcmcmemcbYcbcbcbcbcbcbcbcbcbcbcbcamcmcmeoEoPlvueoPlnkQkQkQkQkQlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhtYlelelelepfpfpfpfpfpfpfpgpflelglelhlhlelelllilmlmliqLtUoRnToeoJnJllljljlllllllmllllllllllofphospipjfAaa
-aamcmcmemeccbZbZcbcbcbcbcbcbcbbZbZcetmmsmeoEoPlvlvoPlnkQkQkQkQkQlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhufuguguguguhuAujukuBuCpoqQpflelglelhlhlelglililmlilluuultXnJprpsnJllljljlllllllmllllllllllofofofofoffAaa
-aamcmcmcmccfcdbZbZcbbZbZbZcbbZbZcdcgmcmcmeoEoPlvlLoPlnkQkQkQkQkQlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlhlelglglgleuDptptpupvuEpupuuDlelelglhlhlglglililmllllnJnJnJnJnJnJnJljljljlllllllmlllllllllllmllllllliaaaa
-aamcmcmcmechcwcbcbcbbZbZbZcbcbcbbZcjmcmcmcpwltltltltkikikikikikilglglglelelelelelelelelelelelelelelglglelepfpxpypzpApzpCpCpflhlhlhlhlhlhlhljljljljljljljljljljljljljljljlllllllmlmllmqlllmlmlllililiaaaa
-aamcmrmcmebTcyczcAcBcyczcAcBcyczcAbTmcmcmeoNltlCpDltpEkikikikikilglglglelelelelelelelelelelelelelelglglglgpfuFpGuGuHuIpJpCuJlhlhlhlhlhlhlhljljljljljljljljljljljljljljlllllllllllmlllllllmlllllililiaaaa
-aamcmcmcmemcmcpKpKpKpKpKpKmcmcmcmcmcmcmcmeoElvlvlvlvpLkikikYkYkilelelelelelSlelelelflflelelepMlelelelelelgpfpfpfpfpfpfpfpfpflglglglgnblglglllllllllllililililililililllllllllllllmlllllllllllililiaaaaaa
-aamcmcmcmemcmcpKpNpOpPpQpRpSpSpSpSpSpTpTpSpUlKlvlvlKpLkikikYkikilelelelelelelelelelelflflelelelelelelelelflflflflglglglglglglglglglglglglgllpVlllllllllllllllllllllllllllllllllllmlmlllllllllzliliaaaaaa
-aamcmcmcmemcmcpKpWpXpYpZqamemcmcmcmcmcmcmcmcltumqbltpEkikikXqcqcaaaaaalelelelelelelelelelelelelelelflflflfaaaaaaaaaaaaaaaaaalglglglglgqdlgllaaaaaaaaaaaaaaaaaalilililiaaaaaalllllllllmlllllililiaaaaaaaa
-aamcmcmcmcmcmcpKqeqfqgqhqimcmcmcmcmcmcmcmcmcltltltltkiqjaaaaaaaaaaaaaaaaaaaaaaaaleleleleleleleleaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalglglgaaaaaaaaunuoupaaaaaaaaaaaaaaaaaaaaaaaaaallllllllliaaaaaaaaaaaa
+aamcmcmemcbTbUbVbWbXbUbVbWbXbUbVbWbTmcmcmcmcltmtlMltmukPkPlHmKmKmKmKmhsKmLlQtalQngmvmvmvmvmvmvmvsNsOmvmvmvmvmvmvmvmvmvmvmvngmwtbmwsZmwmMmHmwmolllllifYgZtIrtuigZfZljljlllllllllllilmljlilililjljlifzfzaa
+aamcmememcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmcmcltlDlMltkikikikilHmPlQmKmhsKmLlQmPlHlHlHlHlHlHlHlHlHsMlHlHlHlHlHlHlHlHnfnfnflHlHmjmQmwsZmwqImomRmolilllifYgZpeuqmTgZfZurljurlllilmlllllllilililililmlmjCfzaa
+aamcmcmcmcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmemcltltqVltkikikikikilHlQlQmhtdmLlQlHetepepepepepepepeppaepepepepepeqeteteueueuepetmomUmwtemwmwmWmolililllifYgZtfpkmTgZfZljljljlllllmlmlllllililililllmlljCjCaa
+aamcmcmcmscccdbZbZbZbZbZbZbZbZbZcdcemcmcmemXltlvlMltkikikikikikilHrqrrsPthlHepetetetepepepetepepspeteqeteteteteteteueueuepetmomYmwsZmwmwmZmolilllllifYhogZgZiKmJfYliljljlilllilmlllilililililmlmlijCjCaa
+aamcmcmcmccfbZbZbZbZbZbZbZbZbZbZbZcgmcmcmemcltlClMltkikXkikikYkikilHnasMlHepepepeqeqethJetetetetspepeqeqepetepepeteueueuhnetmoncmwsZtZtbmWmolimqlllifYfYfYfYmTfYfYliljljlilllmlmlililimqlllmlmlilijCfzaa
+aamcmcmcmcchbZbZbZbZbZbZbZbZbZbZbZcjmcmcmcmcltlvlMltkikikYkYkikikindnetjndepepepepeqetetetetetetpaepepetetepepeteteueueufIfJnhninjtknjnknlnhnmnnnnnnnmnmnmnnnolilililjljlililmlilililililililililijCfzaa
+aamrmcmcmcbYbZbZbZbZbZbZbZbZbZbZbZcamsmcmcmrltlClMltkYkYkYkikikindnpnetlqJndepepetetetetetepepetspetetetepepetetepeueueuesepmontmwsZmwmwmZmollllllllllllllllnullllliljljmplilmlililmlmlilililililijCfzaa
+aamcmemcmcccbZbZbZbZbZbZbZbZbZbZbZcemcmctmmcltlvlMltkikikikikindnvnwnetnoinxndetetetepepepepepeppaepeteteqepetepepeueueueRepmonymwsZmwmwmWmolllllllilililillnullllliljljlilmlmlilmlmlililililililifzfzaa
+aamcmcmcmccfbZbZbZbZbZbZbZbZbZbZbZcgmcmemcmcltlvlMltkikikikindnvnvnznAtoqKnCnCnDnhnhnhnhnhnhnhnhtpnhnhnhnhnhnhnhnhrgrgrgnEnhusnGnHtqtrqImonImollllllnJnJnJnJnKnJnJliljljlilmlllilmlililililililifzfzfzaa
+aamcmcmcmcchbZbZbZbZbZbZbZbZbZbZbZcjmcmemcmXltmtlMltkPkPkPndnxnxnxnLnMtnndnNnxnxrhnOnOnOnOnOnOnOtsttnOnOnOutnOnOnOnOtunOnPrhmwtvtwtqtxmonQtztztAlllluunRnSnTnUnVnJliljljlililililililililmlmlilifzfzfzaa
+aamcmemrmcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmcmclvlvlMlvlnkQkQnxnxtBnxnWnXtnndnxnxnxmomomomomomomomotCmomomomomomomomorgrgrgmQmotvmwtDtEtFtGsUuvtFuwtJtJtKtLtMnJnUobnJliljljlilililililililmlmlililifzfzfzaa
+aamcmcmcmcbTcdbZbZbZbZcbbZbZbZbZcdbTmcmrmcmclKlvlMlKlnkQkQnxnxnxnxocnXtnndnxodnxmomomomomomomomotCmomomomomomomomorgrgrgmQmomwtbtNtOtPmomHtQtztAllllnJtRnJnJnUuxnJljljljliligElilmlmlmliliofofofofofofaa
+aamcmcmcmscfbZbZbZbZbZbZbZbZbZbZbZcgmcmcmcmcltqNqOltkPkPkPndnxnxnxoitStTojnNnxnxrhnOnOutnOnOnOnOtsttnOnOnOnOnOnOnOnOnOtunPrhmwmwmookmwmomHmwmolilllluutUnSnToloaomljurljlililililmlilionliooopoqorosofaa
+aamcmemcmcchbZbZbZbZbZbZbZbZbZbZbZcjmctmmeotououovoukSkSkSkSnDowowoxndtVoynxnxndmomomomomomomomotCmomomomomomomomorgrgrgmQmomjmomwtZmwozmooAmollllllqLtWtXnJoloBnJljljljlililililililililiofoCoCoCoDofaa
+aamcmemcmcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmcoEltqPlBltkYkYlNkikindnvoGndtTnxnxndepepepepepepepepeugCeueueueueueueueueueueueRepmouytZmwmVmwuzmolilllllinJtRnJnJnUoJnJllljljlililililililililjoKoLoLoCoMofaa
+aamcmcmcmcccbZbZbZbZbZbZbZbZbZbZbZcemcmcmcoNltoOlvoPkikYkYkYkikindnpnduaubndepepepeqeqepepepeueugCeueueueueueueueueueueueReplemomookmwmomolillllliliuuucoRnTnUoSnJllljljlilililililililjljoTgAoUoCoVofaa
+aamcmemcmccfbZbZbZbZbZbZbZbZbZbZbZcgoWoXoYoEltlCqFltkXkikikikikietndndndndepepepeqeqepephnepeueugCeueueueueueueueueueueuesetlllililjljlililllllllmliqLudtXnJnUoSnJllljljlilililililjljljliofoLoLoCpbofaa
+aamcmcmcmcchbZbZbZbZbZbZbZbZbZbZbZcjmcmcmcoEltltltltkikikikikikietetetepepepepepepepepepepeueueugCeuetetetetkKepepepepepeReplllililjljlililllllilmlinJtRnJnJpcoSnJllljljpdlililmlililililiofoCoCoCoDfAaa
+aamcmcmemcbYbZbZbZbZbZbZbZbZbZbZbZcamcmcmeoEoPlvgFoPlnkQkQkQkQkQeueueueueueueueueueueueueueueueugCepepepeppfpfpfpfpfpfpfpgpflillliljljlililllilmlmliqLtUoRnToeoJnJllljljlilililmlililililiofphospipjfAaa
+aamcmcmemeccbZbZbZbZbZbZbZbZbZbZbZcetmmsmeoEoPlvlvoPlnkQkQkQkQkQeueueueueueueueueueueueueueueueugDrLrLrLrLuhuAujukuBuCpoqQpflillliljljlilllililmlilluuultXnJprpsnJllljljlilililmlililililiofofofofoffAaa
+aamcmcmcmccfcdbZbZbZbZbZbZbZbZbZcdcgmcmcmeoEoPlvlLoPlnkQkQkQkQkQeueueueueueueueueueueueueueueueuepetetetepuDptptpupvuEpupuuDlilillljljlllllililmllllnJnJnJnJnJnJnJljljljlilililmlilililililmlilililiaaaa
+aamcmcmcmechbZbZbZbZbZbZbZbZbZbZbZcjmcmcmcpwltltltltkikikikikikietetetepepepepepepepepepepepepepepetetepeppfpxpypzpApzpCpCpfljljljljljljljljljljljljljljljljljljljljljljlilililmlmligElilmlmlilililiaaaa
+aamcmrmcmebTcyczcAcBcyczcAcBcyczcAbTmcmcmeoNltlCpDltpEkikikikikietetetepepepepepepepepepepepepepepetetetetpfuFpGuGpGuIpJgBuJljljljljljljljljljljljljljljljljljljljljljlilililililmlilililmlililililiaaaa
+aamcmcmcmemcmcpKpKpKpKpKpKmcmcmcmcmcmcmcmeoElvlvlvlvpLkikikYkYkiepepepepepkKepepepeqeqepepepepepepepepepetpfpfpfpfpfpfpfpfpfllllllllpdlllllllllllllllililililililililllilililililmlilililililililiaaaaaa
+aamcmcmcmemcmcpKpNpOpPpQpRpSpSpSpSpSpTpTpSpUlKlvlvlKpLkikikYkikiepepepepepepepepepepeqeqepepepepepepepepeqlflflflglglglglglglllllllllllllllllllllllllllllllllllllllllllllllilililmlmlililililililiaaaaaa
+aamcmcmcmemcmcpKpWpXpYpZqamemcmcmcmcmcmcmcmcltgIqbltpEkikikXqcqcaaaaaaepepepepepepepepepepepepepepeqeqeqeqaaaaaaaaaaaaaaaaaallllllllllmqllllaaaaaaaaaaaaaaaaaalilililiaaaaaalllllllllmlililililiaaaaaaaa
+aamcmcmcmcmcmcpKqeqfqgqhqimcmcmcmcmcmcmcmcmcltltltltkikiaaaaaaaaaaaaaaaaaaaaaaaaepepepepepepepepaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaallllllaaaaaaaaunuoupaaaaaaaaaaaaaaaaaaaaaaaaaalllllililiaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
