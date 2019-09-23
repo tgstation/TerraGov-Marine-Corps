@@ -1,0 +1,8 @@
+{
+    "map_name": "SS_Ourang_Medan",
+    "map_path": "map_files/SS_Ourang_Medan",
+    "map_file": "SS_Ourang_Medan.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a Drifting Ship, known as SS Ourang Medan. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the Station. TGMC, gear up and get ready to respond!"
+}

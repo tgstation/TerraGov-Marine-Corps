@@ -24,3 +24,5 @@ endmap
 
 map prison_station_fop
 endmap
+map SS_Ourang_Medan
+endmap
