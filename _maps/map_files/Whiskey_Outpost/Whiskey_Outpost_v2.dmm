@@ -2354,18 +2354,12 @@
 	},
 /area/whiskey_outpost)
 "gx" = (
-/obj/effect/landmark/lv624/fog_blocker{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gy" = (
 /obj/effect/decal/cleanable/blood/writing,
-/obj/effect/landmark/lv624/fog_blocker{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gz" = (
@@ -2373,10 +2367,7 @@
 	icon_state = "tracks";
 	dir = 1
 	},
-/obj/effect/landmark/lv624/fog_blocker{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gA" = (
@@ -2388,10 +2379,7 @@
 	icon_state = "tracks";
 	dir = 4
 	},
-/obj/effect/landmark/lv624/fog_blocker{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "gC" = (
@@ -2410,10 +2398,7 @@
 	},
 /area/whiskey_outpost)
 "gD" = (
-/obj/effect/landmark/lv624/fog_blocker{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/whiskey_outpost/outside/south)
 "gE" = (
