@@ -264,6 +264,8 @@
 			qdel(new_xeno)
 		return
 
+	SEND_GLOBAL_SIGNAL(COMSIG_XENOMORPH_EVOLVING, new_xeno)
+
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 

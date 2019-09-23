@@ -171,6 +171,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	RegisterSignal(SSdcs, COMSIG_XENOMORPH_EVOLVING, .proc/on_xeno_evolve)
 
 	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
 
@@ -431,3 +432,13 @@
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
 		CHECK_TICK
+
+
+/datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	switch(new_xeno.tier)
+		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(3)
+		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(2)
+		if(XENO_TIER_THREE)
+			new_xeno.upgrade_xeno(1)
