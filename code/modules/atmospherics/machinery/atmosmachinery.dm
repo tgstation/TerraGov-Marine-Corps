@@ -257,7 +257,6 @@
 		L.ventcrawl_layer = piping_layer
 	return ..()
 
-#define VENT_SOUND_DELAY 30
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
 	if(user.cooldowns[COOLDOWN_VENTCRAWL])
@@ -293,9 +292,9 @@
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
-				if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
-					user.last_played_vent = world.time
-					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, 1, -3)
+				if(!user.cooldowns[COOLDOWN_VENTSOUND])
+					user.cooldowns[COOLDOWN_VENTSOUND] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_VENTSOUND, null), 3 SECONDS)
+					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
 	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)
 
