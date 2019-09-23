@@ -14,6 +14,7 @@
 		#include "map_files\Tyson_Station\Tyson_Station.dmm"
 		#include "map_files\Vapor_Processing\Vapor_Processing.dmm"
 		#include "map_files\Sulaco\Sulaco.dmm"
+		#include "map_files\Marine_ball\Marine_ball.dmm"
 		#ifdef TRAVISBUILDING
 		#endif
 	#endif
