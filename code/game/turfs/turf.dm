@@ -74,7 +74,7 @@
 	else if (!armor)
 		armor = getArmor()
 	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+		stack_trace("Invalid type [armor.type] found in .armor during /turf Initialize()")
 
 	return INITIALIZE_HINT_NORMAL
 
