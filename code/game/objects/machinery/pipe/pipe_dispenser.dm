@@ -2,6 +2,8 @@
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
+	density = TRUE
+	anchored = TRUE
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
@@ -109,7 +111,14 @@
 	name = "Disposal Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
+	density = TRUE
+	anchored = TRUE
+/obj/machinery/pipedispenser/disposal
+	name = "disposal pipe dispenser"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "pipe_d"
 	desc = "Dispenses pipes that will ultimately be used to move trash around."
+	density = TRUE
 
 
 //Allow you to drag-drop disposal pipes and transit tubes into it

@@ -1,9 +1,10 @@
-/obj/structure/door_assembly
+obj/structure/door_assembly
 	icon = 'icons/obj/doors/door_assembly.dmi'
 
 	name = "airlock assembly"
 	icon_state = "door_as_0"
 	anchored = FALSE
+	density = TRUE
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"

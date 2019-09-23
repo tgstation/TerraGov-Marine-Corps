@@ -4,6 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	anchored = FALSE
+	density = TRUE
 	drag_delay = 1
 	throwpass = TRUE
 	//copypaste sorry

@@ -1,7 +1,18 @@
+
+
+
+// Foam
+// Similar to smoke, but spreads out more
+// metal foams leave behind a foamed metal wall
+
+//foam effect
+
 /obj/effect/particle_effect/foam
 	name = "foam"
 	icon_state = "foam"
+	opacity = FALSE
 	anchored = TRUE
+	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
 	var/amount = 3
@@ -140,7 +151,9 @@
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
-	opacity = TRUE
+	density = TRUE
+	opacity = TRUE 	// changed in New()
+	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE

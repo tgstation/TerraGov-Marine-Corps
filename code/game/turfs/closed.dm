@@ -1,6 +1,12 @@
+
+
+//turfs with density = TRUE
 /turf/closed
 	density = TRUE
 	opacity = TRUE
+
+
+
 
 
 /turf/closed/mineral

@@ -86,6 +86,7 @@
 	icon_state = "sentry_tripod"
 	anchored = FALSE
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	var/has_top = FALSE
@@ -219,9 +220,11 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_base"
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
-	use_power = NO_POWER_USE
+	use_power = 0
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY
 	var/iff_signal = ACCESS_IFF_MARINE

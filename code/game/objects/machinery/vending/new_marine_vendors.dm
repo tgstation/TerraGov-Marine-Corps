@@ -31,6 +31,8 @@
 	name = "\improper Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_access_txt = "0"

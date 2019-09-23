@@ -4,8 +4,10 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
+	density = TRUE
+	anchored = TRUE
 	volume = 100
-	throwpass = TRUE
+	throwpass = 1
 	layer = BELOW_OBJ_LAYER
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.

@@ -184,6 +184,8 @@
 	desc = "A large automated capsule with LED displays intended to put anyone inside into 'hypersleep', a form of non-cryogenic statis used on most ships, linked to a long-term hypersleep bay on a lower level."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scanner_0"
+	density = TRUE
+	anchored = TRUE
 	resistance_flags = RESIST_ALL
 
 	var/mob/living/occupant //Person waiting to be despawned.
