@@ -9,7 +9,7 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 55
+	melee_damage = 50
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -70,7 +70,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 55
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -106,7 +106,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 65
+	melee_damage = 60
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -142,7 +142,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 70
+	melee_damage = 65
 
 	// *** Tackle *** //
 	tackle_damage = 70

@@ -12,7 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 15
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -67,7 +67,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 25
 
 	savage_cooldown = 30 SECONDS
 
@@ -100,7 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 30
 
 	savage_cooldown = 30 SECONDS
 
