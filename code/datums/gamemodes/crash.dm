@@ -175,8 +175,6 @@
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
-	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
-
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
@@ -186,6 +184,7 @@
 
 /datum/game_mode/crash/proc/add_larva(num_humans, num_xenos)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	num_xenos += HS.stored_larva
 	if(!num_xenos)
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
