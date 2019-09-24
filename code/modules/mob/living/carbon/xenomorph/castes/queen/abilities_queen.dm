@@ -342,6 +342,9 @@
 	var/mob/living/carbon/xenomorph/queen/xeno = owner
 	if(xeno.action_busy)
 		return
+	if(xeno.is_zoomed)
+		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
+		return
 	if(!do_after(xeno, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
 		return
 	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
