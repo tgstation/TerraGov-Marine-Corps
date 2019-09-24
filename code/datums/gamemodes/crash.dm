@@ -174,6 +174,8 @@
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
+	
+	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
 
 
 /datum/game_mode/crash/announce()
@@ -182,9 +184,11 @@
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
 
-/datum/game_mode/crash/proc/add_larva(num_humans, num_xenos)
+/datum/game_mode/crash/proc/add_larva()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	num_xenos += HS.stored_larva
+	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
+	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2] + HS.stored_larva
 	if(!num_xenos)
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
@@ -245,9 +249,8 @@
 	if(num_humans && !planet_nuked && marines_evac == CRASH_EVAC_NONE)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
-				return FALSE //Xenos keep respawning for like an hour or so.
+				return FALSE //Xenos keep respawning.
 		else
-			add_larva(num_humans, num_xenos)
 			return FALSE
 
 	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
