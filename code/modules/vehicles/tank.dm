@@ -392,7 +392,7 @@ WHOEVER MADE CM TANKS: YOU ARE A BAD CODER!!!!!
 /obj/vehicle/tank/proc/can_enter(mob/living/carbon/M, position) //NO BENOS ALLOWED
 	if(!istype(M) || !in_range(src, M))
 		return
-	if(!M.IsAdvancedToolUser())
+	if(!M.dextrous)
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return FALSE
 	if(!allowed(M) && position != POSITION_PASSENGER)
