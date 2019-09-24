@@ -36,7 +36,9 @@
 
 
 /obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
-	to_chat(user, "[current_mag?.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
+	if(!current_mag)
+		return
+	to_chat(user, "[current_mag.chamber_closed ? "It's closed." : "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
