@@ -63,6 +63,8 @@
 
 /atom/proc/attack_hand(mob/living/user)
 	. = FALSE
+	if(QDELETED(src))
+		CRASH("attack_hand on a qdeleted atom")
 	add_fingerprint(user, "attack_hand")
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
 		. = TRUE
