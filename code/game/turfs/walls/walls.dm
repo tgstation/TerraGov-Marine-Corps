@@ -37,6 +37,7 @@
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
+	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/Initialize(mapload, ...)
