@@ -297,6 +297,8 @@
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>We emerge in a greater form from the husk of our old body. For the hive!</span>")
 
+	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
+
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
 	if(queen_chosen_lead && new_caste_type != /mob/living/carbon/xenomorph/queen) // xeno leader is removed by Destroy()
@@ -308,11 +310,8 @@
 
 	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
-	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
-
-	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
-
 	qdel(src)
+	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA
