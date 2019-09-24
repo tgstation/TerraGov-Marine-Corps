@@ -16,8 +16,7 @@
 	maxHealth = 100
 	health = 100
 	harm_intent_damage = 5
-	melee_damage_lower = 10
-	melee_damage_upper = 10
+	melee_damage = 10
 	attacktext = "punches"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	a_intent = INTENT_HARM
@@ -51,8 +50,7 @@
 
 
 /mob/living/simple_animal/hostile/syndicate/melee //dude with a knife and no shields
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage = 15
 	icon_state = "syndicate_knife"
 	icon_living = "syndicate_knife"
 	attacktext = "slashes"
@@ -86,8 +84,7 @@
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/sword
-	melee_damage_lower = 30
-	melee_damage_upper = 30
+	melee_damage = 30
 	icon_state = "syndicate_sword"
 	icon_living = "syndicate_sword"
 	attacktext = "slashes"

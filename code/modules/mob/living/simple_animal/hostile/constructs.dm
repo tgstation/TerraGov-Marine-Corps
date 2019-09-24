@@ -31,8 +31,7 @@
 	icon_living = "floating"
 	maxHealth = 65
 	health = 65
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage = 20
 	retreat_distance = 2
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
@@ -49,8 +48,7 @@
 	response_harm = "viciously beats"
 	harm_intent_damage = 5
 	obj_damage = 60
-	melee_damage_lower = 5
-	melee_damage_upper = 5
+	melee_damage = 5
 	retreat_distance = 10
 	minimum_distance = 10
 	attacktext = "rams"
@@ -68,8 +66,7 @@
 	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	obj_damage = 90
-	melee_damage_lower = 25
-	melee_damage_upper = 25
+	melee_damage = 25
 	attacktext = "smashes their armored gauntlet into"
 	speed = 2.5
 	attack_sound = 'sound/weapons/punch3.ogg'

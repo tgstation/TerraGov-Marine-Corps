@@ -52,7 +52,7 @@
 	if(!ishuman(A)) 
 		return ..()
 	var/mob/living/carbon/human/H = A
-	var/extra_dmg = rand(xeno_caste.melee_damage_lower, xeno_caste.melee_damage_upper) * 0.5 // 50% dmg reduction
+	var/extra_dmg = xeno_caste.melee_damage * 0.5 // 50% dmg reduction
 	H.attack_alien(src, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter

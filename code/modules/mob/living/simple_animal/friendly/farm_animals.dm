@@ -20,8 +20,7 @@
 	attack_sound = 'sound/weapons/punch1.ogg'
 	health = 40
 	maxHealth = 40
-	melee_damage_lower = 1
-	melee_damage_upper = 2
+	melee_damage = 1
 	wall_smash = FALSE
 	stop_automated_movement_when_pulled = TRUE
 	var/obj/item/udder/udder = null

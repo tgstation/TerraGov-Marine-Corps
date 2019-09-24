@@ -20,8 +20,7 @@
 	health = 60
 
 	obj_damage = 60
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage = 25
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	friendly = "bear hugs"
@@ -47,8 +46,7 @@
 	icon_state = "combatbear"
 	icon_living = "combatbear"
 	icon_dead = "combatbear_dead"
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage = 35
 	armour_penetration = 20
 	health = 120
 	maxHealth = 120

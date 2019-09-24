@@ -80,7 +80,7 @@
 		if(target_facing != X.dir && target_facing != turn(X.dir,45) && target_facing != turn(X.dir,-45) ) //Have to be actually facing the target
 			continue
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/extra_dam = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) * round(RAV_RAVAGE_DAMAGE_MULITPLIER + X.rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
+			var/extra_dam = X.xeno_caste.melee_damage * round(RAV_RAVAGE_DAMAGE_MULITPLIER + X.rage * RAV_RAVAGE_RAGE_MULITPLIER, 0.01)
 			H.attack_alien(X, extra_dam, FALSE, TRUE, FALSE, TRUE, INTENT_HARM)
 			victims++
 			GLOB.round_statistics.ravager_ravage_victims++

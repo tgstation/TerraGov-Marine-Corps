@@ -21,7 +21,7 @@
 
 	xeno_strings += "Name: '[xeno_caste.caste_name]'"
 	xeno_strings += "Tier: [tier_as_number()]"
-	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
+	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage]"
 	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
 	switch(mob_size)
 		if(MOB_SIZE_BIG)
