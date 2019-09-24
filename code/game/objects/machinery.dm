@@ -172,6 +172,10 @@
 
 
 /obj/machinery/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(.)
+		return //Already handled.
+
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && wires && wires.interact(user))
 		return TRUE
 

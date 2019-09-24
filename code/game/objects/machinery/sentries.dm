@@ -834,8 +834,10 @@
 
 	DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 	target = get_target()
+	if(QDELETED(target))
+		return
 	process_shot()
-	return
+
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
 	if(in_chamber)
