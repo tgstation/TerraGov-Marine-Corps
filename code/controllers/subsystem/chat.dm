@@ -23,8 +23,7 @@ SUBSYSTEM_DEF(chat)
 		return
 
 	if(!istext(message))
-		var/datum/dat_message = message
-		CRASH("to_chat called with invalid input type: [dat_message.type]")
+		CRASH("to_chat called with invalid input type")
 
 	if(target == world)
 		target = GLOB.clients
