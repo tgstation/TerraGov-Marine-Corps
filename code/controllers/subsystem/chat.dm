@@ -23,8 +23,7 @@ SUBSYSTEM_DEF(chat)
 		return
 
 	if(!istext(message))
-		stack_trace("to_chat called with invalid input type")
-		return
+		CRASH("to_chat called with invalid input type")
 
 	if(target == world)
 		target = GLOB.clients
