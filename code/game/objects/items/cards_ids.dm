@@ -144,9 +144,10 @@
 	access = list(ACCESS_ILLEGAL_PIRATE)
 	var/registered_user=null
 
-/obj/item/card/id/syndicate/Initialize(mapload, mob/user)
+/obj/item/card/id/syndicate/Initialize(mapload)
 	. = ..()
-	if(!isnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
+	if(ismob(loc)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
+		var/mob/user = loc
 		registered_name = ishuman(user) ? user.real_name : user.name
 	else
 		registered_name = "Agent Card"
