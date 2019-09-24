@@ -184,18 +184,13 @@
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
 
-/datum/game_mode/crash/proc/add_larva()
-	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
+/datum/game_mode/crash/proc/add_larva(num_humans, num_xenos)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2] + HS.stored_larva
 	if(!num_xenos)
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
 		if(0 to 2)
-			if(!marines_per_xeno)
-				return check_finished() //No more marines.
 			return
 		if(2 to 3)
 			HS.stored_larva++
@@ -253,7 +248,7 @@
 			if(respawn_xenos(num_humans))
 				return FALSE //Xenos keep respawning for like an hour or so.
 		else
-			add_larva()
+			add_larva(num_humans, num_xenos)
 			return FALSE
 
 	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
