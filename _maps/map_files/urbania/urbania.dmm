@@ -1744,14 +1744,12 @@
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
 "gm" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/structure/ladder{
+	height = 1;
+	id = 666
 	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "gn" = (
 /obj/effect/decal/warning_stripes/thin{
 	icon_state = "thin";
@@ -2442,18 +2440,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/engine/engineering)
 "hO" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/ladder{
+	height = 1;
+	id = 69
 	},
-/obj/machinery/atmospherics/pipe/simple/supply{
-	icon_state = "pipe11-2";
-	dir = 5
-	},
-/turf/open/floor/mainship/research,
-/area/bigredv2)
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "hP" = (
 /obj/machinery/power/smes,
 /obj/structure/cable/yellow,
@@ -4317,10 +4309,9 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "lU" = (
-/obj/structure/table/mainship,
-/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
-/area/bigredv2/outside/bar)
+/area/crew_quarters/courtroom)
 "lV" = (
 /obj/structure/fence,
 /turf/open/floor/mainship/research,
@@ -4579,8 +4570,8 @@
 /area/bigredv2)
 "mJ" = (
 /obj/structure/table/mainship,
-/obj/item/ashtray/glass,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "mK" = (
@@ -7519,17 +7510,10 @@
 /turf/open/floor/wood,
 /area/crew_quarters/courtroom)
 "uk" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply{
-	icon_state = "pipe11-2";
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/courtroom)
+/obj/structure/bed/chair,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 "ul" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	icon_state = "vent_map-2";
@@ -7572,7 +7556,16 @@
 /turf/open/floor/wood,
 /area/crew_quarters/courtroom)
 "uq" = (
-/obj/machinery/light,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/crew_quarters/courtroom)
 "ur" = (
@@ -7617,6 +7610,260 @@
 /obj/item/toy/prize/seraph,
 /turf/open/floor/plating/ground/desertdam/asphault,
 /area/bigredv2)
+"uw" = (
+/obj/structure/bed/chair,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"ux" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uy" = (
+/obj/structure/table/mainship,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uz" = (
+/obj/structure/bed,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uA" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uC" = (
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uD" = (
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	icon_state = "apc0";
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uE" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uF" = (
+/obj/structure/window/framed/colony,
+/turf/open/ground/grass,
+/area/bigredv2/outside/dorms)
+"uG" = (
+/obj/machinery/door/airlock/mainship/generic{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uH" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"uI" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"uJ" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply,
+/turf/open/floor/mainship/research,
+/area/bigredv2)
+"uK" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/bigredv2/outside/dorms)
+"uL" = (
+/obj/structure/ladder{
+	height = 2;
+	id = 666
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uM" = (
+/obj/structure/ladder{
+	height = 2;
+	id = 69
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
+"uO" = (
+/obj/structure/table/mainship,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
+"uP" = (
+/obj/structure/bed/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/crew_quarters/courtroom)
+"uQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uR" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/crew_quarters/courtroom)
+"uS" = (
+/obj/structure/table/mainship,
+/obj/item/ashtray/glass,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/bigredv2/outside/bar)
+"uT" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uU" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uV" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall,
+/area/bigredv2)
+"uW" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2)
+"uX" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_offices)
+"uY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2)
+"uZ" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet{
+	icon_state = "carpet";
+	dir = 1
+	},
+/area/holodeck)
+"va" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/carpet{
+	icon_state = "carpet";
+	dir = 1
+	},
+/area/holodeck)
+"vb" = (
+/obj/structure/barricade/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_offices)
+"vc" = (
+/obj/machinery/atmospherics/pipe/simple/supply,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grimy,
+/area/desert_dam/building/dorms)
+"vd" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/desert_dam/building/dorms)
+"ve" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/desert_dam/building/dorms)
+"vf" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"vg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"vh" = (
+/obj/structure/table/mainship,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
 
 (1,1,1) = {"
 aa
@@ -8067,18 +8314,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+bC
 aE
 aE
 aE
@@ -8269,18 +8516,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+cD
+cD
+cw
+uk
+uy
+cw
+cD
+uw
+uy
+cw
+bC
 aE
 aE
 aE
@@ -8303,7 +8550,7 @@ jT
 jU
 jL
 ka
-ka
+vd
 kg
 jL
 ka
@@ -8471,18 +8718,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+fS
+cD
+cw
+fS
+cD
+cw
+uQ
+cD
+cD
+cw
+bC
 aE
 aE
 aE
@@ -8509,7 +8756,7 @@ ka
 ka
 jL
 ka
-ka
+vd
 ka
 jL
 aS
@@ -8673,17 +8920,17 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+cD
+cD
+cw
+cD
+uz
+cw
+cD
+cD
+uU
+cw
 ax
 bz
 bz
@@ -8875,17 +9122,17 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+cD
+cD
+cw
+ux
+cw
+cw
+ux
+cw
+cw
+cw
 aF
 aS
 aS
@@ -8905,7 +9152,7 @@ gG
 lJ
 lK
 lK
-lK
+vc
 lQ
 jV
 kb
@@ -9077,17 +9324,17 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
+cw
+gm
+cD
+cD
+cD
+uA
+cD
+cD
+uA
+uD
+uF
 aF
 aS
 aS
@@ -9279,18 +9526,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+hO
+cD
+cD
+cD
+cD
+uB
+uC
+uC
+uE
+uG
+uH
 aS
 aS
 aS
@@ -9317,7 +9564,7 @@ ka
 ka
 jL
 ka
-ka
+vd
 ka
 jL
 aS
@@ -9481,18 +9728,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+cD
+cD
+cw
+ux
+cw
+cw
+ux
+cw
+cw
+cw
+hS
 aS
 aS
 aS
@@ -9683,18 +9930,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+cD
+cD
+cw
+cD
+uz
+cw
+cD
+cD
+uz
+cw
+hS
 aS
 aS
 aS
@@ -9717,7 +9964,7 @@ aE
 aE
 jL
 jZ
-ke
+ve
 ki
 jL
 jZ
@@ -9885,18 +10132,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+fS
+cD
+cw
+fS
+cD
+cw
+fS
+uT
+cD
+cw
+hS
 aS
 aS
 aS
@@ -10087,18 +10334,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+cD
+cD
+cw
+uk
+uy
+cw
+cD
+uw
+uy
+cw
+hS
 aS
 aS
 aS
@@ -10289,18 +10536,18 @@ aS
 aS
 lV
 aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aE
-aF
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+cw
+hS
 aS
 aS
 aS
@@ -10502,7 +10749,7 @@ gj
 gj
 gj
 gj
-gm
+uI
 aS
 aS
 aS
@@ -10704,7 +10951,7 @@ hr
 hr
 hr
 hr
-hO
+uJ
 aS
 aS
 aS
@@ -11342,7 +11589,7 @@ cl
 cc
 cg
 cg
-cg
+vg
 cc
 aS
 aS
@@ -11911,7 +12158,7 @@ tY
 tY
 uj
 tY
-tY
+uP
 tY
 tW
 bC
@@ -12111,7 +12358,7 @@ tW
 tZ
 tZ
 tZ
-uk
+uq
 un
 un
 up
@@ -12347,7 +12594,7 @@ cg
 eA
 cg
 eE
-cg
+vg
 eH
 cg
 eL
@@ -12517,7 +12764,7 @@ tZ
 tZ
 tZ
 tZ
-tZ
+lU
 tZ
 tW
 aS
@@ -12716,7 +12963,7 @@ aE
 tW
 ua
 uc
-tZ
+lU
 tZ
 tZ
 tZ
@@ -12922,7 +13169,7 @@ tZ
 tZ
 tZ
 tZ
-uq
+uR
 tW
 aS
 aS
@@ -12955,7 +13202,7 @@ ib
 eE
 cr
 dz
-cg
+vg
 eN
 cg
 cg
@@ -13121,7 +13368,7 @@ tW
 tZ
 ud
 uf
-tZ
+lU
 tZ
 uo
 ur
@@ -13355,7 +13602,7 @@ cc
 ch
 cg
 dz
-cg
+vg
 gS
 cg
 eJ
@@ -13563,7 +13810,7 @@ cg
 cg
 cg
 cg
-cg
+vg
 fP
 cc
 aS
@@ -14130,9 +14377,9 @@ bC
 oz
 er
 hi
-lU
+mJ
 hi
-hi
+uO
 hi
 mp
 ep
@@ -14364,14 +14611,14 @@ aE
 cc
 bo
 cs
-cs
+vf
 cs
 gZ
 dm
 cg
 cg
 cg
-cg
+vg
 cg
 cc
 aS
@@ -14535,7 +14782,7 @@ mL
 eq
 er
 er
-er
+uN
 er
 er
 er
@@ -15346,7 +15593,7 @@ hi
 hi
 hi
 hi
-mJ
+uS
 ep
 aS
 aS
@@ -22020,7 +22267,7 @@ bC
 dV
 gN
 gN
-gN
+uW
 fF
 oW
 oW
@@ -22628,7 +22875,7 @@ ea
 ea
 gN
 gN
-oW
+uY
 oW
 oW
 aT
@@ -23230,7 +23477,7 @@ aS
 aS
 bC
 fF
-gN
+uW
 fF
 gN
 fF
@@ -23242,7 +23489,7 @@ aT
 aT
 aT
 aT
-oW
+uY
 oY
 aE
 aE
@@ -23431,7 +23678,7 @@ aS
 aS
 aS
 bC
-fF
+uV
 gN
 fF
 gN
@@ -24751,17 +24998,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
 mG
 mG
 mG
@@ -24953,17 +25200,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+cD
+uK
+uw
+uy
+uK
+cD
+uw
+vh
+uK
 mG
 mG
 mG
@@ -25155,17 +25402,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+fS
+uT
+uK
+fS
+uT
+uK
+fS
+uT
+uT
+uK
 mG
 mG
 mG
@@ -25264,7 +25511,7 @@ nq
 nt
 nt
 nt
-mX
+uX
 nI
 hS
 aS
@@ -25357,17 +25604,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+cD
+uK
+cD
+uz
+uK
+cD
+cD
+uz
+uK
 mG
 mG
 mG
@@ -25559,17 +25806,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+cD
+uK
+ux
+uK
+uK
+ux
+uK
+uK
+uK
 mG
 mG
 mG
@@ -25666,7 +25913,7 @@ mS
 mX
 nq
 nt
-nt
+vb
 nt
 mX
 nI
@@ -25761,17 +26008,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+uL
+cD
+uA
+cD
+cD
+uT
+cD
+uA
+cD
+uK
 mG
 mG
 mG
@@ -25865,7 +26112,7 @@ mX
 mZ
 mX
 mX
-mX
+uX
 nq
 nt
 nt
@@ -25963,17 +26210,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+uM
+cD
+cD
+cD
+cD
+cD
+cD
+cD
+cD
+uK
 mG
 mG
 mG
@@ -26063,7 +26310,7 @@ mX
 mX
 mX
 mX
-mX
+uX
 mX
 mX
 mX
@@ -26165,17 +26412,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+cD
+uK
+ux
+uK
+uK
+ux
+uK
+uK
+uK
 mG
 mG
 mG
@@ -26260,7 +26507,7 @@ mX
 mX
 mX
 mX
-mX
+uX
 mX
 mX
 nc
@@ -26367,17 +26614,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+uT
+uK
+cD
+uz
+uK
+cD
+cD
+uz
+uK
 mG
 mG
 mG
@@ -26569,17 +26816,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+fS
+cD
+uK
+fS
+uT
+uK
+uQ
+uT
+cD
+uK
 mG
 mG
 mG
@@ -26678,7 +26925,7 @@ mX
 nt
 nt
 nt
-mX
+uX
 nI
 aF
 aS
@@ -26771,17 +27018,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+cD
+cD
+uK
+uw
+uy
+uK
+uT
+uw
+uy
+uK
 mG
 mG
 mG
@@ -26877,7 +27124,7 @@ aE
 mS
 mX
 mX
-nt
+vb
 nt
 nt
 mX
@@ -26973,17 +27220,17 @@ mG
 mG
 mG
 mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
-mG
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
+uK
 mG
 mG
 mG
@@ -30506,7 +30753,7 @@ rO
 iN
 rQ
 rV
-rW
+uZ
 rQ
 sh
 sm
@@ -30915,7 +31162,7 @@ rQ
 si
 si
 si
-rQ
+va
 rQ
 sP
 kB
@@ -31921,7 +32168,7 @@ iN
 rS
 rS
 iN
-rQ
+va
 sg
 sg
 sg
