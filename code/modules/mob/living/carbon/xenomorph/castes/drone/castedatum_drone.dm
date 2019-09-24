@@ -9,7 +9,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 16
+	melee_damage = 14
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -68,7 +68,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 17.5
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 17.5
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -130,7 +130,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 22.5
 
 	// *** Tackle *** //
 	tackle_damage = 40

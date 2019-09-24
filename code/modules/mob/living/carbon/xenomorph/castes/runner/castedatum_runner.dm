@@ -100,7 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 27.5
 
 	savage_cooldown = 30 SECONDS
 
@@ -134,7 +134,7 @@
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 30
 
 	savage_cooldown = 30 SECONDS
 
