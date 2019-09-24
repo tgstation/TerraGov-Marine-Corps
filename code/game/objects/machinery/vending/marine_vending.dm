@@ -506,7 +506,6 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
-					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()

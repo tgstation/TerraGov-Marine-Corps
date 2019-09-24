@@ -679,7 +679,6 @@
 /obj/item/storage/box/spec/heavy_gunner,
 /obj/item/storage/box/spec/pyro,
 /obj/item/storage/box/spec/scout,
-/obj/item/storage/box/spec/scoutshotgun,
 /obj/item/storage/box/spec/sniper,
 /turf/open/floor/mainship{
 	dir = 5;

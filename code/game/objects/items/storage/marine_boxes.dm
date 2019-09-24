@@ -399,37 +399,6 @@
 	new /obj/item/bodybag/tarp(src)
 
 
-/obj/item/storage/box/spec/scoutshotgun
-	name = "\improper Scout equipment"
-	desc = "A large case containing Scout equipment; this one features the ZX-76 assault shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sniper_case"
-	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 21
-	slowdown = 1
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	foldable = null
-	spec_set = "scout shotgun"
-
-/obj/item/storage/box/spec/scoutshotgun/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/clothing/suit/storage/marine/M3S(src)
-	new /obj/item/clothing/head/helmet/marine/scout(src)
-	new /obj/item/clothing/glasses/night/M4RA(src)
-	new /obj/item/binoculars/tactical/scout(src)
-	new /obj/item/weapon/gun/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/weapon/gun/shotgun/merc/scout(src)
-	new /obj/item/ammo_magazine/shotgun/incendiary(src)
-	new /obj/item/ammo_magazine/shotgun/incendiary(src)
-	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
-	new /obj/item/motiondetector/scout(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-	new /obj/item/explosive/grenade/cloakbomb(src)
-
-
 /obj/item/storage/box/spec/pyro
 	name = "\improper Pyrotechnician equipment"
 	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -521,7 +490,7 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Scout (Shotgun)","Demo")
+	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Heavy Armor (Grenadier)","Heavy Armor (Minigun)","Sniper","Scout (Battle Rifle)","Demo")
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)
 		if("Pyro")
@@ -534,8 +503,6 @@
 			S = /obj/item/storage/box/spec/sniper
 		if("Scout (Battle Rifle)")
 			S = /obj/item/storage/box/spec/scout
-		if("Scout (Shotgun)")
-			S = /obj/item/storage/box/spec/scoutshotgun
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)
