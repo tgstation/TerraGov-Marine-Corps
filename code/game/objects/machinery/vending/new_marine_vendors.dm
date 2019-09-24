@@ -107,7 +107,7 @@
 			"belts": { ... },
 		}
 
-		An <item> consists of 
+		An <item> consists of
 		{
 			"name": "Marine belt",
 			"available": true|false,
@@ -130,9 +130,9 @@
 				var/subgroup = product[3]
 				var/summary = product[5] // Helper text to show in the ui (optional)
 				display_list[category_name]["products"] += list(list(
-					"type" = category_type, 
-					"name" = subgroup, 
-					"summary" = summary, 
+					"type" = category_type,
+					"name" = subgroup,
+					"summary" = summary,
 					"is_util" = TRUE
 				))
 				continue
@@ -165,9 +165,9 @@
 
 		display_list[category_name]["products"] += list(list(
 			"id" = i,
-			"name" = p_name, 
-			"available" = product_available, 
-			"type" = choice_type, 
+			"name" = p_name,
+			"available" = product_available,
+			"type" = choice_type,
 			"cost" = p_cost,
 			"is_util" = FALSE
 		))
@@ -350,7 +350,7 @@
 			list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "standard"),
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
-		
+
 		list("utility", "header", "GUN ATTACHMENTS", 2, "This is a limited selection of attachments. Requisitions would have more."),
 			list("utility", "sub-group", "Muzzle attachments", null, ""),
 				list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "suggested"),
@@ -368,7 +368,7 @@
 				list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "standard"),
 				list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "standard"),
 				list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "standard"),
-	)	
+	)
 
 
 /obj/machinery/marine_selector/clothes/alpha
@@ -434,7 +434,7 @@
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
 	)
-  
+
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
