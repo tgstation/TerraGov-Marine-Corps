@@ -11,7 +11,7 @@
 */
 /obj/item/toy/gun
 	name = "cap gun"
-	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
+	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
 	item_state = "gun"
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -21,8 +21,8 @@
 	var/bullets = 7.0
 
 	examine(mob/user)
-		desc = "There are [bullets] caps\s left. Looks almost like the real thing! Ages 8 and up."
-		..()
+		. = ..()
+		to_chat(user, "There are [bullets] caps\s left in the [src].")
 
 	attackby(obj/item/toy/gun_ammo/A as obj, mob/user as mob)
 
