@@ -5,7 +5,7 @@
 	name = "heat exchanger"
 	desc = "Exchanges heat between two input gases. Set up for fast heat transfer."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	shift_underlay_only = FALSE // not really used
 
 	layer = LOW_OBJ_LAYER

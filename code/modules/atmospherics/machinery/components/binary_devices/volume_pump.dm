@@ -15,7 +15,7 @@
 	name = "volumetric gas pump"
 	desc = "A pump that moves gas by volume."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	shift_underlay_only = FALSE
 
 	var/transfer_rate = MAX_TRANSFER_RATE
