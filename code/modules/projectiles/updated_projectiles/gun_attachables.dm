@@ -422,6 +422,17 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = -0.1
 
 
+/obj/item/attachable/m16sight
+	name = "M16 iron sights"
+	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
+	icon_state = "m16sight"
+	attach_icon = "m16sight_a"
+	slot = "rail"
+	accuracy_mod = 0.1
+	accuracy_unwielded_mod = 0.05
+	movement_acc_penalty_mod = -0.1
+
+
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
@@ -643,6 +654,27 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
 
+
+/obj/item/attachable/stock/m16
+	name = "M16 Composite Stock"
+	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
+	icon_state = "m16stock"
+	wield_delay_mod = 0.5 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
+
+/obj/item/attachable/stock/ak47
+	name = "AK-47 Wooden Stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+	icon_state = "ak47stock"
+	wield_delay_mod = 0.4 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
+
 /obj/item/attachable/stock/rifle
 	name = "\improper M41A1 skeleton stock"
 	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
@@ -732,10 +764,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
-	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
+	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
 	slot = "stock"
 	wield_delay_mod = 0.2 SECONDS
-	melee_mod = -5
 	size_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 35

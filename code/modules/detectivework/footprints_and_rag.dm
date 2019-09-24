@@ -35,7 +35,3 @@
 			user.visible_message("[user] finishes wiping off the [A]!")
 			A.clean_blood()
 	return
-
-/obj/item/reagent_container/glass/rag/examine(mob/user)
-	to_chat(user, "That's \a [src].")
-	to_chat(user, desc)

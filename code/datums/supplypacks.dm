@@ -243,7 +243,8 @@ WEAPONS
 /datum/supply_packs/specminigun
 	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
 	contains = list(
-					/obj/item/weapon/gun/minigun
+					/obj/item/weapon/gun/minigun,
+					/obj/item/minigun_harness
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
@@ -1656,6 +1657,18 @@ AMMO
 	containername = "\improper incendiary scout ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_scout_smart
+	name = "M4RA scout smart magazines crate (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/rifle/m4ra/smart,
+					/obj/item/ammo_magazine/rifle/m4ra/smart,
+					/obj/item/ammo_magazine/rifle/m4ra/smart
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper smart scout ammo crate"
+	group = "Ammo"
+	
 /datum/supply_packs/ammo_sniper_regular
 	name = "M42A sniper magazines crate (x6)"
 	contains = list(
@@ -1799,8 +1812,8 @@ AMMO
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/ammo_magazine/rifle/mar40,
-					/obj/item/ammo_magazine/rifle/mar40/extended,
+					/obj/item/ammo_magazine/rifle/ak47,
+					/obj/item/ammo_magazine/rifle/ak47/extended,
 					)
 	cost = RO_PRICE_NORMAL
 	contraband = 1

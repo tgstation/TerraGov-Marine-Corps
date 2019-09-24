@@ -41,8 +41,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/max_range 					= 20 		// This will de-increment a counter on the bullet
 	var/scatter  					= 0 		// How much the ammo scatters when burst fired, added to gun scatter, along with other mods
 	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
-	var/damage_var_low				= 1 		// Same as with accuracy variance
-	var/damage_var_high				= 1
 	var/damage_falloff 				= 1 		// How much damage the bullet loses per turf traveled
 	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/penetration					= 0 		// How much armor it ignores before calculations take place
@@ -158,18 +156,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 
-/datum/ammo/proc/burst(atom/target, obj/item/projectile/proj, damage_type = BRUTE, radius = 1, modifier = 0.5, attack_type = "bullet", apply_armor = TRUE)
+/datum/ammo/proc/airburst(atom/target, obj/item/projectile/proj)
 	if(!target || !proj)
-		CRASH("burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
-	for(var/mob/living/carbon/victim in orange(radius,target))
+		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in orange(1, target))
 		if(proj.firer == victim)
 			continue
-		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>","[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
-		if(apply_armor)
-			var/armor_block = victim.run_armor_check(null, attack_type)
-			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier), damage_type, null, armor_block)
-		else
-			victim.apply_damage(rand(proj.damage * modifier * 0.1, proj.damage * modifier),damage_type)
+		victim.visible_message("<span class='danger'>[victim] is hit by backlash from \a [proj.name]!</span>",
+			"[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
+		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
+		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block)
 
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
@@ -267,7 +263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 25
 	accuracy = 10
-	penetration= 30
+	penetration = 30
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
@@ -276,7 +272,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -10
 	accuracy_var_low = 7
 	damage = 40
-	penetration= 5
+	penetration = 5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/incendiary
@@ -294,7 +290,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	debilitate = list(0,0,0,0,0,0,0,2)
 	accuracy = 15
 	damage = 35
-	penetration= 10
+	penetration = 10
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/mankey
@@ -308,7 +304,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	shell_speed = 2
 	damage = 15
-	damage_var_high = 9
 
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -351,7 +346,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy revolver bullet"
 	hud_state = "revolver_heavy"
 	damage = 50
-	penetration= 5
+	penetration = 5
 	accuracy = -15
 
 /datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -362,9 +357,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "revolver_impact"
 	accuracy_var_high = 10
 	damage = 55
-	damage_var_low = 3
-	damage_var_high = 7
-	penetration= 10
+	penetration = 10
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
 	staggerstun(M, P, 5, 0, 1, 2, 2)
@@ -382,8 +375,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 30
-	damage_var_low = 7
-	damage_var_high = 9
 	accurate_range = 5
 	damage_falloff = 1
 
@@ -391,13 +382,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
 	damage = 20
-	penetration= 40 //40 AP
+	penetration = 40
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
 	hud_state = "smg_light"
 	damage = 30
-	penetration= -5
+	penetration = 5
 	accuracy = -10
 
 /*
@@ -412,7 +403,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
 	damage = 40
-	penetration = 5
+	penetration = 0
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -459,12 +450,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, 40, 0, 1, 1)
 
-/datum/ammo/bullet/rifle/mar40
+/datum/ammo/bullet/rifle/m4ra/smart
+	name = "A19 high velocity smart bullet"
+	hud_state = "hivelo_iff"
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
+	damage = 30
+	penetration = 50
+
+/datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
-	accuracy = -10
-	damage = 50
-	penetration = -10
+	accuracy = -15
+	damage = 30
+	penetration = 20
 
 /*
 //================================================
@@ -517,15 +516,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 5
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M,obj/item/projectile/P)
-	burst(get_turf(M),P,damage_type)
-	knockback(M,P)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
+	knockback(victim, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/O,obj/item/projectile/P)
-	burst(get_turf(P),P,damage_type)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/item/projectile/proj)
+	airburst(target_obj, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/T,obj/item/projectile/P)
-	burst(get_turf(T),P,damage_type)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/item/projectile/proj)
+	airburst(target_turf, proj)
 
 
 /datum/ammo/bullet/shotgun/flechette
@@ -539,10 +538,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 35
-	damage_var_low = -3
-	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration	= 30
+	penetration = 50
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -551,10 +548,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 35
-	damage_var_low = -3
-	damage_var_high = 3
 	damage_falloff = 0.5
-	penetration	= 30
+	penetration = 50
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -567,11 +562,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 90
-	damage_var_low = -7
-	damage_var_high = 7
+	damage = 70
 	damage_falloff = 5
-	penetration	= -10
+	penetration = 0
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -591,10 +584,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 	max_range = 10
 	damage = 50
-	damage_var_low = -7
-	damage_var_high = 7
 	damage_falloff = 5
-	penetration	= -10
+	penetration = 0
 
 /datum/ammo/bullet/shotgun/spread/masterkey
 	damage = 30
@@ -639,11 +630,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "sniper_flak"
 	iff_signal = ACCESS_IFF_MARINE
 	damage = 90
-	damage_var_high = 3
-	penetration = -10
+	penetration = 0
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/M,obj/item/projectile/P)
-	burst(get_turf(M),P,damage_type)
+/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
@@ -672,7 +662,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	accurate_range = 15
 	damage = 30
-	penetration = 20
+	penetration = 0
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -700,7 +690,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
-	penetration = 20
+	penetration = 10
 	damage_falloff = 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
@@ -735,7 +725,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	accurate_range = 5
 	damage = 50
-	penetration = 20
+	penetration = 0
 	shrapnel_chance = 25
 
 /*
@@ -897,8 +887,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage_var_low = 3
-	damage_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
 	name = "laser bolt"
@@ -947,8 +935,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 15
-	damage_var_low = 3
-	damage_var_high = 5
 
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
@@ -1071,11 +1057,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	armor_type = "acid"
 	damage = 20
-	damage_var_low = 3
-	damage_var_high = 7
 
-/datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
-	burst(M,P,damage_type)
+/datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
@@ -1164,11 +1148,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
-	damage_var_high = 10
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/M, obj/item/projectile/P)
-	burst(M,P,damage_type)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/item/projectile/proj)
+	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid()

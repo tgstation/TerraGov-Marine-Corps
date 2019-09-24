@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 	density = TRUE
 	opacity = FALSE
 
-/obj/effect/bump_teleporter/New()
-	..()
+/obj/effect/bump_teleporter/Initialize()
+	. = ..()
 	GLOB.bump_teleporters += src
 
 /obj/effect/bump_teleporter/Destroy()

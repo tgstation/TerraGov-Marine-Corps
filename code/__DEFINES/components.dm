@@ -192,6 +192,8 @@
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
 
+#define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
+
 #define COMSIG_WARRIOR_USED_GRAB "warrior_used_grab"
 #define COMSIG_WARRIOR_NECKGRAB "warrior_neckgrab"
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
@@ -266,6 +268,10 @@
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
+
+#define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
+#define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"
+#define COMSIG_XENOABILITY_BULLGORE "xenoability_bullgore"
 
 #define COMSIG_XENOABILITY_HEADBUTT "xenoability_headbutt"
 #define COMSIG_XENOABILITY_TAIL_SWEEP "xenoability_tail_sweep"

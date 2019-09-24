@@ -124,8 +124,8 @@
 	if(!H.is_revivable())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
-
-	if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
+		
+	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT) && prob(95))
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
@@ -157,7 +157,7 @@
 		H.visible_message("<span class='danger'>[H]'s body convulses a bit.</span>")
 		defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
-		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
+		if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT) && prob(95))
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
 

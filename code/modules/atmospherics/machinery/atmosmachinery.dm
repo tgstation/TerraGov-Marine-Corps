@@ -18,7 +18,8 @@
 	power_channel = ENVIRON
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
 	max_integrity = 200
-	var/can_unwrench = 0
+	resistance_flags = RESIST_ALL
+	var/can_unwrench = FALSE
 	var/initialize_directions = 0
 	var/pipe_color
 	var/piping_layer = PIPING_LAYER_DEFAULT
@@ -44,6 +45,7 @@
 			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
+	. = ..()
 	if(!isnull(setdir))
 		setDir(setdir)
 	if(pipe_flags & PIPING_CARDINAL_AUTONORMALIZE)
@@ -51,7 +53,6 @@
 	nodes = new(device_type)
 	if (!armor)
 		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
-	..()
 	if(process)
 		SSair.atmos_machinery += src
 	SetInitDirections()
@@ -175,20 +176,8 @@
 		pipe.setPipingLayer(piping_layer) //align it with us
 		return TRUE
 
-	else if(iswrench(I)) // this is just until someone ports the tg tool handling code
-		. = wrench_act(user, I)
+	return ..()
 
-	else if(ismultitool(I))
-		. = multitool_act(user, I)
-
-	else if(isscrewdriver(I))
-		. = screwdriver_act(user, I)	
-
-	else if(iswelder(I))
-		. = welder_act(user, I)
-		
-	if(!.)
-		return ..()
 
 /obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
 	if(!can_unwrench(user))
@@ -200,8 +189,8 @@
 		return TRUE
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 
-	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
-		return FALSE
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
 
 	user.visible_message( \
 		"[user] unfastens \the [src].", \
@@ -257,7 +246,6 @@
 		L.ventcrawl_layer = piping_layer
 	return ..()
 
-#define VENT_SOUND_DELAY 30
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
 	if(user.cooldowns[COOLDOWN_VENTCRAWL])
@@ -293,9 +281,9 @@
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
-				if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
-					user.last_played_vent = world.time
-					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, 1, -3)
+				if(!user.cooldowns[COOLDOWN_VENTSOUND])
+					user.cooldowns[COOLDOWN_VENTSOUND] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_VENTSOUND, null), 3 SECONDS)
+					playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
 	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)
 

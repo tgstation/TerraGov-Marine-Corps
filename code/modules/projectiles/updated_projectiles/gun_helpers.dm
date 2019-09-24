@@ -163,13 +163,29 @@ they're not supposed to be thrown. Either way, this fix
 should be alright.
 */
 /obj/item/weapon/gun/proc/harness_check(mob/user)
-	if(user && ishuman(user))
-		var/mob/living/carbon/human/owner = user
-		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
-			var/obj/item/I = owner.wear_suit
-			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
-				harness_return(user)
-				return 1
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/owner = user
+	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
+		return
+	var/obj/item/I = owner.wear_suit
+	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
+		return
+	harness_return(user)
+	return TRUE
+
+/obj/item/weapon/gun/minigun/harness_check(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/owner = user
+	var/obj/item/I = owner.wear_suit
+	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
+		return
+	var/obj/item/B = owner.belt
+	if(!istype(B,/obj/item/minigun_harness))
+		return
+	harness_return(user)
+	return TRUE
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
@@ -641,13 +657,13 @@ should be alright.
 		playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
-	
+
 	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
 
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
 	gun_firemode_list += added_firemode
-	
+
 	switch(length(gun_firemode_list))
 		if(0)
 			CRASH("add_firemode called with a resulting gun_firemode_list length of [length(gun_firemode_list)].")

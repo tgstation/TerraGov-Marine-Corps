@@ -4,6 +4,7 @@
 /obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
+	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
 	icon_state = "pussywagon"
 	anchored = FALSE
 	density = TRUE
@@ -20,7 +21,8 @@
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	to_chat(user, "[icon2html(src, user)] This [callme] contains [reagents.total_volume] unit\s of water!")
+	. = ..()
+	to_chat(user, "This [callme] contains [reagents.total_volume] unit\s of water!")
 	if(mybag)
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 

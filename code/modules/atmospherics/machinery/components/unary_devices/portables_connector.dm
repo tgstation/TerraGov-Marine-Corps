@@ -4,7 +4,7 @@
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 
 	use_power = NO_POWER_USE
 	level = 0

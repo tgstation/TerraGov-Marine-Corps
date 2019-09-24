@@ -22,17 +22,11 @@
 	user.visible_message("<span class='suicide'>[user] is putting the live [name] in [user.p_their()] mouth! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
-/obj/item/weapon/baton/New()
-	..()
-	bcell = new/obj/item/cell/high(src) //Fuckit lets givem all the good cells
-	update_icon()
-	return
-
-/obj/item/weapon/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
+/obj/item/weapon/baton/Initialize()
+	. = ..()
 	bcell = new/obj/item/cell/high(src)
 	update_icon()
-	return
+
 
 /obj/item/weapon/baton/proc/deductcharge(chrgdeductamt)
 	if(bcell)
@@ -175,7 +169,7 @@
 
 	//stun effects
 	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
-		L.stun_effect_act(stun, agony, target_zone, src)
+		L.stun_effect_act(stun, agony, target_zone)
 		if(!L.knocked_down)
 			L.knock_down(4)
 

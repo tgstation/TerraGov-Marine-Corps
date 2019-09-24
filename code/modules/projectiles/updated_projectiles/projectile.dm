@@ -4,6 +4,14 @@
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
+#define BULLET_FEEDBACK_PEN (1<<0)
+#define BULLET_FEEDBACK_SOAK (1<<1)
+#define BULLET_FEEDBACK_FIRE (1<<2)
+#define BULLET_FEEDBACK_SCREAM (1<<3)
+#define BULLET_FEEDBACK_SHRAPNEL (1<<4)
+#define BULLET_FEEDBACK_IMMUNE (1<<5)
+
+#define DAMAGE_REDUCTION_COEFFICIENT(armor) (0.1/((armor*armor*0.0001)+0.1)) //Armor offers diminishing returns.
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -96,7 +104,6 @@
 	scatter		= ammo.scatter
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
-	damage     *= rand(95 - ammo.damage_var_low, 105 + ammo.damage_var_high) * 0.01
 	damage_falloff = ammo.damage_falloff
 	armor_type = ammo.armor_type
 
@@ -305,7 +312,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			y_pixel_dist_travelled += 32 * y_offset
 			continue //Pixel movement only, didn't manage to change turf.
 		var/movement_dir = get_dir(last_processed_turf, next_turf)
-		
+		if(dir != movement_dir)
+			setDir(movement_dir)
+
 		if(ISDIAGONALDIR(movement_dir)) //Diagonal case. We need to check the turf to cross to get there.
 			if(!x_offset || !y_offset) //Unless a coder screws up this won't happen. Buf if they do it will cause an infinite processing loop due to division by zero, so better safe than sorry.
 				stack_trace("projectile_batch_move called with diagonal movement_dir and offset-lacking. x_offset: [x_offset], y_offset: [y_offset].")
@@ -534,6 +543,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
+	if(!throwpass)
+		return TRUE
 	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
 		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
@@ -545,8 +556,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				proj.uncross_scheduled += src
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
-	if(!throwpass)
-		return TRUE
 	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
 	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
@@ -571,7 +580,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.uncross_scheduled += src
 		return FALSE
 	return TRUE
-
 
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
@@ -702,237 +710,191 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				//					\\
 //----------------------------------------------------------
 
-/atom/proc/bullet_act(obj/item/projectile/P)
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P)
+/atom/proc/bullet_act(obj/item/projectile/proj)
+	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 
-/mob/living/bullet_act(obj/item/projectile/P)
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
-	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
-		apply_effects(arglist(P.ammo.debilitate))
 
-	if(damage)
-		bullet_message(P)
-		apply_damage(damage, P.ammo.damage_type, P.def_zone, 0, 0, 0, P)
-		P.play_damage_effect(src)
+/mob/living/bullet_act(obj/item/projectile/proj)
+	. = ..()
 
-		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			adjust_fire_stacks(rand(6,10))
-			IgniteMob()
-			emote("scream")
-			to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
-	return 1
-
-/*
-Fixed and rewritten. For best results, the defender's combined armor for an area should not exceed 100.
-If it does, it's going to be really hard to damage them with anything less than an armor penetrating
-sniper rifle or something similar. I suppose that's to be expected though.
-Normal range for a defender's bullet resist should be something around 30-50. ~N
-*/
-/mob/living/carbon/human/bullet_act(obj/item/projectile/P)
-	flash_weak_pain()
-
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		GLOB.round_statistics.total_bullet_hits_on_humans++
-
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
-	#if DEBUG_HUMAN_DEFENSE
-	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
-	#endif
-
-	//Shields
-	if( !(P.ammo.flags_ammo_behavior & AMMO_ROCKET) ) //No, you can't block rockets.
-		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") && src != P.shot_from.sniper_target(src)) //Aimed sniper shots will ignore shields
-			P.ammo.on_shield_block(src)
-			bullet_ping(P)
-			return
-
-	var/datum/limb/organ = get_limb(check_zone(P.def_zone)) //Let's finally get what organ we actually hit.
-	if(!organ) return//Nope. Gotta shoot something!
-
-	//Run armor check. We won't bother if there is no damage being done.
-	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
-		var/armor //Damage types don't correspond to armor types. We are thus merging them.
-		armor = getarmor_organ(organ, P.armor_type) //Should always have a type; this defaults to bullet if nothing else.
-
-		#if DEBUG_HUMAN_DEFENSE
-		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
-		#endif
-		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
-		if(P.shot_from && src == P.shot_from.sniper_target(src)) //Runtimes bad
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-
-		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
-		#if DEBUG_HUMAN_DEFENSE
-		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
-		#endif
-
-		if(armor > 0) //Armor check. We should have some to continue.
-			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			soaked. Small caliber firearms aren't really effective against combat armor.*/
-			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
-			var/critical_hit = rand(5,10)
-			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			armor			-= round(armor_soak * 1) //If you still have armor left over, you generally should, we subtract the soak.
-													//This gives smaller calibers a chance to actually deal damage.
-			#if DEBUG_HUMAN_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
-			#endif
-			var/i = 0
-			if(damage)
-				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
-					if(prob(armor))
-						armor_soak 	 = round(damage * 0.5)  //Cut it in half.
-						armor 		-= armor_soak * 2
-						damage 		-= armor_soak
-						#if DEBUG_HUMAN_DEFENSE
-						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
-						#endif
-					else break //If we failed to block the damage, it's time to get out of the loop.
-					i++
-			if(i || damage <= 5) to_chat(src, "<span class='notice'>Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>")
-			if(damage <= 0)
-				damage = 0
-				if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 50, 1)
-
-	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )  //They can't be dead and damage must be inflicted (or it's a xeno toxin).
-		//Synths are immune to these effects to cut down on the stun spam. This should later be moved to their apply_effects proc, but right now they're just humans.
-		if(!(species.species_flags & IS_SYNTHETIC))
-			apply_effects(arglist(P.ammo.debilitate))
-
-	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
-
-	if(damage)
-		apply_damage(damage, P.ammo.damage_type, P.def_zone)
-		P.play_damage_effect(src)
-		if(P.ammo.shrapnel_chance > 0 && prob(P.ammo.shrapnel_chance + round(damage / 10) ) )
-			var/obj/item/shard/shrapnel/shrap = new()
-			shrap.name = "[P.name] shrapnel"
-			shrap.desc = "[shrap.desc] It looks like it was fired from [P.shot_from ? P.shot_from : "something unknown"]."
-			shrap.loc = organ
-			organ.embed(shrap)
-			if(!stat && !(species && species.species_flags & NO_PAIN))
-				emote("scream")
-				to_chat(src, "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>")
-
-		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			adjust_fire_stacks(rand(6,11))
-			IgniteMob()
-			if(!stat && !(species.species_flags & NO_PAIN))
-				emote("scream")
-				to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
-		return 1
-
-//Deal with xeno bullets.
-/mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/P)
-	if(issamexenohive(P.firer)) //Aliens won't be harming allied aliens.
-		bullet_ping(P)
+	if(stat == DEAD)
 		return
 
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		GLOB.round_statistics.total_bullet_hits_on_xenos++
+	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+
+	if(check_proj_block(proj, damage * 0.65))
+		proj.ammo.on_shield_block(src)
+		bullet_ping(proj)
+		return
+
+	if(proj.ammo.debilitate && ( damage || (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
+		apply_bullet_effects(proj)
+		. = TRUE
+
+	if(!damage)
+		return
 
 	flash_weak_pain()
 
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff)) //Has to be at least zero, no negatives.
-	#if DEBUG_XENO_DEFENSE
-	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
-	#endif
+	var/feedback_flags = NONE
 
-	if(warding_aura) //Damage reduction. Every point of warding decreases damage by 1%. Maximum is 5% at 5 pheromone strength.
-		damage = round(damage * (1 - (warding_aura * 0.01) ) )
-		#if DEBUG_XENO_DEFENSE
-		to_chat(world, "<span class='debuginfo'>Damage migated by a warding aura level of [warding_aura], damage is now <b>[damage]</b></span>")
-		#endif
-
-	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/initial_armor = armor.getRating(P.ammo.armor_type)
-		var/affecting_armor = initial_armor + armor_bonus + armor_pheromone_bonus
-		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[affecting_armor]</b></span>"
-		#endif
-		if(isxenoqueen(src) || isxenocrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
-			var/mob/living/carbon/xenomorph/charger = src
-			if(is_charging >= CHARGE_ON)
-				affecting_armor += round(charger.get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
-			#if DEBUG_CREST_DEFENSE
-			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
-			#endif
-			if(P.dir == charger.dir)
-				if(isxenoqueen(src))
-					affecting_armor = max(0, affecting_armor - (initial_armor * 0.5)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
-				else
-					affecting_armor = max(0, affecting_armor - (initial_armor * 0.75)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
-			else if(P.dir == reverse_direction(charger.dir))
-				affecting_armor += round(initial_armor * 0.5) //We are facing the bullet.
-			else if(isxenocrusher(src))
-				affecting_armor = max(0, affecting_armor - (initial_armor * 0.25)) //side armour eats a bit of shit if we're a Crusher
-			//Otherwise use the standard armor deflection for crushers.
-			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[affecting_armor]</b></span>")
-			#endif
-
-		var/penetration = P.ammo.penetration > 0 || affecting_armor > 0 ? P.ammo.penetration : 0
-		if(P.shot_from && src == P.shot_from.sniper_target(src))
-			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
-			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-			add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-
-		affecting_armor -= penetration
-
-		#if DEBUG_XENO_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[affecting_armor]</b></span>"
-		#endif
-		if(affecting_armor > 0) //Armor check. We should have some to continue.
-			/*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
-			soaked. Small caliber firearms aren't really effective against combat armor.*/
-			var/armor_soak	 = round( ( affecting_armor / damage ) * 10 )//Setting up for next action.
-			var/critical_hit = rand(5,10)
-			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			affecting_armor			-= round(armor_soak * 1) //If you still have armor left over, you generally should, we subtract the soak.
-													//This gives smaller calibers a chance to actually deal damage.
-			#if DEBUG_XENO_DEFENSE
-			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
-			#endif
-			var/i = 0
-			if(damage)
-				while(affecting_armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
-					if(prob(affecting_armor))
-						armor_soak 	 = round(damage * 0.5)
-						affecting_armor 		-= armor_soak * 2
-						damage 		-= armor_soak
-						#if DEBUG_XENO_DEFENSE
-						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[affecting_armor]</b></span>")
-						#endif
-					else break //If we failed to block the damage, it's time to get out of the loop.
-					i++
-			if(i || damage <= 5) to_chat(src, "<span class='xenonotice'>Your exoskeleton [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>")
-			if(damage <= 3)
+	var/living_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_living_armor(proj.armor_type, proj.def_zone, proj.dir)
+	if(living_armor)
+		var/penetration = proj.ammo.penetration
+		if(penetration > 0)
+			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
+				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
+				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
+			living_armor -= penetration
+		switch(living_armor)
+			if(-INFINITY to 0) //Armor fully penetrated.
+				feedback_flags |= BULLET_FEEDBACK_PEN
+			if(100 to INFINITY) //Damage invulnerability.
 				damage = 0
-				bullet_ping(P)
-				visible_message("<span class='avoidharm'>[src]'s thick exoskeleton deflects [P]!</span>")
+				bullet_soak_effect(proj)
+				feedback_flags |= BULLET_FEEDBACK_IMMUNE
+			else
+				damage = max(0, damage - (living_armor * 0.1)) //Hard armor, damage soak. 10% of the armor's value.
+				if(!damage) //Damage fully soaked.
+					bullet_soak_effect(proj)
+					feedback_flags |= BULLET_FEEDBACK_SOAK
+				else
+					living_armor *= 0.9 //Remove the 10% that was used to soak damage.
+					damage -= damage * living_armor * 0.01 //Soft armor/padding, damage reduction.
 
-	bullet_message(P) //Message us about the bullet, since damage was inflicted.
+	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
+		living_armor = get_living_armor("fire", proj.def_zone) //This value could potentially be negative, indicating fire weakness.
+		if(living_armor < 100) //If armor is 100 or over the mob is fireproof.
+			adjust_fire_stacks(CEILING(10 - (10 * (living_armor / 100)), 1)) //We could add an ammo fire strength in time, as a variable.
+			IgniteMob()
+			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
 	if(damage)
-		apply_damage(damage,P.ammo.damage_type, P.def_zone)	//Deal the damage.
-		P.play_damage_effect(src)
-		if(!stat && prob(5 + round(damage / 4)))
-			var/pain_emote = prob(70) ? "hiss" : "roar"
-			emote(pain_emote)
-		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
-				if(!stat) to_chat(src, "<span class='avoidharm'>You shrug off some persistent flames.</span>")
-			else
-				adjust_fire_stacks(rand(2,6) + round(damage / 8))
-				IgniteMob()
-				visible_message("<span class='danger'>[src] bursts into flames!</span>", \
-				"<span class='xenodanger'>You burst into flames!! Auuugh! Resist to put out the flames!</span>")
-		updatehealth()
+		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
+		if(shrapnel_roll)
+			feedback_flags |= (BULLET_FEEDBACK_SHRAPNEL|BULLET_FEEDBACK_SCREAM)
+		else if(prob(damage * 0.25))
+			feedback_flags |= BULLET_FEEDBACK_SCREAM
+		bullet_message(proj, feedback_flags)
+		proj.play_damage_effect(src)
+		apply_damage(damage, proj.ammo.damage_type, proj.def_zone) //This could potentially delete the source.
+		if(shrapnel_roll)
+			var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
+			shrap.embed_into(src, proj.def_zone, TRUE)
+	else
+		bullet_message(proj, feedback_flags)
 
-	return 1
+	return TRUE
 
+
+/mob/living/carbon/human/bullet_act(obj/item/projectile/proj)
+	. = ..()
+	if(!.)
+		return
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		GLOB.round_statistics.total_bullet_hits_on_humans++
+
+
+/mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/proj)
+	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
+		bullet_ping(proj)
+		return
+
+	. = ..()
+	if(!.)
+		return
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		GLOB.round_statistics.total_bullet_hits_on_xenos++
+
+
+/mob/living/proc/check_proj_block(obj/item/projectile/proj)
+	return FALSE
+
+
+/mob/living/carbon/human/check_proj_block(obj/item/projectile/proj, damage)
+	if(proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //No, you can't block rockets.
+		return FALSE
+
+	if(!(proj.dir & REVERSE_DIR(dir)))
+		return FALSE
+
+	if(!check_shields(damage * 0.65, proj.name))
+		return FALSE
+
+	return TRUE
+
+
+/mob/living/proc/get_living_armor(armor_type, proj_def_zone, proj_dir)
+	return 0
+
+
+/mob/living/carbon/human/get_living_armor(armor_type, proj_def_zone, proj_dir)
+	return getarmor_organ(get_limb(check_zone(proj_def_zone)), armor_type) //Should always have a type; this defaults to bullet if nothing else.
+
+
+/mob/living/carbon/xenomorph/get_living_armor(armor_type, proj_def_zone, proj_dir)
+	. = armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus
+
+	if(is_charging >= CHARGE_ON)
+		. += round(get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
+
+
+/mob/living/carbon/xenomorph/queen/get_living_armor(armor_type, proj_def_zone, proj_dir)
+	. = ..()
+	if(!.)
+		return
+	if(proj_dir & REVERSE_DIR(dir)) //+50% armor if the bullets come from the direction we are facing.
+		return . + (armor.getRating(armor_type) * 0.5)
+	if(proj_dir == dir) //-50% if being shot directly in the back.
+		return . - (armor.getRating(armor_type) * 0.5)
+
+
+/mob/living/carbon/xenomorph/crusher/get_living_armor(armor_type, proj_def_zone, proj_dir)
+	. = ..()
+	if(!.)
+		return
+	if(proj_dir & REVERSE_DIR(dir)) //+75% armor if the bullets come from the direction we are facing.
+		return . + (armor.getRating(armor_type) * 0.75)
+	if(proj_dir == dir) //-75% if being shot directly in the back.
+		return . - (armor.getRating(armor_type) * 0.75)
+
+
+/mob/living/proc/apply_bullet_effects(obj/item/projectile/proj)
+	apply_effects(arglist(proj.ammo.debilitate))
+
+
+/mob/living/carbon/human/apply_bullet_effects(obj/item/projectile/proj)
+	if(issynth(src))
+		return
+	return ..()
+
+
+/mob/living/carbon/xenomorph/apply_bullet_effects(obj/item/projectile/proj)
+	return
+
+
+/mob/living/proc/bullet_soak_effect(obj/item/projectile/proj)
+	bullet_ping(proj)
+
+
+/mob/living/carbon/human/bullet_soak_effect(obj/item/projectile/proj)
+	if(!proj.ammo.sound_armor)
+		return ..()
+	playsound(src, proj.ammo.sound_armor, 50, TRUE)
+
+
+/mob/living/proc/do_shrapnel_roll(obj/item/projectile/proj, damage)
+	return FALSE
+
+
+/mob/living/carbon/human/do_shrapnel_roll(obj/item/projectile/proj, damage)
+	return (proj.ammo.shrapnel_chance && prob(proj.ammo.shrapnel_chance + damage * 0.1))
+
+
+//Turf handling.
 /turf/bullet_act(obj/item/projectile/proj)
 	bullet_ping(proj)
 
@@ -943,30 +905,40 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		livings_list += L
 
 	if(!length(livings_list))
-		return TRUE
+		return FALSE
 
 	var/mob/living/picked_mob = pick(livings_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
-	return TRUE
+		return TRUE
+	return FALSE
 
 
-// walls can get shot and damaged, but bullets (vs energy guns) do much less.
-/turf/closed/wall/bullet_act(obj/item/projectile/P)
+// walls can get shot and damaged, but bullets do much less.
+/turf/closed/wall/bullet_act(obj/item/projectile/proj)
 	. = ..()
-	if(!.)
+	if(.)
 		return
-	var/damage = P.damage
-	if(damage < 1) return
 
-	switch(P.ammo.damage_type)
-		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
-		else return
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
+	var/damage
+
+	switch(proj.ammo.damage_type)
+		if(BRUTE, BURN)
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
+			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+		else
+			return FALSE
+
+	if(damage < 1)
+		return FALSE
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		current_bulletholes++
+
+	if(prob(30))
+		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
 	take_damage(damage)
-	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
-	return 1
+	return TRUE
 
 
 //----------------------------------------------------------
@@ -998,48 +970,99 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1
 #define BULLET_MESSAGE_OTHER_SHOOTER 2
 
-/mob/living/proc/bullet_message(obj/item/projectile/P)
-	if(!P.firer)
-		log_message("SOMETHING?? shot [key_name(src)] with a [P]", LOG_ATTACK)
-		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [P])")
+/mob/living/proc/bullet_message(obj/item/projectile/proj, feedback_flags)
+	if(!proj.firer)
+		log_message("SOMETHING?? shot [key_name(src)] with a [proj]", LOG_ATTACK)
+		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [proj])")
 		return BULLET_MESSAGE_NO_SHOOTER
-	var/turf/T = get_turf(P.firer)
-	log_combat(P.firer, src, "shot", P)
-	msg_admin_attack("[ADMIN_TPMONTY(P.firer)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
-	if(ishuman(P.firer))
-		SEND_SOUND(P.firer, get_sfx("ballistic hitmarker"))
+	var/turf/T = get_turf(proj.firer)
+	log_combat(proj.firer, src, "shot", proj)
+	msg_admin_attack("[ADMIN_TPMONTY(proj.firer)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
+	if(ishuman(proj.firer))
 		return BULLET_MESSAGE_HUMAN_SHOOTER
 	return BULLET_MESSAGE_OTHER_SHOOTER
 
-/mob/living/carbon/xenomorph/bullet_message(obj/item/projectile/P)
-	. = ..()
-	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		to_chat(src, "<span class='xenodanger'>We've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
-	else
-		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>",
-		"<span class='xenodanger'>We are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
 
-/mob/living/carbon/human/bullet_message(obj/item/projectile/P)
+/mob/living/carbon/human/bullet_message(obj/item/projectile/proj, feedback_flags)
 	. = ..()
-	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		to_chat(src, "<span class='highdanger'>You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
+	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+
+	var/list/victim_feedback = list()
+	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
-		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>",
-		"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)
+		victim_feedback += "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+
+	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
+		victim_feedback += "Your armor deflects the impact!"
+	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
+		victim_feedback += "Your armor absorbs the impact!"
+	else 
+		if(feedback_flags & BULLET_FEEDBACK_PEN)
+			victim_feedback += "Your armor was penetrated!"
+		if(feedback_flags & BULLET_FEEDBACK_SHRAPNEL)
+			victim_feedback += "The impact sends <b>shrapnel</b> into the wound!"
+
+	if(feedback_flags & BULLET_FEEDBACK_FIRE)
+		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
+		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
+
+	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	"<span class='highdanger'>[victim_feedback.Join(" ")]", null, 4)
+
+	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
+		emote("scream")
+
 	if(. != BULLET_MESSAGE_HUMAN_SHOOTER)
 		return
-	var/mob/living/carbon/human/firingMob = P.firer
+	var/mob/living/carbon/human/firingMob = proj.firer
 	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 		var/turf/T = get_turf(firingMob)
-		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [P] in [AREACOORD(T)].")
-		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [P] in [ADMIN_VERBOSEJMP(T)].")
+		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
+		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 		GLOB.round_statistics.total_bullet_hits_on_marines++
+
+
+/mob/living/carbon/xenomorph/bullet_message(obj/item/projectile/proj, feedback_flags)
+	. = ..()
+	var/onlooker_feedback = "[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+
+	var/victim_feedback
+	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
+		victim_feedback = "We've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
+	else
+		victim_feedback = "We are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+
+	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
+		victim_feedback += " Our exoskeleton deflects it!"
+		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton deflects it!"
+	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
+		victim_feedback += " Our exoskeleton absorbs it!"
+		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton absorbs it!"
+	else if(feedback_flags & BULLET_FEEDBACK_PEN)
+		victim_feedback += " Our exoskeleton was penetrated!"
+
+	if(feedback_flags & BULLET_FEEDBACK_FIRE)
+		victim_feedback += " We burst into flames!! Auuugh! Resist to put out the flames!"
+		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
+
+	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
+		emote(prob(70) ? "hiss" : "roar")
+
+	visible_message("<span class='danger'>[onlooker_feedback]</span>",
+	"<span class='xenodanger'>[victim_feedback]", null, 4)
+
+
+#undef BULLET_FEEDBACK_PEN
+#undef BULLET_FEEDBACK_SOAK
+#undef BULLET_FEEDBACK_FIRE
+#undef BULLET_FEEDBACK_SCREAM
+#undef BULLET_FEEDBACK_SHRAPNEL
+#undef BULLET_FEEDBACK_IMMUNE
 
 #undef BULLET_MESSAGE_NO_SHOOTER
 #undef BULLET_MESSAGE_HUMAN_SHOOTER
 #undef BULLET_MESSAGE_OTHER_SHOOTER
-
-
 
 #undef DEBUG_HIT_CHANCE
 #undef DEBUG_HUMAN_DEFENSE

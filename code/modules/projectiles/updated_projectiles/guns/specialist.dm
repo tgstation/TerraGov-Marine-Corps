@@ -966,15 +966,14 @@
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
 	aim_slowdown = 1
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 3
-	burst_amount = 10
+	burst_amount = 8
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5

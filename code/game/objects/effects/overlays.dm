@@ -97,7 +97,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/New(loc, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -181,11 +181,11 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/New(Loc, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, mob/source_mob, gib_icon)
+	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	..()
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
 	return
@@ -200,9 +200,9 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+	. = ..()
 	icon = new_icon
-	..()
 
 
 
@@ -212,8 +212,8 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/New(Loc, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, mob/source_mob, gib_icon)
+	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	return ..()

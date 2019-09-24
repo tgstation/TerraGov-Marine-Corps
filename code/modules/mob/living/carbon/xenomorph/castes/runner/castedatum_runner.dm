@@ -35,7 +35,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/xenomorph/hunter)
+	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -46,6 +46,15 @@
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
+
+	// *** Abilities *** ///
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/toggle_savage,
+		)
 
 /datum/xeno_caste/runner/young
 	upgrade_name = "Young"

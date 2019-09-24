@@ -616,7 +616,7 @@
 	desc = "A drinking glass for soda."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater = 50)
 
-/obj/item/reagent_container/food/drinks/drinkingglass/soda/New()
+/obj/item/reagent_container/food/drinks/drinkingglass/soda/Initialize()
 	. = ..()
 	on_reagent_change()
 
@@ -625,6 +625,6 @@
 	desc = "A drinking glass for cola."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/space_cola = 50)
 
-/obj/item/reagent_container/food/drinks/drinkingglass/cola/New()
+/obj/item/reagent_container/food/drinks/drinkingglass/cola/Initialize()
 	. = ..()
 	on_reagent_change()

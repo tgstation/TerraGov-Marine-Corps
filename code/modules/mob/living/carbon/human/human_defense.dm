@@ -197,7 +197,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	else
 		user.flick_attack_overlay(src, "punch")
 
-	apply_damage(I.force, I.damtype, affecting, armor, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
+	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
 
 	var/bloody = 0
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
@@ -247,8 +247,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/damage = I.force
 		if(damage > 40)
 			damage = 40
-		if (!armor && weapon_sharp && prob(3))
-			affecting.embed(I)
+		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
+			I.embed_into(src, affecting)
 
 	return 1
 
@@ -301,7 +301,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 1)
-			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O))
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -319,19 +319,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
-			var/sharp = is_sharp(I)
-			var/damage = throw_damage
-			if (armor)
-				damage /= armor+1
 
-			//blunt objects should really not be embedding in things unless a huge amount of force is involved
-			var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-			var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
-
-			//Sharp objects will always embed if they do enough damage.
-			//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-			if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
-				affecting.embed(I)
+			if(is_sharp(I) && prob(I.embedding.embed_chance))
+				I.embed_into(src, affecting)
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -396,7 +386,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/halloss_damage = LERP(70, 130, dist_pct) * reduction //Max 130 beside Queen, 70 at the edge
+	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
 	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")

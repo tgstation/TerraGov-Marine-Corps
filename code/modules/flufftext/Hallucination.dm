@@ -311,7 +311,7 @@ proc/check_panel(mob/M)
 		else if(src.dir == WEST)
 			qdel(src.currentimage)
 			src.currentimage = new /image(left,src)
-		to_chat(my_target, currentimage)
+		SEND_IMAGE(my_target, currentimage)
 
 
 	proc/attack_loop()
@@ -353,7 +353,7 @@ proc/check_panel(mob/M)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
-	to_chat(target, I)
+	SEND_IMAGE(target, I)
 	QDEL_IN(O, 30 SECONDS)
 
 GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\

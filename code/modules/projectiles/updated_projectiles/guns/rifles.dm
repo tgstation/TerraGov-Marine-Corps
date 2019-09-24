@@ -79,7 +79,7 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 4
+	fire_delay = 0.4 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 
@@ -135,69 +135,58 @@
 
 
 //-------------------------------------------------------
-//MAR-40 AK/FN FAL clone
 
-/obj/item/weapon/gun/rifle/mar40
-	name = "\improper MAR-40 battle rifle"
-	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "mar40"
-	item_state = "mar40"
-	caliber = "7.62x93mm" //codex
+/obj/item/weapon/gun/rifle/ak47
+	name = "\improper AK-47 rifle"
+	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
+	icon_state = "ak47"
+	item_state = "ak47"
+	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
-	fire_sound = 'sound/weapons/guns/fire/mar40.ogg'
-	unload_sound = 'sound/weapons/guns/interact/mar40_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mar40_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/mar40_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/mar40
+	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/ak47
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/stock/slavic,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/slavic)
+						/obj/item/attachable/flashlight)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
-	burst_amount = 4
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
+	fire_delay = 0.25 SECONDS
 
 
-/obj/item/weapon/gun/rifle/mar40/carbine
+/obj/item/weapon/gun/rifle/ak47/carbine
 	name = "\improper MAR-30 battle carbine"
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = null
 
-	fire_delay = 5
-	burst_amount = 4
+	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
+	
 
 
 //-------------------------------------------------------
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
-	name = "\improper M16 rifle"
-	desc = "An old, reliable design first adopted by the U.S. military in the 1960s. Something like this belongs in a museum of war history. It is chambered in 5.56x45mm."
+	name = "\improper FN M16A4"
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	caliber = "5.56x45mm" //codex
-	max_shells = 20 //codex
-	fire_sound = 'sound/weapons/guns/fire/m16.ogg'
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
@@ -211,21 +200,28 @@
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun
-						)
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/m16sight,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
-	accuracy_mult = 1.05
-	damage_mult = 1.05
+	damage_mult = 0.8
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.14 SECONDS
+	
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -264,7 +260,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
 	fire_delay = 5
-	burst_amount = 4
+	burst_amount = 3
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	scatter = 15
@@ -294,7 +290,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 5
+	fire_delay = 0.35 SECONDS
 	burst_amount = 2
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.8
@@ -322,7 +318,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible, /obj/item/attachable/scope/unremovable)
 
-	fire_delay = 5
+	fire_delay = 0.3 SECONDS
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8

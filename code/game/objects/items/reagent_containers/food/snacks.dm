@@ -38,13 +38,13 @@
 		to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
 	else
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-	
+
 	usr.dropItemToGround(src)	//so icons update :[
 
 	if(trash)
 		var/obj/item/T = new trash
 		usr.put_in_hands(T)
-	
+
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/attack_self(mob/user as mob)
@@ -554,6 +554,16 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = rand(3,5), /datum/reagent/toxin = rand(1,3))
 	return ..()
 
+
+/obj/item/reagent_container/food/snacks/worm
+	name = "worm"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "worm"
+	desc = "A small worm. It looks a bit lonely."
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
+	bitesize = 2
+	tastes = list("dirt" = 1)
+	attack_verb = list("touched")
 
 /obj/item/reagent_container/food/snacks/tofu
 	name = "Tofu"
@@ -1330,7 +1340,7 @@
 			E.cavity = 0
 		else 		//someone is having a bad day
 			E.createwound(CUT, 30)
-			E.embed(surprise)
+			surprise.embed_into(M, E)
 	else if (ismonkey(M))
 		M.visible_message("<span class='danger'>[M] suddenly tears in half!</span>")
 		var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)

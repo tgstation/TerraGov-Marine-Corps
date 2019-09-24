@@ -7,8 +7,8 @@
 
 
 /obj/screen/buildmode/New(bld)
+	. = ..()
 	bd = bld
-	return ..()
 
 
 /obj/screen/buildmode/Destroy()
@@ -71,10 +71,10 @@
 
 
 /obj/screen/buildmode/modeswitch/New(bld, mt)
+	. = ..()
 	modetype = mt
 	icon_state = "buildmode_[initial(modetype.key)]"
 	name = initial(modetype.key)
-	return ..(bld)
 
 
 /obj/screen/buildmode/modeswitch/Click()
@@ -88,9 +88,9 @@
 
 
 /obj/screen/buildmode/dirswitch/New(bld, dir)
+	. = ..()
 	src.dir = dir
 	name = dir2text(dir)
-	return ..(bld)
 
 
 /obj/screen/buildmode/dirswitch/Click()

@@ -52,7 +52,7 @@
 	armor_duration = duration + force - target.getarmor(affecting, "melee")
 
 	//Apply the damage!
-	target.apply_damage(force, BRUTE, affecting, armor_block, sharp=0)
+	target.apply_damage(force, BRUTE, affecting, armor_block)
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))

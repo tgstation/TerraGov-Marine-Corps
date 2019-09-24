@@ -322,6 +322,7 @@
 			list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "standard"),
+      list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "standard"),
 		list("utility", "header", "BACKPACK", 1, ""),
 			list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "suggested"),
 			list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "standard"),
@@ -370,7 +371,6 @@
 	)	
 
 
-
 /obj/machinery/marine_selector/clothes/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ALPHA)
@@ -404,6 +404,7 @@
 			list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "standard"),
+      list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "standard"),
 		list("utility", "header", "BACKPACK", 1, ""),
 			list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/tech, MARINE_CAN_BUY_BACKPACK, "suggested"),
 			list("Backpack", 0, /obj/item/storage/backpack/marine/tech, MARINE_CAN_BUY_BACKPACK, "standard"),
@@ -433,7 +434,7 @@
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
 	)
-
+  
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
 	req_access = list(ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ALPHA)
@@ -468,6 +469,7 @@
 			list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "standard"),
 			list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "standard"),
+      list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "standard"),
 		list("utility", "header", "BACKPACK", 1, ""),
 			list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/corpsman, MARINE_CAN_BUY_BACKPACK, "suggested"),
 			list("Backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "standard"),
@@ -495,7 +497,6 @@
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
 	)
-
 
 
 /obj/machinery/marine_selector/clothes/medic/alpha
@@ -1098,7 +1099,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set
 	var/list/spawned_gear_list
 
-/obj/effect/essentials_set/New(loc)
+/obj/effect/essentials_set/Initialize()
 	. = ..()
 	for(var/typepath in spawned_gear_list)
 		if(spawned_gear_list[typepath])
@@ -1216,7 +1217,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/reagent_container/hypospray/advanced/oxycodone
 						)
 
-		
+
 
 
 
