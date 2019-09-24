@@ -511,7 +511,8 @@
 	time_to_equip = 2 SECONDS
 
 /obj/item/minigun_harness/equipped(mob/living/carbon/human/user, slot)
-	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+	if(slot == SLOT_BELT)
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
