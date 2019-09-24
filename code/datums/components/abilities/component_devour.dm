@@ -32,7 +32,7 @@
 
 /datum/component/ability/devour/UnregisterFromParent()
 	. = ..()
-	button.remove_action(parent)
+	button?.remove_action(parent) // on qdel Destroy is invoked first
 	remove_devoured()
 	UnregisterFromParent(parent, list(
 		COMSIG_GRAB_SELF_ATTACK,
@@ -134,6 +134,8 @@
 	return COMSIG_KB_ACTIVATED
 
 /datum/component/ability/devour/proc/remove_devoured(datum/source)
+	if(!devoured)
+		return
 	var/mob/P = parent
 	devoured.forceMove(get_turf(P))
 	SEND_SIGNAL(devoured, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, parent)
