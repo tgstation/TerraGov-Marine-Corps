@@ -22,7 +22,8 @@
 /obj/machinery/power/smes/buildable/empty/backup
 	name = "backup power SMES"
 
-/obj/machinery/power/smes/buildable/New()
+/obj/machinery/power/smes/buildable/Initialize()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stack/cable_coil(src,30)
 	component_parts += new /obj/item/circuitboard/machine/smes(src)
@@ -32,7 +33,6 @@
 		component_parts += new /obj/item/stock_parts/smes_coil(src)
 
 	recalc_coils()
-	..()
 
 /obj/machinery/power/smes/buildable/proc/recalc_coils()
 	if ((cur_coils <= max_coils) && (cur_coils >= 1))

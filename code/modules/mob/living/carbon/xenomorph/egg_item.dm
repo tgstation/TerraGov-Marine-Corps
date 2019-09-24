@@ -11,10 +11,10 @@
 	layer = MOB_LAYER
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/xeno_egg/New()
+/obj/item/xeno_egg/Initialize()
+	. = ..()
 	pixel_x = rand(-3,3)
 	pixel_y = rand(-3,3)
-	..()
 
 
 /obj/item/xeno_egg/examine(mob/user)

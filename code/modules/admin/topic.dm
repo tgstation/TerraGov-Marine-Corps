@@ -8,15 +8,18 @@
 	message_admins("[ADMIN_TPMONTY(usr)] clicked an href with [msg] authorization key.")
 
 
+/datum/admins/can_interact(mob/user)
+	if(user.client != owner || !check_rights(NONE))
+		log_admin("[key_name(user)] tried to use the admin panel without authorization.")
+		message_admins("[ADMIN_TPMONTY(user)] tried to use the admin panel without authorization.")
+		return FALSE
+
+	return TRUE
+
 
 /datum/admins/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-
-	if(usr.client != owner || !check_rights(NONE))
-		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
-		message_admins("[ADMIN_TPMONTY(usr)] tried to use the admin panel without authorization.")
 		return
 
 	if(!CheckAdminHref(href, href_list))
@@ -304,6 +307,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/sentinel, location, null, delmob)
+			if("bull")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/bull, location, null, delmob)
 			if("hunter")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hunter, location, null, delmob)
 			if("carrier")

@@ -50,22 +50,13 @@
 	cryotypes = list(CRYO_DELTA)
 	category = CRYO_DELTA
 
-/obj/machinery/computer/cryopod/attack_paw(mob/living/carbon/monkey/user)
-	attack_hand()
 
-/obj/machinery/computer/cryopod/attack_ai(mob/living/silicon/ai/AI)
-	attack_hand(AI)
-
-/obj/machinery/computer/cryopod/attack_hand(mob/living/user)
+/obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
 
-	user.set_interaction(src)
-
-	if(!(SSticker))
+	if(!SSticker)
 		return
 
 	var/dat = "<hr/><br/><b>Cryogenic Oversight Control for [initial(category)]</b><br/>"
@@ -118,16 +109,13 @@
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "cryopod_console")
+	popup.open()
 
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
 	. =..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
@@ -153,7 +141,7 @@
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
-	return
+
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
@@ -185,10 +173,10 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
-/obj/structure/cryofeed/New()
+/obj/structure/cryofeed/Initialize()
+	. = ..()
 	if(orient_right)
 		icon_state = "cryo_rear[orient_right ? "-r" : ""]"
-	return ..()
 
 //Cryopods themselves.
 /obj/machinery/cryopod

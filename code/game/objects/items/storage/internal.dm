@@ -3,12 +3,12 @@
 /obj/item/storage/internal
 	var/obj/item/master_item
 
-/obj/item/storage/internal/New(obj/item/MI)
-	master_item = MI
-	loc = master_item
+/obj/item/storage/internal/Initialize()
+	. = ..()
+	master_item = loc
 	name = master_item.name
+	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
-	..()
 
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE

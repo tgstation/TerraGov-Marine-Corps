@@ -148,9 +148,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	arm_sound = 'sound/items/welder2.ogg'
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/incendiary/molotov/New()
+/obj/item/explosive/grenade/incendiary/molotov/Initialize()
+	. = ..()
 	det_time = rand(10,40)//Adds some risk to using this thing.
-	return ..()
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
 	spawn(0)
@@ -172,7 +172,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
-/obj/item/explosive/grenade/smokebomb/New()
+/obj/item/explosive/grenade/smokebomb/Initialize()
 	. = ..()
 	smoke = new(src)
 
@@ -194,7 +194,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
-/obj/item/explosive/grenade/cloakbomb/New()
+/obj/item/explosive/grenade/cloakbomb/Initialize()
 	. = ..()
 	smoke = new(src)
 
@@ -215,7 +215,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 
-/obj/item/explosive/grenade/phosphorus/New()
+/obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
 	smoke = new(src)
 
@@ -272,9 +272,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	hud_state = "grenade_frag"
 	var/fuel = 0
 
-/obj/item/explosive/grenade/flare/New()
+/obj/item/explosive/grenade/flare/Initialize()
+	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	return ..()
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
 	if(!active)
@@ -328,8 +328,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/New()
-
+/obj/item/explosive/grenade/flare/on/Initialize()
 	. = ..()
 	active = TRUE
 	heat = 1500
@@ -344,7 +343,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		set_light(5)
+		set_light(5, l_color = LIGHT_COLOR_FLARE)
 	else
 		icon_state = initial(icon_state)
 		set_light(0)

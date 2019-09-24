@@ -9,6 +9,7 @@
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
+	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
 
 
 #ifdef TESTING
@@ -160,8 +161,37 @@
 		return returned
 
 
-/datum/Topic(href, href_list[])
+/datum/Topic(href, list/href_list)
 	. = ..()
 	if(.)
 		return
+
+	if(!can_interact(usr))
+		return TRUE
+
 	SEND_SIGNAL(src, COMSIG_TOPIC, usr, href_list)
+
+
+/datum/proc/can_interact(mob/user)
+	if(!user.can_interact_with(src))
+		return FALSE
+	return TRUE
+
+
+/datum/proc/on_set_interaction(mob/user)
+	return
+
+
+/datum/proc/on_unset_interaction(mob/user)
+	return
+
+
+/datum/proc/check_eye()
+	return
+
+
+/datum/proc/interact(mob/user) //Return value = handled (same as attack_hand)
+	user.set_interaction(src)
+	if(interaction_flags & INTERACT_UI_INTERACT)
+		return ui_interact(user)
+	return FALSE

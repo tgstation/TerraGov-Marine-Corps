@@ -35,17 +35,16 @@
 
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "magnets=3;materials=2"
 
 	var/max_uses = 50
 	var/uses = 0
 	var/failmsg = ""
 	var/charge = 1
 
-/obj/item/lightreplacer/New()
+/obj/item/lightreplacer/Initialize()
+	. = ..()
 	uses = max_uses
 	failmsg = "The [name]'s refill light blinks red."
-	..()
 
 /obj/item/lightreplacer/examine(mob/user)
 	..()

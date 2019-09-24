@@ -29,10 +29,10 @@
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
 	//Setting which reagents to use to treat what by default. By id.
-	var/treatment_brute = "tricordrazine"
-	var/treatment_oxy = "tricordrazine"
-	var/treatment_fire = "tricordrazine"
-	var/treatment_tox = "tricordrazine"
+	var/treatment_brute = /datum/reagent/medicine/tricordrazine
+	var/treatment_oxy = /datum/reagent/medicine/tricordrazine
+	var/treatment_fire = /datum/reagent/medicine/tricordrazine
+	var/treatment_tox = /datum/reagent/medicine/tricordrazine
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 	var/shut_up = 0 //self explanatory :)
 
@@ -40,12 +40,10 @@
 	name = "Mysterious Medibot"
 	desc = "International Medibot of mystery."
 	skin = "bezerk"
-	treatment_oxy = "dexalinplus"
-	treatment_brute = "bicaridine"
-	treatment_fire = "kelotane"
-	treatment_tox = "dylovene"
-
-
+	treatment_oxy = /datum/reagent/medicine/dexalin
+	treatment_brute = /datum/reagent/medicine/bicaridine
+	treatment_fire = /datum/reagent/medicine/kelotane
+	treatment_tox = /datum/reagent/medicine/dylovene
 
 
 /obj/machinery/bot/medbot/Initialize()
@@ -75,15 +73,12 @@
 	src.icon_state = "medibot[src.on]"
 	src.updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
-/obj/machinery/bot/medbot/attack_hand(mob/living/user)
+/obj/machinery/bot/medbot/interact(mob/user)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	var/dat
-	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel is [src.open ? "opened" : "closed"]<BR>"
 	dat += "Beaker: "
@@ -119,15 +114,15 @@
 
 		dat += "The speaker switch is [src.shut_up ? "off" : "on"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a><br>"
 
-	user << browse("<HEAD><TITLE>Medibot v1.0 controls</TITLE></HEAD>[dat]", "window=automed")
-	onclose(user, "automed")
-	return
+	var/datum/browser/popup = new(user, "medbot", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/bot/medbot/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	usr.set_interaction(src)
+
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
 			turn_off()
@@ -169,8 +164,8 @@
 	else if ((href_list["declaretreatment"]) && (!src.locked || issilicon(usr)))
 		src.declare_treatment = !src.declare_treatment
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 /obj/machinery/bot/medbot/attackby(obj/item/I, mob/user, params)
 	. = ..()

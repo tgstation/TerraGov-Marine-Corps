@@ -530,7 +530,7 @@
 		if(CHECK_BITFIELD(turret_flags, TURRET_LOCKED))
 			if(user.interactee == src)
 				user.unset_interaction()
-				user << browse(null, "window=turret")
+				DIRECT_OUTPUT(user, browse(null, "window=turret"))
 		else
 			if(user.interactee == src)
 				attack_hand(user)
@@ -834,8 +834,10 @@
 
 	DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 	target = get_target()
+	if(QDELETED(target))
+		return
 	process_shot()
-	return
+
 
 /obj/machinery/marine_turret/proc/load_into_chamber()
 	if(in_chamber)

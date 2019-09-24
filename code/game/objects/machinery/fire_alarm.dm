@@ -70,10 +70,6 @@ FIRE ALARM
 			src.alarm()			// added check of detector status here
 	return
 
-/obj/machinery/firealarm/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-
 /obj/machinery/firealarm/emp_act(severity)
 	if(prob(50/severity)) alarm()
 	..()
@@ -141,89 +137,66 @@ FIRE ALARM
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				qdel(src)
 
-/obj/machinery/firealarm/attack_hand(mob/living/user)
+
+/obj/machinery/firealarm/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(buildstage != 2)
+		return FALSE
+
+	return TRUE
+
+
+/obj/machinery/firealarm/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(user.stat || machine_stat & (NOPOWER|BROKEN))
-		return
 
-	if (buildstage != 2)
-		return
-
-	user.set_interaction(src)
-	var/area/A = src.loc
+	var/area/A = get_area(src)
 	var/d1
 	var/d2
-	if (ishuman(user) || issilicon(user))
-		A = A.loc
 
-		if (A.flags_alarm_state & ALARM_WARNING_FIRE)
-			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
-		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>Alarm - Lockdown</A>", src)
-		if (src.timing)
-			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
-		else
-			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
-		var/second = round(src.time) % 60
-		var/minute = (round(src.time) - second) / 60
-		var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
-
-		var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
-		popup.set_content(dat)
-		popup.open(FALSE)
-		onclose(user, "firealarm")
+	if (A.flags_alarm_state & ALARM_WARNING_FIRE)
+		d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
 	else
-		A = A.loc
-		if (A.flags_alarm_state & ALARM_WARNING_FIRE)
-			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("Reset - Lockdown"))
-		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("Alarm - Lockdown"))
-		if (src.timing)
-			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
-		else
-			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
-		var/second = round(src.time) % 60
-		var/minute = (round(src.time) - second) / 60
-		var/dat = "[d1]\n<HR><b>The current alert level is: [stars(GLOB.marine_main_ship.get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? text("[]:", minute) : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
+		d1 = text("<A href='?src=\ref[];alarm=1'>Alarm - Lockdown</A>", src)
+	if(timing)
+		d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
+	else
+		d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
+	var/second = round(time) % 60
+	var/minute = (round(time) - second) / 60
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>"
 
-		var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
-		popup.set_content(dat)
-		popup.open(FALSE)
-		onclose(user, "firealarm")
+	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/firealarm/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if (usr.stat || machine_stat & (BROKEN|NOPOWER))
-		return
 
-	if (buildstage != 2)
-		return
+	if(href_list["reset"])
+		reset()
+	
+	else if(href_list["alarm"])
+		alarm()
+	
+	else if(href_list["time"])
+		timing = text2num(href_list["time"])
+		last_process = world.time
+	
+	else if(href_list["tp"])
+		var/tp = text2num(href_list["tp"])
+		time += tp
+		time = CLAMP(time, 0, 120)
 
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || issilicon(usr))
-		usr.set_interaction(src)
-		if (href_list["reset"])
-			src.reset()
-		else if (href_list["alarm"])
-			src.alarm()
-		else if (href_list["time"])
-			src.timing = text2num(href_list["time"])
-			last_process = world.timeofday
-		else if (href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			src.time += tp
-			src.time = min(max(round(src.time), 0), 120)
+	updateUsrDialog()
 
-		src.updateUsrDialog()
-
-	else
-		usr << browse(null, "window=firealarm")
-		return
-	return
 
 /obj/machinery/firealarm/proc/reset()
 	if (!working)

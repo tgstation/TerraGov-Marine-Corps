@@ -4,7 +4,18 @@
 	set instant = TRUE
 	set hidden = TRUE
 
+	if(length(key) > 32)
+		log_admin("[key_name(src)] just attempted to send an invalid keypress with length over 32 characters, likely malicious.")
+		message_admins("[ADMIN_TPMONTY(mob)] just attempted to send an invalid keypress with length over 32 characters, likely malicious.")
+		QDEL_IN(src, 1)
+		return
+
+	keys_held[current_key_address + 1] = _key
+
 	keys_held[_key] = world.time
+	
+	current_key_address = ((current_key_address + 1) % 10)
+
 	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
@@ -37,7 +48,11 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	keys_held -= _key
+	for(var/i in 1 to 10)
+		if(keys_held[i] == _key)
+			keys_held[i] = null
+			break
+
 	var/movement = SSinput.movement_keys[_key]
 	if(!(next_move_dir_add & movement))
 		next_move_dir_sub |= movement

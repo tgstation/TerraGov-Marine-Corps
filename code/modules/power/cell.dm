@@ -53,8 +53,9 @@
 
 
 /obj/item/cell/examine(mob/user)
+	. = ..()
 	if(maxcharge <= 2500)
-		to_chat(user, "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
+		to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
 	else
 		to_chat(user, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%.")
 	if(crit_fail)
@@ -63,16 +64,6 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			to_chat(user, "<span class='danger'>This power cell looks jury rigged to explode!</span>")
 
-/*
-/obj/item/cell/attack_self(mob/user as mob)
-//	if(ishuman(user))
-//		var/mob/living/carbon/human/H = user
-//		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
-//		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
-//
-//		SNG.drain("CELL",src,H.wear_suit)
-	return ..()
-*/
 
 /obj/item/cell/attack_self(mob/user as mob)
 	if(rigged)

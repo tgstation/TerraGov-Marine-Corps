@@ -74,11 +74,6 @@
 		new /obj/item/pipe_meter(loc)
 	qdel(src)
 
-/obj/machinery/meter/interact(mob/user)
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-	else
-		to_chat(user, status())
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 //	why are you yelling?

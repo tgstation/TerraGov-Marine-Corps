@@ -1,24 +1,23 @@
 /obj
-	//Used to store information about the contents of the object.
-	var/list/matter
+	animate_movement = 2
+	speech_span = SPAN_ROBOT
+	interaction_flags = INTERACT_OBJ_DEFAULT
+
+	var/list/materials
 
 	var/datum/armor/armor
+
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
 	var/integrity_failure = 0 //0 if we have no special broken behavior
-
-	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
-	animate_movement = 2
-	speech_span = SPAN_ROBOT
+
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
-
-	var/explosion_resistance = 0
 
 	var/resistance_flags = NONE
 	var/obj_flags = NONE
@@ -79,20 +78,30 @@
 		AI = usr
 		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_ai(AI)
+			if(interaction_flags & INTERACT_UI_INTERACT)
+				ui_interact(AI)
+			else
+				interact(AI)
 
-	for(var/mob/M in viewers(1, src))
+	for(var/mob/M in view(1, src))
 		if(!M.client || M.interactee != src || M == AI)
 			continue
 		is_in_use = TRUE
-		attack_hand(M)
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
+
+	if(ismob(loc))
+		var/mob/M = loc
+		is_in_use = TRUE
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
 
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
-
-
-/obj/proc/interact(mob/user)
-	return
 
 
 /obj/proc/hide(h)

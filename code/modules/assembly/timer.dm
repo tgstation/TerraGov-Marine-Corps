@@ -2,8 +2,9 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-	matter = list("metal" = 500, "glass" = 50)
+	materials = list(/datum/material/metal = 500, /datum/material/glass = 50)
 	attachable = TRUE
+	interaction_flags = INTERACT_REQUIRES_DEXTERITY
 
 	var/timing = FALSE
 	var/time = 5
@@ -81,29 +82,38 @@
 		holder.update_icon()
 
 
-/obj/item/assembly/timer/ui_interact(mob/user)//TODO: Have this use the wires
+/obj/item/assembly/timer/can_interact(mob/user)
 	. = ..()
-	if(is_secured(user))
-		var/second = time % 60
-		var/minute = (time - second) / 60
-		var/dat = "<TT><B>Timing Unit</B></TT>"
-		dat += "<BR>[(timing ? "<A href='?src=[REF(src)];time=0'>Timing</A>" : "<A href='?src=[REF(src)];time=1'>Not Timing</A>")] [minute]:[second]"
-		dat += "<BR><A href='?src=[REF(src)];tp=-30'>-</A> <A href='?src=[REF(src)];tp=-1'>-</A> <A href='?src=[REF(src)];tp=1'>+</A> <A href='?src=[REF(src)];tp=30'>+</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];repeat=[(loop ? "0'>Stop repeating" : "1'>Set to repeat")]</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
-		var/datum/browser/popup = new(user, "timer", name)
-		popup.set_content(dat)
-		popup.open()
+	if(!.)
+		return FALSE
+
+	if(!is_secured(user))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/assembly/timer/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/second = time % 60
+	var/minute = (time - second) / 60
+	var/dat = "<B>Timing Unit</B>"
+	dat += "<BR>[(timing ? "<A href='?src=[REF(src)];time=0'>Timing</A>" : "<A href='?src=[REF(src)];time=1'>Not Timing</A>")] [minute]:[second]"
+	dat += "<BR><A href='?src=[REF(src)];tp=-30'>-</A> <A href='?src=[REF(src)];tp=-1'>-</A> <A href='?src=[REF(src)];tp=1'>+</A> <A href='?src=[REF(src)];tp=30'>+</A>"
+	dat += "<BR><BR><A href='?src=[REF(src)];repeat=[(loop ? "0'>Stop repeating" : "1'>Set to repeat")]</A>"
+	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
+
+	var/datum/browser/popup = new(user, "timer", name)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/assembly/timer/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if(!usr.canUseTopic(src, TRUE))
-		usr << browse(null, "window=timer")
-		onclose(usr, "timer")
 		return
 
 	if(href_list["time"])
@@ -119,9 +129,4 @@
 		time = min(max(round(time), 1), 600)
 		saved_time = time
 
-	if(href_list["close"])
-		usr << browse(null, "window=timer")
-		return
-
-	if(usr)
-		attack_self(usr)
+	updateUsrDialog()

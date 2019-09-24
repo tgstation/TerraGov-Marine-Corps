@@ -4,8 +4,7 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	origin_tech = "combat=3;materials=2"
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
@@ -37,7 +36,9 @@
 
 
 /obj/item/weapon/gun/revolver/examine_ammo_count(mob/user)
-	to_chat(user, "[current_mag?.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
+	if(!current_mag)
+		return
+	to_chat(user, "[current_mag.chamber_closed ? "It's closed." : "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? initial(icon_state) : initial(icon_state) + "_o"
@@ -329,7 +330,6 @@
 	item_state = "ny762"
 	caliber = "7.62x38mm Rimmed" //codex
 	max_shells = 7 //codex
-	origin_tech = "combat=3;materials=1;syndicate=3"
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/upp
 	force = 8
@@ -385,7 +385,6 @@
 	item_state = "mateba"
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/revolver/mateba
 	force = 15

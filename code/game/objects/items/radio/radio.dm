@@ -24,7 +24,7 @@
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
 
-	matter = list("glass" = 25,"metal" = 75)
+	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h).
 	var/list/secure_radio_connections
@@ -47,8 +47,10 @@
 
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
-	QDEL_NULL(keyslot)
-	QDEL_NULL(wires)
+	if(keyslot)
+		QDEL_NULL(keyslot)
+	if(wires)
+		QDEL_NULL(wires)
 	return ..()
 
 
@@ -58,38 +60,27 @@
 	frequency = add_radio(src, new_frequency)
 
 
-/obj/item/radio/attack_self(mob/user as mob)
-	user.set_interaction(src)
-	interact(user)
-
-
 /obj/item/radio/interact(mob/user)
-	if(unscrewed && !isAI(user))
-		wires.interact(user)
+	. = ..()
+	if(.)
 		return
 
-	if(!on)
-		return
+	if(unscrewed)
+		return wires.interact(user)
 
 	var/dat
 
-	if(!istype(src, /obj/item/radio/headset)) //Headsets dont get a mic button
-		dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
 
-	dat += {"
-				Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-				Frequency: 	[format_frequency(frequency)] "}
-
-	dat += "<br>"
+	dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
+	dat += "Speaker: [listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>"
+	dat += "Frequency: [format_frequency(frequency)]"
 
 	for(var/ch_name in channels)
 		dat += text_sec_channel(ch_name, channels[ch_name])
 
 	var/datum/browser/popup = new(user, "radio", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "radio")
-
+	popup.open()
 
 
 /obj/item/radio/proc/text_sec_channel(chan_name, chan_stat)
@@ -99,57 +90,58 @@
 			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
+
+/obj/item/radio/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!on)
+		return FALSE
+
+	return TRUE
+
+
 /obj/item/radio/Topic(href, href_list)
-	//..()
-	if (usr.stat || !on)
+	. = ..()
+	if(.)
 		return
 
-	if (!(issilicon(usr) || (usr.contents.Find(src) || ( in_range(src, usr) && istype(loc, /turf) ))))
-		usr << browse(null, "window=radio")
-		return
-	usr.set_interaction(src)
-	if (href_list["track"])
+	if(href_list["track"])
 		var/mob/target = locate(href_list["track"])
 		var/mob/living/silicon/ai/A = locate(href_list["track2"])
 		if(A && target)
 			A.ai_actual_track(target)
 		return
 
-	else if (href_list["freq"])
+	else if(href_list["freq"])
 		if(freqlock)
 			return
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
 		set_frequency(new_frequency)
 
-	else if (href_list["talk"])
+	else if(href_list["talk"])
 		broadcasting = text2num(href_list["talk"])
-	else if (href_list["listen"])
+	
+	else if(href_list["listen"])
 		var/chan_name = href_list["ch_name"]
-		if (!chan_name)
+		if(!chan_name)
 			listening = text2num(href_list["listen"])
 		else
-			if (channels[chan_name] & FREQ_LISTENING)
+			if(channels[chan_name] & FREQ_LISTENING)
 				channels[chan_name] &= ~FREQ_LISTENING
 			else
 				channels[chan_name] |= FREQ_LISTENING
-	else if (href_list["wires"])
+	else if(href_list["wires"])
 		var/t1 = text2num(href_list["wires"])
-		if (!iswirecutter(usr.get_active_held_item()))
+		if(!iswirecutter(usr.get_active_held_item()))
 			return
-		if (wires & t1)
+		if(wires & t1)
 			wires &= ~t1
 		else
 			wires |= t1
-	if (!( master ))
-		if (istype(loc, /mob))
-			interact(loc)
-		else
-			updateUsrDialog()
-	else
-		if (istype(master.loc, /mob))
-			interact(master.loc)
-		else
-			updateUsrDialog()
+
+	updateUsrDialog()
 
 
 /obj/item/radio/talk_into(atom/movable/M, message, channel, list/spans, datum/language/language)
@@ -278,8 +270,7 @@
 
 /obj/item/radio/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	user.set_interaction(src)
-	if(isscrewdriver(I))
+	if(isscrewdriver(I) && !subspace_transmission)
 		unscrewed = !unscrewed
 		if(unscrewed)
 			to_chat(user, "<span class='notice'>The radio can now be attached and modified!</span>")

@@ -9,11 +9,6 @@
 /_maps/ @Alterist
 /icons/ @Alterist
 
-# LaKiller8
-
-/code/modules/admin/ @DominikPanic
-/code/modules/mob/living/silicon/ @DominikPanic
-
 # PsyKzz
 /code/datum/gamemodes/ @psykzz
 

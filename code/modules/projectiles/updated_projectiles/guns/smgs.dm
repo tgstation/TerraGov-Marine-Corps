@@ -1,5 +1,4 @@
 /obj/item/weapon/gun/smg
-	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/guns/fire/m39.ogg'
 	unload_sound = 'sound/weapons/guns/interact/smg_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
@@ -89,7 +88,6 @@
 	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
-	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -112,7 +110,6 @@
 	item_state = "mp5"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
@@ -136,7 +133,6 @@
 	accuracy_mult_unwielded = 1.25
 	scatter = 25
 	scatter_unwielded = 40
-	damage_mult = 1.2
 
 
 //-------------------------------------------------------
@@ -149,7 +145,6 @@
 	item_state = "mp7"
 	caliber = "4.6x30mm" //codex
 	max_shells = 30 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/mp7.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/mp7
 	attachable_allowed = list(
@@ -163,14 +158,14 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
-	fire_delay = 4
+	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 1.25
 	scatter = 35
 	scatter_unwielded = 45
-	damage_mult = 1.4
+	damage_mult = 1.2
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -182,7 +177,6 @@
 	item_state = "skorpion"
 	caliber = ".32 ACP" //codex
 	max_shells = 20 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/skorpion.ogg'
 	unload_sound = 'sound/weapons/guns/interact/skorpion_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/skorpion_reload.ogg'
@@ -213,7 +207,6 @@
 	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
 	max_shells = 35 //codex
-	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/guns/fire/ppsh.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/ppsh_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ppsh_unload.ogg'
@@ -249,7 +242,6 @@
 	item_state = "uzi"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 32 //codex
-	origin_tech = "combat=3;materials=2"
 	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
 	unload_sound = 'sound/weapons/guns/interact/uzi_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
@@ -262,9 +254,9 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.85
-	scatter = 40
+	scatter = 30
 	scatter_unwielded = 60
-	damage_mult = 0.7
+	damage_mult = 0.8
 	movement_acc_penalty_mult = 0.1
 
 //-------------------------------------------------------
@@ -277,7 +269,6 @@
 	item_state = "FP9000"
 	caliber = "5.7x28mm" //codex
 	max_shells = 50 //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
 	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
@@ -293,9 +284,10 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 	
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.35 SECONDS
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 1.1
 	scatter_unwielded = 60
 	damage_mult = 1.1
+	scatter = 10

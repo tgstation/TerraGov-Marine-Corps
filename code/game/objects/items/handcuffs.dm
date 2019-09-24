@@ -10,8 +10,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list("metal" = 500)
-	origin_tech = "materials=1"
 	var/dispenser = 0
 	breakouttime = 2 MINUTES
 	var/single_use = 0 //determines if handcuffs will be deleted on removal
@@ -44,7 +42,7 @@
 		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
-		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /atom/.proc/Adjacent, H)) && !H.handcuffed)
+		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, H)) && !H.handcuffed)
 			if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 				user.dropItemToGround(src)
 				H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
@@ -52,7 +50,7 @@
 
 	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
-		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /atom/.proc/Adjacent, target)) && !target.handcuffed)
+		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, target)) && !target.handcuffed)
 			user.dropItemToGround(src)
 			target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 			return TRUE

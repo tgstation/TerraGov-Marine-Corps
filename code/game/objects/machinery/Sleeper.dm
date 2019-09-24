@@ -44,17 +44,10 @@
 		connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
 		connected.connected = src
 
-/obj/machinery/sleep_console/attack_ai(mob/living/user)
-	return attack_hand(user)
 
-/obj/machinery/sleep_console/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/sleep_console/attack_hand(mob/living/user)
+/obj/machinery/sleep_console/interact(mob/user)
 	. = ..()
 	if(.)
-		return
-	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	var/dat = ""
 	if (!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
@@ -109,26 +102,17 @@
 			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
-	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
 
 	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "sleeper")
+	popup.open()
 
 
 /obj/machinery/sleep_console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(!usr)
-		return FALSE
-	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
-		return FALSE
-	var/mob/living/carbon/human/user = usr
-	if(get_dist(src, user) > 1)
-		return FALSE
-	user.set_interaction(src)
+
 	if(href_list["chemical"] && connected && connected.occupant)
 		var/datum/reagent/R = text2path(href_list["chemical"])
 		if (connected.occupant.stat == DEAD)
@@ -138,7 +122,7 @@
 		else
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
-				connected.inject_chemical(user, R, amount)
+				connected.inject_chemical(usr, R, amount)
 	if (href_list["removebeaker"])
 		connected.remove_beaker()
 	if (href_list["togglefilter"])
@@ -147,8 +131,9 @@
 		connected.toggle_stasis()
 	if (href_list["ejectify"])
 		connected.eject()
-	attack_hand(user)
-	return
+	
+	updateUsrDialog()
+
 
 
 

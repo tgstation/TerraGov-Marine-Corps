@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "syndicate=2"
 	var/armed = FALSE
 	var/timer = 10
 	var/detonation_pending

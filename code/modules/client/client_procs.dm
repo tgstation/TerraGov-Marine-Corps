@@ -98,6 +98,10 @@
 			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
+		if("vote")
+			return SSvote.Topic(href, href_list)
+		if("codex")
+			return SScodex.Topic(href, href_list)
 
 	switch(href_list["action"])
 		if("openLink")
@@ -107,6 +111,11 @@
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
 			return
+
+	#ifdef NULL_CLIENT_BUG_CHECK
+	if(QDELETED(usr))
+		return
+	#endif
 
 	return ..()	//redirect to hsrc.Topic()
 
@@ -338,11 +347,9 @@
 /client/proc/send_assets()
 	//get the common files
 	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/browser/common.css',
-		'html/browser/scannernew.css',
-		'html/browser/latechoices.css'
+		'html/browser/search.js',
+		'html/browser/panels.css',
+		'html/browser/common.css'
 		)
 	spawn(10) //removing this spawn causes all clients to not get verbs.
 		//Precache the client with all other assets slowly, so as to not block other browse() calls

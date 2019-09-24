@@ -8,7 +8,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 
-	matter = list("metal" = 10000,"glass" = 2500)
+	materials = list(/datum/material/metal = 10000, /datum/material/glass = 2500)
 
 	var/on = TRUE
 	var/code = 2
@@ -38,15 +38,7 @@
 	. = ..()
 	if(.)
 		return
-	var/mob/living/carbon/C = usr
-	if(C.incapacitated() || C.back == src)
-		return
 
-	if(!(ishuman(C) || C.contents.Find(src)) && !C.contents.Find(master) && !(in_range(src, C) || isturf(loc)))
-		return
-
-	C.set_interaction(src)
-	
 	if(href_list["freq"])
 		SSradio.remove_object(src, frequency)
 		frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
@@ -82,11 +74,23 @@
 		master.receive_signal()
 
 
-/obj/item/electropack/attack_self(mob/user)
-	if(!ishuman(user))
-		return
+/obj/item/electropack/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 
-	user.set_interaction(src)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.back == src)
+			return FALSE
+
+	return TRUE
+
+
+/obj/item/electropack/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 
 	var/dat = {"
 Turned [on ? "On" : "Off"] -
@@ -104,5 +108,7 @@ Code:
 <A href='byond://?src=[REF(src)];code=1'>+</A>
 <A href='byond://?src=[REF(src)];code=5'>+</A><BR>
 "}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
+
+	var/datum/browser/popup = new(user, "electropack")
+	popup.set_content(dat)
+	popup.open()

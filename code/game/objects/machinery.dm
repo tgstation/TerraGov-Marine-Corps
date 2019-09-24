@@ -7,6 +7,7 @@
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
+	interaction_flags = INTERACT_MACHINE_DEFAULT
 
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
@@ -143,32 +144,41 @@
 	return TRUE
 
 
-/obj/machinery/Topic(href, href_list)
+/obj/machinery/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!is_operational())
+		return FALSE
+
+	if(iscarbon(usr) && (!in_range(src, usr) || !isturf(loc)))
+		return FALSE
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.getBrainLoss() >= 60)
+			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			return FALSE
+		if(prob(H.getBrainLoss()))
+			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			return FALSE
+
+	return TRUE
+
+
+/obj/machinery/attack_ai(mob/living/silicon/ai/user)
+	return interact(user)
+
+
+/obj/machinery/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(.)
-		return
-	if(!is_operational())
+		return //Already handled.
+
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && wires && wires.interact(user))
 		return TRUE
 
-	if(usr.restrained() || usr.lying || usr.stat != CONSCIOUS)
-		return TRUE
-
-	if(!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return TRUE
-
-	if((!in_range(src, usr) || !isturf(loc)) && !issilicon(usr))
-		return TRUE
-
-	return FALSE
-
-
-/obj/machinery/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-
-
-/obj/machinery/attack_ai(mob/user)
 	return interact(user)
 
 
@@ -177,29 +187,13 @@
 	if(.)
 		return
 
-	if(user.lying || user.stat != CONSCIOUS)
+	if(!can_interact(user))
+		return
+
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && wires && wires.interact(user))
 		return TRUE
 
-	if(!ishuman(usr) && !ismonkey(usr) && !issilicon(usr) && !isxeno(usr))
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return TRUE
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'> [H] stares cluelessly at [src] and drools.</span>")
-			return TRUE
-		else if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
-			return TRUE
-
-	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (attempt_wire_interaction(user) == WIRE_INTERACTION_BLOCK))
-		return TRUE
-
-	if(!is_operational())
-		return TRUE
-
-	return FALSE
+	return interact(user)
 
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.

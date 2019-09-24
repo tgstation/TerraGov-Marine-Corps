@@ -11,20 +11,18 @@
 */
 /obj/item/toy/gun
 	name = "cap gun"
-	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
+	desc = "Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
 	item_state = "gun"
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	matter = list("glass" = 10,"metal" = 10)
-
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 	var/bullets = 7.0
 
 	examine(mob/user)
-		desc = "There are [bullets] caps\s left. Looks almost like the real thing! Ages 8 and up."
-		..()
+		. = ..()
+		to_chat(user, "There are [bullets] caps\s left in the [src].")
 
 	attackby(obj/item/toy/gun_ammo/A as obj, mob/user as mob)
 
@@ -64,8 +62,6 @@
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
 	icon_state = "cap_ammo"
 	w_class = WEIGHT_CLASS_TINY
-
-	matter = list("metal" = 10,"glass" = 10)
 
 	var/amount_left = 7
 

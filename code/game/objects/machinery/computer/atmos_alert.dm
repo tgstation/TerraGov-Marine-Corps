@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-
 /obj/machinery/computer/atmos_alert
 	name = "Atmospheric Alert Computer"
 	desc = "Used to access the station's atmospheric sensors."
@@ -41,16 +38,14 @@
 	radio_connection = SSradio.add_object(src, receive_frequency, RADIO_ATMOSIA)
 
 
-/obj/machinery/computer/atmos_alert/attack_hand(mob/living/user)
+/obj/machinery/computer/atmos_alert/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	user.set_interaction(src)
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Main Overwatch Console</div>")
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Atmos Alert</div>")
 	popup.set_content(return_text())
-	popup.open(FALSE)
-	onclose(user, "computer")
+	popup.open()
 
 
 /obj/machinery/computer/atmos_alert/process()
@@ -116,5 +111,6 @@
 		for(var/zone in minor_alarms)
 			if(ckey(zone) == removing_zone)
 				minor_alarms -= zone
+	
 	update_icon()
 	return

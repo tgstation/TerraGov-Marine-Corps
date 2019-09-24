@@ -26,7 +26,6 @@
 	var/bloody_hands = 0
 	var/track_blood = 0
 	var/feet_blood_color
-	var/list/embedded = list()
 	var/list/cooldowns = list()
 
 	//Movement
@@ -79,6 +78,7 @@
 	var/obj/item/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	var/turf/listed_turf	//the current turf being examined in the stat panel
+	var/dextrous = FALSE //Has enough dexterity to interact with advanced objects?
 
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default

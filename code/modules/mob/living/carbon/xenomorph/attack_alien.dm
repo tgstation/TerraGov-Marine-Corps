@@ -151,7 +151,7 @@
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
 	if(!affecting || (random_location && !set_location)) //No organ, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("chest"))
+	if(no_head && affecting == get_limb("head"))
 		affecting = get_limb("chest")
 	if(!affecting) //Still nothing??
 		affecting = get_limb("chest") //Gotta have a torso?!
@@ -248,7 +248,7 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	updatehealth()
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)

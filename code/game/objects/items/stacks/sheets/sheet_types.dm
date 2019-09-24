@@ -69,10 +69,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
-	matter = list("metal" = 3750)
+	materials = list(/datum/material/metal = 3750)
 	throwforce = 14.0
 	flags_atom = CONDUCT
-	origin_tech = "materials=1"
 	merge_type = /obj/item/stack/sheet/metal
 
 
@@ -87,9 +86,9 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 
 /obj/item/stack/sheet/metal/cyborg
 
-/obj/item/stack/sheet/metal/New(loc, amount=null)
+/obj/item/stack/sheet/metal/Initialize(mapload, amount)
+	. = ..()
 	recipes = GLOB.metal_recipes
-	return ..()
 
 /*
 * Plasteel
@@ -105,16 +104,15 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	desc = "This sheet is an alloy of iron and phoron."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	matter = list("metal" = 7500)
+	materials = list(/datum/material/metal = 7500)
 	throwforce = 15.0
 	flags_atom = CONDUCT
-	origin_tech = "materials=2"
 	merge_type = /obj/item/stack/sheet/plasteel
 
 
-/obj/item/stack/sheet/plasteel/New(loc, amount=null)
+/obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
+	. = ..()
 	recipes = GLOB.plasteel_recipes
-	return ..()
 
 
 /obj/item/stack/sheet/plasteel/small_stack
@@ -148,7 +146,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "One can only guess that this is a bunch of wood."
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
-	origin_tech = "materials=1;biotech=1"
 	merge_type = /obj/item/stack/sheet/wood
 
 
@@ -162,9 +159,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 
-/obj/item/stack/sheet/wood/New(loc, amount=null)
+/obj/item/stack/sheet/wood/Initialize(mapload, amount)
+	. = ..()
 	recipes = GLOB.wood_recipes
-	return ..()
 
 /*
 * Cloth
@@ -174,7 +171,6 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
-	origin_tech = "materials=2"
 
 
 /*
@@ -205,9 +201,8 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	desc = "Large sheets of card, like boxes folded flat."
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
-	origin_tech = "materials=1"
 
 
-/obj/item/stack/sheet/cardboard/New(loc, amount=null)
+/obj/item/stack/sheet/cardboard/Initialize(mapload, amount)
+	. = ..()
 	recipes = GLOB.cardboard_recipes
-	return ..()

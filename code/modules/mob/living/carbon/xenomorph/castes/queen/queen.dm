@@ -29,21 +29,6 @@
 	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	var/egg_amount = 0 //amount of eggs inside the queen
 	var/last_larva_time = 0
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/grow_ovipositor,
-		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		// /datum/action/xeno_action/activable/gut, We're taking this out for now.
-		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
-		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/toggle_pheromones
-		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
@@ -170,7 +155,8 @@
 	. = ..()
 	if(.)
 		return
-	if (href_list["watch_xeno_number"])
+
+	if(href_list["watch_xeno_number"])
 		if(!check_state())
 			return
 		if(!ovipositor)
@@ -185,7 +171,7 @@
 			else
 				set_queen_overwatch(X)
 			break
-		return
+
 
 // ***************************************
 // *********** Death

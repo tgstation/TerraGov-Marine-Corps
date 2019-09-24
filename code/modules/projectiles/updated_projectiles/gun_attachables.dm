@@ -33,7 +33,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
 	flags_atom = CONDUCT
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 1000)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
@@ -305,7 +305,6 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
-	matter = list("metal" = 1000)
 	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.05
 	size_mod = 1
@@ -315,9 +314,6 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the bayonet back into a combat knife.</span>")
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 		if(loc == user)
 			user.dropItemToGround(src)
 		var/obj/item/weapon/combat_knife/F = new(loc)
@@ -426,6 +422,17 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = -0.1
 
 
+/obj/item/attachable/m16sight
+	name = "M16 iron sights"
+	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
+	icon_state = "m16sight"
+	attach_icon = "m16sight_a"
+	slot = "rail"
+	accuracy_mod = 0.1
+	accuracy_unwielded_mod = 0.05
+	movement_acc_penalty_mod = -0.1
+
+
 /obj/item/attachable/flashlight
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
@@ -433,7 +440,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "flashlight_a"
 	light_mod = 7
 	slot = "rail"
-	matter = list("metal" = 50,"glass" = 20)
+	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	activation_sound = 'sound/items/flashlight.ogg'
@@ -471,9 +478,6 @@ Defined in conflicts.dm of the #defines folder.
 
 	if(istype(I,/obj/item/tool/screwdriver))
 		to_chat(user, "<span class='notice'>You modify the rail flashlight back into a normal flashlight.</span>")
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/flashlight/F = new(user)
@@ -600,7 +604,6 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
 	wield_delay_mod = 0.4 SECONDS
-	matter = null
 	icon_state = "stock"
 	accuracy_mod = 0.15
 	recoil_mod = -3
@@ -633,7 +636,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 	accuracy_mod = 0.05
 	recoil_mod = -3
@@ -647,11 +649,31 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.6 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	matter = null
 	flags_attach_features = NONE
 	recoil_mod = -3
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
+
+
+/obj/item/attachable/stock/m16
+	name = "M16 Composite Stock"
+	desc = "A composite stock securely fit to the M16 platform. Disassembly required to remove, not recommended."
+	icon_state = "m16stock"
+	wield_delay_mod = 0.5 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
+
+/obj/item/attachable/stock/ak47
+	name = "AK-47 Wooden Stock"
+	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
+	icon_state = "ak47stock"
+	wield_delay_mod = 0.4 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+
 
 /obj/item/attachable/stock/rifle
 	name = "\improper M41A1 skeleton stock"
@@ -742,15 +764,13 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
-	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
+	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
 	slot = "stock"
 	wield_delay_mod = 0.2 SECONDS
-	melee_mod = -5
 	size_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 35
 	pixel_shift_y = 19
-	matter = null
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20

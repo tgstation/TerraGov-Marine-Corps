@@ -72,7 +72,6 @@
 	var/resting = FALSE
 
 	var/list/icon/pipes_shown = list()
-	var/last_played_vent
 	var/is_ventcrawling
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
@@ -101,8 +100,7 @@
 	var/job
 	var/faction = "Neutral"
 
-	var/last_taste_time
-	var/last_taste_text
-
 	var/blood_volume = 0 //how much blood the mob has
 	var/heart_multi = 1 //Multiplier.
+
+	var/list/embedded_objects = list()

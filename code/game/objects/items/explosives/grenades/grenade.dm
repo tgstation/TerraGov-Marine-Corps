@@ -21,7 +21,7 @@
 	var/hud_state_empty = "grenade_empty"
 
 
-/obj/item/explosive/grenade/New()
+/obj/item/explosive/grenade/Initialize()
 	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 
@@ -29,7 +29,7 @@
 	if(active)
 		return
 
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 

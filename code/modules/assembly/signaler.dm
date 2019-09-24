@@ -3,7 +3,7 @@
 	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter = list("metal" = 400, "glass" = 120)
+	materials = list(/datum/material/metal = 400, /datum/material/glass = 120)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
 
@@ -37,12 +37,23 @@
 		holder.update_icon()
 
 
-/obj/item/assembly/signaler/ui_interact(mob/user, flag1)
+/obj/item/assembly/signaler/can_interact(mob/user)
 	. = ..()
-	if(is_secured(user))
-		var/t1 = "-------"
-		var/dat = {"
+	if(!.)
+		return FALSE
 
+	if(!is_secured(user))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/assembly/signaler/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat = {"
 <A href='byond://?src=[REF(src)];send=1'>Send Signal</A><BR>
 <B>Frequency/Code</B> for signaler:<BR>
 Frequency:
@@ -51,27 +62,22 @@ Frequency:
 
 Code:
 [code]
-<A href='byond://?src=[REF(src)];set=code'>Set</A><BR>
-[t1]"}
-		user << browse(dat, "window=radio")
-		onclose(user, "radio")
-		return
+<A href='byond://?src=[REF(src)];set=code'>Set</A><BR>"}
+
+	var/datum/browser/popup = new(user, "signaler", name)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/assembly/signaler/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(!usr.canUseTopic(src, TRUE))
-		usr << browse(null, "window=radio")
-		onclose(usr, "radio")
-		return
 
 	if(href_list["set"])
-
 		if(href_list["set"] == "freq")
 			var/new_freq = input(usr, "Input a new signalling frequency", "Remote Signaller Frequency", format_frequency(frequency)) as num|null
-			if(!usr.canUseTopic(src, TRUE))
+			if(!can_interact(usr))
 				return
 			new_freq = unformat_frequency(new_freq)
 			new_freq = sanitize_frequency(new_freq, TRUE)
@@ -79,7 +85,7 @@ Code:
 
 		if(href_list["set"] == "code")
 			var/new_code = input(usr, "Input a new signalling code", "Remote Signaller Code", code) as num|null
-			if(!usr.canUseTopic(src, TRUE))
+			if(!can_interact(usr))
 				return
 			new_code = round(new_code)
 			new_code = CLAMP(new_code, 1, 100)
@@ -88,8 +94,7 @@ Code:
 	if(href_list["send"])
 		INVOKE_ASYNC(src, .proc/signal)
 
-	if(usr)
-		attack_self(usr)
+	updateUsrDialog()
 
 
 /obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)

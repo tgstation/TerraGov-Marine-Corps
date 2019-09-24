@@ -24,12 +24,14 @@
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 
+
 /datum/action/xeno_action/remove_action(mob/living/L)
-	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
 	if(cooldown_id)
 		deltimer(cooldown_id)
+	return ..()
+
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
@@ -160,6 +162,14 @@
 /datum/action/xeno_action/activable/New()
 	. = ..()
 
+
+/datum/action/xeno_action/activable/Destroy()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		deselect()
+	return ..()
+
+
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
 	if(CHECK_BITFIELD(keybind_flags, XACT_KEYBIND_USE_ABILITY))
@@ -196,9 +206,10 @@
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)
-	..()
 	if(X.selected_ability == src)
 		X.selected_ability = null
+	return ..()
+
 
 //the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)

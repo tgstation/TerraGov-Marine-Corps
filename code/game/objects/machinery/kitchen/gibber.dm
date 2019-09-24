@@ -15,9 +15,9 @@
 	active_power_usage = 500
 
 
-/obj/machinery/gibber/New()
-	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+/obj/machinery/gibber/Initialize()
+	. = ..()
+	overlays += image('icons/obj/kitchen.dmi', "grjam")
 
 /obj/machinery/gibber/update_icon()
 	overlays.Cut()
@@ -44,13 +44,11 @@
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
 	if(operating)
 		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
-	else
-		src.startgibbing(user)
+	
+	startgibbing(user)
 
 /obj/machinery/gibber/attackby(obj/item/grab/I, mob/user, param)
 	. = ..()

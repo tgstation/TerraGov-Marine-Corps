@@ -2,14 +2,14 @@
 	level = 1
 	plane = FLOOR_PLANE
 	use_power = NO_POWER_USE
-	can_unwrench = 1
+	can_unwrench = FALSE
 	var/datum/pipeline/parent = null
 
 	buckle_lying = -1
 
 /obj/machinery/atmospherics/pipe/New()
+	. = ..()
 	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
-	..()
 
 /obj/machinery/atmospherics/pipe/nullifyNode(i)
 	var/obj/machinery/atmospherics/oldN = nodes[i]

@@ -35,6 +35,7 @@
 	use_power = NO_POWER_USE
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	resistance_flags = UNACIDABLE
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/area/area
 	var/areastring = null
 	var/obj/item/cell/cell
@@ -86,7 +87,7 @@
 		return
 	..()
 
-/obj/machinery/power/apc/New()
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
 	. = ..()
 	GLOB.apcs_list += src
 	wires = new /datum/wires/apc(src)
@@ -309,10 +310,7 @@
 /obj/machinery/power/apc/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(issilicon(user) && get_dist(src, user) > 1)
-		return attack_hand(user)
-
-	else if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
+	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
@@ -652,14 +650,6 @@
 
 	interact(user)
 
-/obj/machinery/power/apc/interact(mob/user)
-	if(!user)
-		return
-	user.set_interaction(src)
-
-	//Open the APC NanoUI
-	ui_interact(user)
-	return
 
 /obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	if(!user)
@@ -757,7 +747,7 @@
 			update()
 
 
-/obj/machinery/power/apc/Topic(href, href_list, usingUI = 1)
+/obj/machinery/power/apc/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -797,8 +787,7 @@
 		SSnano.close_user_uis(usr, src)
 		return FALSE
 
-	if(usingUI)
-		updateUsrDialog()
+	updateUsrDialog()
 
 	return TRUE
 

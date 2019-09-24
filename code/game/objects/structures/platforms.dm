@@ -15,7 +15,8 @@
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
-/obj/structure/platform/New()
+/obj/structure/platform/Initialize()
+	. = ..()
 	var/image/I = image(icon, src, "platform_overlay", LADDER_LAYER, dir)//ladder layer puts us just above weeds.
 	switch(dir)
 		if(SOUTH)
@@ -28,7 +29,6 @@
 		if(WEST)
 			I.pixel_x = -16
 	overlays += I
-	..()
 
 /obj/structure/platform/CheckExit(atom/movable/O, turf/target)
 	if(O && O.throwing)
@@ -64,7 +64,8 @@ obj/structure/platform_decoration
 	flags_atom = ON_BORDER
 	resistance_flags = UNACIDABLE
 
-/obj/structure/platform_decoration/New()
+/obj/structure/platform_decoration/Initialize()
+	. = ..()
 	switch(dir)
 		if (NORTH)
 			layer = ABOVE_MOB_LAYER
@@ -74,4 +75,3 @@ obj/structure/platform_decoration
 			layer = ABOVE_MOB_LAYER
 		if (SOUTHWEST)
 			layer = ABOVE_MOB_LAYER
-	.. ()

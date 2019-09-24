@@ -40,6 +40,8 @@
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 	var/changing_turf = FALSE
 
+	var/datum/armor/armor
+
 /turf/Initialize(mapload)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -66,6 +68,13 @@
 
 	if(opacity)
 		has_opaque_atom = TRUE
+
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if (!armor)
+		armor = getArmor()
+	else if (!istype(armor, /datum/armor))
+		stack_trace("Invalid type [armor.type] found in .armor during /turf Initialize()")
 
 	return INITIALIZE_HINT_NORMAL
 

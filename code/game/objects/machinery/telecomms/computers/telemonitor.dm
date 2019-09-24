@@ -60,8 +60,6 @@
 	if(.)
 		return
 
-	usr.set_interaction(src)
-
 	if(href_list["viewmachine"])
 		screen = 1
 		for(var/obj/machinery/telecomms/T in machinelist)
@@ -101,10 +99,4 @@
 				machinelist = list()
 				temp = "<font color = #88bff7>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
 
-	updateUsrDialog()
-	return
-
-
-/obj/machinery/computer/telecomms/monitor/attackby(mob/user, obj/item/I, params)
-	. = ..()
 	updateUsrDialog()
