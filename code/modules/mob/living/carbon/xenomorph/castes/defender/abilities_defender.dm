@@ -63,7 +63,7 @@
 
 	X.face_atom(H) //Face towards the target so we don't look silly
 
-	var/damage = X.xeno_caste.melee + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
