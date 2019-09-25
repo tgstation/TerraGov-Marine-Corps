@@ -91,7 +91,7 @@
 		embedding = getEmbeddingBehavior()
 	else if(islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
-	
+
 	if(flags_item_visual)
 		update_item_sprites()
 
@@ -571,7 +571,6 @@
 			if(flags_item_visual & ITEM_ICE_VARIANT)
 				icon_state = "s_[initial(icon_state)]"
 				item_state = "s_[initial(icon_state)]"
-	update_icon()
 
 
 /obj/item/verb/verb_pickup()
