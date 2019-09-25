@@ -193,9 +193,9 @@
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
-		if(0 to 1.66) // 5/3
+		if(0 to 1.75) // 7/4
 			return
-		if(1.66 to 3)
+		if(1.75 to 3)
 			HS.stored_larva++
 		if(3 to 5)
 			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
