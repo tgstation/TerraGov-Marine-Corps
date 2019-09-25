@@ -231,7 +231,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
+	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
