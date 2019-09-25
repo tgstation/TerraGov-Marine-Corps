@@ -15,7 +15,7 @@
 	name = "gas pump"
 	desc = "A pump that moves gas by pressure."
 
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	shift_underlay_only = FALSE
 
 	var/target_pressure = ONE_ATMOSPHERE

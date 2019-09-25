@@ -580,6 +580,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_BUMP		"bump"
 #define COOLDOWN_ENTANGLE	"entangle"
 #define COOLDOWN_NEST		"nest"
+#define COOLDOWN_TASTE		"taste"
+#define COOLDOWN_VENTSOUND	"vendsound"
 
 // Xeno Cooldowns
 // -- Ravager

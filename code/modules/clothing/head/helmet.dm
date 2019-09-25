@@ -270,18 +270,18 @@
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
 
-/obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
+/obj/item/clothing/head/helmet/marine/tech/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 technician snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
+	return ..()
 
 /obj/item/clothing/head/helmet/marine/corpsman
 	name = "\improper M10 corpsman helmet"
 
-/obj/item/clothing/head/helmet/marine/corpsman/New(loc,expected_type 		= type,
+/obj/item/clothing/head/helmet/marine/corpsman/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 corpsman snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
+	return ..()
 
 
 /obj/item/clothing/head/helmet/marine/leader
@@ -289,10 +289,10 @@
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list("melee" = 75, "bullet" = 65, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 
-/obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
+/obj/item/clothing/head/helmet/marine/leader/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
+	return ..()
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
@@ -302,10 +302,10 @@
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
 
-/obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
+/obj/item/clothing/head/helmet/marine/specialist/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper B18 snow helmet"),
 	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
+	return ..()
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"

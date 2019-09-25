@@ -785,6 +785,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	else
 		bullet_message(proj, feedback_flags)
 
+	return TRUE
+
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/proj)
 	. = ..()
@@ -903,30 +905,40 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		livings_list += L
 
 	if(!length(livings_list))
-		return TRUE
+		return FALSE
 
 	var/mob/living/picked_mob = pick(livings_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
-	return TRUE
+		return TRUE
+	return FALSE
 
 
-// walls can get shot and damaged, but bullets (vs energy guns) do much less.
-/turf/closed/wall/bullet_act(obj/item/projectile/P)
+// walls can get shot and damaged, but bullets do much less.
+/turf/closed/wall/bullet_act(obj/item/projectile/proj)
 	. = ..()
-	if(!.)
+	if(.)
 		return
-	var/damage = P.damage
-	if(damage < 1) return
 
-	switch(P.ammo.damage_type)
-		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
-		else return
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
+	var/damage
+
+	switch(proj.ammo.damage_type)
+		if(BRUTE, BURN)
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
+			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+		else
+			return FALSE
+
+	if(damage < 1)
+		return FALSE
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		current_bulletholes++
+
+	if(prob(30))
+		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
 	take_damage(damage)
-	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
-	return 1
+	return TRUE
 
 
 //----------------------------------------------------------
@@ -967,37 +979,36 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	log_combat(proj.firer, src, "shot", proj)
 	msg_admin_attack("[ADMIN_TPMONTY(proj.firer)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 	if(ishuman(proj.firer))
-		SEND_SOUND(proj.firer, get_sfx("ballistic hitmarker"))
 		return BULLET_MESSAGE_HUMAN_SHOOTER
 	return BULLET_MESSAGE_OTHER_SHOOTER
 
 
 /mob/living/carbon/human/bullet_message(obj/item/projectile/proj, feedback_flags)
 	. = ..()
-	var/onlooker_feedback = "[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
-	var/victim_feedback
+	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		victim_feedback = "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
+		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
-		victim_feedback = "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback += "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
-		victim_feedback += " Your armor deflects the impact!"
+		victim_feedback += "Your armor deflects the impact!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
-		victim_feedback += " Your armor absorbs the impact!"
+		victim_feedback += "Your armor absorbs the impact!"
 	else 
 		if(feedback_flags & BULLET_FEEDBACK_PEN)
-			victim_feedback += " Your armor was penetrated!"
+			victim_feedback += "Your armor was penetrated!"
 		if(feedback_flags & BULLET_FEEDBACK_SHRAPNEL)
-			victim_feedback = " The impact sends <b>shrapnel</b> into the wound!"
+			victim_feedback += "The impact sends <b>shrapnel</b> into the wound!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
-		victim_feedback += " You burst into <b>flames!!</b> Stop drop and roll!"
-		onlooker_feedback += " [p_they(TRUE)] burst into flames!"
+		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
+		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message("<span class='danger'>[onlooker_feedback]</span>",
-	"<span class='highdanger'>[victim_feedback]", null, 4)
+	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	"<span class='highdanger'>[victim_feedback.Join(" ")]", null, 4)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")

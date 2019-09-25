@@ -13,13 +13,14 @@
 	gender = PLURAL
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
+	var/stack_name = "stack"
 	var/amount = 1
 	var/max_amount = 50 //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
 
 
-/obj/item/stack/New(loc, new_amount)
+/obj/item/stack/Initialize(mapload, new_amount)
 	. = ..()
 	if(new_amount)
 		amount = new_amount
@@ -69,8 +70,8 @@
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
-	to_chat(user, "There are [amount] [singular_name]\s in the stack.")
-
+	if(amount > 1)
+		to_chat(user, "There are [amount] [singular_name]\s in the [stack_name].")
 
 /obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()

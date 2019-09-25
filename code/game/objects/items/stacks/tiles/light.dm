@@ -13,8 +13,8 @@
 	var/on = 1
 	var/state //0 = fine, 1 = flickering, 2 = breaking, 3 = broken
 
-/obj/item/stack/tile/light/New(loc, amount=null)
-	..()
+/obj/item/stack/tile/light/Initialize(mapload, amount)
+	. = ..()
 	if(prob(5))
 		state = 3 //broken
 	else if(prob(5))

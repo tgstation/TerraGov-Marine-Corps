@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /obj/machinery/computer/card
 	name = "Identification Computer"
 	desc = "Terminal for programming TGMC employee ID card access."
@@ -11,9 +9,6 @@
 	var/obj/item/card/id/modify = null
 	var/mode = 0.0
 	var/printing = null
-
-/obj/machinery/computer/card/proc/is_centcom()
-	return 0
 
 /obj/machinery/computer/card/proc/is_authenticated()
 	return scan ? check_access(scan) : 0
@@ -276,7 +271,3 @@
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/circuitboard/computer/card/centcom"
 	req_access = list(ACCESS_NT_CORPORATE)
-
-
-/obj/machinery/computer/card/centcom/is_centcom()
-	return 1

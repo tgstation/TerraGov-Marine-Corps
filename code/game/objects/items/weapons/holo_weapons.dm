@@ -24,10 +24,10 @@
 /obj/item/weapon/holo/esword/attack(target as mob, mob/user as mob)
 	..()
 
-/obj/item/weapon/holo/esword/New()
+/obj/item/weapon/holo/esword/Initialize()
+	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
-	..()
 
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
 	active = !active

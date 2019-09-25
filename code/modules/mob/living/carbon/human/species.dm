@@ -73,6 +73,7 @@
 	var/list/preferences = list()
 	var/list/screams = list()
 	var/list/paincries = list()
+	var/list/goredcries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -241,8 +242,9 @@
 	show_paygrade = TRUE
 	count_human = TRUE
 
-	screams = list("male" = "male_scream", "female" = "female_scream")
-	paincries = list("male" = "male_pain", "female" = "female_pain")
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -383,6 +385,7 @@
 
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
+	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -578,6 +581,7 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 
 
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
@@ -630,6 +634,7 @@
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
 
 
 /datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)

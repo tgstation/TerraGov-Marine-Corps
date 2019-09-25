@@ -12,11 +12,10 @@
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/New(loc, amount=null)
-	..()
-	src.pixel_x = rand(1, 14)
-	src.pixel_y = rand(1, 14)
-	return
+/obj/item/stack/tile/plasteel/Initialize()
+	. = ..()
+	pixel_x = rand(1, 14)
+	pixel_y = rand(1, 14)
 
 /*
 /obj/item/stack/tile/plasteel/attack_self(mob/user as mob)

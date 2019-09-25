@@ -240,10 +240,6 @@
 	amount_per_transfer_from_this = 45
 	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 1000)
 
-/obj/structure/reagent_dispensers/wallmounted/peppertank/New()
-	. = ..()
-	if(prob(1))
-		desc = "IT'S PEPPER TIME, BITCH!"
 
 /obj/structure/reagent_dispensers/wallmounted/virusfood
 	name = "virus food dispenser"

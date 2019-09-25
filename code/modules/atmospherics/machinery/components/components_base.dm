@@ -9,8 +9,8 @@
 	var/list/datum/pipeline/parents
 
 /obj/machinery/atmospherics/components/New()
+	. = ..()
 	parents = new(device_type)
-	..()
 
 // Iconnery
 

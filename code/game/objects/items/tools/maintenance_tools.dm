@@ -1,21 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-/* Tools!
-* Note: Multitools are /obj/item
-*
-* Contains:
-* 		Wrench
-* 		Screwdriver
-* 		Wirecutters
-* 		Blowtorch
-* 		Crowbar
-*/
-
-//toolspeed is used to change the speed of how fast this tool works lower is faster
-
-/*
-* Wrench
-*/
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
@@ -31,10 +13,6 @@
 	tool_behaviour = TOOL_WRENCH
 
 
-
-/*
-* Screwdriver
-*/
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
@@ -54,6 +32,7 @@
 /obj/item/tool/screwdriver/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
+
 
 /obj/item/tool/screwdriver/Initialize()
 	. = ..()
@@ -80,21 +59,10 @@
 			icon_state = "screwdriver7"
 			item_state = "screwdriver_yellow"
 
-	if (prob(75))
-		src.pixel_y = rand(0, 16)
-	return
+	if(prob(75))
+		pixel_y = rand(0, 16)
 
-/*/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M))	return ..()
-	if(user.zone_selected != "eyes") // && user.zone_selected != "head")
-		return ..()
-	if((CLUMSY in user.mutations) && prob(50))
-		M = user
-	return eyestab(M,user)*/
 
-/*
-* Wirecutters
-*/
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
@@ -118,6 +86,7 @@
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
 
+
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if((C.handcuffed) && (istype(C.handcuffed, /obj/item/restraints/handcuffs/cable)))
 		user.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
@@ -128,9 +97,7 @@
 	else
 		..()
 
-/*
-* Blowtorch
-*/
+
 /obj/item/tool/weldingtool
 	name = "blowtorch"
 	icon = 'icons/obj/items/items.dmi'
@@ -154,16 +121,17 @@
 	var/weld_tick = 0	//Used to slowly deplete the fuel when the tool is left on.
 	var/status = TRUE //When welder is secured on unsecured
 
+
 /obj/item/tool/weldingtool/Initialize()
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
-	return
 
 
 /obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
+
 
 /obj/item/tool/weldingtool/examine(mob/user)
 	..()
@@ -382,9 +350,6 @@
 	if(reagents > max_fuel)
 		reagents = max_fuel
 
-/*
-* Crowbar
-*/
 
 /obj/item/tool/crowbar
 	name = "crowbar"
@@ -408,12 +373,6 @@
 	item_state = "crowbar_red"
 
 
-
-
-
-/*
-Welding backpack
-*/
 
 /obj/item/tool/weldpack
 	name = "Welding kit"

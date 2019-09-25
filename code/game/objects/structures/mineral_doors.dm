@@ -19,8 +19,8 @@
 	var/hardness = 1
 	var/oreAmount = 7
 
-/obj/structure/mineral_door/New(location)
-	..()
+/obj/structure/mineral_door/Initialize()
+	. = ..()
 	icon_state = mineralType
 	name = "[mineralType] door"
 

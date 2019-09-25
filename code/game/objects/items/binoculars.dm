@@ -27,8 +27,8 @@
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates.
 	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
 
-/obj/item/binoculars/tactical/New()
-	..()
+/obj/item/binoculars/tactical/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/binoculars/tactical/examine()
