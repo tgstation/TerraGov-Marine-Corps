@@ -2086,11 +2086,11 @@ ARMOR
 /datum/supply_packs/armor_basic
 	name = "M3 pattern armor crate (x5 helmet, x5 armor)"
 	contains = list(
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
 					/obj/item/clothing/suit/storage/marine,
 					/obj/item/clothing/suit/storage/marine,
 					/obj/item/clothing/suit/storage/marine,
@@ -2135,9 +2135,9 @@ CLOTHING
 
 /datum/supply_packs/marine_outfits
 	contains = list(
-					/obj/item/clothing/under/marine,
-					/obj/item/clothing/under/marine,
-					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine/standard,
+					/obj/item/clothing/under/marine/standard,
+					/obj/item/clothing/under/marine/standard,
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,

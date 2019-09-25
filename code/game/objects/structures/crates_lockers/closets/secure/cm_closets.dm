@@ -36,7 +36,7 @@
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"
@@ -89,7 +89,7 @@
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine/leader(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
 	name = "alpha leader equipment locker"

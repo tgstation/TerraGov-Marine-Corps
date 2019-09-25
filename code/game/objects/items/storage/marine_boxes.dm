@@ -207,7 +207,7 @@
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
@@ -303,7 +303,7 @@
 /obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3T(src)
-	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
 	new /obj/item/weapon/gun/launcher/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
@@ -354,7 +354,7 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)

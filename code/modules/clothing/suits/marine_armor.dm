@@ -587,6 +587,8 @@
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife)
+	flags_item_visual = NONE
+
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
@@ -915,6 +917,7 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 30, "acid" = 30)
+	flags_item_visual = NONE
 
 
 /obj/item/clothing/suit/storage/marine/som/veteran
