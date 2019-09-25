@@ -565,12 +565,12 @@
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_LV_624)
 			if(flags_item_visual & ITEM_JUNGLE_VARIANT)
-				icon_state = "m_[initial(icon_state)]"
-				item_state = "m_[initial(icon_state)]"
+				icon_state = "m_[icon_state]"
+				item_state = "m_[item_state]"
 		if(MAP_ICE_COLONY)
 			if(flags_item_visual & ITEM_ICE_VARIANT)
-				icon_state = "s_[initial(icon_state)]"
-				item_state = "s_[initial(icon_state)]"
+				icon_state = "s_[icon_state]"
+				item_state = "s_[item_state]"
 
 
 /obj/item/verb/verb_pickup()
