@@ -122,7 +122,9 @@
 /datum/browser/proc/setup_onclose()
 	set waitfor = FALSE //winexists sleeps, so we don't need to.
 	for(var/i in 1 to 10)
-		if(!QDELETED(user) && winexists(user, window_id))
+		if(QDELETED(user))
+			return
+		if(winexists(user, window_id))
 			onclose(user, window_id, ref)
 			break
 
