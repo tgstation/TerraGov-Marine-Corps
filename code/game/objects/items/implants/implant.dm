@@ -11,6 +11,7 @@
 	var/implant_color= "b"
 	var/allow_reagents = 0
 	var/malfunction = 0
+	embedding = list("embedded_flags" = EMBEDDEED_DEL_ON_HOLDER_DEL, "embed_process_chance" = 0, "embed_chance" = 0, "embedded_fall_chance" = 0)
 
 	proc/trigger(emote, source as mob)
 		return

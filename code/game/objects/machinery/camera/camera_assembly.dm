@@ -9,7 +9,7 @@
 	desc = "The basic construction for cameras."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "cameracase"
-	matter = list("metal" = 400, "glass" = 250)
+	materials = list(/datum/material/metal = 400, /datum/material/glass = 250)
 
 
 /obj/item/frame/camera/attackby(obj/item/I, mob/user, params)

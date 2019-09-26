@@ -69,7 +69,6 @@
 	icon_full  = "ashtray_full_bl"
 	max_butts = 14
 	max_integrity = 24
-	matter = list("metal" = 30,"glass" = 30)
 	empty_desc = "Cheap plastic ashtray."
 	throwforce = 3
 
@@ -83,7 +82,6 @@
 	icon_full  = "ashtray_full_br"
 	max_butts = 10
 	max_integrity = 72
-	matter = list("metal" = 80)
 	empty_desc = "Massive bronze ashtray."
 	throwforce = 10
 
@@ -97,6 +95,6 @@
 	icon_full  = "ashtray_full_gl"
 	max_butts = 12
 	max_integrity = 12
-	matter = list("glass" = 60)
+	materials = list(/datum/material/glass = 60)
 	empty_desc = "Glass ashtray. Looks fragile."
 	throwforce = 6

@@ -46,7 +46,7 @@
 		to_chat(user, "<span class='warning'>[src] can tell you nothing about [target].</span>")
 		return
 
-	var/dat = "<h3>Plant data for [target]</h3>"
+	var/dat
 	user.visible_message("<span class='notice'> [user] runs the scanner over [target].</span>")
 
 	dat += "<h2>General Data</h2>"
@@ -155,10 +155,9 @@
 	if(grown_seed.flowers)
 		dat += "<br>It has [grown_seed.flower_colour ? "<font color='[grown_seed.flower_colour]'>flowers</font>" : "flowers"]."
 
-	if(dat)
-		user << browse(dat,"window=plant_analyzer")
-
-	return
+	var/datum/browser/popup = new(user, "plant_analyzer", "<div align='center'>Plant data for [target]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 

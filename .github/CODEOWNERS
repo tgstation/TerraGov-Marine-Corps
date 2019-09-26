@@ -9,16 +9,6 @@
 /_maps/ @Alterist
 /icons/ @Alterist
 
-# LaKiller8
-
-/code/modules/admin/ @DominikPanic
-/code/modules/mob/living/silicon/ @DominikPanic
-
-# spookydonut
-
-/code/controllers/stonedmc/ @spookydonut
-/code/modules/mob/living/carbon/xenomorph/ @spookydonut
-
 # PsyKzz
 /code/datum/gamemodes/ @psykzz
 

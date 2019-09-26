@@ -8,9 +8,8 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/New()
-
-	..()
+/obj/item/grown/Initialize()
+	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
@@ -45,7 +44,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	origin_tech = "materials=1"
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 
@@ -92,16 +90,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 3
-	origin_tech = "combat=1"
 	attack_verb = list("stung")
 	hitsound = ""
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/New()
-	..()
-	spawn(5)
-		force = round((5+potency/potency_divisior), 1)
+/obj/item/grown/nettle/Initialize()
+	. = ..()
+	force = round(5 + potency / potency_divisior)
 
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)
@@ -134,7 +130,6 @@
 	desc = "The <span class='warning'> glowing \black nettle incites <span class='warning'><B>rage</B>\black in you just from looking at it!</span>"
 	name = "deathnettle"
 	icon_state = "deathnettle"
-	origin_tech = "combat=3"
 	potency_divisior = 2.5
 
 /obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)

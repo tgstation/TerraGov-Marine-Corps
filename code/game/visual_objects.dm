@@ -1,9 +1,9 @@
 /atom/movable/vis_obj
-	appearance_flags = NO_CLIENT_COLOR
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 
 /atom/movable/vis_obj/action
+	appearance_flags = NO_CLIENT_COLOR
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 	icon = 'icons/mob/actions.dmi'
@@ -32,3 +32,10 @@
 	layer = ABOVE_LYING_MOB_LAYER
 	plane = GAME_PLANE
 	var/applied = FALSE
+
+
+/atom/movable/vis_obj/fulton_baloon
+	appearance_flags = RESET_COLOR|RESET_ALPHA|RESET_TRANSFORM
+	icon = 'icons/obj/items/fulton_balloon.dmi'
+	icon_state = "fulton_noballoon"
+	pixel_y = 10

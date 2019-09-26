@@ -3,7 +3,6 @@
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
 	item_state = "mousetrap"
-	matter = list("metal" = 100)
 	attachable = TRUE
 	var/armed = FALSE
 

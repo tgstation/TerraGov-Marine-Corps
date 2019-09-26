@@ -62,17 +62,14 @@
 		to_chat(user, "<span class='notice'>The status display reads: Current projection range: <b>[holo_range]</b> units.<span>")
 
 
-/obj/machinery/holopad/attack_hand(mob/living/user)
+/obj/machinery/holopad/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!istype(user))
+
+	if(outgoing_call)
 		return
 
-	if(outgoing_call || user.incapacitated() || !is_operational())
-		return
-
-	user.set_interaction(src)
 	var/dat
 	if(temp)
 		dat = temp

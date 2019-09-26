@@ -136,17 +136,6 @@
 	return try_to_activate_door(AI)
 
 
-/obj/machinery/door/window/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
-			take_damage(25)
-
 /obj/machinery/door/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
 

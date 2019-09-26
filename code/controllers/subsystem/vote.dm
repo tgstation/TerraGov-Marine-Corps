@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(vote)
 		if(time_remaining < 0)
 			result()
 			for(var/client/C in voting)
-				C << browse(null, "window=vote;can_close=0")
+				C << browse(null, "window=vote")
 			reset()
 		else
 			var/datum/browser/client_popup
@@ -250,53 +250,58 @@ SUBSYSTEM_DEF(vote)
 			var/votes = choices[choices[i]]
 			if(!votes)
 				votes = 0
-			. += "<li><a href='?src=[REF(src)];vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
+			. += "<li><a href='?_src_=vote;vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
 		. += "</ul><hr>"
 		if(admin)
-			. += "(<a href='?src=[REF(src)];vote=cancel'>Cancel Vote</a>) "
+			. += "(<a href='?_src_=vote;vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 
 		var/avr = CONFIG_GET(flag/allow_vote_restart)
 		if(avr || admin)
-			. += "<a href='?src=[REF(src)];vote=restart'>Restart</a>"
+			. += "<a href='?_src_=vote;vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		if(admin)
-			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
+			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
 		if(avm || admin)
-			. += "<a href='?src=[REF(src)];vote=gamemode'>GameMode</a>"
+			. += "<a href='?_src_=vote;vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 
 		if(admin)
-			. += "[GLOB.TAB](<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
+			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
 		. += "</li><hr>"
 
 		if(admin)
-			. += "<li><a href='?src=[REF(src)];vote=groundmap'>Ground Map Vote</a></li>"
-			. += "<li><a href='?src=[REF(src)];vote=shipmap'>Ship Map Vote</a></li>"
-			. += "<li><a href='?src=[REF(src)];vote=custom'>Custom</a></li>"
+			. += "<li><a href='?_src_=vote;vote=groundmap'>Ground Map Vote</a></li>"
+			. += "<li><a href='?_src_=vote;vote=shipmap'>Ship Map Vote</a></li>"
+			. += "<li><a href='?_src_=vote;vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
-	. += "<a href='?src=[REF(src)];vote=close' style='position:absolute;right:50px'>Close</a>"
+	. += "<a href='?_src_=vote;vote=close'>Close</a>"
 	return .
 
 
-/datum/controller/subsystem/vote/Topic(href, href_list[], hsrc)
+/datum/controller/subsystem/vote/can_interact(mob/user)
+	return TRUE
+
+
+/datum/controller/subsystem/vote/Topic(href, list/href_list, hsrc)
 	. = ..()
 	if(.)
 		return
-	if(!usr || !usr.client)
+
+	if(!usr?.client)
 		return
 
 	switch(href_list["vote"])
 		if("close")
 			voting -= usr.client
-			usr << browse(null, "window=vote")
+			DIRECT_OUTPUT(usr, browse(null, "window=vote"))
 			return
 		if("cancel")
 			if(check_other_rights(usr.client, R_ADMIN, FALSE) && alert(usr, "Are you sure you want to cancel the vote?", "Cancel Vote", "Yes", "No") == "Yes")

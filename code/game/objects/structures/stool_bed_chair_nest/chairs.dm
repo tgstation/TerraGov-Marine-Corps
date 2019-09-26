@@ -199,11 +199,10 @@
 		return FALSE
 	return ..()
 
-/obj/structure/bed/chair/dropship/passenger/New()
+/obj/structure/bed/chair/dropship/passenger/Initialize()
+	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
-
-	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/afterbuckle()
 	if(buckled_mob)

@@ -7,9 +7,6 @@
 	if(species.slowdown)
 		. += species.slowdown
 
-	if(embedded_flag)
-		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
-
 	var/reducible_tally = 0 //Tally elements that can be reduced are put here, then we apply hyperzine effects
 
 	var/health_deficiency = (100 - health)

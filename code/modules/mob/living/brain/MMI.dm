@@ -1,15 +1,10 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /obj/item/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = WEIGHT_CLASS_NORMAL
-	origin_tech = "biotech=3"
 
-	var/list/construction_cost = list("metal"=1000,"glass"=500)
-	var/construction_time = 75
 	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 
 	req_access = list(ACCESS_MARINE_RESEARCH)
@@ -96,7 +91,6 @@
 /obj/item/mmi/radio_enabled
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
-	origin_tech = "biotech=4"
 
 	var/obj/item/radio/radio = null//Let's give it a radio.
 

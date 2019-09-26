@@ -2,7 +2,7 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	matter = list("metal" = 1000, "metal" = 500)
+	materials = list(/datum/material/metal = 1000, /datum/material/glass = 500)
 	is_position_sensitive = TRUE
 
 	var/on = FALSE
@@ -193,27 +193,35 @@
 	return refreshBeam()
 
 
-/obj/item/assembly/infra/ui_interact(mob/user)
+/obj/item/assembly/signaler/can_interact(mob/user)
 	. = ..()
-	if(is_secured(user))
-		user.set_interaction(src)
-		var/dat = "<TT><B>Infrared Laser</B></TT>"
-		dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
-		dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
-		dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		dat += "<BR><BR><A href='?src=[REF(src)];close=1'>Close</A>"
-		user << browse(dat, "window=infra")
-		onclose(user, "infra")
+	if(!.)
+		return FALSE
+
+	if(!is_secured(user))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/assembly/infra/interact(mob/user)
+	. = ..()
+	if(.)
 		return
+
+	var/dat
+	dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
+	dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
+	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
+		
+	var/datum/browser/popup = new(user, "infra", name)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/assembly/infra/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if(!usr.canUseTopic(src, TRUE))
-		usr << browse(null, "window=infra")
-		onclose(usr, "infra")
 		return
 
 	if(href_list["state"])
@@ -225,13 +233,8 @@
 		visible = !(visible)
 		update_icon()
 		refreshBeam()
-
-	if(href_list["close"])
-		usr << browse(null, "window=infra")
-		return
 		
-	if(usr)
-		attack_self(usr)
+	updateUsrDialog()
 
 
 /obj/item/assembly/infra/setDir()

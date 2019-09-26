@@ -2,7 +2,6 @@
 	name = "flashbang"
 	icon_state = "flashbang2"
 	item_state = "flashbang"
-	origin_tech = "materials=2;combat=1"
 	var/banglet = 0
 
 

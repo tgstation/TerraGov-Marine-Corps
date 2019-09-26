@@ -12,10 +12,12 @@
 	return ..()
 
 
-/datum/wires/apc/interactable(mob/user)
+/datum/wires/apc/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/power/apc/A = holder
-	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened)
-		return TRUE
+	return CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened
 
 
 /datum/wires/apc/get_status()

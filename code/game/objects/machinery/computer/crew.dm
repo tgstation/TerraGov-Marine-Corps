@@ -10,6 +10,7 @@
 	idle_power_usage = 250
 	active_power_usage = 500
 //	circuit = "/obj/item/circuitboard/computer/crew"
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/list/tracked = list()
 	var/list/crewmembers_planetside = list()
 	var/list/crewmembers_on_ship = list()
@@ -17,20 +18,6 @@
 	var/displayed_z_level = DISPLAY_ON_SHIP
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
-
-
-/obj/machinery/computer/crew/attack_ai(mob/living/user)
-	attack_hand(user)
-	ui_interact(user)
-
-
-/obj/machinery/computer/crew/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	ui_interact(user)
 
 
 /obj/machinery/computer/crew/update_icon()
@@ -47,15 +34,7 @@
 	. = ..()
 	if(.)
 		return
-	if( href_list["close"] )
-		var/mob/user = usr
-		var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
-		user.unset_interaction()
-		ui.close()
-		return FALSE
-	if(href_list["update"])
-		updateUsrDialog()
-		return TRUE
+
 	if(href_list["sortkey"])
 		if(sortkey == href_list["sortkey"])
 			cmp_proc = (cmp_proc == /proc/cmp_list_asc) ? /proc/cmp_list_dsc : /proc/cmp_list_asc
@@ -63,17 +42,15 @@
 			sortkey = href_list["sortkey"]
 			cmp_proc = /proc/cmp_list_asc
 		return TRUE
+	
 	if(href_list["zlevel"])
 		displayed_z_level = text2num(href_list["zlevel"])
 		return TRUE
 
-/obj/machinery/computer/crew/interact(mob/living/user)
-	ui_interact(user)
+	updateUsrDialog()
+
 
 /obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	user.set_interaction(src)
 	scan()
 
 	var/list/data = list()

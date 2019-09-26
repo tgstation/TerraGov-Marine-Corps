@@ -384,7 +384,7 @@
 /obj/structure/closet/proc/togglelock(mob/living/user, silent)
 	if(!CHECK_BITFIELD(closet_flags, CLOSET_IS_SECURE))
 		return FALSE
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		if(!silent)
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return

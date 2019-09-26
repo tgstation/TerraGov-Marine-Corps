@@ -12,8 +12,8 @@
 	var/heating_power = 40000
 
 
-/obj/machinery/space_heater/New()
-	..()
+/obj/machinery/space_heater/Initialize()
+	. = ..()
 	cell = new (src)
 	cell.charge += 500
 	update_icon()
@@ -75,90 +75,95 @@
 		open = !open
 		user.visible_message("<span class='notice'> [user] [open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'> You [open ? "open" : "close"] the hatch on the [src].</span>")
 		update_icon()
-		if(!open && user.interactee == src)
-			user << browse(null, "window=spaceheater")
-			user.unset_interaction()
+
 
 /obj/machinery/space_heater/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	interact(user)
 
-/obj/machinery/space_heater/interact(mob/user as mob)
-
-	if(open)
-
-		var/dat
-		dat = "Power cell: "
-		if(cell)
-			dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
-		else
-			dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
-
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
-
-		dat += "Set Temperature: "
-
-		dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
-
-		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
-
-		user.set_interaction(src)
-		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
-		onclose(user, "spaceheater")
+	on = !on
+	if(on)
+		start_processing()
 	else
-		on = !on
-		if(on)
-			start_processing()
-		else
-			stop_processing()
-		user.visible_message("<span class='notice'> [user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'> You switch [on ? "on" : "off"] the [src].</span>")
-		update_icon()
-	return
+		stop_processing()
+	
+	user.visible_message("<span class='notice'> [user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'> You switch [on ? "on" : "off"] the [src].</span>")
+	update_icon()
+
+
+/obj/machinery/space_heater/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!open)
+		return FALSE
+
+	if(!on)
+		return FALSE
+
+	return TRUE
+
+
+/obj/machinery/space_heater/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat
+	dat = "Power cell: "
+	if(cell)
+		dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
+	else
+		dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
+
+	dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
+
+	dat += "Set Temperature: "
+
+	dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
+
+	dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
+	dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
+
+	var/datum/browser/popup = new(user, "spaceheater", "<div align='center'>Space Heater Controls</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/space_heater/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if (usr.stat)
-		return
-	if ((in_range(src, usr) && istype(src.loc, /turf)) || issilicon(usr))
-		usr.set_interaction(src)
 
-		switch(href_list["op"])
+	switch(href_list["op"])
 
-			if("temp")
-				var/value = text2num(href_list["val"])
+		if("temp")
+			var/value = text2num(href_list["val"])
 
-				// limit to 0-90 degC
-				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
+			// limit to 0-90 degC
+			set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
 
-			if("cellremove")
-				if(open && cell && !usr.get_active_held_item())
-					usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
-					cell.update_icon()
-					usr.put_in_hands(cell)
-					cell = null
+		if("cellremove")
+			if(open && cell && !usr.get_active_held_item())
+				usr.visible_message("<span class='notice'> [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'> You remove \the [cell] from \the [src].</span>")
+				cell.update_icon()
+				usr.put_in_hands(cell)
+				cell = null
 
 
-			if("cellinstall")
-				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_held_item()
-					if(istype(C))
-						if(usr.drop_held_item())
-							cell = C
-							C.forceMove(src)
+		if("cellinstall")
+			if(open && !cell)
+				var/obj/item/cell/C = usr.get_active_held_item()
+				if(istype(C))
+					if(usr.drop_held_item())
+						cell = C
+						C.forceMove(src)
 
-							usr.visible_message("<span class='notice'> [usr] inserts \the [C] into \the [src].</span>", "<span class='notice'> You insert \the [C] into \the [src].</span>")
+						usr.visible_message("<span class='notice'> [usr] inserts \the [C] into \the [src].</span>", "<span class='notice'> You insert \the [C] into \the [src].</span>")
 
-		updateUsrDialog()
-	else
-		usr << browse(null, "window=spaceheater")
-		usr.unset_interaction()
-	return
+	updateUsrDialog()
 
 
 

@@ -18705,8 +18705,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/mar40/carbine,
-/obj/item/weapon/gun/rifle/mar40/carbine,
+/obj/item/weapon/gun/rifle/ak47/carbine,
+/obj/item/weapon/gun/rifle/ak47/carbine,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "boq" = (
@@ -18717,10 +18717,10 @@
 /area/lv624/lazarus/secure_storage)
 "bor" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bos" = (
@@ -20346,6 +20346,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"sUi" = (
+/obj/item/reagent_container/food/snacks/worm,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
 "sWZ" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 1
@@ -56871,7 +56875,7 @@ atX
 arW
 arW
 atQ
-arl
+sUi
 aro
 arV
 atX

@@ -1,6 +1,3 @@
-
-//computer that displays random emails from the ship crew, purely for backstory.
-
 /obj/machinery/computer/emails
 	name = "Personal Computer"
 	desc = "A personal computer used to view emails"
@@ -12,21 +9,21 @@
 	var/selected_mail
 
 
-/obj/machinery/computer/emails/New()
-	..()
+/obj/machinery/computer/emails/Initialize()
+	. = ..()
 	email_list = list()
 	var/list/L = subtypesof(email_type)
-	var/email_amt = rand(2,4)
-	for(var/i=1 to email_amt)
+	var/email_amt = rand(2, 4)
+	for(var/i in 1 to email_amt)
 		var/path = pick_n_take(L)
 		email_list += new path()
 
 /obj/machinery/computer/emails/Destroy()
 	email_list = null
-	. = ..()
+	return ..()
 
 
-/obj/machinery/computer/emails/attack_hand(mob/living/user)
+/obj/machinery/computer/emails/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -75,6 +72,4 @@
 	else if(href_list["back"])
 		selected_mail = null
 
-//	updateUsrDialog()
-	attack_hand(usr)
-
+	updateUsrDialog()

@@ -108,7 +108,6 @@
 
 /obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user)
 	var/dat = "<A href='?src=[REF(src)];launch=1'>Launch</A><br>"
-	dat += "<a href='?src=[REF(user)];mach_close=computer'>Close</a>"
 
 	var/datum/browser/popup = new(user, "computer", "escape pod", 300, 200)
 	popup.set_content("<center>[dat]</center>")
@@ -119,23 +118,19 @@
 	. = ..()
 	if(.)
 		return
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/H = usr
-	if(H.incapacitated())
-		return
+
 	if(!href_list["launch"])
 		return
 
 	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
-
 	if(!M)
 		return
+
 	if(!M.can_launch)
-		to_chat(H, "<span class='warning'>Evacuation is not enabled!</span>")
+		to_chat(usr, "<span class='warning'>Evacuation is not enabled!</span>")
 		return
 
-	to_chat(H, "<span class='highdanger'>You slam your fist down on the launch button!</span>")
+	to_chat(usr, "<span class='highdanger'>You slam your fist down on the launch button!</span>")
 	M.launch(TRUE)
 
 //=========================================================================================
@@ -143,7 +138,7 @@
 //=========================================================================================
 
 /obj/machinery/cryopod/evacuation
-	resistance_flags = UNACIDABLE
+	resistance_flags = RESIST_ALL
 	var/being_forced = 0 //Simple variable to prevent sound spam.
 	var/linked_to_shuttle = FALSE
 
@@ -251,7 +246,7 @@
 	name = "\improper Evacuation Airlock"
 	icon = 'icons/obj/doors/mainship/pod_doors.dmi'
 	icon_state = "door_locked"
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	density = TRUE
 	opacity = TRUE
 	locked = TRUE
@@ -282,14 +277,18 @@
 		M.doors += src
 		linked_to_shuttle = TRUE
 
-	//Can't interact with them, mostly to prevent grief and meta.
+
+/obj/machinery/door/airlock/evacuation/can_interact(mob/user)
+	return FALSE
+
 /obj/machinery/door/airlock/evacuation/Bumped()
 	return FALSE
+
 /obj/machinery/door/airlock/evacuation/attackby()
 	return FALSE
+
 /obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
+
 /obj/machinery/door/airlock/evacuation/attack_alien()
 	return FALSE //Probably a better idea that these cannot be forced open.
-/obj/machinery/door/airlock/evacuation/attack_ai()
-	return FALSE

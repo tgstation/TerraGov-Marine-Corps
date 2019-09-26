@@ -13,9 +13,8 @@
 	throwforce = 4.0
 	item_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
-	matter = list("metal" = 3750)
+	materials = list(/datum/material/metal = 2000)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
-	origin_tech = "materials=1;engineering=1"
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = 'sound/weapons/genhit.ogg'
 	var/drill_verb = "picking"
@@ -32,7 +31,6 @@
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 	digspeed = 30
-	origin_tech = "materials=3"
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/drill
@@ -40,7 +38,6 @@
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 	digspeed = 30
-	origin_tech = "materials=2;powerstorage=3;engineering=2"
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
@@ -49,7 +46,6 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 20 //faster than drill, but cannot dig
-	origin_tech = "materials=3;powerstorage=2;engineering=2"
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
@@ -58,7 +54,6 @@
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
 	digspeed = 20
-	origin_tech = "materials=4"
 	desc = "This makes no metallurgic sense."
 
 /obj/item/tool/pickaxe/diamond
@@ -66,7 +61,6 @@
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 	digspeed = 10
-	origin_tech = "materials=6;engineering=4"
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
 /obj/item/tool/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
@@ -74,7 +68,6 @@
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 	digspeed = 5 //Digs through walls, girders, and can dig up sand
-	origin_tech = "materials=6;powerstorage=4;engineering=5"
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
@@ -96,7 +89,6 @@
 	force = 40.0
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
-	origin_tech = "materials=4;phorontech=3;engineering=3"
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
 	heat = 3800

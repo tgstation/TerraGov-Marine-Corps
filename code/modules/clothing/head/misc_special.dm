@@ -16,7 +16,7 @@
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
 	item_state = "welding"
-	matter = list("metal" = 3000, "glass" = 1000)
+	materials = list(/datum/material/metal = 3000, /datum/material/glass = 1000)
 	var/up = 0
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_atom = CONDUCT

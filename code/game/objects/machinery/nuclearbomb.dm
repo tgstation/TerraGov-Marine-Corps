@@ -128,69 +128,86 @@
 	stop_processing()
 	update_icon()
 
-/obj/machinery/nuclearbomb/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
+
+/obj/machinery/nuclearbomb/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!extended)
+		return FALSE
+
+	return TRUE
 
 
 /obj/machinery/nuclearbomb/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
+
 	if(extended)
-		if(!ishuman(user))
-			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return TRUE
-		user.set_interaction(src)
+		return
 
-		var/safe_text = (safety) ? "Safe" : "Engaged"
-		var/status
-		if(has_auth)
-			if(timer_enabled)
-				status = "Func/Set-[safe_text]"
-			else
-				status = "Functional-[safe_text]"
+	if(!deployable)
+		return
+
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
+		if(anchored)
+			visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
 		else
-			if(timer_enabled)
-				status = "Set-[safe_text]"
-			else
-				status = "Auth. S1-[safe_text]"
+			anchored = TRUE
+			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+	else
+		visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+	if(!lighthack)
+		flick("nuclearbombc", src)
+		icon_state = "nuclearbomb1"
 		
-		var/html = {"
-		<b>Nuclear Fission Explosive</b><br />
-		<hr />
-		<b>Status</b>: [status]<br />
-		<b>Timer</b>: [timeleft]<br />
-		<br />
-		Timer: [timer_enabled ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];timer=1'>Toggle</a>" : "Toggle"] <br />
-		Time: [has_auth ? "<a href='?src=[REF(src)];time=-10'>--</a> <a href='?src=[REF(src)];time=-1'>-</a> [timeleft] <a href='?src=[REF(src)];time=1'>+</a> <a href='?src=[REF(src)];time=10'>++</a>" : "- - [timeleft] + +"] <br />
-		<br />
-		Safety: [safety ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
-		Anchor: [anchored ? "Engaged" : "Off"] [has_auth ? "<a href='?src=[REF(src)];anchor=1'>Toggle</a>" : "Toggle"] <br />
-		<hr />
-		Red Auth. Disk: <a href='?src=[REF(src)];disk=red'>[r_auth ? "++++++++++" : "----------"]</a><br />
-		Green Auth. Disk: <a href='?src=[REF(src)];disk=green'>[g_auth ? "++++++++++" : "----------"]</a><br />
-		Blue Auth. Disk: <a href='?src=[REF(src)];disk=blue'>[b_auth ? "++++++++++" : "----------"]</a><br />
-		"}
+	extended = TRUE
 
-		var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
-		popup.set_content(html)
-		popup.open(FALSE)
-		onclose(user, "nuclearbomb")
-	else if(deployable)
-		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_BUILD))
-			return
-		if(removal_stage < NUKE_STAGE_BOLTS_REMOVED)
-			if(anchored)
-				visible_message("<span class='warning'>With a loud beep, lights flicker on the [src]'s display panel. It's working!</span>")
-			else
-				anchored = TRUE
-				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+
+/obj/machinery/nuclearbomb/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/safe_text = (safety) ? "Safe" : "Engaged"
+	var/status
+	if(has_auth)
+		if(timer_enabled)
+			status = "Func/Set-[safe_text]"
 		else
-			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
-		if(!lighthack)
-			flick("nuclearbombc", src)
-			icon_state = "nuclearbomb1"
-		extended = TRUE
+			status = "Functional-[safe_text]"
+	else
+		if(timer_enabled)
+			status = "Set-[safe_text]"
+		else
+			status = "Auth. S1-[safe_text]"
+	
+	var/html = {"
+	<b>Nuclear Fission Explosive</b><br />
+	<hr />
+	<b>Status</b>: [status]<br />
+	<b>Timer</b>: [timeleft]<br />
+	<br />
+	Timer: [timer_enabled ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];timer=1'>Toggle</a>" : "Toggle"] <br />
+	Time: [has_auth ? "<a href='?src=[REF(src)];time=-10'>--</a> <a href='?src=[REF(src)];time=-1'>-</a> [timeleft] <a href='?src=[REF(src)];time=1'>+</a> <a href='?src=[REF(src)];time=10'>++</a>" : "- - [timeleft] + +"] <br />
+	<br />
+	Safety: [safety ? "On" : "Off"] [has_auth ? "<a href='?src=[REF(src)];safety=1'>Toggle</a>" : "Toggle"] <br />
+	Anchor: [anchored ? "Engaged" : "Off"] [has_auth ? "<a href='?src=[REF(src)];anchor=1'>Toggle</a>" : "Toggle"] <br />
+	<hr />
+	Red Auth. Disk: <a href='?src=[REF(src)];disk=red'>[r_auth ? "++++++++++" : "----------"]</a><br />
+	Green Auth. Disk: <a href='?src=[REF(src)];disk=green'>[g_auth ? "++++++++++" : "----------"]</a><br />
+	Blue Auth. Disk: <a href='?src=[REF(src)];disk=blue'>[b_auth ? "++++++++++" : "----------"]</a><br />
+	"}
+
+	var/datum/browser/popup = new(user, "nuclearbomb", "<div align='center'>Nuclear Bomb</div>", 300, 400)
+	popup.set_content(html)
+	popup.open()
+
 
 
 /obj/machinery/nuclearbomb/Topic(href, href_list)
@@ -198,8 +215,6 @@
 	if(.)
 		return
 
-	usr.set_interaction(src)
-	
 	if(href_list["disk"])
 		var/disk_colour = href_list["disk"]
 		var/disk_type

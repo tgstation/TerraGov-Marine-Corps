@@ -107,17 +107,28 @@
 	armor = list("melee" = 30, "bullet" = 20, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
+/obj/item/clothing/suit/storage/marine/harness
+	name = "\improper M3 pattern marine harness"
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	icon_state = "10"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	slowdown = 0
+	flags_atom = NONE
+
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
-	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
+	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and weapon carrying capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS
-	bypass_w_limit = list()
-	storage_slots = null
-	max_storage_space = 15 // Same as satchel
+	bypass_w_limit = list(/obj/item/weapon/gun/,
+						/obj/item/storage/large_holster/machete,
+						/obj/item/weapon/claymore/mercsword/machete)
+	cant_hold = list() //for if you want to not allow certain weapons.
+	storage_slots = 1
+	max_storage_space = 8 // Rifle, stock, extended barrel, grip/bipod.
 	max_w_class = 3 //Can fit larger items
 
 /obj/item/clothing/suit/storage/marine/M3E
@@ -130,7 +141,10 @@
 	name = "\improper M3-P pattern marine armor"
 	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
 	icon_state = "6"
-	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 45)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 
 /obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
@@ -433,14 +447,18 @@
 	set category = "B18 Armor"
 	set src in usr
 
-	if(usr.incapacitated() || usr != wearer )
-		return 0
+	if(!can_interact(usr))
+		return FALSE
 
-	handle_interface(usr)
+	interact(usr)
 
-/obj/item/clothing/suit/storage/marine/specialist/proc/handle_interface(mob/living/carbon/human/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
+
+/obj/item/clothing/suit/storage/marine/specialist/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat = {"
 	<A href='?src=\ref[src];B18_automed_on=1'>Turn Automed System: [B18_automed_on ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
@@ -465,63 +483,47 @@
 	<A href='byond://?src=\ref[src];B18_automed_pain=1'>+1</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=5'>+5</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=10'>+10</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>
+	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>"}
+	
+	var/datum/browser/popup = new(user, "b18")
+	popup.set_content(dat)
+	popup.open()
 
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
-		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		if(href_list["B18_automed_on"])
-			if(B18_automed_on)
-				b18automed_turn_off(usr)
-			else
-				b18automed_turn_on(usr)
 
-		else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
-			B18_analyzer.attack(usr, usr, TRUE)
-
-		else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
-			B18_analyzer.hud_mode = !B18_analyzer.hud_mode
-			switch (B18_analyzer.hud_mode)
-				if(TRUE)
-					to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
-				if(FALSE)
-					to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
-
-		else if(href_list["B18_automed_damage"])
-			B18_automed_damage += text2num(href_list["B18_automed_damage"])
-			B18_automed_damage = round(B18_automed_damage)
-			B18_automed_damage = CLAMP(B18_automed_damage,B18_DAMAGE_MIN,B18_DAMAGE_MAX)
-		else if(href_list["B18_automed_pain"])
-			B18_automed_pain += text2num(href_list["B18_automed_pain"])
-			B18_automed_pain = round(B18_automed_pain)
-			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
-		if(!( master ))
-			if(ishuman(loc))
-				handle_interface(loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, src))
-					if(M.client)
-						handle_interface(M)
+	if(href_list["B18_automed_on"])
+		if(B18_automed_on)
+			b18automed_turn_off(usr)
 		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, master))
-					if(M.client)
-						handle_interface(M)
-	else
-		usr << browse(null, "window=radio")
+			b18automed_turn_on(usr)
+
+	else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
+		B18_analyzer.attack(usr, usr, TRUE)
+
+	else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
+		B18_analyzer.hud_mode = !B18_analyzer.hud_mode
+		switch (B18_analyzer.hud_mode)
+			if(TRUE)
+				to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
+			if(FALSE)
+				to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
+
+	else if(href_list["B18_automed_damage"])
+		B18_automed_damage += text2num(href_list["B18_automed_damage"])
+		B18_automed_damage = round(B18_automed_damage)
+		B18_automed_damage = CLAMP(B18_automed_damage,B18_DAMAGE_MIN,B18_DAMAGE_MAX)
+	else if(href_list["B18_automed_pain"])
+		B18_automed_pain += text2num(href_list["B18_automed_pain"])
+		B18_automed_pain = round(B18_automed_pain)
+		B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
+
+	updateUsrDialog()
+		
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"

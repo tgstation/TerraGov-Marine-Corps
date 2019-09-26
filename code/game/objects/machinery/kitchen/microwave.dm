@@ -132,28 +132,19 @@
 
 	else
 		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [I].</span>")
-		
-	updateUsrDialog()
+
 	return TRUE
 
-/obj/machinery/microwave/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/microwave/attack_ai(mob/user as mob)
-	return 0
-
-/obj/machinery/microwave/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	user.set_interaction(src)
-	interact(user)
 
 /*******************
 *   Microwave Menu
 ********************/
 
-/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/microwave/interact(mob/user) // The microwave Menu
+	. = ..()
+	if(.)
+		return
+
 	var/dat = ""
 	if(src.broken > 0)
 		dat = {"<TT>Bzzzzttttt</TT>"}
@@ -213,8 +204,7 @@
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "microwave")
+	popup.open()
 
 
 
@@ -361,20 +351,17 @@
 	ffuu.reagents.add_reagent(/datum/reagent/toxin, amount/10)
 	return ffuu
 
+
 /obj/machinery/microwave/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
 
-	usr.set_interaction(src)
-	if(src.operating)
-		src.updateUsrDialog()
-		return
-
 	switch(href_list["action"])
-		if ("cook")
+		if("cook")
 			cook()
 
-		if ("dispose")
+		if("dispose")
 			destroy_contents()
-	return
+	
+	updateUsrDialog()

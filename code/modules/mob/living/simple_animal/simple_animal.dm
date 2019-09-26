@@ -291,10 +291,6 @@
 		toggle_ai(initial(AIStatus))
 
 
-/mob/living/simple_animal/IsAdvancedToolUser()
-	return FALSE
-
-
 /mob/living/simple_animal/proc/handle_automated_action()
 	set waitfor = FALSE
 	return

@@ -170,39 +170,25 @@
 		"<span class='warning'>You climb out of [src] and get your bearings!")
 		update()
 
-//Monkeys can only pull the flush lever
-/obj/machinery/disposal/attack_paw(mob/living/carbon/monkey/user)
-	if(machine_stat & BROKEN)
-		return
 
-	flush = !flush
-	update()
+/obj/machinery/disposal/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(user && user.loc == src)
+		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
+		return FALSE
 
-//AI as human but can't flush
-/obj/machinery/disposal/attack_ai(mob/user as mob)
-	interact(user, 1)
+	return TRUE
 
-//Human interact with machine
-/obj/machinery/disposal/attack_hand(mob/living/user)
+
+/obj/machinery/disposal/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(user && user.loc == src)
-		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
-		return
-
-	interact(user, 0)
-
-//User interaction
-/obj/machinery/disposal/interact(mob/user, ai=0)
-
-	if(machine_stat & BROKEN)
-		user.unset_interaction()
-		return
-
 	var/dat = "<B>Status</B><HR>"
 
-	if(!ai)  //AI can't pull flush handle
+	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
 			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
@@ -218,8 +204,6 @@
 		dat += "Pump: <B>On</B> (idle)<BR>"
 
 	dat += "Pressure: [disposal_pressure*100/SEND_PRESSURE]%<BR>"
-
-	user.set_interaction(src)
 
 	var/datum/browser/popup = new(user, "disposal", "<div align='center'>Waste Disposal Unit</div>", 360, 220)
 	popup.set_content(dat)
@@ -238,35 +222,22 @@
 	if(mode == -1 && !href_list["eject"]) // only allow ejecting if mode is -1
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
-	if(machine_stat & BROKEN)
+	if(flushing)
 		return
-	if(usr.stat || usr.restrained() || flushing)
-		return
-	if(in_range(src, usr) && istype(src.loc, /turf))
-		usr.set_interaction(src)
 
-		if(href_list["close"])
-			usr.unset_interaction()
-			usr << browse(null, "window=disposal")
-			return
+	if(href_list["pump"])
+		if(text2num(href_list["pump"]))
+			mode = 1
+		else
+			mode = 0
+		update()
 
-		if(href_list["pump"])
-			if(text2num(href_list["pump"]))
-				mode = 1
-			else
-				mode = 0
-			update()
+	if(href_list["handle"])
+		flush = text2num(href_list["handle"])
+		update()
 
-		if(href_list["handle"])
-			flush = text2num(href_list["handle"])
-			update()
-
-		if(href_list["eject"])
-			eject()
-	else
-		usr << browse(null, "window=disposal")
-		usr.unset_interaction()
-		return
+	if(href_list["eject"])
+		eject()
 
 //Eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()

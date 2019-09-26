@@ -15,13 +15,13 @@
 	var/serial_number = 0
 
 
-/obj/item/contraband/poster/New(turf/loc, given_serial = 0)
-	if(given_serial == 0)
+/obj/item/contraband/poster/Initialize(mapload, given_serial)
+	. = ..()
+	if(!given_serial)
 		serial_number = rand(1, length(GLOB.poster_designs))
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"
-	..(loc)
 
 //############################## THE ACTUAL DECALS ###########################
 

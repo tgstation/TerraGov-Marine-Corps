@@ -245,8 +245,6 @@
 	. = ..()
 	if(.)
 		return
-	if(!usr || (usr.stat || usr.restrained()))
-		return
 
 	if(href_list["write"])
 		var/id = href_list["write"]

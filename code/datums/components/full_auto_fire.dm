@@ -315,7 +315,7 @@
 
 /obj/item/weapon/gun/proc/on_autofire_stop(shots_fired)
 	if(shots_fired > 1) //If it was a burst, apply the burst cooldown.
-		extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3)
+		extra_delay += fire_delay * 1.5
 
 
 /obj/item/weapon/gun/proc/autofire_bypass_check(datum/source, client/clicker, atom/target, turf/location, control, params)

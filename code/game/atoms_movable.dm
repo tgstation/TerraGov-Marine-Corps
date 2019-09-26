@@ -433,16 +433,6 @@
 		throw_source = null
 
 
-//things the user's machine must do just after we set the user's machine.
-/atom/movable/proc/on_set_interaction(mob/user)
-	return
-
-
-//things the user's machine must do just before we unset the user's machine.
-/atom/movable/proc/on_unset_interaction(mob/user)
-	return
-
-
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()

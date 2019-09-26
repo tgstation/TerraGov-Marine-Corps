@@ -15,24 +15,15 @@
 	old_x = -16
 	//Ravager vars
 	var/rage = 0
-	var/rage_resist = 1.00
 	var/last_rage = null
 	var/next_damage = null
 
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/charge,
-		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/second_wind,
-		)
 
 // ***************************************
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload, can_spawn_in_centcomm)
 	. = ..()
-	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_HUMAN, .proc/process_rage_attack)
 	RegisterSignal(src, list(
 		COMSIG_XENOMORPH_BRUTE_DAMAGE,
 		COMSIG_XENOMORPH_BURN_DAMAGE), 
@@ -64,15 +55,11 @@
 
 /mob/living/carbon/xenomorph/ravager/handle_status_effects()
 	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
-		if(!cooldowns[COOLDOWN_RAV_LAST_RAGE]) //Decrement Rage if it's been more than 3 seconds since we last raged.
-			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
-			cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
+		rage = CLAMP(rage,0,50)
 		adjust_stunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
 		adjust_knocked_down( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
-		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%
-		fire_resist_modifier = CLAMP(round(rage * -0.01,0.01),-0.5,0) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
 		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
 	return ..()
 
@@ -93,15 +80,4 @@
 		return
 	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
 	
-	cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
 	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_NEXT_DAMAGE, null), 0.2 SECONDS)  // Limit how often this proc can trigger; once per 0.2 seconds
-	
-	damage_mod += damage * (1 - rage_resist) //reduce damage by rage resist %
-
-	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
-
-/mob/living/carbon/xenomorph/ravager/proc/process_rage_attack()
-	rage += RAV_RAGE_ON_HIT
-	cooldowns[COOLDOWN_RAV_LAST_RAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_LAST_RAGE, null), 3 SECONDS) // We incremented rage, so bookmark this.
-
-

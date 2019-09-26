@@ -48,7 +48,7 @@
 	var/armor_block = null
 	var/def_zone = ran_zone()
 	armor_block = M.run_armor_check(def_zone, "melee")
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
 	razorwire_tangle(M)
 
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
@@ -83,7 +83,7 @@
 	M.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	M.set_frozen(FALSE)
 	M.update_canmove()
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1) //Apply damage as we tear free
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	DISABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
@@ -127,7 +127,7 @@
 
 			var/armor_block = null
 			var/def_zone = ran_zone()
-			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, null, 1)
+			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
 			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 			"<span class='danger'>You sparta [M]'s against [src]!</span>")
 			log_combat(user, M, "spartaed", "", "against \the [src]")

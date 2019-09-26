@@ -4,7 +4,7 @@
 	icon_state = "beacon"
 	item_state = "signaler"
 	var/code = "electronic"
-	origin_tech = "bluespace=1"
+
 
 /obj/item/radio/beacon/Initialize()
 	. = ..()

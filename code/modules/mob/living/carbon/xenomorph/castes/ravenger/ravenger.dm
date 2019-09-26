@@ -37,6 +37,10 @@
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
 
+	actions = list(
+		/datum/action/xeno_action/activable/breathe_fire,
+		)
+
 /datum/xeno_caste/ravager/ravenger/young
 	upgrade = XENO_UPGRADE_THREE
 
@@ -46,9 +50,6 @@
 	plasma_stored = 200
 	upgrade = XENO_UPGRADE_THREE
 	var/used_fire_breath = 0
-	actions = list(
-		/datum/action/xeno_action/activable/breathe_fire,
-		)
 
 /mob/living/carbon/xenomorph/ravager/ravenger/Initialize()
 	. = ..()

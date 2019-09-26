@@ -20,13 +20,6 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
-	to_chat(user, "The station AI is not to interact with these devices.")
-	return
-
-/obj/machinery/keycard_auth/attack_paw(mob/living/carbon/monkey/user)
-	to_chat(user, "You are too primitive to use this device.")
-	return
 
 /obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -51,21 +44,22 @@
 	if(machine_stat &NOPOWER)
 		icon_state = "auth_off"
 
-/obj/machinery/keycard_auth/attack_hand(mob/living/user)
+
+/obj/machinery/keycard_auth/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(busy)
+		return FALSE
+	return TRUE
+
+
+/obj/machinery/keycard_auth/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(user.stat || machine_stat & (NOPOWER|BROKEN))
-		to_chat(user, "This device is not powered.")
-		return
-	if(busy)
-		to_chat(user, "This device is busy.")
-		return
-
-	user.set_interaction(src)
 
 	var/dat
-
 	dat += "This device is used to trigger some high security events. It requires the simultaneous swipe of two high-level ID cards."
 	dat += "<br><hr><br>"
 
@@ -77,36 +71,28 @@
 		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
 
-		var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
-		popup.set_content(dat)
-		popup.open(FALSE)
-	if(screen == 2)
+	else if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
 		dat += "<p><A href='?src=\ref[src];reset=1'>Back</A>"
 
-		var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
-		popup.set_content(dat)
-		popup.open(FALSE)
+	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(busy)
-		to_chat(usr, "This device is busy.")
-		return
-	if(usr.stat || machine_stat & (BROKEN|NOPOWER))
-		to_chat(usr, "This device is without power.")
-		return
+
 	if(href_list["triggerevent"])
 		event = href_list["triggerevent"]
 		screen = 2
+	
 	if(href_list["reset"])
 		reset()
 
 	updateUsrDialog()
-	return
 
 /obj/machinery/keycard_auth/proc/reset()
 	active = 0

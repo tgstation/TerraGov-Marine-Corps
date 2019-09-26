@@ -257,23 +257,10 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/last_viewed_group = "categories"
 
-/obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/computer/ordercomp/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-/obj/machinery/computer/supplycomp/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/ordercomp/attack_hand(mob/living/user)
+/obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
 	var/dat
 	if(temp)
 		dat = temp
@@ -291,8 +278,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
 		dat += {"<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
 		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
-		<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
-		<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+		<A href='?src=\ref[src];viewrequests=1'>View requests</A>"}
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Console</div>", 575, 450)
 	popup.set_content(dat)
@@ -304,9 +290,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	. = ..()
 	if(.)
 		return
-
-	if( isturf(loc) && (in_range(src, usr) || issilicon(usr)) )
-		usr.set_interaction(src)
 
 	if(href_list["order"])
 		if(href_list["order"] == "categories")
@@ -397,19 +380,12 @@ GLOBAL_LIST_EMPTY(exports_types)
 		temp = null
 
 	updateUsrDialog()
-	return
 
-/obj/machinery/computer/supplycomp/attack_hand(mob/living/user)
+
+/obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
-		return
-
-	if(..())
-		return
-	user.set_interaction(src)
 	var/dat
 	if (temp)
 		dat = temp
@@ -443,8 +419,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		dat += {"<HR>\nSupply points: [round(SSpoints.supply_points)]<BR>\n<BR>
 		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
 		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>"}
 
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Automated Storage and Retrieval System</div>", 575, 450)
@@ -457,9 +432,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	. = ..()
 	if(.)
 		return
-
-	if(isturf(loc) && ( in_range(src, usr) || issilicon(usr) ) )
-		usr.set_interaction(src)
 
 	//Calling the shuttle
 	if(href_list["send"])
@@ -477,17 +449,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 			SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 			temp = "Raising platform.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
-	//if (href_list["force_send"])
-		//shuttle.force_launch(src)
-
-	//if (href_list["cancel_send"])
-		//shuttle.cancel_launch(src)
 
 	else if (href_list["order"])
-		//if(!shuttle.idle()) return	//this shouldn't be necessary it seems
 		if(href_list["order"] == "categories")
-			//all_supply_groups
-			//Request what?
 			last_viewed_group = "categories"
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
@@ -503,14 +467,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
 				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
-
-		/*temp = "Supply points: [round(SSpoints.supply_points)]<BR><HR><BR>Request what?<BR><BR>"
-		for(var/supply_name in supply_controller.supply_packs )
-			var/datum/supply_packs/N = supply_controller.supply_packs[supply_name]
-			if(N.hidden && !hacked) continue
-			if(N.contraband && !can_order_contraband) continue
-			temp += "<A href='?src=\ref[src];doorder=[supply_name]'>[supply_name]</A> Cost: [N.cost]<BR>"    //the obj because it would get caught by the garbage
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"*/
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -600,17 +556,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			var/datum/supply_order/SO = S
 			temp += "#[SO.id] - [SO.pack.name] approved by [SO.orderer][SO.reason ? " ([SO.reason])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-/*
-	else if (href_list["cancelorder"])
-		var/datum/supply_order/remove_supply = href_list["cancelorder"]
-		supply_shuttle_shoppinglist -= remove_supply
-		supply_shuttle_points += remove_supply.object.cost
-		temp += "Canceled: [remove_supply.object.name]<BR><BR><BR>"
-		for(var/S in supply_shuttle_shoppinglist)
-			var/datum/supply_order/SO = S
-			temp += "[SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""] <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-*/
+
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in SSshuttle.requestlist)
@@ -640,4 +586,3 @@ GLOBAL_LIST_EMPTY(exports_types)
 		temp = null
 
 	updateUsrDialog()
-	return

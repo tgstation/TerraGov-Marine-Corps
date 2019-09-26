@@ -11,7 +11,7 @@
 	force = 5
 	throwforce = 8
 	item_state = "shard-glass"
-	matter = list("glass" = 3750)
+	materials = list(/datum/material/glass = 3750)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 	var/source_sheet_type = /obj/item/stack/sheet/glass
 	var/shardsize
@@ -25,7 +25,8 @@
 	return ..()
 
 
-/obj/item/shard/New()
+/obj/item/shard/Initialize()
+	. = ..()
 	shardsize = pick("large", "medium", "small")
 	switch(shardsize)
 		if("small")
@@ -38,7 +39,6 @@
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
 	icon_state += shardsize
-	..()
 
 
 /obj/item/shard/attackby(obj/item/I, mob/user, params)
@@ -97,10 +97,17 @@
 	name = "shrapnel"
 	icon_state = "shrapnel"
 	desc = "A bunch of tiny bits of shattered metal."
-	matter = list("metal" = 50)
+	materials = list(/datum/material/metal = 50)
 	source_sheet_type = null
+	embedding = list("embedded_flags" = EMBEDDEED_DEL_ON_HOLDER_DEL, "embed_chance" = 0, "embedded_fall_chance" = 0)
 
 
+/obj/item/shard/shrapnel/Initialize(mapload, new_name, new_desc)
+	. = ..()
+	if(!isnull(new_name))
+		name = new_name
+	if(!isnull(new_desc))
+		desc += new_desc
 
 
 /obj/item/shard/phoron
@@ -110,6 +117,3 @@
 	throwforce = 15
 	icon_state = "phoron"
 	source_sheet_type = /obj/item/stack/sheet/glass/phoronglass
-
-
-

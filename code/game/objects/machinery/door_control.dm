@@ -30,9 +30,6 @@
 	name = "AI Interior Lockdown"
 	id = "ailockdowninterior"
 
-/obj/machinery/door_control/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -125,8 +122,6 @@
 /obj/machinery/driver_button/attack_ai(mob/living/silicon/ai/AI)
 	return attack_hand(AI)
 
-/obj/machinery/driver_button/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
 
 /obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()

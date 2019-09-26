@@ -11,7 +11,10 @@
 	return ..()
 
 
-/datum/wires/radio/interactable(mob/user)
+/datum/wires/radio/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/item/radio/R = holder
 	return R.unscrewed
 

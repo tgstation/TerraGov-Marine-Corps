@@ -34,12 +34,11 @@
 	component_parts += new /obj/item/stock_parts/capacitor
 	component_parts += new /obj/item/stock_parts/capacitor
 
-/obj/machinery/power/smes/batteryrack/New()
-	..()
+/obj/machinery/power/smes/batteryrack/Initialize()
+	. = ..()
 	add_parts()
 	RefreshParts()
 	start_processing()
-	return
 
 
 //Maybe this should be moved up to obj/machinery
@@ -128,11 +127,6 @@
 		component_parts += I
 		RefreshParts()
 		to_chat(user, "<span class='notice'>You upgrade the [src] with [I].</span>")
-	
-	else
-		user.set_interaction(src)
-		interact(user)
-		return TRUE
 
 
 //The shitty one that will blow up.

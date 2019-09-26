@@ -63,17 +63,12 @@
 /obj/machinery/computer/nuke_disk_generator/attackby(obj/item/I, mob/living/user, params)
 	return attack_hand(user)
 
-/obj/machinery/computer/nuke_disk_generator/attack_hand(mob/living/user)
+
+/obj/machinery/computer/nuke_disk_generator/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-
-	interact(user)
-
-/obj/machinery/computer/nuke_disk_generator/interact(mob/user)
-	user.set_interaction(src)
 	var/dat = ""
-	dat += "<a href='?src=[REF(src)];mach_close=computer'>Close</a><br><br>"
 	dat += "<div align='center'><a href='?src=[REF(src)];generate=1'>Run Program</a></div>"
 	dat += "<br/>"
 	dat += "<hr/>"

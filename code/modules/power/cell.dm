@@ -63,16 +63,6 @@
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			to_chat(user, "<span class='danger'>This power cell looks jury rigged to explode!</span>")
 
-/*
-/obj/item/cell/attack_self(mob/user as mob)
-//	if(ishuman(user))
-//		var/mob/living/carbon/human/H = user
-//		var/obj/item/clothing/gloves/space_ninja/SNG = H.gloves
-//		if(!istype(SNG) || !SNG.candrain || !SNG.draining) return
-//
-//		SNG.drain("CELL",src,H.wear_suit)
-	return ..()
-*/
 
 /obj/item/cell/attack_self(mob/user as mob)
 	if(rigged)

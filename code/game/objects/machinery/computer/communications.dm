@@ -38,23 +38,10 @@
 	var/stat_msg2
 
 
-/obj/machinery/computer/communications/Initialize(mapload)
-	. = ..()
-	start_processing()
-
-/obj/machinery/computer/communications/process()
-	. = ..()
-	if(!.)
-		return
-	if(state != STATE_STATUSDISPLAY)
-		updateUsrDialog()
-
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		if("main")
@@ -312,23 +299,12 @@
 
 	updateUsrDialog()
 
-/obj/machinery/computer/communications/attack_ai(mob/living/silicon/ai/AI)
-	return attack_hand(AI)
 
-/obj/machinery/computer/communications/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/communications/attack_hand(mob/living/user)
+/obj/machinery/computer/communications/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
-	if(!istype(loc.loc, /area/mainship/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
-		to_chat(usr, "<span class='warning'>Unable to establish a connection.</span>")
-		return FALSE
-
-	user.set_interaction(src)
 	var/dat
 	if(SSevacuation.evac_status == EVACUATION_STATUS_INITIATING)
 		dat += "<B>Evacuation in Progress</B>\n<BR>\nETA: [SSevacuation.get_status_panel_eta()]<BR>"
@@ -421,7 +397,7 @@
 			dat += "Confirm the change to: [GLOB.marine_main_ship.get_security_level(tmp_alertlevel)]<BR>"
 			dat += "<A HREF='?src=\ref[src];operation=swipeidseclevel'>Swipe ID</A> to confirm change.<BR>"
 
-	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
+	dat += "<BR>\[ [(state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A>|" : ""]\]"
 
 	var/datum/browser/popup = new(user, "communications", "<div align='center'>Communications Console</div>", 400, 500)
 	popup.set_content(dat)

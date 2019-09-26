@@ -507,13 +507,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(wear_suit && (wear_suit.flags_inv_hide & HIDESHOES))
 		return
 	if(shoes)
+		var/state = shoes.item_state ? shoes.item_state : shoes.icon_state
 		var/image/standing
 		if(shoes.icon_override)
-			standing = image("icon" = shoes.icon_override, "icon_state" = "[shoes.icon_state]", "layer" =-SHOES_LAYER)
+			standing = image("icon" = shoes.icon_override, "icon_state" = "[state]", "layer" =-SHOES_LAYER)
 		else if(shoes.sprite_sheets && shoes.sprite_sheets[species.name])
-			standing = image("icon" = shoes.sprite_sheets[species.name], "icon_state" = "[shoes.icon_state]", "layer" =-SHOES_LAYER)
+			standing = image("icon" = shoes.sprite_sheets[species.name], "icon_state" = "[state]", "layer" =-SHOES_LAYER)
 		else
-			standing = image("icon" = 'icons/mob/feet.dmi', "icon_state" = "[shoes.icon_state]", "layer" =-SHOES_LAYER)
+			standing = image("icon" = 'icons/mob/feet.dmi', "icon_state" = "[state]", "layer" =-SHOES_LAYER)
 
 		if(shoes.blood_overlay)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")

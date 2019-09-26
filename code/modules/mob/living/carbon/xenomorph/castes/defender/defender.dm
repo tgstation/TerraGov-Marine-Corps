@@ -13,14 +13,7 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/toggle_crest_defense,
-		/datum/action/xeno_action/fortify,
-		/datum/action/xeno_action/activable/forward_charge,
-		/datum/action/xeno_action/activable/tail_sweep
-		)
+
 
 // ***************************************
 // *********** Icon

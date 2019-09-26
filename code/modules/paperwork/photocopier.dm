@@ -18,7 +18,7 @@
 	var/busy = FALSE
 
 
-/obj/machinery/photocopier/attack_hand(mob/living/user)
+/obj/machinery/photocopier/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -41,7 +41,7 @@
 
 	var/datum/browser/browser = new(user, "copier")
 	browser.set_content(dat)
-	browser.open(TRUE)
+	browser.open()
 
 
 /obj/machinery/photocopier/Topic(href, href_list)
@@ -81,8 +81,6 @@
 				sleep(15)
 				busy = FALSE
 
-			updateUsrDialog()
-		
 		if(photocopy)
 			for(var/i = 0, i < copies, i++)
 				if(toner < 5 || busy || !photocopy)
@@ -93,8 +91,6 @@
 				sleep(15)
 				busy = FALSE
 
-		updateUsrDialog()
-
 	else if(href_list["remove"])
 		if(copy)
 			remove_photocopy(copy, usr)
@@ -102,24 +98,22 @@
 		else if(photocopy)
 			remove_photocopy(photocopy, usr)
 			photocopy = null
-		updateUsrDialog()
 
 	else if(href_list["min"])
 		if(copies > 1)
 			copies--
-			updateUsrDialog()
 
 	else if(href_list["add"])
 		if(copies < maxcopies)
 			copies++
-			updateUsrDialog()
 
 	else if(href_list["colortoggle"])
 		if(greytoggle == "Greyscale")
 			greytoggle = "Color"
 		else
 			greytoggle = "Greyscale"
-		updateUsrDialog()
+		
+	updateUsrDialog()
 
 
 /obj/machinery/photocopier/proc/do_insertion(obj/item/O, mob/user)

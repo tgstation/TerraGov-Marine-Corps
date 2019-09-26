@@ -404,10 +404,10 @@
 	icon_state = "ob_fuel"
 	is_solid_fuel = 1
 
-/obj/structure/ob_ammo/ob_fuel/New()
-	..()
-	pixel_x = rand(-5,5)
-	pixel_y = rand(-5,5)
+/obj/structure/ob_ammo/ob_fuel/Initialize()
+	. = ..()
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 
 
@@ -427,7 +427,7 @@
 	return
 
 
-/obj/machinery/computer/orbital_cannon_console/attack_hand(mob/living/user)
+/obj/machinery/computer/orbital_cannon_console/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -439,9 +439,7 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	user.set_interaction(src)
-
-	var/dat = "<font size=5><center>Orbital Cannon System Control Console</center></font><HR>"
+	var/dat
 	if(!GLOB.marine_main_ship?.orbital_cannon)
 		dat += "No Orbital Cannon System Detected!<BR>"
 	else if(!GLOB.marine_main_ship.orbital_cannon.tray)
@@ -474,8 +472,10 @@
 
 		dat += "<HR><BR><A href='?src=\ref[src];close=1'><font size=3>Close</font></A><BR>"
 
-	user << browse(dat, "window=orbital_console;size=500x350")
-	onclose(user, "orbital_console")
+
+	var/datum/browser/popup = new(user, "orbital_console", "<div align='center'>Orbital Cannon System Control Console</div>", 500, 350)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/computer/orbital_cannon_console/Topic(href, href_list)
@@ -498,12 +498,8 @@
 	else if(href_list["back"])
 		orbital_window_page = 0
 
-	else if(href_list["close"])
-		usr << browse(null, "window=orbital_console")
-		usr.unset_interaction()
+	updateUsrDialog()
 
-//	updateUsrDialog()
-	attack_hand(usr)
 
 /obj/structure/ship_rail_gun
 	name = "\improper Rail Gun"

@@ -116,6 +116,7 @@
 #define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
 #define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
+#define TK_USER			(1<<8)
 
 // =============================
 // hive types
@@ -579,8 +580,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_BUMP		"bump"
 #define COOLDOWN_ENTANGLE	"entangle"
 #define COOLDOWN_NEST		"nest"
+#define COOLDOWN_TASTE		"taste"
+#define COOLDOWN_VENTSOUND	"vendsound"
 
 // Xeno Cooldowns
 // -- Ravager
-#define COOLDOWN_RAV_LAST_RAGE		"last_rage"
 #define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"

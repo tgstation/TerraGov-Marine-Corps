@@ -13,7 +13,7 @@
 	caliber = "10x20mm caseless"
 	icon_state = "m39"
 	max_rounds = 60
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/m39
 
 /obj/item/ammo_magazine/smg/m39/ap

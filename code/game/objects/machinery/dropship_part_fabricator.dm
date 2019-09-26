@@ -22,12 +22,11 @@
 	else
 		icon_state = "drone_fab_idle"
 
-/obj/machinery/dropship_part_fabricator/attack_hand(mob/living/user)
+/obj/machinery/dropship_part_fabricator/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = "<center><h2>Dropship Part Fabricator</h2></center><hr/>"
+	var/dat
 	dat += "<h4>Points Available: [SSpoints.dropship_points]</h4>"
 	dat += "<h3>Dropship Equipment:</h3>"
 	for(var/build_type in typesof(/obj/structure/dropship_equipment))
@@ -45,10 +44,9 @@
 		if(build_cost)
 			dat += "<a href='byond://?src=\ref[src];produce=[build_type]'>[build_name] ([build_cost])</a><br>"
 
-
-	user << browse(dat, "window=dropship_part_fab")
-	onclose(user, "dropship_part_fab")
-	return
+	var/datum/browser/popup = new(user, "dropship_part_fab", "<div align='center'>Dropship Part Fabricator</div>")
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/dropship_part_fabricator/proc/build_dropship_part(part_type, cost, mob/user)
 	if(machine_stat & NOPOWER) return
@@ -72,8 +70,6 @@
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")

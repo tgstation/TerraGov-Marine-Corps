@@ -2,6 +2,8 @@
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
+	materials = list(/datum/material/metal = 50)
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 
 	var/item_state = null //if you don't want to use icon_state for onmob inhand/belt/back/ear/suitstorage/glove sprite.
@@ -49,6 +51,8 @@
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
 	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
+	var/datum/embedding_behavior/embedding
+	var/mob/living/embedded_into
 
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
@@ -82,6 +86,11 @@
 	if(w_class <= 3) //pulling small items doesn't slow you down much
 		drag_delay = 1
 
+	if(!embedding)
+		embedding = getEmbeddingBehavior()
+	else if(islist(embedding))
+		embedding = getEmbeddingBehavior(arglist(embedding))
+
 
 /obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
@@ -92,6 +101,8 @@
 	for(var/X in actions)
 		qdel(X)
 	master = null
+	embedding = null
+	embedded_into = null //Should have been removed by temporarilyRemoveItemFromInventory, but let's play it safe.
 	return ..()
 
 
@@ -117,6 +128,13 @@
 	var/turf/T = loc
 	loc = null
 	loc = T
+
+
+/obj/item/attack_ghost(mob/dead/observer/user)
+	if(!can_interact(user))
+		return
+
+	return interact(user)
 
 
 /obj/item/attack_hand(mob/living/user)
@@ -149,9 +167,6 @@
 		user.dropItemToGround(src)
 		dropped(user)
 
-
-/obj/item/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -593,19 +608,36 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(!user.IsAdvancedToolUser())
+		return
+
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
-	else if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+		return
+
+	if(!zoom && user.get_total_tint() >= TINT_HEAVY)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_held_item() != src)
+		return
+
+	if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
-	else if(zoom) //If we are zoomed out, reset that parameter.
+		return
+
+	if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
-		zoom = !zoom
+		zoom = FALSE
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
+		
+		if(user.interactee == src)
+			user.unset_interaction()
+
+		if(user.client)
+			user.client.change_view(world.view)
+			user.client.pixel_x = 0
+			user.client.pixel_y = 0
+
 	else //Otherwise we want to zoom in.
 		if(user.cooldowns[COOLDOWN_ZOOM]) //If we are spamming the zoom, cut it out
 			return
@@ -633,18 +665,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
 		"<span class='notice'>You peer through \the [zoom_device].</span>")
-		zoom = !zoom
+		zoom = TRUE
 		if(user.interactee)
 			user.unset_interaction()
 		else if(!istype(src, /obj/item/attachable/scope))
 			user.set_interaction(src)
-		return
 
-	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
-	if(user.client)
-		user.client.change_view(world.view)
-		user.client.pixel_x = 0
-		user.client.pixel_y = 0
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))
@@ -861,3 +887,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Used in a callback that is passed by use_tool into do_after call. Do not override, do not call manually.
 /obj/item/proc/tool_check_callback(mob/living/user, amount, datum/callback/extra_checks)
 	return tool_use_check(user, amount) && (!extra_checks || extra_checks.Invoke())
+
+
+/obj/item/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!user.CanReach(src))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/attack_self(mob/user)
+	if(!can_interact(user))
+		return
+
+	interact(user)

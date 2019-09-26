@@ -13,7 +13,6 @@
 	var/total_message_weight = 0 //The total weight of the messages sent per a time period.
 	var/ircreplyamount = 0
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
-	var/ai_interact = FALSE
 
 	//Preferences related
 	var/datum/preferences/prefs 	= null
@@ -22,6 +21,7 @@
 
 	//Mob related
 	var/list/keys_held = list() // A list of any keys held currently
+	var/current_key_address = 0
 	// These next two vars are to apply movement for keypresses and releases made while move delayed.
 	// Because discarding that input makes the game less responsive.
 	var/next_move_dir_add // On next move, add this dir to the move that would otherwise be done

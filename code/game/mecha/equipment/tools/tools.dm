@@ -48,7 +48,6 @@
 	name = "Armor Booster Module (Ranged Weaponry)"
 	desc = "Boosts exosuit armor against ranged attacks. Completely blocks taser shots. Requires energy to operate."
 	icon_state = "mecha_abooster_proj"
-	origin_tech = "materials=4"
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
 	name = "Repair Droid"

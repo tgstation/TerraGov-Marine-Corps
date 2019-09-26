@@ -23,7 +23,6 @@
 	throw_speed = 3
 	throw_range = 5
 	flags_atom = CONDUCT
-	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
 	var/loaded      //Descriptive string for currently loaded food object.
@@ -127,8 +126,6 @@
 	throwforce = 6.0
 	throw_speed = 3
 	throw_range = 6
-	matter = list("metal" = 12000)
-	origin_tech = "materials=1"
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/tool/kitchen/knife/suicide_act(mob/user)
@@ -156,8 +153,6 @@
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
-	matter = list("metal" = 12000)
-	origin_tech = "materials=1"
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
@@ -222,7 +217,6 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT
-	matter = list("metal" = 3000)
 	/* // NOPE
 	var/food_total= 0
 	var/burger_amt = 0

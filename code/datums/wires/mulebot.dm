@@ -13,10 +13,12 @@
 	return ..()
 
 
-/datum/wires/mulebot/interactable(mob/user)
+/datum/wires/mulebot/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/bot/mulebot/M = holder
-	if(M.open)
-		return TRUE
+	return M.open
 
 
 /datum/wires/mulebot/on_pulse(wire)

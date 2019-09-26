@@ -373,7 +373,6 @@
 
 /datum/skillset/pfc/pmc
 	name = "PMC Private"
-	police = SKILL_LEVEL_TRAINED
 	construction = SKILL_LEVEL_NOVICE
 	engineer = SKILL_LEVEL_NOVICE
 
@@ -417,7 +416,6 @@
 	rifles = SKILL_LEVEL_TRAINED
 	shotguns = SKILL_LEVEL_TRAINED
 	heavy_weapons = SKILL_LEVEL_TRAINED
-	police = SKILL_LEVEL_TRAINED
 
 
 /datum/skillset/specialist
@@ -432,7 +430,7 @@
 
 /datum/skillset/specialist/pmc
 	name = "PMC Specialist"
-	police = SKILL_LEVEL_TRAINED
+	engineer = SKILL_LEVEL_NOVICE
 
 
 /datum/skillset/specialist/upp
@@ -465,7 +463,6 @@
 	rifles = SKILL_LEVEL_TRAINED
 	shotguns = SKILL_LEVEL_TRAINED
 	heavy_weapons = SKILL_LEVEL_TRAINED
-	police = SKILL_LEVEL_TRAINED
 
 
 

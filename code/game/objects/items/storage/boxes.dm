@@ -418,9 +418,6 @@
 /obj/item/storage/box/MRE/remove_from_storage()
 	. = ..()
 	if(. && !contents.len && !gc_destroyed)
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 		qdel(src)
 
 /obj/item/storage/box/MRE/update_icon()

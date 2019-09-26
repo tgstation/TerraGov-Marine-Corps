@@ -5,7 +5,7 @@
 	item_state = "analyzer"
 	w_class = WEIGHT_CLASS_SMALL
 
-	matter = list("metal" = 60,"glass" = 30)
+	materials = list(/datum/material/metal = 60, /datum/material/glass = 30)
 
 	var/recording = 0.0
 	var/playing = 0.0

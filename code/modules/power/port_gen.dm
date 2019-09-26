@@ -7,6 +7,7 @@
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
+	interaction_flags = INTERACT_MACHINE_NANO
 
 	var/active = FALSE
 	var/power_gen = 5000
@@ -193,18 +194,6 @@
 
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-
-/obj/machinery/power/port_gen/pacman/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	ui_interact(user)
-
-/obj/machinery/power/port_gen/pacman/attack_ai(mob/user as mob)
-	ui_interact(user)
-
-/obj/machinery/power/port_gen/pacman/attack_paw(mob/living/carbon/monkey/user)
-	ui_interact(user)
 
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	. = ..()

@@ -2,6 +2,7 @@
 	name = "advanced camera console"
 	desc = "Used to access the various cameras on the ship."
 	icon_state = "cameras"
+	interaction_flags = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
 	var/open_prompt = TRUE
@@ -145,10 +146,6 @@
 	else
 		give_eye_control(L)
 		eyeobj.setLoc(eyeobj.loc)
-
-
-/obj/machinery/computer/camera_advanced/attack_ai(mob/user)
-	return
 
 
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)

@@ -3053,7 +3053,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "rf" = (
-/obj/item/weapon/gun/rifle/mar40/carbine,
+/obj/item/weapon/gun/rifle/ak47/carbine,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rg" = (
@@ -3096,7 +3096,7 @@
 /turf/open/floor,
 /area/deathmatch)
 "rm" = (
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "rn" = (

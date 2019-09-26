@@ -7,11 +7,6 @@
 	//The analgesic effect wears off slowly
 	analgesic = max(0, analgesic - 1)
 
-	//Periodically double-check embedded_flag
-	if(embedded_flag && !(life_tick % 10))
-		if(!get_visible_implants(0))
-			embedded_flag = FALSE
-
 	//If you're dirty, your gloves will become dirty, too.
 	if(gloves && germ_level > gloves.germ_level && prob(10))
 		gloves.germ_level++

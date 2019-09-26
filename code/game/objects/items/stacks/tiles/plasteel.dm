@@ -5,18 +5,17 @@
 	icon_state = "tile"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6.0
-	matter = list("metal" = 937.5)
+	materials = list(/datum/material/metal = 1000)
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
 	flags_atom = CONDUCT
 	max_amount = 60
 
-/obj/item/stack/tile/plasteel/New(loc, amount=null)
-	..()
-	src.pixel_x = rand(1, 14)
-	src.pixel_y = rand(1, 14)
-	return
+/obj/item/stack/tile/plasteel/Initialize()
+	. = ..()
+	pixel_x = rand(1, 14)
+	pixel_y = rand(1, 14)
 
 /*
 /obj/item/stack/tile/plasteel/attack_self(mob/user as mob)

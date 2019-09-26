@@ -18,7 +18,7 @@
 	var/list/obj/machinery/targets = list()
 
 /obj/machinery/door_display/Initialize()
-	..()
+	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/door_display/LateInitialize()
@@ -62,51 +62,30 @@
 
 	return TRUE
 
-// Allows AIs to use door_display, see human attack_hand function below
-/obj/machinery/door_display/attack_ai(mob/user as mob)
-	return attack_hand(user)
 
-// Allows humans to use door_display
-// Opens dialog window when someone clicks on door timer
-// Allows altering timer and the timing boolean.
-/obj/machinery/door_display/attack_hand(mob/living/user)
+/obj/machinery/door_display/interact(mob/user)
 	. = ..()
 	if(.)
 		return
 
-	user.set_interaction(src)
-
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
-	popup.set_content(display_contents(user))
-	popup.open(FALSE)
-
-/obj/machinery/door_display/proc/display_contents(mob/user as mob)
-	var/data = "<HTML><BODY><TT>"
-
+	var/data
 	data += "<HR>Linked Door:</hr>"
 	data += " <b> [id]</b><br/>"
 
-	if (open)
+	if(open)
 		data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
 	else
 		data += "<a href='?src=\ref[src];open=1'>Open Door</a><br/>"
+	
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
+	popup.set_content(data)
+	popup.open()
 
-	data += "<br/>"
-
-	data += "<br/><a href='?src=\ref[user];mach_close=computer'>Close Display</a>"
-	data += "</TT></BODY></HTML>"
-
-	return data
 
 /obj/machinery/door_display/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	if(!allowed(usr))
-		return TRUE
-
-	usr.set_interaction(src)
 
 	if(href_list["open"])
 		if (open)
@@ -144,7 +123,10 @@
 		if(F.id == id)
 			targets += F
 
-/obj/machinery/door_display/research_cell/display_contents(mob/user as mob)
+/obj/machinery/door_display/research_cell/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 
 	var/data = "<hr>Linked Door:</hr>"
 	data += " <b> [id]</b><br/><br/>"
@@ -170,11 +152,10 @@
 		else
 			data += "<a href='?src=\ref[src];flasher=1'>Activate Flash</a>"
 
-	data += "<br/>"
+	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
+	popup.set_content(data)
+	popup.open()
 
-	data += "<a href='?src=\ref[user];mach_close=computer'>Close Display</a>"
-
-	return data
 
 /obj/machinery/door_display/research_cell/Topic(href, href_list)
 	. = ..()

@@ -62,8 +62,7 @@
 
 	if(length(actions))
 		xeno_strings += "<br><U>This has the following abilities</U>:"
-		for(var/X in actions)
-			var/datum/action/xeno_action/A = X
+		for(var/datum/action/xeno_action/A in actions)
 			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]<br>"
 
 	. += jointext(xeno_strings, "<br>")

@@ -40,7 +40,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -50,6 +50,17 @@
 	huggers_max = 8
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 3
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/throw_hugger,
+		/datum/action/xeno_action/activable/retrieve_egg,
+		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/toggle_pheromones
+		)
 
 /datum/xeno_caste/carrier/young
 	upgrade_name = "Young"

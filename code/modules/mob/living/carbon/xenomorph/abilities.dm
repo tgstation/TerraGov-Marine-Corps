@@ -123,6 +123,10 @@
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
 
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return fail_activate()
+
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
@@ -814,9 +818,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
-	if(actions && actions.len)
-		for(var/action_path in actions)
-			if(ispath(action_path))
-				actions -= action_path
-				var/datum/action/xeno_action/A = new action_path()
-				A.give_action(src)
+	for(var/action_path in xeno_caste.actions)
+		var/datum/action/xeno_action/A = new action_path()
+		A.give_action(src)
+
+
+/mob/living/carbon/xenomorph/proc/remove_abilities()
+	for(var/action_datum in actions)
+		qdel(action_datum)

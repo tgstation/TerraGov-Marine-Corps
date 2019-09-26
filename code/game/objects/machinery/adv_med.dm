@@ -178,6 +178,7 @@
 	. = ..()
 	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 
+
 /obj/machinery/body_scanconsole/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "body_scannerconsole-p"
@@ -186,87 +187,37 @@
 	else
 		icon_state = initial(icon_state)
 
-/*
 
-/obj/machinery/body_scanconsole/process() //not really used right now
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-	//use_power(250) // power stuff
+/obj/machinery/body_scanconsole/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 
-//	var/mob/M //occupant
-//	if (!( src.limb_status )) //remove this
-//		return
-//	if ((src.connected && src.connected.occupant)) //connected & occupant ok
-//		M = src.connected.occupant
-//	else
-//		if (istype(M, /mob))
-//		//do stuff
-//		else
-///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."
-//			src.limb_status = null
-//	src.updateUsrDialog()
-//	return
+	if(!connected || !connected.is_operational())
+		return FALSE
 
-*/
+	if(!ishuman(connected.occupant))
+		return FALSE
+
+	return TRUE
 
 
-/obj/machinery/body_scanconsole/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/body_scanconsole/attack_ai(user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/body_scanconsole/attack_hand(mob/living/user)
+/obj/machinery/body_scanconsole/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(machine_stat & (NOPOWER|BROKEN))
-		return
-	if(!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
-		to_chat(user, "<span class='warning'>This console is not connected to a functioning body scanner.</span>")
-		return
-	if(!ishuman(connected.occupant))
-		to_chat(user, "<span class='warning'>This device can only scan compatible lifeforms.</span>")
-		return
 
 	var/dat
-	if (delete && temphtml) //Window in buffer but its just simple message, so nothing
-		delete = delete
-	else if (!delete && temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", temphtml, src)
+	if(connected?.occupant) //Is something connected?
+		var/mob/living/carbon/human/H = connected.occupant
+		dat = med_scan(H, dat, known_implants)
 	else
-		if (connected) //Is something connected?
-			var/mob/living/carbon/human/H = connected.occupant
-			dat = med_scan(H, dat, known_implants)
-		else
-			dat = "<font color='red'> Error: No Body Scanner connected.</font>"
-
-	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
+		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
 	var/datum/browser/popup = new(user, "scanconsole", "<div align='center'>Body Scanner Console</div>", 430, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-
-/obj/machinery/body_scanconsole/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if (href_list["print"])
-		if (!src.connected)
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: No body scanner connected.</span>")
-			return
-		var/mob/living/carbon/human/occupant = src.connected.occupant
-		if (!src.connected.occupant)
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner is empty.</span>")
-			return
-		if (!istype(occupant,/mob/living/carbon/human))
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
-			return
-		var/obj/item/paper/R = new(src.loc)
-		R.name = "Body scan report -[src.connected.occupant.real_name]-"
-		R.info = format_occupant_data(src.connected.get_occupant_data())
 
 /obj/machinery/bodyscanner/examine(mob/living/user)
 	. = ..()

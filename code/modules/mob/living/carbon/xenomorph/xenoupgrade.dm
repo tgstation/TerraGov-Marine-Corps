@@ -9,6 +9,15 @@
 	"<span class='xenonotice'>We begin to twist and contort.</span>")
 	do_jitter_animation(1000)
 	set_datum()
+	var/selected_ability_type = selected_ability?.type
+	remove_abilities()
+	add_abilities()
+	if(selected_ability_type)
+		for(var/datum/action/xeno_action/activable/activable_ability in actions)
+			if(selected_ability_type != activable_ability.type)
+				continue
+			activable_ability.select()
+			break
 
 	switch(upgrade)
 		//FIRST UPGRADE
@@ -40,6 +49,15 @@
 	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/xenomorph/runner/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/bull/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/bull/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/drone/mature

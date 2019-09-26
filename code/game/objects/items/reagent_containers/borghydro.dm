@@ -17,8 +17,8 @@
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
-/obj/item/reagent_container/borghypo/New()
-	..()
+/obj/item/reagent_container/borghypo/Initialize()
+	. = ..()
 
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume

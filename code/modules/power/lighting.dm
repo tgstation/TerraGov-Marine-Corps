@@ -23,9 +23,9 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New()
-	..()
-	if (fixture_type == "bulb")
+/obj/machinery/light_construct/Initialize()
+	. = ..()
+	if(fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
@@ -395,8 +395,7 @@
 // ai attack - make lights flicker, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
-	return
+	flicker(1)
 
 
 //Xenos smashing lights
@@ -549,7 +548,6 @@
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
-	matter = list("metal" = 60)
 	var/rigged = 0		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
 
@@ -563,7 +561,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 8
 
 /obj/item/light_bulb/tube/large
@@ -577,7 +575,7 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list("glass" = 100)
+	materials = list(/datum/material/glass = 100)
 	brightness = 5
 
 /obj/item/light_bulb/bulb/fire
@@ -586,7 +584,6 @@
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list("glass" = 100)
 	brightness = 5
 
 // update the icon state and description of the light
@@ -604,8 +601,8 @@
 			desc = "A broken [name]."
 
 
-/obj/item/light_bulb/New()
-	..()
+/obj/item/light_bulb/Initialize()
+	. = ..()
 	switch(name)
 		if("light tube")
 			brightness = rand(6,9)
@@ -667,7 +664,8 @@
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/landinglight/New()
+/obj/machinery/landinglight/Initialize()
+	. = ..()
 	turn_off()
 
 /obj/machinery/landinglight/proc/turn_off()

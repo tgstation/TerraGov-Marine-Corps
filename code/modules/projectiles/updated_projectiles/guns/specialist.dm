@@ -5,9 +5,9 @@
 //Because this parent type did not exist
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
-	aim_slowdown = SLOWDOWN_ADS_SCOPE
+	aim_slowdown = 1
 	gun_skill_category = SKILL_SPEC_WEAPONS
-	wield_delay = WIELD_DELAY_SLOW
+	wield_delay = 1 SECONDS
 
 //Pow! Headshot
 
@@ -18,7 +18,6 @@
 	item_state = "m42a"
 	max_shells = 15 //codex
 	caliber = "10x28mm"
-	origin_tech = "combat=6;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
@@ -40,6 +39,12 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/scope/m42a, /obj/item/attachable/sniperbarrel)
+
+	fire_delay = 2.5 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.50
+	recoil = 2
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
 	. = ..()
@@ -162,7 +167,7 @@
 	targetmarker_on = TRUE
 	RegisterSignal(src, COMSIG_PROJ_SCANTURF, .proc/scan_turf_for_target)
 	START_PROCESSING(SSobj, src)
-	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+	accuracy_mult += 0.50 //We get a big accuracy bonus vs the lasered target
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/deactivate_laser_target()
@@ -195,7 +200,7 @@
 	if(targetmarker_on)
 		if(laser_target)
 			deactivate_laser_target()
-		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
+		accuracy_mult -= 0.50 //We lose a big accuracy bonus vs the now unlasered target
 		STOP_PROCESSING(SSobj, src)
 		targetmarker_on = FALSE
 	targetmarker_primed = FALSE
@@ -204,14 +209,6 @@
 		to_chat(user, "<span class='notice'><b>You deactivate your target marker.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
-
-
-/obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
-	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle
@@ -227,7 +224,6 @@
 	item_state = "m42c"
 	max_shells = 6 //codex
 	caliber = "10x99mm"
-	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
@@ -241,13 +237,11 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
-/obj/item/weapon/gun/rifle/sniper/elite/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
-	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
+	fire_delay = 2.5 SECONDS
+	accuracy_mult = 1.50
+	scatter = 15
+	recoil = 5
+
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
@@ -267,7 +261,6 @@
 	item_state = "svd"
 	max_shells = 10 //codex
 	caliber = "7.62x54mm Rimmed" //codex
-	origin_tech = "combat=5;materials=3;syndicate=5"
 	fire_sound = 'sound/weapons/guns/fire/svd.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
@@ -288,13 +281,11 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 
-/obj/item/weapon/gun/rifle/sniper/svd/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 1.2 SECONDS
+	burst_amount = 2
+	accuracy_mult = 0.85
+	scatter = 15
+	recoil = 2
 
 
 
@@ -307,7 +298,6 @@
 	item_state = "m4ra"
 	max_shells = 15 //codex
 	caliber = "10x24mm caseless" //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -332,15 +322,13 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
-/obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	burst_accuracy_mult = CONFIG_GET(number/combat_define/min_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
+	fire_delay = 0.4 SECONDS
+	burst_amount = 2
+	burst_delay = 0.1 SECONDS
+	burst_accuracy_mult = 0.9
+	accuracy_mult = 1.05
+	scatter = 15
+	recoil = 2
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -353,7 +341,6 @@
 	item_state = "m56"
 	max_shells = 100 //codex
 	caliber = "10x28mm Caseless" //codex
-	origin_tech = "combat=6;materials=5"
 	fire_sound = "gun_smartgun"
 	load_method = POWERPACK //codex
 	current_mag = /obj/item/ammo_magazine/internal/smartgun
@@ -361,7 +348,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 1.6 SECONDS
-	aim_slowdown = SLOWDOWN_ADS_SMARTGUN
+	aim_slowdown = 1.5
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
 	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
@@ -379,18 +366,16 @@
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
+	fire_delay = 0.4 SECONDS
+	burst_amount = 3
+	accuracy_mult = 1.15
+	damage_falloff_mult = 0.5
+
+
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
 	ammo_secondary = GLOB.ammo_list[ammo_secondary]
 
-/obj/item/weapon/gun/smartgun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/smartgun/examine_ammo_count(mob/user)
 	to_chat(user, "[current_mag?.current_rounds ? "Ammo counter shows [current_mag.current_rounds] round\s remaining." : "It's dry."]")
@@ -463,19 +448,13 @@
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
 	attachable_allowed = list() //Cannot be upgraded.
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-/obj/item/weapon/gun/smartgun/dirty/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 0.3 SECONDS
+	accuracy_mult = 1.1
 
 
 //-------------------------------------------------------
@@ -489,8 +468,6 @@
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 6000)
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
@@ -500,7 +477,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	aim_slowdown = 1
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -510,18 +487,13 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
+	fire_delay = 2 SECONDS
+
+
 /obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	for(var/i in 1 to 6)
 		grenades += new /obj/item/explosive/grenade/frag(src)
-
-/obj/item/weapon/gun/launcher/m92/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m92/examine_ammo_count(mob/user)
@@ -629,16 +601,15 @@
 	max_shells = 1 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=5"
-	matter = list("metal" = 7000)
+	materials = list(/datum/material/metal = 7000)
 	w_class = WEIGHT_CLASS_BULKY
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = WIELD_DELAY_VERY_FAST
+	wield_delay = 0.2 SECONDS
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
+	aim_slowdown = 1
 	gun_skill_category = SKILL_SPEC_WEAPONS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_allowed = list()
@@ -647,6 +618,9 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
+	fire_delay = 1.05 SECONDS
+
+
 /obj/item/weapon/gun/launcher/m81/Initialize(mapload, spawn_empty)
 	. = ..()
 	if(!spawn_empty)
@@ -654,12 +628,6 @@
 			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
 		else
 			grenade = new /obj/item/explosive/grenade/frag(src)
-
-/obj/item/weapon/gun/launcher/m81/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 1.5
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m81/examine_ammo_count(mob/user)
@@ -767,15 +735,14 @@
 	max_shells = 1 //codex
 	caliber = "84mm rockets" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=6;materials=5"
-	matter = list("metal" = 10000)
+	materials = list(/datum/material/metal = 10000)
 	current_mag = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
 	wield_delay = 12
-	wield_penalty = WIELD_DELAY_VERY_SLOW
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_HEAVY
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -787,6 +754,10 @@
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -826,13 +797,6 @@
 
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
-
-/obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/weapon/gun/launcher/rocket/examine_ammo_count(mob/user)
@@ -933,21 +897,15 @@
 	max_shells = 4 //codex
 	caliber = "84mm rockets" //codex
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rocket/m57a4
-	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
+	aim_slowdown = 2.75
 	attachable_allowed = list()
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 
-
-/obj/item/weapon/gun/launcher/rocket/m57a4/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
-	burst_delay = CONFIG_GET(number/combat_define/med_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+	fire_delay = 0.6 SECONDS
+	burst_delay = 0.4 SECONDS
+	burst_amount = 4
+	accuracy_mult = 0.8
 
 //-------------------------------------------------------
 //SCOUT SHOTGUN
@@ -960,11 +918,10 @@
 	max_shells = 10 //codex
 	caliber = "12 gauge shotgun shells" //codex
 	load_method = SINGLE_CASING //codex
-	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
 	gun_skill_category = SKILL_SPEC_WEAPONS
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_LIGHT
+	aim_slowdown = 0.75
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -982,18 +939,10 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/scout)
 
-/obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
-	burst_accuracy_mult = CONFIG_GET(number/combat_define/mlow_burst_accuracy_penalty)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	fire_delay = 2 SECONDS
+	burst_delay = 0.01 SECONDS //basically instantaneous two shots
+	burst_accuracy_mult = 0.7
+	accuracy_mult = 1
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -1006,7 +955,6 @@
 	max_shells = 500 //codex
 	caliber = "7.62x51mm" //codex
 	load_method = MAGAZINE //codex
-	origin_tech = "combat=7;materials=5"
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/minigun_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
@@ -1017,13 +965,18 @@
 	force = 20
 	wield_delay = 15
 	gun_skill_category = SKILL_SPEC_WEAPONS
-	aim_slowdown = SLOWDOWN_ADS_SPECIALIST_MED
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	aim_slowdown = 1
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
+
+	fire_delay = 3
+	burst_amount = 8
+	recoil = 2
+	recoil_unwielded = 4
+	damage_falloff_mult = 0.5
 
 
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
@@ -1034,20 +987,6 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
 			return
 	return ..()
-
-
-/obj/item/weapon/gun/minigun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	burst_amount = CONFIG_GET(number/combat_define/minigun_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
-	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 
 /obj/item/weapon/gun/minigun/get_ammo_type()

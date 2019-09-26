@@ -36,10 +36,19 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/punch
+		)
 
 /datum/xeno_caste/warrior/young
 	upgrade_name = "Young"
@@ -73,7 +82,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 
@@ -104,7 +113,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -136,7 +145,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_0, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_0, "bio" = 55, "rad" = 55, "fire" = 27, "acid" = 55)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0

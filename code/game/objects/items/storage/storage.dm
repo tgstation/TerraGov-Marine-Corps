@@ -126,7 +126,8 @@
 
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
-	for(var/mob/M in content_watchers)
+	for(var/i in content_watchers)
+		var/mob/M = i
 		if(M.s_active == src && M.client)
 			lookers |= M
 		else
@@ -411,38 +412,39 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W))
+/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
+	if(!istype(I))
 		return FALSE
 
-	for(var/mob/M in can_see_content())
+	for(var/i in can_see_content())
+		var/mob/M = i
 		if(!M.client)
 			continue
-		M.client.screen -= W
-
-	if(QDELETED(W))
-		return TRUE
+		M.client.screen -= I
 
 	if(new_location)
 		if(ismob(new_location))
-			W.layer = ABOVE_HUD_LAYER
-			W.plane = ABOVE_HUD_PLANE
-			W.pickup(new_location)
+			I.layer = ABOVE_HUD_LAYER
+			I.plane = ABOVE_HUD_PLANE
+			I.pickup(new_location)
 		else
-			W.layer = initial(W.layer)
-			W.plane = initial(W.plane)
-		W.forceMove(new_location)
+			I.layer = initial(I.layer)
+			I.plane = initial(I.plane)
+		I.forceMove(new_location)
 	else
-		W.forceMove(get_turf(src))
+		I.moveToNullspace()
 
 	orient2hud()
-	for(var/mob/M in can_see_content())
+	
+	for(var/i in can_see_content())
+		var/mob/M = i
 		show_to(M)
-	if(W.maptext)
-		W.maptext = ""
-	W.on_exit_storage(src)
+	
+	if(!QDELETED(I))
+		I.on_exit_storage(src)
+		I.mouse_opacity = initial(I.mouse_opacity)
+
 	update_icon()
-	W.mouse_opacity = initial(W.mouse_opacity)
 	return TRUE
 
 //This proc is called when you want to place an item into the storage item.

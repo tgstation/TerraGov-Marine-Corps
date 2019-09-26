@@ -27,8 +27,8 @@
 /obj/machinery/computer/arcade
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/New()
-	..()
+/obj/machinery/computer/arcade/Initialize()
+	. = ..()
 	var/name_action
 	var/name_part1
 	var/name_part2
@@ -38,23 +38,15 @@
 	name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
 	name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "slime", "Griefer", "ERPer", "Lizard Man", "Unicorn")
 
-	src.enemy_name = oldreplacetext((name_part1 + name_part2), "the ", "")
-	src.name = (name_action + name_part1 + name_part2)
+	enemy_name = oldreplacetext((name_part1 + name_part2), "the ", "")
+	name = (name_action + name_part1 + name_part2)
 
 
-
-/obj/machinery/computer/arcade/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/arcade/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/arcade/attack_hand(mob/living/user)
+/obj/machinery/computer/arcade/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
+	var/dat
 	dat += "<center><h4>[src.enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[src.temp]</h3></center>"
@@ -64,15 +56,14 @@
 		dat += "<center><b><a href='byond://?src=\ref[src];newgame=1'>New Game</a>"
 	else
 		dat += "<center><b><a href='byond://?src=\ref[src];attack=1'>Attack</a>|"
-		dat += "<a href='byond://?src=\ref[src];heal=1'>Heal</a>|"
-		dat += "<a href='byond://?src=\ref[src];charge=1'>Recharge Power</a>"
+		dat += "<a href='byond://?src=[REF(src)];heal=1'>Heal</a>|"
+		dat += "<a href='byond://?src=[REF(src)];charge=1'>Recharge Power</a>"
 
 	dat += "</b></center>"
 
 	var/datum/browser/popup = new(user, "arcade", "<div align='center'>Arcade</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "arcade")
+	popup.open()
 
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
@@ -120,10 +111,6 @@
 			sleep(10)
 			src.arcade_action()
 
-	if (href_list["close"])
-		usr.unset_interaction()
-		usr << browse(null, "window=arcade")
-
 	else if (href_list["newgame"]) //Reset everything
 		temp = "New Round"
 		player_hp = 30
@@ -133,8 +120,8 @@
 		gameover = 0
 		turtle = 0
 
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
+
 
 /obj/machinery/computer/arcade/proc/arcade_action()
 	if ((src.enemy_mp <= 0) || (src.enemy_hp <= 0))

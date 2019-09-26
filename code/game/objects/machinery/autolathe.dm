@@ -8,8 +8,8 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 
-	var/list/stored_material =  list("metal" = 0, "glass" = 0)
-	var/list/storage_capacity = list("metal" = 0, "glass" = 0)
+	var/list/stored_material =  list(/datum/material/metal = 0, /datum/material/glass = 0)
+	var/list/storage_capacity = list(/datum/material/metal = 0, /datum/material/glass = 0)
 	var/show_category = "All"
 
 	var/hacked = FALSE
@@ -38,13 +38,11 @@
 	QDEL_NULL(wires)
 	return ..()
 
-/obj/machinery/autolathe/interact(mob/user as mob)
-
-	if(..() || disabled)
+/obj/machinery/autolathe/interact(mob/user)
+	. = ..()
+	if(.)
 		return
 
-	if (shocked)
-		shock(user,50)
 
 	var/dat = "<center>"
 
@@ -53,7 +51,8 @@
 	var/material_bottom = "<tr>"
 
 	for(var/material in stored_material)
-		material_top += "<td width = '25%' align = center><b>[material]</b></td>"
+		var/datum/material/M = GLOB.materials[material]
+		material_top += "<td width = '25%' align = center><b>[M.name]</b></td>"
 		material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 	dat += "[material_top]</tr>[material_bottom]</tr></table><hr>"
@@ -88,7 +87,8 @@
 					comma = 1
 				else
 					material_string += ", "
-				material_string += "[R.resources[material]] [material]"
+				var/datum/material/M = GLOB.materials[material]
+				material_string += "[R.resources[material]] [M.name]"
 			material_string += ".<br></td>"
 
 			//Build list of multipliers for sheets.
@@ -105,8 +105,7 @@
 
 	var/datum/browser/popup = new(user, "autolathe", "<div align='center'>Autolathe</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "autolathe")
+	popup.open()
 
 
 /obj/machinery/autolathe/attackby(obj/item/I, mob/user, params)
@@ -139,7 +138,7 @@
 
 	//Resources are being loaded.
 	var/obj/item/eating = I
-	if(!eating.matter)
+	if(!eating.materials)
 		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
 		return
 
@@ -151,7 +150,7 @@
 	var/total_used = 0     // Amount of material used.
 	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
 
-	for(var/material in eating.matter)
+	for(var/material in eating.materials)
 
 		if(isnull(stored_material[material]) || isnull(storage_capacity[material]))
 			continue
@@ -159,7 +158,7 @@
 		if(stored_material[material] >= storage_capacity[material])
 			continue
 
-		var/total_material = eating.matter[material]
+		var/total_material = eating.materials[material]
 
 		//If it's a stack, we eat multiple sheets.
 		if(istype(eating,/obj/item/stack))
@@ -174,7 +173,7 @@
 
 		stored_material[material] += total_material
 		total_used += total_material
-		mass_per_sheet += eating.matter[material]
+		mass_per_sheet += eating.materials[material]
 
 	if(!filltype)
 		to_chat(user, "<span class='warning'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
@@ -195,22 +194,11 @@
 	updateUsrDialog()
 	return TRUE //so the item's afterattack isn't called
 
-/obj/machinery/autolathe/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/autolathe/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	user.set_interaction(src)
-	interact(user)
 
 /obj/machinery/autolathe/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-
-	usr.set_interaction(src)
 
 	if(busy)
 		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
@@ -277,24 +265,25 @@
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
-	..()
+	. = ..()
 	var/tot_rating = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		tot_rating += MB.rating
 
-	storage_capacity["metal"] = tot_rating  * 25000
-	storage_capacity["glass"] = tot_rating  * 12500
+	storage_capacity[/datum/material/metal] = tot_rating  * 25000
+	storage_capacity[/datum/material/glass] = tot_rating  * 12500
 
 /obj/machinery/autolathe/deconstruct()
-	var/list/sheets = list("metal" = /obj/item/stack/sheet/metal, "glass" = /obj/item/stack/sheet/glass)
+	var/list/sheets = list(/datum/material/metal = /obj/item/stack/sheet/metal, /datum/material/glass = /obj/item/stack/sheet/glass)
 
 	for(var/mat in stored_material)
 		var/T = sheets[mat]
 		var/obj/item/stack/sheet/S = new T
 		if(stored_material[mat] > S.perunit)
 			S.amount = round(stored_material[mat] / S.perunit)
-			S.loc = loc
-	..()
+			S.forceMove(loc)
+	
+	return ..()
 
 
 /obj/machinery/autolathe/proc/reset(wire)

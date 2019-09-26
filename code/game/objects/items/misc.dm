@@ -37,7 +37,6 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/gift

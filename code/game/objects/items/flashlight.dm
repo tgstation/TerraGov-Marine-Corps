@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	matter = list("metal" = 50,"glass" = 20)
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
@@ -60,10 +60,6 @@
 		if(on)
 			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
 			return
-
-		if(istype(loc, /obj/item/storage))
-			var/obj/item/storage/S = loc
-			S.remove_from_storage(src)
 
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()

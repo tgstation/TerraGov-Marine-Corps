@@ -95,6 +95,11 @@ SUBSYSTEM_DEF(codex)
 		search_cache[searching] = dd_sortedObjectList(results)
 	return search_cache[searching]
 
+
+/datum/controller/subsystem/codex/can_interact(mob/user)
+	return TRUE
+
+
 /datum/controller/subsystem/codex/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -102,7 +107,7 @@ SUBSYSTEM_DEF(codex)
 	if(href_list["show_examined_info"] && href_list["show_to"])
 		var/atom/showing_atom = locate(href_list["show_examined_info"])
 		var/mob/showing_mob = locate(href_list["show_to"]) in GLOB.mob_list
-		if(!showing_atom || !showing_mob)
+		if(QDELETED(showing_atom) || QDELETED(showing_mob))
 			return
 		var/entry = get_codex_entry(showing_atom)
 		if(entry && showing_mob.can_use_codex())

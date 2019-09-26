@@ -97,24 +97,7 @@
 #define SLOWDOWN_ARMOR_HEAVY		1
 #define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
-#define SLOWDOWN_ADS_SHOTGUN			0.35
-#define SLOWDOWN_ADS_RIFLE				0.35
-#define SLOWDOWN_ADS_LASGUN				0.75
-#define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
-#define SLOWDOWN_ADS_SCOPE				1
-#define SLOWDOWN_ADS_SPECIALIST_MED		1
-#define SLOWDOWN_ADS_SMARTGUN			1.5
-#define SLOWDOWN_ADS_INCINERATOR		1.75
-#define SLOWDOWN_ADS_SPECIALIST_HEAVY	1.75
-#define SLOWDOWN_ADS_SUPERWEAPON		2.75
 
-//Wield delays, in milliseconds. 10 is 1 second
-#define WIELD_DELAY_VERY_FAST		2
-#define WIELD_DELAY_FAST			4
-#define WIELD_DELAY_NORMAL			6
-#define WIELD_DELAY_SLOW			10
-#define WIELD_DELAY_VERY_SLOW		16
-#define WIELD_DELAY_HORRIBLE		20
 //=================================================
 
 //Define detpack

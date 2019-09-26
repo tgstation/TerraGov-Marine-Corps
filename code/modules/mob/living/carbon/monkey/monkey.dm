@@ -118,11 +118,8 @@
 	. = ..()
 	if(.)
 		return
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-	if (href_list["item"])
+
+	if(href_list["item"])
 		if(!usr.incapacitated() && in_range(src, usr))
 			if(!usr.action_busy)
 				var/slot = text2num(href_list["item"])
@@ -155,8 +152,6 @@
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
-
-	..()
 
 
 /mob/living/carbon/monkey/attack_paw(mob/living/carbon/monkey/user)
@@ -309,9 +304,6 @@
 				knock_out(10)
 		else
 	return
-
-/mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	return FALSE
 
 
 /mob/living/carbon/monkey/get_idcard(hand_first)

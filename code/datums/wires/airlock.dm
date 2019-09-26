@@ -19,7 +19,10 @@
 	return ..()
 
 
-/datum/wires/airlock/interactable(mob/user)
+/datum/wires/airlock/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/door/airlock/A = holder
 	if(!issilicon(user) && A.isElectrified() && A.shock(user, 100))
 		return FALSE

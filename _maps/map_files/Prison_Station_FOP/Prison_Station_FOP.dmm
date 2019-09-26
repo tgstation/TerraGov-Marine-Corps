@@ -39964,7 +39964,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -43329,7 +43329,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -44329,7 +44329,7 @@
 	},
 /area/prison/hallway/engineering)
 "cfZ" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cga" = (
@@ -44735,7 +44735,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "chm" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -45181,7 +45181,7 @@
 /area/prison/cellblock/highsec/south/south)
 "cix" = (
 /obj/effect/landmark/corpsespawner/pirate,
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -46234,7 +46234,7 @@
 "cld" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/effect/landmark/corpsespawner/pirate,
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/prison/red{
 	dir = 9
 	},
@@ -46262,11 +46262,11 @@
 /turf/open/floor/wood,
 /area/prison/parole/protective_custody)
 "clg" = (
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "clh" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating,
 /area/prison/security/checkpoint/highsec_medsec)
 "cli" = (
@@ -47022,7 +47022,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmT" = (
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cmV" = (
@@ -47541,15 +47541,15 @@
 /area/prison/pirate)
 "coq" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/ammo_magazine/rifle/mar40,
-/obj/item/weapon/gun/rifle/mar40,
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/ammo_magazine/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cor" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cos" = (
@@ -47619,7 +47619,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cox" = (
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
@@ -47800,7 +47800,7 @@
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "cpc" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cpd" = (
@@ -49466,7 +49466,7 @@
 	},
 /area/prison/pirate)
 "ctE" = (
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -49476,7 +49476,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/weapon/gun/rifle/mar40,
+/obj/item/weapon/gun/rifle/ak47,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -50053,7 +50053,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/item/ammo_magazine/rifle/mar40,
+/obj/item/ammo_magazine/rifle/ak47,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},

@@ -79,7 +79,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 10)
 	var/colour = "black"	//what colour the ink is!
 
 
@@ -116,7 +115,6 @@
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
 /obj/item/tool/pen/sleepypen/Initialize()
@@ -139,7 +137,6 @@
 */
 /obj/item/tool/pen/paralysis
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
 /obj/item/tool/pen/paralysis/attack(mob/living/M as mob, mob/user as mob)
@@ -170,7 +167,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 60)
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/captain
