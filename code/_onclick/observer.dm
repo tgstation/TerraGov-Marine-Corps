@@ -64,4 +64,5 @@
 		return TRUE
 	if(user.inquisitive_ghost)
 		user.examinate(src)
+		return TRUE
 	return FALSE

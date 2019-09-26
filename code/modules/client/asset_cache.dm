@@ -394,33 +394,28 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/group/IRV
-	children = list(
-		/datum/asset/simple/jquery
-	)
-
 
 /datum/asset/simple/changelog
 	assets = list(
-		"88x31.png" = 'html/88x31.png',
-		"bug-minus.png" = 'html/bug-minus.png',
-		"cross-circle.png" = 'html/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/image-minus.png',
-		"image-plus.png" = 'html/image-plus.png',
-		"music-minus.png" = 'html/music-minus.png',
-		"music-plus.png" = 'html/music-plus.png',
-		"tick-circle.png" = 'html/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/wrench-screwdriver.png',
-		"spell-check.png" = 'html/spell-check.png',
-		"burn-exclamation.png" = 'html/burn-exclamation.png',
-		"chevron.png" = 'html/chevron.png',
-		"chevron-expand.png" = 'html/chevron-expand.png',
-		"scales.png" = 'html/scales.png',
-		"coding.png" = 'html/coding.png',
-		"ban.png" = 'html/ban.png',
-		"chrome-wrench.png" = 'html/chrome-wrench.png',
-		"changelog.css" = 'html/changelog.css'
+		"88x31.png" = 'html/images/88x31.png',
+		"bug-minus.png" = 'html/images/bug-minus.png',
+		"cross-circle.png" = 'html/images/cross-circle.png',
+		"hard-hat-exclamation.png" = 'html/images/hard-hat-exclamation.png',
+		"image-minus.png" = 'html/images/image-minus.png',
+		"image-plus.png" = 'html/images/image-plus.png',
+		"music-minus.png" = 'html/images/music-minus.png',
+		"music-plus.png" = 'html/images/music-plus.png',
+		"tick-circle.png" = 'html/images/tick-circle.png',
+		"wrench-screwdriver.png" = 'html/images/wrench-screwdriver.png',
+		"spell-check.png" = 'html/images/spell-check.png',
+		"burn-exclamation.png" = 'html/images/burn-exclamation.png',
+		"chevron.png" = 'html/images/chevron.png',
+		"chevron-expand.png" = 'html/images/chevron-expand.png',
+		"scales.png" = 'html/images/scales.png',
+		"coding.png" = 'html/images/coding.png',
+		"ban.png" = 'html/images/ban.png',
+		"chrome-wrench.png" = 'html/images/chrome-wrench.png',
+		"changelog.css" = 'html/browser/changelog.css'
 	)
 
 
@@ -435,22 +430,21 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js',
+		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
 	)
-
 
 
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'goon/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'goon/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'goon/browserassets/css/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'goon/browserassets/css/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
-		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
+		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
+		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
+		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
+		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css'
 	)
 
 
@@ -484,21 +478,21 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/simple/permissions
 	assets = list(
-		"padlock.png"	= 'html/padlock.png'
+		"padlock.png"	= 'html/images/padlock.png'
 	)
 
 /datum/asset/simple/notes
 	assets = list(
-		"high_button.png" = 'html/high_button.png',
-		"medium_button.png" = 'html/medium_button.png',
-		"minor_button.png" = 'html/minor_button.png',
-		"none_button.png" = 'html/none_button.png',
+		"high_button.png" = 'html/images/high_button.png',
+		"medium_button.png" = 'html/images/medium_button.png',
+		"minor_button.png" = 'html/images/minor_button.png',
+		"none_button.png" = 'html/images/none_button.png',
 	)
 	
 /datum/asset/simple/logo
 	assets = list(
-		"ntlogo.png"	= 'html/ntlogo.png',
-		"tgmclogo.png"	= 'html/tgmclogo.png'
+		"ntlogo.png"	= 'html/images/ntlogo.png',
+		"tgmclogo.png"	= 'html/images/tgmclogo.png'
 	)
 
 

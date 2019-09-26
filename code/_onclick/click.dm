@@ -49,7 +49,7 @@
 
 	if(object && object == middragatom && L["left"])
 		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
-		
+
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
 		var/minute = round(world.time, 600)
@@ -83,6 +83,10 @@
 		if(clicklimiter[2] > scl)
 			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
 			return
+
+//Hijack for FC.
+	if(prefs.focus_chat)
+		winset(src, null, "input.focus=true")
 
 	return ..()
 
@@ -431,7 +435,7 @@
 
 /mob/living/ShiftMiddleClickOn(atom/A)
 	point_to(A)
-		
+
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)

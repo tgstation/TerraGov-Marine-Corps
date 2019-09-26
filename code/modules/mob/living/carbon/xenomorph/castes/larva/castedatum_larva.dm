@@ -12,8 +12,7 @@
 	gib_flick = "larva_gib"
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 0
-	melee_damage_upper = 0
+	melee_damage = 0
 
 	// *** Speed *** //
 	speed = -1.6

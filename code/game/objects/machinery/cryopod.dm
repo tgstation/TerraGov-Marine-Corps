@@ -173,10 +173,10 @@
 	orient_right = TRUE
 	icon_state = "cryo_rear-r"
 
-/obj/structure/cryofeed/New()
+/obj/structure/cryofeed/Initialize()
+	. = ..()
 	if(orient_right)
 		icon_state = "cryo_rear[orient_right ? "-r" : ""]"
-	return ..()
 
 //Cryopods themselves.
 /obj/machinery/cryopod

@@ -10,8 +10,7 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage = 30
 	attack_delay = 8.5
 
 	// *** Tackle *** //
@@ -33,7 +32,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
+	deevolves_to = /mob/living/carbon/xenomorph/bull
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -62,8 +61,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -81,8 +79,6 @@
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
-
 	// *** Defense *** //
 	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 5, "acid" = 90)
 
@@ -93,8 +89,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -112,8 +107,6 @@
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
-
 	// *** Defense *** //
 	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 10, "acid" = 95)
 
@@ -124,8 +117,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -139,8 +131,6 @@
 
 	// *** Health *** //
 	max_health = 350
-
-	deevolves_to = /mob/living/carbon/xenomorph/warrior
 
 	// *** Defense *** //
 	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)

@@ -151,7 +151,7 @@
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
 	if(!affecting || (random_location && !set_location)) //No organ, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("chest"))
+	if(no_head && affecting == get_limb("head"))
 		affecting = get_limb("chest")
 	if(!affecting) //Still nothing??
 		affecting = get_limb("chest") //Gotta have a torso?!
@@ -163,7 +163,7 @@
 
 	// copypasted from attack_alien.dm
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
 
 	X.do_attack_animation(src)
 

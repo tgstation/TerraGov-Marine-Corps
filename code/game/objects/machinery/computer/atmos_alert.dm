@@ -1,6 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-
 /obj/machinery/computer/atmos_alert
 	name = "Atmospheric Alert Computer"
 	desc = "Used to access the station's atmospheric sensors."
@@ -114,5 +111,6 @@
 		for(var/zone in minor_alarms)
 			if(ckey(zone) == removing_zone)
 				minor_alarms -= zone
+	
 	update_icon()
 	return

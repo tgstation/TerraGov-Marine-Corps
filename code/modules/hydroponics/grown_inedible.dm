@@ -8,9 +8,8 @@
 	var/plantname
 	var/potency = 1
 
-/obj/item/grown/New()
-
-	..()
+/obj/item/grown/Initialize()
+	. = ..()
 
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
@@ -96,10 +95,9 @@
 
 	var/potency_divisior = 5
 
-/obj/item/grown/nettle/New()
-	..()
-	spawn(5)
-		force = round((5+potency/potency_divisior), 1)
+/obj/item/grown/nettle/Initialize()
+	. = ..()
+	force = round(5 + potency / potency_divisior)
 
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)

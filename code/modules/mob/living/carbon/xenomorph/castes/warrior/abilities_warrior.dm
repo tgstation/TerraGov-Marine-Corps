@@ -60,11 +60,13 @@
 	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
 	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
 
+
 /datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
-	. = ..()
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
+	return ..()
+
 
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -206,7 +208,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper)
+	var/damage = X.xeno_caste.melee_damage
 	succeed_activate()
 	playsound(M, S, 50, 1)
 

@@ -361,6 +361,8 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
 
 /turf/closed/wall/resin/New()
 	..()
@@ -425,7 +427,7 @@
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
-	take_damage(M.melee_damage_upper + 50) //Beef up the damage a bit
+	take_damage(M.melee_damage + 50) //Beef up the damage a bit
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)

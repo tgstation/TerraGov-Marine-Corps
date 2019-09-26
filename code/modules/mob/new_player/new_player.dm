@@ -15,7 +15,8 @@
 
 /mob/new_player/Initialize()
 	if(length(GLOB.newplayer_start))
-		forceMove(pick(GLOB.newplayer_start))
+		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
+		forceMove(spawn_loc)
 	else
 		forceMove(locate(1, 1, 1))
 

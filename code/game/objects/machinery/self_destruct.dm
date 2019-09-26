@@ -8,7 +8,7 @@
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 
 
-/obj/machinery/self_destruct/New()
+/obj/machinery/self_destruct/Initialize()
 	. = ..()
 	icon_state += "_1"
 

@@ -21,7 +21,7 @@
 	var/hud_state_empty = "grenade_empty"
 
 
-/obj/item/explosive/grenade/New()
+/obj/item/explosive/grenade/Initialize()
 	. = ..()
 	det_time = rand(det_time - 10, det_time + 10)
 

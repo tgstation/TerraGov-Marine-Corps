@@ -8,8 +8,8 @@
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 
-/obj/item/clothing/tie/New()
-	..()
+/obj/item/clothing/tie/Initialize()
+	. = ..()
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 
@@ -383,7 +383,7 @@
 		H.unholster(src)
 
 
-/obj/item/clothing/tie/holster/m4a3/New()
+/obj/item/clothing/tie/holster/m4a3/Initialize()
 	. = ..()
 	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
 

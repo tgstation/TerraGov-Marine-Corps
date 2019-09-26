@@ -8,8 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivelord" //used to match appropriate wound overlays
 	// *** Melee Attacks *** //
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage = 17.5
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -74,8 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage = 17.5
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -109,8 +107,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage = 17.5
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -145,8 +142,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage = 25
 
 	// *** Tackle *** //
 	tackle_damage = 45

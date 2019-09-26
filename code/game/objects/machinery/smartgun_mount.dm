@@ -243,7 +243,7 @@
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
-/obj/machinery/m56d_hmg/New()
+/obj/machinery/m56d_hmg/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 	update_icon()
@@ -406,17 +406,17 @@
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
-			if(target)
+			if(!QDELETED(target))
 				var/angle = round(Get_Angle(src,target))
 				muzzle_flash(angle)
+			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
 			in_chamber = null
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
 				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
-	return
+
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.
 	if(isnull(angle))
@@ -431,6 +431,39 @@
 		rotate.Turn(angle)
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
+
+
+/obj/machinery/m56d_hmg/interact(mob/user)
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/human_user = user
+	if(user.interactee == src)
+		user.unset_interaction()
+		visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>",
+			"<span class='notice'>You decided to let someone else have a go on the MG </span>")
+		return TRUE
+	if(get_step(src, REVERSE_DIR(dir)) != user.loc)
+		to_chat(user, "<span class='warning'>You should be behind [src] to man it!</span>")
+		return TRUE
+	if(operator) //If there is already a operator then they're manning it.
+		if(!operator.interactee)
+			stack_trace("/obj/machinery/m56d_hmg/interact called by user [user] with an operator with a null interactee: [operator].")
+			operator = null //this shouldn't happen, but just in case
+		else
+			to_chat(user, "<span class='warning'>Someone's already controlling it.</span>")
+			return TRUE
+	if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
+		to_chat(user, "<span class='warning'>You're already busy!</span>")
+		return TRUE
+	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+		return TRUE
+
+	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>",
+		"<span class='notice'>You man the gun!</span>")
+
+	return ..()
+
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr))
@@ -483,6 +516,8 @@
 	target = object
 	if(!istype(target))
 		return FALSE
+	if(user != operator)
+		CRASH("InterceptClickOn called by user ([user]) different from operator ([operator]).")
 	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
 		return FALSE
 	if(get_dist(target, loc) > 15)

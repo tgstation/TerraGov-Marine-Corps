@@ -9,8 +9,7 @@
 	health = 15
 	maxHealth = 15
 	healable = 0
-	melee_damage_lower = 2
-	melee_damage_upper = 3
+	melee_damage = 3
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	projectilesound = 'sound/weapons/guns/fire/gunshot.ogg'

@@ -109,7 +109,7 @@
 
 		if(!user.transferItemToLoc(C, src))
 			return
-			
+
 		pcell = C
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -384,6 +384,8 @@
 	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -493,9 +495,25 @@
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
+	new /obj/item/minigun_harness(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
+
+/obj/item/minigun_harness
+	name = "\improper M45 heavy-duty harness"
+	desc = "A large belt with shoulder straps and clamps to hook onto a minigun, meant to keep the user from dropping their weapon."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "heavy_harness"
+	item_state = "heavy_harness"
+	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY
+	time_to_equip = 2 SECONDS
+
+/obj/item/minigun_harness/equipped(mob/living/carbon/human/user, slot)
+	if(slot == SLOT_BELT)
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
+
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"

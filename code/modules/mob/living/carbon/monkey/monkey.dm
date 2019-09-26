@@ -246,14 +246,14 @@
 	if (!..())
 		return 0
 
-	if(M.melee_damage_upper == 0)
+	if(M.melee_damage == 0)
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = M.melee_damage
 		adjustBruteLoss(damage)
 		updatehealth()
 

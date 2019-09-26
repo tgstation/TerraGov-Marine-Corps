@@ -11,8 +11,7 @@
 	wound_type = "carrier" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage = 25
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -74,8 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -111,8 +109,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -148,8 +145,7 @@
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 45

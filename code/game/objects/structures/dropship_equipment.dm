@@ -265,11 +265,12 @@
 	var/deployment_cooldown
 	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
 
-/obj/structure/dropship_equipment/sentry_holder/New()
+/obj/structure/dropship_equipment/sentry_holder/Initialize()
+	. = ..()
 	if(!deployed_turret)
 		deployed_turret = new(src)
 		deployed_turret.deployment_system = src
-	return ..()
+
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
@@ -360,7 +361,7 @@
 	point_cost = 300
 	var/obj/machinery/m56d_hmg/mg_turret/deployed_mg
 
-/obj/structure/dropship_equipment/mg_holder/New()
+/obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
 	if(!deployed_mg)
 		deployed_mg = new(src)

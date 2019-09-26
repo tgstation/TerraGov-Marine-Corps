@@ -85,11 +85,11 @@
 				to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
 
 /obj/item/paper_bundle/examine(mob/user)
-	to_chat(user, desc)
+	. = ..()
 	if(in_range(user, src))
 		src.attack_self(user)
 	else
-		to_chat(user, "<span class='notice'>It is too far away.</span>")
+		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
 
 /obj/item/paper_bundle/attack_self(mob/user as mob)
 	if(ishuman(user))

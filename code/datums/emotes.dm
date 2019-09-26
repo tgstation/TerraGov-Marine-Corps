@@ -59,7 +59,8 @@
 	if(!msg)
 		return
 
-	user.log_message(msg, LOG_EMOTE)
+	if(intentional)
+		user.log_message(msg, LOG_EMOTE)
 	msg = "[prefix]<b>[user]</b> [msg]"
 
 	var/tmp_sound = get_sound(user)

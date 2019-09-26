@@ -103,7 +103,7 @@
 
 
 /obj/attack_animal(mob/living/simple_animal/M)
-	if(!M.melee_damage_upper && !M.obj_damage)
+	if(!M.melee_damage && !M.obj_damage)
 		M.emote("custom", message = "[M.friendly] [src].")
 		return 0
 	else
@@ -111,7 +111,7 @@
 		if(M.obj_damage)
 			. = attack_generic(M, M.obj_damage, M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
 		else
-			. = attack_generic(M, rand(M.melee_damage_lower,M.melee_damage_upper), M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
+			. = attack_generic(M, M.melee_damage, M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
 		if(. && !play_soundeffect)
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 
@@ -124,7 +124,7 @@
 	"<span class='danger'>We slash [src]!</span>")
 	X.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	attack_generic(X, rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper), BRUTE, "melee", FALSE)
+	attack_generic(X, X.xeno_caste.melee_damage, BRUTE, "melee", FALSE)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)

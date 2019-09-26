@@ -23,9 +23,6 @@
 	var/obj/effect/plant_controller/master = null
 	var/datum/seed/seed
 
-/obj/effect/plantsegment/New()
-	return
-
 /obj/effect/plantsegment/Destroy()
 	if(master)
 		master.vines -= src

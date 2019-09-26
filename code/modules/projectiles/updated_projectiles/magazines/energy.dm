@@ -26,7 +26,7 @@
 	maxcharge = 1600
 
 
-/obj/item/cell/lasgun/M43/New()
+/obj/item/cell/lasgun/M43/Initialize()
 	. = ..()
 	update_icon()
 

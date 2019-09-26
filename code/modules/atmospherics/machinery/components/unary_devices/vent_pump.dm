@@ -12,7 +12,7 @@
 	desc = "Has a valve and pump attached to it."
 
 	use_power = IDLE_POWER_USE
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	welded = FALSE
 	level = 1
 	layer = GAS_SCRUBBER_LAYER
@@ -33,7 +33,7 @@
 	pipe_state = "uvent"
 
 /obj/machinery/atmospherics/components/unary/vent_pump/New()
-	..()
+	. = ..()
 	if(!id_tag)
 		id_tag = assign_uid_vents()
 

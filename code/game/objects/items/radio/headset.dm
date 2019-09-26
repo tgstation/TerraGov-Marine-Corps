@@ -244,7 +244,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
 		wearer.hud_used.SL_locator.alpha = 0
 
-	if(wearer.assigned_squad.squad_leader == wearer)
+	if(wearer?.assigned_squad?.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
 		SSdirection.stop_tracking("marine-sl", wearer)
 	else

@@ -483,7 +483,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 
 		var/mob/living/L
-		if(!isliving(M))
+		if(!isliving(M) || isAI(M))
 			L = new /mob/living/carbon/human(picked)
 			M.mind.transfer_to(L, TRUE)
 		else

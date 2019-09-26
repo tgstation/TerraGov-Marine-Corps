@@ -334,7 +334,7 @@
 	network = list("laser targets")
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/camera/laser_cam/New(loc, laser_name)
+/obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
 	if(!c_tag && laser_name)
 		var/area/A = get_area(src)
@@ -350,7 +350,7 @@
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")
 
-/obj/machinery/camera/beacon_cam/New(loc, beacon_name)
+/obj/machinery/camera/beacon_cam/Initialize(mapload, beacon_name)
 	. = ..()
 	if(!c_tag && beacon_name)
 		var/area/A = get_area(src)

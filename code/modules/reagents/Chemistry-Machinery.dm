@@ -43,8 +43,8 @@
 	else
 		recharged -= 1
 
-/obj/machinery/chem_dispenser/New()
-	..()
+/obj/machinery/chem_dispenser/Initialize()
+	. = ..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
 	start_processing()
@@ -670,10 +670,10 @@
 
 	var/list/holdingitems = list()
 
-/obj/machinery/reagentgrinder/New()
-	..()
+/obj/machinery/reagentgrinder/Initialize()
+	. = ..()
 	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
-	return
+
 
 /obj/machinery/reagentgrinder/update_icon()
 	icon_state = "juicer"+num2text(!isnull(beaker))

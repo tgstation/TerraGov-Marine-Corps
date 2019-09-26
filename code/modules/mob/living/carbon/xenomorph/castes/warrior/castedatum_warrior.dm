@@ -9,8 +9,7 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage = 32.5
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -62,8 +61,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -93,8 +91,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 40
-	melee_damage_upper = 45
+	melee_damage = 42.5
 
 	// *** Tackle *** //
 	tackle_damage = 53
@@ -125,8 +122,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 45
-	melee_damage_upper = 50
+	melee_damage = 47.5
 
 	// *** Tackle *** //
 	tackle_damage = 55
