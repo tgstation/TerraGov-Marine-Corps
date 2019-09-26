@@ -6831,7 +6831,7 @@
 	},
 /area/prison/medbay)
 "atC" = (
-/obj/machinery/door/poddoor/four_tile_hor{
+/obj/machinery/door/poddoor/four_tile_hor/secure{
 	name = "Research Hangar Door"
 	},
 /turf/open/floor/plating,
@@ -20997,7 +20997,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bbF" = (
-/obj/machinery/door/poddoor/four_tile_ver{
+/obj/machinery/door/poddoor/four_tile_ver/secure{
 	name = "Main Hangar Door"
 	},
 /turf/open/floor/plating,
@@ -44192,12 +44192,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/prison/execution)
 "cfE" = (
-/obj/machinery/door/poddoor/two_tile_hor{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "execution";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/two_tile_hor/execution,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -45132,13 +45127,7 @@
 /turf/closed/wall/sulaco,
 /area/prison/pirate)
 "cip" = (
-/obj/machinery/door/poddoor/two_tile_hor{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "pirate_cargo";
-	name = "Rocinante Cargo Bay Door";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/two_tile_hor/rocinante,
 /turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "ciq" = (
@@ -45147,13 +45136,7 @@
 /turf/open/floor/marking/delivery,
 /area/prison/pirate)
 "cir" = (
-/obj/machinery/door/poddoor/two_tile_hor{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "pirate_cargo";
-	name = "Rocinante Cargo Bay Door";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/two_tile_hor/rocinante,
 /obj/effect/landmark/corpsespawner/prison_security,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/rifle/m16,
@@ -45470,21 +45453,11 @@
 	},
 /area/prison/security/armory/riot)
 "cjk" = (
-/obj/machinery/door/poddoor/two_tile_ver{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "riot_armory";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/two_tile_ver/riotarmory,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/armory/riot)
 "cjl" = (
-/obj/machinery/door/poddoor/two_tile_ver{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "lethal_armory";
-	opacity = 0
-	},
+/obj/machinery/door/poddoor/two_tile_ver/lethalarmory,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/armory/lethal)
 "cjm" = (
@@ -52125,7 +52098,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "rZZ" = (
-/obj/machinery/door/poddoor/four_tile_ver{
+/obj/machinery/door/poddoor/four_tile_ver/secure{
 	name = "Civilian Hangar Door"
 	},
 /turf/open/floor/plating,
