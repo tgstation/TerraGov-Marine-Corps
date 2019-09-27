@@ -20,7 +20,7 @@
 	job = ROLE_XENO_QUEEN
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl,		
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		/mob/living/carbon/xenomorph/proc/calldown_dropship
 		)
 
@@ -65,3 +65,12 @@
 		new_hud.add_hud_to(usr)
 	else
 		new_hud.remove_hud_from(usr)
+
+
+// ***************************************
+// *********** Icon
+// ***************************************
+/mob/living/carbon/xenomorph/shrike/proc/stop_screeching()
+	if(icon_state != "Shrike Screeching")
+		return
+	icon_state = "Shrike Running"
