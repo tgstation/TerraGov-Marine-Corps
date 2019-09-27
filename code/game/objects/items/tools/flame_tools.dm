@@ -475,12 +475,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_on = "zippoon"
 	icon_off = "zippo"
 
-/obj/item/tool/lighter/random
-	New()
-		clr = pick("r","c","y","g")
-		icon_on = "lighter-[clr]-on"
-		icon_off = "lighter-[clr]"
-		icon_state = icon_off
+/obj/item/tool/lighter/random/Initialize()
+	. = ..()
+	clr = pick("r","c","y","g")
+	icon_on = "lighter-[clr]-on"
+	icon_off = "lighter-[clr]"
+	icon_state = icon_off
 
 /obj/item/tool/lighter/attack_self(mob/living/user)
 	if(user.r_hand == src || user.l_hand == src)
