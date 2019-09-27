@@ -681,6 +681,8 @@
 					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
+					/obj/item/clothing/mask/rebreather/bandana/skull = 10,
+					/obj/item/clothing/mask/rebreather/bandana = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/tank/emergency_oxygen = 10,
@@ -729,19 +731,24 @@
 		switch(squad_tag)
 			if("Alpha")
 				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
-								/obj/item/clothing/gloves/marine/alpha = 10)
+								/obj/item/clothing/gloves/marine/alpha = 10,
+								/obj/item/clothing/mask/rebreather/bandana/alpha = 10)
 			if("Bravo")
 				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/gloves/marine/bravo = 10)
+								/obj/item/clothing/gloves/marine/bravo = 10,
+								/obj/item/clothing/mask/rebreather/bandana/bravo = 10)
 			if("Charlie")
 				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/gloves/marine/charlie = 10)
+								/obj/item/clothing/gloves/marine/charlie = 10,
+								/obj/item/clothing/mask/rebreather/bandana/charlie = 10)
 			if("Delta")
 				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/gloves/marine/delta = 10)
+								/obj/item/clothing/gloves/marine/delta = 10,
+								/obj/item/clothing/mask/rebreather/bandana/delta = 10)
 	else
 		products2 = list(/obj/item/radio/headset/mainship = 10,
-						/obj/item/clothing/gloves/marine = 10)
+						/obj/item/clothing/gloves/marine = 10,
+						/obj/item/clothing/mask/rebreather/bandana = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
 

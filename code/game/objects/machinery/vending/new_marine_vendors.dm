@@ -271,6 +271,7 @@
 							list("MASKS", 0, null, null, null),
 							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
 							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
+							list("Camouflauge Bandana", 0, /obj/item/clothing/mask/rebreather/bandana, MARINE_CAN_BUY_MASK, "black"),
 							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
 							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
 							list("MUZZLE ATTACHMENTS", 0, null, null, null),
