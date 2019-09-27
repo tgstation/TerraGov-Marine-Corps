@@ -62,7 +62,68 @@
 	desc = "A close-fitting cap that covers the top, back, and sides of the head. Can also be adjusted to cover the lower part of the face so it keeps the user warm in harsh conditions."
 	icon_state = "coif"
 	item_state = "coif"
-	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/mask/rebreather/bandana
+	name = "bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements."
+	icon_state = "bandana"
+	item_state = "bandana"
+	flags_inv_hide = HIDEFACE
+	flags_armor_protection = FACE
+
+	verb/toggle()
+		set category = "Object"
+		set name = "Adjust Bandana"
+		set src in usr
+
+		if(usr.canmove && !usr.stat && !usr.restrained())
+			active = !active
+			icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
+			if(!active)
+				DISABLE_BITFIELD(flags_inventory, COVERMOUTH|ALLOWREBREATH)
+				DISABLE_BITFIELD(flags_inv_hide, HIDEFACE|HIDELOWHAIR)
+				DISABLE_BITFIELD(flags_armor_protection, FACE)
+			else
+				ENABLE_BITFIELD(flags_inventory, COVERMOUTH|ALLOWREBREATH)
+				ENABLE_BITFIELD(flags_inv_hide, HIDEFACE|HIDELOWHAIR)
+				ENABLE_BITFIELD(flags_armor_protection, FACE)
+			if(usr)
+				to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
+
+
+			update_clothing_icon()
+
+			update_action_button_icons()	
+
+/obj/item/clothing/mask/rebreather/bandana/skull
+	name = "skull bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is black with a white Skull on it."
+	icon_state = "skull_bandana"
+	item_state = "skull_bandana"
+
+/obj/item/clothing/mask/rebreather/bandana/alpha
+	name = "red bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Cherry Red."
+	icon_state = "alpha_bandana"
+	item_state = "alpha_bandana"
+
+/obj/item/clothing/mask/rebreather/bandana/bravo
+	name = "yellow bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Banana Yellow."
+	icon_state = "bravo_bandana"
+	item_state = "bravo_bandana"
+
+/obj/item/clothing/mask/rebreather/bandana/charlie
+	name = "purple bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Grape Purple."
+	icon_state = "charlie_bandana"
+	item_state = "charlie_bandana"
+
+/obj/item/clothing/mask/rebreather/bandana/delta
+	name = "blue bandana"
+	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Blueberry Blue."
+	icon_state = "delta_bandana"
+	item_state = "delta_bandana"
