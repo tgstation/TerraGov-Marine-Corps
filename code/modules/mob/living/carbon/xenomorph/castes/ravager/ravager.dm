@@ -24,10 +24,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/ravager/Initialize(mapload, can_spawn_in_centcomm)
 	. = ..()
-	RegisterSignal(src, list(
-		COMSIG_XENOMORPH_BRUTE_DAMAGE,
-		COMSIG_XENOMORPH_BURN_DAMAGE), 
-		.proc/process_rage_damage)
+	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_HUMAN, .proc/process_rage_attack)
 
 // ***************************************
 // *********** Mob overrides
@@ -72,12 +69,5 @@
 	if(statpanel("Stats"))
 		stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
-// ***************************************
-// *********** Rage
-// ***************************************
-/mob/living/carbon/xenomorph/ravager/proc/process_rage_damage(datum/source, damage, list/damage_mod)
-	if(damage < 1 || cooldowns[COOLDOWN_RAV_NEXT_DAMAGE])
-		return
-	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
-	
-	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_NEXT_DAMAGE, null), 0.2 SECONDS)  // Limit how often this proc can trigger; once per 0.2 seconds
+/mob/living/carbon/xenomorph/ravager/proc/process_rage_attack()
+	rage += RAV_RAGE_ON_HIT
