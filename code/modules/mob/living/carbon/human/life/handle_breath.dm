@@ -1,11 +1,7 @@
 //Refer to life.dm for caller
 
 /mob/living/carbon/human/need_breathe()
-	if((species?.species_flags & NO_BREATHE) && health > get_crit_threshold())
-		set_Losebreath(0, TRUE)
-		setOxyLoss(0, TRUE)
-		oxygen_alert = FALSE
-		failed_last_breath = FALSE
+	if(species.species_flags & NO_BREATHE)
 		return FALSE
 	return ..()
 
