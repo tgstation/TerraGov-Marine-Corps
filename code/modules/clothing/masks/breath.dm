@@ -66,17 +66,17 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/mask/rebreather/bandana
-	name = "bandana"
+/obj/item/clothing/mask/rebreather/bandanna
+	name = "bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements."
-	icon_state = "bandana"
-	item_state = "bandana"
+	icon_state = "bandanna"
+	item_state = "bandanna"
 	flags_inv_hide = HIDEFACE
 	flags_armor_protection = FACE
 
 	verb/toggle()
 		set category = "Object"
-		set name = "Adjust Bandana"
+		set name = "Adjust bandanna"
 		set src in usr
 
 		if(usr.canmove && !usr.stat && !usr.restrained())
@@ -98,32 +98,32 @@
 
 			update_action_button_icons()	
 
-/obj/item/clothing/mask/rebreather/bandana/skull
-	name = "skull bandana"
+/obj/item/clothing/mask/rebreather/bandanna/skull
+	name = "skull bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is black with a white Skull on it."
-	icon_state = "skull_bandana"
-	item_state = "skull_bandana"
+	icon_state = "skull_bandanna"
+	item_state = "skull_bandanna"
 
-/obj/item/clothing/mask/rebreather/bandana/alpha
-	name = "red bandana"
+/obj/item/clothing/mask/rebreather/bandanna/alpha
+	name = "red bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Cherry Red."
-	icon_state = "alpha_bandana"
-	item_state = "alpha_bandana"
+	icon_state = "alpha_bandanna"
+	item_state = "alpha_bandanna"
 
-/obj/item/clothing/mask/rebreather/bandana/bravo
-	name = "yellow bandana"
+/obj/item/clothing/mask/rebreather/bandanna/bravo
+	name = "yellow bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Banana Yellow."
-	icon_state = "bravo_bandana"
-	item_state = "bravo_bandana"
+	icon_state = "bravo_bandanna"
+	item_state = "bravo_bandanna"
 
-/obj/item/clothing/mask/rebreather/bandana/charlie
-	name = "purple bandana"
+/obj/item/clothing/mask/rebreather/bandanna/charlie
+	name = "purple bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Grape Purple."
-	icon_state = "charlie_bandana"
-	item_state = "charlie_bandana"
+	icon_state = "charlie_bandanna"
+	item_state = "charlie_bandanna"
 
-/obj/item/clothing/mask/rebreather/bandana/delta
-	name = "blue bandana"
+/obj/item/clothing/mask/rebreather/bandanna/delta
+	name = "blue bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Blueberry Blue."
-	icon_state = "delta_bandana"
-	item_state = "delta_bandana"
+	icon_state = "delta_bandanna"
+	item_state = "delta_bandanna"
