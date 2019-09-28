@@ -73,4 +73,4 @@
 /mob/living/carbon/xenomorph/shrike/proc/stop_screeching()
 	if(icon_state != "Shrike Screeching")
 		return
-	icon_state = "Shrike Running"
+	update_icon()
