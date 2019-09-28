@@ -109,7 +109,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 58, "bullet" = 58, "laser" = 58, "energy" = 58, "bomb" = XENO_BOMB_RESIST_3, "bio" = 58, "rad" = 58, "fire" = 58, "acid" = 58)
+	armor = list("melee" = 58, "bullet" = 58, "laser" = 58, "energy" = 58, "bomb" = XENO_BOMB_RESIST_2, "bio" = 58, "rad" = 58, "fire" = 58, "acid" = 58)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -139,7 +139,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_2, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
