@@ -75,7 +75,7 @@
 		return FALSE
 	if(!isitem(target) && !ishuman(target))	//only items and mobs can be flung.
 		return FALSE
-	var/max_dist = 2 //the distance is much shorter now, since this is more of a utility then an attack.
+	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!owner.line_of_sight(target, max_dist))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We must get closer to fling, our mind cannot reach this far.</span>")
@@ -133,42 +133,44 @@
 	return ..()
 
 
-/datum/action/xeno_action/activable/unrelenting_force/use_ability()
+/datum/action/xeno_action/activable/unrelenting_force/use_ability(atom/target)
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob/living/carbon/xenomorph/shrike/proc/stop_screeching), 1 SECONDS)
 	owner.icon_state = "Shrike Screeching"
+	var/facing = get_cardinal_dir(owner, target)
+	owner.setDir(facing)
 
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(owner.dir)
 		if(NORTH)
 			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
-			upper_right = locate(owner.x + 1, owner.y + 2, owner.z)
+			upper_right = locate(owner.x + 1, owner.y + 3, owner.z)
 		if(SOUTH)
-			lower_left = locate(owner.x - 1, owner.y - 2, owner.z)
+			lower_left = locate(owner.x - 1, owner.y - 3, owner.z)
 			upper_right = locate(owner.x + 1, owner.y - 1, owner.z)
 		if(WEST)
-			lower_left = locate(owner.x - 2, owner.y - 1, owner.z)
+			lower_left = locate(owner.x - 3, owner.y - 1, owner.z)
 			upper_right = locate(owner.x - 1, owner.y + 1, owner.z)
 		if(EAST)
 			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
-			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
+			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
 		affected_tile.Shake(4, 4, 2 SECONDS)
 		for(var/i in affected_tile)
-			var/atom/movable/target = i
-			if(!ishuman(target) && !istype(target, /obj/item))
-				target.Shake(4, 4, 20)
+			var/atom/movable/affected = i
+			if(!ishuman(affected) && !istype(affected, /obj/item))
+				affected.Shake(4, 4, 20)
 				continue
-			var/throwlocation = target.loc //first we get the target's location
+			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
-			target.throw_at(throwlocation, 6, 1, owner, TRUE)
-			if(ishuman(target)) //if they're human, they also should get knocked off their feet from the blast.
-				var/mob/living/carbon/human = target
+			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+				var/mob/living/carbon/human = affected
 				human.apply_effects(1, 2) 	// Stun
-				shake_camera(target, 2, 1)
+				shake_camera(affected, 2, 1)
 
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
 	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")
