@@ -172,7 +172,7 @@
 	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
 	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")
 
-	playsound(owner,'sound/effects/alien_tail_swipe3.ogg', 75, 1)
+	playsound(owner,'sound/effects/alien_tail_swipe3.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
 
 // ***************************************
