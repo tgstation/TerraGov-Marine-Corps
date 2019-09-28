@@ -264,7 +264,7 @@
 	// Marine minor (Planet nuked, no one evac'd)
 	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
 	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
-	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_COMPLETED) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
+	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
 
 	switch(victory_options)
 		if(CRASH_DRAW)
