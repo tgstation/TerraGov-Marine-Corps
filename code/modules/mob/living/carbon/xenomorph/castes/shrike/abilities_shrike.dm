@@ -104,7 +104,7 @@
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
-	var/fling_distance = (!ishuman(victim)) ? 4 : 3 //Objects get flung further away.
+	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
 	var/turf/T = victim.loc
 	var/turf/temp
 
