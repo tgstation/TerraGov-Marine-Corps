@@ -155,7 +155,7 @@
 			upper_right = locate(owner.x + 2, owner.y + 1, owner.z)
 
 	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
-		affected_tile.Shake(4, 4, 20)
+		affected_tile.Shake(4, 4, 2 SECONDS)
 		for(var/atom/movable/target in affected_tile)
 			if(!ishuman(target) && !istype(target, /obj/item))
 				target.Shake(4, 4, 20)

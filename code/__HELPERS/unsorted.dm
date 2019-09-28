@@ -1143,7 +1143,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			assembled += A
 	return assembled
 
-/atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 250) //Does a "shaking" effect on a sprite, code is from tgstation
+/atom/proc/Shake(pixelshiftx = 15, pixelshifty = 15, duration = 25 SECONDS) //Does a "shaking" effect on a sprite, code is from tgstation
 	var/initialpixelx = pixel_x
 	var/initialpixely = pixel_y
 	var/shiftx = rand(-pixelshiftx,pixelshiftx)
