@@ -41,7 +41,7 @@ if grep '^\t* ' code/**/*.dm; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;
-if grep '(^(?!(.*\n)).*$)' code/**/*.dm; then
+if pcregrep --buffer-size=100K -LMr '\n$' code/; then
     echo "No newline at end of file detected"
     st=1
 fi;
