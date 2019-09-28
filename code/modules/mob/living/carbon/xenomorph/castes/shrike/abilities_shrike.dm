@@ -73,7 +73,7 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!istype(target, /obj/item) && !ishuman(target))	//only items and mobs can be flung.
+	if(!isitem(target) && !ishuman(target))	//only items and mobs can be flung.
 		return FALSE
 	var/max_dist = 2 //the distance is much shorter now, since this is more of a utility then an attack.
 	if(!owner.line_of_sight(target, max_dist))
