@@ -72,7 +72,7 @@
 	icon_state = "bandanna"
 	item_state = "bandanna"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_armor_protection = 0
+	flags_armor_protection = NONE
 	flags_inventory = COVERMOUTH|ALLOWREBREATH
 	flags_inv_hide = HIDEFACE|HIDELOWHAIR
 	flags_armor_protection = FACE
@@ -96,7 +96,6 @@
 			ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
 			ENABLE_BITFIELD(flags_armor_protection, FACE)
 		to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
-
 
 		update_clothing_icon()
 
