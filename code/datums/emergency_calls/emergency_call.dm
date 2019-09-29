@@ -148,7 +148,7 @@
 
 	var/list/valid_candidates = list()
 
-	for(var/i in shuffle(candidates))
+	for(var/i in candidates)
 		var/datum/mind/M = i
 		if(!istype(M)) // invalid
 			continue
