@@ -46,6 +46,13 @@
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
 
+//Ditto above but with burrowed larva
+/datum/hive_status/proc/get_total_xeno_number_and_burrowed()
+	. = 0
+	for(var/t in xenos_by_tier)
+		. += length(xenos_by_tier[t])
+	. += stored_larva
+
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
 
@@ -67,7 +74,7 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number() < xenos_per_queen
+	return get_total_xeno_number_and_burrowed() < xenos_per_queen
 
 
 // ***************************************
