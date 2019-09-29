@@ -46,8 +46,8 @@
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
 
-//Ditto above but with burrowed larva
-/datum/hive_status/proc/get_total_xeno_number_and_burrowed()
+//Normal hive status includes burrowed
+/datum/hive_status/normal/get_total_xeno_number()
 	. = 0
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
@@ -74,7 +74,7 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number_and_burrowed() < xenos_per_queen
+	return get_total_xeno_number() < xenos_per_queen
 
 
 // ***************************************
