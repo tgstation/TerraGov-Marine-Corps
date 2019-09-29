@@ -687,6 +687,7 @@
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 10,
 					/obj/item/storage/large_holster/m39 = 10,
