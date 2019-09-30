@@ -1,0 +1,4 @@
+author: "Spyroshark"
+delete-after: True
+changes: 
+  - bugfix: "Facehuggers aren't invisible when being thrown anymore."
