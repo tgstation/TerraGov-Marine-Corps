@@ -32,7 +32,8 @@
 
 /obj/machinery/door_control/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
+	if(.)
+		return
 	if(istype(I, /obj/item/detective_scanner))
 		return
 	else 

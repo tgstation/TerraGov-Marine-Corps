@@ -7,13 +7,13 @@
 
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
-		if(!S.melee_damage_upper)
+		if(!S.melee_damage)
 			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
 		else
 			M.do_attack_animation(src)
 			M.flick_attack_overlay(src, "punch")
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
-			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
+			var/damage = S.melee_damage
 			apply_damage(damage, BRUTE)
 			log_combat(S, src, "attacked")
 			updatehealth()
@@ -133,7 +133,7 @@
 				else
 					// copypasted from attack_alien.dm
 					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(M)
+					var/damage = M.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(M)
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)

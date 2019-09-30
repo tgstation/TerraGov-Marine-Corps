@@ -27,8 +27,7 @@
 
 	speak_chance = 1
 	turns_per_move = 5
-	melee_damage_upper = 10
-	melee_damage_lower = 5
+	melee_damage = 8
 
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
@@ -253,7 +252,7 @@
 	if(parrot_state == PARROT_PERCH)
 		parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
 
-	if(M.melee_damage_upper > 0 && !stat)
+	if(M.melee_damage > 0 && !stat)
 		parrot_interest = M
 		parrot_state = PARROT_SWOOP | PARROT_ATTACK //Attack other animals regardless
 		icon_state = icon_living
@@ -441,8 +440,8 @@
 			return
 
 		var/mob/living/L = parrot_interest
-		if(melee_damage_upper == 0)
-			melee_damage_upper = parrot_damage_upper
+		if(melee_damage == 0)
+			melee_damage = parrot_damage_upper
 			a_intent = INTENT_HARM
 
 
