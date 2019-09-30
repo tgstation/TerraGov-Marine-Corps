@@ -438,3 +438,7 @@
 			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+
+/datum/game_mode/crash/can_summon_dropship(mob/user)
+	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	return FALSE
