@@ -1,0 +1,4 @@
+author: "Jalleo"
+delete-after: True
+changes: 
+  - bugfix: "The first person on the observers list is no longer the next person to be a alien (If they want to be or get picked by a birthing larva maybe)"
