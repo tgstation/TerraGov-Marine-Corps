@@ -21,21 +21,26 @@
 	. = ..()
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 
+
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(iscrowbar(I))
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							"<span class='notice'>You pry open \the [src].</span>", \
-							"<span class='notice'>You hear splitting wood.</span>")
-		new /obj/item/stack/sheet/wood(src)
-		deconstruct(TRUE)
-		return
+	if(.)
+		return TRUE
 	
 	if(istype(I, /obj/item/powerloader_clamp))
 		return
 	
 	return attack_hand(user)
+
+
+/obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>",
+		"<span class='notice'>You pry open \the [src].</span>",
+		"<span class='notice'>You hear splitting wood.</span>")
+	new /obj/item/stack/sheet/wood(loc)
+	deconstruct(TRUE)
+	return TRUE
 
 
 /obj/structure/largecrate/proc/spawn_stuff()
@@ -197,24 +202,24 @@
 	icon_state = "secure_crate_strapped"
 	var/strapped = 1
 
-/obj/structure/largecrate/random/secure/attackby(obj/item/I, mob/user, params)
+
+/obj/structure/largecrate/random/secure/crowbar_act(mob/living/user, obj/item/I)
+	if(strapped)
+		return FALSE
+	return ..()
+
+
+/obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
-
-	if(!strapped)
-		return
-
-	else if(!I.sharp)
-		return attack_hand(user)
-
 	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
-
-	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
+	if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You cut the straps away.</span>")
 	icon_state = "secure_crate"
 	strapped = FALSE
+	return TRUE
+
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
