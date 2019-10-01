@@ -31,8 +31,6 @@
 	name = "\improper Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
-	density = TRUE
-	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_access_txt = "0"
@@ -350,6 +348,11 @@
 			list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "standard"),
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
+			list("Tan bandanna", 0, /obj/item/clothing/mask/bandanna, MARINE_CAN_BUY_MASK, "standard"),
+			list("Green bandanna", 0, /obj/item/clothing/mask/bandanna/green, MARINE_CAN_BUY_MASK, "standard"),
+			list("White bandanna", 0, /obj/item/clothing/mask/bandanna/white, MARINE_CAN_BUY_MASK, "standard"),
+			list("Black bandanna", 0, /obj/item/clothing/mask/bandanna/black, MARINE_CAN_BUY_MASK, "standard"),
+			list("Skull bandanna", 0, /obj/item/clothing/mask/bandanna/skull, MARINE_CAN_BUY_MASK, "standard"),
 
 		list("utility", "header", "GUN ATTACHMENTS", 2, "This is a limited selection of attachments. Requisitions would have more."),
 			list("utility", "sub-group", "Muzzle attachments", null, ""),

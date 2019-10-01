@@ -15,23 +15,23 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	var/slot               //Slot to equip to.
 
 
-/datum/gear/bandana_red
-	display_name = "TGMC bandana (red)"
-	path = /obj/item/clothing/head/bandana/red
+/datum/gear/bandanna_red
+	display_name = "TGMC bandanna (red)"
+	path = /obj/item/clothing/head/bandanna/red
 	cost = 3
 	slot = SLOT_HEAD
 
 
-/datum/gear/bandana_green
-	display_name = "TGMC bandana (green)"
-	path = /obj/item/clothing/head/tgmcbandana
+/datum/gear/bandanna_green
+	display_name = "TGMC bandanna (green)"
+	path = /obj/item/clothing/head/tgmcbandanna
 	cost = 3
 	slot = SLOT_HEAD
 
 
-/datum/gear/bandana_tan
-	display_name = "TGMC bandana (tan)"
-	path = /obj/item/clothing/head/tgmcbandana/tan
+/datum/gear/bandanna_tan
+	display_name = "TGMC bandanna (tan)"
+	path = /obj/item/clothing/head/tgmcbandanna/tan
 	cost = 3
 	slot = SLOT_HEAD
 

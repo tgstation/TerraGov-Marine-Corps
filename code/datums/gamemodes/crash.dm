@@ -171,8 +171,11 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
-
-	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(HN)
+		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
+	
+	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
 
 
 /datum/game_mode/crash/announce()
@@ -182,22 +185,20 @@
 
 
 /datum/game_mode/crash/proc/add_larva()
-	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2] + HS.stored_larva
 	if(!num_xenos)
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
-		if(0)
-			return check_finished() //No more marines.
-		if(0 to 2) //Xenos grow up until they are a half the number of marines.
+		if(0 to 1.75) // 7/4
 			return
-		if(2 to 3)
+		if(1.75 to 3)
 			HS.stored_larva++
 		if(3 to 5)
-			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 10 marines.
+			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
 		else //If there's more than 5 marines per xenos, then xenos gain larvas to fill the gap.
 			HS.stored_larva += CLAMP(round(num_humans * 0.2), 1, num_humans - num_xenos)
 
@@ -248,10 +249,8 @@
 	if(num_humans && !planet_nuked && marines_evac == CRASH_EVAC_NONE)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
-				return FALSE //Xenos keep respawning for like an hour or so.
+				return FALSE //Xenos keep respawning.
 		else
-			if(num_humans / num_xenos > 5)
-				add_larva()
 			return FALSE
 
 	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
@@ -431,3 +430,15 @@
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
 		CHECK_TICK
+
+
+/datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	switch(new_xeno.tier)
+		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+
+/datum/game_mode/crash/can_summon_dropship(mob/user)
+	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	return FALSE

@@ -55,7 +55,7 @@
 		var/turf/speaker = get_turf(R)
 		if(!speaker)
 			continue
-			
+
 		for(var/turf/T in hear(R.canhear_range,speaker))
 			speaker_coverage[T] = T
 

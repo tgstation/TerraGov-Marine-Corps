@@ -11,8 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage = 22.5
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -67,8 +66,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage = 27.5
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -103,8 +101,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage = 32.5
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -140,8 +137,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	melee_damage = 37.5
 
 	// *** Tackle *** //
 	tackle_damage = 30
