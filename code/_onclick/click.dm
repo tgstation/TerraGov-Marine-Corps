@@ -84,6 +84,10 @@
 			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
 			return
 
+//Hijack for FC.
+	if(prefs.focus_chat)
+		winset(src, null, "input.focus=true")
+
 	return ..()
 
 

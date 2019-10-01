@@ -20,8 +20,7 @@
 	pixel_x = -16
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage = 12
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("pines")

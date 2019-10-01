@@ -208,7 +208,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper)
+	var/damage = X.xeno_caste.melee_damage
 	succeed_activate()
 	playsound(M, S, 50, 1)
 

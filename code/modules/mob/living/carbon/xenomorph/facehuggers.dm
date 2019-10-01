@@ -60,7 +60,7 @@
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"
 	else if(throwing)
-		icon_state = "[initial(icon_state)]_throwing"
+		icon_state = "[initial(icon_state)]_thrown"
 	else if(stat == UNCONSCIOUS && !attached)
 		icon_state = "[initial(icon_state)]_inactive"
 	else

@@ -201,6 +201,7 @@
 	#define COMSIG_WARRIOR_USED_LUNGE 1
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
+#define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
 
 #define COMSIG_XENOMORPH_GRAB "xenomorph_grab"
 #define COMSIG_XENOMORPH_ATTACK_BARRICADE "xenomorph_attack_barricade"

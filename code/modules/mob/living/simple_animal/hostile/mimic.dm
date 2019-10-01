@@ -14,8 +14,7 @@
 	gender = NEUTER
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage = 12
 	attacktext = "attacks"
 	attack_sound = 'sound/weapons/punch1.ogg'
 	emote_taunt = list("growls")
@@ -163,13 +162,11 @@ GLOBAL_LIST_INIT(protected_objects, list(/obj/structure/table, /obj/structure/ca
 			destroy_objects = 1
 			if(O.density && O.anchored)
 				knockdown_people = 1
-				melee_damage_lower *= 2
-				melee_damage_upper *= 2
+				melee_damage *= 2
 		else if(isitem(O))
 			var/obj/item/I = O
 			health = 15 * I.w_class
-			melee_damage_lower = 2 + I.force
-			melee_damage_upper = 2 + I.force
+			melee_damage = 2 + I.force
 			move_to_delay = 2 * I.w_class + 1
 		maxHealth = health
 		if(user)

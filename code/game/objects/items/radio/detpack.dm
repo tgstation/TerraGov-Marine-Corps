@@ -234,7 +234,7 @@
 		return FALSE
 	if(isobj(target))
 		var/obj/O = target
-		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
 			return FALSE
 	if(iswallturf(target))
 		var/turf/closed/wall/W = target
@@ -245,6 +245,9 @@
 		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
+	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		return FALSE
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
@@ -257,6 +260,9 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 
 	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			return
 		user.drop_held_item()
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		var/location
