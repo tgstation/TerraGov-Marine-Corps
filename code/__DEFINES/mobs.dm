@@ -353,24 +353,25 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				27		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		26
-#define MUTANTRACE_LAYER		25
-#define MUTATIONS_LAYER			24
-#define DAMAGE_LAYER			23
-#define UNIFORM_LAYER			22
-#define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER				20
-#define SHOES_LAYER				19
-#define GLOVES_LAYER			18
-#define BELT_LAYER   			17
-#define GLASSES_LAYER			16
-#define SUIT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				13
-#define HAIR_LAYER				12		//TODO: make part of head layer?
-#define EARS_LAYER				11
-#define FACEMASK_LAYER			10
+#define LASER_LAYER				28		//For sniper targeting laser
+#define MOTH_WINGS_LAYER		27
+#define MUTANTRACE_LAYER		26
+#define MUTATIONS_LAYER			25
+#define DAMAGE_LAYER			24
+#define UNIFORM_LAYER			23
+#define TAIL_LAYER				22		//bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				21
+#define SHOES_LAYER				20
+#define GLOVES_LAYER			19
+#define BELT_LAYER   			18
+#define GLASSES_LAYER			17
+#define SUIT_LAYER				16		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		15
+#define BACK_LAYER				14
+#define HAIR_LAYER				13		//TODO: make part of head layer?
+#define EARS_LAYER				12
+#define FACEMASK_LAYER			11
+#define GOGGLES_LAYER           10    //For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER				9
 #define COLLAR_LAYER			8
 #define HANDCUFF_LAYER			7
