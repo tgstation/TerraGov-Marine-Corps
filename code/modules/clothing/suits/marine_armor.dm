@@ -829,6 +829,11 @@
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"

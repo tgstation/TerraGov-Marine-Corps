@@ -171,7 +171,7 @@ should be alright.
 		if(!istype(B,/obj/item/belt_harness))
 			return
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
+	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
 		return
 	harness_return(user)
 	return TRUE
