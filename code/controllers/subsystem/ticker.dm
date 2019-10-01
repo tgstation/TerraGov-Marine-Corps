@@ -32,6 +32,8 @@ SUBSYSTEM_DEF(ticker)
 	var/list/round_start_events
 	var/list/round_end_events
 
+	var/gamemode_vote = FALSE
+
 	var/tipped = FALSE
 	var/selected_tip
 
@@ -74,6 +76,9 @@ SUBSYSTEM_DEF(ticker)
 				time_left = max(0, start_at - world.time)
 			if(start_immediately)
 				time_left = 0
+
+			if(time_left <= 90 SECONDS && time_left > 60 SECONDS && !gamemode_vote)
+				addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 1 SECONDS)
 
 			if(time_left <= 300 && !tipped)
 				send_tip_of_the_round()
