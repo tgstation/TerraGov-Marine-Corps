@@ -4042,11 +4042,6 @@
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/straight,
 /area/ice_colony/exterior/surface/clearing/north)
-"alj" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "alk" = (
 /turf/closed/wall,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -4681,16 +4676,6 @@
 "ana" = (
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/substation)
-"anb" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "anc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -4712,16 +4697,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/west)
-"anf" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "ang" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4912,17 +4887,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
-"anD" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/obj/item/lightstick/anchored,
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "anE" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/ice_colony/surface/dorms/restroom_e)
@@ -4963,16 +4927,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation)
-"anL" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/turf/open/floor/tile/dark/brown2/corner{
-	dir = 1
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "anM" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -5245,9 +5199,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
@@ -6986,11 +6940,13 @@
 /area/ice_colony/surface/clinic/storage)
 "asC" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/turf/open/floor/plating/ground/snow/layer1,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
 /area/ice_colony/exterior/surface/valley/northwest)
 "asD" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -7039,11 +6995,6 @@
 	dir = 9
 	},
 /area/ice_colony/surface/hydroponics/lobby)
-"asI" = (
-/turf/open/floor/tile/dark/brown2/corner{
-	dir = 4
-	},
-/area/ice_colony/exterior/surface/landing_pad2)
 "asJ" = (
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
@@ -40461,6 +40412,15 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"mxc" = (
+/obj/item/lightstick/anchored,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/northwest)
 "myL" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -40530,6 +40490,16 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nXf" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/valley/northwest)
 "okD" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight,
@@ -40624,6 +40594,16 @@
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
+"rrn" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/valley/northwest)
 "rtq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
@@ -40849,6 +40829,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/valley/north)
+"xiR" = (
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/valley/northwest)
 "xjB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/end{
@@ -40859,6 +40844,17 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"xTU" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/item/lightstick/anchored,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/valley/northwest)
 "xUy" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/end{
@@ -40876,6 +40872,11 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
+"yjW" = (
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/valley/northwest)
 
 (1,1,1) = {"
 aaa
@@ -44031,8 +44032,8 @@ ahB
 ahB
 ahB
 ahB
-asI
-agd
+ahB
+xiR
 aaJ
 aaJ
 aat
@@ -44288,8 +44289,8 @@ afd
 abS
 acU
 ael
-alj
-aaJ
+ael
+yjW
 aaI
 aym
 aBi
@@ -44545,8 +44546,8 @@ afd
 abk
 acg
 afd
-alj
-aaJ
+afd
+yjW
 aaJ
 aym
 bUI
@@ -44802,8 +44803,8 @@ afd
 afd
 abk
 afd
-alj
-aaJ
+afd
+yjW
 aaJ
 aym
 bUJ
@@ -45059,8 +45060,8 @@ afd
 afd
 afd
 afd
-alj
-agW
+afd
+yjW
 aaJ
 ayn
 bUJ
@@ -45316,8 +45317,8 @@ afd
 afd
 abk
 abk
-alj
-aaJ
+abk
+yjW
 aaJ
 bUO
 bUO
@@ -45573,7 +45574,7 @@ afd
 afd
 abk
 abk
-anb
+abk
 asC
 asM
 aBg
@@ -45830,8 +45831,8 @@ afd
 afd
 abk
 abk
-anf
-agd
+abk
+rrn
 aaJ
 ayn
 bUJ
@@ -46087,8 +46088,8 @@ afd
 afd
 afd
 afd
-anf
-aaJ
+afd
+rrn
 aaJ
 aym
 bUL
@@ -46344,8 +46345,8 @@ afd
 afd
 abk
 afd
-anf
-aaJ
+afd
+rrn
 aaJ
 aBi
 aBi
@@ -46601,8 +46602,8 @@ afd
 abk
 acg
 abk
-anD
-aaJ
+abk
+xTU
 aaJ
 atf
 afO
@@ -46858,8 +46859,8 @@ afd
 acE
 acW
 aeF
-anf
-aaJ
+aeF
+rrn
 aaJ
 alO
 bca
@@ -47115,8 +47116,8 @@ ado
 ado
 ado
 ado
-anL
-afb
+ado
+nXf
 aaJ
 ate
 abi
@@ -47372,8 +47373,8 @@ abm
 abm
 abm
 abm
-aog
 agd
+aog
 aaJ
 aaI
 aaI
@@ -47629,8 +47630,8 @@ abm
 abm
 abm
 abm
+agd
 aog
-aaJ
 aaJ
 atq
 ahk
@@ -47887,7 +47888,7 @@ aea
 aea
 aea
 aov
-agW
+mxc
 aaJ
 atx
 aKD
