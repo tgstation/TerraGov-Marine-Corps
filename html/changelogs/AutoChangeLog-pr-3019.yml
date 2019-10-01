@@ -1,7 +1,0 @@
-author: "Kuro & MetroidLover"
-delete-after: True
-changes: 
-  - rscadd: "Added Bandanas of all Squad and Map colors to be worn on your face. Also yes, there is a skull one"
-  - rscadd: "Ballistic Goggles and the new Bandannas are now able to be found in Marine Surplus Vendors"
-  - spellcheck: "\"Bandanna\" instead of \"Bandana\""
-  - imageadd: "New sprites for Ballistic Goggles"
