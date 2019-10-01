@@ -2031,14 +2031,6 @@
 	icon_state = "sterile_green_side"
 	},
 /area/mainship/medical/medical_science)
-"afo" = (
-/area/desert_dam/interior{
-	pixel_x = 25
-	},
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
-	},
-/area/mainship/command/airoom)
 "afp" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -10705,14 +10697,6 @@
 /obj/effect/landmark/start/marine/squadmarine,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
-"ayB" = (
-/area/desert_dam/interior{
-	pixel_x = -25
-	},
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
-	},
-/area/mainship/command/airoom)
 "ayC" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/rad{
@@ -86061,7 +86045,7 @@ hKL
 aoH
 apS
 awK
-afo
+pvn
 aAo
 aPf
 awK
@@ -86575,7 +86559,7 @@ aoH
 aoH
 apS
 vVX
-ayB
+pvn
 aAn
 aCf
 vVX
