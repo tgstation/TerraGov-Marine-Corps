@@ -31,6 +31,8 @@
 	name = "\improper Theoretical Marine selector"
 	desc = ""
 	icon = 'icons/obj/machines/vending.dmi'
+	density = TRUE
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
 	req_access_txt = "0"
@@ -247,7 +249,7 @@
 					else
 						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
 				else
-					I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
+					I.marine_buy_flags &= ~bitf
 			else
 				to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 				return
