@@ -82,7 +82,7 @@
 /proc/get_alien_candidate()
 	var/mob/dead/observer/picked
 
-	for(var/i in shuffle(GLOB.observer_list))
+	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/O = i
 		//Players without preferences or jobbaned players cannot be drafted.
 		if(!O.key || !O.mind || !O.client?.prefs || !(O.client.prefs.be_special & (BE_ALIEN|BE_ALIEN_UNREVIVABLE)) || is_banned_from(O.ckey, ROLE_XENOMORPH))
