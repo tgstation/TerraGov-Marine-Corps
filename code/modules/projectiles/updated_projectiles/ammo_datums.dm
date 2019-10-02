@@ -901,6 +901,38 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 40
 
+/datum/ammo/energy/lasgun/M43c
+	name = "laser bolt"
+	hud_state = "laser"
+	penetration = 10
+
+/datum/ammo/energy/lasgun/M43c/overcharge
+	name = "wide range laser blast"
+	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43c/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 10
+	damage = 50
+	damage_falloff = 10
+	penetration = 0
+
+/datum/ammo/energy/lasgun/M43c/spread
+	name = "additional laser blast"
+	icon_state = "laser"
+	shell_speed = 2
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 10
+	damage = 50
+	damage_falloff = 10
+	penetration = 0
+
 /*
 //================================================
 					Xeno Spits

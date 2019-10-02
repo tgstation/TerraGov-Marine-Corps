@@ -173,6 +173,39 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 
+/obj/item/weapon/gun/energy/lasgun/M43/M43c
+	name = "\improper M43c Pulsar Lascarbine"
+	desc = "An accurate, recoilless laser based carbine with an integrated charge selector. Ideal for shorter range engagements. Uses power cells."
+	force = 20 //Large and hefty! Includes stock bonus.
+	icon_state = "m43"
+	item_state = "m43"
+	max_shots = 50 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/M43c
+	cell_type = null
+	charge_cost = M43_STANDARD_AMMO_COST
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
+	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = 0.25
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -181,6 +214,8 @@
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
 
+/obj/item/weapon/gun/energy/lasgun/M43/M43c/unique_action(mob/user)
+	return toggle_chargemode(user)
 
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
@@ -225,6 +260,43 @@
 	
 	return TRUE
 
+//Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
+/obj/item/weapon/gun/energy/lasgun/M43/M43c/toggle_chargemode(mob/user)
+	//if(in_chamber)
+	//	delete_bullet(in_chamber, TRUE)
+	if(overcharge == FALSE)
+		if(!cell)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
+			return
+		if(cell.charge < M43_OVERCHARGE_AMMO_COST)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
+			return
+		//While overcharge is active, double ammo consumption, and
+		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+		charge_cost = M43_OVERCHARGE_AMMO_COST
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43c/overcharge]
+		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = TRUE
+	else
+		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
+		charge_cost = M43_STANDARD_AMMO_COST
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43c]
+		fire_delay = 3
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = FALSE
+
+	//load_into_chamber()
+
+	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user)
+	
+	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
