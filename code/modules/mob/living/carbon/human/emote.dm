@@ -65,6 +65,15 @@
 	emote_type = EMOTE_AUDIBLE
 
 
+/datum/emote/living/carbon/human/cough/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.coughs[user.gender])
+		return user.species.coughs[user.gender]
+	if(user.species.coughs[NEUTER])
+		return user.species.coughs[NEUTER]
+
+
 /datum/emote/living/carbon/human/cry
 	key = "cry"
 	key_third_person = "cries"
@@ -109,6 +118,14 @@
 	emote_type = EMOTE_AUDIBLE
 	stat_allowed = UNCONSCIOUS
 
+
+/datum/emote/living/carbon/human/gasp/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.gasps[user.gender])
+		return user.species.gasps[user.gender]
+	if(user.species.gasps[NEUTER])
+		return user.species.gasps[NEUTER]
 
 /datum/emote/living/carbon/human/giggle
 	key = "giggle"

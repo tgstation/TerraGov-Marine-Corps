@@ -169,6 +169,9 @@
 								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)
 
+	var/preburst_screams = victim.gender == FEMALE ? get_sfx("female_preburst") : get_sfx("male_preburst")
+	playsound(loc, preburst_screams, 25, 0)
+
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 
 
@@ -182,7 +185,6 @@
 
 	victim.update_burst()
 
-	victim.emote("scream")
 	if(istype(victim.loc, /obj/vehicle/multitile/root))
 		var/obj/vehicle/multitile/root/V = victim.loc
 		V.handle_player_exit(src)
