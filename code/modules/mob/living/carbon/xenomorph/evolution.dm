@@ -195,11 +195,10 @@
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
-		if(istype(hive, /datum/hive_status/normal)) //If it has burrowed larva let's include that
-			var/datum/hive_status/normal/hive2
-			tierones = length(hive2.xenos_by_tier[XENO_TIER_ONE]) + length(hive2.xenos_by_tier[XENO_TIER_ZERO]) + length(hive2.stored_larva) //Includes larva and burrowed larva
-		else
-			tierones = length(hive.xenos_by_tier[XENO_TIER_ONE]) + length(hive.xenos_by_tier[XENO_TIER_ZERO])
+		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE]) + length(hive.xenos_by_tier[XENO_TIER_ZERO])
+		if(istype(hive, /datum/hive_status/normal))
+			var/datum/hive_status/normal/normal_hive = hive
+			tierones += normal_hive.stored_larva
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 

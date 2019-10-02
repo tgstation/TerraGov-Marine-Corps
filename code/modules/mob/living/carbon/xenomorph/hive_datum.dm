@@ -46,13 +46,6 @@
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
 
-//Normal hive status includes burrowed
-/datum/hive_status/normal/get_total_xeno_number()
-	. = 0
-	for(var/t in xenos_by_tier)
-		. += length(xenos_by_tier[t])
-	. += stored_larva
-
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
 
@@ -76,6 +69,8 @@
 /datum/hive_status/proc/can_hive_have_a_queen()
 	return get_total_xeno_number() < xenos_per_queen
 
+/datum/hive_status/normal/can_hive_have_a_queen()
+	return get_total_xeno_number() + stored_larva < xenos_per_queen
 
 // ***************************************
 // *********** List getters
