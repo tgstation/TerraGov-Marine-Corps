@@ -477,6 +477,10 @@ should be alright.
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
 
+	if(G.overcharge == TRUE)
+		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
+		return	
+
 	if(!rail && !muzzle && !under && !stock)
 		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
 		return
