@@ -83,6 +83,9 @@ Defined in conflicts.dm of the #defines folder.
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
 
+	var/ammo_mod = null			//what ammo the gun fires, lasers usually
+	var/charge_cost = 0		//how much charge it now costs to shoot.
+
 	var/obj/item/weapon/gun/master_gun
 
 
@@ -157,6 +160,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
+	master_gun.ammo_mod						= ammo_mod
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -211,6 +215,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
+	master_gun.ammo_mod						= null
 
 	master_gun.update_force_list()
 
@@ -404,9 +409,25 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NONE
 
+/obj/item/attachable/focuslens
+	name = "focused lens"
+	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
+	slot = "muzzle"
+	icon_state = "comp"
+	attach_icon = "comp_a"
+	pixel_shift_x = 17
+	pixel_shift_y = 16
+	ammo_mod = /datum/ammo/energy/lasgun/M43/overcharge
 
-
-
+/obj/item/attachable/widelens
+	name = "wide lens"
+	desc = "Allows the lasgun to use the deadly wide range blast on overcharge."
+	slot = "muzzle"
+	icon_state = "comp"
+	attach_icon = "comp_a"
+	pixel_shift_x = 17
+	pixel_shift_y = 16
+	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
 
 
 ///////////// Rail attachments ////////////////////////

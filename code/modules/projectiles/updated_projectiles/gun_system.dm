@@ -69,6 +69,7 @@
 	//Energy Weapons
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
+	var/ammo_mod		= null					//what ammo to use for overcharge
 
 	//Attachments.
 	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
