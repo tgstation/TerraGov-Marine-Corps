@@ -215,7 +215,13 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
-	master_gun.ammo_mod						= null
+	
+	if(master_gun.ammo_mod != null) //special M43 lasgun lens stuff
+		master_gun.ammo 					= GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
+		master_gun.charge_cost 				= M43_STANDARD_AMMO_COST
+		master_gun.fire_delay 				= 3
+		master_gun.overcharge 				= FALSE
+		master_gun.ammo_mod					= null
 
 	master_gun.update_force_list()
 
