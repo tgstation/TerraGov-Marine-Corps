@@ -368,6 +368,7 @@ should be alright.
 		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
 		user.temporarilyRemoveItemFromInventory(attachment)
 		attachment.Attach(src, user)
+		setup_firemodes()
 		playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
 
@@ -553,6 +554,7 @@ should be alright.
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, 4)
 	update_attachables()
+	setup_firemodes() //flawed at the moment, this needs to remove set available firemodes to whatever is available.
 
 
 /obj/item/weapon/gun/ui_action_click(mob/user, datum/action/item_action/action)

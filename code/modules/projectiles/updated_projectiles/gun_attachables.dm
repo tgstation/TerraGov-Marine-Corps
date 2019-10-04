@@ -73,7 +73,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	var/activation_sound = 'sound/machines/click.ogg'
 
-	var/flags_attach_features = ATTACH_REMOVABLE
+	var/flags_attach_features = ATTACH_REMOVABLE //set to NONE to make the attachment unremoveable. 
 
 	var/bipod_deployed = FALSE //only used by bipod
 	var/current_rounds 	= 0 //How much it has.
@@ -83,8 +83,9 @@ Defined in conflicts.dm of the #defines folder.
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
 
-	var/ammo_mod = null			//what ammo the gun fires, lasers usually
-	var/charge_cost = 0		//how much charge it now costs to shoot.
+	var/ammo_mod = null			//what ammo the gun could fire if overcharge is activated, lasers usually.
+	var/charge_mod = 0		//how much charge it now costs to shoot.
+	var/gun_firemode_list_mod = list() //what firemodes this attachment allows.
 
 	var/obj/item/weapon/gun/master_gun
 
@@ -161,6 +162,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
 	master_gun.ammo_mod						= ammo_mod
+	master_gun.charge_cost					+= charge_mod
+	master_gun.gun_firemode_list			|= gun_firemode_list_mod
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -177,6 +180,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/living_user = master_gun.loc
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
+
 
 
 /obj/item/attachable/proc/Detach(mob/user)
@@ -216,6 +220,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
 	master_gun.ammo_mod						= null
+	master_gun.charge_cost					-= charge_mod
+	master_gun.gun_firemode_list			-= gun_firemode_list_mod
 
 	master_gun.update_force_list()
 
@@ -230,7 +236,7 @@ Defined in conflicts.dm of the #defines folder.
 			continue
 		qdel(action_to_update)
 		break
-
+	
 	forceMove(get_turf(master_gun))
 
 	master_gun = null
@@ -413,22 +419,44 @@ Defined in conflicts.dm of the #defines folder.
 	name = "focused lens"
 	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
 	slot = "muzzle"
-	icon_state = "comp"
-	attach_icon = "comp_a"
+	icon_state = "focus"
+	attach_icon = "focus_a"
 	pixel_shift_x = 17
-	pixel_shift_y = 16
+	pixel_shift_y = 13
 	ammo_mod = /datum/ammo/energy/lasgun/M43/overcharge
+	damage_mod = -0.15
 
 /obj/item/attachable/widelens
 	name = "wide lens"
 	desc = "Allows the lasgun to use the deadly wide range blast on overcharge."
 	slot = "muzzle"
-	icon_state = "comp"
-	attach_icon = "comp_a"
-	pixel_shift_x = 17
-	pixel_shift_y = 16
+	icon_state = "wide"
+	attach_icon = "wide_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
 	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
+	damage_mod = -0.15
 
+/obj/item/attachable/efflens
+	name = "efficient lens"
+	desc = "Allows the lasgun to use its energy much more efficiently."
+	slot = "muzzle"
+	icon_state = "efficient"
+	attach_icon = "efficient_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 14
+	charge_mod = -5 
+
+/obj/item/attachable/pulselens
+	name = "pulse lens"
+	desc = "Allows the lasgun to shoot much quicker."
+	slot = "muzzle"
+	icon_state = "pulse"
+	attach_icon = "pulse_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
+	damage_mod = -0.15
+	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
 ///////////// Rail attachments ////////////////////////
 

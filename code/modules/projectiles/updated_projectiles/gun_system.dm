@@ -67,6 +67,7 @@
 
 
 	//Energy Weapons
+	var/charge_cost		= 0						//how much energy is consumed per shot. 
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
 	var/ammo_mod		= null					//what ammo to use for overcharge

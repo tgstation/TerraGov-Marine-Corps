@@ -891,13 +891,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/M43
 	name = "laser bolt"
 	hud_state = "laser"
+	damage = 25
 	penetration = 25
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
-	damage = 40
+	damage = 46 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 40
 
@@ -911,8 +912,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 5
-	max_range = 10
-	damage = 50
+	max_range = 5
+	damage = 46 //requires mod with -0.15 multiplier should math out to 40
 	damage_falloff = 10
 	penetration = 0
 
@@ -923,8 +924,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 5
-	max_range = 10
-	damage = 50
+	max_range = 5
+	damage = 40
 	damage_falloff = 10
 	penetration = 0
 
