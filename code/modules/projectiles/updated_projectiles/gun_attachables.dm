@@ -73,7 +73,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	var/activation_sound = 'sound/machines/click.ogg'
 
-	var/flags_attach_features = ATTACH_REMOVABLE //set to NONE to make the attachment unremoveable. 
+	var/flags_attach_features = ATTACH_REMOVABLE
 
 	var/bipod_deployed = FALSE //only used by bipod
 	var/current_rounds 	= 0 //How much it has.
