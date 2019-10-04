@@ -161,7 +161,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
-	master_gun.ammo_mod						= ammo_mod
+	master_gun.ammo_diff					= ammo_mod
 	master_gun.charge_cost					+= charge_mod
 	master_gun.gun_firemode_list			|= gun_firemode_list_mod
 
@@ -219,7 +219,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
-	master_gun.ammo_mod						= null
+	master_gun.ammo_diff					= null
 	master_gun.charge_cost					-= charge_mod
 	master_gun.gun_firemode_list			-= gun_firemode_list_mod
 

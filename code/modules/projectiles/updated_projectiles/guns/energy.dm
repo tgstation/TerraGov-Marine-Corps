@@ -148,7 +148,7 @@
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
-	ammo_mod = null
+	ammo_diff = null
 	cell_type = null
 	charge_cost = M43_STANDARD_AMMO_COST
 	attachable_allowed = list(
@@ -194,7 +194,7 @@
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
-	if(ammo_mod == null)
+	if(ammo_diff == null)
 		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
 		return
 	if(overcharge == FALSE)
@@ -209,7 +209,7 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = M43_OVERCHARGE_AMMO_COST
-		ammo = GLOB.ammo_list[ammo_mod]
+		ammo = GLOB.ammo_list[ammo_diff]
 		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
