@@ -23273,7 +23273,7 @@
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor{
 	icon_state = "red";
@@ -24166,7 +24166,7 @@
 /obj/item/ammo_magazine/revolver/mateba,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/incendiary,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/sniper/svd,
 /obj/item/ammo_magazine/rifle/m16,

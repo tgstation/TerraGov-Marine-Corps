@@ -15336,7 +15336,7 @@
 /area/mainship/shipboard/brig)
 "aHu" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
