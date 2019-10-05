@@ -173,7 +173,7 @@
 	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
-	
+
 
 
 //-------------------------------------------------------
@@ -221,7 +221,7 @@
 	damage_mult = 0.8
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.14 SECONDS
-	
+
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -356,7 +356,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/stock/sx16, /obj/item/attachable/sx16barrel)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 10, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 10, "stock_y" = 14)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 0.7 SECONDS
