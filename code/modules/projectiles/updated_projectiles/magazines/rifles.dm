@@ -86,7 +86,8 @@
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
-	max_rounds = 300
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
