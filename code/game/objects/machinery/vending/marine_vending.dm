@@ -32,6 +32,9 @@
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
 					/obj/item/attachable/bayonet = 10,
+					/obj/item/weapon/gun/rifle/sx16 = 10,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
@@ -118,6 +121,7 @@
 					/obj/item/weapon/gun/rifle/lmg = 2,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
+					/obj/item/weapon/gun/rifle/sx16 = 10,
 					/obj/item/explosive/mine = 2,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
@@ -197,6 +201,8 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
 					/obj/item/smartgun_powerpack = 2
 					)
 
@@ -510,7 +516,6 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
-					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
