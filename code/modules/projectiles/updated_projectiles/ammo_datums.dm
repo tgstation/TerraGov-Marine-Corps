@@ -876,7 +876,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/lasgun
-	name = "laser bolt"
+	name = "civilian laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = "laser"
@@ -889,7 +889,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
-	name = "laser bolt"
+	name = "military laser bolt"
 	hud_state = "laser"
 	damage = 25
 	penetration = 25
