@@ -103,3 +103,23 @@
 	gun_type = /obj/item/weapon/gun/rifle/type71
 
 
+//-------------------------------------------------------
+//SX-16 AUTOMATIC SHOTGUN (makes more sense for it to be a rifle)
+
+/obj/item/ammo_magazine/rifle/sx16_buckshot
+	name = "\improper SX-16 buckshot magazine (16 gauge)"
+	desc = "A magazine of 16 gauge buckshot, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_buckshot
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16
+
+/obj/item/ammo_magazine/rifle/sx16_slug
+	name = "\improper SX-16 magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16

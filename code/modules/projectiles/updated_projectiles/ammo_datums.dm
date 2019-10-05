@@ -590,6 +590,37 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/spread/masterkey
 	damage = 30
 
+/datum/ammo/bullet/shotgun/sx16_buckshot
+	name = "shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 8
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 10
+	damage = 25
+	damage_falloff = 2
+	penetration = 10
+
+/datum/ammo/bullet/shotgun/sx16_buckshot/spread
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 10
+	damage = 25
+	damage_falloff = 2
+	penetration = 10
+
+/datum/ammo/bullet/shotgun/sx16_slug
+	name = "shotgun slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 3
+	max_range = 15
+	damage = 35
+	penetration = 35
 
 /*
 //================================================
