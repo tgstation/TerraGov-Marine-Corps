@@ -85,11 +85,11 @@
 	flags_inventory = 0
 	flags_armor_protection = HEAD|FACE|EYES
 
-/obj/item/clothing/head/greenbandana
-	name = "green bandana"
-	desc = "It's a green bandana with some fine nanotech lining."
-	icon_state = "greenbandana"
-	item_state = "greenbandana"
+/obj/item/clothing/head/greenbandanna
+	name = "green bandanna"
+	desc = "It's a green bandanna with some fine nanotech lining."
+	icon_state = "greenbandanna"
+	item_state = "greenbandanna"
 	flags_inventory = NONE
 	flags_inv_hide = NONE
 	flags_armor_protection = 0
@@ -155,16 +155,16 @@
 	flags_armor_protection = 0
 	armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
-/obj/item/clothing/head/bandana
-	name = "pirate bandana"
+/obj/item/clothing/head/bandanna
+	name = "pirate bandanna"
 	desc = "Yarr."
-	icon_state = "bandana"
-	item_state = "bandana"
+	icon_state = "bandanna"
+	item_state = "bandanna"
 
-/obj/item/clothing/head/bandana/red
-	name = "red bandana"
+/obj/item/clothing/head/bandanna/red
+	name = "red bandanna"
 	desc = "For when it comes crashing down and it hurts inside."
-	icon_state = "bandana_red"
+	icon_state = "bandanna_red"
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"

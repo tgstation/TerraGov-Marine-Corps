@@ -327,6 +327,13 @@
 	dir = 10
 	},
 /area/lv624/ground/sand8)
+"abB" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
 "abD" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
@@ -6195,14 +6202,6 @@
 /area/lv624/ground/jungle6)
 "axy" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/lv624/lazarus/medbay)
-"axz" = (
-/obj/machinery/optable,
-/obj/effect/landmark/start/surv_spawn,
-/obj/item/tank/anesthetic,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -39913,14 +39912,14 @@ arY
 avV
 awH
 awn
-axz
+abB
 axS
 ayt
 awn
 azC
 awn
 awn
-awn
+amM
 aBR
 ayq
 aAb

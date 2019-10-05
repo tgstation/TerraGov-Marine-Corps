@@ -25,8 +25,8 @@
 
 
 /obj/structure/resin/silo
-	icon = 'icons/Cimex/3x3structures.dmi'
-	icon_state = "silo_dark"
+	icon = 'icons/Xeno/resin_silo.dmi'
+	icon_state = "brown_silo"
 	name = "resin silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96

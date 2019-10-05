@@ -12,15 +12,15 @@
 		M.update_inv_head()
 
 
-/obj/item/clothing/head/tgmcbandana
-	name = "\improper TGMC bandana"
-	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandana serves as a lightweight and comfortable hat. Comes in two stylish colors."
+/obj/item/clothing/head/tgmcbandanna
+	name = "\improper TGMC bandanna"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat. Comes in two stylish colors."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "band"
 	flags_inv_hide = HIDETOPHAIR
 
-/obj/item/clothing/head/tgmcbandana/tan
+/obj/item/clothing/head/tgmcbandanna/tan
 	icon_state = "band2"
 
 
