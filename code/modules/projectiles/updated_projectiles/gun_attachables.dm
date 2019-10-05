@@ -416,7 +416,7 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 
 /obj/item/attachable/focuslens
-	name = "focused lens"
+	name = "M43 focused lens"
 	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
 	slot = "muzzle"
 	icon_state = "focus"
@@ -427,7 +427,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = -0.15
 
 /obj/item/attachable/widelens
-	name = "wide lens"
+	name = "M43 wide lens"
 	desc = "Allows the lasgun to use the deadly wide range blast on overcharge."
 	slot = "muzzle"
 	icon_state = "wide"
@@ -438,7 +438,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = -0.15
 
 /obj/item/attachable/efflens
-	name = "efficient lens"
+	name = "M43 efficient lens"
 	desc = "Allows the lasgun to use its energy much more efficiently."
 	slot = "muzzle"
 	icon_state = "efficient"
@@ -448,7 +448,7 @@ Defined in conflicts.dm of the #defines folder.
 	charge_mod = -5 
 
 /obj/item/attachable/pulselens
-	name = "pulse lens"
+	name = "M43 pulse lens"
 	desc = "Allows the lasgun to shoot much quicker."
 	slot = "muzzle"
 	icon_state = "pulse"
