@@ -84,7 +84,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/scope_zoom_mod = FALSE //codex
 
 	var/ammo_mod = null			//what ammo the gun could fire if overcharge is activated, lasers usually.
-	var/charge_mod = 0		//how much charge it now costs to shoot.
+	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
 	var/gun_firemode_list_mod = list() //what firemodes this attachment allows.
 
 	var/obj/item/weapon/gun/master_gun
