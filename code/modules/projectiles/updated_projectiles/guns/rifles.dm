@@ -257,7 +257,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
-	fire_delay = 0.4
+	fire_delay = 0.4 SECONDS
 	burst_amount = 5
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
