@@ -65,12 +65,3 @@
 		new_hud.add_hud_to(usr)
 	else
 		new_hud.remove_hud_from(usr)
-
-
-// ***************************************
-// *********** Icon
-// ***************************************
-/mob/living/carbon/xenomorph/shrike/proc/stop_screeching()
-	if(icon_state != "Shrike Screeching")
-		return
-	update_icon()
