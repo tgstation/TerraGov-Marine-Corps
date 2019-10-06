@@ -85,7 +85,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	var/ammo_mod = null			//what ammo the gun could fire if overcharge is activated, lasers usually.
 	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
-	var/gun_firemode_list_mod = list() //what firemodes this attachment allows.
+	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
 
 	var/obj/item/weapon/gun/master_gun
 
@@ -162,8 +162,11 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
 	master_gun.ammo_diff					= ammo_mod
-	master_gun.charge_cost					+= charge_mod
-	master_gun.gun_firemode_list			|= gun_firemode_list_mod
+	if(master_gun.charge_cost)
+		master_gun.charge_cost				+= charge_mod
+	if(length(gun_firemode_list_mod) > 0)
+		for(var/i in gun_firemode_list_mod)
+			master_gun.add_firemode(i, user)
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -220,8 +223,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
 	master_gun.ammo_diff					= null
-	master_gun.charge_cost					-= charge_mod
-	master_gun.gun_firemode_list			-= gun_firemode_list_mod
+	if(master_gun.charge_cost)
+		master_gun.charge_cost				-= charge_mod
+	if(length(gun_firemode_list_mod) > 0)
+		for(var/i in gun_firemode_list_mod)
+			master_gun.remove_firemode(i, user)
+
 
 	master_gun.update_force_list()
 
