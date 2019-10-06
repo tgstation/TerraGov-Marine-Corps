@@ -166,9 +166,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.ammo_diff					= ammo_mod
 	if(charge_mod)
 		master_gun.charge_cost				+= charge_mod
-	if(length(gun_firemode_list_mod) > 0)
-		for(var/i in gun_firemode_list_mod)
-			master_gun.add_firemode(i, user)
+	for(var/i in gun_firemode_list_mod)
+		master_gun.add_firemode(i, user)
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -228,9 +227,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.ammo_diff					= null
 	if(master_gun.charge_cost)
 		master_gun.charge_cost				-= charge_mod
-	if(length(gun_firemode_list_mod) > 0)
-		for(var/i in gun_firemode_list_mod)
-			master_gun.remove_firemode(i, user)
+	for(var/i in gun_firemode_list_mod)
+		master_gun.remove_firemode(i, user)
 
 
 	master_gun.update_force_list()
