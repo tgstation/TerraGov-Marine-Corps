@@ -264,6 +264,8 @@
 			qdel(new_xeno)
 		return
 
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
+
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
@@ -308,8 +310,6 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
-	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
-		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 
