@@ -1,5 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscdel: "Queen Ovi is no more."
-  - balance: "Queens can zoom out at any time, and can overwatch xenos as if they were in ovi mode, either by selecting the ability, selecting a xeno from the hive status list, or using ctrl + middle click. The ability stacks with the zoom, so they can provide more effective overwatch support and guidance. The leader pheromone bonus is kept even as the Queen moves."
