@@ -17,10 +17,8 @@
 	throwforce = 25.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT|NOBLOODY
-	flags_item = NOSHIELD
-	origin_tech = "combat=3"
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -35,15 +33,14 @@
 		to_chat(user, "<span class='notice'>The axe is now energised.</span>")
 		force = 150
 		icon_state = "axe1"
-		w_class = 5
-		heat_source = 3500
+		w_class = WEIGHT_CLASS_HUGE
+		heat = 3500
 	else
 		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
 		force = 40
 		icon_state = "axe0"
-		w_class = 5
-		heat_source = 0
-	add_fingerprint(user)
+		w_class = WEIGHT_CLASS_HUGE
+		heat = 0
 
 
 
@@ -55,10 +52,8 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = NOBLOODY
-	flags_item = NOSHIELD
-	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -70,31 +65,29 @@
 		return 1
 	return 0
 
-/obj/item/weapon/energy/sword/New()
+/obj/item/weapon/energy/sword/Initialize()
+	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with [src].</span>")
-		user.take_limb_damage(5,5)
 	active = !active
 	if (active)
 		force = 30
-		heat_source = 3500
+		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"
 		else
 			icon_state = "sword[sword_color]"
-		w_class = 4
+		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
 		force = 3
-		heat_source = 0
+		heat = 0
 		icon_state = "[base_sword_icon]0"
-		w_class = 2
+		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
@@ -103,7 +96,6 @@
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
 
-	add_fingerprint(user)
 	return
 
 

@@ -5,8 +5,8 @@
 	device_type = UNARY
 	pipe_flags = PIPING_ONE_PER_TURF
 	construction_type = /obj/item/pipe/directional
-	//var/uid
-	//var/static/gl_uid = 1
+	var/uid
+	var/static/gl_uid = 1
 
 /obj/machinery/atmospherics/components/unary/SetInitDirections()
 	initialize_directions = dir

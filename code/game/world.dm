@@ -2,32 +2,25 @@
 
 
 GLOBAL_VAR(restart_counter)
-//TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
-GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
-
 
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
-	hub_password = "kMZy3U5jJHSiBQjr"
-
 	log_world("World loaded at [time_stamp()]!")
 
-	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
+	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_telecomms_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
+
+	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
+
+	GLOB.revdata = new
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	SetupExternalRSC()
-
-	//make_datum_references_lists()	//Port this from /tg/
+	
 	populate_seed_list()
 	populate_gear_list()
-	makeDatumRefLists() //Legacy
-	loadShuttleInfoDatums()
-
-	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
-
-	GLOB.revdata = new
+	make_datum_references_lists()
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
@@ -35,8 +28,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-	world.log = file("[GLOB.log_directory]/runtime.log")
-
+	LoadVerbs(/datum/verbs/menu)
 	load_admins()
 
 	if(fexists(RESTART_COUNTER_PATH))
@@ -52,8 +44,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	load_mode()
 
-	SSradio = new /datum/controller/radio()
-
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
@@ -61,12 +51,23 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	spawn(3000)
-		if(CONFIG_GET(flag/kick_inactive))
-			KickInactiveClients()
+	if(TEST_RUN_PARAMETER in params)
+		HandleTestRun()
 
 	return ..()
 
+/world/proc/HandleTestRun()
+	//trigger things to run the whole process
+	Master.sleep_offline_after_initializations = FALSE
+	SSticker.start_immediately = TRUE
+	CONFIG_SET(number/round_end_countdown, 0)
+	var/datum/callback/cb
+#ifdef UNIT_TESTS
+	cb = CALLBACK(GLOBAL_PROC, /proc/RunUnitTests)
+#else
+	cb = VARSET_CALLBACK(SSticker, force_ending, TRUE)
+#endif
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, /proc/addtimer, cb, 10 SECONDS))
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -87,16 +88,20 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
+	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
+	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
 	start_log(GLOB.sql_error_log)
+	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
 	start_log(GLOB.world_runtime_log)
+	start_log(GLOB.world_paper_log)
 
 	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
 	if(fexists(GLOB.config_error_log))
@@ -110,11 +115,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	// but those are both private, so let's put the commit info in the runtime
 	// log which is ultimately public.
 	log_runtime(GLOB.revdata.get_log_message())
-
-
-var/world_topic_spam_protect_ip = "0.0.0.0"
-var/world_topic_spam_protect_time = world.timeofday
-
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC	//redirect to server tools if necessary
@@ -137,34 +137,75 @@ var/world_topic_spam_protect_time = world.timeofday
 	handler = new handler()
 	return handler.TryRun(input)
 
+/world/proc/FinishTestRun()
+	set waitfor = FALSE
+	var/list/fail_reasons
+	if(GLOB)
+		if(GLOB.total_runtimes != 0)
+			fail_reasons = list("Total runtimes: [GLOB.total_runtimes]")
+#ifdef UNIT_TESTS
+		if(GLOB.failed_any_test)
+			LAZYADD(fail_reasons, "Unit Tests failed!")
+#endif
+		if(!GLOB.log_directory)
+			LAZYADD(fail_reasons, "Missing GLOB.log_directory!")
+	else
+		fail_reasons = list("Missing GLOB!")
+	if(!fail_reasons)
+		text2file("Success!", "[GLOB.log_directory]/clean_run.lk")
+	else
+		log_world("Test run failed!\n[fail_reasons.Join("\n")]")
+	sleep(0)	//yes, 0, this'll let Reboot finish and prevent byond memes
+	qdel(src)	//shut it down
 
 /world/Reboot(ping)
 	if(ping)
 		send2update(CONFIG_GET(string/restart_message))
-		send2update("Round ID [GLOB.round_id] finished | Next Map: [SSmapping?.next_map_config?.map_name] | Round End State: [SSticker?.mode?.round_finished] | Players: [length(GLOB.clients)]")
+		var/list/msg = list()
+
+		if(GLOB.round_id)
+			msg += "Round ID [GLOB.round_id] finished"
+
+		var/datum/map_config/next_gound_map
+		var/datum/map_config/next_ship_map
+
+		if(length(SSmapping.next_map_configs)) //To avoid a bad index, let's check if there's actually a list.
+			next_gound_map = SSmapping.next_map_configs[GROUND_MAP]
+			next_ship_map = SSmapping.next_map_configs[SHIP_MAP]
+
+		if(!next_gound_map) //The list could hold a single item, so better check each because there's no guarantee both exist.
+			next_gound_map = SSmapping.configs[GROUND_MAP]
+		if(!next_ship_map)
+			next_ship_map = SSmapping.configs[SHIP_MAP]
+
+		if(next_gound_map)
+			msg += "Next Ground Map: [next_gound_map.map_name]"
+		if(next_ship_map)
+			msg += "Next Ship Map: [next_ship_map.map_name]"
+
+		if(SSticker.mode)
+			msg += "Game Mode: [SSticker.mode.name]"
+			msg += "Round End State: [SSticker.mode.round_finished]"
+
+		if(length(GLOB.clients))
+			msg += "Players: [length(GLOB.clients)]"
+
+		if(length(msg))
+			send2update(msg.Join(" | "))
+
+	Master.Shutdown()
 	TgsReboot()
-	for(var/i in GLOB.clients)
-		var/client/C = i
-		if(CONFIG_GET(string/server))
-			C << link("byond://[CONFIG_GET(string/server)]")
+
+	if(TEST_RUN_PARAMETER in params)
+		FinishTestRun()
+		return
+
+	var/linkylink = CONFIG_GET(string/server)
+	if(linkylink)
+		for(var/cli in GLOB.clients)
+			cli << link("byond://[linkylink]")
+
 	return ..()
-
-
-#define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
-/world/proc/KickInactiveClients()
-	spawn(-1)
-		set background = TRUE
-		while(1)
-			sleep(INACTIVITY_KICK)
-			for(var/client/C in GLOB.clients)
-				if(check_other_rights(C, R_ADMIN, FALSE))
-					continue
-				if(C.is_afk(INACTIVITY_KICK))
-					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)].")
-						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
-						qdel(C)
-#undef INACTIVITY_KICK
 
 
 /world/proc/load_mode()
@@ -175,7 +216,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			log_config("Saved mode is '[GLOB.master_mode]'")
 
 
-/world/proc/save_mode(var/the_mode)
+/world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	WRITE_FILE(F, the_mode)
@@ -184,30 +225,32 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
+	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : null
 
 	if(CONFIG_GET(string/server_name))
 		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</a></b>"
+			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</a></b>"
 		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [CONFIG_GET(string/ship_name)]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</b>"
+		var/map_name = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : null
 		if(Master?.current_runlevel && GLOB.master_mode)
-			switch(SSmapping.config.map_name)
+			switch(map_name)
 				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[map_name]</a></b>"
 				if("LV624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[map_name]</a></b>"
 				if("Big Red")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[map_name]</a></b>"
 				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[map_name]</a></b>"
 				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[SSmapping.config.map_name]</a></b>"
+					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[map_name]</a></b>"
 				else
-					s += "<br>Map: <b>[SSmapping.config.map_name]</b>"
-			s += "<br>Mode: <b>[(Master.current_runlevel & RUNLEVELS_DEFAULT) ? SSticker.mode.name : "Lobby"]</b>"
+					s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
+			s += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 			s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>[SSmapping.config?.map_name ? SSmapping.config.map_name : "Loading..."]</b>"
+			s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
 
 		status = s
 
@@ -215,9 +258,31 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/incrementMaxZ()
 	maxz++
 	SSmobs.MaxZChanged()
+	SSidlenpcpool.MaxZChanged()
 
 
 /world/proc/SetupExternalRSC()
 	if(!CONFIG_GET(string/resource_url))
 		return
 	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
+
+
+/world/proc/update_hub_visibility(new_visibility)
+	if(new_visibility == GLOB.hub_visibility)
+		return
+	GLOB.hub_visibility = new_visibility
+	if(GLOB.hub_visibility)
+		hub_password = "kMZy3U5jJHSiBQjr"
+	else
+		hub_password = "SORRYNOPASSWORD"
+
+
+/world/proc/change_fps(new_value = 20)
+	if(new_value <= 0)
+		CRASH("change_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
+	fps = new_value
+
+	SStimer?.reset_buckets()

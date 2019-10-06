@@ -12,6 +12,7 @@
 	var/href_token
 
 	var/deadmined
+	var/ghost_interact = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -122,7 +123,7 @@
 		A = GLOB.admin_datums[ckey]
 		if(!A)
 			log_admin_private("[key_name(src)] is trying to re-admin but they have no de-admin entry.")
-			message_admins("[ADMIN_TPMONTY(usr)]is trying to re-admin but they have no de-admin entry.")
+			message_admins("[ADMIN_TPMONTY(usr)] is trying to re-admin but they have no de-admin entry.")
 			return
 
 	A.associate(src)
@@ -254,8 +255,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/invisimin,
 	/datum/admins/proc/stealth_mode,
-	/datum/admins/proc/change_key,
-	/datum/admins/proc/change_key_panel,
+	/datum/admins/proc/give_mob,
+	/datum/admins/proc/give_mob_panel,
 	/datum/admins/proc/rejuvenate,
 	/datum/admins/proc/rejuvenate_panel,
 	/datum/admins/proc/toggle_sleep,
@@ -269,7 +270,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/send_mob,
 	/datum/admins/proc/jump_area,
-	/datum/admins/proc/jump_turf,
 	/datum/admins/proc/jump_coord,
 	/datum/admins/proc/jump_mob,
 	/datum/admins/proc/jump_key,
@@ -278,11 +278,13 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
+	/datum/admins/proc/log_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/mcdb,
+	/datum/admins/proc/check_fingerprints,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -299,6 +301,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
+	/datum/admins/proc/imaginary_friend,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
@@ -337,7 +340,9 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/map_template_load,
 	/datum/admins/proc/map_template_upload,
-	/datum/admins/proc/reestablish_db_connection
+	/datum/admins/proc/reestablish_db_connection,
+	/datum/admins/proc/view_runtimes,
+	/datum/admins/proc/spatial_agent
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -351,9 +356,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 
 /world/proc/AVfun()
 	return list(
-	/datum/admins/proc/select_rank,
-	/datum/admins/proc/select_equipment,
-	/datum/admins/proc/change_squad,
+	/datum/admins/proc/rank_and_equipment,
 	/datum/admins/proc/set_view_range,
 	/datum/admins/proc/emp,
 	/datum/admins/proc/queen_report,
@@ -368,18 +371,21 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
-	/datum/admins/proc/force_dropship,
-	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
-	/datum/admins/proc/create_outfit,
+	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
-	/datum/admins/proc/change_hivenumber,
+	/datum/admins/proc/force_dropship,
+	/datum/admins/proc/xeno_panel,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
+	/datum/admins/proc/launch_pod,
+	/datum/admins/proc/play_cinematic,
+	/datum/admins/proc/set_tip,
+	/datum/admins/proc/ghost_interact,
 	/client/proc/toggle_buildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
@@ -403,8 +409,10 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_gun_restrictions,
 	/datum/admins/proc/toggle_synthetic_restrictions,
 	/datum/admins/proc/reload_admins,
-	/datum/admins/proc/map_random,
-	/datum/admins/proc/map_change
+	/datum/admins/proc/change_ground_map,
+	/datum/admins/proc/change_ship_map,
+	/datum/admins/proc/panic_bunker,
+	/datum/admins/proc/mode_check
 	)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
 GLOBAL_PROTECT(admin_verbs_server)
@@ -496,29 +504,29 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMIN, FALSE))
+	if(check_other_rights(C, R_ADMINTICKET, FALSE))
 		return FALSE
 	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
 	return TRUE
 
 
-/proc/message_admins(var/msg)
-	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
+/proc/message_admins(msg)
+	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 
 
-/proc/message_staff(var/msg)
-	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
+/proc/message_staff(msg)
+	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C, msg)
 
 
-/proc/msg_admin_attack(var/msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
+/proc/msg_admin_attack(msg)
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
@@ -526,13 +534,24 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			to_chat(C, msg)
 
 
-/proc/msg_admin_ff(var/msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
+/proc/msg_admin_ff(msg)
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
+
+
+/proc/afk_message(mob/living/carbon/human/H)
+	if(QDELETED(H))
+		return
+	if(H.stat == DEAD)
+		return
+	if(isclientedaghost(H))
+		return
+	log_admin("[key_name(H)] (Job: [H.job]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(H)] (Job: [H.job]) has been away for 15 minutes.")
 
 
 /client/proc/find_stealth_key(txt)
@@ -616,3 +635,48 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	var/stealth = "@[num2text(num)]"
 	GLOB.stealthminID["IRCKEY"] = stealth
 	return	stealth
+
+
+/proc/IsAdminGhost(mob/user)
+	if(!isobserver(user))
+		return FALSE
+	if(!user.client)
+		return FALSE
+	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
+		return FALSE
+	if(!user.client.holder.ghost_interact)
+		return FALSE
+	return TRUE
+
+
+/datum/admins/proc/apicker(text, title, list/targets)
+	if(!check_rights(NONE))
+		return
+
+	var/atom/chosen
+	var/choice = input(text, title) as null|anything in targets
+
+	switch(choice)
+		if(APICKER_CLIENT)
+			var/client/C = input("Please, select a key.", title) as null|anything in sortKey(GLOB.clients)
+			chosen = C?.mob
+		if(APICKER_MOB)
+			chosen = input("Please, select a mob.", title) as null|anything in sortNames(GLOB.mob_list)
+		if(APICKER_LIVING)
+			chosen = input("Please, select a living mob.", title) as null|anything in sortNames(GLOB.mob_living_list)
+		if(APICKER_AREA)
+			chosen = input("Please, select an area.", title) as null|anything in GLOB.sorted_areas
+			chosen = pick(get_area_turfs(chosen))
+		if(APICKER_TURF)
+			chosen = input("Please, select a turf.", title) as null|turf in world
+		if(APICKER_COORDS)
+			var/X = input("X coordinate.", title) as null|num
+			var/Y = input("Y coordinate.", title) as null|num
+			var/Z = input("Z coordinate.", title) as null|num
+			chosen = locate(X, Y, Z)
+
+	return chosen
+
+
+/datum/admins/vv_edit_var(var_name, var_value)
+	return FALSE

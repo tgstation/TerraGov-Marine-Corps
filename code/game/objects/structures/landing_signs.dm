@@ -5,7 +5,7 @@
 	icon_state = "laz_sign"
 	bound_width = 64
 	bound_height = 64
-	density = 1
+	density = TRUE
 
 /obj/structure/solaris_sign
 	name = "Solaris Ridge Sign"
@@ -37,7 +37,7 @@
 	icon = 'icons/obj/landing_signs.dmi'
 	icon_state = "dam_sign"
 	bound_width = 64
-	density = 1
+	density = TRUE
 
 /obj/structure/dam_sign/damaged
 	desc = "A large sign that reads 'Chigusa mining col-', with the rest being obscured by what looks to be tried blood, and damage."

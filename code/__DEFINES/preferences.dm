@@ -5,18 +5,24 @@
 #define AGE_MAX 85
 
 #define GET_RANDOM_JOB 0
-#define BE_MARINE 1
+#define BE_OVERFLOW 1
 #define RETURN_TO_LOBBY 2
+
+#define JOBS_PRIORITY_HIGH   3
+#define JOBS_PRIORITY_MEDIUM 2
+#define JOBS_PRIORITY_LOW    1
+#define JOBS_PRIORITY_NEVER  0
 
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
-#define BE_ALIEN		(1<<0)
-#define BE_QUEEN		(1<<1)
-#define BE_SURVIVOR		(1<<2)
-#define BE_DEATHMATCH	(1<<3)
-#define BE_SQUAD_STRICT (1<<4)
+#define BE_ALIEN				(1<<0)
+#define BE_QUEEN				(1<<1)
+#define BE_SURVIVOR				(1<<2)
+#define BE_DEATHMATCH			(1<<3)
+#define BE_SQUAD_STRICT 		(1<<4)
+#define BE_ALIEN_UNREVIVABLE 	(1<<5)
 
-#define BE_SPECIAL_DEFAULT (BE_ALIEN|BE_DEATHMATCH)
+#define BE_SPECIAL_DEFAULT (BE_ALIEN|BE_ALIEN_UNREVIVABLE|BE_DEATHMATCH)
 
 
 #define GHOST_HUD_MED 	(1<<0)
@@ -71,24 +77,24 @@
 
 
 #define RELIGION_CHOICES list(\
-    "Christianity (Protestant)",\
-    "Christianity (Catholic)",\
-    "Christianity (Orthodox)",\
-    "Christianity (Mormonism)",\
-    "Christianity (Other)",\
-    "Judaism",\
-    "Islam (Shia)",\
-    "Islam (Sunni)",\
-    "Buddhism",\
-    "Hinduism",\
-    "Sikhism",\
-    "Shintoism",\
-    "Wiccanism",\
-    "Paganism (Wicca)",\
-    "Minor Religion",\
-    "Atheism",\
-    "None",\
-    "Other"\
+	"Christianity (Protestant)",\
+	"Christianity (Catholic)",\
+	"Christianity (Orthodox)",\
+	"Christianity (Mormonism)",\
+	"Christianity (Other)",\
+	"Judaism",\
+	"Islam (Shia)",\
+	"Islam (Sunni)",\
+	"Buddhism",\
+	"Hinduism",\
+	"Sikhism",\
+	"Shintoism",\
+	"Wiccanism",\
+	"Paganism (Wicca)",\
+	"Minor Religion",\
+	"Atheism",\
+	"None",\
+	"Other"\
 	)
 
 
@@ -103,8 +109,8 @@
 
 #define UI_STYLES list(\
 	"Midnight",\
-	"Orange",\
-	"old",\
+	"Plasmafire",\
+	"Retro",\
 	"White",\
 	"Slimecore",\
 	"Operative",\
@@ -113,6 +119,7 @@
 
 #define BE_SPECIAL_FLAGS list(\
 	"Xenomorph" = BE_ALIEN,\
+	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\
 	"Xeno Queen" = BE_QUEEN,\
 	"Survivor" = BE_SURVIVOR,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\

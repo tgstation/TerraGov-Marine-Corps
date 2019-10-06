@@ -5,9 +5,6 @@
 #define PASSBLOB	(1<<3)
 #define PASSMOB		(1<<4)
 
-//FLAGS
-#define NOFLAGS		0		//Nothing.
-
 //==========================================================================================
 
 //flags_atom
@@ -20,6 +17,7 @@
 #define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
 #define NODECONSTRUCT			(1<<6)
 #define OVERLAY_QUEUED			(1<<7)
+#define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
 
 //==========================================================================================
 
@@ -33,11 +31,11 @@
 //flags_item
 #define NODROP					(1<<0)	// Cannot be dropped/unequipped at all, only deleted.
 #define NOBLUDGEON  			(1<<1)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
-#define NOSHIELD				(1<<2)	// weapon not affected by shield (does nothing currently)
-#define DELONDROP				(1<<3)	// Deletes on drop instead of falling on the floor.
-#define TWOHANDED				(1<<4)	// The item is twohanded.
-#define WIELDED					(1<<5)	// The item is wielded with both hands.
-#define	ITEM_ABSTRACT			(1<<6)	//The item is abstract (grab, powerloader_clamp, etc)
+#define DELONDROP				(1<<2)	// Deletes on drop instead of falling on the floor.
+#define TWOHANDED				(1<<3)	// The item is twohanded.
+#define WIELDED					(1<<4)	// The item is wielded with both hands.
+#define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
+#define BEING_REMOVED			(1<<6)	//Cuffs and legcuffs
 
 //==========================================================================================
 
@@ -94,7 +92,7 @@
 
 
 //===========================================================================================
-//Marine armor only, use for flags_marine_armor.
+//Marine armor only, use for flags_armor_features.
 #define ARMOR_SQUAD_OVERLAY		(1<<0)
 #define ARMOR_LAMP_OVERLAY		(1<<1)
 #define ARMOR_LAMP_ON			(1<<2)

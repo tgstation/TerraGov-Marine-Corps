@@ -32,10 +32,64 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
-/client/Click(object, location, control, params)
+/client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
+	var/ab = FALSE
+	var/list/L = params2list(params)
+
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
+	if(object && object == middragatom && L["left"])
+		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
+
+	var/mcl = CONFIG_GET(number/minute_click_limit)
+	if(mcl && !check_rights(R_ADMIN, FALSE))
+		var/minute = round(world.time, 600)
+		if(!clicklimiter)
+			clicklimiter = new(5)
+		if(minute != clicklimiter[3])
+			clicklimiter[3] = minute
+			clicklimiter[4] = 0
+		clicklimiter[4] += 1
+		if(clicklimiter[4] > mcl)
+			var/msg = "Your previous click was ignored because you've done too many in a minute."
+			if(minute != clicklimiter[5]) //only one admin message per-minute
+				clicklimiter[5] = minute
+				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
+				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
+				if(ab)
+					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
+					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
+			to_chat(src, "<span class='danger'>[msg]</span>")
+			return
+
+	var/scl = CONFIG_GET(number/second_click_limit)
+	if(scl && !check_rights(R_ADMIN, FALSE))
+		var/second = round(world.time, 10)
+		if(!clicklimiter)
+			clicklimiter = new(5)
+		if(second != clicklimiter[1])
+			clicklimiter[1] = second
+			clicklimiter[2] = 0
+		clicklimiter[2] += 1
+		if(clicklimiter[2] > scl)
+			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
+			return
+
+//Hijack for FC.
+	if(prefs.focus_chat)
+		winset(src, null, "input.focus=true")
+
 	return ..()
+
 
 /*
 	Standard mob ClickOn()
@@ -95,6 +149,9 @@
 	if(next_move > world.time)
 		return
 
+	if(!modifiers["catcher"] && A.IsObscured())
+		return
+
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/N = loc
 		N.click_action(A, src, params)
@@ -121,8 +178,7 @@
 	//User itself, current loc, and user inventory
 	if(A in DirectAccess())
 		if(W)
-			if(!A.attackby(W, src, params))
-				W.afterattack(A, src, TRUE, params)
+			W.melee_attack_chain(src, A, params)
 		else
 			UnarmedAttack(A)
 		return
@@ -134,8 +190,7 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A, W))
 		if(W)
-			if(!A.attackby(W, src, params))
-				W.afterattack(A, src, TRUE, params)
+			W.melee_attack_chain(src, A, params)
 		else
 			UnarmedAttack(A, 1)
 	else
@@ -194,6 +249,25 @@
 	return ..() + GetAllContents()
 
 
+/atom/proc/IsObscured()
+	if(!isturf(loc)) //This only makes sense for things directly on turfs for now
+		return FALSE
+	var/turf/T = get_turf_pixel(src)
+	if(!T)
+		return FALSE
+	for(var/atom/movable/AM in T)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density && AM.layer > layer)
+			return TRUE
+	return FALSE
+
+
+/turf/IsObscured()
+	for(var/atom/movable/AM in src)
+		if(AM.flags_atom & PREVENT_CLICK_UNDER && AM.density)
+			return TRUE
+	return FALSE
+
+
 /atom/proc/AllowClick()
 	return FALSE
 
@@ -223,11 +297,6 @@
 					qdel(dummy)
 					return
 			qdel(dummy)
-
-
-// Default behavior: ignore double clicks (the second click that makes the doubleclick call already calls for a normal click)
-/mob/proc/DblClickOn(atom/A, params)
-	return
 
 
 /*
@@ -298,8 +367,10 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
-	return
 
 
 /atom/proc/CtrlClick(mob/user)
@@ -359,8 +430,11 @@
 
 
 /mob/proc/ShiftMiddleClickOn(atom/A)
-	src.point_to(A)
 	return
+
+
+/mob/living/ShiftMiddleClickOn(atom/A)
+	point_to(A)
 
 
 /atom/proc/CtrlShiftClick(mob/user)
@@ -372,7 +446,7 @@
 	Ctrl+Middle click
 */
 /atom/proc/CtrlMiddleClickOn(atom/A)
-	return
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
@@ -413,7 +487,7 @@
 
 
 /obj/screen/click_catcher
-	icon = 'icons/mob/screen_gen.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "catcher"
 	plane = CLICKCATCHER_PLANE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
@@ -425,7 +499,7 @@
 
 
 /obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
-	var/icon/newicon = icon('icons/mob/screen_gen.dmi', "catcher")
+	var/icon/newicon = icon('icons/mob/screen/generic.dmi', "catcher")
 	var/ox = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_x)
 	var/oy = min(MAX_SAFE_BYOND_ICON_SCALE_TILES, view_size_y)
 	var/px = view_size_x * world.icon_size
@@ -448,7 +522,11 @@
 	else
 		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		T?.Click(location, control, params)
+		if(T)
+			//icon-x/y is relative to the object clicked. click_catcher may occupy several tiles. Here we convert them to the proper offsets relative to the tile.
+			modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+			T.Click(location, control, list2params(modifiers))
 	. = TRUE
 
 

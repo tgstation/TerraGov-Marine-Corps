@@ -3,8 +3,8 @@
 	desc = ""
 	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-stand"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 40
 	var/processing = 0
@@ -31,52 +31,64 @@
 			icon_state = "biogen-work"
 		return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/reagent_container/glass))
+/obj/machinery/biogenerator/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>The biogenerator is already loaded.</span>")
-		else
-			user.transferItemToLoc(O, src)
-			beaker = O
-			updateUsrDialog()
+			return
+
+		user.transferItemToLoc(I, src)
+		beaker = I
+		updateUsrDialog()
+
 	else if(processing)
 		to_chat(user, "<span class='warning'>The biogenerator is currently processing.</span>")
-	else if(istype(O, /obj/item/storage/bag/plants))
+		return
+
+	else if(istype(I, /obj/item/storage/bag/plants))
 		var/i = 0
 		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, "<span class='warning'>The biogenerator is already full! Activate it.</span>")
-		else
-			for(var/obj/item/reagent_container/food/snacks/grown/G in O.contents)
-				G.loc = src
-				i++
-				if(i >= 10)
-					to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
-					break
-			if(i<10)
-				to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
+			return
 
-
-	else if(!istype(O, /obj/item/reagent_container/food/snacks/grown))
-		to_chat(user, "<span class='warning'>You cannot put this in [src.name]</span>")
-	else
-		var/i = 0
-		for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_container/food/snacks/grown/G in I.contents)
+			G.forceMove(src)
 			i++
-		if(i >= 10)
-			to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
-		else
-			if(user.transferItemToLoc(O, src))
-				to_chat(user, "<span class='notice'>You put [O.name] in [src.name]</span>")
+			if(i >= 10)
+				to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
+				break
+		if(i < 10)
+			to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
+
+
+	else if(!istype(I, /obj/item/reagent_container/food/snacks/grown))
+		to_chat(user, "<span class='warning'>You cannot put this in [src]</span>")
+		return
+
+	var/i = 0
+	for(var/obj/item/reagent_container/food/snacks/grown/G in contents)
+		i++
+
+	if(i >= 10)
+		to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
+		return
+
+	else if(user.transferItemToLoc(I, src))
+		to_chat(user, "<span class='notice'>You put [I] in [src]</span>")
+
 	update_icon()
 
 
-/obj/machinery/biogenerator/interact(mob/user as mob)
-	if(machine_stat & BROKEN)
+/obj/machinery/biogenerator/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = "<TITLE>Biogenerator</TITLE>Biogenerator:<BR>"
+
+	var/dat
 	if (processing)
 		dat += "<FONT COLOR=red>Biogenerator is processing! Please wait...</FONT>"
 	else
@@ -99,8 +111,6 @@
 					dat += "<A href='?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>(300)</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>(400)</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>(400)</FONT><BR>"
-					//dat += "Other<BR>"
-					//dat += "<A href='?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
 				else
 					dat += "<BR><FONT COLOR=red>No beaker inside. Please insert a beaker.</FONT><BR>"
 			if("nopoints")
@@ -112,12 +122,10 @@
 			if("void")
 				dat += "<FONT COLOR=red>Error: No growns inside.</FONT><BR>Please, put growns into reactor.<BR>"
 				dat += "<A href='?src=\ref[src];action=menu'>Return to menu</A>"
-	user << browse(dat, "window=biogenerator")
-	onclose(user, "biogenerator")
-	return
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
-	interact(user)
+	var/datum/browser/popup = new(user, "biogenerator", "<div align='center'>Biogenerator</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 /obj/machinery/biogenerator/proc/activate()
 	if (usr.stat != 0)
@@ -130,9 +138,9 @@
 	var/S = 0
 	for(var/obj/item/reagent_container/food/snacks/grown/I in contents)
 		S += 5
-		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
+		if(I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) < 0.1)
 			points += 1
-		else points += I.reagents.get_reagent_amount("nutriment")*10
+		else points += I.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)*10
 		qdel(I)
 	if(S)
 		processing = 1
@@ -147,7 +155,7 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item,var/cost)
+/obj/machinery/biogenerator/proc/create_product(item,cost)
 	if(cost > points)
 		menustat = "nopoints"
 		return 0
@@ -158,7 +166,7 @@
 	sleep(30)
 	switch(item)
 		if("milk")
-			beaker.reagents.add_reagent("milk",10)
+			beaker.reagents.add_reagent(/datum/reagent/consumable/drink/milk,10)
 		if("meat")
 			new/obj/item/reagent_container/food/snacks/meat(src.loc)
 		if("ez")
@@ -203,18 +211,16 @@
 	return 1
 
 /obj/machinery/biogenerator/Topic(href, href_list)
-	if(machine_stat & BROKEN) return
-	if(usr.stat || usr.restrained()) return
-	if(!in_range(src, usr)) return
-
-	usr.set_interaction(src)
+	. = ..()
+	if(.)
+		return
 
 	switch(href_list["action"])
 		if("activate")
 			activate()
 		if("detach")
 			if(beaker)
-				beaker.loc = src.loc
+				beaker.forceMove(get_turf(src))
 				beaker = null
 				update_icon()
 		if("create")

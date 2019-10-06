@@ -7,9 +7,6 @@
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-		//Chemicals in the body
-		handle_organs()
-
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()
 
@@ -84,13 +81,7 @@
 /mob/living/brain/handle_organs()
 	. = ..()
 
-	if(reagents)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
-
-	updatehealth()
-
-	return //TODO: DEFERRED
-
+	reagents?.metabolize(src, can_overdose = TRUE)
 
 /mob/living/brain/update_stat()
 	.=..()
@@ -100,7 +91,6 @@
 		if(!container && (health < get_death_threshold() || ((world.time - timeofhostdeath) > CONFIG_GET(number/revival_brain_life))) )
 			death()
 			blind_eyes(1)
-			silent = 0
 			return 1
 
 		//Handling EMP effect in the Life(), it's made VERY simply, and has some additional effects handled elsewhere
@@ -114,8 +104,7 @@
 					emp_damage = 30//Let's not overdo it
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
 					set_blindness(2)
-					ear_deaf = 1
-					silent = 1
+					set_ear_damage(deaf = 1)
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
 						to_chat(src, "<span class='warning'>Major electrical distruption detected: System rebooting.</span>")
@@ -125,8 +114,7 @@
 				if(20)
 					alert = 0
 					adjust_blindness(-1)
-					ear_deaf = 0
-					silent = 0
+					set_ear_damage(deaf = 0)
 					emp_damage -= 1
 				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage
 					blur_eyes(1)
@@ -185,11 +173,7 @@
 
 	if(stat != DEAD) //the dead get zero fullscreens
 
-		if (interactee)
-			interactee.check_eye(src)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
+		interactee?.check_eye(src)
 
 	return 1
 

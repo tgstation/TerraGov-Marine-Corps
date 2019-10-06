@@ -4,132 +4,13 @@
 
 //Floors
 
-/turf/open/floor/almayer
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "default"
 
-/turf/open/floor/almayer/mono
+/turf/open/floor/mainship/mono
 	icon_state = "mono"
 	icon_regular_floor = "mono"
-
-/turf/open/floor/plating
-	name = "plating"
-	icon_state = "plating"
-	floor_tile = null
-	intact_tile = 0
-
-/turf/open/floor/plating/almayer
-	icon = 'icons/turf/almayer.dmi'
-
-/turf/open/floor/plating/almayer/striped
-	icon_state = "plating_striped"
-
-/turf/open/floor/plating/airless
-	icon_state = "plating"
-	name = "airless plating"
-
-	New()
-		..()
-		name = "plating"
-
-/turf/open/floor/plating/icefloor
-	icon_state = "plating"
-	name = "ice colony plating"
-
-	New()
-		..()
-		name = "plating"
-
-/turf/open/floor/plating/icefloor/warnplate
-	icon_state = "warnplate"
-
-/turf/open/floor/plating/plating_catwalk
-	icon = 'icons/turf/almayer.dmi'
-	icon_state = "plating_catwalk"
-	var/base_state = "plating" //Post mapping
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	var/covered = 1 //1 for theres the cover, 0 if there isn't.
-
-	Initialize()
-		. = ..()
-		icon_state = base_state
-		update_turf_overlay()
-
-/turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
-	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
-	I.plane = GAME_PLANE
-	switch(covered)
-		if(0)
-			overlays -= I
-			qdel(I)
-		if(1)
-			overlays += I
-
-/turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if (iscrowbar(W))
-		if(covered)
-			var/obj/item/stack/catwalk/R = new(usr.loc)
-			R.add_to_stacks(usr)
-			covered = 0
-			update_turf_overlay()
-			return
-	if(istype(W, /obj/item/stack/catwalk))
-		if(!covered)
-			var/obj/item/stack/catwalk/E = W
-			E.use(1)
-			covered = 1
-			update_turf_overlay()
-			return
-	..()
-
-
-/turf/open/floor/plating/plating_catwalk/prison
-	icon = 'icons/turf/prison.dmi'
-
-
-
-/turf/open/floor/plating/ironsand/New()
-	..()
-	name = "Iron Sand"
-	icon_state = "ironsand[rand(1,15)]"
-
-
-
-/turf/open/floor/plating/catwalk
-	icon = 'icons/turf/catwalks.dmi'
-	icon_state = "catwalk0"
-	name = "catwalk"
-	desc = "Cats really don't like these things."
-	layer = 2.4
-
-/turf/open/floor/plating/warning
-	icon_state = "warnplate"
-
-/turf/open/floor/plating/platebot
-	icon_state = "platebot"
-
-/turf/open/floor/plating/platebotc
-	icon_state = "platebotc"
-
-/turf/open/floor/plating/asteroidwarning // used around lv's lz2
-	icon_state = "asteroidwarning"
-
-/turf/open/floor/plating/asteroidfloor
-	icon_state = "asteroidfloor"
-
-/turf/open/floor/plating/asteroidplating
-	icon_state = "asteroidplating"
-
-/turf/open/floor/plating/dmg1
-	icon_state = "platingdmg1"
-
-/turf/open/floor/plating/dmg2
-	icon_state = "platingdmg2"
-
-/turf/open/floor/plating/dmg3
-	icon_state = "platingdmg3"
 
 /turf/open/floor/marking/loadingarea
 	icon_state = "loadingarea"
@@ -156,101 +37,61 @@
 	icon_state = "asteroidfloor"
 
 //Cargo elevator
-/turf/open/floor/almayer/empty
+/turf/open/floor/mainship/empty
 	name = "empty space"
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
 
-/turf/open/floor/almayer/empty/is_weedable()
+/turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/almayer/empty/ex_act(severity) //Should make it indestructable
+/turf/open/floor/mainship/empty/ex_act(severity) //Should make it indestructable
 	return
 
-/turf/open/floor/almayer/empty/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
-/turf/open/floor/almayer/empty/attackby() //This should fix everything else. No cables, etc
+/turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
-
-/turf/open/floor/almayer/empty/Entered(var/atom/movable/AM)
-	..()
-	spawn(2)
-		if(AM.throwing == 0 && istype(get_turf(AM), /turf/open/floor/almayer/empty))
-			AM.visible_message("<span class='warning'>[AM] falls into the depths!</span>", "<span class='warning'>You fall into the depths!</span>")
-			if(get_area(src) == get_area(get_turf(HangarUpperElevator)))
-				var/list/droppoints = list()
-				for(var/turf/TL in get_area(get_turf(HangarLowerElevator)))
-					droppoints += TL
-				AM.forceMove(pick(droppoints))
-				if(ishuman(AM))
-					var/mob/living/carbon/human/human = AM
-					human.take_overall_damage(50, 0, "Blunt Trauma")
-					human.KnockDown(2)
-				for(var/mob/living/carbon/human/landedon in AM.loc)
-					if(AM == landedon)
-						continue
-					landedon.KnockDown(3)
-					landedon.take_overall_damage(50, 0, "Blunt Trauma")
-				if(isxeno(AM))
-					var/list/L = orange(rand(2,4))		// Not actually the fruit
-					for (var/mob/living/carbon/human/H in L)
-						H.KnockDown(3)
-						H.take_overall_damage(10, 0, "Blunt Trauma")
-				playsound(AM.loc, 'sound/effects/bang.ogg', 10, 0)
-			else
-				for(var/obj/structure/disposaloutlet/retrieval/R in GLOB.structure_list)
-					if(R.z != src.z)	continue
-					var/obj/structure/disposalholder/H = new()
-					AM.loc = H
-					sleep(10)
-					H.loc = R
-					for(var/mob/living/M in H)
-						M.take_overall_damage(100, 0, "Blunt Trauma")
-					sleep(20)
-					for(var/mob/living/M in H)
-						M.take_overall_damage(20, 0, "Blunt Trauma")
-					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-						qdel(C)
-					R.expel(H)
-					return
-
-				qdel(AM)
-
-		else
-			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
-				qdel(C)
 
 
 //Others
-/turf/open/floor/almayer/uscm
-	icon_state = "logo_c"
-	name = "\improper TGMC Logo"
+/turf/open/floor/mainship/terragov
+	icon_state = "logo_central"
+	name = "\improper TerraGov logo"
 
-/turf/open/floor/almayer/uscm/directional
-	icon_state = "logo_directional"
+/turf/open/floor/mainship/terragov/west
+	icon_state = "logo_directional_west"
 
+/turf/open/floor/mainship/terragov/south
+	icon_state = "logo_directional_south"
+
+/turf/open/floor/mainship/terragov/east
+	icon_state = "logo_directional_east"
+
+/turf/open/floor/mainship/terragov/north
+	icon_state = "logo_directional_north"
 
 
 // RESEARCH STUFF
 
-/turf/open/floor/almayer/research/containment/floor1
+/turf/open/floor/mainship/research/containment/floor1
 	icon_state = "containment_floor_1"
 
-/turf/open/floor/almayer/research/containment/floor2
+/turf/open/floor/mainship/research/containment/floor2
 	icon_state = "containment_floor_2"
 
-/turf/open/floor/almayer/research/containment/corner1
+/turf/open/floor/mainship/research/containment/corner1
 	icon_state = "containment_corner_1"
 
-/turf/open/floor/almayer/research/containment/corner2
+/turf/open/floor/mainship/research/containment/corner2
 	icon_state = "containment_corner_2"
 
-/turf/open/floor/almayer/research/containment/corner3
+/turf/open/floor/mainship/research/containment/corner3
 	icon_state = "containment_corner_3"
 
-/turf/open/floor/almayer/research/containment/corner4
+/turf/open/floor/mainship/research/containment/corner4
 	icon_state = "containment_corner_4"
 
 
@@ -261,13 +102,13 @@
 
 //Outerhull
 
-/turf/open/floor/theseus_hull
-	icon = 'icons/turf/almayer.dmi'
+/turf/open/floor/mainship_hull
+	icon = 'icons/turf/mainship.dmi'
 	icon_state = "outerhull"
 	name = "hull"
 	hull_floor = TRUE
 
-/turf/open/floor/theseus_hull/dir
+/turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
 
 
@@ -280,41 +121,21 @@
 
 
 
-
-
-/turf/open/floor/airless
-	icon_state = "floor"
-	name = "airless floor"
-
-	New()
-		..()
-		name = "floor"
-
-/turf/open/floor/icefloor
-	icon_state = "floor"
-	name = "ice colony floor"
-
-	New()
-		..()
-		name = "floor"
-
 /turf/open/floor/freezer
 	icon_state = "freezerfloor"
 
 /turf/open/floor/light
 	name = "Light floor"
-	luminosity = 5
 	icon_state = "light_on"
-	floor_tile = new/obj/item/stack/tile/light
 
-	New()
-		floor_tile.New() //I guess New() isn't run on objects spawned without the definition of a turf to house them, ah well.
-		var/n = name //just in case commands rename it in the ..() call
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				name = n
+/turf/open/floor/light/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/light
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/light/LateInitialize(mapload)
+	update_icon()
 
 
 /turf/open/floor/wood
@@ -329,9 +150,9 @@
 /turf/open/floor/vault
 	icon_state = "rockvault"
 
-	New(location,type)
-		..()
-		icon_state = "[type]vault"
+/turf/open/floor/vault/Initialize(mapload, state)
+	. = ..()
+	icon_state = "[state]vault"
 
 
 
@@ -345,20 +166,21 @@
 /turf/open/floor/engine/make_plating()
 	return
 
-/turf/open/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
-	if(!C)
-		return
-	if(!user)
-		return
-	if(iswrench(C))
+/turf/open/floor/engine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s protective cover.</span>",
 		"<span class='notice'>You start removing [src]'s protective cover.</span>")
-		playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
-			new /obj/item/stack/rods(src, 2)
-			ChangeTurf(/turf/open/floor)
-			var/turf/open/floor/F = src
-			F.make_plating()
+		playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+			return
+			
+		new /obj/item/stack/rods(src, 2)
+		ChangeTurf(/turf/open/floor)
+		var/turf/open/floor/F = src
+		F.make_plating()
 
 
 /turf/open/floor/engine/ex_act(severity)
@@ -404,17 +226,21 @@
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		icon_state = "grass[pick("1","2","3","4")]"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/grass/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/grass
+	icon_state = "grass[pick("1","2","3","4")]"
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/grass/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in GLOB.cardinals)
+		if(!istype(get_step(src,direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/tile/white
 	icon_state = "white"
@@ -590,26 +416,24 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
-	floor_tile = new/obj/item/stack/tile/carpet
 
-	New()
-		floor_tile.New() //I guess New() isn't ran on objects spawned without the definition of a turf to house them, ah well.
-		if(!icon_state)
-			icon_state = "carpet"
-		..()
-		spawn(4)
-			if(src)
-				update_icon()
-				for(var/direction in list(1,2,4,8,5,6,9,10))
-					if(istype(get_step(src,direction),/turf/open/floor))
-						var/turf/open/floor/FF = get_step(src,direction)
-						FF.update_icon() //so siding get updated properly
+
+/turf/open/floor/carpet/Initialize()
+	. = ..()
+	floor_tile = new /obj/item/stack/tile/carpet
+	return INITIALIZE_HINT_LATELOAD
+
+
+/turf/open/floor/carpet/LateInitialize(mapload)
+	update_icon()
+	for(var/direction in list(1,2,4,8,5,6,9,10))
+		if(!istype(get_step(src, direction), /turf/open/floor))
+			continue
+		var/turf/open/floor/FF = get_step(src,direction)
+		FF.update_icon() //so siding get updated properly
 
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
-
-/turf/open/floor/carpet/alt
-	icon_state = "carpetalt"
 
 // Start Prison tiles
 
@@ -735,57 +559,6 @@
 	name = "Mech Bay Recharge Station"
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
-	var/obj/machinery/mech_bay_recharge_port/recharge_port
-	var/obj/machinery/computer/mech_bay_power_console/recharge_console
-	var/obj/mecha/recharging_mecha = null
-
-/turf/open/floor/mech_bay_recharge_floor/Entered(var/obj/mecha/mecha)
-	. = ..()
-	if(istype(mecha))
-		mecha.occupant_message("<b>Initializing power control devices.</b>")
-		init_devices()
-		if(recharge_console && recharge_port)
-			recharging_mecha = mecha
-			recharge_console.mecha_in(mecha)
-			return
-		else if(!recharge_console)
-			mecha.occupant_message("<font color='red'>Control console not found. Terminating.</font>")
-		else if(!recharge_port)
-			mecha.occupant_message("<font color='red'>Power port not found. Terminating.</font>")
-	return
-
-/turf/open/floor/mech_bay_recharge_floor/Exited(atom)
-	. = ..()
-	if(atom == recharging_mecha)
-		recharging_mecha = null
-		if(recharge_console)
-			recharge_console.mecha_out()
-	return
-
-/turf/open/floor/mech_bay_recharge_floor/proc/init_devices()
-	if(!recharge_console)
-		recharge_console = locate() in range(1,src)
-	if(!recharge_port)
-		recharge_port = locate() in get_step(src, WEST)
-
-	if(recharge_console)
-		recharge_console.recharge_floor = src
-		if(recharge_port)
-			recharge_console.recharge_port = recharge_port
-	if(recharge_port)
-		recharge_port.recharge_floor = src
-		if(recharge_console)
-			recharge_port.recharge_console = recharge_console
-	return
-
-// temporary fix for broken icon until somebody gets around to make these player-buildable
-/turf/open/floor/mech_bay_recharge_floor/attackby(obj/item/C as obj, mob/user as mob)
-	..()
-	if(floor_tile)
-		icon_state = "recharge_floor"
-	else
-		icon_state = "support_lattice"
-
 
 /turf/open/floor/mech_bay_recharge_floor/break_tile()
 	if(broken) return

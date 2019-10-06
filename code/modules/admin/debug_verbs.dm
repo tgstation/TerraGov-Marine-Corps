@@ -69,7 +69,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			target = null
 			targetselected = FALSE
 
-	var/procname = input("Proc path, eg: /proc/attack_hand", "Path:", null) as text|null
+	var/procname = input("Proc path, eg: /proc/attack_hand(mob/living/user)")
 	if(!procname)
 		return
 
@@ -166,7 +166,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Delete Instances"
 
-	var/blocked = list(/obj, /obj/item, /obj/effect, /obj/mecha, /obj/machinery, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/Xenomorph, /mob/living/carbon/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
+	var/blocked = list(/obj, /obj/item, /obj/effect, /obj/machinery, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/xenomorph, /mob/living/carbon/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/ai)
 	var/chosen_deletion = input(usr, "Type the path of the object you want to delete", "Delete:") as null|text
 
 	if(!chosen_deletion)
@@ -212,8 +212,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	SSmachines.makepowernets()
 
-	log_admin("[key_name(usr)] has remade the powernet. makepowernets() called.")
-	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets. makepowernets() called.")
+	log_admin("[key_name(usr)] has remade powernets.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade powernets.")
 
 
 /datum/admins/proc/debug_mob_lists()
@@ -222,13 +222,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Admins", "Clients", "Mobs", "Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
 	switch(choice)
 		if("Players")
 			for(var/i in GLOB.player_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Observers")
+			for(var/i in GLOB.observer_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("New Players")
+			for(var/i in GLOB.new_player_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Admins")
@@ -244,7 +252,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Living Mobs")
-			for(var/i in GLOB.alive_mob_list)
+			for(var/i in GLOB.mob_living_list)
+				var/mob/M = i
+				dat += "[M] [ADMIN_VV(M)]<br>"
+		if("Alive Living Mobs")
+			for(var/i in GLOB.alive_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
@@ -302,7 +314,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if(findtext("[path]", object))
 			matches += path
 
-	if(length(matches) == 0)
+	if(!length(matches))
 		return
 
 	var/chosen
@@ -323,22 +335,25 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
-/datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
+/datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
 	set category = null
 	set name = "Delete"
 
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(alert(src, "Are you sure you want to delete: [O]?", "Delete", "Yes", "No") != "Yes")
+	if(alert(src, "Are you sure you want to delete: [A]?", "Delete", "Yes", "No") != "Yes")
 		return
 
-	var/turf/T = get_turf(O)
+	if(QDELETED(A))
+		return
 
-	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(T)].")
-	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
+	var/turf/T = get_turf(A)
 
-	qdel(O)
+	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
+
+	qdel(A)
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))
@@ -366,42 +381,21 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/choice = input("Check contents of", "Check Contents") as null|anything in list("Key", "Cliented Mob", "Mob")
-	if(!choice)
+	var/mob/living/L = usr.client.holder.apicker("Check contents of:", "Check Contents", list(APICKER_CLIENT, APICKER_LIVING))
+	if(!istype(L))
 		return
 
-	var/mob/M
-	switch(choice)
-		if("Key")
-			var/selection = input("Please, select a key.", "Check Contents") as null|anything in sortKey(GLOB.clients)
-			if(!selection)
-				return
-			M = selection:mob
-		if("Cliented Mob")
-			var/selection = input("Please, select a cliented mob.", "Check Contents") as null|anything in sortNames(GLOB.player_list)
-			if(!selection)
-				return
-			M = selection
-		if("Mob")
-			var/selection = input("Please, select a mob.", "Check Contents") as null|anything in sortNames(GLOB.mob_list)
-			if(!selection)
-				return
-			M = selection
-
-	if(!isliving(M))
-		return
-
-	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
-
-	var/list/L = M.get_contents()
-	for(var/i in L)
+	var/dat = "<br>"
+	for(var/i in L.get_contents())
 		var/atom/A = i
 		dat += "[A] [ADMIN_VV(A)]<br>"
 
-	usr << browse(dat, "window=contents")
+	var/datum/browser/popup = new(usr, "contents_[key_name(L)]", "<div align='center'>Contents of [key_name(L)]</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
 
-	log_admin("[key_name(usr)] checked the contents of [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
+	log_admin("[key_name(usr)] checked the contents of [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(L)].")
 
 
 
@@ -416,7 +410,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
 		return
 
-	if(SSdbcore.IsConnected())
+	if(SSdbcore.IsConnected(TRUE))
 		if(alert("The database is already connected! If you *KNOW* that this is incorrect, you can force a reconnection", "The database is already connected!", "Force Reconnect", "Cancel") != "Force Reconnect")
 			return
 
@@ -430,6 +424,52 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	SSdbcore.failed_connections = 0
 
 	if(!SSdbcore.Connect())
+		log_admin("Database connection failed: " + SSdbcore.ErrorMsg())
 		message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
 	else
+		log_admin("Database connection re-established!")
 		message_admins("Database connection re-established!")
+
+
+/datum/admins/proc/view_runtimes()
+	set category = "Debug"
+	set name = "View Runtimes"
+	set desc = "Open the runtime Viewer"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	GLOB.error_cache.show_to(usr.client)
+
+	log_admin("[key_name(usr)] viewed the runtimes.")
+
+
+/datum/admins/proc/spatial_agent()
+	set category = "Debug"
+	set name = "Spatial Agent"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/mob/M = usr
+	var/mob/living/carbon/human/H
+	var/spatial = FALSE
+	if(ishuman(M))
+		H = M
+		var/datum/job/J = SSjob.GetJob(H.job)
+		spatial = istype(J, /datum/job/other/spatial_agent)
+
+	if(spatial)
+		log_admin("[key_name(M)] stopped being a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(M)] stopped being a spatial agent.")
+		qdel(M)
+	else
+		H = new(get_turf(M))
+		M.client.prefs.copy_to(H)
+		M.mind.transfer_to(H, TRUE)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/other/spatial_agent)
+		J.assign_equip(H)
+		qdel(M)
+
+		log_admin("[key_name(H)] became a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")

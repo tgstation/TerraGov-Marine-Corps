@@ -1,8 +1,0 @@
-{
-    "map_name": "Low Orbit",
-    "map_path": "map_files/Low_Orbit",
-    "map_file": "Low_Orbit.dmm",
-	"traits": [{"Low Orbit": true}], 
-    "shuttles": {
-    }
-}

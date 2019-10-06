@@ -1,6 +1,4 @@
 /mob/living/carbon/human
-	//CM XENO CUFF
-	var/xenoCuffed = 0
 	//Hair colour and style
 	var/r_hair = 0
 	var/g_hair = 0
@@ -29,10 +27,7 @@
 	//Species specific
 	var/moth_wings = "Plain"
 
-	var/size_multiplier = 1 //multiplier for the mob's icon size
-	var/icon_update = 1 //whether icon updating shall take place
-
-	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
+	var/lip_style		//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
@@ -56,37 +51,29 @@
 	var/obj/item/clothing/glasses/glasses = null
 	var/obj/item/head = null
 	var/obj/item/wear_ear = null
-	var/obj/item/wear_id = null
+	var/obj/item/card/id/wear_id = null
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/obj/item/s_store = null
 
-	var/used_skillpoints = 0
-	var/skill_specialization = null
-	var/list/skills = null
-
 	var/icon/stand_icon = null
-
-	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/speech_problem_flag = 0
 
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all limbs or just some or even none.
-	//var/list/bad_limbs = list()// limbs we check until they are good.
 
-	var/xylophone = 0 //For the spoooooooky xylophone cooldown
+	var/mob/remoteview_target
 
-	var/mob/remoteview_target = null
-
-	var/list/flavor_texts = list()
-	var/recently_unbuckled = 0
+	var/flavor_text = ""
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+	var/exploit_record = ""
 
 
 	//Life variables
-
-	var/prev_gender = null // Debug for plural genders
 
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
@@ -117,3 +104,9 @@
 	var/cloaking = FALSE
 
 	var/image/SL_directional = null
+
+	var/damageoverlaytemp = 0
+
+	var/specset //Simple way to track which set has the player taken
+
+	hud_type = /datum/hud/human

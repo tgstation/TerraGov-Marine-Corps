@@ -8,7 +8,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 5
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/ready = 0
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
@@ -17,16 +17,11 @@
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks = new
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
-	origin_tech = "biotech=3"
+
 
 /obj/item/defibrillator/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (FIRELOSS)
-
-/mob/living/carbon/human/proc/check_tod()
-	if(!undefibbable && world.time <= timeofdeath + CONFIG_GET(number/revive_grace_period))
-		return TRUE
-	return FALSE
 
 /obj/item/defibrillator/Initialize()
 	sparks.set_up(5, 0, src)
@@ -60,8 +55,9 @@
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * user.mind.cm_skills.medical) // 3 seconds with medical skill, 5 without
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				return
 
 	defib_cooldown = world.time + 20 //2 seconds cooldown every time the defib is toggled
 	ready = !ready
@@ -69,21 +65,24 @@
 	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
 	playsound(get_turf(src), "sparks", 25, 1, 4)
 	update_icon()
-	add_fingerprint(user)
+
 
 /mob/living/carbon/human/proc/get_ghost()
-	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		for(var/mob/dead/observer/G in GLOB.player_list)
-			if(G.mind == mind)
-				var/mob/dead/observer/ghost = G
-				if(ghost && ghost.client && ghost.can_reenter_corpse)
-					return ghost
-	return 0
+	if(client) //Let's call up the correct ghost!
+		return FALSE
+	for(var/g in GLOB.observer_list)
+		var/mob/dead/observer/ghost = g
+		if(ghost.mind.current != src)
+			continue
+		if(ghost.client && ghost.can_reenter_corpse)
+			return ghost
+	return FALSE
+
 
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations))
+	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst)
 		return 0
 	return 1
 
@@ -104,7 +103,8 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+				return
 		else
 			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
@@ -124,21 +124,18 @@
 	if(!H.is_revivable())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
-
-	if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
+		
+	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT) && prob(95))
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+	if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
-		G << 'sound/effects/adminhelp.ogg'
-		var/msg = "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
-		(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[G];reentercorpse=1'>click here!</a>)</font></span>"
-		to_chat(G, msg)
+		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR.</span>")
@@ -160,7 +157,7 @@
 		H.visible_message("<span class='danger'>[H]'s body convulses a bit.</span>")
 		defib_cooldown = world.time + 10 //1 second cooldown before you can shock again
 
-		if(H.wear_suit && (istype(H.wear_suit, /obj/item/clothing/suit/armor) || istype(H.wear_suit, /obj/item/clothing/suit/storage/marine)) && prob(95))
+		if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT) && prob(95))
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
 
@@ -172,7 +169,7 @@
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
-		if((!H.check_tod() && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		if((!check_tod(H) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 			return
 
@@ -204,7 +201,6 @@
 			user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 			H.on_revive()
 			H.timeofdeath = 0
-			H.tod = null
 			H.stat = UNCONSCIOUS
 			H.emote("gasp")
 			H.regenerate_icons()
@@ -216,6 +212,9 @@
 			H.update_canmove()
 			H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 			to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
+
+			notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
+
 		else
 			user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again.</span>") //Freak case
 	else

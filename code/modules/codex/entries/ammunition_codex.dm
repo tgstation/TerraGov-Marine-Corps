@@ -7,8 +7,8 @@
 		ammo = new thing()
 		var/ammo_name = lowertext(initial(ammo.name))
 		var/datum/codex_entry/entry = new( \
-		 _display_name = "[ammo_name] (ammunition)", \
-		 _associated_strings = list("[ammo_name]"))
+		_display_name = "[ammo_name] (ammunition)", \
+		_associated_strings = list("[ammo_name]"))
 		
 		entry.mechanics_text += "<U>Basic statistics for this ammo is as follows</U>:<br>"
 		if(ammo.damage)

@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(armour_to_descriptive_term, list("melee" = "melee attacks", "bullet" = "ballistics", "laser" = "lasers", "energy" = "energy", "bomb" = "explosions", "bio" = "biohazards", "rad" = "radiation", "fire" = "fire", "acid" = "acid") )
+
 /datum/codex_entry
 	var/display_name
 	var/list/associated_strings
@@ -9,7 +11,7 @@
 /datum/codex_entry/dd_SortValue()
 	return display_name
 
-/datum/codex_entry/New(var/_display_name, var/list/_associated_paths, var/list/_associated_strings, var/_lore_text, var/_mechanics_text, var/_antag_text)
+/datum/codex_entry/New(_display_name, list/_associated_paths, list/_associated_strings, _lore_text, _mechanics_text, _antag_text)
 
 	if(_display_name)       
 		display_name = _display_name

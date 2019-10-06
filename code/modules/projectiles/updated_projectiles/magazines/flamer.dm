@@ -9,10 +9,10 @@
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
 	max_rounds = 60 //Per turf.
 	current_rounds = 60
-	w_class = 3.0 //making sure you can't sneak this onto your belt.
+	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
-	flags_magazine = NOFLAGS
+	flags_magazine = NONE
 
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
@@ -21,12 +21,12 @@
 		if(current_rounds)
 			to_chat(user, "<span class='warning'>You can't mix fuel mixtures!</span>")
 			return
-		var/fuel_available = FT.reagents.get_reagent_amount("fuel") < max_rounds ? FT.reagents.get_reagent_amount("fuel") : max_rounds
+		var/fuel_available = FT.reagents.get_reagent_amount(/datum/reagent/fuel) < max_rounds ? FT.reagents.get_reagent_amount(/datum/reagent/fuel) : max_rounds
 		if(!fuel_available)
 			to_chat(user, "<span class='warning'>[FT] is empty!</span>")
 			return
 
-		FT.reagents.remove_reagent("fuel", fuel_available)
+		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
 		current_rounds = fuel_available
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = "Fuel"

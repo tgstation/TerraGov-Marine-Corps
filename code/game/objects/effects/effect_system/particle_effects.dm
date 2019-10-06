@@ -16,13 +16,17 @@
 	var/life = 0.5 //In seconds
 	mouse_opacity = 0
 
-/obj/effect/particle_effect/fire/New()
-	if(!istype(loc, /turf))
-		qdel(src)
-	extinguish()
 
-	setDir(pick(cardinal))
-	SetLuminosity(3)
+/obj/effect/particle_effect/fire/Initialize(mapload, ...)
+	. = ..()
+
+	if(!isturf(loc))
+		return INITIALIZE_HINT_QDEL
+
+	QDEL_IN(src, life SECONDS)
+
+	setDir(pick(GLOB.cardinals))
+	set_light(3)
 
 	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()
@@ -32,12 +36,6 @@
 		E.fire_act()
 	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()
-
-/obj/effect/particle_effect/fire/proc/extinguish()
-	spawn(life * 10)
-		if (istype(loc, /turf))
-			SetLuminosity(0)
-		qdel(src)
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)
 	..()

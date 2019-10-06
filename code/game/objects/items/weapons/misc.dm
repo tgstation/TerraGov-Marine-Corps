@@ -7,8 +7,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
-	w_class = 3
-	origin_tech = "combat=4"
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 /obj/item/weapon/chainofcommand/suicide_act(mob/user)

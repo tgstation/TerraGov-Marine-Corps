@@ -125,7 +125,7 @@
 		return
 	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
 
-/datum/admins/proc/edit_rights_topic(list/href_list)
+/datum/admins/proc/edit_rights_topic(list/href_list, close)
 	if(!check_rights(R_PERMISSIONS))
 		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
 		log_admin("[key_name(usr)] attempted to edit admin permissions without sufficient rights.")
@@ -199,6 +199,8 @@
 			force_deadmin(admin_key, D)
 		if("sync")
 			sync_lastadminrank(admin_ckey, admin_key, D)
+	if(close)
+		return
 	permissions_edit()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)

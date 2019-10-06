@@ -17,31 +17,28 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
-/obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/medic/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC corpsman snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type, new_name, new_protection)
+	return ..()
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
 
-/obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/engineer/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC engineer snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type, new_name, new_protection)
+	return ..()
 
 /obj/item/clothing/under/marine/sniper
 	name = "\improper TGMC sniper uniform"
 	rollable_sleeves = FALSE
 
-/obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
-	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
-	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
-	)
-	..(loc,expected_type, override_icon_state, new_name, new_protection)
+/obj/item/clothing/under/marine/sniper/Initialize(mapload, expected_type = type, list/new_name = list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
+	list/new_protection = list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE), list/override_icon_state = list(MAP_ICE_COLONY = "s_marine_sniper"))
+	return ..()
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
@@ -49,12 +46,12 @@
 	rollable_sleeves = FALSE
 
 /*
-/obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
+/obj/item/clothing/under/marine/tanker/Initialize(mapload, expected_type 		= type,
 	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC tanker snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
-	..(loc,expected_type, override_icon_state, new_name, new_protection)
+	return ..()
 */
 
 /obj/item/clothing/under/marine/mp
@@ -98,8 +95,8 @@
 	icon_state = "marine_tanker"
 
 /obj/item/clothing/under/marine/officer/bridge
-	name = "intelligence officer uniform"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented intelligence officer uniform. Do the navy proud."
+	name = "staff officer uniform"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented staff officer uniform. Do the navy proud."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec
@@ -177,10 +174,10 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	has_sensor = 0
 
-/obj/item/clothing/under/marine/veteran/bear
-	name = "\improper Iron Bear uniform"
-	desc = "A uniform worn by Iron Bears mercenaries in the service of Mother Russia. Smells a little like an actual bear."
-	icon_state = "bear_jumpsuit"
+/obj/item/clothing/under/marine/veteran/wolves
+	name = "\improper Steel Wolves uniform"
+	desc = "A uniform worn by Steel Wolves mercenaries in the service of Mother Russia. Smells a little like an actual bear."
+	icon_state = "wolf_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
@@ -306,3 +303,32 @@
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
 	rollable_sleeves = FALSE
+
+
+/obj/item/clothing/under/som
+	name = "\improper SoM uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
+	icon_state = "som_uniform"
+	item_state = "som_uniform"
+	has_sensor = FALSE
+
+
+/obj/item/clothing/under/som/medic
+	name = "\improper SoM medical uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Has medical markings."
+	icon_state = "som_uniform_medic"
+	item_state = "som_uniform_medic"
+
+
+/obj/item/clothing/under/som/veteran
+	name = "\improper SoM veteran uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	icon_state = "som_uniform_veteran"
+	item_state = "som_uniform_veteran"
+
+
+/obj/item/clothing/under/som/leader
+	name = "\improper SoM leader uniform"
+	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
+	icon_state = "som_uniform_leader"
+	item_state = "som_uniform_leader"

@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Warrior
-	caste_base_type = /mob/living/carbon/Xenomorph/Warrior
+/mob/living/carbon/xenomorph/warrior
+	caste_base_type = /mob/living/carbon/xenomorph/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -12,90 +12,77 @@
 	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/toggle_agility,
-		/datum/action/xeno_action/activable/fling,
-		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/punch
-		)
 
 // ***************************************
 // *********** Icons
 // ***************************************
-/mob/living/carbon/Xenomorph/Warrior/handle_special_state()
+/mob/living/carbon/xenomorph/warrior/handle_special_state()
 	if(agility)
 		icon_state = "Warrior Agility"
 		return TRUE
 	return FALSE
 
+/mob/living/carbon/xenomorph/warrior/handle_special_wound_states()
+	. = ..()
+	if(agility)
+		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
+/mob/living/carbon/xenomorph/warrior/throw_item(atom/target)
 	throw_mode_off()
 
-/mob/living/carbon/Xenomorph/Warrior/stop_pulling()
-	if(isliving(pulling))
+/mob/living/carbon/xenomorph/warrior/stop_pulling()
+	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
-		L.SetStunned(0)
+		grab_resist_level = 0 //zero it out
+		L.set_stunned(0)
+		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
-/mob/living/carbon/Xenomorph/Warrior/start_pulling(atom/movable/AM, lunge, no_msg)
-	if (!check_state() || agility || !isliving(AM))
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
+	if(!check_state() || agility || !isliving(AM))
 		return FALSE
 
 	var/mob/living/L = AM
 
-	if(!isxeno(AM))
-		if (used_lunge && !lunge)
-			to_chat(src, "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>")
-			return FALSE
+	if(isxeno(L))
+		return ..()
 
-		if (!check_plasma(10))
-			return FALSE
+	if(lunge && ..(L, suppress_message))
+		return neck_grab(L)
 
-		if(!lunge)
-			used_lunge = TRUE
+	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
+		return FALSE
 
-	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
+	. = ..(L, suppress_message)
 
 	if(.) //successful pull
-		if(!isxeno(AM))
-			use_plasma(10)
+		neck_grab(L)
 
-		if(!isxeno(L))
-			round_statistics.warrior_grabs++
-			grab_level = GRAB_NECK
-			L.drop_all_held_items()
-			L.KnockDown(1)
-			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-			"<span class='xenowarning'>You grab [L] by the throat!</span>")
+	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
 
-	if(!lunge && !isxeno(AM))
-		addtimer(CALLBACK(src, .proc/lunge_reset), WARRIOR_LUNGE_COOLDOWN)
 
-/mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
+	use_plasma(10)
+
+	GLOB.round_statistics.warrior_grabs++
+	grab_level = GRAB_NECK
+	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	L.drop_all_held_items()
+	L.knock_down(1)
+	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
+	"<span class='xenowarning'>We grab [L] by the throat!</span>")
+	return TRUE
+
+
+/mob/living/carbon/xenomorph/warrior/proc/resisted_against(datum/source, mob/living/victim)
+	victim.do_resist_grab()
+
+
+/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
 	if(ishuman(AM))
 		return
 	..()
-
-// ***************************************
-// *********** Death
-// ***************************************
-/mob/living/carbon/Xenomorph/Warrior/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
-		var/image/I
-		if(resting)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || stat == DEAD)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_sleeping", "layer"=-X_WOUND_LAYER)
-		else if(agility)
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
-		else
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded", "layer"=-X_WOUND_LAYER)
-
-		overlays_standing[X_WOUND_LAYER] = I
-		apply_overlay(X_WOUND_LAYER)

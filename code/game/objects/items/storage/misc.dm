@@ -8,8 +8,8 @@
 	new /obj/item/toy/dice/d20( src )
 
 /*
- * Donut Box
- */
+* Donut Box
+*/
 
 /obj/item/storage/donut_box
 	icon = 'icons/obj/items/food.dmi'

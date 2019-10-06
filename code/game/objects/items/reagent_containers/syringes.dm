@@ -11,12 +11,12 @@
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	matter = list("glass" = 150)
-	container_type = AMOUNT_SKILLCHECK
+	materials = list(/datum/material/glass = 150)
+	init_reagent_flags = AMOUNT_SKILLCHECK
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 15
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	flags_item = NOBLUDGEON
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
@@ -43,14 +43,16 @@
 			return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_hand()
-	..()
+/obj/item/reagent_container/syringe/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_paw()
+/obj/item/reagent_container/syringe/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
-/obj/item/reagent_container/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_container/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
 /obj/item/reagent_container/syringe/afterattack(obj/target, mob/user, proximity)
@@ -63,17 +65,16 @@
 		to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 		return
 
-	if (user.a_intent == INTENT_HARM && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
-			target = user
+	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
-		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			user.KnockDown(3)
-			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
+		var/mob/living/L = user
+		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
+			L.knock_down(3)
+			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
-			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
-			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
+				"<span class='warning'>You knock [L] to the ground before they could inject you!</span>", null, 5)
+			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return
 
 		syringestab(target, user)
@@ -97,10 +98,7 @@
 					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
 						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 						return
-					if(!T.dna)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+					if(!T.blood_type)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 						return
 
@@ -138,8 +136,6 @@
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>The syringe is empty.</span>")
-				return
-			if(istype(target, /obj/item/implantcase/chem))
 				return
 
 			if(!target.is_injectable() && !ismob(target))
@@ -251,21 +247,18 @@
 			return
 
 		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
+			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 			return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src]!</span>")
 
 		if(affecting.take_damage_limb(3))
 			target:UpdateDamageIcon()
 
 	else
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] with [src.name]!</span>"), 1)
+		visible_message("<span class='danger'>[user] stabs [target] with [src]!</span>")
 		target.take_limb_damage(3)// 7 is the same as crowbar punch
 
 	reagents.reaction(target, INJECT)
@@ -274,7 +267,6 @@
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	add_mob_blood(target)
-	add_fingerprint(usr)
 	update_icon()
 
 
@@ -323,8 +315,7 @@
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty.</span>")
 				return
-			if(istype(target, /obj/item/implantcase/chem))
-				return
+
 			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
@@ -334,7 +325,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message("<span class='danger'>[user] is trying to inject [target] with a giant syringe!</span>")
-				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message("<span class='warning'>[user] injects [target] with a giant syringe!</span>")
 			spawn(5)
@@ -376,9 +367,9 @@
 /obj/item/reagent_container/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	list_reagents = list("inaprovaline" = 15)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
-/obj/item/reagent_container/syringe/inaprovaline/New()
+/obj/item/reagent_container/syringe/inaprovaline/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -386,9 +377,9 @@
 /obj/item/reagent_container/syringe/dylovene
 	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
-	list_reagents = list("dylovene" = 15)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
-/obj/item/reagent_container/syringe/dylovene/New()
+/obj/item/reagent_container/syringe/dylovene/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -396,9 +387,9 @@
 /obj/item/reagent_container/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
-	list_reagents = list("spaceacillin" = 15)
+	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
-/obj/item/reagent_container/syringe/antiviral/New()
+/obj/item/reagent_container/syringe/antiviral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -406,17 +397,17 @@
 /obj/item/reagent_container/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
-	list_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
+	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
-/obj/item/reagent_container/syringe/drugs/New()
+/obj/item/reagent_container/syringe/drugs/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
 /obj/item/reagent_container/syringe/ld50_syringe/choral
-	list_reagents = list("chloralhydrate" = 50)
+	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_container/syringe/ld50_syringe/choral/New()
+/obj/item/reagent_container/syringe/ld50_syringe/choral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -424,9 +415,9 @@
 /obj/item/reagent_container/syringe/mixed
 	name = "syringe (mixed)"
 	desc = "Contains inaprovaline & dylovene."
-	list_reagents = list("inaprovaline" = 7, "dylovene" = 8)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
-/obj/item/reagent_container/syringe/mixed/New()
+/obj/item/reagent_container/syringe/mixed/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()

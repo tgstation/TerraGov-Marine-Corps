@@ -8,6 +8,7 @@
 	var/charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
+	general_codex_key = "energy weapons"
 
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
@@ -49,7 +50,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/energy/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/energy/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		cell.charge = min(cell.charge + charge_cost, cell.maxcharge) //Safeguard against 'overcharging' the cell.
@@ -79,23 +80,20 @@
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
-	fire_sound = 'sound/weapons/Taser.ogg'
-	origin_tech = "combat=1;materials=1"
-	matter = list("metal" = 2000)
+	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
+	materials = list(/datum/material/metal = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
 
-/obj/item/weapon/gun/energy/taser/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/mlow_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 10
+	accuracy_mult = 1.15
+	scatter = 10
+	scatter_unwielded = 15
+
 
 /obj/item/weapon/gun/energy/taser/update_icon()
 	if(!cell || cell.charge - charge_cost < 0)
@@ -117,30 +115,25 @@
 /obj/item/weapon/gun/energy/lasgun
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
-	origin_tech = "combat=5;materials=4"
-	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/Laser.ogg'
-	matter = list("metal" = 2000)
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	load_method = CELL //codex
 
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
-	aim_slowdown = SLOWDOWN_ADS_RIFLE
-	wield_delay = WIELD_DELAY_SLOW
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 
-
-/obj/item/weapon/gun/energy/lasgun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2 //Heavy and unwieldy
-	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
+	fire_delay = 3
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 80 //Heavy and unwieldy
+	damage_falloff_mult = 0.5
 
 
 //-------------------------------------------------------
@@ -176,20 +169,22 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
-/obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //Heavy and unwieldy; you don't one hand this.
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2.5 //Heavy and unwieldy; you don't one hand this.
-	damage_falloff_mult = CONFIG_GET(number/combat_define/low_damage_falloff_mult)
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
+	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = 0.25
+
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
-	toggle_chargemode(user)
+	return toggle_chargemode(user)
+
+
+/obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
+	. = ..()
+	update_icon()
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
@@ -210,15 +205,15 @@
 		charge_cost = M43_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
-		fire_sound = 'sound/weapons/Laser3.ogg'
+		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-		fire_sound = 'sound/weapons/Laser.ogg'
+		fire_delay = 3
+		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
 
@@ -227,10 +222,13 @@
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
+	
+	return TRUE
+
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
@@ -238,7 +236,7 @@
 			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(src, null, TRUE)
+			active_attachable.activate_attachment(null, TRUE)
 
 	if(!cell?.use(charge_cost))
 		return
@@ -252,7 +250,7 @@
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable)
+	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
@@ -290,32 +288,6 @@
 		else if (src == M.r_hand)
 			M.update_inv_r_hand()
 
-/obj/item/weapon/gun/energy/lasgun/attackby(obj/item/I, mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user))
-			attach_to_gun(user,I)
-
- 	//the active attachment is reloadable
-	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		if(!check_inactive_hand(user))
-			return
-		if(istype(I,/obj/item/ammo_magazine))
-			var/obj/item/ammo_magazine/MG = I
-			if(istype(src, MG.gun_type))
-				to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-				playsound(user, active_attachable.activation_sound, 15, 1)
-				active_attachable.activate_attachment(src, null, TRUE)
-				reload(user,MG)
-				return
-		active_attachable.reload_attachment(I, user)
-
-	else if(istype(I,/obj/item/cell/lasgun))
-		if(check_inactive_hand(user))
-			reload(user,I)
-
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
 	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
@@ -340,7 +312,7 @@
 	if(user)
 		if(new_cell.reload_delay > 1)
 			to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-			if(do_after(user,new_cell.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+			if(do_after(user,new_cell.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 				replace_magazine(user, new_cell)
 			else
 				to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -368,10 +340,10 @@
 //This can be passed with a null user, so we need to check for that as well.
 /obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
-		return
+		return FALSE
 
 	if(!cell || cell.loc != src)
-		return
+		return FALSE
 
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		cell.loc = get_turf(src) //Drop it on the ground.
@@ -385,3 +357,5 @@
 	cell = null
 
 	update_icon(user)
+
+	return TRUE

@@ -1,20 +1,20 @@
 /*
- * Contains:
- *		Fire protection
- *		Bomb protection
- *		Radiation protection
- */
+* Contains:
+*		Fire protection
+*		Bomb protection
+*		Radiation protection
+*/
 
 /*
- * Fire protection
- */
+* Fire protection
+*/
 
 /obj/item/clothing/suit/fire
 	name = "firesuit"
 	desc = "A suit that protects against fire and heat."
 	icon_state = "fire"
 	item_state = "fire_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -37,12 +37,12 @@
 	desc = "A suit that protects against extreme fire and heat."
 	//icon_state = "thermal"
 	item_state = "ro_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	slowdown = 1.5
 
 /*
- * Bomb protection
- */
+* Bomb protection
+*/
 /obj/item/clothing/head/bomb_hood
 	name = "bomb hood"
 	desc = "Use in case of bomb."
@@ -59,7 +59,7 @@
 	desc = "A suit designed for safety when handling explosives."
 	icon_state = "bombsuit"
 	item_state = "bombsuit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	slowdown = 2
@@ -78,12 +78,12 @@
 /obj/item/clothing/suit/bomb_suit/security
 	icon_state = "bombsuitsec"
 	item_state = "bombsuitsec"
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs)
+	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/restraints/handcuffs)
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 
 /*
- * Radiation protection
- */
+* Radiation protection
+*/
 /obj/item/clothing/head/radiation
 	name = "Radiation Hood"
 	icon_state = "rad"
@@ -99,7 +99,7 @@
 	desc = "A suit that protects against radiation. Label: Made with lead, do not eat insulation."
 	icon_state = "rad"
 	item_state = "rad_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET

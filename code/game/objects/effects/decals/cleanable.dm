@@ -7,10 +7,10 @@
 		src.icon_state = pick(src.random_icon_states)
 	return ..()
 
-/obj/effect/decal/cleanable/attackby(obj/item/W, mob/user)
+/obj/effect/decal/cleanable/attackby(obj/item/I, mob/user, params)
 	var/obj/effect/alien/weeds/A = locate() in loc
 	if(A)
-		return A.attackby(W,user)
+		return A.attackby(I, user, params)
 	else
 		return ..()
 
@@ -44,9 +44,8 @@
 	if(!prob(50))
 		return
 
-	var/obj/effect/decal/cleanable/blood/drip/D = new (get_turf(src))
+	new /obj/effect/decal/cleanable/blood/drip(get_turf(src))
 	if(!prob(50))
 		return
 
-	D = new(get_turf(src))
-	D.blood_DNA = blood_DNA
+	new /obj/effect/decal/cleanable/blood/drip(get_turf(src))

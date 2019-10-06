@@ -13,9 +13,9 @@
 					{{:helper.link('Make an Announcement', 'alert', {'command' : 'announce'})}}
 					{{if data.authentication == 2}}
 						{{if data.admins > 0}}
-							{{:helper.link('Message USCM', 'alert', {'command' : 'messageUSCM'})}}
+							{{:helper.link('Message TGMC', 'alert', {'command' : 'messageTGMC'})}}
 						{{else}}
-							<span class="bad">UCM Communications Offline</span>
+							<span class="bad">TGMC Communications Offline</span>
 						{{/if}}
 					{{/if}}
 					{{:helper.link('Launch Distress Signal', 'alert', {'command' : 'distress'})}}

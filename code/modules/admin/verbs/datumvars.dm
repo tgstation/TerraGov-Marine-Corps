@@ -202,8 +202,12 @@
 
 	if(istype(D, /atom))
 		var/atom/A = D
-		if(isliving(A))
+		if(ismob(A))
 			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];rename=[refid]'><b id='name'>[D]</b></a>"
+		else
+			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
+			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+		if(isliving(A))
 			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
 			atomsnowflake += {"
@@ -217,9 +221,6 @@
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
 				</font>
 			"}
-		else
-			atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
-			atomsnowflake += "<br><font size='1'><a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(A.dir) || A.dir]</a> <a href='?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
 	else if("name" in D.vars)
 		atomsnowflake += "<a href='?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=name'><b id='name'>[D]</b></a>"
 	else
@@ -227,7 +228,7 @@
 		formatted_type = null
 
 	var/marked
-	if(holder && holder.marked_datum && holder.marked_datum == D)
+	if(holder?.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -560,8 +561,10 @@
 		var/list/L = value
 		var/list/items = list()
 
-		if(length(L) > 0 && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
-			for(var/i in 1 to L.len)
+		if(istype(DA, /datum/controller/global_vars) && !DA.vv_edit_var(name, L))
+			item = "[VV_HTML_ENCODE(name)] = /list ([L.len])"
+		else if(length(L) > 0  && !(name == "underlays" || name == "overlays" || length(L) > (IS_NORMAL_LIST(L) ? 50 : 150)))
+			for(var/i in 1 to length(L))
 				var/key = L[i]
 				var/val
 				if(IS_NORMAL_LIST(L) && !isnum(key))
@@ -687,14 +690,18 @@
 		if(!istype(M))
 			return
 
+		var/old_name = M.real_name
 		var/new_name = input(usr, "What would you like to name this mob?", "Input a name", M.real_name) as text
 		new_name = noscript(new_name)
 		if(!new_name || !M)
 			return
 
 		M.fully_replace_character_name(M.real_name, new_name)
+		vv_update_display(M, "name", new_name)
+		vv_update_display(M, "real_name", M.real_name || "No real name")
 
-		message_admins("[ADMIN_TPMONTY(usr)] renamed [ADMIN_TPMONTY(M)] to [new_name].")
+		log_admin("[key_name(usr)] renamed [old_name] to [key_name(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] renamed [old_name] to [ADMIN_TPMONTY(M)].")
 
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])
@@ -904,7 +911,7 @@
 
 		if(A.reagents)
 			var/chosen_id
-			var/list/reagent_options = sortList(chemical_reagents_list)
+			var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
 			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
 				if("Enter ID")
 					var/valid_id
@@ -925,6 +932,26 @@
 					A.reagents.add_reagent(chosen_id, amount)
 					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to [A].")
 					message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to [A].")
+
+
+	else if(href_list["rotatedatum"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/atom/A = locate(href_list["rotatedatum"])
+		if(!istype(A))
+			to_chat(usr, "This can only be done to instances of type /atom")
+			return
+
+		switch(href_list["rotatedir"])
+			if("right")
+				A.setDir(turn(A.dir, -45))
+			if("left")
+				A.setDir(turn(A.dir, 45))
+
+		vv_update_display(A, "dir", dir2text(A.dir))
+
+		log_admin("[key_name(usr)] rotated [A].")
 
 
 	else if(href_list["modtransform"])
@@ -963,29 +990,6 @@
 
 		log_admin("[key_name(usr)] has used [result] transformation on [A].")
 		message_admins("[ADMIN_TPMONTY(usr)] has used [result] transformation on [A].")
-
-
-	else if(href_list["setspecies"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
-		if(!istype(H))
-			return
-
-		var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
-
-		if(!H)
-			return
-
-		if(!result)
-			return
-
-		H.set_species(result)
-		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
-
-		log_admin("[key_name(usr)] set the species of [key_name(H)] to [result].")
-		message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
 
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
@@ -1041,20 +1045,18 @@
 		if(!istype(L))
 			return
 
-		var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in GLOB.all_languages
-
+		var/new_language = input("Please choose a language to add.", "Language") as null|anything in GLOB.all_languages
 		if(!new_language)
 			return
 
-		if(!L)
+		if(!istype(L))
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.add_language(new_language))
-			log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob already knows that language.</span>")
+		L.grant_language(new_language)
+
+		log_admin("[key_name(usr)] has added [new_language] to [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["remlanguage"])
@@ -1063,14 +1065,13 @@
 
 		var/mob/living/L = locate(href_list["remlanguage"])
 		if(!istype(L))
-
 			return
 
-		if(!length(L.languages))
+		if(!length(L.language_holder.languages))
 			to_chat(usr, "<span class='warning'>This mob knows no languages.</span>")
 			return
 
-		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.languages
+		var/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in L.language_holder.languages
 
 		if(!rem_language)
 			return
@@ -1079,34 +1080,10 @@
 			to_chat(usr, "<span class='warning'>Mob doesn't exist anymore.</span>")
 			return
 
-		if(L.remove_language(rem_language.name))
-			to_chat(usr, "Removed [rem_language] from [L].")
-			log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
-		else
-			to_chat(usr, "<span class='warning'>Mob doesn't know that language.</span>")
+		L.remove_language(rem_language)
 
-
-	else if(href_list["purrbation"])
-		if(!check_rights(R_FUN))
-			return
-
-		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
-		if(!istype(H))
-			return
-
-		if(istype(H.head, /obj/item/clothing/head/kitty))
-			qdel(H.head)
-			H.regenerate_icons()
-			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-		else
-			H.dropItemToGround(H.head)
-			H.head = new /obj/item/clothing/head/kitty(H)
-			H.regenerate_icons()
-			H.head.update_icon(H)
-			log_admin("[key_name(usr)] has purrbated [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")
+		log_admin("[key_name(usr)] has removed [rem_language] from [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(L)].")
 
 
 	else if(href_list["getatom"])
@@ -1139,7 +1116,7 @@
 
 		switch(input("Where do you want to send it to?", "Send Mob") as null|anything in list("Area", "Mob", "Key", "Coords"))
 			if("Area")
-				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				var/area/AR = input("Pick an area.", "Pick an area") as null|anything in GLOB.sorted_areas
 				if(!AR || !A)
 					return
 				target = pick(get_area_turfs(AR))
@@ -1176,7 +1153,7 @@
 		var/mob/living/carbon/human/H = locate(href_list["copyoutfit"])
 		if(!istype(H))
 			return
-			
+
 		H.copy_outfit()
 
 		log_admin("[key_name(usr)] copied the outfit of [key_name(H)].")
@@ -1214,3 +1191,15 @@
 		AM.update_icon()
 
 		log_admin("[key_name(usr)] updated the icon of [AM].")
+
+
+	else if(href_list["playerpanel"])
+		if(!check_rights(R_DEBUG))
+			return
+
+		var/mob/M = locate(href_list["playerpanel"])
+		if(!istype(M))
+			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
+			return
+
+		usr.client.holder.show_player_panel(M)
