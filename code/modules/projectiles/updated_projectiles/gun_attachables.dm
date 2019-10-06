@@ -162,7 +162,6 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
-	master_gun.fire_delay					+= fire_delay_mod
 	if(ammo_mod)
 		master_gun.add_ammo_mod(ammo_mod)
 	if(charge_mod)
@@ -224,7 +223,6 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
-	master_gun.fire_delay					-= fire_delay_mod
 	if(ammo_mod)
 		master_gun.remove_ammo_mod(ammo_mod)
 	if(master_gun.charge_cost)
@@ -467,7 +465,6 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 15
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
-	fire_delay_mod = 2
 
 ///////////// Rail attachments ////////////////////////
 
