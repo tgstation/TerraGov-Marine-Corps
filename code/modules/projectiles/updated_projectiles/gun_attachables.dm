@@ -164,7 +164,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.scope_zoom					+= scope_zoom_mod
 	master_gun.fire_delay					+= fire_delay_mod
 	master_gun.ammo_diff					= ammo_mod
-	if(master_gun.charge_cost)
+	if(charge_mod)
 		master_gun.charge_cost				+= charge_mod
 	if(length(gun_firemode_list_mod) > 0)
 		for(var/i in gun_firemode_list_mod)
