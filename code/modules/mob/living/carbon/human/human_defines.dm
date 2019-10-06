@@ -1,4 +1,13 @@
 /mob/living/carbon/human
+	name = "unknown"
+	real_name = "unknown"
+	icon = 'icons/mob/human.dmi'
+	icon_state = "body_m_s"
+	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
+	health_threshold_crit = -50
+
+	hud_type = /datum/hud/human
+
 	//Hair colour and style
 	var/r_hair = 0
 	var/g_hair = 0
@@ -108,5 +117,3 @@
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken
-
-	hud_type = /datum/hud/human
