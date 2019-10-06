@@ -448,75 +448,97 @@
 // ***************************************
 // *********** Queen heal
 // ***************************************
-/datum/action/xeno_action/queen_heal
+/datum/action/xeno_action/activable/queen_heal
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
 	plasma_cost = 600
+	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
-/datum/action/xeno_action/queen_heal/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
-	if(X.queen_ability_cooldown > world.time)
-		to_chat(X, "<span class='xenowarning'>We're still recovering from our last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-		return
-	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to give healing to.</span>")
-		return
-	var/mob/living/carbon/xenomorph/target = X.observed_xeno
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		to_chat(X, "<span class='xenowarning'>We can't heal that caste.</span>")
-		return
-	if(X.loc.z != target.loc.z)
-		to_chat(X, "<span class='xenowarning'>They are too far away to do this.</span>")
-		return
-	if(target.stat == DEAD)
-		return
-	if(target.health >= target.maxHealth)
-		to_chat(X, "<span class='warning'>[target] is at full health.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.adjustBruteLoss(-50)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
+
+/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't heal that caste.</span>")
+			return FALSE
+	var/mob/living/carbon/xenomorph/healer = owner
+	if(healer.z != patient.z)
+		if(!silent)
+			to_chat(healer, "<span class='xenowarning'>They are too far away to do this.</span>")
+		return FALSE
+	if(patient.health >= patient.maxHealth)
+		if(!silent)
+			to_chat(healer, "<span class='warning'>[patient] is at full health.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/patient = target
+	add_cooldown()
+	patient.adjustBruteLoss(-50)
+	patient.adjustFireLoss(-50)
+	succeed_activate()
+	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
+	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
+
 
 // ***************************************
 // *********** Queen plasma
 // ***************************************
-/datum/action/xeno_action/queen_give_plasma
+/datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
-/datum/action/xeno_action/queen_give_plasma/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
-	if(X.queen_ability_cooldown > world.time)
-		to_chat(X, "<span class='xenowarning'>We're still recovering from our last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-		return
-	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to give plasma to.</span>")
-		return
-	var/mob/living/carbon/xenomorph/target = X.observed_xeno
-	if(target.stat == DEAD)
-		return
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
-		to_chat(X, "<span class='warning'>We can't give that caste plasma.</span>")
-		return
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(X, "<span class='warning'>[target] is at full plasma.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.gain_plasma(100)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>We transfer some plasma to [target].</span>")
+
+/datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/receiver = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late, this one has already kicked the bucket.</span>")
+		return FALSE
+	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			return FALSE
+	var/mob/living/carbon/xenomorph/giver = owner
+	if(giver.z != receiver.z)
+		if(!silent)
+			to_chat(giver, "<span class='warning'>They are too far away to do this.</span>")
+		return FALSE
+	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
+		if(!silent)
+			to_chat(giver, "<span class='warning'>[receiver] is at full plasma.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/queen_give_plasma/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/receiver = target
+	add_cooldown()
+	receiver.gain_plasma(300)
+	succeed_activate()
+	to_chat(owner, "<span class='xenonotice'>We transfer some plasma to [target].</span>")
+	to_chat(receiver, "<span class='xenonotice'>We feel our plasma reserves increase. Bless the Queen!</span>")
+
 
 // ***************************************
 // *********** Queen order
@@ -652,7 +674,7 @@
 		new_xeno.queen_chosen_lead = TRUE
 		new_xeno.hud_set_queen_overwatch()
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
+	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
 
 	// this sets the right datum
 	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter
