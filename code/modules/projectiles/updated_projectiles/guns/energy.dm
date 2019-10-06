@@ -177,7 +177,7 @@
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
-	fire_delay = 5
+	fire_delay = 3
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -211,7 +211,7 @@
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = M43_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[ammo_diff]
-		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
+		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
@@ -219,7 +219,7 @@
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay = 5
+		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE

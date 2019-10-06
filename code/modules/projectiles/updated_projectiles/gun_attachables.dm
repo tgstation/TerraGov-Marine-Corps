@@ -68,6 +68,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/fire_delay_mod = 0 //how long in deciseconds this adds to your base fire delay.
 
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 
@@ -161,6 +162,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
+	master_gun.fire_delay					+= fire_delay_mod
 	master_gun.ammo_diff					= ammo_mod
 	if(master_gun.charge_cost)
 		master_gun.charge_cost				+= charge_mod
@@ -222,6 +224,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
+	master_gun.fire_delay					-= fire_delay_mod
 	master_gun.ammo_diff					= null
 	if(master_gun.charge_cost)
 		master_gun.charge_cost				-= charge_mod
@@ -464,6 +467,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 15
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
+	fire_delay_mod = 2
 
 ///////////// Rail attachments ////////////////////////
 
