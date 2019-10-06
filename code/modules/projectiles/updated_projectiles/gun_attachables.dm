@@ -84,7 +84,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
 
-	var/ammo_mod = null			//what ammo the gun could fire if overcharge is activated, lasers usually.
+	var/ammo_mod = null			//what ammo the gun could also fire, different lasers usually.
 	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
 	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
 
@@ -163,7 +163,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
 	master_gun.fire_delay					+= fire_delay_mod
-	master_gun.ammo_diff					= ammo_mod
+	if(ammo_mod)
+		master_gun.add_ammo_mod(ammo_mod)
 	if(charge_mod)
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
@@ -224,7 +225,8 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
 	master_gun.fire_delay					-= fire_delay_mod
-	master_gun.ammo_diff					= null
+	if(ammo_mod)
+		master_gun.remove_ammo_mod(ammo_mod)
 	if(master_gun.charge_cost)
 		master_gun.charge_cost				-= charge_mod
 	for(var/i in gun_firemode_list_mod)

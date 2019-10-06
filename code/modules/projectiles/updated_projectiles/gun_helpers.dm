@@ -724,6 +724,19 @@ should be alright.
 				if(src == living_user.l_hand || src == living_user.r_hand)
 					new_action.give_action(living_user)
 
+// The section for where you can do a fancy change to ammo types for most weapons.
+/obj/item/weapon/gun/proc/add_ammo_mod(ammo_mod)
+	return
+
+/obj/item/weapon/gun/proc/remove_ammo_mod()
+	return
+
+/obj/item/weapon/gun/energy/add_ammo_mod(ammo_mod)
+	ammo_diff = ammo_mod
+
+/obj/item/weapon/gun/energy/remove_ammo_mod()
+	ammo_diff = initial(ammo_diff)
+
 
 /obj/item/weapon/gun/verb/empty_mag()
 	set category = "Weapons"
