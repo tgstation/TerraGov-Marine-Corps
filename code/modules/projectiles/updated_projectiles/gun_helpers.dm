@@ -330,6 +330,10 @@ should be alright.
 		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
 		return
 
+	if(overcharge == TRUE)
+		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
+		return
+
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
 	var/can_attach = 1
 	switch(attachment.slot)
