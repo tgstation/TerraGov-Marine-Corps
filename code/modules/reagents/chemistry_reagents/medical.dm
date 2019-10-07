@@ -595,7 +595,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
-	purge_list = list() //Does this purge any specific chems?
+	purge_list = list(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Does this purge any specific chems?
 	purge_rate = 15 //rate at which it purges specific chems
 	trait_flags = TACHYCARDIC
 
@@ -622,10 +622,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 				L.knock_out(amount * 0.1)
 				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
-	return ..()
-
-/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L, metabolism)
-	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
