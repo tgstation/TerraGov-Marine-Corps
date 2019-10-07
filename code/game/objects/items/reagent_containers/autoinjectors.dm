@@ -123,7 +123,7 @@
 						/datum/reagent/toxin = 4)
 
 /obj/item/reagent_container/hypospray/autoinjector/hyperzine
-	name = "expired hyperzine autoinjector"
+	name = "hyperzine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
 	amount_per_transfer_from_this = 25
 	volume = 25
