@@ -602,7 +602,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, metabolism)
 	var/amount = current_cycle * 2
 	L.adjustOxyLoss(amount)
-	L.adjustHalLoss(amount)
+	L.adjustHalLoss(amount * 1.2)
 	if(L.stat == DEAD)
 		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
 		if(iscarbon(L))
