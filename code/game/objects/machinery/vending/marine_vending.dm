@@ -371,7 +371,8 @@
 					/obj/item/reagent_container/hypospray/autoinjector/kelotane = 6,
 					/obj/item/reagent_container/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 8,
-					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 4,
+					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 4
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
