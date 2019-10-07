@@ -600,7 +600,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, metabolism)
-	var/amount = current_cycle * 4
+	var/amount = current_cycle * 2
 	L.adjustOxyLoss(amount)
 	L.adjustHalLoss(amount)
 	if(L.stat == DEAD)
@@ -625,11 +625,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L, metabolism)
-	purge_list.Add(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
+	purge_list.Add(/datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
-	L.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
+	L.reagent_move_delay_modifier -= min(2.0, volume * 0.5)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.nutrition = max(C.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)
