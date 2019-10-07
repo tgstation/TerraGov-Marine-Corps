@@ -110,7 +110,7 @@
 	icon_state = "autoinjector-8" //TEMP
 	list_reagents = list(/datum/reagent/medicine/hypervene = 3)
 
-/obj/item/reagent_container/hypospray/autoinjector/hyperzine_expired
+/obj/item/reagent_container/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 4, 
