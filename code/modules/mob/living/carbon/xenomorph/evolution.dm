@@ -145,6 +145,7 @@
 		return
 
 	// used below
+	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
 	var/tierones
 	var/tiertwos
 	var/tierthrees
@@ -195,19 +196,17 @@
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
-		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE]) + length(hive.xenos_by_tier[XENO_TIER_ZERO])
-		if(istype(hive, /datum/hive_status/normal))
-			var/datum/hive_status/normal/normal_hive = hive
-			tierones += normal_hive.stored_larva
+		tierzeros = hive.get_total_tier_zeros()
+		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
 		if(forced_caste_type)
 			//Nothing, go on as normal.
-		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
+		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 			return
 		else if(isdistress(SSticker.mode) && !hive.living_xeno_ruler && potential_queens == 1)
@@ -233,6 +232,7 @@
 		to_chat(src, "<span class='warning'>We quiver, but nothing happens. We must hold still while evolving.</span>")
 		return
 
+	tierzeros = hive.get_total_tier_zeros()
 	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
 	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
@@ -246,10 +246,10 @@
 			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
 			return
 	else if(!forced_caste_type) // these shouldnt be checked if trying to become a queen.
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierones, tiertwos, tierthrees))
+		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierones, tiertwos, tierthrees))
+		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
 			return
 
