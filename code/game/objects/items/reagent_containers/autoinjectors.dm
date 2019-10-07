@@ -117,10 +117,10 @@
 	volume = 25
 	icon_state = "autoinjector-1" //TEMP, god willing
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 4, 
-						datum/reagent/mercury = 1, 
-						datum/reagent/medicine/dexalin = 8, 
-						datum/reagent/medicine/inaprovaline = 8, 
-						datum/reagent/toxin = 4)
+						/datum/reagent/mercury = 1, 
+						/datum/reagent/medicine/dexalin = 8, 
+						/datum/reagent/medicine/inaprovaline = 8, 
+						/datum/reagent/toxin = 4)
 
 /obj/item/reagent_container/hypospray/autoinjector/hyperzine
 	name = "expired hyperzine autoinjector"
@@ -129,5 +129,5 @@
 	volume = 25
 	icon_state = "autoinjector-1" //TEMP, god willing
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 5, 
-						datum/reagent/medicine/dexalin = 10, 
-						datum/reagent/medicine/inaprovaline = 10)
+						/datum/reagent/medicine/dexalin = 10, 
+						/datum/reagent/medicine/inaprovaline = 10)
