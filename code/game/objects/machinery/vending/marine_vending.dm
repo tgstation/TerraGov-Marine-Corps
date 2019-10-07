@@ -393,7 +393,7 @@
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_container/hypospray/autoinjector/hyperzine_expired =3)
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine/expired =3)
 
 
 
