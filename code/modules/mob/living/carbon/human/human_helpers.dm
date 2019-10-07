@@ -1,7 +1,3 @@
-/mob/living/carbon/human/get_crit_threshold()
-	return CONFIG_GET(number/human_health_threshold_crit)
-
-
 /proc/get_gender_name(gender)
 	var/g = "m"
 	if (gender == FEMALE)
