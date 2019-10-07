@@ -120,7 +120,7 @@
 
 /obj/item/reagent_container/hypospray/autoinjector/hyperzine
 	name = "expired hyperzine autoinjector"
-	desc = "An auto-injector loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
+	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
 	amount_per_transfer_from_this = 25
 	volume = 25
 	icon_state = "autoinjector-1" //TEMP, god willing
