@@ -7,12 +7,6 @@
 	reagent_state = LIQUID
 	taste_description = "bitterness"
 
-/datum/reagent/medicine/on_mob_life(mob/living/L, metabolism)
-	purge(L)
-	current_cycle++
-	holder.remove_reagent(type, custom_metabolism / L.metabolism_efficiency) //so far metabolism efficiency is fixed to 1, but medicine reagents last longer the better it is.
-	return TRUE
-
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
 	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
