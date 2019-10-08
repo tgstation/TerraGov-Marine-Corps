@@ -1,7 +1,0 @@
-author: "Kuro & MetroidLover & Spyroshark"
-delete-after: True
-changes: 
-  - rscdel: "Removed Squad markings on armor suits"
-  - bugfix: "fixed the Scout Helmet's Icon Sprites"
-  - imageadd: "added some new Helmet Sprites and Snow Variants for the recently added armors"
-  - imageadd: "New sprites, again. Some new colorings aswell."

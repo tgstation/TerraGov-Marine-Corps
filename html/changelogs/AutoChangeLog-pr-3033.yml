@@ -1,5 +1,0 @@
-author: "Spyroshark"
-delete-after: True
-changes: 
-  - rscadd: "Marines now have belt harnesses, an alternative to using the magnetic harness attachment. Check your vendor for one!"
-  - rscadd: "Survivors now start with their own variant of the belt harness instead of a revolver belt."
