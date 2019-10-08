@@ -52,14 +52,22 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/grow_ovipositor,
+		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/toggle_pheromones
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/toggle_queen_zoom,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/set_xeno_lead,
+		/datum/action/xeno_action/activable/queen_heal,
+		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/queen_order,
+		/datum/action/xeno_action/deevolve
 		)
+
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_ZERO

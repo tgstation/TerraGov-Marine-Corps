@@ -422,6 +422,7 @@
 			list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "standard"),
 		list("utility", "header", "BELT", 1, ""),
 			list("Tool belt", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "suggested"),
+      list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "standard"),
 		list("utility", "header", "POUCHES", 2, ""),
 			list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "standard"),
 			list("Construction pouch", 0, /obj/item/storage/pouch/construction, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "suggested"),
@@ -605,6 +606,7 @@
 			list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "standard"),
 			list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "standard"),
 			list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "standard"),
+      list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "standard"),
 
 		list("utility", "header", "POUCHES", 2, ""),
 			list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "suggested"),
@@ -621,7 +623,6 @@
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
 	)
-
 
 
 /obj/machinery/marine_selector/clothes/specialist/alpha
@@ -668,6 +669,7 @@
 			list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "standard"),
 			list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "standard"),
 			list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "standard"),
+      list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "standard"),
 		list("utility", "header", "POUCHES", 2, ""),
 			list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "standard"),
 			list("Large general pouch", 0, /obj/item/storage/pouch/general/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "standard"),
@@ -685,7 +687,6 @@
 			list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "standard"),
 			list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "standard"),
 	)
-
 
 
 /obj/machinery/marine_selector/clothes/leader/alpha

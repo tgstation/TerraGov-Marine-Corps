@@ -446,7 +446,7 @@
 	Ctrl+Middle click
 */
 /atom/proc/CtrlMiddleClickOn(atom/A)
-	return
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place

@@ -344,7 +344,7 @@
 	if(world.time < flip_cooldown)
 		return FALSE
 
-	for(var/mob/M in oview(src, 0))
+	for(var/mob/living/blocker in loc)
 		return FALSE
 
 	var/list/L = list()
@@ -391,11 +391,14 @@
 	verbs -=/obj/structure/table/verb/do_flip
 	verbs +=/obj/structure/table/proc/do_put
 
-	var/list/targets = list(get_step(src,dir),get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
-	for(var/atom/movable/A in get_turf(src))
-		if(!A.anchored)
-			spawn(0)
-				A.throw_at(pick(targets), 1, 1)
+	var/list/targets = list(get_step(src, dir), get_step(src, turn(dir, 45)),get_step(src, turn(dir, -45)))
+	for(var/i in get_turf(src))
+		if(isobserver(i))
+			continue
+		var/atom/movable/thing_to_throw = i
+		if(thing_to_throw.anchored)
+			continue
+		thing_to_throw.throw_at(pick(targets), 1, 1)
 
 	setDir(direction)
 	if(dir != NORTH)

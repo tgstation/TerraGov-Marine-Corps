@@ -23,12 +23,8 @@
 	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
-	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
-	var/ovipositor_cooldown = 0
 	var/queen_ability_cooldown = 0
 	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
-	var/egg_amount = 0 //amount of eggs inside the queen
-	var/last_larva_time = 0
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/claw_toggle,
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
@@ -46,11 +42,6 @@
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
 
-/mob/living/carbon/xenomorph/queen/Destroy()
-	. = ..()
-	if(observed_xeno)
-		set_queen_overwatch(observed_xeno, TRUE)
-
 // ***************************************
 // *********** Life overrides
 // ***************************************
@@ -58,53 +49,17 @@
 	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
 
-/mob/living/carbon/xenomorph/queen/Life()
-	. = ..()
-
-	if(stat == DEAD)
-		return
-
-	if(observed_xeno)
-		if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
-			set_queen_overwatch(observed_xeno, TRUE)
-
-	if(!ovipositor || incapacitated(TRUE))
-		return
-
-	hive?.on_queen_life(src)
-
-	egg_amount += 0.07 //one egg approximately every 30 seconds
-	if(egg_amount < 1)
-		return
-
-	if(!isturf(loc))
-		return
-
-	var/turf/T = loc
-	if(T.contents.len > 25) //so we don't end up with a million object on that turf.
-		return
-
-	egg_amount--
-	var/obj/item/xeno_egg/newegg = new /obj/item/xeno_egg(loc)
-	newegg.hivenumber = hivenumber
 
 // ***************************************
 // *********** Mob overrides
 // ***************************************
 
-/mob/living/carbon/xenomorph/queen/update_canmove()
-	. = ..()
-	if(ovipositor)
-		lying = FALSE
-		density = TRUE
-		canmove = FALSE
-		return canmove
 
 /mob/living/carbon/xenomorph/queen/reset_perspective(atom/A)
 	if (!client)
 		return
 
-	if(ovipositor && observed_xeno && !stat)
+	if(observed_xeno && !stat)
 		client.perspective = EYE_PERSPECTIVE
 		client.eye = observed_xeno
 		return
@@ -143,14 +98,6 @@
 // ***************************************
 // *********** Icon
 // ***************************************
-/mob/living/carbon/xenomorph/queen/handle_special_state()
-	if(ovipositor)
-		icon = 'icons/Xeno/Ovipositor.dmi'
-		icon_state = "Queen Ovipositor"
-		return TRUE
-	icon = initial(icon)
-	return FALSE
-
 /mob/living/carbon/xenomorph/queen/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -159,17 +106,12 @@
 	if(href_list["watch_xeno_number"])
 		if(!check_state())
 			return
-		if(!ovipositor)
-			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
 		for(var/Y in hive.get_watchable_xenos())
 			var/mob/living/carbon/xenomorph/X = Y
 			if(X.nicknumber != xeno_num)
 				continue
-			if(observed_xeno == X)
-				set_queen_overwatch(X, TRUE)
-			else
-				set_queen_overwatch(X)
+			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
 			break
 
 
@@ -184,13 +126,6 @@
 
 /mob/living/carbon/xenomorph/queen/xeno_death_alert()
 	return
-
-/mob/living/carbon/xenomorph/queen/death(gibbed)
-	. = ..()
-	if(observed_xeno)
-		set_queen_overwatch(observed_xeno, TRUE)
-	if(ovipositor)
-		dismount_ovipositor(TRUE)
 
 
 // ***************************************

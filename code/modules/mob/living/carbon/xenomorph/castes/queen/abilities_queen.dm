@@ -219,166 +219,6 @@
 	victim.gib() //Splut
 	X.stop_pulling()
 
-// ***************************************
-// *********** Ovipositor
-// ***************************************
-/datum/action/xeno_action/grow_ovipositor
-	name = "Grow Ovipositor"
-	action_icon_state = "grow_ovipositor"
-	mechanics_text = "Grow an ovipositor to lay eggs and access new abilities. Takes 20 seconds and you cannot move while on the ovipositor."
-	plasma_cost = 700
-	keybind_signal = COMSIG_XENOABILITY_GROW_OVIPOSITOR
-
-/datum/action/xeno_action/grow_ovipositor/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
-
-	var/turf/current_turf = get_turf(X)
-	if(!current_turf || !istype(current_turf))
-		return
-
-	if(X.ovipositor_cooldown > world.time)
-		to_chat(X, "<span class='xenowarning'>We're still recovering from detaching our old ovipositor. We must wait [round((X.ovipositor_cooldown-world.time)*0.1)] seconds</span>")
-		return
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-
-	if(!alien_weeds)
-		to_chat(X, "<span class='xenowarning'>We need to be on resin to grow an ovipositor.</span>")
-		return
-
-	if(!current_turf.check_alien_construction(X))
-		return
-
-	if(X.action_busy)
-		return
-
-	if(X.check_plasma(plasma_cost))
-		X.visible_message("<span class='xenowarning'>\The [X] starts to grow an ovipositor.</span>", \
-		"<span class='xenowarning'>We start to grow an ovipositor...(takes 20 seconds, hold still)</span>")
-
-		notify_ghosts("\The <b>[X]</b> has started growing an ovipositor!", source = X, action = NOTIFY_ORBIT)
-
-		if(!do_after(X, 200, TRUE, alien_weeds, BUSY_ICON_BUILD) || !X.check_plasma(plasma_cost) || !X.check_state())
-			return
-
-		X.use_plasma(plasma_cost)
-		X.visible_message("<span class='xenowarning'>\The [X] has grown an ovipositor!</span>", \
-		"<span class='xenowarning'>We have grown an ovipositor!</span>")
-		X.mount_ovipositor()
-
-/datum/action/xeno_action/remove_eggsac
-	name = "Remove Eggsac"
-	action_icon_state = "grow_ovipositor"
-	mechanics_text = "Get off your ovipositor, causing it to collapse. You must grow a new one the next time you wish to reattach."
-	keybind_signal = COMSIG_XENOABILITY_REMOVE_EGGSAC
-
-/datum/action/xeno_action/remove_eggsac/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-
-	var/answer = alert(X, "Are you sure you want to remove your ovipositor? (5min cooldown to grow a new one)", , "Yes", "No")
-	if(answer != "Yes")
-		return
-	if(!can_use_action())
-		return
-	if(!X.ovipositor)
-		return
-	X.visible_message("<span class='xenowarning'>\The [X] starts detaching itself from its ovipositor!</span>", \
-		"<span class='xenowarning'>We start detaching ourselves from our ovipositor.</span>")
-	if(!do_after(X, 50, FALSE, null, BUSY_ICON_BUILD) || !X.check_state() || !X.ovipositor)
-		return
-	X.dismount_ovipositor()
-
-/mob/living/carbon/xenomorph/queen/proc/mount_ovipositor()
-	if(ovipositor) return //sanity check
-	ovipositor = TRUE
-	RegisterSignal(hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
-
-	for(var/datum/action/A in actions)
-		qdel(A)
-
-	var/list/immobile_abilities = list(\
-		/datum/action/xeno_action/regurgitate,\
-		/datum/action/xeno_action/remove_eggsac,\
-		/datum/action/xeno_action/activable/screech,\
-		/datum/action/xeno_action/psychic_whisper,\
-		/datum/action/xeno_action/watch_xeno,\
-		/datum/action/xeno_action/toggle_queen_zoom,\
-		/datum/action/xeno_action/set_xeno_lead,\
-		/datum/action/xeno_action/queen_heal,\
-		/datum/action/xeno_action/queen_give_plasma,\
-		/datum/action/xeno_action/queen_order,\
-		/datum/action/xeno_action/deevolve, \
-		/datum/action/xeno_action/toggle_pheromones, \
-		)
-
-	for(var/path in immobile_abilities)
-		var/datum/action/xeno_action/A = new path()
-		A.give_action(src)
-
-	anchored = TRUE
-	set_resting(FALSE)
-	update_icons()
-
-	hive?.update_leader_pheromones()
-
-	hive?.xeno_message("<span class='xenoannounce'>The Queen has grown an ovipositor.</span>", 3)
-
-/mob/living/carbon/xenomorph/queen/proc/dismount_ovipositor(instant_dismount)
-	set waitfor = 0
-	if(!instant_dismount)
-		if(observed_xeno)
-			set_queen_overwatch(observed_xeno, TRUE)
-		flick("ovipositor_dismount", src)
-		sleep(5)
-	else
-		flick("ovipositor_dismount_destroyed", src)
-		sleep(5)
-
-	if(!ovipositor)
-		return
-	ovipositor = FALSE
-	UnregisterSignal(hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-	update_icons()
-	new /obj/ovipositor(loc)
-
-	if(observed_xeno)
-		set_queen_overwatch(observed_xeno, TRUE)
-	zoom_out()
-
-	for(var/datum/action/A in actions)
-		qdel(A)
-
-	var/list/mobile_abilities = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/grow_ovipositor,
-		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/corrosive_acid/strong,
-		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
-		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/toggle_pheromones
-		)
-
-	for(var/path in mobile_abilities)
-		var/datum/action/xeno_action/A = new path()
-		A.give_action(src)
-
-
-	egg_amount = 0
-	ovipositor_cooldown = world.time + 5 MINUTES
-	anchored = FALSE
-	update_canmove()
-
-	hive?.update_leader_pheromones()
-
-	if(!instant_dismount)
-		hive?.xeno_message("<span class='xenoannounce'>The Queen has shed her ovipositor.</span>", 3)
 
 // ***************************************
 // *********** Overwatch
@@ -389,31 +229,103 @@
 	mechanics_text = "See from the target Xenomorphs vision."
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
+	var/overwatch_active = FALSE
+
+
+/datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
+	. = ..()
+	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_owner_death)
+	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, .proc/on_list_xeno_selection)
+	RegisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE, .proc/on_ctrl_middle_click)
+
+
+/datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
+	if(overwatch_active)
+		stop_overwatch()
+	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO, COMSIG_CLICK_CTRL_MIDDLE))
+	return ..()
+
 
 /datum/action/xeno_action/watch_xeno/action_activate()
+	select_xeno()
+
+
+/datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.hive)
 		return
-	var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-	var/mob/living/carbon/xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
-		if(X.observed_xeno)
-			X.set_queen_overwatch(X.observed_xeno, TRUE)
-	else
-		X.set_queen_overwatch(selected_xeno)
+	if(QDELETED(selected_xeno))
+		var/list/possible_xenos = X.hive.get_watchable_xenos()
 
-/mob/living/carbon/xenomorph/queen/proc/set_queen_overwatch(mob/living/carbon/xenomorph/target, stop_overwatch)
-	if(stop_overwatch)
-		observed_xeno = null
-	else
-		var/mob/living/carbon/xenomorph/old_xeno = observed_xeno
-		observed_xeno = target
-		if(old_xeno)
-			old_xeno.hud_set_queen_overwatch()
-	if(!target.gc_destroyed) //not cdel'd
-		target.hud_set_queen_overwatch()
-	reset_perspective()
+		selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !X.check_state())
+			if(!X.observed_xeno)
+				return
+			stop_overwatch()
+			return
+	
+	start_overwatch(selected_xeno)
+
+
+/datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
+	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
+	if(old_xeno)
+		stop_overwatch(FALSE)
+	watcher.observed_xeno = target
+	watcher.reset_perspective()
+	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
+	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
+	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
+	overwatch_active = TRUE
+
+
+/datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
+	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
+	watcher.observed_xeno = null
+	if(!QDELETED(observed))
+		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+		observed.hud_set_queen_overwatch()
+	if(do_reset_perspective)
+		watcher.reset_perspective()
+	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
+	overwatch_active = FALSE
+
+
+/datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	select_xeno(selected_xeno)
+
+/datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	start_overwatch(new_xeno)
+
+/datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+	if(overwatch_active)
+		stop_overwatch()
+
+/datum/action/xeno_action/watch_xeno/proc/on_owner_death(datum/source, gibbed)
+	if(overwatch_active)
+		stop_overwatch()
+
+/datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	if(overwatch_active)
+		stop_overwatch()
+
+/datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	if(!watcher.check_state())
+		return
+	if(!isxeno(A))
+		return
+	var/mob/living/carbon/xenomorph/observation_candidate = A
+	if(observation_candidate.stat == DEAD)
+		return
+	if(observation_candidate == watcher.observed_xeno)
+		stop_overwatch()
+		return
+	start_overwatch(observation_candidate)
+
 
 // ***************************************
 // *********** Queen zoom
@@ -425,14 +337,40 @@
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM
 
+
 /datum/action/xeno_action/toggle_queen_zoom/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
+	var/mob/living/carbon/xenomorph/queen/xeno = owner
+	if(xeno.action_busy)
 		return
-	if(X.is_zoomed)
-		X.zoom_out()
-	else
-		X.zoom_in(0, 12)
+	if(xeno.is_zoomed)
+		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
+		return
+	if(!do_after(xeno, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || xeno.is_zoomed)
+		return
+	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
+
+
+/datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, .proc/on_movement)
+	if(message)
+		xeno.visible_message("<span class='notice'>[xeno] emits a broad and weak psychic aura.</span>",
+		"<span class='notice'>We start focusing our psychic energy to expand the reach of our senses.</span>", null, 5)
+	xeno.zoom_in(0, 12)
+
+
+/datum/action/xeno_action/toggle_queen_zoom/proc/zoom_xeno_out(message = TRUE)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
+	if(message)
+		xeno.visible_message("<span class='notice'>[xeno] stops emitting its broad and weak psychic aura.</span>",
+		"<span class='notice'>We stop the effort of expanding our senses.</span>", null, 5)
+	xeno.zoom_out()
+
+
+/datum/action/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	zoom_xeno_out()
+
 
 // ***************************************
 // *********** Set leader
@@ -444,6 +382,7 @@
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 
+
 /datum/action/xeno_action/set_xeno_lead/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.check_state())
@@ -451,111 +390,155 @@
 	if(!X.hive)
 		return
 
-	if(X.observed_xeno)
-		if(!(X.observed_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
-			to_chat(X, "<span class='xenowarning'>This caste is unfit to lead.</span>")
+	select_xeno_leader()
+
+
+/datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
+	if(QDELETED(selected_xeno))
+		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
+
+		selected_xeno = input(xeno_ruler, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
+		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z) || !xeno_ruler.check_state())
 			return
-		if(X.queen_ability_cooldown > world.time)
-			to_chat(X, "<span class='xenowarning'>We're still recovering from our last overwatch ability. We must wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-			return
-		if(X.xeno_caste.queen_leader_limit <= X.hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
-			to_chat(X, "<span class='xenowarning'>We currently have [X.hive.xeno_leader_list.len] promoted leaders. We may not maintain additional leaders until our power grows.</span>")
-			return
-		var/mob/living/carbon/xenomorph/T = X.observed_xeno
-		X.queen_ability_cooldown = world.time + 150 //15 seconds
-		if(!T.queen_chosen_lead)
-			to_chat(X, "<span class='xenonotice'>We've selected [T] as a Hive Leader.</span>")
-			to_chat(T, "<span class='xenoannounce'>[X] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
-			X.hive.add_leader(T)
-		else
-			to_chat(X, "<span class='xenonotice'>We've demoted [T] from Lead.</span>")
-			to_chat(T, "<span class='xenoannounce'>[X] has demoted us from Hive Leader. Our leadership rights and abilities have waned.</span>")
-			X.hive.remove_leader(T)
-		T.hud_set_queen_overwatch()
-		T.handle_xeno_leader_pheromones(X)
-	else
-		if(length(X.hive.xeno_leader_list) > 1)
-			var/mob/living/carbon/xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph leader?") as null|anything in X.hive.xeno_leader_list
-			if(!selected_xeno || !selected_xeno.queen_chosen_lead || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z != X.z || !X.check_state())
-				return
-			X.set_queen_overwatch(selected_xeno)
-		else if(X.hive.xeno_leader_list.len)
-			X.set_queen_overwatch(X.hive.xeno_leader_list[1])
-		else
-			to_chat(X, "<span class='xenowarning'>There are no Xenomorph leaders. We must overwatch a Xenomorph to make it a leader.</span>")
+
+	if(selected_xeno.queen_chosen_lead)
+		unset_xeno_leader(selected_xeno, feedback)
+		return
+
+	if(xeno_ruler.queen_ability_cooldown > world.time)
+		if(feedback)
+			to_chat(xeno_ruler, "<span class='xenowarning'>We're still recovering from our last hive managment ability. We must wait [round((xeno_ruler.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
+		return
+
+	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
+		if(feedback)
+			to_chat(xeno_ruler, "<span class='xenowarning'>We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows.</span>")
+		return
+
+	xeno_ruler.queen_ability_cooldown = world.time + 15 SECONDS
+
+	set_xeno_leader(selected_xeno, feedback)
+
+
+/datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+	var/mob/living/carbon/xenomorph/xeno_ruler = owner
+	if(feedback)
+		to_chat(xeno_ruler, "<span class='xenonotice'>We've demoted [selected_xeno] from Lead.</span>")
+		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned.</span>")
+	selected_xeno.hive.remove_leader(selected_xeno)
+	selected_xeno.hud_set_queen_overwatch()
+	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
+
+
+/datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
+	var/mob/living/carbon/xenomorph/xeno_ruler = owner
+	if(!(selected_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+		if(feedback)
+			to_chat(xeno_ruler, "<span class='xenowarning'>This caste is unfit to lead.</span>")
+		return
+	if(feedback)
+		to_chat(xeno_ruler, "<span class='xenonotice'>We've selected [selected_xeno] as a Hive Leader.</span>")
+		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
+	xeno_ruler.hive.add_leader(selected_xeno)
+	selected_xeno.hud_set_queen_overwatch()
+	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
+
 
 // ***************************************
 // *********** Queen heal
 // ***************************************
-/datum/action/xeno_action/queen_heal
+/datum/action/xeno_action/activable/queen_heal
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Heals a target Xenomorph (you must be overwatching them.)"
+	mechanics_text = "Heals a target Xenomorph"
 	plasma_cost = 600
+	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
-/datum/action/xeno_action/queen_heal/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
-	if(X.queen_ability_cooldown > world.time)
-		to_chat(X, "<span class='xenowarning'>We're still recovering from our last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-		return
-	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to give healing to.</span>")
-		return
-	var/mob/living/carbon/xenomorph/target = X.observed_xeno
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		to_chat(X, "<span class='xenowarning'>We can't heal that caste.</span>")
-		return
-	if(X.loc.z != target.loc.z)
-		to_chat(X, "<span class='xenowarning'>They are too far away to do this.</span>")
-		return
-	if(target.stat == DEAD)
-		return
-	if(target.health >= target.maxHealth)
-		to_chat(X, "<span class='warning'>[target] is at full health.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.adjustBruteLoss(-50)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
+
+/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
+		if(!silent)
+			to_chat(owner, "<span class='xenowarning'>We can't heal that caste.</span>")
+			return FALSE
+	var/mob/living/carbon/xenomorph/healer = owner
+	if(healer.z != patient.z)
+		if(!silent)
+			to_chat(healer, "<span class='xenowarning'>They are too far away to do this.</span>")
+		return FALSE
+	if(patient.health >= patient.maxHealth)
+		if(!silent)
+			to_chat(healer, "<span class='warning'>[patient] is at full health.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/patient = target
+	add_cooldown()
+	patient.adjustBruteLoss(-50)
+	patient.adjustFireLoss(-50)
+	succeed_activate()
+	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
+	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
+
 
 // ***************************************
 // *********** Queen plasma
 // ***************************************
-/datum/action/xeno_action/queen_give_plasma
+/datum/action/xeno_action/activable/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	plasma_cost = 600
+	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
-/datum/action/xeno_action/queen_give_plasma/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_state())
-		return
-	if(X.queen_ability_cooldown > world.time)
-		to_chat(X, "<span class='xenowarning'>We're still recovering from our last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
-		return
-	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>We must overwatch the xeno we want to give plasma to.</span>")
-		return
-	var/mob/living/carbon/xenomorph/target = X.observed_xeno
-	if(target.stat == DEAD)
-		return
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
-		to_chat(X, "<span class='warning'>We can't give that caste plasma.</span>")
-		return
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(X, "<span class='warning'>[target] is at full plasma.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.gain_plasma(100)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>We transfer some plasma to [target].</span>")
+
+/datum/action/xeno_action/activable/queen_give_plasma/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/receiver = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late, this one has already kicked the bucket.</span>")
+		return FALSE
+	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't give that caste plasma.</span>")
+			return FALSE
+	var/mob/living/carbon/xenomorph/giver = owner
+	if(giver.z != receiver.z)
+		if(!silent)
+			to_chat(giver, "<span class='warning'>They are too far away to do this.</span>")
+		return FALSE
+	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
+		if(!silent)
+			to_chat(giver, "<span class='warning'>[receiver] is at full plasma.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/queen_give_plasma/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/receiver = target
+	add_cooldown()
+	receiver.gain_plasma(300)
+	succeed_activate()
+	to_chat(owner, "<span class='xenonotice'>We transfer some plasma to [target].</span>")
+	to_chat(receiver, "<span class='xenonotice'>We feel our plasma reserves increase. Bless the Queen!</span>")
+
 
 // ***************************************
 // *********** Queen order
@@ -691,8 +674,7 @@
 		new_xeno.queen_chosen_lead = TRUE
 		new_xeno.hud_set_queen_overwatch()
 
-	if(X.hive.living_xeno_queen?.observed_xeno == T)
-		X.hive.living_xeno_queen.set_queen_overwatch(new_xeno)
+	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
 
 	// this sets the right datum
 	new_xeno.upgrade_xeno(T.upgrade_next()) //a young Crusher de-evolves into a MATURE Hunter

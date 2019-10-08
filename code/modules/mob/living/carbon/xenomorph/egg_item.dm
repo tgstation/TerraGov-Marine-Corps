@@ -11,10 +11,12 @@
 	layer = MOB_LAYER
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/item/xeno_egg/Initialize()
+/obj/item/xeno_egg/Initialize(mapload, hivenumber)
 	. = ..()
 	pixel_x = rand(-3,3)
 	pixel_y = rand(-3,3)
+	if(hivenumber)
+		src.hivenumber = hivenumber
 
 
 /obj/item/xeno_egg/examine(mob/user)
@@ -51,7 +53,7 @@
 			return
 	var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
 	newegg.hivenumber = hivenumber
-	playsound(T, 'sound/effects/splat.ogg', 15, 1)
+	playsound(T, 'sound/effects/alien_egg_move.ogg', 15, TRUE)
 	qdel(src)
 
 /obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/xenomorph/user, turf/T)

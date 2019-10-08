@@ -286,20 +286,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
-/datum/keybinding/xeno/grow_ovipositor
-	key = "Unbound"
-	name = "grow_ovipositor"
-	full_name = "Queen: Grow Ovipositor"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_GROW_OVIPOSITOR
-
-/datum/keybinding/xeno/remove_eggsac
-	key = "Unbound"
-	name = "remove_eggsac"
-	full_name = "Queen: Remove eggsac"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_REMOVE_EGGSAC
-
 /datum/keybinding/xeno/watch_xeno
 	key = "Unbound"
 	name = "watch_xeno"
@@ -310,7 +296,7 @@
 /datum/keybinding/xeno/psychic_whisper
 	key = "Unbound"
 	name = "psychic_whisper"
-	full_name = "Queen: Psychic Whisper"
+	full_name = "Psychic Whisper"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
