@@ -643,12 +643,8 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
-	switch(length(gun_firemode_list))
-		if(0)
-			CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
-		if(1)
-			to_chat(usr, "<span class='warning'>This weapon has a single fire mode!</span>")
-			return
+	if(!length(gun_firemode_list))
+		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -705,7 +701,7 @@ should be alright.
 
 	if(gun_firemode == removed_firemode)
 		gun_firemode = gun_firemode_list[1]
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+		do_toggle_firemode(user, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/setup_firemodes()
