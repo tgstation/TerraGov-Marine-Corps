@@ -528,7 +528,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
@@ -536,7 +535,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/belt_harness(H), SLOT_BELT)
 	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)

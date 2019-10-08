@@ -243,8 +243,7 @@ WEAPONS
 /datum/supply_packs/specminigun
 	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
 	contains = list(
-					/obj/item/weapon/gun/minigun,
-					/obj/item/minigun_harness
+					/obj/item/weapon/gun/minigun
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
@@ -1668,7 +1667,7 @@ AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper smart scout ammo crate"
 	group = "Ammo"
-	
+
 /datum/supply_packs/ammo_sniper_regular
 	name = "M42A sniper magazines crate (x6)"
 	contains = list(
