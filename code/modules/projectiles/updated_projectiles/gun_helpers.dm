@@ -705,6 +705,7 @@ should be alright.
 
 	if(gun_firemode == removed_firemode)
 		gun_firemode = gun_firemode_list[1]
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
 
 
 /obj/item/weapon/gun/proc/setup_firemodes()
