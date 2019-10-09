@@ -152,7 +152,7 @@
 	name = "\improper Dermaline bottle"
 	desc = "A small bottle. Contains dermaline - used as a potent treatment against burns."
 	icon_state = "bottle15"
-	list_reagents = list(/datum/reagent/medicine/dermaline = 60)	list_reagents = list(/datum/reagent/consumable/capsaicin = 60)
+	list_reagents = list(/datum/reagent/medicine/dermaline = 60)
 
 /obj/item/reagent_container/glass/bottle/frostoil
 	name = "\improper Frost Oil bottle"
