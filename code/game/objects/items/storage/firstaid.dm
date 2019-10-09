@@ -173,7 +173,7 @@
 	. = ..()
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/kelotane(src)
-	new /obj/item/reagent_container/glass/bottle/dermaline(src)
+	new /obj/item/reagent_container/glass/bottle/oxycodone(src)
 
 /obj/item/storage/syringe_case/tox
 
@@ -190,6 +190,38 @@
 	new /obj/item/reagent_container/syringe(src)
 	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_container/glass/bottle/dexalin(src)
+
+/obj/item/storage/syringe_case/meralyne
+
+/obj/item/storage/syringe_case/meralyne/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/meralyne(src)
+	new /obj/item/reagent_container/glass/bottle/meralyne(src)
+
+/obj/item/storage/syringe_case/dermaline
+
+/obj/item/storage/syringe_case/dermaline/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/dermaline(src)
+	new /obj/item/reagent_container/glass/bottle/dermaline(src)
+
+/obj/item/storage/syringe_case/meraderm
+
+/obj/item/storage/syringe_case/meraderm/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/meraderm(src)
+	new /obj/item/reagent_container/glass/bottle/meraderm(src)
+
+/obj/item/storage/syringe_case/ironsugar
+
+/obj/item/storage/syringe_case/ironsugar/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_container/glass/bottle/ironsugar(src)
 
 /*
 * Pill Bottles
