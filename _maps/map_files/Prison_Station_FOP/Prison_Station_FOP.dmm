@@ -481,6 +481,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/prison/research/secret/testing)
 "adO" = (
@@ -3828,6 +3829,7 @@
 	name = "Medium-Security Monitoring";
 	req_access_txt = "0"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "amt" = (
@@ -21616,6 +21618,7 @@
 /area/prison/kitchen)
 "bdv" = (
 /obj/structure/window/framed/prison/reinforced,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/prison/security/monitoring/maxsec/panopticon)
 "bdw" = (
@@ -21648,6 +21651,7 @@
 	name = "Medium-Security Monitoring";
 	req_access_txt = "0"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "bdA" = (
@@ -33721,6 +33725,7 @@
 	name = "Telecommunications";
 	req_access_txt = "0"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/prison,
 /area/prison/maintenance/hangar_barracks)
 "bFO" = (
@@ -33949,6 +33954,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
 "bGg" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison,
 /area/prison/maintenance/hangar_barracks)
 "bGh" = (
@@ -49130,6 +49136,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access_txt = "0"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "csZ" = (
@@ -49215,6 +49222,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access_txt = "0"
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
 "ctg" = (
@@ -51506,6 +51514,14 @@
 	dir = 8
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
+"dGq" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/security/monitoring/maxsec/panopticon)
+"dNC" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/cellblock/mediumsec/east)
 "dOO" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
@@ -51513,6 +51529,18 @@
 	dir = 10
 	},
 /area/prison/residential/south)
+"dRQ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/residential/south)
+"dWL" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/prison/cellblock/mediumsec/south)
+"dWX" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/cellblock/maxsec/north)
 "ecN" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/darkyellow/full,
@@ -51524,6 +51552,20 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/canteen)
+"eth" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "Residential Apartment"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/wood,
+/area/prison/residential/north)
+"eux" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/prison/cellblock/mediumsec/west)
 "exP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -51561,6 +51603,18 @@
 	},
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
+"eNA" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison,
+/area/prison/research/secret/containment)
+"eZY" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	req_one_access_txt = "0"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/mediumsec/east)
 "fkw" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -51582,6 +51636,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison,
 /area/prison/security/checkpoint/hangar)
 "fvh" = (
@@ -51643,6 +51698,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
+"hpG" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/prison/residential/south)
 "hwj" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
@@ -51876,6 +51935,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"lPK" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison,
+/area/prison/research/secret/testing)
 "mof" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison,
@@ -51950,6 +52013,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"nRJ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/cellblock/mediumsec/west)
 "nYp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -51963,6 +52030,20 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
+"otu" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/mediumsec/south)
+"oDO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2;
+	name = "Residential Apartment"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/wood,
+/area/prison/residential/south)
 "oRz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -51981,10 +52062,18 @@
 	dir = 10
 	},
 /area/prison/hallway/central)
+"pip" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/maintenance/hangar_barracks)
 "piu" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/carpet,
 /area/prison/residential/north)
+"poj" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/research/secret/testing)
 "pvO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -52073,6 +52162,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"qBy" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/prison/cellblock/mediumsec/east)
 "qMm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -52127,11 +52220,23 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
+"sCL" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	req_one_access_txt = "0"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/mediumsec/west)
 "sGS" = (
 /turf/open/floor/prison/yellow{
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/west)
+"sOH" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/security/checkpoint/hangar)
 "sRe" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -52159,6 +52264,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"tfc" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/residential/north)
 "tlK" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/prison,
@@ -52173,6 +52282,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"tBn" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/cellblock/mediumsec/south)
 "udZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -52197,6 +52310,21 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"uiF" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
+	name = "Biological Testing";
+	req_access_txt = "0"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/whitepurple/full,
+/area/prison/research/secret/testing)
 "upV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 8
@@ -52207,6 +52335,10 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
 /area/prison/execution)
+"uSg" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/prison,
+/area/prison/residential/north)
 "uUB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -52239,6 +52371,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
+"veT" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison,
+/area/prison/security/checkpoint/hangar)
 "vgS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -52272,6 +52408,10 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar/main)
+"vwQ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/prison/whitepurple/full,
+/area/prison/research/secret/testing)
 "vFP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -52339,6 +52479,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"xVG" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/prison/cellblock/maxsec/north)
 "xYk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -58124,7 +58268,7 @@ avl
 avm
 avl
 avl
-avl
+tfc
 avl
 avl
 avl
@@ -58195,7 +58339,7 @@ bKl
 bKl
 bKl
 bKl
-bKl
+dRQ
 bKl
 bKl
 bGQ
@@ -58381,7 +58525,7 @@ avN
 ayh
 avK
 avK
-avN
+uSg
 aBR
 aDD
 aEG
@@ -58452,7 +58596,7 @@ bGU
 bTD
 bVl
 bWA
-bGU
+hpG
 bGR
 bGR
 cct
@@ -58638,7 +58782,7 @@ axE
 ayQ
 azg
 azg
-avN
+uSg
 aBS
 awp
 aEH
@@ -58709,7 +58853,7 @@ bGU
 bTE
 blL
 bWB
-bGU
+hpG
 bLL
 bLL
 ccu
@@ -58895,7 +59039,7 @@ avN
 ayQ
 azV
 azV
-avN
+uSg
 avN
 aDF
 avN
@@ -58966,7 +59110,7 @@ bGU
 bGU
 bVn
 bGU
-bGU
+hpG
 bMC
 bMC
 ccu
@@ -59152,7 +59296,7 @@ avN
 ayR
 azg
 piu
-avN
+uSg
 aBT
 aBV
 aBV
@@ -59223,7 +59367,7 @@ bCb
 bCb
 bCb
 bWC
-bGU
+hpG
 bLL
 bLL
 tme
@@ -59409,7 +59553,7 @@ axF
 ayk
 azi
 azi
-aAN
+eth
 aBU
 aBU
 aBU
@@ -59480,7 +59624,7 @@ bOd
 bOd
 bOd
 bOd
-bNs
+oDO
 bLN
 bLN
 cvU
@@ -59666,7 +59810,7 @@ axG
 axG
 axG
 axG
-avN
+uSg
 aBV
 aBV
 aBV
@@ -59737,7 +59881,7 @@ bCb
 bCb
 bCb
 bCb
-bGU
+hpG
 bKo
 bKo
 bKo
@@ -59923,7 +60067,7 @@ axH
 aym
 azj
 azW
-avN
+uSg
 qlN
 aBV
 aBV
@@ -59994,7 +60138,7 @@ bCb
 bCb
 bCb
 pLL
-bGU
+hpG
 bMD
 bLO
 bKX
@@ -60180,7 +60324,7 @@ avl
 avl
 avl
 avl
-avl
+tfc
 avl
 avl
 avl
@@ -60251,15 +60395,15 @@ bKl
 bKl
 bKl
 bKl
-bKl
-bKl
-bKl
-bKl
-bKl
-bKl
-bKl
-bKl
-bKl
+dRQ
+dRQ
+dRQ
+dRQ
+dRQ
+dRQ
+dRQ
+dRQ
+dRQ
 aab
 aab
 aab
@@ -79562,7 +79706,7 @@ csB
 cqK
 cwG
 csB
-cxL
+nRJ
 cyw
 cyw
 cyw
@@ -79819,7 +79963,7 @@ cvw
 cvw
 cvw
 cyd
-cqK
+eux
 cyx
 cyx
 cyx
@@ -80076,7 +80220,7 @@ sGS
 sGS
 sGS
 cxx
-csD
+sCL
 cyx
 cyx
 cyx
@@ -80333,7 +80477,7 @@ csB
 cqK
 cwG
 csB
-cqK
+eux
 cyx
 cyx
 cyx
@@ -80590,7 +80734,7 @@ cvy
 cqK
 cuJ
 cvy
-cqK
+eux
 cyx
 cyx
 cyx
@@ -80847,7 +80991,7 @@ crs
 cqK
 cuK
 crs
-cqK
+eux
 cyx
 cyx
 cyx
@@ -81104,7 +81248,7 @@ cqJ
 cqK
 cqI
 cqJ
-cqK
+eux
 cyx
 cyx
 cyx
@@ -81361,7 +81505,7 @@ cqK
 cqK
 cqK
 cqK
-cqK
+eux
 cyx
 cyx
 cyx
@@ -81618,7 +81762,7 @@ ccB
 cun
 cuL
 ccB
-cun
+dWL
 cun
 cun
 cun
@@ -81875,7 +82019,7 @@ cvA
 cun
 cuM
 cvA
-cun
+dWL
 cyx
 cun
 cyx
@@ -82132,16 +82276,16 @@ cuV
 cun
 cuN
 cuV
-cun
-cyx
-cun
-cyx
-cun
-cun
-cun
+dWL
+otu
+dWL
+otu
+dWL
+dWL
+dWL
 csY
-cun
-cyw
+dWL
+tBn
 cyw
 cyw
 cyw
@@ -83257,7 +83401,7 @@ ahN
 ahN
 ahN
 ahN
-ahN
+dGq
 add
 adv
 adS
@@ -85056,7 +85200,7 @@ ahN
 ahN
 ahN
 ahN
-ahN
+dGq
 add
 adv
 adS
@@ -88140,18 +88284,18 @@ aab
 aab
 aab
 aab
-acK
-acO
-acH
-acH
-acH
-acH
-acH
-acH
-acH
-acH
-acH
-agt
+dWX
+xVG
+lPK
+lPK
+lPK
+lPK
+lPK
+lPK
+lPK
+lPK
+lPK
+eNA
 agG
 agt
 agt
@@ -88408,7 +88552,7 @@ aeS
 afi
 adz
 agb
-agt
+eNA
 agH
 agW
 ahi
@@ -88665,7 +88809,7 @@ aeT
 aea
 adz
 agc
-agt
+eNA
 agt
 agt
 agt
@@ -88922,7 +89066,7 @@ adG
 aeb
 adF
 aea
-agt
+eNA
 agI
 agX
 ahj
@@ -89179,7 +89323,7 @@ adG
 adG
 adG
 aeX
-agt
+eNA
 agJ
 agJ
 agJ
@@ -89436,7 +89580,7 @@ aeU
 aeU
 aha
 aeX
-agt
+eNA
 agK
 agX
 ahj
@@ -89693,7 +89837,7 @@ adG
 xPY
 afP
 aeX
-agt
+eNA
 agJ
 agJ
 agJ
@@ -89950,7 +90094,7 @@ adG
 adG
 afP
 aeX
-agt
+eNA
 agL
 agX
 ahk
@@ -90207,7 +90351,7 @@ adG
 adG
 afP
 agd
-agt
+eNA
 agM
 agY
 ahj
@@ -90464,7 +90608,7 @@ adG
 adG
 afP
 age
-agt
+eNA
 agt
 agt
 agt
@@ -90613,16 +90757,16 @@ cuS
 cun
 cvd
 cuS
-cun
-cyx
-cun
-cyx
-cun
-cun
-cun
+dWL
+otu
+dWL
+otu
+dWL
+dWL
+dWL
 ctf
-cun
-cyw
+dWL
+tBn
 cyw
 cyw
 cyw
@@ -90721,7 +90865,7 @@ aeV
 adG
 afP
 agf
-acH
+lPK
 agN
 agZ
 acH
@@ -90870,7 +91014,7 @@ cvA
 cun
 cuM
 cvA
-cun
+dWL
 cyx
 cun
 cyx
@@ -90978,7 +91122,7 @@ adG
 adG
 afF
 agg
-agu
+uiF
 agO
 agO
 agu
@@ -91127,7 +91271,7 @@ ccA
 cun
 cxR
 ccA
-cun
+dWL
 cun
 cun
 cun
@@ -91235,7 +91379,7 @@ adG
 adG
 afP
 aeX
-adz
+vwQ
 adz
 adz
 adz
@@ -91384,7 +91528,7 @@ cpU
 cpU
 cpU
 cpU
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -91492,7 +91636,7 @@ adG
 adG
 afP
 aeX
-acH
+lPK
 agP
 agP
 acH
@@ -91641,7 +91785,7 @@ ccJ
 cpU
 cxS
 ccJ
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -91749,7 +91893,7 @@ adG
 adG
 afP
 aeX
-agt
+eNA
 agt
 agt
 agt
@@ -91898,7 +92042,7 @@ cxm
 cpU
 cqf
 cqO
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -92006,7 +92150,7 @@ aeU
 aeU
 afG
 agd
-agt
+eNA
 agM
 ajh
 ahj
@@ -92155,7 +92299,7 @@ cvH
 cpU
 cvf
 cvH
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -92263,7 +92407,7 @@ aeW
 aeI
 aeI
 aeY
-agt
+eNA
 agQ
 ahb
 ahk
@@ -92412,7 +92556,7 @@ cqd
 cpU
 cuO
 cqd
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -92520,7 +92664,7 @@ aeX
 adz
 adz
 adz
-agt
+eNA
 agJ
 agJ
 agJ
@@ -92669,7 +92813,7 @@ cqQ
 cqQ
 cqQ
 cxT
-csL
+eZY
 cyx
 cyx
 cyx
@@ -92777,7 +92921,7 @@ aeY
 afj
 afj
 afj
-agt
+eNA
 agM
 ajh
 ahj
@@ -92926,7 +93070,7 @@ cqR
 cqR
 cqR
 cyi
-cpU
+qBy
 cyx
 cyx
 cyx
@@ -93018,23 +93162,23 @@ aab
 aab
 aab
 aab
-acE
-acE
-acE
-acE
-acE
-acE
-acE
-acE
-acE
+poj
+poj
+poj
+poj
+poj
+poj
+poj
+poj
+poj
 adN
-acE
-acE
-acE
-acH
-acH
-acH
-agt
+poj
+poj
+poj
+lPK
+lPK
+lPK
+eNA
 agL
 ahc
 ahk
@@ -93183,7 +93327,7 @@ cqd
 cpU
 cuO
 cqd
-cqh
+dNC
 cyw
 cyw
 cyw
@@ -110863,7 +111007,7 @@ upV
 byu
 bDb
 upV
-bzi
+veT
 bDQ
 bGK
 bCq
@@ -112148,14 +112292,14 @@ bpW
 bBP
 bDg
 bEP
-bzl
+sOH
 bJu
 bJu
 bFX
 bJu
 bJu
 bFX
-bFX
+pip
 bNo
 bNo
 bNo

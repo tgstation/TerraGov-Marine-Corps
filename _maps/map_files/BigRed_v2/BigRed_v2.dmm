@@ -25359,6 +25359,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"hQh" = (
+/obj/effect/alien/weeds/node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "hRh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -25585,6 +25590,10 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
+"luw" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "lxP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/asteroidwarning{
@@ -26137,6 +26146,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
+"rBi" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29177,7 +29190,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -29394,7 +29407,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -29611,7 +29624,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -31349,10 +31362,10 @@ aac
 aac
 aac
 aac
-aad
-aad
-aad
-aad
+luw
+luw
+luw
+luw
 aad
 aad
 aad
@@ -31569,7 +31582,7 @@ abq
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -31786,7 +31799,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -32228,9 +32241,9 @@ aac
 aac
 aac
 aac
-aad
-aad
-aad
+luw
+luw
+luw
 aac
 aac
 aac
@@ -44404,7 +44417,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aac
 aac
@@ -44609,6 +44622,7 @@ aad
 aad
 aad
 aad
+luw
 aad
 aad
 aad
@@ -44620,8 +44634,7 @@ aad
 aad
 aad
 aad
-aad
-aad
+luw
 aad
 aad
 aad
@@ -44826,7 +44839,7 @@ aad
 aad
 aad
 abq
-aad
+luw
 aad
 afZ
 abq
@@ -44838,7 +44851,7 @@ ahw
 abq
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -45043,7 +45056,7 @@ ahw
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -45055,7 +45068,7 @@ aad
 aad
 abq
 abq
-abq
+rBi
 abq
 abq
 abq
@@ -45260,6 +45273,7 @@ aad
 aad
 aad
 aad
+luw
 aad
 aad
 aad
@@ -45271,8 +45285,7 @@ aad
 aad
 aad
 aad
-aad
-aad
+luw
 aad
 aad
 aad
@@ -45489,7 +45502,7 @@ aad
 aad
 aad
 aad
-ahw
+hQh
 aad
 aad
 aad
@@ -52921,13 +52934,13 @@ aac
 aac
 aac
 aac
-aad
-abq
-aad
-aad
-aad
-aad
-abq
+luw
+rBi
+luw
+luw
+luw
+luw
+rBi
 aac
 aac
 aac
@@ -55743,11 +55756,11 @@ aac
 aac
 aac
 aac
-aad
-aad
-aad
-aad
-abq
+luw
+luw
+luw
+luw
+rBi
 aac
 aac
 aac
@@ -68907,12 +68920,12 @@ aad
 aad
 iCv
 aac
-aad
-aad
-aad
-aad
-aad
-aad
+luw
+luw
+luw
+luw
+luw
+luw
 aac
 aac
 aac
@@ -69123,7 +69136,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -69340,7 +69353,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -69557,7 +69570,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 qvY
 aad
@@ -69774,7 +69787,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -69991,7 +70004,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -70208,7 +70221,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -70425,7 +70438,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aac
@@ -70503,18 +70516,18 @@ aac
 aac
 aac
 aac
-aad
-aad
-aad
-aad
-aad
-aad
-abq
-aad
-aad
-aad
-aad
-aad
+luw
+luw
+luw
+luw
+luw
+luw
+rBi
+luw
+luw
+luw
+luw
+luw
 aad
 aad
 aad
@@ -70642,7 +70655,7 @@ aac
 aad
 aad
 aad
-aad
+luw
 aac
 aac
 aac
@@ -70731,7 +70744,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -70948,7 +70961,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad
@@ -71165,7 +71178,7 @@ aad
 aad
 aad
 aad
-aad
+luw
 aad
 aad
 aad

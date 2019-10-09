@@ -18691,6 +18691,7 @@
 	pixel_x = -28
 	},
 /obj/structure/jungle/vines,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "boo" = (
@@ -18999,6 +19000,7 @@
 	pixel_x = -28
 	},
 /obj/structure/jungle/vines/heavy,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "bph" = (
@@ -19903,6 +19905,11 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"bGV" = (
+/obj/structure/mineral_door/resin,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "bHX" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -20075,6 +20082,11 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"gtk" = (
+/obj/structure/jungle/vines,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "gyq" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20082,6 +20094,13 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
+"gEG" = (
+/obj/structure/jungle/vines/heavy{
+	pixel_x = -28
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "gWo" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20089,6 +20108,11 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
+"hUO" = (
+/obj/structure/mineral_door/resin,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "hVU" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -20096,6 +20120,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"isu" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle3)
 "iuG" = (
 /obj/structure/mineral_door/resin,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20111,6 +20141,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
+"jzD" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west2)
 "jAE" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -20139,6 +20173,10 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
+"knI" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle3)
 "ktj" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20163,6 +20201,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand6)
+"ldm" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east2)
 "les" = (
 /obj/structure/sign/redcross{
 	dir = 8
@@ -20201,6 +20243,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"mzQ" = (
+/obj/structure/mineral_door/resin,
+/obj/effect/alien/weeds/node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "mGd" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -20212,6 +20260,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
+"mWp" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "mWY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20339,6 +20391,14 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
+"sbb" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
+"sAq" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "sGt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 8
@@ -20407,6 +20467,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
+"vIJ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle3)
 "vTe" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/sign/botany{
@@ -22933,7 +22999,7 @@ adp
 adp
 adp
 abk
-abc
+sAq
 abc
 abc
 abc
@@ -23190,7 +23256,7 @@ adp
 adp
 adp
 abk
-abc
+sAq
 abc
 abc
 abc
@@ -23447,7 +23513,7 @@ adp
 adI
 adp
 abk
-abc
+sAq
 abc
 abc
 abc
@@ -23704,7 +23770,7 @@ adp
 adp
 adp
 abk
-abc
+sAq
 abc
 abc
 abc
@@ -23961,7 +24027,7 @@ adp
 adp
 adp
 abk
-abc
+sAq
 abd
 abc
 abc
@@ -24218,7 +24284,7 @@ abk
 abk
 abk
 abk
-abc
+sAq
 abc
 abc
 abc
@@ -24475,7 +24541,7 @@ abc
 abc
 abc
 abc
-abc
+sAq
 abc
 abc
 abc
@@ -24558,13 +24624,13 @@ bcg
 bcg
 bon
 bpg
-bpY
+gEG
 bon
-bfL
-bmz
-beY
-bch
-bck
+knI
+vIJ
+isu
+mWp
+gtk
 bcg
 aab
 "}
@@ -24732,7 +24798,7 @@ abc
 abc
 abc
 abc
-abc
+sAq
 abc
 abc
 abc
@@ -24989,7 +25055,7 @@ abc
 abc
 abd
 abc
-abc
+sAq
 abc
 abc
 abc
@@ -25246,7 +25312,7 @@ aci
 ahr
 aci
 abc
-abc
+sAq
 abc
 abc
 abc
@@ -25503,7 +25569,7 @@ ahr
 acl
 ahr
 aci
-abc
+sAq
 abc
 abc
 abc
@@ -25760,7 +25826,7 @@ acl
 aci
 acl
 ahr
-abc
+sAq
 abc
 abd
 abc
@@ -26017,7 +26083,7 @@ ahr
 acl
 ahr
 aci
-abc
+sAq
 abc
 abc
 abc
@@ -26274,7 +26340,7 @@ aci
 ahr
 aci
 abc
-abc
+sAq
 abc
 abc
 abc
@@ -26531,7 +26597,7 @@ abc
 abc
 abc
 abc
-abc
+sAq
 abc
 abb
 abc
@@ -26682,7 +26748,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -26939,7 +27005,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aaN
@@ -27196,7 +27262,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -27291,14 +27357,14 @@ abb
 abb
 abb
 abb
-abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
+sAq
+sAq
+sAq
+sAq
+sAq
+sAq
+sAq
+sAq
 abb
 abb
 abb
@@ -27453,7 +27519,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -27710,7 +27776,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -28521,7 +28587,7 @@ abc
 abc
 abc
 abc
-ahr
+hUO
 abc
 abc
 abc
@@ -28778,7 +28844,7 @@ abc
 abc
 abc
 abc
-ahr
+hUO
 abc
 abc
 abc
@@ -29035,7 +29101,7 @@ abd
 abc
 abc
 abc
-acu
+mzQ
 abc
 abc
 abc
@@ -32330,7 +32396,7 @@ aah
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -32587,7 +32653,7 @@ aac
 aah
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -32844,7 +32910,7 @@ aac
 aac
 aah
 aah
-aah
+jzD
 aah
 aah
 aah
@@ -33101,7 +33167,7 @@ aac
 aac
 aac
 aac
-aah
+jzD
 aah
 aah
 aah
@@ -58794,15 +58860,15 @@ aae
 aae
 aae
 aae
-aas
-aas
-aas
-aas
-aas
-aas
-aas
-aas
-aas
+ldm
+ldm
+ldm
+ldm
+ldm
+ldm
+ldm
+ldm
+ldm
 aae
 aae
 aae
@@ -59321,7 +59387,7 @@ aae
 aae
 aae
 aaq
-aas
+ldm
 aas
 aas
 aas
@@ -59578,7 +59644,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -59835,7 +59901,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -60092,7 +60158,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -60121,9 +60187,9 @@ abg
 abg
 abg
 abg
-abi
-abi
-abi
+sbb
+sbb
+sbb
 abo
 abi
 abi
@@ -60349,7 +60415,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -60380,7 +60446,7 @@ abg
 abi
 abi
 abi
-abi
+sbb
 abi
 abi
 abi
@@ -60606,7 +60672,7 @@ aas
 aas
 aau
 aas
-aas
+ldm
 aas
 aau
 aas
@@ -60637,7 +60703,7 @@ abp
 abr
 abp
 abi
-abi
+sbb
 abi
 abi
 abi
@@ -60666,12 +60732,12 @@ abg
 abg
 abg
 abg
-abG
-abG
-abG
-abG
-abi
-abi
+bGV
+bGV
+bGV
+bGV
+sbb
+sbb
 abg
 abg
 ohY
@@ -60863,7 +60929,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -60894,7 +60960,7 @@ abr
 abr
 abr
 abp
-abi
+sbb
 abi
 abi
 abi
@@ -61120,7 +61186,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -61377,7 +61443,7 @@ aas
 aas
 aau
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -61634,7 +61700,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -61891,7 +61957,7 @@ aas
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aau
@@ -62148,7 +62214,7 @@ aae
 aas
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
@@ -62405,7 +62471,7 @@ aae
 aae
 aas
 aas
-aas
+ldm
 aas
 aas
 aas
