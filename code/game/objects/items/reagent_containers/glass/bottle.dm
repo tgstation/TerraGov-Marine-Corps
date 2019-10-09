@@ -146,6 +146,8 @@
 	name = "\improper Capsaicin bottle"
 	desc = "A small bottle. Contains hot sauce."
 	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/consumable/capsaicin = 60)
+	
 /obj/item/reagent_container/glass/bottle/dermaline
 	name = "\improper Dermaline bottle"
 	desc = "A small bottle. Contains dermaline - used as a potent treatment against burns."
@@ -210,7 +212,7 @@
 	icon_state = "bottle15"
 	list_reagents = list(/datum/reagent/medicine/dermaline = 60)
 
-/obj/item/reagent_container/glass/bottle/Meraderm
+/obj/item/reagent_container/glass/bottle/meraderm
 	name = "\improper Meraderm bottle"
 	desc = "A small bottle. Contains meralylne and dermaline - used as a potent treatment against physical injuries."
 	icon_state = "bottle19"
