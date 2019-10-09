@@ -200,7 +200,9 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "aw" = (
-/obj/machinery/marine_turret/premade/canterbury,
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -443,11 +445,10 @@
 	},
 /area/shuttle/canterbury/general)
 "aV" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	icon_state = "sentry_base";
-	dir = 1
-	},
 /obj/machinery/light/small,
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -1399,10 +1400,6 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/door_control{
-	id = "storage_podlock";
-	pixel_x = -32
-	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "cK" = (
@@ -1561,15 +1558,6 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
-"cZ" = (
-/obj/machinery/door_control{
-	id = "starboard_engine_podlock";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
 "da" = (
 /obj/machinery/light{
 	dir = 4
@@ -1610,6 +1598,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/marine_turret/premade/canterbury,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "dd" = (
@@ -1701,23 +1690,6 @@
 	},
 /turf/closed/wall/mainship/outer,
 /area/shuttle/canterbury/medical)
-"do" = (
-/obj/machinery/door_control{
-	id = "port_engine_podlock"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/medical)
-"dp" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "storage_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/shuttle/canterbury/general)
 "ds" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "starboard_umbilical_inner";
@@ -1746,46 +1718,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/shuttle/canterbury/general)
-"dA" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "port_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dB" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "starboard_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dC" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "port_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dD" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "starboard_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
 "dE" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -1808,6 +1740,26 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/general)
+"jQ" = (
+/obj/machinery/light/small,
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/shuttle/canterbury/general)
+"AO" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
 /area/shuttle/canterbury/general)
 "Oh" = (
 /obj/effect/landmark/start/marine/crash/synthetic,
@@ -1863,10 +1815,10 @@ aa
 aa
 aa
 as
-as
+aG
 aG
 VH
-as
+aG
 as
 aZ
 bi
@@ -1905,7 +1857,7 @@ cs
 cE
 cQ
 ch
-dA
+as
 as
 aa
 "}
@@ -1932,7 +1884,7 @@ cF
 ct
 ch
 de
-dC
+as
 aa
 "}
 (5,1,1) = {"
@@ -1956,9 +1908,9 @@ cj
 cu
 cG
 cR
-do
+ch
 df
-dC
+as
 aa
 "}
 (6,1,1) = {"
@@ -2113,8 +2065,8 @@ cz
 cL
 cW
 as
-cZ
-dD
+df
+as
 aa
 "}
 (12,1,1) = {"
@@ -2140,7 +2092,7 @@ cM
 cW
 as
 de
-dD
+as
 aa
 "}
 (13,1,1) = {"
@@ -2149,10 +2101,10 @@ aa
 aa
 aa
 as
-aw
+AO
 aM
 aU
-aV
+jQ
 as
 bg
 bs
@@ -2165,7 +2117,7 @@ cB
 cN
 cX
 as
-dB
+as
 as
 aa
 "}
@@ -2175,10 +2127,10 @@ aa
 aa
 aa
 as
-as
+bS
 bS
 eA
-as
+bS
 as
 bh
 bt
@@ -2213,9 +2165,9 @@ as
 as
 as
 as
-dp
-dp
-dp
+as
+as
+as
 as
 aa
 aa
