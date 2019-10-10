@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - balance: "Burrowed and regular larva will now count towards evolution equations, meaning xenomorphs can evolve as if burrowed and unburrowed larva were actual xenomorphs possessed by players"
