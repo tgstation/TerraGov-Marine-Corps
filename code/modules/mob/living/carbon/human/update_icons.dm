@@ -636,7 +636,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			if(marine_armor.flags_armor_features & ARMOR_SQUAD_OVERLAY)
 				if(assigned_squad)
 					var/datum/squad/S = assigned_squad
-					var/leader = S.squad_leader == scr
+					var/leader = S.squad_leader == src
 					if(GLOB.armormarkings[S.type])
 						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
 				if(length(marine_armor.armor_overlays))
@@ -644,7 +644,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					for(var/i in marine_armor.armor_overlays)
 						I = marine_armor.armor_overlays[i]
 						if(I)
-							I = image('icons/mob/suit_1.dmi',scr,I.icon_state)
+							I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 							standing.overlays += I
 
 		if(wear_suit.blood_overlay)
