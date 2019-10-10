@@ -917,7 +917,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 1
 	accuracy = 40
 	accurate_range = 15
-	max_range = 7
+	max_range = 15
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 
@@ -931,7 +931,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "bio"
 	accuracy = 40
 	accurate_range = 5
-	max_range = 7
+	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 15
@@ -1055,7 +1055,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO_ACID
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 20
 
