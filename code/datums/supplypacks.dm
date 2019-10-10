@@ -1625,21 +1625,21 @@ AMMO
 /datum/supply_packs/ammo_mateba
 	name = "Mateba magazines crate (x15)"
 	contains = list(
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact,
-					/obj/item/ammo_magazine/revolver/highimpact
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba,
+					/obj/item/ammo_magazine/revolver/mateba
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
