@@ -93,6 +93,7 @@
 
 //===========================================================================================
 //Marine armor only, use for flags_armor_features.
+#define ARMOR_SQUAD_OVERLAY     (1<<0)
 #define ARMOR_LAMP_OVERLAY		(1<<1)
 #define ARMOR_LAMP_ON			(1<<2)
 #define ARMOR_IS_REINFORCED		(1<<3)
