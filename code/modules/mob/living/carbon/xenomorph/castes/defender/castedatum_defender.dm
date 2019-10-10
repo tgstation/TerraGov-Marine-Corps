@@ -42,8 +42,8 @@
 	charge_type = CHARGE_TYPE_LARGE
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 22 //40 bullet/laser resistance
-	fortify_armor = 52 //70 bullet/laser resistance
+	crest_defense_armor = 22
+	fortify_armor = 52
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -87,8 +87,8 @@
 	armor = list("melee" = 25, "bullet" = 24, "laser" = 24, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 12, "acid" = 25)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 26 //50 bullet/laser resistance
-	fortify_armor = 61 //A robust 85 bullet/laser resistance
+	crest_defense_armor = 26
+	fortify_armor = 61
 
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
@@ -118,8 +118,8 @@
 	armor = list("melee" = 28, "bullet" = 27, "laser" = 27, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 14, "acid" = 28)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 33 //60 bullet/laser resistance
-	fortify_armor = 68 //95 bullet/laser resistance
+	crest_defense_armor = 33
+	fortify_armor = 68
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"
@@ -150,8 +150,8 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 35 //65 bullet/laser resistance
-	fortify_armor = 70 //Invincible to normal bullets, now you can become one with the r-walls
+	crest_defense_armor = 35
+	fortify_armor = 70
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
