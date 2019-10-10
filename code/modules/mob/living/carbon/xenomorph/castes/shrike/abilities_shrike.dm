@@ -97,6 +97,17 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
+		//Held facehuggers get killed for balance reasons
+	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
+	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
@@ -177,6 +188,17 @@
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
+
+			//Held facehuggers get killed for balance reasons
+	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
+	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
+		if(FH.stat != DEAD)
+			FH.Die()
 
 // ***************************************
 // *********** Psychic Choke
