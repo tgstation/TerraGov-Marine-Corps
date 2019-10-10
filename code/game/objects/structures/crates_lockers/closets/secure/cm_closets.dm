@@ -208,7 +208,7 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/corpsman(src)
-	new /obj/item/clothing/under/marine/medic(src)
+	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
 	name = "alpha medic equipment locker"

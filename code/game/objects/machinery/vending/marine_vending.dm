@@ -436,7 +436,7 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/clothing/under/marine/medic = 4,
+						/obj/item/clothing/under/marine/corpsman = 4,
 						/obj/item/clothing/head/helmet/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/satchel/corpsman = 4,

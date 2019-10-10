@@ -214,3 +214,4 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Item sprite variants
 #define ITEM_JUNGLE_VARIANT	(1<<0)
 #define ITEM_ICE_VARIANT	(1<<1)
+#define ITEM_ICE_PROTECTION	(1<<2)
