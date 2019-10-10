@@ -356,7 +356,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = "16 gauge" //codex
-	max_shells = 10 //codex
+	max_shells = 15 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -372,7 +372,7 @@
 						/obj/item/attachable/sx16barrel)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/sx16, /obj/item/attachable/sx16barrel)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 10, "stock_y" = 14)
 	gun_skill_category = GUN_SKILL_SHOTGUNS

@@ -335,9 +335,9 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/sx16_buckshot,
 					/obj/item/ammo_magazine/rifle/sx16_buckshot,
 					/obj/item/ammo_magazine/rifle/sx16_buckshot,
-					/obj/item/ammo_magazine/rifle/sx16_slug,
-					/obj/item/ammo_magazine/rifle/sx16_slug,
-					/obj/item/ammo_magazine/rifle/sx16_slug,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
 					)
 	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP

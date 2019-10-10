@@ -596,11 +596,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
 	bonus_projectiles_amount = 2
-	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 10
+	accuracy_var_high = 10
 	max_range = 10
-	damage = 25
+	damage = 40
 	damage_falloff = 2
 	penetration = 10
 
@@ -610,17 +610,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 10
-	damage = 25
+	damage = 30
 	damage_falloff = 2
 	penetration = 10
 
-/datum/ammo/bullet/shotgun/sx16_slug
-	name = "shotgun slug"
-	hud_state = "shotgun_slug"
-	shell_speed = 3
+/datum/ammo/bullet/shotgun/sx16_buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
+	staggerstun(M, P, 2, 1, 0, 0, 0, 1)
+
+/datum/ammo/bullet/shotgun/sx16_flechette
+	name = "shotgun flechette shell"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 8
+	accuracy_var_low = 7
+	accuracy_var_high = 7
 	max_range = 15
-	damage = 35
-	penetration = 35
+	damage = 25
+	damage_falloff = 0.5
+	penetration = 25
+
+/datum/ammo/bullet/shotgun/sx16_flechette/spread
+	name = "additional flechette"
+	icon_state = "flechette"
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 15
+	damage = 25
+	damage_falloff = 0.5
+	penetration = 25
 
 /*
 //================================================
