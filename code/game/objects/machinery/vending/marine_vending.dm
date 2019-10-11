@@ -115,6 +115,7 @@
 					/obj/item/weapon/gun/revolver/m44 = 15,
 					/obj/item/weapon/gun/smg/m39 = 15,
 					/obj/item/weapon/gun/rifle/m41a = 20,
+					/obj/item/weapon/gun/rifle/lmg = 2,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/explosive/mine = 2,

@@ -2297,7 +2297,7 @@
 /area/whiskey_outpost/outside/east)
 "gn" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
