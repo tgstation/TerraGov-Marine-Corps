@@ -305,8 +305,8 @@ WEAPONS
 
 /datum/supply_packs/gun/mateba
 	contains = list(
-					/obj/item/storage/belt/gun/mateba,
-					/obj/item/storage/belt/gun/mateba
+					/obj/item/storage/belt/gun/mateba/full,
+					/obj/item/storage/belt/gun/mateba/full
 					)
 	name = "Mateba Autorevolver crate (Mateba x2, Mateba holster rig x2, Mateba speed loader x12)"
 	cost = RO_PRICE_CHEAP
