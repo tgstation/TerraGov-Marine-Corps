@@ -1,4 +1,0 @@
-author: "Tupinambis"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the text telling Boilers which gas type they have selected."
