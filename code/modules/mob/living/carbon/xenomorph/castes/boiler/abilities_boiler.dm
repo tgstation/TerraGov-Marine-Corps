@@ -36,11 +36,12 @@
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	to_chat(X, "<span class='notice'>We will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
+		to_chat(X, "<span class='notice'>We will now fire corrosive acid. This is lethal!</span>")
 	else
 		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+		to_chat(X, "<span class='notice'>We will now fire neurotoxic gas. This is nonlethal.</span>")
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_bomb/update_button_icon()
