@@ -127,6 +127,7 @@
 	timer_enabled = FALSE
 	stop_processing()
 	update_icon()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, X)
 
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
