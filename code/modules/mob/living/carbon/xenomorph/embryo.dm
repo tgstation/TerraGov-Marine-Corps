@@ -169,8 +169,7 @@
 								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)
 
-	var/preburst_screams = victim.gender == FEMALE ? get_sfx("female_preburst") : get_sfx("male_preburst")
-	playsound(loc, preburst_screams, 25, 0)
+	victim.emote_burstscream()
 
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 
@@ -213,4 +212,12 @@
 
 	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
 		burrow()
-		
+
+/mob/living/proc/emote_burstscream()
+	return
+
+
+/mob/living/carbon/human/emote_burstscream()
+	if(species.species_flags & NO_PAIN)
+		return
+	emote("burstscream")

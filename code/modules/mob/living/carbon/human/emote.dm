@@ -421,3 +421,28 @@
 		return
 	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
 	user.add_emote_overlay(pain)
+
+
+/datum/emote/living/carbon/human/burstscream
+	key = "burstscream"
+	message = "screams in agony!"
+	emote_type = EMOTE_AUDIBLE
+	flags_emote = EMOTE_FORCED_AUDIO
+	stat_allowed = UNCONSCIOUS
+
+
+/datum/emote/living/carbon/human/burstscream/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.burstscreams[user.gender])
+		return user.species.burstscreams[user.gender]
+	if(user.species.burstscreams[NEUTER])
+		return user.species.burstscreams[NEUTER]
+
+
+/datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
+	user.add_emote_overlay(pain)
