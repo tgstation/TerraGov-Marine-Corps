@@ -67,8 +67,17 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number() < xenos_per_queen
+	return (get_total_xeno_number() < xenos_per_queen)
 
+/datum/hive_status/normal/can_hive_have_a_queen()
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/get_total_tier_zeros()
+	return length(xenos_by_tier[XENO_TIER_ZERO])
+
+/datum/hive_status/normal/get_total_tier_zeros()
+	. = ..()
+	. += stored_larva
 
 // ***************************************
 // *********** List getters

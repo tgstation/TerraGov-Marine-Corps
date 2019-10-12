@@ -913,7 +913,8 @@
 		if(1) 
 			operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
 	dat += text("[]\tHealth %: [] ([])</FONT><BR>", (connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), round(connected.occupant.health), t1)
-	dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (connected.occupant.pulse == PULSE_NONE || connected.occupant.pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), connected.occupant.get_pulse(GETPULSE_TOOL))
+	var/pulse = connected.occupant.handle_pulse()
+	dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), connected.occupant.get_pulse(GETPULSE_TOOL))
 	dat += text("[]\t-Brute Damage %: []</FONT><BR>", (connected.occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getBruteLoss())
 	dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (connected.occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getOxyLoss())
 	dat += text("[]\t-Toxin Content %: []</FONT><BR>", (connected.occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), connected.occupant.getToxLoss())

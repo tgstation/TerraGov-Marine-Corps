@@ -303,6 +303,28 @@
 		/obj/item/reagent_container/food/snacks/spacetwinkie,
 		/obj/item/reagent_container/food/snacks/cookie,
 		/obj/item/reagent_container/food/snacks/chocolatebar)
-	
+
 	var/picked = pick(randompick)
 	new picked(src)
+
+
+//Harness Belts
+/obj/item/belt_harness
+	name = "gun sling"
+	desc = "A leather sling with a spot to attach a gun. Should keep you from losing your weapon, hopefully."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "gun_sling"
+	item_state = "gun_sling"
+	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY
+	time_to_equip = 2 SECONDS
+
+/obj/item/belt_harness/marine
+	name = "\improper M45 pattern belt harness"
+	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."
+	icon_state = "heavy_harness"
+	item_state = "heavy_harness"
+
+/obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+	if(slot == SLOT_BELT)
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)

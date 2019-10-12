@@ -530,7 +530,7 @@
 	to_chat(user, msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
-	if(!user || !src || !Adjacent(user) || user.incapacitated())
+	if(QDELETED(user) || QDELETED(src) || !Adjacent(user) || user.incapacitated())
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)

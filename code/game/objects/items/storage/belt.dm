@@ -414,6 +414,7 @@
 	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
+	cant_hold = list(/obj/item/ammo_magazine/lmg)
 	max_w_class = 3
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
