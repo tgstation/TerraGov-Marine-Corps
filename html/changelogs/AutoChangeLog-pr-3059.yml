@@ -1,0 +1,4 @@
+author: "Tupinambis"
+delete-after: True
+changes: 
+  - balance: "Improved defender's base bullet/laser resistance by a large margin (~19) at all ages while lowering the bonus armor on Crest and fortify (~10 and ~20 respectively)"
