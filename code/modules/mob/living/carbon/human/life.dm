@@ -48,8 +48,6 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
-	pulse = handle_pulse()
-
 
 /mob/living/carbon/human/proc/set_undefibbable()
 	undefibbable = TRUE

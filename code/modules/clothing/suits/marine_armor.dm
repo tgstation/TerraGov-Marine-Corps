@@ -28,7 +28,7 @@
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -828,7 +828,13 @@
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	flags_armor_protection = CHEST|ARMS
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"

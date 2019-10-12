@@ -167,22 +167,11 @@ should be alright.
 		return
 	var/mob/living/carbon/human/owner = user
 	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
-		return
+		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
+		if(!istype(B,/obj/item/belt_harness))
+			return
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	harness_return(user)
-	return TRUE
-
-/obj/item/weapon/gun/minigun/harness_check(mob/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/owner = user
-	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	var/obj/item/B = owner.belt
-	if(!istype(B,/obj/item/minigun_harness))
+	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
 		return
 	harness_return(user)
 	return TRUE
