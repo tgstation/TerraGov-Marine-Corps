@@ -2,7 +2,7 @@
 	caste_name = "Defender"
 	display_name = "Defender"
 	upgrade_name = ""
-	caste_desc = "A sturdy front line combatant."
+	caste_desc = "An alien with an armored crest. It looks like it's still developing."
 
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
@@ -36,14 +36,14 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 10, "acid" = 20)
+	armor = list("melee" = 20, "bullet" = 18, "laser" = 18, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 10, "acid" = 20)
 
 	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_LARGE 
+	charge_type = CHARGE_TYPE_LARGE
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 35
-	fortify_armor = 70
+	crest_defense_armor = 22
+	fortify_armor = 52
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -61,7 +61,7 @@
 
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"
-	caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
+	caste_desc = "An alien with an armored crest. It looks pretty durable."
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
@@ -84,15 +84,15 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 5, "laser" = 5, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 12, "acid" = 25)
+	armor = list("melee" = 25, "bullet" = 24, "laser" = 24, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 12, "acid" = 25)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 40
-	fortify_armor = 80
+	crest_defense_armor = 26
+	fortify_armor = 61
 
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
-	caste_desc = "An alien with an armored head crest. It looks pretty strong."
+	caste_desc = "An alien with a heavily armored head crest. It looks very tough."
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
@@ -115,15 +115,15 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 28, "bullet" = 8, "laser" = 8, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 14, "acid" = 28)
+	armor = list("melee" = 28, "bullet" = 27, "laser" = 27, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 14, "acid" = 28)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 43
-	fortify_armor = 87
+	crest_defense_armor = 33
+	fortify_armor = 68
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "An unstoppable force that remains when others would fall."
+	caste_desc = "An alien with a heavily armored head crest. It looks like it could stop bullets!"
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
@@ -147,11 +147,11 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 10, "laser" = 10, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 45
-	fortify_armor = 90
+	crest_defense_armor = 35
+	fortify_armor = 70
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

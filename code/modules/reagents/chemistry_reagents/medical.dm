@@ -589,7 +589,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Does this purge any specific chems?
+	purge_list = list(/datum/reagent/medicine/dexalinplus) //Does this purge any specific chems?
 	purge_rate = 15 //rate at which it purges specific chems
 	trait_flags = TACHYCARDIC
 

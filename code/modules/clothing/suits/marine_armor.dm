@@ -28,11 +28,12 @@
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_armor_features = ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(
@@ -150,6 +151,7 @@
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
@@ -164,6 +166,7 @@
 	icon_state = "mp"
 	armor = list("melee" = 40, "bullet" = 70, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_item_map_variant = NONE
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
@@ -584,6 +587,8 @@
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife)
+	flags_item_map_variant = NONE
+
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
@@ -912,6 +917,7 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 30, "acid" = 30)
+	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/suit/storage/marine/som/veteran

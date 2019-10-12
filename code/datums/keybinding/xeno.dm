@@ -321,6 +321,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 
+/datum/keybinding/xeno/unrelenting_force
+	key = "Unbound"
+	name = "unrelenting_force"
+	full_name = "Unrelenting Force"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
+
 /datum/keybinding/xeno/psychic_choke
 	key = "Unbound"
 	name = "psychic_choke"
