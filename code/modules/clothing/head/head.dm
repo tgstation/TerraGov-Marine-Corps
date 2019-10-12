@@ -19,6 +19,7 @@
 	sprite_sheet_id = 1
 	icon_state = "band"
 	flags_inv_hide = HIDETOPHAIR
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcbandanna/tan
 	icon_state = "band2"
@@ -41,27 +42,32 @@
 	sprite_sheet_id = 1
 	icon_state = "beret"
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/green
-	icon_state = "beretgreen"	
+	icon_state = "beretgreen"
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/wo
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
 	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/fc
 	name = "\improper Field Commander beret"
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	icon_state = "beretfc"
 	armor = list("melee" = 60, "bullet" = 80, "laser" = 80, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/head/tgmccap
@@ -73,6 +79,7 @@
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 	var/flipped_cap = FALSE
 	var/base_cap_icon
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 
 /obj/item/clothing/head/tgmccap/verb/fliphat()

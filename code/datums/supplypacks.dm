@@ -243,8 +243,7 @@ WEAPONS
 /datum/supply_packs/specminigun
 	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1)"
 	contains = list(
-					/obj/item/weapon/gun/minigun,
-					/obj/item/minigun_harness
+					/obj/item/weapon/gun/minigun
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
@@ -384,7 +383,7 @@ WEAPONS
 /datum/supply_packs/gun/heavyrifle
 	contains = list(
 					/obj/item/weapon/gun/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg
+					/obj/item/ammo_magazine/lmg
 					)
 	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -399,11 +398,11 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/lmg,
 					/obj/item/weapon/gun/rifle/lmg,
 					/obj/item/weapon/gun/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg,
-					/obj/item/ammo_magazine/rifle/lmg
+					/obj/item/ammo_magazine/lmg,
+					/obj/item/ammo_magazine/lmg,
+					/obj/item/ammo_magazine/lmg,
+					/obj/item/ammo_magazine/lmg,
+					/obj/item/ammo_magazine/lmg
 					)
 	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
 	cost = RO_PRICE_PRETTY_PRICY
@@ -1668,7 +1667,7 @@ AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper smart scout ammo crate"
 	group = "Ammo"
-	
+
 /datum/supply_packs/ammo_sniper_regular
 	name = "M42A sniper magazines crate (x6)"
 	contains = list(
@@ -1830,7 +1829,7 @@ AMMO
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/incendiary,
 					/obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/lmg,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol/extended,
 					/obj/item/ammo_magazine/pistol/ap,
@@ -2087,11 +2086,11 @@ ARMOR
 /datum/supply_packs/armor_basic
 	name = "M3 pattern armor crate (x5 helmet, x5 armor)"
 	contains = list(
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
-					/obj/item/clothing/head/helmet/marine,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
+					/obj/item/clothing/head/helmet/marine/standard,
 					/obj/item/clothing/suit/storage/marine,
 					/obj/item/clothing/suit/storage/marine,
 					/obj/item/clothing/suit/storage/marine,
@@ -2136,9 +2135,9 @@ CLOTHING
 
 /datum/supply_packs/marine_outfits
 	contains = list(
-					/obj/item/clothing/under/marine,
-					/obj/item/clothing/under/marine,
-					/obj/item/clothing/under/marine,
+					/obj/item/clothing/under/marine/standard,
+					/obj/item/clothing/under/marine/standard,
+					/obj/item/clothing/under/marine/standard,
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,

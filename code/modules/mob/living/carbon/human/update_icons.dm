@@ -639,14 +639,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					var/leader = S.squad_leader == src
 					if(GLOB.armormarkings[S.type])
 						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
-
-			if(length(marine_armor.armor_overlays))
-				var/image/I
-				for(var/i in marine_armor.armor_overlays)
-					I = marine_armor.armor_overlays[i]
-					if(I)
-						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-						standing.overlays += I
+				if(length(marine_armor.armor_overlays))
+					var/image/I
+					for(var/i in marine_armor.armor_overlays)
+						I = marine_armor.armor_overlays[i]
+						if(I)
+							I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+							standing.overlays += I
 
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit

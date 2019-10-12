@@ -259,6 +259,7 @@
 							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
 							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
 							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
+							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
 							list("POUCHES (choose 2)", 0, null, null, null),
 							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
 							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -282,6 +283,10 @@
 							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
 							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
+							list("M43 Efficient lens", 0, /obj/item/attachable/efflens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
+							list("M43 Focus lens", 0, /obj/item/attachable/focuslens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
+							list("M43 Wide lens", 0, /obj/item/attachable/widelens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
+							list("M43 pulse lens", 0, /obj/item/attachable/pulselens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("RAIL ATTACHMENTS", 0, null, null, null),
 							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
 							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
@@ -534,6 +539,7 @@
 							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
 							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
 							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
+							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
 							list("POUCHES (choose 2)", 0, null, null, null),
 							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Large magazine pouch", 0, /obj/item/storage/pouch/magazine/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -595,6 +601,7 @@
 							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
 							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
 							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
+							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
 							list("POUCHES (choose 2)", 0, null, null, null),
 							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Large general pouch", 0, /obj/item/storage/pouch/general/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -783,6 +790,7 @@
 							list("Injector (Oxycodone)", 1, /obj/item/reagent_container/hypospray/autoinjector/oxycodone, null, "black"),
 							list("Injector (Tricord)", 1, /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, null, "black"),
 							list("Injector (Hypervene)", 1, /obj/item/reagent_container/hypospray/autoinjector/hypervene, null, "black"),
+							list("Injector (Hyperzine)", 15, /obj/item/reagent_container/hypospray/autoinjector/hyperzine, null, "black"),
 							list("Advanced hypospray", 2, /obj/item/reagent_container/hypospray/advanced, null, "black"),
 							list("Health analyzer", 2, /obj/item/healthanalyzer, null, "black"),
 							list("Medical HUD glasses", 2, /obj/item/clothing/glasses/hud/health, null, "black"),
@@ -990,7 +998,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
 							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
 							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
-							list("M41AE2 magazine", 4, /obj/item/ammo_magazine/rifle/lmg, null, "black"),
+							list("M41AE2 magazine", 4, /obj/item/ammo_magazine/lmg, null, "black"),
 							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
 							list("Flamethrower tank", 4, /obj/item/ammo_magazine/flamer_tank, null, "black"),
 							list("Whistle", 5, /obj/item/whistle, null, "black"),
@@ -1045,7 +1053,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine,
+						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
@@ -1055,7 +1063,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine,
+						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,

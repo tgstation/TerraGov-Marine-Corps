@@ -49,7 +49,7 @@
 	name = "Box of .45 ACP"
 	icon_state = "box45" //With thanks to Eris
 	default_ammo = /datum/ammo/bullet/pistol/heavy
-	caliber = ".45"
+	caliber = ".45 ACP"
 	current_rounds = 50
 	max_rounds = 50
 

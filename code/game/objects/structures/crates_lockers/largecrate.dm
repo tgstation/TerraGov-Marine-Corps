@@ -103,7 +103,7 @@
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
 						/obj/item/analyzer,
-						/obj/item/clothing/under/marine,
+						/obj/item/clothing/under/marine/standard,
 						/obj/item/clothing/shoes/marine
 						)
 
@@ -245,7 +245,7 @@
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/lmg,
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 

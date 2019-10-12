@@ -15,9 +15,10 @@
 	name = "Assistant"
 	jobtype = /datum/job/survivor/assistant
 
-	w_uniform = /obj/item/clothing/under/colonist
+	w_uniform = /obj/item/clothing/under/color/grey
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
+	wear_suit = /obj/item/clothing/suit/armor/vest
 
 
 //Scientist
@@ -31,8 +32,8 @@
 	name = "Scientist"
 	jobtype = /datum/job/survivor/scientist
 
-	w_uniform = /obj/item/clothing/under/colonist
-	wear_suit = /obj/item/clothing/suit/storage/labcoat
+	w_uniform = /obj/item/clothing/under/rank/scientist
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/tox
 
@@ -49,7 +50,7 @@
 	jobtype = /datum/job/survivor/doctor
 
 	w_uniform = /obj/item/clothing/under/rank/medical
-	wear_suit = /obj/item/clothing/suit/storage/labcoat
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/med
 
@@ -65,6 +66,7 @@
 	jobtype = /datum/job/survivor/liaison
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
+	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -81,6 +83,7 @@
 	jobtype = /datum/job/survivor/security
 
 	w_uniform = /obj/item/clothing/under/rank/security/corp
+	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/marine
 	back = /obj/item/storage/backpack/satchel/sec
 
@@ -96,6 +99,7 @@
 	jobtype = /datum/job/survivor/civilian
 
 	w_uniform = /obj/item/clothing/under/pj/red
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -111,8 +115,8 @@
 	name = "Chef"
 	jobtype = /datum/job/survivor/chef
 
-	w_uniform = /obj/item/clothing/under/colonist
-	wear_suit = /obj/item/clothing/suit/chef
+	w_uniform = /obj/item/clothing/under/rank/chef
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -127,8 +131,8 @@
 	name = "Botanist"
 	jobtype = /datum/job/survivor/botanist
 
-	w_uniform = /obj/item/clothing/under/colonist
-	wear_suit = /obj/item/clothing/suit/apron
+	w_uniform = /obj/item/clothing/under/rank/hydroponics
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
 
@@ -144,7 +148,8 @@
 	name = "Atmospherics Technician"
 	jobtype = /datum/job/survivor/atmos
 
-	w_uniform = /obj/item/clothing/under/colonist
+	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/eng
 
@@ -160,6 +165,7 @@
 	jobtype = /datum/job/survivor/chaplain
 
 	w_uniform = /obj/item/clothing/under/rank/chaplain
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -176,6 +182,7 @@
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -191,7 +198,7 @@
 	jobtype = /datum/job/survivor/salesman
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
-	wear_suit = /obj/item/clothing/suit/wcoat
+	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel
 

@@ -10,7 +10,7 @@
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
-	var/planet_nuked = FALSE
+	var/planet_nuked = CRASH_NUKE_NONE
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
@@ -166,10 +166,11 @@
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
-		
+
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
@@ -193,9 +194,9 @@
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
-		if(0 to 1.75) // 7/4
+		if(0 to 2)
 			return
-		if(1.75 to 3)
+		if(2 to 3)
 			HS.stored_larva++
 		if(3 to 5)
 			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
@@ -246,18 +247,23 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(num_humans && !planet_nuked && marines_evac == CRASH_EVAC_NONE)
+	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
 				return FALSE //Xenos keep respawning.
 		else
 			return FALSE
 
-	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
-	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) << 1 // XENO Major (All marines killed)
-	victory_options |= (!planet_nuked && (marines_evac == CRASH_EVAC_COMPLETED || marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))	<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (planet_nuked && marines_evac == CRASH_EVAC_NONE) << 3 // Marine minor (Planet nuked, some human left on planet)
-	victory_options |= (planet_nuked && (marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED)) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	// Draw, for all other reasons
+	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
+	// XENO Major (All marines killed)
+	victory_options |= (planet_nuked == CRASH_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
+	// XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 2
+	// Marine minor (Planet nuked, no one evac'd)
+	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
+	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
 
 	switch(victory_options)
 		if(CRASH_DRAW)
@@ -391,8 +397,16 @@
 
 	return TRUE
 
+/datum/game_mode/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	var/list/living_player_list = count_humans_and_xenos()
+	var/num_humans = living_player_list[1]
+	if(!num_humans) // no humans left on planet to try and restart it.
+		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
+
+	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
 
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
+	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
 /datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
@@ -414,7 +428,7 @@
 
 	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), nuketime)
+	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_SELFDESTRUCT, world)

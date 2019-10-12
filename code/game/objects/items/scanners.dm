@@ -307,7 +307,8 @@ REAGENT SCANNER
 			else
 				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
 		// Show pulse
-		dat += "\tPulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
+		var/pulse = H.handle_pulse()
+		dat += "\tPulse: <font color='[pulse == PULSE_THREADY || pulse == PULSE_NONE ? "red" : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font>\n"
 		if(H.stat == DEAD)
 			is_dead = TRUE
 			//check to see if the target is revivable

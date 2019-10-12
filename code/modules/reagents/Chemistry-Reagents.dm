@@ -25,9 +25,14 @@
 	var/spray_warning = FALSE //whether spraying that reagent creates an admin message.
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
-	var/list/datum/reagent/purge_list = list() //Does this purge any specific chems?
+	var/list/datum/reagent/purge_list //Does this purge any specific chems?
 	var/purge_rate = 0 //rate at which it purges specific chems
 	var/trait_flags
+
+/datum/reagent/New()
+	. = ..()
+	if(LAZYLEN(purge_list))
+		purge_list = typecacheof(purge_list)
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
@@ -125,11 +130,12 @@
 	return rs.Join(" | ")
 
 /datum/reagent/proc/purge(mob/living/L, metabolism)
-	if(length(purge_list))
-		var/count = length(purge_list)
-		for(var/datum/reagent/R in L.reagents.reagent_list)
-			if(count < 1)
-				break
-			if(is_type_in_list(R, purge_list))
-				count--
-				L.reagents.remove_reagent(R.type,purge_rate)
+	if(!LAZYLEN(purge_list))
+		return
+	var/count = LAZYLEN(purge_list)
+	for(var/datum/reagent/R in L.reagents.reagent_list)
+		if(count < 1)
+			break
+		if(is_type_in_typecache(R, purge_list))
+			count--
+			L.reagents.remove_reagent(R.type,purge_rate)

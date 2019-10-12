@@ -56,7 +56,7 @@
 /datum/action/xeno_action/activable/psychic_fling
 	name = "Psychic Fling"
 	action_icon_state = "fling"
-	mechanics_text = "Knock a target flying up to 3 tiles. Ranged ability."
+	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
 	cooldown_timer = 12 SECONDS
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
@@ -73,17 +73,17 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!ishuman(target))
+	if(!isitem(target) && !ishuman(target))	//only items and mobs can be flung.
 		return FALSE
-	var/mob/living/carbon/xenomorph/shrike/user = owner
-	var/max_dist = (user == user.hive.living_xeno_ruler) ? 6 : 3 //We can fling targets further away if we are the ruler.
+	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!owner.line_of_sight(target, max_dist))
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+			to_chat(owner, "<span class='warning'>We must get closer to fling, our mind cannot reach this far.</span>")
 		return FALSE
-	var/mob/living/carbon/human/victim = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
-		return FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/victim = target
+		if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && victim.stat == DEAD)
+			return FALSE
 
 
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/target)
@@ -92,18 +92,30 @@
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
 	"<span class='xenowarning'>We violently fling [victim] with the power of our mind!</span>")
-	victim.visible_message("<span class='xenowarning'>[victim] is violently flung to the side by an unseen force!</span>", \
+	victim.visible_message("<span class='xenowarning'>[victim] is violently flung away by an unseen force!</span>", \
 	"<span class='xenowarning'>You are violently flung to the side by an unseen force!</span>")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
+		//Held facehuggers get killed for balance reasons
+	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
+	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
 	succeed_activate()
 	add_cooldown()
-	victim.apply_effects(1, 2) 	// Stun
-	shake_camera(victim, 2, 1)
+	if(ishuman(victim))
+		victim.apply_effects(1, 2) 	// Stun
+		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
-	var/fling_distance = 3
+	var/fling_distance = (isitem(victim)) ? 4 : 3 //Objects get flung further away.
 	var/turf/T = victim.loc
 	var/turf/temp
 
@@ -114,6 +126,79 @@
 		T = temp
 	victim.throw_at(T, fling_distance, 1, owner, TRUE)
 
+
+// ***************************************
+// *********** Unrelenting Force
+// ***************************************
+/datum/action/xeno_action/activable/unrelenting_force
+	name = "Unrelenting Force"
+	action_icon_state = "screech"
+	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
+	cooldown_timer = 50 SECONDS
+	plasma_cost = 300
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
+
+
+/datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()
+	to_chat(owner, "<span class='notice'>Our mind is ready to unleash another blast of force.</span>")
+	return ..()
+
+
+/datum/action/xeno_action/activable/unrelenting_force/use_ability(atom/target)
+	add_cooldown()
+	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
+	owner.icon_state = "Shrike Screeching"
+	var/facing = get_cardinal_dir(owner, target)
+	owner.setDir(facing)
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(owner.dir)
+		if(NORTH)
+			lower_left = locate(owner.x - 1, owner.y + 1, owner.z)
+			upper_right = locate(owner.x + 1, owner.y + 3, owner.z)
+		if(SOUTH)
+			lower_left = locate(owner.x - 1, owner.y - 3, owner.z)
+			upper_right = locate(owner.x + 1, owner.y - 1, owner.z)
+		if(WEST)
+			lower_left = locate(owner.x - 3, owner.y - 1, owner.z)
+			upper_right = locate(owner.x - 1, owner.y + 1, owner.z)
+		if(EAST)
+			lower_left = locate(owner.x + 1, owner.y - 1, owner.z)
+			upper_right = locate(owner.x + 3, owner.y + 1, owner.z)
+
+	for(var/turf/affected_tile in block(lower_left, upper_right)) //everything in the 2x3 block is found.
+		affected_tile.Shake(4, 4, 2 SECONDS)
+		for(var/i in affected_tile)
+			var/atom/movable/affected = i
+			if(!ishuman(affected) && !istype(affected, /obj/item))
+				affected.Shake(4, 4, 20)
+				continue
+			var/throwlocation = affected.loc //first we get the target's location
+			for(var/x in 1 to 6)
+				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
+			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
+			if(ishuman(affected)) //if they're human, they also should get knocked off their feet from the blast.
+				var/mob/living/carbon/human = affected
+				human.apply_effects(1, 2) 	// Stun
+				shake_camera(affected, 2, 1)
+
+	owner.visible_message("<span class='xenowarning'>[owner] sends out a huge blast of psychic energy!</span>", \
+	"<span class='xenowarning'>We send out a huge blast of psychic energy!</span>")
+
+	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
+	playsound(owner, "alien_roar", 50)
+
+			//Held facehuggers get killed for balance reasons
+	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
+		if(FH.stat != DEAD)
+			FH.Die()
+
+	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
+		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
+		if(FH.stat != DEAD)
+			FH.Die()
 
 // ***************************************
 // *********** Psychic Choke

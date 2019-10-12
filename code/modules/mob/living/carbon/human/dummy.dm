@@ -10,7 +10,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	return ..()
 
 /mob/living/carbon/human/dummy/Life()
-	return
+	SSmobs.stop_processing(src)
+
 
 /mob/living/carbon/human/dummy/proc/wipe_state()
 	delete_equipment()

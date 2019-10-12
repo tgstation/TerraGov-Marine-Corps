@@ -792,6 +792,7 @@
 
 
 /datum/action/xeno_action/lay_egg/action_activate()
+	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
@@ -808,8 +809,8 @@
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
 		"<span class='xenowarning'>We have laid an egg!</span>")
 
-	new /obj/effect/alien/egg(current_turf)
-	playsound(owner.loc, 'sound/effects/alien_egg_move.ogg', 25)
+	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
+	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
 
 	succeed_activate()
 	add_cooldown()

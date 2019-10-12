@@ -74,6 +74,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
@@ -97,6 +98,7 @@
 	icon_state = "m41a2"
 	item_state = "m41a2"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
+	flags_item_map_variant = NONE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
 	burst_delay = 0.2 SECONDS
@@ -233,12 +235,13 @@
 	item_state = "m41ae2"
 	caliber = "10x24mm caseless" //codex
 	max_shells = 300 //codex
-	wield_delay = 0.6 SECONDS + 0.2 SECONDS
+	aim_slowdown = 0.8
+	wield_delay = 2 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/rifle/lmg
+	current_mag = /obj/item/ammo_magazine/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/reddot,
@@ -247,10 +250,7 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/rifle,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope)
 
@@ -259,10 +259,11 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
 
-	fire_delay = 5
-	burst_amount = 3
+	fire_delay = 0.4 SECONDS
+	burst_amount = 5
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.05
 	scatter = 15
 	scatter_unwielded = 80
 	recoil_unwielded = 5

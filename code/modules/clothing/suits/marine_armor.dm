@@ -33,6 +33,7 @@
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(
@@ -150,6 +151,7 @@
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
@@ -164,6 +166,7 @@
 	icon_state = "mp"
 	armor = list("melee" = 40, "bullet" = 70, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_item_map_variant = NONE
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
@@ -584,6 +587,8 @@
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
 		/obj/item/weapon/combat_knife)
+	flags_item_map_variant = NONE
+
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
@@ -828,7 +833,13 @@
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	flags_armor_protection = CHEST|ARMS
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun)
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
@@ -906,6 +917,7 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 30, "acid" = 30)
+	flags_item_map_variant = NONE
 
 
 /obj/item/clothing/suit/storage/marine/som/veteran
