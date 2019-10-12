@@ -439,7 +439,7 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/clothing/under/marine/medic = 4,
+						/obj/item/clothing/under/marine/corpsman = 4,
 						/obj/item/clothing/head/helmet/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
@@ -677,7 +677,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/clothing/shoes/marine = 20,
-					/obj/item/clothing/under/marine = 20,
+					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
 					/obj/item/clothing/suit/storage/marine = 10,

@@ -408,6 +408,8 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/shotgun)
+
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
@@ -418,6 +420,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 14
+
 
 /obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
 	return pump_shotgun(user)
@@ -511,6 +514,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/magnetic_harness)
+	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
 	fire_delay = 24
@@ -544,6 +548,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
+	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
 	fire_delay = 24
@@ -578,6 +583,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bayonet)
+	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope,
 									/obj/item/attachable/mosinbarrel,
