@@ -1,0 +1,5 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - rscadd: "The M43 Sunfury now has different lens attachments that fit to the barrel, they decide what overcharge you have, or if you have one at all!"
+  - balance: "Tweaks the damage for the M43 Sunfury."
