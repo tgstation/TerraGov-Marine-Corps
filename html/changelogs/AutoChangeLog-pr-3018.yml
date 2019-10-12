@@ -1,0 +1,6 @@
+author: "Spyroshark"
+delete-after: True
+changes: 
+  - rscadd: "The shrike has a new ability, \"Unrelenting Force\" that sends everything in front of the shrike flying away."
+  - tweak: "Psychic Fling now only works from 2 tiles away, but can fling items as well as humans."
+  - tweak: "Psychic Choke has been replaced with Unrelenting Force."
