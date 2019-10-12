@@ -194,8 +194,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		on_revive()
 		timeofdeath = 0
 
-	SSmobs.start_processing(src)
-
 	// restore us to conciousness
 	stat = CONSCIOUS
 	updatehealth()
@@ -208,6 +206,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	handle_regular_hud_updates()
 	reload_fullscreens()
 	hud_used?.show_hud(hud_used.hud_version)
+
+	SSmobs.start_processing(src)
+
 
 /mob/living/carbon/revive()
 	nutrition = 400
@@ -226,6 +227,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	update_legcuffed(initial(legcuffed))
 
 	return ..()
+
 
 /mob/living/carbon/human/revive()
 	for(var/datum/limb/O in limbs)
@@ -271,6 +273,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	update_body()
 	update_hair()
 	return ..()
+
 
 /mob/living/carbon/xenomorph/revive()
 	plasma_stored = xeno_caste.plasma_max

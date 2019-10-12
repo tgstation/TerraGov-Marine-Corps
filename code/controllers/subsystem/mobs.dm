@@ -18,13 +18,11 @@ SUBSYSTEM_DEF(mobs)
 	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
 		return
 	L.ExtinguishMob()
-	DISABLE_BITFIELD(L.datum_flags, DF_ISPROCESSING)
 	STOP_PROCESSING(src, L)
 
 /datum/controller/subsystem/mobs/proc/start_processing(mob/living/L)
 	if(CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))
 		return
-	ENABLE_BITFIELD(L.datum_flags, DF_ISPROCESSING)
 	START_PROCESSING(src, L)
 
 /datum/controller/subsystem/mobs/proc/MaxZChanged()
