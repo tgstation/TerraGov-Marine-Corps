@@ -589,14 +589,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/dexalinplus, /datum/reagent/medicine/peridaxon) //Does this purge any specific chems?
+	purge_list = list(/datum/reagent/medicine/dexalinplus) //Does this purge any specific chems?
 	purge_rate = 15 //rate at which it purges specific chems
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, metabolism)
-	var/amount = current_cycle * 4
+	var/amount = current_cycle * 2
 	L.adjustOxyLoss(amount)
-	L.adjustHalLoss(amount)
+	L.adjustHalLoss(amount * 1.5)
 	if(L.stat == DEAD)
 		var/death_message = "<span class='danger'>Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!</span>"
 		if(iscarbon(L))
@@ -610,7 +610,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 			if(4 to 20)
 				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
 			if(21 to 50)
-				L.knock_down(amount * 0.05)
+				L.knock_down(amount * 0.10)
 				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
 				L.knock_out(amount * 0.1)
@@ -619,7 +619,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
-	L.reagent_move_delay_modifier -= min(2.5, volume * 0.5)
+	L.reagent_move_delay_modifier -= min(2.0, volume * 0.2)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.nutrition = max(C.nutrition-(3 * REM * volume), 0) //Body burns through energy fast (also can't go under 0 nutrition)

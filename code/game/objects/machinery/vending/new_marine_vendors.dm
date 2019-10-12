@@ -786,6 +786,7 @@
 							list("Injector (Oxycodone)", 1, /obj/item/reagent_container/hypospray/autoinjector/oxycodone, null, "black"),
 							list("Injector (Tricord)", 1, /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, null, "black"),
 							list("Injector (Hypervene)", 1, /obj/item/reagent_container/hypospray/autoinjector/hypervene, null, "black"),
+							list("Injector (Hyperzine)", 15, /obj/item/reagent_container/hypospray/autoinjector/hyperzine, null, "black"),
 							list("Advanced hypospray", 2, /obj/item/reagent_container/hypospray/advanced, null, "black"),
 							list("Health analyzer", 2, /obj/item/healthanalyzer, null, "black"),
 							list("Medical HUD glasses", 2, /obj/item/clothing/glasses/hud/health, null, "black"),
