@@ -423,7 +423,6 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NONE
 
-<<<<<<< master
 /obj/item/attachable/focuslens
 	name = "M43 focused lens"
 	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
@@ -454,15 +453,14 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "efficient_a"
 	pixel_shift_x = 18
 	pixel_shift_y = 14
-	charge_mod = -5 
-=======
+	charge_mod = -5
+
 /obj/item/attachable/sx16barrel
 	name = "SX-16 barrel"
 	desc = "The standard barrel on the SX-16. CANNOT BE REMOVED."
 	slot = "muzzle"
 	icon_state = "sx16barrel"
 	flags_attach_features = NONE
->>>>>>> Adds the SX-16 shotgun, and removes the ZX scout shotgun
 
 /obj/item/attachable/pulselens
 	name = "M43 pulse lens"
