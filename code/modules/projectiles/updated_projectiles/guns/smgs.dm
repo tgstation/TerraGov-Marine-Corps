@@ -53,7 +53,6 @@
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -77,6 +76,7 @@
 	accuracy_mult_unwielded = 0.9
 	scatter = 15
 	scatter_unwielded = 25
+	fire_delay = 0.2 SECONDS
 
 
 //-------------------------------------------------------
