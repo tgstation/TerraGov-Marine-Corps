@@ -14966,11 +14966,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2;
 	name = "North High-Security Storage";
@@ -24455,6 +24450,19 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2;
 	name = "Canteen"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d2 = 8
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/prison/canteen)
@@ -51870,6 +51878,18 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
 /area/prison/cellblock/lowsec/sw)
+"lOD" = (
+/obj/structure/window/framed/prison/reinforced,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "lOX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -109300,7 +109320,7 @@ dqy
 dqy
 dqy
 iVk
-gHF
+lOD
 fBs
 bnN
 gHF
