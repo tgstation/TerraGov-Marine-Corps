@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Re-add the gun and clothing sprite variants for LV and Ice. Adds Kuro's armor sprite variants as well."
