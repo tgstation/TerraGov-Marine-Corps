@@ -1,9 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - balance: "Lowers hyperzine damage when it runs out to 10 pts oxy and 12 pts halloss/unit.
-Slightly lowers max attainable speed to ultrazine levels.
-Allows dexalin+ to be used in hyperzine blends."
-  - rscadd: "Adds 2 different autoinjectors-
--Hyperzine injectors, available from medic prep for 15 points offer a safe speedboost with some hunger as the only downside.
--Expired Hyperzine injectors, available as contraband in marinemeds offer a speedboost for the cost of 5 brain and 10 toxin damage. Also hunger."
