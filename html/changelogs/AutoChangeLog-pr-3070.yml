@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - rscdel: "Fog lines no longer spawn in distress gamemode"
