@@ -34,6 +34,7 @@
 					/obj/item/attachable/bayonet = 10,
 					/obj/item/weapon/gun/rifle/sx16 = 10,
 					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
 					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
 					)
 
@@ -202,6 +203,7 @@
 					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
 					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
 					/obj/item/smartgun_powerpack = 2
 					)

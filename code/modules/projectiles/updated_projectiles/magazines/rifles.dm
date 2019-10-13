@@ -126,3 +126,12 @@
 	default_ammo = /datum/ammo/bullet/shotgun/sx16_flechette
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/sx16
+
+/obj/item/ammo_magazine/rifle/sx16_slug
+	name = "\improper SX-16 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16

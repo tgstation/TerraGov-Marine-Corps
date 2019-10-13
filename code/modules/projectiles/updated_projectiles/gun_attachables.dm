@@ -780,8 +780,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/sx16
 	name = "SX-16 Stock"
-	desc = "The standard stock for the SX-16. Can be removed, or replaced with a different stock."
+	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."
 	icon_state = "sx16stock"
+	wield_delay_mod = 0.4 SECONDS
+	size_mod = 1
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20

@@ -614,9 +614,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 2
 	penetration = 10
 
-/datum/ammo/bullet/shotgun/sx16_buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 2, 1, 0, 0, 0, 1)
-
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
 	icon_state = "flechette"
@@ -640,6 +637,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 	damage_falloff = 0.5
 	penetration = 25
+
+/datum/ammo/bullet/shotgun/sx16_slug
+	name = "shotgun slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 3
+	max_range = 15
+	damage = 40
+	penetration = 20
+
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M,obj/item/projectile/P)
+	staggerstun(M, P, 5, 1, 0, 0, 0, 1)
 
 /*
 //================================================
