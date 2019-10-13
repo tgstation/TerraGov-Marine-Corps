@@ -203,12 +203,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/door_control{
-	dir = 2;
-	id = "port_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
-	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -1693,7 +1687,32 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"fw" = (
+"eW" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"gV" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"ru" = (
 /obj/machinery/marine_turret/premade/canterbury{
 	dir = 4
 	},
@@ -1707,7 +1726,24 @@
 	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
-"mb" = (
+"rN" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock"
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/canterbury/general)
+"tl" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"uL" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -1716,65 +1752,18 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
-"mZ" = (
-/obj/machinery/light/small{
-	dir = 1
+"uM" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "starboard_umbilical_outer";
+	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door_control{
 	id = "starboard_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
 	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/shuttle/canterbury/general)
-"nJ" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"nT" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"st" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"CR" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/effect/landmark/start/latejoin/crash,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "Oh" = (
 /obj/effect/landmark/start/marine/crash/synthetic,
@@ -1782,7 +1771,35 @@
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
-"Tz" = (
+"Vd" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "port_umbilical_outer";
+	name = "\improper Umbillical Airlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door_control{
+	dir = 2;
+	id = "port_umbilical_outer";
+	name = "outer door-control";
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/general)
+"Ve" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin/crash,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/canterbury/general)
+"Wo" = (
+/turf/closed/wall/mainship,
+/area/shuttle/canterbury/medical)
+"XA" = (
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
@@ -1793,9 +1810,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
-"Wo" = (
-/turf/closed/wall/mainship,
-/area/shuttle/canterbury/medical)
 
 (1,1,1) = {"
 aa
@@ -1829,7 +1843,7 @@ aa
 aa
 aa
 as
-aG
+Vd
 aG
 aG
 aG
@@ -1881,10 +1895,10 @@ aa
 aa
 aa
 as
-st
+gV
 aO
 aE
-nT
+eW
 as
 bw
 bk
@@ -1911,7 +1925,7 @@ ax
 aH
 aP
 cD
-Tz
+XA
 bl
 dl
 bx
@@ -2055,7 +2069,7 @@ cV
 cm
 dg
 as
-as
+rN
 "}
 (11,1,1) = {"
 ab
@@ -2067,7 +2081,7 @@ aD
 aL
 aT
 da
-CR
+Ve
 be
 bq
 bC
@@ -2089,10 +2103,10 @@ aa
 aa
 aa
 as
-nJ
+tl
 aO
 aY
-fw
+ru
 as
 bf
 br
@@ -2105,7 +2119,7 @@ cA
 cM
 cW
 as
-mb
+uL
 as
 aa
 "}
@@ -2115,7 +2129,7 @@ aa
 aa
 aa
 as
-mZ
+aw
 aM
 aU
 aV
@@ -2141,7 +2155,7 @@ aa
 aa
 aa
 as
-bS
+uM
 bS
 bS
 bS
