@@ -5863,9 +5863,9 @@
 	name = "Cargo Maintenance South"
 	})
 "qQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -7381,19 +7381,43 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
-"vu" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/space)
-"Bw" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/wood/broken,
-/area/crew_quarters/sleep_male)
-"Cp" = (
+"vJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
-"Dl" = (
+"xc" = (
+/obj/machinery/computer/nuke_disk_generator/red,
+/turf/open/floor/plating,
+/area/lv624/lazarus/hydroponics)
+"Ca" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1{
+	name = "\improper South Eastern Caves"
+	})
+"FJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"It" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Iu" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Md" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/internal_affairs)
+"OG" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/lv624/lazarus/security)
+"Sa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
@@ -7401,26 +7425,10 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"FU" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
-"Mb" = (
+"Ss" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
-"Td" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor{
-	icon_state = "red"
-	},
-/area/lv624/lazarus/security)
-"TD" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/grimy,
-/area/lv624/lazarus/internal_affairs)
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
 
 (1,1,1) = {"
 aa
@@ -8089,7 +8097,7 @@ eK
 hT
 nr
 it
-Td
+OG
 it
 jm
 it
@@ -10089,7 +10097,7 @@ bm
 ah
 bs
 cl
-bw
+xc
 bw
 bA
 bL
@@ -10926,7 +10934,7 @@ cW
 di
 dz
 dz
-TD
+Md
 dz
 dU
 cV
@@ -12848,7 +12856,7 @@ bc
 bB
 bB
 bB
-Cp
+vJ
 bB
 bB
 bB
@@ -13227,7 +13235,7 @@ lh
 le
 pf
 uk
-Bw
+Ss
 pz
 uG
 pf
@@ -14116,7 +14124,7 @@ eN
 eN
 eO
 li
-FU
+FJ
 lj
 li
 qG
@@ -14186,7 +14194,7 @@ bB
 bD
 bB
 bB
-Cp
+vJ
 bB
 bC
 bC
@@ -15351,7 +15359,7 @@ rt
 rD
 rt
 uq
-Dl
+Sa
 gZ
 fY
 nn
@@ -15899,7 +15907,7 @@ gx
 gA
 gA
 gE
-vu
+It
 gA
 gA
 gw
@@ -16042,7 +16050,7 @@ eN
 eN
 eN
 fY
-gY
+Iu
 gY
 gZ
 gY
@@ -17201,7 +17209,7 @@ oq
 oC
 oL
 oU
-Mb
+Ca
 oC
 os
 of
