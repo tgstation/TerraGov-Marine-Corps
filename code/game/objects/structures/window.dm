@@ -517,6 +517,18 @@
 	spawn(16)
 		P.close()
 
+// dont even ask
+/obj/structure/window/framed/prison/reinforced/hull/tyson
+	icon_state = "col_window0"
+	basestate = "col_window"
+	window_frame = /obj/structure/window_frame/colony
+
+// no really
+/obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced
+	icon_state = "col_rwindow0"
+	basestate = "col_rwindow"
+	window_frame = /obj/structure/window_frame/colony/reinforced
+
 /obj/structure/window/framed/prison/cell
 	name = "cell window"
 	icon_state = "prison_cellwindow0"
