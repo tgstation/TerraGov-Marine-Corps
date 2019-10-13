@@ -206,6 +206,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
@@ -378,7 +381,14 @@
 	},
 /obj/machinery/door_control{
 	id = "port_umbilical_inner";
-	pixel_y = 32
+	name = "inner door-control";
+	pixel_y = 35
+	},
+/obj/machinery/door_control{
+	dir = 2;
+	id = "port_umbilical_outer";
+	name = "outer door-control";
+	pixel_y = 28
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
@@ -447,6 +457,9 @@
 "aV" = (
 /obj/machinery/light/small,
 /obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -1521,7 +1534,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1700,7 +1712,13 @@
 	},
 /obj/machinery/door_control{
 	id = "starboard_umbilical_inner";
-	pixel_y = 32
+	name = "inner door-control";
+	pixel_y = 35
+	},
+/obj/machinery/door_control{
+	id = "starboard_umbilical_outer";
+	name = "outer door-control";
+	pixel_y = 28
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
@@ -1729,33 +1747,36 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"eA" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "starboard_umbilical_outer";
-	name = "\improper Umbillical Airlock"
+"eO" = (
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/machinery/door_control{
-	id = "starboard_umbilical_outer";
-	pixel_y = -32
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"jQ" = (
-/obj/machinery/light/small,
+"Bt" = (
 /obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/barricade/metal{
 	dir = 4
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury/general)
-"AO" = (
+"CO" = (
+/obj/machinery/light/small,
 /obj/machinery/marine_turret/premade/canterbury{
 	dir = 4
 	},
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/barricade/metal{
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -1766,18 +1787,6 @@
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
-/area/shuttle/canterbury/general)
-"VH" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_outer";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/door_control{
-	id = "port_umbilical_outer";
-	pixel_y = -32
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/mainship,
@@ -1817,7 +1826,7 @@ aa
 as
 aG
 aG
-VH
+aG
 aG
 as
 aZ
@@ -2091,7 +2100,7 @@ cA
 cM
 cW
 as
-de
+eO
 as
 aa
 "}
@@ -2101,10 +2110,10 @@ aa
 aa
 aa
 as
-AO
+Bt
 aM
 aU
-jQ
+CO
 as
 bg
 bs
@@ -2129,7 +2138,7 @@ aa
 as
 bS
 bS
-eA
+bS
 bS
 as
 bh
