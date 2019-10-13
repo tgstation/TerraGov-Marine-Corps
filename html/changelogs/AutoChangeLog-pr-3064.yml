@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - balance: "resin holes and resin sacs can no longer be placed on the same spot"
