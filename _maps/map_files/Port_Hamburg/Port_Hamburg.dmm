@@ -205,9 +205,7 @@
 /area/lv624/lazarus/comms)
 "aaS" = (
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aaT" = (
 /obj/machinery/door/airlock/colony/engineering/nexusstorage/open,
 /obj/structure/cable/yellow{
@@ -308,9 +306,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/vault,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "abg" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -481,9 +477,7 @@
 "abJ" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "abK" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -509,9 +503,7 @@
 "abN" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "abO" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -568,9 +560,7 @@
 "abW" = (
 /obj/item/tool/warning_cone,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "abX" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -593,9 +583,7 @@
 /area/lv624/lazarus/security)
 "aca" = (
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "acb" = (
 /turf/open/floor/marking/warning{
 	dir = 9
@@ -3365,33 +3353,25 @@
 "akl" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akm" = (
 /obj/structure/closet,
 /obj/item/reagent_container/food/snacks/mint,
 /obj/item/reagent_container/food/snacks/mint,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "ako" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akp" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3400,29 +3380,21 @@
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akq" = (
 /obj/structure/closet,
 /obj/item/reagent_container/food/snacks/mimeburger,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akr" = (
 /obj/machinery/pipedispenser,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aks" = (
 /obj/structure/closet,
 /obj/item/reagent_container/food/snacks/packaged_meal,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akt" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -3442,17 +3414,13 @@
 "akv" = (
 /obj/item/flashlight,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akx" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar,
@@ -3460,23 +3428,17 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/screwdriver,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aky" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akA" = (
 /obj/structure/rack,
 /obj/item/tool/wrench,
 /obj/item/tool/wrench,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akB" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass,
@@ -3486,9 +3448,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akD" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/tile/brown{
@@ -3563,9 +3523,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akO" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -3574,9 +3532,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -3585,9 +3541,7 @@
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akQ" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirt,
@@ -3630,9 +3584,7 @@
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "akX" = (
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
@@ -3749,9 +3701,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -3760,33 +3710,25 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "als" = (
 /obj/structure/rack,
 /obj/item/clothing/under/colonist,
 /obj/item/clothing/under/colonist,
 /obj/item/target,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alt" = (
 /obj/structure/rack,
 /obj/item/clothing/under/blackskirt,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alu" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/black,
 /obj/item/clothing/under/color/blackf,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alv" = (
 /obj/structure/rack,
 /obj/item/clothing/head/soft/grey,
@@ -3795,9 +3737,7 @@
 /obj/item/transfer_valve,
 /obj/item/transfer_valve,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alw" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/wood{
@@ -3805,9 +3745,7 @@
 	},
 /obj/item/reagent_container/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alx" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/wood{
@@ -3818,9 +3756,7 @@
 	},
 /obj/item/reagent_container/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aly" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -3951,9 +3887,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alR" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
@@ -3963,9 +3897,7 @@
 	amount = 30
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alS" = (
 /obj/structure/largecrate/supply,
 /obj/item/clothing/under/rank/engineer,
@@ -3973,18 +3905,14 @@
 /obj/item/clothing/under/rank/security/corp,
 /obj/item/clothing/under/rank/security/corp,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alT" = (
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "alU" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -4048,9 +3976,7 @@
 /obj/item/clothing/head/hardhat,
 /obj/item/clothing/head/hardhat,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "ame" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -4141,15 +4067,11 @@
 	},
 /obj/item/clothing/shoes/jackboots,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amk" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/platebotc,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aml" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Communications Dome";
@@ -4382,9 +4304,7 @@
 /obj/structure/closet,
 /obj/item/reagent_container/food/snacks/packaged_meal,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amH" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -4393,9 +4313,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -4410,9 +4328,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amJ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -4424,9 +4340,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amK" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -4435,9 +4349,7 @@
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amL" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	density = 1;
@@ -4448,9 +4360,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/vault,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amM" = (
 /obj/item/camera_film,
 /obj/item/camera_film,
@@ -4535,9 +4445,7 @@
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "amZ" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
@@ -4547,30 +4455,22 @@
 "ana" = (
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anb" = (
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anc" = (
 /obj/structure/largecrate/supply/supplies/tables_racks,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "and" = (
 /obj/item/stack/sheet/metal,
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anf" = (
 /obj/structure/table,
 /obj/effect/decal/remains/human,
@@ -4640,9 +4540,7 @@
 /obj/structure/largecrate/random/barrel/red,
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -4660,9 +4558,7 @@
 "anr" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "ans" = (
 /obj/structure/rack,
 /obj/item/stack/medical/bruise_pack,
@@ -4670,17 +4566,13 @@
 /obj/item/reagent_container/blood/empty,
 /obj/item/reagent_container/blood/empty,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "ant" = (
 /obj/structure/rack,
 /obj/item/storage/box/MRE,
 /obj/item/storage/box/MRE,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anv" = (
 /obj/structure/rack,
 /obj/item/flashlight,
@@ -4689,18 +4581,14 @@
 /obj/item/transfer_valve,
 /obj/item/transfer_valve,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anw" = (
 /obj/structure/rack,
 /obj/item/weapon/combat_knife,
 /obj/item/weapon/combat_knife,
 /obj/item/reagent_container/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anx" = (
 /obj/effect/landmark/xeno_tunnel,
 /turf/open/ground/grass,
@@ -4867,21 +4755,15 @@
 /obj/item/weapon/claymore/mercsword/machete,
 /obj/item/reagent_container/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anU" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anV" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anW" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -4909,9 +4791,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "anZ" = (
 /obj/structure/closet,
 /obj/item/taperecorder,
@@ -5013,17 +4893,13 @@
 /obj/item/stack/sheet/metal,
 /obj/item/reagent_container/spray/chemsprayer,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aom" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aon" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -5035,9 +4911,7 @@
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aoo" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -5046,9 +4920,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aop" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -5058,9 +4930,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aoq" = (
 /obj/structure/rack,
 /obj/item/circuitboard/apc,
@@ -5074,9 +4944,7 @@
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aot" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
@@ -5121,22 +4989,16 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aoA" = (
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aoB" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aoC" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -5339,9 +5201,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apg" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -5351,9 +5211,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aph" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/ground/riverdeep,
@@ -5425,9 +5283,7 @@
 "aps" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apt" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -5458,9 +5314,7 @@
 "apw" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/heater,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apx" = (
 /obj/structure/jungle/planttop1,
 /turf/closed/gm/dense,
@@ -5469,9 +5323,7 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/atmospherics/components/unary/portables_connector,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apz" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5491,9 +5343,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apC" = (
 /obj/structure/sink{
 	dir = 4
@@ -5551,9 +5401,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "apJ" = (
 /obj/structure/table,
 /obj/item/tool/weldingtool,
@@ -5825,16 +5673,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/vault,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aqw" = (
 /obj/machinery/light/small,
 /obj/item/tool/extinguisher,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aqx" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/closed/wall/indestructible/mineral{
@@ -5851,14 +5695,10 @@
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aqz" = (
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aqA" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /obj/structure/cable/yellow{
@@ -6055,9 +5895,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aqV" = (
 /obj/item/reagent_container/food/drinks/cans/starkist,
 /turf/open/floor/tile/bar,
@@ -6233,9 +6071,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "arA" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -6301,9 +6137,7 @@
 "arK" = (
 /obj/item/pipe_painter,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "arL" = (
 /obj/machinery/smartfridge/seeds,
 /obj/structure/extinguisher_cabinet{
@@ -6566,9 +6400,7 @@
 /area/lv624/lazarus/hydroponics)
 "asE" = (
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "asF" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle4)
@@ -6678,9 +6510,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/vault,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "atb" = (
 /turf/closed/wall/mineral/sandstone,
 /area/lv624/ground/jungle4)
@@ -6889,9 +6719,7 @@
 "atI" = (
 /obj/structure/window_frame/colony/reinforced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "atJ" = (
 /obj/item/frame/table,
 /turf/open/floor/tile/bar,
@@ -7086,9 +6914,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aue" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -7181,9 +7007,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "aut" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
@@ -7214,9 +7038,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "auy" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -7293,9 +7115,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "auI" = (
 /turf/open/floor/marking/warning{
 	dir = 1
@@ -7373,9 +7193,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "auT" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -7504,9 +7322,7 @@
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "avi" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/tile/whiteyellow/full,
@@ -7593,9 +7409,7 @@
 "avw" = (
 /obj/structure/window/framed/wood/reinforced,
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "avx" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/item/stack/sheet/metal{
@@ -7680,9 +7494,7 @@
 /area/lv624/lazarus/security)
 "avN" = (
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "avO" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
@@ -7977,9 +7789,7 @@
 	anchored = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "awI" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/planttop1,
@@ -8130,9 +7940,7 @@
 "axg" = (
 /obj/structure/window/framed/colony,
 /turf/open/space,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axh" = (
 /obj/machinery/light{
 	dir = 1
@@ -8194,9 +8002,7 @@
 "axn" = (
 /obj/structure/fence,
 /turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "axo" = (
 /obj/structure/rack,
 /obj/machinery/light{
@@ -8232,9 +8038,7 @@
 "axr" = (
 /obj/structure/fence,
 /turf/open/ground/grass/grass2,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -1"
-	})
+/area/port_hamburg/cargo)
 "axs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -8262,21 +8066,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axu" = (
 /obj/structure/largecrate/random,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axv" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -8286,15 +8084,11 @@
 "axx" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axy" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -8393,9 +8187,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axL" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -8404,9 +8196,7 @@
 /area/lv624/lazarus/secure_storage)
 "axM" = (
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axN" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8424,9 +8214,7 @@
 "axP" = (
 /obj/structure/window/framed/colony,
 /turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axQ" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -8456,9 +8244,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axU" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -8474,9 +8260,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axV" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8524,9 +8308,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "axY" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -8618,9 +8400,7 @@
 "ayg" = (
 /obj/structure/closet,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "ayh" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -8670,9 +8450,7 @@
 	on = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "ayn" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun,
@@ -8815,9 +8593,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "ayF" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal{
@@ -8901,9 +8677,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "ayR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -8945,9 +8719,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "ayV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -9030,9 +8802,7 @@
 	},
 /obj/effect/decal/warning_stripes,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "azi" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -9222,9 +8992,7 @@
 "azM" = (
 /obj/machinery/newscaster,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "azN" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -9247,9 +9015,7 @@
 "azP" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "azQ" = (
 /obj/machinery/power/geothermal{
 	desc = "A thermoelectric generator fueled by searing hot uranium!";
@@ -9257,9 +9023,7 @@
 	name = "thermoelectric generator"
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "azR" = (
 /obj/machinery/reagentgrinder,
 /turf/open/floor/tile/dark,
@@ -9630,9 +9394,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aAU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/white,
@@ -9683,9 +9445,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aBc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -9952,9 +9712,7 @@
 "aBP" = (
 /obj/structure/bed,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aBQ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -9967,9 +9725,7 @@
 /area/lv624/ground/compound/c)
 "aBR" = (
 /turf/closed/wall/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aBS" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -10212,9 +9968,7 @@
 /area/lv624/lazarus/quartstorage)
 "aCD" = (
 /turf/open/floor/wood/broken,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aCE" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -10234,9 +9988,7 @@
 /area/lv624/ground/compound/c)
 "aCF" = (
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aCG" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -10259,9 +10011,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/ground/grass,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aCJ" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/se)
@@ -10271,9 +10021,7 @@
 	},
 /obj/structure/closet,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aCL" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/white,
@@ -10331,9 +10079,7 @@
 	},
 /obj/structure/closet,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aCW" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -10672,9 +10418,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aDZ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -11092,9 +10836,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aEY" = (
 /obj/structure/table,
 /obj/item/trash/cheesie,
@@ -11155,9 +10897,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aFd" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -11165,9 +10905,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aFe" = (
 /obj/item/reagent_container/food/drinks/flask/barflask,
 /turf/open/floor/tile/purple/taupepurple{
@@ -11202,9 +10940,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aFj" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/smg/uzi/extended,
@@ -11287,9 +11023,7 @@
 "aFr" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aFs" = (
 /obj/structure/bed,
 /obj/item/bedsheet/purple,
@@ -12788,9 +12522,7 @@
 "aJF" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aJG" = (
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plating/ground/dirt,
@@ -12965,9 +12697,7 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo area -2"
-	})
+/area/port_hamburg/cargo2)
 "aKb" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/dirt,
@@ -13103,9 +12833,7 @@
 	name = "Deep Water";
 	opacity = 0
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aKr" = (
 /obj/structure/lattice,
 /obj/structure/table/reinforced,
@@ -13471,9 +13199,7 @@
 "aLi" = (
 /obj/vehicle/powerloader,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aLj" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Dome";
@@ -13494,9 +13220,7 @@
 "aLl" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aLm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -13536,9 +13260,7 @@
 	dir = 8
 	},
 /turf/open/ground/grass,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aLq" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Engineering Dome";
@@ -13568,9 +13290,7 @@
 /area/lv624/lazarus/engineering)
 "aLs" = (
 /turf/closed/wall/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aLt" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -13708,9 +13428,7 @@
 "aLK" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aLL" = (
 /obj/item/ammo_magazine/pistol,
 /turf/open/floor/plating/warning{
@@ -13867,9 +13585,7 @@
 "aMi" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aMj" = (
 /obj/machinery/power/apc{
 	chargecount = 900
@@ -14207,9 +13923,7 @@
 "aND" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aNE" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -14363,9 +14077,7 @@
 "aOl" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aOm" = (
 /turf/closed/mineral,
 /area/lv624/ground/jungle1)
@@ -15282,9 +14994,7 @@
 /area/lv624/ground/compound/c)
 "aRS" = (
 /turf/open/ground/river,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aRT" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -15299,15 +15009,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aRU" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aRV" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -15320,15 +15026,11 @@
 "aRW" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aRX" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aRY" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/window/reinforced{
@@ -15351,21 +15053,15 @@
 "aRZ" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aSa" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSb" = (
 /obj/structure/dispenser,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSc" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -15377,23 +15073,17 @@
 "aSd" = (
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSe" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSf" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSg" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -15406,55 +15096,41 @@
 "aSh" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSi" = (
 /obj/structure/cargo_container{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSj" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSk" = (
 /obj/structure/cargo_container{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSl" = (
 /obj/structure/door_assembly,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSm" = (
 /obj/structure/cargo_container/gorg{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSn" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSo" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -15468,15 +15144,11 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSq" = (
 /obj/structure/largecrate/supply/weapons/flamers,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSr" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -15489,9 +15161,7 @@
 "aSs" = (
 /obj/item/flashlight,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aSt" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/quart)
@@ -15548,9 +15218,7 @@
 "aSA" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSB" = (
 /obj/item/tool/extinguisher,
 /turf/open/floor/plating/platebot,
@@ -15576,27 +15244,19 @@
 "aSF" = (
 /obj/structure/largecrate/supply/ammo/m39,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSG" = (
 /obj/structure/largecrate/supply/ammo/m41a,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSH" = (
 /obj/structure/largecrate/supply/ammo/pistol,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSI" = (
 /obj/structure/largecrate/supply/ammo/sentry,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15642,9 +15302,7 @@
 "aSO" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aSP" = (
 /obj/structure/table,
 /obj/item/reagent_container/food/snacks/grilledcheese,
@@ -15912,109 +15570,79 @@
 /obj/item/reagent_container/food/snacks/donkpocket,
 /obj/item/flashlight,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aTT" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTU" = (
 /obj/structure/largecrate/random/barrel/blue,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTV" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTW" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTX" = (
 /obj/structure/largecrate/supply/weapons/shotgun,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTY" = (
 /obj/structure/mopbucket,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aTZ" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUa" = (
 /obj/structure/rack,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUb" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUc" = (
 /obj/structure/ore_box,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUd" = (
 /obj/structure/ore_box,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUe" = (
 /obj/structure/rack,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUf" = (
 /obj/structure/ore_box,
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUg" = (
 /obj/structure/rack,
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUh" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/sand4)
@@ -16052,105 +15680,77 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUn" = (
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUo" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUp" = (
 /obj/structure/cargo_container{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUq" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUr" = (
 /obj/structure/cargo_container{
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUs" = (
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUt" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUu" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUv" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUw" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUy" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUz" = (
 /obj/structure/largecrate/random,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUA" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUB" = (
 /obj/structure/jungle/planttop1,
 /turf/closed/wall/indestructible/mineral{
@@ -16172,37 +15772,27 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUE" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUF" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUG" = (
 /obj/machinery/nuclearbomb,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUH" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUI" = (
 /obj/structure/jungle/plantbot1,
 /turf/closed/wall/indestructible/mineral{
@@ -16283,14 +15873,10 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUO" = (
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aUP" = (
 /obj/machinery/light,
 /obj/machinery/power/geothermal{
@@ -16299,169 +15885,123 @@
 	name = "thermoelectric generator"
 	},
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUQ" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/wood,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aUR" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUS" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUT" = (
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUU" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUV" = (
 /obj/structure/cargo_container{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUW" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUX" = (
 /obj/structure/cargo_container{
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aUZ" = (
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVa" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVb" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVc" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVd" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVe" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVf" = (
 /obj/structure/largecrate/random,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVg" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVh" = (
 /obj/structure/cargo_container/green{
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVi" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVj" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVk" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVl" = (
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVm" = (
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVn" = (
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
@@ -16584,9 +16124,7 @@
 "aVC" = (
 /obj/vehicle/powerloader,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aVD" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/structure/cable{
@@ -17160,9 +16698,7 @@
 "aXs" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor,
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aXt" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/jungle4)
@@ -17312,9 +16848,7 @@
 /obj/item/laptop,
 /obj/item/flashlight,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aXU" = (
 /obj/structure/table,
 /obj/item/book/manual/supermatter_engine,
@@ -17729,17 +17263,13 @@
 /obj/item/disk/nuclear,
 /obj/item/detective_scanner,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aYG" = (
 /obj/item/moneybag,
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle "
-	})
+/area/port_hamburg/cargo_jungle)
 "aYH" = (
 /obj/structure/table,
 /obj/item/reagent_scanner/adv,
@@ -17804,9 +17334,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/quartstorage/outdoors{
-	name = "\improper Cargo Bay Area Jungle 2"
-	})
+/area/port_hamburg/cargo_jungle2)
 "aYR" = (
 /obj/item/reagent_container/spray/cleaner,
 /obj/item/reagent_container/spray/cleaner,
@@ -17984,9 +17512,7 @@
 /obj/item/bedsheet/rd,
 /obj/item/flashlight,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZp" = (
 /obj/item/stack/sheet/wood{
 	amount = 50
@@ -18085,9 +17611,7 @@
 	},
 /obj/structure/sink/kitchen,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZE" = (
 /obj/structure/table{
 	icon_state = "tabledir";
@@ -18097,53 +17621,39 @@
 /obj/item/reagent_container/food/snacks/donkpocket,
 /obj/item/reagent_container/food/snacks/donkpocket,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZF" = (
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZG" = (
 /obj/structure/rack,
 /obj/structure/mopbucket,
 /obj/item/tool/mop,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZH" = (
 /obj/structure/table,
 /obj/machinery/microwave,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZI" = (
 /obj/structure/bed/chair,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZJ" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
 	dir = 4
 	},
 /turf/open/ground/grass,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZK" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZL" = (
 /obj/structure/table{
 	icon_state = "tabledir";
@@ -18157,9 +17667,7 @@
 /obj/item/tool/pen,
 /obj/structure/paper_bin,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZM" = (
 /obj/structure/rack,
 /obj/item/tool/lighter/random,
@@ -18167,67 +17675,49 @@
 /obj/item/tool/candle,
 /obj/item/tool/extinguisher,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZN" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZO" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZP" = (
 /obj/structure/catwalk,
 /turf/open/ground/river,
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "aZQ" = (
 /obj/item/storage/firstaid/regular,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/freezer,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZR" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZS" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZT" = (
 /obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZU" = (
 /obj/machinery/shower{
 	dir = 4
 	},
 /turf/open/floor/freezer,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZV" = (
 /obj/structure/toilet{
 	icon_state = "toilet00";
@@ -18237,23 +17727,17 @@
 	dir = 8
 	},
 /turf/open/floor/freezer,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZW" = (
 /obj/machinery/light/small,
 /obj/structure/table,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZX" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/rd,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "aZY" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall/wood,
@@ -18538,9 +18022,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baP" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
@@ -18549,33 +18031,23 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baQ" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baR" = (
 /obj/structure/closet/secure_closet/medical1,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baS" = (
 /obj/structure/coatrack,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baT" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baU" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/wood,
@@ -18620,9 +18092,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "baZ" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -18630,9 +18100,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bba" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -18643,9 +18111,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbb" = (
 /obj/structure/window_frame/wood,
 /obj/structure/cable/yellow{
@@ -18654,36 +18120,26 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbd" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/compound/n)
 "bbe" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbf" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbg" = (
 /obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbi" = (
 /obj/structure/closet/secure_closet/atmos_personal,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbj" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -18738,9 +18194,7 @@
 "bbo" = (
 /obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bbp" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -18836,9 +18290,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "bbx" = (
 /obj/machinery/light{
 	dir = 1
@@ -18846,16 +18298,12 @@
 /turf/open/ground/coast{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "bbz" = (
 /turf/open/ground/coast{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "bbA" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable,
@@ -19144,17 +18592,13 @@
 /obj/structure/paper_bin,
 /obj/item/disk/tech_disk,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcp" = (
 /obj/machinery/light/small,
 /obj/structure/table,
 /obj/item/flashlight,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcr" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall,
@@ -19216,9 +18660,7 @@
 /obj/item/autopsy_scanner,
 /obj/item/reagent_scanner,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcB" = (
 /obj/structure/bookcase,
 /turf/open/floor/wood,
@@ -19239,9 +18681,7 @@
 /obj/item/camera,
 /obj/item/disk/botany,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcD" = (
 /obj/structure/table{
 	icon_state = "tabledir";
@@ -19258,9 +18698,7 @@
 /obj/item/map,
 /obj/item/radio,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcE" = (
 /obj/structure/table{
 	icon_state = "tabledir";
@@ -19276,9 +18714,7 @@
 /obj/item/megaphone,
 /obj/item/motiondetector,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcG" = (
 /obj/structure/table{
 	icon_state = "tabledir";
@@ -19293,9 +18729,7 @@
 /obj/structure/paper_bin,
 /obj/item/binoculars/tactical,
 /turf/open/floor/wood,
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcI" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -19316,9 +18750,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcN" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
@@ -19327,9 +18759,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 4
 	},
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcO" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
@@ -19338,9 +18768,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
-/area/crew_quarters/sleep_male{
-	name = "\improper Abandoned Dorm"
-	})
+/area/port_hamburg/abandoned_dorm)
 "bcQ" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -19389,16 +18817,12 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "bdc" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "Docks"
-	})
+/area/port_hamburg/docks)
 "bdd" = (
 /obj/machinery/colony_floodlight,
 /turf/open/ground/grass,
