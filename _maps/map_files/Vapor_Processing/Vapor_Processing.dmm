@@ -108,6 +108,7 @@
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -603,6 +604,7 @@
 /area/shuttle/drop1/lz1)
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -4875,6 +4877,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "nZ" = (
@@ -7378,6 +7381,46 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
+"vu" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Bw" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
+"Cp" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"Dl" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"FU" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"Mb" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1{
+	name = "\improper South Eastern Caves"
+	})
+"Td" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/lv624/lazarus/security)
+"TD" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/internal_affairs)
 
 (1,1,1) = {"
 aa
@@ -8046,7 +8089,7 @@ eK
 hT
 nr
 it
-it
+Td
 it
 jm
 it
@@ -10883,7 +10926,7 @@ cW
 di
 dz
 dz
-dz
+TD
 dz
 dU
 cV
@@ -12805,7 +12848,7 @@ bc
 bB
 bB
 bB
-bB
+Cp
 bB
 bB
 bB
@@ -13184,7 +13227,7 @@ lh
 le
 pf
 uk
-pu
+Bw
 pz
 uG
 pf
@@ -14073,7 +14116,7 @@ eN
 eN
 eO
 li
-li
+FU
 lj
 li
 qG
@@ -14143,7 +14186,7 @@ bB
 bD
 bB
 bB
-bB
+Cp
 bB
 bC
 bC
@@ -15308,7 +15351,7 @@ rt
 rD
 rt
 uq
-pk
+Dl
 gZ
 fY
 nn
@@ -15856,7 +15899,7 @@ gx
 gA
 gA
 gE
-gA
+vu
 gA
 gA
 gw
@@ -17158,7 +17201,7 @@ oq
 oC
 oL
 oU
-oL
+Mb
 oC
 os
 of
