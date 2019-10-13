@@ -238,6 +238,7 @@
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\signal_redirect.dm"
 #include "code\datums\components\squeak.dm"
+#include "code\datums\elements\_element.dm"
 #include "code\datums\emergency_calls\clf.dm"
 #include "code\datums\emergency_calls\colonists.dm"
 #include "code\datums\emergency_calls\deathsquad.dm"
