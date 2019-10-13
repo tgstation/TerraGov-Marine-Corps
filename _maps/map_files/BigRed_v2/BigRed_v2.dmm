@@ -25353,17 +25353,16 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"hKr" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves)
 "hMv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"hQh" = (
-/obj/effect/alien/weeds/node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
 "hRh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -25464,6 +25463,11 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"jQL" = (
+/obj/effect/alien/weeds/node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "jSv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25590,10 +25594,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
-"luw" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
 "lxP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/asteroidwarning{
@@ -25922,6 +25922,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"ptp" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves)
 "pvw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -26146,10 +26150,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
-"rBi" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -26251,6 +26251,10 @@
 "tku" = (
 /turf/closed/wall/indestructible/mineral,
 /area/storage/testroom)
+"tnm" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "tnE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
@@ -27671,7 +27675,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -27888,7 +27892,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -28105,7 +28109,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -28322,7 +28326,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -28539,7 +28543,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -28756,7 +28760,7 @@ aad
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 abq
@@ -28973,7 +28977,7 @@ aad
 aad
 aad
 aac
-aac
+ptp
 aac
 abq
 aad
@@ -29190,7 +29194,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -29407,7 +29411,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -29624,7 +29628,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -29841,7 +29845,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -30058,7 +30062,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -30275,7 +30279,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -30492,7 +30496,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 abq
 aad
 aad
@@ -30709,7 +30713,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aad
 aad
@@ -30926,7 +30930,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aad
 aad
@@ -31143,7 +31147,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aad
 aad
@@ -31360,12 +31364,12 @@ aac
 aac
 aac
 aac
-aac
-aac
-luw
-luw
-luw
-luw
+ptp
+ptp
+tnm
+tnm
+tnm
+tnm
 aad
 aad
 aad
@@ -31582,7 +31586,7 @@ abq
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -31799,7 +31803,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -32016,7 +32020,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 abq
 aad
 aad
@@ -32233,24 +32237,24 @@ aad
 aad
 abq
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-luw
-luw
-luw
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+tnm
+tnm
+tnm
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
 aab
 aaa
 aaa
@@ -42886,19 +42890,19 @@ aad
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
 aac
 aac
 aac
@@ -43103,7 +43107,7 @@ aad
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43115,7 +43119,7 @@ abq
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43320,7 +43324,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43332,7 +43336,7 @@ aad
 abq
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43537,7 +43541,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43549,7 +43553,7 @@ aad
 aad
 abq
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -43754,7 +43758,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43766,7 +43770,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -43971,7 +43975,7 @@ abq
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -43983,7 +43987,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -44188,7 +44192,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aad
 aad
@@ -44200,7 +44204,7 @@ aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -44405,7 +44409,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -44417,7 +44421,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aac
 aac
@@ -44622,7 +44626,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -44634,7 +44638,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -44839,7 +44843,7 @@ aad
 aad
 aad
 abq
-luw
+tnm
 aad
 afZ
 abq
@@ -44851,7 +44855,7 @@ ahw
 abq
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -45056,7 +45060,7 @@ ahw
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -45068,7 +45072,7 @@ aad
 aad
 abq
 abq
-rBi
+hKr
 abq
 abq
 abq
@@ -45273,7 +45277,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -45285,7 +45289,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -45490,7 +45494,7 @@ aad
 aad
 aad
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -45502,7 +45506,7 @@ aad
 aad
 aad
 aad
-hQh
+jQL
 aad
 aad
 aad
@@ -45707,19 +45711,19 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
 aac
 aac
 aad
@@ -52931,18 +52935,18 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-luw
-rBi
-luw
-luw
-luw
-luw
-rBi
-aac
-aac
+ptp
+ptp
+ptp
+tnm
+hKr
+tnm
+tnm
+tnm
+tnm
+hKr
+ptp
+ptp
 aac
 aac
 aac
@@ -53148,7 +53152,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aad
@@ -53159,7 +53163,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -53365,7 +53369,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aad
@@ -53376,7 +53380,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -53582,7 +53586,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aad
@@ -53593,7 +53597,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -53799,7 +53803,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -53810,7 +53814,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -54016,8 +54020,8 @@ aac
 aac
 aac
 aac
+ptp
 aac
-aac
 abq
 abq
 abq
@@ -54027,7 +54031,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -54233,7 +54237,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 abq
 aad
 aad
@@ -54244,7 +54248,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -54450,7 +54454,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -54461,7 +54465,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -54667,7 +54671,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -54678,7 +54682,7 @@ aad
 aad
 aad
 abq
-aac
+ptp
 aac
 aac
 aac
@@ -54884,7 +54888,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -54895,7 +54899,7 @@ aad
 aad
 abq
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -55101,7 +55105,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aad
 aad
 aad
@@ -55112,7 +55116,7 @@ aad
 aad
 abq
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -55318,7 +55322,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 abq
 aad
 aad
@@ -55329,7 +55333,7 @@ aad
 aad
 abq
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -55535,7 +55539,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aad
@@ -55546,7 +55550,7 @@ aad
 abq
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -55752,18 +55756,18 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-luw
-luw
-luw
-luw
-rBi
-aac
-aac
-aac
+ptp
+ptp
+ptp
+ptp
+tnm
+tnm
+tnm
+tnm
+hKr
+ptp
+ptp
+ptp
 aac
 aac
 aac
@@ -68919,14 +68923,14 @@ aad
 aad
 aad
 iCv
-aac
-luw
-luw
-luw
-luw
-luw
-luw
-aac
+ptp
+tnm
+tnm
+tnm
+tnm
+tnm
+tnm
+ptp
 aac
 aac
 aac
@@ -69136,14 +69140,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -69353,14 +69357,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -69570,14 +69574,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 qvY
 aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -69787,14 +69791,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -70004,14 +70008,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
 aad
 aad
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -70221,14 +70225,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -70438,14 +70442,14 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -70507,27 +70511,27 @@ aaa
 aaa
 aaa
 aab
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-luw
-luw
-luw
-luw
-luw
-luw
-rBi
-luw
-luw
-luw
-luw
-luw
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+tnm
+tnm
+tnm
+tnm
+tnm
+tnm
+hKr
+tnm
+tnm
+tnm
+tnm
+tnm
 aad
 aad
 aad
@@ -70655,14 +70659,14 @@ aac
 aad
 aad
 aad
-luw
+tnm
 aac
 aac
 aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -70744,7 +70748,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -70872,14 +70876,14 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
+ptp
 aac
 aac
 aac
@@ -70961,7 +70965,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -71178,7 +71182,7 @@ aad
 aad
 aad
 aad
-luw
+tnm
 aad
 aad
 aad
@@ -71395,7 +71399,7 @@ aad
 aad
 aad
 aad
-aac
+ptp
 aac
 aac
 aac
@@ -71612,7 +71616,7 @@ aad
 aad
 aad
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -71829,7 +71833,7 @@ aad
 aad
 aad
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -72046,7 +72050,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -72263,7 +72267,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -72480,7 +72484,7 @@ aad
 aad
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -72697,7 +72701,7 @@ aad
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -72914,7 +72918,7 @@ aad
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -73131,7 +73135,7 @@ aad
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -73348,7 +73352,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -73565,7 +73569,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -73782,7 +73786,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -73999,7 +74003,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -74216,7 +74220,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -74433,7 +74437,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -74650,7 +74654,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
@@ -74867,7 +74871,7 @@ aac
 aac
 aac
 aac
-aac
+ptp
 aac
 aac
 aac
