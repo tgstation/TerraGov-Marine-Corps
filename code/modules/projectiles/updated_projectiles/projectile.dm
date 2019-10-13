@@ -379,24 +379,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				break
-			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-				last_processed_turf = turf_crossed_by
-				ammo.on_hit_turf(turf_crossed_by, src)
-				turf_crossed_by.bullet_act(src)
-				if(border_escaped_through & (NORTH|SOUTH))
-					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
-					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
-				else
-					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
-					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
-				end_of_movement = i
-				break
 			if(scan_a_turf(turf_crossed_by, border_escaped_through))
 				last_processed_turf = turf_crossed_by
 				if(border_escaped_through & (NORTH|SOUTH)) //Escapes through X.
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				else //Escapes through Y.
+					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
+				end_of_movement = i
+				break
+			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+				last_processed_turf = turf_crossed_by
+				ammo.on_hit_turf(turf_crossed_by, src)
+				if(border_escaped_through & (NORTH|SOUTH))
+					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
+				else
 					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
@@ -436,12 +435,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
 		last_processed_turf = next_turf
-		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(next_turf, src)
-			next_turf.bullet_act(src)
+		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
-		if(scan_a_turf(next_turf, movement_dir))
+		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			ammo.on_hit_turf(next_turf, src)
 			end_of_movement = i
 			break
 		if(distance_travelled >= proj_max_range)
@@ -503,6 +501,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
+
+		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			ammo.on_hit_turf(turf_to_scan, src)
 
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
