@@ -618,11 +618,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 	return ..()
 
-//datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L, metabolism)
-	//purge_list.Add(/datum/reagent/medicine/peridaxon) //Rapidly purges chems that would offset the downsides
-	//return ..()
-
-
 /datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_move_delay_modifier -= min(2.0, volume * 0.2)
 	if(iscarbon(L))
