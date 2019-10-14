@@ -15369,12 +15369,6 @@
 "bdE" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/atmos/outside)
-"bdG" = (
-/obj/structure/grille/broken,
-/obj/structure/jungle/vines/heavy,
-/obj/structure/window_frame/colony,
-/turf/open/floor/plating,
-/area/lv624/lazarus/atmos)
 "bdH" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/jungle/vines,
@@ -40989,9 +40983,9 @@ baK
 aZr
 aZr
 bie
-bdG
+aZv
 bep
-bdG
+aZv
 bie
 aZr
 bgI

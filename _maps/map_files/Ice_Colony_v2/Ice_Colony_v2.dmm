@@ -37099,10 +37099,10 @@
 /area/ice_colony/underground/maintenance/east)
 "bTY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/effect/decal/remains/human,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bTZ" = (
@@ -37113,15 +37113,6 @@
 "bUa" = (
 /obj/machinery/light/small{
 	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/east)
-"bUb" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/obj/effect/decal/cleanable/cobweb{
-	dir = 1
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
@@ -40150,6 +40141,12 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/valley/west)
+"hmq" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/east)
 "hot" = (
 /obj/structure/sign/greencross,
 /turf/open/floor/tile/darkgreen/darkgreen2,
@@ -66316,7 +66313,7 @@ bCI
 bCI
 bCI
 bUa
-bCI
+hmq
 bQw
 bjZ
 bSw
@@ -66829,7 +66826,7 @@ bTX
 bCJ
 bTY
 bTZ
-bUb
+bTN
 bCI
 bQw
 bjZ
