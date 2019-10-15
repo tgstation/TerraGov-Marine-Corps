@@ -1,0 +1,4 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - balance: "In crash gamemode fog now only protects the xeno silos and lasts 20-30 minutes"
