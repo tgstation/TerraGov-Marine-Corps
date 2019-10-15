@@ -1,0 +1,4 @@
+author: "Isy232"
+delete-after: True
+changes: 
+  - balance: "88 Mod 4 damage_mult = 1.4 => 1.2"

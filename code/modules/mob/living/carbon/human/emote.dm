@@ -65,6 +65,15 @@
 	emote_type = EMOTE_AUDIBLE
 
 
+/datum/emote/living/carbon/human/cough/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.coughs[user.gender])
+		return user.species.coughs[user.gender]
+	if(user.species.coughs[NEUTER])
+		return user.species.coughs[NEUTER]
+
+
 /datum/emote/living/carbon/human/cry
 	key = "cry"
 	key_third_person = "cries"
@@ -109,6 +118,14 @@
 	emote_type = EMOTE_AUDIBLE
 	stat_allowed = UNCONSCIOUS
 
+
+/datum/emote/living/carbon/human/gasp/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.gasps[user.gender])
+		return user.species.gasps[user.gender]
+	if(user.species.gasps[NEUTER])
+		return user.species.gasps[NEUTER]
 
 /datum/emote/living/carbon/human/giggle
 	key = "giggle"
@@ -399,6 +416,31 @@
 
 
 /datum/emote/living/carbon/human/gored/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
+	. = ..()
+	if(!.)
+		return
+	var/image/pain = image('icons/mob/talk.dmi', user, icon_state = "pain")
+	user.add_emote_overlay(pain)
+
+
+/datum/emote/living/carbon/human/burstscream
+	key = "burstscream"
+	message = "screams in agony!"
+	emote_type = EMOTE_AUDIBLE
+	flags_emote = EMOTE_FORCED_AUDIO
+	stat_allowed = UNCONSCIOUS
+
+
+/datum/emote/living/carbon/human/burstscream/get_sound(mob/living/carbon/human/user)
+	if(!user.species)
+		return
+	if(user.species.burstscreams[user.gender])
+		return user.species.burstscreams[user.gender]
+	if(user.species.burstscreams[NEUTER])
+		return user.species.burstscreams[NEUTER]
+
+
+/datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
 	if(!.)
 		return

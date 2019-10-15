@@ -49,6 +49,13 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/action/xeno_action/plant_weeds/can_use_action(silent, override_flags)
+	. = ..()
+	if(locate(/obj/effect/alien/resin/trap) in get_turf(owner))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return FALSE
+
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
 
