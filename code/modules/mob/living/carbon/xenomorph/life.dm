@@ -149,7 +149,7 @@
 			use_plasma(5)
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * 0.5 * ( recovery_aura * 0.5 ))) // Empty recovery aura will always equal 0
+		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) // Empty recovery aura will always equal 0
 	else
 		gain_plasma(1)
 
