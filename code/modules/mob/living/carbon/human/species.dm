@@ -74,6 +74,9 @@
 	var/list/screams = list()
 	var/list/paincries = list()
 	var/list/goredcries = list()
+	var/list/gasps = list()
+	var/list/coughs = list()
+	var/list/burstscreams = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -245,6 +248,9 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
+	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
+	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -386,6 +392,7 @@
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 
 	flesh_color = "#E5CD99"
 

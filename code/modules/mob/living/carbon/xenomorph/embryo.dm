@@ -169,6 +169,8 @@
 								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)
 
+	victim.emote_burstscream()
+
 	addtimer(CALLBACK(src, .proc/burst, victim), 3 SECONDS)
 
 
@@ -182,7 +184,6 @@
 
 	victim.update_burst()
 
-	victim.emote("scream")
 	if(istype(victim.loc, /obj/vehicle/multitile/root))
 		var/obj/vehicle/multitile/root/V = victim.loc
 		V.handle_player_exit(src)
@@ -211,4 +212,12 @@
 
 	if((locate(/obj/structure/bed/nest) in loc) && hive.living_xeno_queen?.z == loc.z)
 		burrow()
-		
+
+/mob/living/proc/emote_burstscream()
+	return
+
+
+/mob/living/carbon/human/emote_burstscream()
+	if(species.species_flags & NO_PAIN)
+		return
+	emote("burstscream")
