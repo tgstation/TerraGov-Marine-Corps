@@ -19,14 +19,14 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/door_control/mainship/ai
+/obj/machinery/door_control/ai
 	name = "AI Lockdown"
 
-/obj/machinery/door_control/mainship/ai/exterior
+/obj/machinery/door_control/ai/exterior
 	name = "AI Exterior Lockdown"
 	id = "ailockdownexterior"
 
-/obj/machinery/door_control/mainship/ai/interior
+/obj/machinery/door_control/ai/interior
 	name = "AI Interior Lockdown"
 	id = "ailockdowninterior"
 
