@@ -7090,9 +7090,7 @@
 "Ca" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
