@@ -108,6 +108,7 @@
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -603,6 +604,7 @@
 /area/shuttle/drop1/lz1)
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -4703,6 +4705,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "nZ" = (
@@ -5624,9 +5627,9 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "qQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -7076,6 +7079,54 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
+"vJ" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"xc" = (
+/obj/machinery/computer/nuke_disk_generator/red,
+/turf/open/floor/plating,
+/area/lv624/lazarus/hydroponics)
+"Ca" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1{
+	name = "\improper South Eastern Caves"
+	})
+"FJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"It" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Iu" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Md" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/internal_affairs)
+"OG" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/lv624/lazarus/security)
+"Sa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Ss" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/wood/broken,
+/area/crew_quarters/sleep_male)
 
 (1,1,1) = {"
 aa
@@ -7744,7 +7795,7 @@ eK
 hT
 nr
 it
-it
+OG
 it
 jm
 it
@@ -9744,7 +9795,7 @@ bm
 ah
 bs
 cl
-bw
+xc
 bw
 bA
 bL
@@ -10581,7 +10632,7 @@ cW
 di
 dz
 dz
-dz
+Md
 dz
 dU
 cV
@@ -12503,7 +12554,7 @@ bc
 bB
 bB
 bB
-bB
+vJ
 bB
 bB
 bB
@@ -12882,7 +12933,7 @@ lh
 le
 pf
 uk
-pu
+Ss
 pz
 uG
 pf
@@ -13771,7 +13822,7 @@ eN
 eN
 eO
 li
-li
+FJ
 lj
 li
 qG
@@ -13841,7 +13892,7 @@ bB
 bD
 bB
 bB
-bB
+vJ
 bB
 bC
 bC
@@ -15006,7 +15057,7 @@ rt
 rD
 rt
 uq
-pk
+Sa
 gZ
 fY
 nn
@@ -15554,7 +15605,7 @@ gx
 gA
 gA
 gE
-gA
+It
 gA
 gA
 gw
@@ -15697,7 +15748,7 @@ eN
 eN
 eN
 fY
-gY
+Iu
 gY
 gZ
 gY
@@ -16856,7 +16907,7 @@ oq
 oC
 oL
 oU
-oL
+Ca
 oC
 os
 of
