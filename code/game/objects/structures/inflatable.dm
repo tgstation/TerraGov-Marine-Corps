@@ -173,7 +173,7 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(M.cooldowns[COOLDOWN_BUMP]) 
+		if(M.cooldowns[COOLDOWN_BUMP])
 			return
 		if(M.client)
 			if(iscarbon(M))

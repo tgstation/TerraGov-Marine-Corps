@@ -136,7 +136,7 @@
 	set name = "Toggle Special Roles"
 
 	var/role_flag = BE_SPECIAL_FLAGS[role]
-	if(!role_flag)	
+	if(!role_flag)
 		return
 	prefs.be_special ^= role_flag
 	prefs.save_character()

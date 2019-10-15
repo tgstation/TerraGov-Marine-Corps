@@ -2,7 +2,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!isobserver(owner)) 
+	if(!isobserver(owner))
 		return FALSE
 	return TRUE
 

@@ -560,7 +560,7 @@
 		refreshBay()
 		. = TRUE
 
-			
+
 /datum/podlauncher/on_unset_interaction()
 	qdel(src)
 

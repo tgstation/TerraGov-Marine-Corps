@@ -22,7 +22,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	var/dat
 	for (var/cat in src.alarms)
 		dat += text("<B>[]</B><BR>\n", cat)

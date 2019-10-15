@@ -58,7 +58,7 @@
 
 /obj/docking_port/stationary/crashmode/loading/on_crash()
 	return // No explosions please and thank you.
-	
+
 // -- Shuttles
 /obj/docking_port/mobile/crashmode
 	name = "TGS Canterbury"

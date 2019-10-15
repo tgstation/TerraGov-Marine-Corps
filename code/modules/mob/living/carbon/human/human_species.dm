@@ -22,7 +22,7 @@
 
 /mob/living/carbon/human/species/unathi
 	race = "Unathi"
-	
+
 /datum/species/unathi/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Unathi Horns"

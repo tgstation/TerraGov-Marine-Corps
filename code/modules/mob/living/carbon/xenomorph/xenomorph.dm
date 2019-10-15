@@ -22,7 +22,7 @@
 
 	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
-	
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -225,10 +225,10 @@
 	hud_set_pheromone()
 	//and display them
 	add_to_all_mob_huds()
-	
+
 	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	hud_to_add.add_hud_to(src)
-	
+
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
@@ -265,7 +265,7 @@
 		return
 
 	var/obj/screen/LL_dir = hud_used.locate_leader
-	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader. 
+	if(hive.living_xeno_ruler == src || src == X) // No need to track ourselves, especially if we are the hive leader.
 		LL_dir.icon_state = "trackoff"
 		return
 

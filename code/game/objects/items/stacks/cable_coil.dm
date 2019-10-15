@@ -111,11 +111,11 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
-		if(!S) 
+		if(!S)
 			return
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
-		
+
 		if(S.burn_dam > 0 && use(1))
 			if(issynth(H) && M == user)
 				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))

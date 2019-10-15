@@ -159,7 +159,7 @@
 		/obj/item/reagent_container/food/snacks/mre_pack/meal4,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal5,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal6)
-		
+
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)

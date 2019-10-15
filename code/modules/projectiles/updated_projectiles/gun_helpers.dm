@@ -472,7 +472,7 @@ should be alright.
 
 	if(G.overcharge == TRUE)
 		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
-		return	
+		return
 
 	if(!rail && !muzzle && !under && !stock)
 		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")

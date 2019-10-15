@@ -64,6 +64,6 @@
 			imp.forceMove(M)
 			M.imp = imp
 			imp = null
-			
+
 		update_icon()
 		M.update()

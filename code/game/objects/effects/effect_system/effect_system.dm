@@ -22,7 +22,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		cardinals = c
 		setup = TRUE
 		INVOKE_ASYNC(src, .proc/start)
-		
+
 		if(self_delete)
 			QDEL_IN(src, self_delete)
 

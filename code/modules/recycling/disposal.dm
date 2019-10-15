@@ -96,7 +96,7 @@
 	if(istype(G)) //Handle grabbed mob
 		if(!ismob(G.grabbed_thing) || user.grab_level < GRAB_AGGRESSIVE)
 			return
-			
+
 		var/mob/GM = G.grabbed_thing
 		user.visible_message("<span class='warning'>[user] starts putting [GM] into [src].</span>",
 		"<span class='warning'>You start putting [GM] into [src].</span>")
@@ -114,7 +114,7 @@
 	else if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
-	
+
 	update()
 
 //Mouse drop another mob or self
@@ -382,7 +382,7 @@
 			AM.pipe_eject(0)
 			spawn(1)
 				AM?.throw_at(target, 5, 1)
-	
+
 		qdel(H)
 
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
@@ -699,7 +699,7 @@
 		user.visible_message("<span class='notice'>[user] starts slicing [src].</span>",
 		"<span class='notice'>You start slicing [src].</span>")
 		sleep(30)
-		if(!W.isOn() || user.loc != uloc || wloc != I.loc) 
+		if(!W.isOn() || user.loc != uloc || wloc != I.loc)
 			to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
 			return
 
@@ -967,7 +967,7 @@
 /obj/structure/disposalpipe/tagger/Initialize()
 	. = ..()
 	dpdir = dir|turn(dir, 180)
-	if(sort_tag) 
+	if(sort_tag)
 		GLOB.tagger_locations |= sort_tag
 	updatename()
 	updatedesc()
@@ -1025,7 +1025,7 @@
 
 /obj/structure/disposalpipe/sortjunction/Initialize()
 	. = ..()
-	if(sortType) 
+	if(sortType)
 		GLOB.tagger_locations |= sortType
 
 	updatedir()
@@ -1235,7 +1235,7 @@
 
 /obj/structure/disposaloutlet/Initialize()
 	. = ..()
-	
+
 	target = get_ranged_target_turf(src, dir, 10)
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(trunk)
@@ -1268,7 +1268,7 @@
 		else
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
-	
+
 	else if(iswelder(I) && mode)
 		var/obj/item/tool/weldingtool/W = I
 		if(!W.remove_fuel(0, user))

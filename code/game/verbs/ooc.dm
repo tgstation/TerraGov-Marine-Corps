@@ -218,7 +218,7 @@
 		return
 
 	browse_messages(null, ckey, null, TRUE)
-	
+
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"

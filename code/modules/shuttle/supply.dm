@@ -175,14 +175,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 		for(var/typepath in contains)
 			if(!typepath)	continue
 			var/atom/B2 = new typepath(A)
-			//if(SP.amount && B2:amount) 
+			//if(SP.amount && B2:amount)
 			//	B2:amount = SP.amount
 			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
 		//manifest finalisation
 		slip.info += "</ul><br>"
 		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
-		if (SP.contraband) 
+		if (SP.contraband)
 			slip.loc = null	//we are out of blanks for Form #44-D Ordering Illicit Drugs.
 
 		SSshuttle.shoppinglist -= SO

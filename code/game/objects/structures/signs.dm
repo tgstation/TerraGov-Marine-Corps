@@ -34,7 +34,7 @@
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
-	
+
 	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [I].")
 		var/obj/item/sign/S = new(loc)
@@ -56,7 +56,7 @@
 
 	if(isscrewdriver(I) && isturf(user.loc))
 		var/direction = input("In which direction?", "Select direction.") as null|anything in list("North", "East", "South", "West")
-		if(!direction) 
+		if(!direction)
 			return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)
@@ -68,7 +68,7 @@
 				S.pixel_y = -32
 			if("West")
 				S.pixel_x = -32
-			else 
+			else
 				return
 		S.name = name
 		S.desc = desc

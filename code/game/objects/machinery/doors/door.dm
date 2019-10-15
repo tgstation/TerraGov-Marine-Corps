@@ -65,7 +65,7 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(M.cooldowns[COOLDOWN_BUMP]) 
+		if(M.cooldowns[COOLDOWN_BUMP])
 			return	//This is to prevent shock spam.
 		M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)

@@ -50,7 +50,7 @@
 		jump_action.give_action(user)
 		actions += jump_action
 
-	
+
 /obj/machinery/computer/camera_advanced/remove_eye_control(mob/living/user)
 	if(!user)
 		return
@@ -224,7 +224,7 @@
 
 /mob/camera/aiEye/remote/setLoc(atom/target)
 	if(!eye_user)
-		return		
+		return
 	var/turf/T = get_turf(target)
 	if(T)
 		if(T.z != z && use_static != USE_STATIC_NONE)
@@ -242,7 +242,7 @@
 			var/atom/A = i
 			if(!top)
 				top = loc
-			if(is_type_in_typecache(A.type, GLOB.ignored_atoms)) 
+			if(is_type_in_typecache(A.type, GLOB.ignored_atoms))
 				continue
 			if(A.layer > top.layer)
 				top = A

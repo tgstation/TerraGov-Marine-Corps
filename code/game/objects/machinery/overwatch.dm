@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(!allowed(user))
 		return FALSE
-	
+
 	return TRUE
 
 

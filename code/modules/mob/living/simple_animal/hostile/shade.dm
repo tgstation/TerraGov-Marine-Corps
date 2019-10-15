@@ -21,4 +21,4 @@
 	status_flags = 0
 	faction = list("cult")
 	status_flags = CANPUSH
-	del_on_death = TRUE	
+	del_on_death = TRUE

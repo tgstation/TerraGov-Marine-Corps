@@ -53,4 +53,4 @@
 /obj/effect/turf_underlay/icefloor/Initialize()
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 	. = ..()
-	
+

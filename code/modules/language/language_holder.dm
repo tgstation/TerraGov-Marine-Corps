@@ -77,7 +77,7 @@
 	var/datum/language_holder/other
 	if(istype(thing, /datum/language_holder))
 		other = thing
-		
+
 	else if(ismovableatom(thing))
 		var/atom/movable/AM = thing
 		other = AM.get_language_holder()
@@ -156,7 +156,7 @@
 		else
 			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
 		body += "<br>"
-		
+
 
 	var/datum/browser/popup = new(src, "languages", "<div align='center'>Language Menu</div>", 550, 615)
 	popup.set_content(body)

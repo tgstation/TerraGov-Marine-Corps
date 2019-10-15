@@ -6,7 +6,7 @@
 	icon_state = "floor"
 
 	baseturfs = /turf/open/floor/plating
-	
+
 	var/icon_regular_floor = "floor" //Used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 	var/broken = 0
@@ -438,7 +438,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || !is_plating())
 			return
 
-		if(!R?.use(2)) 
+		if(!R?.use(2))
 			return
 
 		ChangeTurf(/turf/open/floor/engine)

@@ -146,7 +146,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 					SSticker.mode.spawn_larva(G, target)
 				if("Jump to it")
 					G.forceMove(get_turf(target))
-			
+
 
 //OBJECT-BASED
 
