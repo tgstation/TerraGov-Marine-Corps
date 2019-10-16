@@ -102,6 +102,50 @@
 	icon_state = "seadeep"
 	can_bloody = FALSE
 
+//Prison Ocean
+
+/turf/open/opensea
+	name = "open space"
+	desc = "You feel dizzy just looking at the waves far below you."
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "opensea"
+	can_bloody = FALSE
+
+var/list/canfall = typecacheof(list(
+					/mob/living,
+					/obj/vehicle,
+					/obj/machinery,
+					/obj/item,
+					/obj/structure))
+
+var/list/nofall = typecacheof(list(
+					/obj/structure/lattice,
+					/obj/structure/monorail))//just for specific things that should be able to float
+
+/turf/open/opensea/Entered(atom/movable/AM)
+	. = ..()
+	if(has_catwalk)
+		return
+	if(!is_type_in_typecache(AM, canfall) || is_type_in_typecache(AM, nofall) || AM.throwing)
+		return
+	drop(AM)
+
+/turf/open/opensea/proc/drop(AM)
+	animate(AM, transform = matrix() - matrix(), alpha = 0, color = rgb(0, 0, 0), time = 10)
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		H.emote("scream")
+		H.stun(4)
+	if(isxeno(AM))
+		var/mob/living/carbon/xenomorph/X = AM
+		X.emote(pick("needhelp1", "roar4", "roar5"))
+		X.stun(4)
+	visible_message("<span class='warning'>[AM] falls down into the ocean!</span>")
+	sleep(10)
+	playsound(AM, 'sound/effects/splash.ogg', 25, 1)
+	qdel(AM)
+
+
 
 //Nostromo turfs
 

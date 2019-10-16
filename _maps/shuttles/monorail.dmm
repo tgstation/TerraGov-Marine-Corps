@@ -1,0 +1,40 @@
+"a" = (/turf/closed/shuttle/ert{icon_state = "nt20"},/area/shuttle/monorail)
+"b" = (/obj/structure/bed/chair/comfy{dir = 4},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/monorail)
+"c" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/monorail)
+"d" = (/obj/structure/bed/chair/comfy{dir = 8},/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/monorail)
+"e" = (/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/monorail)
+"f" = (/turf/closed/shuttle/ert{icon_state = "nt21"},/area/shuttle/monorail)
+"g" = (/turf/closed/shuttle/ert{icon_state = "nt25"},/area/shuttle/monorail)
+"h" = (/turf/closed/shuttle/ert{icon_state = "nt4"},/area/shuttle/monorail)
+"i" = (/obj/machinery/light{dir = 1},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/monorail)
+"j" = (/turf/closed/shuttle/ert{icon_state = "nt5"},/area/shuttle/monorail)
+"k" = (/obj/machinery/door/airlock/mainship/medical/glass{name = "\improper Monorail Airlock"},/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/monorail)
+"l" = (/turf/open/shuttle/dropship{icon_state = "rasputin6"},/area/shuttle/monorail)
+"m" = (/turf/open/shuttle/dropship{icon_state = "floor8"},/area/shuttle/monorail)
+"n" = (/turf/open/shuttle/dropship{icon_state = "rasputin7"},/area/shuttle/monorail)
+"o" = (/turf/open/shuttle/dropship{icon_state = "rasputin4"},/area/shuttle/monorail)
+"p" = (/turf/open/shuttle/dropship{icon_state = "rasputin8"},/area/shuttle/monorail)
+"q" = (/obj/machinery/light,/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/shuttle/monorail)
+"r" = (/turf/closed/shuttle/ert{icon_state = "nt1"},/area/shuttle/monorail)
+"s" = (/turf/closed/shuttle/ert{icon_state = "nt2"},/area/shuttle/monorail)
+"t" = (/turf/closed/shuttle/ert{icon_state = "nt3"},/area/shuttle/monorail)
+"u" = (/turf/closed/shuttle/ert{icon_state = "nt28"},/area/shuttle/monorail)
+"v" = (/obj/docking_port/mobile/monorail,/turf/open/shuttle/dropship{icon_state = "rasputin15"},/area/shuttle/monorail)
+
+(1,1,1) = {"
+afffg
+hbidj
+hbcdj
+kecek
+hbcdj
+hbcdj
+hlmnj
+hcvcj
+hompj
+hbcdj
+hbcdj
+kecek
+hbcdj
+hbqdj
+rusut
+"}

@@ -162,3 +162,7 @@
 
 /area/shuttle/canterbury/general
 	name = "Canterbury"
+
+/area/shuttle/monorail
+	name = "Monorail Train"
+	ambience = list('sound/ambience/monorail_music.ogg')
