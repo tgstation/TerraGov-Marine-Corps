@@ -192,7 +192,8 @@
 /atom/movable/Bump(atom/A)
 	if(!A)
 		CRASH("Bump was called with no argument.")
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A) & COMPONENT_BUMP_RESOLVED)
+		return
 	. = ..()
 	if(throwing)
 		throw_impact(A)
