@@ -90,10 +90,10 @@
 	return ..()
 
 /datum/reagent/toxin/lexorin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1) //Overdose starts getting bad
+	L.apply_damages(0, 1, 1, updating_health = FALSE)
 
 /datum/reagent/toxin/lexorin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1) //Overdose starts getting bad
+	L.apply_damages(1, 0, 1, updating_health = FALSE)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -251,10 +251,10 @@
 	return ..()
 
 /datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 2, updating_health = FALSE)
 
 /datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 1) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 1, updating_health = FALSE)
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
@@ -279,10 +279,10 @@
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 2, updating_health = FALSE)
 
 /datum/reagent/toxin/chloralhydrate/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 0, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 0, 2, updating_health = FALSE)
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"

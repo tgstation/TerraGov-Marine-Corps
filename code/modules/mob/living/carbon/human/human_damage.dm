@@ -292,13 +292,11 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
-	if(picked.take_damage_limb(brute, burn, sharp, edge))
+	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
 		UpdateDamageIcon()
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
 
-	if(updating_health)
-		updatehealth()
 	speech_problem_flag = 1
 
 

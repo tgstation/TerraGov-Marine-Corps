@@ -367,10 +367,10 @@
 	return ..()
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1)
+	L.apply_damages(1, 0, 1, updating_health = FALSE)
 
 /datum/reagent/iron/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1)
+	L.apply_damages(1, 0, 1, updating_health = FALSE)
 
 /datum/reagent/gold
 	name = "Gold"
@@ -626,14 +626,14 @@
 	return ..()
 
 /datum/reagent/consumable/lipozine/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1)
+	L.apply_damages(0, 1, 1, updating_health = FALSE)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.nutrition > 100)
 			C.nutrition -= 10
 
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 3, 1)
+	L.apply_damages(1, 3, 1, updating_health = FALSE)
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"

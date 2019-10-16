@@ -159,10 +159,10 @@
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1)
+	L.apply_damages(1, 0, 1, updating_health = FALSE)
 
 /datum/reagent/medicine/kelotane/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 0, 2)
+	L.apply_damages(2, 0, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
@@ -177,10 +177,10 @@
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1)
+	L.apply_damages(1, 0, 1, updating_health = FALSE)
 
 /datum/reagent/medicine/dermaline/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(3, 0, 3)
+	L.apply_damages(3, 0, 3, updating_health = FALSE)
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -251,7 +251,7 @@
 	L.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(3, 3, 3)
+	L.apply_damages(3, 3, 3, updating_health = FALSE)
 
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
@@ -278,7 +278,7 @@
 		E.take_damage(0.5, TRUE)
 
 /datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 2) //Starts detoxing, hard
+	L.apply_damages(2, 2, updating_health = FALSE)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
@@ -436,11 +436,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 0)
+	L.apply_damages(1, 0, 0, updating_health = FALSE)
 	L.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/russianred/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 2, 1)
+	L.apply_damages(1, 2, 1, updating_health = FALSE)
 	L.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/alkysine
@@ -950,13 +950,13 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/hypervene/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 1) //Starts detoxing, hard
+	L.apply_damages(1, 1, updating_health = FALSE)
 	if(prob(10)) //heavy vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
 /datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 2) //Starts detoxing, hard
+	L.apply_damages(2, 2, updating_health = FALSE)
 	if(prob(20)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
