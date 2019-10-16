@@ -51,6 +51,9 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/runner/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/bull/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -59,6 +62,9 @@
 
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/bull/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/drone/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -69,6 +75,9 @@
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/drone/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/carrier/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -77,6 +86,9 @@
 
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/carrier/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/hivelord/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -87,6 +99,9 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hivelord/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/praetorian/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -95,6 +110,9 @@
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/praetorian/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/ravager/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -105,6 +123,9 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/ravager/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/sentinel/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -113,6 +134,9 @@
 
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/sentinel/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/spitter/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -123,6 +147,9 @@
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/spitter/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/hunter/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -131,6 +158,9 @@
 
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/hunter/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/queen/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -141,6 +171,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/crusher/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -149,6 +182,9 @@
 
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/crusher/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/boiler/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -159,6 +195,9 @@
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/boiler/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/defender/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -167,6 +206,9 @@
 
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/defender/ageless
+	upgrade = XENO_UPGRADE_AGELESS
 
 /mob/living/carbon/xenomorph/warrior/mature
 	upgrade = XENO_UPGRADE_ONE
@@ -177,6 +219,9 @@
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/warrior/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/Defiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -186,6 +231,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/ageless
+	upgrade = XENO_UPGRADE_AGELESS
+
 /mob/living/carbon/xenomorph/shrike/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -194,3 +242,6 @@
 
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/shrike/ageless
+	upgrade = XENO_UPGRADE_AGELESS
