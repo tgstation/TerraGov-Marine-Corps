@@ -123,12 +123,7 @@
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		var/armor_block = L.run_armor_check("chest", "melee")
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
-		else
-			L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
+		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee"), updating_health = FALSE) //Armour functions against this.
 		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
