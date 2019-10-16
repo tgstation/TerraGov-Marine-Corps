@@ -30,12 +30,7 @@
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
-			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(damage, 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
-			else
-				M.take_overall_damage(damage, 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
+			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee") * 0.5, updating_health = FALSE) //Only 50% armor applies vs stomp brute damage
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else

@@ -42,17 +42,17 @@
 	if(blocked >= 1) //Complete negation/100% reduction
 		return FALSE
 	if(brute)
-		apply_damage(brute, BRUTE, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(brute, BRUTE, def_zone, blocked, updating_health = FALSE)
 	if(burn)
-		apply_damage(burn, BURN, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(burn, BURN, def_zone, blocked, updating_health = FALSE)
 	if(tox)
-		apply_damage(tox, TOX, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(tox, TOX, def_zone, blocked, updating_health = FALSE)
 	if(oxy)
-		apply_damage(oxy, OXY, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(oxy, OXY, def_zone, blocked, updating_health = FALSE)
 	if(clone)
-		apply_damage(clone, CLONE, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(clone, CLONE, def_zone, blocked, updating_health = FALSE)
 	if(halloss)
-		apply_damage(halloss, HALLOSS, def_zone, blocked, FALSE, FALSE, FALSE)
+		apply_damage(halloss, HALLOSS, def_zone, blocked, updating_health = FALSE)
 	if(updating_health)
 		updatehealth()
 	return TRUE

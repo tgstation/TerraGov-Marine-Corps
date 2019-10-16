@@ -97,7 +97,7 @@
 		amount = amount*species.brute_mod
 
 	if(amount > 0)
-		take_overall_damage(amount, 0, 0, FALSE, FALSE, updating_health)
+		take_overall_damage(amount, updating_health = updating_health)
 	else
 		heal_overall_damage(-amount, 0, updating_health)
 
@@ -107,7 +107,7 @@
 		amount = amount*species.burn_mod
 
 	if(amount > 0)
-		take_overall_damage(0, amount, 0, FALSE, FALSE, updating_health)
+		take_overall_damage(0, amount, updating_health = updating_health)
 	else
 		heal_overall_damage(0, -amount, updating_health)
 
