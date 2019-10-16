@@ -432,7 +432,7 @@
 	else if ((istype(M, /mob/living/)) && (!src.anchored))
 		src.loc = M:loc
 		src.frustration = 0
-	return
+	return ..()
 
 /*
 *	Medbot Assembly -- Can be made out of all three medkits.
