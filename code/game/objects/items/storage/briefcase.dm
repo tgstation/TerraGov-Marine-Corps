@@ -7,19 +7,12 @@
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
 	max_storage_space = 16
 
 /obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
 	//..()
-
-	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
-		user.take_limb_damage(10)
-		user.KnockOut(2)
-		return
-
 
 	log_combat(user, M, "attack", src)
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
@@ -33,12 +26,11 @@
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
-			M.KnockOut(time)
+			M.knock_out(time)
 		else
-			M.Stun(time)
+			M.stun(time)
 		if(M.stat != 2)	M.stat = 1
-		for(var/mob/O in viewers(M, null))
-			O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", M), 1, "<span class='warning'> You hear someone fall.</span>", 2)
+		visible_message("span class='danger'>[M] has been knocked unconscious!</span>", null, "<span class='warning'> You hear someone fall.</span>")
 	else
 		to_chat(M, text("<span class='warning'> [] tried to knock you unconcious!</span>",user))
 		M.adjust_blurriness(3)

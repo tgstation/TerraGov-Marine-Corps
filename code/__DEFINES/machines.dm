@@ -13,6 +13,13 @@
 #define ACTIVE_POWER_USE 2
 
 
+// NanoUI flags
+#define STATUS_INTERACTIVE 2 // GREEN Visibility
+#define STATUS_UPDATE 1 // ORANGE Visibility
+#define STATUS_DISABLED 0 // RED Visibility
+#define STATUS_CLOSE -1 // Close the interface
+
+
 //bitflags for door switches.
 #define OPEN	(1<<0)
 #define IDSCAN	(1<<1)
@@ -36,6 +43,10 @@
 #define FIREDOOR_CLOSED 2
 
 
+#define DOOR_NOT_FORCED 0
+#define DOOR_FORCED_NORMAL 1
+
+
 //Cables directions and helping
 #define CABLE_NODE 0
 
@@ -46,6 +57,7 @@
 #define EWCOMPONENT(d)   (d&(EAST|WEST))
 #define NSDIRFLIP(d)     (d^(NORTH|SOUTH))
 #define EWDIRFLIP(d)     (d^(EAST|WEST))
+#define DIRFLIP(d)       turn(d, 180)
 
 //update_state
 #define UPSTATE_OPENED1 (1<<0)
@@ -86,3 +98,32 @@
 #define MEDIUM		(1<<4)
 #define FULL		(1<<5)
 #define DANGER		(1<<6)
+
+
+#define AALARM_MODE_SCRUBBING	1
+#define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
+#define AALARM_MODE_PANIC		3 //constantly sucks all air
+#define AALARM_MODE_CYCLE		4 //sucks off all air, then refill and switches to scrubbing
+#define AALARM_MODE_FILL		5 //emergency fill
+#define AALARM_MODE_OFF			6 //Shuts it all down.
+
+
+#define MACHINE_NOT_ELECTRIFIED 0
+#define MACHINE_ELECTRIFIED_PERMANENT -1
+#define MACHINE_DEFAULT_ELECTRIFY_TIME 30
+
+
+#define TURRET_SAFETY		(1<<0)
+#define TURRET_LOCKED		(1<<1)
+#define TURRET_ON			(1<<2)
+#define TURRET_HAS_CAMERA	(1<<3)
+#define TURRET_ALERTS		(1<<4)
+#define TURRET_RADIAL		(1<<5)
+#define TURRET_BURSTFIRE	(1<<6)
+#define TURRET_BURSTFIRING	(1<<7)
+#define TURRET_MANUAL		(1<<8)
+#define TURRET_IMMOBILE		(1<<9)
+#define TURRET_COOLDOWN		(1<<10)
+
+#define SQUAD_LOCK	(1<<0)
+#define JOB_LOCK	(1<<1)

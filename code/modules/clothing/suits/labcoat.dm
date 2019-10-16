@@ -5,7 +5,19 @@
 	item_state = "labcoat" //Is this even used for anything?
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
-	allowed = list(/obj/item/analyzer,/obj/item/stack/medical,/obj/item/dnainjector,/obj/item/reagent_container/dropper,/obj/item/reagent_container/syringe,/obj/item/reagent_container/hypospray,/obj/item/healthanalyzer,/obj/item/flashlight/pen,/obj/item/reagent_container/glass/bottle,/obj/item/reagent_container/glass/beaker,/obj/item/reagent_container/pill,/obj/item/storage/pill_bottle,/obj/item/paper)
+	allowed = list(
+		/obj/item/analyzer,
+		/obj/item/stack/medical,
+		/obj/item/reagent_container/dropper,
+		/obj/item/reagent_container/syringe,
+		/obj/item/reagent_container/hypospray,
+		/obj/item/healthanalyzer,
+		/obj/item/flashlight/pen,
+		/obj/item/reagent_container/glass/bottle,
+		/obj/item/reagent_container/glass/beaker,
+		/obj/item/reagent_container/pill,
+		/obj/item/storage/pill_bottle,
+		/obj/item/paper)
 	permeability_coefficient = 0.6
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')

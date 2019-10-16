@@ -73,12 +73,6 @@
 				src.desc = "Owned by [I.registered_name]."
 		else
 			to_chat(user, "<span class='warning'>Access Denied</span>")
-	else if(istype(W, /obj/item/card/emag))
-		if(broken) return
-		broken = 1
-		locked = 0
-		desc = "It appears to be broken."
-		icon_state = src.icon_broken
 	else
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 	return
@@ -90,7 +84,6 @@
 	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
 		return
 	if(ishuman(usr))
-		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
 			to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
 		else if (src.broken)

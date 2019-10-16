@@ -15,13 +15,13 @@
 	var/serial_number = 0
 
 
-/obj/item/contraband/poster/New(turf/loc, var/given_serial = 0)
-	if(given_serial == 0)
-		serial_number = rand(1, poster_designs.len)
+/obj/item/contraband/poster/Initialize(mapload, given_serial)
+	. = ..()
+	if(!given_serial)
+		serial_number = rand(1, length(GLOB.poster_designs))
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"
-	..(loc)
 
 //############################## THE ACTUAL DECALS ###########################
 
@@ -29,7 +29,7 @@ obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
 	var/ruined = 0
 
@@ -39,28 +39,31 @@ obj/structure/sign/poster/New(var/serial)
 	serial_number = serial
 
 	if(serial_number == loc)
-		serial_number = rand(1, poster_designs.len)	//This is for the mappers that want individual posters without having to use rolled posters.
+		serial_number = rand(1, length(GLOB.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
 
-	var/designtype = poster_designs[serial_number]
+	var/designtype = GLOB.poster_designs[serial_number]
 	var/datum/poster/design=new designtype
 	name += " - [design.name]"
 	desc += " [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
 	..()
 
-obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswirecutter(W))
-		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
+/obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(iswirecutter(I))
+		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
 			qdel(src)
 		else
 			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
+
+
+/obj/structure/sign/poster/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
 		return
-
-
-/obj/structure/sign/poster/attack_hand(mob/user as mob)
 	if(ruined)
 		return
 	var/temp_loc = user.loc
@@ -74,7 +77,6 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 			icon_state = "poster_ripped"
 			name = "ripped poster"
 			desc = "You can't make out anything from the poster's original print. It's ruined."
-			add_fingerprint(user)
 		if("No")
 			return
 
@@ -86,7 +88,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
+/turf/closed/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
 
 	if(!istype(src,/turf/closed/wall))
 		to_chat(user, "<span class='warning'>You can't place this here!</span>")

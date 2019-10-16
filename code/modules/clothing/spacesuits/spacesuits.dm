@@ -15,14 +15,13 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
 	eye_protection = 2
-	species_restricted = list("exclude","Vox")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = 4//bulky item
+	w_class = WEIGHT_CLASS_BULKY//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -34,4 +33,3 @@
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	species_restricted = list("exclude","Vox")

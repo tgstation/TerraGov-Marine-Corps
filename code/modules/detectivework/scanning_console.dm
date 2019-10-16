@@ -14,7 +14,7 @@
 
 	var/list/files = list()
 
-/obj/machinery/computer/forensic_scanning/proc/get_printable_data(var/datum/data/record/forensic/fresh)
+/obj/machinery/computer/forensic_scanning/proc/get_printable_data(datum/data/record/forensic/fresh)
 	. += "<h2>[fresh.fields["name"]]</h2>"
 	. += "Scanned in [fresh.fields["area"]] at [worldtime2text(fresh.fields["time"])]<br>"
 	var/list/prints = fresh.fields["fprints"]
@@ -52,36 +52,19 @@
 	else
 		. += "<br>No blood recorded."
 
-/obj/machinery/computer/forensic_scanning/proc/add_record(var/datum/data/record/forensic/fresh)
+/obj/machinery/computer/forensic_scanning/proc/add_record(datum/data/record/forensic/fresh)
 	var/datum/data/record/forensic/old = files[fresh.uid]
 	if(old)
 		fresh.merge(old)
 		fresh.fields["label"] = old.fields["label"]
 	files[fresh.uid] = fresh
 
-/obj/machinery/computer/forensic_scanning/proc/process_card(var/obj/item/f_card/card)
-	var/fingerprints = card.return_fingerprints()
-	if(fingerprints)
-		to_chat(usr, "<span class='notice'>\The [src] sucks in \the [card] and whirrs, scanning it.</span>")
-		var/found = 0
-		for(var/id in files)
-			var/datum/data/record/forensic/rec = files[id]
-			var/list/prints = rec.fields["fprints"]
-			for(var/master_print in fingerprints)
-				if(prints[master_print])
-					prints[master_print] = master_print
-					found = 1
-		if(found)
-			to_chat(usr, "<span class='notice'>Complete match found.</span>")
-		else
-			to_chat(usr, "<span class='notice'>No match found.</span>")
-		return 1
-	else
-		to_chat(usr, "<span class='warning'>No fingerprints detected on [card].</span>")
+/obj/machinery/computer/forensic_scanning/proc/process_card(obj/item/f_card/card)
+		to_chat(usr, "<span class='warning'>Fingerprints are currently unavailable.</span>")
 		return 0
 
 //Takes a list of forensic records, with key being reference to object, and updates internal database.
-/obj/machinery/computer/forensic_scanning/proc/sync_data(var/list/newdata)
+/obj/machinery/computer/forensic_scanning/proc/sync_data(list/newdata)
 	for(var/id in newdata)
 		var/datum/data/record/forensic/fresh = newdata[id]
 		add_record(fresh)
@@ -141,10 +124,10 @@
 		if (add)
 			.+=cur
 
-/obj/machinery/computer/forensic_scanning/attack_hand(mob/user)
-	if(..())
+/obj/machinery/computer/forensic_scanning/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	user.set_interaction(src)
 
 	var/dat
 	if(!authenticated)
@@ -206,11 +189,13 @@
 
 	var/datum/browser/popup = new(user, "fscanner", "<div align='center'>Forensic Console</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "fscanner")
+	popup.open()
 
 
 /obj/machinery/computer/forensic_scanning/Topic(href,href_list)
+	. = ..()
+	if(.)
+		return
 	switch(href_list["operation"])
 		if("login")
 			var/mob/M = usr
@@ -255,7 +240,7 @@
 						scanning = I.contents[1]
 						scanning.loc = src
 						I.overlays.Cut()
-						I.w_class = 1
+						I.w_class = WEIGHT_CLASS_TINY
 						I.icon_state = "evidenceobj"
 					else
 						scanning = I
@@ -305,7 +290,7 @@
 			updateUsrDialog()
 		if(scan_progress == 0)
 			scan_progress = -1
-			ping("Scan complete.")
+			visible_message("Scan complete.")
 			var/datum/data/record/forensic/fresh = new(scanning)
 			add_record(fresh)
 			stop_processing()

@@ -1,7 +1,6 @@
 /mob/new_player
 	var/ready = FALSE
 	var/spawning = FALSE
-	universal_speak = TRUE
 
 	invisibility = INVISIBILITY_MAXIMUM
 
@@ -14,33 +13,42 @@
 	var/mob/living/new_character	//for instant transfer once the round is set up
 
 
-/mob/new_player/Destroy()
-	if(ready)
-		GLOB.ready_players--
+/mob/new_player/Initialize()
+	if(length(GLOB.newplayer_start))
+		var/turf/spawn_loc = get_turf(pick(GLOB.newplayer_start))
+		forceMove(spawn_loc)
+	else
+		forceMove(locate(1, 1, 1))
+
+	lastarea = get_area(loc)
+
+	GLOB.new_player_list += src
+
 	return ..()
 
 
-/mob/new_player/proc/version_check()
-	if(client.byond_version < world.byond_version)
-		to_chat(client, "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
-		Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
-		Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
+/mob/new_player/Destroy()
+	if(ready)
+		GLOB.ready_players--
 
-		qdel(client)
+	GLOB.new_player_list -= src
+	
+	return ..()
 
 
 /mob/new_player/proc/new_player_panel()
+
+	if(SSticker?.mode?.mode_new_player_panel(src))
+		return
+
 	var/output = "<div align='center'>"
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-
 	else
 		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
-		if(isdistress(SSticker.mode))
-			output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
 
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
@@ -70,7 +78,6 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
-
 /mob/new_player/Stat()
 	. = ..()
 
@@ -90,10 +97,29 @@
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
+	
 
 /mob/new_player/Topic(href, href_list[])
+	. = ..()
+	if(.)
+		return
 	if(!client)
 		return
+
+	if(src != usr)
+		return
+
+	if(SSticker?.mode?.new_player_topic(src, href, href_list))
+		return // Delegate to the gamemode to handle if they want to
+
+	//Determines Relevent Population Cap
+	var/relevant_cap
+	var/hpc = CONFIG_GET(number/hard_popcap)
+	var/epc = CONFIG_GET(number/extreme_popcap)
+	if(hpc && epc)
+		relevant_cap = min(hpc, epc)
+	else
+		relevant_cap = max(hpc, epc)
 
 	switch(href_list["lobby_choice"])
 		if("show_preferences")
@@ -131,13 +157,14 @@
 
 				var/failed = FALSE
 
-				if(GLOB.latejoin.len)
-					var/turf/T = pick(GLOB.latejoin)
-					if(T)
-						to_chat(src, "<span class='notice'>Now teleporting.</span>")
-						observer.forceMove(T)
-					else
-						failed = TRUE
+				if(length(GLOB.latejoin))
+					var/i = pick(GLOB.latejoin)
+					var/turf/T = get_turf(i)
+					if(!T)
+						CRASH("Invalid latejoin spawn location type")
+
+					to_chat(src, "<span class='notice'>Now teleporting.</span>")
+					observer.forceMove(T)
 				else
 					failed = TRUE
 
@@ -145,8 +172,6 @@
 					to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump.</span>")
 
 				observer.timeofdeath = world.time
-
-				observer.alpha = 127
 
 				var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
@@ -172,10 +197,26 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(SSticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
+			if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
 				to_chat(src, "<span class='warning'>Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 				return
 
+			if(href_list["override"])
+				LateChoices()
+				return
+
+			if(length(SSticker.queued_players) || (relevant_cap && living_player_count() >= relevant_cap && !(check_rights(R_ADMIN, FALSE) || GLOB.deadmins[ckey])))
+				to_chat(usr, "<span class='danger'>[CONFIG_GET(string/hard_popcap_message)]</span>")
+
+				var/queue_position = SSticker.queued_players.Find(usr)
+				if(queue_position == 1)
+					to_chat(usr, "<span class='notice'>You are next in line to join the game. You will be notified when a slot opens up.</span>")
+				else if(queue_position)
+					to_chat(usr, "<span class='notice'>There are [queue_position - 1] players in front of you in the queue to join the game.</span>")
+				else
+					SSticker.queued_players += usr
+					to_chat(usr, "<span class='notice'>You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)].</span>")
+				return
 			LateChoices()
 
 
@@ -184,15 +225,15 @@
 				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
 				return
 
-			if(jobban_isbanned(src, ROLE_XENOMORPH) || is_banned_from(ckey, ROLE_XENOMORPH))
+			if(is_banned_from(ckey, ROLE_XENOMORPH))
 				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
 				return
 
 			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
 				if("Burrowed Larva")
-					if(SSticker.mode.attempt_to_join_as_larva(src))
-						close_spawn_windows()
-						SSticker.mode.spawn_larva(src)
+					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_larva(src)
+					if(new_xeno)
+						close_spawn_windows(new_xeno)
 				if("Living Xenomorph")
 					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
 					if(new_xeno)
@@ -208,8 +249,10 @@
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-
-			AttemptLateSpawn(href_list["job_selected"])
+			var/rank = href_list["job_selected"]
+			if(!SSticker?.mode.CanLateSpawn(src, rank))
+				return
+			SSticker?.mode.AttemptLateSpawn(src, rank)
 
 
 	if(href_list["showpoll"])
@@ -296,80 +339,36 @@
 				to_chat(src, "<span class='notice'>Vote successful.</span>")
 
 
-/mob/new_player/proc/AttemptLateSpawn(rank)
-	if(src != usr)
-		return
-	if(!IsJobAvailable(rank))
-		to_chat(usr, "<span class='warning'>Selected job is not available.<spawn>")
-		return
-	if(!SSticker || SSticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
-		return
-	if(!GLOB.enter_allowed)
-		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
-		return
-
-	if(!SSjob.AssignRole(src, rank, TRUE))
-		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
-		return
-
-	close_spawn_windows()
-	spawning = TRUE
-
-	var/mob/living/character = create_character(TRUE)	//creates the human and transfers vars and mind
-	var/equip = SSjob.EquipRank(character, rank, TRUE)
-	if(isliving(equip))	//Borgs get borged in the equip, so we need to make sure we handle the new mob.
-		character = equip
-
-	var/datum/job/job = SSjob.GetJob(rank)
-
-	if(job && !job.override_latejoin_spawn(character))
-		SSjob.SendToLateJoin(character)
-
-	GLOB.datacore.manifest_inject(character)
-	SSticker.minds += character.mind
-
-	if(isdistress(SSticker?.mode))
-		var/datum/game_mode/distress/D = SSticker.mode
-		D.latejoin_tally++
-
-		if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
-			D.latejoin_tally -= D.latejoin_larva_drop
-			var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-			HS.stored_larva++
-
-	qdel(src)
-
-
 /mob/new_player/proc/LateChoices()
-	var/dat = "<html><body><center>"
-	dat += "Round Duration: [worldtime2text()]<br>"
-
-	if(SSevacuation)
-		switch(SSevacuation.evac_status)
-			if(EVACUATION_STATUS_INITIATING)
-				dat += "<font color='red'><b>The [CONFIG_GET(string/ship_name)] is being evacuated.</b></font><br>"
-			if(EVACUATION_STATUS_COMPLETE)
-				dat += "<font color='red'>The [CONFIG_GET(string/ship_name)] has undergone evacuation.</font><br>"
-
-	dat += "Choose from the following open positions:<br>"
-	var/datum/job/J
-	for(var/i in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-		J = i
-		if(!(J.title in JOBS_REGULAR_ALL))
-			continue
-		if((J.current_positions >= J.total_positions) && J.total_positions != -1)
-			continue
-		var/active = 0
-		//Only players with the job assigned and AFK for less than 10 minutes count as active
-		for(var/mob/M in GLOB.player_list)
-			if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 MINUTES)
-				active++
-		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.title] ([J.current_positions]) (Active: [active])</a><br>"
-
-	dat += "</center>"
-	var/datum/browser/popup = new(src, "latechoices", "<div align='center'>Join the TGMC</div>", 300, 640)
-	popup.set_content(dat)
+	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
+	if(!GLOB.enter_allowed)
+		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
+	dat += "<table><tr><td valign='top'>"
+	var/column_counter = 0
+	for(var/list/category in (list(GLOB.jobs_officers) + list(GLOB.jobs_requisitions) + list(GLOB.jobs_police) + list(GLOB.jobs_medical) + list(GLOB.jobs_engineering) + list(GLOB.jobs_marines)))
+		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
+		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
+		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
+		var/list/dept_dat = list()
+		for(var/job in category)
+			var/datum/job/job_datum = SSjob.name_occupations[job]
+			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
+				var/command_bold = ""
+				if(job in GLOB.jobs_command)
+					command_bold = " command"
+				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
+		if(!length(dept_dat))
+			dept_dat += "<span class='nopositions'>No positions open.</span>"
+		dat += jointext(dept_dat, "")
+		dat += "</fieldset><br>"
+		column_counter++
+		if(column_counter > 0 && (column_counter % 3 == 0))
+			dat += "</td><td valign='top'>"
+	dat += "</td></tr></table></center>"
+	dat += "</div></div>"
+	var/datum/browser/popup = new(src, "latechoices", "Choose Occupation", 680, 580)
+	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
+	popup.set_content(jointext(dat, ""))
 	popup.open(FALSE)
 
 
@@ -385,10 +384,12 @@
 	return FALSE
 
 
-/mob/new_player/proc/close_spawn_windows()
-	src << browse(null, "window=latechoices") //closes late choices window
-	src << browse(null, "window=playersetup") //closes the player setup window
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
+/mob/new_player/proc/close_spawn_windows(mob/user)
+	if(!user)
+		user = src
+	DIRECT_OUTPUT(user, browse(null, "window=latechoices")) //closes late choices window
+	DIRECT_OUTPUT(user, browse(null, "window=playersetup")) //closes the player setup window
+	user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 
 /mob/new_player/get_species()
@@ -410,11 +411,7 @@
 	return ready && ..()
 
 
-/mob/new_player/hear_say(message, verb = "says", datum/language/language = null, alt_name = "", italics = FALSE, mob/speaker = null)
-	return
-
-
-/mob/new_player/hear_radio(message, verb = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = FALSE)
+/mob/new_player/Hear()
 	return
 
 
@@ -455,8 +452,6 @@
 		for(var/datum/job/J in SSjob.occupations)
 			if(J && J.current_positions < J.total_positions && J.title != job.title)
 				return FALSE
-	if(jobban_isbanned(src, rank))
-		return FALSE
 	if(is_banned_from(ckey, rank))
 		return FALSE
 	if(QDELETED(src))
@@ -466,5 +461,7 @@
 	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
+		return FALSE
+	if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
 		return FALSE
 	return TRUE

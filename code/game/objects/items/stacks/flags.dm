@@ -7,12 +7,11 @@
 	amount = 10
 	max_amount = 10
 	icon = 'icons/obj/mining.dmi'
-	stack_id = "flags"
 	var/upright = 0
 	var/base_state
 
-/obj/item/stack/flag/New()
-	..()
+/obj/item/stack/flag/Initialize()
+	. = ..()
 	base_state = icon_state
 
 /obj/item/stack/flag/red
@@ -30,20 +29,21 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
-	if(upright && istype(W,src.type))
-		src.attack_hand(user)
-	else
-		..()
+/obj/item/stack/flag/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-/obj/item/stack/flag/attack_hand(user as mob)
+	if(upright && istype(I, type))
+		return attack_hand(user)
+
+/obj/item/stack/flag/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(upright)
 		upright = 0
 		icon_state = base_state
-		anchored = 0
+		anchored = FALSE
 		src.visible_message("<b>[user]</b> knocks down [src].")
-	else
-		..()
 
 /obj/item/stack/flag/attack_self(mob/user as mob)
 
@@ -61,7 +61,7 @@
 	var/obj/item/stack/flag/newflag = new src.type(T)
 	newflag.amount = 1
 	newflag.upright = 1
-	anchored = 1
+	anchored = TRUE
 	newflag.name = newflag.singular_name
 	newflag.icon_state = "[newflag.base_state]_open"
 	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")

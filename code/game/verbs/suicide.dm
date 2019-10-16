@@ -36,7 +36,7 @@
 			if(damagetype)
 				var/damage_mod = 1
 				switch(damagetype) //Sorry about the magic numbers.
-								   //brute = 1, burn = 2, tox = 4, oxy = 8
+								//brute = 1, burn = 2, tox = 4, oxy = 8
 					if(15) //4 damage types
 						damage_mod = 4
 
@@ -130,44 +130,4 @@
 		//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
 		visible_message("<span class='danger'>[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide.</span>")
 		adjustOxyLoss(max(175- getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		updatehealth()
-
-/mob/living/silicon/ai/verb/suicide()
-	set hidden = 1
-
-	if (stat == 2)
-		to_chat(src, "You're already dead!")
-		return
-
-	if (suiciding)
-		to_chat(src, "You're already committing suicide! Be patient!")
-		return
-
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
-
-	if(confirm == "Yes")
-		suiciding = 1
-		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
-		//put em at -175
-		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
-		updatehealth()
-
-/mob/living/silicon/robot/verb/suicide()
-	set hidden = 1
-
-	if (stat == 2)
-		to_chat(src, "You're already dead!")
-		return
-
-	if (suiciding)
-		to_chat(src, "You're already committing suicide! Be patient!")
-		return
-
-	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
-
-	if(confirm == "Yes")
-		suiciding = 1
-		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
-		//put em at -175
-		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()

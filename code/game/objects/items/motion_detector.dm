@@ -14,10 +14,6 @@
 	var/identifier = MOTION_DETECTOR_HOSTILE
 	layer = BELOW_FULLSCREEN_LAYER
 
-	Destroy()
-		..()
-		return TA_REVIVE_ME
-
 /obj/effect/detector_blip/friendly
 	icon_state = "detector_blip_friendly"
 	identifier = MOTION_DETECTOR_FRIENDLY
@@ -41,7 +37,7 @@
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2
@@ -53,6 +49,7 @@
 	var/mob/living/carbon/human/operator
 
 /obj/item/motiondetector/examine(mob/user as mob)
+	. = ..()
 	if(get_dist(user,src) > 2)
 		to_chat(user, "<span class = 'warning'>You're too far away to see [src]'s display!</span>")
 	else
@@ -62,8 +59,7 @@
 		details += "[detect_revivable ? " <b>Friendly revivable corpse detection:</b> ACTIVE</br>" : " <b>Friendly revivable corpse detection:</b> INACTIVE</br>"]"
 		details += "[detect_fubar ? " <b>Friendly unrevivable corpse detection:</b> ACTIVE</br>" : " <b>Friendly unrevivable corpse detection:</b> INACTIVE</br>"]"
 		to_chat(user, "<span class = 'notice'>[src]'s display shows the following settings:</br>[details]</span>")
-	return ..()
-
+	
 
 /obj/item/motiondetector/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -134,8 +130,6 @@
 	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
-		if(iscyborg(M))
-			continue
 		status = MOTION_DETECTOR_HOSTILE //Reset the status to default
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
@@ -156,7 +150,7 @@
 						status = MOTION_DETECTOR_FRIENDLY
 					else
 						continue
-		if(world.time > M.l_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
+		if(world.time > M.last_move_time + 20 && (status == MOTION_DETECTOR_HOSTILE))
 			continue //hasn't moved recently
 
 		detected = TRUE
@@ -244,89 +238,75 @@
 
 
 /obj/item/motiondetector/Topic(href, href_list)
-	//..()
-	if(usr.stat || usr.restrained())
+	. = ..()
+	if(.)
 		return
-	if(ishuman(usr) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf))))
-		usr.set_interaction(src)
-		if(href_list["power"])
-			active = !active
-			if(active)
-				to_chat(usr, "<span class='notice'>You activate [src].</span>")
-				operator = usr
-				START_PROCESSING(SSobj, src)
-			else
-				to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
-				STOP_PROCESSING(SSobj, src)
-			update_icon()
 
-		else if(href_list["detector_mode"])
-			detector_mode = !detector_mode
-			if(detector_mode)
-				to_chat(usr, "<span class='notice'>You switch [src] to short range mode.</span>")
-				detector_range = 7
-			else
-				to_chat(usr, "<span class='notice'>You switch [src] to long range mode.</span>")
-				detector_range = 14
-
-		else if(href_list["detect_friendlies"])
-			detect_friendlies = !( detect_friendlies )
-		else if(href_list["detect_revivable"])
-			detect_revivable = !( detect_revivable )
-		else if(href_list["detect_fubar"])
-			detect_fubar = !( detect_fubar )
-
+	if(href_list["power"])
+		active = !active
+		if(active)
+			to_chat(usr, "<span class='notice'>You activate [src].</span>")
+			operator = usr
+			START_PROCESSING(SSobj, src)
+		else
+			to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
+			STOP_PROCESSING(SSobj, src)
 		update_icon()
 
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
+	else if(href_list["detector_mode"])
+		detector_mode = !detector_mode
+		if(detector_mode)
+			to_chat(usr, "<span class='notice'>You switch [src] to short range mode.</span>")
+			detector_range = 7
 		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
+			to_chat(usr, "<span class='notice'>You switch [src] to long range mode.</span>")
+			detector_range = 14
+
+	else if(href_list["detect_friendlies"])
+		detect_friendlies = !( detect_friendlies )
+	
+	else if(href_list["detect_revivable"])
+		detect_revivable = !( detect_revivable )
+	
+	else if(href_list["detect_fubar"])
+		detect_fubar = !( detect_fubar )
+
+	update_icon()
+	updateUsrDialog()
 
 
-/obj/item/motiondetector/attack_self(mob/user as mob, flag1)
-	if(!ishuman(user))
+/obj/item/motiondetector/interact(mob/user)
+	. = ..()
+	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = {"<TT>
-
+	
+	var/dat = {"
 <A href='?src=\ref[src];power=1'><B>Power Control:</B>  [active ? "On" : "Off"]</A><BR>
 <BR>
 <B>Detection Settings:</B><BR>
 <BR>
- <B>Detection Mode:</B> [detector_mode ? "Short Range" : "Long Range"]<BR>
+<B>Detection Mode:</B> [detector_mode ? "Short Range" : "Long Range"]<BR>
 <A href='?src=\ref[src];detector_mode=1'><B>Set Detector Mode:</B> [detector_mode ? "Long Range" : "Short Range"]</A><BR>
 <BR>
- <B>Friendly Detection Status:</B> [detect_friendlies ? "ACTIVE" : "INACTIVE"]<BR>
+<B>Friendly Detection Status:</B> [detect_friendlies ? "ACTIVE" : "INACTIVE"]<BR>
 <A href='?src=\ref[src];detect_friendlies=1'><B>Set Friendly Detection:</B> [detect_friendlies ? "Off" : "On"]</A><BR>
 <BR>
- <B>Revivable Detection Status:</B> [detect_revivable ? "ACTIVE" : "INACTIVE"]<BR>
+<B>Revivable Detection Status:</B> [detect_revivable ? "ACTIVE" : "INACTIVE"]<BR>
 <A href='?src=\ref[src];detect_revivable=1'><B>Set Revivable Detection:</B> [detect_revivable ? "Off" : "On"]</A><BR>
 <BR>
- <B>Unrevivable Detection Status:</B> [detect_fubar ? "ACTIVE" : "INACTIVE"]<BR>
-<A href='?src=\ref[src];detect_fubar=1'><B>Set Unrevivable Detection:</B> [detect_fubar ? "Off" : "On"]</A><BR>
- </TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
+<B>Unrevivable Detection Status:</B> [detect_fubar ? "ACTIVE" : "INACTIVE"]<BR>
+<A href='?src=\ref[src];detect_fubar=1'><B>Set Unrevivable Detection:</B> [detect_fubar ? "Off" : "On"]</A><BR>"}
+
+	var/datum/browser/popup = new(user, "motiondetector")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/item/motiondetector/scout
 	name = "MK2 recon tactical sensor"
 	desc = "A device that detects hostile movement; this one is specially minaturized for reconnaissance units. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector_off"
-	w_class = 1 //We can have this in our pocket and still get pings
+	w_class = WEIGHT_CLASS_TINY //We can have this in our pocket and still get pings
 	ping = FALSE //Stealth modo
 
 

@@ -10,9 +10,3 @@
 	var/max_shots = 0 //codex, energy weapons
 	var/scope_zoom = FALSE//codex
 	var/self_recharge = FALSE //codex
-
-#define SINGLE_CASING	(1 << 0)
-#define SPEEDLOADER		(1 << 1)
-#define MAGAZINE		(1 << 2)
-#define CELL			(1 << 3)
-#define POWERPACK		(1 << 4)

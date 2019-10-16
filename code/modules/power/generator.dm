@@ -3,8 +3,8 @@
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
 	icon_state = "teg"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 
 	use_power = 1
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
@@ -47,7 +47,7 @@
 				circ1 = null
 				circ2 = null
 
-/obj/machinery/power/generator/proc/updateicon()
+/obj/machinery/power/generator/update_icon()
 	if(machine_stat & (NOPOWER|BROKEN))
 		overlays.Cut()
 	else
@@ -60,7 +60,7 @@
 	if(!circ1 || !circ2 || !anchored || machine_stat & (BROKEN|NOPOWER))
 		return
 
-	updateDialog()
+	updateUsrDialog()
 
 	// update icon overlays and power usage only if displayed level has changed
 	if(lastgen > 250000 && prob(10))
@@ -73,80 +73,36 @@
 		genlev = 1
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
-		updateicon()
+		update_icon()
 	add_avail(lastgen)
 
-/obj/machinery/power/generator/attack_ai(mob/user)
-	if(machine_stat & (BROKEN|NOPOWER)) return
-	interact(user)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswrench(W))
+/obj/machinery/power/generator/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored
 		reconnect()
-	else
-		..()
-
-/obj/machinery/power/generator/attack_hand(mob/user)
-	add_fingerprint(user)
-	if(machine_stat & (BROKEN|NOPOWER) || !anchored) return
-	interact(user)
 
 
 /obj/machinery/power/generator/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!isAI(user)))
-		user.unset_interaction()
-		user << browse(null, "window=teg")
+	. = ..()
+	if(.)
 		return
 
-	user.set_interaction(src)
-
-	var/t = "<PRE><B>Thermo-Electric Generator</B><HR>"
+	var/dat
 
 	if(circ1 && circ2)
-		t += "Output : [round(lastgen)] W<BR><BR>"
-
-		t += "<B>Primary Circulator (top or right)</B><BR>"
-//		t += "Inlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Inlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
-//		t += "Outlet Pressure: [round(circ1.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Outlet Temperature: [round(circ1.temperature, 0.1)] K<BR>"
-
-		t += "<B>Secondary Circulator (bottom or left)</B><BR>"
-//		t += "Inlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Inlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
-//		t += "Outlet Pressure: [round(circ2.return_pressure(), 0.1)] kPa<BR>"
-//		t += "Outlet Temperature: [round(circ2.temperature, 0.1)] K<BR>"
-
+		dat += "Output : [round(lastgen)] W<BR><BR>"
 	else
-		t += "Unable to connect to circulators.<br>"
-		t += "Ensure both are in position and wrenched into place."
+		dat += "Unable to connect to circulators.<br>"
+		dat += "Ensure both are in position and wrenched into place."
 
-	t += "<BR>"
-	t += "<HR>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> <A href='?src=\ref[src];close=1'>Close</A>"
-
-	user << browse(t, "window=teg;size=460x300")
-	onclose(user, "teg")
-	return 1
-
-
-/obj/machinery/power/generator/Topic(href, href_list)
-	..()
-	if( href_list["close"] )
-		usr << browse(null, "window=teg")
-		usr.unset_interaction()
-		return 0
-
-	updateDialog()
-	return 1
-
-
-/obj/machinery/power/generator/power_change()
-	..()
-	updateicon()
+	var/datum/browser/popup = new(user, "teg", "<div align='center'>Thermo-Electric Generator</div>", 460, 300)
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/power/generator/verb/rotate_clock()

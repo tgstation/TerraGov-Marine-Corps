@@ -5,9 +5,9 @@
 /mob/living/carbon/proc/remove_overlay(cache_index)
 	return
 
-/mob/living/carbon/proc/apply_temp_overlay(cache_index, var/duration)
+/mob/living/carbon/proc/apply_temp_overlay(cache_index, duration)
 	apply_overlay(cache_index)
-	addtimer(CALLBACK(src, .remove_overlay, cache_index), duration)
+	addtimer(CALLBACK(src, .proc/remove_overlay, cache_index), duration)
 
 /mob/living/carbon/proc/apply_underlay(cache_index)
 	return
@@ -25,11 +25,11 @@
 		changed++
 		ntransform.TurnTo(lying_prev,lying)
 		if(lying == 0) //Lying to standing
-			final_pixel_y = get_standard_pixel_y_offset()
+			final_pixel_y = lying ? -6 : initial(pixel_y)
 		else //if(lying != 0)
 			if(lying_prev == 0) //Standing to lying
-				pixel_y = get_standard_pixel_y_offset()
-				final_pixel_y = get_standard_pixel_y_offset(lying)
+				pixel_y = lying ? -6 : initial(pixel_y)
+				final_pixel_y = lying ? -6 : initial(pixel_y)
 				if(dir & (EAST|WEST)) //Facing east or west
 					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
 

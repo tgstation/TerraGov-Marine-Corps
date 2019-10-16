@@ -9,8 +9,8 @@
 	icon_closed ="base"
 	icon_opened = "base"
 
-/obj/structure/closet/secure_closet/guncabinet/New()
-	..()
+/obj/structure/closet/secure_closet/guncabinet/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/structure/closet/secure_closet/guncabinet/toggle()
@@ -37,8 +37,7 @@
 /obj/structure/closet/secure_closet/guncabinet/mp_armory
 	req_access = list(ACCESS_MARINE_BRIG)
 
-/obj/structure/closet/secure_closet/guncabinet/mp_armory/New()
-	..()
+/obj/structure/closet/secure_closet/guncabinet/mp_armory/PopulateContents()
 	new /obj/item/weapon/gun/shotgun/combat(src)
 	new /obj/item/weapon/gun/shotgun/combat(src)
 	new /obj/item/weapon/gun/shotgun/combat(src)
@@ -54,8 +53,7 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 	storage_capacity = 55 //lots of stuff to fit in
 
-/obj/structure/closet/secure_closet/guncabinet/riot_control/New()
-	..()
+/obj/structure/closet/secure_closet/guncabinet/riot_control/PopulateContents()
 	new /obj/item/weapon/gun/shotgun/pump(src, TRUE)
 	new /obj/item/weapon/gun/shotgun/pump(src, TRUE)
 	new /obj/item/weapon/gun/shotgun/pump(src, TRUE)

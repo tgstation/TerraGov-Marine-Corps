@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "appendix"
 
-	health = 100                              // Process() ticks before death.
+	max_integrity = 100                              // Process() ticks before death.
 
 	var/fresh = 3                             // Squirts of blood left in it.
 	var/dead_icon                             // Icon used when the organ dies.
@@ -20,8 +20,8 @@
 		bitten(user)
 		return
 
-/obj/item/organ/New(loc, organ_datum)
-	..()
+/obj/item/organ/Initialize(mapload, organ_datum)
+	. = ..()
 	create_reagents(5)
 	if(organ_datum)
 		organ_data = organ_datum
@@ -56,14 +56,14 @@
 			TU.add_blood(L, B.color)
 		//blood_splatter(src,B,1)
 
-	health -= rand(0,1)
-	if(health <= 0)
+	take_damage(rand(0,1))
+	if(obj_integrity <= 0)
 		die()
 
 /obj/item/organ/proc/die()
 	name = "dead [initial(name)]"
 	if(dead_icon) icon_state = dead_icon
-	health = 0
+	obj_integrity = 0
 	STOP_PROCESSING(SSobj, src)
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.
@@ -151,7 +151,7 @@
 	organ_type = /datum/internal_organ/brain/prosthetic
 
 
-/obj/item/organ/proc/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/proc/removed(mob/living/target,mob/living/user)
 
 	if(!target || !user)
 		return
@@ -161,21 +161,7 @@
 		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
-/obj/item/organ/appendix/removed(var/mob/living/target,var/mob/living/user)
-
-	..()
-
-	var/inflamed = 0
-	for(var/datum/disease/appendicitis/appendicitis in target.viruses)
-		inflamed = 1
-		appendicitis.cure()
-		target.resistances += appendicitis
-
-	if(inflamed)
-		icon_state = "appendixinflamed"
-		name = "inflamed appendix"
-
-/obj/item/organ/eyes/removed(var/mob/living/target,var/mob/living/user)
+/obj/item/organ/eyes/removed(mob/living/target,mob/living/user)
 
 	if(!eye_colour)
 		eye_colour = list(0,0,0)
@@ -195,10 +181,10 @@
 		H.b_eyes = 0
 		H.update_body()
 
-/obj/item/organ/proc/replaced(var/mob/living/target)
+/obj/item/organ/proc/replaced(mob/living/target)
 	return
 
-/obj/item/organ/eyes/replaced(var/mob/living/target)
+/obj/item/organ/eyes/replaced(mob/living/target)
 
 	// Apply our eye colour to the target.
 	var/mob/living/carbon/human/H = target
@@ -230,8 +216,6 @@
 
 	// Pass over the blood.
 	reagents.trans_to(O, reagents.total_volume)
-
-	transfer_fingerprints_to(O)
 
 	user.put_in_active_hand(O)
 	qdel(src)

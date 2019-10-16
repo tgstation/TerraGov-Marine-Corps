@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Sentinel
-	caste_base_type = /mob/living/carbon/Xenomorph/Sentinel
+/mob/living/carbon/xenomorph/sentinel
+	caste_base_type = /mob/living/carbon/xenomorph/sentinel
 	name = "Sentinel"
 	desc = "A slithery, spitting kind of alien."
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
@@ -13,13 +13,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	speed = -0.8
 	pull_speed = -2
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/corrosive_acid/drone,
-		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/neurotox_sting
-		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl
+		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

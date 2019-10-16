@@ -1,5 +1,5 @@
-/mob/living/carbon/Xenomorph/Carrier
-	caste_base_type = /mob/living/carbon/Xenomorph/Carrier
+/mob/living/carbon/xenomorph/carrier
+	caste_base_type = /mob/living/carbon/xenomorph/carrier
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x2
@@ -11,34 +11,19 @@
 	speed = 0
 	mob_size = MOB_SIZE_BIG
 	var/list/huggers = list()
-	var/threw_a_hugger = 0
 	var/eggs_cur = 0
-	var/used_spawn_facehugger = FALSE
-	var/last_spawn_facehugger
-	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/activable/throw_hugger,
-		/datum/action/xeno_action/activable/retrieve_egg,
-		/datum/action/xeno_action/place_trap,
-		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones
-		)
 	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
 
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/Xenomorph/Carrier/death(gibbed)
+/mob/living/carbon/xenomorph/carrier/death(gibbed)
 	. = ..()
 	if(. && !gibbed && length(huggers))
 		var/chance = 75
@@ -59,7 +44,7 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/Xenomorph/Carrier/Stat()
+/mob/living/carbon/xenomorph/carrier/Stat()
 	. = ..()
 
 	if(statpanel("Stats"))

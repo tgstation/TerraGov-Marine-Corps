@@ -71,16 +71,23 @@
 		attach_strings += "This has optical glass allowing for magnification and viewing long distances."
 	if(aim_speed_mod)
 		switch(aim_speed_mod)
-			if(-INFINITY to SLOWDOWN_ADS_SHOTGUN)
+			if(-INFINITY to 0.35)
 				attach_strings += "<br>It will slow the user down more by a small amount if wielded."
-			if((SLOWDOWN_ADS_SHOTGUN + 0.01) to SLOWDOWN_ADS_SPECIALIST_LIGHT)
+			if((0.36) to 0.75)
 				attach_strings += "<br>It will slow the user down more by a modest amount if wielded."
-			if((SLOWDOWN_ADS_SPECIALIST_LIGHT + 0.01) to SLOWDOWN_ADS_SCOPE)
+			if((0.76) to 1)
 				attach_strings += "<br>It will slow the user down more by a large amount if wielded."
-			if((SLOWDOWN_ADS_SCOPE + 0.01) to INFINITY)
+			if((1.01) to INFINITY)
 				attach_strings += "<br>It will slow the user down more by a massive amount if wielded."
 	if(!aim_speed_mod)
 		attach_strings += "<br>It will not slow the user down more if this is attached and wielded."
+	if(ammo_mod)
+		attach_strings += "This will allow you to overcharge your weapon."
+	if(charge_mod)
+		attach_strings += "Charge cost: [charge_mod]."
+	if(length(gun_firemode_list_mod) > 0)
+		attach_strings += "This will allow for additional firemodes."
+
 
 	attach_strings += "<br><U>Wielded modifications</U>:<br>"
 
