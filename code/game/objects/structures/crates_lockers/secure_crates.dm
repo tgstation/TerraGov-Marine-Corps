@@ -4,15 +4,17 @@
 	icon_state = "secure_locked_basic"
 	icon_opened = "secure_open_basic"
 	icon_closed = "secure_locked_basic"
+	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ|CLOSET_IS_SECURE
 	var/icon_locked = "secure_locked_basic"
 	var/icon_unlocked = "secure_unlocked_basic"
 	var/sparks = "securecratesparks"
-	var/emag = "securecrateemag"
-	var/broken = 0
-	var/locked = 1
+	locked = TRUE
+	max_integrity = 500
+	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
 
-/obj/structure/closet/crate/secure/New()
-	..()
+
+/obj/structure/closet/crate/secure/Initialize(mapload, ...)
+	. = ..()
 	update_icon()
 
 
@@ -20,72 +22,25 @@
 	overlays.Cut()
 	if(opened)
 		icon_state = icon_opened
-	else if(locked)
-		icon_state = icon_locked
 	else
-		icon_state = icon_unlocked
+		icon_state = locked ? icon_locked : icon_unlocked
 	if(welded)
-		overlays += "welded"
+		overlays += overlay_welded
 
 
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
-	if(src.opened)
-		to_chat(user, "<span class='notice'>Close the crate first.</span>")
-		return
-	if(src.broken)
-		to_chat(user, "<span class='warning'>The crate appears to be broken.</span>")
-		return
-	if(src.allowed(user))
-		src.locked = !src.locked
-		for(var/mob/O in viewers(user, 3))
-			if(O.client && !is_blind(O))
-				to_chat(O, "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>")
-		icon_state = locked ? icon_locked : icon_unlocked
-	else
-		to_chat(user, "<span class='notice'>Access Denied</span>")
 
 /obj/structure/closet/crate/secure/verb/verb_togglelock()
 	set src in oview(1) // One square distance
 	set category = "Object"
 	set name = "Toggle Lock"
 
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+	if(usr.incapacitated())
 		return
+	togglelock(usr)
 
-	if(ishuman(usr))
-		src.add_fingerprint(usr)
-		src.togglelock(usr)
-	else
-		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
-
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
-	if(locked)
-		src.togglelock(user)
-	else
-		src.toggle(user)
-
-/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters, /obj/item/tool/weldingtool)))
-		return ..()
-	if(locked && istype(W, /obj/item/card/emag))
-		overlays.Cut()
-		overlays += emag
-		overlays += sparks
-		spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
-		playsound(src.loc, "sparks", 25, 1)
-		locked = 0
-		broken = 1
-		update_icon()
-		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
-		return
-	if(!opened)
-		src.togglelock(user)
-		return
-	return ..()
 
 /obj/structure/closet/crate/secure/emp_act(severity)
 	for(var/obj/O in src)
@@ -95,7 +50,6 @@
 			locked = 1
 		else
 			overlays.Cut()
-			overlays += emag
 			overlays += sparks
 			spawn(6) overlays -= sparks //Tried lots of stuff but nothing works right. so i have to use this *sadface*
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
@@ -105,8 +59,8 @@
 		if(!locked)
 			open()
 		else
-			src.req_access = list()
-			src.req_access += pick(get_all_accesses())
+			req_access = list()
+			req_access += pick(ALL_ACCESS)
 	..()
 
 

@@ -1,0 +1,7 @@
+.alamo-background {
+	display: inline-block;
+	background: rgba(0, 0, 0, 0) url('alamo.png') no-repeat center;
+	width: 450px;
+	height: 350px;
+	margin: 0 auto;
+}

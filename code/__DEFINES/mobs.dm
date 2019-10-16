@@ -1,9 +1,6 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 
-#define BORGMESON 1
-#define BORGTHERM 2
-#define BORGXRAY  4
 
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT	-10 //alkysine
@@ -47,9 +44,9 @@
 
 #define CARBON_KO_OXYLOSS 50
 
-#define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
-#define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
-#define HEAT_DAMAGE_LEVEL_3 8 //Amount of damage applied when your body temperature passes the 1000K point
+#define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 4 //Amount of damage applied when your body temperature passes the 1000K point
 
 #define COLD_DAMAGE_LEVEL_1 0.2 //Amount of damage applied when your body temperature just passes the 260.15k safety point
 #define COLD_DAMAGE_LEVEL_2 1.0 //Amount of damage applied when your body temperature passes the 200K point
@@ -64,59 +61,21 @@
 #define COLD_GAS_DAMAGE_LEVEL_2 0.6 //Amount of damage applied when the current breath's temperature passes the 200K point
 #define COLD_GAS_DAMAGE_LEVEL_3 1.2 //Amount of damage applied when the current breath's temperature passes the 120K point
 
-// mob/var/list/mutations
-var/list/global_mutations = list() // list of hidden mutation things
-
-#define STRUCDNASIZE 27
-#define UNIDNASIZE 13
-
-	// Generic mutations:
-#define	TK				1
-#define COLD_RESISTANCE	2
-#define XRAY			3
-#define HULK			4
-#define CLUMSY			5
-#define FAT				6
-#define HUSK			7
-#define NOCLONE			8
-//=================================================
-
-	//2spooky
-#define SKELETON 29
-#define PLANT 30
-
-// Other Mutations:
-#define mNobreath		100 	// no need to breathe
-#define mRemote			101 	// remote viewing
-#define mRegen			102 	// health regen
-#define mRun			103 	// no slowdown
-#define mRemotetalk		104 	// remote talking
-#define mMorph			105 	// changing appearance
-#define mBlend			106 	// nothing (seriously nothing)
-#define mHallucination	107 	// hallucinations
-#define mFingerprints	108 	// no fingerprints
-#define mShock			109 	// insulated hands
-#define mSmallsize		110 	// table climbing
 //=================================================
 
 //disabilities
-#define NEARSIGHTED		(1<<0)
-#define EPILEPSY		(1<<1)
-#define COUGHING		(1<<2)
-#define TOURETTES		(1<<3)
-#define NERVOUS			(1<<4)
-//=================================================
-
-//sdisabilities
 #define BLIND			(1<<0)
 #define MUTE			(1<<1)
 #define DEAF			(1<<2)
+#define NEARSIGHTED		(1<<3)
 //=================================================
 
 //mob/var/stat things
 #define CONSCIOUS	0
 #define UNCONSCIOUS	1
 #define DEAD		2
+
+#define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
 
 //Damage things
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
@@ -153,22 +112,22 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CANKNOCKDOWN	(1<<1)
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
-#define LEAPING			(1<<4)
-#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
-#define GODMODE			(1<<6)
-#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
+#define GODMODE			(1<<4)
+#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
+#define TK_USER			(1<<8)
 
 // =============================
 // hive types
 
-#define XENO_HIVE_NONE "none"
-#define XENO_HIVE_NORMAL "normal"
-#define XENO_HIVE_CORRUPTED "corrupted"
-#define XENO_HIVE_ALPHA "alpha"
-#define XENO_HIVE_BETA "beta"
-#define XENO_HIVE_ZETA "zeta"
+#define XENO_HIVE_NONE "none_hive"
+#define XENO_HIVE_NORMAL "normal_hive"
+#define XENO_HIVE_CORRUPTED "corrupted_hive"
+#define XENO_HIVE_ALPHA "alpha_hive"
+#define XENO_HIVE_BETA "beta_hive"
+#define XENO_HIVE_ZETA "zeta_hive"
+#define XENO_HIVE_ADMEME "admeme_hive"
 
 // =============================
 // xeno tiers
@@ -321,19 +280,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_PRINTING_TIME 550
 #define LIMB_METAL_AMOUNT 125
 
-//=================================================
-//language_flags
-#define WHITELISTED (1<<0)  		// Language is available if the speaker is whitelisted.
-#define RESTRICTED	(1<<1)   		// Language can only be accquired by spawning or an admin.
-#define NONVERBAL 	(1<<2)    		// Language has a significant non-verbal component. Speech is garbled without line-of-sight
-#define SIGNLANG 	(1<<3)     		// Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-#define HIVEMIND 	(1<<4)         // Broadcast to all mobs with this language.
-//=================================================
-
-
-#define EMOTE_VISIBLE  1
-#define EMOTE_AUDIBLE  2
-
 
 //species_flags
 #define NO_BLOOD 				(1<<0)
@@ -354,12 +300,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
-#define IS_VOX 2
-#define IS_SKRELL 3
-#define IS_UNATHI 4
-#define IS_XENOS 5
-#define IS_HORROR 6
-#define IS_MOTH 7
+#define IS_HUMAN (1<<0)
+#define IS_MONKEY (1<<1)
+#define IS_XENO (1<<2)
+#define IS_VOX (1<<3)
+#define IS_SKRELL (1<<4)
+#define IS_UNATHI (1<<5)
+#define IS_HORROR (1<<6)
+#define IS_MOTH (1<<7)
 //=================================================
 
 //Mob sizes
@@ -374,13 +322,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TASTE_NORMAL 15 //anything below 15%
 #define TASTE_DULL 30 //anything below 30%
 #define TASTE_NUMB 101 //no taste
-
-//defines for the busy icons when the mob does something that takes time using do_after proc
-#define BUSY_ICON_GENERIC	1
-#define BUSY_ICON_MEDICAL	2
-#define BUSY_ICON_BUILD		3
-#define BUSY_ICON_FRIENDLY	4
-#define BUSY_ICON_HOSTILE	5
 
 
 //defins for datum/hud
@@ -404,26 +345,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 
-//diseases
-
-#define SPECIAL -1
-#define NON_CONTAGIOUS 0
-#define BLOOD 1
-#define CONTACT_FEET 2
-#define CONTACT_HANDS 3
-#define CONTACT_GENERAL 4
-#define AIRBORNE 5
-
-#define SCANNER 1
-#define PANDEMIC 2
-
-
-//forcesay types
-#define SUDDEN 0
-#define GRADUAL 1
-#define PAINFUL 2
-#define EXTREMELY_PAINFUL 3
-
 // halloss defines
 
 #define BASE_HALLOSS_RECOVERY_RATE -4
@@ -432,24 +353,25 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				27		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		26
-#define MUTANTRACE_LAYER		25
-#define MUTATIONS_LAYER			24
-#define DAMAGE_LAYER			23
-#define UNIFORM_LAYER			22
-#define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER				20
-#define SHOES_LAYER				19
-#define GLOVES_LAYER			18
-#define BELT_LAYER   			17
-#define GLASSES_LAYER			16
-#define SUIT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				13
-#define HAIR_LAYER				12		//TODO: make part of head layer?
-#define EARS_LAYER				11
-#define FACEMASK_LAYER			10
+#define LASER_LAYER				28		//For sniper targeting laser
+#define MOTH_WINGS_LAYER		27
+#define MUTANTRACE_LAYER		26
+#define MUTATIONS_LAYER			25
+#define DAMAGE_LAYER			24
+#define UNIFORM_LAYER			23
+#define TAIL_LAYER				22		//bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				21
+#define SHOES_LAYER				20
+#define GLOVES_LAYER			19
+#define BELT_LAYER   			18
+#define GLASSES_LAYER			17
+#define SUIT_LAYER				16		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		15
+#define BACK_LAYER				14
+#define HAIR_LAYER				13		//TODO: make part of head layer?
+#define EARS_LAYER				12
+#define FACEMASK_LAYER			11
+#define GOGGLES_LAYER           10    //For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER				9
 #define COLLAR_LAYER			8
 #define HANDCUFF_LAYER			7
@@ -480,24 +402,21 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFENDER_FORTIFY_ARMOR 60
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+#define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17)) // 85/68/51/34 for ancient/elder emp/elder queen/queen
+#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
 #define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
-#define XENO_LARVAL_ADVANCEMENT_COOLDOWN	15 SECONDS
-
-#define XENO_LARVAL_GROWTH_COOLDOWN			12 SECONDS
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
-#define XENO_NEURO_STING_COOLDOWN			12 SECONDS
 #define XENO_NEURO_AMOUNT_RECURRING			15
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
@@ -509,13 +428,30 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_VENT_CRAWL		(1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
-#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_INNATE_HEALING		(1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
 #define CASTE_FIRE_IMMUNE			(1<<5)
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
-#define CASTE_IS_INTELLIGENT		(1<<7)
+#define CASTE_IS_INTELLIGENT		(1<<7) // A hive leader or able to use more human controls
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
+#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
+
+#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+
+//Charge-Crush
+#define CHARGE_OFF			0
+#define CHARGE_BUILDINGUP	1
+#define CHARGE_ON			2
+#define CHARGE_MAX			3
+
+// Xeno charge types
+#define CHARGE_TYPE_SMALL			1
+#define CHARGE_TYPE_MEDIUM			2
+#define CHARGE_TYPE_LARGE			3
+#define CHARGE_TYPE_MASSIVE			4
+
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -528,8 +464,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
-#define HANDLE_STEALTH_CODE_CANCEL				2
 #define HANDLE_SNEAK_ATTACK_CHECK				3
+#define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
+#define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
+#define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		3.5
+#define HUNTER_SNEAKATTACK_RUN_REDUCTION		0.2
+#define HUNTER_SNEAKATTACK_WALK_INCREASE		1
+#define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
@@ -537,29 +479,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAV_CHARGESPEED					100
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
-#define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
-#define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
 #define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
 #define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
 #define RAV_HANDLE_CHARGE				1
 
-//defender defines
-
-#define DEFENDER_HEADBUTT_COST			25
-#define DEFENDER_TAILSWIPE_COST			35
-#define DEFENDER_HEADBUTT_COOLDOWN		6 SECONDS
-#define DEFENDER_TAILSWIPE_COOLDOWN		12 SECONDS
-#define DEFENDER_FORTIFY_COOLDOWN		1 SECONDS
-#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECONDS
-
 //crusher defines
-#define CRUSHER_CRESTTOSS_COST			40
-#define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
-#define CRUSHER_STOMP_COST				80
-#define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
 #define CRUSHER_STOMP_LOWER_DMG			80
 #define CRUSHER_STOMP_UPPER_DMG			100
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
@@ -568,29 +494,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
 
-#define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
-#define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
-#define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
-
 //carrier defines
-
-#define CARRIER_SPAWN_HUGGER_COST 100
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
-//Warrior defines
-
-#define WARRIOR_LUNGE_COOLDOWN 10 SECONDS
-#define WARRIOR_PUNCH_COOLDOWN 6 SECONDS
-#define WARRIOR_FLING_COOLDOWN 6 SECONDS
-#define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
-
 //Defiler defines
-
-#define DEFILER_STING_COOLDOWN				20 SECONDS
-#define DEFILER_GAS_COOLDOWN				40 SECONDS
-#define DEFILER_CLAWS_COOLDOWN				1 SECONDS
-
 #define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
@@ -599,7 +507,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GROWTH_TOXIN_METARATE		0.2
 
 //Boiler defines
-
 #define BOILER_LUMINOSITY					3
 
 //Hivelord defines
@@ -610,7 +517,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				4
-#define HIVELORD_TUNNEL_COOLDOWN				120 SECONDS
+
+//Shrike defines
+
+#define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
+#define SHRIKE_CURE_HEAL_MULTIPLIER	10
 
 //misc
 
@@ -625,11 +536,54 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
 
-// tracking map ID, add more squads/ert leaders/hives etc to track via SSdirection here
-#define TRACK_ALPHA_SQUAD "alpha"
-#define TRACK_BRAVO_SQUAD "bravo"
-#define TRACK_CHARLIE_SQUAD "charlie"
-#define TRACK_DELTA_SQUAD "delta"
-
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
+
+
+#define BODY_ZONE_HEAD		"head"
+#define BODY_ZONE_CHEST		"chest"
+#define BODY_ZONE_L_ARM		"l_arm"
+#define BODY_ZONE_R_ARM		"r_arm"
+#define BODY_ZONE_L_LEG		"l_leg"
+#define BODY_ZONE_R_LEG		"r_leg"
+
+
+#define BODY_ZONE_PRECISE_EYES		"eyes"
+#define BODY_ZONE_PRECISE_MOUTH		"mouth"
+#define BODY_ZONE_PRECISE_GROIN		"groin"
+#define BODY_ZONE_PRECISE_L_HAND	"l_hand"
+#define BODY_ZONE_PRECISE_R_HAND	"r_hand"
+#define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
+#define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
+
+
+//Hostile simple animals
+#define AI_ON		1
+#define AI_IDLE		2
+#define AI_OFF		3
+#define AI_Z_OFF	4
+
+
+
+//Cooldowns
+#define COOLDOWN_CHEW 		"chew"
+#define COOLDOWN_PUKE 		"puke"
+#define COOLDOWN_POINT 		"point"
+#define COOLDOWN_EMOTE		"emote"
+#define COOLDOWN_VENTCRAWL	"ventcrawl"
+#define COOLDOWN_BUCKLE		"buckle"
+#define COOLDOWN_RESIST		"resist"
+#define COOLDOWN_ORDER		"order"
+#define COOLDOWN_DISPOSAL	"disposal"
+#define COOLDOWN_ACID		"acid"
+#define COOLDOWN_GUT		"gut"
+#define COOLDOWN_ZOOM		"zoom"
+#define COOLDOWN_BUMP		"bump"
+#define COOLDOWN_ENTANGLE	"entangle"
+#define COOLDOWN_NEST		"nest"
+#define COOLDOWN_TASTE		"taste"
+#define COOLDOWN_VENTSOUND	"vendsound"
+
+// Xeno Cooldowns
+// -- Ravager
+#define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"

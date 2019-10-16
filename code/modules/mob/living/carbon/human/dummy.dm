@@ -10,7 +10,8 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 	return ..()
 
 /mob/living/carbon/human/dummy/Life()
-	return
+	SSmobs.stop_processing(src)
+
 
 /mob/living/carbon/human/dummy/proc/wipe_state()
 	delete_equipment()
@@ -37,6 +38,6 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	if(!slotnumber)
 		return
 	var/mob/living/carbon/human/dummy/D = GLOB.human_dummy_list[slotnumber]
-	if(istype(D))
+	if(!QDELETED(D))
 		D.wipe_state()
 		D.in_use = FALSE

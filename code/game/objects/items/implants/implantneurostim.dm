@@ -17,16 +17,12 @@
 <b>Integrity:</b> Implant will be degraded by the body's immune system and thus occasionally malfunction."}
 	return dat
 
-/obj/item/implant/neurostim/hear_talk(mob/M as mob, msg)
-	hear(msg)
-	return
-
-/obj/item/implant/neurostim/hear(var/msg)
+/obj/item/implant/neurostim/hear(msg)
 	msg = sanitize(msg)
 	if(findtext(msg,phrase))
 		activate(0)
 
-/obj/item/implant/neurostim/activate(var/accidental = 0)
+/obj/item/implant/neurostim/activate(accidental = 0)
 	set waitfor = 0
 
 	if(malfunction == MALFUNCTION_PERMANENT)
@@ -57,9 +53,9 @@
 		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
 		C.flash_eyes(1, TRUE)
 		C.stunned += 10
-		C.KnockDown(10)
+		C.knock_down(10)
 		C.apply_damage(100, HALLOSS, part)
-		C.apply_damage(5, BURN, part, 0, 0, 0, src)
+		C.apply_damage(5, BURN, part)
 
 	else
 		playsound(src, 'sound/machines/twobeep.ogg', 60, 1)
@@ -91,9 +87,9 @@
 		if(istype(imp_in, /mob/living/carbon/))
 			var/mob/living/carbon/M = imp_in
 
-			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount("neuraline"), 0)
+			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline), 0)
 
-			M.reagents.add_reagent("neuraline", neuraline_inject_amount, null, 1)
+			M.reagents.add_reagent(/datum/reagent/medicine/neuraline, neuraline_inject_amount, null, 1)
 
 
 /obj/item/implant/neurostim/emp_act(severity)
@@ -113,13 +109,3 @@
 /obj/item/implant/neurostim/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
-
-
-/obj/item/implanter/neurostim
-	name = "implanter"
-
-	New()
-		src.imp = new /obj/item/implant/neurostim(src)
-		..()
-		update()
-		return

@@ -14,7 +14,6 @@
 #define TRACKS_CRUSTIFY_TIME   50
 
 // color-dir-dry
-var/global/list/image/fluidtrack_cache=list()
 
 /datum/fluidtrack
 	var/direction=0
@@ -114,7 +113,6 @@ var/global/list/image/fluidtrack_cache=list()
 				updated=1
 
 		dirs |= comingdir|realgoing
-		blood_DNA |= DNA.Copy()
 		if(updated)
 			update_icon()
 

@@ -15,13 +15,13 @@
 // All power generation handled in add_avail()
 // Machines should use add_load(), surplus(), avail()
 // Non-machines should use add_delayedload(), delayed_surplus(), newavail()
-/obj/machinery/power/proc/add_avail(var/amount)
+/obj/machinery/power/proc/add_avail(amount)
 	if(powernet)
 		powernet.newavail += amount
 		return TRUE
 	return FALSE
 
-/obj/machinery/power/proc/add_load(var/amount)
+/obj/machinery/power/proc/add_load(amount)
 	if(powernet)
 		powernet.load += amount
 
@@ -57,7 +57,7 @@
 
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
-/obj/machinery/proc/powered(var/chan = -1)
+/obj/machinery/proc/powered(chan = -1)
 	if(!loc)
 		return FALSE
 	if(use_power == NO_POWER_USE)
@@ -111,15 +111,15 @@
 
 // attach a wire to a power machine - leads from the turf you are standing on
 //almost never called, overwritten by all power machines but terminal and generator
-/obj/machinery/power/attackby(obj/item/W, mob/user, params)
-	if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/coil = W
+/obj/machinery/power/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/coil = I
 		var/turf/T = user.loc
 		if(T.intact_tile || !isfloorturf(T) || get_dist(src, user) > 1)
 			return
 		coil.place_turf(T, user)
-	else
-		. = ..()
 
 ///////////////////////////////
 // Powernet handling helpers //
@@ -269,7 +269,7 @@
 //dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
 //No animations will be performed by this proc.
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE)
-	if(!M || ismecha(M.loc))
+	if(!M)
 		return 0	//feckin mechs are dumb
 	if(dist_check)
 		if(!in_range(source,M))
@@ -304,8 +304,7 @@
 	else if (!power_source)
 		return 0
 	else
-		log_admin("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
-		return 0
+		CRASH("ERROR: /proc/electrocute_mob([M], [power_source], [source]): wrong power_source")
 	if (!C && !PN)
 		return 0
 	var/PN_damage = 0
@@ -351,8 +350,9 @@
 	return null
 
 /area/proc/get_apc()
-	for(var/obj/machinery/power/apc/APC in GLOB.apcs_list)
-		if(APC.area == src.master)
+	for(var/i in GLOB.apcs_list)
+		var/obj/machinery/power/apc/APC = i
+		if(APC.area == src)
 			return APC
 
 
@@ -371,13 +371,13 @@
 
 	for(var/obj/machinery/power/apc/C in GLOB.machines)
 		if(!C.cell || !is_mainship_level(C.z))
-			continue		
+			continue
 		C.cell.charge = 0
 
 	playsound_z(3, 'sound/effects/powerloss.ogg')
 
 	if(announce)
-		command_announcement.Announce("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+		priority_announce("Abnormal activity detected in the ship power system. As a precaution, power must be shut down for an indefinite duration.", "Critical Power Failure", sound = 'sound/AI/poweroff.ogg')
 
 
 /proc/power_restore(announce = TRUE)
@@ -400,7 +400,7 @@
 
 
 	if(announce)
-		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		priority_announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", sound = 'sound/AI/poweron.ogg')
 
 
 /proc/power_restore_quick(announce = TRUE)
@@ -414,7 +414,7 @@
 		S.power_change()
 
 	if(announce)
-		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		priority_announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", sound = 'sound/AI/poweron.ogg')
 
 
 /proc/power_restore_everything(announce = TRUE)
@@ -431,4 +431,4 @@
 		C.cell.charge = C.cell.maxcharge
 
 	if(announce)
-		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		priority_announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", sound = 'sound/AI/poweron.ogg')

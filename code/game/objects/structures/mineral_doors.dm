@@ -19,8 +19,8 @@
 	var/hardness = 1
 	var/oreAmount = 7
 
-/obj/structure/mineral_door/New(location)
-	..()
+/obj/structure/mineral_door/Initialize()
+	. = ..()
 	icon_state = mineralType
 	name = "[mineralType] door"
 
@@ -31,17 +31,13 @@
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/mineral_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
-	if(isAI(user)) //so the AI can't open it
-		return
-	else if(iscyborg(user)) //but cyborgs can
-		if(get_dist(user,src) <= 1) //not remotely though
-			return TryToSwitchState(user)
-
-/obj/structure/mineral_door/attack_paw(mob/user as mob)
+/obj/structure/mineral_door/attack_paw(mob/living/carbon/monkey/user)
 	return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_hand(mob/user as mob)
+/obj/structure/mineral_door/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target)
@@ -61,8 +57,6 @@
 					SwitchState()
 			else
 				SwitchState()
-	else if(istype(user, /obj/mecha))
-		SwitchState()
 
 /obj/structure/mineral_door/proc/SwitchState()
 	if(state)
@@ -116,7 +110,7 @@
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
 		if(W.damtype == "fire" && is_resin) //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
-		user.animation_attack_on(src)
+		user.do_attack_animation(src)
 		hardness -= W.force * multiplier * 0.01
 		if(!P)
 			to_chat(user, "You hit the [name] with your [W.name]!")
@@ -179,11 +173,6 @@
 /obj/structure/mineral_door/uranium
 	mineralType = "uranium"
 	hardness = 3
-	luminosity = 2
-
-/obj/structure/mineral_door/uranium/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/structure/mineral_door/sandstone
 	mineralType = "sandstone"

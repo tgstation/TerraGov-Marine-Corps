@@ -1,15 +1,15 @@
 /datum/xeno_caste/queen
 	caste_name = "Queen"
 	display_name = "Queen"
-	caste_type_path = /mob/living/carbon/Xenomorph/Queen
+	caste_type_path = /mob/living/carbon/xenomorph/queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
+	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 45
-	melee_damage_upper = 55
+	melee_damage = 50
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -28,16 +28,16 @@
 	upgrade_threshold = 800
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor_deflection = 45
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
 	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
@@ -45,6 +45,30 @@
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/call_of_the_burrowed,
+		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/shift_spits,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/toggle_queen_zoom,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/set_xeno_lead,
+		/datum/action/xeno_action/activable/queen_heal,
+		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/queen_order,
+		/datum/action/xeno_action/deevolve
+		)
+
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_ZERO
@@ -55,8 +79,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 50
-	melee_damage_upper = 60
+	melee_damage = 55
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -75,11 +98,10 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade1, /datum/ammo/xeno/acid/medium)
+	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -93,8 +115,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 55
-	melee_damage_upper = 65
+	melee_damage = 60
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -113,11 +134,10 @@
 	upgrade_threshold = 3200
 
 	// *** Defense *** //
-	armor_deflection = 55
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
+	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 4.7
@@ -127,12 +147,11 @@
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."
-	ancient_message = "You are the Alpha and the Omega. The beginning and the end."
+	ancient_message = "We are the Alpha and the Omega. The beginning and the end."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 60
-	melee_damage_upper = 70
+	melee_damage = 65
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -151,15 +170,13 @@
 	upgrade_threshold = 3200
 
 	// *** Defense *** //
-	armor_deflection = 60
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
+	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
-	

@@ -1,21 +1,21 @@
 /* Filing cabinets!
- * Contains:
- *		Filing Cabinets
- *		Security Record Cabinets
- *		Medical Record Cabinets
- */
+* Contains:
+*		Filing Cabinets
+*		Security Record Cabinets
+*		Medical Record Cabinets
+*/
 
 
 /*
- * Filing Cabinets
- */
+* Filing Cabinets
+*/
 /obj/structure/filingcabinet
 	name = "filing cabinet"
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "filingcabinet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 
 /obj/structure/filingcabinet/chestdrawer
@@ -34,23 +34,32 @@
 			I.loc = src
 
 
-/obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/paper_bundle))
-		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
-		if(user.transferItemToLoc(P, src))
-			icon_state = "[initial(icon_state)]-open"
-			sleep(5)
-			icon_state = initial(icon_state)
-			updateUsrDialog()
-	else if(iswrench(P))
-		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+/obj/structure/filingcabinet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
+		if(!user.transferItemToLoc(I, src))
+			return
+
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		icon_state = "[initial(icon_state)]-open"
+		sleep(5)
+		icon_state = initial(icon_state)
+		updateUsrDialog()
+
+	else if(iswrench(I))
 		anchored = !anchored
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		
 	else
-		to_chat(user, "<span class='notice'>You can't put [P] in [src]!</span>")
+		to_chat(user, "<span class='notice'>You can't put [I] in [src]!</span>")
 
 
-/obj/structure/filingcabinet/attack_hand(mob/user as mob)
+/obj/structure/filingcabinet/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(contents.len <= 0)
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		return
@@ -64,24 +73,10 @@
 
 	return
 
-/obj/structure/filingcabinet/attack_tk(mob/user)
-	if(anchored)
-		attack_self_tk(user)
-	else
-		..()
-
-/obj/structure/filingcabinet/attack_self_tk(mob/user)
-	if(contents.len)
-		if(prob(40 + contents.len * 5))
-			var/obj/item/I = pick(contents)
-			I.loc = loc
-			if(prob(25))
-				step_rand(I)
-			to_chat(user, "<span class='notice'>You pull \a [I] out of [src] at random.</span>")
-			return
-	to_chat(user, "<span class='notice'>You find nothing in [src].</span>")
-
 /obj/structure/filingcabinet/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["retrieve"])
 		usr << browse("", "window=filingcabinet") // Close the menu
 
@@ -91,14 +86,12 @@
 			usr.put_in_hands(P)
 			updateUsrDialog()
 			icon_state = "[initial(icon_state)]-open"
-			spawn(0)
-				sleep(5)
-				icon_state = initial(icon_state)
+			addtimer(VARSET_CALLBACK(src, icon_state, initial(icon_state)), 5)
 
 
 /*
- * Security Record Cabinets
- */
+* Security Record Cabinets
+*/
 /obj/structure/filingcabinet/security
 	var/virgin = 1
 
@@ -124,19 +117,16 @@
 				P.name = "Security Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
-/obj/structure/filingcabinet/security/attack_hand()
+/obj/structure/filingcabinet/security/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()
-
-/obj/structure/filingcabinet/security/attack_tk()
-	populate()
-	..()
 
 /*
- * Medical Record Cabinets
- */
+* Medical Record Cabinets
+*/
 /obj/structure/filingcabinet/medical
 	var/virgin = 1
 
@@ -162,12 +152,9 @@
 				P.name = "Medical Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
-/obj/structure/filingcabinet/medical/attack_hand()
+/obj/structure/filingcabinet/medical/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	populate()
-	..()
-
-/obj/structure/filingcabinet/medical/attack_tk()
-	populate()
-	..()

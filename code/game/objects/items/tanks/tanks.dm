@@ -6,7 +6,7 @@
 	icon = 'icons/obj/items/tank.dmi'
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 
 	var/pressure_full = ONE_ATMOSPHERE*4
 
@@ -47,24 +47,21 @@
 		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive]</span>")
 
 
-/obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/item/tank/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
-		for (var/mob/O in viewers(user, null))
-			to_chat(O, "<span class='warning'>[user] has used [W] on [icon2html(src, user)] [src]</span>")
+	if((istype(I, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+		visible_message("<span class='warning'>[user] has used [I] on [icon2html(src, user)] [src]</span>")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
 		to_chat(user, "<span class='notice'>Results of analysis of [icon2html(src, user)]</span>")
-		if (pressure>0)
-			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
-
+		if(pressure > 0)
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure, 0.1)] kPa</span>")
 			to_chat(user, "<span class='notice'>[gas_type]: 100%</span>")
-			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C)]&deg;C</span>")
 		else
 			to_chat(user, "<span class='notice'>Tank is empty!</span>")
-		src.add_fingerprint(user)
 
 
 /obj/item/tank/attack_self(mob/user as mob)
@@ -73,7 +70,7 @@
 
 	ui_interact(user)
 
-/obj/item/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	var/using_internal
 	if(istype(loc,/mob/living/carbon))
@@ -96,10 +93,10 @@
 			data["maskConnected"] = 1
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -109,7 +106,9 @@
 		ui.set_auto_update(1)
 
 /obj/item/tank/Topic(href, href_list)
-	..()
+	. = ..()
+	if(.)
+		return
 	if (usr.stat|| usr.restrained())
 		return 0
 	if (src.loc != usr)
@@ -141,7 +140,6 @@
 				else
 					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
 
-	src.add_fingerprint(usr)
 	return 1
 
 

@@ -8,16 +8,14 @@
 	desc = "A gun that fires flares. Replace with flares. Simple!"
 	icon_state = "flaregun" //REPLACE THIS
 	item_state = "gun" //YUCK
-	fire_sound = 'sound/weapons/gun_flare.ogg'
-	origin_tech = "combat=1;materials=2"
+	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	ammo = /datum/ammo/flare
 	var/num_flares = 1
 	var/max_flares = 1
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
+	fire_delay = 9
 
-/obj/item/weapon/gun/flare/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 
 /obj/item/weapon/gun/flare/examine_ammo_count(mob/user)
 	if(num_flares)
@@ -32,7 +30,7 @@
 /obj/item/weapon/gun/flare/load_into_chamber()
 	if(num_flares)
 		in_chamber = create_bullet(ammo)
-		in_chamber.SetLuminosity(4)
+		in_chamber.set_light(4)
 		num_flares--
 		return in_chamber
 
@@ -40,27 +38,25 @@
 	update_icon()
 	return TRUE
 
-/obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/flare/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund)
 		num_flares++
 	return TRUE
 
-/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/explosive/grenade/flare))
+/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/explosive/grenade/flare))
 		var/obj/item/explosive/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
 		user.temporarilyRemoveItemFromInventory(flare)
-		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
 		update_icon()
-		return
-
-	return ..()
+	else
+		return ..()
 
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
@@ -74,6 +70,8 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
+	return TRUE
+
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -93,32 +91,34 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	force = 4.0
 	var/list/syringes = new/list()
 	var/max_syringes = 1
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 
 /obj/item/weapon/gun/syringe/examine_ammo_count(mob/user)
 	if(user == loc)
 		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
-/obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_container/syringe))
 		var/obj/item/reagent_container/syringe/S = I
-		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
-			if(syringes.len < max_syringes)
-				user.transferItemToLoc(I, src)
-				syringes += I
-				update_icon()
-				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
-				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
-			else
-				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
-		else
-			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
+		if(S.mode == 2)
+			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
+			return
+
+		if(length(syringes) >= max_syringes)
+			to_chat(user, "<span class='warning'>[src] cannot hold more syringes.</span>")
+			return
+
+		user.transferItemToLoc(I, src)
+		syringes += I
+		update_icon()
+		to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
+		to_chat(user, "<span class='notice'>[length(syringes)] / [max_syringes] syringes.</span>")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
 	if(syringes.len)
-		spawn(0) fire_syringe(target,user)
+		INVOKE_ASYNC(src, .proc/fire_syringe, target, user)
 	else
 		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
@@ -167,7 +167,7 @@
 					var/R
 					if(D.reagents)
 						for(var/datum/reagent/A in D.reagents.reagent_list)
-							R += A.id + " ("
+							R += A.name + " ("
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")
@@ -211,8 +211,8 @@
 	desc = ""
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "null"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)

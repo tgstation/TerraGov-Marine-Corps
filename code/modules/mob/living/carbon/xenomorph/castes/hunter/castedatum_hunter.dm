@@ -4,15 +4,14 @@
 	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
+	caste_type_path = /mob/living/carbon/xenomorph/hunter
 
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "alien" //used to match appropriate wound overlays
+	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage = 25
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -32,18 +31,26 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Ravager)
-	deevolves_to = /mob/living/carbon/Xenomorph/Runner
+	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
+	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor_deflection = 10
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
 	pounce_delay = 15 SECONDS
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/pounce/hunter,
+		/datum/action/xeno_action/stealth,
+		)
 
 /datum/xeno_caste/hunter/young
 	upgrade_name = "Young"
@@ -56,8 +63,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage = 35
 	attack_delay = 6.75
 
 	// *** Tackle *** //
@@ -77,7 +83,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 12.5 SECONDS
@@ -88,8 +94,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage = 40
 	attack_delay = 6.6
 
 	// *** Tackle *** //
@@ -109,7 +114,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 18
+	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 11.0 SECONDS
@@ -118,11 +123,10 @@
 	upgrade_name = "Ancient"
 	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "You are the epitome of the hunter. Few can stand against you in open combat."
+	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage = 45
 	attack_delay = 6.5
 
 	// *** Tackle *** //
@@ -142,7 +146,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS

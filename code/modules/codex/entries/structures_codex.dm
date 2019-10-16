@@ -24,19 +24,14 @@
 	if(can_buckle)
 		structure_strings += "You can buckle someone or yourself to this structure. <br>Click the structure or press 'resist' to unbuckle."
 
-	if(breakable)
-		structure_strings += "You can break this structure."
-	else
-		structure_strings += "You cannot break this structure."
-
 	if(CHECK_BITFIELD(resistance_flags, UNACIDABLE))
-		structure_strings += "You cannot melt this structure with acid."
-
-	if(length(parts) > 0)
-		structure_strings += "<U>It is made from the following parts</U>:"
-		for(var/X in parts)
-			var/obj/A = X
-			structure_strings += "[initial(text2path(A).name)]"
+		structure_strings += "Acid does not stick to or affect this structure at all."
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		structure_strings += "You cannot destroy this structure."
+	else
+		structure_strings += "You can destroy this structure."
+	if(CHECK_BITFIELD(resistance_flags, XENO_DAMAGEABLE))
+		structure_strings += "Xenos can damage this structure."
 
 	if(anchored)
 		structure_strings += "It is anchored in place."

@@ -5,10 +5,10 @@
 	name = "\improper M44 magnum speed loader (.44)"
 	desc = "A revolver speed loader."
 	default_ammo = /datum/ammo/bullet/revolver
-	flags_equip_slot = NOFLAGS
+	flags_equip_slot = NONE
 	caliber = ".44"
 	icon_state = "m44"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
@@ -59,6 +59,14 @@
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
+//a very literal box of ammunition.
+/obj/item/ammo_magazine/magnum
+	name = "Box of .44 magnum"
+	icon_state = "box45" //Maybe change this
+	default_ammo = /datum/ammo/bullet/revolver
+	caliber = ".44"
+	current_rounds = 50
+	max_rounds = 50
 
 //INTERNAL MAGAZINES
 

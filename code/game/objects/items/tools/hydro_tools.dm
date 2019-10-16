@@ -9,7 +9,7 @@
 	flags_item = NOBLUDGEON
 	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 4
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 10
 	var/toxicity = 4
@@ -92,8 +92,7 @@
 	flags_item = NOBLUDGEON
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
-	matter = list("metal" = 50)
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 
@@ -107,14 +106,12 @@
 	icon_state = "hatchet"
 	flags_atom = CONDUCT
 	force = 25.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 20.0
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	matter = list("metal" = 15000)
-	origin_tech = "materials=2;combat=1"
 	attack_verb = list("chopped", "torn", "cut")
 
 /obj/item/tool/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -131,11 +128,9 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 3
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BACK
-	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)
@@ -145,74 +140,3 @@
 			if(prob(80))
 				qdel(B)
 		qdel(A)
-
-
-
-
-
-
-
-/obj/item/tool/bee_net
-	name = "bee net"
-	desc = "For catching rogue bees."
-	icon = 'icons/obj/apiary_bees_etc.dmi'
-	icon_state = "bee_net"
-	item_state = "bedsheet"
-	w_class = 3
-	var/caught_bees = 0
-
-/obj/item/tool/bee_net/attack_self(mob/user as mob)
-	var/turf/T = get_step(get_turf(user), user.dir)
-	for(var/mob/living/simple_animal/bee/B in T)
-		if(B.feral < 0)
-			caught_bees += B.strength
-			qdel(B)
-			user.visible_message("<span class='notice'> [user] nets some bees.</span>","<span class='notice'> You net up some of the becalmed bees.</span>")
-		else
-			user.visible_message("<span class='warning'> [user] swings at some bees, they don't seem to like it.</span>","<span class='warning'> You swing at some bees, they don't seem to like it.</span>")
-			B.feral = 5
-			B.target_mob = user
-
-/obj/item/tool/bee_net/verb/empty_bees()
-	set src in usr
-	set name = "Empty bee net"
-	set category = "Object"
-	var/mob/living/carbon/M
-	if(iscarbon(usr))
-		M = usr
-
-	while(caught_bees > 0)
-		//release a few super massive swarms
-		while(caught_bees > 5)
-			var/mob/living/simple_animal/bee/B = new(src.loc)
-			B.feral = 5
-			B.target_mob = M
-			B.strength = 6
-			B.icon_state = "bees_swarm"
-			caught_bees -= 6
-
-		//what's left over
-		var/mob/living/simple_animal/bee/B = new(src.loc)
-		B.strength = caught_bees
-		B.icon_state = "bees[B.strength]"
-		B.feral = 5
-		B.target_mob = M
-
-		caught_bees = 0
-
-/obj/item/queen_bee
-	name = "queen bee packet"
-	desc = "Place her into an apiary so she can get busy."
-	icon = 'icons/obj/items/seeds.dmi'
-	icon_state = "seed-kudzu"
-	w_class = 1
-
-
-
-/obj/item/beezeez
-	name = "bottle of BeezEez"
-	icon = 'icons/obj/items/chemistry.dmi'
-	icon_state = "bottle17"
-	New()
-		src.pixel_x = rand(-5.0, 5)
-		src.pixel_y = rand(-5.0, 5)

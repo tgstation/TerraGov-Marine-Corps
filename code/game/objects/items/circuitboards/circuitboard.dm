@@ -1,38 +1,34 @@
 /obj/item/circuitboard
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	name = "Circuit board"
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	matter = list("metal" = 50, "glass" = 50)
-	origin_tech = "programming=2"
+	materials = list(/datum/material/metal = 50, /datum/material/glass = 50)
 	var/build_path = null
 	var/is_general_board = FALSE
 
-/obj/item/circuitboard/attackby(obj/item/W , mob/user)
-	if(ismultitool(W) && is_general_board == TRUE)
-		var/list/modes_to_pick = list("APC", "Airlock", "Fire Alarm", "Air Alarm", "None")
+/obj/item/circuitboard/attackby(obj/item/I , mob/user, params)
+	. = ..()
+	if(ismultitool(I) && is_general_board == TRUE)
 		var/obj/item/circuitboard/new_board
-		var/modepick = input("Select a mode for this circuit.") as null|anything in modes_to_pick
+		var/modepick = input("Select a mode for this circuit.") as null|anything in list("APC", "Airlock", "Fire Alarm", "Air Alarm")
 		switch(modepick)
 			if("APC")
-				new_board = new/obj/item/circuitboard/apc(user.loc)
+				new_board = new /obj/item/circuitboard/apc(user.loc)
 			if("Airlock")
-				new_board = new/obj/item/circuitboard/airlock(user.loc)
+				new_board = new /obj/item/circuitboard/airlock(user.loc)
 			if("Fire Alarm")
-				new_board = new/obj/item/circuitboard/firealarm(user.loc)
+				new_board = new /obj/item/circuitboard/firealarm(user.loc)
 			if("Air Alarm")
-				new_board = new/obj/item/circuitboard/airalarm(user.loc)
-			if("None")
-				to_chat(user, "<span class='notice'>You choose not to alter the function of [name] at this time.</span>")
+				new_board = new /obj/item/circuitboard/airalarm(user.loc)
 		if(new_board)
 			qdel(src)
-			to_chat(user, "<span class='notice'>You set the general circuit to act as [name].</span>")
+			to_chat(user, "<span class='notice'>You set the general circuit to act as [new_board].</span>")
 			new_board.set_general()
 			user.put_in_hands(new_board)
-		return
-	return ..()
+
 
 /obj/item/circuitboard/proc/set_general()
 	is_general_board = TRUE
@@ -40,7 +36,7 @@
 	desc = "[initial(desc)] This appears to be a modular general circuit that can switch between pre-programmed modes with a multitool."
 
 //Called when the circuitboard is used to contruct a new machine.
-/obj/item/circuitboard/proc/construct(var/obj/machinery/M)
+/obj/item/circuitboard/proc/construct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -48,7 +44,7 @@
 
 //Called when a computer is deconstructed to produce a circuitboard.
 //Only used by computers, as other machines store their circuitboard instance.
-/obj/item/circuitboard/proc/deconstruct(var/obj/machinery/M)
+/obj/item/circuitboard/deconstruct(obj/machinery/M)
 	if (istype(M, build_path))
 		return 1
 	return 0
@@ -57,7 +53,6 @@
 
 /obj/item/circuitboard/aicore
 	name = "Circuit board (AI Core)"
-	origin_tech = "programming=4;biotech=2"
 
 
 /obj/item/circuitboard/airalarm
@@ -78,14 +73,6 @@
 	icon_state = "power_mod"
 	desc = "Heavy-duty switching circuits for power control."
 
-/obj/item/circuitboard/apc/attackby(obj/item/W , mob/user)
-	. = ..()
-	if (ismultitool(W))
-		var/obj/item/circuitboard/machine/ghettosmes/newcircuit = new(user.loc)
-		user.put_in_hands(newcircuit)
-		qdel(src)
-
-
 
 // Tracker Electronic
 /obj/item/circuitboard/solar_tracker
@@ -96,8 +83,7 @@
 /obj/item/circuitboard/airlock
 	name = "airlock electronics"
 	icon_state = "door_electronics"
-	w_class = 2 //It should be tiny! -Agouri
-	matter = list("metal" = 50,"glass" = 50)
+	w_class = WEIGHT_CLASS_SMALL //It should be tiny! -Agouri
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	var/list/conf_access = null
 	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
@@ -105,17 +91,12 @@
 	var/locked = 1
 
 
-/obj/item/circuitboard/airlock/attack_self(mob/user as mob)
-	if (!ishuman(user) && !issilicon(user))
-		return ..()
-
-	var/mob/living/carbon/human/H = user
-	if(H.getBrainLoss() >= 60)
+/obj/item/circuitboard/airlock/interact(mob/user)
+	. = ..()
+	if(.)
 		return
 
-	var/t1 = text("<B>Access control</B><br>\n")
-
-
+	var/t1
 	if (last_configurator)
 		t1 += "Operator: [last_configurator]<br>"
 
@@ -131,7 +112,7 @@
 
 		t1 += "<br>"
 
-		var/list/accesses = get_all_accesses()
+		var/list/accesses = ALL_ACCESS
 		for (var/acc in accesses)
 			var/aname = get_access_desc(acc)
 
@@ -142,46 +123,42 @@
 			else
 				t1 += "<a style='color: red' href='?src=\ref[src];access=[acc]'>[aname]</a><br>"
 
-	t1 += text("<p><a href='?src=\ref[];close=1'>Close</a></p>\n", src)
-
-	user << browse(t1, "window=airlock_electronics")
-	onclose(user, "airlock")
+	var/datum/browser/popup = new(user, "airlock_electronics", "<div align='center'>Access Control</div>")
+	popup.set_content(t1)
+	popup.open()
 
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
 	. = ..()
-	if (usr.stat || usr.restrained() || (!ishuman(usr) && !issilicon(usr)))
-		return
-	if (href_list["close"])
-		usr << browse(null, "window=airlock")
+	if(.)
 		return
 
-	if (href_list["login"])
-		if(istype(usr,/mob/living/silicon))
-			src.locked = 0
-			src.last_configurator = usr.name
+	if(href_list["login"])
+		if(istype(usr, /mob/living/silicon))
+			locked = 0
+			last_configurator = usr.name
 		else
 			var/obj/item/I = usr.get_active_held_item()
-			if (I && src.check_access(I))
-				src.locked = 0
-				src.last_configurator = I:registered_name
+			if(I && check_access(I))
+				locked = FALSE
+				last_configurator = I:registered_name
 
 	if(locked)
 		return
 
-	if (href_list["logout"])
-		locked = 1
+	if(href_list["logout"])
+		locked = TRUE
 
-	if (href_list["one_access"])
+	if(href_list["one_access"])
 		one_access = !one_access
 
-	if (href_list["access"])
+	if(href_list["access"])
 		toggle_access(href_list["access"])
 
-	attack_self(usr)
+	updateUsrDialog()
 
 
-/obj/item/circuitboard/airlock/proc/toggle_access(var/acc)
+/obj/item/circuitboard/airlock/proc/toggle_access(acc)
 	if (acc == "all")
 		conf_access = null
 	else
@@ -201,11 +178,9 @@
 /obj/item/circuitboard/airlock/secure
 	name = "secure airlock electronics"
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
-	origin_tech = "programming=3"
 
 
 /obj/item/circuitboard/general
 	name = "general circuit board"
 	desc = "A reconfigurable general circuitboard that can switch between multiple pre-programmed modes by way of a multitool."
-	origin_tech = "programming=3"
 	is_general_board = TRUE

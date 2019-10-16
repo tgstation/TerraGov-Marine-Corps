@@ -2,7 +2,7 @@
 	name = "abstract pouch"
 	icon = 'icons/Marine/marine-pouches.dmi'
 	icon_state = "small_drop"
-	w_class = 4 //does not fit in backpack
+	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 2
 	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
@@ -55,6 +55,14 @@
 /obj/item/storage/pouch/general/large/command
 	fill_type = /obj/item/binoculars/tactical
 	fill_number = 1
+
+
+/obj/item/storage/pouch/general/som
+	name = "mining general pouch"
+	desc = "A general purpose pouch used to carry small items used during mining."
+	icon_state = "general_som"
+	draw_mode = 1
+
 
 /obj/item/storage/pouch/bayonet
 	name = "bayonet sheath"
@@ -123,9 +131,35 @@
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
+
+/obj/item/storage/pouch/firstaid/som
+	name = "mining first aid pouch"
+	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies."
+	icon_state = "firstaid_som"
+	storage_slots = 5
+	can_hold = list(
+		/obj/item/stack/medical/ointment,
+		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/stack/medical/bruise_pack,
+		/obj/item/stack/medical/splint)
+
+
+/obj/item/storage/pouch/firstaid/som/full
+	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies. Contains the necessary items already."
+
+
+/obj/item/storage/pouch/firstaid/som/full/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/splint(src)
+
+
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
-	desc = "It can contain a pistol. Useful for emergencies."
+	desc = "It can contain a pistol or revolver. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
 	can_hold = list(
@@ -213,7 +247,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/rifle/lmg
+	fill_type = /obj/item/ammo_magazine/lmg
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
@@ -239,16 +273,16 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
-		/obj/item/radio/detpack,
+		/obj/item/detpack,
 		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/plastique
-	fill_number = 3
+	fill_number = 4
 
 /obj/item/storage/pouch/medical
 	name = "medical pouch"
@@ -265,7 +299,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
-	    /obj/item/reagent_container/hypospray)
+		/obj/item/reagent_container/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -280,7 +314,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-	    /obj/item/reagent_container/hypospray/autoinjector
+		/obj/item/reagent_container/hypospray/autoinjector
 	)
 
 
@@ -295,7 +329,7 @@
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	w_class = 4.1 //does not fit in backpack
+	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
 	draw_mode = 1
 	icon_state = "medkit"
@@ -322,39 +356,45 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares. Refillable with a M94 flare pack."
 	max_w_class = 2
-	storage_slots = 5
+	storage_slots = 7
 	draw_mode = 1
 	icon_state = "flare"
 	can_hold = list(
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare)
 
-/obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/storage/box/m94))
-		var/obj/item/storage/box/m94/M = W
-		if(M.contents.len)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
-					return
-				for(var/obj/item/I in M)
-					if(contents.len < storage_slots)
-						M.remove_from_storage(I)
-						handle_item_insertion(I, 1, user) //quiet insertion
-					else
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/storage/box/m94))
+		var/obj/item/storage/box/m94/M = I
+		if(!length(M.contents))
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/obj/item/IM in M)
+			if(length(contents) >= storage_slots)
+				break
+
+			M.remove_from_storage(IM)
+			handle_item_insertion(IM, TRUE, user)
+
+		playsound(user.loc, "rustle", 15, 1, 6)
 		return TRUE
 	else
 		return ..()
 
 /obj/item/storage/pouch/flare/full
 	fill_type = /obj/item/explosive/grenade/flare
-	fill_number = 5
+	fill_number = 7
 
 /obj/item/storage/pouch/radio
 	name = "radio pouch"
@@ -369,7 +409,7 @@
 	name = "field utility pouch"
 	storage_slots = 5
 	max_w_class = 3
-	icon_state = "radio"
+	icon_state = "utility"
 	draw_mode = 1
 	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
 	can_hold = list(
@@ -396,7 +436,7 @@
 	name = "electronics pouch"
 	desc = "It is designed to hold most electronics, power cells and circuitboards."
 	icon_state = "electronics"
-	storage_slots = 5
+	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
 		/obj/item/cell)
@@ -456,29 +496,37 @@
 /obj/item/storage/pouch/shotgun //New shotgun shell pouch that is actually worth a shit and will be replacing light general in vendors
 	name = "shotgun shell pouch"
 	desc = "A pouch specialized for holding shotgun ammo."
-	icon_state = "small_drop"
+	icon_state = "shotshells"
 	storage_slots = 4
 	draw_mode = 0
 	can_hold = list(/obj/item/ammo_magazine/handful)
 
-/obj/item/storage/pouch/shotgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = W
-		if(M.current_rounds)
-			if(contents.len < storage_slots)
-				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
-					return
-				for(var/x = 1 to (storage_slots - contents.len))
-					var/cont = handle_item_insertion(M.create_handful(), 1, user)
-					if(!cont)
-						break
-				playsound(user.loc, "rustle", 15, 1, 6)
-				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-			else
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
+
+/obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = I
+
+		if(!M.current_rounds)
 			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+			return
+
+		if(length(contents) >= storage_slots)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+		
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+		for(var/x in 1 to (storage_slots - length(contents)))
+			if(!handle_item_insertion(M.create_handful(), 1, user))
+				break
+
+		playsound(user.loc, "rustle", 15, 1, 6)
+		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+
 		return TRUE
+
 	else
 		return ..()

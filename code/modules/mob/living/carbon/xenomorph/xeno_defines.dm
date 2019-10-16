@@ -10,12 +10,14 @@
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
-	var/wound_type = "ravager" //used to match appropriate wound overlays
+	var/wound_type = "alien" //used to match appropriate wound overlays
 	var/language = "Xenomorph"
 
+	var/gib_anim = "gibbed-a-corpse"
+	var/gib_flick = "gibbed-a"
+
 	// *** Melee Attacks *** //
-	var/melee_damage_lower = 10
-	var/melee_damage_upper = 20
+	var/melee_damage = 10
 	var/attack_delay = CLICK_CD_MELEE
 
 	var/savage_cooldown = 30 SECONDS
@@ -57,7 +59,7 @@
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
-	var/armor_deflection = 0 //Chance of deflecting projectiles.
+	var/list/armor
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
@@ -69,7 +71,6 @@
 	var/pounce_delay = 4 SECONDS
 
 	var/acid_spray_range = 0
-	var/acid_spray_cooldown = 0
 
 	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
@@ -98,33 +99,32 @@
 	// *** Defiler Abilities *** //
 	var/neuro_claws_amount
 
-/mob/living/carbon/Xenomorph
+	var/list/actions
+
+/mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
-	voice_name = "xenomorph"
 	speak_emote = list("hisses")
-	melee_damage_lower = 5
-	melee_damage_upper = 10 //Arbitrary damage values
+	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
 	attack_sound = null
 	friendly = "nuzzles"
 	wall_smash = FALSE
-	universal_understand = FALSE
-	universal_speak = FALSE
 	health = 5
 	maxHealth = 5
 	rotate_on_lying = FALSE
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
-	see_invisible = SEE_INVISIBLE_MINIMUM
+	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
-	unacidable = TRUE
-	away_time = -XENO_AFK_TIMER //Xenos start grabbable. This is reset on Login()
 	var/hivenumber = XENO_HIVE_NORMAL
+	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -146,39 +146,33 @@
 	var/evolution_stored = 0 //How much evolution they have stored
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
-	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level. 
+	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 	var/critical_proc = 0
 	var/critical_delay = 25
 
-	var/has_spat = 0
-
-	var/has_screeched = 0
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
+	var/datum/armor/armor
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
 	var/armor_pheromone_bonus = 0 //
 
 	var/fire_resist_modifier = 0
 
-	var/xeno_explosion_resistance = 0 //0 to 3. how explosions affects the xeno, can it stun it, etc...
-
 	var/obj/structure/tunnel/start_dig = null
-	var/tunnel_delay = 0
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 	var/pslash_delay = 0
 
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"claw", "armor", "regen", "speed"
+	var/current_aura = null //"frenzy", "warding", "recovery"
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
 
 	var/is_zoomed = 0
 	var/zoom_turf = null
-	var/autopsied = 0
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
 	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
@@ -187,7 +181,7 @@
 	var/emotedown = 0
 
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = "resin wall" //which resin structure to build when we secrete resin
+	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
 	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.
@@ -196,6 +190,8 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
+
+	initial_language_holder = /datum/language_holder/xeno
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
@@ -207,18 +203,8 @@
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
 
-	//Old crusher specific vars, moved here so the Queen can use charge, and potential future Xenos
-	var/charge_dir = 0 //Stores initial charge dir to immediately cut out any direction change shenanigans
-	var/charge_timer = 0 //Has a small charge window. has to keep moving to build speed.
-	var/turf/lastturf = null
-	var/noise_timer = 0 // Makes a mech footstep, but only every 3 turfs.
-	var/has_moved = 0
-	var/is_charging = 0 //Will the mob charge when moving ? You need the charge verb to change this
-	var/last_charge_move = 0 //Time of the last time the Crusher moved while charging. If it's too far apart, the charge is broken
-
-	//New variables for how charges work, max speed, speed buildup, all that jazz
-	var/charge_speed = 0 //Modifier on base move delay as charge builds up
-	var/charge_roar = 0 //Did we roar in our charge yet ?
+	//Charge vars
+	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this
 
 	//Pounce vars
 	var/usedPounce = 0
@@ -227,22 +213,9 @@
 	var/agility = 0		// 0 - upright, 1 - all fours
 	var/ripping_limb = 0
 
-	var/used_lunge = 0
-	var/used_fling = 0
-	var/used_punch = 0
-	var/used_toggle_agility = 0
-
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	var/used_headbutt = 0
-	var/used_tail_sweep = 0
-	var/used_crest_defense = 0
-	var/used_fortify = 0
-
-	//Praetorian vars
-	var/used_acid_spray = 0
 
 	//Runner vars
 	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
@@ -251,25 +224,17 @@
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
-	var/acid_cooldown = 0
-
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
 
-	//Acid spray
-	var/last_spray_used
-
-	//Larva Growth
-	var/last_larva_growth_used = 0
-
-	//Neurotoxin sting
-	var/last_neurotoxin_sting = 0
+	//Hunter vars
+	var/sneak_bonus = 0.00
 
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
-	var/cresttoss_used = FALSE
-
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	var/butchery_progress = 0

@@ -6,7 +6,8 @@
 #define CLICK_CD_MELEE 8
 #define CLICK_CD_HANDCUFFED 10
 #define CLICK_CD_GRABBING 10
-#define CLICK_CD_RESIST 20
+#define CLICK_CD_RESIST 10
+#define CLICK_CD_RESIST_PSYCHIC_GRAB 30
 #define CLICK_CD_BREAKOUT 100
 
 //Grab levels
@@ -14,6 +15,10 @@
 #define GRAB_AGGRESSIVE	1
 #define GRAB_NECK		2
 #define GRAB_KILL		3
+
+//TK Grab levels
+#define TKGRAB_NONLETHAL	3	//Values should be different as they are identifiers.
+#define TKGRAB_LETHAL		4	//Also serves as a measure of how many attempts to resist it.
 
 //intent defines
 #define INTENT_HELP   "help"
@@ -52,20 +57,23 @@
 #define GUN_TRIGGER_SAFETY		(1<<1)
 #define GUN_UNUSUAL_DESIGN		(1<<2)
 #define GUN_SILENCED			(1<<3)
-#define GUN_AUTOMATIC			(1<<4)
+#define GUN_SHOTGUN_CHAMBER		(1<<4)
 #define GUN_INTERNAL_MAG		(1<<5)
 #define GUN_AUTO_EJECTOR		(1<<6)
 #define GUN_AMMO_COUNTER		(1<<7)
-#define GUN_BURST_ON			(1<<8)
-#define GUN_BURST_FIRING		(1<<9)
+#define GUN_LOAD_INTO_CHAMBER	(1<<8)
+#define GUN_ENERGY				(1<<9)
 #define GUN_FLASHLIGHT_ON		(1<<10)
 #define GUN_WIELDED_FIRING_ONLY	(1<<11)
-#define GUN_HAS_FULL_AUTO		(1<<12)
-#define GUN_FULL_AUTO_ON		(1<<13)
-#define GUN_POLICE				(1<<14)
-#define GUN_ENERGY				(1<<15)
-#define GUN_LOAD_INTO_CHAMBER	(1<<16)
-#define GUN_SHOTGUN_CHAMBER		(1<<17)
+#define GUN_POLICE				(1<<12)
+#define GUN_BURST_FIRING		(1<<13)
+#define GUN_ALLOW_SYNTHETIC		(1<<14)
+#define GUN_HAS_AUTOBURST		(1<<15)
+
+#define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
+#define GUN_FIREMODE_BURSTFIRE "burst-fire mode"
+#define GUN_FIREMODE_AUTOMATIC "automatic fire mode"
+#define GUN_FIREMODE_AUTOBURST "auto-burst-fire mode"
 
 //Gun attachable related flags.
 //flags_attach_features
@@ -89,22 +97,7 @@
 #define SLOWDOWN_ARMOR_HEAVY		1
 #define SLOWDOWN_ARMOR_VERY_HEAVY	1.15
 
-#define SLOWDOWN_ADS_SHOTGUN			0.35
-#define SLOWDOWN_ADS_RIFLE				0.35
-#define SLOWDOWN_ADS_SPECIALIST_LIGHT	0.75
-#define SLOWDOWN_ADS_SCOPE				1
-#define SLOWDOWN_ADS_SPECIALIST_MED		1
-#define SLOWDOWN_ADS_INCINERATOR		1.75
-#define SLOWDOWN_ADS_SPECIALIST_HEAVY	1.75
-#define SLOWDOWN_ADS_SUPERWEAPON		2.75
 
-//Wield delays, in milliseconds. 10 is 1 second
-#define WIELD_DELAY_VERY_FAST		2
-#define WIELD_DELAY_FAST			4
-#define WIELD_DELAY_NORMAL			6
-#define WIELD_DELAY_SLOW			10
-#define WIELD_DELAY_VERY_SLOW		16
-#define WIELD_DELAY_HORRIBLE		20
 //=================================================
 
 //Define detpack
@@ -112,7 +105,7 @@
 #define DETPACK_TIMER_MAX			300
 
 //Define flamer
-#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
+#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount(/datum/reagent/water)
 
 //Define sniper laser multipliers
 
@@ -124,3 +117,78 @@
 #define M43_STANDARD_AMMO_COST			20
 #define M43_OVERCHARGE_AMMO_COST		80
 #define M43_OVERCHARGE_FIRE_DELAY		10
+
+//Define smoke effects
+#define SMOKE_COUGH			(1<<0)
+#define SMOKE_GASP			(1<<1)
+#define SMOKE_OXYLOSS		(1<<2)
+#define SMOKE_FOUL			(1<<3)
+#define SMOKE_NERF_BEAM		(1<<4)
+#define SMOKE_CAMO			(1<<5)
+#define SMOKE_SLEEP			(1<<6)
+#define SMOKE_BLISTERING	(1<<7)
+#define SMOKE_PLASMALOSS	(1<<8)
+#define SMOKE_XENO			(1<<9)
+#define SMOKE_XENO_ACID		(1<<10)
+#define SMOKE_XENO_NEURO	(1<<11)
+#define SMOKE_CHEM			(1<<12)
+
+//Restraints
+#define RESTRAINED_XENO_NEST (1<<0)
+#define RESTRAINED_NECKGRAB (1<<1)
+#define RESTRAINED_STRAIGHTJACKET (1<<2)
+#define RESTRAINED_RAZORWIRE (1<<3)
+#define RESTRAINED_PSYCHICGRAB (1<<4)
+
+
+//Explosion resistance
+#define XENO_BOMB_RESIST_4 100
+#define XENO_BOMB_RESIST_3 80
+#define XENO_BOMB_RESIST_2 60
+#define XENO_BOMB_RESIST_1 40
+#define XENO_BOMB_RESIST_0 0
+
+#define SINGLE_CASING	(1 << 0)
+#define SPEEDLOADER		(1 << 1)
+#define MAGAZINE		(1 << 2)
+#define CELL			(1 << 3)
+#define POWERPACK		(1 << 4)
+
+#define EGG_BURST 0
+#define EGG_BURSTING 1
+#define EGG_GROWING 2
+#define EGG_GROWN 3
+#define EGG_DESTROYED 4
+
+#define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 15 SECONDS
+
+
+//We will round to this value in damage calculations.
+#define DAMAGE_PRECISION 0.1
+
+//Autofire component
+#define AUTOFIRE_STAT_SLEEPING (1<<0) //Component is in the gun, but the gun is in a different firemode. Sleep until a compatible firemode is activated.
+// VV wake_up() VV
+// ^^ sleep_up() ^^
+#define AUTOFIRE_STAT_IDLE (1<<1) //Compatible firemode is in the gun. Wait until it's held in the user hands.
+// VV autofire_on() VV
+// ^^ autofire_off() ^^
+#define AUTOFIRE_STAT_ALERT	(1<<2) //Gun is active and in the user hands. Wait until user does a valid click.
+// VV start_autofiring() VV
+// ^^ stop_autofiring() ^^
+#define AUTOFIRE_STAT_FIRING (1<<3) //Dakka-dakka-dakka.
+
+
+//Xeno Overlays Indexes//////////
+#define X_LASER_LAYER			9
+#define X_WOUND_LAYER			8
+#define X_HEAD_LAYER			7
+#define X_SUIT_LAYER			6
+#define X_L_HAND_LAYER			5
+#define X_R_HAND_LAYER			4
+#define X_TARGETED_LAYER		3
+#define X_LEGCUFF_LAYER			2
+#define X_FIRE_LAYER			1
+#define X_TOTAL_LAYERS			9
+/////////////////////////////////

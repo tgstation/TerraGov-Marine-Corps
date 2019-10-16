@@ -1,10 +1,4 @@
 /mob/living/carbon/monkey/Life()
-
-	if (monkeyizing)
-		return
-	if (update_muts)
-		update_muts=0
-		domutcheck(src,null,MUTCHK_FORCED)
 	..()
 
 	life_tick++
@@ -17,6 +11,8 @@
 		//effects of being grabbed aggressively by another mob
 		if(pulledby && pulledby.grab_level)
 			handle_grabbed()
+	else
+		SSmobs.stop_processing(src)
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()
@@ -25,55 +21,27 @@
 
 		if(prob(33) && canmove && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
 
-			step(src, pick(cardinal))
+			step(src, pick(GLOB.cardinals))
 
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
 
-/mob/living/carbon/monkey/handle_disabilities()
-	. = ..()
-
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && knocked_out < 10))
-			to_chat(src, "<span class='warning'>You have a seizure!</span>")
-			KnockOut(10)
-	if (disabilities & COUGHING)
-		if ((prob(5) && knocked_out <= 1))
-			drop_held_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		if ((prob(10) && knocked_out <= 1))
-			Stun(10)
-			spawn( 0 )
-				emote("twitch")
-				return
-	if (disabilities & NERVOUS)
-		if (prob(10))
-			stuttering = max(10, stuttering)
 
 /mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
 
 	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(50))
+		if(prob(50))
 			switch(getFireLoss())
 				if(1 to 50)
 					adjustFireLoss(-1)
 				if(51 to 100)
 					adjustFireLoss(-5)
 
-	if ((HULK in mutations) && health <= 25)
-		mutations.Remove(HULK)
-		to_chat(src, "<span class='warning'>You suddenly feel very weak.</span>")
-		KnockDown(3)
-		emote("collapse")
-
 	if (radiation)
 
 		if (radiation > 100)
 			radiation = 100
-			KnockDown(10)
+			knock_down(10)
 			if(!lying)
 				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
@@ -89,7 +57,7 @@
 				adjustToxLoss(1)
 				if(prob(5))
 					radiation -= 5
-					KnockDown(3)
+					knock_down(3)
 					if(!lying)
 						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")
@@ -99,8 +67,6 @@
 				adjustToxLoss(3)
 				if(prob(1))
 					to_chat(src, "<span class='warning'>You mutate!</span>")
-					randmutb(src)
-					domutcheck(src,null)
 					emote("gasp")
 
 /mob/living/carbon/monkey/handle_breath(list/air_info)
@@ -152,9 +118,9 @@
 		if(GAS_TYPE_N2O) //Anesthetic
 			var/SA_pp = air_info[3]
 			if(SA_pp > 30)
-				Sleeping(10)
+				sleeping(10)
 			else if(SA_pp > 20) // Enough to make us paralysed for a bit
-				KnockOut(3) // 3 gives them one second to wake up and run away a bit!
+				knock_out(3) // 3 gives them one second to wake up and run away a bit!
 				//Enough to make us sleep as well
 			else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 				if(prob(10))
@@ -169,7 +135,7 @@
 
 	var/breath_temp = air_info[2]
 
-	if(!ISINRANGE_EX(breath_temp, BODYTEMP_COLD_DAMAGE_LIMIT_ONE, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE) && !(COLD_RESISTANCE in mutations))
+	if(!ISINRANGE_EX(breath_temp, BODYTEMP_COLD_DAMAGE_LIMIT_ONE, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE))
 		if(prob(20))
 			if(air_info[2] < BODYTEMP_COLD_DAMAGE_LIMIT_ONE)
 				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")
@@ -178,22 +144,22 @@
 
 		switch(breath_temp)
 			if(-INFINITY to cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(cold_level_3 to cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(cold_level_2 to cold_level_1)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(heat_level_1 to heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 			if(heat_level_2 to heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 			if(heat_level_3 to INFINITY)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 
 		//Breathing in hot/cold air also heats/cools you a bit
@@ -238,11 +204,8 @@
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
 			pressure_alert = -1
 		else
-			if( !(COLD_RESISTANCE in mutations) )
-				adjustBruteLoss( LOW_PRESSURE_DAMAGE )
-				pressure_alert = -2
-			else
-				pressure_alert = -1
+			adjustBruteLoss( LOW_PRESSURE_DAMAGE )
+			pressure_alert = -2
 
 	return
 
@@ -259,17 +222,28 @@
 
 /mob/living/carbon/monkey/handle_organs()
 	. = ..()
-	if(reagents && reagents.reagent_list.len)
-		reagents.metabolize(src, 0, can_overdose = TRUE)
-
-	return
+	if(!reagents)
+		return
+	var/overdosable = TRUE
+	var/liverless = FALSE
+	if(species)
+		if(CHECK_BITFIELD(species.species_flags, NO_CHEM_METABOLIZATION))
+			return
+		overdosable = CHECK_BITFIELD(species.species_flags, NO_OVERDOSE) ? FALSE : TRUE
+		liverless = species.has_organ["liver"]
+	reagents.metabolize(src, overdosable, liverless)
 
 /mob/living/carbon/monkey/handle_regular_hud_updates()
 	. = ..()
-	if(!(.))
+	if(!.)
 		return FALSE
 
 	update_sight()
+
+	interactee?.check_eye(src)
+
+	if(!hud_used)
+		return
 
 	if(hud_used.pressure_icon)
 		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
@@ -305,25 +279,11 @@
 			else
 				hud_used.bodytemp_icon.icon_state = "temp-4"
 
-
-
-
-
-	if(stat != DEAD) //the dead get zero fullscreens
-
-		if(interactee)
-			interactee.check_eye(src)
-		else
-			if(client && !client.adminobs)
-				reset_view(null)
-
 	return 1
 
 /mob/living/carbon/monkey/proc/handle_random_events()
 	if (prob(1) && prob(2))
-		spawn(0)
-			emote("scratch")
-			return
+		INVOKE_ASYNC(src, .proc/emote, "scratch")
 
 ///FIRE CODE
 /mob/living/carbon/monkey/handle_fire()

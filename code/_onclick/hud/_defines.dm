@@ -24,7 +24,6 @@
 #define ui_back "WEST+5:14,1:5"
 #define ui_rhand "WEST+6:16,1:5"
 #define ui_lhand "WEST+7:16,1:5"
-#define ui_equip "WEST+6:16,2:5"
 #define ui_swaphand1 "WEST+6:16,2:5"
 #define ui_swaphand2 "WEST+7:16,2:5"
 #define ui_storage1 "WEST+8:18,1:5"
@@ -40,12 +39,16 @@
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,1:5"
-#define ui_drop_throw "EAST-1:28,2:7"
-#define ui_pull_resist "EAST-2:26,2:7"
-#define ui_acti "EAST-2:26,1:5"
-#define ui_movi "EAST-3:24,1:5"
-#define ui_zonesel "EAST-1:28,1:5"
+#define ui_drop_throw "EAST-1:28,SOUTH+1:7"
+#define ui_acti "EAST-3:24,SOUTH:5"
+#define ui_above_movement "EAST-2:26,SOUTH+1:7"
+#define ui_above_intent "EAST-3:24, SOUTH+1:7"
+#define ui_movi "EAST-2:26,SOUTH:5"
+#define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
+#define ui_crafting	"EAST-4:22,SOUTH:5"
+#define ui_building "EAST-4:22,SOUTH:21"
+#define ui_language_menu "EAST-4:6,SOUTH:21"
 
 #define ui_borg_pull "EAST-3:24,2:7"
 #define ui_borg_module "EAST-2:26,2:7"
@@ -63,6 +66,13 @@
 #define ui_gun_attachment 	"EAST-3:-10,1:+5"
 #define ui_gun_unique 		"EAST-3:-4,1:+2"
 
+//Upper-middle right (alerts)
+#define ui_alert1 "EAST-1:28,CENTER+5:27"
+#define ui_alert2 "EAST-1:28,CENTER+4:25"
+#define ui_alert3 "EAST-1:28,CENTER+3:23"
+#define ui_alert4 "EAST-1:28,CENTER+2:21"
+#define ui_alert5 "EAST-1:28,CENTER+1:19"
+
 //Upper-middle right (damage indicators)
 #define ui_toxin "EAST-1:28,13:27"
 #define ui_fire "EAST-1:28,12:25"
@@ -77,10 +87,10 @@
 //Middle right (status indicators)
 #define ui_nutrition "EAST-1:28,5:11"
 #define ui_temp "EAST-1:28,6:13"
-#define ui_health "EAST-1:28,7:15"
-#define ui_internal "EAST-1:28,8:17"
-#define ui_sl_locator "EAST-1:28,9:13"
-#define ui_ammo "EAST-1:28,10:14"
+#define ui_healthdoll "EAST-1:28,CENTER-2:13"
+#define ui_health "EAST-1:28,CENTER-1:15"
+#define ui_internal "EAST-1:28,CENTER:17"
+#define ui_ammo "EAST-1:28,CENTER+1:25"
 
 									//borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.
@@ -102,3 +112,18 @@
 #define ui_head "WEST+1:8,4:11"
 
 #define ui_sl_dir "CENTER,CENTER"
+
+// Ghosts
+#define ui_ghost_slot1 "SOUTH:6,CENTER-2:24"
+#define ui_ghost_slot2 "SOUTH:6,CENTER-1:24"
+#define ui_ghost_slot3 "SOUTH:6,CENTER:24"
+#define ui_ghost_slot4 "SOUTH:6,CENTER+1:24"
+#define ui_ghost_slot5 "SOUTH:6,CENTER+2:24"
+
+// AI
+#define ui_ai_core "SOUTH:6,WEST"
+#define ui_ai_camera_list "SOUTH:6,WEST+1"
+#define ui_ai_track_with_camera "SOUTH:6,WEST+2"
+#define ui_ai_camera_light "SOUTH:6,WEST+3"
+#define ui_ai_multicam "SOUTH+1:6,WEST+13"
+#define ui_ai_add_multicam "SOUTH+1:6,WEST+14"

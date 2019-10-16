@@ -2,41 +2,41 @@
 	name = "0 dollars"
 	desc = "You have no dollars."
 	gender = PLURAL
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "spacecash1"
-	opacity = 0
-	density = 0
-	anchored = 0.0
+	opacity = FALSE
+	density = FALSE
+	anchored = FALSE
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
 	throw_range = 2
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/access = list()
 	access = ACCESS_MARINE_CAPTAIN
 	var/worth = 0
 
-/obj/item/spacecash/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/spacecash))
-		if(istype(W, /obj/item/spacecash/ewallet)) return 0
+/obj/item/spacecash/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
+	if(istype(I, /obj/item/spacecash) && !istype(I, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle
-		if(!istype(W, /obj/item/spacecash/bundle))
-			var/obj/item/spacecash/cash = W
+		if(!istype(I, /obj/item/spacecash/bundle))
+			var/obj/item/spacecash/cash = I
 			user.temporarilyRemoveItemFromInventory(cash)
-			bundle = new (src.loc)
+			bundle = new(loc)
 			bundle.worth += cash.worth
 			qdel(cash)
-		else //is bundle
-			bundle = W
-		bundle.worth += src.worth
+		else
+			bundle = I
+		bundle.worth += worth
 		bundle.update_icon()
 		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 			h_user.temporarilyRemoveItemFromInventory(src)
 			h_user.temporarilyRemoveItemFromInventory(bundle)
 			h_user.put_in_hands(bundle)
-		to_chat(user, "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
+		to_chat(user, "<span class='notice'>You add [worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
 		qdel(src)
 
 /obj/item/spacecash/bundle
@@ -53,14 +53,14 @@
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
-			var/image/banknote = image('icons/obj/items/items.dmi', "spacecash[i]")
+			var/image/banknote = image('icons/obj/stack_objects.dmi', "spacecash[i]")
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
 			overlays += banknote
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
-		var/image/banknote = image('icons/obj/items/items.dmi', "spacecash1")
+		var/image/banknote = image('icons/obj/stack_objects.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
@@ -133,11 +133,6 @@
 	desc = "Five US Government minted hundred dollar bills. All of them have pictures of Ben Franklin on them. They all eagarly glare at you, making you feel as if you owe them something. "
 	worth = 500
 
-/obj/item/spacecash/c1000
-	name = "1000 dollars"
-	icon_state = "spacecash1000"
-	desc = "Ten US Government minted hundred dollar bills. Every single damn one of them has Ben Fucking Franklin on them. The court of Bens sit inpatiently, as if each one thought they alone belonged to you. This coven of angry Bens have all since learned about your relations with the other Bens, and they want answers."
-	worth = 1000
 
 proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	if(sum in list(1000,500,200,100,50,20,10,1))

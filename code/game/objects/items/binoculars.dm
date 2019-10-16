@@ -6,12 +6,11 @@
 
 	flags_atom = CONDUCT
 	force = 5.0
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
 
-	//matter = list("metal" = 50,"glass" = 50)
 
 /obj/item/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
@@ -28,8 +27,8 @@
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates.
 	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
 
-/obj/item/binoculars/tactical/New()
-	..()
+/obj/item/binoculars/tactical/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/binoculars/tactical/examine()
@@ -61,6 +60,26 @@
 	return TRUE
 
 
+/obj/item/binoculars/tactical/dropped(mob/user)
+	. = ..()
+	if(user.interactee != src)
+		return
+	user.unset_interaction()
+
+
+/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+	. = ..()
+	user.reset_perspective(src)
+	user.update_sight()
+
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
+
+
 /obj/item/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
 
@@ -68,6 +87,8 @@
 		return
 
 	user.client.click_intercept = null
+	user.reset_perspective(user)
+	user.update_sight()
 
 	if(zoom)
 		return
@@ -101,7 +122,7 @@
 		mode = !mode
 		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()
-		playsound(usr, 'sound/machines/click.ogg', 15, 1)
+		playsound(usr, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -148,7 +169,7 @@
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+	if(!do_after(user, acquisition_time, TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	if(mode)
 		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
@@ -156,10 +177,8 @@
 		to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(coord)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-				if(coord)
-					qdel(coord)
-					coord = null
+			if(!do_after(user, 50, TRUE, coord, BUSY_ICON_GENERIC))
+				QDEL_NULL(coord)
 				break
 	else
 		to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
@@ -167,10 +186,8 @@
 		laser = LT
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(laser)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-				if(laser)
-					qdel(laser)
-					laser = null
+			if(!do_after(user, 50, TRUE, laser, BUSY_ICON_GENERIC))
+				QDEL_NULL(laser)
 				break
 
 

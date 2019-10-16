@@ -12,13 +12,14 @@
 	var/potency = -1
 	icon = 'icons/obj/items/harvest.dmi'
 
-/obj/item/reagent_container/food/snacks/grown/New(newloc,newpotency)
+/obj/item/reagent_container/food/snacks/grown/Initialize(mapload, newpotency)
+	. = ..()
+
 	if(!tastes)
 		tastes = list("[name]" = 1)
 	if (!isnull(newpotency))
 		potency = newpotency
-	. = ..()
-	// Fill the object up with the appropriate reagents.
+
 	if(!isnull(plantname))
 		var/datum/seed/S = GLOB.seed_types[plantname]
 		if(!S || !S.chems)
@@ -36,6 +37,7 @@
 
 	if(reagents.total_volume > 0)
 		bitesize = 1+round(reagents.total_volume / 2, 1)
+
 
 /obj/item/reagent_container/food/snacks/grown/corn
 	name = "ear of corn"
@@ -78,17 +80,20 @@
 	filling_color = "#E6E8DA"
 	plantname = "potato"
 
-/obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
-		if(C.use(5))
-			to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
-			var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
-			pocell.maxcharge = src.potency * 10
-			pocell.charge = pocell.maxcharge
-			qdel(src)
+/obj/item/reagent_container/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+		if(!C.use(5))
 			return
+
+		to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
+		var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
+		pocell.maxcharge = potency * 10
+		pocell.charge = pocell.maxcharge
+		qdel(src)
+
 
 /obj/item/reagent_container/food/snacks/grown/grapes
 	name = "bunch of grapes"
@@ -177,19 +182,6 @@
 	filling_color = "#D3FF9E"
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/5,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/pickup(mob/user)
-	src.SetLuminosity(0)
-	user.SetLuminosity(round((potency/5),1))
-
-/obj/item/reagent_container/food/snacks/grown/glowberries/dropped(mob/user)
-	user.SetLuminosity(-(round((potency/5),1)))
-	src.SetLuminosity(round(potency/5,1))
 
 /obj/item/reagent_container/food/snacks/grown/cocoapod
 	name = "cocoa pod"
@@ -283,13 +275,13 @@
 	filling_color = "#FAB728"
 	plantname = "pumpkin"
 
-/obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.sharp == IS_SHARP_ITEM_ACCURATE || W.sharp == IS_SHARP_ITEM_BIG)
+/obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/I, mob/user, param)
+	. = ..()
+
+	if(I.sharp == IS_SHARP_ITEM_ACCURATE || I.sharp == IS_SHARP_ITEM_BIG)
 		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
-		new /obj/item/clothing/head/pumpkinhead (user.loc)
+		new /obj/item/clothing/head/pumpkinhead(user.loc)
 		qdel(src)
-	else
-		return ..()
 
 /obj/item/reagent_container/food/snacks/grown/lime
 	name = "lime"
@@ -378,14 +370,6 @@
 	filling_color = "#FF0000"
 	potency = 30
 	plantname = "killertomato"
-
-/obj/item/reagent_container/food/snacks/grown/killertomato/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/tomato(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the killer-tomato.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
 	name = "blood-tomato"
@@ -514,14 +498,6 @@
 	potency = 30
 	plantname = "walkingmushroom"
 
-/obj/item/reagent_container/food/snacks/grown/mushroom/walkingmushroom/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	new /mob/living/simple_animal/mushroom(user.loc)
-	qdel(src)
-
-	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
-
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
 	name = "chanterelle cluster"
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
@@ -549,19 +525,6 @@
 
 	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
 
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Destroy()
-	if(istype(loc,/mob))
-		loc.SetLuminosity(round(-potency/10,1))
-	. = ..()
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/pickup(mob/user)
-	SetLuminosity(0)
-	user.SetLuminosity(round((potency/10),1))
-
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/dropped(mob/user)
-	user.SetLuminosity(round(-(potency/10),1))
-	SetLuminosity(round(potency/10,1))
-
 
 // *************************************
 // Complex Grown Object Defines -
@@ -573,7 +536,6 @@
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"
 	potency = 20
-	origin_tech = "bluespace=3"
 	filling_color = "#91F8FF"
 	plantname = "bluespacetomato"
 

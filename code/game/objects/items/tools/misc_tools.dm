@@ -31,7 +31,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
-						 "<span class='notice'>You label [A] as \"[label]\".</span>")
+						"<span class='notice'>You label [A] as \"[label]\".</span>")
 	A.name = "[initial(A.name)] ([label])"
 	labels_left--
 
@@ -66,8 +66,8 @@
 
 
 /*
- * Pens
- */
+* Pens
+*/
 /obj/item/tool/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
@@ -76,10 +76,9 @@
 	item_state = "pen"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
 	throwforce = 0
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 10)
 	var/colour = "black"	//what colour the ink is!
 
 
@@ -111,22 +110,16 @@
 
 
 /*
- * Sleepy Pens
- */
+* Sleepy Pens
+*/
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	container_type = OPENCONTAINER
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
-/obj/item/tool/pen/sleepypen/New()
-	var/datum/reagents/R = new/datum/reagents(30) //Used to be 300
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-	..()
-	return
+/obj/item/tool/pen/sleepypen/Initialize()
+	. = ..()
+	create_reagents(30, OPENCONTAINER, list("chloralhydrate" = 22))
 
 
 /obj/item/tool/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
@@ -140,12 +133,10 @@
 
 
 /*
- * Parapens
- */
- /obj/item/tool/pen/paralysis
-	container_type = OPENCONTAINER
+* Parapens
+*/
+/obj/item/tool/pen/paralysis
 	flags_equip_slot = ITEM_SLOT_BELT
-	origin_tech = "materials=2;syndicate=5"
 
 
 /obj/item/tool/pen/paralysis/attack(mob/living/M as mob, mob/user as mob)
@@ -159,13 +150,9 @@
 
 
 
-/obj/item/tool/pen/paralysis/New()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("zombiepowder", 10)
-	R.add_reagent("cryptobiolin", 15)
-	..()
+/obj/item/tool/pen/paralysis/Initialize()
+	. = ..()
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 
@@ -177,10 +164,9 @@
 	icon_state = "stamp-qm"
 	item_state = "stamp"
 	throwforce = 0
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list("metal" = 60)
 	attack_verb = list("stamped")
 
 /obj/item/tool/stamp/captain
@@ -224,5 +210,5 @@
 	icon_state = "stamp-cent"
 
 
-/obj/item/tool/stamp/attack_paw(mob/user as mob)
+/obj/item/tool/stamp/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)

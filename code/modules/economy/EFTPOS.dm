@@ -13,7 +13,7 @@
 
 /obj/item/eftpos/Initialize()
 	. = ..()
-	machine_id = "EFTPOS #[num_financial_terminals++]"
+	machine_id = "EFTPOS #[GLOB.num_financial_terminals++]"
 	access_code = rand(1111,111111)
 	spawn(0)
 		print_reference()
@@ -59,7 +59,7 @@
 
 	//by default, connect to the station account
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
-	linked_account = station_account
+	linked_account = GLOB.station_account
 
 /obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
@@ -81,75 +81,90 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/eftpos/attack_self(mob/user as mob)
-	if(get_dist(src,user) <= 1)
-		var/dat = "<b>[eftpos_name]</b><br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting NanoTrasen IT Support</i><br>"
-		if(transaction_locked)
-			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
+/obj/item/eftpos/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 
-			dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
-			dat += "Value: <b>$[transaction_amount]</b><br>"
-			dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><hr>"
-			if(transaction_paid)
-				dat += "<i>This transaction has been processed successfully.</i><hr>"
-			else
-				dat += "<i>Swipe your card below the line to finish this transaction.</i><hr>"
-				dat += "<a href='?src=\ref[src];choice=scan_card'>\[------\]</a>"
+	var/dat
+	dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting NanoTrasen IT Support</i><br>"
+	if(transaction_locked)
+		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Back[transaction_paid ? "" : " (authentication required)"]</a><br><br>"
+
+		dat += "Transaction purpose: <b>[transaction_purpose]</b><br>"
+		dat += "Value: <b>$[transaction_amount]</b><br>"
+		dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><hr>"
+		if(transaction_paid)
+			dat += "<i>This transaction has been processed successfully.</i><hr>"
 		else
-			dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock in new transaction</a><br><br>"
-
-			dat += "Transaction purpose: <a href='?src=\ref[src];choice=trans_purpose'>[transaction_purpose]</a><br>"
-			dat += "Value: <a href='?src=\ref[src];choice=trans_value'>$[transaction_amount]</a><br>"
-			dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
-			dat += "<a href='?src=\ref[src];choice=change_code'>Change access code</a><br>"
-			dat += "<a href='?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
-			dat += "Scan card to reset access code <a href='?src=\ref[src];choice=reset'>\[------\]</a>"
-		user << browse(dat,"window=eftpos")
+			dat += "<i>Swipe your card below the line to finish this transaction.</i><hr>"
+			dat += "<a href='?src=\ref[src];choice=scan_card'>\[------\]</a>"
 	else
-		user << browse(null,"window=eftpos")
+		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock in new transaction</a><br><br>"
 
-/obj/item/eftpos/attackby(O as obj, user as mob)
-	if(istype(O, /obj/item/card))
-		if(linked_account)
-			var/obj/item/card/I = O
-			scan_card(I)
-		else
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Unable to connect to linked account.</span>")
-	else if (istype(O, /obj/item/spacecash/ewallet))
-		var/obj/item/spacecash/ewallet/E = O
-		if (linked_account)
-			if(!linked_account.suspended)
-				if(transaction_locked && !transaction_paid)
-					if(transaction_amount <= E.worth)
-						playsound(src, 'sound/machines/chime.ogg', 25, 1)
-						src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
-						transaction_paid = 1
+		dat += "Transaction purpose: <a href='?src=\ref[src];choice=trans_purpose'>[transaction_purpose]</a><br>"
+		dat += "Value: <a href='?src=\ref[src];choice=trans_value'>$[transaction_amount]</a><br>"
+		dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><hr>"
+		dat += "<a href='?src=\ref[src];choice=change_code'>Change access code</a><br>"
+		dat += "<a href='?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
+		dat += "Scan card to reset access code <a href='?src=\ref[src];choice=reset'>\[------\]</a>"
+	
+	var/datum/browser/popup = new(user, "etfpos", "<div align='center'>[eftpos_name]</div>")
+	popup.set_content(dat)
+	popup.open()
 
-						//transfer the money
-						E.worth -= transaction_amount
-						linked_account.money += transaction_amount
 
-						//create entry in the EFTPOS linked account transaction log
-						var/datum/transaction/T = new()
-						T.target_name = E.owner_name //D.owner_name
-						T.purpose = (transaction_purpose ? transaction_purpose : "None supplied.")
-						T.amount = transaction_amount
-						T.source_terminal = machine_id
-						T.date = current_date_string
-						T.time = worldtime2text()
-						linked_account.transaction_log.Add(T)
-					else
-						to_chat(usr, "[icon2html(src, usr)]<span class='warning'>The charge card doesn't have that much money!</span>")
-			else
-				to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Connected account has been suspended.</span>")
-		else
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>EFTPOS is not connected to an account.</span>")
+/obj/item/eftpos/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	else
-		..()
+	if(istype(I, /obj/item/card))
+		var/obj/item/card/C = I
+		if(!linked_account)
+			to_chat(user, "[icon2html(src, user)]<span class='warning'>Unable to connect to linked account.</span>")
+			return
 
-/obj/item/eftpos/Topic(var/href, var/href_list)
+		scan_card(C)
+
+	else if(istype(I, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = I
+		if(!linked_account)
+			to_chat(user, "[icon2html(src, user)]<span class='warning'>EFTPOS is not connected to an account.</span>")
+			return
+
+		if(linked_account.suspended)
+			to_chat(user, "[icon2html(src, user)]<span class='warning'>Connected account has been suspended.</span>")
+			return
+
+		if(!transaction_locked || transaction_paid)
+			return
+
+		if(transaction_amount > E.worth)
+			to_chat(user, "[icon2html(src, user)]<span class='warning'>The charge card doesn't have that much money!</span>")
+			return
+
+		playsound(src, 'sound/machines/chime.ogg', 25, 1)
+		visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
+		transaction_paid = TRUE
+
+		//transfer the money
+		E.worth -= transaction_amount
+		linked_account.money += transaction_amount
+
+		//create entry in the EFTPOS linked account transaction log
+		var/datum/transaction/T = new()
+		T.target_name = E.owner_name //D.owner_name
+		T.purpose = (transaction_purpose ? transaction_purpose : "None supplied.")
+		T.amount = transaction_amount
+		T.source_terminal = machine_id
+		T.date = GLOB.current_date_string
+		T.time = worldtime2text()
+		linked_account.transaction_log += T
+
+
+/obj/item/eftpos/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
@@ -218,13 +233,10 @@
 					if(ACCESS_MARINE_LOGISTICS in C.access)
 						access_code = 0
 						to_chat(usr, "[icon2html(src, usr)]<span class='info'>Access code reset to 0.</span>")
-				else if (istype(I, /obj/item/card/emag))
-					access_code = 0
-					to_chat(usr, "[icon2html(src, usr)]<span class='info'>Access code reset to 0.</span>")
 
 	src.attack_self(usr)
 
-/obj/item/eftpos/proc/scan_card(var/obj/item/card/I)
+/obj/item/eftpos/proc/scan_card(obj/item/card/I)
 	if (istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
@@ -257,7 +269,7 @@
 								else
 									T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = GLOB.current_date_string
 								T.time = worldtime2text()
 								D.transaction_log.Add(T)
 								//
@@ -266,7 +278,7 @@
 								T.purpose = transaction_purpose
 								T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = GLOB.current_date_string
 								T.time = worldtime2text()
 								linked_account.transaction_log.Add(T)
 							else
@@ -279,18 +291,3 @@
 					to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Connected account has been suspended.</span>")
 			else
 				to_chat(usr, "[icon2html(src, usr)]<span class='warning'>EFTPOS is not connected to an account.</span>")
-	else if (istype(I, /obj/item/card/emag))
-		if(transaction_locked)
-			if(transaction_paid)
-				to_chat(usr, "[icon2html(src, usr)]<span class='info'>You stealthily swipe [I] through [src].</span>")
-				transaction_locked = 0
-				transaction_paid = 0
-			else
-				visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
-				playsound(src, 'sound/machines/chime.ogg', 25, 1)
-				src.visible_message("[icon2html(src, viewers(src))] The [src] chimes.")
-				transaction_paid = 1
-	else
-		..()
-
-	//emag?

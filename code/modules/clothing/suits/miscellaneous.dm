@@ -1,13 +1,13 @@
 /*
- * Contains:
- *		Lasertag
- *		Costume
- *		Misc
- */
+* Contains:
+*		Lasertag
+*		Costume
+*		Misc
+*/
 
 /*
- * Lasertag
- */
+* Lasertag
+*/
 /obj/item/clothing/suit/bluetag
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
@@ -29,8 +29,8 @@
 	siemens_coefficient = 3.0
 
 /*
- * Costume
- */
+* Costume
+*/
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -103,7 +103,7 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
@@ -168,34 +168,9 @@
 	desc = "The perfect white jacket to go with your white dress uniform."
 	icon_state = "white_dress_jacket" //with thanks to Baystation12
 	item_state = "white_dress_jacket" //with thanks to Baystation12
+
+* Misc
 */
-/obj/item/clothing/suit/officer_cloak
-	name = "Officer Cloak"
-	desc = "A dashing cloak as befitting an officer."
-	icon_state = "officer_cloak" //with thanks to Baystation12
-	item_state = "officer_cloak" //with thanks to Baystation12
-
-/obj/item/clothing/suit/captain_cloak
-	name = "Captain's Cloak"
-	desc = "An opulant cloak detailed with your many accomplishments."
-	icon_state = "commander_cloak" //with thanks to Baystation12
-	item_state = "commander_cloak" //with thanks to Baystation12
-
-/obj/item/clothing/suit/officer_cloak_red
-	name = "Officer Cloak - Red"
-	desc = "A dashing cloak as befitting an officer. with fancy red trim."
-	icon_state = "officer_cloak_red" //with thanks to Baystation12
-	item_state = "officer_cloak_red" //with thanks to Baystation12
-
-/obj/item/clothing/suit/captain_cloak_red
-	name = "Captain's Cloak - Red"
-	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
-	icon_state = "commander_cloak_red" //with thanks to Baystation12
-	item_state = "commander_cloak_red" //with thanks to Baystation12
-
-/*
- * Misc
- */
 
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
@@ -205,13 +180,22 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
-	equipped(var/mob/user, var/slot)
-		if(slot == SLOT_WEAR_SUIT && ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.dropItemToGround(H.handcuffed)
-			H.drop_l_hand()
-			H.drop_r_hand()
-		..()
+
+/obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
+	if(slot == SLOT_WEAR_SUIT)
+		ENABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+		user.stop_pulling() //Can't pull if restrained.
+		if(user.handcuffed) //Keep the cuffs on.
+			user.drop_all_held_items()
+		user.update_action_buttons() //Certain action buttons will no longer be usable.
+		RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/on_removal)
+	return ..()
+
+
+/obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
+
 
 /obj/item/clothing/suit/ianshirt
 	name = "worn shirt"

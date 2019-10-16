@@ -1,7 +1,7 @@
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
-		return M.ear_deaf
+		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
 proc/is_blind(A)
@@ -42,7 +42,7 @@ proc/hasorgans(A)
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
 //The base miss chance for the different defence zones
-var/list/global/base_miss_chance = list(
+GLOBAL_LIST_INIT(base_miss_chance, list(
 	"head" = 10,
 	"chest" = 0,
 	"groin" = 5,
@@ -56,25 +56,25 @@ var/list/global/base_miss_chance = list(
 	"r_foot" = 40,
 	"eyes" = 20,
 	"mouth" = 15,
-)
+))
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
-//Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
-var/list/global/organ_rel_size = list(
-	"head" = 15,
-	"chest" = 70,
-	"groin" = 30,
-	"l_leg" = 25,
-	"r_leg" = 25,
-	"l_arm" = 25,
-	"r_arm" = 25,
-	"l_hand" = 7,
-	"r_hand" = 7,
-	"l_foot" = 10,
-	"r_foot" = 10,
-	"eyes" = 5,
-	"mouth" = 15,
-)
+//Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects. Totals 102; 2 added to chest for limb loops that don't count mouth/eyes.
+GLOBAL_LIST_INIT(organ_rel_size, list(
+	"head" = 4,
+	"chest" = 32,
+	"groin" = 10,
+	"l_leg" = 12,
+	"r_leg" = 12,
+	"l_arm" = 9,
+	"r_arm" = 9,
+	"l_hand" = 3,
+	"r_hand" = 3,
+	"l_foot" = 3,
+	"r_foot" = 3,
+	"eyes" = 1,
+	"mouth" = 1,
+))
 
 /proc/check_zone(zone)
 	if(!zone)	return "chest"
@@ -97,17 +97,17 @@ var/list/global/organ_rel_size = list(
 	var/ran_zone = zone
 	while (ran_zone == zone)
 		ran_zone = pick (
-			organ_rel_size["head"]; "head",
-			organ_rel_size["chest"]; "chest",
-			organ_rel_size["groin"]; "groin",
-			organ_rel_size["l_arm"]; "l_arm",
-			organ_rel_size["r_arm"]; "r_arm",
-			organ_rel_size["l_leg"]; "l_leg",
-			organ_rel_size["r_leg"]; "r_leg",
-			organ_rel_size["l_hand"]; "l_hand",
-			organ_rel_size["r_hand"]; "r_hand",
-			organ_rel_size["l_foot"]; "l_foot",
-			organ_rel_size["r_foot"]; "r_foot",
+			GLOB.organ_rel_size["head"]; "head",
+			GLOB.organ_rel_size["chest"]; "chest",
+			GLOB.organ_rel_size["groin"]; "groin",
+			GLOB.organ_rel_size["l_arm"]; "l_arm",
+			GLOB.organ_rel_size["r_arm"]; "r_arm",
+			GLOB.organ_rel_size["l_leg"]; "l_leg",
+			GLOB.organ_rel_size["r_leg"]; "r_leg",
+			GLOB.organ_rel_size["l_hand"]; "l_hand",
+			GLOB.organ_rel_size["r_hand"]; "r_hand",
+			GLOB.organ_rel_size["l_foot"]; "l_foot",
+			GLOB.organ_rel_size["r_foot"]; "r_foot",
 		)
 
 	return ran_zone
@@ -115,19 +115,19 @@ var/list/global/organ_rel_size = list(
 // Emulates targetting a specific body part, and miss chances
 // May return null if missed
 // miss_chance_mod may be negative.
-/proc/get_zone_with_miss_chance(zone, var/mob/target, var/miss_chance_mod = 0)
+/proc/get_zone_with_miss_chance(zone, mob/target, miss_chance_mod = 0)
 	zone = check_zone(zone)
 
 	// you can only miss if your target is standing and not restrained
 	if(!target.buckled && !target.lying)
 		var/miss_chance = 10
-		if (zone in base_miss_chance)
-			miss_chance = base_miss_chance[zone]
+		if (zone in GLOB.base_miss_chance)
+			miss_chance = GLOB.base_miss_chance[zone]
 		miss_chance = max(miss_chance + miss_chance_mod, 0)
 		if(prob(miss_chance))
 			if(prob(70))
 				return null
-			return pick(base_miss_chance)
+			return pick(GLOB.base_miss_chance)
 
 	return zone
 
@@ -200,7 +200,7 @@ proc/slur(phrase)
 	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 
-proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+/proc/gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
@@ -216,35 +216,6 @@ proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 fo
 		returntext += letter
 
 	return returntext
-
-
-/proc/ninjaspeak(n)
-/*
-The difference with stutter is that this proc can stutter more than 1 letter
-The issue here is that anything that does not have a space is treated as one word (in many instances). For instance, "LOOKING," is a word, including the comma.
-It's fairly easy to fix if dealing with single letters but not so much with compounds of letters./N
-*/
-	var/te = html_decode(n)
-	var/t = ""
-	n = length(n)
-	var/p = 1
-	while(p <= n)
-		var/n_letter
-		var/n_mod = rand(1,4)
-		if(p+n_mod>n+1)
-			n_letter = copytext(te, p, n+1)
-		else
-			n_letter = copytext(te, p, p+n_mod)
-		if (prob(50))
-			if (prob(30))
-				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
-			else
-				n_letter = text("[n_letter]-[n_letter]")
-		else
-			n_letter = text("[n_letter]")
-		t = text("[t][n_letter]")
-		p=p+n_mod
-	return copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
@@ -271,14 +242,21 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	return FALSE
 
 
-/mob/proc/abiotic(var/full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )) || (src.back || src.wear_mask)))
+/mob/proc/abiotic(full_body)
+	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
 		return TRUE
 
 	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
 		return TRUE
 
 	return FALSE
+
+
+/mob/living/carbon/abiotic(full_body)
+	if(full_body && (back || wear_mask))
+		return TRUE
+	return ..()
+
 
 //converts intent-strings into numbers and back
 /proc/intent_numeric(argument)
@@ -308,7 +286,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	set name = "a-intent"
 	set hidden = 1
 
-	if(iscyborg(src) || ismonkey(src))
+	if(ismonkey(src))
 		switch(input)
 			if(INTENT_HELP)
 				a_intent = INTENT_HELP
@@ -327,7 +305,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 	if(hud_used && hud_used.action_intent)
-		hud_used.action_intent.icon_state = "intent_[a_intent]"
+		hud_used.action_intent.icon_state = "[a_intent]"
 
 
 //can the mob be operated on?
@@ -342,18 +320,19 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 	var/obj/structure/table/T = locate(/obj/structure/table, loc)
 	if(T && !T.flipped) return TRUE
 
-/mob/living/carbon/Xenomorph/can_be_operated_on()
+/mob/living/carbon/xenomorph/can_be_operated_on()
 	return FALSE
 
 
-/mob/proc/restrained()
+/mob/proc/restrained(ignore_checks)
 	return
 
-/mob/proc/incapacitated(ignore_restrained)
-	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && restrained()))
 
-/mob/proc/reagent_check(datum/reagent/R)
-	return 1
+/mob/proc/incapacitated(ignore_restrained)
+	return (stat || (!ignore_restrained && restrained()))
+
+
+
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
 /mob/proc/has_legs()
@@ -396,94 +375,63 @@ mob/proc/get_standard_bodytemperature()
 
 	return ..()
 
-/mob/verb/a_select_zone(input as text, screen_num as null|num)
-	set name = "a-select-zone"
-	set hidden = TRUE
 
-	if(!screen_num)
+/proc/notify_ghost(mob/dead/observer/O, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
+		return
+	if(!O.client)
+		return
+	var/track_link
+	if (source && action == NOTIFY_ORBIT)
+		track_link = " <a href='byond://?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
+	if (source && action == NOTIFY_JUMP)
+		var/turf/T = get_turf(source)
+		track_link = " <a href='byond://?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
+	var/full_enter_link
+	if (enter_link)
+		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+	to_chat(O, "[(extra_large) ? "<br><hr>" : ""]<span class='deadsay'>[message][(enter_link) ? " [full_enter_link]" : ""][track_link]</span>[(extra_large) ? "<hr><br>" : ""]")
+	if(ghost_sound)
+		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
+	if(flashwindow)
+		window_flash(O.client)
+
+	if(!source)
 		return
 
-	switch(input)
-		if("head")
-			switch(usr.zone_selected)
-				if("head")
-					usr.zone_selected = "eyes"
-					usr.client.screen[screen_num].selecting = "eyes"
-				if("eyes")
-					usr.zone_selected = "mouth"
-					usr.client.screen[screen_num].selecting = "mouth"
-				if("mouth")
-					usr.zone_selected = "head"
-					usr.client.screen[screen_num].selecting = "head"
-				else
-					usr.zone_selected = "head"
-					usr.client.screen[screen_num].selecting = "head"
-		if("chest")
-			usr.zone_selected = "chest"
-			usr.client.screen[screen_num].selecting = "chest"
-		if("groin")
-			usr.zone_selected = "groin"
-			usr.client.screen[screen_num].selecting = "groin"
-		if("rarm")
-			switch(usr.zone_selected)
-				if("r_arm")
-					usr.zone_selected = "r_hand"
-					usr.client.screen[screen_num].selecting = "r_hand"
-				if("r_hand")
-					usr.zone_selected = "r_arm"
-					usr.client.screen[screen_num].selecting = "r_arm"
-				else
-					usr.zone_selected = "r_arm"
-					usr.client.screen[screen_num].selecting = "r_arm"
-		if("larm")
-			switch(usr.zone_selected)
-				if("l_arm")
-					usr.zone_selected = "l_hand"
-					usr.client.screen[screen_num].selecting = "l_hand"
-				if("l_hand")
-					usr.zone_selected = "l_arm"
-					usr.client.screen[screen_num].selecting = "l_arm"
-				else
-					usr.zone_selected = "l_arm"
-					usr.client.screen[screen_num].selecting = "l_arm"
-		if("rleg")
-			switch(usr.zone_selected)
-				if("r_leg")
-					usr.zone_selected = "r_foot"
-					usr.client.screen[screen_num].selecting = "r_foot"
-				if("r_foot")
-					usr.zone_selected = "r_leg"
-					usr.client.screen[screen_num].selecting = "r_leg"
-				else
-					usr.zone_selected = "r_leg"
-					usr.client.screen[screen_num].selecting = "r_leg"
-		if("lleg")
-			switch(usr.zone_selected)
-				if("l_leg")
-					usr.zone_selected = "l_foot"
-					usr.client.screen[screen_num].selecting = "l_foot"
-				if("l_foot")
-					usr.zone_selected = "l_leg"
-					usr.client.screen[screen_num].selecting = "l_leg"
-				else
-					usr.zone_selected = "l_leg"
-					usr.client.screen[screen_num].selecting = "l_leg"
-
-	usr.client.screen[screen_num].update_icon(usr)
-
-
-
-/mob/verb/toggle_move_intent(screen_num as null|num)
-	set name = "toggle-move-intent"
-	set hidden = TRUE
-
-	if(!screen_num || !client)
+	var/obj/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /obj/screen/alert/notify_action)
+	if(!A)
 		return
+	if (header)
+		A.name = header
+	A.desc = message
+	A.action = action
+	A.target = source
+	if(!alert_overlay)
+		alert_overlay = new(source)
+		var/icon/I = icon(source.icon)
+		var/iheight = I.Height()
+		var/iwidth = I.Width()
+		var/higher_power = (iheight > iwidth) ? iheight : iwidth
+		if(higher_power > 32)
+			var/diff = 32 / higher_power
+			alert_overlay.transform = alert_overlay.transform.Scale(diff, diff)
+			if(higher_power > 48)
+				alert_overlay.pixel_y = -(iheight / 2) * diff
+				alert_overlay.pixel_x = -(iwidth / 2) * diff
 
-	switch(m_intent)
-		if(MOVE_INTENT_RUN)
-			m_intent = MOVE_INTENT_WALK
-		if(MOVE_INTENT_WALK)
-			m_intent = MOVE_INTENT_RUN
 
-	client.screen[screen_num].update_icon(src)
+	alert_overlay.layer = FLOAT_LAYER
+	alert_overlay.plane = FLOAT_PLANE
+
+	A.add_overlay(alert_overlay)
+
+
+/proc/notify_ghosts(message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of ghosts.
+	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
+		return
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/O = i
+		if(!O.client)
+			continue
+		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
