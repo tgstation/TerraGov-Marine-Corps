@@ -92,9 +92,11 @@
 				if(2)
 					hud_used.healths.icon_state = "health7"
 				else if(health > get_crit_threshold())
-					var/perceived_health = health - traumatic_shock
-					if(species && species.species_flags & NO_PAIN)
-						perceived_health = health
+					var/perceived_health = health
+					if(!(species.species_flags & NO_PAIN))
+						perceived_health -= traumatic_shock
+					if(!(species.species_flags & NO_STAMINA))
+						perceived_health -= staminaloss
 
 					switch(perceived_health)
 						if(100 to INFINITY)

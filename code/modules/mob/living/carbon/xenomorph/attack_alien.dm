@@ -56,7 +56,7 @@
 
 	var/tackle_pain = X.xeno_caste.tackle_damage
 	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
+		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
 		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 			#ifdef DEBUG_ATTACK_ALIEN
@@ -89,7 +89,7 @@
 	if(dam_bonus)
 		tackle_pain += dam_bonus
 
-	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
+	apply_damage(tackle_pain, STAMINA, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
 	updateshock()
 	UPDATEHEALTH(src)
 	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"

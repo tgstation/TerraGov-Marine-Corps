@@ -76,7 +76,7 @@
 	. = ..()
 	handle_stagger() // 1 each time
 	handle_slowdown() // 0.4 each time
-	handle_halloss() // 3 each time
+
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()
 	. = ..()
@@ -318,10 +318,6 @@
 		return FALSE
 	return ..()
 
-
-/mob/living/carbon/xenomorph/proc/handle_halloss()
-	if(halloss)
-		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
 	if(QDELETED(src)) // Deleted by an admin.

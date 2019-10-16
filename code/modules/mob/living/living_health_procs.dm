@@ -53,6 +53,36 @@
 	toxloss = amount
 
 
+/mob/living/proc/getStaminaLoss()
+	return staminaloss
+
+/mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	staminaloss = CLAMP(staminaloss + amount, 0, maxHealth * 2)
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/setStaminaLoss(amount, update = TRUE, feedback = TRUE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	staminaloss = amount
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/updateStamina(feedback = TRUE)
+	if(staminaloss < maxHealth)
+		return
+	switch(knocked_down)
+		if(0)
+			if(feedback)
+				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
+					"<span class='warning'>You slump to the ground, you're in too exhausted to keep going...</span>")
+			knock_down(4)
+		if(1 to 3)
+			set_knocked_down(4, FALSE)
+
+
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
@@ -172,6 +202,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		embedded.unembed_ourself()
 
 	// shut down various types of badness
+	setStaminaLoss(0)
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)
@@ -192,7 +223,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
-	heal_overall_damage(getBruteLoss(), getFireLoss())
+	heal_overall_damage(getBruteLoss(), getFireLoss(), FALSE)
 
 	// fix all of our organs
 	restore_all_organs()
