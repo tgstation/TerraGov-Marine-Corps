@@ -42,7 +42,7 @@
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")
 
-	usr.client.holder.show_player_panel(C.mob)
+		usr.client.holder.show_player_panel(C.mob)
 
 
 //checks client ban cache or DB ban table if ckey is banned from one or more roles
@@ -146,7 +146,7 @@
 	if(edit_id)
 		panel_height = 240
 	var/datum/browser/panel = new(usr.client.mob, "banpanel", "Ban Panel", 910, panel_height)
-	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
+	panel.add_stylesheet("banpanelcss", 'html/browser/banpanel.css')
 	var/list/output = list("<form method='get' action='?src=[REF(usr.client.holder)];[HrefToken()]'>[HrefTokenFormField()]")
 	output += {"<input type='hidden' name='src' value='[REF(usr.client.holder)];[HrefToken()]'>
 	<label class='inputlabel checkbox'>Key:
@@ -262,7 +262,7 @@
 		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden'>Command</label><div class='content'>"
 		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
 		//for simplicity this also includes the captain even though it doesn't do anything
-		for(var/job in JOBS_OFFICERS)
+		for(var/job in GLOB.jobs_officers)
 			if(break_counter > 0 && (break_counter % 3 == 0))
 				output += "<br>"
 			output += {"<label class='inputlabel checkbox'>[job]
@@ -272,11 +272,11 @@
 			break_counter++
 		output += "</div></div>"
 		//standard departments all have identical handling
-		var/list/job_lists = list("Police" = JOBS_POLICE,
-							"Engineering" = JOBS_ENGINEERING,
-							"Medical" = JOBS_MEDICAL,
-							"Requisitions" = JOBS_REQUISITIONS,
-							"Marines" = JOBS_MARINES)
+		var/list/job_lists = list("Police" = GLOB.jobs_police,
+							"Engineering" = GLOB.jobs_engineering,
+							"Medical" = GLOB.jobs_medical,
+							"Requisitions" = GLOB.jobs_requisitions,
+							"Marines" = GLOB.jobs_marines)
 		for(var/department in job_lists)
 			//the first element is the department head so they need the same javascript call as above
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
@@ -543,17 +543,17 @@
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
-		send2irc("BAN ALERT","[kn] [msg]")
+		send2irc("BAN ALERT", "[kn] [msg] | Reason: [reason]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
-	var/datum/admin_help/AH = admin_ticket_log(player_ckey, msg)
+	var/datum/admin_help/AH = admin_ticket_log(player_ckey, "[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	var/appeal_url = "No ban appeal url set!"
 	appeal_url = CONFIG_GET(string/banappeals)
 	var/is_admin = FALSE
 	if(C)
 		build_ban_cache(C)
-		to_chat(C, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
+		to_chat_immediate(C, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
 		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
 			is_admin = TRUE
 		if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
@@ -563,7 +563,7 @@
 	for(var/client/i in GLOB.clients - C)
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
-			to_chat(i, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
+			to_chat_immediate(i, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
 			if(GLOB.admin_datums[i.ckey] || GLOB.deadmins[i.ckey])
 				is_admin = TRUE
 			if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
@@ -589,7 +589,7 @@
 		return
 
 	var/datum/browser/panel = new(usr.client.mob, "unbanpanel", "Unban Panel", 850, 600)
-	panel.add_stylesheet("unbanpanelcss", 'html/admin/unbanpanel.css')
+	panel.add_stylesheet("unbanpanelcss", 'html/browser/unbanpanel.css')
 	var/list/output = list("<div class='searchbar'>")
 	output += {"<form method='get' action='?src=[REF(usr.client.holder)];[HrefToken()]'>[HrefTokenFormField()]
 	<input type='hidden' name='src' value='[REF(usr.client.holder)];[HrefToken()]'>
@@ -1013,7 +1013,7 @@
 	. += "</ol>\n"
 
 
-/proc/get_stickyban_from_ckey(var/ckey)
+/proc/get_stickyban_from_ckey(ckey)
 	if (!ckey)
 		return null
 	ckey = ckey(ckey)
@@ -1023,7 +1023,7 @@
 			. = stickyban2list(world.GetConfig("ban",key))
 			break
 
-/proc/stickyban2list(var/ban)
+/proc/stickyban2list(ban)
 	if (!ban)
 		return null
 	. = params2list(ban)
@@ -1039,7 +1039,7 @@
 	.["computer_id"] = splittext(.["computer_id"], ",")
 
 
-/proc/list2stickyban(var/list/ban)
+/proc/list2stickyban(list/ban)
 	if (!ban || !islist(ban))
 		return null
 	. = ban.Copy()
@@ -1100,11 +1100,25 @@
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
 
+	var/client/C = GLOB.directory[ckey]
+
 	//Guest Checking
-	if(!real_bans_only && IsGuestKey(key))
+	if(!real_bans_only && !C && IsGuestKey(key))
 		if(CONFIG_GET(flag/guest_ban))
 			log_access("Failed Login: [key] - Guests not allowed")
 			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+		if(CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
+			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
+			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
+
+
+	//Population Cap Checking
+	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
+	if(!real_bans_only && !C && extreme_popcap && !admin)
+		var/popcap_value = length(GLOB.clients)
+		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
+			log_access("Failed Login: [key] - Population cap reached")
+			return list("reason" = "popcap", "desc" = "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())
@@ -1141,7 +1155,6 @@
 			bannedckey = ban["ckey"]
 
 		var/newmatch = FALSE
-		var/client/C = GLOB.directory[ckey]
 		var/cachedban = SSstickyban.cache[bannedckey]
 
 		//rogue ban in the process of being reverted.
@@ -1178,7 +1191,7 @@
 
 				world.SetConfig("ban", bannedckey, null)
 
-				log_game("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
+				log_admin_private("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
 				message_admins("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
 				//do not convert to timer.
 				spawn(5)

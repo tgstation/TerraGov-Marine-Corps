@@ -3,21 +3,23 @@
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
+	singular_name = "cable length"
+	stack_name = "coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
-	var/item_color = "red"
+	color = COLOR_RED
 	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
 	throw_range = 5
-	matter = list("metal" = 50, "glass" = 20)
 	flags_equip_slot = ITEM_SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
-	stack_id = "cable coil"
+
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
@@ -26,10 +28,8 @@
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = MAXCOIL, param_color = null)
 	. = ..()
 
-	var/list/cable_colors = GLOB.cable_colors
-	item_color = param_color || item_color || pick(cable_colors)
-	if(cable_colors[item_color])
-		color = cable_colors[item_color]
+	if(param_color)
+		color = param_color
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()
@@ -52,14 +52,6 @@
 	else
 		w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
-	if(amount == 1)
-		to_chat(user, "A short piece of power cable.")
-	else if(amount == 2)
-		to_chat(user, "A piece of power cable.")
-	else
-		to_chat(user, "A coil of power cable. There are [amount] lengths of cable in the coil.")
-
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
 	set category = "Object"
@@ -70,87 +62,86 @@
 		if(amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
-		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
+		var/obj/item/restraints/handcuffs/cable/B = new /obj/item/restraints/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		use(15)
 	else
 		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
-	..()
 
-/obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if(iswirecutter(W) && amount > 1)
-		src.amount--
-		new/obj/item/stack/cable_coil(user.loc, 1,item_color)
+/obj/item/stack/cable_coil/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswirecutter(I) && amount > 1)
+		amount--
+		new /obj/item/stack/cable_coil(user.loc, 1, color)
 		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
 		updateicon()
 		update_wclass()
-		return
 
-	else if(iscablecoil(W))
-		var/obj/item/stack/cable_coil/C = W
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+
 		if(C.amount >= MAXCOIL)
 			to_chat(user, "The coil is too long, you cannot add any more cable to it.")
 			return
 
-		if( (C.amount + src.amount <= MAXCOIL) )
+		if((C.amount + amount <= MAXCOIL) )
 			to_chat(user, "You join the cable coils together.")
-			C.add(src.amount) // give it cable
-			use(src.amount) // make sure this one cleans up right
+			C.add(amount)
+			use(amount)
 
 		else
 			var/amt = MAXCOIL - C.amount
 			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
 			C.add(amt)
 			use(amt)
-		return
-	..()
 
-/obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	add_fingerprint(user)
+/obj/item/stack/cable_coil/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if (user.get_inactive_held_item() == src)
-		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, item_color)
-		transfer_fingerprints_to(F)
+		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		user.put_in_hands(F)
 		use(1)
-	else
-		..()
-    
+
 /obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
 	if(hasorgans(M))
-		var/datum/limb/S = M:get_limb(user.zone_selected)
+		var/mob/living/carbon/human/H = M
+		var/datum/limb/S = H.get_limb(user.zone_selected)
+
+		if(!S) 
+			return
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
-
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
-				if(M == user)
-					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
-					return
-
+		
 		if(S.burn_dam > 0 && use(1))
+			if(issynth(H) && M == user)
+				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+					return
 			S.heal_damage(0,15,0,1)
-			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
+			user.visible_message("<span class='warning'>\The [user] repairs some burn damage on \the [H]'s [S.display_name] with \the [src].</span>", \
+								"<span class='warning'>You repair some burn damage on \the [H]'s [S.display_name] with \the [src].</span>")
 			return
 		else
-			to_chat(user, "Nothing to fix!")
+			to_chat(user, "<span class='warning'>Nothing to fix!</span>")
 
 	else
 		return ..()
 
 /obj/item/stack/cable_coil/proc/get_new_cable(location)
 	var/path = /obj/structure/cable
-	return new path(location, item_color)
+	return new path(location, color)
 
 
-/obj/item/stack/cable_coil/use(var/used)
+/obj/item/stack/cable_coil/use(used)
 	if( ..() )
 		updateicon()
 		update_wclass()
 		return TRUE
 
-/obj/item/stack/cable_coil/add(var/extra)
+/obj/item/stack/cable_coil/add(extra)
 	if( ..() )
 		updateicon()
 		update_wclass()
@@ -192,7 +183,6 @@
 	//set up the new cable
 	C.d1 = CABLE_NODE
 	C.d2 = dirn
-	C.add_fingerprint(user)
 	C.update_icon()
 
 	//create a new powernet with the cable, if needed it will be merged later
@@ -209,14 +199,14 @@
 
 	if(C.shock(user, 50))
 		if(prob(50)) //fail
-			new /obj/item/stack/cable_coil(get_turf(C), 1, C.cable_color)
+			new /obj/item/stack/cable_coil(get_turf(C), 1, C.color)
 			C.deconstruct()
 
 	return C
 
 // called when cable_coil is click on an installed obj/cable
 // or click on a turf that already contains a "node" cable
-/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, var/showerror = TRUE)
+/obj/item/stack/cable_coil/proc/cable_join(obj/structure/cable/C, mob/user, showerror = TRUE)
 	var/turf/U = get_turf(user)
 	if(!isturf(U))
 		return
@@ -262,7 +252,6 @@
 
 			NC.d1 = CABLE_NODE
 			NC.d2 = fdirn
-			NC.add_fingerprint(user)
 			NC.update_icon()
 
 			//create a new powernet with the cable, if needed it will be merged later
@@ -308,10 +297,9 @@
 		C.d2 = nd2
 
 		//updates the stored cable coil
-		C.update_stored(2, item_color)
-		C.cable_color = item_color
+		C.update_stored(2)
+		C.color = color
 
-		C.add_fingerprint(user)
 		C.update_icon()
 
 
@@ -341,42 +329,35 @@
 /obj/item/stack/cable_coil/cut
 	item_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/New(loc)
-	..()
-	src.amount = rand(1,2)
-	pixel_x = rand(-2,2)
-	pixel_y = rand(-2,2)
+/obj/item/stack/cable_coil/cut/Initialize(mapload, new_amount, param_color)
+	. = ..()
+	amount = rand(1, 2)
+	pixel_x = rand(-2, 2)
+	pixel_y = rand(-2, 2)
 	updateicon()
 	update_wclass()
 
 /obj/item/stack/cable_coil/yellow
-	item_color = "yellow"
-	color = "#FFFF00"
+	color = COLOR_YELLOW
 
 /obj/item/stack/cable_coil/blue
-	item_color = "blue"
-	color = "#1919C8"
+	color = COLOR_BLUE
 
 /obj/item/stack/cable_coil/green
-	item_color = "green"
-	color = "#00AA00"
+	color = COLOR_GREEN
 
 /obj/item/stack/cable_coil/pink
-	item_color = "pink"
-	color = "#FF3CCD"
+	color = COLOR_PINK
 
 /obj/item/stack/cable_coil/orange
-	item_color = "orange"
-	color = "#FF8000"
+	color = COLOR_ORANGE
 
 /obj/item/stack/cable_coil/cyan
-	item_color = "cyan"
-	color = "#00FFFF"
+	color = COLOR_CYAN
 
 /obj/item/stack/cable_coil/white
-	item_color = "white"
-	color = "#FFFFFF"
+	color = COLOR_WHITE
 
-/obj/item/stack/cable_coil/random/New()
-	item_color = pick("red", "blue", "green", "white", "pink", "yellow", "cyan")
-	..()
+/obj/item/stack/cable_coil/random/Initialize(mapload, new_amount, param_color)
+	. = ..()
+	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_BLUE, COLOR_GREEN, COLOR_PINK, COLOR_ORANGE, COLOR_CYAN, COLOR_WHITE)

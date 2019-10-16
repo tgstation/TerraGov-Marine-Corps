@@ -1,172 +1,165 @@
 /obj/item/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices."
+	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter = list("metal" = 1000, "glass" = 200, "waste" = 100)
-	origin_tech = "magnets=1"
-	wires = WIRE_RECEIVE|WIRE_PULSE|WIRE_RADIO_PULSE|WIRE_RADIO_RECEIVE
+	materials = list(/datum/material/metal = 400, /datum/material/glass = 120)
+	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
+	attachable = TRUE
 
-	secured = 1
-
-	var/code = 30
-	var/frequency = 1457
+	var/code = DEFAULT_SIGNALER_CODE
+	var/frequency = FREQ_SIGNALER
 	var/delay = 0
-	var/airlock_wire = null
 	var/datum/radio_frequency/radio_connection
-	var/deadman = 0
+	var/hearing_range = 1
 
-	New()
-		..()
-		spawn(40)
-			set_frequency(frequency)
+
+/obj/item/assembly/signaler/Initialize()
+	. = ..()
+	set_frequency(frequency)
+
+
+/obj/item/assembly/signaler/Destroy()
+	SSradio.remove_object(src,frequency)
+	return ..()
+
+
+/obj/item/assembly/signaler/activate()
+	. = ..()
+	if(!.) //cooldown processing
+		return FALSE
+	signal()
+	return TRUE
+
+
+/obj/item/assembly/signaler/update_icon()
+	if(holder)
+		holder.update_icon()
+
+
+/obj/item/assembly/signaler/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!is_secured(user))
+		return FALSE
+
+	return TRUE
+
+
+/obj/item/assembly/signaler/interact(mob/user)
+	. = ..()
+	if(.)
 		return
 
+	var/dat = {"
+<A href='byond://?src=[REF(src)];send=1'>Send Signal</A><BR>
+<B>Frequency/Code</B> for signaler:<BR>
+Frequency:
+[format_frequency(frequency)]
+<A href='byond://?src=[REF(src)];set=freq'>Set</A><BR>
 
-	activate()
-		if(cooldown > 0)	return 0
-		cooldown = 2
-		spawn(10)
-			process_cooldown()
+Code:
+[code]
+<A href='byond://?src=[REF(src)];set=code'>Set</A><BR>"}
 
-		signal()
-		return 1
+	var/datum/browser/popup = new(user, "signaler", name)
+	popup.set_content(dat)
+	popup.open()
 
-	update_icon()
-		if(holder)
-			holder.update_icon()
+
+/obj/item/assembly/signaler/Topic(href, href_list)
+	. = ..()
+	if(.)
 		return
 
-	interact(mob/user as mob, flag1)
-		var/t1 = "-------"
-//		if ((src.b_stat && !( flag1 )))
-//			t1 = text("-------<BR>\nGreen Wire: []<BR>\nRed Wire:   []<BR>\nBlue Wire:  []<BR>\n", (src.wires & 4 ? text("<A href='?src=\ref[];wires=4'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=4'>Mend Wire</A>", src)), (src.wires & 2 ? text("<A href='?src=\ref[];wires=2'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=2'>Mend Wire</A>", src)), (src.wires & 1 ? text("<A href='?src=\ref[];wires=1'>Cut Wire</A>", src) : text("<A href='?src=\ref[];wires=1'>Mend Wire</A>", src)))
-//		else
-//			t1 = "-------"	Speaker: [src.listening ? "<A href='byond://?src=\ref[src];listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];listen=1'>Disengaged</A>"]<BR>
-		var/dat = {"
-	<TT>
+	if(href_list["set"])
+		if(href_list["set"] == "freq")
+			var/new_freq = input(usr, "Input a new signalling frequency", "Remote Signaller Frequency", format_frequency(frequency)) as num|null
+			if(!can_interact(usr))
+				return
+			new_freq = unformat_frequency(new_freq)
+			new_freq = sanitize_frequency(new_freq, TRUE)
+			set_frequency(new_freq)
 
-	<A href='byond://?src=\ref[src];send=1'>Send Signal</A><BR>
-	<B>Frequency/Code</B> for signaler:<BR>
-	Frequency:
-	<A href='byond://?src=\ref[src];freq=-10'>-</A>
-	<A href='byond://?src=\ref[src];freq=-2'>-</A>
-	[format_frequency(src.frequency)]
-	<A href='byond://?src=\ref[src];freq=2'>+</A>
-	<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+		if(href_list["set"] == "code")
+			var/new_code = input(usr, "Input a new signalling code", "Remote Signaller Code", code) as num|null
+			if(!can_interact(usr))
+				return
+			new_code = round(new_code)
+			new_code = CLAMP(new_code, 1, 100)
+			code = new_code
 
-	Code:
-	<A href='byond://?src=\ref[src];code=-5'>-</A>
-	<A href='byond://?src=\ref[src];code=-1'>-</A>
-	[src.code]
-	<A href='byond://?src=\ref[src];code=1'>+</A>
-	<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-	[t1]
-	</TT>"}
-		user << browse(dat, "window=radio")
-		onclose(user, "radio")
+	if(href_list["send"])
+		INVOKE_ASYNC(src, .proc/signal)
+
+	updateUsrDialog()
+
+
+/obj/item/assembly/signaler/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(issignaler(I))
+		var/obj/item/assembly/signaler/signaler2 = I
+		if(secured && signaler2.secured)
+			code = signaler2.code
+			set_frequency(signaler2.frequency)
+			to_chat(user, "You transfer the frequency and code of \the [signaler2.name] to \the [name]")
+
+
+/obj/item/assembly/signaler/proc/signal()
+	if(!radio_connection)
 		return
 
+	var/datum/signal/signal = new(list("code" = code))
+	radio_connection.post_signal(src, signal)
 
-	Topic(href, href_list)
-		..()
 
-		if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-			usr << browse(null, "window=radio")
-			onclose(usr, "radio")
-			return
-
-		if (href_list["freq"])
-			var/new_frequency = (frequency + text2num(href_list["freq"]))
-			if(new_frequency < 1200 || new_frequency > 1600)
-				new_frequency = sanitize_frequency(new_frequency)
-			set_frequency(new_frequency)
-
-		if(href_list["code"])
-			src.code += text2num(href_list["code"])
-			src.code = round(src.code)
-			src.code = min(100, src.code)
-			src.code = max(1, src.code)
-
-		if(href_list["send"])
-			spawn( 0 )
-				signal()
-
-		if(usr)
-			attack_self(usr)
-
+/obj/item/assembly/signaler/receive_signal(datum/signal/signal)
+	. = FALSE
+	if(!signal)
 		return
-
-
-	proc/signal()
-		if(!radio_connection) return
-
-		var/datum/signal/signal = new
-		signal.source = src
-		signal.encryption = code
-		signal.data["message"] = "ACTIVATE"
-		radio_connection.post_signal(src, signal)
+	if(signal.data["code"] != code)
 		return
-/*
-		for(var/obj/item/assembly/signaler/S in item_list)
-			if(!S)	continue
-			if(S == src)	continue
-			if((S.frequency == src.frequency) && (S.code == src.code))
-				spawn(0)
-					if(S)	S.pulse(0)
-		return 0*/
-
-
-	pulse(var/radio = 0)
-		if(istype(src.loc, /obj/machinery/door/airlock) && src.airlock_wire && src.wires)
-			var/obj/machinery/door/airlock/A = src.loc
-			A.pulse(src.airlock_wire)
-		else if(holder)
-			holder.process_activation(src, 1, 0)
-		else
-			..(radio)
-		return 1
-
-
-	receive_signal(datum/signal/signal)
-		if(!signal)	return 0
-		if(signal.encryption != code)	return 0
-		if(!(src.wires & WIRE_RADIO_RECEIVE))	return 0
-		pulse(1)
-
-		if(!holder)
-			for(var/mob/O in hearers(1, src.loc))
-				O.show_message("[icon2html(src, O)] *beep* *beep*")
+	if(!(wires & WIRE_RADIO_RECEIVE))
 		return
+	pulse(TRUE)
+	audible_message("[icon2html(src, hearers(src))] *beep* *beep* *beep*", null, hearing_range)
+	for(var/CHM in get_hearers_in_view(hearing_range, src))
+		if(ismob(CHM))
+			var/mob/LM = CHM
+			LM.playsound_local(get_turf(src), 'sound/machines/triple_beep.ogg', ASSEMBLY_BEEP_VOLUME, TRUE)
+	return TRUE
 
 
-	proc/set_frequency(new_frequency)
-		if(!SSradio)
-			sleep(20)
-		if(!SSradio)
-			return
-		SSradio.remove_object(src, frequency)
-		frequency = new_frequency
-		radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
+/obj/item/assembly/signaler/proc/set_frequency(new_frequency)
+	SSradio.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALER)
+	return
+
+
+// Embedded signaller used in grenade construction.
+// It's necessary because the signaler doens't have an off state.
+// Generated during grenade construction.  -Sayu
+/obj/item/assembly/signaler/receiver
+	var/on = FALSE
+
+
+/obj/item/assembly/signaler/receiver/proc/toggle_safety()
+	on = !on
+
+
+/obj/item/assembly/signaler/receiver/activate()
+	toggle_safety()
+	return TRUE
+
+/obj/item/assembly/signaler/receiver/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>The radio receiver is [on?"on":"off"].</span>")
+
+
+/obj/item/assembly/signaler/receiver/receive_signal(datum/signal/signal)
+	if(!on)
 		return
-
-	process()
-		if(!deadman)
-			STOP_PROCESSING(SSobj, src)
-		var/mob/M = src.loc
-		if(!M || !ismob(M))
-			if(prob(5))
-				signal()
-			deadman = 0
-			STOP_PROCESSING(SSobj, src)
-		else if(prob(5))
-			M.visible_message("[M]'s finger twitches a bit over [src]'s signal button!")
-		return
-
-	verb/deadman_it()
-		set src in usr
-		set name = "Threaten to push the button!"
-		set desc = "BOOOOM!"
-		deadman = 1
-		START_PROCESSING(SSobj, src)
-		usr.visible_message("<span class='warning'> [usr] moves their finger over [src]'s signal button...</span>")
+	return ..()

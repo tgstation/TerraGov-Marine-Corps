@@ -1,71 +1,17 @@
 /obj/structure
 	icon = 'icons/obj/structures/structures.dmi'
-	var/climbable
+	var/climbable = FALSE
 	var/climb_delay = 50
-	var/breakable = TRUE
-	var/parts
 	var/flags_barrier = 0
+	var/broken = FALSE //similar to machinery's stat BROKEN
+	var/coverage = 50 //Percentage area covered by the structure. Increases bullet blockage chance.
+	obj_flags = CAN_BE_HIT
 	anchored = TRUE
-
-	var/damage = 0
-	var/damage_cap = 500 //The point where things start breaking down.
-	var/health
-
-/obj/structure/New()
-	..()
-	GLOB.structure_list += src
-
-/obj/structure/Destroy()
-	. = ..()
-	GLOB.structure_list -= src
-
-/obj/structure/proc/destroy_structure(deconstruct)
-	if(parts)
-		new parts(loc)
-	density = FALSE
-	qdel(src)
+	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
 
-/obj/structure/proc/update_health()
-	return
-
-/obj/structure/attack_hand(mob/user)
-	..()
-	if(breakable)
-		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy_structure()
-
-/obj/structure/attackby(obj/item/C as obj, mob/user as mob)
-	. = ..()
-	if(istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && breakable && !CHECK_BITFIELD(resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
-		var/obj/item/tool/pickaxe/plasmacutter/P = C
-		if(!P.start_cut(user, name, src))
-			return
-		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
-			P.cut_apart(user, name, src)
-			qdel(src)
-		return
-
-//Default "structure" proc. This should be overwritten by sub procs.
-/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
-	return FALSE
-
-/obj/structure/attack_animal(mob/living/user)
-	if(breakable)
-		if(user.wall_smash)
-			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy_structure()
-
-/obj/structure/attack_paw(mob/user)
-	if(breakable)
-		attack_hand(user)
-
-/obj/structure/attack_tk()
-	return
 
 /obj/structure/ex_act(severity)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
@@ -103,8 +49,8 @@
 
 	do_climb(target)
 
-/obj/structure/proc/can_climb(var/mob/living/user)
-	if(!climbable || !can_touch(user))
+/obj/structure/proc/can_climb(mob/living/user)
+	if(!climbable || !can_interact(user))
 		return FALSE
 
 	var/turf/T = src.loc
@@ -158,16 +104,13 @@
 						return
 	return TRUE
 
-/obj/structure/proc/do_climb(var/mob/living/user)
+/obj/structure/proc/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 
 	user.visible_message("<span class='warning'>[user] starts [flags_atom & ON_BORDER ? "leaping over":"climbing onto"] \the [src]!</span>")
 
-	if(!do_after(user, climb_delay, FALSE, 5, BUSY_ICON_GENERIC))
-		return
-
-	if(!can_climb(user))
+	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
 
 	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
@@ -206,7 +149,7 @@
 		if(M.lying)
 			return //No spamming this on people.
 
-		M.KnockDown(5)
+		M.knock_down(5)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))
@@ -243,34 +186,24 @@
 			H.updatehealth()
 	return
 
-/obj/structure/proc/can_touch(mob/user)
-	if(!user)
+
+/obj/structure/can_interact(mob/user)
+	. = ..()
+	if(!.)
 		return FALSE
-	if(!Adjacent(user) || !isturf(user.loc))
+
+	if(!user.CanReach(src))
 		return FALSE
-	if(user.restrained() || user.buckled)
-		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
-		return FALSE
-	if(user.incapacitated(TRUE) || user.lying)
-		return FALSE
-	if(issilicon(user))
-		to_chat(user, "<span class='notice'>You need hands for this.</span>")
-		return FALSE
+
 	return TRUE
 
 
-//Damage
-/obj/structure/proc/take_damage(dam)
-	if(!breakable)
+/obj/structure/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
 		return
 
-	if(!dam)
+	if(!can_interact(user))
 		return
 
-	damage = max(0, damage + dam)
-
-	if(damage >= damage_cap)
-		playsound(src, 'sound/effects/metal_crash.ogg', 35)
-		qdel(src)
-	else
-		update_icon()
+	return interact(user)

@@ -80,7 +80,7 @@
 	item_state = "grenade_stick"
 	hud_state = "greande_frag"
 	force = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 2
 	throw_range = 7
@@ -122,7 +122,7 @@
 /obj/item/explosive/grenade/incendiary/prime()
 	spawn(0)
 		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 		qdel(src)
 	return
 
@@ -145,18 +145,18 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
 	item_state = "molotov"
-	arm_sound = 'sound/items/Welder2.ogg'
+	arm_sound = 'sound/items/welder2.ogg'
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/incendiary/molotov/New()
+/obj/item/explosive/grenade/incendiary/molotov/Initialize()
+	. = ..()
 	det_time = rand(10,40)//Adds some risk to using this thing.
-	return ..()
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
 	spawn(0)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
 		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 30, 1, 4)
+		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, 1, 4)
 		qdel(src)
 	return
 
@@ -172,21 +172,20 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
-/obj/item/explosive/grenade/smokebomb/New()
+/obj/item/explosive/grenade/smokebomb/Initialize()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/bad
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/smokebomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 6)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc, 7)
 	smoke.start()
 	qdel(src)
 
 
 /obj/item/explosive/grenade/cloakbomb
 	name = "\improper M40-2 SCDP smoke grenade"
-	desc = "A sophisticated version of the M40 HSDP with an improved smoke screen payload, currently being field-tested in the TGMC. It's set to detonate in 2 seconds."
+	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
 	det_time = 20
 	item_state = "grenade_cloak"
@@ -195,14 +194,13 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
-/obj/item/explosive/grenade/cloakbomb/New()
+/obj/item/explosive/grenade/cloakbomb/Initialize()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/tactical
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/cloakbomb/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 7)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc, 9)
 	smoke.start()
 	qdel(src)
 
@@ -216,16 +214,14 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
-	dangerous = 1
 
-/obj/item/explosive/grenade/phosphorus/New()
+/obj/item/explosive/grenade/phosphorus/Initialize()
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/phosphorus
-	smoke.attach(src)
+	smoke = new(src)
 
 /obj/item/explosive/grenade/phosphorus/prime()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(4, loc, 7)
 	smoke.start()
 	qdel(src)
 
@@ -272,13 +268,13 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 1
 	dangerous = FALSE
 	underslug_launchable = TRUE
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	var/fuel = 0
 
-/obj/item/explosive/grenade/flare/New()
+/obj/item/explosive/grenade/flare/Initialize()
+	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	return ..()
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
 	if(!active)
@@ -292,21 +288,15 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	fuel = max(fuel - 1, 0)
 	if(!fuel || !active)
 		turn_off()
-		if(!fuel)
-			icon_state = "[initial(icon_state)]-empty"
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_off()
+	active = FALSE
 	fuel = 0
-	icon_state = "[initial(icon_state)]-empty"
-	heat_source = 0
+	heat = 0
 	force = initial(force)
 	damtype = initial(damtype)
-	if(ismob(loc))
-		update_brightness(loc)
-	else
-		update_brightness(null)
-	//message_admins("TOGGLE FLARE LIGHT DEBUG 1: fuel: [fuel] loc: [loc]")
+	update_brightness()
+	icon_state = "[initial(icon_state)]-empty" // override icon state set by update_brightness
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -315,9 +305,10 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	throwforce = 10
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 	item_fire_stacks = 5
-	heat_source = 1500
+	heat = 1500
 	damtype = "fire"
 	update_brightness()
+	playsound(src,'sound/items/flare.ogg', 15, 1)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/attack_self(mob/user)
@@ -337,11 +328,10 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on/New()
-
+/obj/item/explosive/grenade/flare/on/Initialize()
 	. = ..()
 	active = TRUE
-	heat_source = 1500
+	heat = 1500
 	update_brightness()
 	force = 5
 	throwforce = 10
@@ -350,39 +340,20 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 
-/obj/item/explosive/grenade/flare/proc/update_brightness(mob/user)
-	if(!user && ismob(loc))
-		user = loc
+/obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		if(loc && loc == user)
-			user.SetLuminosity(FLARE_BRIGHTNESS)
-			//message_admins("FLARE UPDATE BRIGHTNESS DEBUG: user: [user] light_sources length: [length(user.light_sources)]")
-			SetLuminosity(0)
-		else if(isturf(loc))
-			SetLuminosity(FLARE_BRIGHTNESS)
+		set_light(5, l_color = LIGHT_COLOR_FLARE)
 	else
 		icon_state = initial(icon_state)
-		if(loc && loc == user)
-			user.SetLuminosity(-FLARE_BRIGHTNESS)
-		else if(isturf(loc))
-			SetLuminosity(0)
-
-/obj/item/explosive/grenade/flare/pickup(mob/user)
-	if(active && loc != user)
-		user.SetLuminosity(FLARE_BRIGHTNESS)
-		SetLuminosity(0)
-	return ..()
-
-/obj/item/explosive/grenade/flare/dropped(mob/user)
-	if(active && loc != user)
-		user.SetLuminosity(-FLARE_BRIGHTNESS)
-		SetLuminosity(FLARE_BRIGHTNESS)
-	return ..()
+		set_light(0)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(isliving(hit_atom) && active)
+	if(!active)
+		return
+
+	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 
 		var/target_zone = check_zone(L.zone_selected)
@@ -391,3 +362,9 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
 			var/armor_block = L.run_armor_check(target_zone, "fire")
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
+
+	// Flares instantly burn out nodes when thrown at them.
+	var/obj/effect/alien/weeds/node/N = locate() in loc
+	if(N)
+		qdel(N)
+		turn_off()

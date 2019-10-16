@@ -48,6 +48,7 @@
 		text = input(usr,"Write your [type]","Create [type]") as null|message
 		if(!text)
 			return
+	var/original_text = text
 	text = sanitizeSQL(text)
 	if(!timestamp)
 		timestamp = SQLtime()
@@ -109,7 +110,7 @@
 	var/client/C = GLOB.directory[target_ckey]
 	if(!istype(C))
 		return
-	to_chat(C, "<span class='boldannounce'>A note has been added to your account:</span><br><span class='danger'>[text]</span>")
+	to_chat(C, "<span class='boldannounce'>A note has been added to your account:</span><br><span class='danger'>[original_text]</span>")
 
 
 /proc/delete_message(message_id, logged = TRUE, browse)
@@ -350,7 +351,7 @@
 			else
 				output += "<a href='?_src_=holder;[HrefToken()];showwatchfilter=1'>Filter offline clients</a></center>"
 		output += ruler
-		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery("SELECT id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), targetckey, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), expire_timestamp FROM [format_table_name("messages")] WHERE type = '[type]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
+		var/datum/DBQuery/query_get_type_messages = SSdbcore.NewQuery("SELECT id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), targetckey, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, round_id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), expire_timestamp FROM [format_table_name("messages")] WHERE type = '[type]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)")
 		if(!query_get_type_messages.warn_execute())
 			qdel(query_get_type_messages)
 			return
@@ -366,12 +367,13 @@
 			var/text = query_get_type_messages.item[5]
 			var/timestamp = query_get_type_messages.item[6]
 			var/server = query_get_type_messages.item[7]
-			var/editor_key = query_get_type_messages.item[8]
-			var/expire_timestamp = query_get_type_messages.item[9]
+			var/round_id = query_get_type_messages.item[8]
+			var/editor_key = query_get_type_messages.item[9]
+			var/expire_timestamp = query_get_type_messages.item[10]
 			output += "<b>"
 			if(type == "watchlist entry")
 				output += "[t_key] | "
-			output += "[timestamp] | [server] | [admin_key]"
+			output += "[timestamp] | [server] | [round_id] | [admin_key]"
 			if(expire_timestamp)
 				output += " | Expires [expire_timestamp]"
 			output += "</b>"
@@ -385,7 +387,7 @@
 	if(target_ckey)
 		target_ckey = sanitizeSQL(target_ckey)
 		var/target_key
-		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), DATEDIFF(NOW(), timestamp), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), expire_timestamp, severity FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = '[target_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC")
+		var/datum/DBQuery/query_get_messages = SSdbcore.NewQuery("SELECT type, secret, id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = adminckey), adminckey), text, timestamp, server, round_id, IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor), DATEDIFF(NOW(), timestamp), IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey), expire_timestamp, severity FROM [format_table_name("messages")] WHERE type <> 'memo' AND targetckey = '[target_ckey]' AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL) ORDER BY timestamp DESC")
 		if(!query_get_messages.warn_execute())
 			qdel(query_get_messages)
 			return
@@ -407,11 +409,12 @@
 			var/text = query_get_messages.item[5]
 			var/timestamp = query_get_messages.item[6]
 			var/server = query_get_messages.item[7]
-			var/editor_key = query_get_messages.item[8]
-			var/age = text2num(query_get_messages.item[9])
-			target_key = query_get_messages.item[10]
-			var/expire_timestamp = query_get_messages.item[11]
-			var/severity = query_get_messages.item[12]
+			var/round_id = query_get_messages.item[8]
+			var/editor_key = query_get_messages.item[9]
+			var/age = text2num(query_get_messages.item[10])
+			target_key = query_get_messages.item[11]
+			var/expire_timestamp = query_get_messages.item[12]
+			var/severity = query_get_messages.item[13]
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
@@ -428,7 +431,7 @@
 			var/list/data = list("<div style='margin:0px;[alphatext]'><p class='severity'>")
 			if(severity)
 				data += "<img src='[severity]_button.png' height='24' width='24'></img> "
-			data += "<b>[timestamp] | [server] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
+			data += "<b>[timestamp] | [server] | [round_id] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
 			data += "</b></p><center>"
@@ -565,8 +568,7 @@
 					return
 				qdel(query_message_read)
 			if("watchlist entry")
-				message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(target_ckey)] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
-				send2irc_adminless_only("Watchlist", "[key_name(target_ckey)] is on the watchlist and has just connected - Reason: [text]")
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/print_watchlist, key_name(target_ckey), timestamp, text), 2 SECONDS)
 			if("memo")
 				output += "<span class='memo'>Memo by <span class='prefix'>[admin_key]</span> on [timestamp]"
 				if(editor_key)
@@ -574,3 +576,8 @@
 				output += "<br>[text]</span><br>"
 	qdel(query_get_message_output)
 	return output
+
+
+/proc/print_watchlist(ckey, timestamp, text)
+	message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[ckey] has been on the watchlist since [timestamp] and has just connected - Reason: [text]</font>")
+	send2irc_adminless_only("Watchlist", "[ckey] is on the watchlist and has just connected - Reason: [text]")

@@ -1,5 +1,13 @@
 GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
+/datum/data
+	var/name = "data"
+
+
+/datum/data/record
+	name = "record"
+	var/list/fields = list()
+
 
 /datum/datacore
 	var/list/medical = list()
@@ -50,23 +58,23 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			isactive[name] = t.fields["p_stat"]
 
 		var/department = 0
-		if(real_rank in JOBS_COMMAND)
+		if(real_rank in GLOB.jobs_command)
 			heads[name] = rank
 			department = 1
-		if(real_rank in JOBS_POLICE)
+		if(real_rank in GLOB.jobs_police)
 			police[name] = rank
 			department = 1
-		if(real_rank in JOBS_ENGINEERING)
+		if(real_rank in GLOB.jobs_engineering)
 			eng[name] = rank
 			department = 1
-		if(real_rank in JOBS_MEDICAL)
+		if(real_rank in GLOB.jobs_medical)
 			med[name] = rank
 			department = 1
-		if(real_rank in JOBS_MARINES)
+		if(real_rank in GLOB.jobs_marines)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (real_rank in JOBS_REGULAR_ALL))
+		if(!department && !(name in heads) && (real_rank in GLOB.jobs_regular_all))
 			misc[name] = rank
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -114,11 +122,12 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	medical = list()
 	general = list()
 	security = list()
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(!ishumanbasic(H))
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		if(!H.client)
 			continue
-		CHECK_TICK
 		manifest_inject(H)
+		CHECK_TICK
 
 
 /datum/datacore/proc/manifest_update(oldname, newname, rank)
@@ -150,7 +159,9 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		foundrecord.fields["real_rank"] = rank
 
 
-/datum/datacore/proc/manifest_inject(var/mob/living/carbon/human/H)
+/datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
+	set waitfor = FALSE
+	var/static/list/show_directions = list(SOUTH, WEST)
 	if(!H.mind)
 		return
 
@@ -164,8 +175,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
 
-	var/icon/front = new(get_id_photo(H), dir = SOUTH)
-	var/icon/side = new(get_id_photo(H), dir = WEST)
+	var/image = get_id_photo(H, H.client, show_directions)
+	var/datum/picture/pf = new
+	var/datum/picture/ps = new
+	pf.picture_name = "[H]"
+	ps.picture_name = "[H]"
+	pf.picture_desc = "This is [H]."
+	ps.picture_desc = "This is [H]."
+	pf.picture_image = icon(image, dir = SOUTH)
+	ps.picture_image = icon(image, dir = WEST)
+	var/obj/item/photo/photo_front = new(null, pf)
+	var/obj/item/photo/photo_side = new(null, ps)
 	//General Record
 	var/datum/data/record/G = new()
 	G.fields["id"]			= id
@@ -174,7 +194,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["rank"]		= assignment
 	G.fields["squad"]		= H.assigned_squad ? H.assigned_squad.name : null
 	G.fields["age"]			= H.age
-	G.fields["fingerprint"]	= md5(H.dna.uni_identity)
 	G.fields["p_stat"]		= "Active"
 	G.fields["m_stat"]		= "Stable"
 	G.fields["sex"]			= H.gender
@@ -183,8 +202,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["citizenship"]	= H.citizenship
 	G.fields["faction"]		= H.personal_faction
 	G.fields["religion"]	= H.religion
-	G.fields["photo_front"]	= front
-	G.fields["photo_side"]	= side
+	G.fields["photo_front"]	= photo_front
+	G.fields["photo_side"]	= photo_side
 	if(H.gen_record)
 		G.fields["notes"] = H.gen_record
 	else
@@ -196,7 +215,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	M.fields["id"]			= id
 	M.fields["name"]		= H.real_name
 	M.fields["b_type"]		= H.b_type
-	M.fields["b_dna"]		= H.dna.unique_enzymes
 	M.fields["mi_dis"]		= "None"
 	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
 	M.fields["ma_dis"]		= "None"
@@ -240,3 +258,62 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	if(C)
 		P = C.prefs
 	return get_flat_human_icon(null, J, P, DUMMY_HUMAN_SLOT_MANIFEST, show_directions)
+
+
+/proc/CreateGeneralRecord()
+	var/datum/data/record/G = new /datum/data/record()
+	G.fields["name"] = "New Record"
+	G.fields["id"] = "[num2hex(rand(1, 1.6777215E7), 6)]"
+	G.fields["rank"] = "Unassigned"
+	G.fields["real_rank"] = "Unassigned"
+	G.fields["sex"] = "Male"
+	G.fields["age"] = "Unknown"
+	G.fields["ethnicity"] = "Unknown"
+	G.fields["fingerprint"] = "Unknown"
+	G.fields["p_stat"] = "Active"
+	G.fields["m_stat"] = "Stable"
+	G.fields["species"] = "Human"
+	G.fields["home_system"]	= "Unknown"
+	G.fields["citizenship"]	= "Unknown"
+	G.fields["faction"]		= "Unknown"
+	G.fields["religion"]	= "Unknown"
+	G.fields["photo_front"] = null
+	G.fields["photo_side"] = null
+	GLOB.datacore.general += G
+	return G
+
+
+/proc/CreateSecurityRecord(name, id)
+	var/datum/data/record/R = new
+	R.fields["name"] = name
+	R.fields["id"] = id
+	R.name = text("Security Record #[id]")
+	R.fields["criminal"] = "None"
+	R.fields["mi_crim"] = "None"
+	R.fields["mi_crim_d"] = "No minor crime convictions."
+	R.fields["ma_crim"] = "None"
+	R.fields["ma_crim_d"] = "No major crime convictions."
+	R.fields["notes"] = "No notes."
+	GLOB.datacore.security += R
+	return R
+
+
+/proc/create_medical_record(mob/living/carbon/human/H)
+	var/datum/data/record/M = new
+	M.fields["id"]			= null
+	M.fields["name"]		= H.real_name
+	M.fields["b_type"]		= H.b_type
+	M.fields["mi_dis"]		= "None"
+	M.fields["mi_dis_d"]	= "No minor disabilities have been declared."
+	M.fields["ma_dis"]		= "None"
+	M.fields["ma_dis_d"]	= "No major disabilities have been diagnosed."
+	M.fields["alg"]			= "None"
+	M.fields["alg_d"]		= "No allergies have been detected in this patient."
+	M.fields["cdi"]			= "None"
+	M.fields["cdi_d"]		= "No diseases have been diagnosed at the moment."
+	M.fields["last_scan_time"] = 0
+	M.fields["last_scan_result"] = "No scan data on record"
+	M.fields["autodoc_data"] = list()
+	M.fields["autodoc_manual"] = list()
+	GLOB.datacore.medical += M
+	return M

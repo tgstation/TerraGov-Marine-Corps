@@ -6,7 +6,7 @@
 	var/obj/item/clothing/suit/coat
 	var/list/allowed = list(/obj/item/clothing/suit/storage/labcoat, /obj/item/clothing/suit/storage/det_suit, /obj/item/clothing/suit/bomber)
 
-/obj/structure/coatrack/attack_hand(mob/user as mob)
+/obj/structure/coatrack/attack_hand(mob/living/user)
 	if(coat)
 		user.visible_message("[user] takes [coat] off \the [src].", "You take [coat] off the \the [src]")
 		if(!user.put_in_active_hand(coat))
@@ -14,20 +14,20 @@
 		coat = null
 		update_icon()
 
-/obj/structure/coatrack/attackby(obj/item/W as obj, mob/user as mob)
-	var/can_hang = 0
-	for (var/T in allowed)
-		if(istype(W,T))
-			can_hang = 1
-	if (can_hang && !coat)
-		user.visible_message("[user] hangs [W] on \the [src].", "You hang [W] on the \the [src]")
-		coat = W
-		user.drop_held_item(src)
-		coat.forceMove(src)
-		update_icon()
-	else
-		to_chat(user, "<span class='notice'>You cannot hang [W] on [src]</span>")
-		return ..()
+
+/obj/structure/coatrack/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!(I.type in allowed) || coat)
+		to_chat(user, "<span class='notice'>You cannot hang [I] on [src]</span>")
+		return
+
+	user.visible_message("[user] hangs [I] on \the [src].", "You hang [I] on the \the [src]")
+	coat = I
+	user.drop_held_item(src)
+	coat.forceMove(src)
+	update_icon()
+
 
 /obj/structure/coatrack/Crossed(atom/movable/AM)
 	..()

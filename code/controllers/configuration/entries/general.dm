@@ -3,8 +3,6 @@ Basics, the most important.
 */
 /datum/config_entry/string/server_name	// The name used for the server almost universally.
 
-/datum/config_entry/string/ship_name //The name of the main marine ship
-
 /datum/config_entry/string/serversqlname	// Short form of the previous used for the DB.
 
 /datum/config_entry/string/server // If you set this location, it sends you there instead of trying to reconnect.
@@ -15,8 +13,7 @@ Basics, the most important.
 
 /datum/config_entry/string/resource_url
 
-/datum/config_entry/string/hubpassword
-	config_entry_value = "kMZy3U5jJHSiBQjr"
+/datum/config_entry/flag/hub	// if the game appears on the hub or not
 
 /datum/config_entry/string/wikiurl
 
@@ -29,8 +26,6 @@ Basics, the most important.
 /datum/config_entry/string/discordurl
 
 /datum/config_entry/string/banappeals
-
-/datum/config_entry/string/donationurl
 
 /datum/config_entry/string/dburl
 
@@ -52,15 +47,10 @@ Basics, the most important.
 
 /datum/config_entry/flag/guest_ban
 
-/datum/config_entry/flag/continous_rounds
-
 /*
 Administrative related.
 */
 /datum/config_entry/flag/localhost_rank
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/flag/ban_legacy_system
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
@@ -92,6 +82,8 @@ Administrative related.
 
 /datum/config_entry/flag/log_say
 
+/datum/config_entry/flag/log_telecomms
+
 /datum/config_entry/flag/log_hivemind
 
 /datum/config_entry/flag/log_runtime
@@ -113,12 +105,6 @@ Administrative related.
 /datum/config_entry/flag/log_manifest
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
-
-/datum/config_entry/flag/admin_irc
-
-/datum/config_entry/flag/guest_jobban
-
-/datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
@@ -175,6 +161,27 @@ Administrative related.
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 	config_entry_value = "C:\\Program Files (x86)\\TG Station Server\\TGCommandLine.exe"
 
+/datum/config_entry/number/minute_topic_limit
+	config_entry_value = 250
+	min_val = 0
+
+/datum/config_entry/number/second_topic_limit
+	config_entry_value = 15
+	min_val = 0
+
+/datum/config_entry/number/minute_click_limit
+	config_entry_value = 400
+	min_val = 0
+
+/datum/config_entry/number/second_click_limit
+	config_entry_value = 15
+	min_val = 0
+
+/datum/config_entry/number/afk_period	//time in ds until a player is considered inactive
+	config_entry_value = 3000
+	integer = FALSE
+	min_val = 0
+
 /*
 Voting
 */
@@ -195,15 +202,6 @@ Voting
 	config_entry_value = 600
 	integer = FALSE
 	min_val = 0
-
-/datum/config_entry/flag/vote_no_default
-
-/datum/config_entry/flag/vote_no_dead
-
-/datum/config_entry/number/vote_autogamemode_timeleft
-	config_entry_value = 999999999
-
-/datum/config_entry/flag/allow_metadata	// Metadata is supported.
 
 /*
 Master controller and performance related.
@@ -279,8 +277,6 @@ Master controller and performance related.
 
 /datum/config_entry/flag/tickcomp
 
-/datum/config_entry/flag/use_recursive_explosions
-
 /*
 System command that invokes youtube-dl, used by Play Internet Sound.
 You can install youtube-dl with
@@ -291,3 +287,68 @@ The default value assumes youtube-dl is in your system PATH
 */
 /datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
+
+
+/datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
+	config_entry_value = 600
+	integer = FALSE
+	min_val = 0
+
+
+/datum/config_entry/number/error_limit	// How many occurrences before the next will silence them
+	config_entry_value = 50
+
+
+/datum/config_entry/number/error_silence_time	// How long a unique error will be silenced for
+	config_entry_value = 6000
+	integer = FALSE
+
+
+/datum/config_entry/number/error_msg_delay	// How long to wait between messaging admins about occurrences of a unique error
+	config_entry_value = 50
+	integer = FALSE
+
+
+/datum/config_entry/number/soft_popcap
+	min_val = 0
+
+
+/datum/config_entry/number/hard_popcap
+	min_val = 0
+
+
+/datum/config_entry/number/extreme_popcap
+	min_val = 0
+
+
+/datum/config_entry/string/soft_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, joining the round may get disabled soon."
+
+
+/datum/config_entry/string/hard_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, You cannot currently join, but you can observe or wait for the number of living crew to decline."
+
+
+/datum/config_entry/string/extreme_popcap_message
+	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
+
+
+/datum/config_entry/flag/panic_bunker
+
+
+/datum/config_entry/string/panic_server_name
+
+
+/datum/config_entry/string/panic_server_name/ValidateAndSet(str_val)
+	return str_val != "\[Put the name here\]" && ..()
+
+
+/datum/config_entry/string/panic_server_address	//Reconnect a player this linked server if this server isn't accepting new players
+
+
+/datum/config_entry/string/panic_server_address/ValidateAndSet(str_val)
+	return str_val != "byond://address:port" && ..()
+
+
+/datum/config_entry/string/panic_bunker_message
+	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."

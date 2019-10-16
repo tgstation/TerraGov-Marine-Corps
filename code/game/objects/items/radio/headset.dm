@@ -1,249 +1,186 @@
+// Used for translating channels to tokens on examination
+GLOBAL_LIST_INIT(channel_tokens, list(
+	RADIO_CHANNEL_REQUISITIONS = RADIO_TOKEN_REQUISITIONS,
+	RADIO_CHANNEL_COMMAND = RADIO_TOKEN_COMMAND,
+	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
+	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
+	RADIO_CHANNEL_POLICE = RADIO_TOKEN_POLICE,
+	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
+	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
+	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
+	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA
+))
+
+
 /obj/item/radio/headset
 	name = "radio headset"
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	icon_state = "headset"
 	item_state = "headset"
-	matter = list("metal" = 75)
-	subspace_transmission = 1
+	materials = list(/datum/material/metal = 75)
+	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 
 	flags_equip_slot = ITEM_SLOT_EARS
-	var/translate_binary = 0
-	var/translate_hive = 0
-	var/obj/item/encryptionkey/keyslot1 = null
 	var/obj/item/encryptionkey/keyslot2 = null
-	var/obj/item/encryptionkey/keyslot3 = null
-	maxf = 1489
 
-/obj/item/radio/headset/New()
-	..()
+
+/obj/item/radio/headset/Initialize()
+	. = ..()
+	if(keyslot)
+		keyslot = new keyslot(src)
+	if(keyslot2)
+		keyslot2 = new keyslot2(src)
 	recalculateChannels()
 
-/obj/item/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
-			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
-			binary.broadcast(M, message)
-		if (translate_hive)
-			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
-			hivemind.broadcast(M, message)
-		return null
 
+/obj/item/radio/headset/Destroy()
+	if(keyslot2)
+		QDEL_NULL(keyslot2)
 	return ..()
 
-/obj/item/radio/headset/receive_range(freq, level, aiOverride = 0)
-	if (aiOverride)
-		return ..(freq, level)
-	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
-		if(H.wear_ear == src)
-			return ..(freq, level)
-	return -1
 
-/obj/item/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
-//	..()
-	user.set_interaction(src)
-	if (!( isscrewdriver(W) || (istype(W, /obj/item/encryptionkey/ ))))
-		return
+/obj/item/radio/headset/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if(isscrewdriver(W))
-		if(keyslot1 || keyslot2 || keyslot3)
-
-
+	if(isscrewdriver(I))
+		if(keyslot || keyslot2)
 			for(var/ch_name in channels)
-				SSradio.remove_object(src, radiochannels[ch_name])
+				SSradio.remove_object(src, GLOB.radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-
-			if(keyslot1)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot1.loc = T
-					keyslot1 = null
-
-
-
-			if(keyslot2)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot2.loc = T
+			var/turf/T = get_turf(user)
+			if(T)
+				if(keyslot)
+					keyslot.forceMove(T)
+					keyslot = null
+				if(keyslot2)
+					keyslot2.forceMove(T)
 					keyslot2 = null
 
-			if(keyslot3)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot3.loc = T
-					keyslot3 = null
-
 			recalculateChannels()
-			to_chat(user, "You pop out the encryption keys in the headset!")
+			to_chat(user, "<span class='notice'>You pop out the encryption keys in the headset.</span>")
 
 		else
-			to_chat(user, "This headset doesn't have any encryption keys!  How useless...")
+			to_chat(user, "<span class='warning'>This headset doesn't have any unique encryption keys!  How useless...</span>")
 
-	if(istype(W, /obj/item/encryptionkey/))
-		if(keyslot1 && keyslot2 && keyslot3)
-			to_chat(user, "The headset can't hold another key!")
+	else if(istype(I, /obj/item/encryptionkey))
+		if(keyslot && keyslot2)
+			to_chat(user, "<span class='warning'>The headset can't hold another key!</span>")
 			return
 
-		if(!keyslot1)
-			if(user.drop_held_item())
-				W.forceMove(src)
-				keyslot1 = W
+		if(!keyslot)
+			if(!user.transferItemToLoc(I, src))
+				return
+			keyslot = I
 
-
-		if(!keyslot2)
-			if(user.drop_held_item())
-				W.forceMove(src)
-				keyslot2 = W
 		else
-			if(user.drop_held_item())
-				W.forceMove(src)
-				keyslot3 = W
+			if(!user.transferItemToLoc(I, src))
+				return
+			keyslot2 = I
 
+			I.forceMove(src)
+			keyslot2 = I
 
 		recalculateChannels()
 
-	return
+
+/obj/item/radio/headset/examine(mob/user)
+	. = ..()
+	if(loc == user)
+		// construction of frequency description
+		var/list/avail_chans = list("Use [RADIO_KEY_COMMON] for the currently tuned frequency")
+		if(length(channels))
+			for(var/i in 1 to length(channels))
+				if(i == 1)
+					if(channels[i] in GLOB.channel_tokens)
+						avail_chans += "use [MODE_TOKEN_DEPARTMENT] or [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"
+					else
+						avail_chans += "use [MODE_TOKEN_DEPARTMENT] for [lowertext(channels[i])]"
+				else
+					avail_chans += "use [GLOB.channel_tokens[channels[i]]] for [lowertext(channels[i])]"
+		to_chat(user, "<span class='notice'>A small screen on the headset displays the following available frequencies:\n[english_list(avail_chans)].")
+
+		if(command)
+			to_chat(user, "<span class='info'>Alt-click to toggle the high-volume mode.</span>")
+	else
+		to_chat(user, "<span class='notice'>A small screen on the headset flashes, it's too small to read without holding or wearing the headset.</span>")
 
 
-/obj/item/radio/headset/proc/recalculateChannels()
-	src.channels = list()
-	src.translate_binary = 0
-	src.translate_hive = 0
-	src.syndie = 0
-
-	if(keyslot1)
-		for(var/ch_name in keyslot1.channels)
-			if(ch_name in src.channels)
-				continue
-			src.channels += ch_name
-			src.channels[ch_name] = keyslot1.channels[ch_name]
-
-		if(keyslot1.translate_binary)
-			src.translate_binary = 1
-
-		if(keyslot1.translate_hive)
-			src.translate_hive = 1
-
-		if(keyslot1.syndie)
-			src.syndie = 1
-
+/obj/item/radio/headset/recalculateChannels()
+	. = ..()
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
-			if(ch_name in src.channels)
-				continue
-			src.channels += ch_name
-			src.channels[ch_name] = keyslot2.channels[ch_name]
+			if(!(ch_name in channels))
+				channels[ch_name] = keyslot2.channels[ch_name]
 
-		if(keyslot2.translate_binary)
-			src.translate_binary = 1
-
-		if(keyslot2.translate_hive)
-			src.translate_hive = 1
-
-		if(keyslot2.syndie)
-			src.syndie = 1
-
-	if(keyslot3)
-		for(var/ch_name in keyslot3.channels)
-			if(ch_name in src.channels)
-				continue
-			src.channels += ch_name
-			src.channels[ch_name] = keyslot3.channels[ch_name]
-
-		if(keyslot3.translate_binary)
-			src.translate_binary = 1
-
-		if(keyslot3.translate_hive)
-			src.translate_hive = 1
-
-		if(keyslot3.syndie)
-			src.syndie = 1
+	for(var/ch_name in channels)
+		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
 
 
-	for (var/ch_name in channels)
-		if(!SSradio)
-			sleep(30) // Waiting for the SSradio to be created.
-		if(!SSradio)
-			src.name = "broken radio headset"
-			return
-
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+/obj/item/radio/headset/talk_into(mob/living/M, message, channel, list/spans, datum/language/language)
+	if(!listening)
+		return ITALICS | REDUCE_RANGE
+	return ..()
 
 
+/obj/item/radio/headset/AltClick(mob/living/user)
+	if(!istype(user) || !Adjacent(user) || user.incapacitated())
+		return
+
+	if(command)
+		use_command = !use_command
+		to_chat(user, "<span class='notice'>You toggle high-volume mode [use_command ? "on" : "off"].</span>")
 
 
-/obj/item/radio/headset/syndicate
-	origin_tech = "syndicate=3"
-	keyslot1 = new /obj/item/encryptionkey/syndicate
+/obj/item/radio/headset/can_receive(freq, level)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.wear_ear == src)
+			return ..()
+	else if(issilicon(loc))
+		return ..()
+	return FALSE
 
 
-/obj/item/radio/headset/binary
-	origin_tech = "syndicate=3"
-	keyslot1 = new /obj/item/encryptionkey/binary
-
-
-
-/obj/item/radio/headset/ai_integrated //No need to care about icons, it should be hidden inside the AI anyway.
-	name = "AI Subspace Transceiver"
-	desc = "Integrated AI radio transceiver."
-	icon = 'icons/obj/robot_component.dmi'
-	icon_state = "radio"
-	item_state = "headset"
-	keyslot1 = new /obj/item/encryptionkey/ai_integrated
-	var/myAi = null    // Atlantis: Reference back to the AI which has this radio.
-	var/disabledAi = 0 // Atlantis: Used to manually disable AI's integrated radio via intellicard menu.
-
-/obj/item/radio/headset/ai_integrated/receive_range(freq, level)
-	if (disabledAi)
-		return -1 //Transciever Disabled.
-	return ..(freq, level, 1)
-
-/obj/item/radio/headset/ert
-	name = "NT Response Team headset"
-	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - command, :p - security, :e - engineering, :m - medical."
-	icon_state = "com_headset"
-	item_state = "headset"
-	freerange = 1
-	keyslot1 = new /obj/item/encryptionkey/ert
-
-
+/obj/item/radio/headset/survivor
+	freqlock = TRUE
+	frequency = FREQ_CIV_GENERAL
 
 
 //MARINE HEADSETS
-
-/obj/item/radio/headset/almayer
+/obj/item/radio/headset/mainship
 	name = "marine radio headset"
 	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
-	frequency = PUB_FREQ
+	frequency = FREQ_COMMON
 	var/obj/machinery/camera/camera
-	var/datum/mob_hud/squadhud = null
+	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
 
-/obj/item/radio/headset/almayer/New()
-	. = ..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
 
-/obj/item/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
+/obj/item/radio/headset/mainship/Initialize()
+	. = ..()
+	camera = new /obj/machinery/camera/headset(src)
+
+
+/obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_EARS)
 		wearer = user
-		squadhud = huds[MOB_HUD_SQUAD]
-		headset_hud_on = FALSE //So we always activate on equip.
-		sl_direction = FALSE
-		toggle_squadhud(wearer)
+		squadhud = GLOB.huds[DATA_HUD_SQUAD]
+		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
 	return ..()
 
-/obj/item/radio/headset/almayer/dropped(mob/living/carbon/human/user)
+
+/obj/item/radio/headset/mainship/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
+			disable_squadhud()
 			squadhud.remove_hud_from(user)
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
@@ -253,290 +190,340 @@
 	return ..()
 
 
-/obj/item/radio/headset/almayer/Destroy()
-	if(wearer && headset_hud_on)
-		if(wearer.wear_ear == src)
+/obj/item/radio/headset/mainship/Destroy()
+	if(wearer)
+		if(headset_hud_on && wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
 			wearer.SL_directional = null
 			if(wearer.assigned_squad)
 				SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
-			wearer = null
+		wearer = null
 	squadhud = null
 	headset_hud_on = FALSE
 	sl_direction = null
+	QDEL_NULL(camera)
 	return ..()
 
 
-/obj/item/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
-	if(headset_hud_on)
-		squadhud.remove_hud_from(user)
-		if(sl_direction)
-			toggle_sl_direction(user)
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD off.</span>")
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
-		headset_hud_on = FALSE
-	else
-		squadhud.add_hud_to(user)
-		headset_hud_on = TRUE
-		if(user.mind && user.assigned_squad)
-			if(!sl_direction)
-				toggle_sl_direction(user)
-		to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
-		playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+/obj/item/radio/headset/mainship/proc/enable_squadhud()
+	squadhud.add_hud_to(wearer)
+	headset_hud_on = TRUE
+	if(wearer.mind && wearer.assigned_squad && !sl_direction)
+		enable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
-/obj/item/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
+
+/obj/item/radio/headset/mainship/proc/disable_squadhud()
+	squadhud.remove_hud_from(wearer)
+	headset_hud_on = FALSE
+	if(sl_direction)
+		disable_sl_direction()
+	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+
+
+/obj/item/radio/headset/mainship/proc/enable_sl_direction()
 	if(!headset_hud_on)
-		to_chat(user, "<span class='warning'>You need to turn the HUD on first!</span>")
+		to_chat(wearer, "<span class='warning'>You need to turn the HUD on first!</span>")
 		return
 
-	if(sl_direction)
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 0
-			SSdirection.stop_tracking(user.assigned_squad.tracking_id, user)
-		sl_direction = FALSE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 128
+		if(wearer.assigned_squad.squad_leader == wearer)
+			SSdirection.set_leader(wearer.assigned_squad.tracking_id, wearer)
+			SSdirection.start_tracking("marine-sl", wearer)
+		else
+			SSdirection.start_tracking(wearer.assigned_squad.tracking_id, wearer)
+
+	sl_direction = TRUE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display on.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	
+
+/obj/item/radio/headset/mainship/proc/disable_sl_direction()
+	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+		wearer.hud_used.SL_locator.alpha = 0
+
+	if(wearer?.assigned_squad?.squad_leader == wearer)
+		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
+		SSdirection.stop_tracking("marine-sl", wearer)
 	else
-		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
-			user.hud_used.SL_locator.alpha = 128
-			SSdirection.start_tracking(user.assigned_squad.tracking_id, user)
-		sl_direction = TRUE
-		to_chat(user, "<span class='notice'>You toggle the SL directional display on.</span>")
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
+	
+	sl_direction = FALSE
+	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 
-/obj/item/radio/headset/almayer/verb/configure_squadhud()
+
+/obj/item/radio/headset/mainship/verb/configure_squadhud()
 	set name = "Configure Headset HUD"
 	set category = "Object"
 	set src in usr
 
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+	if(!can_interact(usr))
 		return FALSE
 
-	handle_interface(usr)
+	interact(usr)
 
-/obj/item/radio/headset/almayer/proc/handle_interface(mob/living/carbon/human/user, flag1)
-	user.set_interaction(src)
-	var/dat = {"<TT>
-	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
-	<BR>
-	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
-	<BR>
-	</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
 
-/obj/item/radio/headset/almayer/Topic(href, href_list)
+/obj/item/radio/headset/mainship/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!wearer)
+		return FALSE
+
+	return TRUE
+
+
+
+/obj/item/radio/headset/mainship/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(usr.incapacitated() || usr != wearer || !ishuman(usr))
+
+	var/dat = {"
+	<b><A href='?src=\ref[src];headset_hud_on=1'>Squad HUD: [headset_hud_on ? "On" : "Off"]</A></b><BR>
+	<BR>
+	<b><A href='?src=\ref[src];sl_direction=1'>Squad Leader Directional Indicator: [sl_direction ? "On" : "Off"]</A></b><BR>
+	<BR>"}
+
+	var/datum/browser/popup = new(user, "radio")
+	popup.set_content(dat)
+	popup.open()
+
+
+/obj/item/radio/headset/mainship/Topic(href, href_list)
+	. = ..()
+	if(.)
 		return
-	if(usr.contents.Find(src) )
-		usr.set_interaction(src)
-		var/mob/living/carbon/human/user = usr
-		if(href_list["headset_hud_on"])
-			toggle_squadhud(user)
 
-		else if(href_list["sl_direction"])
-			toggle_sl_direction(user)
-
-		if(!master)
-			if(ishuman(loc))
-				handle_interface(loc)
+	if(href_list["headset_hud_on"])
+		if(headset_hud_on)
+			disable_squadhud()
 		else
-			if(ishuman(master.loc))
-				handle_interface(master.loc)
-	else
-		usr << browse(null, "window=radio")
+			enable_squadhud()
+
+	if(href_list["sl_direction"])
+		if(sl_direction)
+			disable_sl_direction()
+		else
+			enable_sl_direction()
+
+	updateUsrDialog()
 
 
-/obj/item/radio/headset/almayer/ce
-	name = "chief ship engineer's headset"
-	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :v."
-	icon_state = "com_headset"
-	keyslot1 = new /obj/item/encryptionkey/ce
-
-/obj/item/radio/headset/almayer/cmo
-	name = "chief medical officer's headset"
-	desc = "The headset of the highly trained medical chief. To access the medical channel, use :m. For command, use :v."
-	icon_state = "com_headset"
-	keyslot1 = new /obj/item/encryptionkey/cmo
-
-/obj/item/radio/headset/almayer/mt
-	name = "engineering radio headset"
-	desc = "When the engineers wish to chat like girls. To access the engineering channel, use :e. "
+/obj/item/radio/headset/mainship/st
+	name = "technician radio headset"
 	icon_state = "eng_headset"
-	keyslot1 = new /obj/item/encryptionkey/engi
+	keyslot = /obj/item/encryptionkey/req
+	keyslot2 = /obj/item/encryptionkey/engi
 
-/obj/item/radio/headset/almayer/doc
+/obj/item/radio/headset/mainship/doc
 	name = "medical radio headset"
-	desc = "A headset for the trained staff of the medbay. To access the medical channel, use :m."
 	icon_state = "med_headset"
-	keyslot1 = new /obj/item/encryptionkey/med
+	keyslot = /obj/item/encryptionkey/med
 
-/obj/item/radio/headset/almayer/ct
+
+/obj/item/radio/headset/mainship/ct
 	name = "supply radio headset"
-	desc = "A headset used by the RO and his slave(s). To access the supply channel, use :u."
 	icon_state = "cargo_headset"
-	keyslot1 = new /obj/item/encryptionkey/req
+	keyslot = /obj/item/encryptionkey/req
 
 
-/obj/item/radio/headset/almayer/cmpcom
-	name = "marine Command Master at Arms radio headset"
-	desc = "This is used by the Command Master at Arms. Channels are as follows: :v - marine command, :p - military police, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
-	icon_state = "med_headset"
-	keyslot1 = new /obj/item/encryptionkey/cmpcom
-
-/obj/item/radio/headset/almayer/mcom
-	name = "marine command radio headset"
-	desc = "This is used by the marine command. Channels are as follows: :v - marine command, :q - alpha squad, :b - bravo squad, :c - charlie squad, :d - delta squad, :m - medbay, :u - requisitions"
-	icon_state = "med_headset"
-	keyslot1 = new /obj/item/encryptionkey/mcom
-
-
-/obj/item/radio/headset/almayer/mcom/ai
-	keyslot1 = new /obj/item/encryptionkey/mcom/ai
-
-
-
-/obj/item/radio/headset/almayer/marine
-	keyslot3 = new /obj/item/encryptionkey/general
-
-/obj/item/radio/headset/almayer/marine/alpha
-	name = "marine alpha radio headset"
-	desc = "This is used by alpha squad members. Channels are as follows: ; - Alpha squad :z - general chat."
+/obj/item/radio/headset/mainship/mmpo
+	name = "marine master at arms radio headset"
 	icon_state = "sec_headset"
-	frequency = ALPHA_FREQ //default frequency is alpha squad channel, not PUB_FREQ
+	keyslot = /obj/item/encryptionkey/mmpo
 
-/obj/item/radio/headset/almayer/marine/alpha/lead
+
+/obj/item/radio/headset/mainship/cmpcom
+	name = "marine command master at arms radio headset"
+	icon_state = "sec_headset_alt"
+	keyslot = /obj/item/encryptionkey/cmpcom
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/mcom
+	name = "marine command radio headset"
+	icon_state = "com_headset_alt"
+	keyslot = /obj/item/encryptionkey/mcom
+	use_command = TRUE
+	command = TRUE
+
+
+/obj/item/radio/headset/mainship/mcom/silicon
+	name = "silicon radio"
+	keyslot = /obj/item/encryptionkey/mcom/ai
+
+
+/obj/item/radio/headset/mainship/marine
+	keyslot = /obj/item/encryptionkey/general
+	freerange = TRUE
+
+
+/obj/item/radio/headset/mainship/marine/Initialize(mapload, squad, rank)
+	if(squad)
+		icon_state = "headset_marine_[lowertext(squad)]"
+		var/dat = "marine [lowertext(squad)]"
+		switch(squad)
+			if("Alpha")
+				frequency = FREQ_ALPHA
+			if("Bravo")
+				frequency = FREQ_BRAVO
+			if("Charlie")
+				frequency = FREQ_CHARLIE
+			if("Delta")
+				frequency = FREQ_DELTA
+		switch(rank)
+			if(SQUAD_LEADER)
+				dat += " leader"
+				keyslot2 = /obj/item/encryptionkey/squadlead
+				use_command = TRUE
+				command = TRUE
+			if(SQUAD_ENGINEER)
+				dat += " engineer"
+				keyslot2 = /obj/item/encryptionkey/engi
+			if(SQUAD_CORPSMAN)
+				dat += " corpsman"
+				keyslot2 = /obj/item/encryptionkey/med
+		name = dat + " radio headset"
+	return ..()
+
+
+/obj/item/radio/headset/mainship/marine/alpha
+	name = "marine alpha radio headset"
+	icon_state = "headset_marine_alpha"
+	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
+
+
+/obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
-	desc = "This is used by the marine alpha squad leader. Channels are as follows: ; - Alpha squad :v - marine command, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
+	use_command = TRUE
+	command = TRUE
 
-/obj/item/radio/headset/almayer/marine/alpha/engi
+
+/obj/item/radio/headset/mainship/marine/alpha/engi
 	name = "marine alpha engineer radio headset"
-	desc = "This is used by the marine alpha combat engineers. Channels are as follows: ; - Alpha squad :e - engineering, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
-/obj/item/radio/headset/almayer/marine/alpha/med
+
+/obj/item/radio/headset/mainship/marine/alpha/med
 	name = "marine alpha corpsman radio headset"
-	desc = "This is used by the marine alpha combat corpsmen. Channels are as follows: ; - Alpha Squad :m - medical, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/bravo
+/obj/item/radio/headset/mainship/marine/bravo
 	name = "marine bravo radio headset"
-	desc = "This is used by bravo squad members. Channels are as follows: ; - Bravo Squad :z - general chat."
-	icon_state = "eng_headset"
-	frequency = BRAVO_FREQ
+	icon_state = "headset_marine_bravo"
+	frequency = FREQ_BRAVO
 
-/obj/item/radio/headset/almayer/marine/bravo/lead
+
+/obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
-	desc = "This is used by the marine bravo squad leader. Channels are as follows: ; - Bravo Squad :v - marine command, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
+	use_command = TRUE
+	command = TRUE
 
-/obj/item/radio/headset/almayer/marine/bravo/engi
+
+/obj/item/radio/headset/mainship/marine/bravo/engi
 	name = "marine bravo engineer radio headset"
-	desc = "This is used by the marine bravo combat engineers. Channels are as follows: ; - Bravo Squad :e - engineering, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
-/obj/item/radio/headset/almayer/marine/bravo/med
+
+/obj/item/radio/headset/mainship/marine/bravo/med
 	name = "marine bravo corpsman radio headset"
-	desc = "This is used by the marine bravo combat corpsmen. Channels are as follows: ; - Bravo Squad :m - medical, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/charlie
+/obj/item/radio/headset/mainship/marine/charlie
 	name = "marine charlie radio headset"
-	desc = "This is used by charlie squad members. Channels are as follows: ; - Charlie Squad :z - general chat."
-	icon_state = "charlie_headset"
-	frequency = CHARLIE_FREQ
+	icon_state = "headset_marine_charlie"
+	frequency = FREQ_CHARLIE
 
-/obj/item/radio/headset/almayer/marine/charlie/lead
+
+/obj/item/radio/headset/mainship/marine/charlie/lead
 	name = "marine charlie leader radio headset"
-	desc = "This is used by the marine charlie squad leader. Channels are as follows: ; - Charlie Squad :v - marine command, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
+	use_command = TRUE
+	command = TRUE
 
-/obj/item/radio/headset/almayer/marine/charlie/engi
+
+/obj/item/radio/headset/mainship/marine/charlie/engi
 	name = "marine charlie engineer radio headset"
-	desc = "This is used by the marine charlie combat engineers. Channels are as follows: ; - Charlie Squad :e - engineering, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
-/obj/item/radio/headset/almayer/marine/charlie/med
+
+/obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
-	desc = "This is used by the marine charlie combat corpsmen. Channels are as follows: ; - Charlie Squad :m - medical, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/med
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 
-/obj/item/radio/headset/almayer/marine/delta
+/obj/item/radio/headset/mainship/marine/delta
 	name = "marine delta radio headset"
-	desc = "This is used by delta squad members. Channels are as follows: ; - Delta Squad :z - general chat."
-	icon_state = "com_headset"
-	frequency = DELTA_FREQ
+	icon_state = "headset_marine_delta"
+	frequency = FREQ_DELTA
 
-/obj/item/radio/headset/almayer/marine/delta/lead
+
+/obj/item/radio/headset/mainship/marine/delta/lead
 	name = "marine delta leader radio headset"
-	desc = "This is used by the marine delta squad leader. Channels are as follows: ; - Delta Squad :v - marine command, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/squadlead
+	keyslot2 = /obj/item/encryptionkey/squadlead
+	use_command = TRUE
+	command = TRUE
 
-/obj/item/radio/headset/almayer/marine/delta/engi
+
+/obj/item/radio/headset/mainship/marine/delta/engi
 	name = "marine delta engineer radio headset"
-	desc = "This is used by the marine delta combat engineers. Channels are as follows: ; - Delta Squad :e - engineering, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/engi
+	keyslot2 = /obj/item/encryptionkey/engi
 
-/obj/item/radio/headset/almayer/marine/delta/med
+
+/obj/item/radio/headset/mainship/marine/delta/med
 	name = "marine delta corpsman radio headset"
-	desc = "This is used by the marine delta combat corpsmen. Channels are as follows: ; - Delta Squad :m - medical, :z - general chat."
-	keyslot2 = new /obj/item/encryptionkey/med
-
-
-
-/obj/item/radio/headset/almayer/mmpo
-	name = "marine military police radio headset"
-	desc = "This is used by marine military police members. Channels are as follows: :p - military police."
-	icon_state = "cargo_headset"
-	keyslot1 = new /obj/item/encryptionkey/mmpo
-
-
-
+	keyslot2 = /obj/item/encryptionkey/med
 
 
 //Distress headsets.
-
 /obj/item/radio/headset/distress
 	name = "operative headset"
-	desc = "A special headset used by small groups of trained operatives. Use :h to talk on a private channel."
-	frequency = PUB_FREQ
+	frequency = FREQ_COMMON
+
 
 /obj/item/radio/headset/distress/dutch
 	name = "Dutch's Dozen headset"
-	keyslot1 = new /obj/item/encryptionkey/dutch
+	keyslot = /obj/item/encryptionkey/dutch
 
 
 /obj/item/radio/headset/distress/PMC
 	name = "PMC headset"
-	keyslot1 = new /obj/item/encryptionkey/PMC
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/PMC
+	keyslot2 = /obj/item/encryptionkey/mcom
 
 
-/obj/item/radio/headset/distress/bears
-	name = "Iron Bear headset"
-	frequency = CIV_GEN_FREQ
-	keyslot1 = new /obj/item/encryptionkey/bears
+/obj/item/radio/headset/distress/wolves
+	name = "Steel Wolves headset"
+	frequency = FREQ_CIV_GENERAL
+	keyslot = /obj/item/encryptionkey/wolves
+
 
 /obj/item/radio/headset/distress/commando
 	name = "Commando headset"
-	keyslot1 = new /obj/item/encryptionkey/commando
-	keyslot2 = new /obj/item/encryptionkey/mcom
+	keyslot = /obj/item/encryptionkey/commando
+	keyslot2 = /obj/item/encryptionkey/mcom
+
 
 /obj/item/radio/headset/distress/imperial
 	name = "Imperial headset"
-	desc = "A headset used by Imperial soldiers. Use :h to talk on a private channel."
-	keyslot1 = new /obj/item/encryptionkey/imperial
-	//frequency = IMP_FREQ
-	//freerange = TRUE - this only allows MAIN freq not to fuck up
+	keyslot = /obj/item/encryptionkey/imperial
+
+
+/obj/item/radio/headset/distress/som
+	name = "\improper Sons of Mars headset"
+	keyslot = /obj/item/encryptionkey/som

@@ -32,8 +32,8 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Screwy HUD
 				//to_chat(src, "Screwy HUD")
 				hal_screwyhud = pick(1,2,3,3,4,4)
-				spawn(rand(100,250))
-					hal_screwyhud = 0
+				addtimer(VARSET_CALLBACK(src, hal_screwyhud, 0), rand(10,25) SECONDS)
+
 			if(16 to 25)
 				//Strange items
 				//to_chat(src, "Traitor Items")
@@ -114,27 +114,37 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Strange audio
 				//to_chat(src, "Strange Audio")
 				switch(rand(1,12))
-					if(1) src << 'sound/machines/airlock.ogg'
+					if(1)
+						playsound_local(get_turf(src), 'sound/machines/airlock.ogg')
 					if(2)
-						if(prob(50))src << 'sound/effects/Explosion1.ogg'
-						else src << 'sound/effects/Explosion2.ogg'
-					if(3) src << 'sound/effects/explosionfar.ogg'
-					if(4) src << 'sound/effects/Glassbr1.ogg'
-					if(5) src << 'sound/effects/Glassbr2.ogg'
-					if(6) src << 'sound/effects/Glassbr3.ogg'
-					if(7) src << 'sound/machines/twobeep.ogg'
-					if(8) src << 'sound/machines/windowdoor.ogg'
+						if(prob(50))
+							playsound_local(get_turf(src), 'sound/effects/explosion1.ogg')
+						else
+							playsound_local(get_turf(src), 'sound/effects/explosion2.ogg')
+					if(3)
+						playsound_local(get_turf(src), 'sound/effects/explosionfar.ogg')
+					if(4)
+						playsound_local(get_turf(src), 'sound/effects/glassbr1.ogg')
+					if(5)
+						playsound_local(get_turf(src), 'sound/effects/glassbr2.ogg')
+					if(6)
+						playsound_local(get_turf(src), 'sound/effects/glassbr3.ogg')
+					if(7)
+						playsound_local(get_turf(src), 'sound/machines/twobeep.ogg')
+					if(8)
+						playsound_local(get_turf(src), 'sound/machines/windowdoor.ogg')
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
+						playsound_local(get_turf(src), 'sound/weapons/guns/fire/gunshot.ogg')
 						spawn(rand(10,30))
-							src << 'sound/weapons/Gunshot.ogg'
-					if(10) src << 'sound/weapons/smash.ogg'
+							playsound_local(get_turf(src), 'sound/weapons/guns/fire/gunshot.ogg')
+					if(10)
+						playsound_local(get_turf(src), 'sound/weapons/smash.ogg')
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+						playsound_local(get_turf(src), 'sound/weapons/guns/fire/taser.ogg')
 						spawn(rand(10,30))
-							src << 'sound/weapons/Taser.ogg'
+							playsound_local(get_turf(src), 'sound/weapons/guns/fire/taser.ogg')
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source
@@ -143,7 +153,7 @@ mob/living/carbon/proc/handle_hallucinations()
 							'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
 							'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
 							'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-						src << pick(creepyasssounds)
+						playsound_local(get_turf(src), pick(creepyasssounds))
 			if(66 to 70)
 				//Flashes of danger
 				//to_chat(src, "Danger Flash")
@@ -224,9 +234,9 @@ proc/check_panel(mob/M)
 	icon_state = null
 	name = ""
 	desc = ""
-	density = 0
-	anchored = 1
-	opacity = 0
+	density = FALSE
+	anchored = TRUE
+	opacity = FALSE
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
@@ -241,8 +251,7 @@ proc/check_panel(mob/M)
 
 	attackby(var/obj/item/P as obj, mob/user as mob)
 		step_away(src,my_target,2)
-		for(var/mob/M in oviewers(world.view,my_target))
-			to_chat(M, "<span class='danger'>[my_target] flails around wildly.</span>")
+		visible_message("<span class='danger'>[my_target] flails around wildly.</span>")
 		my_target.show_message("<span class='danger'>[src] has been attacked by [my_target] </span>", 1) //Lazy.
 
 		src.health -= P.force
@@ -302,7 +311,7 @@ proc/check_panel(mob/M)
 		else if(src.dir == WEST)
 			qdel(src.currentimage)
 			src.currentimage = new /image(left,src)
-		to_chat(my_target, currentimage)
+		SEND_IMAGE(my_target, currentimage)
 
 
 	proc/attack_loop()
@@ -340,20 +349,17 @@ proc/check_panel(mob/M)
 		collapse = 1
 		updateimage()
 
-/proc/fake_blood(var/mob/target)
+/proc/fake_blood(mob/target)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
-	to_chat(target, I)
-	spawn(300)
-		qdel(O)
-	return
+	SEND_IMAGE(target, I)
+	QDEL_IN(O, 30 SECONDS)
 
-var/list/non_fakeattack_weapons = list(/obj/item/aicard,\
-	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,\
-	/obj/item/clothing/suit/space/uscm, /obj/item/tank)
+GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
+	/obj/item/clothing/suit/space/tgmc, /obj/item/tank))
 
-/proc/fake_attack(var/mob/living/target)
+/proc/fake_attack(mob/living/target)
 //	var/list/possible_clones = new/list()
 	var/mob/living/carbon/human/clone = null
 	var/clone_weapon = null
@@ -371,11 +377,11 @@ var/list/non_fakeattack_weapons = list(/obj/item/aicard,\
 	//var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(outside_range(target))
 	var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(target.loc)
 	if(clone.l_hand)
-		if(!(locate(clone.l_hand) in non_fakeattack_weapons))
+		if(!(locate(clone.l_hand) in GLOB.non_fakeattack_weapons))
 			clone_weapon = clone.l_hand.name
 			F.weap = clone.l_hand
 	else if (clone.r_hand)
-		if(!(locate(clone.r_hand) in non_fakeattack_weapons))
+		if(!(locate(clone.r_hand) in GLOB.non_fakeattack_weapons))
 			clone_weapon = clone.r_hand.name
 			F.weap = clone.r_hand
 

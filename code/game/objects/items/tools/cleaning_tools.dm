@@ -7,17 +7,18 @@
 	throwforce = 10.0
 	throw_speed = 5
 	throw_range = 10
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	var/mopping = 0
 	var/mopcount = 0
 
 
-/obj/item/tool/mop/New()
+/obj/item/tool/mop/Initialize()
+	. = ..()
 	create_reagents(5)
 
 /turf/proc/clean(atom/source)
-	if(source.reagents.has_reagent("water", 1))
+	if(source.reagents.has_reagent(/datum/reagent/water, 1))
 		clean_blood()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
@@ -33,25 +34,12 @@
 			to_chat(user, "<span class='notice'>Your mop is dry!</span>")
 			return
 
-		user.visible_message("<span class='warning'>[user] begins to clean \the [get_turf(A)].</span>")
+		var/turf/T = get_turf(A)
+		user.visible_message("<span class='warning'>[user] begins to clean \the [T].</span>")
 
-		if(do_after(user, 40, TRUE, 5, BUSY_ICON_GENERIC))
-			var/turf/T = get_turf(A)
-			if(T)
-				T.clean(src)
+		if(do_after(user, 40, TRUE, T, BUSY_ICON_GENERIC))
+			T.clean(src)
 			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
-
-
-/obj/effect/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/tool/mop) || istype(I, /obj/item/tool/soap))
-		return
-	..()
-
-
-
-
-
-
 
 
 /obj/item/tool/wet_sign
@@ -63,7 +51,7 @@
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
 /obj/item/tool/warning_cone
@@ -75,7 +63,7 @@
 	throwforce = 3
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("warned", "cautioned", "smashed")
 
 
@@ -88,7 +76,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "soap"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -97,6 +85,11 @@
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
+
+
+/obj/item/tool/soap/attack(mob/target, mob/user)
+	return
+
 
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
@@ -125,7 +118,8 @@
 /obj/item/tool/soap/deluxe
 	icon_state = "soapdeluxe"
 
-/obj/item/tool/soap/deluxe/New()
+/obj/item/tool/soap/deluxe/Initialize()
+	. = ..()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 
 /obj/item/tool/soap/syndie

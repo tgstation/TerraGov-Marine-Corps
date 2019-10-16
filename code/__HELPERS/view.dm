@@ -11,6 +11,7 @@
 		viewY = text2num(viewrangelist[2])
 	return list(viewX, viewY)
 
+
 /proc/in_view_range(mob/user, atom/A)
 	var/list/view_range = getviewsize(user.client.view)
 	var/turf/source = get_turf(user)

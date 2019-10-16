@@ -12,10 +12,9 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	matter = list("metal" = 1000)
-	origin_tech = "combat=2'materials=2" //Low.
+	materials = list(/datum/material/metal = 1000)
 	throwforce = 2
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
 	var/default_ammo = /datum/ammo/bullet
@@ -29,15 +28,19 @@ They're all essentially identical when it comes to getting the job done.
 	var/flags_magazine = AMMUNITION_REFILLABLE //flags specifically for magazines.
 	var/base_mag_icon //the default mag icon state.
 
-/obj/item/ammo_magazine/New(loc, spawn_empty)
-	..()
+/obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
+	. = ..()
 	base_mag_icon = icon_state
-	if(spawn_empty) current_rounds = 0
+	if(spawn_empty) 
+		current_rounds = 0
+	
 	switch(current_rounds)
-		if(-1) current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
-		if(0) icon_state += "_e" //In case it spawns empty instead.
+		if(-1) 
+			current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
+		if(0) 
+			icon_state += "_e" //In case it spawns empty instead.
 
-/obj/item/ammo_magazine/update_icon(var/round_diff = 0)
+/obj/item/ammo_magazine/update_icon(round_diff = 0)
 	if(current_rounds <= 0) 					icon_state = base_mag_icon + "_e"
 	else if(current_rounds - round_diff <= 0) 	icon_state = base_mag_icon
 
@@ -45,13 +48,12 @@ They're all essentially identical when it comes to getting the job done.
 	..()
 	// It should never have negative ammo after spawn. If it does, we need to know about it.
 	if(current_rounds < 0)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE R1: negative current_rounds on examine.")
-		log_runtime("ERROR CODE R1: negative current_rounds on examine. User: <b>[usr]</b>")
+		stack_trace("negative current_rounds on examine. User: [usr]")
 	else
 		to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
 
 
-/obj/item/ammo_magazine/attack_hand(mob/user)
+/obj/item/ammo_magazine/attack_hand(mob/living/user)
 	if(flags_magazine & AMMUNITION_REFILLABLE) //actual refillable magazine, not just a handful of bullets or a fuel tank.
 		if(src == user.get_inactive_held_item()) //Have to be holding it in the hand.
 			if (current_rounds > 0)
@@ -63,19 +65,28 @@ They're all essentially identical when it comes to getting the job done.
 	return ..() //Do normal stuff.
 
 //We should only attack it with handfuls. Empty hand to take out, handful to put back in. Same as normal handful.
-/obj/item/ammo_magazine/attackby(obj/item/I, mob/user)
+/obj/item/ammo_magazine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/MG = I
-		if(MG.flags_magazine & AMMUNITION_HANDFUL) //got a handful of bullets
-			if(flags_magazine & AMMUNITION_REFILLABLE) //and a refillable magazine
-				var/obj/item/ammo_magazine/handful/transfer_from = I
-				if(src == user.get_inactive_held_item() ) //It has to be held.
-					if(default_ammo == transfer_from.default_ammo)
-						transfer_ammo(transfer_from,user,transfer_from.current_rounds) // This takes care of the rest.
-					else
-						to_chat(user, "Those aren't the same rounds. Better not mix them up.")
-				else
-					to_chat(user, "Try holding [src] before you attempt to restock it.")
+		if(!(MG.flags_magazine & AMMUNITION_HANDFUL)) //got a handful of bullets
+			return
+
+		if(!(flags_magazine & AMMUNITION_REFILLABLE)) //and a refillable magazine
+			return
+
+		var/obj/item/ammo_magazine/handful/H = I
+		if(src != user.get_inactive_held_item()) //It has to be held.
+			to_chat(user, "Try holding [src] before you attempt to restock it.")
+			return
+
+		if(default_ammo != H.default_ammo)
+			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
+			return
+
+		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
+
 
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
@@ -161,24 +172,19 @@ bullets/shells. ~N
 /obj/item/ammo_magazine/handful
 	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."
-	matter = list("metal" = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
+	materials = list(/datum/material/metal = 50) //This changes based on the ammo ammount. 5k is the base of one shell/bullet.
 	flags_equip_slot = null // It only fits into pockets and such.
-	origin_tech = "combat=1'materials=1"
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
 	flags_atom = CONDUCT|DIRLOCK
 	flags_magazine = AMMUNITION_HANDFUL
 	attack_speed = 3 // should make reloading less painful
 
-/obj/item/ammo_magazine/handful/Destroy()
-	..()
-	return TA_REVIVE_ME
-
 /obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.
-		matter = list("metal" = I)
+		materials = list(/datum/material/metal = I)
 		setDir(current_rounds + round(current_rounds/3))
 
 
@@ -187,12 +193,17 @@ There aren't many ways to interact here.
 If the default ammo isn't the same, then you can't do much with it.
 If it is the same and the other stack isn't full, transfer an amount (default 1) to the other stack.
 */
-/obj/item/ammo_magazine/handful/attackby(obj/item/ammo_magazine/handful/transfer_from, mob/user)
-	if(istype(transfer_from)) // We have a handful. They don't need to hold it.
-		if(default_ammo == transfer_from.default_ammo) //Has to match.
-			transfer_ammo(transfer_from,user, transfer_from.current_rounds) // Transfer it from currently held to src
-		else
+/obj/item/ammo_magazine/handful/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/ammo_magazine/handful)) // We have a handful. They don't need to hold it.
+		var/obj/item/ammo_magazine/handful/H = I
+		if(default_ammo != H.default_ammo) //Has to match.
 			to_chat(user, "Those aren't the same rounds. Better not mix them up.")
+			return
+
+		transfer_ammo(H, user, H.current_rounds) // Transfer it from currently held to src
+	else
+		return ..()
+
 
 /obj/item/ammo_magazine/handful/proc/generate_handful(new_ammo, new_caliber, maximum_rounds, new_rounds, new_gun_type)
 	var/datum/ammo/A = GLOB.ammo_list[new_ammo]
@@ -227,21 +238,21 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/casings.dmi'
 	icon_state = "casing_"
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
 	flags_atom = CONDUCT|DIRLOCK
-	matter = list("metal" = 8) //tiny amount of metal
+	materials = list(/datum/material/metal = 8)
 	var/current_casings = 1 //This is manipulated in the procs that use these.
 	var/max_casings = 16
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
 
-/obj/item/ammo_casing/New()
-	..()
-	pixel_x = rand(-2.0, 2) //Want to move them just a tad.
-	pixel_y = rand(-2.0, 2)
-	icon_state += "[rand(1,number_of_states)]" //Set the icon to it.
+/obj/item/ammo_casing/Initialize()
+	. = ..()
+	pixel_x = rand(-2, 2) //Want to move them just a tad.
+	pixel_y = rand(-2, 2)
+	icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/item/ammo_casing/update_icon()
@@ -252,12 +263,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			icon_state += "_[current_icon]"
 
 		var/I = current_casings*8 // For the metal.
-		matter = list("metal" = I)
+		materials = list(/datum/material/metal = I)
 		var/base_direction = current_casings - (current_icon * 8)
 		setDir(base_direction + round(base_direction)/3)
 		switch(current_casings)
-			if(3 to 5) w_class = 2 //Slightly heavier.
-			if(9 to 10) w_class = 3 //Can't put it in your pockets and stuff.
+			if(3 to 5) w_class = WEIGHT_CLASS_SMALL //Slightly heavier.
+			if(9 to 10) w_class = WEIGHT_CLASS_NORMAL //Can't put it in your pockets and stuff.
 
 
 //Making child objects so that locate() and istype() doesn't screw up.
@@ -279,7 +290,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
 	desc = "A large ammo box. It comes with a leather strap."
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
@@ -288,7 +299,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600
 	var/max_bullet_amount = 600
-	var/caliber = "10x24mm"
+	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
 	if(bullet_amount) icon_state = base_icon_state
@@ -301,7 +312,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/big_ammo_box/attackby(obj/item/I, mob/user)
+/obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = I
 		if(!isturf(loc))
@@ -317,9 +330,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(AM.current_rounds == AM.max_rounds)
 				to_chat(user, "<span class='warning'>[AM] is already full.</span>")
 				return
-			if(!do_after(user,15, TRUE, 5, BUSY_ICON_FRIENDLY))
+
+			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 				return
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(bullet_amount, AM.max_rounds - AM.current_rounds)
 			AM.current_rounds += S
 			bullet_amount -= S
@@ -336,7 +351,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			if(bullet_amount == max_bullet_amount)
 				to_chat(user, "<span class='warning'>[src] is full!</span>")
 				return
-			playsound(loc, 'sound/weapons/gun_revolver_load3.ogg', 25, 1)
+			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
 			AM.current_rounds -= S
 			bullet_amount += S
@@ -358,9 +373,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //Deployable ammo box
 /obj/item/ammobox
-	name = "M41A Ammo Box"
+	name = "M41A1 Ammo Box"
 	desc = "A large, deployable ammo box."
-	w_class = 5
+	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
 	var/magazine_amount = 10
@@ -370,133 +385,183 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/magazine_type = /obj/item/ammo_magazine/rifle
 	var/deployed = FALSE
 
+
 /obj/item/ammobox/update_icon()
-	if(magazine_amount > 0)
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+	else if(magazine_amount > 0)
 		icon_state = "[initial(icon_state)]_deployed"
 	else
 		icon_state = "[initial(icon_state)]_empty"
+
 
 /obj/item/ammobox/examine(mob/user)
 	. = ..()
 	to_chat(user, "It contains [magazine_amount] out of [max_magazine_amount] magazines.")
 
-/obj/item/ammobox/attackby(obj/item/I, mob/user)
-	if(deployed == FALSE)
+
+/obj/item/ammobox/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!deployed)
 		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
 		return
+	
 	if(!istype(I, /obj/item/ammo_magazine))
 		return
+	
 	var/obj/item/ammo_magazine/MG = I
+	
 	if(!(MG.flags_magazine & AMMUNITION_REFILLABLE))
 		return
+	
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
+	
 	if(MG.current_rounds != MG.max_rounds)
 		to_chat(user, "<span class='warning'>The magazine is not full!</span>")
 		return
+	
 	if(magazine_amount == max_magazine_amount)
 		to_chat(user, "<span class='warning'>The [src] is already full.")
 		return
-	qdel(user.get_held_item())
+	
+	qdel(MG)
 	magazine_amount++
 	update_icon()
 
-/obj/item/ammobox/attack_hand(mob/user)
-	if(deployed == FALSE)
+
+/obj/item/ammobox/attack_hand(mob/living/user)
+	if(loc == user)
+		return ..()
+	
+	if(!deployed)
 		user.put_in_hands(src)
 		return
+	
 	if(magazine_amount == 0)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
+	
 	var/obj/item/ammo_magazine/MG = new magazine_type
 	user.put_in_hands(MG)
 	magazine_amount--
 	update_icon()
 
+
 /obj/item/ammobox/attack_self(mob/user)
 	deployed = TRUE
 	update_icon()
-	user.drop_held_item(src)
+	user.dropItemToGround(src)
+
 
 /obj/item/ammobox/MouseDrop(atom/over_object)
-	if(deployed == FALSE)
+	if(!deployed)
 		return
+
 	if(!ishuman(over_object))
 		return
+
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		icon_state = initial(icon_state)
+		deployed = FALSE
+		update_icon()
+
 
 
 //Deployable shotgun ammo box
-/obj/item/ammo_magazine/shotgunbox
+/obj/item/shotgunbox
 	name = "Slug Ammo Box"
 	desc = "A large, deployable ammo box."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
-	default_ammo = /datum/ammo/bullet/shotgun/slug
-	caliber = "12g"
-	gun_type = /obj/item/weapon/gun/shotgun
-	max_rounds = 100
-	current_rounds = 100
-	w_class = 5
-	var/base = /obj/item/ammo_magazine/shotgunbox
+	w_class = WEIGHT_CLASS_HUGE
+	var/current_rounds = 100
+	var/max_rounds = 100
+	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
 
-/obj/item/ammo_magazine/shotgunbox/update_icon()
-	if(current_rounds > 0)
+
+/obj/item/shotgunbox/update_icon()
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+	else if(current_rounds > 0)
 		icon_state = "[initial(icon_state)]_deployed"
 	else
 		icon_state = "[initial(icon_state)]_empty"
 
-/obj/item/ammo_magazine/shotgunbox/attack_self(mob/user)
+
+/obj/item/shotgunbox/attack_self(mob/user)
 	deployed = TRUE
 	update_icon()
-	user.drop_held_item(src)
+	user.dropItemToGround(src)
 
-/obj/item/ammo_magazine/shotgunbox/MouseDrop(atom/over_object)
-	if(deployed == FALSE)
+
+/obj/item/shotgunbox/MouseDrop(atom/over_object)
+	if(!deployed)
 		return
+	
 	if(!ishuman(over_object))
 		return
+	
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
-		icon_state = initial(icon_state)
+		deployed = FALSE
+		update_icon()
 
-/obj/item/ammo_magazine/shotgunbox/examine(mob/user)
+
+/obj/item/shotgunbox/examine(mob/user)
 	. = ..()
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
-/obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
-	if(deployed == FALSE)
+
+/obj/item/shotgunbox/attack_hand(mob/living/user)
+	if(loc == user)
+		return ..()
+
+	if(!deployed)
 		user.put_in_hands(src)
 		return
-	if(!(flags_magazine & AMMUNITION_REFILLABLE) || current_rounds < 1)
-		to_chat(user, "<span class='warning'>The [src] is empty.")
-		return ..()
-	if(create_handful(user))
-		update_icon()
-		return ..()
 
-/obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user)
-	if(deployed == FALSE)
-		to_chat(user, "<span class='warning'>[src] must be on the ground to be refilled.</span>")
+	if(current_rounds < 1)
+		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
-	if(!istype(I, /obj/item/ammo_magazine))
+	
+	var/obj/item/ammo_magazine/handful/H = new
+	var/rounds = min(current_rounds, 5)
+	
+	H.generate_handful(ammo_type, "12g", 5, rounds, /obj/item/weapon/gun/shotgun)
+	current_rounds -= rounds
+	
+	user.put_in_hands(H)
+	to_chat(user, "<span class='notice'>You grab <b>[rounds]</b> round\s from [src].</span>")
+	update_icon()
+
+
+/obj/item/shotgunbox/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(!istype(I, /obj/item/ammo_magazine/handful))
 		return
-	var/obj/item/ammo_magazine/MG = I
-	if(!(MG.flags_magazine & AMMUNITION_HANDFUL) || !(flags_magazine & AMMUNITION_REFILLABLE))
+
+	var/obj/item/ammo_magazine/handful/H = I
+
+	if(!deployed)
+		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
+		return
+
+	if(H.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-	var/obj/item/ammo_magazine/handful/transfer_from = MG
-	if(default_ammo == transfer_from.default_ammo)
-		transfer_ammo(transfer_from,user,transfer_from.current_rounds)
+	
+	if(current_rounds == max_rounds)
+		to_chat(user, "<span class='warning'>The [src] is already full.")
+		return
 
-
-
-
-
+	current_rounds = min(current_rounds + H.current_rounds, max_rounds)
+	qdel(H)
+	update_icon()
 
 
 /obj/item/big_ammo_box/ap
@@ -516,13 +581,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 /obj/item/ammobox/ap
-	name = "M41A AP Ammo Box"
+	name = "M41A1 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A Extended Ammo Box"
+	name = "M41A1 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
@@ -546,19 +611,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
 
 
-/obj/item/ammo_magazine/shotgunbox/buckshot
+/obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
 	icon_state = "ammoboxbuckshot"
-	default_ammo = /datum/ammo/bullet/shotgun/buckshot
-	max_rounds = 100
-	current_rounds = 100
+	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
-/obj/item/ammo_magazine/shotgunbox/flechette
+/obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
 	icon_state = "ammoboxflechette"
-	default_ammo = /datum/ammo/bullet/shotgun/flechette
-	max_rounds = 100
-	current_rounds = 100
+	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 
 /obj/item/ammobox/m4a3

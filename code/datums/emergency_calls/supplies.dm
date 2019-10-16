@@ -10,10 +10,10 @@
 							/obj/item/weapon/gun/flamer, \
 							/obj/item/ammo_magazine/flamer_tank, \
 							/obj/item/ammo_magazine/flamer_tank \
-							 ), \
+							), \
 						list(/obj/item/weapon/gun/rifle/lmg, \
-							/obj/item/ammo_magazine/rifle/lmg, \
-							/obj/item/ammo_magazine/rifle/lmg, \
+							/obj/item/ammo_magazine/lmg, \
+							/obj/item/ammo_magazine/lmg, \
 							), \
 						list(/obj/item/weapon/gun/shotgun/combat, \
 							/obj/item/weapon/gun/shotgun/combat, \
@@ -23,8 +23,8 @@
 						list(/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
-							/obj/item/radio/detpack, \
-							/obj/item/radio/detpack, \
+							/obj/item/detpack, \
+							/obj/item/detpack, \
 							/obj/item/assembly/signaler \
 							), \
 						list(/obj/item/weapon/gun/rifle/m41a, \
@@ -41,7 +41,7 @@
 	name = "Supply Drop"
 	mob_max = 0
 	mob_min = 0
-	probability = 5
+	probability = 0
 	auto_shuttle_launch = TRUE
 
 
@@ -50,7 +50,7 @@
 	var/total = rand(3,6)
 	
 	for(var/i = 1 to total)
-		drop_spawn = get_spawn_point(1)
+		drop_spawn = get_spawn_point(TRUE)
 
 		if(!istype(drop_spawn))
 			return

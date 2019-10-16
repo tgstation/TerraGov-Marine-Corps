@@ -14,9 +14,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	force = 8
 	throwforce = 4
-	w_class = 3
-	matter = list("metal" = 50)
-	origin_tech = "materials=1;engineering=1"
+	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
@@ -47,7 +45,6 @@
 		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
 
 /obj/item/tool/shovel/attack_self(mob/user)
-	add_fingerprint(user)
 
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
@@ -78,16 +75,16 @@
 			var/turfdirt = T.get_dirt_type()
 			if(turfdirt)
 				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/snow/ST = T
+					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
 				to_chat(user, "<span class='notice'>You start digging.</span>")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
-				if(!do_after(user, shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
+				if(!do_after(user, shovelspeed, TRUE, T, BUSY_ICON_BUILD))
 					return
 				var/transf_amt = dirt_amt_per_dig
 				if(turfdirt == DIRT_TYPE_SNOW)
-					var/turf/open/snow/ST = T
+					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
 					transf_amt = min(ST.slayer, dirt_amt_per_dig)
@@ -122,7 +119,7 @@
 	item_state = "spade"
 	force = 5
 	throwforce = 7
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	dirt_overlay = "spade_overlay"
 	shovelspeed = 40
 	dirt_amt_per_dig = 1
@@ -132,7 +129,7 @@
 /obj/item/tool/shovel/snow
 	name = "snow shovel"
 	desc = "I had enough winter for this year!"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 5
 	throwforce = 3
 
@@ -148,8 +145,7 @@
 	force = 30
 	throwforce = 2
 	item_state = "crowbar"
-	w_class = 4 //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
-	origin_tech = "engineering=1"
+	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
@@ -164,10 +160,10 @@
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
 	folded = !folded
 	if(folded)
-		w_class = 3
+		w_class = WEIGHT_CLASS_NORMAL
 		force = 2
 	else
-		w_class = 4
+		w_class = WEIGHT_CLASS_BULKY
 		force = 30
 	..()
 

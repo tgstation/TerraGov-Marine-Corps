@@ -4,11 +4,11 @@
 	var/entry_text //email content
 
 
-//emails for the Theseus computers
-/datum/fluff_email/almayer
+//emails for the marine ship computers
+/datum/fluff_email/mainship
 
 
-/datum/fluff_email/almayer/iwantout
+/datum/fluff_email/mainship/iwantout
 	title = "RE: I want out.."
 
 	entry_text = {"<html>
@@ -30,7 +30,7 @@
 				"}
 
 
-/datum/fluff_email/almayer/thermalcloak
+/datum/fluff_email/mainship/thermalcloak
 	title = "M68 Thermal Cloak.."
 	entry_text = {"<html>
 					Are you sure these things are safe, man? I just tried one on during a training exercise back at Bernice 378, took a wrong turn,
@@ -45,7 +45,7 @@
 				"}
 
 
-/datum/fluff_email/almayer/snow
+/datum/fluff_email/mainship/snow
 	title = "Snow? Where the hell is all the snow?"
 	entry_text = {"<html>
 					Why were we issued these damn snow uniforms in the first place? We've been around the sector almost three dozen times and we've
@@ -59,7 +59,7 @@
 
 
 
-/datum/fluff_email/almayer/hawaianpizza
+/datum/fluff_email/mainship/hawaianpizza
 	title = "Hawaiian Pizza in the MREs?"
 	entry_text = {"<html>
 					I swear this must have been a joke, but the other day I opened up my MRE packet to come face to face with a 'Hawaiian Pizza" packet.
@@ -71,13 +71,13 @@
 					<br>
 					PS: The supply sergeant's grandparents are from Naples. Don't let him hear about this or he'll be sure to cause a big fuss.
 					Last time he went on a personal crusade on behalf of the entire battalion, those pricks over at central started supplying
-					the TGS Theseus store-rooms with only the 'Meatloaf' flavored MRE for months. I can still taste the stuff it in my mouth I think..
+					the ship's store-rooms with only the 'Meatloaf' flavored MRE for months. I can still taste the stuff it in my mouth I think..
 				</html>
 				"}
 
 
 
-/datum/fluff_email/almayer/themajor
+/datum/fluff_email/mainship/themajor
 	title = "The Major?"
 	entry_text = {"<html>
 					I keep forgetting what the new Major's name is. I got quizzed by one of the jackass staff officers last week about the captain's name,

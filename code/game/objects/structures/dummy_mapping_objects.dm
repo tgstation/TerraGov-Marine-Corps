@@ -4,8 +4,8 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer3.dmi'
 	icon_state = "frame"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /obj/machinery/computer3/powermonitor
 	icon_state = "frame-eng"
@@ -44,12 +44,12 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "robotics"
 	layer = BELOW_OBJ_LAYER
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/computer3frame
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
@@ -58,8 +58,8 @@
 	name = "\improper Central Atmospherics Computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 /obj/item/computer3_part
 	name = "computer part"
@@ -67,7 +67,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "hdd1"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/computer3_part/storage
 	name = "Storage Device"

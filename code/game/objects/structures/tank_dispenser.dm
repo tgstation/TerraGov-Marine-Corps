@@ -3,8 +3,8 @@
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/oxygentanks = 10
 	var/phorontanks = 10
 	var/list/oxytanks = list()	//sorry for the similar var names
@@ -18,8 +18,8 @@
 	oxygentanks = 0
 
 
-/obj/structure/dispenser/New()
-	..()
+/obj/structure/dispenser/Initialize()
+	. = ..()
 	update_icon()
 
 
@@ -32,90 +32,78 @@
 		if(1 to 4)	overlays += "phoron-[phorontanks]"
 		if(5 to INFINITY) overlays += "phoron-5"
 
-/obj/structure/dispenser/attack_ai(mob/user as mob)
-	if(user.Adjacent(src))
-		return attack_hand(user)
-	..()
+/obj/structure/dispenser/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 
-/obj/structure/dispenser/attack_hand(mob/user as mob)
-	user.set_interaction(src)
-	var/dat = "[src]<br><br>"
+	var/dat
 	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
 	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
-	user << browse(dat, "window=dispenser")
-	onclose(user, "dispenser")
-	return
+
+	var/datum/browser/popup = new(user, "dispense", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
-/obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/dispenser/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
-		if(oxygentanks < 10)
-			user.drop_held_item()
-			I.loc = src
-			oxytanks.Add(I)
-			oxygentanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 5)
-				update_icon()
-		else
+		if(oxygentanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/tank/phoron))
-		if(phorontanks < 10)
-			user.drop_held_item()
-			I.loc = src
-			platanks.Add(I)
-			phorontanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 6)
-				update_icon()
-		else
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		oxytanks += I
+		oxygentanks++
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		if(oxygentanks < 5)
+			update_icon()
+
+	else if(istype(I, /obj/item/tank/phoron))
+		if(phorontanks >= 10)
 			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-/*
-	if(iswrench(I))
-		if(anchored)
-			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
-			anchored = 0
-		else
-			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
-			anchored = 1
-		return
-*/
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		platanks += I
+		phorontanks++
+		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		if(oxygentanks < 6)
+			update_icon()
+
+
 /obj/structure/dispenser/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+	. = ..()
+	if(.)
 		return
-	if(Adjacent(usr))
-		usr.set_interaction(src)
-		if(href_list["oxygen"])
-			if(oxygentanks > 0)
-				var/obj/item/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
-					O = oxytanks[1]
-					oxytanks.Remove(O)
-				else
-					O = new /obj/item/tank/oxygen(loc)
-				O.loc = loc
-				to_chat(usr, "<span class='notice'>You take [O] out of [src].</span>")
-				oxygentanks--
-				update_icon()
-		if(href_list["phoron"])
-			if(phorontanks > 0)
-				var/obj/item/tank/phoron/P
-				if(platanks.len == phorontanks)
-					P = platanks[1]
-					platanks.Remove(P)
-				else
-					P = new /obj/item/tank/phoron(loc)
-				P.loc = loc
-				to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
-				phorontanks--
-				update_icon()
-		add_fingerprint(usr)
-		updateUsrDialog()
-	else
-		usr << browse(null, "window=dispenser")
-		return
-	return
+
+	if(href_list["oxygen"])
+		if(oxygentanks > 0)
+			var/obj/item/tank/oxygen/O
+			if(oxytanks.len == oxygentanks)
+				O = oxytanks[1]
+				oxytanks.Remove(O)
+			else
+				O = new /obj/item/tank/oxygen(loc)
+			O.loc = loc
+			to_chat(usr, "<span class='notice'>You take [O] out of [src].</span>")
+			oxygentanks--
+			update_icon()
+	if(href_list["phoron"])
+		if(phorontanks > 0)
+			var/obj/item/tank/phoron/P
+			if(platanks.len == phorontanks)
+				P = platanks[1]
+				platanks.Remove(P)
+			else
+				P = new /obj/item/tank/phoron(loc)
+			P.loc = loc
+			to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
+			phorontanks--
+			update_icon()
+	
+	updateUsrDialog()

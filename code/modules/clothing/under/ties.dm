@@ -3,13 +3,13 @@
 	desc = "A neosilk clip-on tie."
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
-	flags_equip_slot = NOFLAGS
-	w_class = 2.0
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 
-/obj/item/clothing/tie/New()
-	..()
+/obj/item/clothing/tie/Initialize()
+	. = ..()
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 
@@ -31,7 +31,6 @@
 
 	if(user)
 		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
-		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed()
 	if(!has_suit)
@@ -278,7 +277,6 @@
 
 	holstered = W
 	user.transferItemToLoc(holstered, src)
-	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
@@ -296,20 +294,19 @@
 			user.visible_message("<span class='notice'>[user] draws the [holstered], pointing it at the ground.</span>", \
 			"<span class='notice'>You draw the [holstered], pointing it at the ground.</span>")
 		user.put_in_hands(holstered)
-		holstered.add_fingerprint(user)
 		holstered = null
 		return TRUE
 
-/obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/holster/attack_hand(mob/living/user)
 	if (has_suit)	//if we are part of a suit
 		if (holstered)
 			unholster(user)
 		return
 
-	..(user)
+	return ..()
 
-/obj/item/clothing/tie/holster/attackby(obj/item/W as obj, mob/user as mob)
-	holster(W, user)
+/obj/item/clothing/tie/holster/attackby(obj/item/I, mob/user, params)
+	holster(I, user)
 
 /obj/item/clothing/tie/holster/emp_act(severity)
 	if (holstered)
@@ -331,7 +328,6 @@
 	has_suit.verbs -= /obj/item/clothing/tie/holster/verb/holster_verb
 	..()
 
-//For the holster hotkey
 /obj/item/clothing/tie/holster/verb/holster_verb()
 	set name = "Holster"
 	set category = "Object"
@@ -360,7 +356,34 @@
 	else
 		H.unholster(usr)
 
-/obj/item/clothing/tie/holster/m4a3/New()
+
+//For the holster hotkey
+/mob/living/carbon/human/proc/do_holster()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+
+	if(incapacitated() || lying) 
+		return
+	
+	if(!istype(w_uniform, /obj/item/clothing/under))
+		return
+
+	var/obj/item/clothing/under/S = w_uniform
+
+	if(!istype(S.hastie, /obj/item/clothing/tie/holster))
+		return
+
+	var/obj/item/clothing/tie/holster/H = S.hastie
+
+	if(!H.holstered)
+		var/obj/item/weapon/gun/G = get_active_held_item()
+		if(!istype(G))
+			return
+		H.holster(G, src)
+	else
+		H.unholster(src)
+
+
+/obj/item/clothing/tie/holster/m4a3/Initialize()
 	. = ..()
 	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
 
@@ -385,7 +408,7 @@
 	name = "load bearing equipment"
 	desc = "Used to hold things when you don't have enough hands."
 	icon_state = "webbing"
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	var/obj/item/storage/internal/hold = /obj/item/storage/internal/tie
 
 /obj/item/storage/internal/tie
@@ -432,7 +455,7 @@
 			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
 
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user)
+/obj/item/clothing/tie/storage/attack_hand(mob/living/user)
 	if(has_suit)
 		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]
@@ -452,15 +475,11 @@
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/tie/storage/attackby(obj/item/W as obj, mob/user as mob)
-	return hold.attackby(W, user)
+/obj/item/clothing/tie/storage/attackby(obj/item/I, mob/user, params)
+	return hold.attackby(I, user, params)
 
 /obj/item/clothing/tie/storage/emp_act(severity)
 	hold.emp_act(severity)
-	..()
-
-/obj/item/clothing/tie/storage/hear_talk(mob/M, var/msg)
-	hold.hear_talk(M, msg)
 	..()
 
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
@@ -469,7 +488,6 @@
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
-	src.add_fingerprint(user)
 
 /obj/item/clothing/tie/storage/webbing
 	name = "webbing"
@@ -482,8 +500,12 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun,
-		 )
+		/obj/item/cell/lasgun)
+	cant_hold = list(
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -493,6 +515,11 @@
 
 /obj/item/storage/internal/tie/vest
 	storage_slots = 5
+	cant_hold = list(
+		/obj/item/stack/razorwire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/sandbags,
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
@@ -506,13 +533,41 @@
 	icon_state = "vest_white"
 	hold = /obj/item/storage/internal/tie/white_vest
 
+/obj/item/clothing/tie/storage/white_vest
+	name = "surgical vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
+	icon_state = "vest_white"
+	hold = /obj/item/storage/internal/tie/white_vest
+
 /obj/item/storage/internal/tie/white_vest
 	storage_slots = 8
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced/bruise_pack, 
-		/obj/item/stack/medical/advanced/ointment, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/gloves/latex,
 		/obj/item/stack/nanopaste)
+
+/obj/item/clothing/tie/storage/white_vest/medic
+	name = "corpsman webbing"
+	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
+	hold = /obj/item/storage/internal/tie/white_vest/medic
+
+/obj/item/storage/internal/tie/white_vest/medic
+	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	can_hold = list(
+	/obj/item/stack/medical,
+	/obj/item/healthanalyzer,
+	/obj/item/reagent_container/dropper,
+	/obj/item/reagent_container/glass/beaker,
+	/obj/item/reagent_container/glass/bottle,
+	/obj/item/reagent_container/pill,
+	/obj/item/reagent_container/syringe,
+	/obj/item/storage/pill_bottle,
+	/obj/item/reagent_container/hypospray,
+	/obj/item/bodybag,
+	/obj/item/roller,
+	/obj/item/clothing/glasses/hud/health)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
@@ -545,8 +600,7 @@
 
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
-	Security agent - the user details can be imprinted on the badge with a Security-access ID card,
-	or they can be emagged to accept any ID for use in disguises.
+	Security agent - the user details can be imprinted on the badge with a Security-access ID card
 */
 
 /obj/item/clothing/tie/holobadge
@@ -556,7 +610,6 @@
 	icon_state = "holobadge"
 	flags_equip_slot = ITEM_SLOT_BELT
 
-	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
 
 /obj/item/clothing/tie/holobadge/cord
@@ -570,33 +623,21 @@
 	if(isliving(user))
 		user.visible_message("<span class='warning'> [user] displays their TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>","<span class='warning'> You display your TGMC Internal Security Legal Authorization Badge.\nIt reads: [stored_name], TGMC Security.</span>")
 
-/obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-	if (istype(O, /obj/item/card/emag))
-		if (emagged)
-			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
-			return
-		else
-			emagged = 1
-			to_chat(user, "<span class='warning'>You swipe [O] and crack the holobadge security checks.</span>")
-			return
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/id_card = I
 
-	else if(istype(O, /obj/item/card/id))
-
-		var/obj/item/card/id/id_card = null
-
-		if(istype(O, /obj/item/card/id))
-			id_card = O
-
-		if(ACCESS_MARINE_BRIG in id_card.access || emagged)
-			to_chat(user, "You imprint your ID details onto the badge.")
-			stored_name = id_card.registered_name
-			name = "holobadge ([stored_name])"
-			desc = "This glowing blue badge marks [stored_name] as THE LAW."
-		else
+		if(!(ACCESS_MARINE_BRIG in id_card.access))
 			to_chat(user, "[src] rejects your insufficient access rights.")
-		return
-	..()
+			return
+
+		to_chat(user, "You imprint your ID details onto the badge.")
+		stored_name = id_card.registered_name
+		name = "holobadge ([stored_name])"
+		desc = "This glowing blue badge marks [stored_name] as THE LAW."
+
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))

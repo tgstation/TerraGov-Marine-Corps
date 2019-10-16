@@ -6,10 +6,10 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	var/obj/item/stored_item = null
 
-/obj/item/evidencebag/MouseDrop(var/obj/item/I as obj)
+/obj/item/evidencebag/MouseDrop(obj/item/I as obj)
 	if (!ishuman(usr))
 		return
 
@@ -111,7 +111,7 @@
 	var/amount = 10.0
 	item_state = "paper"
 	throwforce = 1
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 5
 

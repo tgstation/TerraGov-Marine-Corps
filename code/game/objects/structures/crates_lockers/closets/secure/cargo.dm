@@ -13,7 +13,7 @@
 		sleep(2)
 		new /obj/item/clothing/under/rank/cargo(src)
 		new /obj/item/clothing/shoes/brown(src)
-//		new /obj/item/radio/headset/almayer/ct(src)
+//		new /obj/item/radio/headset/mainship/ct(src)
 		new /obj/item/clothing/gloves/black(src)
 //		new /obj/item/cartridge/quartermaster(src)
 		new /obj/item/clothing/suit/fire/firefighter(src)
@@ -38,14 +38,11 @@
 	icon_off = "miningsecoff"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
 
-/obj/structure/closet/secure_closet/miner/New()
-	..()
-	sleep(2)
+/obj/structure/closet/secure_closet/miner/PopulateContents()
 	if(prob(50))
 		new /obj/item/storage/backpack/industrial(src)
 	else
 		new /obj/item/storage/backpack/satchel/eng(src)
-//	new /obj/item/radio/headset/almayer/ct(src)
 	new /obj/item/clothing/under/rank/miner(src)
 	new /obj/item/clothing/gloves/black(src)
 	new /obj/item/clothing/shoes/black(src)

@@ -13,7 +13,7 @@
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 
 
 
@@ -59,24 +59,24 @@
 	name = "warden's hat"
 	desc = "It's a special helmet issued to the Warden of a securiy force. Protects the head from impacts."
 	icon_state = "policehelm"
-	flags_inventory = NOFLAGS
-	flags_inv_hide = NOFLAGS
+	flags_inventory = NONE
+	flags_inv_hide = NONE
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/hop
 	name = "crew resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
-	flags_inventory = NOFLAGS
-	flags_inv_hide = NOFLAGS
+	flags_inventory = NONE
+	flags_inv_hide = NONE
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/formalcaptain
 	name = "parade hat"
 	desc = "No one in a commanding position should be without a perfect, white hat of ultimate authority."
 	icon_state = "officercap"
-	flags_inventory = NOFLAGS
-	flags_inv_hide = NOFLAGS
+	flags_inventory = NONE
+	flags_inv_hide = NONE
 	flags_armor_protection = 0
 
 /obj/item/clothing/head/helmet/swat
@@ -171,7 +171,7 @@
 	sprite_sheet_id = 1
 	icon_state = "helmet"
 	armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
-	health = 5
+	max_integrity = 5
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
@@ -190,18 +190,22 @@
 						/obj/item/toy/handcard = "helmet_card_card",
 						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
 						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/eat_bar = "helmet_snack_eat",
+						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 2
+	storage_slots = 4
 	max_w_class = 1
 	bypass_w_limit = list(
-		/obj/item/clothing/glasses, 
-		/obj/item/reagent_container/food/drinks/flask)
-	max_storage_space = 3
+		/obj/item/clothing/glasses,
+		/obj/item/reagent_container/food/drinks/flask,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol)
+	cant_hold = list(
+		/obj/item/stack/)
+	max_storage_space = 4
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -209,17 +213,17 @@
 	pockets = new pockets(src)
 
 
-/obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
-	if (pockets.handle_attack_hand(user))
-		..()
+/obj/item/clothing/head/helmet/marine/attack_hand(mob/living/user)
+	if(pockets.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/head/helmet/marine/MouseDrop(over_object, src_location, over_location)
 	if(pockets.handle_mousedrop(usr, over_object))
 		..()
 
-/obj/item/clothing/head/helmet/marine/attackby(obj/item/W, mob/user)
-	..()
-	return pockets.attackby(W, user)
+/obj/item/clothing/head/helmet/marine/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	return pockets.attackby(I, user, params)
 
 /obj/item/clothing/head/helmet/marine/on_pocket_insertion()
 	update_icon()
@@ -262,45 +266,37 @@
 		desc += "\n<b>This helmet seems to be scratched up and damaged, particularly around the face area...</b>"
 
 
+/obj/item/clothing/head/helmet/marine/standard
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
-/obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 technician snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/corpsman
 	name = "\improper M10 corpsman helmet"
-
-/obj/item/clothing/head/helmet/marine/corpsman/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 corpsman snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list("melee" = 75, "bullet" = 65, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
-/obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
+	icon_state = "grenadier_helmet"
 	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
-/obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper B18 snow helmet"),
-	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE))
-	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
@@ -308,6 +304,8 @@
 	desc = "A custom helmet designed for TGMC Scouts."
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+
 
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"
@@ -316,6 +314,8 @@
 	armor = list("melee" = 85, "bullet" = 80, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
@@ -325,7 +325,9 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
-	flags_marine_helmet = NOFLAGS
+	flags_marine_helmet = NONE
+	flags_item_map_variant = (ITEM_ICE_VARIANT)
+
 
 /obj/item/clothing/head/helmet/marine/tanker
 	name = "\improper M50 tanker helmet"
@@ -335,7 +337,8 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
-	flags_marine_helmet = NOFLAGS
+	flags_marine_helmet = NONE
+	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
 //=============================//PMCS\\==================================\\
 //=======================================================================\\
@@ -349,8 +352,8 @@
 	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = NOFLAGS
-	flags_marine_helmet = NOFLAGS
+	flags_inv_hide = NONE
+	flags_marine_helmet = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
 	name = "\improper PMC beret"
@@ -445,19 +448,19 @@
 	desc = "A protective cap worn by some seriously experienced mercs."
 	icon_state = "dutch_cap"
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = NOFLAGS
-	flags_marine_helmet = NOFLAGS
+	flags_inv_hide = NONE
+	flags_marine_helmet = NONE
 
 /obj/item/clothing/head/helmet/marine/veteran/dutch/band
 	name = "\improper Dutch's Dozen band"
 	desc = "A protective band worn by some seriously experienced mercs."
 	icon_state = "dutch_band"
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = NOFLAGS
-	flags_marine_helmet = NOFLAGS
+	flags_inv_hide = NONE
+	flags_marine_helmet = NONE
 
-/obj/item/clothing/head/helmet/marine/veteran/bear
-	name = "\improper Iron Bear helmet"
+/obj/item/clothing/head/helmet/marine/veteran/wolves
+	name = "\improper Steel Wolves helmet"
 	desc = "Is good for winter, because it has hole to put vodka through."
 	icon_state = "dutch_helmet"
 	armor = list("melee" = 90, "bullet" = 65, "laser" = 40, "energy" = 35, "bomb" = 35, "bio" = 5, "rad" = 5, "fire" = 35, "acid" = 35)
@@ -538,3 +541,32 @@
 	icon_state = "mercenary_engineer_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list("melee" = 55, "bullet" = 60, "laser" = 45, "energy" = 55, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
+
+
+
+/obj/item/clothing/head/helmet/marine/som
+	name = "\improper S6 combat helmet"
+	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
+	icon_state = "som_helmet"
+	item_state = "som_helmet"
+	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NONE
+	flags_marine_helmet = NONE
+
+
+/obj/item/clothing/head/helmet/marine/som/veteran
+	name = "\improper S7 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
+	icon_state = "som_helmet_veteran"
+	item_state = "som_helmet_veteran"
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 35, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 35)
+
+
+/obj/item/clothing/head/helmet/marine/som/leader
+	name = "\improper S8 combat helmet"
+	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies."
+	icon_state = "som_helmet_leader"
+	item_state = "som_helmet_leader"
+	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)

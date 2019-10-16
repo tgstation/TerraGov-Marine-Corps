@@ -1,13 +1,13 @@
 
 //NASA Voidsuit
-/obj/item/clothing/head/helmet/space/uscm
+/obj/item/clothing/head/helmet/space/tgmc
 	name = "\improper TGMC Compression Helmet"
 	desc = "A high tech, TGMC designed, dark red space suit helmet. Used for maintenance in space."
 	icon_state = "void"
 	item_state = "void"
 	anti_hug = 3
 
-/obj/item/clothing/suit/space/uscm
+/obj/item/clothing/suit/space/tgmc
 	name = "\improper TGMC Compression Suit"
 	icon_state = "void"
 	item_state = "void"

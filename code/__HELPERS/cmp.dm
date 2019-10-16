@@ -22,42 +22,63 @@
 /proc/cmp_list_dsc(list/a, list/b, sortkey)
 	return sorttext(a[sortkey], b[sortkey])
 
+// Datum cmp with vars is always slower than a specialist cmp proc, use your judgement.
+/proc/cmp_datum_numeric_asc(datum/a, datum/b, variable)
+	return cmp_numeric_asc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_numeric_dsc(datum/a, datum/b, variable)
+	return cmp_numeric_dsc(a.vars[variable], b.vars[variable])
+
+/proc/cmp_datum_text_asc(datum/a, datum/b, variable)
+	return sorttext(b.vars[variable], a.vars[variable])
+
+/proc/cmp_datum_text_dsc(datum/a, datum/b, variable)
+	return sorttext(a.vars[variable], b.vars[variable])
+
 /proc/cmp_records_asc(datum/data/record/a, datum/data/record/b, sortkey)
 	return sorttext(b.fields[sortkey], a.fields[sortkey])
 
 /proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b, sortkey)
 	return sorttext(a.fields[sortkey], b.fields[sortkey])
 
+
 /proc/cmp_ckey_asc(client/a, client/b)
 	return sorttext(b.ckey, a.ckey)
+
 
 /proc/cmp_ckey_dsc(client/a, client/b)
 	return sorttext(a.ckey, b.ckey)
 
+
 /proc/cmp_subsystem_init(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return initial(b.init_order) - initial(a.init_order)	//uses initial() so it can be used on types
+
 
 /proc/cmp_subsystem_display(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return sorttext(b.name, a.name)
 
+
 /proc/cmp_subsystem_priority(datum/controller/subsystem/a, datum/controller/subsystem/b)
 	return a.priority - b.priority
+
 
 /proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
 	return a.timeToRun - b.timeToRun
 
+
 /proc/cmp_qdel_item_time(datum/qdel_item/A, datum/qdel_item/B)
 	. = B.hard_delete_time - A.hard_delete_time
-	if (!.)
+	if(!.)
 		. = B.destroy_time - A.destroy_time
-	if (!.)
+	if(!.)
 		. = B.failures - A.failures
-	if (!.)
+	if(!.)
 		. = B.qdels - A.qdels
+
 
 /proc/cmp_generic_stat_item_time(list/A, list/B)
 	. = B[STAT_ENTRY_TIME] - A[STAT_ENTRY_TIME]
-	if (!.)
+	if(!.)
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
 
 

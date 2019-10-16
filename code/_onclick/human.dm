@@ -6,14 +6,11 @@
 	Otherwise pretty standard.
 */
 
-/mob/living/carbon/human
-	var/last_chew = 0
-
 /mob/living/carbon/human/RestrainedClickOn(atom/A) //chewing your handcuffs
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
-	if (last_chew + 75 > world.time)
+	if(cooldowns[COOLDOWN_CHEW])
 		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
 		return
 
@@ -39,7 +36,7 @@
 	if(O.take_damage_limb(1, 0, TRUE, TRUE))
 		H.UpdateDamageIcon()
 
-	last_chew = world.time
+	cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
 
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
@@ -60,28 +57,14 @@
 		return
 
 	changeNext_move(CLICK_CD_MELEE)
+	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 	A.attack_hand(src)
 
 
-/mob/living/carbon/human/RangedAttack(atom/A)
-
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-
-	if(istype(G) && G.Touch(A,0)) // for magic gloves
-		return
-
-	else if(TK in mutations)
-		switch(get_dist(src,A))
-			if(1 to 5) // not adjacent may mean blocked by window
-				next_move += 2
-			if(5 to 7)
-				next_move += 5
-			if(8 to 15)
-				next_move += 10
-			if(16 to 128)
-				return
-		A.attack_tk(src)
-
-/atom/proc/attack_hand(mob/user)
-	return
+/atom/proc/attack_hand(mob/living/user)
+	. = FALSE
+	if(QDELETED(src))
+		CRASH("attack_hand on a qdeleted atom")
+	add_fingerprint(user, "attack_hand")
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+		. = TRUE

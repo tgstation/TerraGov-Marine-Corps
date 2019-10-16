@@ -2,17 +2,6 @@
 				BLOOD SYSTEM
 ****************************************************/
 
-
-/mob/living
-	var/blood_volume = 0 //how much blood the mob has
-	var/heart_multi = 1
-
-/mob/living/carbon
-	blood_volume = BLOOD_VOLUME_NORMAL
-
-
-
-
 /mob/living/proc/handle_blood()
 	return
 
@@ -45,7 +34,7 @@
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
-			if(!(reagents.get_reagent_amount("peridaxon") >= 0.05) && heart.damage > 1)
+			if(!(reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05) && heart.damage > 1)
 				if(heart.damage < heart.min_bruised_damage)
 					heart_multi = 0.9
 					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
@@ -81,7 +70,7 @@
 				if(prob(10) && stat == UNCONSCIOUS)
 					adjustToxLoss(1)
 				if(prob(15))
-					KnockOut(rand(1,3))
+					knock_out(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
@@ -123,7 +112,7 @@
 //Makes a blood drop, leaking amt units of blood from the mob
 /mob/living/carbon/proc/drip(amt)
 
-	if(reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
+	if(reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 		return
 
 	if(blood_volume)
@@ -179,7 +168,7 @@
 		if(blood_id == C.get_blood_id())//both mobs have the same blood substance
 			if(blood_id == "blood") //normal blood
 				if(!(blood_data["blood_type"] in get_safe_blood(C.dna.b_type)))
-					C.reagents.add_reagent("toxin", amount * 0.5)
+					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return 1
 
 			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
@@ -192,41 +181,26 @@
 
 //Transfers blood from container to mob
 /mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
-
-	var/b_id = get_blood_id()
-	if(!b_id)
-		return
-
-	for(var/datum/reagent/blood/B in container.reagents.reagent_list)
-		if(B.id == b_id)
-
-			if(b_id == "blood" && B.data && !(B.data["blood_type"] in get_safe_blood(dna.b_type)))
-				reagents.add_reagent("toxin", amount * 0.5)
-			else
-				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
-
-		else
-			reagents.add_reagent(B.id, amount, B.data)
-			reagents.update_total()
-
-		container.reagents.remove_reagent(B.id, amount)
-		return
+	for(var/datum/reagent/R in container.reagents.reagent_list)
+		reagents.add_reagent(R.type, amount, R.data)
+		reagents.update_total()
+		container.reagents.remove_reagent(R.type, amount)
 
 
 //Transfers blood from container to human, respecting blood types compatability.
 /mob/living/carbon/human/inject_blood(obj/item/reagent_container/container, amount)
-
-	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
-
-	if(species && species.species_flags & NO_BLOOD)
-		reagents.add_reagent(B.id, amount, B.data)
-		reagents.update_total()
-		container.reagents.remove_reagent(B.id, amount)
-		return
-
-
-	..()
-
+	var/b_id = get_blood_id()
+	for(var/datum/reagent/R in container.reagents.reagent_list)
+		// If its blood, lets check its compatible or not and cause some toxins.
+		if(istype(R, /datum/reagent/blood) && b_id)
+			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
+				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
+			else
+				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+		else
+			reagents.add_reagent(R.type, amount, R.data)
+			reagents.update_total()
+		container.reagents.remove_reagent(R.type, amount)
 
 
 //Gets blood from mob to the container, preserving all data in it.
@@ -245,17 +219,17 @@
 
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem += R.id
-		temp_chem[R.id] = R.volume
+		temp_chem += R.type
+		temp_chem[R.type] = R.volume
 	data["trace_chem"] = list2params(temp_chem)
 
-	O.reagents.add_reagent(b_id, amount, data)
+	O.reagents.add_reagent(/datum/reagent/blood, amount, data)
 
 	blood_volume = max(0, blood_volume - amount) // Removes blood if human
 	return 1
 
 
-/mob/living/carbon/human/take_blood(obj/O, var/amount)
+/mob/living/carbon/human/take_blood(obj/O, amount)
 
 	if(species && species.species_flags & NO_BLOOD)
 		return
@@ -274,70 +248,15 @@
 
 	var/list/blood_data = list()
 
-	var/list/b_dna = get_blood_dna_list()
-	for(var/i in b_dna)
-		blood_data["blood_DNA"] = i
-		blood_data["blood_type"] = b_dna[i]
-
 	blood_data["blood_colour"] = get_blood_color()
 
-	blood_data["viruses"] = list()
-
 	return blood_data
-
-
-/mob/living/carbon/get_blood_data()
-	var/list/blood_data = ..()
-	if(!blood_data)
-		return
-
-	for(var/datum/disease/D in viruses)
-		blood_data["viruses"] += D.Copy()
-
-	if(resistances && resistances.len)
-		blood_data["resistances"] = resistances.Copy()
-
-	return blood_data
-
-
-
-
-
-
-//returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
-/mob/living/proc/get_blood_dna_list()
-	if(!get_blood_id())
-		return
-	return list("ANIMAL DNA" = "C-")
-
-/mob/living/carbon/get_blood_dna_list()
-	var/b_id = get_blood_id()
-	if(!b_id)
-		return
-
-	switch(b_id)
-		if("blood")
-			if(dna)
-				return list(dna.unique_enzymes = dna.b_type)
-			else
-				return list("UNKNOWN DNA" = "X*")
-		if("whiteblood")
-			return list("SYNTHETIC BLOOD" = "S*")
-		if("greyblood")
-			return list(dna.unique_enzymes = "Z*")
-		if("greenblood")
-			return list("UNKNOWN DNA" = "Y*")
-		if("xenoblood")
-			return list("UNKNOWN DNA" = "X*")
-
-
-
 
 //returns the color of the mob's blood
 /mob/living/proc/get_blood_color()
 	return "#A10808"
 
-/mob/living/carbon/Xenomorph/get_blood_color()
+/mob/living/carbon/xenomorph/get_blood_color()
 	return "#dffc00"
 
 /mob/living/carbon/human/get_blood_color()
@@ -352,7 +271,7 @@
 /mob/living/carbon/monkey/get_blood_id()
 	return "blood"
 
-/mob/living/carbon/Xenomorph/get_blood_id()
+/mob/living/carbon/xenomorph/get_blood_id()
 	return "xenoblood"
 
 /mob/living/carbon/human/get_blood_id()
@@ -360,8 +279,6 @@
 		return
 	if(issynth(src))
 		return "whiteblood"
-	if(iszombie(src))
-		return "greyblood"
 	return "blood"
 
 /mob/living/simple_animal/mouse/get_blood_id()
@@ -425,8 +342,6 @@
 	if(!T.can_bloody)
 		return
 
-	var/list/temp_blood_DNA
-
 	if(small_drip)
 		// Only a certain number of drips (or one large splatter) can be on a given turf.
 		var/obj/effect/decal/cleanable/blood/drip/drop = locate() in T
@@ -434,15 +349,11 @@
 			if(drop.drips < 3)
 				drop.drips++
 				drop.overlays |= pick(drop.random_icon_states)
-				drop.transfer_mob_blood_dna(src)
 				return
 			else
-				temp_blood_DNA = list()
-				temp_blood_DNA |= drop.blood_DNA.Copy() //we transfer the dna from the drip to the splatter
 				qdel(drop)//the drip is replaced by a bigger splatter
 		else
 			drop = new(T)
-			drop.transfer_mob_blood_dna(src)
 			if(b_color)
 				drop.basecolor = b_color
 				drop.color = b_color
@@ -456,9 +367,6 @@
 		if(b_color)
 			B.basecolor = b_color
 			B.color = b_color
-	B.transfer_mob_blood_dna(src) //give blood info to the blood decal.
-	if(temp_blood_DNA)
-		B.blood_DNA |= temp_blood_DNA
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
@@ -469,7 +377,7 @@
 
 	..()
 
-/mob/living/carbon/Xenomorph/add_splatter_floor(turf/T, small_drip, b_color)
+/mob/living/carbon/xenomorph/add_splatter_floor(turf/T, small_drip, b_color)
 	if(!T)
 		T = get_turf(src)
 
@@ -479,18 +387,3 @@
 	var/obj/effect/decal/cleanable/blood/xeno/XB = locate() in T.contents
 	if(!XB)
 		XB = new(T)
-	XB.blood_DNA["UNKNOWN DNA"] = "X*"
-
-
-
-/mob/living/silicon/robot/add_splatter_floor(turf/T, small_drip, b_color)
-	if(!T)
-		T = get_turf(src)
-
-	if(!T.can_bloody)
-		return
-
-	var/obj/effect/decal/cleanable/blood/oil/O = locate() in T.contents
-	if(!O)
-		O = new(T)
-

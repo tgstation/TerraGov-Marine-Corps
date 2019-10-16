@@ -3,13 +3,12 @@
 	caste_name = "Ravenger"
 	display_name = "Ravenger"
 	upgrade_name = ""
-	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/ravenger
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 70
-	melee_damage_upper = 90
+	melee_damage = 80
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -30,29 +29,30 @@
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
 
-/datum/xeno_caste/ravager/ravenger/young
-	upgrade = XENO_UPGRADE_THREE
-
-/mob/living/carbon/Xenomorph/Ravager/ravenger
-	caste_base_type = /mob/living/carbon/Xenomorph/Ravager/ravenger
-	desc = "It's a goddamn dragon! Run! RUUUUN!"
-	plasma_stored = 200
-	upgrade = XENO_UPGRADE_THREE
-	var/used_fire_breath = 0
 	actions = list(
 		/datum/action/xeno_action/activable/breathe_fire,
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/Initialize()
+/datum/xeno_caste/ravager/ravenger/young
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/ravager/ravenger
+	caste_base_type = /mob/living/carbon/xenomorph/ravager/ravenger
+	desc = "It's a goddamn dragon! Run! RUUUUN!"
+	plasma_stored = 200
+	upgrade = XENO_UPGRADE_THREE
+	var/used_fire_breath = 0
+
+/mob/living/carbon/xenomorph/ravager/ravenger/Initialize()
 	. = ..()
-	verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
+	verbs -= /mob/living/carbon/xenomorph/verb/hive_status
 
 /datum/action/xeno_action/activable/breathe_fire
 	name = "Breathe Fire"
@@ -61,14 +61,14 @@
 	ability_name = "breathe fire"
 
 /datum/action/xeno_action/activable/breathe_fire/use_ability(atom/A)
-	var/mob/living/carbon/Xenomorph/Ravager/ravenger/X = owner
+	var/mob/living/carbon/xenomorph/ravager/ravenger/X = owner
 	X.breathe_fire(A)
 
 /datum/action/xeno_action/activable/breathe_fire/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Ravager/ravenger/X = owner
+	var/mob/living/carbon/xenomorph/ravager/ravenger/X = owner
 	if(world.time > X.used_fire_breath + 75) return TRUE
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
+/mob/living/carbon/xenomorph/ravager/ravenger/proc/breathe_fire(atom/A)
 	set waitfor = 0
 	if(world.time <= used_fire_breath + 75)
 		return
@@ -76,9 +76,9 @@
 	var/distance = 0
 	var/obj/structure/window/W
 	var/turf/T
-	playsound(src, 'sound/weapons/gun_flamethrower2.ogg', 50, 1)
+	playsound(src, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	visible_message("<span class='xenowarning'>\The [src] sprays out a stream of flame from its mouth!</span>", \
-	"<span class='xenowarning'>You unleash a spray of fire on your enemies!</span>")
+	"<span class='xenowarning'>We unleash a spray of fire on our enemies!</span>")
 	used_fire_breath = world.time
 	for(T in turfs)
 		if(T == loc)
@@ -101,7 +101,7 @@
 		distance++
 		sleep(1)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/proc/flame_turf(turf/T)
+/mob/living/carbon/xenomorph/ravager/ravenger/proc/flame_turf(turf/T)
 	if(!istype(T))
 		return
 
@@ -116,7 +116,7 @@
 			continue
 		fire_mod = 1
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
@@ -126,4 +126,4 @@
 				continue
 
 		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
-		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")
+		to_chat(M, "[isxeno(M) ? "<span class='xenodanger'>Augh! We":"<span class='highdanger'>Augh! You"] are roasted by the flames!</Sspan>")
