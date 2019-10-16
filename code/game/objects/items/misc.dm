@@ -7,7 +7,7 @@
 	throwforce = 2.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
@@ -17,7 +17,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "banana_peel"
 	item_state = "banana_peel"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -36,8 +36,7 @@
 	flags_atom = CONDUCT
 	force = 5.0
 	throwforce = 7.0
-	w_class = 2.0
-	matter = list("metal" = 50)
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/gift
@@ -48,7 +47,7 @@
 	var/size = 3.0
 	var/obj/item/gift = null
 	item_state = "gift"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/staff
 	name = "wizards staff"
@@ -59,8 +58,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
-	flags_item = NOSHIELD
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("bludgeoned", "whacked", "disciplined")
 
 /obj/item/staff/broom
@@ -86,15 +84,14 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
-	flags_item = NOSHIELD
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/skub
 	desc = "It's skub."
 	name = "skub"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "skub"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	attack_verb = list("skubbed")
 
 /obj/item/ectoplasm

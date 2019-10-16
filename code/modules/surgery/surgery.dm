@@ -1,5 +1,7 @@
 /* SURGERY STEPS */
 
+GLOBAL_LIST_EMPTY(surgery_steps)
+
 /datum/surgery_step
 	var/priority = 0 //Steps with higher priority will be attempted first. Accepts decimals
 
@@ -11,7 +13,7 @@
 	//3 : Special surgeries (Embryos, Bone Chips, Hematoma)
 
 	var/list/allowed_tools = null //Array of type path referencing tools that can be used for this step, and how well are they suited for it
-	var/list/allowed_species = null //List of names referencing mutantraces that this step applies to.
+	var/list/allowed_species = null //List of names referencing species that this step applies to.
 	var/list/disallowed_species = null
 
 
@@ -90,7 +92,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 			E.germ_level += user.wear_mask.germ_level * 0.1
 		else
 			E.germ_level += user.wear_mask.germ_level * 0.2
-	else 
+	else
 		E.germ_level += user.germ_level * 0.33
 
 	//Suits
@@ -99,7 +101,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 			E.germ_level += user.germ_level * 0.1
 		else
 			E.germ_level += user.germ_level * 0.2
-	else 
+	else
 		E.germ_level += user.germ_level * 0.33
 
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
@@ -119,7 +121,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
 		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_AVERAGE * user.mind.cm_skills.surgery ) // 20 secs non-trained, 15 amateur, 10 semi-prof
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
+			return
 	var/datum/limb/affected = M.get_limb(user.zone_selected)
 	if(!affected)
 		return 0
@@ -127,7 +130,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
 		return 1
 
-	for(var/datum/surgery_step/S in surgery_steps)
+	for(var/i in GLOB.surgery_steps)
+		var/datum/surgery_step/S = i
 		//Check if tool is right or close enough, and the target mob valid, and if this step is possible
 		if(S.tool_quality(tool) && S.is_valid_target(M))
 			var/step_is_valid = S.can_use(user, M, user.zone_selected, tool, affected)
@@ -157,7 +161,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 							multipler += 0.45
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25
-				if(issynth(M)) 
+				if(issynth(M))
 					multipler = 1
 
 				//calculate step duration
@@ -167,7 +171,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
 
 				//Multiply tool success rate with multipler
-				if(prob(S.tool_quality(tool) * CLAMP01(multipler)) &&  do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, TRUE))
+				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))
 					if(S.can_use(user, M, user.zone_selected, tool, affected, TRUE)) //to check nothing changed during the do_mob
 						S.end_step(user, M, user.zone_selected, tool, affected) //Finish successfully
 
@@ -190,8 +194,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	return 0
 
 //Comb Sort. This works apparently, so we're keeping it that way
-proc/sort_surgeries()
-	var/gap = surgery_steps.len
+/proc/sort_surgeries()
+	var/gap = length(GLOB.surgery_steps)
 	var/swapped = 1
 	while(gap > 1 || swapped)
 		swapped = 0
@@ -199,11 +203,11 @@ proc/sort_surgeries()
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
 			gap = 1
-		for(var/i = 1; gap + i <= surgery_steps.len; i++)
-			var/datum/surgery_step/l = surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = surgery_steps[gap+i]	//how lists work here
+		for(var/i = 1; gap + i <= length(GLOB.surgery_steps); i++)
+			var/datum/surgery_step/l = GLOB.surgery_steps[i]		//Fucking hate
+			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)
-				surgery_steps.Swap(i, gap + i)
+				GLOB.surgery_steps.Swap(i, gap + i)
 				swapped = 1
 
 

@@ -51,16 +51,16 @@
 
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [CONFIG_GET(string/ship_name)] NOW</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [SSmapping.configs[SHIP_MAP].map_name] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"
 
-	if(SSticker.liaison)
-		dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
-		var/mob/living/carbon/human/H = SSticker.liaison.current
-		if(!istype(H))
-			return
+	dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaisons</B></td><td></td><td></td></tr>"
+	for(var/i in GLOB.human_mob_list)
+		var/mob/living/carbon/human/H = i
+		if(!(H.mind?.assigned_role == CORPORATE_LIAISON))
+			continue
 		dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 		dat += "<td>[get_area(get_turf(H))]</td>"
 		dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
@@ -70,7 +70,7 @@
 
 	dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/Xenomorph/X = i
+		var/mob/living/carbon/xenomorph/X = i
 		dat += "<tr><td><a href='?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"][(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined") ? " - [X.client.prefs.xeno_name]" : ""]</td>"
 		dat += "<td>[get_area(get_turf(X))]</td>"
 		dat += "<td><a href='?src=[ref];playerpanel=[REF(X)]'>PP</A></td></TR>"

@@ -8,31 +8,15 @@
 	var/list/entries
 	var/list/entries_by_type
 
-	var/list/maplist
-	var/datum/map_config/defaultmap
+	var/list/list/maplist
+	var/list/defaultmaps
 
 	var/list/modes // allowed modes
 	var/list/gamemode_cache
 	var/list/votable_modes // votable modes
 	var/list/mode_names
-	var/list/mode_reports
-	var/list/mode_false_report_weight
 
 	var/motd
-
-/datum/controller/configuration/proc/loadtips()
-	GLOB.metatips = world.file2list("[directory]/tips/metatips.txt")
-	if (!GLOB.metatips)
-		log_config("Failed to load tips/metatips.txt")
-	GLOB.marinetips = world.file2list("[directory]/tips/marinetips.txt")
-	if (!GLOB.marinetips)
-		log_config("Failed to load tips/marinetips.txt")
-	GLOB.xenotips = world.file2list("[directory]/tips/xenotips.txt")
-	if (!GLOB.xenotips)
-		log_config("Failed to load tips/xenotips.txt")
-	GLOB.joketips = world.file2list("[directory]/tips/joketips.txt")
-	if (!GLOB.joketips)
-		log_config("Failed to load tips/joketips.txt")
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -60,10 +44,9 @@
 				for(var/J in legacy_configs)
 					LoadEntries(J)
 				break
-	loadmaplist(CONFIG_MAPS_FILE)
-	loadtips()
+	loadmaplist(CONFIG_GROUND_MAPS_FILE, GROUND_MAP)
+	loadmaplist(CONFIG_SHIP_MAPS_FILE, SHIP_MAP)
 	LoadMOTD()
-
 
 
 /datum/controller/configuration/proc/full_wipe()
@@ -72,11 +55,11 @@
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
 	entries = null
-	/*
-	QDEL_LIST_ASSOC_VAL(maplist)
+	for(var/list/L in maplist)
+		QDEL_LIST_ASSOC_VAL(L)
 	maplist = null
-	QDEL_NULL(defaultmap)
-	*/
+	QDEL_LIST_ASSOC_VAL(defaultmaps)
+	defaultmaps = null
 
 
 /datum/controller/configuration/Destroy()
@@ -243,8 +226,6 @@
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
-	mode_reports = list()
-	mode_false_report_weight = list()
 	votable_modes = list()
 	for(var/T in gamemode_cache)
 		// I wish I didn't have to instance the game modes in order to look up
@@ -261,21 +242,14 @@
 
 /datum/controller/configuration/proc/LoadMOTD()
 	GLOB.motd = file2text("[directory]/motd.txt")
-	GLOB.motd += "<br><br><span class='tip'>[pick(ALLTIPS)]<br></span>"
-
-	/*
-	var/tm_info = GLOB.revdata.GetTestMergeInfo()
-	if(motd || tm_info)
-		motd = motd ? "[motd]<br>[tm_info]" : tm_info
-	*/
 
 
-/datum/controller/configuration/proc/loadmaplist(filename)
+/datum/controller/configuration/proc/loadmaplist(filename, maptype)
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
 
-	var/datum/map_config/currentmap = null
+	var/datum/map_config/currentmap
 	for(var/t in Lines)
 		if(!t)
 			continue
@@ -299,101 +273,39 @@
 		if(!command)
 			continue
 
-		if (!currentmap && command != "map")
+		if(!currentmap && command != "map")
 			continue
 
-		switch (command)
-			if ("map")
+		switch(command)
+			if("map")
 				currentmap = load_map_config("_maps/[data].json")
 				if(currentmap.defaulted)
 					log_config("Failed to load map config for [data]!")
 					currentmap = null
-			if ("minplayers","minplayer")
+			if("minplayers", "minplayer")
 				currentmap.config_min_users = text2num(data)
-			if ("maxplayers","maxplayer")
+			if("maxplayers", "maxplayer")
 				currentmap.config_max_users = text2num(data)
-			if ("weight","voteweight")
+			if("weight", "voteweight")
 				currentmap.voteweight = text2num(data)
-			if ("default","defaultmap")
-				defaultmap = currentmap
-			if ("endmap")
+			if("default", "defaultmap")
+				LAZYINITLIST(defaultmaps)
+				defaultmaps[maptype] = currentmap
+			if("endmap")
 				LAZYINITLIST(maplist)
-				maplist[currentmap.map_name] = currentmap
+				LAZYINITLIST(maplist[maptype])
+				maplist[maptype][currentmap.map_name] = currentmap
 				currentmap = null
-			if ("disabled")
+			if("disabled")
 				currentmap = null
 			else
 				log_config("Unknown command in map vote config: '[command]'")
 
+
 /datum/controller/configuration/proc/pick_mode(mode_name)
-	// I wish I didn't have to instance the game modes in order to look up
-	// their information, but it is the only way (at least that I know of).
-	// ^ This guy didn't try hard enough
 	for(var/T in gamemode_cache)
 		var/datum/game_mode/M = T
 		var/ct = initial(M.config_tag)
 		if(ct && ct == mode_name)
 			return new T
 	return new /datum/game_mode/extended()
-
-
-/datum/controller/configuration/proc/get_runnable_modes()
-	return
-/*
-	var/list/datum/game_mode/runnable_modes = new
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
-	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
-	var/list/max_pop = Get(/datum/config_entry/keyed_list/max_pop)
-	var/list/repeated_mode_adjust = Get(/datum/config_entry/number_list/repeated_mode_adjust)
-	for(var/T in gamemode_cache)
-		var/datum/game_mode/M = new T()
-		runnable_modes += M
-		if(!(M.config_tag in modes))
-			qdel(M)
-			continue
-		if(probabilities[M.config_tag]<=0)
-			qdel(M)
-			continue
-		if(min_pop[M.config_tag])
-			M.required_players = min_pop[M.config_tag]
-		if(max_pop[M.config_tag])
-			M.maximum_players = max_pop[M.config_tag]
-		if(M.can_start())
-			var/final_weight = probabilities[M.config_tag]
-			if(SSpersistence.saved_modes.len == 3 && repeated_mode_adjust.len == 3)
-				var/recent_round = min(SSpersistence.saved_modes.Find(M.config_tag),3)
-				var/adjustment = 0
-				while(recent_round)
-					adjustment += repeated_mode_adjust[recent_round]
-					recent_round = SSpersistence.saved_modes.Find(M.config_tag,recent_round+1,0)
-				final_weight *= ((100-adjustment)/100)
-			runnable_modes[M] = final_weight
-	return runnable_modes
-*/
-
-
-/datum/controller/configuration/proc/get_runnable_midround_modes(crew)
-	return
-/*
-	var/list/datum/game_mode/runnable_modes = new
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
-	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
-	var/list/max_pop = Get(/datum/config_entry/keyed_list/max_pop)
-	for(var/T in (gamemode_cache - SSticker.mode.type))
-		var/datum/game_mode/M = new T()
-		if(!(M.config_tag in modes))
-			qdel(M)
-			continue
-		if(probabilities[M.config_tag]<=0)
-			qdel(M)
-			continue
-		if(min_pop[M.config_tag])
-			M.required_players = min_pop[M.config_tag]
-		if(max_pop[M.config_tag])
-			M.maximum_players = max_pop[M.config_tag]
-		if(M.required_players <= crew)
-			if(M.maximum_players >= 0 && M.maximum_players < crew)
-				continue
-			runnable_modes[M] = probabilities[M.config_tag]
-	return runnable_modes
-*/

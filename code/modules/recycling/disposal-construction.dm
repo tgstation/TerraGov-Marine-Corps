@@ -7,9 +7,9 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = 0
-	density = 0
-	matter = list("metal" = 1850)
+	anchored = FALSE
+	density = FALSE
+	materials = list(/datum/material/metal = 1850)
 	level = 2
 	var/ptype = 0
 	// 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk, 6=disposal bin, 7=outlet, 8=inlet
@@ -42,7 +42,7 @@
 			if(5)
 				base_state = "pipe-t"
 				dpdir = dir
-			 // disposal bin has only one dir, thus we don't need to care about setting it
+			// disposal bin has only one dir, thus we don't need to care about setting it
 			if(6)
 				if(anchored)
 					base_state = "disposal"
@@ -177,7 +177,6 @@
 	attackby(var/obj/item/I, var/mob/user)
 		var/nicetype = "pipe"
 		var/ispipe = 0 // Indicates if we should change the level of this pipe
-		src.add_fingerprint(user)
 		switch(ptype)
 			if(6)
 				nicetype = "disposal bin"
@@ -207,12 +206,12 @@
 
 		if(iswrench(I))
 			if(anchored)
-				anchored = 0
+				anchored = FALSE
 				if(ispipe)
 					level = 2
-					density = 0
+					density = FALSE
 				else
-					density = 1
+					density = TRUE
 				to_chat(user, "You detach the [nicetype] from the underfloor.")
 			else
 				if(ptype>=6 && ptype <= 8) // Disposal or outlet
@@ -233,31 +232,29 @@
 							to_chat(user, "There is already a [nicetype] at that location.")
 							return
 
-				anchored = 1
+				anchored = TRUE
 				if(ispipe)
 					level = 1 // We don't want disposal bins to disappear under the floors
-					density = 0
+					density = FALSE
 				else
-					density = 1 // We don't want disposal bins or outlets to go density 0
+					density = TRUE // We don't want disposal bins or outlets to go density 0
 				to_chat(user, "You attach the [nicetype] to the underfloor.")
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+			playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1)
 			update()
 
 		else if(iswelder(I))
 			if(anchored)
 				var/obj/item/tool/weldingtool/W = I
 				if(W.remove_fuel(0,user))
-					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+					playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
 					to_chat(user, "Welding the [nicetype] in place.")
-					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-						if(!src || !W.isOn()) return
+					if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 						to_chat(user, "The [nicetype] has been welded in place!")
 						update() // TODO: Make this neat
 						if(ispipe) // Pipe
 
 							var/pipetype = dpipetype()
 							var/obj/structure/disposalpipe/P = new pipetype(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.base_icon_state = base_state
 							P.setDir(dir)
 							P.dpdir = dpdir
@@ -270,13 +267,11 @@
 
 						else if(ptype==6) // Disposal bin
 							var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.mode = 0 // start with pump off
 
 						else if(ptype==7) // Disposal outlet
 
 							var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.setDir(dir)
 							var/obj/structure/disposalpipe/trunk/Trunk = CP
 							Trunk.linked = P
@@ -284,7 +279,6 @@
 						else if(ptype==8) // Disposal outlet
 
 							var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
-							src.transfer_fingerprints_to(P)
 							P.setDir(dir)
 
 						qdel(src)

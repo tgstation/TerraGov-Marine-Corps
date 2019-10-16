@@ -7,20 +7,12 @@
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
 	buckle_lying = FALSE
+	max_integrity = 100
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
 /obj/structure/bed/chair/Initialize()
-	if(anchored)
-		src.verbs -= /atom/movable/verb/pull
 	. = ..()
 	handle_rotation()
-
-/obj/structure/bed/chair/attack_tk(mob/user as mob)
-	if(buckled_mob)
-		..()
-	else
-		rotate()
-	return
 
 /obj/structure/bed/chair/setDir(newdir)
 	. = ..()
@@ -38,16 +30,15 @@
 	set name = "Rotate Chair"
 	set category = "Object"
 	set src in view(0)
-	
+
 	var/mob/living/carbon/user = usr
 
 	if(!istype(user) || !isturf(user.loc) || user.incapacitated())
 		return FALSE
 
-	if(!CONFIG_GET(flag/unlimited_rotate_speed))
-		if(world.time <= user.next_move)
-			return FALSE
-		user.next_move = world.time + 3
+	if(world.time <= user.next_move)
+		return FALSE
+	user.next_move = world.time + 3
 
 	setDir(turn(dir, 90))
 
@@ -58,39 +49,44 @@
 	buildstackamount = 2
 
 
-/obj/structure/bed/chair/reinforced/attackby(obj/item/W, mob/user)
-	if(iswrench(W))
+/obj/structure/bed/chair/reinforced/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		to_chat(user, "<span class='warning'>You can only deconstruct this by welding it down!</span>")
-	else if(iswelder(W))
+
+	else if(iswelder(I))
 		if(user.action_busy)
 			return
+		var/obj/item/tool/weldingtool/WT = I
 
 		if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to weld down \the [src].</span>")
 			var/fumbling_time = 50 * (SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer)
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
-			"<span class='notice'>You begin welding down \the [src].</span>")
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
-				to_chat(user, "<span class='warning'>You need to stand still!</span>")
-				return
-			user.visible_message("<span class='notice'>[user] welds down \the [src].</span>",
-			"<span class='notice'>You weld down \the [src].</span>")
-			if(buildstacktype)
-				new buildstacktype(loc, buildstackamount)
-			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			qdel(src)
+		if(!WT.remove_fuel(0, user))
+			return
+
+		user.visible_message("<span class='notice'>[user] begins welding down \the [src].</span>",
+		"<span class='notice'>You begin welding down \the [src].</span>")
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			to_chat(user, "<span class='warning'>You need to stand still!</span>")
+			return
+		user.visible_message("<span class='notice'>[user] welds down \the [src].</span>",
+		"<span class='notice'>You weld down \the [src].</span>")
+		if(buildstacktype)
+			new buildstacktype(loc, buildstackamount)
+		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+		qdel(src)
 
 
 /obj/structure/bed/chair/wood
 	buildstacktype = /obj/item/stack/sheet/wood
-	hit_bed_sound = 'sound/effects/woodhit.ogg'
+	hit_sound = 'sound/effects/woodhit.ogg'
 
 /obj/structure/bed/chair/wood/normal
 	icon_state = "wooden_chair"
@@ -107,7 +103,7 @@
 	desc = "It looks comfy."
 	icon_state = "comfychair"
 	color = rgb(255,255,255)
-	hit_bed_sound = 'sound/weapons/bladeslice.ogg'
+	hit_sound = 'sound/weapons/bladeslice.ogg'
 
 /obj/structure/bed/chair/comfy/brown
 	color = rgb(255,113,0)
@@ -124,8 +120,23 @@
 /obj/structure/bed/chair/comfy/lime
 	color = rgb(255,251,0)
 
+/obj/structure/bed/chair/sofa
+	name = "comfy sofa"
+	desc = "It looks comfy."
+	icon_state = "sofamiddle"
+
+
+/obj/structure/bed/chair/sofa/left
+	icon_state = "sofaend_left"
+
+/obj/structure/bed/chair/sofa/right
+	icon_state = "sofaend_right"
+
+/obj/structure/bed/chair/sofa/corner
+	icon_state = "sofacorner"
+
 /obj/structure/bed/chair/office
-	anchored = 0
+	anchored = FALSE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
@@ -156,15 +167,15 @@
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/office/dark
 	icon_state = "officechair_dark"
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/bed/chair/dropship/pilot
 	icon_state = "pilot_chair"
-	anchored = 1
+	anchored = TRUE
 	name = "pilot's chair"
 	desc = "A specially designed chair for pilots to sit in."
 
@@ -181,19 +192,17 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/is_animating = 0
 
-/obj/structure/bed/chair/dropship/passenger/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
+/obj/structure/bed/chair/dropship/passenger/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED && istype(mover, /obj/vehicle/multitile) && !is_animating)
 		visible_message("<span class='danger'>[mover] slams into [src] and breaks it!</span>")
-		spawn(0)
-			fold_down(1)
-		return 0
+		INVOKE_ASYNC(src, .proc/fold_down, TRUE)
+		return FALSE
 	return ..()
 
-/obj/structure/bed/chair/dropship/passenger/New()
+/obj/structure/bed/chair/dropship/passenger/Initialize()
+	. = ..()
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
-
-	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/afterbuckle()
 	if(buckled_mob)
@@ -208,12 +217,13 @@
 		return
 	..()
 
-/obj/structure/bed/chair/dropship/passenger/proc/fold_down(var/break_it = 0)
+/obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = FALSE)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
 		is_animating = 0
-		unbuckle()
+		if(buckled_mob)
+			unbuckle()
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
@@ -242,47 +252,56 @@
 /obj/structure/bed/chair/dropship/passenger/attack_alien(mob/living/user)
 	if(chair_state != DROPSHIP_CHAIR_BROKEN)
 		user.visible_message("<span class='warning'>[user] smashes \the [src], shearing the bolts!</span>",
-		"<span class='warning'>You smash \the [src], shearing the bolts!</span>")
+		"<span class='warning'>We smash \the [src], shearing the bolts!</span>")
 		fold_down(1)
 
-/obj/structure/bed/chair/dropship/passenger/attackby(obj/item/W, mob/living/user)
-	if(iswrench(W))
+/obj/structure/bed/chair/dropship/passenger/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswrench(I))
 		switch(chair_state)
 			if(DROPSHIP_CHAIR_UNFOLDED)
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
 				"<span class='warning'>You begin loosening the bolts on \the [src].</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user.visible_message("<span class='warning'>[user] loosens the bolts on \the [src], folding it into the decking.</span>",
-					"<span class='warning'>You loosen the bolts on \the [src], folding it into the decking.</span>")
-					fold_down()
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
+
+				user.visible_message("<span class='warning'>[user] loosens the bolts on \the [src], folding it into the decking.</span>",
+				"<span class='warning'>You loosen the bolts on \the [src], folding it into the decking.</span>")
+				fold_down()
+
 			if(DROPSHIP_CHAIR_FOLDED)
 				user.visible_message("<span class='warning'>[user] begins unfolding \the [src].</span>",
 				"<span class='warning'>You begin unfolding \the [src].</span>")
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user.visible_message("<span class='warning'>[user] unfolds \the [src] from the floor and tightens the bolts.</span>",
-					"<span class='warning'>You unfold \the [src] from the floor and tighten the bolts.</span>")
-					unfold_up()
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
+
+				user.visible_message("<span class='warning'>[user] unfolds \the [src] from the floor and tightens the bolts.</span>",
+				"<span class='warning'>You unfold \the [src] from the floor and tighten the bolts.</span>")
+				unfold_up()
+
 			if(DROPSHIP_CHAIR_BROKEN)
 				to_chat(user, "<span class='warning'>\The [src] appears to be broken and needs welding.</span>")
 				return
-	else if(iswelder(W) && chair_state == DROPSHIP_CHAIR_BROKEN)
-		var/obj/item/tool/weldingtool/C = W
-		if(C.remove_fuel(0,user))
-			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
-			"<span class='warning'>You begin repairing \the [src].</span>")
-			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",
-				"<span class='warning'>You repair \the [src].</span>")
-				chair_state = DROPSHIP_CHAIR_FOLDED
-				return
-	else
-		..()
 
+	else if(iswelder(I) && chair_state == DROPSHIP_CHAIR_BROKEN)
+		var/obj/item/tool/weldingtool/C = I
+		if(!C.remove_fuel(0, user))
+			return
+
+		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+		user.visible_message("<span class='warning'>[user] begins repairing \the [src].</span>",
+		"<span class='warning'>You begin repairing \the [src].</span>")
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		user.visible_message("<span class='warning'>[user] repairs \the [src].</span>",
+		"<span class='warning'>You repair \the [src].</span>")
+		chair_state = DROPSHIP_CHAIR_FOLDED
 
 
 /obj/structure/bed/chair/ob_chair

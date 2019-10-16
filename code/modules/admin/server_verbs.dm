@@ -13,11 +13,12 @@
 		return
 
 	var/message = FALSE
-	switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
-		if("Yes")
-			message = TRUE
-		if("Cancel")
-			return
+	if(CONFIG_GET(string/restart_message))
+		switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+			if("Yes")
+				message = TRUE
+			if("Cancel")
+				return
 
 	to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by: [usr.key]</span>")
 
@@ -102,7 +103,7 @@
 		return
 
 	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
-	log_game("Server shutting down. Initiated by: [shuttingdown]")
+	log_admin("Server shutting down. Initiated by: [shuttingdown]")
 
 #ifdef TGS_V3_API
 	if(GLOB.tgs)
@@ -115,15 +116,15 @@
 			else
 				var/msg = "WARNING: Couldn't find tgstation-server3 instancename, server might restart after shutdown."
 				message_admins(msg)
-				log_game(msg)
+				log_admin(msg)
 		else
 			var/msg = "WARNING: Couldn't find tgstation-server3 command line interface, server will very likely restart after shutdown."
 			message_admins(msg)
-			log_game(msg)
+			log_admin(msg)
 	else
 		var/msg = "WARNING: Couldn't find tgstation-server3 api object, server could restart after shutdown, but it will very likely be just fine"
 		message_admins(msg)
-		log_game(msg)
+		log_admin(msg)
 #endif
 
 	sleep(world.tick_lag) //so messages can get sent to players.
@@ -215,18 +216,34 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(SSticker?.current_state != GAME_STATE_PREGAME)
-		to_chat(usr, "<span class='warning'>The round cannot be started early in this state.</span>")
+	if(SSticker.current_state != GAME_STATE_STARTUP && SSticker.current_state != GAME_STATE_PREGAME)
+		to_chat(usr, "<span class='warning'>The round has already started.</span>")
 		return
 
 	if(SSticker.start_immediately)
 		SSticker.start_immediately = FALSE
 		log_admin("[key_name(usr)] has cancelled the early round start.")
 		message_admins("[ADMIN_TPMONTY(usr)] has cancelled the early round start.")
-	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "Yes")
-		SSticker.start_immediately = TRUE
-		log_admin("[key_name(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
-		message_admins("[ADMIN_TPMONTY(usr)] has started the round early[SSticker.current_state == GAME_STATE_STARTUP ? ". The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again." : ""].")
+		return
+
+	var/msg = "has started the round early."
+
+	if(SSticker.setup_failed)
+		if(alert("Previous setup failed. Would you like to try again, bypassing the checks? Win condition checking will also be paused.", "Start Round", "Yes", "No") != "Yes")
+			return
+		msg += " Bypassing roundstart checks."
+		SSticker.bypass_checks = TRUE
+		SSticker.roundend_check_paused = TRUE
+
+	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+		return
+
+	if(SSticker.current_state == GAME_STATE_STARTUP)
+		msg += " The round is still setting up, but the round will be started as soon as possible. You may abort this by trying to start early again."
+
+	SSticker.start_immediately = TRUE
+	log_admin("[key_name(usr)] [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
 
 
 /datum/admins/proc/toggle_join()
@@ -286,8 +303,8 @@
 
 /datum/admins/proc/end_round()
 	set category = "Server"
-	set desc = "Immediately ends the round, be very careful"
 	set name = "End Round"
+	set desc = "Immediately ends the round, be very careful"
 
 	if(!check_rights(R_SERVER))
 		return
@@ -295,13 +312,23 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes", "No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
 		return
 
-	SSticker.mode.round_finished = "Admin Intervention"
+	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention") + SSticker.mode.round_end_states
+	if(!winstate)
+		return
 
-	log_admin("[key_name(usr)] has made the round end early.")
-	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
+	if(winstate == "Custom")
+		winstate = input(usr, "Please enter a custom round end state.", "End Round") as null|text
+		if(!winstate)
+			return
+
+	SSticker.force_ending = TRUE
+	SSticker.mode.round_finished = winstate
+
+	log_admin("[key_name(usr)] has made the round end early - [winstate].")
+	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early - [winstate].")
 
 
 /datum/admins/proc/delay_start()
@@ -343,14 +370,22 @@
 		return
 
 	if(SSticker.admin_delay_notice)
+		if(alert(usr, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
+			return
 		SSticker.admin_delay_notice = null
 	else
-		SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+		if(!reason)
+			return
+		if(SSticker.admin_delay_notice)
+			to_chat(usr, "<span class='warning'>Someone already delayed the round end meanwhile.</span>")
+			return
+		SSticker.admin_delay_notice = reason
 
 	SSticker.delay_end = !SSticker.delay_end
 
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
-	message_admins("<hr><br><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr><br>")
+	message_admins("<hr><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -407,35 +442,18 @@
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
 
 
-/datum/admins/proc/map_random()
+/datum/admins/proc/change_ground_map()
 	set category = "Server"
-	set name = "Trigger Random Map Rotation"
-
-	if(!check_rights(R_SERVER))
-		return
-
-	var/rotate = alert("Force a random map rotation to trigger?", "Rotate map?", "Yes", "No")
-	if(rotate != "Yes")
-		return
-
-	SSmapping.maprotate()
-
-	log_admin("[key_name(usr)] forced a random map rotation.")
-	message_admins("[ADMIN_TPMONTY(usr)] forced a random map rotation.")
-
-
-/datum/admins/proc/map_change()
-	set category = "Server"
-	set name = "Change Map"
+	set name = "Change Ground Map"
 
 	if(!check_rights(R_SERVER))
 		return
 
 	var/list/maprotatechoices = list()
-	for(var/map in config.maplist)
-		var/datum/map_config/VM = config.maplist[map]
+	for(var/map in config.maplist[GROUND_MAP])
+		var/datum/map_config/VM = config.maplist[GROUND_MAP][map]
 		var/mapname = VM.map_name
-		if(VM == config.defaultmap)
+		if(VM == config.defaultmaps[GROUND_MAP])
 			mapname += " (Default)"
 
 		if(VM.config_min_users > 0 || VM.config_max_users > 0)
@@ -453,15 +471,86 @@
 
 		maprotatechoices[mapname] = VM
 
-	var/chosenmap = input("Choose a map to change to", "Change Map") as null|anything in maprotatechoices
+	var/chosenmap = input("Choose a ground map to change to", "Change Ground Map") as null|anything in maprotatechoices
 	if(!chosenmap)
 		return
 
 	var/datum/map_config/VM = maprotatechoices[chosenmap]
+	if(!SSmapping.changemap(VM, GROUND_MAP))
+		to_chat(usr, "<span class='warning'>Failed to change the ground map.</span>")
+		return
 
-	log_admin("[key_name(usr)] is changing the map to [VM.map_name].")
-	message_admins("[ADMIN_TPMONTY(usr)] is changing the map to [VM.map_name].")
+	log_admin("[key_name(usr)] changed the map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the map to [VM.map_name].")
 
-	if(SSmapping.changemap(VM) == 0)
-		log_admin("[key_name(usr)] has changed the map to [VM.map_name].")
-		message_admins("[ADMIN_TPMONTY(usr)] has changed the map to [VM.map_name].")
+
+/datum/admins/proc/change_ship_map()
+	set category = "Server"
+	set name = "Change Ship Map"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	var/list/maprotatechoices = list()
+	for(var/map in config.maplist[SHIP_MAP])
+		var/datum/map_config/VM = config.maplist[SHIP_MAP][map]
+		var/mapname = VM.map_name
+		if(VM == config.defaultmaps[SHIP_MAP])
+			mapname += " (Default)"
+
+		if(VM.config_min_users > 0 || VM.config_max_users > 0)
+			mapname += " \["
+			if(VM.config_min_users > 0)
+				mapname += "[VM.config_min_users]"
+			else
+				mapname += "0"
+			mapname += "-"
+			if(VM.config_max_users > 0)
+				mapname += "[VM.config_max_users]"
+			else
+				mapname += "inf"
+			mapname += "\]"
+
+		maprotatechoices[mapname] = VM
+
+	var/chosenmap = input("Choose a ship map to change to", "Change Ship Map") as null|anything in maprotatechoices
+	if(!chosenmap)
+		return
+
+	var/datum/map_config/VM = maprotatechoices[chosenmap]
+	if(!SSmapping.changemap(VM, SHIP_MAP))
+		to_chat(usr, "<span class='warning'>Failed to change the ship map.</span>")
+		return
+
+	log_admin("[key_name(usr)] changed the ship map to [VM.map_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the ship map to [VM.map_name].")
+
+
+/datum/admins/proc/panic_bunker()
+	set category = "Server"
+	set name = "Toggle Panic Bunker"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!CONFIG_GET(flag/sql_enabled))
+		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		return
+
+	CONFIG_SET(flag/panic_bunker, !CONFIG_GET(flag/panic_bunker))
+
+	log_admin("[key_name(usr)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
+
+
+/datum/admins/proc/mode_check()
+	set category = "Server"
+	set name = "Toggle Mode Check"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	SSticker.roundend_check_paused = !SSticker.roundend_check_paused
+
+	log_admin("[key_name(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")

@@ -1,12 +1,12 @@
 /obj/effect/manifest
 	name = "manifest"
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "x"
 	resistance_flags = UNACIDABLE
 
-/obj/effect/manifest/New()
-
-	src.invisibility = INVISIBILITY_MAXIMUM
+/obj/effect/manifest/Initialize()
+	. = ..()
+	invisibility = INVISIBILITY_MAXIMUM
 	return
 
 /obj/effect/manifest/proc/manifest()

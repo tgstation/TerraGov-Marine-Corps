@@ -2,19 +2,20 @@
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
-	w_class = 2.0
-	var/vision_flags = 0
-	var/darkness_view = 0//Base human is 2
-	var/see_invisible = 0
+	w_class = WEIGHT_CLASS_SMALL
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
-	var/prescription = 0
+	var/prescription = FALSE
 	var/toggleable = 0
 	var/active = 1
 	flags_inventory = COVEREYES
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
-	var/fullscreen_vision
+	var/vision_flags = 0
+	var/darkness_view = 2 //Base human is 2
+	var/invis_view = SEE_INVISIBLE_LIVING
+	var/invis_override = 0 //Override to allow glasses to set higher than normal see_invis
+	var/lighting_alpha
 
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -30,11 +31,13 @@
 			icon_state = deactive_state
 			user.update_inv_glasses()
 			to_chat(user, "You deactivate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_off.ogg', 15)
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
 			to_chat(user, "You activate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_on.ogg', 15)
 
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -72,16 +75,15 @@
 	icon_state = "material"
 	item_state = "glasses"
 	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=3;engineering=3"
 	toggleable = 1
 	vision_flags = SEE_OBJS
 
 /obj/item/clothing/glasses/regular
-	name = "marine RPG glasses"
+	name = "regulation prescription glasses"
 	desc = "The Corps may call them Regulation Prescription Glasses but you know them as Rut Prevention Glasses."
-	icon_state = "mBCG"
-	item_state = "mBCG"
-	prescription = 1
+	icon_state = "glasses"
+	item_state = "glasses"
+	prescription = TRUE
 
 /obj/item/clothing/glasses/regular/hipster
 	name = "prescription glasses"
@@ -108,6 +110,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 
 /obj/item/clothing/glasses/mgoggles/prescription
@@ -115,7 +118,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/m42_goggles
 	name = "\improper M42 scout sight"
@@ -142,45 +145,51 @@
 	eye_protection = 2
 	tint = TINT_HEAVY
 
-/obj/item/clothing/glasses/welding/attack_self()
-	toggle()
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	toggle(user)
 
 
-/obj/item/clothing/glasses/welding/verb/toggle()
+/obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
 	set name = "Adjust welding goggles"
 	set src in usr
 
-	if(usr.canmove && !usr.stat && !usr.restrained())
-		if(active)
-			active = 0
-			flags_inventory &= ~COVEREYES
-			flags_inv_hide &= ~HIDEEYES
-			flags_armor_protection &= ~EYES
-			icon_state = "[initial(icon_state)]up"
-			eye_protection = 0
-			tint = TINT_NONE
-			to_chat(usr, "You push [src] up out of your face.")
-		else
-			active = 1
-			flags_inventory |= COVEREYES
-			flags_inv_hide |= HIDEEYES
-			flags_armor_protection |= EYES
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			tint = initial(tint)
-			to_chat(usr, "You flip [src] down to protect your eyes.")
+	if(!usr.incapacitated())
+		toggle(usr)
+
+/obj/item/clothing/glasses/welding/proc/toggle(mob/user)
+	active = !active
+	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
+	if(!active)
+		DISABLE_BITFIELD(flags_inventory, COVEREYES)
+		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		DISABLE_BITFIELD(flags_armor_protection, EYES)
+		eye_protection = 0
+		tint = TINT_NONE
+	else
+		ENABLE_BITFIELD(flags_inventory, COVEREYES)
+		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+		ENABLE_BITFIELD(flags_armor_protection, EYES)
+		eye_protection = initial(eye_protection)
+		tint = initial(tint)
+	if(user)
+		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				H.update_tint()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.glasses == src)
+			H.update_tint()
 
-		update_clothing_icon()
+	update_clothing_icon()
 
-		update_action_button_icons()
+	update_action_button_icons()
 
+/obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
+
+/obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
+	. = ..()
+	toggle()
 
 /obj/item/clothing/glasses/welding/superior
 	name = "superior welding goggles"
@@ -211,7 +220,7 @@
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
-	prescription = 1
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -244,23 +253,15 @@
 	name = "spatial agent's sunglasses"
 	desc = "Glasses worn by a spatial agent."
 	eye_protection = 2
+	darkness_view = 8
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
-	var/hud_type = MOB_HUD_MEDICAL_OBSERVER|MOB_HUD_SECURITY_ADVANCED
-
-/obj/item/clothing/glasses/sunglasses/sa/equipped(mob/living/carbon/human/user, slot)
-	if(slot == SLOT_GLASSES)
-		user.see_invisible = SEE_INVISIBLE_MINIMUM
-		user.see_in_dark = 8
-
-/obj/item/clothing/glasses/sunglasses/sa/dropped(mob/living/carbon/human/user)
-	user.see_invisible = initial(user.see_invisible)
-	user.see_in_dark = initial(user.see_in_dark)
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
-	var/hud_type = MOB_HUD_SECURITY_ADVANCED
+	var/hud_type = DATA_HUD_SECURITY_ADVANCED
 
 /obj/item/clothing/glasses/sunglasses/sechud/eyepiece
 	name = "Security HUD Sight"
@@ -271,14 +272,14 @@
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_GLASSES)
-		var/datum/mob_hud/H = huds[hud_type]
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
 	..()
 
 /obj/item/clothing/glasses/sunglasses/sechud/dropped(mob/living/carbon/human/user)
 	if(istype(user))
 		if(src == user.glasses) //dropped is called before the inventory reference is updated.
-			var/datum/mob_hud/H = huds[hud_type]
+			var/datum/atom_hud/H = GLOB.huds[hud_type]
 			H.remove_hud_from(user)
 	..()
 
@@ -288,4 +289,14 @@
 	desc = "Flash-resistant goggles with inbuilt combat and security information."
 	icon_state = "swatgoggles"
 
+/obj/item/clothing/glasses/sunglasses/aviator
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses."
+	icon_state = "aviator"
+	item_state = "aviator"
 
+/obj/item/clothing/glasses/sunglasses/aviator/yellow
+	name = "aviator sunglasses"
+	desc = "A pair of aviator sunglasses. Comes with yellow lens."
+	icon_state = "aviator_yellow"
+	item_state = "aviator_yellow"

@@ -544,80 +544,80 @@
 				<h3>Standard Cyborg</h3>
 				The standard cyborg module is a multi-purpose cyborg. It is equipped with various modules, allowing it to do basic tasks.<br>A Standard Cyborg comes with:
 				<ul>
-				  <li>Crowbar</li>
-				  <li>Stun Baton</li>
-				  <li>Health Analyzer</li>
-				  <li>Fire Extinguisher</li>
+					<li>Crowbar</li>
+					<li>Stun Baton</li>
+					<li>Health Analyzer</li>
+					<li>Fire Extinguisher</li>
 				</ul>
 
 				<h3>Engineering Cyborg</h3>
 				The Engineering cyborg module comes equipped with various engineering-related tools to help with engineering-related tasks.<br>An Engineering Cyborg comes with:
 				<ul>
-				  <li>A basic set of engineering tools</li>
-				  <li>Metal Synthesizer</li>
-				  <li>Reinforced Glass Synthesizer</li>
-				  <li>An RCD</li>
-				  <li>Wire Synthesizer</li>
-				  <li>Fire Extinguisher</li>
-				  <li>Built-in Optical Meson Scanners</li>
+					<li>A basic set of engineering tools</li>
+					<li>Metal Synthesizer</li>
+					<li>Reinforced Glass Synthesizer</li>
+					<li>An RCD</li>
+					<li>Wire Synthesizer</li>
+					<li>Fire Extinguisher</li>
+					<li>Built-in Optical Meson Scanners</li>
 				</ul>
 
 				<h3>Mining Cyborg</h3>
 				The Mining Cyborg module comes equipped with the latest in mining equipment. They are efficient at mining due to no need for oxygen, but their power cells limit their time in the mines.<br>A Mining Cyborg comes with:
 				<ul>
-				  <li>Jackhammer</li>
-				  <li>Shovel</li>
-				  <li>Mining Satchel</li>
-				  <li>Built-in Optical Meson Scanners</li>
+					<li>Jackhammer</li>
+					<li>Shovel</li>
+					<li>Mining Satchel</li>
+					<li>Built-in Optical Meson Scanners</li>
 				</ul>
 
 				<h3>Security Cyborg</h3>
 				The Security Cyborg module is equipped with effective security measures used to apprehend and arrest criminals without harming them a bit.<br>A Security Cyborg comes with:
 				<ul>
-				  <li>Stun Baton</li>
-				  <li>Handcuffs</li>
-				  <li>Taser</li>
+					<li>Stun Baton</li>
+					<li>Handcuffs</li>
+					<li>Taser</li>
 				</ul>
 
 				<h3>Janitor Cyborg</h3>
 				The Janitor Cyborg module is equipped with various cleaning-facilitating devices.<br>A Janitor Cyborg comes with:
 				<ul>
-				  <li>Mop</li>
-				  <li>Hand Bucket</li>
-				  <li>Cleaning Spray Synthesizer and Spray Nozzle</li>
+					<li>Mop</li>
+					<li>Hand Bucket</li>
+					<li>Cleaning Spray Synthesizer and Spray Nozzle</li>
 				</ul>
 
 				<h3>Service Cyborg</h3>
 				The service cyborg module comes ready to serve your human needs. It includes various entertainment and refreshment devices. Occasionally some service cyborgs may have been referred to as "Bros."<br>A Service Cyborg comes with:
 				<ul>
-				  <li>Shaker</li>
-				  <li>Industrial Dropper</li>
-				  <li>Platter</li>
-				  <li>Beer Synthesizer</li>
-				  <li>Zippo Lighter</li>
-				  <li>Rapid-Service-Fabricator (Produces various entertainment and refreshment objects)</li>
-				  <li>Pen</li>
+					<li>Shaker</li>
+					<li>Industrial Dropper</li>
+					<li>Platter</li>
+					<li>Beer Synthesizer</li>
+					<li>Zippo Lighter</li>
+					<li>Rapid-Service-Fabricator (Produces various entertainment and refreshment objects)</li>
+					<li>Pen</li>
 				</ul>
 
 				<h2><a name="Construction">Cyborg Construction</h2>
 				Cyborg construction is a rather easy process, requiring a decent amount of metal and a few other supplies.<br>The required materials to make a cyborg are:
 				<ul>
-				  <li>Metal</li>
-				  <li>Two Flashes</li>
-				  <li>One Power Cell (Preferably rated to 15000w)</li>
-				  <li>Some electrical wires</li>
-				  <li>One Human Brain</li>
-				  <li>One Man-Machine Interface</li>
+					<li>Metal</li>
+					<li>Two Flashes</li>
+					<li>One Power Cell (Preferably rated to 15000w)</li>
+					<li>Some electrical wires</li>
+					<li>One Human Brain</li>
+					<li>One Man-Machine Interface</li>
 				</ul>
 				Once you have acquired the materials, you can start on construction of your cyborg.<br>To construct a cyborg, follow the steps below:
 				<ol>
-				  <li>Start the Exosuit Fabricators constructing all of the cyborg parts</li>
-				  <li>While the parts are being constructed, take your human brain, and place it inside the Man-Machine Interface</li>
-				  <li>Once you have a Robot Head, place your two flashes inside the eye sockets</li>
-				  <li>Once you have your Robot Chest, wire the Robot chest, then insert the power cell</li>
-				  <li>Attach all of the Robot parts to the Robot frame</li>
-				  <li>Insert the Man-Machine Interface (With the Brain inside) into the Robot Body</li>
-				  <li>Congratulations! You have a new cyborg!</li>
+					<li>Start the Exosuit Fabricators constructing all of the cyborg parts</li>
+					<li>While the parts are being constructed, take your human brain, and place it inside the Man-Machine Interface</li>
+					<li>Once you have a Robot Head, place your two flashes inside the eye sockets</li>
+					<li>Once you have your Robot Chest, wire the Robot chest, then insert the power cell</li>
+					<li>Attach all of the Robot parts to the Robot frame</li>
+					<li>Insert the Man-Machine Interface (With the Brain inside) into the Robot Body</li>
+					<li>Congratulations! You have a new cyborg!</li>
 				</ol>
 
 				<h2><a name="Maintenance">Cyborg Maintenance</h2>
@@ -626,12 +626,12 @@
 				<h3>Replacing a Power Cell</h3>
 				Replacing a Power cell is a common type of maintenance for cyborgs. It usually involves replacing the cell with a fully charged one, or upgrading the cell with a larger capacity cell.<br>The steps to replace a cell are as follows:
 				<ol>
-				  <li>Unlock the Cyborg's Interface by swiping your ID on it</li>
-				  <li>Open the Cyborg's outer panel using a crowbar</li>
-				  <li>Remove the old power cell</li>
-				  <li>Insert the new power cell</li>
-				  <li>Close the Cyborg's outer panel using a crowbar</li>
-				  <li>Lock the Cyborg's Interface by swiping your ID on it, this will prevent non-qualified personnel from attempting to remove the power cell</li>
+					<li>Unlock the Cyborg's Interface by swiping your ID on it</li>
+					<li>Open the Cyborg's outer panel using a crowbar</li>
+					<li>Remove the old power cell</li>
+					<li>Insert the new power cell</li>
+					<li>Close the Cyborg's outer panel using a crowbar</li>
+					<li>Lock the Cyborg's Interface by swiping your ID on it, this will prevent non-qualified personnel from attempting to remove the power cell</li>
 				</ol>
 
 				<h3>Exposing the Internal Wiring</h3>
@@ -1151,7 +1151,7 @@
 
 				EVA gear. Wonderful to use. It's useful for mining, engineering, and occasionally just surviving, if things are that bad. Most people have EVA training,
 				but apparently there are some on a space station who don't. This guide should give you a basic idea of how to use this gear, safely. It's split into two sections:
-				 Civilian suits and hardsuits.<BR><BR>
+				Civilian suits and hardsuits.<BR><BR>
 
 				<h2><a name="Civilian">Civilian Suits</a></h2>
 				<I>The bulkiest things this side of Alpha Centauri</I><BR>

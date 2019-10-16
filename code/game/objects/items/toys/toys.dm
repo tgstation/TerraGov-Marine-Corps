@@ -1,16 +1,16 @@
 /* Toys!
- * Contains:
- *		Balloons
- *		Fake telebeacon
- *		Fake singularity
- *      Toy mechs
- *		Crayons
- *		Snap pops
- *		Water flower
- *      Therapy dolls
- *      Inflatable duck
- *		Other things
- */
+* Contains:
+*		Balloons
+*		Fake telebeacon
+*		Fake singularity
+*      Toy mechs
+*		Crayons
+*		Snap pops
+*		Water flower
+*      Therapy dolls
+*      Inflatable duck
+*		Other things
+*/
 
 
 //recreational items
@@ -24,15 +24,16 @@
 
 
 /*
- * Balloons
- */
+* Balloons
+*/
 /obj/item/toy/balloon
 	name = "water balloon"
 	desc = "A translucent balloon. There's nothing in it."
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/New()
+/obj/item/toy/balloon/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
@@ -49,22 +50,29 @@
 		src.update_icon()
 	return
 
-/obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/reagent_container/glass))
-		if(O.reagents)
-			if(O.reagents.total_volume < 1)
-				to_chat(user, "The [O] is empty.")
-			else if(O.reagents.total_volume >= 1)
-				if(O.reagents.has_reagent("pacid", 1))
-					to_chat(user, "The acid chews through the balloon!")
-					O.reagents.reaction(user, TOUCH)
-					qdel(src)
-				else
-					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-					to_chat(user, "<span class='notice'>You fill the balloon with the contents of [O].</span>")
-					O.reagents.trans_to(src, 10)
-	src.update_icon()
-	return
+/obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/reagent_container/glass))
+		if(!I.reagents)
+			return
+
+		if(I.reagents.total_volume < 1)
+			to_chat(user, "The [I] is empty.")
+			return
+
+		if(I.reagents.has_reagent(/datum/reagent/toxin/acid/polyacid, 1))
+			to_chat(user, "The acid chews through the balloon!")
+			I.reagents.reaction(user, TOUCH)
+			qdel(src)
+			return
+
+		desc = "A translucent balloon with some form of liquid sloshing around in it."
+		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [I].</span>")
+		I.reagents.trans_to(src, 10)
+
+	update_icon()
+
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
@@ -73,10 +81,7 @@
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
 		src.icon_state = "burst"
-		spawn(5)
-			if(src)
-				qdel(src)
-	return
+		QDEL_IN(src, 5)
 
 /obj/item/toy/balloon/update_icon()
 	if(src.reagents.total_volume >= 1)
@@ -96,11 +101,11 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "syndballoon"
 	item_state = "syndballoon"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 
 /*
- * Fake telebeacon
- */
+* Fake telebeacon
+*/
 /obj/item/toy/blink
 	name = "electronic blink toy game"
 	desc = "Blink.  Blink.  Blink. Ages 8 and up."
@@ -109,8 +114,8 @@
 	item_state = "signaler"
 
 /*
- * Fake singularity
- */
+* Fake singularity
+*/
 /obj/item/toy/spinningtoy
 	name = "Gravitational Singularity"
 	desc = "\"Singulo\" brand spinning toy."
@@ -120,15 +125,15 @@
 
 
 /*
- * Crayons
- */
+* Crayons
+*/
 
 /obj/item/toy/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "coloured")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
@@ -141,13 +146,13 @@
 	return (BRUTELOSS|OXYLOSS)
 
 /*
- * Snap pops
- */
+* Snap pops
+*/
 /obj/item/toy/snappop
 	name = "snap pop"
 	desc = "Wow!"
 	icon_state = "snappop"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	throw_impact(atom/hit_atom)
 		..()
@@ -174,8 +179,8 @@
 			qdel(src)
 
 /*
- * Water flower
- */
+* Water flower
+*/
 /obj/item/toy/waterflower
 	name = "Water Flower"
 	desc = "A seemingly innocent sunflower...with a twist."
@@ -185,11 +190,12 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/New()
+/obj/item/toy/waterflower/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", 10)
+	R.add_reagent(/datum/reagent/water, 10)
 
 /obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
@@ -244,8 +250,8 @@
 
 
 /*
- * Mech prizes
- */
+* Mech prizes
+*/
 /obj/item/toy/prize
 	icon_state = "ripleytoy"
 	var/cooldown = 0
@@ -257,14 +263,16 @@
 		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, "<span class='notice'>You play with [src].</span>")
 			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
 			cooldown = world.time
 			return
-	..()
 
 /obj/item/toy/prize/ripley
 	name = "toy ripley"
@@ -328,7 +336,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyred"
 	item_state = "egg4" // It's the red egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_purple
 	name = "purple therapy doll"
@@ -336,7 +344,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapypurple"
 	item_state = "egg1" // It's the magenta egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_blue
 	name = "blue therapy doll"
@@ -344,7 +352,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyblue"
 	item_state = "egg2" // It's the blue egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_yellow
 	name = "yellow therapy doll"
@@ -352,7 +360,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyyellow"
 	item_state = "egg5" // It's the yellow egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_orange
 	name = "orange therapy doll"
@@ -360,7 +368,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapyorange"
 	item_state = "egg4" // It's the red one again, lacking an orange item_state and making a new one is pointless
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/therapy_green
 	name = "green therapy doll"
@@ -368,7 +376,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 
 /obj/item/toy/inflatable_duck
@@ -384,9 +392,9 @@
 	name = "beach ball"
 	icon_state = "beachball"
 	item_state = "beachball"
-	density = 0
-	anchored = 0
-	w_class = 2.0
+	density = FALSE
+	anchored = FALSE
+	w_class = WEIGHT_CLASS_SMALL
 	force = 0.0
 	throwforce = 0.0
 	throw_speed = 1
@@ -402,11 +410,12 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/items/dice.dmi'
 	icon_state = "d66"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
 	attack_verb = list("diced")
 
-/obj/item/toy/dice/New()
+/obj/item/toy/dice/Initialize()
+	. = ..()
 	icon_state = "[name][rand(sides)]"
 
 /obj/item/toy/dice/d20
@@ -424,8 +433,8 @@
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
 	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+						"<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
+						"<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
 
 
 
@@ -438,7 +447,7 @@
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throwforce = 3
-	w_class = 1.0
+	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
 	attack_verb = list("HONKED")
@@ -452,12 +461,85 @@
 /obj/item/toy/farwadoll
 	name = "Farwa plush doll"
 	desc = "A Farwa plush doll. It's soft and comforting!"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	icon_state = "farwaplush"
 	var/last_hug_time
 
 /obj/item/toy/farwadoll/attack_self(mob/user)
 	if(world.time > last_hug_time)
 		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
-							 "<span class='notice'>You hug [src]. Dawwww... </span>")
+							"<span class='notice'>You hug [src]. Dawwww... </span>")
 		last_hug_time = world.time + 50 //5 second cooldown
+
+
+/obj/item/toy/beach_ball/basketball
+	name = "basketball"
+	icon_state = "basketball"
+	item_state = "basketball"
+	desc = "Here's your chance, do your dance at the Space Jam."
+	w_class = WEIGHT_CLASS_BULKY
+
+
+/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/user)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(user)
+
+
+/obj/structure/hoop
+	name = "basketball hoop"
+	desc = "Boom, Shakalaka!"
+	icon = 'icons/obj/structures/misc.dmi'
+	icon_state = "hoop"
+	anchored = TRUE
+	density = TRUE
+	throwpass = 1
+	var/side = ""
+	var/id = ""
+
+
+/obj/structure/hoop/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	
+	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
+		var/obj/item/grab/G = I
+		if(!isliving(G.grabbed_thing))
+			return
+
+		var/mob/living/L = G.grabbed_thing
+		if(user.grab_level < GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			return
+		L.forceMove(loc)
+		L.knock_down(5)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
+			if(X.id == id)
+				X.score(side, 3)// 3 points for dunking a mob
+				// no break, to update multiple scoreboards
+		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
+
+	else if(get_dist(src, user) < 2)
+		user.transferItemToLoc(I, loc)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
+			if(X.id == id)
+				X.score(side)
+		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
+
+
+/obj/structure/hoop/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover,/obj/item) && mover.throwing)
+		var/obj/item/I = mover
+		if(istype(I, /obj/item/projectile))
+			return
+		if(prob(50))
+			I.forceMove(loc)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
+				if(X.id == id)
+					X.score(side)
+					// no break, to update multiple scoreboards
+			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
+		else
+			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
+		return FALSE
+	else
+		return ..()

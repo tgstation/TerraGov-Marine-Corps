@@ -1,11 +1,11 @@
-#define FACEHUGGER_LIFECYCLE 8 SECONDS
+#define FACEHUGGER_LIFECYCLE 12 SECONDS
 #define FACEHUGGER_KNOCKOUT 10
 
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 15 SECONDS
 
 #define MIN_ACTIVE_TIME 4 SECONDS //Time between being dropped and going idle
-#define MAX_ACTIVE_TIME 8 SECONDS
+#define MAX_ACTIVE_TIME 6 SECONDS
 
 /obj/item/clothing/mask/facehugger
 	name = "alien"
@@ -13,10 +13,10 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
-	w_class = 1 //Note: can be picked up by aliens unlike most other items of w_class below 4
+	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
-	flags_atom = NOFLAGS
+	flags_atom = NONE
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = FACEHUGGER_LAYER
@@ -51,7 +51,7 @@
 /obj/item/clothing/mask/facehugger/process()
 	if(throwing)
 		return
-	if(hugger_tick && hugger_tick % 2 == 0)
+	if(hugger_tick % 2 == 0)
 		monitor_surrounding()
 	hugger_tick++
 
@@ -60,32 +60,34 @@
 		var/fertility = sterile ? "impregnated" : "dead"
 		icon_state = "[initial(icon_state)]_[fertility]"
 	else if(throwing)
-		icon_state = "[initial(icon_state)]_throwing"
+		icon_state = "[initial(icon_state)]_thrown"
 	else if(stat == UNCONSCIOUS && !attached)
 		icon_state = "[initial(icon_state)]_inactive"
 	else
 		icon_state = "[initial(icon_state)]"
 
 //Can be picked up by aliens
-/obj/item/clothing/mask/facehugger/attack_paw(user as mob)
+/obj/item/clothing/mask/facehugger/attack_paw(mob/living/carbon/monkey/user)
 	if(isxeno(user))
 		attack_alien(user)
 	else
 		attack_hand(user)
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
-/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
-		user.animation_attack_on(src)
-		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
+		user.do_attack_animation(src)
+		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
+			"<span class='xenowarning'>We crush \the [src]")
 		Die()
 		return
 	else
 		attack_hand(user)
 
-/obj/item/clothing/mask/facehugger/attack_hand(mob/user)
+//ATTACK HAND IGNORING PARENT RETURN VALUE
+/obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
-		var/mob/living/carbon/Xenomorph/X = user
+		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			return ..() // These can pick up huggers.
 		else
@@ -104,9 +106,9 @@
 		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
-	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
+	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, TRUE, M, BUSY_ICON_DANGER))
 			return
 	if(!Attach(M))
 		GoIdle()
@@ -114,20 +116,23 @@
 
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
 	if(isxenocarrier(user))
-		var/mob/living/carbon/Xenomorph/Carrier/C = user
+		var/mob/living/carbon/xenomorph/carrier/C = user
 		C.store_hugger(src)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	. = ..()
-	if(stat != CONSCIOUS)
-		to_chat(user, "<span class='warning'>[src] is not moving.</span>")
-	else
-		to_chat(user, "<span class='danger'>[src] seems to be active.</span>")
+	switch(stat)
+		if(CONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be active.</span>")
+		if(UNCONSCIOUS)
+			to_chat(user, "<span class='warning'>[src] seems to be asleep.</span>")
+		if(DEAD)
+			to_chat(user, "<span class='danger'>[src] is not moving.</span>")
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
-/obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON || attached)
+/obj/item/clothing/mask/facehugger/attackby(obj/item/I, mob/user, params)
+	if(I.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 
@@ -193,7 +198,8 @@
 		Die()
 		return FALSE
 
-	lifecycle -= 4 SECONDS
+	if(hugger_tick)
+		lifecycle -= 4 SECONDS
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
@@ -223,7 +229,7 @@
 		if(!i)
 			break
 		if(M.can_be_facehugged(src))
-			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, 4)
+			visible_message("<span class='warning'>\The scuttling [src] leaps at [M]!</span>", null, null, 4)
 			leaping = TRUE
 			throw_at(M, 4, 1)
 			break
@@ -234,7 +240,7 @@
 	update_icon()
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
-	if(stat == DEAD)
+	if(stat != CONSCIOUS)
 		return ..()
 	if(iscarbon(hit_atom))
 		var/mob/living/carbon/M = hit_atom
@@ -247,14 +253,12 @@
 			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
-		var/victim = FALSE
 		for(var/mob/living/carbon/M in loc)
 			if(M.can_be_facehugged(src))
-				addtimer(CALLBACK(src, .proc/fast_facehug, M), 1.5 SECONDS)
-				victim = TRUE
-				break
-		if(!victim)
-			addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+				if(!Attach(M))
+					GoIdle()
+				return
+		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 	. = ..()
 	leaping = FALSE
 	GoIdle(FALSE, TRUE)
@@ -305,10 +309,11 @@
 		return FALSE
 
 	if(!provoked)
-		if(iszombie(src))
-			return FALSE
 		if(species?.species_flags & IS_SYNTHETIC)
 			return FALSE
+
+	if(on_fire)
+		return FALSE
 
 	if(check_mask)
 		if(wear_mask)
@@ -340,13 +345,13 @@
 		return FALSE
 
 	if(isxeno(loc)) //Being carried? Drop it
-		var/mob/living/carbon/Xenomorph/X = loc
+		var/mob/living/carbon/xenomorph/X = loc
 		X.dropItemToGround(src)
 		X.update_icons()
 
 	if(M.in_throw_mode && M.dir != dir && !M.incapacitated() && !M.get_active_held_item())
 		var/catch_chance = 50
-		if(M.dir == reverse_dir[dir])
+		if(M.dir == reverse_direction(dir))
 			catch_chance += 20
 		catch_chance -= M.shock_stage * 0.3
 		if(M.get_inactive_held_item())
@@ -401,8 +406,8 @@
 				M.dropItemToGround(W)
 			if(ishuman(M)) //Check for camera; if we have one, turn it off.
 				var/mob/living/carbon/human/H = M
-				if(istype(H.wear_ear, /obj/item/radio/headset/almayer/marine))
-					var/obj/item/radio/headset/almayer/marine/R = H.wear_ear
+				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
+					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
 						R.camera.status = FALSE //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
@@ -420,11 +425,12 @@
 		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))
-		playsound(loc, (user.gender == MALE ?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
+		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
+		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user) && !isIPC(user))
 		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
-		user.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
+		user.knock_out(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
 	flags_item |= NODROP
 	attached = TRUE
 	GoIdle(FALSE, TRUE)
@@ -436,7 +442,7 @@
 		if(!(locate(/obj/item/alien_embryo) in target))
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
-			round_statistics.now_pregnant++
+			GLOB.round_statistics.now_pregnant++
 			sterile = TRUE
 		Die()
 	else

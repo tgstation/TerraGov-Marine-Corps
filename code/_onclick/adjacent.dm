@@ -10,8 +10,13 @@
 	Note that in all cases the neighbor is handled simply; this is usually the user's mob, in which case it is up to you
 	to check that the mob is not inside of something
 */
-/atom/proc/Adjacent(atom/neighbor) // basic inheritance, unused
+/datum/proc/Adjacent(atom/neighbor) // basic inheritance, unused
 	return FALSE
+
+
+/datum/wires/Adjacent(atom/neighbor)
+	return holder.Adjacent(neighbor)
+
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
 /area/Adjacent(atom/neighbor)
@@ -75,7 +80,7 @@
 		return TRUE
 	if(!isturf(loc))
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 
@@ -92,7 +97,7 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
@@ -116,13 +121,16 @@
 			return TRUE
 		if(!isturf(loc))
 			return FALSE
-		if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+		if(loc.Adjacent(neighbor, neighbor, src))
 			return TRUE
 	return FALSE
 
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor)
+	if(isnull(loc)) //User input can sometimes cause adjacency checks to things no longer in the map.
+		return FALSE
+
 	if(neighbor == loc || neighbor == loc.loc) //Item is in the neighbor or something that it holds.
 		return TRUE
 
@@ -132,11 +140,11 @@
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
 				return FALSE
-			return loc.loc.Adjacent(neighbor, target = neighbor, mover = src)
+			return loc.loc.Adjacent(neighbor, neighbor, src)
 
 	if(!isturf(loc)) //Default behavior.
 		return FALSE
-	if(loc.Adjacent(neighbor, target = neighbor, mover = src))
+	if(loc.Adjacent(neighbor, neighbor, src))
 		return TRUE
 	return FALSE
 
@@ -148,7 +156,7 @@
 	return T.Adjacent(neighbor, target = neighbor, mover = src)
 
 
-/obj/item/radio/detpack/Adjacent(neighbor) //Snowflake detpacks.
+/obj/item/detpack/Adjacent(neighbor) //Snowflake detpacks.
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = get_turf(loc)

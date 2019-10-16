@@ -3,84 +3,47 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox1"
 	desc = "A display case for prized possessions. It taunts you to kick it."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	resistance_flags = UNACIDABLE
-	health = 30
+	max_integrity = 30
 	var/occupied = 1
 	var/destroyed = 0
 
 /obj/structure/displaycase/ex_act(severity)
 	switch(severity)
-		if (1)
-			new /obj/item/shard( src.loc )
-			if (occupied)
-				occupied = 0
-			qdel(src)
-		if (2)
-			if (prob(50))
-				src.health -= 15
-				src.healthcheck()
-		if (3)
-			if (prob(50))
-				src.health -= 5
-				src.healthcheck()
+		if(1)
+			deconstruct(FALSE)
+		if(2)
+			take_damage(15)
+		if(3)
+			take_damage(5)
 
-
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.ammo.damage
-	..()
-	src.healthcheck()
-	return 1
-
-/obj/structure/displaycase/proc/healthcheck()
-	if (src.health <= 0)
-		if (!( src.destroyed ))
-			src.density = 0
-			src.destroyed = 1
-			new /obj/item/shard( src.loc )
-			playsound(src, "shatter", 25, 1)
-			update_icon()
-	else
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-	return
 
 /obj/structure/displaycase/update_icon()
-	if(src.destroyed)
-		src.icon_state = "glassboxb[src.occupied]"
+	if(destroyed)
+		icon_state = "glassboxb[occupied]"
 	else
-		src.icon_state = "glassbox[src.occupied]"
-	return
+		icon_state = "glassbox[occupied]"
 
 
-/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
-	src.health -= W.force
-	src.healthcheck()
-	..()
-	return
-
-/obj/structure/displaycase/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/structure/displaycase/attack_hand(mob/user as mob)
-	if (src.destroyed && src.occupied)
-		to_chat(user, "\b You deactivate the hover field built into the case.")
-		src.occupied = 0
-		src.add_fingerprint(user)
+/obj/structure/displaycase/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	
+	if(destroyed && occupied)
+		to_chat(user, "<span class='notice'>You deactivate the hover field built into the case.</span>")
+		occupied = FALSE
 		update_icon()
 		return
-	else
-		to_chat(usr, text("<span class='notice'> You kick the display case.</span>"))
-		for(var/mob/O in oviewers())
-			if ((O.client && !( is_blind(O) )))
-				to_chat(O, text("<span class='warning'> [] kicks the display case.</span>", usr))
-		src.health -= 2
-		healthcheck()
-		return
+
+	visible_message("<span class='warning'>[user] kicks the display case.</span>", "<span class='notice'>You kick the display case.</span>")
+	take_damage(2)
 
 //Quick destroyed case.
 /obj/structure/displaycase/destroyed
 	icon_state = "glassboxb0"
-	health = 0
-	occupied = 0
-	destroyed = 1
+	max_integrity = 0
+	occupied = FALSE
+	destroyed = TRUE

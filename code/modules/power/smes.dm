@@ -12,6 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/capacity = 5e6		//Maximum amount of power it can hold
 	var/charge = 1e6		//Current amount of power it holds
 
@@ -33,7 +34,7 @@
 	..()
 	if(!terminal)
 		to_chat(user, "<span class='warning'>This SMES has no power terminal!</span>")
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		to_chat(user, "<span class='notice'>The maintenance hatch is open.</span>")
 
 /obj/machinery/power/smes/Initialize()
@@ -42,7 +43,7 @@
 		connect_to_network()
 
 	dir_loop:
-		for(var/d in cardinal)
+		for(var/d in GLOB.cardinals)
 			var/turf/T = get_step(src, d)
 			for(var/obj/machinery/power/terminal/term in T)
 				if(term && term.dir == turn(d, 180))
@@ -67,7 +68,7 @@
 	if(machine_stat & BROKEN)
 		return
 
-	if(panel_open)
+	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 
 		return
 
@@ -179,39 +180,31 @@
 		terminal = null
 		machine_stat |= BROKEN
 
-/obj/machinery/power/smes/add_load(var/amount)
+/obj/machinery/power/smes/add_load(amount)
 	if(terminal && terminal.powernet)
 		return terminal.add_load(amount)
 	return FALSE
 
 
-/obj/machinery/power/smes/attack_ai(mob/user)
-	add_fingerprint(user)
-	ui_interact(user)
+/obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
+	if(isscrewdriver(I))
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 
-/obj/machinery/power/smes/attack_hand(mob/user)
-	add_fingerprint(user)
-	ui_interact(user)
-
-
-/obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(isscrewdriver(W))
-		if(!panel_open)
-			panel_open = TRUE
+		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]_o"
-			update_icon()
-			return FALSE
 		else
-			panel_open = FALSE
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
 			icon_state = "[initial(icon_state)]"
-			update_icon()
-			return FALSE
 
-	if(iscablecoil(W))
-		var/dir = get_dir(user,src)
+		update_icon()
+
+	else if(iscablecoil(I))
+		var/obj/item/stack/cable_coil/C = I
+
+		var/dir = get_dir(user, src)
 		if(ISDIAGONALDIR(dir))//we don't want diagonal click
 			return
 
@@ -219,31 +212,28 @@
 			to_chat(user, "<span class='warning'>This SMES already has a power terminal!</span>")
 			return
 
-		if(!panel_open)
+		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			to_chat(user, "<span class='warning'>You must open the maintenance panel first!</span>")
 			return
 
 		var/turf/T = get_turf(user)
-		if (T.intact_tile) //is the floor plating removed ?
+		if(T.intact_tile) //is the floor plating removed ?
 			to_chat(user, "<span class='warning'>You must first remove the floor plating!</span>")
 			return
 
-		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 10)
 			to_chat(user, "<span class='warning'>You need more wires!</span>")
 			return
 
 		to_chat(user, "<span class='notice'>You start building the power terminal...</span>")
-		playsound(src.loc, 'sound/items/deconstruct.ogg', 50, 1)
+		playsound(loc, 'sound/items/deconstruct.ogg', 50, 1)
 
-		//var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD) || C.get_amount() < 10)
 			return
-		if(!C || C.get_amount() < 10)
-			return
+
 		var/obj/structure/cable/N = T.get_cable_node() //get the connecting node cable, if there's one
-		if (prob(50))
-			electrocute_mob(usr, N, N, 1, TRUE)
+		if(prob(50))
+			electrocute_mob(user, N, N, 1, TRUE)
 
 		C.use(10)
 		user.visible_message(\
@@ -254,16 +244,13 @@
 		make_terminal(T)
 		terminal.connect_to_network()
 		connect_to_network()
-		return FALSE
 
-	else if(iswirecutter(W))
-		if(terminal && panel_open)
-			terminal.dismantle(user)
-			return FALSE
 
-	return ..()
+	else if(iswirecutter(I) && terminal && CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+		terminal.deconstruct(user)
 
-/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+
+/obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	if(machine_stat & BROKEN)
 		return
@@ -282,10 +269,10 @@
 		)
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
@@ -296,25 +283,17 @@
 
 
 /obj/machinery/power/smes/Topic(href, href_list)
-	..()
-
-	if (usr.stat || usr.restrained() )
+	. = ..()
+	if(.)
 		return
-
-//to_chat(world, "[href] ; [href_list[href]]")
-
-	if (!istype(src.loc, /turf) && !istype(usr, /mob/living/silicon/))
-		return FALSE // Do not update ui
 
 	if(href_list["cmode"])
 		input_attempt = !input_attempt
 		update_icon()
-		return TRUE
 
 	else if(href_list["online"])
 		output_attempt = !output_attempt
 		update_icon()
-		return TRUE
 
 	else if(href_list["input"])
 		switch( href_list["input"] )
@@ -325,7 +304,6 @@
 			if("set")
 				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
 		input_level = CLAMP(input_level,0,input_level_max)
-		return TRUE
 
 	else if( href_list["output"] )
 		switch( href_list["output"] )
@@ -336,19 +314,15 @@
 			if("set")
 				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
 		output_level = CLAMP(output_level,0,output_level_max)
-		return TRUE
 
-	return TRUE
 
 /obj/machinery/power/smes/proc/ion_act()
 	if(is_ground_level(z))
 		if(prob(1)) //explosion
-			for(var/mob/M in viewers(src))
-				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
+			visible_message("<span class='warning'>\The [src] is making strange noises!</span>", null, "<span class='warning'> You hear sizzling electronics.</span>")
 			sleep(10*pick(4,5,6,7,10,14))
-			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-			smoke.set_up(1, 0, loc)
-			smoke.attach(src)
+			var/datum/effect_system/smoke_spread/smoke = new(src)
+			smoke.set_up(1, loc)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
 			qdel(src)
@@ -362,9 +336,8 @@
 			else
 				emp_act(2)
 		if(prob(5)) //smoke only
-			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-			smoke.set_up(1, 0, loc)
-			smoke.attach(src)
+			var/datum/effect_system/smoke_spread/smoke = new(src)
+			smoke.set_up(1, loc)
 			smoke.start()
 
 /obj/machinery/power/smes/emp_act(severity)
@@ -394,7 +367,7 @@
 	charge = 9000000
 	..()
 
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null)
+/proc/rate_control(S, V, C, Min=1, Max=5, Limit=null)
 	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
 	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
 	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
@@ -402,6 +375,6 @@
 
 
 /obj/machinery/power/smes/can_terminal_dismantle()
-	. = panel_open ? TRUE : FALSE
+	return CHECK_BITFIELD(machine_stat, PANEL_OPEN)
 
 #undef SMESRATE
