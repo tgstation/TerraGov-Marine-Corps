@@ -67,8 +67,17 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number() < xenos_per_queen
+	return (get_total_xeno_number() < xenos_per_queen)
 
+/datum/hive_status/normal/can_hive_have_a_queen()
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/get_total_tier_zeros()
+	return length(xenos_by_tier[XENO_TIER_ZERO])
+
+/datum/hive_status/normal/get_total_tier_zeros()
+	. = ..()
+	. += stored_larva
 
 // ***************************************
 // *********** List getters
@@ -90,6 +99,21 @@
 		for(var/i in xenos_by_typepath[typepath])
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
+				continue
+			xenos += X
+	return xenos
+
+// doing this by type means we get a pseudo sorted list
+/datum/hive_status/proc/get_leaderable_xenos()
+	var/list/xenos = list()
+	for(var/typepath in xenos_by_typepath)
+		if(typepath == /mob/living/carbon/xenomorph/queen) // hardcoded check for now
+			continue
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/xenomorph/X = i
+			if(is_centcom_level(X.z))
+				continue
+			if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos
@@ -234,7 +258,7 @@
 	var/datum/hive_status/hive_removed_from = hive
 	if(hive_removed_from.living_xeno_queen == src)
 		hive_removed_from.living_xeno_queen = null
-		
+
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
@@ -245,7 +269,7 @@
 
 /mob/living/carbon/xenomorph/shrike/remove_from_hive()
 	var/datum/hive_status/hive_removed_from = hive
-		
+
 	. = ..()
 
 	if(hive_removed_from.living_xeno_ruler == src)
@@ -280,9 +304,6 @@
 // *********** Xeno death
 // ***************************************
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/X)
-	if(living_xeno_queen?.observed_xeno == X)
-		living_xeno_queen.set_queen_overwatch(X, TRUE)
-
 	remove_from_lists(X)
 	dead_xenos += X
 
@@ -480,11 +501,10 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(Q.loc)
 			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 			"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
 			picked.mind.transfer_to(new_xeno, TRUE)
 
 			to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
-			SEND_SOUND(new_xeno, sound('sound/effects/xeno_newlarva.ogg'))
+			new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 
 			stored_larva--
 
@@ -500,7 +520,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	qdel(L)
 
 
-// This proc checks for available mothers and offers a choice if there's more than one.
+// This proc checks for available spawn points and offers a choice if there's more than one.
 /datum/hive_status/normal/proc/attempt_to_spawn_larva(mob/xeno_candidate)
 	if(!xeno_candidate?.client)
 		return FALSE
@@ -510,11 +530,15 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	var/list/possible_mothers = list()
-	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers) //List variable passed by reference, and hopefully populated.
+	var/list/possible_silos = list()
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, possible_mothers, possible_silos) //List variable passed by reference, and hopefully populated.
 
 	if(!length(possible_mothers))
-		to_chat(xeno_candidate, "<span class='warning'>There are no mothers currently available to receive new larvas.</span>")
-		return FALSE
+		if(length(possible_silos))
+			return attempt_to_spawn_larva_in_silo(xeno_candidate, possible_silos)
+		else
+			to_chat(xeno_candidate, "<span class='warning'>There are no places currently available to receive new larvas.</span>")
+			return FALSE
 
 	var/mob/living/carbon/xenomorph/chosen_mother
 	if(length(possible_mothers) > 1)
@@ -530,6 +554,27 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother)
+
+
+/datum/hive_status/normal/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos)
+	var/obj/structure/resin/silo/chosen_silo
+	if(length(possible_silos) > 1)
+		chosen_silo = input("Available Egg Silos") as null|anything in possible_silos
+	else
+		chosen_silo = possible_silos[1]
+
+	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
+		return FALSE
+
+	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
+		DEATHTIME_MESSAGE(xeno_candidate)
+		return FALSE
+
+	if(!stored_larva)
+		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
+		return FALSE
+
+	return do_spawn_larva(xeno_candidate, chosen_silo.loc)
 
 
 /datum/hive_status/normal/proc/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
@@ -550,20 +595,27 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(!(mother in possible_mothers))
 		to_chat(xeno_candidate, "<span class='warning'>This mother is not in a state to receive us.</span>")
 		return FALSE
+	return do_spawn_larva(xeno_candidate, get_turf(mother))
 
-	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(mother.loc)
+
+/datum/hive_status/normal/proc/do_spawn_larva(mob/xeno_candidate, turf/spawn_point)
+	if(is_banned_from(xeno_candidate.ckey, ROLE_XENOMORPH))
+		to_chat(xeno_candidate, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point)
 	new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
 	"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
 
+	log_game("[key_name(xeno_candidate)] has joined as [new_xeno] at [AREACOORD(new_xeno.loc)].")
+	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
+
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
-	SEND_SOUND(new_xeno, 'sound/effects/xeno_newlarva.ogg')
+	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
 	to_chat(new_xeno, "<span class='xenoannounce'>We are a xenomorph larva awakened from slumber!</span>")
 	stored_larva--
 
-	log_game("[key_name(new_xeno)] has joined as [new_xeno].")
-	message_admins("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
-
-	return TRUE
+	return new_xeno
 
 
 // ***************************************

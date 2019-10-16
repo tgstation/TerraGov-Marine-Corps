@@ -293,7 +293,7 @@
 
 
 /proc/_winexists(player, control_id)
-	winexists(player, control_id)
+	return winexists(player, control_id)
 
 
 /proc/_winclone(player, window_name, clone_name)
@@ -336,8 +336,8 @@
 	return viewers(Depth, Center)
 
 
-/proc/_initial(Var)
-	return initial(Var)
+/proc/_initial(datum/D, varname)
+	return initial(D.vars[varname])
 
 
 /proc/_isnull(Val)

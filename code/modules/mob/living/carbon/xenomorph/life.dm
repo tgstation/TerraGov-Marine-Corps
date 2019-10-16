@@ -227,7 +227,7 @@
 	recovery_new = 0
 	armor_pheromone_bonus = 0
 	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
+		armor_pheromone_bonus = warding_aura * 5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
@@ -305,21 +305,27 @@
 		#endif
 	return slowdown
 
+
 /mob/living/carbon/xenomorph/add_slowdown(amount)
-	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
+	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
+		return 0
+	slowdown = adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/xenomorph/crusher/add_slowdown(amount)
-	if(charge_speed > CHARGE_SPEED_MAX * 0.5) //If we're over half the max charge speed, we're immune to slowdown.
+
+/mob/living/carbon/xenomorph/adjust_stagger(amount)
+	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
-	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
-	return slowdown
+	return ..()
+
 
 /mob/living/carbon/xenomorph/proc/handle_halloss()
 	if(halloss)
 		adjustHalLoss(XENO_HALOSS_REGEN)
 
 /mob/living/carbon/xenomorph/proc/handle_afk_takeover()
+	if(QDELETED(src)) // Deleted by an admin.
+		return
 	if(client)
 		return
 	if(isclientedaghost(src)) // If aghosted, and admin still online
@@ -327,15 +333,15 @@
 	if(stat == DEAD)
 		return
 
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
 	if(afk_timer_id)
 		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
 		afk_timer_id = null
 
+	var/mob/picked = get_alien_candidate()
+	if(!picked)
+		return
+
 	SSticker.mode.transfer_xeno(picked, src)
 
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	SEND_SOUND(src, sound('sound/effects/xeno_newlarva.ogg'))
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')

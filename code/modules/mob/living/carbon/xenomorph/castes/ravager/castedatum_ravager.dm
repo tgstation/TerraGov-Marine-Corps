@@ -9,8 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 40
-	melee_damage_upper = 60
+	melee_damage = 50
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -35,12 +34,21 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 40, "acid" = 20)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage,
+		/datum/action/xeno_action/second_wind,
+		)
 
 /datum/xeno_caste/ravager/young
 	upgrade_name = "Young"
@@ -54,8 +62,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 50
-	melee_damage_upper = 70
+	melee_damage = 60
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -74,7 +81,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_1, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_1, "bio" = 25, "rad" = 25, "fire" = 50, "acid" = 25)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -85,8 +92,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 55
-	melee_damage_upper = 75
+	melee_damage = 65
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -105,7 +111,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_1, "bio" = 28, "rad" = 28, "fire" = 28, "acid" = 28)
+	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_1, "bio" = 28, "rad" = 28, "fire" = 56, "acid" = 28)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
@@ -116,8 +122,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 60
-	melee_damage_upper = 80
+	melee_damage = 70
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -136,7 +141,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 60, "acid" = 30)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 	

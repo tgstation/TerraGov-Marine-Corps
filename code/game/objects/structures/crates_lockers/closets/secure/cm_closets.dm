@@ -36,7 +36,7 @@
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"
@@ -89,7 +89,7 @@
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine/leader(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
 	name = "alpha leader equipment locker"
@@ -208,7 +208,7 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/corpsman(src)
-	new /obj/item/clothing/under/marine/medic(src)
+	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
 	name = "alpha medic equipment locker"
@@ -282,7 +282,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/captain_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
@@ -318,7 +318,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/clothing/suit/officer_cloak(src)
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
@@ -492,8 +492,8 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
-/obj/structure/closet/secure_closet/cargotech
-	name = "Cargo Technician's Locker"
+/obj/structure/closet/secure_closet/shiptech
+	name = "Requisitions' Locker"
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "secure_locked_cargo"
 	icon_closed = "secure_unlocked_cargo"
@@ -502,7 +502,7 @@
 	icon_broken = "secure_broken_cargo"
 	icon_off = "secure_off_cargo"
 
-/obj/structure/closet/secure_closet/cargotech/PopulateContents()
+/obj/structure/closet/secure_closet/shiptech/PopulateContents()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/radio/headset/mainship/ct(src)
@@ -515,3 +515,4 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
+	new /obj/item/clothing/head/beanie(src)

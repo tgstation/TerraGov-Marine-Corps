@@ -6,10 +6,11 @@
 	density = FALSE
 	anchored = TRUE
 	layer = LATTICE_LAYER
+	plane = FLOOR_PLANE
 	//	flags = CONDUCT
 
-/obj/structure/lattice/New()
-	..()
+/obj/structure/lattice/Initialize()
+	. = ..()
 	if(!isspaceturf(loc))
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)

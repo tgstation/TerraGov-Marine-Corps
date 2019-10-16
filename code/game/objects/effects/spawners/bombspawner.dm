@@ -1,110 +1,3 @@
-/* The old single tank bombs that dont really work anymore
-/obj/effect/spawner/bomb
-	name = "bomb"
-	icon = 'icons/mob/screen/generic.dmi'
-	icon_state = "x"
-	var/btype = 0  //0 = radio, 1= prox, 2=time
-	var/explosive = 1	// 0= firebomb
-	var/btemp = 500	// bomb temperature (degC)
-	var/active = 0
-
-/obj/effect/spawner/bomb/radio
-	btype = 0
-
-/obj/effect/spawner/bomb/proximity
-	btype = 1
-
-/obj/effect/spawner/bomb/timer
-	btype = 2
-
-/obj/effect/spawner/bomb/timer/syndicate
-	btemp = 450
-
-/obj/effect/spawner/bomb/suicide
-	btype = 3
-
-/obj/effect/spawner/bomb/New()
-	..()
-
-	switch (src.btype)
-		// radio
-		if (0)
-			var/obj/item/assembly/r_i_ptank/R = new /obj/item/assembly/r_i_ptank(src.loc)
-			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/radio/signaler/p1 = new /obj/item/radio/signaler(R)
-			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
-			R.part1 = p1
-			R.part2 = p2
-			R.part3 = p3
-			p1.master = R
-			p2.master = R
-			p3.master = R
-			R.status = explosive
-			p1.b_stat = 0
-			p2.secured = 1
-			p3.air_contents.temperature = btemp + T0C
-
-		// proximity
-		if (1)
-			var/obj/item/assembly/m_i_ptank/R = new /obj/item/assembly/m_i_ptank(src.loc)
-			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/prox_sensor/p1 = new /obj/item/prox_sensor(R)
-			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
-			R.part1 = p1
-			R.part2 = p2
-			R.part3 = p3
-			p1.master = R
-			p2.master = R
-			p3.master = R
-			R.status = explosive
-
-			p3.air_contents.temperature = btemp + T0C
-			p2.secured = 1
-
-			if(src.active)
-				R.part1.secured = 1
-				R.part1.icon_state = text("motion[]", 1)
-				R.c_state(1, src)
-
-		// timer
-		if (2)
-			var/obj/item/assembly/t_i_ptank/R = new /obj/item/assembly/t_i_ptank(src.loc)
-			var/obj/item/tank/phoron/p3 = new /obj/item/tank/phoron(R)
-			var/obj/item/timer/p1 = new /obj/item/timer(R)
-			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
-			R.part1 = p1
-			R.part2 = p2
-			R.part3 = p3
-			p1.master = R
-			p2.master = R
-			p3.master = R
-			R.status = explosive
-
-			p3.air_contents.temperature = btemp + T0C
-			p2.secured = 1
-		//bombvest
-		if(3)
-			var/obj/item/clothing/suit/armor/a_i_a_ptank/R = new /obj/item/clothing/suit/armor/a_i_a_ptank(src.loc)
-			var/obj/item/tank/phoron/p4 = new /obj/item/tank/phoron(R)
-			var/obj/item/healthanalyzer/p1 = new /obj/item/healthanalyzer(R)
-			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
-			var/obj/item/clothing/suit/armor/vest/p3 = new /obj/item/clothing/suit/armor/vest(R)
-			R.part1 = p1
-			R.part2 = p2
-			R.part3 = p3
-			R.part4 = p4
-			p1.master = R
-			p2.master = R
-			p3.master = R
-			p4.master = R
-			R.status = explosive
-
-			p4.air_contents.temperature = btemp + T0C
-			p2.secured = 1
-
-	qdel(src)
-*/
-
 /obj/effect/spawner/newbomb
 	name = "bomb"
 	icon = 'icons/mob/screen/generic.dmi'
@@ -123,8 +16,8 @@
 		btype = 0
 
 
-/obj/effect/spawner/newbomb/New()
-	..()
+/obj/effect/spawner/newbomb/Initialize()
+	. = ..()
 
 	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)
@@ -162,4 +55,4 @@
 
 	V.update_icon()
 
-	qdel(src)
+	return INITIALIZE_HINT_QDEL

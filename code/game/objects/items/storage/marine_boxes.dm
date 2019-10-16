@@ -109,7 +109,7 @@
 
 		if(!user.transferItemToLoc(C, src))
 			return
-			
+
 		pcell = C
 		user.visible_message("[user] puts a new power cell in the [src].", "You put a new power cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -207,7 +207,7 @@
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
@@ -231,7 +231,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
+	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
@@ -303,7 +303,7 @@
 /obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3T(src)
-	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
 	new /obj/item/weapon/gun/launcher/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
@@ -313,10 +313,10 @@
 	new /obj/item/ammo_magazine/rocket/wp(src)
 	new /obj/item/explosive/mine(src)
 	new /obj/item/explosive/mine(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
-	new /obj/item/radio/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
 
 
@@ -354,7 +354,7 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/bodybag/tarp(src)
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
@@ -384,6 +384,8 @@
 	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/smart(src)
 	new /obj/item/binoculars/tactical/scout(src)
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
@@ -493,6 +495,7 @@
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
+	new /obj/item/belt_harness/marine(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)

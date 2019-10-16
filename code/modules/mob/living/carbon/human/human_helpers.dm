@@ -1,9 +1,3 @@
-/mob/living/carbon/human/get_crit_threshold()
-	return CONFIG_GET(number/human_health_threshold_crit)
-
-/mob/living/carbon/human/IsAdvancedToolUser()
-	return species.has_fine_manipulation
-
 /proc/get_gender_name(gender)
 	var/g = "m"
 	if (gender == FEMALE)

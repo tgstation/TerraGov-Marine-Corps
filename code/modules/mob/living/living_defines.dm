@@ -2,12 +2,13 @@
 	see_invisible = SEE_INVISIBLE_LIVING
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
-	var/living_flags = NONE
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
+	var/health_threshold_dead = -100
+	var/health_threshold_crit = 0
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
@@ -50,8 +51,7 @@
 	var/cameraFollow
 
 	// Putting these here for attack_animal().
-	var/melee_damage_lower = 0
-	var/melee_damage_upper = 0
+	var/melee_damage = 0
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"
@@ -73,7 +73,6 @@
 	var/resting = FALSE
 
 	var/list/icon/pipes_shown = list()
-	var/last_played_vent
 	var/is_ventcrawling
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
@@ -101,3 +100,8 @@
 
 	var/job
 	var/faction = "Neutral"
+
+	var/blood_volume = 0 //how much blood the mob has
+	var/heart_multi = 1 //Multiplier.
+
+	var/list/embedded_objects = list()

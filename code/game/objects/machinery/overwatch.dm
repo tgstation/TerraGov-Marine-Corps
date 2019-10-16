@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
+	interaction_flags = INTERACT_MACHINE_DEFAULT
 
 	var/state = OW_MAIN
 	var/x_offset_s = 0
@@ -31,6 +32,13 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
+
+
+/obj/machinery/computer/camera_advanced/overwatch/Initialize()
+	. = ..()
+	for(var/i in SSjob.squads)
+		var/datum/squad/S = SSjob.squads[i]
+		squads += S
 
 
 /obj/machinery/computer/camera_advanced/overwatch/main
@@ -54,18 +62,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	name = "Delta Overwatch Console"
 	squad_console = DELTA_SQUAD
 
+
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
 	return
-
-/obj/machinery/computer/camera_advanced/overwatch/bullet_act(obj/item/projectile/Proj) //Can't shoot it
-	return FALSE
-
-/obj/machinery/computer/camera_advanced/overwatch/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-
-/obj/machinery/computer/camera_advanced/overwatch/attack_paw(mob/living/carbon/monkey/user) //why monkey why
-	return attack_hand(user)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/CreateEye()
@@ -75,25 +74,22 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	eyeobj.icon_state = "generic_camera"
 
 
-/obj/machinery/computer/camera_advanced/overwatch/attack_hand(mob/living/user)
+/obj/machinery/computer/camera_advanced/overwatch/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!allowed(user))
+		return FALSE
+	
+	return TRUE
+
+
+/obj/machinery/computer/camera_advanced/overwatch/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You don't have access.</span>")
-		return
-	interact(user)
 
-
-/obj/machinery/computer/camera_advanced/overwatch/interact(mob/living/user)
-	if(!length(squads))
-		for(var/i in SSjob.squads)
-			var/datum/squad/S = SSjob.squads[i]
-			squads += S
-	if(!current_squad && !(current_squad = get_squad_by_id(squad_console)))
-		to_chat(user, "<span class='warning'>Error: Unable to link to a proper squad.</span>")
-		return
-	user.set_interaction(src)
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
@@ -206,10 +202,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
 
-	var/datum/browser/popup = new(user, "squad_overwatch", "<div align='center'>[current_squad.name] Overwatch Console</div>", 550, 550)
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "squad_overwatch")
+	popup.open()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
@@ -219,9 +214,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(!href_list["operation"])
 		return
-
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
-		usr.set_interaction(src)
 
 	switch(href_list["operation"])
 		// main interface
@@ -259,18 +251,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				var/obj/item/card/id/ID = H.get_idcard()
 				visible_message("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
 		if("logout")
-			if(current_squad)
-				current_squad.overwatch_officer = null //Reset the squad's officer.
-			var/mob/living/carbon/human/H = operator
-			var/obj/item/card/id/ID = H.get_idcard()
-			current_squad?.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+			if(!current_squad)
+				return
+			var/obj/item/card/id/ID = operator.get_idcard()
+			current_squad.overwatch_officer = null //Reset the squad's officer.
+			current_squad.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
 			visible_message("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
 			state = OW_MAIN
 		if("logout_main")
-			var/mob/living/carbon/human/H = operator
-			var/obj/item/card/id/ID = H.get_idcard()
+			var/obj/item/card/id/ID = operator.get_idcard()
 			visible_message("<span class='boldnotice'>Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
 			operator = null
 			current_squad = null
@@ -359,7 +350,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			switch(z_hidden)
 				if(HIDE_NONE)
 					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [CONFIG_GET(string/ship_name)] are now hidden.</span>")
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [SSmapping.configs[SHIP_MAP].map_name] are now hidden.</span>")
 				if(HIDE_ON_SHIP)
 					z_hidden = HIDE_ON_GROUND
 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -400,12 +391,19 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			var/atom/cam_target = locate(href_list["cam_target"])
 			open_prompt(usr)
 			eyeobj.setLoc(get_turf(cam_target))
-			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
+			if(isliving(cam_target))
+				var/mob/living/L = cam_target
+				track(L)
+			else
+				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
 
 	updateUsrDialog()
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
-	user.set_interaction(src)
+	. = ..()
+	if(.)
+		return
+
 	var/dat
 	if(!operator)
 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
@@ -467,10 +465,9 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
-	var/datum/browser/popup = new(user, "main_overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "main_overwatch")
+	popup.open()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
@@ -964,9 +961,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
 /mob/living/carbon/human/verb/issue_order(which as null|text)
-	set name = "Issue Order"
-	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
-	set category = "IC"
+	set hidden = TRUE
 
 	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")
@@ -1003,17 +998,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	switch(command_aura)
 		if("move")
 			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
-			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
+			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!", ";ONWARDS!", ";MOVE MOVE MOVE!", ";ON YOUR FEET!", ";GET A MOVE ON!", ";ON THE DOUBLE!", ";ROLL OUT!", ";LET'S GO, LET'S GO!", ";MOVE OUT!", ";LEAD THE WAY!", ";FORWARD!", ";COME ON, MOVE!", ";HURRY, GO!")
 			say(message)
 			add_emote_overlay(move)
 		if("hold")
 			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
-			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
+			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!")
 			say(message)
 			add_emote_overlay(hold)
 		if("focus")
 			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
-			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
+			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
 	update_action_buttons()

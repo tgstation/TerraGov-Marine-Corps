@@ -264,8 +264,6 @@
 			return //needs power to open unless it was forced
 		else
 			use_power(360)
-	else
-		log_game("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
 	latetoggle()
 	return ..()
 

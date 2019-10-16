@@ -21,7 +21,7 @@
 
 	xeno_strings += "Name: '[xeno_caste.caste_name]'"
 	xeno_strings += "Tier: [tier_as_number()]"
-	xeno_strings += "Melee slash damage: between [xeno_caste.melee_damage_lower] and [xeno_caste.melee_damage_upper]"
+	xeno_strings += "Melee slash damage: [xeno_caste.melee_damage]"
 	xeno_strings += "Tackle damage: [xeno_caste.tackle_damage]"
 	switch(mob_size)
 		if(MOB_SIZE_BIG)
@@ -62,8 +62,7 @@
 
 	if(length(actions))
 		xeno_strings += "<br><U>This has the following abilities</U>:"
-		for(var/X in actions)
-			var/datum/action/xeno_action/A = X
+		for(var/datum/action/xeno_action/A in actions)
 			xeno_strings += "<U>[A.name]</U>: [A.mechanics_text]<br>"
 
 	. += jointext(xeno_strings, "<br>")

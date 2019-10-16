@@ -35,6 +35,11 @@
 /client/Click(atom/object, atom/location, control, params)
 	if(!control)
 		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
 	var/ab = FALSE
 	var/list/L = params2list(params)
 
@@ -44,7 +49,7 @@
 
 	if(object && object == middragatom && L["left"])
 		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
-		
+
 	var/mcl = CONFIG_GET(number/minute_click_limit)
 	if(mcl && !check_rights(R_ADMIN, FALSE))
 		var/minute = round(world.time, 600)
@@ -78,6 +83,10 @@
 		if(clicklimiter[2] > scl)
 			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
 			return
+
+//Hijack for FC.
+	if(prefs.focus_chat)
+		winset(src, null, "input.focus=true")
 
 	return ..()
 
@@ -359,7 +368,7 @@
 */
 /mob/proc/CtrlClickOn(atom/A)
 	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMSIG_ITEM_CLICKCTRLON_INTERCEPTED)
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
 		return
 	A.CtrlClick(src)
 
@@ -426,7 +435,7 @@
 
 /mob/living/ShiftMiddleClickOn(atom/A)
 	point_to(A)
-		
+
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
@@ -437,7 +446,7 @@
 	Ctrl+Middle click
 */
 /atom/proc/CtrlMiddleClickOn(atom/A)
-	return
+	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
@@ -511,9 +520,13 @@
 		var/mob/living/carbon/human/H = usr
 		H.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client?.eye ? usr.client.eye : usr), usr.client)
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
 		params += "&catcher=1"
-		T?.Click(location, control, params)
+		if(T)
+			//icon-x/y is relative to the object clicked. click_catcher may occupy several tiles. Here we convert them to the proper offsets relative to the tile.
+			modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+			modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+			T.Click(location, control, list2params(modifiers))
 	. = TRUE
 
 

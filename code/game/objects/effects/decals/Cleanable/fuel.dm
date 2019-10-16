@@ -10,10 +10,7 @@
 
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
-	..()
-	if(logs)
-		log_game("[amt] units of liquid fuel have spilled in [AREACOORD(loc.loc)].")
-		message_admins("[amt] units of liquid fuel have spilled in [ADMIN_VERBOSEJMP(loc.loc)].")
+	. = ..()
 	amount = amt
 	if(newDir)
 		setDir(newDir)

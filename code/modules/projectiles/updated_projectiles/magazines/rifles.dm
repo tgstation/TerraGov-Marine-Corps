@@ -49,20 +49,20 @@
 //-------------------------------------------------------
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
 
-/obj/item/ammo_magazine/rifle/mar40
+/obj/item/ammo_magazine/rifle/ak47
 	name = "\improper MAR magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the MAR series of firearms."
 	caliber = "7.62x39mm"
-	icon_state = "mar40"
-	default_ammo = /datum/ammo/bullet/rifle/mar40
+	icon_state = "ak47"
+	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/mar40
+	gun_type = /obj/item/weapon/gun/rifle/ak47
 
-/obj/item/ammo_magazine/rifle/mar40/extended
+/obj/item/ammo_magazine/rifle/ak47/extended
 	name = "\improper MAR extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm MAR magazine, this one carries more rounds than the average magazine."
 	max_rounds = 60
-	bonus_overlay = "mar40_ex"
+	bonus_overlay = "ak47_ex"
 
 
 
@@ -71,22 +71,25 @@
 
 /obj/item/ammo_magazine/rifle/m16
 	name = "\improper M16 magazine (5.56x45mm)"
-	desc = "A 5.56x45mm magazine for the M16 assault rifle."
+	desc = "A 5.56x45mm magazine for the M16 assault rifle platform."
 	caliber = "5.56x45mm"
-	icon_state = "mar40" //PLACEHOLDER
+	icon_state = "m16" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 20 //Also comes in 30 and 100 round Beta-C mag.
+	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/rifle/lmg
+/obj/item/ammo_magazine/lmg
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
-	max_rounds = 300
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
@@ -98,7 +101,7 @@
 	desc = "A 7.62x39mm magazine that fits in the Type 71 rifle."
 	caliber = "7.62x39mm"
 	icon_state = "type_71"
-	default_ammo = /datum/ammo/bullet/rifle/mar40
+	default_ammo = /datum/ammo/bullet/rifle/ak47
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/type71
 

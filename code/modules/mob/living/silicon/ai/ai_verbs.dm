@@ -214,22 +214,6 @@
 	radio.interact(src)
 
 
-/mob/living/silicon/ai/verb/toggle_floor_bolts()
-	set category = "Silicon"
-	set name = "Toggle Floor Bolts"
-
-	if(!isturf(loc))
-		return
-
-	if(incapacitated())
-		return
-
-	anchored = !anchored
-
-	to_chat(src, "<span class='notice'>You are now [anchored ? "" : "un"]anchored.</span>")
-
-
-
 /mob/living/silicon/ai/verb/view_manifest()
 	set category = "Silicon"
 	set name = "View Crew Manifest"
@@ -301,3 +285,17 @@
 				break
 
 	to_chat(src, "<span class='notice'>Automatic announcements [chan == "None" ? "will not use the radio." : "set to [chan]."]</span>")
+
+
+/mob/living/silicon/ai/verb/shutdown_systems()
+	set category = "Silicon"
+	set name = "Shutdown Systems"
+
+
+	if(alert(src, "Do you want to shutdown your systems? WARNING: This will permanently put you out of your mob.", "Shutdown Systems", "Yes", "No") != "Yes")
+		return
+
+	to_chat(src, "<span class='notice'>Systems shutting down...</span>")
+
+	ghostize(FALSE)
+	offer_mob()

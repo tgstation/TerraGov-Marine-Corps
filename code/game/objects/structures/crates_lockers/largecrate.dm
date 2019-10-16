@@ -5,39 +5,42 @@
 	icon_state = "densecrate"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
+	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount
 
-/obj/structure/largecrate/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
-	new /obj/item/stack/sheet/wood(src)
+
+/obj/structure/largecrate/deconstruct(disassembled = TRUE)
 	spawn_stuff()
-	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
-	"<span class='danger'>We smash \the [src] apart!</span>", \
-	"<span class='danger'>You hear splitting wood!</span>", 5)
-	qdel(src)
+	return ..()
+
 
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 
+
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(iscrowbar(I))
-		new /obj/item/stack/sheet/wood(src)
-		spawn_stuff()
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							"<span class='notice'>You pry open \the [src].</span>", \
-							"<span class='notice'>You hear splitting wood.</span>")
-		qdel(src)
-		return
+	if(.)
+		return TRUE
 	
 	if(istype(I, /obj/item/powerloader_clamp))
 		return
 	
 	return attack_hand(user)
+
+
+/obj/structure/largecrate/crowbar_act(mob/living/user, obj/item/I)
+	. = ..()
+	user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>",
+		"<span class='notice'>You pry open \the [src].</span>",
+		"<span class='notice'>You hear splitting wood.</span>")
+	new /obj/item/stack/sheet/wood(loc)
+	deconstruct(TRUE)
+	return TRUE
 
 
 /obj/structure/largecrate/proc/spawn_stuff()
@@ -100,12 +103,12 @@
 						/obj/item/tool/weldingtool,
 						/obj/item/tool/wirecutters,
 						/obj/item/analyzer,
-						/obj/item/clothing/under/marine,
+						/obj/item/clothing/under/marine/standard,
 						/obj/item/clothing/shoes/marine
 						)
 
-/obj/structure/largecrate/random/New()
-	..()
+/obj/structure/largecrate/random/Initialize()
+	. = ..()
 	if(!num_things) num_things = rand(0,3)
 
 	while(num_things)
@@ -125,14 +128,20 @@
 	desc = "A stack of black storage cases."
 	icon_state = "case_double"
 
-/obj/structure/largecrate/random/case/double/Del()
+/obj/structure/largecrate/random/case/double/deconstruct(disassembled = TRUE)
 	new /obj/structure/largecrate/random/case(loc)
-	..()
+	new /obj/structure/largecrate/random/case(loc)
+	return ..()
 
 /obj/structure/largecrate/random/case/small
 	name = "small cases"
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
+
+
+/obj/structure/largecrate/random/barrel/deconstruct(disassembled = TRUE)
+	new /obj/item/stack/sheet/metal/small_stack(src)
+	return ..()
 
 
 /obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
@@ -142,43 +151,25 @@
 		var/obj/item/tool/weldingtool/WT = I
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
-
-		new /obj/item/stack/sheet/metal/small_stack(src)
 		WT.remove_fuel(1, user)
-		var/turf/T = get_turf(src)
-		for(var/obj/O in contents)
-			O.forceMove(T)
 		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
 							"<span class='notice'>You weld open \the [src].</span>", \
 							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		qdel(src)
-
+		deconstruct(TRUE)
 	else
 		return attack_hand(user)
 
-/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
+/obj/structure/largecrate/random/barrel/examine(mob/user)
+	. = ..()
 	to_chat(user, "<span class='notice'>You need a blowtorch to weld this open!</span>")
-	return TRUE
-
-
-/obj/structure/largecrate/random/barrel/attack_alien(mob/living/carbon/xenomorph/X)
-	X.do_attack_animation(src)
-	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-	new /obj/item/stack/sheet/metal/small_stack(src)
-	var/turf/T = get_turf(src)
-	for(var/obj/O in contents)
-		O.forceMove(T)
-	X.visible_message("<span class='danger'>\The [X] smashes \the [src] apart!</span>", \
-	"<span class='danger'>We smash \the [src] apart!</span>", \
-	"<span class='danger'>You hear metal being smashed!</span>", 5)
-	qdel(src)
 
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"
 	desc = "A blue storage barrel"
 	icon_state = "barrel_blue"
+	hit_sound = 'sound/effects/metalhit.ogg'
 
 /obj/structure/largecrate/random/barrel/blue
 	name = "blue barrel"
@@ -211,28 +202,28 @@
 	icon_state = "secure_crate_strapped"
 	var/strapped = 1
 
-/obj/structure/largecrate/random/secure/attackby(obj/item/I, mob/user, params)
+
+/obj/structure/largecrate/random/secure/crowbar_act(mob/living/user, obj/item/I)
+	if(strapped)
+		return FALSE
+	return ..()
+
+
+/obj/structure/largecrate/random/secure/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
-
-	if(!strapped)
-		return
-
-	else if(!I.sharp)
-		return attack_hand(user)
-
 	to_chat(user, "<span class='notice'>You begin to cut the straps off \the [src]...</span>")
-
-	if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-		return
-
+	if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	to_chat(user, "<span class='notice'>You cut the straps away.</span>")
 	icon_state = "secure_crate"
 	strapped = FALSE
-
-/obj/structure/largecrate/random/barrel/attack_hand(mob/living/user)
-	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
 	return TRUE
+
+
+/obj/structure/largecrate/random/barrel/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>You need something sharp to cut off the straps.</span>")
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
@@ -254,12 +245,12 @@
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/lmg,
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 
-/obj/structure/largecrate/guns/New()
-	..()
+/obj/structure/largecrate/guns/Initialize()
+	. = ..()
 	var/gun_type
 	var/i = 0
 	while(++i <= num_guns)
@@ -278,8 +269,8 @@
 					/obj/item/weapon/gun/revolver/upp = /obj/item/ammo_magazine/revolver/upp,
 					/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
 					/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
-					/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
-					/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40/extended,
+					/obj/item/weapon/gun/rifle/ak47 = /obj/item/ammo_magazine/rifle/ak47,
+					/obj/item/weapon/gun/rifle/ak47/carbine = /obj/item/ammo_magazine/rifle/ak47/extended,
 					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
 					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
 					/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,

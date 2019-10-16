@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(pencode_blocked_tags, list("*", "hr", "small", "/small", "list"
 	t = replacetext(t, "\[ntlogo\]", "<img src='ntlogo.png' />")
 
 	t = replacetext(t, "\[mapname\]", "[SSmapping.configs[GROUND_MAP].map_name]")
-	t = replacetext(t, "\[shipname\]", "[CONFIG_GET(string/ship_name)]")
+	t = replacetext(t, "\[shipname\]", "[SSmapping.configs[SHIP_MAP].map_name]")
 	t = replacetext(t, "\[date\]", "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")]")
 	t = replacetext(t, "\[time\]", "[worldtime2text()]")
 

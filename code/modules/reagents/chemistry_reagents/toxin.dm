@@ -326,7 +326,7 @@
 			L.knock_out(5)
 	return ..()
 
-/datum/reagent/toxin/beer2	//disguised as normal beer for use by emagged brobots
+/datum/reagent/toxin/beer2	//disguised as normal beer
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	color = "#664300" // rgb: 102, 67, 0

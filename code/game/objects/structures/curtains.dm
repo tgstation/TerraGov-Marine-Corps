@@ -11,11 +11,6 @@
 	layer = OBJ_LAYER
 	opacity = FALSE
 
-/obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
-	if(P.damage)
-		visible_message("<span class='warning'>[P] tears [src] down!</span>")
-		qdel(src)
-	return 0
 
 /obj/structure/curtain/attack_hand(mob/living/user)
 	. = ..()

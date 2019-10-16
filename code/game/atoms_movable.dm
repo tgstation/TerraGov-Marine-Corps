@@ -192,19 +192,19 @@
 /atom/movable/Bump(atom/A)
 	if(!A)
 		CRASH("Bump was called with no argument.")
-	if(throwing)
-		throw_impact(A)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
 	. = ..()
-	if(QDELETED(A))
-		return
+	if(throwing)
+		throw_impact(A)
+		. = TRUE
+		if(QDELETED(A))
+			return
 	A.Bumped(src)
 
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
-	. = TRUE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSS, AM)
 	return CanPass(AM, AM.loc, TRUE)
 
@@ -335,6 +335,7 @@
 
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin)
+	set waitfor = FALSE
 	if(!target || !src)	
 		return FALSE
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
@@ -430,16 +431,6 @@
 		throwing = FALSE
 		thrower = null
 		throw_source = null
-
-
-//things the user's machine must do just after we set the user's machine.
-/atom/movable/proc/on_set_interaction(mob/user)
-	return
-
-
-//things the user's machine must do just before we unset the user's machine.
-/atom/movable/proc/on_unset_interaction(mob/user)
-	return
 
 
 //called when a mob tries to breathe while inside us.
@@ -592,23 +583,30 @@
 	. = H.copy_known_languages_from(thing, replace)
 
 
-// Whether an AM can speak in a language or not, independent of whether
-// it KNOWS the language
-/atom/movable/proc/could_speak_in_language(datum/language/dt)
-	. = TRUE
-
-
 /atom/movable/proc/can_speak_in_language(datum/language/dt)
 	var/datum/language_holder/H = get_language_holder()
 
-	if(!H.has_language(dt))
-		return FALSE
-	else if(H.omnitongue)
+	if(H.has_language(dt) == LANGUAGE_KNOWN)
 		return TRUE
-	else if(could_speak_in_language(dt) && (!H.only_speaks_language || H.only_speaks_language == dt))
+	if(H.omnitongue)
 		return TRUE
-	else
-		return FALSE
+	if(H.only_speaks_language == dt)
+		return TRUE
+
+	return FALSE
+
+
+/atom/movable/proc/can_understand_in_language(datum/language/dt)
+	var/datum/language_holder/H = get_language_holder()
+
+	if(H.has_language(dt) == LANGUAGE_SHADOWED)
+		return TRUE
+	if(H.omnitongue)
+		return TRUE
+	if(H.only_speaks_language == dt)
+		return TRUE
+
+	return FALSE
 
 
 /atom/movable/proc/get_default_language()

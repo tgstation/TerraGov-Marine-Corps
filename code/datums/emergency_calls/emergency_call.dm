@@ -136,7 +136,7 @@
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
-		priority_announce("A distress beacon has been launched from the [CONFIG_GET(string/ship_name)].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
+		priority_announce("A distress beacon has been launched from the [SSmapping.configs[SHIP_MAP].map_name].", "Priority Alert", sound = 'sound/AI/distressbeacon.ogg')
 
 	SSticker.mode.on_distress_cooldown = TRUE
 
@@ -156,9 +156,9 @@
 			if(!isaghost(M.current) && M.current.stat != DEAD) // and not dead or admin ghosting,
 				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you aren't dead.</span>")
 				continue
-		if(name == "Xenomorphs" && is_banned_from(M.current.ckey, ROLE_XENOMORPH))
+		if(name == "Xenomorphs" && is_banned_from(ckey(M.key), ROLE_XENOMORPH))
 			if(M.current)
-				to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
+				to_chat(M, "<span class='warning'>You didn't get selected to join the distress team because you are jobbanned from Xenomorph.</span>")
 			continue
 		valid_candidates += M
 

@@ -27,8 +27,8 @@
 /obj/machinery/computer/arcade
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/New()
-	..()
+/obj/machinery/computer/arcade/Initialize()
+	. = ..()
 	var/name_action
 	var/name_part1
 	var/name_part2
@@ -38,23 +38,15 @@
 	name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
 	name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "slime", "Griefer", "ERPer", "Lizard Man", "Unicorn")
 
-	src.enemy_name = oldreplacetext((name_part1 + name_part2), "the ", "")
-	src.name = (name_action + name_part1 + name_part2)
+	enemy_name = oldreplacetext((name_part1 + name_part2), "the ", "")
+	name = (name_action + name_part1 + name_part2)
 
 
-
-/obj/machinery/computer/arcade/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/arcade/attack_paw(mob/living/carbon/monkey/user)
-	return src.attack_hand(user)
-
-/obj/machinery/computer/arcade/attack_hand(mob/living/user)
+/obj/machinery/computer/arcade/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
-	var/dat = "<a href='byond://?src=\ref[src];close=1'>Close</a>"
+	var/dat
 	dat += "<center><h4>[src.enemy_name]</h4></center>"
 
 	dat += "<br><center><h3>[src.temp]</h3></center>"
@@ -64,15 +56,14 @@
 		dat += "<center><b><a href='byond://?src=\ref[src];newgame=1'>New Game</a>"
 	else
 		dat += "<center><b><a href='byond://?src=\ref[src];attack=1'>Attack</a>|"
-		dat += "<a href='byond://?src=\ref[src];heal=1'>Heal</a>|"
-		dat += "<a href='byond://?src=\ref[src];charge=1'>Recharge Power</a>"
+		dat += "<a href='byond://?src=[REF(src)];heal=1'>Heal</a>|"
+		dat += "<a href='byond://?src=[REF(src)];charge=1'>Recharge Power</a>"
 
 	dat += "</b></center>"
 
 	var/datum/browser/popup = new(user, "arcade", "<div align='center'>Arcade</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "arcade")
+	popup.open()
 
 
 /obj/machinery/computer/arcade/Topic(href, href_list)
@@ -120,10 +111,6 @@
 			sleep(10)
 			src.arcade_action()
 
-	if (href_list["close"])
-		usr.unset_interaction()
-		usr << browse(null, "window=arcade")
-
 	else if (href_list["newgame"]) //Reset everything
 		temp = "New Round"
 		player_hp = 30
@@ -133,12 +120,8 @@
 		gameover = 0
 		turtle = 0
 
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			src.New()
-			DISABLE_BITFIELD(obj_flags, EMAGGED)
+	updateUsrDialog()
 
-	src.updateUsrDialog()
-	return
 
 /obj/machinery/computer/arcade/proc/arcade_action()
 	if ((src.enemy_mp <= 0) || (src.enemy_hp <= 0))
@@ -146,15 +129,7 @@
 			src.gameover = 1
 			src.temp = "[src.enemy_name] has fallen! Rejoice!"
 
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
-				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
-				new /obj/item/clothing/head/collectable/petehat(src.loc)
-				log_game("[key_name(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				message_admins("[ADMIN_TPMONTY(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-
-				src.New()
-				DISABLE_BITFIELD(obj_flags, EMAGGED)
-			else if(!contents.len)
+			if(!contents.len)
 				var/prizeselect = pickweight(prizes)
 				new prizeselect(src.loc)
 
@@ -168,11 +143,6 @@
 				var/atom/movable/prize = pick(contents)
 				prize.loc = src.loc
 
-	else if (CHECK_BITFIELD(obj_flags, EMAGGED) && (turtle >= 4))
-		var/boomamt = rand(5,10)
-		src.temp = "[src.enemy_name] throws a bomb, exploding you for [boomamt] damage!"
-		src.player_hp -= boomamt
-
 	else if ((src.enemy_mp <= 5) && (prob(70)))
 		var/stealamt = rand(2,3)
 		src.temp = "[src.enemy_name] steals [stealamt] of your power!"
@@ -183,8 +153,6 @@
 			src.gameover = 1
 			sleep(10)
 			src.temp = "You have been drained! GAME OVER"
-			if(CHECK_BITFIELD(obj_flags, EMAGGED))
-				usr.gib()
 
 	else if ((src.enemy_hp <= 10) && (src.enemy_mp > 4))
 		src.temp = "[src.enemy_name] heals for 4 health!"
@@ -199,31 +167,9 @@
 	if ((src.player_mp <= 0) || (src.player_hp <= 0))
 		src.gameover = 1
 		src.temp = "GAME OVER"
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			usr.gib()
 
 	src.blocked = 0
 	return
-
-
-/obj/machinery/computer/arcade/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	
-	if(istype(I, /obj/item/card/emag) && !CHECK_BITFIELD(obj_flags, EMAGGED))
-		temp = "If you die in the game, you die for real!"
-		player_hp = 30
-		player_mp = 10
-		enemy_hp = 45
-		enemy_mp = 20
-		gameover = FALSE
-		blocked = FALSE
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-
-		enemy_name = "Cuban Pete"
-		name = "Outbomb Cuban Pete"
-
-		updateUsrDialog()
 
 
 /obj/machinery/computer/arcade/emp_act(severity)

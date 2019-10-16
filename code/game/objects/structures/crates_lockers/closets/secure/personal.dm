@@ -73,12 +73,6 @@
 				src.desc = "Owned by [I.registered_name]."
 		else
 			to_chat(user, "<span class='warning'>Access Denied</span>")
-	else if(istype(W, /obj/item/card/emag))
-		if(broken) return
-		broken = 1
-		locked = 0
-		desc = "It appears to be broken."
-		icon_state = src.icon_broken
 	else
 		to_chat(user, "<span class='warning'>Access Denied</span>")
 	return

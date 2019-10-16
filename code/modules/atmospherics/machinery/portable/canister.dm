@@ -34,11 +34,6 @@
 
 	var/update = 0
 
-/obj/machinery/portable_atmospherics/canister/interact(mob/user)
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Error - Unauthorized User</span>")
-		return
-	..()
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
 	name = "n2 canister"

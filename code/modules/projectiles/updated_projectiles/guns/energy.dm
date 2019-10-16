@@ -5,9 +5,10 @@
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
-	var/charge_cost = 10 //100 shots.
+	charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
+	general_codex_key = "energy weapons"
 
 /obj/item/weapon/gun/energy/examine_ammo_count(mob/user)
 	var/list/dat = list()
@@ -80,22 +81,19 @@
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
-	origin_tech = "combat=1;materials=1"
-	matter = list("metal" = 2000)
+	materials = list(/datum/material/metal = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 	cell_type = /obj/item/cell/high
 
-/obj/item/weapon/gun/energy/taser/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/combat_define/mlow_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/combat_define/low_scatter_value)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	fire_delay = 10
+	accuracy_mult = 1.15
+	scatter = 10
+	scatter_unwielded = 15
+
 
 /obj/item/weapon/gun/energy/taser/update_icon()
 	if(!cell || cell.charge - charge_cost < 0)
@@ -117,10 +115,8 @@
 /obj/item/weapon/gun/energy/lasgun
 	name = "\improper Lasgun"
 	desc = "A laser based firearm. Uses power cells."
-	origin_tech = "combat=5;materials=4"
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
-	matter = list("metal" = 2000)
 	load_method = CELL //codex
 
 	ammo = /datum/ammo/energy/lasgun
@@ -129,18 +125,15 @@
 	force = 15
 	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
-	aim_slowdown = SLOWDOWN_ADS_LASGUN
-	wield_delay = WIELD_DELAY_SLOW
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 
-
-/obj/item/weapon/gun/energy/lasgun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2 //Heavy and unwieldy
-	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
+	fire_delay = 3
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 80 //Heavy and unwieldy
+	damage_falloff_mult = 0.5
 
 
 //-------------------------------------------------------
@@ -155,6 +148,7 @@
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
+	ammo_diff = null
 	cell_type = null
 	charge_cost = M43_STANDARD_AMMO_COST
 	attachable_allowed = list(
@@ -170,19 +164,20 @@
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini)
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/focuslens,
+						/obj/item/attachable/widelens,
+						/obj/item/attachable/efflens,
+						/obj/item/attachable/pulselens)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
-/obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
-	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //Heavy and unwieldy; you don't one hand this.
-	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
-	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2.5 //Heavy and unwieldy; you don't one hand this.
-	damage_falloff_mult = CONFIG_GET(number/combat_define/low_damage_falloff_mult)
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
+	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = 0.25
+	fire_delay = 3
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -190,7 +185,6 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
-
 
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
@@ -201,6 +195,9 @@
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
+	if(ammo_diff == null)
+		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
+		return
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
@@ -213,8 +210,8 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = M43_OVERCHARGE_AMMO_COST
-		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
-		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
+		ammo = GLOB.ammo_list[ammo_diff]
+		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
@@ -222,7 +219,7 @@
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
@@ -234,7 +231,6 @@
 		A.update_hud(user)
 	
 	return TRUE
-
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything

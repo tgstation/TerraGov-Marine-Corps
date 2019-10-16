@@ -2,6 +2,7 @@
 	name = "advanced camera console"
 	desc = "Used to access the various cameras on the ship."
 	icon_state = "cameras"
+	interaction_flags = INTERACT_MACHINE_NOSILICON
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
 	var/open_prompt = TRUE
@@ -11,6 +12,9 @@
 	var/datum/action/innate/camera_off/off_action
 	var/datum/action/innate/camera_jump/jump_action
 	var/list/actions
+	var/mob/living/tracking_target
+	var/tracking = FALSE
+	var/cameraticks = 0
 
 
 /obj/machinery/computer/camera_advanced/Initialize()
@@ -144,10 +148,6 @@
 		eyeobj.setLoc(eyeobj.loc)
 
 
-/obj/machinery/computer/camera_advanced/attack_ai(mob/user)
-	return
-
-
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
 	GrantActions(user)
 	current_user = user
@@ -156,6 +156,38 @@
 	user.remote_control = eyeobj
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
+
+
+/obj/machinery/computer/camera_advanced/proc/track(mob/living/target)
+	if(!istype(target))
+		return
+
+	if(!target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		tracking_target = null
+		return
+
+	tracking_target = target
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	start_processing()
+
+
+/obj/machinery/computer/camera_advanced/process()
+	if(QDELETED(tracking_target))
+		return PROCESS_KILL
+
+	if(!tracking_target.can_track(current_user))
+		if(!cameraticks)
+			to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+		cameraticks++
+		if(cameraticks > 9)
+			tracking_target = null
+			to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+			return PROCESS_KILL
+	else
+		cameraticks = 0
+
+	eyeobj?.setLoc(get_turf(tracking_target))
 
 
 /mob/camera/aiEye/remote
@@ -224,6 +256,10 @@
 	var/initial = initial(sprint)
 	var/max_sprint = 50
 
+	if(istype(origin, /obj/machinery/computer/camera_advanced))
+		var/obj/machinery/computer/camera_advanced/CA = origin
+		CA.tracking_target = null
+
 	if(cooldown && cooldown < world.timeofday) // 3 seconds
 		sprint = initial
 
@@ -241,8 +277,8 @@
 
 /datum/action/innate/camera_off
 	name = "End Camera View"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_off"
+	background_icon_state = "template2"
+	action_icon_state = "camera_off"
 
 
 /datum/action/innate/camera_off/Activate()
@@ -256,8 +292,8 @@
 
 /datum/action/innate/camera_jump
 	name = "Jump To Camera"
-	button_icon_state = "template2"
-	icon_icon_state = "camera_jump"
+	background_icon_state = "template2"
+	action_icon_state = "camera_jump"
 
 
 /datum/action/innate/camera_jump/Activate()

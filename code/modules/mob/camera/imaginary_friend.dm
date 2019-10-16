@@ -175,8 +175,8 @@
 	name = "Join"
 	desc = "Join your owner, following them from inside their mind."
 
-	icon_icon_state = "joinmob"
-	button_icon_state = "template2"
+	action_icon_state = "joinmob"
+	background_icon_state = "template2"
 
 
 /datum/action/innate/imaginary_join/Activate()
@@ -188,8 +188,8 @@
 	name = "Hide"
 	desc = "Hide yourself from your owner's sight."
 
-	icon_icon_state = "hidemob"
-	button_icon_state = "template2"
+	action_icon_state = "hidemob"
+	background_icon_state = "template2"
 
 
 /datum/action/innate/imaginary_hide/Activate()
@@ -199,7 +199,7 @@
 	I.Show()
 	name = "Hide"
 	desc = "Hide yourself from your owner's sight."
-	icon_icon_state = "hidemob"
+	action_icon_state = "hidemob"
 	update_button_icon()
 
 
@@ -210,5 +210,5 @@
 	I.Show()
 	name = "Show"
 	desc = "Become visible to your owner."
-	icon_icon_state = "unhidemob"
+	action_icon_state = "unhidemob"
 	update_button_icon()

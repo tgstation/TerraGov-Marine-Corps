@@ -9,4 +9,3 @@
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 4
-	origin_tech = "magnets=2;materials=2"

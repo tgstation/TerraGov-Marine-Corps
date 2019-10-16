@@ -12,8 +12,8 @@
 							/obj/item/ammo_magazine/flamer_tank \
 							), \
 						list(/obj/item/weapon/gun/rifle/lmg, \
-							/obj/item/ammo_magazine/rifle/lmg, \
-							/obj/item/ammo_magazine/rifle/lmg, \
+							/obj/item/ammo_magazine/lmg, \
+							/obj/item/ammo_magazine/lmg, \
 							), \
 						list(/obj/item/weapon/gun/shotgun/combat, \
 							/obj/item/weapon/gun/shotgun/combat, \
@@ -23,8 +23,8 @@
 						list(/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
 							/obj/item/explosive/plastique, \
-							/obj/item/radio/detpack, \
-							/obj/item/radio/detpack, \
+							/obj/item/detpack, \
+							/obj/item/detpack, \
 							/obj/item/assembly/signaler \
 							), \
 						list(/obj/item/weapon/gun/rifle/m41a, \

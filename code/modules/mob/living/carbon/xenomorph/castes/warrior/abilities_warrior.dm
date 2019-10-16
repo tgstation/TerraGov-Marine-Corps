@@ -12,7 +12,7 @@
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(src, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
+	to_chat(X, "<span class='notice'>We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.</span>")
 	return ..()
 
 /datum/action/xeno_action/toggle_agility/action_activate()
@@ -60,11 +60,13 @@
 	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
 	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
 
+
 /datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
-	. = ..()
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
+	return ..()
+
 
 /datum/action/xeno_action/activable/lunge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -178,7 +180,8 @@
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We gather enough strength to punch again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to punch again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/punch/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -197,7 +200,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
-		return M.attack_alien() //harmless nibbling.
+		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
 
@@ -205,7 +208,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper)
+	var/damage = X.xeno_caste.melee_damage
 	succeed_activate()
 	playsound(M, S, 50, 1)
 

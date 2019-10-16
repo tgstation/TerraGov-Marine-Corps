@@ -12,9 +12,9 @@ require only minor tweaks.
 */
 
 // helpers for modifying jobs, used in various job_changes.dm files
-#define MAP_JOB_CHECK if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return; }
-#define MAP_JOB_CHECK_BASE if(SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) { return ..(); }
-#define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.config.map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
+#define MAP_JOB_CHECK if(SSmapping.configs[GROUND_MAP].map_name != JOB_MODIFICATION_MAP_NAME) { return; }
+#define MAP_JOB_CHECK_BASE if(SSmapping.configs[GROUND_MAP].map_name != JOB_MODIFICATION_MAP_NAME) { return ..(); }
+#define MAP_REMOVE_JOB(jobpath) /datum/job/##jobpath/map_check() { return (SSmapping.configs[GROUND_MAP].map_name != JOB_MODIFICATION_MAP_NAME) && ..() }
 
 #define SPACERUIN_MAP_EDGE_PAD 15
 
@@ -76,7 +76,7 @@ require only minor tweaks.
 #define CAMERA_LOCK_CENTCOM (1<<2)
 
 //Reserved/Transit turf type
-#define RESERVED_TURF_TYPE /turf/open/space			//What the turf is when not being used
+#define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
 
 //Ruin Generation
 

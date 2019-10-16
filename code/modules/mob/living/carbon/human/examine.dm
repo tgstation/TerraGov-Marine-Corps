@@ -451,8 +451,11 @@
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
-	for(var/implant in get_visible_implants(0))
-		msg += "<span class='warning'><b>[t_He] has \a [implant] sticking out of [t_his] flesh!</span>\n"
+	for(var/i in embedded_objects)
+		var/obj/item/embedded = i
+		if(!(embedded.embedding.embedded_flags & EMBEDDEED_CAN_BE_YANKED_OUT))
+			continue
+		msg += "<span class='warning'><b>[t_He] has \a [embedded] sticking out of [t_his] flesh!</span>\n"
 
 	if(hasHUD(user,"security"))
 		var/perpname = "wot"
@@ -527,7 +530,7 @@
 	to_chat(user, msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
-	if(!user || !src || !Adjacent(user) || user.incapacitated())
+	if(QDELETED(user) || QDELETED(src) || !Adjacent(user) || user.incapacitated())
 		return
 	var/pulse_taken = get_pulse(GETPULSE_HAND)
 	if(pulse_taken == PULSE_NONE)

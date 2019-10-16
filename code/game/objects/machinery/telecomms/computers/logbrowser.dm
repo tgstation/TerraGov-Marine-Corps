@@ -112,8 +112,6 @@
 	if(.)
 		return
 
-	usr.set_interaction(src)
-
 	if(href_list["viewserver"])
 		screen = 1
 		for(var/obj/machinery/telecomms/T in servers)
@@ -142,7 +140,7 @@
 					screen = 0
 
 	else if(href_list["delete"])
-		if(!allowed(usr) && !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(!allowed(usr))
 			to_chat(usr, "<span class='danger'>ACCESS DENIED.</span>")
 			return
 
@@ -166,9 +164,4 @@
 				servers = list()
 				temp = "<font color = #88bff7>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font color>"
 
-	updateUsrDialog()
-
-
-/obj/machinery/computer/telecomms/server/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	updateUsrDialog()

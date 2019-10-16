@@ -60,24 +60,23 @@ GLOBAL_LIST_INIT(iron_recipes, list ( \
 	throw_speed = 3
 	throw_range = 3
 
-/obj/item/stack/sheet/mineral/New()
-	..()
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+/obj/item/stack/sheet/mineral/Initialize()
+	. = ..()
+	pixel_x = rand(-2, 2)
+	pixel_y = rand(-2, 2)
 
 obj/item/stack/sheet/mineral/iron
 	name = "iron"
 	desc = "Iron is the most basic building material in space, a metal solid at room temperature, easy to shape and available in immense quantities."
 	singular_name = "iron sheet"
 	icon_state = "sheet-silver"
-	origin_tech = "materials=1"
 	sheettype = "iron"
 	color = "#333333"
 	perunit = 3750
 
 
-obj/item/stack/sheet/mineral/iron/New()
-	..()
+obj/item/stack/sheet/mineral/iron/Initialize()
+	. = ..()
 	recipes = GLOB.iron_recipes
 
 /obj/item/stack/sheet/mineral/sandstone
@@ -87,12 +86,11 @@ obj/item/stack/sheet/mineral/iron/New()
 	icon_state = "sheet-sandstone"
 	throw_speed = 4
 	throw_range = 5
-	origin_tech = "materials=1"
 	sheettype = "sandstone"
 
 
-/obj/item/stack/sheet/mineral/sandstone/New()
-	..()
+/obj/item/stack/sheet/mineral/sandstone/Initialize()
+	. = ..()
 	recipes = GLOB.sandstone_recipes
 
 /obj/item/stack/sheet/mineral/diamond
@@ -100,13 +98,12 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Diamond is a specific arrangement of carbon created under extreme pressure and heat. Valued for its look and properties, despite artificial manufacturing possibilities."
 	singular_name = "diamond gem"
 	icon_state = "sheet-diamond"
-	origin_tech = "materials=6"
 	perunit = 3750
 	sheettype = "diamond"
 
 
-/obj/item/stack/sheet/mineral/diamond/New()
-	..()
+/obj/item/stack/sheet/mineral/diamond/Initialize()
+	. = ..()
 	recipes = GLOB.diamond_recipes
 
 /obj/item/stack/sheet/mineral/uranium
@@ -114,13 +111,12 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Uranium is a radioactive metal of the actinide series. Valued as reactor fuel for fission-type generators, and as a primer for fusion bombs."
 	singular_name = "uranium rod"
 	icon_state = "sheet-uranium"
-	origin_tech = "materials=5"
 	perunit = 2000
 	sheettype = "uranium"
 
 
-/obj/item/stack/sheet/mineral/uranium/New()
-	..()
+/obj/item/stack/sheet/mineral/uranium/Initialize()
+	. = ..()
 	recipes = GLOB.uranium_recipes
 
 /obj/item/stack/sheet/mineral/phoron
@@ -128,15 +124,9 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Phoron is an extremely rare mineral with exotic properties, often used in cutting-edge research. Just getting it into a stable, solid form is already hard enough."
 	singular_name = "phoron ingot"
 	icon_state = "sheet-phoron"
-	origin_tech = "phorontech=2;materials=2"
 	perunit = 2000
 	sheettype = "phoron"
 	merge_type = /obj/item/stack/sheet/mineral/phoron
-
-
-/obj/item/stack/sheet/mineral/phoron/New()
-	..()
-	// recipes = phoron_recipes // Disabled phoron doors
 
 
 /obj/item/stack/sheet/mineral/phoron/small_stack
@@ -152,12 +142,11 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Plastic is a synthetic polymer, manufactured from organic and inorganic components into a malleable and light fabric. It can be used for a wide range of objects."
 	singular_name = "plastic sheet"
 	icon_state = "sheet-plastic"
-	origin_tech = "materials=3"
 	perunit = 2000
 
 
-/obj/item/stack/sheet/mineral/plastic/New()
-	..()
+/obj/item/stack/sheet/mineral/plastic/Initialize()
+	. = ..()
 	recipes = GLOB.plastic_recipes
 
 /obj/item/stack/sheet/mineral/plastic/cyborg
@@ -172,14 +161,13 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Gold is a transition metal. A relatively rare metal, known for its color, shine, chemical and electrical properties, it is sought after for both cosmetic, engineering and scientific uses."
 	singular_name = "gold ingot"
 	icon_state = "sheet-gold"
-	origin_tech = "materials=4"
 	perunit = 2000
 	sheettype = "gold"
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/gold/New()
-	..()
+/obj/item/stack/sheet/mineral/gold/Initialize()
+	. = ..()
 	recipes = GLOB.gold_recipes
 
 /obj/item/stack/sheet/mineral/silver
@@ -187,14 +175,13 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Silver is a transition metal. It is known for its namesake silver, gray color. It is used both for cosmetics as a cheaper alternative to gold, or for engineering."
 	singular_name = "silver ingot"
 	icon_state = "sheet-silver"
-	origin_tech = "materials=3"
 	perunit = 2000
 	sheettype = "silver"
 	number_of_extra_variants = 2
 
 
-/obj/item/stack/sheet/mineral/silver/New()
-	..()
+/obj/item/stack/sheet/mineral/silver/Initialize()
+	. = ..()
 	recipes = GLOB.silver_recipes
 
 
@@ -204,7 +191,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Platinum is a transition metal. Relatively rare and pretty, it is used for its cosmetic value and chemical properties as a catalytic agent. It is also used in electrodes."
 	singular_name = "platinum ingot"
 	icon_state = "sheet-platinum"
-	origin_tech = "materials=2"
 	sheettype = "platinum"
 	perunit = 2000
 	number_of_extra_variants = 2
@@ -216,7 +202,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	desc = "Metallic hydrogen is regular hydrogen in a near-solid state, turned into an ingot under immense pressures. The exact procedure to create and stabilize such ingots is still a trade secret."
 	singular_name = "hydrogen ingot"
 	icon_state = "sheet-mythril"
-	origin_tech = "materials=6;powerstorage=5;magnets=5"
 	sheettype = "mhydrogen"
 	perunit = 2000
 
@@ -228,7 +213,6 @@ obj/item/stack/sheet/mineral/iron/New()
 	singular_name = "tritium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "tritium"
-	origin_tech = "materials=5"
 	color = "#777777"
 	perunit = 2000
 
@@ -239,6 +223,5 @@ obj/item/stack/sheet/mineral/iron/New()
 	singular_name = "tritium ingot"
 	icon_state = "sheet-silver"
 	sheettype = "osmium"
-	origin_tech = "materials=5"
 	color = "#9999FF"
 	perunit = 2000

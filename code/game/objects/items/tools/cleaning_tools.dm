@@ -86,6 +86,11 @@
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
 
+
+/obj/item/tool/soap/attack(mob/target, mob/user)
+	return
+
+
 /obj/item/tool/soap/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
@@ -113,7 +118,8 @@
 /obj/item/tool/soap/deluxe
 	icon_state = "soapdeluxe"
 
-/obj/item/tool/soap/deluxe/New()
+/obj/item/tool/soap/deluxe/Initialize()
+	. = ..()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 
 /obj/item/tool/soap/syndie

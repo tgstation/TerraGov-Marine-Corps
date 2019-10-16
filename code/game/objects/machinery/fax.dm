@@ -29,26 +29,24 @@
 	return ..()
 
 
+/obj/machinery/faxmachine/deconstruct(disassembled = TRUE)
+	if(idscan)
+		idscan.forceMove(get_turf(src))
+		idscan = null
+
+	return ..()
+
+
 /obj/machinery/faxmachine/process()
 	return FALSE
 
 
-/obj/machinery/faxmachine/attack_ai(mob/user as mob)
-	return attack_hand(user)
-
-
-/obj/machinery/faxmachine/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-
-/obj/machinery/faxmachine/attack_hand(mob/living/user)
+/obj/machinery/faxmachine/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
 
 	var/dat
-
 	var/scan_name
 	if(idscan)
 		scan_name = idscan.name
@@ -87,8 +85,7 @@
 
 	var/datum/browser/popup = new(user, "fax", "<div align='center'>Fax Machine</div>")
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "fax")
+	popup.open()
 
 
 /obj/machinery/faxmachine/Topic(href, href_list)

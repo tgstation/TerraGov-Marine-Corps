@@ -51,7 +51,7 @@
 
 	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [CONFIG_GET(string/ship_name)] NOW</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [SSmapping.configs[SHIP_MAP].map_name] NOW</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"

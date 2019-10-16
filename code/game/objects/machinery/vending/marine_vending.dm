@@ -52,8 +52,8 @@
 		products2 = list(/obj/item/clothing/mask/rebreather/scarf = 10, /obj/item/clothing/mask/rebreather = 10)
 	build_inventory(products2)
 
-/obj/machinery/vending/marine/New()
-	..()
+/obj/machinery/vending/marine/Initialize()
+	. = ..()
 	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
@@ -84,6 +84,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/m4a3 = 10,
@@ -114,6 +115,7 @@
 					/obj/item/weapon/gun/revolver/m44 = 15,
 					/obj/item/weapon/gun/smg/m39 = 15,
 					/obj/item/weapon/gun/rifle/m41a = 20,
+					/obj/item/weapon/gun/rifle/lmg = 2,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/explosive/mine = 2,
@@ -144,8 +146,8 @@
 /obj/machinery/vending/marine/cargo_guns/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_guns/New()
-	..()
+/obj/machinery/vending/marine/cargo_guns/Initialize()
+	. = ..()
 	GLOB.cargo_guns_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -189,11 +191,11 @@
 					/obj/item/ammo_magazine/rifle/extended = 5,
 					/obj/item/cell/lasgun/M43 = 15,
 					/obj/item/cell/lasgun/M43/highcap = 5,
-					/obj/item/ammo_magazine/shotgunbox = 3,
+					/obj/item/shotgunbox = 3,
 					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/ammo_magazine/shotgunbox/buckshot = 3,
+					/obj/item/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
+					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/smartgun_powerpack = 2
 					)
@@ -211,8 +213,8 @@
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
 	return
 
-/obj/machinery/vending/marine/cargo_ammo/New()
-	..()
+/obj/machinery/vending/marine/cargo_ammo/Initialize()
+	. = ..()
 	GLOB.cargo_ammo_vendors.Add(src)
 	GLOB.marine_vendors.Remove(src)
 
@@ -248,7 +250,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/lasgun/New()
+/obj/machinery/vending/lasgun/Initialize()
 	. = ..()
 	update_icon()
 
@@ -372,6 +374,7 @@
 					/obj/item/reagent_container/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 8,
 					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 4,
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
@@ -391,7 +394,8 @@
 					/obj/item/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
-	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3)
+	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3,
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine/expired =3)
 
 
 
@@ -435,7 +439,7 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/clothing/under/marine/medic = 4,
+						/obj/item/clothing/under/marine/corpsman = 4,
 						/obj/item/clothing/head/helmet/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
@@ -511,14 +515,6 @@
 			)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_special/New()
-
-	if(shared_products.len == 0)
-		var/i
-
-		for(i in shared)
-			shared_products.Add(new /datum/data/vending_product())
-	..()
 
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper ColMarTech Engineer System Vendor"
@@ -544,14 +540,6 @@
 				)
 	prices = list()
 
-/obj/machinery/vending/shared_vending/marine_engi/New()
-
-	if(shared_products.len == 0)
-		var/i
-
-		for(i in shared)
-			shared_products.Add(new /datum/data/vending_product())
-	..()
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper ColMarTech Smartgun Vendor"
@@ -637,6 +625,10 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/suppressor = 8,
+						/obj/item/attachable/widelens = 4,
+						/obj/item/attachable/focuslens = 4,
+						/obj/item/attachable/efflens = 4,
+						/obj/item/attachable/pulselens = 4,
 
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/magnetic_harness = 8,
@@ -662,8 +654,8 @@
 						/obj/item/attachable/attached_gun/grenade = 5
 					)
 
-/obj/machinery/vending/attachments/New()
-	..()
+/obj/machinery/vending/attachments/Initialize()
+	. = ..()
 	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
@@ -685,7 +677,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/clothing/shoes/marine = 20,
-					/obj/item/clothing/under/marine = 20,
+					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
@@ -694,14 +686,23 @@
 					/obj/item/clothing/suit/storage/marine/M3P = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/M3E = 10,
+					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/glasses/mgoggles = 10,
+					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
+					/obj/item/clothing/mask/bandanna/skull = 10,
+					/obj/item/clothing/mask/bandanna/green = 10,
+					/obj/item/clothing/mask/bandanna/white = 10,
+					/obj/item/clothing/mask/bandanna/black = 10,
+					/obj/item/clothing/mask/bandanna = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/tank/emergency_oxygen = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 10,
 					/obj/item/storage/large_holster/m39 = 10,
@@ -737,26 +738,31 @@
 					/obj/item/clothing/gloves/white = 50,
 					)
 
-/obj/machinery/vending/uniform_supply/New()
-	..()
+/obj/machinery/vending/uniform_supply/Initialize()
+	. = ..()
 	var/products2[]
 	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
 		switch(squad_tag)
 			if("Alpha")
 				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
-								/obj/item/clothing/gloves/marine/alpha = 10)
+								/obj/item/clothing/gloves/marine/alpha = 10,
+								/obj/item/clothing/mask/bandanna/alpha = 10)
 			if("Bravo")
 				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/gloves/marine/bravo = 10)
+								/obj/item/clothing/gloves/marine/bravo = 10,
+								/obj/item/clothing/mask/bandanna/bravo = 10)
 			if("Charlie")
 				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/gloves/marine/charlie = 10)
+								/obj/item/clothing/gloves/marine/charlie = 10,
+								/obj/item/clothing/mask/bandanna/charlie = 10)
 			if("Delta")
 				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/gloves/marine/delta = 10)
+								/obj/item/clothing/gloves/marine/delta = 10,
+								/obj/item/clothing/mask/bandanna/delta = 10)
 	else
 		products2 = list(/obj/item/radio/headset/mainship = 10,
-						/obj/item/clothing/gloves/marine = 10)
+						/obj/item/clothing/gloves/marine = 10,
+						/obj/item/clothing/mask/bandanna = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
 

@@ -3,7 +3,6 @@
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -13,7 +12,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
+	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
@@ -24,9 +23,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-
-/obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
+	fire_delay = 35
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -549,19 +546,26 @@
 	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
-	if(burnlevel < 15)
-		color = "#c1c1c1" //make it darker to make show its weaker.
+	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_intensity = 3
+	switch(flame_color)
+		if("red")
+			light_color = LIGHT_COLOR_LAVA
+		if("blue")
+			light_color = LIGHT_COLOR_CYAN
+		if("green")
+			light_color = LIGHT_COLOR_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			set_light(2)
+			light_intensity = 2
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			set_light(4)
+			light_intensity = 4
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			set_light(6)
-
+			light_intensity = 6
+	set_light(light_intensity, null, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc

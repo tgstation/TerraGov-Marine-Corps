@@ -3,7 +3,6 @@
 	desc = "The by-product of human farming."
 	singular_name = "human skin piece"
 	icon_state = "sheet-hide"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/animalhide/corgi
@@ -11,7 +10,6 @@
 	desc = "The by-product of corgi farming."
 	singular_name = "corgi hide piece"
 	icon_state = "sheet-corgi"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/animalhide/cat
@@ -19,7 +17,6 @@
 	desc = "The by-product of cat farming."
 	singular_name = "cat hide piece"
 	icon_state = "sheet-cat"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/animalhide/monkey
@@ -27,7 +24,6 @@
 	desc = "The by-product of monkey farming."
 	singular_name = "monkey hide piece"
 	icon_state = "sheet-monkey"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/animalhide/lizard
@@ -35,7 +31,6 @@
 	desc = "Sssssss..."
 	singular_name = "lizard skin piece"
 	icon_state = "sheet-lizard"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/animalhide/xeno
@@ -43,7 +38,6 @@
 	desc = "The skin of a terrible creature."
 	singular_name = "alien hide piece"
 	icon_state = "sheet-xeno"
-	origin_tech = ""
 
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
@@ -53,7 +47,6 @@
 	singular_name = "alien hide piece"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "chitin"
-	origin_tech = ""
 
 
 /obj/item/xenos_claw
@@ -61,21 +54,20 @@
 	desc = "The claw of a terrible creature."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
-	origin_tech = ""
+
 
 /obj/item/weed_extract
 	name = "weed extract"
 	desc = "A piece of slimy, purplish weed."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "weed_extract"
-	origin_tech = ""
+
 
 /obj/item/stack/sheet/hairlesshide
 	name = "hairless hide"
 	desc = "This hide was stripped of it's hair, but still needs tanning."
 	singular_name = "hairless hide piece"
 	icon_state = "sheet-hairlesshide"
-	origin_tech = ""
 
 
 /obj/item/stack/sheet/wetleather
@@ -83,7 +75,6 @@
 	desc = "This leather has been cleaned but still needs to be dried."
 	singular_name = "wet leather piece"
 	icon_state = "sheet-wetleather"
-	origin_tech = ""
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
@@ -92,7 +83,6 @@
 	desc = "The by-product of mob grinding."
 	singular_name = "leather piece"
 	icon_state = "sheet-leather"
-	origin_tech = "materials=2"
 
 
 //Step one - dehairing.

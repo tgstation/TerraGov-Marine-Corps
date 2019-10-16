@@ -68,7 +68,7 @@
 			return
 		else if(istype(AM, /obj/item/projectile))
 			var/obj/item/projectile/P = AM
-			if(P.original != parent)
+			if(P.original_target != parent)
 				return
 
 	if(isobserver(AM))

@@ -49,32 +49,36 @@
 /datum/action/item_action/firemode
 	var/action_firemode
 	var/obj/item/weapon/gun/holder_gun
+	var/static/atom/movable/vis_obj/action/fmode_single/semiauto = new
+	var/static/atom/movable/vis_obj/action/fmode_burst/burstfire = new
+	var/static/atom/movable/vis_obj/action/fmode_single_auto/fullauto = new
+	var/static/atom/movable/vis_obj/action/fmode_burst_auto/autoburst = new
+	var/atom/movable/vis_obj/action/current_action_vis_obj
 
 
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	name = initial(name) //Revert this foolishness.
-	button.name = name
+	button.overlays.Cut()
+	update_button_icon()
 
 
-/datum/action/item_action/firemode/can_use_action()
-	. = ..()
-	if(!.)
-		return
+/datum/action/item_action/firemode/update_button_icon()
 	if(holder_gun.gun_firemode == action_firemode)
-		return FALSE
-
-
-/datum/action/item_action/firemode/should_show()
-	return can_use_action()
-
-
-/datum/action/item_action/firemode/semiauto_firemode
-	name = "Semi-Automatic Firemode"
-	action_firemode = GUN_FIREMODE_SEMIAUTO
-
-
-/datum/action/item_action/firemode/burst_firemode
-	name = "Burst Firemode"
-	action_firemode = GUN_FIREMODE_BURSTFIRE
+		return
+	button.vis_contents -= current_action_vis_obj
+	switch(holder_gun.gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			button.name = "Semi-Automatic Firemode"
+			current_action_vis_obj = semiauto
+		if(GUN_FIREMODE_BURSTFIRE)
+			button.name = "Burst Firemode"
+			current_action_vis_obj = burstfire
+		if(GUN_FIREMODE_AUTOMATIC)
+			button.name = "Automatic Firemode"
+			current_action_vis_obj = fullauto
+		if(GUN_FIREMODE_AUTOBURST)
+			button.name = "Automatic Burst Firemode"
+			current_action_vis_obj = autoburst
+	button.vis_contents += current_action_vis_obj	
+	action_firemode = holder_gun.gun_firemode

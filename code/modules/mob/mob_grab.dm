@@ -14,8 +14,8 @@
 	var/last_upgrade = 0 //used for cooldown between grab upgrades.
 
 
-/obj/item/grab/New()
-	..()
+/obj/item/grab/Initialize()
+	. = ..()
 	last_upgrade = world.time
 
 /obj/item/grab/dropped(mob/user)
@@ -103,6 +103,9 @@
 		return NONE
 	if(length(stomach_contents)) //Only one thing in the stomach at a time, please
 		to_chat(src, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
+		return NONE
+	for(var/obj/effect/forcefield/fog in range(1, src))
+		to_chat(src, "<span class='warning'>You are too close to the fog.</span>")
 		return NONE
 
 	visible_message("<span class='danger'>[src] starts to devour [prey]!</span>", \

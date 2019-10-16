@@ -3,6 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
+	hit_sound = 'sound/effects/Glasshit_old.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/inflatable/attack_self(mob/user)
@@ -40,19 +41,18 @@
 	icon_state = "wall"
 
 	max_integrity = 50
+	resistance_flags = XENO_DAMAGEABLE
 	var/deflated = FALSE
 
+
+/obj/structure/inflatable/deconstruct(disassembled = TRUE)
+	if(!deflated)
+		deflate(!disassembled)
+	return ..()
 
 
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	return 0
-
-/obj/structure/inflatable/bullet_act(obj/item/projectile/Proj)
-	obj_integrity -= Proj.damage
-	..()
-	if(obj_integrity <= 0 && !deflated)
-		deflate(1)
-	return 1
 
 
 /obj/structure/inflatable/ex_act(severity)
@@ -67,46 +67,12 @@
 				deflate(1)
 
 
-/obj/structure/inflatable/attack_paw(mob/living/carbon/monkey/user)
-	return attack_generic(user, 15)
-
-
-/obj/structure/inflatable/proc/attack_generic(mob/living/user, damage = 0)	//used by attack_animal
-	obj_integrity -= damage
-	user.do_attack_animation(src)
-	if(obj_integrity <= 0)
-		user.visible_message("<span class='danger'>[user] tears open [src]!</span>")
-		deflate(1)
-	else	//for nicer text~
-		user.visible_message("<span class='danger'>[user] tears at [src]!</span>")
-
-/obj/structure/inflatable/attack_animal(mob/user as mob)
-	if(!isanimal(user)) return
-	var/mob/living/simple_animal/M = user
-	if(M.melee_damage_upper <= 0) return
-	attack_generic(M, M.melee_damage_upper)
-
-/obj/structure/inflatable/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	deflate(1)
-
 /obj/structure/inflatable/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(can_puncture(I))
 		visible_message("<span class='danger'>[user] pierces [src] with [I]!</span>")
 		deflate(TRUE)
-
-	if(I.damtype == BRUTE || I.damtype == BURN)
-		hit(I.force)
-
-
-/obj/structure/inflatable/proc/hit(damage, sound_effect = 1)
-	obj_integrity = max(0, obj_integrity - damage)
-	if(sound_effect)
-		playsound(loc, 'sound/effects/Glasshit_old.ogg', 25, 1)
-	if(obj_integrity <= 0 && !deflated)
-		deflate(1)
 
 
 /obj/structure/inflatable/proc/deflate(violent=0)

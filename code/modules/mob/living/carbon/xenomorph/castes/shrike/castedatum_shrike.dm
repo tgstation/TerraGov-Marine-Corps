@@ -10,8 +10,7 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 18
-	melee_damage_upper = 24
+	melee_damage = 21
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -45,6 +44,23 @@
 	aura_strength = 2 //The Shrike's aura is decent.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/call_of_the_burrowed,
+		/datum/action/xeno_action/choose_resin,
+		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/activable/psychic_fling,
+		/datum/action/xeno_action/activable/unrelenting_force,
+		/datum/action/xeno_action/toggle_pheromones
+		)
+
 /datum/xeno_caste/shrike/young
 	upgrade_name = "Young"
 
@@ -57,8 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 22
-	melee_damage_upper = 28
+	melee_damage = 25
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -89,8 +104,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 26
-	melee_damage_upper = 32
+	melee_damage = 29
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -121,8 +135,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 28
-	melee_damage_upper = 34
+	melee_damage = 31
 
 	// *** Tackle *** //
 	tackle_damage = 45

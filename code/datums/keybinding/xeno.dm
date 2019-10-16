@@ -118,6 +118,27 @@
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	
+/datum/keybinding/xeno/plow_charge
+	key = "Unbound"
+	name = "plow_charge"
+	full_name = "Bull: Plow Charge"
+	description = "A charge that plows through the victims."
+	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
+	
+/datum/keybinding/xeno/headbutt_charge
+	key = "Unbound"
+	name = "headbutt_charge"
+	full_name = "Bull: Headbutt Charge"
+	description = "A charge that tosses the victim forward or backwards, depending on intent."
+	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
+	
+/datum/keybinding/xeno/gore_charge
+	key = "Unbound"
+	name = "gore_charge"
+	full_name = "Bull: Gore Charge"
+	description = "A charge that gores the victim."
+	keybind_signal = COMSIG_XENOABILITY_BULLGORE
+	
 /datum/keybinding/xeno/long_range_sight
 	key = "Unbound"
 	name = "long_range_sight"
@@ -265,20 +286,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
-/datum/keybinding/xeno/grow_ovipositor
-	key = "Unbound"
-	name = "grow_ovipositor"
-	full_name = "Queen: Grow Ovipositor"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_GROW_OVIPOSITOR
-
-/datum/keybinding/xeno/remove_eggsac
-	key = "Unbound"
-	name = "remove_eggsac"
-	full_name = "Queen: Remove eggsac"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_REMOVE_EGGSAC
-
 /datum/keybinding/xeno/watch_xeno
 	key = "Unbound"
 	name = "watch_xeno"
@@ -289,7 +296,7 @@
 /datum/keybinding/xeno/psychic_whisper
 	key = "Unbound"
 	name = "psychic_whisper"
-	full_name = "Queen: Psychic Whisper"
+	full_name = "Psychic Whisper"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
@@ -313,6 +320,13 @@
 	full_name = "Psychic Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
+
+/datum/keybinding/xeno/unrelenting_force
+	key = "Unbound"
+	name = "unrelenting_force"
+	full_name = "Unrelenting Force"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
 /datum/keybinding/xeno/psychic_choke
 	key = "Unbound"

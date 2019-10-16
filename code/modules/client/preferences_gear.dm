@@ -15,29 +15,29 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	var/slot               //Slot to equip to.
 
 
-/datum/gear/bandana_red
-	display_name = "TGMC bandana (red)"
-	path = /obj/item/clothing/head/bandana/red
+/datum/gear/bandanna_red
+	display_name = "TGMC bandanna (red)"
+	path = /obj/item/clothing/head/bandanna/red
 	cost = 3
 	slot = SLOT_HEAD
 
 
-/datum/gear/bandana_green
-	display_name = "TGMC bandana (green)"
-	path = /obj/item/clothing/head/tgmcbandana
+/datum/gear/bandanna_green
+	display_name = "TGMC bandanna (green)"
+	path = /obj/item/clothing/head/tgmcbandanna
 	cost = 3
 	slot = SLOT_HEAD
 
 
-/datum/gear/bandana_tan
-	display_name = "TGMC bandana (tan)"
-	path = /obj/item/clothing/head/tgmcbandana/tan
+/datum/gear/bandanna_tan
+	display_name = "TGMC bandanna (tan)"
+	path = /obj/item/clothing/head/tgmcbandanna/tan
 	cost = 3
 	slot = SLOT_HEAD
 
 
-/datum/gear/beret_green
-	display_name = "TGMC beret (green)"
+/datum/gear/beret
+	display_name = "TGMC beret"
 	path = /obj/item/clothing/head/tgmcberet
 	cost = 3
 	slot = SLOT_HEAD
@@ -46,6 +46,13 @@ GLOBAL_LIST_EMPTY(gear_datums)
 /datum/gear/beret_tan
 	display_name = "TGMC beret (tan)"
 	path = /obj/item/clothing/head/tgmcberet/tan
+	cost = 3
+	slot = SLOT_HEAD
+
+
+/datum/gear/beret_green
+	display_name = "TGMC beret (green)"
+	path = /obj/item/clothing/head/tgmcberet/green
 	cost = 3
 	slot = SLOT_HEAD
 
@@ -90,6 +97,12 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	path = /obj/item/clothing/glasses/eyepatch
 	cost = 2
 	slot = SLOT_GLASSES
+
+/datum/gear/glasses
+	display_name = "Prescription Glasses"
+	path = /obj/item/clothing/glasses/regular
+	cost = 2
+	slot = SLOT_GLASSES	
 
 
 /datum/gear/shades

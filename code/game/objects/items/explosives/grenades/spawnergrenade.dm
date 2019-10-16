@@ -3,7 +3,6 @@
 	name = "delivery grenade"
 	icon_state = "delivery"
 	item_state = "flashbang"
-	origin_tech = "materials=3;magnets=4"
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
@@ -33,4 +32,3 @@
 	name = "carp delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
-	origin_tech = "materials=3;magnets=4;syndicate=4"

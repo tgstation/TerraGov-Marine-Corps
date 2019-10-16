@@ -17,7 +17,6 @@
 	var/fire_alert = FALSE
 	var/pressure_alert = FALSE
 
-	var/pulse = PULSE_NORM	//current pulse level
 	var/list/internal_organs = list()
 
 	var/drunkenness = 0 //Overall drunkenness - check handle_status_effects() in life.dm for effects
@@ -40,6 +39,7 @@
 	var/obj/item/tank/internal = null//Human/Monkey
 
 	var/blood_type
+	blood_volume = BLOOD_VOLUME_NORMAL
 
 	var/overeatduration = 0		// How long this guy is overeating
 

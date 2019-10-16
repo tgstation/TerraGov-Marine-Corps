@@ -9,8 +9,8 @@
 	var/list/datum/pipeline/parents
 
 /obj/machinery/atmospherics/components/New()
+	. = ..()
 	parents = new(device_type)
-	..()
 
 // Iconnery
 
@@ -23,10 +23,12 @@
 	underlays.Cut()
 
 	var/turf/T = loc
-	if(level == 2 || !T.intact_tile)
+	if(level == 2 || (!T.intact_tile && !istype(T, /turf/open/floor/plating/plating_catwalk)))
 		showpipe = TRUE
+		plane = GAME_PLANE
 	else
 		showpipe = FALSE
+		plane = FLOOR_PLANE
 
 	if(!showpipe)
 		return //no need to update the pipes if they aren't showing

@@ -167,7 +167,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	name = "Gin"
 	description = "It's gin. In space. I say, good sir."
 	color = "#664300" // rgb: 102, 67, 0
-	taste_description = "an alcoholic christmas tree"
+	taste_description = "pine"
 	boozepwr = 45
 
 /datum/reagent/consumable/ethanol/rum

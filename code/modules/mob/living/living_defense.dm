@@ -19,7 +19,7 @@
 	return 0
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone, used_weapon=null)
+/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
 	flash_pain()
 
 	if (stun_amount)
@@ -29,7 +29,7 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, 0, used_weapon)
+		apply_damage(agony_amount, HALLOSS, def_zone)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
 
@@ -65,7 +65,7 @@
 		var/armor = run_armor_check(null, "melee")
 
 		if(armor < 1)
-			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O))
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -93,11 +93,9 @@
 
 			if(!W || !src) return
 
-			if(W.sharp) //Projectile is suitable for pinning.
+			if(W.sharp && prob(W.embedding.embed_chance)) //Projectile is suitable for pinning.
 				//Handles embedding for non-humans and simple_animals.
-				O.loc = src
-				embedded += O
-				verbs += /mob/proc/yank_out_object
+				W.embed_into(src)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(turf/T, speed)

@@ -1,45 +1,43 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
-	implant_color= "r"
+	implant_color = "r"
 	var/activation_emote = "chuckle"
-	var/uses = 1.0
+	var/uses = 1
 
 
-	New()
-		src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-		src.uses = rand(1, 5)
-		..()
-		return
+/obj/item/implant/freedom/Initialize()
+	. = ..()
+	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	uses = rand(1, 5)
 
 
-	trigger(emote, mob/living/carbon/source as mob)
-		if (src.uses < 1)	return 0
-		if (emote == src.activation_emote)
-			src.uses--
-			to_chat(source, "You feel a faint click.")
-			if (source.handcuffed)
-				var/obj/item/W = source.handcuffed
-				source.update_handcuffed(null)
-				source.dropItemToGround(W)
-			if (source.legcuffed)
-				var/obj/item/W = source.legcuffed
-				source.legcuffed = null
-				source.update_inv_legcuffed()
-				source.dropItemToGround(W)
-		return
+/obj/item/implant/freedom/trigger(emote, mob/living/carbon/source)
+	if(uses < 1)	
+		return FALSE
+	
+	if(emote == activation_emote)
+		uses--
+		to_chat(source, "You feel a faint click.")
+		if(source.handcuffed)
+			var/obj/item/W = source.handcuffed
+			source.update_handcuffed(null)
+			source.dropItemToGround(W)
+		if(source.legcuffed)
+			var/obj/item/W = source.legcuffed
+			source.legcuffed = null
+			source.update_inv_legcuffed()
+			source.dropItemToGround(W)
 
 
-	implanted(mob/living/carbon/source)
-		source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-		to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
-		return 1
+/obj/item/implant/freedom/implanted(mob/living/carbon/source)
+	source.mind.store_memory("Freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.")
+	to_chat(source, "The implanted freedom implant can be activated by using the [activation_emote] emote, <B>say *[activation_emote]</B> to attempt to activate.")
+	return TRUE
 
 
-	get_data()
-		var/dat = {"
+/obj/item/implant/freedom/get_data()
+	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Freedom Beacon<BR>
 <b>Life:</b> optimum 5 uses<BR>
@@ -53,6 +51,4 @@ mechanisms<BR>
 <b>Integrity:</b> The battery is extremely weak and commonly after injection its
 life can drive down to only 1 use.<HR>
 No Implant Specifics"}
-		return dat
-
-
+	return dat

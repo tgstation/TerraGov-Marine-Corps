@@ -18,15 +18,17 @@
 
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/New()
-	..()
-	for(dir in list(NORTH,EAST,SOUTH,WEST))
+/obj/machinery/optable/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+
+/obj/machinery/optable/LateInitialize()
+	for(dir in list(NORTH, EAST, SOUTH, WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, dir))
-		if (computer)
+		if(computer)
 			computer.table = src
 			break
-//	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
-//		process()
 
 /obj/machinery/optable/ex_act(severity)
 
@@ -142,7 +144,7 @@
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying)
 			victim = M
-			icon_state = M.pulse ? "table2-active" : "table2-idle"
+			icon_state = M.handle_pulse() ? "table2-active" : "table2-idle"
 			return 1
 	victim = null
 	stop_processing()
@@ -164,7 +166,7 @@
 		var/mob/living/carbon/human/H = C
 		victim = H
 		start_processing()
-		icon_state = H.pulse ? "table2-active" : "table2-idle"
+		icon_state = H.handle_pulse() ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"
 

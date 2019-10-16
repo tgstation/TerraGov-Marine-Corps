@@ -1,4 +1,3 @@
-
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
 	if(tool_attack_chain(user, target))
 		return
@@ -37,7 +36,35 @@
 	. = ..()
 	if(.)
 		return TRUE
-	user.changeNext_move(I.attack_speed)
+
+	if(user.a_intent != INTENT_HARM)
+		return
+
+	if(obj_flags & CAN_BE_HIT)
+		return I.attack_obj(src, user)
+
+
+/obj/item/proc/attack_obj(obj/O, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
+		return
+	if(flags_item & NOBLUDGEON)
+		return
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(O)
+	return O.attacked_by(src, user)
+
+
+/atom/movable/proc/attacked_by()
+	return
+
+
+/obj/attacked_by(obj/item/I, mob/living/user)
+	if(I.force)
+		user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>", \
+					"<span class='warning'>You hit [src] with [I]!</span>")
+		log_combat(user, src, "attacked", I)
+		. = TRUE
+	take_damage(I.force, I.damtype, "melee")
 
 
 /obj/item/storage/attackby(obj/item/I, mob/user, params)

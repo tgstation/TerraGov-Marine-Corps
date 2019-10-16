@@ -39,9 +39,9 @@
 	var/compression = signal.data["compression"]
 	if(compression > 0)
 		log.input_type = "Corrupt File"
-		log.parameters["name"] = Gibberish(signal.data["name"], compression + 50)
-		log.parameters["job"] = Gibberish(signal.data["job"], compression + 50)
-		log.parameters["message"] = Gibberish(signal.data["message"], compression + 50)
+		log.parameters["name"] = gibberish(signal.data["name"], compression + 50)
+		log.parameters["job"] = gibberish(signal.data["job"], compression + 50)
+		log.parameters["message"] = gibberish(signal.data["message"], compression + 50)
 
 	// Give the log a name and store it
 	var/identifier = num2text(rand(-1000, 1000) + world.time)

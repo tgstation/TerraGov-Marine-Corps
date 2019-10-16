@@ -185,7 +185,7 @@
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
-	name = CONFIG_GET(string/ship_name)
+	name = SSmapping.configs[SHIP_MAP].map_name
 
 
 /obj/structure/prop/mainship/hangar_stencil
@@ -209,9 +209,6 @@
 /obj/structure/prop/mainship/cannon_cables/ex_act()
 	return
 
-/obj/structure/prop/mainship/cannon_cables/bullet_act()
-	return
-
 
 /obj/structure/prop/mainship/cannon_cable_connector
 	name = "\improper Cannon cable connector"
@@ -221,7 +218,4 @@
 	density = TRUE
 
 /obj/structure/prop/mainship/cannon_cable_connector/ex_act()
-	return
-
-/obj/structure/prop/mainship/cannon_cable_connector/bullet_act()
 	return

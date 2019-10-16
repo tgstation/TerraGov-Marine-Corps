@@ -70,8 +70,6 @@
 	if(greaterform_type)
 		species = new greaterform_type()
 
-		grant_language(species.language)
-
 		cold_level_1 = null ? species.cold_level_1 : cold_level_1
 		cold_level_2 = null ? species.cold_level_2 : cold_level_2
 		cold_level_3 = null ? species.cold_level_3 : cold_level_3
@@ -120,11 +118,8 @@
 	. = ..()
 	if(.)
 		return
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-	if (href_list["item"])
+
+	if(href_list["item"])
 		if(!usr.incapacitated() && in_range(src, usr))
 			if(!usr.action_busy)
 				var/slot = text2num(href_list["item"])
@@ -157,8 +152,6 @@
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
-
-	..()
 
 
 /mob/living/carbon/monkey/attack_paw(mob/living/carbon/monkey/user)
@@ -253,14 +246,14 @@
 	if (!..())
 		return 0
 
-	if(M.melee_damage_upper == 0)
+	if(M.melee_damage == 0)
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = M.melee_damage
 		adjustBruteLoss(damage)
 		updatehealth()
 
@@ -311,9 +304,6 @@
 				knock_out(10)
 		else
 	return
-
-/mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	return FALSE
 
 
 /mob/living/carbon/monkey/get_idcard(hand_first)

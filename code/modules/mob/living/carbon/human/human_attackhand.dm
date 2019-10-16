@@ -96,7 +96,7 @@
 				apply_effect(3, WEAKEN, armor_block)
 
 			damage += attack.damage
-			apply_damage(damage, BRUTE, affecting, armor_block, sharp=attack.sharp, edge=attack.edge)
+			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)
 
 
 		if(INTENT_DISARM)

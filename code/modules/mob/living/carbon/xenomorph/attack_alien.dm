@@ -151,7 +151,7 @@
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
 	if(!affecting || (random_location && !set_location)) //No organ, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("chest"))
+	if(no_head && affecting == get_limb("head"))
 		affecting = get_limb("chest")
 	if(!affecting) //Still nothing??
 		affecting = get_limb("chest") //Gotta have a torso?!
@@ -163,7 +163,7 @@
 
 	// copypasted from attack_alien.dm
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-	var/damage = rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
 
 	X.do_attack_animation(src)
 
@@ -248,7 +248,7 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	apply_damage(damage, BRUTE, affecting, armor_block, sharp = TRUE, edge = TRUE) //This should slicey dicey
+	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	updatehealth()
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -316,6 +316,3 @@
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	M.visible_message("<span class='danger'>[M] nudges its head against [src].</span>", \
 	"<span class='danger'>We nudge our head against [src].</span>", null, 5)
-
-/obj/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	return //larva can't do anything by default

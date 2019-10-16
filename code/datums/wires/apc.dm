@@ -12,10 +12,12 @@
 	return ..()
 
 
-/datum/wires/apc/interactable(mob/user)
+/datum/wires/apc/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/power/apc/A = holder
-	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened)
-		return TRUE
+	return CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && !A.opened
 
 
 /datum/wires/apc/get_status()
@@ -45,7 +47,7 @@
 
 /datum/wires/apc/on_cut(index, mend)	
 	var/obj/machinery/power/apc/A = holder
-	var/charge_percent = CLAMP(round(A.cell.percent()), 0, 100)
+	var/charge_percent = CLAMP(round(A.cell?.percent()), 0, 100)
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2) // Short out.
 			if(mend && !is_cut(WIRE_POWER1) && !is_cut(WIRE_POWER2))

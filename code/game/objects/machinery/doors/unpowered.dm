@@ -10,11 +10,6 @@
 	return ..()
 
 
-/obj/machinery/door/airlock/unpowered/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/card/emag) || locked)
-		return FALSE
-	return ..()
-
 /obj/machinery/door/airlock/unpowered/shuttle
 	icon = 'icons/turf/shuttle.dmi'
 	name = "Shuttle Airlock"

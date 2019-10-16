@@ -34,9 +34,7 @@
 		sleep(30)
 
 		if(metal)
-			var/obj/structure/foamedmetal/M = new(src.loc)
-			M.metal = metal
-			M.updateicon()
+			new /obj/structure/foamedmetal(loc)
 
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)
@@ -158,57 +156,4 @@
 	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
-	var/metal = 1		// 1=aluminum, 2=iron
-
-/obj/structure/foamedmetal/Destroy()
-	density = FALSE
-	. = ..()
-
-/obj/structure/foamedmetal/proc/updateicon()
-	if(metal == 1)
-		icon_state = "metalfoam"
-	else
-		icon_state = "ironfoam"
-
-
-/obj/structure/foamedmetal/ex_act(severity)
-	qdel(src)
-
-/obj/structure/foamedmetal/bullet_act()
-	if(metal==1 || prob(50))
-		qdel(src)
-	return TRUE
-
-/obj/structure/foamedmetal/attack_paw(mob/living/carbon/monkey/user)
-	attack_hand(user)
-	return
-
-/obj/structure/foamedmetal/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	if(prob(33))
-		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
-		"<span class='danger'>We slice [src] apart!</span>", null, 5)
-		qdel(src)
-		return TRUE
-	else
-		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
-		"<span class='danger'>We tear some shreds off [src]!</span>", null, 5)
-
-/obj/structure/foamedmetal/attack_hand(mob/living/user)
-	to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
-	return TRUE
-
-/obj/structure/foamedmetal/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(!prob(I.force * 20 - metal * 25))
-		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
-		return
-
-	user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
-	qdel(src)
-
-
-/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-	if(air_group)
-		return FALSE
-	return !density
+	resistance_flags = XENO_DAMAGEABLE

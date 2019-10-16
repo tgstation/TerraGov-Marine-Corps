@@ -59,6 +59,14 @@
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/cmb
 
+//a very literal box of ammunition.
+/obj/item/ammo_magazine/magnum
+	name = "Box of .44 magnum"
+	icon_state = "box45" //Maybe change this
+	default_ammo = /datum/ammo/bullet/revolver
+	caliber = ".44"
+	current_rounds = 50
+	max_rounds = 50
 
 //INTERNAL MAGAZINES
 

@@ -115,7 +115,7 @@
 	return try_to_activate_door(user)
 
 /obj/machinery/door/proc/try_to_activate_door(mob/user)
-	if(operating || CHECK_BITFIELD(obj_flags, EMAGGED))
+	if(operating)
 		return
 	var/can_open
 	if(!Adjacent(user))
@@ -132,16 +132,6 @@
 	else if(density)
 		flick("door_deny", src)
 
-
-/obj/machinery/door/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/card/emag))
-		if(!operating && density && is_operational())
-			flick("door_spark", src)
-			sleep(6)
-			open()
-		return TRUE
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20/severity) && (istype(src,/obj/machinery/door/airlock) || istype(src,/obj/machinery/door/window)) )

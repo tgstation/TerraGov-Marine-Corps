@@ -9,7 +9,7 @@
 	desc = "The basic construction for cameras."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "cameracase"
-	matter = list("metal" = 400, "glass" = 250)
+	materials = list(/datum/material/metal = 400, /datum/material/glass = 250)
 
 
 /obj/item/frame/camera/attackby(obj/item/I, mob/user, params)
@@ -182,7 +182,7 @@
 	return FALSE
 
 
-/obj/structure/camera_assembly/proc/deconstruct(disassembled = TRUE)
+/obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
 	qdel(src)

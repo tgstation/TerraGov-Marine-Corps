@@ -116,17 +116,15 @@
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 	var/gun_mounted = FALSE //Has the gun been mounted?
 	var/gun_rounds = 0 //Did the gun come with any ammo?
-	var/health = 100
 
 
-/obj/machinery/m56d_post/proc/update_health(damage)
-	health -= damage
-	if(health <= 0)
-		if(prob(30))
-			new /obj/item/m56d_post (src)
-		qdel(src)
+/obj/machinery/m56d_post/deconstruct(disassembled = TRUE)
+	if(disassembled || prob(30))
+		new /obj/item/m56d_post(loc)
+	return ..()
 
 
 
@@ -136,15 +134,8 @@
 		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
 /obj/machinery/m56d_post/attack_alien(mob/living/carbon/xenomorph/M)
-	if(isxenolarva(M))
-		return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>We slash [src]!</span>")
-	M.do_attack_animation(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56_POST)
+	return ..()
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
 	if(!ishuman(usr))
@@ -230,10 +221,11 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
+	max_integrity = 200
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
@@ -241,8 +233,6 @@
 	var/burst_fire = FALSE
 	var/burst_fire_toggled = FALSE
 	var/safety = FALSE
-	var/health = 200
-	var/health_max = 200 //Why not just give it sentry-tier health for now.
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
 	var/obj/item/projectile/in_chamber = null
@@ -253,7 +243,7 @@
 	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
-/obj/machinery/m56d_hmg/New()
+/obj/machinery/m56d_hmg/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 	update_icon()
@@ -261,6 +251,11 @@
 /obj/machinery/m56d_hmg/Destroy() //Make sure we pick up our trash.
 	operator?.unset_interaction()
 	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/machinery/m56d_hmg/deconstruct(disassembled = TRUE)
+	var/obj/item/m56d_gun/HMG = new(loc)
+	HMG.rounds = rounds //Inherent the amount of ammo we had.
 	return ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
@@ -331,40 +326,11 @@
 		user.temporarilyRemoveItemFromInventory(I)
 		qdel(I)
 
-/obj/machinery/m56d_hmg/proc/update_health(damage) //Negative damage restores health.
-	health -= damage
-	if(health <= 0)
-		var/destroyed = rand(0,1) //Ammo cooks off or something. Who knows.
-		playsound(src.loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!destroyed) new /obj/machinery/m56d_post(loc)
-		else
-			var/obj/item/m56d_gun/HMG = new(loc)
-			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-		qdel(src)
-		return
-
-	if(health > health_max)
-		health = health_max
-	update_icon()
-
-/obj/machinery/m56d_hmg/bullet_act(obj/item/projectile/Proj) //Nope.
-	if(prob(30)) // What the fuck is this from sentry gun code. Sorta keeping it because it does make sense that this is just a gun, unlike the sentry.
-		return 0
-
-	visible_message("\The [src] is hit by the [Proj.name]!")
-	update_health(round(Proj.damage / 10)) //Universal low damage to what amounts to a post with a gun.
-	return 1
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
-	if(isxenolarva(M))
-		return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>We slash [src]!</span>")
-	M.do_attack_animation(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_M56)
+	return ..()
+
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)
@@ -373,11 +339,16 @@
 		update_icon() //make sure the user can see the lack of ammo.
 		return FALSE //Out of ammo.
 
-	in_chamber = new /obj/item/projectile(loc) //New bullet!
-	in_chamber.generate_bullet(ammo)
-	return 1
+	create_bullet()
+	return TRUE
 
-/obj/machinery/m56d_hmg/proc/process_shot()
+
+/obj/machinery/m56d_hmg/proc/create_bullet()
+	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber.generate_bullet(ammo)
+
+
+/obj/machinery/m56d_hmg/proc/process_shot(mob/user)
 	set waitfor = 0
 
 	if(isnull(target))
@@ -391,7 +362,7 @@
 		if(rounds > 3)
 			for(var/i = 1 to 3)
 				is_bursting = 1
-				fire_shot()
+				fire_shot(user)
 				sleep(2)
 			last_fired = TRUE
 			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
@@ -399,13 +370,13 @@
 		is_bursting = 0
 
 	if(!burst_fire && target && !last_fired)
-		fire_shot()
+		fire_shot(user)
 	if(burst_fire_toggled)
 		burst_fire = !burst_fire
 		burst_fire_toggled = FALSE
 	target = null
 
-/obj/machinery/m56d_hmg/proc/fire_shot() //Bang Bang
+/obj/machinery/m56d_hmg/proc/fire_shot(mob/user) //Bang Bang
 	if(!ammo)
 		return //No ammo.
 	if(last_fired)
@@ -431,21 +402,21 @@
 
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
-			in_chamber.original = target
+			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")
 			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			in_chamber.fire_at(U,src,null,ammo.max_range,ammo.shell_speed)
-			if(target)
+			if(!QDELETED(target))
 				var/angle = round(Get_Angle(src,target))
 				muzzle_flash(angle)
+			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
 			in_chamber = null
 			rounds--
 			if(!rounds)
 				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
 				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
 				update_icon() //final safeguard.
-	return
+
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.
 	if(isnull(angle))
@@ -460,6 +431,39 @@
 		rotate.Turn(angle)
 		I.transform = rotate
 		flick_overlay_view(I, src, 3)
+
+
+/obj/machinery/m56d_hmg/interact(mob/user)
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/human_user = user
+	if(user.interactee == src)
+		user.unset_interaction()
+		visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>",
+			"<span class='notice'>You decided to let someone else have a go on the MG </span>")
+		return TRUE
+	if(get_step(src, REVERSE_DIR(dir)) != user.loc)
+		to_chat(user, "<span class='warning'>You should be behind [src] to man it!</span>")
+		return TRUE
+	if(operator) //If there is already a operator then they're manning it.
+		if(!operator.interactee)
+			stack_trace("/obj/machinery/m56d_hmg/interact called by user [user] with an operator with a null interactee: [operator].")
+			operator = null //this shouldn't happen, but just in case
+		else
+			to_chat(user, "<span class='warning'>Someone's already controlling it.</span>")
+			return TRUE
+	if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
+		to_chat(user, "<span class='warning'>You're already busy!</span>")
+		return TRUE
+	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+		return TRUE
+
+	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>",
+		"<span class='notice'>You man the gun!</span>")
+
+	return ..()
+
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr))
@@ -512,6 +516,8 @@
 	target = object
 	if(!istype(target))
 		return FALSE
+	if(user != operator)
+		CRASH("InterceptClickOn called by user ([user]) different from operator ([operator]).")
 	if(isnull(operator.loc) || isnull(loc) || !z || !target?.z == z)
 		return FALSE
 	if(get_dist(target, loc) > 15)
@@ -529,7 +535,7 @@
 			to_chat(user, "<span class='warning'><b>*click*</b></span>")
 			playsound(src, 'sound/weapons/guns/fire/empty.ogg', 25, 1, 5)
 		else
-			process_shot()
+			process_shot(user)
 		return TRUE
 
 	if(burst_fire_toggled)

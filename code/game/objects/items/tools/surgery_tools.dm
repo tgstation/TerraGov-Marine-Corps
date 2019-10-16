@@ -4,6 +4,7 @@
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
+	materials = list(/datum/material/metal = 5000, /datum/material/glass = 2500)
 
 /*
 * Retractor
@@ -12,10 +13,8 @@
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
-	matter = list("metal" = 10000, "glass" = 5000)
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "materials=1;biotech=1"
 
 /*
 * Hemostat
@@ -24,10 +23,8 @@
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
-	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -37,10 +34,8 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
-	matter = list("metal" = 5000, "glass" = 2500)
 	flags_atom = CONDUCT
 	w_class = WEIGHT_CLASS_TINY
-	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("burnt")
 
 /*
@@ -51,11 +46,9 @@
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	matter = list("metal" = 15000, "glass" = 10000)
 	flags_atom = CONDUCT
 	force = 15.0
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("drilled")
 
 /obj/item/tool/surgery/surgicaldrill/suicide_act(mob/user)
@@ -77,8 +70,6 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list("metal" = 10000, "glass" = 5000)
-	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/tool/surgery/scalpel/suicide_act(mob/user)
@@ -130,8 +121,6 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	matter = list("metal" = 20000,"glass" = 10000)
-	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
@@ -149,7 +138,6 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = "materials=1;biotech=3"
 	w_class = WEIGHT_CLASS_SMALL
 	var/usage_amount = 10
 

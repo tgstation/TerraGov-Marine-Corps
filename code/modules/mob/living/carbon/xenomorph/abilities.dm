@@ -49,6 +49,13 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/action/xeno_action/plant_weeds/can_use_action(silent, override_flags)
+	. = ..()
+	if(locate(/obj/effect/alien/resin/trap) in get_turf(owner))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return FALSE
+
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -122,6 +129,10 @@
 		return fail_activate()
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return fail_activate()
 
 	if(!alien_weeds)
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
@@ -605,18 +616,6 @@
 			to_chat(owner, "<span class='warning'>That's far too close!</span>")
 		return FALSE
 
-	var/facing = get_cardinal_dir(T, T2)
-	for(var/i in 1 to get_dist(T2, T))
-		var/turf/next_T = get_step(T, facing)
-		T = next_T
-		if(!T.density)
-			continue
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>There is something in the way!</span>")
-
-		return FALSE
-
-
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -650,7 +649,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
-			to_chat(src, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()
@@ -658,7 +657,8 @@
 	return (X.xeno_caste.spit_delay + X.ammo?.added_spit_delay)
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We feel our neurotoxin glands swell with ichor. We can spit again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
@@ -679,7 +679,7 @@
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(A, X, X, X.ammo.max_range, X.ammo.shell_speed)
+	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
 	add_cooldown()
 
@@ -799,6 +799,7 @@
 
 
 /datum/action/xeno_action/lay_egg/action_activate()
+	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
@@ -815,8 +816,8 @@
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
 		"<span class='xenowarning'>We have laid an egg!</span>")
 
-	new /obj/effect/alien/egg(current_turf)
-	playsound(owner.loc, 'sound/effects/alien_egg_move.ogg', 25)
+	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
+	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
 
 	succeed_activate()
 	add_cooldown()
@@ -825,9 +826,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/xenomorph/proc/add_abilities()
-	if(actions && actions.len)
-		for(var/action_path in actions)
-			if(ispath(action_path))
-				actions -= action_path
-				var/datum/action/xeno_action/A = new action_path()
-				A.give_action(src)
+	for(var/action_path in xeno_caste.actions)
+		var/datum/action/xeno_action/A = new action_path()
+		A.give_action(src)
+
+
+/mob/living/carbon/xenomorph/proc/remove_abilities()
+	for(var/action_datum in actions)
+		qdel(action_datum)

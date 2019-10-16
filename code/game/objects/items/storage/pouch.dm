@@ -247,7 +247,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/rifle/lmg
+	fill_type = /obj/item/ammo_magazine/lmg
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
@@ -273,7 +273,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
-		/obj/item/radio/detpack,
+		/obj/item/detpack,
 		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full

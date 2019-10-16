@@ -7,7 +7,6 @@
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	origin_tech = "syndicate=2"
 	var/armed = FALSE
 	var/timer = 10
 	var/detonation_pending
@@ -50,6 +49,9 @@
 		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
+	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		return FALSE
 	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
@@ -60,20 +62,17 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 
 	if(do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			return
 		user.drop_held_item()
 		var/location
 		location = target
 		forceMove(location)
 		armed = TRUE
 
-		if(ismob(target))
-			log_combat(user, target, "attached [src] to")
-			log_game("[key_name(usr)] planted [src.name] on [key_name(target)] with [timer] second fuse.")
-			message_admins("[ADMIN_TPMONTY(user)]  planted [src.name] on [ADMIN_TPMONTY(target)] with [timer] second fuse.")
-		else
-			log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
-			message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
-
+		log_combat(user, target, "attached [src] to")
+		message_admins("[ADMIN_TPMONTY(user)] planted [src] on [target] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 		log_explosion("[key_name(user)] planted [src] at [AREACOORD(user.loc)] with [timer] second fuse.")
 
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",

@@ -7,17 +7,12 @@
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 
-/obj/machinery/pipedispenser/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
 
-/obj/machinery/pipedispenser/attack_hand(mob/living/user)
+/obj/machinery/pipedispenser/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	ui_interact(user)
 
-/obj/machinery/pipedispenser/ui_interact(mob/user)
-	. = ..()
 	var/dat = "PIPING LAYER: <A href='?src=[REF(src)];layer_down=1'>--</A><b>[piping_layer]</b><A href='?src=[REF(src)];layer_up=1'>++</A><BR>"
 
 	var/recipes = GLOB.atmos_pipe_recipes
@@ -32,18 +27,15 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	onclose(user, "pipedispenser")
-	return
+	var/datum/browser/popup = new(user, "pipedispenser", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
+
 
 /obj/machinery/pipedispenser/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	var/mob/living/L = usr
-	if(!anchored || !istype(L) || L.incapacitated() || !in_range(loc, usr))
-		usr << browse(null, "window=pipedispenser")
-		return 1
 
 	if(href_list["makepipe"])
 		if(wait < world.time)
@@ -54,16 +46,20 @@
 			var/obj/item/pipe/P = new (loc, p_type, p_dir)
 			P.setPipingLayer(piping_layer)
 			wait = world.time + 10
+	
 	if(href_list["makemeter"])
 		if(wait < world.time )
 			new /obj/item/pipe_meter(loc)
 			wait = world.time + 15
+	
 	if(href_list["layer_up"])
 		piping_layer = CLAMP(++piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
+	
 	if(href_list["layer_down"])
 		piping_layer = CLAMP(--piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	ui_interact(L)
-	return
+	
+	updateUsrDialog()
+
 
 /obj/machinery/pipedispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -141,7 +137,7 @@
 
 	qdel(pipe)
 
-/obj/machinery/pipedispenser/disposal/attack_hand(mob/living/user)
+/obj/machinery/pipedispenser/disposal/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -158,8 +154,9 @@
 
 		dat += "</ul>"
 
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
-	return
+	var/datum/browser/popup = new(user, "pipedispenser", "<div align='center'>[src]</div>")
+	popup.set_content(dat)
+	popup.open()
 
 
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)

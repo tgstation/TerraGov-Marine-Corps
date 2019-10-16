@@ -163,13 +163,18 @@ they're not supposed to be thrown. Either way, this fix
 should be alright.
 */
 /obj/item/weapon/gun/proc/harness_check(mob/user)
-	if(user && ishuman(user))
-		var/mob/living/carbon/human/owner = user
-		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
-			var/obj/item/I = owner.wear_suit
-			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
-				harness_return(user)
-				return 1
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/owner = user
+	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
+		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
+		if(!istype(B,/obj/item/belt_harness))
+			return
+	var/obj/item/I = owner.wear_suit
+	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
+		return
+	harness_return(user)
+	return TRUE
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
@@ -186,8 +191,6 @@ should be alright.
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
-	if(target)
-		return
 
 	//There are only two ways to interact here.
 	if(flags_item & TWOHANDED)
@@ -316,6 +319,10 @@ should be alright.
 		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
 		return
 
+	if(overcharge == TRUE)
+		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
+		return
+
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
 	var/can_attach = 1
 	switch(attachment.slot)
@@ -404,14 +411,6 @@ should be alright.
 		attachable_overlays["mag"] = null
 
 
-/obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
-	overlays -= attachable_overlays["special"]
-	qdel(attachable_overlays["special"])
-	var/image/I = image(icon,src,new_icon_state)
-	attachable_overlays["special"] = I
-	overlays += I
-
-
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
 		if(-50 to 15)
@@ -423,7 +422,7 @@ should be alright.
 
 
 /proc/get_active_firearm(mob/user)
-	if(!user.IsAdvancedToolUser())
+	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this.</span>")
 		return
 
@@ -470,6 +469,10 @@ should be alright.
 	if(zoom)
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
+
+	if(G.overcharge == TRUE)
+		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
+		return	
 
 	if(!rail && !muzzle && !under && !stock)
 		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
@@ -551,12 +554,66 @@ should be alright.
 	var/datum/action/item_action/firemode/firemode_action = action
 	if(!istype(firemode_action))
 		return ..()
-	if(firemode_action.action_firemode == gun_firemode)
-		return
-	gun_firemode = firemode_action.action_firemode
-	playsound(user, 'sound/machines/click.ogg', 15, 1)
-	to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
+	do_toggle_firemode(user)
 	user.update_action_buttons()
+
+
+/obj/item/weapon/gun/verb/toggle_autofire()
+	set category = "Weapons"
+	set name = "Toggle Auto Fire"
+	set desc = "Toggle automatic firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_automatic(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_automatic(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
+
+
+/obj/item/weapon/gun/verb/toggle_burstfire()
+	set category = "Weapons"
+	set name = "Toggle Burst Fire"
+	set desc = "Toggle burst firemode, if the gun has it."
+	set src = usr.contents
+
+	var/obj/item/weapon/gun/automatic_gun = get_active_firearm(usr)
+	if(!automatic_gun)
+		return
+	automatic_gun.do_toggle_burst(usr)
+
+
+/obj/item/weapon/gun/proc/do_toggle_burst(mob/user)
+	var/new_firemode
+	switch(gun_firemode)
+		if(GUN_FIREMODE_SEMIAUTO)
+			new_firemode = GUN_FIREMODE_BURSTFIRE
+		if(GUN_FIREMODE_BURSTFIRE)
+			new_firemode = GUN_FIREMODE_SEMIAUTO
+		if(GUN_FIREMODE_AUTOMATIC)
+			new_firemode = GUN_FIREMODE_AUTOBURST
+		if(GUN_FIREMODE_AUTOBURST)
+			new_firemode = GUN_FIREMODE_AUTOMATIC
+	if(!(new_firemode in gun_firemode_list))
+		to_chat(user, "<span class='warning'>[src] lacks a [new_firemode]!</span>")
+		return
+	do_toggle_firemode(user, new_firemode)
 
 
 /obj/item/weapon/gun/verb/toggle_firemode()
@@ -575,12 +632,8 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
-	switch(length(gun_firemode_list))
-		if(0)
-			CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
-		if(1)
-			to_chat(usr, "<span class='warning'>This weapon has a single fire mode!</span>")
-			return
+	if(!length(gun_firemode_list))
+		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -598,66 +651,46 @@ should be alright.
 		to_chat(user, "<span class='notice'>[icon2html(src, user)] You switch to <b>[gun_firemode]</b>.</span>")
 		user.update_action_buttons()
 
+	SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, gun_firemode, user.client)
+
 
 /obj/item/weapon/gun/proc/add_firemode(added_firemode, mob/user)
-	var/list/affected_firemodes
-	
 	gun_firemode_list += added_firemode
-	
+
 	switch(length(gun_firemode_list))
 		if(0)
 			CRASH("add_firemode called with a resulting gun_firemode_list length of [length(gun_firemode_list)].")
-		if(1)
+		if(1) //No need to toggle anything if there's a single firemode.
 			return
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(added_firemode)
-
-	for(var/i in affected_firemodes)
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-			if(GUN_FIREMODE_BURSTFIRE)
-				actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-		var/action_type = actions_types[length(actions_types)]
-		var/datum/action/new_action = new action_type(src)
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				new_action.give_action(living_user)
+			actions_types += /datum/action/item_action/firemode
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
+		else //The action should already be there by now.
+			return
 
 
 /obj/item/weapon/gun/proc/remove_firemode(removed_firemode, mob/user)
-	var/list/affected_firemodes
 	switch(length(gun_firemode_list))
 		if(0, 1)
 			CRASH("remove_firemode called with gun_firemode_list length [length(gun_firemode_list)].")
 		if(2)
-			affected_firemodes = gun_firemode_list
-		else
-			affected_firemodes = list(removed_firemode)
-
-	for(var/i in affected_firemodes)
-		var/action_type
-		switch(i)
-			if(GUN_FIREMODE_SEMIAUTO)
-				action_type = /datum/action/item_action/firemode/semiauto_firemode
-			if(GUN_FIREMODE_BURSTFIRE)
-				action_type = /datum/action/item_action/firemode/burst_firemode
-		actions_types -= action_type
-
-		var/datum/action/old_action = locate(action_type) in actions
-		if(user)
-			var/mob/living/living_user = user
-			if(src == living_user.l_hand || src == living_user.r_hand)
-				old_action.remove_action(living_user)
-		qdel(old_action)
+			actions_types -= /datum/action/item_action/firemode
+			var/datum/action/old_action = locate(/datum/action/item_action/firemode) in actions
+			if(user)
+				var/mob/living/living_user = user
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					old_action.remove_action(living_user)
+			qdel(old_action)
 
 	gun_firemode_list -= removed_firemode
 
 	if(gun_firemode == removed_firemode)
 		gun_firemode = gun_firemode_list[1]
+		do_toggle_firemode(user, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/setup_firemodes()
@@ -671,19 +704,24 @@ should be alright.
 			gun_firemode = gun_firemode_list[1]
 		else
 			gun_firemode = gun_firemode_list[1]
-			for(var/i in gun_firemode_list)
-				switch(i)
-					if(GUN_FIREMODE_SEMIAUTO)
-						actions_types += list(/datum/action/item_action/firemode/semiauto_firemode)
-					if(GUN_FIREMODE_BURSTFIRE)
-						actions_types += list(/datum/action/item_action/firemode/burst_firemode)
-				var/action_type = actions_types[length(actions_types)]
-				var/datum/action/new_action = new action_type(src)
-				if(isliving(loc))
-					var/mob/living/living_user = loc
-					if(src == living_user.l_hand || src == living_user.r_hand)
-						new_action.give_action(living_user)
+			var/datum/action/new_action = new /datum/action/item_action/firemode(src)
+			if(isliving(loc))
+				var/mob/living/living_user = loc
+				if(src == living_user.l_hand || src == living_user.r_hand)
+					new_action.give_action(living_user)
 
+// The section for where you can do a fancy change to ammo types for most weapons.
+/obj/item/weapon/gun/proc/add_ammo_mod(ammo_mod)
+	return
+
+/obj/item/weapon/gun/proc/remove_ammo_mod()
+	return
+
+/obj/item/weapon/gun/energy/add_ammo_mod(ammo_mod)
+	ammo_diff = ammo_mod
+
+/obj/item/weapon/gun/energy/remove_ammo_mod()
+	ammo_diff = initial(ammo_diff)
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -813,6 +851,29 @@ should be alright.
 /obj/item/weapon/gun/proc/get_ammo_count()
 	return FALSE
 
+
+/obj/item/weapon/gun/proc/modify_fire_delay(value, mob/user)
+	fire_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_FIREDELAY_MODIFIED, fire_delay)
+
+/obj/item/weapon/gun/proc/modify_burst_delay(value, mob/user)
+	burst_delay += value
+	SEND_SIGNAL(src, COMSIG_GUN_BURSTDELAY_MODIFIED, fire_delay)
+
+/obj/item/weapon/gun/proc/modify_burst_amount(value, mob/user)
+	burst_amount += value
+	SEND_SIGNAL(src, COMSIG_GUN_BURSTAMOUNT_MODIFIED, fire_delay)
+
+	if(burst_amount < 2)
+		if(GUN_FIREMODE_BURSTFIRE in gun_firemode_list)
+			remove_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if(GUN_FIREMODE_AUTOBURST in gun_firemode_list)
+			remove_firemode(GUN_FIREMODE_AUTOBURST, user)
+	else
+		if(!(GUN_FIREMODE_BURSTFIRE in gun_firemode_list))
+			add_firemode(GUN_FIREMODE_BURSTFIRE, user)
+		if((GUN_FIREMODE_AUTOMATIC in gun_firemode_list) && !(GUN_FIREMODE_AUTOBURST in gun_firemode_list))
+			add_firemode(GUN_FIREMODE_AUTOBURST, user)
 
 
 //----------------------------------------------------------

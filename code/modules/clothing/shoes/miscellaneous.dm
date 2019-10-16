@@ -9,7 +9,6 @@
 	item_state = "brown"
 	permeability_coefficient = 0.05
 	flags_inventory = NOSLIPPING
-	origin_tech = "syndicate=3"
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 

@@ -7,29 +7,11 @@
 	name = "Exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. There is nothing left to Salvage."
 	icon = 'icons/mecha/mecha.dmi'
+	hit_sound = 'sound/effects/metal_crash.ogg'
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
-
-
-/obj/effect/decal/mecha_wreckage/ex_act(severity)
-	if(severity < 2)
-		spawn
-			qdel(src)
-	return
-
-/obj/effect/decal/mecha_wreckage/bullet_act(obj/item/projectile/Proj)
-	return 1
-
-
-/obj/effect/decal/mecha_wreckage/attack_alien(mob/living/carbon/xenomorph/M)
-	if(M.a_intent != INTENT_HARM)
-		return
-		
-	playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
-	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>We slice [src] apart!</span>")
-	robogibs(src)
-	qdel(src)
+	resistance_flags = XENO_DAMAGEABLE
 
 
 /obj/effect/decal/mecha_wreckage/gygax

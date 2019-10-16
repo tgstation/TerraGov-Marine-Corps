@@ -1,11 +1,7 @@
 //Refer to life.dm for caller
 
 /mob/living/carbon/human/need_breathe()
-	if((species?.species_flags & NO_BREATHE) && health > get_crit_threshold())
-		set_Losebreath(0, TRUE)
-		setOxyLoss(0, TRUE)
-		oxygen_alert = FALSE
-		failed_last_breath = FALSE
+	if(species.species_flags & NO_BREATHE)
 		return FALSE
 	return ..()
 
@@ -105,22 +101,22 @@
 
 		switch(breath_temp)
 			if(-INFINITY to species.cold_level_3)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(species.cold_level_3 to species.cold_level_2)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(species.cold_level_2 to species.cold_level_1)
-				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Cold")
+				apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, "head")
 				fire_alert = max(fire_alert, 1)
 			if(species.heat_level_1 to species.heat_level_2)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 			if(species.heat_level_2 to species.heat_level_3)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 			if(species.heat_level_3 to INFINITY)
-				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Heat")
+				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head")
 				fire_alert = max(fire_alert, 2)
 
 		//Breathing in hot/cold air also heats/cools you a bit

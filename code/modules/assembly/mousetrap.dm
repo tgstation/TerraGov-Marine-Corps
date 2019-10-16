@@ -3,7 +3,6 @@
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
 	item_state = "mousetrap"
-	matter = list("metal" = 100)
 	attachable = TRUE
 	var/armed = FALSE
 
@@ -95,7 +94,7 @@
 	return FALSE
 
 
-/obj/item/assembly/mousetrap/hitby(atom/movable/AM, skipcatch, hitpush, blocked)
+/obj/item/assembly/mousetrap/hitby(atom/movable/AM)
 	if(!armed)
 		return ..()
 	visible_message("<span class='warning'>[src] is triggered by [AM].</span>")

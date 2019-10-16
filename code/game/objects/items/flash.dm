@@ -8,7 +8,6 @@
 	throw_speed = 4
 	throw_range = 10
 	flags_atom = CONDUCT
-	origin_tech = "magnets=2;combat=1"
 
 	var/times_used = 0 //Number of times it's been used.
 	var/broken = 0     //Is the flash burnt out?
@@ -151,9 +150,6 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = "magnets=2;combat=1"
-	var/construction_cost = list("metal"=750,"glass"=750)
-	var/construction_time=100
 
 /obj/item/flash/synthetic/attack(mob/living/M as mob, mob/user as mob)
 	..()

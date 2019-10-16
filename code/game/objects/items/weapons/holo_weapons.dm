@@ -12,7 +12,7 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
-	flags_item = NOBLUDGEON|NOSHIELD
+	flags_item = NOBLUDGEON
 	var/active = 0
 	var/sword_color
 
@@ -24,10 +24,10 @@
 /obj/item/weapon/holo/esword/attack(target as mob, mob/user as mob)
 	..()
 
-/obj/item/weapon/holo/esword/New()
+/obj/item/weapon/holo/esword/Initialize()
+	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
-	..()
 
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
 	active = !active

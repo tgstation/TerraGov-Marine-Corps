@@ -45,6 +45,7 @@
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	M.real_name = name
 	M.death(1) //Kills the new mob
+	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)
 	if(corpsesuit)
@@ -160,7 +161,7 @@
 	corpseuniform = /obj/item/clothing/under/pirate
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
-	corpsehelmet = /obj/item/clothing/head/bandana
+	corpsehelmet = /obj/item/clothing/head/bandanna
 
 
 

@@ -1,5 +1,5 @@
 body {
-    background: #272727 url(uiBackground.png) 50% 0 repeat-x;
+    background: #272727 url('uiBackground.png') 50% 0 repeat-x;
 }
 
 #uiWrapper {
@@ -63,7 +63,7 @@ body {
     height: 600px;
     overflow: hidden;
     border: 1px solid #40628a;
-    background: url(nanomapBackground.png);
+    background: url('nanomapBackground.png');
 }
 
 #uiMap {
@@ -116,7 +116,7 @@ body {
 
 #uiLoadingNotice {
     position: relative;
-    background: url(uiNoticeBackground.jpg) 50% 50%;
+    background: url('uiNoticeBackground.jpg') 50% 50%;
     color: #000000;
     font-size: 14px;
     font-style: italic;

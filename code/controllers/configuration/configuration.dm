@@ -241,11 +241,7 @@
 
 
 /datum/controller/configuration/proc/LoadMOTD()
-	var/motd = file2text("[directory]/motd.txt")
-	var/tm_info = GLOB.revdata.GetTestMergeInfo()
-	if(motd || tm_info)
-		motd = motd ? "[motd]<br>[tm_info]" : tm_info
-	GLOB.motd = motd
+	GLOB.motd = file2text("[directory]/motd.txt")
 
 
 /datum/controller/configuration/proc/loadmaplist(filename, maptype)

@@ -17,8 +17,7 @@
 	var/gib_flick = "gibbed-a"
 
 	// *** Melee Attacks *** //
-	var/melee_damage_lower = 10
-	var/melee_damage_upper = 20
+	var/melee_damage = 10
 	var/attack_delay = CLICK_CD_MELEE
 
 	var/savage_cooldown = 30 SECONDS
@@ -100,14 +99,15 @@
 	// *** Defiler Abilities *** //
 	var/neuro_claws_amount
 
+	var/list/actions
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
 	speak_emote = list("hisses")
-	melee_damage_lower = 5
-	melee_damage_upper = 10 //Arbitrary damage values
+	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -118,6 +118,8 @@
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
@@ -201,18 +203,8 @@
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
 
-	//Old crusher specific vars, moved here so the Queen can use charge, and potential future Xenos
-	var/charge_dir = 0 //Stores initial charge dir to immediately cut out any direction change shenanigans
-	var/charge_timer = 0 //Has a small charge window. has to keep moving to build speed.
-	var/turf/lastturf = null
-	var/noise_timer = 0 // Makes a mech footstep, but only every 3 turfs.
-	var/has_moved = 0
-	var/is_charging = 0 //Will the mob charge when moving ? You need the charge verb to change this
-	var/last_charge_move = 0 //Time of the last time the Crusher moved while charging. If it's too far apart, the charge is broken
-
-	//New variables for how charges work, max speed, speed buildup, all that jazz
-	var/charge_speed = 0 //Modifier on base move delay as charge builds up
-	var/charge_roar = 0 //Did we roar in our charge yet ?
+	//Charge vars
+	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this
 
 	//Pounce vars
 	var/usedPounce = 0
@@ -238,9 +230,6 @@
 
 	//Hunter vars
 	var/sneak_bonus = 0.00
-
-	//Larva Growth
-	var/last_larva_growth_used = 0
 
 	//Notification spam controls
 	var/recent_notice = 0

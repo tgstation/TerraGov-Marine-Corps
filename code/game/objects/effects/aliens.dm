@@ -120,8 +120,8 @@
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/New(loc, target)
-	..(loc)
+/obj/effect/xenomorph/acid/Initialize(mapload, target)
+	. = ..()
 	acid_t = target
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)
@@ -150,10 +150,10 @@
 				T.ChangeTurf(/turf/open/floor/plating)
 		else if (istype(acid_t, /obj/structure/girder))
 			var/obj/structure/girder/G = acid_t
-			G.dismantle()
+			G.deconstruct(FALSE)
 		else if(istype(acid_t, /obj/structure/window/framed))
 			var/obj/structure/window/framed/WF = acid_t
-			WF.drop_window_frame()
+			WF.deconstruct(FALSE)
 
 		else
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..

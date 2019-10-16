@@ -17,7 +17,7 @@
 		return
 	var/mob/living/carbon/xenomorph/X = usr
 	X.toggle_nightvision()
-	icon_state = X.see_in_dark == XENO_NIGHTVISION_DISABLED ? "nightvision0" : "nightvision1"
+	icon_state = X.lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT ? "nightvision0" : "nightvision1"
 
 /obj/screen/alien/queen_locator
 	icon_state = "trackoff"

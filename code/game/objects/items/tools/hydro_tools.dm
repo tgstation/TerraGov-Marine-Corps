@@ -93,7 +93,6 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = WEIGHT_CLASS_SMALL
-	matter = list("metal" = 50)
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 
@@ -113,8 +112,6 @@
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	matter = list("metal" = 15000)
-	origin_tech = "materials=2;combat=1"
 	attack_verb = list("chopped", "torn", "cut")
 
 /obj/item/tool/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -133,9 +130,7 @@
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
 	flags_atom = CONDUCT
-	flags_item = NOSHIELD
 	flags_equip_slot = ITEM_SLOT_BACK
-	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)

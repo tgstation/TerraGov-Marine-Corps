@@ -112,12 +112,11 @@
 #define CANKNOCKDOWN	(1<<1)
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
-#define LEAPING			(1<<4)
-#define PASSEMOTES		(1<<5)      //holders inside of mob that need to see emotes.
-#define GODMODE			(1<<6)
-#define FAKEDEATH		(1<<7)	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED		(1<<8)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST		(1<<9)	//Tracks whether we're gonna be a baby alien's mummy.
+#define GODMODE			(1<<4)
+#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
+#define TK_USER			(1<<8)
 
 // =============================
 // hive types
@@ -159,9 +158,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_SLASHING_ALLOWED 1
 #define XENO_SLASHING_RESTRICTED 2
 
-
-#define XENO_NIGHTVISION_ENABLED 8
-#define XENO_NIGHTVISION_DISABLED 4
 //=================================================
 
 ///////////////////HUMAN BLOODTYPES///////////////////
@@ -357,24 +353,25 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				27		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		26
-#define MUTANTRACE_LAYER		25
-#define MUTATIONS_LAYER			24
-#define DAMAGE_LAYER			23
-#define UNIFORM_LAYER			22
-#define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER				20
-#define SHOES_LAYER				19
-#define GLOVES_LAYER			18
-#define BELT_LAYER   			17
-#define GLASSES_LAYER			16
-#define SUIT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				13
-#define HAIR_LAYER				12		//TODO: make part of head layer?
-#define EARS_LAYER				11
-#define FACEMASK_LAYER			10
+#define LASER_LAYER				28		//For sniper targeting laser
+#define MOTH_WINGS_LAYER		27
+#define MUTANTRACE_LAYER		26
+#define MUTATIONS_LAYER			25
+#define DAMAGE_LAYER			24
+#define UNIFORM_LAYER			23
+#define TAIL_LAYER				22		//bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				21
+#define SHOES_LAYER				20
+#define GLOVES_LAYER			19
+#define BELT_LAYER   			18
+#define GLASSES_LAYER			17
+#define SUIT_LAYER				16		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		15
+#define BACK_LAYER				14
+#define HAIR_LAYER				13		//TODO: make part of head layer?
+#define EARS_LAYER				12
+#define FACEMASK_LAYER			11
+#define GOGGLES_LAYER           10    //For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER				9
 #define COLLAR_LAYER			8
 #define HANDCUFF_LAYER			7
@@ -441,6 +438,14 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
+#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+
+//Charge-Crush
+#define CHARGE_OFF			0
+#define CHARGE_BUILDINGUP	1
+#define CHARGE_ON			2
+#define CHARGE_MAX			3
+
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
@@ -468,10 +473,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_WALK_INCREASE		1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 
-// xeno defines
-
-#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
-
 //Ravager defines:
 #define RAVAGER_MAX_RAGE 50
 #define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
@@ -492,10 +493,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
 #define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
-
-#define CHARGE_TURFS_TO_CHARGE			5		//Amount of turfs to build up before a charge begins
-#define CHARGE_SPEED_BUILDUP			0.15 	//POSITIVE amount of speed built up during a charge each step
-#define CHARGE_SPEED_MAX				2.1 	//Can only gain this much speed before capping
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
@@ -584,8 +581,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_BUMP		"bump"
 #define COOLDOWN_ENTANGLE	"entangle"
 #define COOLDOWN_NEST		"nest"
+#define COOLDOWN_TASTE		"taste"
+#define COOLDOWN_VENTSOUND	"vendsound"
 
 // Xeno Cooldowns
 // -- Ravager
-#define COOLDOWN_RAV_LAST_RAGE		"last_rage"
 #define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"

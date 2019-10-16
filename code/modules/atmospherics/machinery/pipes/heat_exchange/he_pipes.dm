@@ -5,9 +5,8 @@
 	color = "#404040"
 	buckle_lying = 1
 	var/icon_temperature = T20C //stop small changes in temperature causing icon refresh
-	resistance_flags = LAVA_PROOF|FIRE_PROOF
 
-/obj/machinery/atmospherics/pipe/heat_exchanging/Initialize()
+/obj/machinery/atmospherics/pipe/heat_exchanging/New()
 	. = ..()
 	add_atom_colour("#404040", FIXED_COLOUR_PRIORITY)
 

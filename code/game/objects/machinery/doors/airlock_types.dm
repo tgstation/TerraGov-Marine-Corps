@@ -261,6 +261,18 @@
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door/airlock/mainship/ai
+	name = "\improper AI Core"
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/mainship/ai/glass
+	name = "\improper AI Core"
+	icon = 'icons/obj/doors/Doorglass.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+
 
 /obj/machinery/door/airlock/mainship/evacuation
 	name = "\improper Evacuation Airlock"

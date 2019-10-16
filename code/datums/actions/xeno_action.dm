@@ -1,5 +1,4 @@
 /datum/action/xeno_action
-	var/action_icon_state
 	var/plasma_cost = 0
 	var/mechanics_text = "This ability not found in codex." //codex. If you are going to add an explanation for an ability. don't use stats, give a very brief explanation of how to use it.
 	var/use_state_flags = NONE // bypass use limitations checked by can_use_action()
@@ -25,12 +24,14 @@
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 
+
 /datum/action/xeno_action/remove_action(mob/living/L)
-	. = ..()
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
 	if(cooldown_id)
 		deltimer(cooldown_id)
+	return ..()
+
 
 /datum/action/xeno_action/proc/keybind_activation()
 	if(can_use_action())
@@ -157,12 +158,17 @@
 
 
 /datum/action/xeno_action/activable
-	var/image/selected_frame
 
 /datum/action/xeno_action/activable/New()
 	. = ..()
-	selected_frame = image('icons/mob/actions.dmi', null, "selected_frame")
-	selected_frame.appearance_flags = RESET_COLOR
+
+
+/datum/action/xeno_action/activable/Destroy()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability == src)
+		deselect()
+	return ..()
+
 
 /datum/action/xeno_action/activable/keybind_activation()
 	. = COMSIG_KB_ACTIVATED
@@ -176,13 +182,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays -= selected_frame
+	button.vis_contents -= selected_frame
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.overlays += selected_frame
+	button.vis_contents += selected_frame
 	X.selected_ability = src
 	on_activation()
 
@@ -200,9 +206,10 @@
 
 
 /datum/action/xeno_action/activable/remove_action(mob/living/carbon/xenomorph/X)
-	..()
 	if(X.selected_ability == src)
 		X.selected_ability = null
+	return ..()
+
 
 //the thing to do when the selected action ability is selected and triggered by middle_click
 /datum/action/xeno_action/activable/proc/use_ability(atom/A)

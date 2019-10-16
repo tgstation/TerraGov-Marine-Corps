@@ -1,14 +1,3 @@
-//#define DEBUG_HUMAN_ARMOR
-
-/mob/living/carbon/human
-	name = "unknown"
-	real_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
-	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
-
-
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
@@ -186,14 +175,14 @@
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
-	if(M.melee_damage_upper == 0)
-		M.emote("[M.friendly] [src]")
+	if(M.melee_damage == 0)
+		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
@@ -231,7 +220,6 @@
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
 	<BR>
 	<BR><A href='?src=[REF(user)];refresh=1'>Refresh</A>
-	<BR><A href='?src=[REF(user)];mach_close=mob[name]'>Close</A>
 	<BR>"}
 
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
@@ -356,12 +344,6 @@
 	if (href_list["refresh"])
 		if(interactee&&(in_range(src, usr)))
 			show_inv(interactee)
-
-	if (href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
-		unset_interaction()
-		src << browse(null, t1)
-
 
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
@@ -851,41 +833,6 @@
 	playsound(loc, song, 25, 1)
 
 
-/mob/living/carbon/human/revive()
-	for (var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_damage(1000,1000,1,1)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = 0
-	name = get_visible_name()
-
-	if(species && !(species.species_flags & NO_BLOOD))
-		restore_blood()
-
-	//try to find the brain player in the decapitated head and put them back in control of the human
-	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
-		for (var/obj/item/limb/head/H in GLOB.head_list)
-			if(H.brainmob)
-				if(H.brainmob.real_name == src.real_name)
-					if(H.brainmob.mind)
-						H.brainmob.mind.transfer_to(src)
-						qdel(H)
-
-	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
-
-	undefibbable = FALSE
-	
-	return ..()
-
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 	return L && L.is_bruised()
@@ -898,71 +845,40 @@
 		L.damage = L.min_bruised_damage
 
 
-
-/mob/living/carbon/human/get_visible_implants(class = 0)
-
-	var/list/visible_implants = list()
-	for(var/datum/limb/organ in limbs)
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && (O.w_class > class) && !istype(O,/obj/item/shard/shrapnel))
-				visible_implants += O
-
-	return(visible_implants)
-
-/mob/living/carbon/human/proc/handle_embedded_objects()
-
-	for(var/datum/limb/organ in limbs)
-		if(organ.limb_status & LIMB_SPLINTED || organ.limb_status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
-			continue
-		for(var/obj/item/O in organ.implants)
-			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
-				// All kinds of embedded objects cause bleeding.
-				var/msg = null
-				switch(rand(1,3))
-					if(1)
-						msg ="<span class='warning'>A spike of pain jolts your [organ.display_name] as you bump [O] inside.</span>"
-					if(2)
-						msg ="<span class='warning'>Your movement jostles [O] in your [organ.display_name] painfully.</span>"
-					if(3)
-						msg ="<span class='warning'>[O] in your [organ.display_name] twists painfully as you move.</span>"
-				to_chat(src, msg)
-
-				organ.take_damage_limb(rand(1, 2))
-				if(!(organ.limb_status & LIMB_ROBOT) && !(species.species_flags & NO_BLOOD)) //There is no blood in protheses.
-					organ.limb_status |= LIMB_BLEEDING
-					if(prob(10)) src.adjustToxLoss(1)
-
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
-	var/self = 0
+	var/self = FALSE
 
-	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
-
-	if(usr == src)
-		self = 1
-	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",\
-		"<span class='notice'>You begin counting [src]'s pulse...</span>", null, 3)
-	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
-		"<span class='notice'>You begin counting your pulse...</span>", null, 3)
-
-	if(src.pulse)
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
-	else
-		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>"	)
+	if(!isliving(usr) || usr.incapacitated())
 		return
 
-	to_chat(usr, "Don't move until counting is finished.")
-	var/time = world.time
-	sleep(60)
-	if(usr.last_move_time >= time)	//checks if our mob has moved during the sleep()
-		to_chat(usr, "You moved while counting. Try again.")
+	if(usr == src)
+		self = TRUE
+
+	if(!self)
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",
+		"<span class='notice'>You begin counting [src]'s pulse.</span>", null, 3)
 	else
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",
+		"<span class='notice'>You begin counting your pulse.</span>", null, 3)
+
+	if(handle_pulse())
+		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+	else
+		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>")
+		return
+
+	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+
+	if(!do_mob(usr, src, 6 SECONDS, extra_checks = CALLBACK(usr, .proc/incapacitated)))
+		to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
+		return
+
+	to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)].</span>")
+
 
 /mob/living/carbon/human/verb/view_manifest()
 	set name = "View Crew Manifest"
@@ -991,11 +907,6 @@
 
 		if(species.name && species.name == new_species) //we're already that species.
 			return
-		if(species.language)
-			remove_language(species.language)
-
-		if(species.default_language)
-			remove_language(species.default_language)
 
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
@@ -1010,13 +921,10 @@
 
 	species.create_organs(src)
 
-	if(species.language)
-		grant_language(species.language)
+	dextrous = species.has_fine_manipulation
 
-	if(species.default_language)
-		grant_language(species.default_language)
-		var/datum/language_holder/H = get_language_holder()
-		H.selected_default_language = species.default_language
+	if(species.default_language_holder)
+		language_holder = new species.default_language_holder(src)
 
 	if(species.base_color && default_colour)
 		//Apply colour.
@@ -1069,8 +977,8 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
-			var/obj/item/clothing/suit/storage/marine/S = wear_suit
+		if(istype(wear_suit, /obj/item/clothing/suit/storage))
+			var/obj/item/clothing/suit/storage/S = wear_suit
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
@@ -1348,19 +1256,6 @@
 	return TRUE
 
 
-/mob/living/carbon/human/canUseTopic(atom/movable/AM, proximity = FALSE, dexterity = TRUE)
-	. = ..()
-	if(incapacitated())
-		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
-		return FALSE
-	if(!Adjacent(AM) && (AM.loc != src))
-		if(!proximity)
-			return TRUE
-		to_chat(src, "<span class='warning'>You are too far away!</span>")
-		return FALSE
-	return TRUE
-
-
 /mob/living/carbon/human/do_camera_update(oldloc, obj/item/radio/headset/mainship/H)
 	if(QDELETED(H?.camera) || oldloc == get_turf(src))
 		return
@@ -1380,3 +1275,20 @@
 		return
 
 	addtimer(CALLBACK(src, .proc/do_camera_update, oldloc, H), 1 SECONDS)
+
+
+/mob/living/carbon/human/get_language_holder()
+	if(language_holder)
+		return language_holder
+	else if(species)
+		language_holder = new species.default_language_holder(src)
+		return language_holder
+	else
+		language_holder = new initial_language_holder(src)
+		return language_holder
+
+
+/mob/living/carbon/human/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
+	if(buckled)
+		return
+	return ..()

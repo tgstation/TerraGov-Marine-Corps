@@ -12,10 +12,6 @@
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
 	hud_type = /datum/hud/larva
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/xenohide,
-		)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

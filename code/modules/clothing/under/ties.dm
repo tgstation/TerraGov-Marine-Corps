@@ -8,8 +8,8 @@
 	var/obj/item/clothing/under/has_suit = null		//the suit the tie may be attached to
 	var/image/inv_overlay = null	//overlay used when attached to clothing.
 
-/obj/item/clothing/tie/New()
-	..()
+/obj/item/clothing/tie/Initialize()
+	. = ..()
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 
@@ -383,7 +383,7 @@
 		H.unholster(src)
 
 
-/obj/item/clothing/tie/holster/m4a3/New()
+/obj/item/clothing/tie/holster/m4a3/Initialize()
 	. = ..()
 	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
 
@@ -600,8 +600,7 @@
 
 /*
 	Holobadges are worn on the belt or neck, and can be used to show that the holder is an authorized
-	Security agent - the user details can be imprinted on the badge with a Security-access ID card,
-	or they can be emagged to accept any ID for use in disguises.
+	Security agent - the user details can be imprinted on the badge with a Security-access ID card
 */
 
 /obj/item/clothing/tie/holobadge
@@ -627,18 +626,10 @@
 /obj/item/clothing/tie/holobadge/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/card/emag))
-		if(CHECK_BITFIELD(obj_flags, EMAGGED))
-			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
-			return
-
-		ENABLE_BITFIELD(obj_flags, EMAGGED)
-		to_chat(user, "<span class='warning'>You swipe [I] and crack the holobadge security checks.</span>")
-
-	else if(istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/id_card = I
 
-		if(!(ACCESS_MARINE_BRIG in id_card.access) || !CHECK_BITFIELD(obj_flags, EMAGGED))
+		if(!(ACCESS_MARINE_BRIG in id_card.access))
 			to_chat(user, "[src] rejects your insufficient access rights.")
 			return
 

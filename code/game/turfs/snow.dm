@@ -9,9 +9,6 @@
 	icon_state = "snow_0"
 	hull_floor = TRUE
 
-/turf/open/floor/plating/ground/snow/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	return //Larvae can't do shit
-
 //Xenos digging up snow
 /turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)

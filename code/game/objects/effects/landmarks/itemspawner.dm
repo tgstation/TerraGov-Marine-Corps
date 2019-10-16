@@ -5,9 +5,10 @@
 
 
 /obj/effect/landmark/itemspawner/Initialize()
+	. = ..()
 	for(var/path in items_to_spawn)
 		new path(loc)
-	. = INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_QDEL
 
 
 /obj/effect/landmark/itemspawner/chicken

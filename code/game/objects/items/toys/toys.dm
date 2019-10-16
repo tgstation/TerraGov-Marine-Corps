@@ -32,7 +32,8 @@
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
-/obj/item/toy/balloon/New()
+/obj/item/toy/balloon/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
@@ -189,7 +190,8 @@
 	var/empty = 0
 	flags
 
-/obj/item/toy/waterflower/New()
+/obj/item/toy/waterflower/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
@@ -412,7 +414,8 @@
 	var/sides = 6
 	attack_verb = list("diced")
 
-/obj/item/toy/dice/New()
+/obj/item/toy/dice/Initialize()
+	. = ..()
 	icon_state = "[name][rand(sides)]"
 
 /obj/item/toy/dice/d20

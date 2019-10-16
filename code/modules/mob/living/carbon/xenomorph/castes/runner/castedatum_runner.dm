@@ -12,8 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage = 15
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -35,7 +34,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/xenomorph/hunter)
+	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -46,6 +45,15 @@
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
 	pounce_delay = 3.5 SECONDS
+
+	// *** Abilities *** ///
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/toggle_savage,
+		)
 
 /datum/xeno_caste/runner/young
 	upgrade_name = "Young"
@@ -59,8 +67,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 30
+	melee_damage = 25
 
 	savage_cooldown = 30 SECONDS
 
@@ -93,8 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage = 27.5
 
 	savage_cooldown = 30 SECONDS
 
@@ -128,8 +134,7 @@
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage = 30
 
 	savage_cooldown = 30 SECONDS
 

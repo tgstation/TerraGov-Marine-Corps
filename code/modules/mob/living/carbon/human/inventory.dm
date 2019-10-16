@@ -469,8 +469,8 @@
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
 		if(Adjacent(M) && I && I == M.get_item_by_slot(slot_to_process))
 			M.dropItemToGround(I)
+			log_combat(src, M, "removed [key_name(I)] ([slot_to_process])")
 			if(isidcard(I))
-				log_game("[key_name(src)] took the [I] of [key_name(M)].")
 				message_admins("[ADMIN_TPMONTY(src)] took the [I] of [ADMIN_TPMONTY(M)].")
 
 	if(M)

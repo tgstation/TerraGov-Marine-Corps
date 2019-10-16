@@ -1,5 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
 /obj/item/implantcase
 	name = "glass case"
 	desc = "A case containing an implant."
@@ -9,20 +7,22 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	var/obj/item/implant/imp = null
+	var/obj/item/implant/imp
 
-/obj/item/implantcase/Initialize(mapload, ...)
+
+/obj/item/implantcase/Initialize(mapload, imp)
 	. = ..()
 	if(imp)
 		imp = new imp(src)
-		update()
+		update_icon()
 
-/obj/item/implantcase/proc/update()
-	if (imp)
+
+/obj/item/implantcase/update_icon()
+	if(imp)
 		icon_state = "implantcase-[imp.implant_color]"
 	else
 		icon_state = "implantcase-0"
-	return
+
 
 /obj/item/implantcase/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -65,5 +65,5 @@
 			M.imp = imp
 			imp = null
 			
-		update()
+		update_icon()
 		M.update()

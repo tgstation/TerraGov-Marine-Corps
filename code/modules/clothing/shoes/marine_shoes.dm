@@ -13,13 +13,11 @@
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
 	var/obj/item/knife
-	var/armor_stage = 0
 
 /obj/item/clothing/shoes/marine/Destroy()
 	if(knife)
-		qdel(knife)
-		knife = null
-	. = ..()
+		QDEL_NULL(knife)
+	return ..()
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
@@ -45,12 +43,12 @@
 		playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 15, 1)
 		update_icon()
 
+
 /obj/item/clothing/shoes/marine/update_icon()
-	if(knife && !armor_stage)
-		icon_state = "marine-1"
+	if(knife)
+		icon_state = "[initial(icon_state)]-knife"
 	else
-		if(!armor_stage)
-			icon_state = initial(icon_state)
+		icon_state = initial(icon_state)
 
 
 /obj/item/clothing/shoes/marine/pyro

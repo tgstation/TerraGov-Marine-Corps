@@ -37,8 +37,8 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in mob_list!")
 				cleanup_ticker++
 			if(10)
-				if(listclearnulls(GLOB.alive_mob_list))
-					log_world("Found a null in alive_mob_list!")
+				if(listclearnulls(GLOB.alive_living_list))
+					log_world("Found a null in alive_living_list!")
 				cleanup_ticker++
 			if(15)
 				if(listclearnulls(GLOB.human_mob_list))
@@ -82,6 +82,9 @@ SUBSYSTEM_DEF(server_maint)
 			continue
 		var/client/C = thing
 		var/datum/chatOutput/CO = C.chatOutput
+		if(SSticker.graceful && CO)
+			CO.ehjax_send(data = "shutdown")
+			continue
 		if(CO)
 			CO.ehjax_send(data = "roundrestart")
 		if(server)

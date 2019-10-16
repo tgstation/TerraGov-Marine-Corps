@@ -27,8 +27,7 @@
 
 	speak_chance = 1
 	turns_per_move = 5
-	melee_damage_upper = 10
-	melee_damage_lower = 5
+	melee_damage = 8
 
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
@@ -133,20 +132,18 @@
 /mob/living/simple_animal/parrot/show_inv(mob/user)
 	user.set_interaction(src)
 
-	var/dat = 	"<div align='center'><b>Inventory of [name]</b></div><p>"
+	var/dat = "<div align='center'><b>Inventory of [name]</b></div><p>"
 	dat += "<br><B>Headset:</B> <A href='?src=[REF(src)];[ears ? "remove_inv=ears'>[ears]" : "add_inv=ears'>Nothing"]</A>"
 
-	user << browse(dat, "window=mob[REF(src)];size=325x500")
-	onclose(user, "window=mob[REF(src)]")
+
+	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>Inventory of [src]</div>", 325, 500)
+	popup.set_content(dat)
+	popup.open()
 
 
 /mob/living/simple_animal/parrot/Topic(href, href_list)
 	. = ..()
 	if(.)
-		return
-	if(!iscarbon(usr) || !usr.canUseTopic(src, TRUE, FALSE))
-		usr << browse(null, "window=mob[REF(src)]")
-		usr.unset_interaction()
 		return
 
 	//Removing from inventory
@@ -213,8 +210,6 @@
 								available_channels.Add(RADIO_TOKEN_CHARLIE)
 							if(RADIO_CHANNEL_DELTA)
 								available_channels.Add(RADIO_TOKEN_DELTA)
-	else
-		return ..()
 
 
 /mob/living/simple_animal/parrot/attack_hand(mob/living/user)
@@ -257,7 +252,7 @@
 	if(parrot_state == PARROT_PERCH)
 		parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
 
-	if(M.melee_damage_upper > 0 && !stat)
+	if(M.melee_damage > 0 && !stat)
 		parrot_interest = M
 		parrot_state = PARROT_SWOOP | PARROT_ATTACK //Attack other animals regardless
 		icon_state = icon_living
@@ -445,8 +440,8 @@
 			return
 
 		var/mob/living/L = parrot_interest
-		if(melee_damage_upper == 0)
-			melee_damage_upper = parrot_damage_upper
+		if(melee_damage == 0)
+			melee_damage = parrot_damage_upper
 			a_intent = INTENT_HARM
 
 
@@ -556,7 +551,7 @@
 
 
 /mob/living/simple_animal/parrot/Poly/Initialize()
-	ears = new /obj/item/radio/headset/mainship/mt(src)
+	ears = new /obj/item/radio/headset/mainship/st(src)
 	available_channels = list(RADIO_TOKEN_ENGINEERING)
 	Read_Memory()
 	return ..()

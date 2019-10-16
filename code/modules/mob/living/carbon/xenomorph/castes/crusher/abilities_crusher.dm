@@ -49,19 +49,6 @@
 			M.stun(1) //Otherwise we just get stunned.
 		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
 
-// ***************************************
-// *********** Charge
-// ***************************************
-/datum/action/xeno_action/ready_charge
-	name = "Toggle Charging"
-	action_icon_state = "ready_charge"
-	mechanics_text = "Toggles the Crusher’s movement based charge on and off."
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_CHARGE
-
-/datum/action/xeno_action/ready_charge/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	X.is_charging = !X.is_charging
-	to_chat(X, "<span class='xenonotice'>We will [X.is_charging ? "now" : "no longer"] charge when moving.</span>")
 
 // ***************************************
 // *********** Cresttoss
@@ -76,8 +63,9 @@
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
-	to_chat(src, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
-	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/activable/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)

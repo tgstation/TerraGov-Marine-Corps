@@ -11,7 +11,6 @@
 	throw_range = 15
 	throw_speed = 3
 
-	//matter = list("metal" = 50,"glass" = 50)
 
 /obj/item/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
@@ -28,8 +27,8 @@
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates.
 	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
 
-/obj/item/binoculars/tactical/New()
-	..()
+/obj/item/binoculars/tactical/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/item/binoculars/tactical/examine()
@@ -61,6 +60,26 @@
 	return TRUE
 
 
+/obj/item/binoculars/tactical/dropped(mob/user)
+	. = ..()
+	if(user.interactee != src)
+		return
+	user.unset_interaction()
+
+
+/obj/item/binoculars/tactical/on_set_interaction(mob/user)
+	. = ..()
+	user.reset_perspective(src)
+	user.update_sight()
+
+
+/obj/item/binoculars/tactical/update_remote_sight(mob/living/user)
+	user.see_in_dark = 32 // Should include the offset from zoom and client viewport
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
+
+
 /obj/item/binoculars/tactical/on_unset_interaction(mob/user)
 	. = ..()
 
@@ -68,6 +87,8 @@
 		return
 
 	user.client.click_intercept = null
+	user.reset_perspective(user)
+	user.update_sight()
 
 	if(zoom)
 		return

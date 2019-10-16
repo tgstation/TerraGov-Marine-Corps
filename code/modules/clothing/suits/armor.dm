@@ -9,7 +9,20 @@
 	siemens_coefficient = 0.6
 	w_class = WEIGHT_CLASS_HUGE
 	allowed = list(/obj/item/weapon/gun)//Guns only.
-	uniform_restricted = list(/obj/item/clothing/under)
+
+
+/obj/item/clothing/suit/armor/mob_can_equip(mob/M, slot, disable_warning)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!ishuman(M))
+		return TRUE
+
+	var/mob/living/carbon/human/H = M
+	if(!H.w_uniform)
+		to_chat(H, "<span class='warning'>You need to be wearing somethng under this to be able to equip it.</span>")
+		return FALSE
 
 
 

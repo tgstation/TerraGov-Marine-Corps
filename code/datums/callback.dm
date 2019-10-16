@@ -184,6 +184,8 @@
 		list_or_datum[var_name] = var_value
 		return
 	var/datum/D = list_or_datum
+	if(QDELETED(D))
+		return
 	if(IsAdminAdvancedProcCall())
 		D.vv_edit_var(var_name, var_value)
 	else

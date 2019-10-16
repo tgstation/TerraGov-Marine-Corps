@@ -7,7 +7,6 @@
 	idle_power_usage = 5
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
-	resistance_flags = FIRE_PROOF
 	anchored = TRUE
 
 	var/list/network = list("marinemainship")
@@ -122,7 +121,7 @@
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
 	toggle_cam(user, TRUE)
-	obj_integrity = max_integrity
+	repair_damage(max_integrity)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -335,7 +334,7 @@
 	network = list("laser targets")
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
-/obj/machinery/camera/laser_cam/New(loc, laser_name)
+/obj/machinery/camera/laser_cam/Initialize(mapload, laser_name)
 	. = ..()
 	if(!c_tag && laser_name)
 		var/area/A = get_area(src)
@@ -351,7 +350,7 @@
 /obj/machinery/camera/beacon_cam/bomb
 	network = list("bomb beacons")
 
-/obj/machinery/camera/beacon_cam/New(loc, beacon_name)
+/obj/machinery/camera/beacon_cam/Initialize(mapload, beacon_name)
 	. = ..()
 	if(!c_tag && beacon_name)
 		var/area/A = get_area(src)

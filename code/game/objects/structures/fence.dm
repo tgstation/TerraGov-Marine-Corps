@@ -6,94 +6,21 @@
 	density = TRUE
 	anchored = TRUE
 	layer = WINDOW_LAYER
-	max_integrity = 50
+	max_integrity = 100
+	resistance_flags = XENO_DAMAGEABLE
 	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
 
-//create_debris creates debris like shards and rods. This also includes the window frame for explosions
-//If an user is passed, it will create a "user smashes through the window" message. AM is the item that hits
-//Please only fire this after a hit
-/obj/structure/fence/proc/healthcheck(make_hit_sound = 1, create_debris = 1, mob/user, atom/movable/AM)
-
-	if(cut) //It's broken/cut, just a frame!
-		return
-	if(obj_integrity <= 0)
-		if(user)
-			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
-		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-		cut_grille()
-	if(make_hit_sound)
-		playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
-
-/obj/structure/fence/bullet_act(obj/item/projectile/Proj)
-	//Tasers and the like should not damage windows.
-	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
-		return FALSE
-
-	obj_integrity -= Proj.damage * 0.3
-	..()
-	healthcheck()
-	return TRUE
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src) //Nope
+			deconstruct(FALSE)
 		if(2)
-			qdel(src)
+			deconstruct(FALSE)
 		if(3)
-			obj_integrity -= rand(25, 55)
-			healthcheck(0, 1)
-
-/obj/structure/fence/hitby(AM as mob|obj)
-	..()
-	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 40
-	else if(isobj(AM))
-		var/obj/item/I = AM
-		tforce = I.throwforce
-	obj_integrity = max(0, obj_integrity - tforce)
-	healthcheck()
-
-/obj/structure/fence/attack_hand(mob/living/user)
-	. = ..()
-	if(.)
-		return
-	if(ishuman(user) && user.a_intent == INTENT_HARM)
-		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
-			attack_generic(H, 25)
-
-/obj/structure/fence/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/structure/fence/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
-	var/damage_dealt = 5
-	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
-	"<span class='danger'>We mangle [src]!</span>", \
-	"<span class='danger'>You hear twisting metal!</span>", 5)
-
-	obj_integrity -= damage_dealt
-	healthcheck()
-
-//Used by attack_animal
-/obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
-	obj_integrity -= damage
-	user.do_attack_animation(src)
-	user.visible_message("<span class='danger'>[user] smashes into [src]!</span>")
-	healthcheck(1, 1, user)
-
-/obj/structure/fence/attack_animal(mob/user as mob)
-	if(!isanimal(user))
-		return
-	var/mob/living/simple_animal/M = user
-	if(M.melee_damage_upper <= 0)
-		return
-	attack_generic(M, M.melee_damage_upper)
+			take_damage(rand(25, 55))
 
 
 /obj/structure/fence/attackby(obj/item/I, mob/user, params)
@@ -128,7 +55,7 @@
 			return
 
 		R.use(amount_needed)
-		obj_integrity = max_integrity
+		repair_damage(max_integrity)
 		cut = 0
 		density = TRUE
 		update_icon()
@@ -151,23 +78,18 @@
 			if(GRAB_PASSIVE)
 				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 				M.apply_damage(7)
-				obj_integrity -= 10
+				take_damage(10)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				if(prob(50))
 					M.knock_down(1)
 				M.apply_damage(10)
-				obj_integrity -= 25
+				take_damage(25)
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				M.knock_down(5)
 				M.apply_damage(20)
-				obj_integrity -= 50
-
-		healthcheck(1, 1, M) //The person thrown into the window literally shattered it
-
-	else if(I.flags_item & NOBLUDGEON)
-		return
+				take_damage(50)
 
 	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [I].</span>",
@@ -179,27 +101,20 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] cuts through [src] with [I].</span>",
 		"<span class='notice'>You cut through [src] with [I]")
-		cut_grille()
-
-	else
-		switch(I.damtype)
-			if("fire")
-				obj_integrity -= I.force
-			if("brute")
-				obj_integrity -= I.force * 0.1
-		healthcheck(1, 1, user, I)
+		deconstruct(TRUE)
 
 
-/obj/structure/fence/proc/cut_grille(create_debris = 1)
-	if(create_debris)
+/obj/structure/fence/deconstruct(disassembled = TRUE)
+	if(disassembled)
 		new /obj/item/stack/rods(loc)
-	cut = 1
+	cut = TRUE
 	density = FALSE
 	update_icon() //Make it appear cut through!
 
-/obj/structure/fence/New(Loc, start_dir = null, constructed = 0)
-	..()
 
+/obj/structure/fence/Initialize(mapload, start_dir)
+	. = ..()
+	
 	if(start_dir)
 		setDir(start_dir)
 
@@ -240,6 +155,5 @@
 
 /obj/structure/fence/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
-		obj_integrity -= round(exposed_volume / 100)
-		healthcheck(0) //Don't make hit sounds, it's dumb with fire/heat
-	..()
+		take_damage(round(exposed_volume / 100), BURN, "fire")
+	return ..()

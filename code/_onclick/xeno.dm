@@ -11,9 +11,8 @@
 	S.attack_alien(src)
 
 
-//The parent proc, will default to attack_paw behaviour unless overriden
-/atom/proc/attack_alien(mob/user)
-	return attack_paw(user)
+/atom/proc/attack_alien(mob/living/carbon/xenomorph/X)
+	return
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
@@ -23,21 +22,8 @@
 	A.attack_larva(src)
 
 
-//Larva attack, will default to attack_alien behaviour unless overriden
-/atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/user)
-	return attack_alien(user)
-
-
-/mob/living/carbon/xenomorph/queen/CtrlMiddleClickOn(atom/A)
-	. = ..()
-	if(!ovipositor)
-		return
-	if(!isxeno(A) || A == src)
-		return
-	var/mob/living/carbon/xenomorph/X = A
-	if(X.stat == DEAD)
-		return
-	set_queen_overwatch(A)
+/atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
+	return
 
 
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
@@ -54,9 +40,3 @@
 		return
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
-
-/mob/living/carbon/xenomorph/crusher/ClickOn(atom/A, params)
-	. = ..()
-	if(!is_charging)
-		return
-	stop_momentum(charge_dir)

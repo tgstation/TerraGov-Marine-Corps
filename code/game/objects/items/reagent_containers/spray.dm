@@ -19,10 +19,6 @@
 	volume = 250
 
 
-/obj/item/reagent_container/spray/New()
-	..()
-	src.verbs -= /obj/item/reagent_container/proc/set_APTFT
-
 /obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
@@ -54,11 +50,6 @@
 
 	playsound(src.loc, 'sound/effects/spray2.ogg', 25, 1, 3)
 
-	for(var/X in reagents.reagent_list)
-		var/datum/reagent/R = X
-		if(R.spray_warning)
-			log_game("[key_name(user)] fired [R.name] from \a [src] in [AREACOORD(src.loc)].")
-			message_admins("[ADMIN_TPMONTY(user)] sprayed [R.name] from \a [src].")
 
 /obj/item/reagent_container/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
@@ -169,7 +160,6 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = "combat=3;materials=3;engineering=3"
 
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!

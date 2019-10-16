@@ -5,10 +5,10 @@
 	desc = "Has a valve and pump attached to it."
 
 	use_power = IDLE_POWER_USE
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	shift_underlay_only = FALSE
 
-	resistance_flags = FIRE_PROOF|UNACIDABLE|ACID_PROOF
+	resistance_flags = UNACIDABLE
 
 	var/injecting = 0
 

@@ -44,17 +44,10 @@
 		connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
 		connected.connected = src
 
-/obj/machinery/sleep_console/attack_ai(mob/living/user)
-	return attack_hand(user)
 
-/obj/machinery/sleep_console/attack_paw(mob/living/carbon/monkey/user)
-	return attack_hand(user)
-
-/obj/machinery/sleep_console/attack_hand(mob/living/user)
+/obj/machinery/sleep_console/interact(mob/user)
 	. = ..()
 	if(.)
-		return
-	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	var/dat = ""
 	if (!connected || (connected.machine_stat & (NOPOWER|BROKEN)))
@@ -74,9 +67,10 @@
 					t1 = "<font color='#b54646'>*dead*</font>"
 				else
 			dat += text("[]\tHealth %: [] ([])</FONT><BR>", (occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.health, t1)
-			if(iscarbon(occupant))
-				var/mob/living/carbon/C = occupant
-				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (C.pulse == PULSE_NONE || C.pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), C.get_pulse(GETPULSE_TOOL))
+			if(ishuman(occupant))
+				var/mob/living/carbon/human/patient = occupant
+				var/pulse = patient.handle_pulse()
+				dat += text("[]\t-Pulse, bpm: []</FONT><BR>", (pulse == PULSE_NONE || pulse == PULSE_THREADY ? "<font color='#b54646'>" : "<font color='#487553'>"), patient.get_pulse(GETPULSE_TOOL))
 			dat += text("[]\t-Brute Damage %: []</FONT><BR>", (occupant.getBruteLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getBruteLoss())
 			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
 			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
@@ -109,35 +103,27 @@
 			dat += "<HR><A href='?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
-	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
 
 	var/datum/browser/popup = new(user, "sleeper", "<div align='center'>Sleeper Console</div>", 400, 670)
 	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "sleeper")
+	popup.open()
 
 
 /obj/machinery/sleep_console/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
-	if(!usr)
-		return FALSE
-	if(usr.incapacitated() || !usr.IsAdvancedToolUser())
-		return FALSE
-	var/mob/living/carbon/human/user = usr
-	if(get_dist(src, user) > 1)
-		return FALSE
-	user.set_interaction(src)
+
 	if(href_list["chemical"] && connected && connected.occupant)
+		var/datum/reagent/R = text2path(href_list["chemical"])
 		if (connected.occupant.stat == DEAD)
 			to_chat(usr, "<span class='warning'>This person has no life for to preserve anymore.</span>")
-		else if(!(href_list["chemical"] in connected.available_chemicals))
+		else if(!(R in connected.available_chemicals))
 			message_admins("[ADMIN_TPMONTY(usr)] has tried to inject an invalid chem with the sleeper. Looks like an exploit attempt, or a bug.")
 		else
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
-				connected.inject_chemical(user,href_list["chemical"],amount)
+				connected.inject_chemical(usr, R, amount)
 	if (href_list["removebeaker"])
 		connected.remove_beaker()
 	if (href_list["togglefilter"])
@@ -146,8 +132,9 @@
 		connected.toggle_stasis()
 	if (href_list["ejectify"])
 		connected.eject()
-	attack_hand(user)
-	return
+	
+	updateUsrDialog()
+
 
 
 

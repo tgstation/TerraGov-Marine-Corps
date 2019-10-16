@@ -63,7 +63,7 @@
 
 	X.face_atom(H) //Face towards the target so we don't look silly
 
-	var/damage = rand(X.xeno_caste.melee_damage_lower,X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
 	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
 	var/affecting = H.get_limb(ran_zone(null, 0))
 	if(!affecting) //Still nothing??
@@ -113,7 +113,8 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	to_chat(src, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/tail_sweep/use_ability()
@@ -131,7 +132,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/damage = rand(X.xeno_caste.melee_damage_lower,X.xeno_caste.melee_damage_upper) + FRENZY_DAMAGE_BONUS(X)
+			var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
@@ -217,7 +218,7 @@
 	if(X.fortify)
 		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.cooldown_id)
-			to_chat(src, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
+			to_chat(X, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
 		X.set_fortify(FALSE, TRUE)
 		FT.add_cooldown()

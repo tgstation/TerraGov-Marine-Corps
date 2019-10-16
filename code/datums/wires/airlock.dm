@@ -19,7 +19,10 @@
 	return ..()
 
 
-/datum/wires/airlock/interactable(mob/user)
+/datum/wires/airlock/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	var/obj/machinery/door/airlock/A = holder
 	if(!issilicon(user) && A.isElectrified() && A.shock(user, 100))
 		return FALSE
@@ -32,7 +35,7 @@
 	var/status
 	status += "The door bolts [A.locked ? "have fallen!" : "look up."]<br>"
 	status += "The test light is [A.hasPower() ? "on" : "off"].<br>"
-	status += "The AI connection light is [A.aiControlDisabled || (CHECK_BITFIELD(A.obj_flags, EMAGGED)) ? "off" : "on"].<br>"
+	status += "The AI connection light is [A.aiControlDisabled ? "off" : "on"].<br>"
 	status += "The check wiring light is [A.safe ? "off" : "on"].<br>"
 	status += "The timer is powered [A.autoclose ? "on" : "off"].<br>"
 	status += "The speed light is [A.normalspeed ? "on" : "off"].<br>"
@@ -49,9 +52,7 @@
 			A.loseMainPower()
 		if(WIRE_BACKUP1, WIRE_BACKUP2) // Pulse to loose backup power.
 			A.loseBackupPower()
-		if(WIRE_OPEN) // Pulse to open door (only works not emagged and ID wire is cut or no access is required).
-			if(CHECK_BITFIELD(A.obj_flags, EMAGGED))
-				return
+		if(WIRE_OPEN)
 			if(!A.requiresID() || A.check_access(null))
 				if(A.density)
 					INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/open)

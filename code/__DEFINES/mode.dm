@@ -39,6 +39,9 @@
 #define MODE_FOG_ACTIVATED 		(1<<3)
 #define MODE_INFECTION			(1<<4)
 #define MODE_HUMAN_ANTAGS		(1<<5)
+#define MODE_LZ_SHUTTERS		(1<<6)
+
+#define MODE_XENO_SPAWN_PROTECT	(1<<7)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -57,7 +60,26 @@
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
 
+// Crash gamemode
+#define MODE_CRASH_X_MAJOR		"Xenomorph Major Victory"
+#define MODE_CRASH_M_MAJOR		"Marine Major Victory"
+#define MODE_CRASH_X_MINOR		"Xenomorph Minor Victory"
+#define MODE_CRASH_M_MINOR		"Marine Minor Victory"
+#define MODE_CRASH_DRAW_DEATH	"DRAW: Mutual Annihilation"
 #define MODE_GENERIC_DRAW_NUKE			"DRAW: Nuclear Explosion"
+
+#define CRASH_DRAW (1 << 0)
+#define CRASH_XENO_MAJOR (1 << 1)
+#define CRASH_XENO_MINOR (1 << 2)
+#define CRASH_MARINE_MINOR (1 << 3)
+#define CRASH_MARINE_MAJOR (1 << 4)
+
+#define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
+#define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
+#define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
+#define CRASH_NUKE_NONE "CRASH_NUKE_NONE"
+#define CRASH_NUKE_INPROGRESS "CRASH_NUKE_INPROGRESS"
+#define CRASH_NUKE_COMPLETED "CRASH_NUKE_COMPLETED"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -65,7 +87,8 @@
 				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
 				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5),\
 				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
-				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt))
+				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
+				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/magnum))
 
 
 #define LATEJOIN_LARVA_DISABLED 0
@@ -79,7 +102,7 @@
 #define QUEEN_DEATH_COUNTDOWN 	15 MINUTES
 #define QUEEN_DEATH_NOLARVA		7.5 MINUTES
 
-#define FOG_DELAY_INTERVAL		30 MINUTES
+#define FOG_DELAY_INTERVAL		40 MINUTES
 
 #define EVACUATION_TIME_LOCK	30 MINUTES
 

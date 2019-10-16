@@ -42,8 +42,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define MAP_MAXY 5
 #define MAP_MAXZ 6
 
-#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
-
 //world/proc/shelleo
 #define SHELLEO_ERRORLEVEL 1
 #define SHELLEO_STDOUT 2
@@ -65,10 +63,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"
-
-
-#define COLOR_INPUT_DISABLED "#F0F0F0"
-#define COLOR_INPUT_ENABLED "#D3B5B5"
 
 
 #define CHECKBOX_NONE 0
@@ -97,3 +91,10 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LUMA_R 0.213
 #define LUMA_G 0.715
 #define LUMA_B 0.072
+
+#define NULL_CLIENT_BUG_CHECK 1
+#ifdef NULL_CLIENT_BUG_CHECK
+#define CHECK_NULL_CLIENT(X) if(QDELETED(X) { return; }
+#else
+#define CHECK_NULL_CLIENT(X) X
+#endif

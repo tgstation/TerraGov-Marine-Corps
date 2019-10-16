@@ -278,7 +278,7 @@
 /area/shuttle/big_ert)
 "aM" = (
 /obj/structure/table/mainship,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/shuttle/big_ert)
@@ -906,7 +906,7 @@
 /area/shuttle/big_ert)
 "ce" = (
 /obj/structure/table/mainship,
-/obj/item/paper_bin,
+/obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
 /obj/item/tool/pen,
@@ -1106,7 +1106,7 @@
 /area/shuttle/big_ert)
 "cA" = (
 /obj/structure/table/mainship,
-/obj/item/paper_bin{
+/obj/structure/paper_bin{
 	pixel_x = -5;
 	pixel_y = 5
 	},

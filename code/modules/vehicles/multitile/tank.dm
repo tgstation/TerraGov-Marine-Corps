@@ -136,7 +136,7 @@
 /obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(mob/M)
 	if(!M || M != gunner)
 		return FALSE
-	if(!M.IsAdvancedToolUser())
+	if(!M.dextrous)
 		to_chat(M, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return FALSE
 	return !M.incapacitated()
@@ -181,7 +181,7 @@
 		handle_harm_attack(M, occupant)
 		return
 
-	if(!M.IsAdvancedToolUser())
+	if(!M.dextrous)
 		to_chat(M, "<span class='warning'>You don't have the dexterity to drive [src]!</span>")
 		return
 	if(!allowed(M))

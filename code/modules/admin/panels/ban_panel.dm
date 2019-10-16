@@ -146,7 +146,7 @@
 	if(edit_id)
 		panel_height = 240
 	var/datum/browser/panel = new(usr.client.mob, "banpanel", "Ban Panel", 910, panel_height)
-	panel.add_stylesheet("banpanelcss", 'html/admin/banpanel.css')
+	panel.add_stylesheet("banpanelcss", 'html/browser/banpanel.css')
 	var/list/output = list("<form method='get' action='?src=[REF(usr.client.holder)];[HrefToken()]'>[HrefTokenFormField()]")
 	output += {"<input type='hidden' name='src' value='[REF(usr.client.holder)];[HrefToken()]'>
 	<label class='inputlabel checkbox'>Key:
@@ -543,7 +543,7 @@
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
-		send2irc("BAN ALERT","[kn] [msg]")
+		send2irc("BAN ALERT", "[kn] [msg] | Reason: [reason]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
@@ -589,7 +589,7 @@
 		return
 
 	var/datum/browser/panel = new(usr.client.mob, "unbanpanel", "Unban Panel", 850, 600)
-	panel.add_stylesheet("unbanpanelcss", 'html/admin/unbanpanel.css')
+	panel.add_stylesheet("unbanpanelcss", 'html/browser/unbanpanel.css')
 	var/list/output = list("<div class='searchbar'>")
 	output += {"<form method='get' action='?src=[REF(usr.client.holder)];[HrefToken()]'>[HrefTokenFormField()]
 	<input type='hidden' name='src' value='[REF(usr.client.holder)];[HrefToken()]'>

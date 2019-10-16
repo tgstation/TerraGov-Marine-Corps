@@ -7,7 +7,7 @@
 	name = "voice analyzer"
 	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
 	icon_state = "voice"
-	matter = list("metal" = 500, "glass" = 50)
+	materials = list(/datum/material/metal = 500, /datum/material/glass = 50)
 	attachable = TRUE
 	verb_say = "beeps"
 	verb_ask = "beeps"

@@ -40,8 +40,7 @@
 	var/deathmessage = ""
 
 	//Attack
-	melee_damage_lower = 0
-	melee_damage_upper = 0
+	melee_damage = 0
 	attacktext = "attacks"
 	attack_sound = null
 	friendly = "nuzzles" //If the mob does no damage with it's attack
@@ -289,10 +288,6 @@
 	if(AIStatus == AI_Z_OFF)
 		SSidlenpcpool.idle_mobs_by_zlevel[old_z] -= src
 		toggle_ai(initial(AIStatus))
-
-
-/mob/living/simple_animal/IsAdvancedToolUser()
-	return FALSE
 
 
 /mob/living/simple_animal/proc/handle_automated_action()

@@ -20,8 +20,8 @@
 		bitten(user)
 		return
 
-/obj/item/organ/New(loc, organ_datum)
-	..()
+/obj/item/organ/Initialize(mapload, organ_datum)
+	. = ..()
 	create_reagents(5)
 	if(organ_datum)
 		organ_data = organ_datum
@@ -56,7 +56,7 @@
 			TU.add_blood(L, B.color)
 		//blood_splatter(src,B,1)
 
-	obj_integrity -= rand(0,1)
+	take_damage(rand(0,1))
 	if(obj_integrity <= 0)
 		die()
 

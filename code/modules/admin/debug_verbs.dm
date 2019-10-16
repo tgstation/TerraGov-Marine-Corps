@@ -222,7 +222,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/dat
 
-	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
+	var/choice = input("Which list?") as null|anything in list("Players", "Observers", "New Players", "Admins", "Clients", "Mobs", "Living Mobs", "Alive Living Mobs", "Dead Mobs", "Xenos", "Alive Xenos", "Dead Xenos", "Humans", "Alive Humans", "Dead Humans")
 	if(!choice)
 		return
 
@@ -255,8 +255,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			for(var/i in GLOB.mob_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
-		if("Alive Mobs")
-			for(var/i in GLOB.alive_mob_list)
+		if("Alive Living Mobs")
+			for(var/i in GLOB.alive_living_list)
 				var/mob/M = i
 				dat += "[M] [ADMIN_VV(M)]<br>"
 		if("Dead Mobs")
@@ -442,3 +442,34 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	GLOB.error_cache.show_to(usr.client)
 
 	log_admin("[key_name(usr)] viewed the runtimes.")
+
+
+/datum/admins/proc/spatial_agent()
+	set category = "Debug"
+	set name = "Spatial Agent"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/mob/M = usr
+	var/mob/living/carbon/human/H
+	var/spatial = FALSE
+	if(ishuman(M))
+		H = M
+		var/datum/job/J = SSjob.GetJob(H.job)
+		spatial = istype(J, /datum/job/other/spatial_agent)
+
+	if(spatial)
+		log_admin("[key_name(M)] stopped being a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(M)] stopped being a spatial agent.")
+		qdel(M)
+	else
+		H = new(get_turf(M))
+		M.client.prefs.copy_to(H)
+		M.mind.transfer_to(H, TRUE)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/other/spatial_agent)
+		J.assign_equip(H)
+		qdel(M)
+
+		log_admin("[key_name(H)] became a spatial agent.")
+		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")

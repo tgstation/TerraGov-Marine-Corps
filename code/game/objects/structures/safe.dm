@@ -102,11 +102,11 @@ FLOOR SAFES
 		icon_state = initial(icon_state)
 
 
-/obj/structure/safe/attack_hand(mob/living/user)
+/obj/structure/safe/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-	user.set_interaction(src)
+
 	var/dat = "<center>"
 	dat += "<a href='?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a><br>"
 	dat += "Dial 1: <a href='?src=\ref[src];decrement=1'>-</a> [tumbler_1_pos] <a href='?src=\ref[src];increment=1'>+</a><br>"
@@ -117,8 +117,11 @@ FLOOR SAFES
 			var/obj/item/P = contents[i]
 			dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 		dat += "</table></center>"
-	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=safe;size=350x300")
-	onclose(user, "safe")
+
+	var/datum/browser/popup = new(user, "safe", "<div align='center'>[src]</div>", 350, 300)
+	popup.set_content(dat)
+	popup.open()
+
 
 /obj/structure/safe/Topic(href, href_list)
 	. = ..()
@@ -164,8 +167,6 @@ FLOOR SAFES
 		return
 
 	if(href_list["retrieve"])
-		user << browse("", "window=safe") // Close the menu
-
 		var/obj/item/P = locate(href_list["retrieve"]) in src
 		if(open)
 			if(P && in_range(src, user))

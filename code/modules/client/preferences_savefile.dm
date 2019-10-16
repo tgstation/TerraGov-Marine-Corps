@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	20
-#define SAVEFILE_VERSION_MAX	35
+#define SAVEFILE_VERSION_MAX	38
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,8 +20,55 @@
 				break
 		return FALSE
 
-	if(savefile_version < 35)
-		WRITE_FILE(S["focus_chat"], FALSE)
+	if(savefile_version < 22)
+		WRITE_FILE(S["windowflashing"], TRUE)
+
+	if(savefile_version < 23)
+		WRITE_FILE(S["focus_chat"], TRUE)
+
+	if(savefile_version < 24)
+		WRITE_FILE(S["menuoptions"], list())
+
+	if(savefile_version < 25)
+		WRITE_FILE(S["ghost_vision"], TRUE)
+		WRITE_FILE(S["ghost_orbit"], GHOST_ORBIT_CIRCLE)
+		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
+		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
+
+	if(savefile_version < 26)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 27)
+		switch(S["ui_style"])
+			if("Orange")
+				WRITE_FILE(S["ui_style"], "Plasmafire")
+			if("old")
+				WRITE_FILE(S["ui_style"], "Retro")
+		if(S["ui_style_alpha"] > 230)
+			WRITE_FILE(S["ui_style_alpha"], 230)
+
+	if(savefile_version < 28)
+		WRITE_FILE(S["tooltips"], TRUE)
+
+	if(savefile_version < 29)
+		WRITE_FILE(S["metadata"], null)
+		WRITE_FILE(S["jobs_low"], null)
+		WRITE_FILE(S["jobs_medium"], null)
+		WRITE_FILE(S["jobs_high"], null)
+		WRITE_FILE(S["job_preferences"], list())
+
+	if(savefile_version < 30)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 31)
+		WRITE_FILE(S["key_bindings"], null)
+
+	if(savefile_version < 32)
+		WRITE_FILE(S["observer_actions"], TRUE)
+
+	if(savefile_version < 33)
+		if(!length(S["key_bindings"]))
+			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
 
 	if(savefile_version < 34)
 		READ_FILE(S["key_bindings"], key_bindings)
@@ -33,55 +80,17 @@
 			key_bindings["L"] = list(1 = "looc")
 			WRITE_FILE(S["key_bindings"], key_bindings)
 
-	if(savefile_version < 33)
-		if(!length(S["key_bindings"]))
-			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
+	if(savefile_version < 35)
+		WRITE_FILE(S["focus_chat"], FALSE)
 
-	if(savefile_version < 32)
-		WRITE_FILE(S["observer_actions"], TRUE)
+	if(savefile_version < 36)
+		WRITE_FILE(S["clientfps"], 0)
 
-	if(savefile_version < 31)
-		WRITE_FILE(S["key_bindings"], null)
+	if(savefile_version < 37)
+		WRITE_FILE(S["ai_name"], "ARES v3.2")
 
-	if(savefile_version < 30)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 29)
-		WRITE_FILE(S["metadata"], null)
-		WRITE_FILE(S["jobs_low"], null)
-		WRITE_FILE(S["jobs_medium"], null)
-		WRITE_FILE(S["jobs_high"], null)
-		WRITE_FILE(S["job_preferences"], list())
-
-	if(savefile_version < 28)
-		WRITE_FILE(S["tooltips"], TRUE)
-
-	if(savefile_version < 27)
-		switch(S["ui_style"])
-			if("Orange")
-				WRITE_FILE(S["ui_style"], "Plasmafire")
-			if("old")
-				WRITE_FILE(S["ui_style"], "Retro")
-		if(S["ui_style_alpha"] > 230)
-			WRITE_FILE(S["ui_style_alpha"], 230)
-
-	if(savefile_version < 26)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 25)
-		WRITE_FILE(S["ghost_vision"], TRUE)
-		WRITE_FILE(S["ghost_orbit"], GHOST_ORBIT_CIRCLE)
-		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
-		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
-
-	if(savefile_version < 24)
+	if(savefile_version < 38)
 		WRITE_FILE(S["menuoptions"], list())
-
-	if(savefile_version < 23)
-		WRITE_FILE(S["focus_chat"], TRUE)
-
-	if(savefile_version < 22)
-		WRITE_FILE(S["windowflashing"], TRUE)
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -137,6 +146,7 @@
 	READ_FILE(S["ghost_others"], ghost_others)
 	READ_FILE(S["observer_actions"], observer_actions)
 	READ_FILE(S["focus_chat"], focus_chat)
+	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 
@@ -159,7 +169,8 @@
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
+	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
+	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
@@ -202,7 +213,8 @@
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
 	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	focus_chat			= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
+	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
+	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	WRITE_FILE(S["default_slot"], default_slot)
@@ -226,6 +238,7 @@
 	WRITE_FILE(S["ghost_others"], ghost_others)
 	WRITE_FILE(S["observer_actions"], observer_actions)
 	WRITE_FILE(S["focus_chat"], focus_chat)
+	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["tooltips"], tooltips)
 
 	return TRUE
@@ -252,8 +265,8 @@
 
 	READ_FILE(S["synthetic_name"], synthetic_name)
 	READ_FILE(S["synthetic_type"], synthetic_type)
-
 	READ_FILE(S["xeno_name"], xeno_name)
+	READ_FILE(S["ai_name"], ai_name)
 
 	READ_FILE(S["real_name"], real_name)
 	READ_FILE(S["random_name"], random_name)
@@ -303,8 +316,8 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
-
 	xeno_name		= reject_bad_name(xeno_name)
+	ai_name			= reject_bad_name(ai_name, TRUE)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
@@ -355,6 +368,8 @@
 		synthetic_name = "David"
 	if(!xeno_name)
 		xeno_name = "Undefined"
+	if(!ai_name)
+		ai_name = "ARES v3.2"
 	if(!real_name)
 		real_name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 
@@ -379,8 +394,8 @@
 
 	synthetic_name	= reject_bad_name(synthetic_name)
 	synthetic_type	= sanitize_inlist(synthetic_type, SYNTH_TYPES, initial(synthetic_type))
-
 	xeno_name		= reject_bad_name(xeno_name)
+	ai_name			= reject_bad_name(ai_name, TRUE)
 
 	real_name		= reject_bad_name(real_name)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
@@ -431,8 +446,8 @@
 
 	WRITE_FILE(S["synthetic_name"], synthetic_name)
 	WRITE_FILE(S["synthetic_type"], synthetic_type)
-
 	WRITE_FILE(S["xeno_name"], xeno_name)
+	WRITE_FILE(S["ai_name"], ai_name)
 
 	WRITE_FILE(S["real_name"], real_name)
 	WRITE_FILE(S["random_name"], random_name)
