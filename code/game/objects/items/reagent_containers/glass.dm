@@ -12,13 +12,15 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	container_type = OPENCONTAINER
+	init_reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
 
-/obj/item/reagent_container/glass/New()
+
+/obj/item/reagent_container/glass/Initialize()
 	. = ..()
 	base_name = name
+
 
 /obj/item/reagent_container/glass/examine(mob/user)
 	..()
@@ -31,12 +33,12 @@
 	set category = "Object"
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
-		container_type ^= OPENCONTAINER
-		container_type |= TRANSPARENT
+		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
+		ENABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 	else
 		to_chat(usr, "<span class='notice'>You take the lid off \the [src].</span>")
-		container_type ^= TRANSPARENT
-		container_type |= OPENCONTAINER
+		DISABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
+		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	update_icon()
 
 /obj/item/reagent_container/glass/afterattack(obj/target, mob/user , proximity)
@@ -92,7 +94,7 @@
 
 			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
 			reagents.reaction(target, TOUCH)
-			spawn(5) reagents.clear_reagents()
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
 
@@ -100,19 +102,23 @@
 			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
-			spawn(5) src.reagents.clear_reagents()
+			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
-/obj/item/reagent_container/glass/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/flashlight/pen))
-		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", label_text))
+/obj/item/reagent_container/glass/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
+		var/tmp_label = sanitize(input(user, "Enter a label for [name]", "Label", label_text))
 		if(length(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
-		else
-			user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
-								 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
-			label_text = tmp_label
-			update_name_label()
+			return
+
+		user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
+							"<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
+
+		label_text = tmp_label
+		update_name_label()
 
 /obj/item/reagent_container/glass/proc/update_name_label()
 	if(label_text == "")
@@ -126,7 +132,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
-	matter = list("glass" = 500)
+	materials = list(/datum/material/glass = 500)
 	attack_speed = 4
 
 /obj/item/reagent_container/glass/beaker/on_reagent_change()
@@ -140,8 +146,10 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/attack_hand()
-	..()
+/obj/item/reagent_container/glass/beaker/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	update_icon()
 
 /obj/item/reagent_container/glass/beaker/update_icon()
@@ -171,7 +179,7 @@
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 120 units."
 	icon_state = "beakerlarge"
-	matter = list("glass" = 5000)
+	materials = list(/datum/material/glass = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
@@ -180,19 +188,16 @@
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
-	matter = list("glass" = 500)
+	materials = list(/datum/material/glass = 500)
 	volume = 60
+	init_reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
-
-/obj/item/reagent_container/glass/beaker/noreact/New()
-	. = ..()
-	reagents.set_reacting(FALSE)
 
 /obj/item/reagent_container/glass/beaker/bluespace
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology. Can hold up to 300 units."
 	icon_state = "beakerbluespace"
-	matter = list("glass" = 5000)
+	materials = list(/datum/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
@@ -202,31 +207,37 @@
 	name = "vial"
 	desc = "A small glass vial. Can hold up to 30 units."
 	icon_state = "vial"
-	matter = list("glass" = 250)
+	materials = list(/datum/material/glass = 250)
 	volume = 30
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
 
 /obj/item/reagent_container/glass/beaker/cryoxadone
-	list_reagents = list("cryoxadone" = 30)
+	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
-/obj/item/reagent_container/glass/beaker/cryoxadone/New()
+
+/obj/item/reagent_container/glass/beaker/cryoxadone/Initialize()
 	. = ..()
 	update_icon()
+
 
 /obj/item/reagent_container/glass/beaker/cryomix
-	list_reagents = list("cryoxadone" = 10, "clonexadone" = 10, "iron" = 10, "tricordrazine" = 10, "quickclot" = 5, "peridaxon" = 5, "dexalinplus" = 5, "spaceacillin" = 5)
+	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/iron = 10, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5)
 
-/obj/item/reagent_container/glass/beaker/cryomix/New()
+
+/obj/item/reagent_container/glass/beaker/cryomix/Initialize()
 	. = ..()
 	update_icon()
+
 
 /obj/item/reagent_container/glass/beaker/sulphuric
-	list_reagents = list("sacid" = 60)
+	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
-/obj/item/reagent_container/glass/beaker/sulphuric/New()
+
+/obj/item/reagent_container/glass/beaker/sulphuric/Initialize()
 	. = ..()
 	update_icon()
+
 
 /obj/item/reagent_container/glass/bucket
 	desc = "It's a bucket."
@@ -234,29 +245,30 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
-	matter = list("metal" = 200)
-	w_class = 3
+	materials = list(/datum/material/metal = 200)
+	w_class = WEIGHT_CLASS_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
 
-/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user)
+/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(isprox(I))
 		to_chat(user, "You add [I] to [src].")
 		qdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
 		user.dropItemToGround(src)
 		qdel(src)
+
 	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "[src] is out of water!</span>")
-		else
-			reagents.trans_to(I, 5)
-			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		return
-	else
-		..()
+			return
+
+		reagents.trans_to(I, 5)
+		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 /obj/item/reagent_container/glass/bucket/update_icon()
 	overlays.Cut()

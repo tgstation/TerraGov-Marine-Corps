@@ -109,7 +109,7 @@
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	user.visible_message("<span class='warning'>[user]'s hand slips, stabbing \the [tool] into [target]'s eye!</span>", \
 	"<span class='warning'>Your hand slips, stabbing \the [tool] into [target]'s eye!</span>")
-	target.apply_damage(10, BRUTE, affected, sharp = 1)
+	target.apply_damage(10, BRUTE, affected, 0, TRUE)
 	E.take_damage(5, 0)
 	target.updatehealth()
 
@@ -134,7 +134,7 @@
 	user.visible_message("<span class='notice'>[user] cauterizes the incision around [target]'s eyes with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision around [target]'s eyes with \the [tool].</span>")
 	target.disabilities &= ~NEARSIGHTED
-	target.sdisabilities &= ~BLIND
+	target.disabilities &= ~BLIND
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	E.damage = 0
 	E.eye_surgery_stage = 0

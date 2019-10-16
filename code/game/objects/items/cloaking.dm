@@ -11,14 +11,13 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
-	w_class = 2.0
-	origin_tech = "syndicate=4;magnets=4"
+	w_class = WEIGHT_CLASS_SMALL
 	var/chameleon_on = FALSE
 	var/datum/effect_system/spark_spread/spark_system
 	var/chameleon_cooldown
 
-/obj/item/chameleon/New()
-	..()
+/obj/item/chameleon/Initialize()
+	. = ..()
 	spark_system = new
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -73,8 +72,7 @@
 	throwforce = 10.0
 	throw_speed = 2
 	throw_range = 10
-	w_class = 2.0
-	origin_tech = "magnets=3;syndicate=4"
+	w_class = WEIGHT_CLASS_SMALL
 
 
 /obj/item/cloaking_device/attack_self(mob/user as mob)
@@ -85,7 +83,6 @@
 	else
 		to_chat(user, "<span class='notice'>The cloaking device is now inactive.</span>")
 		src.icon_state = "shield0"
-	src.add_fingerprint(user)
 	return
 
 /obj/item/cloaking_device/emp_act(severity)

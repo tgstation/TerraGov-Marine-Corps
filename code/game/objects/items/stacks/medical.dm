@@ -1,10 +1,9 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/items/items.dmi'
 	amount = 10
 	max_amount = 10
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
 	var/heal_brute = 0
@@ -15,7 +14,7 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return TRUE
 
-	if(!ishuman(user) && !iscyborg(user))
+	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return TRUE
 
@@ -47,8 +46,7 @@
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
 	heal_brute = 1
-	origin_tech = "biotech=1"
-	stack_id = "bruise pack"
+
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	. = ..()
@@ -60,7 +58,7 @@
 
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -97,8 +95,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 3
-	origin_tech = "biotech=1"
-	stack_id = "ointment"
+
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	. = ..()
@@ -110,7 +107,7 @@
 
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
@@ -137,7 +134,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "shandp"
 	heal_brute = 7
-	stack_id = "Hand leaf"
+
 
 /obj/item/stack/medical/ointment/tajaran
 	name = "\improper Messa's Tear petals"
@@ -146,7 +143,7 @@
 	icon = 'icons/obj/items/harvest.dmi'
 	icon_state = "mtearp"
 	heal_burn = 7
-	stack_id = "Tear petals"
+
 
 
 /obj/item/stack/medical/advanced
@@ -175,8 +172,7 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 12
-	origin_tech = "biotech=1"
-	stack_id = "advanced bruise pack"
+
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
 	. = ..()
@@ -190,7 +186,7 @@
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
-				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return
 				heal_amt = heal_brute * 0.5 //non optimal application means less healing
 
@@ -233,8 +229,7 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 12
-	origin_tech = "biotech=1"
-	stack_id = "advanced burn kit"
+
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	. = ..()
@@ -248,7 +243,7 @@
 		if(user.mind && user.mind.cm_skills)
 			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
-				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 					return
 				heal_amt = heal_burn * 0.5 //non optimal application means less healing
 
@@ -276,7 +271,7 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
-	stack_id = "splint"
+
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/user)
 	. = ..()

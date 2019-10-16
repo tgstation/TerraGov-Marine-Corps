@@ -1,25 +1,6 @@
 //Refer to life.dm for caller
 
 /mob/living/carbon/human/proc/handle_environment()
-
-	//Homeless snowflake from the deleted handle_chemicals_in_body()
-	if(dna && dna.mutantrace == "shadow")
-		var/light_amount = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			var/area/A = T.loc
-			if(A)
-				if(A.lighting_use_dynamic)
-					light_amount = T.lighting_lumcount
-				else
-					light_amount =  10
-		if(light_amount > 2) //If there's enough light, start dying
-			take_overall_damage(1, 1)
-		else if(light_amount < 2) //Heal in the dark
-			heal_overall_damage(1, 1)
-
-///////////////////////////////
-
 	if(!loc)
 		return
 
@@ -95,10 +76,7 @@
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
 	else
-		if(!(COLD_RESISTANCE in mutations))
-			take_overall_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) //11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  //16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
-			pressure_alert = -2
-		else
-			pressure_alert = -1
+		take_overall_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+		if(getOxyLoss() < 55) //11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
+			adjustOxyLoss(4)  //16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
+		pressure_alert = -2

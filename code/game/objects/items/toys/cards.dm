@@ -7,13 +7,12 @@
 	desc = "A simple deck of playing cards."
 	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "deck"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/list/cards = list()
 
-/obj/item/toy/deck/New()
-	..()
-
+/obj/item/toy/deck/Initialize()
+	. = ..()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
@@ -24,16 +23,16 @@
 			cards += P
 
 
-/obj/item/toy/deck/attackby(obj/item/O, mob/user)
-	if(istype(O,/obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = O
+/obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = I
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		update_icon()
-		qdel(O)
+		qdel(I)
 		to_chat(user, "You place your cards on the bottom of the deck.")
-		return
-	..()
 
 /obj/item/toy/deck/update_icon()
 	switch(cards.len)
@@ -122,7 +121,7 @@
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
-/obj/item/toy/deck/attack_self(var/mob/user as mob)
+/obj/item/toy/deck/attack_self(mob/user as mob)
 
 	var/list/newcards = list()
 	while(cards.len)
@@ -151,24 +150,25 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "empty"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 
 	var/concealed = 0
 	var/list/cards = list()
 
 
-/obj/item/toy/handcard/attackby(obj/item/O, mob/user)
-	if(istype(O,/obj/item/toy/handcard))
-		var/obj/item/toy/handcard/H = O
+/obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/toy/handcard))
+		var/obj/item/toy/handcard/H = I
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
-		src.concealed = H.concealed
-		qdel(O)
+		concealed = H.concealed
+		qdel(I)
 		if(loc != user)
 			user.put_in_hands(src)
 		update_icon()
-		return
-	..()
+
 
 /obj/item/toy/handcard/verb/discard()
 
@@ -207,7 +207,7 @@
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/toy/handcard/attack_self(var/mob/user as mob)
+/obj/item/toy/handcard/attack_self(mob/user as mob)
 	concealed = !concealed
 	update_icon()
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
@@ -221,7 +221,7 @@
 			for(var/datum/playingcard/P in cards)
 				to_chat(user, "The [P.name].")
 
-/obj/item/toy/handcard/update_icon(var/direction = 0)
+/obj/item/toy/handcard/update_icon(direction = 0)
 	if(cards.len > 1)
 		name = "hand of cards"
 		desc = "Some playing cards."

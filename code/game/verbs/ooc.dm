@@ -1,4 +1,8 @@
-var/global/normal_ooc_colour = "#002eb8"
+/client/verb/ooc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "OOC \"text\"") as null|text
+	ooc(message)
+
 
 /client/verb/ooc(msg as text)
 	set name = "OOC"
@@ -36,7 +40,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<span class='danger'>Advertising other servers is not allowed.</span>")
-			log_admin("[key_name(usr)] has attempted to advertise in OOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in OOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in OOC: [msg]")
 			return
 
@@ -46,7 +50,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	mob.log_talk(msg, LOG_OOC)
 
-	var/display_colour = normal_ooc_colour
+	var/display_colour = "#002eb8"
 	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
@@ -90,7 +94,13 @@ var/global/normal_ooc_colour = "#002eb8"
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+
+
+/client/verb/looc_wrapper()
+	set hidden = TRUE
+	var/message = input("", "LOOC \"text\"") as null|text
+	looc(message)
 
 
 /client/verb/looc(msg as text)
@@ -133,7 +143,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			return
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
+			log_admin_private("[key_name(usr)] has attempted to advertise in LOOC: [msg]")
 			message_admins("[ADMIN_TPMONTY(usr)] has attempted to advertise in LOOC: [msg]")
 			return
 
@@ -141,7 +151,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		to_chat(src, "<span class='warning'>You have been banned from LOOC.</span>")
 		return
 
-	mob.log_talk("LOOC: [msg]", LOG_LOOC)
+	mob.log_talk(msg, LOG_LOOC)
 
 	var/message
 
@@ -161,13 +171,6 @@ var/global/normal_ooc_colour = "#002eb8"
 			to_chat(C, "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]</span>: <span class='message'>[msg]</span></span></font>")
 
 
-/client/verb/setup_character()
-	set name = "Game Preferences"
-	set category = "OOC"
-	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
-	prefs.ShowChoices(usr)
-
-
 /client/verb/motd()
 	set name = "MOTD"
 	set category = "OOC"
@@ -185,7 +188,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	set desc = "Stop Current Sounds"
 
 	SEND_SOUND(src, sound(null))
-	if(chatOutput && !chatOutput.broken && chatOutput.loaded)
+	if(chatOutput?.working && chatOutput.loaded)
 		chatOutput.stopMusic()
 
 
@@ -215,3 +218,77 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	browse_messages(null, ckey, null, TRUE)
+	
+
+/client/verb/fit_viewport()
+	set name = "Fit Viewport"
+	set category = "OOC"
+	set desc = "Fit the width of the map window to match the viewport"
+
+	// Fetch aspect ratio
+	var/view_size = getviewsize(view)
+	var/aspect_ratio = view_size[1] / view_size[2]
+
+	// Calculate desired pixel width using window size and aspect ratio
+	var/sizes = params2list(winget(src, "mainwindow.split;mapwindow", "size"))
+	var/map_size = splittext(sizes["mapwindow.size"], "x")
+	var/height = text2num(map_size[2])
+	var/desired_width = round(height * aspect_ratio)
+	if (text2num(map_size[1]) == desired_width)
+		// Nothing to do
+		return
+
+	var/split_size = splittext(sizes["mainwindow.split.size"], "x")
+	var/split_width = text2num(split_size[1])
+
+	// Calculate and apply a best estimate
+	// +4 pixels are for the width of the splitter's handle
+	var/pct = 100 * (desired_width + 4) / split_width
+	winset(src, "mainwindow.split", "splitter=[pct]")
+
+	// Apply an ever-lowering offset until we finish or fail
+	var/delta
+	for(var/safety in 1 to 10)
+		var/after_size = winget(src, "mapwindow", "size")
+		map_size = splittext(after_size, "x")
+		var/got_width = text2num(map_size[1])
+
+		if (got_width == desired_width)
+			// success
+			return
+		else if (isnull(delta))
+			// calculate a probable delta value based on the difference
+			delta = 100 * (desired_width - got_width) / split_width
+		else if ((delta > 0 && got_width > desired_width) || (delta < 0 && got_width < desired_width))
+			// if we overshot, halve the delta and reverse direction
+			delta = -delta/2
+
+		pct += delta
+		winset(src, "mainwindow.split", "splitter=[pct]")
+
+
+/client/verb/update_ping(time as num)
+	set instant = TRUE
+	set name = ".update_ping"
+	var/ping = pingfromtime(time)
+	lastping = ping
+	if(!avgping)
+		avgping = ping
+	else
+		avgping = MC_AVERAGE_SLOW(avgping, ping)
+
+
+/client/proc/pingfromtime(time)
+	return ((world.time + world.tick_lag * TICK_USAGE_REAL / 100) - time) * 100
+
+
+/client/verb/display_ping(time as num)
+	set instant = TRUE
+	set name = ".display_ping"
+	to_chat(src, "<span class='notice'>Round trip ping took [round(pingfromtime(time), 1)]ms</span>")
+
+
+/client/verb/ping()
+	set name = "Ping"
+	set category = "OOC"
+	winset(src, null, "command=.display_ping+[world.time + world.tick_lag * TICK_USAGE_REAL / 100]")

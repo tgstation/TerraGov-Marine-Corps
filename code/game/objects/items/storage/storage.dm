@@ -8,7 +8,7 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/items/storage/storage.dmi'
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/bypass_w_limit = list() //a list of objects which this item can store despite not passing the w_class limit
@@ -38,19 +38,13 @@
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
-/obj/item/storage/Initialize(mapload, ...)
-	. = ..()
-	can_hold = typecacheof(can_hold)
-	cant_hold = typecacheof(cant_hold)
-	bypass_w_limit = typecacheof(bypass_w_limit)
-
 /obj/item/storage/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr)) //so monkeys can take off their backpacks -- Urist
+	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
 		if(usr.lying)
 			return
 
-		if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
@@ -73,7 +67,6 @@
 				if("l_hand")
 					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
-			add_fingerprint(usr)
 
 /obj/item/storage/proc/return_inv()
 
@@ -133,7 +126,8 @@
 
 /obj/item/storage/proc/can_see_content()
 	var/list/lookers = list()
-	for(var/mob/M in content_watchers)
+	for(var/i in content_watchers)
+		var/mob/M = i
 		if(M.s_active == src && M.client)
 			lookers |= M
 		else
@@ -151,11 +145,10 @@
 		user.s_active.close(user)
 	show_to(user)
 
-/obj/item/storage/proc/close(mob/user)
 
+/obj/item/storage/proc/close(mob/user)
 	hide_from(user)
-	user.s_active = null
-	return
+
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
 //The numbers are calculated from the bottom-left The bottom-left slot being 1,1.
@@ -166,6 +159,7 @@
 	for(var/obj/O in src.contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = ABOVE_HUD_LAYER
+		O.plane = ABOVE_HUD_PLANE
 		cx++
 		if (cx > mx)
 			cx = tx
@@ -175,7 +169,7 @@
 		boxes.update_fullness(src)
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/slot_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/storage/proc/slot_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
 	var/cy = 2+rows
 	boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
@@ -186,6 +180,7 @@
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = ABOVE_HUD_LAYER
+			ND.sample_object.plane = ABOVE_HUD_PLANE
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -196,6 +191,7 @@
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
 			O.layer = ABOVE_HUD_LAYER
+			O.plane = ABOVE_HUD_PLANE
 			cx++
 			if (cx > (4+cols))
 				cx = 4
@@ -204,7 +200,7 @@
 	if(show_storage_fullness)
 		boxes.update_fullness(src)
 
-/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/storage/proc/space_orient_objs(list/obj/item/display_contents)
 
 	var/baseline_max_storage_space = 21 //should be equal to default backpack capacity
 	var/storage_cap_width = 2 //length of sprite for start and end of the box representing total storage space
@@ -228,7 +224,7 @@
 
 	for(var/obj/item/O in contents)
 		startpoint = endpoint + 1
-		endpoint += storage_width * O.get_storage_cost()/max_storage_space
+		endpoint += storage_width * O.w_class / max_storage_space
 
 		click_border_start.Add(startpoint)
 		click_border_end.Add(endpoint)
@@ -250,6 +246,7 @@
 		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
 		O.maptext = ""
 		O.layer = ABOVE_HUD_LAYER
+		O.plane = ABOVE_HUD_PLANE
 
 	src.closer.screen_loc = "4:[storage_width+19],2:16"
 	return
@@ -259,7 +256,7 @@
 	if(usr.incapacitated(TRUE))
 		return
 
-	if(istype(usr.loc, /obj/mecha) || istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
+	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank
 		return
 
 	var/list/PL = params2list(params)
@@ -362,16 +359,16 @@
 			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return FALSE
 
-	var/sum_storage_cost = W.get_storage_cost()
+	var/sum_storage_cost = W.w_class
 	for(var/obj/item/I in contents)
-		sum_storage_cost += I.get_storage_cost() //Adds up the combined storage costs which will be in the storage item if the item is added to it.
+		sum_storage_cost += I.w_class
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
 			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return FALSE
 
-	if(W.w_class >= w_class && (istype(W, /obj/item/storage)))
+	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
 				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
@@ -401,7 +398,6 @@
 	if(user)
 		if (user.client && user.s_active != src)
 			user.client.screen -= W
-		add_fingerprint(user)
 		if(!prevent_warning)
 			var/visidist = W.w_class >= 3 ? 3 : 1
 			user.visible_message("<span class='notice'>[usr] puts [W] into [src].</span>",\
@@ -416,45 +412,52 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+/obj/item/storage/proc/remove_from_storage(obj/item/I, atom/new_location)
+	if(!istype(I))
+		return FALSE
 
-	for(var/mob/M in can_see_content())
-		if(M.client)
-			M.client.screen -= W
+	for(var/i in can_see_content())
+		var/mob/M = i
+		if(!M.client)
+			continue
+		M.client.screen -= I
 
 	if(new_location)
 		if(ismob(new_location))
-			W.layer = ABOVE_HUD_LAYER
-			W.pickup(new_location)
+			I.layer = ABOVE_HUD_LAYER
+			I.plane = ABOVE_HUD_PLANE
+			I.pickup(new_location)
 		else
-			W.layer = initial(W.layer)
-		W.forceMove(new_location)
+			I.layer = initial(I.layer)
+			I.plane = initial(I.plane)
+		I.forceMove(new_location)
 	else
-		W.forceMove(get_turf(src))
+		I.moveToNullspace()
 
 	orient2hud()
-	for(var/mob/M in can_see_content())
+	
+	for(var/i in can_see_content())
+		var/mob/M = i
 		show_to(M)
-	if(W.maptext)
-		W.maptext = ""
-	W.on_exit_storage(src)
+	
+	if(!QDELETED(I))
+		I.on_exit_storage(src)
+		I.mouse_opacity = initial(I.mouse_opacity)
+
 	update_icon()
-	W.mouse_opacity = initial(W.mouse_opacity)
-	return 1
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W, mob/user)
+/obj/item/storage/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(!can_be_inserted(W))
+	if(!can_be_inserted(I))
 		return
 
-	W.add_fingerprint(user)
-	return handle_item_insertion(W, FALSE, user)
+	return handle_item_insertion(I, FALSE, user)
 
 
-/obj/item/storage/attack_hand(mob/user)
+/obj/item/storage/attack_hand(mob/living/user)
 	if (loc == user)
 		if(draw_mode && ishuman(user) && contents.len)
 			var/obj/item/I = contents[contents.len]
@@ -462,10 +465,13 @@
 		else
 			open(user)
 	else
-		..()
+		. = ..()
 		for(var/mob/M in content_watchers)
 			close(M)
-	add_fingerprint(user)
+
+
+/obj/item/storage/attack_ghost(mob/user)
+	open(user)
 
 
 /obj/item/storage/verb/toggle_gathering_mode()
@@ -502,8 +508,16 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/storage/New()
-	..()
+
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	if(length(can_hold))
+		can_hold = typecacheof(can_hold)
+	else if(length(cant_hold))
+		cant_hold = typecacheof(cant_hold)
+	if(length(bypass_w_limit))
+		bypass_w_limit = typecacheof(bypass_w_limit)
+
 	if(!allow_quick_gather)
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
@@ -516,6 +530,7 @@
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = HUD_LAYER
+	boxes.plane = HUD_PLANE
 
 	storage_start = new /obj/screen/storage(  )
 	storage_start.name = "storage"
@@ -523,28 +538,34 @@
 	storage_start.icon_state = "storage_start"
 	storage_start.screen_loc = "7,7 to 10,8"
 	storage_start.layer = HUD_LAYER
+	storage_start.plane = HUD_PLANE
 	storage_continue = new /obj/screen/storage(  )
 	storage_continue.name = "storage"
 	storage_continue.master = src
 	storage_continue.icon_state = "storage_continue"
 	storage_continue.screen_loc = "7,7 to 10,8"
 	storage_continue.layer = HUD_LAYER
+	storage_continue.plane = HUD_PLANE
 	storage_end = new /obj/screen/storage(  )
 	storage_end.name = "storage"
 	storage_end.master = src
 	storage_end.icon_state = "storage_end"
 	storage_end.screen_loc = "7,7 to 10,8"
 	storage_end.layer = HUD_LAYER
+	storage_end.plane = HUD_PLANE
 
 	stored_start = new /obj //we just need these to hold the icon
 	stored_start.icon_state = "stored_start"
 	stored_start.layer = HUD_LAYER
+	stored_start.plane = HUD_PLANE
 	stored_continue = new /obj
 	stored_continue.icon_state = "stored_continue"
 	stored_continue.layer = HUD_LAYER
+	stored_continue.plane = HUD_PLANE
 	stored_end = new /obj
 	stored_end.icon_state = "stored_end"
 	stored_end.layer = HUD_LAYER
+	stored_end.plane = HUD_PLANE
 
 	closer = new
 	closer.master = src
@@ -612,32 +633,6 @@
 	qdel(src)
 //BubbleWrap END
 
-/obj/item/storage/hear_talk(mob/M as mob, text)
-	for (var/atom/A in src)
-		if(istype(A,/obj/))
-			var/obj/O = A
-			O.hear_talk(M, text)
-
-/obj/item/proc/get_storage_cost() //framework for adjusting storage costs
-	if (storage_cost)
-		return storage_cost
-	else
-		return w_class
-/*
-		if(w_class == 1)
-			return 1
-		if(w_class == 2)
-			return 2
-		if(w_class == 3)
-			return 4
-		if(w_class == 4)
-			return 8
-		if(w_class == 5)
-			return 16
-		else
-			return 1000
-*/
-
 //Returns the storage depth of an atom. This is the number of storage items the atom is contained in before reaching toplevel (the area).
 //Returns -1 if the atom was not found on container.
 /atom/proc/storage_depth(atom/container)
@@ -675,6 +670,43 @@
 	return depth
 
 
-/obj/item/storage/on_stored_atom_del(atom/movable/AM)
+/obj/item/storage/handle_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
 		remove_from_storage(AM)
+
+
+/obj/item/storage/max_stack_merging(obj/item/stack/S)
+	if(is_type_in_typecache(S, bypass_w_limit))
+		return FALSE //No need for limits if we can bypass it.
+	var/weight_diff = initial(S.w_class) - max_w_class
+	if(weight_diff <= 0)
+		return FALSE //Nor if the limit is not higher than what we have.
+	var/max_amt = round((S.max_amount / STACK_WEIGHT_STEPS) * (STACK_WEIGHT_STEPS - weight_diff)) //How much we can fill per weight step times the valid steps.
+	if(max_amt <= 0 || max_amt > S.max_amount)
+		stack_trace("[src] tried to max_stack_merging([S]) with [max_w_class] max_w_class and [weight_diff] weight_diff, resulting in [max_amt] max_amt.")
+	return max_amt
+
+
+/obj/item/storage/recalculate_storage_space()
+	var/list/lookers = can_see_content()
+	if(!length(lookers))
+		return
+	orient2hud()
+	for(var/X in lookers)
+		var/mob/M = X //There is no need to typecast here, really, but for clarity.
+		show_to(M)
+
+
+/obj/item/storage/contents_explosion(severity, target)
+	for(var/i in contents)
+		var/atom/A = i
+		A.ex_act(severity, target)
+
+
+/obj/item/storage/AltClick(mob/user)
+	if(!ishuman(user) || !length(contents) || isturf(loc))
+		return ..()
+	if(user.get_active_held_item())
+		return ..() //User is already holding something.
+	var/obj/item/drawn_item = contents[length(contents)]
+	drawn_item.attack_hand(user)

@@ -1,27 +1,38 @@
 /obj
-	var/list/list_reagents = null
-	//Used to store information about the contents of the object.
-	var/list/matter
+	animate_movement = 2
+	speech_span = SPAN_ROBOT
+	interaction_flags = INTERACT_OBJ_DEFAULT
+
+	var/list/materials
 
 	var/datum/armor/armor
 
-	var/origin_tech = null	//Used by R&D to determine what research bonuses it grants.
+	var/obj_integrity	//defaults to max_integrity
+	var/max_integrity = 500
+	var/integrity_failure = 0 //0 if we have no special broken behavior
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
-	animate_movement = 2
+
 	var/throwforce = 1
 
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
 
-	var/explosion_resistance = 0
-
-	var/resistance_flags = NONE // INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ON_FIRE | UNACIDABLE | ACID_PROOF
-	var/obj_flags
+	var/resistance_flags = NONE
+	var/obj_flags = NONE
+	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
+	var/destroy_sound //Sound this object makes when destroyed.
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	
+	var/list/req_access = null
+	var/list/req_one_access = null
+
+	//Don't directly use these two, please. No: magic numbers, Yes: defines.
+	var/req_one_access_txt = "0"
+	var/req_access_txt = "0"
 
 /obj/Initialize()
 	. = ..()
@@ -32,22 +43,22 @@
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
-	GLOB.object_list += src
+	if(obj_integrity == null)
+		obj_integrity = max_integrity
 
 /obj/Destroy()
 	if(buckled_mob)
 		unbuckle()
-	. = ..()
-	GLOB.object_list -= src
+	return ..()
+
+/obj/proc/setAnchored(anchorvalue)
+	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
+	anchored = anchorvalue
 
 /obj/ex_act()
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	return ..()
-
-/obj/proc/add_initial_reagents()
-	if(reagents && list_reagents)
-		reagents.add_reagent_list(list_reagents)
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 	return
@@ -61,74 +72,53 @@
 	if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		return
 	var/is_in_use = FALSE
-	var/list/nearby = viewers(1, src)
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
+
+	var/mob/living/silicon/ai/AI
+	if(isAI(usr))
+		AI = usr
+		if(AI.client && AI.interactee == src)
 			is_in_use = TRUE
-			attack_hand(M)
-	if (isAI(usr) || iscyborg(usr))
-		if (!(usr in nearby))
-			if (usr.client && usr.interactee==src) // && M.interactee == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-				is_in_use = TRUE
-				attack_ai(usr)
+			if(interaction_flags & INTERACT_UI_INTERACT)
+				ui_interact(AI)
+			else
+				interact(AI)
 
-	// check for TK users
+	for(var/mob/M in view(1, src))
+		if(!M.client || M.interactee != src || M == AI)
+			continue
+		is_in_use = TRUE
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
 
-	if (ishuman(usr))
-		if(istype(usr.l_hand, /obj/item/tk_grab) || istype(usr.r_hand, /obj/item/tk_grab/))
-			if(!(usr in nearby))
-				if(usr.client && usr.interactee==src)
-					is_in_use = TRUE
-					attack_hand(usr)
+	if(ismob(loc))
+		var/mob/M = loc
+		is_in_use = TRUE
+		if(interaction_flags & INTERACT_UI_INTERACT)
+			ui_interact(M)
+		else
+			interact(M)
+
 	if(!is_in_use)
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
-/obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
-	if(!CHECK_BITFIELD(obj_flags, IN_USE))
-		return
-	var/list/nearby = viewers(1, src)
-	var/is_in_use = FALSE
-	for(var/mob/M in nearby)
-		if ((M.client && M.interactee == src))
-			is_in_use = TRUE
-			interact(M)
-	var/ai_in_use = AutoUpdateAI(src)
-
-	if(!ai_in_use && !is_in_use)
-		DISABLE_BITFIELD(obj_flags, IN_USE)
-
-/obj/proc/interact(mob/user)
-	return
-
-
-/obj/item/proc/updateSelfDialog()
-	var/mob/M = src.loc
-	if(istype(M) && M.client && M.interactee == src)
-		src.attack_self(M)
-
-
-/obj/proc/alter_health()
-	return 1
 
 /obj/proc/hide(h)
 	return
 
 
-/obj/proc/hear_talk(mob/M, text)
-	return
-
-/obj/attack_paw(mob/user)
+/obj/attack_paw(mob/living/carbon/monkey/user)
 	if(can_buckle) return src.attack_hand(user)
 	else . = ..()
 
-/obj/attack_hand(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
+/obj/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return FALSE
+	if(can_buckle) 
+		return manual_unbuckle(user)
 
-/obj/attack_ai(mob/user)
-	if(can_buckle) manual_unbuckle(user)
-	else . = ..()
 
 /obj/proc/handle_rotation()
 	return
@@ -147,37 +137,43 @@
 	handle_rotation()
 	return buckled_mob
 
-/obj/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_canmove()
 
-			var/M = buckled_mob
-			buckled_mob = null
+/obj/proc/unbuckle(mob/user, silent = TRUE)
+	buckled_mob.buckled = null
+	buckled_mob.anchored = initial(buckled_mob.anchored)
+	buckled_mob.update_canmove()
 
-			afterbuckle(M)
+	if(!silent)
+		if(buckled_mob == user)
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self!</span>",
+			"<span class='notice'>You unbuckle yourself from [src].</span>",
+			"<span class='notice'>You hear metal clanking</span>"
+			)
+		else
+			buckled_mob.visible_message(
+			"<span class='notice'>[buckled_mob] was unbuckled by [user]!</span>",
+			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			"<span class='notice'>You hear metal clanking.</span>"
+			)
+
+	var/buckled_mob_backup = buckled_mob
+	buckled_mob = null
+	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
+	afterbuckle(buckled_mob_backup)
 
 
-/obj/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			if(buckled_mob != user)
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] was unbuckled by [user.name]!</span>",\
-					"<span class='notice'>You were unbuckled from [src] by [user.name].</span>",\
-					"<span class='notice'>You hear metal clanking.</span>")
-			else
-				buckled_mob.visible_message(\
-					"<span class='notice'>[buckled_mob.name] unbuckled [buckled_mob.p_them()]self!</span>",\
-					"<span class='notice'>You unbuckle yourself from [src].</span>",\
-					"<span class='notice'>You hear metal clanking</span>")
-			unbuckle()
-			src.add_fingerprint(user)
-			return 1
+/obj/proc/resisted_against(datum/source, mob/user) //COMSIG_LIVING_DO_RESIST
+	if(user.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	manual_unbuckle(user)
 
-	return 0
+
+/obj/proc/manual_unbuckle(mob/user)
+	if(!buckled_mob || buckled_mob.buckled != src)
+		return FALSE
+	unbuckle(user, FALSE)
+	return TRUE
 
 
 //trying to buckle a mob
@@ -188,30 +184,31 @@
 	if (M.mob_size > MOB_SIZE_HUMAN)
 		to_chat(user, "<span class='warning'>[M] is too big to buckle in.</span>")
 		return
-	if (istype(user, /mob/living/carbon/Xenomorph))
+	if (istype(user, /mob/living/carbon/xenomorph))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>")
 		return
 
 	if(density)
-		density = 0
+		density = FALSE
 		if(!step(M, get_dir(M, src)) && loc != M.loc)
-			density = 1
+			density = TRUE
 			return
-		density = 1
+		density = TRUE
 	else
 		if(M.loc != src.loc)
 			return
 	do_buckle(M, user)
 
 //the actual buckling proc
-/obj/proc/do_buckle(mob/M, mob/user)
-	send_buckling_message(M, user)
+/obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	if(!silent)
+		send_buckling_message(M, user)
 	M.buckled = src
 	M.loc = src.loc
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
-	src.add_fingerprint(user)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
 /obj/proc/send_buckling_message(mob/M, mob/user)
@@ -236,8 +233,6 @@
 	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
 		if(!buckled_mob.Move(NewLoc, direct))
 			loc = buckled_mob.loc
-			last_move_dir = buckled_mob.last_move_dir
-			buckled_mob.inertia_dir = last_move_dir
 			return 0
 	return 1
 
@@ -246,68 +241,24 @@
 		return TRUE
 	. = ..()
 
-/obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
-	if(!skill_threshold) //autopass
-		return TRUE
+/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
+		var/turf/T = get_turf(src)
+		if(!(T?.intact_tile) || level != 1) //not hidden under the floor
+			S.reagents?.reaction(src, VAPOR, S.fraction)
 
-	if(!skill_type) //No skills to check?
-		return TRUE
 
-	var/skill = get_skill(skill_type, M)
-	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
-		return FALSE
+/obj/on_set_interaction(mob/user)
+	. = ..()
+	ENABLE_BITFIELD(obj_flags, IN_USE)
 
-	return TRUE
 
-/obj/proc/skill_delay(difficulty = SKILL_TASK_AVERAGE, skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
-	if(!difficulty) //autopass, no delay
-		return 0
-
-	if(!M.mind?.cm_skills) //No skills to thrill?
-		return difficulty
-
-	var/skill = get_skill(skill_type, M)
-	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
-		return difficulty
-
-	difficulty = max(difficulty - (skill * 10), 0)
-	return difficulty
-
-/obj/proc/get_skill(skill_type = null, mob/living/M)
-	switch(skill_type)
-		if(OBJ_SKILL_CQC)
-			return M.mind.cm_skills.cqc
-		if(OBJ_SKILL_MELEE_WEAPONS)
-			return M.mind.cm_skills.melee_weapons
-		if(OBJ_SKILL_FIREARMS)
-			return M.mind.cm_skills.firearms
-		if(OBJ_SKILL_PISTOLS)
-			return M.mind.cm_skills.pistols
-		if(OBJ_SKILL_RIFLES)
-			return M.mind.cm_skills.rifles
-		if(OBJ_SKILL_SMG)
-			return M.mind.cm_skills.smgs
-		if(OBJ_SKILL_SHOTGUNS)
-			return M.mind.cm_skills.shotguns
-		if(OBJ_SKILL_HEAVYWEAPONS)
-			return M.mind.cm_skills.heavy_weapons
-		if(OBJ_SKILL_SMARTGUN)
-			return M.mind.cm_skills.smartgun
-		if(OBJ_SKILL_SPEC_WEAPONS)
-			return M.mind.cm_skills.spec_weapons
-		if(OBJ_SKILL_LEADERSHIP)
-			return M.mind.cm_skills.leadership
-		if(OBJ_SKILL_MEDICAL)
-			return M.mind.cm_skills.medical
-		if(OBJ_SKILL_SURGERY)
-			return M.mind.cm_skills.surgery
-		if(OBJ_SKILL_PILOT)
-			return M.mind.cm_skills.pilot
-		if(OBJ_SKILL_ENGINEER)
-			return M.mind.cm_skills.engineer
-		if(OBJ_SKILL_CONSTRUCTION)
-			return M.mind.cm_skills.construction
-		if(OBJ_SKILL_POLICE)
-			return M.mind.cm_skills.police
-		if(OBJ_SKILL_POWERLOADER)
-			return M.mind.cm_skills.powerloader
+/obj/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if("anchored")
+			setAnchored(var_value)
+			return TRUE
+	return ..()

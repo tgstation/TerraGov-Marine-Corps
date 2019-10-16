@@ -4,7 +4,7 @@
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remains"
-	anchored = 1
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER //Puts them under most objects.
 
 /obj/effect/decal/remains/xeno
@@ -13,7 +13,7 @@
 	gender = PLURAL
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "remainsxeno"
-	anchored = 1
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 
 /obj/effect/decal/remains/robot
@@ -22,5 +22,5 @@
 	gender = PLURAL
 	icon = 'icons/mob/robots.dmi'
 	icon_state = "remainsrobot"
-	anchored = 1
+	anchored = TRUE
 	layer = BELOW_OBJ_LAYER

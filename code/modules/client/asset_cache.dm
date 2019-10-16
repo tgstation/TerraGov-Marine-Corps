@@ -20,15 +20,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //When passively preloading assets, how many to send at once? Too high creates noticable lag where as too low can flood the client's cache with "verify" files
 #define ASSET_CACHE_PRELOAD_CONCURRENT 3
 
-/client
-	var/list/cache = list() // List of all assets sent to this client by the asset cache.
-	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
-	var/list/sending = list()
-	var/last_asset_job = 0 // Last job done.
-
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset(var/client/client, var/asset_name, var/verify = TRUE)
+/proc/send_asset(client/client, asset_name, verify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
@@ -71,7 +65,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 
 //This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset_list(var/client/client, var/list/asset_list, var/verify = TRUE)
+/proc/send_asset_list(client/client, list/asset_list, verify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
@@ -120,7 +114,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc will download the files without clogging up the browse() queue, used for passively sending files on connection start.
 //The proc calls procs that sleep for long times.
-/proc/getFilesSlow(var/client/client, var/list/files, var/register_asset = TRUE)
+/proc/getFilesSlow(client/client, list/files, register_asset = TRUE)
 	var/concurrent_tracker = 1
 	for(var/file in files)
 		if(!client)
@@ -139,14 +133,14 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
-/proc/register_asset(var/asset_name, var/asset)
+/proc/register_asset(asset_name, asset)
 	SSassets.cache[asset_name] = asset
 
 
 //Generated names do not include file extention.
 //Used mainly for code that deals with assets in a generic way
 //The same asset will always lead to the same asset name
-/proc/generate_asset_name(var/file)
+/proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
 
@@ -157,7 +151,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 //get an assetdatum or make a new one
-/proc/get_asset_datum(var/type)
+/proc/get_asset_datum(type)
 	return GLOB.asset_datums[type] || new type()
 
 
@@ -400,62 +394,28 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/spritesheet/simple/pda
-	name = "pda"
-	assets = list(
-		"atmos"			= 'icons/pda_icons/pda_atmos.png',
-		"back"			= 'icons/pda_icons/pda_back.png',
-		"bell"			= 'icons/pda_icons/pda_bell.png',
-		"blank"			= 'icons/pda_icons/pda_blank.png',
-		"boom"			= 'icons/pda_icons/pda_boom.png',
-		"bucket"		= 'icons/pda_icons/pda_bucket.png',
-		"crate"			= 'icons/pda_icons/pda_crate.png',
-		"cuffs"			= 'icons/pda_icons/pda_cuffs.png',
-		"eject"			= 'icons/pda_icons/pda_eject.png',
-		"flashlight"	= 'icons/pda_icons/pda_flashlight.png',
-		"honk"			= 'icons/pda_icons/pda_honk.png',
-		"mail"			= 'icons/pda_icons/pda_mail.png',
-		"medical"		= 'icons/pda_icons/pda_medical.png',
-		"menu"			= 'icons/pda_icons/pda_menu.png',
-		"mule"			= 'icons/pda_icons/pda_mule.png',
-		"notes"			= 'icons/pda_icons/pda_notes.png',
-		"power"			= 'icons/pda_icons/pda_power.png',
-		"rdoor"			= 'icons/pda_icons/pda_rdoor.png',
-		"reagent"		= 'icons/pda_icons/pda_reagent.png',
-		"refresh"		= 'icons/pda_icons/pda_refresh.png',
-		"scanner"		= 'icons/pda_icons/pda_scanner.png',
-		"signaler"		= 'icons/pda_icons/pda_signaler.png',
-		"status"		= 'icons/pda_icons/pda_status.png'
-	)
-
-
-/datum/asset/group/IRV
-	children = list(
-		/datum/asset/simple/jquery
-	)
-
 
 /datum/asset/simple/changelog
 	assets = list(
-		"88x31.png" = 'html/88x31.png',
-		"bug-minus.png" = 'html/bug-minus.png',
-		"cross-circle.png" = 'html/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/image-minus.png',
-		"image-plus.png" = 'html/image-plus.png',
-		"music-minus.png" = 'html/music-minus.png',
-		"music-plus.png" = 'html/music-plus.png',
-		"tick-circle.png" = 'html/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/wrench-screwdriver.png',
-		"spell-check.png" = 'html/spell-check.png',
-		"burn-exclamation.png" = 'html/burn-exclamation.png',
-		"chevron.png" = 'html/chevron.png',
-		"chevron-expand.png" = 'html/chevron-expand.png',
-		"scales.png" = 'html/scales.png',
-		"coding.png" = 'html/coding.png',
-		"ban.png" = 'html/ban.png',
-		"chrome-wrench.png" = 'html/chrome-wrench.png',
-		"changelog.css" = 'html/changelog.css'
+		"88x31.png" = 'html/images/88x31.png',
+		"bug-minus.png" = 'html/images/bug-minus.png',
+		"cross-circle.png" = 'html/images/cross-circle.png',
+		"hard-hat-exclamation.png" = 'html/images/hard-hat-exclamation.png',
+		"image-minus.png" = 'html/images/image-minus.png',
+		"image-plus.png" = 'html/images/image-plus.png',
+		"music-minus.png" = 'html/images/music-minus.png',
+		"music-plus.png" = 'html/images/music-plus.png',
+		"tick-circle.png" = 'html/images/tick-circle.png',
+		"wrench-screwdriver.png" = 'html/images/wrench-screwdriver.png',
+		"spell-check.png" = 'html/images/spell-check.png',
+		"burn-exclamation.png" = 'html/images/burn-exclamation.png',
+		"chevron.png" = 'html/images/chevron.png',
+		"chevron-expand.png" = 'html/images/chevron-expand.png',
+		"scales.png" = 'html/images/scales.png',
+		"coding.png" = 'html/images/coding.png',
+		"ban.png" = 'html/images/ban.png',
+		"chrome-wrench.png" = 'html/images/chrome-wrench.png',
+		"changelog.css" = 'html/browser/changelog.css'
 	)
 
 
@@ -470,23 +430,21 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/jquery
 	verify = FALSE
 	assets = list(
-		"jquery.min.js"            = 'goon/browserassets/js/jquery.min.js',
+		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
 	)
-
 
 
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'goon/browserassets/js/json2.min.js',
-		"browserOutput.js"         = 'goon/browserassets/js/browserOutput.js',
-		"errorHandler.js"          = 'goon/browserassets/js/errorHandler.js',
-		"fontawesome-webfont.eot"  = 'goon/browserassets/css/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'goon/browserassets/css/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'goon/browserassets/css/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'goon/browserassets/css/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'goon/browserassets/css/font-awesome.css',
-		"browserOutput.css"	       = 'goon/browserassets/css/browserOutput.css'
+		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
+		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
+		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
+		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css'
 	)
 
 
@@ -494,30 +452,88 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "chat"
 
 
+/datum/asset/spritesheet/goonchat/register()
+	// pre-loading all lanugage icons also helps to avoid meta
+	InsertAll("language", 'icons/misc/language.dmi')
+	// catch languages which are pulling icons from another file
+	for(var/path in typesof(/datum/language))
+		var/datum/language/L = path
+		var/icon = initial(L.icon)
+		if(icon != 'icons/misc/language.dmi')
+			var/icon_state = initial(L.icon_state)
+			Insert("language-[icon_state]", icon, icon_state = icon_state)
+
+	return ..()
+
+
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 
 
 /datum/asset/spritesheet/pipes/register()
-	for (var/each in list('icons/obj/pipes/regular.dmi', 'icons/obj/pipes/disposal.dmi', 'icons/obj/pipes/transit_tube.dmi'))
+	for (var/each in list('icons/obj/pipes/disposal.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	return ..()
 
 
 /datum/asset/simple/permissions
 	assets = list(
-		"padlock.png"	= 'html/padlock.png'
+		"padlock.png"	= 'html/images/padlock.png'
 	)
 
 /datum/asset/simple/notes
 	assets = list(
-		"high_button.png" = 'html/high_button.png',
-		"medium_button.png" = 'html/medium_button.png',
-		"minor_button.png" = 'html/minor_button.png',
-		"none_button.png" = 'html/none_button.png',
+		"high_button.png" = 'html/images/high_button.png',
+		"medium_button.png" = 'html/images/medium_button.png',
+		"minor_button.png" = 'html/images/minor_button.png',
+		"none_button.png" = 'html/images/none_button.png',
 	)
 	
 /datum/asset/simple/logo
 	assets = list(
-		"ntlogo.png"	= 'html/ntlogo.png'
+		"ntlogo.png"	= 'html/images/ntlogo.png',
+		"tgmclogo.png"	= 'html/images/tgmclogo.png'
 	)
+
+
+/datum/asset/nanoui
+	var/list/common = list()
+
+	var/list/common_dirs = list(
+		"nano/css/",
+		"nano/images/",
+		"nano/js/"
+	)
+	var/list/uncommon_dirs = list(
+		"nano/templates/"
+	)
+
+
+/datum/asset/nanoui/register()
+	// Crawl the directories to find files.
+	for(var/path in common_dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			common[filename] = fcopy_rsc(path + filename)
+			register_asset(filename, common[filename])
+	
+	for(var/path in uncommon_dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) == "/") // Ignore directories.
+				continue
+			if(!fexists(path + filename))
+				continue
+			register_asset(filename, fcopy_rsc(path + filename))
+
+
+/datum/asset/nanoui/send(client, uncommon)
+	if(!islist(uncommon))
+		uncommon = list(uncommon)
+
+	send_asset_list(client, uncommon, FALSE)
+	send_asset_list(client, common, TRUE)

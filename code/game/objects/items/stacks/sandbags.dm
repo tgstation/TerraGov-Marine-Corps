@@ -5,44 +5,46 @@
 	name = "empty sandbags"
 	desc = "Some empty sandbags, best to fill them up if you want to use them."
 	singular_name = "sandbag"
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_stack"
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
 	throwforce = 0
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
-	stack_id = "empty sandbags"
 
-/obj/item/stack/sandbags_empty/attackby(obj/item/W, mob/user)
-	if (istype(W, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = W
-		if(ET.dirt_amt)
-			var/dirt_transfer = min(ET.dirt_amt,get_amount())
-			if(!dirt_transfer)
-				return
-			ET.dirt_amt -= dirt_transfer
-			ET.update_icon()
-			use(dirt_transfer)
-			var/obj/item/stack/sandbags/new_bags = new(user.loc)
-			new_bags.add(max(0,dirt_transfer-1))
-			new_bags.add_to_stacks(user)
-			var/obj/item/stack/sandbags_empty/E = src
-			var/replace = (user.get_inactive_held_item() == E)
-			playsound(user.loc, "rustle", 30, 1, 6)
-			if(!E && replace)
-				user.put_in_hands(new_bags)
 
-	else if (istype(W, /obj/item/stack/snow))
-		var/obj/item/stack/S = W
+/obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/shovel))
+		var/obj/item/tool/shovel/ET = I
+		if(!ET.dirt_amt)
+			return
+
+		var/dirt_transfer = min(ET.dirt_amt,get_amount())
+		if(!dirt_transfer)
+			return
+
+		ET.dirt_amt -= dirt_transfer
+		ET.update_icon()
+		use(dirt_transfer)
+		var/obj/item/stack/sandbags/new_bags = new(user.loc)
+		new_bags.add(max(0, dirt_transfer - 1))
+		new_bags.add_to_stacks(user)
+		var/obj/item/stack/sandbags_empty/E = src
+		var/replace = (user.get_inactive_held_item() == E)
+		playsound(user.loc, "rustle", 30, 1, 6)
+		if(!E && replace)
+			user.put_in_hands(new_bags)
+
+	else if(istype(I, /obj/item/stack/snow))
+		var/obj/item/stack/S = I
 		var/obj/item/stack/sandbags/new_bags = new(user.loc)
 		new_bags.add_to_stacks(user)
 		S.use(1)
 		use(1)
-	else
-		return ..()
 
 
 //half a max stack
@@ -58,22 +60,21 @@
 	name = "sandbags"
 	desc = "Some bags filled with sand. For now, just cumbersome, but soon to be used for fortifications."
 	singular_name = "sandbag"
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "sandbag_pile"
-	w_class = 4.0
+	w_class = WEIGHT_CLASS_BULKY
 	force = 9.0
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 25
 	attack_verb = list("hit", "bludgeoned", "whacked")
-	stack_id = "sandbags"
+	merge_type = /obj/item/stack/sandbags
+
 
 /obj/item/stack/sandbags/large_stack
 	amount = 25
 
 /obj/item/stack/sandbags/attack_self(mob/living/user)
-	add_fingerprint(user)
 
 	if(!istype(user.loc,/turf)) return 0
 
@@ -106,15 +107,13 @@
 	user.visible_message("<span class='notice'>[user] starts assembling a sandbag barricade.</span>",
 	"<span class='notice'>You start assembling a sandbag barricade.</span>")
 
-	if(!do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
-		if(O.density)
-			if(!(O.flags_atom & ON_BORDER) || O.dir == user.dir)
-				return
+		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir == user.dir))
+			return
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
 	user.visible_message("<span class='notice'>[user] assembles a sandbag barricade.</span>",
 	"<span class='notice'>You assemble a sandbag barricade.</span>")
 	SB.setDir(user.dir)
-	SB.add_fingerprint(user)
 	use(5)
