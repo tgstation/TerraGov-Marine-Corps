@@ -244,7 +244,7 @@ Defined in conflicts.dm of the #defines folder.
 			continue
 		qdel(action_to_update)
 		break
-	
+
 	forceMove(get_turf(master_gun))
 
 	master_gun = null
@@ -453,7 +453,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "efficient_a"
 	pixel_shift_x = 18
 	pixel_shift_y = 14
-	charge_mod = -5 
+	charge_mod = -5
 
 /obj/item/attachable/pulselens
 	name = "M43 pulse lens"
@@ -745,7 +745,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	accuracy_mod = 0.05
 	recoil_mod = -3
-	scatter_mod = -20
+	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
