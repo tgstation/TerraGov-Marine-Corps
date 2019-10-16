@@ -108,7 +108,7 @@
 			if(affecting.take_damage_limb(0, force))
 				user.UpdateDamageIcon()
 		else
-			user.take_limb_damage(0,force)
+			user.take_limb_damage(0, force)
 		return 1
 	return 0
 

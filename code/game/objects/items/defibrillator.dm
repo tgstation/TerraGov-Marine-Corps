@@ -196,10 +196,9 @@
 
 	//At this point, the defibrillator is ready to work
 	if(!issynth(H))
-		H.adjustBruteLoss(-defib_heal_amt)
-		H.adjustFireLoss(-defib_heal_amt)
+		H.adjustBruteLoss(-defib_heal_amt, FALSE)
+		H.adjustFireLoss(-defib_heal_amt, FALSE)
 		H.adjustToxLoss(-defib_heal_amt)
-		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
 
@@ -216,8 +215,8 @@
 	H.reload_fullscreens()
 	H.update_canmove()
 	H.flash_eyes()
-	H.apply_effect(10, EYE_BLUR)
-	H.apply_effect(10, PARALYZE)
+	H.apply_effect(10, EYE_BLUR, FALSE)
+	H.apply_effect(10, PARALYZE, FALSE)
 	H.update_canmove()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")

@@ -26,7 +26,7 @@
 	var/tacklemin = 1
 	var/tacklemax = 1
 	var/tackle_chance = 100
-	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
+	var/tackle_damage = 20 //How much STAMINA damage a xeno deals when tackling
 
 	// *** Speed *** //
 	var/speed = 1

@@ -183,8 +183,6 @@
 				H.apply_damage(damage, BRUTE)
 
 			H.UpdateDamageIcon()
-			H.updatehealth()
-	return
 
 
 /obj/structure/can_interact(mob/user)

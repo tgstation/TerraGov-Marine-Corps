@@ -101,7 +101,6 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing skin on [target]'s face with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, tearing skin on [target]'s face with \the [tool]!</span>")
 	target.apply_damage(10, BRUTE, affected, 0, TRUE)
-	target.updatehealth()
 
 
 /datum/surgery_step/face/cauterize
@@ -134,4 +133,3 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s face with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s face with \the [tool]!</span>")
 	target.apply_damage(4, BURN, affected)
-	target.updatehealth()

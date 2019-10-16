@@ -76,10 +76,10 @@
 		T.wet_floor(FLOOR_WET_LUBE)
 
 /datum/reagent/lube/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/lube/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3, TOX)
+	L.apply_damage(3, TOX, updating_health = FALSE)
 
 /datum/reagent/space_drugs
 	name = "Space drugs"
@@ -100,13 +100,13 @@
 	return ..()
 
 /datum/reagent/space_drugs/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(0.5, TOX)
+	L.apply_damage(0.5, TOX, updating_health = FALSE)
 	if(prob(5) && !L.stat)
 		L.knock_out(5)
 	L.hallucination += 2
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 	if(prob(10) && !L.stat)
 		L.knock_out(5)
 		L.dizzy(8)
@@ -128,11 +128,11 @@
 	return ..()
 
 /datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(0.3, TOX)
+	L.apply_damage(0.3, TOX, updating_health = FALSE)
 	L.drowsyness = max(L.drowsyness, 5)
 
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(0.7, TOX)
+	L.apply_damage(0.7, TOX, updating_health = FALSE)
 	if(prob(10) && !L.stat)
 		L.sleeping(30)
 	L.drowsyness = max(L.drowsyness, 30)
@@ -237,14 +237,14 @@
 	taste_description = "chlorine"
 
 /datum/reagent/chlorine/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(REM, 0)
+	L.take_limb_damage(REM, 0, FALSE, FALSE, FALSE)
 	return ..()
 
 /datum/reagent/chlorine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/chlorine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/fluorine
 	name = "Fluorine"
@@ -260,10 +260,10 @@
 	return ..()
 
 /datum/reagent/fluorine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/fluorine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/sodium
 	name = "Sodium"
@@ -296,10 +296,10 @@
 	return ..()
 
 /datum/reagent/lithium/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/lithium/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX) //Overdose starts getting bad
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/glycerol
 	name = "Glycerol"
@@ -325,7 +325,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(2*REM/L.metabolism_efficiency,IRRADIATE,0)
+	L.apply_effect(2*REM/L.metabolism_efficiency, IRRADIATE, 0, FALSE)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -391,7 +391,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency,IRRADIATE,0)
+	L.apply_effect(1/L.metabolism_efficiency, IRRADIATE, 0, FALSE)
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -437,10 +437,10 @@
 	return TRUE
 
 /datum/reagent/fuel/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/fuel/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/space_cleaner
 	name = "Space cleaner"
@@ -495,10 +495,10 @@
 	L.clean_blood()
 
 /datum/reagent/space_cleaner/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/space_cleaner/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
@@ -515,10 +515,10 @@
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/cryptobiolin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/impedrezene
 	name = "Impedrezene"
@@ -540,10 +540,10 @@
 	return ..()
 
 /datum/reagent/impedrezene/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/impedrezene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

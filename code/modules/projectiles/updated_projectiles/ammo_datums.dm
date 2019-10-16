@@ -1,20 +1,3 @@
-//Bitflag defines are in setup.dm. Referenced here.
-/*
-#define AMMO_EXPLOSIVE 		1
-#define AMMO_XENO_ACID 		2
-#define AMMO_XENO_TOX		4
-#define AMMO_ENERGY 		8
-#define AMMO_ROCKET			16
-#define AMMO_SNIPER			32
-#define AMMO_INCENDIARY		64
-#define AMMO_SKIPS_HUMANS	128
-#define AMMO_SKIPS_ALIENS 	256
-#define AMMO_IS_SILENCED 	512
-#define AMMO_IGNORE_ARMOR	1024
-#define AMMO_IGNORE_RESIST	2048
-#define AMMO_BALLISTIC		4096
-*/
-
 #define DEBUG_STAGGER_SLOWDOWN	0
 
 GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
@@ -50,7 +33,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
 	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
-	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/flags_ammo_behavior = NONE
@@ -939,9 +921,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "neurotoxin"
 	ping = "ping_x"
 	damage_type = TOX
-	flags_ammo_behavior = AMMO_XENO_ACID
+	flags_ammo_behavior = AMMO_XENO
 	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
-	var/spit_cost
+	var/spit_cost = 5
 	armor_type = "bio"
 	shell_speed = 1
 	accuracy = 40
@@ -952,93 +934,68 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 5.6)
-	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
+	flags_ammo_behavior = AMMO_XENO|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
-	damage_type = HALLOSS
-	armor_type = "bio"
-	accuracy = 40
+	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 15
-
-
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
-
-	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
-		return
-
-	if(isnestedhost(C))
-		return
-
-	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
-
-	for(var/r_id in ammo_reagents)
-		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)
-		var/amt_to_inject = ammo_reagents[r_id] //Never inject more than 30u through spitting
-		if(amt_to_inject + on_mob_amount > 30)
-			amt_to_inject = 30 - on_mob_amount
-		C.reagents.add_reagent(r_id, amt_to_inject)
-
-	return ..()
+	damage = 30
 
 
 /datum/ammo/xeno/toxin/upgrade1
-	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.44)
+	damage = 35
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
+	damage = 40
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.28)
+	damage = 45
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.8)
 	added_spit_delay = 10
 	spit_cost = 75
-	damage = 30
+	damage = 35
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.82)
+	damage = 40
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.5)
+	damage = 45
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.84)
+	damage = 50
+
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8)
-	added_spit_delay = 15
-	spit_cost = 100
-	damage = 35
+	damage = 40
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.2)
+	damage = 45
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
+	damage = 50
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.4)
+	damage = 55
+
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
 	icon_state = "sticky"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	damage_type = HALLOSS
+	damage_type = STAMINA
+	armor_type = "bio"
 	spit_cost = 50
 	sound_hit 	 = "alien_resin_build2"
 	sound_bounce	= "alien_resin_build3"
-	damage = 10 //minor; this is mostly just to provide confirmation of a hit
+	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 
 
@@ -1084,7 +1041,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 20
 
@@ -1134,7 +1091,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	debilitate = list(19,21,0,0,11,12,0,0)
-	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
 	armor_type = "bio"
@@ -1173,7 +1130,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50

@@ -191,7 +191,6 @@
 			playsound(loc, attacked_sound, 25, 1, -1)
 			attack_threshold_check(harm_intent_damage)
 			log_combat(user, src, "attacked")
-			updatehealth()
 			return TRUE
 
 

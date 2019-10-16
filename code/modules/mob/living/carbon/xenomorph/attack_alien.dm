@@ -56,7 +56,7 @@
 
 	var/tackle_pain = X.xeno_caste.tackle_damage
 	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
+		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
 		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 			#ifdef DEBUG_ATTACK_ALIEN
@@ -89,8 +89,7 @@
 	if(dam_bonus)
 		tackle_pain += dam_bonus
 
-	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
-	updatehealth()
+	apply_damage(tackle_pain, STAMINA, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
 	updateshock()
 	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"
 	var/throttle_message2 = "<span class='danger'>We throttle [src]!</span>"
@@ -224,7 +223,7 @@
 		damage += i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
-	updatehealth()
+
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!

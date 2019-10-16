@@ -249,7 +249,7 @@
 			if(!affected_limbs.Find(X.name) )
 				continue
 			armor_block = H.run_armor_check(X, "acid")
-			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), FALSE, FALSE, armor_block))
+			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), FALSE, FALSE, armor_block, FALSE))
 				H.UpdateDamageIcon()
 			limb_count++
 		H.updatehealth()

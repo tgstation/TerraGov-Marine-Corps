@@ -156,7 +156,6 @@
 					H.adjustBruteLoss(damage)
 
 				H.UpdateDamageIcon()
-				H.updatehealth()
 
 			// Inject some chems.
 			if(seed.chems && seed.chems.len && istype(H))

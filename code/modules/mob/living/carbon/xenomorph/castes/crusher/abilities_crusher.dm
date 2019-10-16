@@ -33,9 +33,9 @@
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				H.take_overall_damage(damage, null, 0, 0, 0, armor_block) //Armour functions against this.
+				H.take_overall_damage(damage, 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
 			else
-				M.take_overall_damage(damage, 0, null, armor_block) //Armour functions against this.
+				M.take_overall_damage(damage, 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -46,7 +46,7 @@
 			M.knock_down(1)
 		else
 			M.stun(1) //Otherwise we just get stunned.
-		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
+		M.apply_damage(damage, STAMINA) //Armour-ignoring Stamina
 
 
 // ***************************************
@@ -131,10 +131,10 @@
 		var/armor_block = L.run_armor_check("chest", "melee")
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), null, 0, 0, 0, armor_block) //Armour functions against this.
+			H.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
 		else
-			L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, null, armor_block) //Armour functions against this.
-		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+			L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, armor_block, FALSE, FALSE, FALSE) //Armour functions against this.
+		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		L.knock_down(1, 1)

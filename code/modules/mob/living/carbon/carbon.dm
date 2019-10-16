@@ -142,43 +142,43 @@
 	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
-/mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= get_crit_threshold())
-		if(src != M)
-			var/t_him = "it"
-			if (gender == MALE)
-				t_him = "him"
-			else if (gender == FEMALE)
-				t_him = "her"
-			if(lying || sleeping)
-				if(client)
-					adjust_sleeping(-5)
-				if(sleeping == 0)
-					set_resting(FALSE)
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
-				adjust_knockedout(-3)
-				adjust_stunned(-3)
-				adjust_knocked_down(-3)
+/mob/living/carbon/proc/help_shake_act(mob/living/carbon/shaker)
+	if(health < get_crit_threshold())
+		return
 
-				if(halloss > 0)
-					var/halloss_mod = 1
-					if(ishuman(src))
-						var/mob/living/carbon/human/H = src
-						if(H.protection_aura)
-							halloss_mod += 0.5 + 0.5 * H.protection_aura //SL Hold Aura bonus: +100% of the normal recovery bonus, SO: +150%, XO/CO: +200%
-					adjustHalLoss(REST_HALLOSS_RECOVERY_RATE * halloss_mod) //UP AND AT THEM SOLDIER!!
+	if(src == shaker)
+		return
 
+	if(lying || sleeping)
+		if(client)
+			adjust_sleeping(-5)
+		if(sleeping == 0)
+			set_resting(FALSE)
+		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
+			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-			else
-				var/mob/living/carbon/human/H = M
-				if(istype(H))
-					H.species.hug(H,src)
-				else
-					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
+		if(knocked_out)
+			adjust_knockedout(-3)
+		if(stunned)
+			adjust_stunned(-3)
+		if(knocked_down)
+			adjust_knocked_down(-3)
+		if(staminaloss)
+			adjustStaminaLoss(-20, FALSE)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+		return
+
+	if(ishuman(shaker))
+		var/mob/living/carbon/human/shaker_human = shaker
+		shaker_human.species.hug(shaker_human, src)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+		return
+
+	shaker.visible_message("<span class='notice'>[shaker] hugs [src] to make [p_them()] feel better!</span>",
+		"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", null, 4)
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+
 
 //Throwing stuff
 

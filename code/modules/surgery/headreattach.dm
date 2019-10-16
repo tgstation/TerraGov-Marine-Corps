@@ -74,8 +74,6 @@
 		user.visible_message("<span class='warning'>[user]'s hand slips, further rending flesh on [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, further rending flesh on [target]'s neck!</span>")
 		target.apply_damage(10, BRUTE, affected)
-		target.updatehealth()
-
 
 
 /datum/surgery_step/head/suture
@@ -105,8 +103,6 @@
 		user.visible_message("<span class='warning'>[user]'s hand slips, ripping apart flesh on [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, ripping apart flesh on [target]'s neck!</span>")
 		target.apply_damage(10, BRUTE, affected)
-		target.updatehealth()
-
 
 
 /datum/surgery_step/head/prepare
@@ -139,8 +135,6 @@
 		user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, searing [target]'s [affected.display_name]!</span>")
 		target.apply_damage(10, BURN, affected)
-		target.updatehealth()
-
 
 
 /datum/surgery_step/head/attach
@@ -185,4 +179,3 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s neck!</span>", \
 	"<span class='warning'>Your hand slips, damaging connectors on [target]'s neck!</span>")
 	target.apply_damage(10, BRUTE, affected, 0, TRUE)
-	target.updatehealth()

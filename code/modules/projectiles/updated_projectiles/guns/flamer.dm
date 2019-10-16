@@ -542,7 +542,7 @@
 		return
 	fire_mod = fire_resist
 	. = ..(burnlevel, firelevel, fire_mod) // reduce damage by src.fire_resist
-	updatehealth()
+
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"

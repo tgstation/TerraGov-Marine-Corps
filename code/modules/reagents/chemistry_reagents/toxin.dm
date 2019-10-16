@@ -59,7 +59,7 @@
 	taste_multi = 0.9
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(10,IRRADIATE,0)
+	L.apply_effect(10, IRRADIATE, 0, FALSE)
 	return ..()
 
 /datum/reagent/toxin/phoron
@@ -83,7 +83,7 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(1*REM, 0)
+		L.take_limb_damage(REM, 0, FALSE, FALSE, FALSE)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
@@ -363,7 +363,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, 1*REM)
+	L.take_limb_damage(0, REM, FALSE, FALSE, FALSE)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -459,7 +459,7 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
+	L.apply_damage(halloss_damage, HALLOSS, updating_health = FALSE) //1st level neurotoxin effects: halloss/pain
 	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
@@ -496,7 +496,7 @@
 	if(L.getOxyLoss())
 		L.adjustOxyLoss(-REM)
 	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM)
+		L.heal_limb_damage(REM, REM, FALSE)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY

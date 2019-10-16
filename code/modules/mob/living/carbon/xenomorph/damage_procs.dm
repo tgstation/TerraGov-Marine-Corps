@@ -87,12 +87,11 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE)
+	apply_damage(b_loss, BRUTE, updating_health = FALSE)
 	apply_damage(f_loss, BURN)
-	updatehealth()
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = TRUE)
 	if(blocked >= 1) //total negation
 		return FALSE
 
@@ -104,9 +103,9 @@
 
 	//We still want to check for blood splash before we get to the damage application.
 	var/chancemod = 0
-	if(used_weapon && sharp)
+	if(sharp)
 		chancemod += 10
-	if(used_weapon && edge) //Pierce weapons give the most bonus
+	if(edge) //Pierce weapons give the most bonus
 		chancemod += 12
 	if(def_zone != "chest") //Which it generally will be, vs xenos
 		chancemod += 5
@@ -125,7 +124,8 @@
 		if(BURN)
 			adjustFireLoss(damage)
 
-	updatehealth()
+	if(updating_health)
+		updatehealth()
 	return TRUE
 
 

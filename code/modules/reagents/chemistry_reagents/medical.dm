@@ -55,12 +55,12 @@
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
 	L.confused = max(L.confused, 20)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
 	if(prob(15))
 		L.knock_out(15)
-	L.apply_damage(3, CLONE)
+	L.apply_damage(3, CLONE, updating_health = FALSE)
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
@@ -77,10 +77,10 @@
 
 /datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3, TOX)
+	L.apply_damage(3, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
@@ -97,10 +97,10 @@
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2) //Hallucinations and tox damage
-	L.apply_damage(1, OXY)
+	L.apply_damage(1, OXY, updating_health = FALSE)
 
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3, TOX)
+	L.apply_damage(3, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
@@ -118,10 +118,10 @@
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 3)
 	L.set_drugginess(10)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3, TOX)
+	L.apply_damage(3, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -155,7 +155,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 2 * REM)
+	L.heal_limb_damage(0, 2 * REM, FALSE)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -173,7 +173,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 3 * REM)
+	L.heal_limb_damage(0, 3 * REM, FALSE)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -199,10 +199,10 @@
 	return ..()
 
 /datum/reagent/medicine/dexalin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/dexalin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 0, 2)
+	L.apply_damages(2, 0, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
@@ -221,10 +221,10 @@
 	return ..()
 
 /datum/reagent/medicine/dexalinplus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/dexalinplus/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 0, 3)
+	L.apply_damages(2, 0, 3, updating_health = FALSE)
 
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
@@ -239,9 +239,9 @@
 	if(L.getOxyLoss())
 		L.adjustOxyLoss(-REM)
 	if(L.getBruteLoss() && prob(80))
-		L.heal_limb_damage(REM, 0)
+		L.heal_limb_damage(REM, 0, FALSE)
 	if(L.getFireLoss() && prob(80))
-		L.heal_limb_damage(0, REM)
+		L.heal_limb_damage(0, REM, FALSE)
 	if(L.getToxLoss() && prob(80))
 		L.adjustToxLoss(-REM)
 	return ..()
@@ -296,7 +296,7 @@
 	L.setCloneLoss(0)
 	L.setOxyLoss(0)
 	L.radiation = 0
-	L.heal_limb_damage(5,5)
+	L.heal_limb_damage(5, 5, FALSE)
 	L.adjustToxLoss(-5)
 	L.hallucination = 0
 	L.setBrainLoss(0)
@@ -340,10 +340,10 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	return ..()
 
 datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 1, 1)
+	L.apply_damages(1, 1, 1, updating_health = FALSE)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant
 	name = "Neuraline"
@@ -390,10 +390,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/hyronalin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1)
+	L.apply_damages(0, 1, 1, updating_health = FALSE)
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
@@ -407,14 +407,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.radiation = max(L.radiation-7*REM,0)
 	L.adjustToxLoss(-1*REM)
 	if(prob(15))
-		L.take_limb_damage(1, 0)
+		L.take_limb_damage(1, 0, FALSE, FALSE, FALSE)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 1, 2)
+	L.apply_damages(1, 1, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/russianred
 	name = "Russian Red"
@@ -432,7 +432,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		C.drunkenness = max(C.drunkenness - 2)
 	L.adjustToxLoss(-1*REM)
 	if(prob(50))
-		L.take_limb_damage(3, 0)
+		L.take_limb_damage(3, 0, FALSE, FALSE, FALSE)
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
@@ -458,10 +458,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/alkysine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/alkysine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1)
+	L.apply_damages(0, 1, 1, updating_health = FALSE)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -483,10 +483,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/imidazoline/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 2)
+	L.apply_damages(0, 1, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
@@ -509,10 +509,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, BRUTE)
+	L.apply_damage(2, BRUTE, updating_health = FALSE)
 
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 3, 3)
+	L.apply_damages(1, 3, 3, updating_health = FALSE)
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
@@ -523,15 +523,15 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(2*REM,0)
+	L.heal_limb_damage(2*REM, 0, FALSE)
 	return ..()
 
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, BURN)
+	L.apply_damage(1, BURN, updating_health = FALSE)
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 3, 2)
+	L.apply_damages(1, 3, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -542,15 +542,15 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(4 * REM, 0)
+	L.heal_limb_damage(4 * REM, 0, FALSE)
 	return ..()
 
 
 /datum/reagent/medicine/meralyne/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, BURN)
+	L.apply_damage(2, BURN, updating_health = FALSE)
 
 /datum/reagent/medicine/meralyne/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 6, 4)
+	L.apply_damages(2, 6, 4, updating_health = FALSE)
 
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
@@ -576,10 +576,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 
 /datum/reagent/medicine/quickclot/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2, BRUTE)
+	L.apply_damage(2, BRUTE, updating_health = FALSE)
 
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 2, 2)
+	L.apply_damages(0, 2, 2, updating_health = FALSE)
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
@@ -762,7 +762,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-1)
 		L.adjustOxyLoss(-1)
-		L.heal_limb_damage(1,1)
+		L.heal_limb_damage(1, 1, FALSE)
 		L.adjustToxLoss(-1)
 	return ..()
 
@@ -778,7 +778,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-3)
 		L.adjustOxyLoss(-3)
-		L.heal_limb_damage(3,3)
+		L.heal_limb_damage(3, 3, FALSE)
 		L.adjustToxLoss(-3)
 	return ..()
 
@@ -796,10 +796,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-1)
-			L.heal_limb_damage(1,1)
+			L.heal_limb_damage(1, 1, FALSE)
 		if(16 to 35)
 			L.adjustCloneLoss(-2)
-			L.heal_limb_damage(2,1)
+			L.heal_limb_damage(2, 1, FALSE)
 			L.status_flags &= ~DISFIGURED
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -811,10 +811,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/rezadone/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/rezadone/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
@@ -826,10 +826,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 
 /datum/reagent/medicine/spaceacillin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
@@ -850,10 +850,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/ethylredoxrazine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX)
+	L.apply_damage(1, TOX, updating_health = FALSE)
 
 /datum/reagent/medicine/ethylredoxrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX)
+	L.apply_damage(2, TOX, updating_health = FALSE)
 
 ///////RP CHEMS///////
 
