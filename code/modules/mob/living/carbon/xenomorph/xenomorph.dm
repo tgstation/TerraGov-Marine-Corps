@@ -107,7 +107,7 @@
 		if(XENO_UPGRADE_THREE)
 			return 3
 		if(XENO_UPGRADE_AGELESS)
-			return 2
+			return 4
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
 	switch(upgrade)

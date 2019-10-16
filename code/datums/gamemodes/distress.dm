@@ -6,7 +6,7 @@
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
-	
+
 
 	var/list/survivors = list()
 
@@ -531,3 +531,8 @@
 /datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+/datum/game_mode/distress/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	switch(new_xeno.tier)
+		if(XENO_TIER_ONE || XENO_TIER_TWO || XENO_TIER_THREE || XENO_TIER_FOUR)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_AGELESS)

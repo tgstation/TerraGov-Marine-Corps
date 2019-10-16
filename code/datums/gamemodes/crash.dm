@@ -175,7 +175,7 @@
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
-	
+
 	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
 
 
@@ -448,10 +448,8 @@
 
 /datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	switch(new_xeno.tier)
-		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
-		if(XENO_TIER_TWO)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+		if(XENO_TIER_ONE || XENO_TIER_TWO || XENO_TIER_THREE || XENO_TIER_FOUR)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_AGELESS)
 
 /datum/game_mode/crash/can_summon_dropship(mob/user)
 	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
