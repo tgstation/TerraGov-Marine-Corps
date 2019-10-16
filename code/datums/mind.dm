@@ -48,7 +48,7 @@
 	var/late_joiner = FALSE
 
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 
 
@@ -57,10 +57,9 @@
 	return ..()
 
 
-/datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = FALSE)
+/datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
-		current.set_away_time()
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
 			new_character.ghostize(TRUE)						//we'll need to ghostize so that key isn't mobless.
@@ -70,17 +69,16 @@
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
-	nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+	if(isxeno(new_character))
+		QDEL_NULL(cm_skills)
+
+	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
 
 	if(active || force_key_move)
 		new_character.key = key		//now transfer the key to link the client to our new body
-		if(new_character.client)
-			new_character.client.change_view(world.view) //reset view range to default.
-			new_character.client.pixel_x = 0
-			new_character.client.pixel_y = 0
 
 
 /datum/mind/proc/set_death_time()
@@ -88,7 +86,11 @@
 
 
 /datum/mind/proc/store_memory(new_text)
-	memory += "[new_text]<br>"
+	var/combined = length(memory + new_text)
+	if(combined > MAX_PAPER_MESSAGE_LEN)
+		memory = copytext(memory, combined - MAX_PAPER_MESSAGE_LEN, combined)
+	else
+		memory += "[new_text]<br>"
 
 
 /datum/mind/proc/wipe_memory()
@@ -100,43 +102,6 @@
 	output += memory
 
 	recipient << browse(output, "window=memory")
-
-
-/datum/mind/proc/edit_memory()
-	if(!SSticker?.mode)
-		to_chat(usr, "<span class='warning'>Wait for the round to start.</span>")
-		return
-
-	var/out = "<b>[name]</b>[(current && current.real_name != name ) ?" (as [current.real_name])":""]<br>"
-	out += "Mind currently owned by key: [key] [active ? "(synced)" : "(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
-
-	out += "<br>"
-
-	out += "<b>Memory:</b><br>"
-	out += memory
-	out += "<br><a href='?src=\ref[src];memory_edit=1'>Edit memory</a><br>"
-
-	usr << browse(out, "window=edit_memory[src]")
-
-
-/datum/mind/Topic(href, href_list)
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(href_list["role_edit"])
-		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in SSjob.name_occupations
-		if(!new_role)
-			return
-		assigned_role = new_role
-
-	else if(href_list["memory_edit"])
-		var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
-		if(isnull(new_memo))
-			return
-		memory = noscript(new_memo)
-
-	edit_memory()
 
 
 /mob/proc/mind_initialize()
@@ -152,15 +117,11 @@
 
 /mob/living/carbon/human/mind_initialize()
 	. = ..()
-	//if not, we give the mind default job_knowledge and assigned_role
-	if(!mind.assigned_role)
-		mind.assigned_role = "Squad Marine"	//default
-		if(mind.cm_skills)
-			qdel(mind.cm_skills)
+	if(!mind.cm_skills)
 		mind.cm_skills = new /datum/skills/pfc
 
 
-/mob/living/carbon/Xenomorph/mind_initialize()
+/mob/living/carbon/xenomorph/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Xenomorph"
 
@@ -168,6 +129,11 @@
 /mob/living/silicon/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Silicon"
+
+
+/mob/living/silicon/ai/mind_initialize()
+	. = ..()
+	mind.assigned_role = "AI"
 
 
 /mob/living/simple_animal/mind_initialize()

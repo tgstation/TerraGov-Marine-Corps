@@ -6,13 +6,11 @@
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state = "glasses"
-	origin_tech = "magnets=3"
 	toggleable = 1
 	vision_flags = SEE_MOBS
-	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 	eye_protection = -1
 	deactive_state = "goggles_off"
-	fullscreen_vision = /obj/screen/fullscreen/thermal
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	if(ishuman(loc))
@@ -32,7 +30,7 @@
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	actions_types = list(/datum/action/item_action/toggle)
-	origin_tech = "magnets=3;syndicate=4"
+
 
 /obj/item/clothing/glasses/thermal/monocle
 	name = "Thermoncle"

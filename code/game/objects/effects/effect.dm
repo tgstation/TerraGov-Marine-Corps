@@ -1,12 +1,3 @@
 /obj/effect
-	resistance_flags = UNACIDABLE
-
-
-/obj/effect/Initialize()
-	. = ..()
-	GLOB.effect_list += src
-
-
-/obj/effect/Destroy()
-	. = ..()
-	GLOB.effect_list -= src
+	icon = 'icons/effects/effects.dmi'
+	resistance_flags = RESIST_ALL

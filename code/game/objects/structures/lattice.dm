@@ -3,13 +3,14 @@
 	name = "lattice"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
-	anchored = 1.0
+	density = FALSE
+	anchored = TRUE
 	layer = LATTICE_LAYER
+	plane = FLOOR_PLANE
 	//	flags = CONDUCT
 
-/obj/structure/lattice/New()
-	..()
+/obj/structure/lattice/Initialize()
+	. = ..()
 	if(!isspaceturf(loc))
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
@@ -18,14 +19,14 @@
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
-	for (var/dir in cardinal)
+	for (var/dir in GLOB.cardinals)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays()
 
 /obj/structure/lattice/Destroy()
-	for (var/dir in cardinal)
+	for (var/dir in GLOB.cardinals)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
@@ -68,7 +69,7 @@
 
 		var/dir_sum = 0
 
-		for (var/direction in cardinal)
+		for (var/direction in GLOB.cardinals)
 			if(locate(/obj/structure/lattice, get_step(src, direction)))
 				dir_sum += direction
 			else

@@ -6,25 +6,23 @@
 	name = "\improper M42A marksman magazine (10x28mm Caseless)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
-	icon_state = "m42c"
-	w_class = 3
+	icon_state = "m42a"
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
 	gun_type = /obj/item/weapon/gun/rifle/sniper/M42A
+	reload_delay = 3
 
-	New()
-		..()
-		reload_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
-	icon_state = "m42c_inc"
+	icon_state = "m42a_inc"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
-	icon_state = "m42c_flak"
+	icon_state = "m42a_flak"
 
 
 //M42C magazine
@@ -77,7 +75,13 @@
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/m4ra
 
-
+obj/item/ammo_magazine/rifle/m4ra/smart
+	name = "\improper A19 high velocity smart magazine (10x24mm)"
+	desc = "A magazine of A19 high velocity smart rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
+	icon_state = "m4ra_iff"
+	default_ammo = /datum/ammo/bullet/rifle/m4ra/smart
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/m4ra
 
 
 //-------------------------------------------------------
@@ -102,19 +106,17 @@
 	desc = "A rocket tube for an M5 RPG rocket."
 	caliber = "rocket"
 	icon_state = "rocket"
-	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 10000)
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
-	flags_magazine = NOFLAGS
+	flags_magazine = NONE
 	reload_delay = 60
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
 			to_chat(user, "<span class='notice'>You begin taking apart the empty tube frame...</span>")
-			if(do_after(user,10, TRUE, 5, BUSY_ICON_BUILD))
+			if(do_after(user, 10, TRUE, src))
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
@@ -160,7 +162,6 @@
 	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "quad_rocket"
-	origin_tech = "combat=4;materials=4"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad
 	gun_type = /obj/item/weapon/gun/launcher/rocket/m57a4
@@ -180,11 +181,9 @@
 	desc = "A huge ammo drum for a huge gun."
 	caliber = "7.62x51mm"
 	icon_state = "minigun"
-	origin_tech = "combat=3;materials=3"
-	matter = list("metal" = 10000)
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	reload_delay = 50 //Hard to reload.
-	w_class = 3
+	w_class = WEIGHT_CLASS_NORMAL
 	gun_type = /obj/item/weapon/gun/minigun
 

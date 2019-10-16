@@ -8,18 +8,21 @@
 	pipe_flags = PIPING_ALL_LAYER | PIPING_DEFAULT_LAYER_ONLY | PIPING_CARDINAL_AUTONORMALIZE
 	piping_layer = PIPING_LAYER_DEFAULT
 	device_type = 0
-	//volume = 260
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "manifoldlayer"
 
 	var/list/front_nodes
 	var/list/back_nodes
 
-/obj/machinery/atmospherics/pipe/layer_manifold/Initialize()
+/obj/machinery/atmospherics/pipe/layer_manifold/New()
+	. = ..()
 	front_nodes = list()
 	back_nodes = list()
 	icon_state = "manifoldlayer_center"
-	return ..()
+	normalize_cardinal_directions()
+	findAllConnections()
+	var/turf/T = loc			// hide if turf is not intact
+	hide(T.intact_tile)
 
 /obj/machinery/atmospherics/pipe/layer_manifold/Destroy()
 	nullifyAllNodes()

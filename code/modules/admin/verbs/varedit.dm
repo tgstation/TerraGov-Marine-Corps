@@ -1,14 +1,10 @@
-GLOBAL_LIST_INIT(VVlocked, list("vars", "datum_flags", "client", "virus", "viruses", "cuffed", "last_eaten", "unlock_content", "force_ending"))
-GLOBAL_PROTECT(VVlocked)
-GLOBAL_LIST_INIT(VVicon_edit_lock, list("icon", "icon_state", "overlays", "underlays", "resize"))
-GLOBAL_PROTECT(VVicon_edit_lock)
-GLOBAL_LIST_INIT(VVckey_edit, list("key", "ckey"))
-GLOBAL_PROTECT(VVckey_edit)
-GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "bound_width", "bound_x", "bound_y"))
+GLOBAL_LIST_INIT(VVwarning, list("vars", "datum_flags", "client", "key", "ckey", "type"))
+GLOBAL_PROTECT(VVwarning)
+GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "bound_width", "bound_x", "bound_y", "step_size"))
 GLOBAL_PROTECT(VVpixelmovement)
 
 
-/client/proc/vv_get_class(var/var_name, var/var_value)
+/client/proc/vv_get_class(var_name, var_value)
 	if(isnull(var_value))
 		. = VV_NULL
 
@@ -80,7 +76,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 				VV_RESTORE_DEFAULT
 				)
 
-		if(holder && holder.marked_datum && !(VV_MARKED_DATUM in restricted_classes))
+		if(holder?.marked_datum && !(VV_MARKED_DATUM in restricted_classes))
 			classes += "[VV_MARKED_DATUM] ([holder.marked_datum.type])"
 		if (restricted_classes)
 			classes -= restricted_classes
@@ -89,7 +85,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			classes += extra_classes
 
 		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
-		if (holder && holder.marked_datum && .["class"] == "[VV_MARKED_DATUM] ([holder.marked_datum.type])")
+		if (holder?.marked_datum && .["class"] == "[VV_MARKED_DATUM] ([holder.marked_datum.type])")
 			.["class"] = VV_MARKED_DATUM
 
 
@@ -269,20 +265,19 @@ GLOBAL_PROTECT(VVpixelmovement)
 //FALSE = no subtypes, strict exact type pathing (or the type doesn't have subtypes)
 //TRUE = Yes subtypes
 //NULL = User cancelled at the prompt or invalid type given
-/client/proc/vv_subtype_prompt(var/type)
+/client/proc/vv_subtype_prompt(type)
 	if (!ispath(type))
-		return
+		return null
 	var/list/subtypes = subtypesof(type)
-	if (!subtypes || !subtypes.len)
+	if (!length(subtypes))
 		return FALSE
-	if (subtypes && subtypes.len)
-		switch(alert("Strict object type detection?", "Type detection", "Strictly this type","This type and subtypes", "Cancel"))
-			if("Strictly this type")
-				return FALSE
-			if("This type and subtypes")
-				return TRUE
-			else
-				return
+
+	switch(alert("Strict object type detection?", "Type detection", "Strictly this type","This type and subtypes", "Cancel"))
+		if("Strictly this type")
+			return FALSE
+		if("This type and subtypes")
+			return TRUE
+
 
 /client/proc/vv_reference_list(type, subtypes)
 	. = list()
@@ -351,11 +346,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	switch(alert("Would you like to associate a value with the list entry?",,"Yes","No"))
 		if("Yes")
-			L[var_value] = mod_list_add_ass(O) //hehe
-	if (O)
-		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
-			return
+			L[var_value] = mod_list_add_ass(O)
+
+	if(O && !O.vv_edit_var(objectvar, L))
+		to_chat(src, "Your edit was rejected by the object.")
+		return
+
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: ADDED=[var_value]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
@@ -363,11 +359,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 /client/proc/mod_list(list/L, atom/O, original_name, objectvar, index, autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))
 		return
-	if(!istype(L, /list))
+
+	if(!islist(L))
 		to_chat(src, "Not a List.")
 		return
 
-	if(L.len > 1000)
+	if(length(L) > 1000)
 		var/confirm = alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
 		if(confirm != "Continue")
 			return
@@ -375,7 +372,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 	var/list/names = list()
-	for (var/i in 1 to L.len)
+	for (var/i in 1 to length(L))
 		var/key = L[i]
 		var/value
 		if (IS_NORMAL_LIST(L) && !isnum(key))
@@ -390,35 +387,38 @@ GLOBAL_PROTECT(VVpixelmovement)
 			return
 
 		if(variable == "(ADD VAR)")
+			if(!O.vv_edit_var(objectvar, L))
+				to_chat(src, "Your edit was rejected by the object.")
+				return
 			mod_list_add(L, O, original_name, objectvar)
 			return
 
 		if(variable == "(CLEAR NULLS)")
-			L = L.Copy()
-			listclearnulls(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = L.Copy()
+			listclearnulls(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR NULLS")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR NULLS")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR NULLS")
 			return
 
 		if(variable == "(CLEAR DUPES)")
-			L = uniqueList(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = uniqueList(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: CLEAR DUPES")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: CLEAR DUPES")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: CLEAR DUPES")
 			return
 
 		if(variable == "(SHUFFLE)")
-			L = shuffle(L)
-			if (!O.vv_edit_var(objectvar, L))
+			if(!O.vv_edit_var(objectvar, L))
 				to_chat(src, "Your edit was rejected by the object.")
 				return
+			L = shuffle(L)
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: SHUFFLE")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: SHUFFLE")
 			message_admins("[key_name_admin(src)] modified [original_name]'s list [objectvar]: SHUFFLE")
@@ -430,12 +430,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/assoc_key
 	if (index == null)
 		return
-	var/assoc = 0
+	var/assoc = FALSE
 	var/prompt = alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")
 	if (prompt == "Cancel")
 		return
 	if (prompt == "Assigned Value")
-		assoc = 1
+		assoc = TRUE
 		assoc_key = L[index]
 	var/default
 	var/variable
@@ -489,11 +489,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 			mod_list(variable, O, original_name, objectvar)
 
 		if("DELETE FROM LIST")
-			L.Cut(index, index+1)
-			if (O)
-				if (O.vv_edit_var(objectvar, L))
-					to_chat(src, "Your edit was rejected by the object.")
-					return
+			if(O && !O.vv_edit_var(objectvar, L))
+				to_chat(src, "Your edit was rejected by the object.")
+				return
+
+			L.Cut(index, index + 1)
+
 			log_world("### ListVarEdit by [src]: [O.type] [objectvar]: REMOVED=[html_encode("[original_var]")]")
 			log_admin("[key_name(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
 			message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: REMOVED=[original_var]")
@@ -509,29 +510,21 @@ GLOBAL_PROTECT(VVpixelmovement)
 		L[assoc_key] = new_var
 	else
 		L[index] = new_var
-	if (O)
-		if (O.vv_edit_var(objectvar, L) == FALSE)
-			to_chat(src, "Your edit was rejected by the object.")
-			return
+
+	if(O && !O.vv_edit_var(objectvar, L))
+		to_chat(src, "Your edit was rejected by the object.")
+		return
+
 	log_world("### ListVarEdit by [src]: [(O ? O.type : "/list")] [objectvar]: [original_var]=[new_var]")
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: [original_var]=[new_var]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s varlist [objectvar]: [original_var]=[new_var]")
 
 /proc/vv_varname_lockcheck(param_var_name)
-	if(param_var_name in GLOB.VVlocked)
-		if(!check_rights(R_DEBUG))
-			return FALSE
-	if(param_var_name in GLOB.VVckey_edit)
-		if(!check_rights(R_SPAWN|R_DEBUG))
-			return FALSE
-	if(param_var_name in GLOB.VVicon_edit_lock)
-		if(!check_rights(R_FUN|R_DEBUG))
+	if(param_var_name in GLOB.VVwarning)
+		if(alert(usr, "Editing this var may break things. Are you sure you want to continue?", "Warning", "Yes", "No") != "Yes")
 			return FALSE
 	if(param_var_name in GLOB.VVpixelmovement)
-		if(!check_rights(R_DEBUG))
-			return FALSE
-		var/prompt = alert(usr, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
-		if (prompt != "Continue")
+		if(alert(usr, "Editing this var WILL break smooth tile movement for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT") != "Continue")
 			return FALSE
 	return TRUE
 
@@ -626,29 +619,25 @@ GLOBAL_PROTECT(VVpixelmovement)
 				var_new = replacetext(var_new,"\[[V]]","[O.vars[V]]")
 
 
-	if(O.vv_edit_var(variable, var_new) == FALSE)
+	if(!O.vv_edit_var(variable, var_new))
 		to_chat(src, "Your edit was rejected by the object.")
 		return
+
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
 	log_world("### VarEdit by [key_name(src)]: [O.type] [variable]=[var_value] => [var_new]")
 	log_admin("[key_name(src)] modified [original_name]'s [variable] from [html_encode("[var_value]")] to [html_encode("[var_new]")]")
-	message_admins("[ADMIN_TPMONTY(usr)] modified [original_name]'s [variable] from [var_value] to [var_new]")
+	message_admins("[ADMIN_TPMONTY(usr)] modified [original_name] [ADMIN_VV(O)] [variable] from [var_value] to [var_new]")
 	admin_ticket_log(O, "[key_name_admin(src)] modified [original_name]'s [variable] from [var_value] to [var_new]")
 	return TRUE
 
 
-
 /client/proc/mass_modify(atom/A, var_name)
-	set category = "Debug"
-	set name = "Mass Edit Variables"
-	set desc="(target) Edit all instances of a target item's variables"
-
 	var/method = 0	//0 means strict type detection while 1 means this type and all subtypes (IE: /obj/item with this set to 1 will set it to ALL items)
 
 	if(!check_rights(R_VAREDIT))
 		return
 
-	if(A && A.type)
+	if(A?.type)
 		method = usr.client.vv_subtype_prompt(A.type)
 
 	usr.client.massmodify_variables(A, var_name, method)
@@ -677,21 +666,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/default
 	var/var_value = O.vars[variable]
 
-	if(variable in GLOB.VVckey_edit)
-		to_chat(src, "It's forbidden to mass-modify ckeys. It'll crash everyone's client you dummy.")
+	if(!vv_varname_lockcheck(variable))
 		return
-	if(variable in GLOB.VVlocked)
-		if(!check_rights(R_DEBUG))
-			return
-	if(variable in GLOB.VVicon_edit_lock)
-		if(!check_rights(R_FUN|R_DEBUG))
-			return
-	if(variable in GLOB.VVpixelmovement)
-		if(!check_rights(R_DEBUG))
-			return
-		var/prompt = alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
-		if (prompt != "Continue")
-			return
 
 	default = vv_get_class(variable, var_value)
 
@@ -717,7 +693,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(dir_text)
 			to_chat(src, "If a direction, direction is: [dir_text]")
 
-	var/value = vv_get_value(default_class = default)
+	var/value = vv_get_value(default, default, var_value, var_name = variable)
 	var/new_value = value["value"]
 	var/class = value["class"]
 
@@ -739,7 +715,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(VV_RESTORE_DEFAULT)
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Changing [length(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -754,7 +730,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			var/list/varsvars = vv_parse_text(O, new_value)
 			var/pre_processing = new_value
 			var/unique
-			if (varsvars && varsvars.len)
+			if (length(varsvars))
 				unique = alert(usr, "Process vars unique to each instance, or same for all?", "Variable Association", "Unique", "Same")
 				if(unique == "Unique")
 					unique = TRUE
@@ -765,7 +741,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Changing [length(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -793,7 +769,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			var/type = value["type"]
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Changing [length(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue
@@ -811,7 +787,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		else
 			to_chat(src, "Finding items...")
 			var/list/items = get_all_of_type(O.type, method)
-			to_chat(src, "Changing [items.len] items...")
+			to_chat(src, "Changing [length(items)] items...")
 			for(var/thing in items)
 				if (!thing)
 					continue

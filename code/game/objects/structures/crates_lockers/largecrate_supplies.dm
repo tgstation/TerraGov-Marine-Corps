@@ -97,8 +97,8 @@
 	icon_state = "chest"
 
 /obj/structure/largecrate/supply/weapons/m41a
-	name = "\improper M41A pulse rifle weapons chest (x10)"
-	desc = "A weapons chest containing ten M41A rifles."
+	name = "\improper M41A1 pulse rifle weapons chest (x10)"
+	desc = "A weapons chest containing ten M41A1 rifles."
 	supplies = list(/obj/item/weapon/gun/rifle/m41a = 10)
 
 /obj/structure/largecrate/supply/weapons/shotgun
@@ -143,13 +143,13 @@
 	icon_state = "case"
 
 /obj/structure/largecrate/supply/ammo/m41a
-	name = "\improper M41A magazine case (x20)"
-	desc = "An ammunition case containing 20 M41A magazines."
+	name = "\improper M41A1 magazine case (x20)"
+	desc = "An ammunition case containing 20 M41A1 magazines."
 	supplies = list(/obj/item/ammo_magazine/rifle = 20)
 
 /obj/structure/largecrate/supply/ammo/m41a_box
-	name = "\improper M41A ammunition box case (x4)"
-	desc = "An ammunition case containing four M41A 600 round boxes of ammunition."
+	name = "\improper M41A1 ammunition box case (x4)"
+	desc = "An ammunition case containing four M41A1 600 round boxes of ammunition."
 	supplies = list(/obj/item/big_ammo_box = 4)
 
 /obj/structure/largecrate/supply/ammo/shotgun
@@ -313,8 +313,8 @@
 	if(unmovable)
 		to_chat(user, "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>")
 
-/obj/structure/largecrate/machine/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W) && dir_needed)
+/obj/structure/largecrate/machine/attackby(obj/item/I, mob/user, params)
+	if(iscrowbar(I) && dir_needed)
 		var/turf/next_turf = get_step(src, dir_needed)
 		if(next_turf.density)
 			to_chat(user, "<span class='warning'>You can't open the crate here, there's not enough room!</span>")
@@ -323,49 +323,65 @@
 			if(AM.density)
 				to_chat(user, "<span class='warning'>You can't open the crate here, [AM] blocks the way.</span>")
 				return
-	..()
+		return TRUE
+	return ..()
 
 
 /obj/structure/largecrate/machine/autodoc
 	name = "autodoctor machine crate (x1)"
 	desc = "A crate containing one autodoc."
 
-/obj/structure/largecrate/machine/autodoc/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/machine/autodoc/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!.)
+		return
+
+	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
-		if(isopenturf(T))
-			var/obj/machinery/autodoc/event/E = new (T)
-			var/obj/machinery/autodoc_console/C = new (T)
-			C.loc = get_step(T, EAST)
-			E.connected = C
-			C.connected = E
-	..()
+		if(!isopenturf(T))
+			return
+
+		var/obj/machinery/autodoc/event/E = new (T)
+		var/obj/machinery/autodoc_console/C = new (T)
+		C.loc = get_step(T, EAST)
+		E.connected = C
+		C.connected = E
 
 /obj/structure/largecrate/machine/bodyscanner
 	name = "bodyscanner machine crate (x1)"
 	desc = "A crate containing one medical bodyscanner."
 
-/obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/supply/machine/bodyscanner/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!.)
+		return
+
+	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
-		if(isopenturf(T))
-			var/obj/machinery/bodyscanner/E = new (T)
-			var/obj/machinery/body_scanconsole/C = new (T)
-			C.loc = get_step(T, EAST)
-			C.connected = E
-	..()
+		if(!isopenturf(T))
+			return
+
+		var/obj/machinery/bodyscanner/E = new (T)
+		var/obj/machinery/body_scanconsole/C = new (T)
+		C.loc = get_step(T, EAST)
+		C.connected = E
 
 /obj/structure/largecrate/machine/sleeper
 	name = "sleeper machine crate (x1)"
 	desc = "A crate containing one medical sleeper."
 
-/obj/structure/largecrate/machine/sleeper/attackby(obj/item/W as obj, mob/user as mob)
-	if(iscrowbar(W))
+/obj/structure/largecrate/machine/sleeper/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(!.)
+		return
+
+	if(iscrowbar(I))
 		var/turf/T = get_turf(loc)
-		if(isopenturf(T))
-			var/obj/machinery/sleeper/E = new (T)
-			var/obj/machinery/sleep_console/C = new (T)
-			C.loc = get_step(T, EAST)
-			E.connected = C
-			C.connected = E
-	..()
+		if(!isopenturf(T))
+			return
+
+		var/obj/machinery/sleeper/E = new (T)
+		var/obj/machinery/sleep_console/C = new (T)
+		C.loc = get_step(T, EAST)
+		E.connected = C
+		C.connected = E

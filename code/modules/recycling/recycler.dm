@@ -1,25 +1,12 @@
-
 /obj/machinery/recycler
 	name = "recycler"
 	desc = "A large crushing machine used to recycle trash."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "separator-AO1"
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
-	density = 1
-	var/recycle_dir = NORTH
-	var/list/stored_matter =  list("metal" = 0, "glass" = 0)
-	var/last_recycle_sound //for sound cooldown
-	var/ignored_items = list(/obj/item/limb)
-
-/obj/machinery/recycler/New()
-	..()
-	update_icon()
-
-
-/obj/machinery/recycler/power_change()
-	..()
-	update_icon()
+	anchored = TRUE
+	density = TRUE
+	var/list/stored_materials = list(/datum/material/metal = 0, /datum/material/glass = 0)
 
 
 /obj/machinery/recycler/update_icon()
@@ -30,40 +17,31 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	var/move_dir = get_dir(loc, AM.loc)
-	if(!AM.anchored && move_dir == recycle_dir)
-		if(istype(AM, /obj/item))
+	if(!AM.anchored && move_dir == dir)
+		if(isitem(AM))
 			recycle(AM)
 		else
-			AM.loc = loc
+			AM.forceMove(loc)
 
 
 /obj/machinery/recycler/proc/recycle(obj/item/I)
-	var/turf/T = get_turf(I)
-
-	for(var/forbidden_path in ignored_items)
-		if(istype(I, forbidden_path))
-			I.loc = loc
-			return
-
 	if(istype(I, /obj/item/storage))
 		var/obj/item/storage/S = I
 		for(var/obj/item/X in S.contents)
-			S.remove_from_storage(X, T)
+			S.remove_from_storage(X, loc)
 			recycle(X)
 
-	if(I.matter)
-		for(var/material in I.matter)
-			if(isnull(stored_matter[material]))
-				continue
-			var/total_material = I.matter[material]
-			//If it's a stack, we eat multiple sheets.
-			if(istype(I,/obj/item/stack))
-				var/obj/item/stack/stack = I
-				total_material *= stack.get_amount()
+	for(var/material in I.materials)
+		if(isnull(stored_materials[material]))
+			continue
 
-			stored_matter[material] += total_material
+		var/total_material = I.materials[material]
+		//If it's a stack, we eat multiple sheets.
+		if(istype(I,/obj/item/stack))
+			var/obj/item/stack/stack = I
+			total_material *= stack.get_amount()
+
+		stored_materials[material] += total_material
+	
 	qdel(I)
-	if(last_recycle_sound < world.time)
-		playsound(loc, 'sound/items/Welder.ogg', 30, 1)
-		last_recycle_sound = world.time + 50
-
+	playsound(loc, 'sound/items/welder.ogg', 30, 1)

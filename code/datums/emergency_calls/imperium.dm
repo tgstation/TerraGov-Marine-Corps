@@ -15,16 +15,12 @@
 		return
 	
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
-	
-	// custom wh40k names when?
-	if(H.gender == MALE)
-		H.name = pick(first_names_male) + " " + pick(last_names)
-	else
-		H.name = pick(first_names_female) + " " + pick(last_names)
+
+	H.name = GLOB.namepool[/datum/namepool].random_name(H)
 	H.real_name = H.name
-	H.voice_name = H.name
 	
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 	
 	if(original)
 		qdel(original)
@@ -34,19 +30,21 @@
 	if(!leader)
 		// assign leader
 		leader = H
-		var/datum/job/J = new /datum/job/imperial/guardsman/sergeant
-		J.equip(H)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman/sergeant)
+		SSjob.AssignRole(H, J.title)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		return
 	
 	if(medics < max_medics)
-		var/datum/job/J = new /datum/job/imperial/guardsman/medicae
-		J.equip(H)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman/medicae)
+		SSjob.AssignRole(H, J.title)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		medics++
 		return
 	
-	var/datum/job/J = new /datum/job/imperial/guardsman
-	J.equip(H)
+	var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman)
+	SSjob.AssignRole(H, J.title)
+	J.assign_equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the Imperial Guard, a lowly guardsman.\nThere are many like you, but you are special in your own way.\n</span><span class='danger'>FOR THE EMPEROR!</span>")
-

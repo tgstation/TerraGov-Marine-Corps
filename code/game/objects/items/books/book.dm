@@ -1,13 +1,13 @@
 /*
- * Book
- */
+* Book
+*/
 /obj/item/book
 	name = "book"
 	icon = 'icons/obj/items/books.dmi'
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
-	w_class = 3		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
+	w_class = WEIGHT_CLASS_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
 	attack_verb = list("bashed", "whacked", "educated")
 	var/dat			 // Actual page content
 	var/due_date = 0 // Game time in 1/10th seconds
@@ -17,78 +17,89 @@
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
-/obj/item/book/attack_self(var/mob/user as mob)
-	if(carved)
-		if(store)
-			to_chat(user, "<span class='notice'>[store] falls out of [title]!</span>")
-			store.loc = get_turf(src.loc)
-			store = null
-			return
-		else
-			to_chat(user, "<span class='notice'>The pages of [title] have been cut out!</span>")
-			return
-	if(src.dat)
-		user << browse("<TT><I>Owner: [author].</I></TT> <BR>" + "[dat]", "window=book;size=800x600")
-		user.visible_message("[user] opens \"[src.title]\".")
-		onclose(user, "book")
-	else
-		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/book/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+	
 	if(carved)
 		if(!store)
-			if(W.w_class < 3)
-				user.drop_held_item()
-				W.loc = src
-				store = W
-				to_chat(user, "<span class='notice'>You put [W] in [title].</span>")
-				return
-			else
-				to_chat(user, "<span class='notice'>[W] won't fit in [title].</span>")
-				return
+			visible_message("<span class='notice'>The pages of [title] have been cut out!</span>")
 		else
-			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
-			return
-	if(istype(W, /obj/item/tool/pen))
+			visible_message("<span class='notice'>[store] falls out of [title]!</span>")
+			store.forceMove(get_turf(loc))
+			store = null
+		return
+	
+	if(isliving(user))
+		user.visible_message("[user] opens \"[title]\".")
+
+	var/datum/browser/popup = new(user, "book", "<div align='center'>Owner: [author]</div>", 800, 600)
+	popup.set_content(dat)
+	popup.open()
+
+
+/obj/item/book/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pen))
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
+		
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(stripped_input(usr, "Write a new title:"))
+				var/newtitle = reject_bad_text(stripped_input(user, "Write a new title:"))
 				if(!newtitle)
-					to_chat(usr, "The title is invalid.")
+					to_chat(user, "The title is invalid.")
 					return
-				else
-					src.name = newtitle
-					src.title = newtitle
+
+				name = newtitle
+				title = newtitle
+
 			if("Contents")
-				var/content = strip_html(input(usr, "Write your book's contents (HTML NOT allowed):") as message|null,8192)
+				var/content = strip_html(input(usr, "Write your book's contents:") as message|null, 8192)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return
-				else
-					src.dat += content
+
+				dat += content
+
 			if("Author")
-				var/newauthor = stripped_input(usr, "Write the author's name:")
+				var/newauthor = stripped_input(user, "Write the author's name:")
 				if(!newauthor)
-					to_chat(usr, "The name is invalid.")
+					to_chat(user, "The name is invalid.")
 					return
 				else
-					src.author = newauthor
-			else
-				return
+					author = newauthor
 
-	else if(istype(W, /obj/item/tool/kitchen/knife) || iswirecutter(W))
-		if(carved)	return
-		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
-		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
-			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
-			carved = 1
+	else if(carved)
+		if(store)
+			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
 			return
-	else
-		..()
+
+		if(I.w_class >= 3)
+			to_chat(user, "<span class='notice'>[I] won't fit in [title].</span>")
+			return
+
+		user.drop_held_item()
+		I.forceMove(src)
+		store = I
+		to_chat(user, "<span class='notice'>You put [I] in [title].</span>")
+
+	else if(istype(I, /obj/item/tool/kitchen/knife) || iswirecutter(I))
+		if(carved)	
+			return
+
+		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
+		
+		if(!do_after(user, 30, TRUE, src))
+			return
+
+		to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+		carved = TRUE
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_selected == "eyes")
@@ -97,3 +108,24 @@
 		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 
 
+
+/obj/item/book/codebook
+	name = "Ship Code Book"
+	unique = TRUE
+	dat = ""
+
+
+/obj/item/book/codebook/Initialize()
+	. = ..()
+	var/number
+	var/letter
+	dat = "<table><tr><th>Call</th><th>Response<th></tr>"
+	for(var/i in 1 to 10)
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
+		number = rand(100, 999)
+		dat += "<tr><td>[letter]-[number]</td>"
+		letter = pick(SSstrings.get_list_from_file("greek_letters"))
+		number = rand(100, 999)
+		dat += "<td>[letter]-[number]</td></tr>"
+
+	dat += "</table>"

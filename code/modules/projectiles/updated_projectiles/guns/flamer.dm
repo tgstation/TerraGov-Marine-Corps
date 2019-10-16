@@ -3,14 +3,16 @@
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
-	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	force = 15
-	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
-	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
+	fire_sound = "gun_flamethrower"
+	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
+	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
@@ -21,12 +23,12 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+	fire_delay = 35
 
-/obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
-	toggle_flame(user)
+	return toggle_flame(user)
+
 
 /obj/item/weapon/gun/flamer/examine_ammo_count(mob/user)
 	to_chat(user, "It's turned [lit? "on" : "off"].")
@@ -41,8 +43,9 @@
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
+
 /obj/item/weapon/gun/flamer/proc/toggle_flame(mob/user)
-	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
+	playsound(user, lit ? 'sound/weapons/guns/interact/flamethrower_off.ogg' : 'sound/weapons/guns/interact/flamethrower_on.ogg', 25, 1)
 	lit = !lit
 
 	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
@@ -54,10 +57,16 @@
 		overlays -= I
 		qdel(I)
 
+	return TRUE
+
+
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
 
 	if(!able_to_fire(user))
+		return
+
+	if(gun_on_cooldown(user))
 		return
 
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
@@ -104,7 +113,7 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
 					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -121,7 +130,7 @@
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
 	if(!current_mag)
-		return //no magazine to unload
+		return FALSE //no magazine to unload
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
 	else
@@ -134,6 +143,9 @@
 	current_mag = null
 
 	update_icon()
+
+	return TRUE
+
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
@@ -221,8 +233,8 @@
 	T.ignite(heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if(istype(T, /turf/open/snow))
-		var/turf/open/snow/S = T
+	if(istype(T, /turf/open/floor/plating/ground/snow))
+		var/turf/open/floor/plating/ground/snow/S = T
 
 		if (S.slayer > 0)
 			S.slayer -= 1
@@ -239,7 +251,7 @@
 		fire_mod = 1
 
 		if(isxeno(M))
-			var/mob/living/carbon/Xenomorph/X = M
+			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
@@ -271,7 +283,7 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
+/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
@@ -380,7 +392,8 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
+				if(do_after(user,magazine.reload_delay, TRUE, src, BUSY_ICON_GENERIC))
+					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
@@ -411,12 +424,11 @@
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("water", max_water)
+	R.add_reagent(/datum/reagent/water, max_water)
 
 	var/obj/item/attachable/hydro_cannon/G = new(src)
 	G.icon_state = ""
 	G.Attach(src)
-	update_attachable(G.slot)
 	G.icon_state = initial(G.icon_state)
 
 /obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)
@@ -426,7 +438,7 @@
 		last_use = world.time
 		return
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, TRUE, src))
 			return
 	return ..()
 
@@ -453,7 +465,7 @@
 /obj/flamer_fire
 	name = "fire"
 	desc = "Ouch!"
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
@@ -462,7 +474,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/Initialize(loc, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/flamer_fire/Initialize(mapload, fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 
 	if(f_color)
@@ -485,7 +497,6 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/flamer_fire/Destroy()
-	SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -500,7 +511,7 @@
 			show_message(text("Your suit protects you from most of the flames."), 1)
 			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
 
-/mob/living/carbon/Xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
+/mob/living/carbon/xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
 	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		return 1
 	return ..()
@@ -524,10 +535,10 @@
 		return
 	. = ..()
 	if(isxeno(pulledby))
-		var/mob/living/carbon/Xenomorph/X = pulledby
+		var/mob/living/carbon/xenomorph/X = pulledby
 		X.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/Xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	fire_mod = fire_resist
@@ -535,19 +546,26 @@
 	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
-	if(burnlevel < 15)
-		color = "#c1c1c1" //make it darker to make show its weaker.
+	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_intensity = 3
+	switch(flame_color)
+		if("red")
+			light_color = LIGHT_COLOR_LAVA
+		if("blue")
+			light_color = LIGHT_COLOR_CYAN
+		if("green")
+			light_color = LIGHT_COLOR_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			SetLuminosity(2)
+			light_intensity = 2
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			SetLuminosity(4)
+			light_intensity = 4
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			SetLuminosity(6)
-
+			light_intensity = 6
+	set_light(light_intensity, null, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc
@@ -562,14 +580,14 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act()
+	T.flamer_fire_act(burnlevel, firelevel)
 
 	var/j = 0
 	for(var/i in T)
 		if(++j >= 11)
 			break
 		var/atom/A = i
-		A.flamer_fire_act()
+		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 	return
@@ -589,20 +607,22 @@
 		return
 	return ..()
 
-/mob/living/carbon/Xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/Xenomorph/Queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
 	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
 
-/mob/living/carbon/Xenomorph/Ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max
-	usedcharge = FALSE //Reset charge cooldown
+	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
+	if(charge)
+		charge.clear_cooldown() //Reset charge cooldown
 	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")

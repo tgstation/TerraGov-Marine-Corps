@@ -11,9 +11,8 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 4.0
-	matter = list("glass" = 7500, "metal" = 1000)
-	origin_tech = "materials=2"
+	w_class = WEIGHT_CLASS_BULKY
+	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
@@ -39,7 +38,6 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 4
-	w_class = 2
-	origin_tech = "materials=4;magnets=3;syndicate=4"
+	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("shoved", "bashed")
 	var/active = 0

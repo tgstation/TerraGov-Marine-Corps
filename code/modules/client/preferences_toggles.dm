@@ -68,6 +68,16 @@
 	to_chat(src, "<span class='notice'>You will [(prefs.toggles_chat & CHAT_DEAD) ? "now" : "no longer"] see deadchat.</span>")
 
 
+/client/verb/toggle_admin_music()
+	set category = "Preferences"
+	set name = "Toggle Admin Music"
+
+	prefs.toggles_sound ^= SOUND_MIDI
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will [(prefs.toggles_sound & SOUND_MIDI) ? "now" : "no longer"] hear admin music.</span>")
+
+
 /client/verb/toggle_lobby_music()
 	set category = "Preferences"
 	set name = "Toggle Lobby Music"
@@ -84,7 +94,7 @@
 		to_chat(src, "<span class='notice'>You will no longer hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))
 			return
-		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+		mob.stop_sound_channel(CHANNEL_LOBBYMUSIC)
 
 
 /client/verb/toggle_ooc_self()
@@ -118,8 +128,7 @@
 		to_chat(src, "<span class='notice'>You will now hear ambient sounds.</span>")
 	else
 		to_chat(src, "<span class='notice'>You will no longer hear ambient sounds.</span>")
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 1)
-		src << sound(null, repeat = 0, wait = 0, volume = 0, channel = 2)
+		mob.stop_sound_channel(CHANNEL_AMBIENT)
 
 
 /client/verb/toggle_special(role in BE_SPECIAL_FLAGS)
@@ -183,6 +192,92 @@
 
 	//Clear out any existing typing indicator.
 	if(!prefs.show_typing && istype(mob))
-		mob.toggle_typing_indicator()
+		mob.remove_typing_indicator()
 
 	to_chat(src, "<span class='notice'>You will [prefs.show_typing ? "now" : "no longer"] display a typing indicator.</span>")
+
+
+/client/verb/setup_character()
+	set category = "Preferences"
+	set name = "Game Preferences"
+	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
+	prefs.ShowChoices(usr)
+
+
+GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\
+							"Black" = "ghost_black", "Blue" = "ghost_blue", "Yellow" = "ghost_yellow", "Green" = "ghost_green", "Pink" = "ghost_pink", \
+							"Cyan" = "ghost_cyan", "Dark Blue" = "ghost_dblue", "Dark Red" = "ghost_dred", "Dark Green" = "ghost_dgreen", \
+							"Dark Cyan" = "ghost_dcyan", "Grey" = "ghost_grey", "Dark Yellow" = "ghost_dyellow", "Dark Pink" = "ghost_dpink",\
+							"Purple" = "ghost_purpleswirl", "Funky" = "ghost_funkypurp", "Transparent Pink" = "ghost_pinksherbert", "Blaze it" = "ghost_blazeit",\
+							"Mellow" = "ghost_mellow", "Rainbow" = "ghost_rainbow", "Camo" = "ghost_camo", "Fire" = "ghost_fire", "Cat" = "catghost"))
+
+
+/client/proc/pick_form()
+	var/new_form = input(src, "Choose your ghostly form:", "Ghost Customization") as null|anything in GLOB.ghost_forms
+	if(!new_form)
+		return
+
+
+	prefs.ghost_form = GLOB.ghost_forms[new_form]
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will use the [new_form] ghost form when starting as an observer.</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.update_icon(GLOB.ghost_forms[new_form])
+
+
+GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE, GHOST_ORBIT_TRIANGLE, GHOST_ORBIT_SQUARE, GHOST_ORBIT_HEXAGON, GHOST_ORBIT_PENTAGON))
+
+/client/proc/pick_ghost_orbit()
+	var/new_orbit = input(src, "Choose your ghostly orbit:", "Ghost Customization") as null|anything in GLOB.ghost_orbits
+	if(!new_orbit)
+		return
+
+	prefs.ghost_orbit = new_orbit
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will use the [new_orbit] as a ghost.</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.ghost_orbit = new_orbit
+
+
+GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING))
+
+/client/proc/pick_ghost_other_form()
+	var/new_others = input(src, "Choose how you see other observers:", "Ghost Customization") as null|anything in GLOB.ghost_others_options
+	if(!new_others)
+		return
+
+	prefs.ghost_others = new_others
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will now see people who started as an observer as [new_others].</span>")
+
+	if(!isobserver(mob))
+		return
+
+	var/mob/dead/observer/O = mob
+	O.ghost_others = new_others
+
+
+/client/verb/pick_ghost_customization()
+	set category = "Preferences"
+	set name = "Ghost Customization"
+	set desc = "Customize your ghastly appearance."
+
+
+	switch(input(src, "Which setting do you want to change?", "Ghost Customization") as null|anything in list("Ghost Form", "Ghost Orbit", "Ghosts of others"))
+		if("Ghost Form")
+			pick_form()
+		if("Ghost Orbit")
+			pick_ghost_orbit()
+		if("Ghosts of others")
+			pick_ghost_other_form()

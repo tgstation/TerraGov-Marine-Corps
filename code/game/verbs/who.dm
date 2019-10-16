@@ -15,9 +15,9 @@
 			if(!check_other_rights(C, R_ADMIN, FALSE))
 				count_nonadmin_observers++
 		if(C.mob && C.mob.stat != DEAD)
-			if(ishuman(C.mob) && !iszombie(C.mob))
+			if(ishuman(C.mob))
 				count_humans++
-				if(C.mob.mind.assigned_role in (JOBS_MARINES))
+				if(C.mob.mind.assigned_role in (GLOB.jobs_marines))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
@@ -65,7 +65,7 @@
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
 		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
-		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
+		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Ruler: [hive.living_xeno_ruler ? "Alive" : "Dead"])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 
@@ -103,7 +103,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || istype(C.mob, /mob/new_player) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
@@ -120,7 +120,7 @@
 				if(C.is_afk())
 					mentmsg += " (AFK)"
 
-				mentmsg += "[isobserver(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				mentmsg += "\n"
 				num_mentors_online++

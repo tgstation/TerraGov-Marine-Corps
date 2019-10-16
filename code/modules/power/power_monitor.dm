@@ -7,15 +7,15 @@
 	icon_state = "power"
 
 	//computer stuff
-	density = 1
-	anchored = 1.0
-	var/circuit = /obj/item/circuitboard/computer/powermonitor
+	density = TRUE
+	anchored = TRUE
+	circuit = /obj/item/circuitboard/computer/powermonitor
 	use_power = 1
 	idle_power_usage = 300
 	active_power_usage = 300
 
-/obj/machinery/power/monitor/New()
-	..()
+/obj/machinery/power/monitor/Initialize()
+	. = ..()
 	var/obj/structure/cable/attached = null
 	var/turf/T = loc
 	if(isturf(T))
@@ -23,32 +23,13 @@
 	if(attached)
 		powernet = attached.powernet
 
-/obj/machinery/power/monitor/attack_ai(mob/user)
-	add_fingerprint(user)
-
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
-
-/obj/machinery/power/monitor/attack_hand(mob/user)
-	add_fingerprint(user)
-
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	interact(user)
 
 /obj/machinery/power/monitor/interact(mob/user)
+	. = ..()
+	if(.)
+		return
 
-	if ( (get_dist(src, user) > 1 ) || (machine_stat & (BROKEN|NOPOWER)) )
-		if (!issilicon(user))
-			user.unset_interaction()
-			user << browse(null, "window=powcomp")
-			return
-
-
-	user.set_interaction(src)
 	var/t
-
 	t += "<BR><HR><A href='?src=\ref[src];update=1'>Refresh</A>"
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 
@@ -88,51 +69,41 @@
 	onclose(user, "powcomp")
 
 
-/obj/machinery/power/monitor/Topic(href, href_list)
-	..()
-	if( href_list["close"] )
-		usr << browse(null, "window=powcomp")
-		usr.unset_interaction()
-		return
-	if( href_list["update"] )
-		src.updateDialog()
-		return
-
-
-/obj/machinery/power/monitor/power_change()
-	..()
+/obj/machinery/power/monitor/update_icon()
 	if(machine_stat & BROKEN)
 		icon_state = "broken"
 	else
 		if(machine_stat & NOPOWER)
-			spawn(rand(0, 15))
-				src.icon_state = "power0"
+			icon_state = "power0"
 		else
 			icon_state = initial(icon_state)
 
 
 //copied from computer.dm
-/obj/machinery/power/monitor/attackby(I as obj, user as mob)
+/obj/machinery/power/monitor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(isscrewdriver(I) && circuit)
-		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-			var/obj/structure/computerframe/A = new( src.loc )
-			var/obj/item/circuitboard/computer/M = new circuit( A )
-			A.circuit = M
-			A.anchored = 1
-			for (var/obj/C in src)
-				C.loc = src.loc
-			if (src.machine_stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-				new /obj/item/shard( src.loc )
-				A.state = 3
-				A.icon_state = "3"
-			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
-				A.state = 4
-				A.icon_state = "4"
-			M.deconstruct(src)
-			qdel(src)
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			return
+
+		var/obj/structure/computerframe/A = new(loc)
+		var/obj/item/circuitboard/computer/M = new circuit(A)
+		A.circuit = M
+		A.anchored = TRUE
+		for(var/obj/C in src)
+			C.forceMove(loc)
+		if(machine_stat & BROKEN)
+			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+			new /obj/item/shard(loc)
+			A.state = 3
+			A.icon_state = "3"
+		else
+			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			A.state = 4
+			A.icon_state = "4"
+		M.deconstruct(src)
+		qdel(src)
 	else
-		src.attack_hand(user)
-	return
+		attack_hand(user)

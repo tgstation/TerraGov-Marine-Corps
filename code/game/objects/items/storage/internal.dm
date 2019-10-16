@@ -3,15 +3,15 @@
 /obj/item/storage/internal
 	var/obj/item/master_item
 
-/obj/item/storage/internal/New(obj/item/MI)
-	master_item = MI
-	loc = master_item
+/obj/item/storage/internal/Initialize()
+	. = ..()
+	master_item = loc
 	name = master_item.name
+	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
-	..()
 
-/obj/item/storage/internal/attack_hand()
-	return		//make sure this is never picked up
+/obj/item/storage/internal/attack_hand(mob/living/user)
+	return TRUE
 
 /obj/item/storage/internal/mob_can_equip()
 	return 0	//make sure this is never picked up
@@ -31,7 +31,7 @@
 		if(user.lying) //Can't use your inventory when lying
 			return
 
-		if(istype(user.loc, /obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
+		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
 			return 0
 
 		if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
@@ -48,12 +48,12 @@
 		if(master_item.loc != user || (master_item.loc && master_item.loc.loc == user))
 			return 0
 
-		if(!user.restrained() && !user.stat)
+		if(!user.incapacitated())
 			switch(over_object.name)
 				if("r_hand")
 					if(master_item.time_to_unequip)
 						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
 								user.dropItemToGround(master_item)
@@ -65,7 +65,7 @@
 				if("l_hand")
 					if(master_item.time_to_unequip)
 						spawn(0)
-							if(!do_after(user, master_item.time_to_unequip, TRUE, 5, BUSY_ICON_GENERIC))
+							if(!do_after(user, master_item.time_to_unequip, TRUE, master_item, BUSY_ICON_FRIENDLY))
 								to_chat(user, "You stop taking off \the [master_item]")
 							else
 								user.dropItemToGround(master_item)
@@ -74,7 +74,6 @@
 					else
 						user.dropItemToGround(master_item)
 						user.put_in_l_hand(master_item)
-			master_item.add_fingerprint(user)
 			return 0
 	return 0
 
@@ -97,7 +96,6 @@
 			H.r_store = null
 			return 0
 
-	src.add_fingerprint(user)
 	if(master_item.loc == user)
 		src.open(user)
 		return 0
@@ -107,7 +105,7 @@
 			src.close(M)
 	return 1
 
-/obj/item/storage/internal/Adjacent(var/atom/neighbor)
+/obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 

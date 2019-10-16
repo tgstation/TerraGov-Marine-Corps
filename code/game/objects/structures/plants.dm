@@ -7,17 +7,16 @@
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = BUSH_LAYER
-	var/indestructable = 0
 	var/stump = 0
-	health = 100
+	max_integrity = 100
 
-/obj/structure/bush/New()
-	health = rand(50,75)
+/obj/structure/bush/Initialize()
+	. = ..()
 	if(prob(75))
-		opacity = 1
+		opacity = TRUE
 
 	//Randomise a bit
 	var/matrix/M = matrix()
@@ -40,8 +39,8 @@
 		if(isliving(AM))
 			var/mob/living/L = AM
 			var/bush_sound_prob = 60
-			if(istype(L, /mob/living/carbon/Xenomorph))
-				var/mob/living/carbon/Xenomorph/X = L
+			if(istype(L, /mob/living/carbon/xenomorph))
+				var/mob/living/carbon/xenomorph/X = L
 				bush_sound_prob = X.tier_as_number() * 20
 
 			if(prob(bush_sound_prob))
@@ -66,55 +65,31 @@
 						H.next_move_slowdown += rand(12,20)
 						to_chat(H, "<span class='warning'>You got completely tangeled in [src]! Oh boy...</span>")
 
-/obj/structure/bush/attackby(var/obj/I as obj, var/mob/user as mob)
-	//hatchets and shiet can clear away undergrowth
-	if(I && (istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
-		var/damage = rand(2,5)
-		if(istype(I,/obj/item/weapon/claymore/mercsword))
-			damage = rand(8,18)
-		if(indestructable)
-			//this bush marks the edge of the map, you can't destroy it
-			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
-		else
-			user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
-			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
-			health -= damage
-			if(health < 0)
-				to_chat(user, "<span class='notice'>You clear away [src].</span>")
-			healthcheck()
-	else
-		return ..()
+/obj/structure/bush/attackby(obj/item/I, mob/user, params)
+	. = ..()
 
-/obj/structure/bush/proc/healthcheck()
-	if(health < 35 && opacity)
-		opacity = 0
-	if(health < 0)
-		if(prob(10))
-			icon_state = "stump[rand(1,2)]"
-			name = "cleared foliage"
-			desc = "There used to be dense undergrowth here."
-			stump = 1
-			pixel_x = rand(-6,6)
-			pixel_y = rand(-6,6)
-		else
-			qdel(src)
+	if((istype(I, /obj/item/tool/hatchet) || istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/claymore/mercsword) && !stump))
+		var/damage = rand(2, 5)
+		if(istype(I, /obj/item/weapon/claymore/mercsword))
+			damage = rand(8, 18)
+		if(resistance_flags & INDESTRUCTIBLE)
+			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
+			return
+
+		user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
+		playsound(loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
+		take_damage(damage)
+
 
 /obj/structure/bush/flamer_fire_act(heat)
-	health -= 30
-	healthcheck(src)
+	take_damage(30, BURN, "fire")
 
 //*******************************//
 // Strange, fruit-bearing plants //
 //*******************************//
 
-var/list/fruit_icon_states = list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg")
-var/list/reagent_effects = list("toxin","dylovene","sleeptoxin","space_drugs","mindbreaker","zombiepowder","impedrezene")
-var/jungle_plants_init = 0
-
-/proc/init_jungle_plants()
-	jungle_plants_init = 1
-	fruit_icon_states = shuffle(fruit_icon_states)
-	reagent_effects = shuffle(reagent_effects)
+GLOBAL_LIST_INIT(fruit_icon_states, list("badrecipe","kudzupod","reishi","lime","grapes","boiledrorocore","chocolateegg"))
+GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medicine/dylovene,/datum/reagent/toxin/sleeptoxin,/datum/reagent/space_drugs,/datum/reagent/toxin/mindbreaker,/datum/reagent/impedrezene))
 
 /obj/item/reagent_container/food/snacks/grown/jungle_fruit
 	name = "jungle fruit"
@@ -135,11 +110,8 @@ var/jungle_plants_init = 0
 	var/fruit_g
 	var/fruit_b
 
-
-/obj/structure/jungle_plant/New()
-	if(!jungle_plants_init)
-		init_jungle_plants()
-
+/obj/structure/jungle_plant/Initialize()
+	. = ..()
 	fruit_type = rand(1,7)
 	icon_state = "plant[fruit_type]"
 	fruits_left = rand(1,5)
@@ -151,15 +123,18 @@ var/jungle_plants_init = 0
 	overlays += fruit_overlay
 	plant_strength = rand(20,200)
 
-/obj/structure/jungle_plant/attack_hand(var/mob/user as mob)
+/obj/structure/jungle_plant/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(fruits_left > 0)
 		fruits_left--
 		to_chat(user, "<span class='notice'>You pick a fruit off [src].</span>")
 
 		var/obj/item/reagent_container/food/snacks/grown/jungle_fruit/J = new (src.loc)
 		J.potency = plant_strength
-		J.icon_state = fruit_icon_states[fruit_type]
-		J.reagents.add_reagent(reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))
+		J.icon_state = GLOB.fruit_icon_states[fruit_type]
+		J.reagents.add_reagent(GLOB.reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))
 		J.bitesize = 1+round(J.reagents.total_volume / 2, 1)
 		J.attack_hand(user)
 

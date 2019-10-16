@@ -61,15 +61,18 @@
 		steps++
 
 
-/datum/component/squeak/proc/play_squeak_crossed(atom/movable/AM)
+/datum/component/squeak/proc/play_squeak_crossed(datum/source, atom/movable/AM)
 	if(isitem(AM))
 		var/obj/item/I = AM
 		if(I.flags_item & ITEM_ABSTRACT)
 			return
 		else if(istype(AM, /obj/item/projectile))
 			var/obj/item/projectile/P = AM
-			if(P.original != parent)
+			if(P.original_target != parent)
 				return
+
+	if(isobserver(AM))
+		return
 
 	var/atom/current_parent = parent
 	if(isturf(current_parent.loc))

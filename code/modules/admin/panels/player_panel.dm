@@ -56,7 +56,7 @@
 					locked_tabs = new Array();
 				}
 
-				function expand(id,job,name,real_name,old_names,key,ip,ref){
+				function expand(id, job, name, real_name, old_names, key, ip, cid, ref){
 
 					clearAll();
 
@@ -65,9 +65,9 @@
 
 					body = "<table><tr><td>";
 
-					body += "</td><td align='center'>";
+					body += "</td><td align='left'>";
 
-					body += "<font size='2'>"+job+" "+name+"<br>Real name "+real_name+"<br>Played by "+key+" ("+ip+")<br>Old names: "+old_names+"</font>";
+					body += "<font size='2'>"+job+" - "+name+"<br>Real name: "+real_name+"<br>"+key+" ("+ip+", "+cid+")<br>Old names: "+old_names+"</font>";
 
 					body += "</td><td align='center'>";
 
@@ -213,7 +213,8 @@
 		if(isliving(M))
 			if(iscarbon(M)) //Carbon stuff
 				if(ishuman(M))
-					M_job = M.job
+					var/mob/living/carbon/human/H = M
+					M_job = H.job
 				else if(ismonkey(M))
 					M_job = "Monkey"
 				else if(isxeno(M))
@@ -227,8 +228,6 @@
 			else if(issilicon(M)) //silicon
 				if(isAI(M))
 					M_job = "AI"
-				else if(iscyborg(M))
-					M_job = "Cyborg"
 				else
 					M_job = "Silicon"
 
@@ -251,6 +250,8 @@
 		var/M_name = html_encode(M.name)
 		var/M_rname = html_encode(M.real_name)
 		var/M_key = html_encode(M.key)
+		var/M_cid = html_encode(M.computer_id)
+		var/M_ip = html_encode(M.ip_address)
 
 		var/previous_names = ""
 		var/datum/player_details/P = GLOB.player_details[M.ckey]
@@ -265,14 +266,13 @@
 				<td align='center' bgcolor='[color]'>
 					<span id='notice_span[i]'></span>
 					<a id='link[i]'
-					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.lastKnownIP]","[REF(M)]")'
+					onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[previous_names]","[M_key]","[M.ip_address]","[M.computer_id]","[REF(M)]")'
 					>
 					<b id='search[i]' style='font-weight:normal'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [previous_names]</span>
+					<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job] [M_cid] [M_ip] [previous_names]</span>
 					</a>
 					<br><span id='item[i]'></span>
-					</td>
-				</tr>
+				</td>
 			</tr>
 
 		"}
@@ -318,8 +318,6 @@
 		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>aI</td>"
-		else if(iscyborg(M))
-			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
 		else if(istype(M, /mob/new_player))
@@ -339,7 +337,7 @@
 
 		dat += {"<td align=center><a href='?src=[ref];playerpanel=[REF(M)]'>PP</a></td>
 		<td>[M.computer_id]</td>
-		<td>[M.lastKnownIP]</td>
+		<td>[M.ip_address]</td>
 		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
 		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
 		<td><a href='?src=[ref];showmessageckey=[M.ckey]'>Notes</a></td>
@@ -373,7 +371,7 @@
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
+		body += " <a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key];close=1'>[M.client.holder ? M.client.holder.rank : "Player"]</a>"
 
 	if(isnewplayer(M))
 		body += " <b>Hasn't Entered Game</b> "
@@ -391,15 +389,20 @@
 		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a></b><br>
 		<b>Mob Type:</b> [M.type]<br>
-		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>
-		<b>Mob Faction:</b> [M.faction]<br>"}
+		<b>Mob Location:</b> [AREACOORD(M.loc)]<br>"}
+
+	if(isliving(M))
+		var/mob/living/L = M
+		body += "<b>Mob Faction:</b> [L.faction]<br>"
 
 	if(M.mind?.assigned_role)
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 
-	body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
+	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 		
 	if(M.client)
+		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
+		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
 		body += "<a href='?src=[ref];newbankey=[M.key];newbanip=[M.client.address];newbancid=[M.client.computer_id]'>Ban</a> | "
 	else
 		body += "<a href='?src=[ref];newbankey=[M.key]'>Ban</a> | "
@@ -434,8 +437,9 @@
 
 
 	body += {"<br>
-		<b>Transformation:</b><br>
-		 Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a>
+		<b>Transformation:</b>
+		<br> Special: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> |
+		<a href='?src=[ref];transform=ai;mob=[REF(M)]'>AI</a>
 		<br> Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a>
@@ -448,6 +452,7 @@
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>
 		<br> Alien Tier 2:
 		<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+		<a href='?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
 		<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
 		<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
@@ -457,7 +462,8 @@
 		<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 		<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
 		<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
-		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a>
+		<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> |
+		<a href='?src=[ref];transform=shrike;mob=[REF(M)]'>Shrike</a>
 		<br> Alien Tier 4:
 		<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a>
 		<br>
@@ -465,15 +471,23 @@
 
 
 	if(!isnewplayer(M))
-		body += {"<br><br>
-			<b>Other actions:</b>
-			<br>
-			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
-			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"}
-		if(ishuman(M))
-			body += "| <a href='?src=[ref];setrank=[REF(M)]'>Select Rank</a> | "
-			body += "<a href='?src=[ref];setequipment=[REF(M)]'>Select Equipment</a> | "
-			body += "<a href='?src=[ref];setsquad=[REF(M)]'>Select Squad</a>"
+		body += "<br><br>"
+		body += "<b>Other actions:</b>"
+		body += "<br>"
+		body += "<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> | "
+		body += "<a href='?src=[ref];gib=[REF(M)]'>Gib</a>"
+
+		if(isliving(M))
+			body += "<br>"
+			body += "<a href='?src=[ref];checkcontents=[REF(M)]'>Check Contents</a> | "			
+			body += "<a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
+			body += "<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"
+
+			if(ishuman(M))
+				body += "<br>"
+				body += "<a href='?src=[ref];rankequip=[REF(M)]'>Rank and Equipment</a> | "
+				body += "<a href='?src=[ref];editappearance=[REF(M)]'>Edit Appearance</a> | "
+				body += "<a href='?src=[ref];randomname=[REF(M)]'>Randomize Name</a>"
 
 	log_admin("[key_name(usr)] opened the player panel of [key_name(M)].")
 

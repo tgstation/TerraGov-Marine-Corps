@@ -5,8 +5,8 @@
 	desc = "An extremely expansionistic species of vine."
 	icon = 'icons/effects/spacevines.dmi'
 	icon_state = "Light1"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = FLY_LAYER
 	flags_pass = PASSTABLE|PASSGRILLE
 
@@ -23,24 +23,27 @@
 	var/obj/effect/plant_controller/master = null
 	var/datum/seed/seed
 
-/obj/effect/plantsegment/New()
-	return
-
 /obj/effect/plantsegment/Destroy()
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
 	. = ..()
 
-/obj/effect/plantsegment/attackby(obj/item/W as obj, mob/user as mob)
-	if(iswelder(W))
-		var/obj/item/tool/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			qdel(src)
-	else if(W.heat_source >= 3500)
+/obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(iswelder(I))
+		var/obj/item/tool/weldingtool/WT = I
+		if(!WT.remove_fuel(0, user))
+			return
+
 		qdel(src)
-	else if(W.sharp)
-		switch(W.sharp)
+
+	else if(I.heat >= 3500)
+		qdel(src)
+
+	else if(I.sharp)
+		switch(I.sharp)
 			if(IS_SHARP_ITEM_BIG)
 				qdel(src)
 			if(IS_SHARP_ITEM_ACCURATE)
@@ -51,12 +54,12 @@
 					qdel(src)
 	else
 		manual_unbuckle(user)
+
+
+/obj/effect/plantsegment/attack_hand(mob/living/user)
+	.  = ..()
+	if(.)
 		return
-
-
-
-/obj/effect/plantsegment/attack_hand(mob/user as mob)
-
 	if(user.a_intent == INTENT_HELP && seed && harvest)
 		seed.harvest(user,1)
 		harvest = 0
@@ -67,7 +70,7 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_paw(mob/user as mob)
+/obj/effect/plantsegment/attack_paw(mob/living/carbon/monkey/user)
 	manual_unbuckle(user)
 
 
@@ -106,7 +109,7 @@
 			energy = 2
 			return
 
-		src.opacity = 1
+		src.opacity = TRUE
 		layer = FLY_LAYER
 	else if(!limited_growth)
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")
@@ -126,6 +129,7 @@
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
+				RegisterSignal(V, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
 		// FEED ME, SEYMOUR.
@@ -166,14 +170,13 @@
 
 	// Update bioluminescence.
 	if(seed.biolum)
-		SetLuminosity(1+round(seed.potency/10))
 		if(seed.biolum_colour)
-			l_color = seed.biolum_colour
+			set_light(1 + round(seed.potency / 10), l_color = seed.biolum_colour)
 		else
-			l_color = null
+			set_light(1 + round(seed.potency / 10))
 		return
 	else
-		SetLuminosity(0)
+		set_light(0)
 
 	// Update flower/product overlay.
 	overlays.Cut()
@@ -195,7 +198,7 @@
 			overlays += flower_overlay
 
 /obj/effect/plantsegment/proc/spread()
-	var/direction = pick(cardinal)
+	var/direction = pick(GLOB.cardinals)
 	var/step = get_step(src,direction)
 	if(istype(step,/turf/open/floor))
 		var/turf/open/floor/F = step
@@ -252,16 +255,6 @@
 		die()
 		return
 
-	var/area/A = T.loc
-	if(A)
-		var/light_available
-		if(A.lighting_use_dynamic)
-			light_available = max(0,min(10,T.lighting_lumcount)-5)
-		else
-			light_available =  5
-		if(abs(light_available - seed.ideal_light) > seed.light_tolerance)
-			die()
-			return
 
 /obj/effect/plantsegment/flamer_fire_act()
 	qdel(src)
@@ -287,12 +280,13 @@
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/New()
-	if(!istype(src.loc,/turf/open/floor))
-		qdel(src)
+/obj/effect/plant_controller/Initialize()
+	. = ..()
+	
+	if(!istype(loc,/turf/open/floor))
+		return INITIALIZE_HINT_QDEL
 
-	spawn(0)
-		spawn_piece(src.loc)
+	spawn_piece(loc)
 
 	START_PROCESSING(SSobj, src)
 
@@ -300,7 +294,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/effect/plant_controller/proc/spawn_piece(var/turf/location)
+/obj/effect/plant_controller/proc/spawn_piece(turf/location)
 	var/obj/effect/plantsegment/SV = new(location)
 	SV.limited_growth = src.limited_growth
 	growth_queue += SV

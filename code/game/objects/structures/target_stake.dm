@@ -4,7 +4,7 @@
 	desc = "A thin platform with negatively-magnetized wheels."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
-	density = 1
+	density = TRUE
 	flags_atom = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
@@ -16,7 +16,7 @@
 
 		else // Sanity check: if the pinned target can't be found in immediate view
 			pinned_target = null
-			density = 1
+			density = TRUE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		// Putting objects on the stake. Most importantly, targets
@@ -24,8 +24,8 @@
 			return // get rid of that pinned target first!
 
 		if(istype(W, /obj/item/target))
-			density = 0
-			W.density = 1
+			density = FALSE
+			W.density = TRUE
 			user.drop_held_item()
 			W.loc = loc
 			W.layer = layer + 0.1
@@ -36,8 +36,8 @@
 	attack_hand(mob/user as mob)
 		// taking pinned targets off!
 		if(pinned_target)
-			density = 1
-			pinned_target.density = 0
+			density = TRUE
+			pinned_target.density = FALSE
 			pinned_target.layer = OBJ_LAYER
 
 			pinned_target.loc = user.loc

@@ -2,7 +2,7 @@
 
 /obj/item/trash
 	icon = 'icons/obj/items/trash.dmi'
-	w_class = 2
+	w_class = WEIGHT_CLASS_SMALL
 	desc = "This is rubbish."
 
 /obj/item/trash/raisins
@@ -93,8 +93,9 @@
 	name = "Fortune cookie fortune"
 	icon_state = "fortune" //Thank you Alterist
 
-/obj/item/trash/fortunecookie/Initialize()
-	desc = "The fortune reads. <br><span class='tip'>[pick(GLOB.marinetips)]</span>"
+/obj/item/trash/fortunecookie/Initialize(mapload, ...)
+	. = ..()
+	desc = "The fortune reads. <br><span class='tip'>[pick(SSstrings.get_list_from_file("tips/marine"))]</span>"
 
 /obj/item/trash/c_tube
 	name = "cardboard tube"
@@ -102,7 +103,6 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "c_tube"
 	throwforce = 1
-	w_class = 2
 	throw_speed = 4
 	throw_range = 5
 
@@ -112,11 +112,11 @@
 	desc = "A manky old cigarette butt."
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "cigbutt"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1
 
-/obj/item/trash/cigbutt/New()
-	..()
+/obj/item/trash/cigbutt/Initialize(mapload, ...)
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))
@@ -127,8 +127,8 @@
 	icon_state = "cigarbutt"
 
 
-/obj/item/trash/USCMtray
-	name = "\improper TGMC Tray"
+/obj/item/trash/tgmc_tray
+	name = "\improper TGMC tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 

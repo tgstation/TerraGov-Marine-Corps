@@ -4,10 +4,10 @@
 /obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
+	desc = "A brave janitor cyborg gave its life to produce such an amazing combination of speed and utility."
 	icon_state = "pussywagon"
-	anchored = 0
-	density = 1
-	container_type = OPENCONTAINER
+	anchored = FALSE
+	density = TRUE
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -15,47 +15,51 @@
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	var/move_delay = 2
 
-/obj/structure/bed/chair/janicart/New()
+/obj/structure/bed/chair/janicart/Initialize()
 	. = ..()
-	create_reagents(100)
+	create_reagents(100, OPENCONTAINER)
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	to_chat(user, "[icon2html(src, user)] This [callme] contains [reagents.total_volume] unit\s of water!")
+	. = ..()
+	to_chat(user, "This [callme] contains [reagents.total_volume] unit\s of water!")
 	if(mybag)
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 
 
-/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
+/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
 	if(istype(I, /obj/item/tool/mop))
-		if(reagents.total_volume > 1)
-			reagents.trans_to(I, 2)
-			to_chat(user, "<span class='notice'>You wet [I] in the [callme].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
-		else
+		if(reagents.total_volume <= 1)
 			to_chat(user, "<span class='notice'>This [callme] is out of water!</span>")
+			return
+
+		reagents.trans_to(I, 2)
+		to_chat(user, "<span class='notice'>You wet [I] in the [callme].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+
 	else if(istype(I, /obj/item/key))
 		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
+
 	else if(istype(I, /obj/item/storage/bag/trash))
 		to_chat(user, "<span class='notice'>You hook the trashbag onto the [callme].</span>")
 		user.drop_held_item()
-		I.loc = src
+		I.forceMove(src)
 		mybag = I
-	else
-		. = ..()
 
-
-/obj/structure/bed/chair/janicart/attack_hand(mob/user)
+/obj/structure/bed/chair/janicart/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(mybag)
 		mybag.loc = get_turf(user)
 		user.put_in_hands(mybag)
 		mybag = null
-	else
-		..()
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
-	if(world.time <= l_move_time + move_delay)
+	if(world.time <= last_move_time + move_delay)
 		return
 	if(user.incapacitated(TRUE))
 		unbuckle()
@@ -98,7 +102,7 @@
 				buckled_mob.pixel_y = 7
 
 
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)
@@ -110,4 +114,4 @@
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY

@@ -1,7 +1,7 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
 	name = "CLF"
-	probability = 20
+	probability = 0
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
@@ -19,16 +19,11 @@
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	if(H.gender == MALE)
-		H.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
-		H.real_name = H.name
-		H.voice_name = H.name
-	else
-		H.name = pick(first_names_female_clf) + " " + pick(last_names_clf)
-		H.real_name = H.name
-		H.voice_name = H.name
+	H.name = GLOB.namepool[/datum/namepool/clf].random_name(H)
+	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)
+	H.fully_replace_character_name(M.name, H.real_name)
 
 	if(original)
 		qdel(original)
@@ -37,18 +32,21 @@
 
 	if(!leader)
 		leader = H
-		var/datum/job/J = new /datum/job/clf/leader
-		J.equip(H)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/leader)
+		SSjob.AssignRole(H, J.title)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a leader of the local resistance group, the Colonial Liberation Front.</span>")
 		return
 
 	if(medics < max_medics)
-		var/datum/job/J = new /datum/job/clf/medic
-		J.equip(H)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/medic)
+		SSjob.AssignRole(H, J.title)
+		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a medic of the local resistance group, the Colonial Liberation Front.</span>")
 		medics++
 		return
 
-	var/datum/job/J = new /datum/job/clf/standard
-	J.equip(H)
+	var/datum/job/J = SSjob.GetJobType(/datum/job/clf/standard)
+	SSjob.AssignRole(H, J.title)
+	J.assign_equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the local resistance group, the Colonial Liberation Front.</span>")

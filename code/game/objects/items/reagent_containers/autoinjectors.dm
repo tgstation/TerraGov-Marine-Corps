@@ -5,21 +5,21 @@
 	icon_state = "autoinjector"
 	item_state = "hypo"
 	amount_per_transfer_from_this = 15
-	w_class = 1
+	w_class = WEIGHT_CLASS_TINY
 	volume = 15
 	skilllock = 0
-	container_type = DRAWABLE
-	list_reagents = list("sodiumchloride" = 15)
+	init_reagent_flags = DRAWABLE
+	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/update_icon()
 	if(!(reagents.total_volume) && is_drawable())
 		icon_state += "X"
 		name = "expended [name]" //So people can see what have been expended since we have smexy new sprites people aren't used too...
-		container_type = 0
-	else if(reagents.total_volume && !(container_type)) // refilling it somehow
+		DISABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
+	else if(reagents.total_volume && !CHECK_BITFIELD(reagents.reagent_flags, DRAWABLE)) // refilling it somehow
 		icon_state = initial(icon_state)
 		name = initial(name)
-		container_type = initial(container_type)
+		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
 
 /obj/item/reagent_container/hypospray/autoinjector/examine(mob/user)
 	..()
@@ -32,13 +32,13 @@
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
 	volume = 30
-	list_reagents = list()
+	list_reagents = null
 
 /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
 	name = "tricordrazine autoinjector"
 	desc = "An autoinjector loaded with 15 units of tricordrazine, a weak general use medicine for treating damage."
 	icon_state = "autoinjector-4"
-	list_reagents = list("tricordrazine" = 15)
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
@@ -46,7 +46,7 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 	icon_state = "autoinjector-7"
-	list_reagents = list("quickclot" = 10)
+	list_reagents = list(/datum/reagent/medicine/quickclot = 10)
 
 /obj/item/reagent_container/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
@@ -54,7 +54,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	icon_state = "autoinjector-2"
-	list_reagents = list("dexalinplus" = 1)
+	list_reagents = list(/datum/reagent/medicine/dexalinplus = 1)
 
 /obj/item/reagent_container/hypospray/autoinjector/sleeptoxin
 	name = "anesthetic autoinjector"
@@ -62,19 +62,19 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 	icon_state = "autoinjector-8"
-	list_reagents = list("sleeptoxin" = 10)
+	list_reagents = list(/datum/reagent/toxin/sleeptoxin = 10)
 
 /obj/item/reagent_container/hypospray/autoinjector/dylovene
 	name = "dylovene autoinjector"
 	desc = "An auto-injector loaded with 15 units of dylovene, an anti-toxin agent useful in cases of poisoning, overdoses and toxin build-up."
 	icon_state = "autoinjector-1"
-	list_reagents = list("dylovene" = 15)
+	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
 	desc = "An auto-injector loaded with 15 units of tramadol, a weak but effective painkiller for normal wounds."
 	icon_state = "autoinjector-10"
-	list_reagents = list("tramadol" = 15)
+	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 	name = "oxycodone autoinjector"
@@ -82,25 +82,25 @@
 	amount_per_transfer_from_this = 10
 	volume = 10
 	icon_state = "autoinjector-6"
-	list_reagents = list("oxycodone" = 10)
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
 
 /obj/item/reagent_container/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
 	desc = "An auto-injector loaded with 15 units of kelotane, a common burn medicine."
 	icon_state = "autoinjector-5"
-	list_reagents = list("kelotane" = 15)
+	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/bicaridine
 	name = "bicaridine autoinjector"
 	desc = "An auto-injector loaded with 15 units of bicaridine, a common brute and circulatory damage medicine."
 	icon_state = "autoinjector-3"
-	list_reagents = list("bicaridine" = 15)
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
 	desc = "An auto-injector loaded with 15 units of inaprovaline, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "autoinjector-9"
-	list_reagents = list("inaprovaline" = 15)
+	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
 /obj/item/reagent_container/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
@@ -108,4 +108,23 @@
 	amount_per_transfer_from_this = 3
 	volume = 3
 	icon_state = "autoinjector-8" //TEMP
-	list_reagents = list("hypervene" = 3)
+	list_reagents = list(/datum/reagent/medicine/hypervene = 3)
+
+/obj/item/reagent_container/hypospray/autoinjector/hyperzine/expired
+	name = "expired hyperzine autoinjector"
+	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
+	list_reagents = list(/datum/reagent/medicine/hyperzine = 4, 
+						/datum/reagent/mercury = 1, 
+						/datum/reagent/medicine/dexalin = 8, 
+						/datum/reagent/medicine/inaprovaline = 8, 
+						/datum/reagent/toxin = 4)
+
+/obj/item/reagent_container/hypospray/autoinjector/hyperzine
+	name = "hyperzine autoinjector"
+	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
+	amount_per_transfer_from_this = 25
+	volume = 25
+	icon_state = "autoinjector-1" //TEMP, god willing
+	list_reagents = list(/datum/reagent/medicine/hyperzine = 5, 
+						/datum/reagent/medicine/dexalin = 10, 
+						/datum/reagent/medicine/inaprovaline = 10)

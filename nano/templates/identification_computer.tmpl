@@ -132,9 +132,6 @@
           <div id="all-value.jobs" style='display: none;'>
             <table>
               <tr>
-                <th></th><th>Command</th>
-              </tr>
-              <tr>
                 <th>Special</th>
                 <td>
                   {{:helper.link("Custom", '', {'choice' : 'assign', 'assign_target' : 'Custom'})}}
@@ -185,52 +182,25 @@
                   {{/for}}
                 </td>
               </tr>
-              {{if data.centcom_access}}
-                <tr>
-                  <th style="color: '#A52A2A';">CentCom</th>
-                  <td>
-                    {{for data.centcom_jobs}}
-                      {{if index % 6 === 0}}
-                        </td></tr><tr><th></th><td>
-                      {{/if}}
-
-                      {{:helper.link(value.display_name, '', {'choice' : 'assign', 'assign_target' : value.job}, data.target_rank == value.job ? 'disabled' : null)}}
-                    {{/for}}
-                  </td>
-                </tr>
-              {{/if}}
             </table>
           </div>
         </div>
 
-        {{if data.centcom_access}}
-          <div class='item'>
-            <h2>Central Command</h2>
-          </div>
-          <div class='item' style='width: 100%'>
-            {{for data.all_centcom_access}}
-              <div class='itemContentWide'>
-              {{:helper.link(value.desc, '', {'choice' : 'access', 'access_target' : value.ref, 'allowed' : value.allowed}, null, value.allowed ? 'selected' : null)}}
-              </div>
-            {{/for}}
-          </div>
-        {{else}}
-          <div class='item'>
-            <h2>{{:data.station_name}}</h2>
-          </div>
-          <div class='item' style='width: 100%'>
-            {{for data.regions}}
-              <div style='float: left; width: 175px; min-height: 50px'>
-                <div class='average'><b>{{:value.name}}</b></div>
-                {{for value.accesses :accessValue:accessKey}}
-                  <div class='itemContentWide'>
-                    {{:helper.link(accessValue.desc, '', {'choice' : 'access', 'access_target' : accessValue.ref, 'allowed' : accessValue.allowed}, null, accessValue.allowed ? 'selected' : null)}}
-                  </div>
-                {{/for}}
-              </div>
-            {{/for}}
-          </div>
-        {{/if}}
+        <div class='item'>
+          <h2>{{:data.station_name}}</h2>
+        </div>
+        <div class='item' style='width: 100%'>
+          {{for data.regions}}
+            <div style='float: left; width: 175px; min-height: 50px'>
+              <div class='average'><b>{{:value.name}}</b></div>
+              {{for value.accesses :accessValue:accessKey}}
+                <div class='itemContentWide'>
+                  {{:helper.link(accessValue.desc, '', {'choice' : 'access', 'access_target' : accessValue.ref, 'allowed' : accessValue.allowed}, null, accessValue.allowed ? 'selected' : null)}}
+                </div>
+              {{/for}}
+            </div>
+          {{/for}}
+        </div>
       {{/if}}
     {{/if}}
   {{/if}}

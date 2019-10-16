@@ -7,25 +7,26 @@
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 	var/tmp/atom/BeamSource
-	New()
-		..()
-		spawn(10) qdel(src)
+
+/obj/effect/overlay/beam/Initialize()
+	. = ..()
+	QDEL_IN(src, 1 SECONDS)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/palmtree_l
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
-	density = 1
+	density = TRUE
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/coconut
 	name = "Coconuts"
@@ -45,27 +46,22 @@
 	icon_state = "electricity"
 
 /obj/effect/overlay/temp
-	anchored = 1
+	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
-	New()
-		..()
-		flick(icon_state, src)
-		start_countdown()
-
-/obj/effect/overlay/temp/proc/start_countdown()
-	set waitfor = 0
-	sleep(effect_duration)
-	qdel(src)
+/obj/effect/overlay/temp/Initialize()
+	. = ..()
+	flick(icon_state, src)
+	QDEL_IN(src, effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
-	icon = 'icons/mob/screen1.dmi'
+	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "arrow"
-	anchored = 1
+	anchored = TRUE
 	effect_duration = 25
 
 /obj/effect/overlay/temp/point/big
@@ -77,7 +73,6 @@
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
@@ -88,14 +83,12 @@
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
 		source_binoc = null
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target2"
 	effect_duration = 600
@@ -104,19 +97,19 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/New(loc, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
 	target_id = UNIQUEID //giving it a unique id.
-	active_laser_targets += src
+	GLOB.active_laser_targets += src
 	squad = assigned_squad
 	if(squad)
 		squad.squad_laser_targets += src
 	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Destroy()
-	active_laser_targets -= src
+	GLOB.active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
 		squad = null
@@ -127,7 +120,6 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	SetLuminosity(0)
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
@@ -143,26 +135,18 @@
 /obj/effect/overlay/temp/blinking_laser
 	name = "blinking laser"
 	anchored = TRUE
-	luminosity = 2
 	effect_duration = 10
 	mouse_opacity = 0
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	. = ..()
 
 /obj/effect/overlay/temp/sniper_laser
 	name = "laser"
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
@@ -171,7 +155,7 @@
 	effect_duration = 10
 
 	New(loc)
-		setDir(pick(cardinal))
+		setDir(pick(GLOB.cardinals))
 		..()
 
 /obj/effect/overlay/temp/emp_pulse
@@ -185,14 +169,10 @@
 	name = "tanklaser"
 	anchored = TRUE
 	mouse_opacity = 0
-	luminosity = 2
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 	effect_duration = 20
 
-/obj/effect/overlay/temp/tank_laser/Destroy()
-	SetLuminosity(0)
-	return ..()
 
 
 //gib animation
@@ -201,11 +181,11 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/New(Loc, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, mob/source_mob, gib_icon)
+	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	..()
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
 	return
@@ -220,9 +200,9 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+	. = ..()
 	icon = new_icon
-	..()
 
 
 
@@ -232,8 +212,8 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/New(Loc, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, mob/source_mob, gib_icon)
+	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	return ..()

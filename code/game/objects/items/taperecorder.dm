@@ -3,11 +3,10 @@
 	name = "universal recorder"
 	icon_state = "taperecorderidle"
 	item_state = "analyzer"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 
-	matter = list("metal" = 60,"glass" = 30)
+	materials = list(/datum/material/metal = 60, /datum/material/glass = 30)
 
-	var/emagged = 0.0
 	var/recording = 0.0
 	var/playing = 0.0
 	var/timerecorded = 0.0
@@ -20,41 +19,18 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/taperecorder/hear_talk(mob/living/M as mob, msg, var/verb="says", var/speaking, var/italics = 0)
+/obj/item/taperecorder/Hear(message, atom/movable/speaker, message_langs, raw_message, radio_freq, spans, message_mode)
+	. = ..()
+
 	if(recording)
-		timestamp+= timerecorded
-		storedinfo += "\[[time2text(timerecorded*10,"mm:ss")]\] [M.name] [verb], \"[italics ? "<i>" : ""][msg][italics ? "</i>" : ""]\""
-		return
-
-/obj/item/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/card/emag))
-		if(emagged == 0)
-			emagged = 1
-			recording = 0
-			to_chat(user, "<span class='warning'>PZZTTPFFFT</span>")
-			icon_state = "taperecorderidle"
-		else
-			to_chat(user, "<span class='warning'>It is already emagged!</span>")
-
-/obj/item/taperecorder/proc/explode()
-	var/turf/T = get_turf(loc)
-	if(ismob(loc))
-		var/mob/M = loc
-		to_chat(M, "<span class='danger'>[src] explodes!</span>")
-	if(T)
-		explosion(T, -1, -1, 0, 4)
-	qdel(src)
-	return
+		timestamp += timerecorded
+		storedinfo += "\[[time2text(timerecorded * 10, "mm:ss")]\] [speaker.name]: \"[message]\""
 
 /obj/item/taperecorder/verb/record()
 	set name = "Start Recording"
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(emagged == 1)
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
@@ -80,9 +56,6 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
-		return
 	if(recording == 1)
 		recording = 0
 		timestamp+= timerecorded
@@ -104,9 +77,6 @@
 
 	if(usr.stat)
 		return
-	if(emagged == 1)
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
-		return
 	if(recording == 1 || playing == 1)
 		to_chat(usr, "<span class='notice'>You can't clear the memory while playing or recording!</span>")
 		return
@@ -123,9 +93,6 @@
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(emagged == 1)
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
 		to_chat(usr, "<span class='notice'>You can't playback when recording!</span>")
@@ -158,23 +125,6 @@
 		i++
 	icon_state = "taperecorderidle"
 	playing = 0
-	if(emagged == 1.0)
-		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Device will self-destruct in... Five.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Four.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Three.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: Two.</font>")
-		sleep(10)
-		T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>[src]</B>: One.</font>")
-		sleep(10)
-		explode()
 
 
 /obj/item/taperecorder/verb/print_transcript()
@@ -182,9 +132,6 @@
 	set category = "Object"
 
 	if(usr.stat)
-		return
-	if(emagged == 1)
-		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(!canprint)
 		to_chat(usr, "<span class='notice'>The recorder can't print that fast!</span>")
@@ -207,9 +154,6 @@
 /obj/item/taperecorder/attack_self(mob/user)
 	if(recording == 0 && playing == 0)
 		if(usr.stat)
-			return
-		if(emagged == 1)
-			to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)
@@ -240,9 +184,7 @@
 			return
 		else if(playing == 1)
 			playing = 0
-			var/turf/T = get_turf(src)
-			for(var/mob/O in hearers(world.view-1, T))
-				O.show_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>",2)
+			audible_message("<font color=Maroon><B>[src]</B>: Playback stopped.</font>")
 			icon_state = "taperecorderidle"
 			return
 		else
