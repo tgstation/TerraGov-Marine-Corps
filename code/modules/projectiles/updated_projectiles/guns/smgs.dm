@@ -77,6 +77,8 @@
 	scatter = 20
 	scatter_unwielded = 25
 	fire_delay = 0.2 SECONDS
+	aim_slowdown = 0.1
+	burst_amount = 2
 
 
 //-------------------------------------------------------
