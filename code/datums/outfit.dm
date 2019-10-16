@@ -59,7 +59,10 @@
 	if(mask)
 		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK)
 	if(ears)
-		H.equip_to_slot_or_del(new ears(H),SLOT_EARS)
+		if(visualsOnly)
+			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS) //We don't want marine cameras. For now they have the same item_state as the rest.
+		else
+			H.equip_to_slot_or_del(new ears(H), SLOT_EARS)
 	if(glasses)
 		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES)
 	if(id)
