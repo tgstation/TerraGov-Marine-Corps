@@ -877,19 +877,19 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	var/dat = ""
 
 	if(locked)
 		dat += "<hr>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a><BR>"
 	else
 		dat += "<hr><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | Unlock Console<BR>"
-	
+
 	if(release_notice)
 		dat += "<hr>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a><BR>"
 	else
 		dat += "<hr><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | Notifications Off<BR>"
-	
+
 	dat += "<hr><font color='#487553'><B>Occupant Statistics:</B></FONT><BR>"
 	if(!connected.occupant)
 		dat += "No occupant detected."
@@ -908,9 +908,9 @@
 			t1 = "<font color='#b54646'>*Dead*</font>"
 	var/operating
 	switch(connected.surgery)
-		if(0) 
+		if(0)
 			operating = "Not in surgery"
-		if(1) 
+		if(1)
 			operating = "<font color='#b54646'><B>SURGERY IN PROGRESS: MANUAL EJECTION ONLY TO BE ATTEMPTED BY TRAINED OPERATORS!</B></FONT>"
 	dat += text("[]\tHealth %: [] ([])</FONT><BR>", (connected.occupant.health > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"), round(connected.occupant.health), t1)
 	var/pulse = connected.occupant.handle_pulse()
@@ -1064,7 +1064,7 @@
 			var/datum/data/record/R = i
 			if(R.fields["name"] == connected.occupant.real_name)
 				N = R
-		
+
 		if(isnull(N))
 			N = create_medical_record(connected.occupant)
 
@@ -1191,7 +1191,7 @@
 		// The rest
 		if(href_list["clear"])
 			N.fields["autodoc_manual"] = list()
-	
+
 	if(href_list["locktoggle"]) //Toggle the autodoc lock on/off if we have authorization.
 		if(allowed(usr))
 			locked = !locked
@@ -1199,7 +1199,7 @@
 		else
 			to_chat(usr, "<span class='warning'>Access denied.</span>")
 			playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
-	
+
 	if(href_list["noticetoggle"]) //Toggle notifications on/off if we have authorization.
 		if(allowed(usr))
 			release_notice = !release_notice
@@ -1216,7 +1216,7 @@
 
 	if(href_list["ejectify"])
 		connected.eject()
-		
+
 	updateUsrDialog()
 
 

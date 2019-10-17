@@ -59,7 +59,7 @@ BSQL_DEL_PROC(/datum/BSQL_Connection)
 		return
 
 	return new /datum/BSQL_Operation/Query(src, op_id)
-	
+
 /datum/BSQL_Connection/Quote(str)
 	if(!str)
 		return null;

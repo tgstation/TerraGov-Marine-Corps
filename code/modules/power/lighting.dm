@@ -101,7 +101,7 @@
 				icon_state = "tube-empty"
 			if("bulb")
 				icon_state = "bulb-empty"
-		
+
 		stage = 3
 		user.visible_message("[user] closes [src]'s casing.", \
 			"You close [src]'s casing.", "You hear a noise.")
@@ -211,7 +211,7 @@
 /obj/machinery/light/LateInitialize()
 	var/area/A = get_area(src)
 	seton(A.lightswitch && A.power_light)
-	
+
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)

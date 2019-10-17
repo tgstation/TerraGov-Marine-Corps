@@ -1,6 +1,6 @@
 /datum/buildmode_mode/boom
 	key = "boom"
-	
+
 	var/devastation = -1
 	var/heavy = -1
 	var/light = -1
@@ -16,16 +16,16 @@
 
 /datum/buildmode_mode/boom/change_settings(client/c)
 	devastation = input(c, "Range of total devastation. -1 to none", text("Input")) as num|null
-	if(devastation == null) 
+	if(devastation == null)
 		devastation = -1
 	heavy = input(c, "Range of heavy impact. -1 to none", text("Input")) as num|null
-	if(heavy == null) 
+	if(heavy == null)
 		heavy = -1
 	light = input(c, "Range of light impact. -1 to none", text("Input")) as num|null
-	if(light == null) 
+	if(light == null)
 		light = -1
 	flash = input(c, "Range of flash. -1 to none", text("Input")) as num|null
-	if(flash == null) 
+	if(flash == null)
 		flash = -1
 
 

@@ -329,7 +329,7 @@
 
 	if(!start_cut(user, O.name, O))
 		return TRUE
-		
+
 	if(!do_after(user, calc_delay(user), TRUE, O, BUSY_ICON_HOSTILE))
 		return TRUE
 

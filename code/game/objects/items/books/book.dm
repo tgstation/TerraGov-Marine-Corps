@@ -22,7 +22,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(carved)
 		if(!store)
 			visible_message("<span class='notice'>The pages of [title] have been cut out!</span>")
@@ -31,7 +31,7 @@
 			store.forceMove(get_turf(loc))
 			store = null
 		return
-	
+
 	if(isliving(user))
 		user.visible_message("[user] opens \"[title]\".")
 
@@ -47,7 +47,7 @@
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
-		
+
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
@@ -90,11 +90,11 @@
 		to_chat(user, "<span class='notice'>You put [I] in [title].</span>")
 
 	else if(istype(I, /obj/item/tool/kitchen/knife) || iswirecutter(I))
-		if(carved)	
+		if(carved)
 			return
 
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
-		
+
 		if(!do_after(user, 30, TRUE, src))
 			return
 

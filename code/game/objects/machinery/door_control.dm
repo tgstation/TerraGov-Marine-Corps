@@ -36,7 +36,7 @@
 		return
 	if(istype(I, /obj/item/detective_scanner))
 		return
-	else 
+	else
 		return attack_hand(user)
 
 /obj/machinery/door_control/proc/handle_door()

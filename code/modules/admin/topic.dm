@@ -32,7 +32,7 @@
 			to_chat(usr, "<span class='warning'>Ticket [ahelp_ref] has been deleted!</span>")
 			return
 
-		AH.Action(href_list["ahelp_action"])		
+		AH.Action(href_list["ahelp_action"])
 
 
 	else if(href_list["ahelp_tickets"])
@@ -741,7 +741,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			else if(!F.marked)
 				F.marked = usr.client.key
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
-			
+
 			sender = F.sender
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
@@ -782,7 +782,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 						return
 					if(addressed == "Sender")
 						addressed_to = "[sender.real_name]"
-						
+
 				if(!addressed_to)
 					addressed_to = input("Who is it addressed to?", "Fax Message", "") as text|null
 				var/message_body = input("Please enter a message to send via secure connection.", "Fax Message", "") as message|null
@@ -1265,8 +1265,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		GLOB.custom_outfits += O
 
-		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.") 
-		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.") 
+		log_admin("[key_name(usr)] created a \"[O.name]\" outfit.")
+		message_admins("[ADMIN_TPMONTY(usr)] created a \"[O.name]\" outfit.")
 
 
 	else if(href_list["load_outfit"])
@@ -1309,8 +1309,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 		var/datum/outfit/O = locate(href_list["chosen_outfit"]) in GLOB.custom_outfits
 		GLOB.custom_outfits -= O
-		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.") 
-		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.") 
+		log_admin("[key_name(usr)] deleted the \"[O.name]\" outfit.")
+		message_admins("[ADMIN_TPMONTY(usr)] deleted the \"[O.name]\" outfit.")
 		qdel(O)
 		outfit_manager()
 
@@ -2071,9 +2071,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					return
 
 				X.transfer_to_hive(change)
-			
+
 			if("nicknumber")
-				previous = X.nicknumber 
+				previous = X.nicknumber
 
 				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
 				if(!change || change == previous)
@@ -2087,7 +2087,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				X.generate_name()
 
 			if("upgrade")
-				previous = X.xeno_caste.upgrade 
+				previous = X.xeno_caste.upgrade
 
 				change = input("Select a new upgrade tier.", "Xeno Panel") as null|anything in (GLOB.xenoupgradetiers - XENO_UPGRADE_BASETYPE - XENO_UPGRADE_INVALID)
 				if(!change || change == previous)

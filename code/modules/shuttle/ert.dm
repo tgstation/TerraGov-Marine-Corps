@@ -112,7 +112,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(href_list["depart"])
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()

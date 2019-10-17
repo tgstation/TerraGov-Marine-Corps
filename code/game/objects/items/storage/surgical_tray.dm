@@ -7,8 +7,8 @@
 	storage_slots = 12
 	max_storage_space = 24
 	can_hold = list(
-		/obj/item/tool/surgery, 
-		/obj/item/stack/medical/advanced/bruise_pack, 
+		/obj/item/tool/surgery,
+		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste)
 
 /obj/item/storage/surgical_tray/Initialize(mapload, ...)

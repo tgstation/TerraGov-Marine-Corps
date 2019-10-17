@@ -192,7 +192,7 @@
 	<BR>
 	<B><A href='byond://?src=\ref[src];flush=1'>Flush Hypospray (Empties the hypospray of all contents):</A></B><BR>
 	<BR>"}
-	
+
 	var/datum/browser/popup = new(user, "hypospray")
 	popup.set_content(dat)
 	popup.open()
@@ -243,7 +243,7 @@
 		var/N = input("Amount per transfer from this:", "[src]") as null|anything in list(1, 3, 5, 10, 15)
 		if(!N)
 			return
-			
+
 		amount_per_transfer_from_this = N
 
 	else if(href_list["flush"])

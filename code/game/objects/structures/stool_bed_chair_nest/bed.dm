@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine linked medvac beacon is unpowered.</span>")
 		return
-	
+
 	if(is_centcom_level(linked_beacon.z)) // No. No using teleportation to teleport to the adminzone.
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		to_chat(user, "<span class='warning'>[src]'s beacon is out of range!</span>")

@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(chat)
 		for(var/I in target)
 			var/mob/M = I
 			var/client/C = istype(M) ? M.client : I
-			
+
 			if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
 				SEND_TEXT(C, original_message)
 				continue

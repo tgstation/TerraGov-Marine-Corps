@@ -270,7 +270,7 @@
 				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 
-			if(prob(15))	
+			if(prob(15))
 				M.knock_down(5)
 			M.apply_damage(8, BRUTE, "head")
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",

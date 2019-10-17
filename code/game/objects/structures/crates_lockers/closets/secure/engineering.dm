@@ -122,7 +122,7 @@
 	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
 		new /obj/item/clothing/suit/storage/snow_suit(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
-		new /obj/item/clothing/mask/rebreather(src)	
+		new /obj/item/clothing/mask/rebreather(src)
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"

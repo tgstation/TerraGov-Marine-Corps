@@ -135,7 +135,7 @@
 	var/stored_data = get_json_data()
 	var/json = json_encode(stored_data)
 	//Kinda annoying but as far as i can tell you need to make actual file.
-	var/f = file("data/TempOutfitUpload") 
+	var/f = file("data/TempOutfitUpload")
 	fdel(f)
 	WRITE_FILE(f, json)
 	usr << ftp(f, "[name].json")
@@ -175,4 +175,4 @@
 		if(imptype)
 			implants += imptype
 	accessory = text2path(outfit_data["accessory"])
-	return TRUE 
+	return TRUE

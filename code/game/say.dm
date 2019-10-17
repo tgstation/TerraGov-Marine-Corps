@@ -75,7 +75,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	return radio_freq ? "\[[get_radio_name(radio_freq)][job ? " ([job])": ""]\] " : ""
 
 
-/atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq) 
+/atom/movable/proc/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 

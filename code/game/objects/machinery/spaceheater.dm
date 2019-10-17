@@ -66,7 +66,7 @@
 
 		if(!user.transferItemToLoc(C, src))
 			return
-			
+
 		cell = C
 
 		user.visible_message("<span class='notice'> [user] inserts a power cell into [src].</span>", "<span class='notice'> You insert the power cell into [src].</span>")
@@ -87,7 +87,7 @@
 		start_processing()
 	else
 		stop_processing()
-	
+
 	user.visible_message("<span class='notice'> [user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'> You switch [on ? "on" : "off"] the [src].</span>")
 	update_icon()
 

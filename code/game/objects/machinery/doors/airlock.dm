@@ -309,7 +309,7 @@
 			user.visible_message("<span class='notice'>[user.name] has repaired [src].</span>", \
 								"<span class='notice'>You finish repairing the airlock.</span>")
 			update_icon()
-				
+
 
 	else if(isscrewdriver(I))
 		if(no_panel)
@@ -319,7 +319,7 @@
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
 		update_icon()
-		
+
 	else if(iswirecutter(I))
 		return attack_hand(user)
 
@@ -347,7 +347,7 @@
 
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
-		
+
 		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -610,7 +610,7 @@
 		return
 
 	if(emergency)
-		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")		
+		to_chat(user, "<span class='warning'>Emergency access is already enabled.</span>")
 		return
 
 	emergency = TRUE
@@ -647,7 +647,7 @@
 		return
 
 	unbolt()
-		
+
 
 
 /obj/machinery/door/airlock/proc/bolt_drop(mob/user)

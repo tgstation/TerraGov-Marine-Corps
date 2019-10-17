@@ -105,14 +105,14 @@
 // attack with item, place item on conveyor
 /obj/machinery/conveyor/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
-		
+
 		if(ismob(G.grabbed_thing))
 			var/mob/GM = G.grabbed_thing
 			step(GM, get_dir(GM, src))
-			
+
 	else
 		user.transferItemToLoc(I, loc)
 
@@ -200,7 +200,7 @@
 
 /obj/machinery/conveyor_switch/Initialize()
 	. = ..()
-	
+
 	update()
 	start_processing()
 

@@ -316,7 +316,7 @@
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
 		id_card = W.front_id
-	
+
 	return istype(id_card) ? id_card : null
 
 

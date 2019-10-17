@@ -73,7 +73,7 @@
 			P.picture_image.Crop(cropx, cropy, psize_x - cropx, psize_y - cropy)
 		P.regenerate_small_icon()
 	return P
-	
+
 
 /obj/item/camera_film
 	name = "film cartridge"

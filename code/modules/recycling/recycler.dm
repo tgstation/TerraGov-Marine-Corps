@@ -42,6 +42,6 @@
 			total_material *= stack.get_amount()
 
 		stored_materials[material] += total_material
-	
+
 	qdel(I)
 	playsound(loc, 'sound/items/welder.ogg', 30, 1)

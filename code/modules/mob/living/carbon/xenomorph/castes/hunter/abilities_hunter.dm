@@ -38,7 +38,7 @@
 		stealthy_beno.cancel_stealth()
 		add_cooldown()
 		return TRUE
-	
+
 	succeed_activate()
 	to_chat(stealthy_beno, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	stealthy_beno.last_stealth = world.time

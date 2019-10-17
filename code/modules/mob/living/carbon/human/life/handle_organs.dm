@@ -45,7 +45,7 @@
 				var/datum/internal_organ/I = pick(E.internal_organs)
 				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
 				I.take_damage(rand(3,5))
-	
+
 			//Moving makes open wounds get infected much faster
 			for(var/j in E.wounds)
 				var/datum/wound/W = j

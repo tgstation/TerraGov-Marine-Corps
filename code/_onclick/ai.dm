@@ -22,7 +22,7 @@
 /mob/living/silicon/ai/ClickOn(atom/A, params)
 	if(world.time <= next_click)
 		return
-		
+
 	next_click = world.time + 1
 
 	if(multicam_on)
