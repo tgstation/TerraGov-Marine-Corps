@@ -381,9 +381,9 @@ Contains most of the procs that are called when a mob is attacked by something
 	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 	var/dist_pct = get_dist(src, Q) / screech_range
 
-	// Intensity is reduced by a 30% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
+	// Intensity is reduced by a 30% if you can't see the queen. Hold orders will reduce by an extra 15% per rank.
 	var/reduce_within_sight = within_sight ? 1 : 0.7
-	var/reduce_prot_aura = protection_aura * 0.1
+	var/reduce_prot_aura = protection_aura * 0.15
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
 	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge

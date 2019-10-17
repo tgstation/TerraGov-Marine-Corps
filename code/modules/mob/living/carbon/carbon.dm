@@ -87,7 +87,7 @@
 		if(offhand && (offhand.flags_item & WIELDED))
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
-		else 
+		else
 			wielded_item.unwield(src) //Get rid of it.
 	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
 		wielded_item.zoom(src)
@@ -166,7 +166,7 @@
 					if(ishuman(src))
 						var/mob/living/carbon/human/H = src
 						if(H.protection_aura)
-							halloss_mod += 0.5 + 0.5 * H.protection_aura //SL Hold Aura bonus: +100% of the normal recovery bonus, SO: +150%, XO/CO: +200%
+							halloss_mod += 0.8 + 0.8 * H.protection_aura //SL Hold Aura bonus: +160% of the normal recovery bonus, SO: +240%, XO/CO: +32	0%
 					adjustHalLoss(REST_HALLOSS_RECOVERY_RATE * halloss_mod) //UP AND AT THEM SOLDIER!!
 
 
@@ -268,7 +268,7 @@
 	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR>"}
-	
+
 	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
 	popup.set_content(dat)
 	popup.open()

@@ -73,7 +73,7 @@
 		. += slowdown
 
 	if(mobility_aura)
-		. -= 0.1 + 0.1 * mobility_aura
+		. -= 0.1 + 0.2 * mobility_aura // make MOVE order actually do something
 
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
@@ -113,7 +113,7 @@
 	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
 /mob/living/carbon/human/Process_Spacemove()
-	if(restrained())	
+	if(restrained())
 		return FALSE
 
 	return ..()

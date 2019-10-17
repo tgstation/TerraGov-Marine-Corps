@@ -21,8 +21,8 @@
 			command_aura = null
 
 		if(stat == CONSCIOUS)
-			command_aura_strength = mind.cm_skills.leadership - 1
-			var/command_aura_range = round(4 + command_aura_strength * 1)
+			command_aura_strength = mind.cm_skills.leadership // previously it was mind.cm_skills.leadership = 1 , so I merely doubled all effects
+			var/command_aura_range = round(6 + command_aura_strength * 1) // a little more than the entire screen if your skill is TRAINED
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
 				if(command_aura == "move" && command_aura_strength > H.mobility_new)
 					H.mobility_new = command_aura_strength
@@ -42,7 +42,7 @@
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
-		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO
+		aura_recovery_multiplier = 1 + max(0,0.5 + 0.5 * protection_aura) //Protection aura adds +50% recovery rate per point of leadership; +100% for an SL +200% for a CO/XO <--- unsure about that for now, I guess it's 100% for SL and 200% for CO/XO
 		dizzy(- 3 * aura_recovery_multiplier + 3)
 		jitter(- 3 * aura_recovery_multiplier + 3)
 	hud_set_order()
