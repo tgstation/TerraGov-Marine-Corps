@@ -647,6 +647,6 @@
 
 /mob/living/carbon/xenomorph/proc/bump_attack(datum/source, atom/A)
 	if(throwing || !isliving(A) || incapacitated() || next_move > world.time || a_intent == INTENT_HELP)
-		return NONE
+		return COMPONENT_MOVABLE_BUMP_RESOLVED
 	UnarmedAttack(A, TRUE)
-	return COMPONENT_BUMP_RESOLVED
+	return COMPONENT_MOVABLE_BUMP_RESOLVED

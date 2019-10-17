@@ -13,7 +13,6 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 15
-	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
 

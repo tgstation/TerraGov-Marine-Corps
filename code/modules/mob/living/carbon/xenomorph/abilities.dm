@@ -51,7 +51,7 @@
 
 	add_cooldown()
 	active = !active
-	to_chat(X, "<span class='notice'>You will [active ? "now" : "no longer"] attack when bumping into someone.</span>")
+	to_chat(X, "<span class='notice'>You will now [active ? "attack" : "push"] those who are in your way.</span>")
 
 	if(active)
 		X.RegisterSignal(X, COMSIG_MOVABLE_BUMP, /mob/living/carbon/xenomorph/.proc/bump_attack)
