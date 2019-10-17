@@ -190,6 +190,7 @@
 
 
 /atom/movable/Bump(atom/A)
+	SHOULD_CALL_PARENT(1)
 	if(!A)
 		CRASH("Bump was called with no argument.")
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
