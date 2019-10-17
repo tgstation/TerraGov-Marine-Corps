@@ -1656,12 +1656,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"dm" = (
-/obj/machinery/door_control{
-	id = "aft_engine_podlock"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/medical)
 "dy" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1687,72 +1681,7 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"eW" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"gV" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 8
-	},
-/obj/structure/barricade/metal{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"ru" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"rN" = (
-/obj/machinery/door_control{
-	id = "aft_engine_podlock"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/general)
-"tl" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
-/area/shuttle/canterbury/general)
-"uL" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/closet/crate/trashcart,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
-"uM" = (
+"gf" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "starboard_umbilical_outer";
 	name = "\improper Umbillical Airlock"
@@ -1765,13 +1694,30 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"Oh" = (
-/obj/effect/landmark/start/marine/crash/synthetic,
+"iW" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/mainship{
-	icon_state = "orangefull"
+	icon_state = "test_floor5"
 	},
 /area/shuttle/canterbury/general)
-"Vd" = (
+"nF" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock";
+	pixel_x = 32
+	},
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"oc" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "port_umbilical_outer";
 	name = "\improper Umbillical Airlock"
@@ -1785,7 +1731,38 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"Ve" = (
+"vS" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"yR" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock"
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/canterbury/general)
+"zN" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"LO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
@@ -1796,10 +1773,36 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
+"Oh" = (
+/obj/effect/landmark/start/marine/crash/synthetic,
+/turf/open/floor/mainship{
+	icon_state = "orangefull"
+	},
+/area/shuttle/canterbury/general)
+"Ql" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"Rl" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury/medical)
-"XA" = (
+"WM" = (
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
@@ -1843,7 +1846,7 @@ aa
 aa
 aa
 as
-Vd
+oc
 aG
 aG
 aG
@@ -1895,10 +1898,10 @@ aa
 aa
 aa
 as
-gV
+vS
 aO
 aE
-eW
+zN
 as
 bw
 bk
@@ -1925,7 +1928,7 @@ ax
 aH
 aP
 cD
-XA
+WM
 bl
 dl
 bx
@@ -2014,7 +2017,7 @@ Wo
 Wo
 Wo
 Wo
-dm
+ch
 dc
 df
 dE
@@ -2042,7 +2045,7 @@ cJ
 cU
 as
 dj
-df
+nF
 dE
 "}
 (10,1,1) = {"
@@ -2069,7 +2072,7 @@ cV
 cm
 dg
 as
-rN
+yR
 "}
 (11,1,1) = {"
 ab
@@ -2081,7 +2084,7 @@ aD
 aL
 aT
 da
-Ve
+LO
 be
 bq
 bC
@@ -2103,10 +2106,10 @@ aa
 aa
 aa
 as
-tl
+Ql
 aO
 aY
-ru
+iW
 as
 bf
 br
@@ -2119,7 +2122,7 @@ cA
 cM
 cW
 as
-uL
+Rl
 as
 aa
 "}
@@ -2155,7 +2158,7 @@ aa
 aa
 aa
 as
-uM
+gf
 bS
 bS
 bS
