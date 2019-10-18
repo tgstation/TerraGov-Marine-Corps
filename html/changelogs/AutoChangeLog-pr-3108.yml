@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a bug in where only admins would suffer a 5 minutes cooldown before they could rejoin as xeno, or anything. In compensation, reduced the time to only 2 minutes, where before it was zero for everyone else."
