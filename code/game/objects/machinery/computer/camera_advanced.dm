@@ -74,7 +74,11 @@
 
 
 /obj/machinery/computer/camera_advanced/check_eye(mob/living/user)
-	if(machine_stat & (NOPOWER|BROKEN) || !Adjacent(user) || is_blind(user) || user.incapacitated(TRUE))
+	if(machine_stat & (NOPOWER|BROKEN) || user.incapacitated(TRUE))
+		user.unset_interaction()
+	if(isAI(user))
+		return
+	if(!Adjacent(user) || is_blind(user))
 		user.unset_interaction()
 
 

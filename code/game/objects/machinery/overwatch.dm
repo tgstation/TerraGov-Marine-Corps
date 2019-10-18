@@ -385,19 +385,19 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
-			if(isAI(usr))
-				return
 			selected_target = locate(href_list["selected_target"])
-			var/atom/cam_target = locate(href_list["cam_target"])
-			open_prompt(usr)
-			eyeobj.setLoc(get_turf(cam_target))
-			if(isliving(cam_target))
-				var/mob/living/L = cam_target
-				track(L)
-			else
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
+			if(!isAI(usr))
+				var/atom/cam_target = locate(href_list["cam_target"])
+				open_prompt(usr)
+				eyeobj.setLoc(get_turf(cam_target))
+				if(isliving(cam_target))
+					var/mob/living/L = cam_target
+					track(L)
+				else
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
 
 	updateUsrDialog()
+
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
 	. = ..()
