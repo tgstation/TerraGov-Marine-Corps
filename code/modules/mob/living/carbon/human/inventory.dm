@@ -126,7 +126,7 @@
 /mob/living/carbon/human/doUnEquip(obj/item/I)
 	. = ..()
 	switch(.)
-		if(COMSIG_ITEM_DROPPED)
+		if(ITEM_UNEQUIP_DROPPED)
 			return
 		if(ITEM_UNEQUIP_UNEQUIPPED)
 			if(I.flags_armor_protection)
