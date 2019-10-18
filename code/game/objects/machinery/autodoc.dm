@@ -578,7 +578,7 @@
 		sleep(INCISION_MANAGER_MAX_DURATION*surgery_mod)
 		if(!surgery) return
 		L.createwound(CUT, 1)
-		L.clamp() //Hemostat function, clamp bleeders
+		L.clamp_bleeder() //Hemostat function, clamp bleeders
 		L.surgery_open_stage = 2 //Can immediately proceed to other surgery steps
 		target.updatehealth()
 
