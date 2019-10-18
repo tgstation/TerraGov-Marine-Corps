@@ -13,7 +13,7 @@
 /datum/hud/human/New(mob/living/carbon/human/owner, ui_style='icons/mob/screen/White.dmi', ui_color = "#ffffff", ui_alpha = 230)
 	. = ..()
 	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
-	
+
 	var/datum/hud_data/hud_data
 	if(!istype(owner))
 		hud_data = new()
@@ -247,7 +247,7 @@
 
 
 /datum/hud/human/hidden_inventory_update(mob/viewer)
-	if(!mymob) 
+	if(!mymob)
 		return
 
 	var/mob/living/carbon/human/H = mymob
@@ -282,26 +282,26 @@
 			H.head.screen_loc = ui_head
 			screenmob.client.screen += H.head
 	else
-		if(H.shoes)		
+		if(H.shoes)
 			screenmob.client.screen -= H.shoes
-		if(H.gloves)	
+		if(H.gloves)
 			screenmob.client.screen -= H.gloves
-		if(H.wear_ear)		
+		if(H.wear_ear)
 			screenmob.client.screen -= H.wear_ear
-		if(H.glasses)	
+		if(H.glasses)
 			screenmob.client.screen -= H.glasses
-		if(H.w_uniform)	
+		if(H.w_uniform)
 			screenmob.client.screen -= H.w_uniform
-		if(H.wear_suit)	
+		if(H.wear_suit)
 			screenmob.client.screen -= H.wear_suit
-		if(H.wear_mask)	
+		if(H.wear_mask)
 			screenmob.client.screen -= H.wear_mask
-		if(H.head)		
+		if(H.head)
 			screenmob.client.screen -= H.head
 
 
 /datum/hud/human/persistent_inventory_update(mob/viewer)
-	if(!mymob) 
+	if(!mymob)
 		return
 
 	. = ..()

@@ -203,4 +203,4 @@
 	playsound(X, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
 	add_cooldown()
-	
+

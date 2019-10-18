@@ -41,4 +41,4 @@
 
 /datum/xeno_caste/larva/young
 	upgrade = XENO_UPGRADE_INVALID
-	
+

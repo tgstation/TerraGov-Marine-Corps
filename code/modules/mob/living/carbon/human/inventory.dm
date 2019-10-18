@@ -1,6 +1,6 @@
 /mob/living/carbon/human/proc/do_quick_equip()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	
+
 	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 

@@ -163,10 +163,10 @@
 
 	if(charger.incapacitated())
 		return FALSE
-	
+
 	if(charge_dir != charger.dir || charger.moving_diagonally)
 		return FALSE
-	
+
 	if(charger.pulledby)
 		return FALSE
 
@@ -175,7 +175,7 @@
 
 	if(charger.plasma_stored < CHARGE_MAX_SPEED)
 		return FALSE
-	
+
 	return TRUE
 
 
@@ -250,12 +250,12 @@
 			CRASH("[crushed] returned null from do_crush()")
 		if(COMPONENT_MOVABLE_PREBUMP_STOPPED, COMPONENT_MOVABLE_PREBUMP_PLOWED)
 			return //Already handled, no need to continue.
-	
+
 	var/preserved_name = crushed.name
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-		
+
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle()
@@ -283,7 +283,7 @@
 				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 			else
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
-		
+
 		return crushed_obj.post_crush_act(charger, src)
 
 	if(isturf(crushed))
@@ -296,7 +296,7 @@
 			charger.visible_message("<span class='danger'>[charger] plows straight through [preserved_name]!</span>",
 			"<span class='xenowarning'>We plow straight through [preserved_name]!</span>")
 			return COMPONENT_MOVABLE_PREBUMP_PLOWED
-		
+
 		charger.visible_message("<span class='danger'>[charger] rams into [crushed_turf] and skids to a halt!</span>",
 		"<span class='xenowarning'>We ram into [crushed_turf] and skid to a halt!</span>")
 		do_stop_momentum(FALSE)
@@ -392,7 +392,7 @@
 		if(!anchored)
 			step(src, charger.dir)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
-	
+
 	throw_at(get_step(loc, (charger.dir & (NORTH|SOUTH) ? pick(EAST, WEST) : pick(NORTH, SOUTH))), 1, 1, charger, (mob_size < charger.mob_size))
 
 	charge_datum.speed_down(1) //Lose one turf worth of speed.
@@ -495,7 +495,7 @@
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH, CHARGE_BULL)
 			var/fling_dir = pick((charger.dir & (NORTH|SOUTH)) ? list(WEST, EAST, charger.dir|WEST, charger.dir|EAST) : list(NORTH, SOUTH, charger.dir|NORTH, charger.dir|SOUTH)) //Fling them somewhere not behind nor ahead of the charger.
-			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)	
+			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc
 			var/turf/temp
 
@@ -511,7 +511,7 @@
 			"<span class='xenodanger'>We ram [src]!</span>")
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
 			return COMPONENT_MOVABLE_PREBUMP_PLOWED
-	
+
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
@@ -525,7 +525,7 @@
 
 		if(CHARGE_BULL_HEADBUTT)
 			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
-			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)	
+			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 			var/turf/destination = loc
 			var/turf/temp
 

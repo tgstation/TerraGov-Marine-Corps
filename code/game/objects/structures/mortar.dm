@@ -202,7 +202,7 @@
 		"<span class='notice'>You start undeploying [src].")
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
-		
+
 		user.visible_message("<span class='notice'>[user] undeploys [src].",
 		"<span class='notice'>You undeploy [src].")
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)

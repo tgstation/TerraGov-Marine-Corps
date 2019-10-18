@@ -200,7 +200,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "aw" = (
-/obj/machinery/marine_turret/premade/canterbury,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -213,6 +212,9 @@
 	dir = 4
 	},
 /obj/structure/closet/firecloset,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "ay" = (
@@ -262,19 +264,18 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/machinery/light{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "aE" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -300,9 +301,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "aI" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -345,9 +344,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "aM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -367,18 +364,10 @@
 	},
 /area/shuttle/canterbury/general)
 "aO" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door_control{
-	id = "port_umbilical_inner";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "aP" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -388,9 +377,7 @@
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "aQ" = (
 /obj/effect/decal/warning_stripes/thin,
@@ -430,9 +417,7 @@
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship{
-	icon_state = "test_floor5"
-	},
+/turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
 "aU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -443,10 +428,6 @@
 	},
 /area/shuttle/canterbury/general)
 "aV" = (
-/obj/machinery/marine_turret/premade/canterbury{
-	icon_state = "sentry_base";
-	dir = 1
-	},
 /obj/machinery/light/small,
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -465,14 +446,13 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "aY" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "starboard_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury/general)
 "aZ" = (
 /obj/machinery/power/fusion_engine/random,
@@ -1315,9 +1295,6 @@
 	},
 /area/shuttle/canterbury/general)
 "cD" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
@@ -1398,10 +1375,6 @@
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
-	},
-/obj/machinery/door_control{
-	id = "storage_podlock";
-	pixel_x = -32
 	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/general)
@@ -1524,7 +1497,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/crate/trashcart,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -1561,19 +1533,7 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury/general)
-"cZ" = (
-/obj/machinery/door_control{
-	id = "starboard_engine_podlock";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/shuttle/canterbury/general)
 "da" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
 	dir = 1
@@ -1610,6 +1570,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/marine_turret/premade/canterbury,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
 "dd" = (
@@ -1695,43 +1656,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/general)
-"dm" = (
-/obj/machinery/door_control{
-	id = "aft_engine_podlock"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/medical)
-"do" = (
-/obj/machinery/door_control{
-	id = "port_engine_podlock"
-	},
-/turf/closed/wall/mainship/outer,
-/area/shuttle/canterbury/medical)
-"dp" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "storage_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/shuttle/canterbury/general)
-"ds" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "starboard_umbilical_inner";
-	name = "\improper Umbillical Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/door_control{
-	id = "starboard_umbilical_inner";
-	pixel_y = 32
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/general)
 "dy" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1746,46 +1670,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/shuttle/canterbury/general)
-"dA" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "port_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dB" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "starboard_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dC" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "port_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
-"dD" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "starboard_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury/general)
 "dE" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -1797,17 +1681,97 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury/general)
-"eA" = (
+"gf" = (
 /obj/machinery/door/poddoor/mainship{
 	id = "starboard_umbilical_outer";
 	name = "\improper Umbillical Airlock"
 	},
+/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door_control{
 	id = "starboard_umbilical_outer";
-	pixel_y = -32
+	name = "outer door-control";
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/general)
+"iW" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"nF" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock";
+	pixel_x = 32
+	},
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/shuttle/canterbury/general)
+"oc" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "port_umbilical_outer";
+	name = "\improper Umbillical Airlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit,
+/obj/machinery/door_control{
+	dir = 2;
+	id = "port_umbilical_outer";
+	name = "outer door-control";
+	pixel_y = 32
+	},
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury/general)
+"vS" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"yR" = (
+/obj/machinery/door_control{
+	id = "aft_engine_podlock"
+	},
+/turf/closed/wall/mainship/outer,
+/area/shuttle/canterbury/general)
+"zN" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"LO" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin/crash,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
 /area/shuttle/canterbury/general)
 "Oh" = (
 /obj/effect/landmark/start/marine/crash/synthetic,
@@ -1815,21 +1779,40 @@
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury/general)
-"VH" = (
-/obj/machinery/door/poddoor/mainship{
-	id = "port_umbilical_outer";
-	name = "\improper Umbillical Airlock"
+"Ql" = (
+/obj/machinery/marine_turret/premade/canterbury{
+	dir = 4
 	},
-/obj/machinery/door_control{
-	id = "port_umbilical_outer";
-	pixel_y = -32
+/obj/structure/barricade/metal{
+	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/transit,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "test_floor5"
+	},
+/area/shuttle/canterbury/general)
+"Rl" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury/general)
 "Wo" = (
 /turf/closed/wall/mainship,
 /area/shuttle/canterbury/medical)
+"WM" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin/crash,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/canterbury/general)
 
 (1,1,1) = {"
 aa
@@ -1863,10 +1846,10 @@ aa
 aa
 aa
 as
-as
+oc
 aG
-VH
-as
+aG
+aG
 as
 aZ
 bi
@@ -1905,7 +1888,7 @@ cs
 cE
 cQ
 ch
-dA
+as
 as
 aa
 "}
@@ -1915,10 +1898,10 @@ aa
 aa
 aa
 as
-as
+vS
 aO
 aE
-as
+zN
 as
 bw
 bk
@@ -1932,7 +1915,7 @@ cF
 ct
 ch
 de
-dC
+as
 aa
 "}
 (5,1,1) = {"
@@ -1945,7 +1928,7 @@ ax
 aH
 aP
 cD
-aX
+WM
 bl
 dl
 bx
@@ -1956,9 +1939,9 @@ cj
 cu
 cG
 cR
-do
+ch
 df
-dC
+as
 aa
 "}
 (6,1,1) = {"
@@ -2034,7 +2017,7 @@ Wo
 Wo
 Wo
 Wo
-dm
+ch
 dc
 df
 dE
@@ -2062,7 +2045,7 @@ cJ
 cU
 as
 dj
-df
+nF
 dE
 "}
 (10,1,1) = {"
@@ -2089,7 +2072,7 @@ cV
 cm
 dg
 as
-as
+yR
 "}
 (11,1,1) = {"
 ab
@@ -2101,7 +2084,7 @@ aD
 aL
 aT
 da
-aX
+LO
 be
 bq
 bC
@@ -2113,8 +2096,8 @@ cz
 cL
 cW
 as
-cZ
-dD
+df
+as
 aa
 "}
 (12,1,1) = {"
@@ -2123,10 +2106,10 @@ aa
 aa
 aa
 as
-as
-ds
+Ql
+aO
 aY
-as
+iW
 as
 bf
 br
@@ -2139,8 +2122,8 @@ cA
 cM
 cW
 as
-de
-dD
+Rl
+as
 aa
 "}
 (13,1,1) = {"
@@ -2165,7 +2148,7 @@ cB
 cN
 cX
 as
-dB
+as
 as
 aa
 "}
@@ -2175,10 +2158,10 @@ aa
 aa
 aa
 as
-as
+gf
 bS
-eA
-as
+bS
+bS
 as
 bh
 bt
@@ -2213,9 +2196,9 @@ as
 as
 as
 as
-dp
-dp
-dp
+as
+as
+as
 as
 aa
 aa

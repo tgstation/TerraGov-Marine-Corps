@@ -29,7 +29,7 @@
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = -16 
+			pixel_y = -16
 		if(SOUTH)
 			pixel_y = 16
 		if(EAST)
@@ -54,7 +54,7 @@
 /obj/machinery/camera/Destroy()
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
-	
+
 	GLOB.cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)

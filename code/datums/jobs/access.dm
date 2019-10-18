@@ -2,7 +2,7 @@
 	//check if it doesn't require any access at all
 	if(check_access())
 		return TRUE
-	
+
 	if(issilicon(M))
 		return TRUE //Silicons can access whatever they want
 
@@ -35,18 +35,18 @@
 			var/n
 			for(i in req_one_access_str)
 				n = text2num(i)
-				if(!n) 
+				if(!n)
 					continue
 				req_one_access += n
 
-	if(!length(req_access) && !length(req_one_access)) 
+	if(!length(req_access) && !length(req_one_access))
 		return TRUE
 
-	if(!istype(ID)) 
+	if(!istype(ID))
 		return FALSE
 
 	for(i in req_access)
-		if(!(i in ID.access)) 
+		if(!(i in ID.access))
 			return FALSE
 
 	if(length(req_one_access))
@@ -55,7 +55,7 @@
 				continue
 			return TRUE
 		return FALSE
-	
+
 	return TRUE
 
 
@@ -76,45 +76,45 @@
 
 /proc/get_region_accesses(code)
 	switch(code)
-		if(0) 
+		if(0)
 			return ALL_ACCESS
-		if(1) 
+		if(1)
 			return list(ACCESS_MARINE_WO, ACCESS_MARINE_BRIG)//security
-		if(2) 
+		if(2)
 			return list(ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)//medbay
-		if(3) 
+		if(3)
 			return list(ACCESS_MARINE_RESEARCH)//research
-		if(4) 
+		if(4)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
-		if(5) 
+		if(5)
 			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
-		if(6) 
+		if(6)
 			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
-		if(7) 
+		if(7)
 			return list(ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)//squads
-		if(8) 
+		if(8)
 			return list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_LOGISTICS, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING)//Civilian
 
 
 /proc/get_region_accesses_name(code)
 	switch(code)
-		if(0) 
+		if(0)
 			return "All"
-		if(1) 
+		if(1)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Security"//security
-		if(2) 
+		if(2)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Medbay"//medbay
-		if(3) 
+		if(3)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Research"//research
-		if(4) 
+		if(4)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Engineering"//engineering and maintenance
-		if(5) 
+		if(5)
 			return "[SSmapping.configs[SHIP_MAP].map_name] Command"//command
-		if(6) 
+		if(6)
 			return "Marines"//marine prep
-		if(7) 
+		if(7)
 			return "Squads"//squads
-		if(8) 
+		if(8)
 			return "Civilian"//Civilian
 
 
@@ -282,7 +282,7 @@
 		if("10")
 			. = size ? "ADM " : "Admiral"
 		if("11")
-			. = size ? "FADM " : "Fleet Admiral"		
+			. = size ? "FADM " : "Fleet Admiral"
 		if("WO")
 			. = size ? "WO " : "Warrant Officer"
 		if("CWO")

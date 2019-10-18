@@ -209,10 +209,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/last_savefile = owner.Import()
 	if(!last_savefile)
 		saveClientCSS("")
-		return 
+		return
 	var/savefile/F = new(last_savefile)
 	READ_FILE(F["CSS"], clientCSS)
-	
+
 	if(length(clientCSS) > UPLOAD_LIMIT)
 		clientCSS = ""
 	clientCSS = sanitize_text(clientCSS, "")

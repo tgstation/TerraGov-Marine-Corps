@@ -480,15 +480,15 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						
+	if(!canmove)
 		return FALSE
-	if(stat == DEAD)						
+	if(stat == DEAD)
 		return FALSE
-	if(anchored)						
+	if(anchored)
 		return FALSE
 	if(notransform)
 		return FALSE
-	if(restrained())					
+	if(restrained())
 		return FALSE
 	return TRUE
 
@@ -720,7 +720,7 @@
 
 //This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)	
+	if(!newname)
 		return FALSE
 
 	log_played_names(ckey, newname)

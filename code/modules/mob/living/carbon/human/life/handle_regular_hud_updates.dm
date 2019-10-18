@@ -10,25 +10,25 @@
 	if(stat == UNCONSCIOUS && health <= get_crit_threshold())
 		var/severity = 0
 		switch(health)
-			if(-20 to -10) 
+			if(-20 to -10)
 				severity = 1
-			if(-30 to -20) 
+			if(-30 to -20)
 				severity = 2
-			if(-40 to -30) 
+			if(-40 to -30)
 				severity = 3
-			if(-50 to -40) 
+			if(-50 to -40)
 				severity = 4
-			if(-60 to -50) 
+			if(-60 to -50)
 				severity = 5
-			if(-70 to -60) 
+			if(-70 to -60)
 				severity = 6
-			if(-80 to -70) 
+			if(-80 to -70)
 				severity = 7
-			if(-90 to -80) 
+			if(-90 to -80)
 				severity = 8
-			if(-95 to -90) 
+			if(-95 to -90)
 				severity = 9
-			if(-INFINITY to -95) 
+			if(-INFINITY to -95)
 				severity = 10
 		overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
 	else
@@ -36,19 +36,19 @@
 		if(oxyloss)
 			var/severity = 0
 			switch(oxyloss)
-				if(10 to 20) 
+				if(10 to 20)
 					severity = 1
-				if(20 to 25) 
+				if(20 to 25)
 					severity = 2
-				if(25 to 30) 
+				if(25 to 30)
 					severity = 3
-				if(30 to 35) 
+				if(30 to 35)
 					severity = 4
-				if(35 to 40) 
+				if(35 to 40)
 					severity = 5
-				if(40 to 45) 
+				if(40 to 45)
 					severity = 6
-				if(45 to INFINITY) 
+				if(45 to INFINITY)
 					severity = 7
 			overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
 		else
@@ -61,17 +61,17 @@
 		if(hurtdamage)
 			var/severity = 0
 			switch(hurtdamage)
-				if(5 to 15) 
+				if(5 to 15)
 					severity = 1
-				if(15 to 30) 
+				if(15 to 30)
 					severity = 2
-				if(30 to 45) 
+				if(30 to 45)
 					severity = 3
-				if(45 to 70) 
+				if(45 to 70)
 					severity = 4
-				if(70 to 85) 
+				if(70 to 85)
 					severity = 5
-				if(85 to INFINITY) 
+				if(85 to INFINITY)
 					severity = 6
 			overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 		else
@@ -112,56 +112,56 @@
 
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
-			if(450 to INFINITY)				
+			if(450 to INFINITY)
 				hud_used.nutrition_icon.icon_state = "nutrition0"
-			if(350 to 450)					
+			if(350 to 450)
 				hud_used.nutrition_icon.icon_state = "nutrition1"
-			if(250 to 350)					
+			if(250 to 350)
 				hud_used.nutrition_icon.icon_state = "nutrition2"
-			if(150 to 250)					
+			if(150 to 250)
 				hud_used.nutrition_icon.icon_state = "nutrition3"
-			else							
+			else
 				hud_used.nutrition_icon.icon_state = "nutrition4"
 
 	if(hud_used.pressure_icon)
 		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
 
 	if(hud_used.toxin_icon)
-		if(hal_screwyhud == 4)	
+		if(hal_screwyhud == 4)
 			hud_used.toxin_icon.icon_state = "tox1"
-		else									
+		else
 			hud_used.toxin_icon.icon_state = "tox0"
 	if(hud_used.oxygen_icon)
-		if(hal_screwyhud == 3 || oxygen_alert)	
+		if(hal_screwyhud == 3 || oxygen_alert)
 			hud_used.oxygen_icon.icon_state = "oxy1"
-		else									
+		else
 			hud_used.oxygen_icon.icon_state = "oxy0"
 	if(hud_used.fire_icon)
-		if(fire_alert)							
+		if(fire_alert)
 			hud_used.fire_icon.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-		else									
+		else
 			hud_used.fire_icon.icon_state = "fire0"
 
 	if(hud_used.bodytemp_icon)
 		if(!species)
 			switch(bodytemperature) //310.055 optimal body temp
-				if(370 to INFINITY)		
+				if(370 to INFINITY)
 					hud_used.bodytemp_icon.icon_state = "temp4"
-				if(350 to 370)			
+				if(350 to 370)
 					hud_used.bodytemp_icon.icon_state = "temp3"
-				if(335 to 350)			
+				if(335 to 350)
 					hud_used.bodytemp_icon.icon_state = "temp2"
-				if(320 to 335)			
+				if(320 to 335)
 					hud_used.bodytemp_icon.icon_state = "temp1"
-				if(300 to 320)			
+				if(300 to 320)
 					hud_used.bodytemp_icon.icon_state = "temp0"
-				if(295 to 300)			
+				if(295 to 300)
 					hud_used.bodytemp_icon.icon_state = "temp-1"
-				if(280 to 295)			
+				if(280 to 295)
 					hud_used.bodytemp_icon.icon_state = "temp-2"
-				if(260 to 280)			
+				if(260 to 280)
 					hud_used.bodytemp_icon.icon_state = "temp-3"
-				else					
+				else
 					hud_used.bodytemp_icon.icon_state = "temp-4"
 		else
 			var/temp_step

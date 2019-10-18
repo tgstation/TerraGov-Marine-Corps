@@ -48,7 +48,7 @@
 /datum/emergency_call/supplies/spawn_items()
 	var/turf/drop_spawn
 	var/total = rand(3,6)
-	
+
 	for(var/i = 1 to total)
 		drop_spawn = get_spawn_point(TRUE)
 

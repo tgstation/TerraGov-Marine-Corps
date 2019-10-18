@@ -280,7 +280,7 @@
 		X.set_crest_defense(FALSE, TRUE)
 		CD.add_cooldown()
 		to_chat(X, "<span class='xenowarning'>We tuck our lowered crest into ourselves.</span>")
-	
+
 	X.set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()

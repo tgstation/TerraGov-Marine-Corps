@@ -61,7 +61,7 @@
 
 /obj/machinery/iv_drip/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(istype(I, /obj/item/reagent_container))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
@@ -115,13 +115,13 @@
 		amount = min(amount, 4)
 		// If the beaker is full, ping
 		if(amount == 0)
-			if(prob(5)) 
+			if(prob(5))
 				visible_message("\The [src] pings.")
 			return
 
 		var/mob/living/carbon/human/T = attached
 
-		if(!istype(T)) 
+		if(!istype(T))
 			return
 		if(!T.blood_type)
 			return
@@ -130,7 +130,7 @@
 			return
 
 		// If the human is losing too much blood, beep.
-		if(T.blood_volume < BLOOD_VOLUME_SAFE && prob(5)) 
+		if(T.blood_volume < BLOOD_VOLUME_SAFE && prob(5))
 			visible_message("\The [src] beeps loudly.")
 
 		T.take_blood(beaker, amount)

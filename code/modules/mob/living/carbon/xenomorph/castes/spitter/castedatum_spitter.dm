@@ -154,4 +154,4 @@
 	spit_delay = 1.5 SECONDS
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
-	
+

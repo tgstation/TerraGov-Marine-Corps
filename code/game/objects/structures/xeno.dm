@@ -75,7 +75,7 @@
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
-	
+
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
@@ -223,7 +223,7 @@
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
-	
+
 	relativewall()
 	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)

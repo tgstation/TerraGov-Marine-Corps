@@ -149,7 +149,7 @@
 	if(isnum(angle))
 		dir_angle = angle
 	else
-		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
+		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel.
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
 		else
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR_OFFSET(target.x, p_x) - apx), (ABS_COOR_OFFSET(target.y, p_y) - apy)))
@@ -279,7 +279,7 @@
 	if(modulus_excess)
 		required_moves -= modulus_excess
 		stored_moves += modulus_excess
-	
+
 	if(required_moves > SSprojectiles.global_max_tick_moves)
 		stored_moves += required_moves - SSprojectiles.global_max_tick_moves
 		required_moves = SSprojectiles.global_max_tick_moves
@@ -288,7 +288,7 @@
 
 /*
 CEILING() is used on some contexts:
-1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels. 
+1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels.
 So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we are on the 33th (to 64th) we are then on the second tile.
 2) For number of pixel moves, as it is counting number of full (pixel) moves required.
 */
@@ -647,13 +647,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(. > hit_roll) //Hit
 		return TRUE
-	
+
 	if((hit_roll - .) < 25) //Small difference, one more chance on a random bodypart, with penalties.
 		var/new_def_zone = pick(GLOB.base_miss_chance)
 		. -= GLOB.base_miss_chance[new_def_zone]
 		if(prob(.))
 			proj.def_zone = new_def_zone
-			return TRUE 
+			return TRUE
 
 	if(!lying) //Narrow miss!
 		animatation_displace_reset(src)
@@ -665,11 +665,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/on_dodged_bullet(obj/item/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>", 
+		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
 		"<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/item/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>", 
+		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
 		"<span class='avoidharm'>[src] narrowly misses us!</span>", null, 4)
 
 
@@ -998,7 +998,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		victim_feedback += "Your armor deflects the impact!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
 		victim_feedback += "Your armor absorbs the impact!"
-	else 
+	else
 		if(feedback_flags & BULLET_FEEDBACK_PEN)
 			victim_feedback += "Your armor was penetrated!"
 		if(feedback_flags & BULLET_FEEDBACK_SHRAPNEL)

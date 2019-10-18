@@ -61,7 +61,7 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/xeno_spit
 		)
-		
+
 /datum/xeno_caste/hivelord/young
 	upgrade_name = "Young"
 
@@ -169,4 +169,4 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3
-	
+

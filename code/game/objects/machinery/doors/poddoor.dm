@@ -123,7 +123,7 @@
 	icon_state = "pdoor0"
 
 /obj/machinery/door/poddoor/mainship/ai/interior
-	name = "\improper AI Core Shutters"	
+	name = "\improper AI Core Shutters"
 	id = "ailockdowninterior"
 	icon_state = "pdoor0"
 

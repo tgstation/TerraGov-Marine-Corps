@@ -52,7 +52,7 @@
 	icon_state = "HD_blue"
 
 /obj/structure/cargo_container/gorg
-	icon_state = "gorg"	
+	icon_state = "gorg"
 
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"

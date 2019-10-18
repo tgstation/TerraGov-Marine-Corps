@@ -1,26 +1,26 @@
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
-	
+
 	if(sound_effect)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
-	
+
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
-	
+
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
-	
+
 	obj_integrity = max(obj_integrity - damage_amount, 0)
 
 	update_icon()
-	
+
 	//BREAKING FIRST
 	if(integrity_failure && obj_integrity <= integrity_failure)
 		obj_break(damage_flag)
-	
+
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
 		obj_destruction(damage_flag)

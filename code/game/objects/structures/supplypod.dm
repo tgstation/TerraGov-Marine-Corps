@@ -134,17 +134,17 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 			L.adjustBruteLoss(5000)
 			L.gib()
 		L.adjustBruteLoss(damage)
-	
+
 	var/explosion_sum = B[1] + B[2] + B[3] + B[4]
 	if(explosion_sum != 0)
 		explosion(get_turf(src), B[1], B[2], B[3], B[4])
 	else if(!effectQuiet)
 		playsound(src, "explosion", landingSound ? 15 : 80, 1)
-	
+
 	if(effectMissile)
 		opened = TRUE
 		qdel(src)
-	
+
 	if(style == STYLE_SEETHROUGH)
 		open(src)
 	else
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		return
 	if(opened)
 		return
-	opened = TRUE 
+	opened = TRUE
 	var/turf/T = get_turf(holder)
 	var/mob/M
 	if(istype(holder, /mob))
@@ -250,11 +250,11 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 			var/atom/movable/AM = i
 			var/icon/I = getFlatIcon(AM)
 			add_overlay(I)
-	
+
 	else if(pod.style != STYLE_INVISIBLE)
 		icon_state = "[pod.icon_state]_falling"
 		name = pod.name
-	
+
 	return ..()
 
 

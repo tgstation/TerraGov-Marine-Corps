@@ -277,7 +277,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with. This one seems to be much more effective than its predecessor."
 	color = "#FF6666"
 
-	
+
 /obj/item/weapon/stunprod/improved/attack(mob/M, mob/user)
 	. = ..()
 	if(!isliving(M))
