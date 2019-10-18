@@ -123,7 +123,7 @@
 
 	var/unequipped = doUnEquip(I)
 	if(unequipped == ITEM_UNEQUIP_FAIL)
-		return FALSE
+		stack_trace("Failed to unequip [I]. Parameters passed: [newloc] | [nomoveupdate] | [force]")
 
 	if (client)
 		client.screen -= I
