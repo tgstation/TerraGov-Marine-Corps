@@ -299,9 +299,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	if(protection_aura)
 		if(brute)
-			brute = round(brute * ((10 + protection_aura)))
+			brute = round(brute * ((9 + protection_aura)))
 		if(burn)
-			burn = round(burn * ((10 + protection_aura)))
+			burn = round(burn * ((9 + protection_aura)))
 
 	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
 
