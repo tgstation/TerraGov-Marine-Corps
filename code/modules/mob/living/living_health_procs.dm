@@ -223,7 +223,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
-	heal_overall_damage(getBruteLoss(), getFireLoss(), FALSE)
+	heal_overall_damage(getBruteLoss(), getFireLoss())
 
 	// fix all of our organs
 	restore_all_organs()

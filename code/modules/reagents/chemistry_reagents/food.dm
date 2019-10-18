@@ -305,12 +305,12 @@
 	return ..()
 
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX, updating_health = FALSE)
+	L.apply_damage(1, TOX)
 	if(prob(15))
 		L.knock_out(5)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX, updating_health = FALSE)
+	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.knock_out(3)
 	L.drowsyness = max(L.drowsyness, 30)
@@ -344,10 +344,10 @@
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/enzyme/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, BURN, updating_health = FALSE)
+	L.apply_damage(1, BURN)
 
 /datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, BURN, updating_health = FALSE)
+	L.apply_damages(2, BURN)
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"

@@ -225,7 +225,7 @@
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(0.2, TOX, updating_health = FALSE)
+	L.apply_damage(0.2, TOX)
 	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")

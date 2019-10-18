@@ -52,7 +52,7 @@
 	armor_duration = duration + force - target.getarmor(affecting, "melee")
 
 	//Apply the damage!
-	target.apply_damage(force, BRUTE, affecting, armor_block, FALSE, FALSE, FALSE)
+	target.apply_damage(force, BRUTE, affecting, armor_block)
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
 	if(affecting == "head" && istype(target, /mob/living/carbon/) && !isxeno(target))
@@ -62,7 +62,7 @@
 		else
 			user.visible_message("<span class='danger'>[user] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
 		if(armor_duration)
-			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block, FALSE) // Never weaken more than a flash!
+			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
 
 	else
 		if(target != user)

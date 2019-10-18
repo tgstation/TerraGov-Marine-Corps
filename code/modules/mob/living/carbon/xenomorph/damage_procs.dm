@@ -87,7 +87,7 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE, updating_health = FALSE)
+	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
 	UPDATEHEALTH(src)
 
@@ -121,7 +121,7 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage)
+			adjustBruteLoss(damage, updating_health)
 		if(BURN)
 			adjustFireLoss(damage)
 

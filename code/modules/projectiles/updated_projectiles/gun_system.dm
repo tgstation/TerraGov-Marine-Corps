@@ -787,7 +787,7 @@ and you're good to go.
 	switch(projectile_to_fire.ammo.damage_type)
 		if(HALLOSS)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY, 0)
+			user.apply_effect(110, AGONY)
 		if(STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
 			user.apply_damage(200, STAMINA)
