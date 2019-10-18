@@ -992,8 +992,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 135 //135 ticks or 270~ seconds, 4:30 minutes
-	command_aura_tick = 90 //90 ticks or 180~ seconds, 3 minutes
+	command_aura_cooldown = 60 //60 ticks or 120~ seconds, 2~ minutes
+	command_aura_tick = 45 //45 ticks or 90~ seconds, 1:30 minutes
 	var/message = ""
 	switch(command_aura)
 		if("move")

@@ -61,7 +61,7 @@
 	if(X.frenzy_aura)
 		tackle_pain = tackle_pain * (1 + (0.05 * X.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.10 * protection_aura))  //Halloss damage decreased by 10% + 10% per rank of protection aura
+		tackle_pain = tackle_pain * (1 - (0.05 + 0.10 * protection_aura))  //Halloss damage decreased by 5% + 10% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
 		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 			#ifdef DEBUG_ATTACK_ALIEN
