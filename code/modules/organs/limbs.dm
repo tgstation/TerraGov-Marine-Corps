@@ -110,7 +110,7 @@
 		take_damage_limb(damage, 0, TRUE, TRUE)
 
 
-/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = TRUE, list/forbidden_limbs = list())
+/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	if(blocked >= 1) //Complete negation
 		return 0
 
@@ -223,7 +223,7 @@
 	return result
 
 
-/datum/limb/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0, updating_health = TRUE)
+/datum/limb/proc/heal_limb_damage(brute, burn, internal = FALSE, robo_repair = FALSE, updating_health = FALSE)
 	if(limb_status & LIMB_ROBOT && !robo_repair)
 		return
 
@@ -234,9 +234,9 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_damage(brute)
+			brute = W.heal_wound_damage(brute)
 		else if(W.damage_type == BURN)
-			burn = W.heal_damage(burn)
+			burn = W.heal_wound_damage(burn)
 
 	if(internal)
 		limb_status &= ~LIMB_BROKEN
@@ -532,7 +532,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			heal_amt = heal_amt / (wounds.len + 1)
 			// making it look prettier on scanners
 			heal_amt = round(heal_amt,0.1)
-			W.heal_damage(heal_amt)
+			W.heal_wound_damage(heal_amt)
 
 		// Salving also helps against infection, but only if it is small enoough
 		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
@@ -1117,7 +1117,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 */
 
-/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = TRUE, list/forbidden_limbs = list())
+/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	. = ..()
 	if (!disfigured)
 		if (brute_dam > 40)

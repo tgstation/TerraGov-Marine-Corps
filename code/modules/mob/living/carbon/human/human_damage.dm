@@ -92,7 +92,7 @@
 	return amount
 
 
-/mob/living/carbon/human/adjustBruteLoss(amount, updating_health = TRUE)
+/mob/living/carbon/human/adjustBruteLoss(amount, updating_health = FALSE)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
 
@@ -102,7 +102,7 @@
 		heal_overall_damage(-amount, 0, updating_health)
 
 
-/mob/living/carbon/human/adjustFireLoss(amount, updating_health = TRUE)
+/mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
 	if(species && species.burn_mod && amount > 0)
 		amount = amount*species.burn_mod
 
@@ -139,9 +139,8 @@
 				O.take_damage_limb(amount, 0, is_sharp(damage_source), has_edge(damage_source))
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_damage(-amount, 0, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
+				O.heal_limb_damage(-amount, robo_repair = (O.limb_status & LIMB_ROBOT))
 			break
-
 
 
 /mob/living/carbon/human/proc/adjustFireLossByPart(amount, organ_name, obj/damage_source = null)
@@ -155,9 +154,8 @@
 				O.take_damage_limb(0, amount, is_sharp(damage_source), has_edge(damage_source))
 			else
 				//if you don't want to heal robot limbs, they you will have to check that yourself before using this proc.
-				O.heal_damage(0, -amount, internal=0, robo_repair=(O.limb_status & LIMB_ROBOT))
+				O.heal_limb_damage(burn = -amount, robo_repair = (O.limb_status & LIMB_ROBOT))
 			break
-
 
 
 /mob/living/carbon/human/getCloneLoss()
@@ -272,14 +270,15 @@
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/heal_limb_damage(brute, burn, updating_health = TRUE)
+/mob/living/carbon/human/heal_limb_damage(brute, burn, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damaged_limbs(brute, burn)
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
-	if(picked.heal_damage(brute, burn, updating_health))
+	if(picked.heal_limb_damage(brute, burn, updating_health))
 		UpdateDamageIcon()
-
+	if(updating_health)
+		updatehealth()
 
 /*
 In most cases it makes more sense to use apply_damage() instead! And make sure to check armour if applicable.
@@ -287,7 +286,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 //Damages ONE external organ, organ gets randomly selected from damagable ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = TRUE)
+/mob/living/carbon/human/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damageable_limbs()
 	if(!parts.len)
 		return
@@ -301,7 +300,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 
 //Heal MANY limbs, in random order
-/mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = TRUE)
+/mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = FALSE)
 	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 
 	var/update = 0
@@ -311,7 +310,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 
-		update |= picked.heal_damage(brute,burn, FALSE, FALSE, FALSE)
+		update |= picked.heal_limb_damage(brute, burn)
 
 		brute -= (brute_was-picked.brute_dam)
 		burn -= (burn_was-picked.burn_dam)
@@ -324,7 +323,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		UpdateDamageIcon()
 
 // damage MANY limbs, in random order
-/mob/living/carbon/human/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = TRUE)
+/mob/living/carbon/human/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return	//godmode
 
@@ -356,7 +355,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 
-		update |= picked.take_damage_limb(brute, burn, sharp, edge, updating_health = FALSE)
+		update |= picked.take_damage_limb(brute, burn, sharp, edge)
 		brute	-= (picked.brute_dam - brute_was)
 		burn	-= (picked.burn_dam - burn_was)
 
@@ -389,7 +388,7 @@ This function restores all limbs.
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/datum/limb/E = get_limb(zone)
-	if(E.heal_damage(brute, burn))
+	if(E.heal_limb_damage(brute, burn))
 		UpdateDamageIcon()
 
 
@@ -403,5 +402,5 @@ This function restores all limbs.
 		if(EO.name == zone)
 			return EO
 
-/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = TRUE)
+/mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, src)

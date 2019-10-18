@@ -133,6 +133,8 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		if(effectGib)
 			L.adjustBruteLoss(5000)
 			L.gib()
+			continue
+
 		L.adjustBruteLoss(damage)
 
 	var/explosion_sum = B[1] + B[2] + B[3] + B[4]

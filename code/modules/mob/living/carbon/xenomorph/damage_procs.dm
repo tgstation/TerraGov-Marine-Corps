@@ -87,11 +87,11 @@
 					adjust_stagger(4)
 					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE, updating_health = FALSE)
+	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = TRUE)
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(blocked >= 1) //total negation
 		return FALSE
 
@@ -120,7 +120,7 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage)
+			adjustBruteLoss(damage, updating_health)
 		if(BURN)
 			adjustFireLoss(damage)
 
@@ -129,7 +129,7 @@
 	return TRUE
 
 
-/mob/living/carbon/xenomorph/adjustBruteLoss(amount)
+/mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
@@ -137,13 +137,21 @@
 
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/xenomorph/adjustFireLoss(amount)
+	if(updating_health)
+		updatehealth()
+
+
+/mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+
+	if(updating_health)
+		updatehealth()
+
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

@@ -145,7 +145,7 @@
 
 				var/damage = rand(round(seed.potency/2),seed.potency)
 				if(!istype(H))
-					H.adjustBruteLoss(damage)
+					H.adjustBruteLoss(damage, TRUE)
 					return
 
 				var/datum/limb/affecting = H.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
@@ -153,7 +153,7 @@
 				if(affecting)
 					affecting.take_damage_limb(damage)
 				else
-					H.adjustBruteLoss(damage)
+					H.adjustBruteLoss(damage, TRUE)
 
 				H.UpdateDamageIcon()
 

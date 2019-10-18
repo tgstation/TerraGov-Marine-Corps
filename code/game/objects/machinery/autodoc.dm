@@ -113,7 +113,7 @@
 					visible_message("[src] speaks: Blood transfer complete.")
 			if(heal_brute)
 				if(occupant.getexternalBruteLoss() > 0)
-					occupant.heal_limb_damage(3, 0, FALSE)
+					occupant.heal_limb_damage(3, 0)
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it stitches flesh together.")
 						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
@@ -122,7 +122,7 @@
 					visible_message("[src] speaks: Trauma repair surgery complete.")
 			if(heal_burn)
 				if(occupant.getFireLoss() > 0)
-					occupant.heal_limb_damage(0, 3, FALSE)
+					occupant.heal_limb_damage(0, 3)
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
 						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
@@ -426,7 +426,7 @@
 							sleep(((S.limb_ref.brute_dam - 20)/2)*surgery_mod)
 							if(!surgery)
 								break
-							S.limb_ref.heal_damage(S.limb_ref.brute_dam - 20,0)
+							S.limb_ref.heal_limb_damage(S.limb_ref.brute_dam - 20)
 						if(!surgery)
 							break
 						S.limb_ref.limb_status &= ~LIMB_BROKEN

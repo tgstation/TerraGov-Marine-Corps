@@ -92,7 +92,7 @@
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))
 				visible_message("<span class='danger'>[H] has weakened [src]!</span>", null, null, 5)
-				apply_effect(3, WEAKEN, armor_block, FALSE)
+				apply_effect(3, WEAKEN, armor_block)
 
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)

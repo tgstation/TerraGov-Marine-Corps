@@ -19,22 +19,19 @@
 	return 0
 
 //Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone, updating_health = TRUE)
+/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
 	flash_pain()
 
 	if (stun_amount)
 		stun(stun_amount)
 		knock_down(stun_amount)
-		apply_effect(STUTTER, stun_amount, 0, FALSE)
-		apply_effect(EYE_BLUR, stun_amount, 0, FALSE)
+		apply_effect(STUTTER, stun_amount)
+		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, updating_health = FALSE)
-		apply_effect(STUTTER, agony_amount/10, 0, FALSE)
-		apply_effect(EYE_BLUR, agony_amount/10, 0, FALSE)
-
-	if(updating_health)
-		updatehealth()
+		apply_damage(agony_amount, HALLOSS, def_zone)
+		apply_effect(STUTTER, agony_amount/10)
+		apply_effect(EYE_BLUR, agony_amount/10)
 
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)

@@ -806,7 +806,7 @@
 		equip_slots |= SLOT_IN_ACCESSORY
 
 
-/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = TRUE, mob/living/carbon/human/victim)
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
 
 	if(blocked >= 1) //total negation
 		return 0

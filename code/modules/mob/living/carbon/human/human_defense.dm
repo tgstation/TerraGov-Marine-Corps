@@ -29,7 +29,8 @@ Contains most of the procs that are called when a mob is attacked by something
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
 
-	..(stun_amount, agony_amount, def_zone)
+	return ..()
+
 
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0

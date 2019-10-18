@@ -35,7 +35,7 @@
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		L.heal_limb_damage(brute_heal, burn_heal, FALSE)
+		L.heal_limb_damage(brute_heal, burn_heal)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
@@ -134,7 +134,7 @@
 			if(prob(5))
 				to_chat(L, discomfort_message)
 		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount, AGONY, 0, FALSE)
+			L.apply_effect(agony_amount, AGONY)
 			if(prob(5))
 				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
 				to_chat(L, discomfort_message)
@@ -305,12 +305,12 @@
 	return ..()
 
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX, updating_health = FALSE)
+	L.apply_damage(1, TOX)
 	if(prob(15))
 		L.knock_out(5)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX, updating_health = FALSE)
+	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.knock_out(3)
 	L.drowsyness = max(L.drowsyness, 30)
@@ -344,10 +344,10 @@
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/enzyme/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, BURN, updating_health = FALSE)
+	L.apply_damage(1, BURN)
 
 /datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, BURN, updating_health = FALSE)
+	L.apply_damages(2, BURN)
 
 /datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
@@ -400,8 +400,8 @@
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0,5 * REM, FALSE)
-	L.adjustFireLoss(-0,5 * REM, FALSE)
-	L.adjustOxyLoss(-0,5 * REM, FALSE)
-	L.adjustToxLoss(-0,5 * REM, FALSE)
+	L.adjustBruteLoss(-0,5 * REM)
+	L.adjustFireLoss(-0,5 * REM)
+	L.adjustOxyLoss(-0,5 * REM)
+	L.adjustToxLoss(-0,5 * REM)
 	return ..()

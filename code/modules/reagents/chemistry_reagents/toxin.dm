@@ -59,7 +59,7 @@
 	taste_multi = 0.9
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(10, IRRADIATE, 0, FALSE)
+	L.apply_effect(10, IRRADIATE)
 	return ..()
 
 /datum/reagent/toxin/phoron
@@ -83,17 +83,17 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(REM, 0, FALSE, FALSE, FALSE)
+		L.take_limb_damage(REM, 0)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
 	return ..()
 
 /datum/reagent/toxin/lexorin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1, updating_health = FALSE)
+	L.apply_damages(0, 1, 1)
 
 /datum/reagent/toxin/lexorin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1, updating_health = FALSE)
+	L.apply_damages(1, 0, 1)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
@@ -251,10 +251,10 @@
 	return ..()
 
 /datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2, updating_health = FALSE)
+	L.apply_damages(0, 0, 1, 2)
 
 /datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 1, updating_health = FALSE)
+	L.apply_damages(0, 0, 1, 1)
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
@@ -279,10 +279,10 @@
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2, updating_health = FALSE)
+	L.apply_damages(0, 0, 1, 2)
 
 /datum/reagent/toxin/chloralhydrate/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 0, 2, updating_health = FALSE)
+	L.apply_damages(0, 0, 0, 2)
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -363,7 +363,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, REM, FALSE, FALSE, FALSE)
+	L.take_limb_damage(0, REM)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -459,7 +459,7 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS, updating_health = FALSE) //1st level neurotoxin effects: halloss/pain
+	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
 	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
@@ -496,7 +496,7 @@
 	if(L.getOxyLoss())
 		L.adjustOxyLoss(-REM)
 	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM, FALSE)
+		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
