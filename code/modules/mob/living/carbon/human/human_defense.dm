@@ -153,16 +153,15 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!I || !user)	return 0
-
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
 	user.do_attack_animation(src)
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
-	if(!target_zone)
-		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
-		return 0
+	else if(!prob(user.melee_accuracy))
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		user.visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
+		return FALSE
 
 	var/datum/limb/affecting = get_limb(target_zone)
 	if (!affecting)

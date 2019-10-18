@@ -105,7 +105,7 @@
 		if(L.incapacitated(TRUE))
 			return
 		else if(L.restrained(RESTRAINED_NECKGRAB))
-			move_delay = world.time + 10 //to reduce the spam
+			move_delay = world.time + 1 SECONDS //to reduce the spam
 			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
 		else
@@ -128,16 +128,11 @@
 			direct = DIRFLIP(direct)
 			n = get_step(L.loc, direct)
 
-		L.last_move_intent = world.time + 10
-		switch(L.m_intent)
-			if(MOVE_INTENT_RUN)
-				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
-			if(MOVE_INTENT_WALK)
-				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
+		L.last_move_intent = world.time + 1 SECONDS
 
 		SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
 
-		move_delay += L.movement_delay(direct)
+		move_delay = L.movement_delay(direct)
 		//We are now going to move
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
@@ -344,14 +339,39 @@
 	selector.set_selected_zone(next_in_line, mob)
 
 
-/mob/proc/toggle_move_intent(mob/user)
-	if(m_intent == MOVE_INTENT_RUN)
-		m_intent = MOVE_INTENT_WALK
+/mob/proc/toggle_move_intent(new_intent)
+	if(new_intent)
+		if(new_intent == m_intent)
+			return FALSE
+		m_intent = new_intent
 	else
-		m_intent = MOVE_INTENT_RUN
-	if(hud_used && hud_used.static_inventory)
+		if(m_intent == MOVE_INTENT_RUN)
+			m_intent = MOVE_INTENT_WALK
+		else
+			m_intent = MOVE_INTENT_RUN
+
+	if(hud_used?.static_inventory)
 		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
 			selector.update_icon(src)
+	
+	return TRUE
+
+
+/mob/living/toggle_move_intent(new_intent)
+	. = ..()
+	if(!.)
+		return
+	update_move_intent_effects()
+
+
+/mob/living/proc/update_move_intent_effects()
+	switch(m_intent)
+		if(MOVE_INTENT_WALK)
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))
+			melee_accuracy = initial(melee_accuracy)
+		if(MOVE_INTENT_RUN)
+			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
+			melee_accuracy = 80
 
 
 /mob/proc/cadecheck()

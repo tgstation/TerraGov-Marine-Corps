@@ -13,7 +13,7 @@
 	var/mob_size = MOB_SIZE_HUMAN
 	var/timeofdeath = 0
 	var/a_intent = INTENT_HELP
-	var/m_intent = MOVE_INTENT_RUN
+	var/m_intent = MOVE_INTENT_WALK
 	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
