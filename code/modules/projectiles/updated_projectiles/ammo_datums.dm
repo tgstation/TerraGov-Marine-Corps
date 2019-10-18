@@ -177,7 +177,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_proj.generate_bullet(src)
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
-		 //Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
+		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
 		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? -(i + 1 / 2) : i / 2))
 		if(new_angle < 0)
 			new_angle += 380
@@ -876,7 +876,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/lasgun
-	name = "laser bolt"
+	name = "civilian laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = "laser"
@@ -889,17 +889,45 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
-	name = "laser bolt"
+	name = "military laser bolt"
 	hud_state = "laser"
+	damage = 25
 	penetration = 25
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
-	damage = 40
+	damage = 46 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 40
+
+/datum/ammo/energy/lasgun/M43/blast
+	name = "wide range laser blast"
+	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 5
+	damage = 46 //requires mod with -0.15 multiplier should math out to 40
+	damage_falloff = 10
+	penetration = 0
+
+/datum/ammo/energy/lasgun/M43/spread
+	name = "additional laser blast"
+	icon_state = "laser"
+	shell_speed = 2
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 5
+	damage = 40
+	damage_falloff = 10
+	penetration = 0
 
 /*
 //================================================
@@ -923,7 +951,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 5.6)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -959,46 +987,46 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.44)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.75)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.1)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.28)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.8)
 	added_spit_delay = 10
 	spit_cost = 75
 	damage = 30
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.78)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.82)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.63)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.5)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.05)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8.84)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8)
 	added_spit_delay = 15
 	spit_cost = 100
 	damage = 35
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 11.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.2)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 12.5)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 13)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.4)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1055,6 +1083,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	damage = 20
 
@@ -1069,7 +1098,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	flags_ammo_behavior = AMMO_XENO_ACID
 	damage = 30
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)

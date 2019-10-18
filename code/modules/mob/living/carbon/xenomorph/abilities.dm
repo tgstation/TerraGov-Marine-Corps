@@ -49,6 +49,13 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
+/datum/action/xeno_action/plant_weeds/can_use_action(silent, override_flags)
+	. = ..()
+	if(locate(/obj/effect/alien/resin/trap) in get_turf(owner))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return FALSE
+
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -792,6 +799,7 @@
 
 
 /datum/action/xeno_action/lay_egg/action_activate()
+	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
 
 	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
@@ -808,8 +816,8 @@
 	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
 		"<span class='xenowarning'>We have laid an egg!</span>")
 
-	new /obj/effect/alien/egg(current_turf)
-	playsound(owner.loc, 'sound/effects/alien_egg_move.ogg', 25)
+	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
+	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
 
 	succeed_activate()
 	add_cooldown()

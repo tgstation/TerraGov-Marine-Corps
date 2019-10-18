@@ -463,18 +463,32 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_inv_glasses()
 	remove_overlay(GLASSES_LAYER)
+	remove_overlay(GOGGLES_LAYER)
 	if(glasses)
-		if(client && hud_used &&  hud_used.hud_shown && hud_used.inventory_shown)
-			glasses.screen_loc = ui_glasses
-			client.screen += glasses
-		if(glasses.icon_override)
-			overlays_standing[GLASSES_LAYER] = image("icon" = glasses.icon_override, "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
-		else if(glasses.sprite_sheets && glasses.sprite_sheets[species.name])
-			overlays_standing[GLASSES_LAYER]= image("icon" = glasses.sprite_sheets[species.name], "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
-		else
-			overlays_standing[GLASSES_LAYER]= image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
+		if(istype(glasses,/obj/item/clothing/glasses/mgoggles))
+			if(client && hud_used &&  hud_used.hud_shown && hud_used.inventory_shown)
+				glasses.screen_loc = ui_glasses
+				client.screen += glasses
+			if(glasses.icon_override)
+				overlays_standing[GOGGLES_LAYER] = image("icon" = glasses.icon_override, "icon_state" = "[glasses.icon_state]", "layer" =-GOGGLES_LAYER)
+			else if(glasses.sprite_sheets && glasses.sprite_sheets[species.name])
+				overlays_standing[GOGGLES_LAYER]= image("icon" = glasses.sprite_sheets[species.name], "icon_state" = "[glasses.icon_state]", "layer" =-GOGGLES_LAYER)
+			else
+				overlays_standing[GOGGLES_LAYER]= image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]", "layer" =-GOGGLES_LAYER)
 
-		apply_overlay(GLASSES_LAYER)
+			apply_overlay(GOGGLES_LAYER)
+		else
+			if(client && hud_used &&  hud_used.hud_shown && hud_used.inventory_shown)
+				glasses.screen_loc = ui_glasses
+				client.screen += glasses
+			if(glasses.icon_override)
+				overlays_standing[GLASSES_LAYER] = image("icon" = glasses.icon_override, "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
+			else if(glasses.sprite_sheets && glasses.sprite_sheets[species.name])
+				overlays_standing[GLASSES_LAYER]= image("icon" = glasses.sprite_sheets[species.name], "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
+			else
+				overlays_standing[GLASSES_LAYER]= image("icon" = 'icons/mob/eyes.dmi', "icon_state" = "[glasses.icon_state]", "layer" =-GLASSES_LAYER)
+
+			apply_overlay(GLASSES_LAYER)
 
 /mob/living/carbon/human/update_inv_ears()
 	remove_overlay(EARS_LAYER)
@@ -625,14 +639,13 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					var/leader = S.squad_leader == src
 					if(GLOB.armormarkings[S.type])
 						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
-
-			if(length(marine_armor.armor_overlays))
-				var/image/I
-				for(var/i in marine_armor.armor_overlays)
-					I = marine_armor.armor_overlays[i]
-					if(I)
-						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-						standing.overlays += I
+				if(length(marine_armor.armor_overlays))
+					var/image/I
+					for(var/i in marine_armor.armor_overlays)
+						I = marine_armor.armor_overlays[i]
+						if(I)
+							I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+							standing.overlays += I
 
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit

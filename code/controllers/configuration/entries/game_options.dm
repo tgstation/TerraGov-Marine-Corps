@@ -63,15 +63,6 @@
 /datum/config_entry/number/organ_regeneration_multiplier
 	config_entry_value = 1
 
-/datum/config_entry/number/health_threshold_crit
-	config_entry_value = 0
-
-/datum/config_entry/number/health_threshold_dead
-	config_entry_value = -100
-
-/datum/config_entry/number/human_health_threshold_crit
-	config_entry_value = -50
-
 /datum/config_entry/flag/limbs_can_break
 
 /datum/config_entry/number/revive_grace_period

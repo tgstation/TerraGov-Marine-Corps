@@ -433,17 +433,28 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 
 /datum/game_mode/proc/setup_blockers()
+	set waitfor = FALSE
 	if(flags_round_type & MODE_FOG_ACTIVATED)
 		var/turf/T
 		while(GLOB.fog_blocker_locations.len)
 			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
 			GLOB.fog_blocker_locations.len--
 			new /obj/effect/forcefield/fog(T)
+			stoplag()
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
+	if(flags_round_type & MODE_LZ_SHUTTERS)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
+	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
+		var/turf/T
+		while(GLOB.xeno_spawn_protection_locations.len)
+			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
+			GLOB.xeno_spawn_protection_locations.len--
+			new /obj/effect/forcefield/fog(T)
+			stoplag()
+		addtimer(CALLBACK(src, .proc/remove_fog), 25 MINUTES + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
@@ -536,7 +547,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/belt_harness(H), SLOT_BELT)
 	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)

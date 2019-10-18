@@ -68,6 +68,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/fire_delay_mod = 0 //how long in deciseconds this adds to your base fire delay.
 
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 
@@ -82,6 +83,10 @@ Defined in conflicts.dm of the #defines folder.
 
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
+
+	var/ammo_mod = null			//what ammo the gun could also fire, different lasers usually.
+	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
+	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
 
 	var/obj/item/weapon/gun/master_gun
 
@@ -157,6 +162,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
+	if(ammo_mod)
+		master_gun.add_ammo_mod(ammo_mod)
+	if(charge_mod)
+		master_gun.charge_cost				+= charge_mod
+	for(var/i in gun_firemode_list_mod)
+		master_gun.add_firemode(i, user)
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -173,6 +184,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/living_user = master_gun.loc
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
+
 
 
 /obj/item/attachable/proc/Detach(mob/user)
@@ -211,6 +223,13 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
+	if(ammo_mod)
+		master_gun.remove_ammo_mod(ammo_mod)
+	if(master_gun.charge_cost)
+		master_gun.charge_cost				-= charge_mod
+	for(var/i in gun_firemode_list_mod)
+		master_gun.remove_firemode(i, user)
+
 
 	master_gun.update_force_list()
 
@@ -225,7 +244,7 @@ Defined in conflicts.dm of the #defines folder.
 			continue
 		qdel(action_to_update)
 		break
-
+	
 	forceMove(get_turf(master_gun))
 
 	master_gun = null
@@ -404,10 +423,48 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NONE
 
+/obj/item/attachable/focuslens
+	name = "M43 focused lens"
+	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
+	slot = "muzzle"
+	icon_state = "focus"
+	attach_icon = "focus_a"
+	pixel_shift_x = 17
+	pixel_shift_y = 13
+	ammo_mod = /datum/ammo/energy/lasgun/M43/overcharge
+	damage_mod = -0.15
 
+/obj/item/attachable/widelens
+	name = "M43 wide lens"
+	desc = "Allows the lasgun to use the deadly wide range blast on overcharge."
+	slot = "muzzle"
+	icon_state = "wide"
+	attach_icon = "wide_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
+	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
+	damage_mod = -0.15
 
+/obj/item/attachable/efflens
+	name = "M43 efficient lens"
+	desc = "Allows the lasgun to use its energy much more efficiently."
+	slot = "muzzle"
+	icon_state = "efficient"
+	attach_icon = "efficient_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 14
+	charge_mod = -5 
 
-
+/obj/item/attachable/pulselens
+	name = "M43 pulse lens"
+	desc = "Allows the lasgun to shoot much quicker."
+	slot = "muzzle"
+	icon_state = "pulse"
+	attach_icon = "pulse_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
+	damage_mod = -0.15
+	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
 ///////////// Rail attachments ////////////////////////
 

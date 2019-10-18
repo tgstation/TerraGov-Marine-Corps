@@ -110,6 +110,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 
 /obj/item/clothing/glasses/mgoggles/prescription

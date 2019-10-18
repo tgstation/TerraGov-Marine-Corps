@@ -71,6 +71,7 @@
 	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
 	var/sprite_sheet_id = 0 //Select which sprite sheet ID to use due to the sprite limit per .dmi. 0 is default, 1 is the new one.
 
+	var/flags_item_map_variant = NONE
 
 	//TOOL RELATED VARS
 	var/tool_behaviour = FALSE
@@ -90,6 +91,9 @@
 		embedding = getEmbeddingBehavior()
 	else if(islist(embedding))
 		embedding = getEmbeddingBehavior(arglist(embedding))
+
+	if(flags_item_map_variant)
+		update_item_sprites()
 
 
 /obj/item/Destroy()
@@ -555,6 +559,20 @@
 		return FALSE //Unsupported slot
 
 		//END MONKEY
+
+
+/obj/item/proc/update_item_sprites()
+	switch(SSmapping.configs[GROUND_MAP].map_name)
+		if(MAP_LV_624)
+			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
+				icon_state = "m_[icon_state]"
+				item_state = "m_[item_state]"
+		if(MAP_ICE_COLONY)
+			if(flags_item_map_variant & ITEM_ICE_VARIANT)
+				icon_state = "s_[icon_state]"
+				item_state = "s_[item_state]"
+			if(flags_item_map_variant & ITEM_ICE_PROTECTION)
+				min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 
 /obj/item/verb/verb_pickup()

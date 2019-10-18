@@ -3752,11 +3752,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
-"aig" = (
-/turf/open/floor,
-/area/sulaco/engineering/atmos{
-	name = "\improper Atmospherics"
-	})
 "aih" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
@@ -23273,7 +23268,7 @@
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor{
 	icon_state = "red";
@@ -24166,7 +24161,7 @@
 /obj/item/ammo_magazine/revolver/mateba,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/incendiary,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/sniper/svd,
 /obj/item/ammo_magazine/rifle/m16,
@@ -75561,7 +75556,7 @@ adz
 adz
 adz
 ahe
-aig
+afY
 ajo
 afX
 aii

@@ -69,6 +69,8 @@
 	GLOB.ai_spawn += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoin
+	icon_state = "latejoin"
 
 /obj/effect/landmark/start/latejoin/Initialize()
 	. = ..()

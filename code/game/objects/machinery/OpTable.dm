@@ -144,7 +144,7 @@
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
 		if(M.lying)
 			victim = M
-			icon_state = M.pulse ? "table2-active" : "table2-idle"
+			icon_state = M.handle_pulse() ? "table2-active" : "table2-idle"
 			return 1
 	victim = null
 	stop_processing()
@@ -166,7 +166,7 @@
 		var/mob/living/carbon/human/H = C
 		victim = H
 		start_processing()
-		icon_state = H.pulse ? "table2-active" : "table2-idle"
+		icon_state = H.handle_pulse() ? "table2-active" : "table2-idle"
 	else
 		icon_state = "table2-idle"
 

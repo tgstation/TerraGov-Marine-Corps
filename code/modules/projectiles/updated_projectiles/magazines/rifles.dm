@@ -82,11 +82,14 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/rifle/lmg
+/obj/item/ammo_magazine/lmg
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
-	max_rounds = 300
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 

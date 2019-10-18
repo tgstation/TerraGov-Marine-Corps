@@ -80,12 +80,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/New()
 	. = ..()
 	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
-	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
+	var/image/armors1 = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
 	armor.color = color
-	armorsl.color = color
-	GLOB.armormarkings[type] = armor
-	GLOB.armormarkings_sl[type] = armorsl
-
+	armors1.color = color
 	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
 	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
 	helmet.color = color

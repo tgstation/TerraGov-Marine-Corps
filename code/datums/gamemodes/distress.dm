@@ -2,7 +2,7 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
@@ -243,6 +243,10 @@
 					/obj/item/attachable/compensator = round(scale * 10),
 					/obj/item/attachable/extended_barrel = round(scale * 10),
 					/obj/item/attachable/heavy_barrel = round(scale * 4),
+					/obj/item/attachable/widelens = round(scale * 4),
+					/obj/item/attachable/focuslens = round(scale * 4),
+					/obj/item/attachable/efflens = round(scale * 4),
+					/obj/item/attachable/pulselens = round(scale * 4),
 
 					/obj/item/attachable/scope = round(scale * 4),
 					/obj/item/attachable/scope/mini = round(scale * 4),

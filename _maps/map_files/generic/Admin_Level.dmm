@@ -618,8 +618,8 @@
 "bX" = (
 /obj/structure/closet/secure_closet/guncabinet,
 /obj/item/weapon/gun/rifle/lmg,
-/obj/item/ammo_magazine/rifle/lmg,
-/obj/item/ammo_magazine/rifle/lmg,
+/obj/item/ammo_magazine/lmg,
+/obj/item/ammo_magazine/lmg,
 /obj/item/weapon/gun/rifle/lmg,
 /turf/open/floor/mainship{
 	dir = 9;

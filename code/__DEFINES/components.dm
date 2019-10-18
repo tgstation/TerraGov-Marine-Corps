@@ -30,6 +30,7 @@
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
 #define COMSIG_GLOB_NUKE_STOP "!nuke_stop"
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
+#define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
 //////////////////////////////////////////////////////////////////
 
@@ -59,6 +60,7 @@
 #define COMSIG_CLICK_CTRL "ctrl_click"							//from base of atom/CtrlClickOn(): (/mob)
 #define COMSIG_CLICK_ALT "alt_click"							//from base of atom/AltClick(): (/mob)
 #define COMSIG_CLICK_CTRL_SHIFT "ctrl_shift_click"				//from base of atom/CtrlShiftClick(/mob)
+#define COMSIG_CLICK_CTRL_MIDDLE "ctrl_middle_click"
 
 #define COMSIG_DBLCLICK_SHIFT_MIDDLE "dblclick_shift_middle"
 #define COMSIG_DBLCLICK_CTRL_SHIFT "dblclick_ctrl_shift"
@@ -229,6 +231,10 @@
 #define COMSIG_XENOMORPH_BRUTE_DAMAGE "xenomorph_brute_damage"
 #define COMSIG_XENOMORPH_BURN_DAMAGE "xenomorph_burn_damage"
 
+#define COMSIG_XENOMORPH_EVOLVED "xenomorph_evolved"
+#define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
+#define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"
+
 //human signals
 #define COMSIG_CLICK_QUICKEQUIP "click_quickequip"
 
@@ -290,8 +296,6 @@
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
-#define COMSIG_XENOABILITY_GROW_OVIPOSITOR "xenoability_grow_ovipositor"
-#define COMSIG_XENOABILITY_REMOVE_EGGSAC "xenoability_remove_eggsac"
 #define COMSIG_XENOABILITY_WATCH_XENO "xenoability_watch_xeno"
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
@@ -307,6 +311,7 @@
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"
 #define COMSIG_XENOABILITY_PSYCHIC_CHOKE "xenoability_psychic_choke"
 #define COMSIG_XENOABILITY_PSYCHIC_CURE "xenoability_psychic_cure"
+#define COMSIG_XENOABILITY_UNRELENTING_FORCE "xenoability_unrelenting_force"
 
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"

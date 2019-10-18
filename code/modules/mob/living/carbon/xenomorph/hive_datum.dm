@@ -67,8 +67,17 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number() < xenos_per_queen
+	return (get_total_xeno_number() < xenos_per_queen)
 
+/datum/hive_status/normal/can_hive_have_a_queen()
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/get_total_tier_zeros()
+	return length(xenos_by_tier[XENO_TIER_ZERO])
+
+/datum/hive_status/normal/get_total_tier_zeros()
+	. = ..()
+	. += stored_larva
 
 // ***************************************
 // *********** List getters
@@ -90,6 +99,21 @@
 		for(var/i in xenos_by_typepath[typepath])
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
+				continue
+			xenos += X
+	return xenos
+
+// doing this by type means we get a pseudo sorted list
+/datum/hive_status/proc/get_leaderable_xenos()
+	var/list/xenos = list()
+	for(var/typepath in xenos_by_typepath)
+		if(typepath == /mob/living/carbon/xenomorph/queen) // hardcoded check for now
+			continue
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/xenomorph/X = i
+			if(is_centcom_level(X.z))
+				continue
+			if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos
@@ -280,9 +304,6 @@
 // *********** Xeno death
 // ***************************************
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/X)
-	if(living_xeno_queen?.observed_xeno == X)
-		living_xeno_queen.set_queen_overwatch(X, TRUE)
-
 	remove_from_lists(X)
 	dead_xenos += X
 

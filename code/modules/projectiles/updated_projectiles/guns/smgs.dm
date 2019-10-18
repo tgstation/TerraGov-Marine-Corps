@@ -68,6 +68,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro)
 
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
@@ -78,9 +79,6 @@
 	scatter_unwielded = 25
 
 
-
-
-
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/m39/elite
@@ -89,6 +87,7 @@
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
+	flags_item_map_variant = NONE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 

@@ -274,22 +274,21 @@
 	popup.open()
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
-	var/temp = 0								//see setup.dm:694
-	switch(src.pulse)
+/mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
+	switch(handle_pulse())
 		if(PULSE_NONE)
 			return PULSE_NONE
 		if(PULSE_SLOW)
-			temp = rand(40, 60)
+			var/temp = rand(40, 60)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_NORM)
-			temp = rand(60, 90)
+			var/temp = rand(60, 90)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_FAST)
-			temp = rand(90, 120)
+			var/temp = rand(90, 120)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_2FAST)
-			temp = rand(120, 160)
+			var/temp = rand(120, 160)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
