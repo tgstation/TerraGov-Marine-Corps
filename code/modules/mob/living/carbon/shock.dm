@@ -78,7 +78,7 @@
 			if(O.germ_level >= INFECTION_LEVEL_ONE) 				traumatic_shock += O.germ_level * 0.05
 
 		if(M.protection_aura)
-			traumatic_shock -= 35 + M.protection_aura * 35 //-70(maybe) pain for SLs, -140(maybe) for Commanders
+			traumatic_shock -= 40 + M.protection_aura * 30 // -70 for aSL, -100 for SL
 
 	traumatic_shock += reagent_pain_modifier
 	traumatic_shock = max(0, traumatic_shock)	//stuff below this has the potential to mask damage
