@@ -14,7 +14,7 @@
 		{
 			"label": "dreamchecker",
 			"type": "shell",
-			"command": "./dreamchecker.exe",
+			"command": "${workspaceFolder}/dreamchecker.exe",
 			"problemMatcher": {
 				"owner": "cpp",
 				"fileLocation": ["relative", "${workspaceFolder}"],
