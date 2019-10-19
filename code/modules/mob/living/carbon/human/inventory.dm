@@ -123,11 +123,15 @@
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/living/carbon/human/doUnEquip(obj/item/I)
 	. = ..()
-	if(!. || !I)
-		return FALSE
-
+	switch(.)
+		if(ITEM_UNEQUIP_DROPPED)
+			return
+		if(ITEM_UNEQUIP_UNEQUIPPED)
+			if(I.flags_armor_protection)
+				remove_limb_armor(I)
+			return
 	if(I == wear_suit)
 		if(s_store)
 			dropItemToGround(s_store)
@@ -139,6 +143,7 @@
 		if(I.flags_inv_hide & HIDEJUMPSUIT)
 			update_inv_w_uniform()
 		update_inv_wear_suit()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == w_uniform)
 		if(r_store)
 			dropItemToGround(r_store)
@@ -151,6 +156,7 @@
 		w_uniform = null
 		update_suit_sensors()
 		update_inv_w_uniform()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == head)
 		var/updatename = 0
 		if(head.flags_inv_hide & HIDEFACE)
@@ -168,9 +174,11 @@
 			update_inv_glasses()
 		update_tint()
 		update_inv_head()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == gloves)
 		gloves = null
 		update_inv_gloves()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == glasses)
 		glasses = null
 		var/obj/item/clothing/glasses/G = I
@@ -180,33 +188,40 @@
 			update_sight()
 		if(!QDELETED(src))
 			update_inv_glasses()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_ear)
 		wear_ear = null
 		update_inv_ears()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == shoes)
 		shoes = null
 		update_inv_shoes()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == belt)
 		belt = null
 		update_inv_belt()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_id)
 		wear_id = null
 		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == r_store)
 		r_store = null
 		update_inv_pockets()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == l_store)
 		l_store = null
 		update_inv_pockets()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == s_store)
 		s_store = null
 		update_inv_s_store()
+		. = ITEM_UNEQUIP_UNEQUIPPED
 
-	if(I.flags_armor_protection)
+	if(. == ITEM_UNEQUIP_UNEQUIPPED && I.flags_armor_protection)
 		remove_limb_armor(I)
-
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)

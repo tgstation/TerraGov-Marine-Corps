@@ -335,7 +335,7 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		doUnEquip(I)
+		UnEquip(I)
 		put_in_hands(I)
 		return TRUE
 
