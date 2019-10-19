@@ -62,6 +62,10 @@
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return TRUE
+		if(!(href_list["move"] in params2list(possible_destinations)))
+			log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
+			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
+			return TRUE
 		var/previous_status = M.mode
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
