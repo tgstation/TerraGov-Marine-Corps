@@ -28,11 +28,6 @@
 	var/tackle_chance = 100
 	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
 
-	// *** RNG Attacks *** //
-	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
-	var/tail_chance = 10 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
-	var/rng_min_interval = 3 SECONDS //Prevents further critical hits until this much time elapses
-
 	// *** Speed *** //
 	var/speed = 1
 
@@ -148,8 +143,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
-	var/critical_proc = 0
-	var/critical_delay = 25
 
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
