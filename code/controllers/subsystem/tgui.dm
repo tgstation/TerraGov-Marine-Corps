@@ -34,3 +34,9 @@ SUBSYSTEM_DEF(tgui)
 			processing_uis.Remove(ui)
 		if (MC_TICK_CHECK)
 			return
+
+/datum/nanoui
+
+/datum/nanoui/proc/set_initial_data()
+/datum/nanoui/proc/open()
+/datum/nanoui/proc/set_auto_update()
