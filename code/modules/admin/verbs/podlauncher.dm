@@ -62,7 +62,7 @@
 /datum/podlauncher/can_interact(mob/user)
 	return TRUE
 
-
+/*
 /datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
 	if(!temp_pod)
 		to_chat(user, "<span class='warning'>Pod has been deleted, closing the menu.</span>")
@@ -559,7 +559,7 @@
 		clearBay()
 		refreshBay()
 		. = TRUE
-
+*/
 
 /datum/podlauncher/on_unset_interaction()
 	qdel(src)

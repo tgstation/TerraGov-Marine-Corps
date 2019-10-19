@@ -719,13 +719,22 @@
 	else
 		return 0
 
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
+	if(IsAdminGhost(user))
+		return TRUE
+	if(isAI(user) && src.aidisabled)
+		if(!loud)
+			to_chat(user, "<span class='danger'>\The [src] has eee disabled!</span>")
+		return FALSE
+	return TRUE
+
 /obj/machinery/power/apc/ui_act(action, params)
 	if(..() || !can_use(usr, 1) || locked)
 		return
 	switch(action)
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege)
-				if((stat & (BROKEN|MAINT)))
+				if((machine_stat & (BROKEN|MAINT)))
 					to_chat(usr, "The APC does not respond to the command.")
 				else
 					locked = !locked
