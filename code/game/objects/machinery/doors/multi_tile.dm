@@ -103,8 +103,6 @@
 	icon = 'icons/obj/doors/mainship/2x1medidoor.dmi'
 	opacity = FALSE
 	glass = TRUE
-	req_access_txt = "0"
-	req_one_access_txt =  "2;8;19"
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay
 	name = "\improper Medical Bay"	

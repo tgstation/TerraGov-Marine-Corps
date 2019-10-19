@@ -186,6 +186,11 @@
 	name = "\improper Containment Cell 2"
 	id = "containmentcell_2"			
 
+/obj/machinery/door/poddoor/shutters/mainship/brigarmory
+	name = "\improper Brig Armory Shutters"
+	id = "brig_armory"
+	icon_state = "shutter1"	
+
 /obj/machinery/door/poddoor/shutters/mainship/cic
 	name = "\improper CIC Shutters"	
 

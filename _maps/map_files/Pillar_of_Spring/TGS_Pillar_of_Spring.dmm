@@ -1236,7 +1236,8 @@
 /area/mainship/medical/operating_room_one)
 "ez" = (
 /obj/machinery/door/poddoor/mainship/cic{
-	dir = 4
+	dir = 4;
+	icon_state = "pdoor0"
 	},
 /obj/machinery/door/firedoor/mainship{
 	icon_state = "door_open";
@@ -9644,15 +9645,13 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/upper_engineering)
 "AH" = (
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
+/obj/machinery/door/poddoor/shutters/mainship/brigarmory{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "AI" = (
-/obj/machinery/door/poddoor/shutters/mainship/cic/armory{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/shutters/mainship/brigarmory,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "AJ" = (
@@ -10881,7 +10880,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/cic{
-	dir = 4
+	dir = 4;
+	icon_state = "pdoor0"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11029,7 +11029,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/cic{
-	dir = 4
+	dir = 4;
+	icon_state = "pdoor0"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12609,7 +12610,8 @@
 	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4
+	dir = 4;
+	icon_state = "shutter0"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -13186,7 +13188,8 @@
 /area/mainship/shipboard/brig)
 "HQ" = (
 /obj/machinery/door/poddoor/mainship/cic{
-	dir = 2
+	dir = 2;
+	icon_state = "pdoor0"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -13300,7 +13303,8 @@
 /area/mainship/command/cic)
 "Ia" = (
 /obj/machinery/door/poddoor/mainship/cic{
-	dir = 2
+	dir = 2;
+	icon_state = "pdoor0"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -15387,7 +15391,8 @@
 "LJ" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4
+	dir = 4;
+	icon_state = "shutter0"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -15909,7 +15914,8 @@
 	d2 = 8
 	},
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4
+	dir = 4;
+	icon_state = "shutter0"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
