@@ -986,6 +986,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 10
 	penetration = 0
 
+/datum/ammo/energy/lasgun/pulsebolt
+	name = "pulse bolt"
+	icon_state = "pulse2"
+	hud_state = "laser_overcharge"
+	damage = 85 // this is gotta hurt...
+	max_range = 40
+	penetration = 100
+
 /*
 //================================================
 					Xeno Spits
