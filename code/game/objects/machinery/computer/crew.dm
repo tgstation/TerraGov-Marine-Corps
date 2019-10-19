@@ -112,11 +112,6 @@
 	if(!ui)
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 800)
 
-		// adding a template with the key "mapContent" enables the map ui functionality
-//		ui.add_template("mapContent", "crew_monitor_map_content.tmpl")
-		// adding a template with the key "mapHeader" replaces the map header content
-//		ui.add_template("mapHeader", "crew_monitor_map_header.tmpl")
-
 		ui.set_initial_data(data)
 		ui.open()
 
