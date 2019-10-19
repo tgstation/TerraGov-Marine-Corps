@@ -602,7 +602,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	damage = 40
 	damage_falloff = 2
-	penetration = 10
 
 /datum/ammo/bullet/shotgun/sx16_buckshot/spread
 	name = "additional buckshot"
@@ -612,7 +611,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	damage = 30
 	damage_falloff = 2
-	penetration = 10
 
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
