@@ -180,6 +180,7 @@
 
 	var/emotedown = 0
 
+	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 

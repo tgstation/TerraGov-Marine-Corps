@@ -832,5 +832,5 @@
 
 
 /mob/living/carbon/xenomorph/proc/remove_abilities()
-	for(var/action_datum in actions)
+	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
