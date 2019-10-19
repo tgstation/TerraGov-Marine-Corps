@@ -242,6 +242,10 @@
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
+//bumpattack component
+#define COMPONENT_BUMPATTACK_INACTIVE (1<<1)
+#define COMPONENT_BUMPATTACK_ACTIVE (1<<2)
+
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)

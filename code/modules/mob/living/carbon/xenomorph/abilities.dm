@@ -39,35 +39,6 @@
 
 	return succeed_activate()
 
-// Toggle Bumpattacks
-/datum/action/xeno_action/bumpattack
-	name = "Toggle Bump Attacks"
-	action_icon_state = "bumpattack_off"
-	mechanics_text = "Automatically attack anyone you bump into."
-	var/active = FALSE
-
-/datum/action/xeno_action/bumpattack/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-
-	add_cooldown()
-	active = !active
-	to_chat(X, "<span class='notice'>You will now [active ? "attack" : "push"] those who are in your way.</span>")
-
-	if(active)
-		X.RegisterSignal(X, COMSIG_MOVABLE_BUMP, /mob/living/carbon/xenomorph/.proc/bump_attack)
-	else
-		X.UnregisterSignal(X, COMSIG_MOVABLE_BUMP)
-
-	update_button_icon()
-
-/datum/action/xeno_action/bumpattack/update_button_icon()
-	button.overlays.Cut()
-	if(active)
-		button.overlays += image('icons/mob/actions.dmi', button, "bumpattack_on")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "bumpattack_off")
-	return ..()
-
 
 // ***************************************
 // *********** Drone-y abilities
