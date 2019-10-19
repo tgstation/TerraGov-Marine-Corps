@@ -20,7 +20,7 @@
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
-
+	var/visible_contents = TRUE
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -58,7 +58,7 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, icon_panel)
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -86,7 +86,7 @@
 
 		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
 							"<span class='notice'>You add \the [I] to \the [src].")
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else if(istype(I, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/P = I
@@ -113,7 +113,7 @@
 			if(length(P.contents) > 0)
 				to_chat(user, "<span class='notice'>Some items are refused.</span>")
 
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
@@ -130,7 +130,77 @@
 
 	return TRUE
 
+///Really simple proc, just moves the object "O" into the hands of mob "M" if able, done so I could modify the proc a little for the organ fridge
+/obj/machinery/smartfridge/proc/dispense(obj/item/O, mob/M)
+	if(!M.put_in_hands(O))
+		O.forceMove(drop_location())
+		adjust_item_drop_location(O)
 
+/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "smartvend", name, ui_x, ui_y, master_ui, state)
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/machinery/smartfridge/ui_data(mob/user)
+	. = list()
+
+	var/listofitems = list()
+	for (var/I in src)
+		var/atom/movable/O = I
+		if (!QDELETED(O))
+			var/md5name = md5(O.name)				// This needs to happen because of a bug in a TGUI component, https://github.com/ractivejs/ractive/issues/744
+			if (listofitems[md5name])				// which is fixed in a version we cannot use due to ie8 incompatibility
+				listofitems[md5name]["amount"]++	// The good news is, #30519 made smartfridge UIs non-auto-updating
+			else
+				listofitems[md5name] = list("name" = O.name, "type" = O.type, "amount" = 1)
+	sortList(listofitems)
+
+	.["contents"] = listofitems
+	.["name"] = name
+	.["isdryer"] = FALSE
+
+
+/obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
+	SStgui.update_uis(src)
+
+/obj/machinery/smartfridge/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("Release")
+			var/desired = 0
+
+			if (params["amount"])
+				desired = text2num(params["amount"])
+			else
+				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
+
+			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
+				return FALSE
+
+			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
+				for(var/obj/item/O in src)
+					if(O.name == params["name"])
+						dispense(O, usr)
+						break
+				if (visible_contents)
+					update_icon()
+				return TRUE
+
+			for(var/obj/item/O in src)
+				if(desired <= 0)
+					break
+				if(O.name == params["name"])
+					dispense(O, usr)
+					desired--
+			if (visible_contents)
+				update_icon()
+			return TRUE
+	return FALSE
+/*
 /obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 	var/data[0]
 	data["contents"] = null
@@ -179,7 +249,7 @@
 					if (i <= 0)
 						return 1
 
-		return 1
+		return 1*/
 
 /obj/machinery/smartfridge/proc/throw_item()
 	var/obj/throw_item = null
