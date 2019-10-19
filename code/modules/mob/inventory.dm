@@ -323,3 +323,7 @@
 //returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
 	return
+
+//placeholder until tg inventory system
+/mob/proc/is_holding(obj/item/I)
+	return ((I == l_hand) || (I == r_hand))

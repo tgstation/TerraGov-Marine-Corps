@@ -70,6 +70,7 @@
 
 	ui_interact(user)
 
+/*
 /obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
 
 	var/using_internal
@@ -104,6 +105,7 @@
 		ui.open()
 		// auto update every Master Controller tick
 		ui.set_auto_update(1)
+*/
 
 /obj/item/tank/Topic(href, href_list)
 	. = ..()

@@ -57,7 +57,7 @@
 
 	return TRUE
 
-
+/*
 /obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	var/list/display_list = list()
 
@@ -93,7 +93,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
-
+*/
 
 /obj/item/portable_vendor/Topic(href, href_list)
 	. = ..()

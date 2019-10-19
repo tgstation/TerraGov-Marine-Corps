@@ -194,7 +194,7 @@
 
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-
+/*
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	. = ..()
 
@@ -220,7 +220,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
-
+*/
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	. = ..()
 	if(.)
