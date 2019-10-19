@@ -947,7 +947,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43
 	name = "military laser bolt"
-	hud_state = "laser"
+	hud_state = "laser2"
 	damage = 25
 	penetration = 25
 
@@ -976,7 +976,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/spread
 	name = "additional laser blast"
-	icon_state = "laser"
+	icon_state = "laser2"
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9

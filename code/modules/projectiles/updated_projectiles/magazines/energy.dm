@@ -38,7 +38,7 @@
 	return FALSE
 
 /obj/item/cell/lasgun/pulse
-	name = "\improper MM19C4 pulse battery"
+	name = "\improper M19C4 pulse battery"
 	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle; Uses pulse-based energy rather than laser energy, massively increasing its firepower."
 	base_ammo_icon = "m43"
 	icon_state = "m43"
