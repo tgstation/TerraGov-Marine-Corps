@@ -14735,7 +14735,7 @@
 /obj/machinery/door/airlock/mainship/engineering/workshop{
 	dir = 2
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "KB" = (
 /obj/structure/disposalpipe/segment{
