@@ -175,7 +175,7 @@
 	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
-	
+
 
 
 //-------------------------------------------------------
@@ -223,7 +223,7 @@
 	damage_mult = 0.8
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.14 SECONDS
-	
+
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE

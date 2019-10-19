@@ -87,7 +87,7 @@
 /mob/living/silicon/ai/emp_act(severity)
 	. = ..()
 
-	if(prob(30)) 
+	if(prob(30))
 		view_core()
 
 
@@ -119,7 +119,7 @@
 			return
 
 		ai_actual_track(pick(target))
-			
+
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
@@ -164,7 +164,7 @@
 	for(var/obj/machinery/camera/C in remove)
 		lit_cameras -= C //Removed from list before turning off the light so that it doesn't check the AI looking away.
 		C.Togglelight(0)
-		
+
 	for(var/obj/machinery/camera/C in add)
 		C.Togglelight(1)
 		lit_cameras |= C
@@ -228,7 +228,7 @@
 	. = ..()
 
 	if(statpanel("Stats"))
-	
+
 		if(stat != CONSCIOUS)
 			stat(null, text("Systems nonfunctional"))
 			return

@@ -14,7 +14,7 @@
 	var/update_cycle
 
 	pipe_state = "heunary"
-	
+
 /obj/machinery/atmospherics/components/unary/heat_exchanger/layer1
 	piping_layer = 1
 	icon_state = "he_map-1"

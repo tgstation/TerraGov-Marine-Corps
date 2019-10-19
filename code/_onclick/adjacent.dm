@@ -32,10 +32,10 @@
 */
 /turf/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	var/turf/T0 = get_turf(neighbor)
-	
+
 	if(T0 == src) //same turf
 		return TRUE
-	
+
 	if(get_dist(src, T0) > 1 || z != T0.z) //too far
 		return FALSE
 

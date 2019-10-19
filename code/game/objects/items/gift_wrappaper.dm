@@ -230,7 +230,7 @@
 
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
-	if(!ishuman(target)) 
+	if(!ishuman(target))
 		return
 
 	var/mob/living/carbon/human/H = target

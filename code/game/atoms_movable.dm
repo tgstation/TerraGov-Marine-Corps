@@ -190,6 +190,7 @@
 
 
 /atom/movable/Bump(atom/A)
+	SHOULD_CALL_PARENT(1)
 	if(!A)
 		CRASH("Bump was called with no argument.")
 	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
@@ -321,13 +322,13 @@
 /atom/movable/proc/hit_check(speed)
 	if(!throwing)
 		return
-		
+
 	for(var/atom/A in get_turf(src))
-		if(A == src) 
+		if(A == src)
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying) 
+			if(L.lying)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
@@ -336,7 +337,7 @@
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, spin)
 	set waitfor = FALSE
-	if(!target || !src)	
+	if(!target || !src)
 		return FALSE
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 
@@ -425,7 +426,7 @@
 			a = get_area(loc)
 
 	//done throwing, either because it hit something or it finished moving
-	if(isobj(src) && throwing) 
+	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
 		throwing = FALSE

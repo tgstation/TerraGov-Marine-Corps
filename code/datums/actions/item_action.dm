@@ -80,5 +80,5 @@
 		if(GUN_FIREMODE_AUTOBURST)
 			button.name = "Automatic Burst Firemode"
 			current_action_vis_obj = autoburst
-	button.vis_contents += current_action_vis_obj	
+	button.vis_contents += current_action_vis_obj
 	action_firemode = holder_gun.gun_firemode

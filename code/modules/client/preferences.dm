@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 	addtimer(CALLBACK(src, .proc/keybindings_setup, C), 5 SECONDS)
-	
+
 
 /datum/preferences/proc/keybindings_setup(client/C)
 	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
@@ -594,7 +594,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
-			ShowChoices(user)			
+			ShowChoices(user)
 			return TRUE
 
 		if("synth_name")

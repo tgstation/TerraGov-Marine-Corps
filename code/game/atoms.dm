@@ -634,7 +634,7 @@ Proc for attack log creation, because really why not
 		if(laststamppos)
 			LAZYSET(fingerprints, M.key, copytext(fingerprints[M.key], 1, laststamppos))
 		fingerprints[M.key] += " Last: [M.real_name] | [current_time] | [type] [special ? " | [special]" : ""]"
-	
+
 	return TRUE
 
 
@@ -670,8 +670,8 @@ Proc for attack log creation, because really why not
 
 	if((interaction_flags & INTERACT_REQUIRES_DEXTERITY) && !user.dextrous)
 		return FALSE
-	
+
 	if((interaction_flags & INTERACT_CHECK_INCAPACITATED) && user.incapacitated())
 		return FALSE
-	
+
 	return TRUE

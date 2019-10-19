@@ -49,10 +49,10 @@
 
 /obj/item/grown/log/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(I.sharp != IS_SHARP_ITEM_BIG)
 		return
-		
+
 	user.show_message("<span class='notice'>You make planks out of \the [src]!</span>", 1)
 	var/obj/item/stack/sheet/wood/NG = new(user.loc, 2)
 	NG.add_to_stacks(user)

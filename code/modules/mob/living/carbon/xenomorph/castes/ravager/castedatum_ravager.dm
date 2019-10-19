@@ -144,4 +144,4 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 60, "acid" = 30)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-	
+

@@ -1,9 +1,0 @@
-author: "jroinc"
-delete-after: True
-changes: 
-  - rscadd: "Added 4 syringe cases, each buyable for 15 points, containing a syringe, and respectively 2 60u bottles of meralyne, dermaline, meraderm mix, and ironsugar mix."
-  - rscadd: "Added a bottle of \"synthetic\" neurotoxin for later addition to MD vendors to test their chem mixes ingame and up RSR gameplay."
-  - rscdel: "Removed a few things from medic vendor that were available for free in prep. I'll get the rest later."
-  - balance: "swapped the burn medkit's bottle of dermaline for an oxy bottle. Derm should not be found on the map at roundstart.
-
-also everything with the hyperzine rework I made earlier"

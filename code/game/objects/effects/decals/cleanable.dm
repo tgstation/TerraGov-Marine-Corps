@@ -19,13 +19,13 @@
 	var/turf/target_turf
 	var/loc_last_process
 
-	
+
 /obj/effect/decal/cleanable/blood/splatter/animated/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = loc
 
-	
+
 /obj/effect/decal/cleanable/blood/splatter/animated/Destroy()
 	animation_destruction_fade(src)
 	STOP_PROCESSING(SSobj, src)

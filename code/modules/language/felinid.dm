@@ -11,17 +11,17 @@
 	Syllabe source http://www.stevemorse.org/japanese/description.html
 */
 	syllables = list(
-	"ka", "ki", "ku", "ke", "ko", 
-	"ga", "gi", "gu", "ge", "go", 
-	"sa", "su", "se", "so", 
-	"za", "zu", "ze", "zo", "zi", 
+	"ka", "ki", "ku", "ke", "ko",
+	"ga", "gi", "gu", "ge", "go",
+	"sa", "su", "se", "so",
+	"za", "zu", "ze", "zo", "zi",
 	"ta", "tsu", "te", "to",
 	"da", "du", "de", "do",
-	"na", "ni", "nu", "ne", "no", "n", 
-	"ha", "hi", "hu", "he", "ho", 
-	"ba", "bi", "bu", "be", "bo", 
-	"pa", "pi", "pu", "pe", "po", 
-	"ma", "mi", "mu", "me", "mo", 
+	"na", "ni", "nu", "ne", "no", "n",
+	"ha", "hi", "hu", "he", "ho",
+	"ba", "bi", "bu", "be", "bo",
+	"pa", "pi", "pu", "pe", "po",
+	"ma", "mi", "mu", "me", "mo",
 	"ya", "yu", "yo",
 	"ra", "ri", "ru", "re", "ree", "ro",
 	"wa", "i", "e", "wo",
@@ -33,5 +33,5 @@
 	"kya", "gya", "nya", "hya", "bya", "pya", "mya", "rya",
 	"kyu", "gyu", "nyu", "hyu", "byu", "pyu", "myu", "ryu",
 	"kyo", "gyo", "nyo", "hyo", "byo", "pyo", "myo", "ryo",)
-	
+
 	icon_state = "animal"

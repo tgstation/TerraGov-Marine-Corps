@@ -24,7 +24,7 @@
 
 
 /obj/item/proc/wield(mob/user)
-	if(!(flags_item & TWOHANDED)) 
+	if(!(flags_item & TWOHANDED))
 		return
 
 	if(flags_item & WIELDED)
@@ -82,23 +82,23 @@
 
 /obj/item/weapon/twohanded/wield(mob/user)
 	. = ..()
-	if(!.) 
+	if(!.)
 		return
 
-	if(wieldsound) 
+	if(wieldsound)
 		playsound(user, wieldsound, 15, 1)
-	
+
 	force = force_wielded
 
 
 /obj/item/weapon/twohanded/unwield(mob/user)
 	. = ..()
-	if(!.) 
+	if(!.)
 		return
-	
-	if(unwieldsound) 
+
+	if(unwieldsound)
 		playsound(user, unwieldsound, 15, 1)
-	
+
 	force = initial(force)
 
 
@@ -108,7 +108,7 @@
 		to_chat(user, "<span class='warning'>It's too heavy for you to wield fully!</span>")
 		return
 
-	if(flags_item & WIELDED) 
+	if(flags_item & WIELDED)
 		unwield(user)
 	else
 		wield(user)
@@ -168,14 +168,14 @@
 
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
-	if(!.) 
+	if(!.)
 		return
 	pry_capable = IS_PRY_CAPABLE_SIMPLE
 
 
 /obj/item/weapon/twohanded/fireaxe/unwield(mob/user)
 	. = ..()
-	if(!.) 
+	if(!.)
 		return
 	pry_capable = 0
 

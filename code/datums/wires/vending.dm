@@ -49,7 +49,7 @@
 			V.shut_up = !V.shut_up
 
 
-/datum/wires/vending/on_cut(wire, mend)		
+/datum/wires/vending/on_cut(wire, mend)
 	var/obj/machinery/vending/V = holder
 	switch(wire)
 		if(WIRE_THROW)

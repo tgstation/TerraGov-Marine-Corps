@@ -89,7 +89,7 @@
 
 /obj/machinery/power/smes/batteryrack/attackby(obj/item/I, mob/user, params) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	. = ..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
-	
+
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return
 

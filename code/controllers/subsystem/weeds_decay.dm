@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(weeds_decay)
 			continue
 
 		var/decay_chance = 100
-		for(var/direction in GLOB.cardinals) 
+		for(var/direction in GLOB.cardinals)
 			var/turf/adj = get_step(T, direction)
 			if(locate(/obj/effect/alien/weeds) in adj)
 				decay_chance -= rand(20, 24)

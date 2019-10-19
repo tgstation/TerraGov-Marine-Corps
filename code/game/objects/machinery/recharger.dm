@@ -18,7 +18,7 @@
 
 	var/allowed = FALSE
 	for(var/allowed_type in allowed_devices)
-		if(istype(I, allowed_type)) 
+		if(istype(I, allowed_type))
 			allowed = TRUE
 			break
 

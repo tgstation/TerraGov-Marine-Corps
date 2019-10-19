@@ -150,4 +150,4 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2
-	
+

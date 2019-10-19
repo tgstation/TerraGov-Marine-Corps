@@ -182,14 +182,14 @@ FIRE ALARM
 
 	if(href_list["reset"])
 		reset()
-	
+
 	else if(href_list["alarm"])
 		alarm()
-	
+
 	else if(href_list["time"])
 		timing = text2num(href_list["time"])
 		last_process = world.time
-	
+
 	else if(href_list["tp"])
 		var/tp = text2num(href_list["tp"])
 		time += tp

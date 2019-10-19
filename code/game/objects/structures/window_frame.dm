@@ -55,7 +55,7 @@
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE
-	update_nearby_icons()	
+	update_nearby_icons()
 	return ..()
 
 /obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
@@ -81,7 +81,7 @@
 
 	else if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
-		if(isxeno(user)) 
+		if(isxeno(user))
 			return
 
 		if(!isliving(G.grabbed_thing))
@@ -102,7 +102,7 @@
 		user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
 		"<span class='notice'>You start pulling [M] onto [src]!</span>")
 		var/oldloc = loc
-		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc) 
+		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
 			return
 		M.knock_down(2)
 		user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",

@@ -2,7 +2,7 @@
 
 	var/msg = "<span class='info'>*---------*<br>"
 	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
-	
+
 	if(stat == DEAD)
 		msg += "<span class='deadsay'>It appears to be powered-down.</span><br>"
 	else
@@ -25,7 +25,7 @@
 			msg += "[src]/Core.exe has stopped responding! Searching for a solution to the problem...<br>"
 
 		msg += "</span>"
-	
+
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)

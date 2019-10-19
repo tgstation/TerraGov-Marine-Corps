@@ -286,7 +286,7 @@
 			if(!C.iscopy && !C.copied)
 				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
 				return
-		if(loc != user) 
+		if(loc != user)
 			return
 		var/obj/item/paper_bundle/B = new(get_turf(user))
 		if(name != "paper")

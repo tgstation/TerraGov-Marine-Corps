@@ -46,18 +46,18 @@
 			var/obj/item/pipe/P = new (loc, p_type, p_dir)
 			P.setPipingLayer(piping_layer)
 			wait = world.time + 10
-	
+
 	if(href_list["makemeter"])
 		if(wait < world.time )
 			new /obj/item/pipe_meter(loc)
 			wait = world.time + 15
-	
+
 	if(href_list["layer_up"])
 		piping_layer = CLAMP(++piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	
+
 	if(href_list["layer_down"])
 		piping_layer = CLAMP(--piping_layer, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
-	
+
 	updateUsrDialog()
 
 
@@ -87,7 +87,7 @@
 		else
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
-			
+
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				return
 

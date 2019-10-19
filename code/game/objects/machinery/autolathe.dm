@@ -282,7 +282,7 @@
 		if(stored_material[mat] > S.perunit)
 			S.amount = round(stored_material[mat] / S.perunit)
 			S.forceMove(loc)
-	
+
 	return ..()
 
 

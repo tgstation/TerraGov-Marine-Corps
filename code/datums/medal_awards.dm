@@ -43,21 +43,21 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	if(medal_location)
 		var/obj/item/clothing/tie/medal/MD
 		switch(medal_type)
-			if("distinguished conduct medal")	
+			if("distinguished conduct medal")
 				MD = new /obj/item/clothing/tie/medal/conduct(medal_location)
-			if("bronze heart medal") 			
+			if("bronze heart medal")
 				MD = new /obj/item/clothing/tie/medal/bronze_heart(medal_location)
-			if("medal of valor") 				
+			if("medal of valor")
 				MD = new /obj/item/clothing/tie/medal/silver/valor(medal_location)
-			if("medal of exceptional heroism")	
+			if("medal of exceptional heroism")
 				MD = new /obj/item/clothing/tie/medal/gold/heroism(medal_location)
-			if("letter of commendation")		
+			if("letter of commendation")
 				MD = new /obj/item/clothing/tie/medal/letter/commendation(medal_location)
 			else return
 		MD.recipient_name = chosen_recipient
 		MD.medal_citation = citation
 		MD.recipient_rank = recipient_rank
-		
+
 	log_game("[key_name(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	message_admins("[ADMIN_TPMONTY(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	return TRUE

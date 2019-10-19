@@ -331,7 +331,7 @@
 	var/web_sound_input = input("Enter content URL (supported sites only)", "Play Internet Sound via youtube-dl") as text|null
 	if(!istext(web_sound_input) || !length(web_sound_input))
 		return
-	
+
 	web_sound_input = trim(web_sound_input)
 
 	if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
@@ -343,12 +343,12 @@
 	var/list/music_extra_data = list()
 	var/title
 	var/show = FALSE
-	
+
 	var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(web_sound_input)]\"")
 	var/errorlevel = output[SHELLEO_ERRORLEVEL]
 	var/stdout = output[SHELLEO_STDOUT]
 	var/stderr = output[SHELLEO_STDERR]
-	
+
 	if(errorlevel)
 		to_chat(usr, "<span class='warning'>Youtube-dl URL retrieval FAILED: [stderr]</span>")
 		return
@@ -359,7 +359,7 @@
 	catch(var/exception/e)
 		to_chat(usr, "<span class='warning'>Youtube-dl JSON parsing FAILED: [e]: [stdout]</span>")
 		return
-	
+
 	if(data["url"])
 		web_sound_url = data["url"]
 		title = data["title"]
@@ -429,7 +429,7 @@
 	for(var/i in GLOB.clients)
 		var/client/C = i
 		if(!C?.chatOutput.loaded || !C.chatOutput.working)
-			continue	
+			continue
 		C.chatOutput.stopMusic()
 
 

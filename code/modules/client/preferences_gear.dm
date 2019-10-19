@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	display_name = "Prescription Glasses"
 	path = /obj/item/clothing/glasses/regular
 	cost = 2
-	slot = SLOT_GLASSES	
+	slot = SLOT_GLASSES
 
 
 /datum/gear/shades

@@ -21,9 +21,9 @@
 
 
 /proc/sanitize_inlist(value, list/L, default)
-	if(value in L)	
+	if(value in L)
 		return value
-	if(default)			
+	if(default)
 		return default
 	if(length(L))
 		return L[1]
@@ -33,7 +33,7 @@
 	for(var/i in L)
 		if(L[i] == value)
 			return value
-	if(default)			
+	if(default)
 		return default
 
 
@@ -43,14 +43,14 @@
 		if(MALE, FEMALE)
 			return gender
 		if(NEUTER)
-			if(neuter)	
+			if(neuter)
 				return gender
-			else		
+			else
 				return default
 		if(PLURAL)
-			if(plural)	
+			if(plural)
 				return gender
-			else		
+			else
 				return default
 	return default
 
@@ -70,15 +70,15 @@
 
 
 /proc/sanitize_hexcolor(color, default = "#000000")
-	if(!istext(color)) 
+	if(!istext(color))
 		return default
 
 	var/len = length(color)
 
-	if(len != 7 && len !=4) 
+	if(len != 7 && len !=4)
 		return default
 
-	if(text2ascii(color,1) != 35) 
+	if(text2ascii(color,1) != 35)
 		return default	//35 is the ascii code for "#"
 
 	. = "#"
@@ -86,12 +86,12 @@
 	for(var/i in 2 to len)
 		var/ascii = text2ascii(color,i)
 		switch(ascii)
-			if(48 to 57)	
+			if(48 to 57)
 				. += ascii2text(ascii)		//numbers 0 to 9
-			if(97 to 102)	
+			if(97 to 102)
 				. += ascii2text(ascii)		//letters a to f
-			if(65 to 70)	
+			if(65 to 70)
 				. += ascii2text(ascii+32)	//letters A to F - translates to lowercase
-			else			
+			else
 				return default
 	return .

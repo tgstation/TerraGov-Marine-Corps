@@ -74,7 +74,7 @@
 		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
 		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * 0.5)
 		if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly
+			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, HUNTER_SNEAKATTACK_MAX_MULTIPLIER), 0.01) //Recover sneak attack multiplier rapidly
 			if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
 				to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	//Running stealth
