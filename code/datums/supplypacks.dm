@@ -1583,7 +1583,7 @@ AMMO
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/ap
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M41A1 armor piercing ammo crate"
 	group = "Ammo"
@@ -1617,7 +1617,7 @@ AMMO
 					/obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/ammo_magazine/pistol/incendiary
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M4A3 incendiary ammo crate"
 	group = "Ammo"
@@ -1641,7 +1641,7 @@ AMMO
 					/obj/item/ammo_magazine/revolver/mateba,
 					/obj/item/ammo_magazine/revolver/mateba
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Mateba speed loader crate"
 	group = "Ammo"
@@ -1665,7 +1665,7 @@ AMMO
 					/obj/item/ammo_magazine/revolver/heavy,
 					/obj/item/ammo_magazine/revolver/heavy
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M44 PW-MX speed loader crate"
 	group = "Ammo"
@@ -1855,7 +1855,7 @@ AMMO
 	contains = list(
 					/obj/item/big_ammo_box/ap
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M41A1 ammo box crate"
 	group = "Ammo"
@@ -1939,7 +1939,7 @@ AMMO
 					/obj/item/smartgun_powerpack,
 					/obj/item/smartgun_powerpack
 					)
-	cost = RO_PRICE_VERY_CHEAP
+	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper smartgun powerpack crate"
 	group = "Ammo"
@@ -1965,7 +1965,7 @@ AMMO
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank
 					)
-	cost = RO_PRICE_CHEAP
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M240 fuel crate"
 	group = "Ammo"
@@ -2102,7 +2102,7 @@ AMMO
 	contains = list(
 					/obj/machinery/vending/lasgun
 					)
-	cost = RO_PRICE_KINDA_PRICY
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper ColMarTech Lasgun Field Charger"
 	group = "Ammo"
@@ -2142,7 +2142,7 @@ AMMO
 					/obj/item/cell/lasgun/M43/highcap,
 					/obj/item/cell/lasgun/M43/highcap
 					)
-	cost = RO_PRICE_VERY_CHEAP
+	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "ammo crate"
 	group = "Ammo"
