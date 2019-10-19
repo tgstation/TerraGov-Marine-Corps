@@ -12611,7 +12611,7 @@
 	},
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
 	dir = 4;
-	icon_state = "shutter0"
+	icon_state = "shutter1"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -15392,7 +15392,7 @@
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
 	dir = 4;
-	icon_state = "shutter0"
+	icon_state = "shutter1"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -15912,10 +15912,6 @@
 	icon_state = "4-8";
 	d1 = 4;
 	d2 = 8
-	},
-/obj/machinery/door/poddoor/shutters/mainship/corporate{
-	dir = 4;
-	icon_state = "shutter0"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
