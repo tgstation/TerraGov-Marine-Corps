@@ -1250,7 +1250,6 @@
 #include "code\modules\mob\new_player\poll.dm"
 #include "code\modules\mob\new_player\preferences_setup.dm"
 #include "code\modules\mob\new_player\sprite_accessories.dm"
-#include "code\modules\nano\interaction.dm"
 #include "code\modules\organs\limb_objects.dm"
 #include "code\modules\organs\limbs.dm"
 #include "code\modules\organs\organ_alien.dm"
