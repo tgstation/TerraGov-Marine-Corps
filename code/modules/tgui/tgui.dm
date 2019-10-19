@@ -24,13 +24,13 @@
 	var/height = 0
 	/// Extra options to winset().
 	var/window_options = list(
-	  "focus" = FALSE,
-	  "titlebar" = TRUE,
-	  "can_resize" = TRUE,
-	  "can_minimize" = TRUE,
-	  "can_maximize" = FALSE,
-	  "can_close" = TRUE,
-	  "auto_format" = FALSE
+		"focus" = FALSE,
+		"titlebar" = TRUE,
+		"can_resize" = TRUE,
+		"can_minimize" = TRUE,
+		"can_maximize" = FALSE,
+		"can_close" = TRUE,
+		"auto_format" = FALSE
 	)
 	/// The style to be used for this UI.
 	var/style = "nanotrasen"
