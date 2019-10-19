@@ -121,9 +121,7 @@
 	if((I.flags_item & NODROP) && !force)
 		return FALSE //UnEquip() only fails if item has NODROP
 
-	var/unequipped = doUnEquip(I)
-	if(unequipped == ITEM_UNEQUIP_FAIL)
-		stack_trace("Failed to unequip [I]. Parameters passed: [newloc] | [nomoveupdate] | [force]")
+	doUnEquip(I)
 
 	if (client)
 		client.screen -= I
