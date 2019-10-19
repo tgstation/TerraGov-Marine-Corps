@@ -241,7 +241,7 @@
 	adjust_stagger(3)
 	add_slowdown(3)
 
-	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
+	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 
 // ***************************************
 // *********** Rip limb

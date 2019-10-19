@@ -13,7 +13,7 @@
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
-		no_stun = max(0, no_stun - 1) //decrement by 1.
+		no_stun = max(0,no_stun - 1) //decrement by 1.
 
 	if(confused)
 		confused = max(0, confused - 1)
@@ -24,7 +24,6 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
-
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -59,10 +58,6 @@
 	if(slurring)
 		slurring = max(slurring-1, 0)
 	return slurring
-
-
-/mob/living/proc/handle_staminaloss()
-	adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
 
 
 /mob/living/proc/handle_regular_hud_updates()

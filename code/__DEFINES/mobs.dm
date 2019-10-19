@@ -87,7 +87,6 @@
 #define CUT 		"cut"
 #define BRUISE		"bruise"
 #define HALLOSS		"halloss"
-#define STAMINA		"stamina"
 //=================================================
 
 #define STUN		"stun"
@@ -106,7 +105,6 @@
 #define FIRELOSS 	(1<<1)
 #define TOXLOSS 	(1<<2)
 #define OXYLOSS 	(1<<3)
-#define STAMINALOSS	(1<<4)
 //=================================================
 
 //status_flags
@@ -299,7 +297,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HAS_NO_HAIR 			(1<<12)
 #define IS_PLANT 				(1<<13)
 #define IS_SYNTHETIC 			(1<<14)
-#define NO_STAMINA 				(1<<15)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -396,7 +393,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Xeno Defines
 
 #define XENO_SLOWDOWN_REGEN 0.4
-#define QUEEN_DEATH_TIMER 5 MINUTES
+#define XENO_HALOSS_REGEN 3
+#define QUEEN_DEATH_TIMER 300 5 MINUTES
 #define DEFENDER_CRESTDEFENSE_ARMOR 30
 #define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
 #define DEFENDER_FORTIFY_ARMOR 60

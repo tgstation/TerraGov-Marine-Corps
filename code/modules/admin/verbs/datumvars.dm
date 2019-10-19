@@ -219,7 +219,6 @@
 					OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[M.getOxyLoss()]</a>
 					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[M.getCloneLoss()]</a>
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
-					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[M.getStaminaLoss()]</a>
 				</font>
 			"}
 	else if("name" in D.vars)
@@ -1011,7 +1010,7 @@
 		var/newamt
 		switch(Text)
 			if("brute")
-				L.adjustBruteLoss(amount, TRUE)
+				L.adjustBruteLoss(amount)
 				newamt = L.getBruteLoss()
 			if("fire")
 				L.adjustFireLoss(amount)
@@ -1028,9 +1027,6 @@
 			if("clone")
 				L.adjustCloneLoss(amount)
 				newamt = L.getCloneLoss()
-			if("stamina")
-				L.adjustStaminaLoss(amount)
-				newamt = L.getStaminaLoss()
 
 		if(amount == 0)
 			return

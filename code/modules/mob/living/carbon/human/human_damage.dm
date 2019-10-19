@@ -22,12 +22,6 @@
 	med_hud_set_health()
 	med_hud_set_status()
 
-	var/health_deficiency = max((maxHealth - health), staminaloss)
-	
-	if(health_deficiency >= 40)
-		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
-	else
-		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
 
 /mob/living/carbon/human/adjustBrainLoss(amount, silent = FALSE)
@@ -230,24 +224,6 @@
 		toxloss = 0
 	else
 		..()
-
-/mob/living/carbon/human/getStaminaLoss()
-	if(species.species_flags & NO_STAMINA)
-		staminaloss = 0
-		return staminaloss
-	return ..()
-
-/mob/living/carbon/human/adjustStaminaLoss(amount)
-	if(species.species_flags & NO_STAMINA)
-		staminaloss = 0
-		return
-	return ..()
-
-/mob/living/carbon/human/setStaminaLoss(amount)
-	if(species.species_flags & NO_STAMINA)
-		staminaloss = 0
-		return
-	return ..()
 
 ////////////////////////////////////////////
 

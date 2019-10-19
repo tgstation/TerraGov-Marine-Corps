@@ -353,6 +353,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		update_inv_w_uniform()
 
 
+/mob/living/carbon/human/proc/handle_suit_punctures(damtype, damage)
+	if(!wear_suit) return
+	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
+	if(damtype != BURN && damtype != BRUTE) return
+
+	var/obj/item/clothing/suit/space/SS = wear_suit
+	var/penetrated_dam = max(0,(damage - SS.breach_threshold)) // - SS.damage)) - Consider uncommenting this if suits seem too hardy on dev.
+
+	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
+
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.
 //Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.

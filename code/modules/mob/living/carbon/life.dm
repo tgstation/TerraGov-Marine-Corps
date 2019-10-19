@@ -41,7 +41,7 @@
 
 
 /mob/living/carbon/update_stat()
-	. = ..()
+	.=..()
 	if(status_flags & GODMODE)
 		return
 
@@ -83,6 +83,8 @@
 		do_jitter_animation(jitteriness)
 		jitter(-restingpwr)
 
+	halloss_recovery()
+
 	if(hallucination)
 		if(hallucination >= 20)
 			if(prob(3))
@@ -97,11 +99,15 @@
 			hallucinations -=a
 			qdel(a)
 
-	if(halloss)
-		halloss_recovery()
+	if(halloss > maxHealth*2) //Re-adding, but doubling the allowance to 200, and making it a knockdown so the victim can still interact somewhat
+		if(prob(20))
+			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
+			"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
+			if(prob(25) && ishuman(src)) //only humans can scream, shame.
+				emote("scream")
+		knock_down(5)
+		setHalLoss(maxHealth*2)
 
-	if(staminaloss)
-		handle_staminaloss()
 
 	if(sleeping)
 		if(ishuman(src))

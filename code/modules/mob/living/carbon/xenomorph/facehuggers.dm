@@ -138,9 +138,9 @@
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS)))
 		Die()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
