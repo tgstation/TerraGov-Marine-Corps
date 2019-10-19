@@ -71,7 +71,7 @@
 		C.forceMove(src)
 		modify = C
 
-	SSnano.update_uis(src)
+	updateUsrDialog()
 	attack_hand(user)
 
 

@@ -85,3 +85,6 @@
 
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default
+
+	/// Can they interact with station electronics
+	var/has_unlimited_silicon_privilege = 0

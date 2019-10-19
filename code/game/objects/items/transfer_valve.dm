@@ -40,7 +40,7 @@
 			to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
 
 		update_icon()
-		SSnano.update_uis(src) // update all UIs attached to src
+//		SSnano.update_uis(src) // update all UIs attached to src
 
 	else if(isassembly(I))
 		var/obj/item/assembly/A = I
@@ -60,7 +60,7 @@
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
 		attacher = user
-		SSnano.update_uis(src) // update all UIs attached to src
+//		SSnano.update_uis(src) // update all UIs attached to src
 
 
 /obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
@@ -68,7 +68,8 @@
 	attached_device.HasProximity(AM)
 	return
 
-
+/*
+nanoui stuff
 /obj/item/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
@@ -125,7 +126,7 @@
 		if(href_list["device"])
 			attached_device.attack_self(usr)
 	return 1 // Returning 1 sends an update to attached UIs
-
+*/
 /obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)
 		toggle = FALSE

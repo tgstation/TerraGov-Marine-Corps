@@ -1152,6 +1152,13 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 
+/atom/proc/contains(var/atom/A)
+	if(!A)
+		return 0
+	for(var/atom/location = A.loc, location, location = location.loc)
+		if(location == src)
+			return 1
+
 /*
 
 Gets the turf this atom's *ICON* appears to inhabit

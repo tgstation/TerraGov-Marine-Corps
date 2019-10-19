@@ -711,16 +711,6 @@
 	return data
 
 
-/obj/machinery/power/apc/can_interact(mob/user)
-	. = ..()
-	if (!. && !QDELETED(remote_control))
-		. = remote_control.can_interact(user)
-
-/obj/machinery/power/apc/ui_status(mob/user)
-	. = ..()
-	if (!QDELETED(remote_control) && user == remote_control.operator)
-		. = UI_INTERACTIVE
-
 /obj/machinery/power/apc/proc/setsubsystem(val)
 	if(cell && cell.charge > 0)
 		return (val==1) ? 0 : val
@@ -730,7 +720,7 @@
 		return 0
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || (locked && !usr.has_unlimited_silicon_privilege))
+	if(..() || !can_use(usr, 1) || locked)
 		return
 	switch(action)
 		if("lock")
