@@ -247,11 +247,13 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(hive?.living_xeno_ruler)
-		evolution_stored++
-		if(evolution_stored == xeno_caste.evolution_threshold - 1)
-			to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
-			src << sound('sound/effects/xeno_evolveready.ogg')
+	if(isdistress(SSticker?.mode) && !hive.living_xeno_ruler)
+		return
+	evolution_stored++
+	if(evolution_stored == xeno_caste.evolution_threshold - 1)
+		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
+		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
+
 
 /mob/living/carbon/xenomorph/show_inv(mob/user)
 	return
