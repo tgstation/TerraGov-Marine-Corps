@@ -362,7 +362,9 @@
 
 	set_ruler(successor)
 
-	if(handle_ruler_timer())
+	handle_ruler_timer()
+
+	if(!living_xeno_ruler)
 		return //Succession failed.
 
 	if(announce)
@@ -483,26 +485,22 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /datum/hive_status/normal/handle_ruler_timer()
 	if(!isdistress(SSticker?.mode))
-		return FALSE
+		return
 	var/datum/game_mode/distress/D = SSticker.mode
 
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
 			deltimer(D.orphan_hive_timer)
-		return FALSE
+		return
 
 	if(D.orphan_hive_timer)
-		return TRUE
+		return
 
-	var/timer_length = 0
+	var/timer_length = 7.5 MINUTES
 	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
 		timer_length = 15 MINUTES
-	else
-		timer_length = 7.5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
-
-	return TRUE
 
 
 /datum/hive_status/normal/on_queen_life(mob/living/carbon/xenomorph/queen/Q)
