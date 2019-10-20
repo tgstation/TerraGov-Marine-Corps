@@ -115,7 +115,7 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(!hive.living_xeno_ruler)
+	else if(isdistress(SSticker?.mode) && !hive.living_xeno_ruler)
 		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
