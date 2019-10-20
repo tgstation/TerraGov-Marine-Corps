@@ -1,11 +1,3 @@
-//Xenomorph Evolution Code - Apophis775 - Last Edit: 11JUN16
-
-//Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
-// refactored by spookydonut because the above two were shitcoders and i'm sure in time my code too will be considered shit.
-//All castes need an evolves_to() list in their defines
-//Such as evolves_to = list("Warrior", "Sentinel", "Runner", "Badass") etc
-// except use typepaths now so you dont have to have an entry for literally every evolve path
-
 #define TO_XENO_TIER_2_FORMULA(tierA, tierB, tierC) ( (tierB + tierC) > tierA ) )
 #define TO_XENO_TIER_3_FORMULA(tierA, tierB, tierC) ( (tierC * 3) > (tierA + tierB) )
 
@@ -295,9 +287,12 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
+	if(lighting_alpha != new_xeno.lighting_alpha)
+		new_xeno.toggle_nightvision(lighting_alpha)
+
 	new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
-	update_spits() //Update spits to new/better ones
+	new_xeno.update_spits() //Update spits to new/better ones
 
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>We emerge in a greater form from the husk of our old body. For the hive!</span>")

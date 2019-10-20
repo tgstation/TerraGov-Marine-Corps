@@ -363,19 +363,31 @@
 			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
 
 
-/mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		ENABLE_BITFIELD(sight, SEE_MOBS)
-		ENABLE_BITFIELD(sight, SEE_OBJS)
-		ENABLE_BITFIELD(sight, SEE_TURFS)
-	else
-		lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-		ENABLE_BITFIELD(sight, SEE_MOBS)
-		DISABLE_BITFIELD(sight, SEE_OBJS)
-		DISABLE_BITFIELD(sight, SEE_TURFS)
-	update_sight()
+/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
+	if(!new_lighting_alpha)
+		switch(lighting_alpha)
+			if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+			if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+			if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+			else
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 
+	switch(new_lighting_alpha)
+		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			ENABLE_BITFIELD(sight, SEE_OBJS)
+			ENABLE_BITFIELD(sight, SEE_TURFS)
+		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			DISABLE_BITFIELD(sight, SEE_OBJS)
+			DISABLE_BITFIELD(sight, SEE_TURFS)
+
+	lighting_alpha = new_lighting_alpha
+
+	update_sight()
 
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
