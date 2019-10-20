@@ -113,6 +113,13 @@
 		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
 
+/obj/machinery/door/poddoor/mainship/open
+    density = FALSE
+    opacity = FALSE
+    layer = PODDOOR_OPEN_LAYER
+    icon_state = "pdoor0"
+
+
 /obj/machinery/door/poddoor/mainship/ai
 	name = "\improper AI Core Shutters"
 	icon_state = "pdoor0"
@@ -131,7 +138,7 @@
 	name = "\improper Ammunition Storage"
 	id = "ammo2"	
 
-/obj/machinery/door/poddoor/mainship/cic
+/obj/machinery/door/poddoor/mainship/open/cic
 	name = "\improper Combat Information Center Blast Door"
 	id = "cic_lockdown"
 
