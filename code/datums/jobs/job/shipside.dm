@@ -86,6 +86,7 @@ Make the TGMC proud!"})
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/megaphone
 	back = /obj/item/smartgun_powerpack/fancy
