@@ -78,7 +78,6 @@
 			amount += O.brute_dam
 	return amount
 
-
 /mob/living/carbon/human/getFireLoss(organic_only=0)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
