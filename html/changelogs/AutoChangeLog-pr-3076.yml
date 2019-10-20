@@ -1,0 +1,8 @@
+author: "MJP & MetroidLover"
+delete-after: True
+changes: 
+  - rscadd: "There is now a crate that you can purchase for two fully stocked non-captain Mateba belts"
+  - rscadd: "You can now buy Heavy/PW-MX revolver speedloaders and Incinidary pistol mags"
+  - tweak: "The Captain's Mateba now uses the basic Mateba sprite and vice-versa"
+  - balance: "All revolver crates now contain 5 more speedloaders"
+  - balance: "All non-spec related ammo crates now cost ten points less"
