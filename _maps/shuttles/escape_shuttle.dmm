@@ -84,7 +84,7 @@
 "q" = (
 /obj/machinery/door/airlock/evacuation,
 /obj/docking_port/mobile/escape_pod/escape_shuttle,
-/turf/closed/shuttle,
+/turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "r" = (
 /obj/structure/window/shuttle,
