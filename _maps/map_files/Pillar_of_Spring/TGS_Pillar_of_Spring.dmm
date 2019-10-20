@@ -862,6 +862,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"de" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 2
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "dn" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship{
@@ -4241,11 +4248,8 @@
 	icon_state = "door_open";
 	dir = 1
 	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	icon_state = "shutter1";
-	id = "ROlobby1";
-	name = "\improper RO Line 1"
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -4696,6 +4700,11 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"on" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "op" = (
@@ -16984,7 +16993,12 @@
 /area/mainship/living/numbertwobunks)
 "Qn" = (
 /obj/structure/table/mainship,
-/obj/machinery/line_nexter_control,
+/obj/machinery/line_nexter_control{
+	pixel_z = 5
+	},
+/obj/machinery/door_control/mainship/req{
+	pixel_z = -5
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Qo" = (
@@ -18062,6 +18076,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"ZR" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "ZV" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -50312,7 +50331,7 @@ gI
 ga
 kM
 kR
-Zq
+de
 Qn
 kM
 Hn
@@ -50569,7 +50588,7 @@ KY
 ga
 kM
 kR
-Zq
+de
 BX
 nu
 pl
@@ -50827,10 +50846,10 @@ ga
 kM
 kR
 qG
-Zq
-Zq
-fp
-fp
+ZR
+ZR
+on
+on
 qG
 NY
 gq
