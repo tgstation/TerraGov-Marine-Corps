@@ -7977,6 +7977,7 @@
 /obj/item/tool/wrench,
 /obj/item/tool/crowbar,
 /obj/effect/spawner/random/technology_scanner,
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "wJ" = (
@@ -16357,10 +16358,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"Oo" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/mainship,
-/area/mainship/engineering/port_atmos)
 "Oq" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
@@ -40604,7 +40601,7 @@ DV
 DV
 DV
 Ng
-Oo
+OI
 wI
 xx
 xT
