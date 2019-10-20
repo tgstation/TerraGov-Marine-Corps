@@ -745,7 +745,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	accuracy_mod = 0.05
 	recoil_mod = -3
-	scatter_mod = -20
+	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
