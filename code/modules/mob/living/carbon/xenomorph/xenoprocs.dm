@@ -224,7 +224,7 @@
 	. += speed + slowdown + speed_modifier
 
 	if(frenzy_aura)
-		. -= (frenzy_aura * 0.05)
+		. -= (frenzy_aura * 0.1)
 
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
 		hit_and_run += 0.05 //increment the damage of our next attack by +5%
