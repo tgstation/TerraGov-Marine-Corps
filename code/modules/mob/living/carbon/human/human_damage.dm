@@ -71,22 +71,12 @@
 	return brainloss
 
 //These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/getBruteLoss(organic_only = FALSE, external_only = FALSE)
-	. = 0
-	for(var/i in limbs)
-		var/datum/limb/bodypart = i
-		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
-			continue
-		if(external_only)
-			var/external_dam = bodypart.brute_dam
-			for(var/j in bodypart.wounds)
-				var/datum/wound/wound = j
-				if(!wound.internal)
-					continue
-				external_dam -= wound.damage
-			. += external_dam
-			continue
-		. += bodypart.brute_dam
+/mob/living/carbon/human/getBruteLoss(organic_only=0)
+	var/amount = 0
+	for(var/datum/limb/O in limbs)
+		if(!(organic_only && O.limb_status & LIMB_ROBOT))
+			amount += O.brute_dam
+	return amount
 
 
 /mob/living/carbon/human/getFireLoss(organic_only=0)
@@ -115,6 +105,22 @@
 		take_overall_damage(0, amount)
 	else
 		heal_overall_damage(0, -amount)
+
+
+//These procs fetch a cumulative total damage from all limbs
+/mob/living/carbon/human/proc/getexternalBruteLoss(organic_only = TRUE)
+	. = 0
+	for(var/i in limbs)
+		var/datum/limb/bodypart = i
+		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
+			continue
+		var/external_dam = bodypart.brute_dam
+		for(var/j in bodypart.wounds)
+			var/datum/wound/wound = j
+			if(!wound.internal)
+				continue
+			external_dam -= wound.damage
+		. += external_dam
 
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
