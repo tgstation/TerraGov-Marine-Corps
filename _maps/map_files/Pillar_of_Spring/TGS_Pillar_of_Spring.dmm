@@ -1110,12 +1110,6 @@
 "eh" = (
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req)
-"ei" = (
-/obj/machinery/vending/nanomed{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
 "ej" = (
 /obj/docking_port/stationary/supply/reqs,
 /turf/open/floor/mainship/empty,
@@ -4515,7 +4509,10 @@
 /obj/machinery/door/poddoor/shutters/mainship/containment{
 	dir = 4
 	},
-/turf/open/space,
+/obj/machinery/door/airlock/mainship/research/glass/cell,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
 /area/mainship/medical/medical_science)
 "nT" = (
 /obj/structure/cable/yellow{
@@ -4976,6 +4973,9 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -11816,6 +11816,7 @@
 	icon_state = "apc0";
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "Ff" = (
@@ -13292,17 +13293,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
-"Id" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -16363,6 +16353,10 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/starboard_missiles)
+"Oi" = (
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "Oo" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
@@ -47504,9 +47498,9 @@ ic
 ic
 ic
 ic
-gd
+Oi
 wu
-ei
+gd
 PB
 oA
 oE
@@ -50847,7 +50841,7 @@ oi
 Fs
 Ic
 CD
-Id
+JN
 JN
 JN
 JN
