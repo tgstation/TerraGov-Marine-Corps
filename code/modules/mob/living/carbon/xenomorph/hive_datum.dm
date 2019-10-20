@@ -487,11 +487,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/datum/game_mode/distress/D = SSticker.mode
 
 	if(living_xeno_ruler)
-		if(D.orphan_hive_countdown)
-			deltimer(D.orphan_hive_countdown)
+		if(D.orphan_hive_timer)
+			deltimer(D.orphan_hive_timer)
 		return FALSE
 
-	if(D.orphan_hive_countdown)
+	if(D.orphan_hive_timer)
 		return TRUE
 
 	var/timer_length = 0
@@ -500,7 +500,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	else
 		timer_length = 7.5 MINUTES
 
-	D.orphan_hive_countdown = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
 	return TRUE
 

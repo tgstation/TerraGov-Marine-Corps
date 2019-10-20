@@ -18,7 +18,7 @@
 
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
-	var/orphan_hive_countdown
+	var/orphan_hive_timer
 
 
 /datum/game_mode/distress/announce()
@@ -506,9 +506,9 @@
 
 
 /datum/game_mode/distress/get_queen_countdown()
-	if(!orphan_hive_countdown)
+	if(!orphan_hive_timer)
 		return
-	var/eta = timeleft(orphan_hive_countdown) * 0.1
+	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
