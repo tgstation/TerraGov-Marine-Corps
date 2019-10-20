@@ -1,0 +1,5 @@
+author: "Guprei"
+delete-after: True
+changes: 
+  - balance: "The M56B smartgun trades the burst fire assembly for the recoil compensator and the laser sight attachments. Scatter and penetration to its ammo increased. Burst amount increased and fire delay reduced."
+  - balance: "The M41A old pulse rifle is re-purposed It. can take a lot more attachments. Scatter increased. Wield delay, wield slowdown, burst delay, and accuracy rebalanced."
