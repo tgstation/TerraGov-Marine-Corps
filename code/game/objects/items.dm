@@ -12,7 +12,7 @@
 	var/force = 0
 	var/damtype = BRUTE
 	var/attack_speed = 11
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember
@@ -298,7 +298,7 @@
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
-	
+
 	if(!M)
 		return FALSE
 
@@ -647,7 +647,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
-		
+
 		if(user.interactee == src)
 			user.unset_interaction()
 

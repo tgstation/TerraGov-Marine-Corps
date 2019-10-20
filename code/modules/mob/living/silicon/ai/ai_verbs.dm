@@ -46,7 +46,7 @@
 		var/obj/machinery/status_display/ai/SD = i
 		SD.emotion = emote
 		SD.update()
-	
+
 	if(emote == "Friend Computer")
 		var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
 
@@ -107,7 +107,7 @@
 				return
 
 			holo_icon = getHologramIcon(icon(icon_list[hologram], hologram))
-		
+
 		if("Unique")
 			var/list/icon_list = list(
 				"default" = 'icons/mob/ai.dmi',

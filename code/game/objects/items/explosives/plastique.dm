@@ -113,7 +113,7 @@
 			forceMove(plant_target)
 
 		deltimer(detonation_pending)
-		
+
 		user.visible_message("<span class='warning'>[user] disarmed [src] on [plant_target]!</span>",
 		"<span class='warning'>You disarmed [src] on [plant_target]!</span>")
 

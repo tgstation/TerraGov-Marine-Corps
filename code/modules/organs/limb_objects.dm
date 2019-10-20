@@ -109,7 +109,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	if(braindeath_on_decap)
 		brainmob.stat = DEAD
 		brainmob.death()
-	
+
 	GLOB.head_list += src
 
 /obj/item/limb/head/Destroy()

@@ -12,7 +12,7 @@
 /obj/docking_port/stationary/marine_dropship/on_crash()
 	for(var/i in GLOB.apcs_list) //break APCs
 		var/obj/machinery/power/apc/A = i
-		if(!is_mainship_level(A.z)) 
+		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
@@ -21,7 +21,7 @@
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs
 		var/mob/living/M = i
-		if(!is_mainship_level(M.z)) 
+		if(!is_mainship_level(M.z))
 			continue
 		if(M.buckled)
 			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
@@ -406,7 +406,7 @@
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(!shuttle)
 		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
-		return 
+		return
 
 	var/list/data = list()
 	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
@@ -424,11 +424,11 @@
 		valid_destionations += list(list("name" = S.name, "id" = S.id))
 	data["destinations"] = valid_destionations
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)	
-	if (!ui)	
-		ui = new(user, src, ui_key, "dropship_pilot_console.tmpl", "Pilot Control", 500, 600)	
-		ui.set_initial_data(data)	
-		ui.open()	
+	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "dropship_pilot_console.tmpl", "Pilot Control", 500, 600)
+		ui.set_initial_data(data)
+		ui.open()
 		ui.set_auto_update(1)
 
 
@@ -529,7 +529,7 @@
 		return
 	var/obj/docking_port/mobile/marine_dropship/D = port
 	D.left_airlocks += src
-	
+
 /obj/machinery/door/airlock/dropship_hatch/right/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	. = ..()
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship))

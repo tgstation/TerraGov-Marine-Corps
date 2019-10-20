@@ -135,7 +135,7 @@
 	max_storage_space = 18
 	storage_slots = 18
 	can_hold = list(
-		/obj/item/clothing/mask/cigarette, 
+		/obj/item/clothing/mask/cigarette,
 		/obj/item/tool/lighter)
 	icon_type = "cigarette"
 

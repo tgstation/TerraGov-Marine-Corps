@@ -11,7 +11,7 @@
 		update_sight()
 
 	if(!isdistress(SSticker.mode))
-		return 
+		return
 
 	var/datum/game_mode/distress/D = SSticker.mode
 	D.xenomorphs |= mind
@@ -28,4 +28,4 @@
 /mob/living/carbon/xenomorph/shrike/Login()
 	. = ..()
 
-	mind.assigned_role = ROLE_XENO_QUEEN	
+	mind.assigned_role = ROLE_XENO_QUEEN

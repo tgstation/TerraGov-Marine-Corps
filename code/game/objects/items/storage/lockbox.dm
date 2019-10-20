@@ -20,7 +20,7 @@
 		if(broken)
 			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 			return
-		
+
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access Denied</span>")
 			return

@@ -106,28 +106,22 @@
 
 //drop the inventory item on a specific location
 /mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return doUnEquip(I, newloc, nomoveupdate, force)
+	return UnEquip(I, newloc, nomoveupdate, force)
 
 //drop the inventory item on the ground
 /mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
-	return doUnEquip(I, loc, nomoveupdate, force)
+	return UnEquip(I, loc, nomoveupdate, force)
 
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
-/mob/proc/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
-
+/mob/proc/UnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
 	if(!I)
 		return TRUE
 
 	if((I.flags_item & NODROP) && !force)
-		return FALSE //doUnEquip() only fails if item has NODROP
+		return FALSE //UnEquip() only fails if item has NODROP
 
-	if (I == r_hand)
-		r_hand = null
-		update_inv_r_hand()
-	else if (I == l_hand)
-		l_hand = null
-		update_inv_l_hand()
+	doUnEquip(I)
 
 	if (client)
 		client.screen -= I
@@ -142,10 +136,23 @@
 
 	return TRUE
 
+
+/mob/proc/doUnEquip(obj/item/I)
+	if(I == r_hand)
+		r_hand = null
+		update_inv_r_hand()
+		return ITEM_UNEQUIP_DROPPED
+	else if (I == l_hand)
+		l_hand = null
+		update_inv_l_hand()
+		return ITEM_UNEQUIP_DROPPED
+	return ITEM_UNEQUIP_FAIL
+
+
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
 //Used just before you want to delete the item, or moving it afterwards.
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
-	return doUnEquip(I, null, force)
+	return UnEquip(I, force = force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.

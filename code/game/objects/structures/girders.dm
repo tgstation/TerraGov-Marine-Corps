@@ -105,7 +105,7 @@
 	if(user.action_busy)
 		return FALSE
 	var/obj/item/tool/weldingtool/welder = I
-	if(!welder.isOn()) 
+	if(!welder.isOn())
 		return FALSE
 	switch(girder_state)
 		if(GIRDER_BUILDING1_SECURED, GIRDER_BUILDING2_SECURED)

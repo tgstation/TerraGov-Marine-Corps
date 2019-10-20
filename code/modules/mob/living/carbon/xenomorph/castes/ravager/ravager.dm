@@ -26,7 +26,7 @@
 	. = ..()
 	RegisterSignal(src, list(
 		COMSIG_XENOMORPH_BRUTE_DAMAGE,
-		COMSIG_XENOMORPH_BURN_DAMAGE), 
+		COMSIG_XENOMORPH_BURN_DAMAGE),
 		.proc/process_rage_damage)
 
 // ***************************************
@@ -79,5 +79,5 @@
 	if(damage < 1 || cooldowns[COOLDOWN_RAV_NEXT_DAMAGE])
 		return
 	rage += round(damage * RAV_DAMAGE_RAGE_MULITPLIER)
-	
+
 	cooldowns[COOLDOWN_RAV_NEXT_DAMAGE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RAV_NEXT_DAMAGE, null), 0.2 SECONDS)  // Limit how often this proc can trigger; once per 0.2 seconds

@@ -835,7 +835,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(xeno_candidate, "<span class='warning'>That xenomorph has been occupied.</span>")
 		return FALSE
 
-	if(!DEATHTIME_CHECK(xeno_candidate))
+	if(DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 

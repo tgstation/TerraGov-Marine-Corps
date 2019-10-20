@@ -68,8 +68,8 @@
 	name = "bayonet sheath"
 	desc = "A pouch for your knives."
 	can_hold = list(
-		/obj/item/weapon/combat_knife, 
-		/obj/item/weapon/throwing_knife, 
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/throwing_knife,
 		/obj/item/attachable/bayonet)
 	icon_state = "bayonet"
 	storage_slots = 3
@@ -348,7 +348,7 @@
 	icon_state = "document"
 	storage_slots = 7
 	can_hold = list(
-		/obj/item/paper, 
+		/obj/item/paper,
 		/obj/item/clipboard)
 
 
@@ -515,7 +515,7 @@
 			return
 
 		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-		
+
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
 			return
 

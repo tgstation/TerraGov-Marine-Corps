@@ -145,7 +145,7 @@
 	else if(operating == -1 && iscrowbar(I))
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
-		
+
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
@@ -180,7 +180,7 @@
 			E = electronics
 			electronics = null
 			E.forceMove(loc)
-			
+
 		E.icon_state = "door_electronics_smoked"
 		operating = 0
 		qdel(src)

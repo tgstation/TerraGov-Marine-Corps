@@ -487,7 +487,7 @@
 	<A href='byond://?src=\ref[src];B18_automed_pain=5'>+5</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=10'>+10</A>
 	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>"}
-	
+
 	var/datum/browser/popup = new(user, "b18")
 	popup.set_content(dat)
 	popup.open()
@@ -526,7 +526,7 @@
 		B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
 
 	updateUsrDialog()
-		
+
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"

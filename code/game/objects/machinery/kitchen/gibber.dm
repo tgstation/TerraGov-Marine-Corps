@@ -47,7 +47,7 @@
 	if(operating)
 		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
-	
+
 	startgibbing(user)
 
 /obj/machinery/gibber/attackby(obj/item/grab/I, mob/user, param)

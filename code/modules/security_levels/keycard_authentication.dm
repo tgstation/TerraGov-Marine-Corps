@@ -35,7 +35,7 @@
 		if(active && event_source)
 			event_source.confirmed = TRUE
 			event_source.event_confirmed_by = user
-			
+
 		else if(screen == 2)
 			event_triggered_by = user
 			broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
@@ -88,7 +88,7 @@
 	if(href_list["triggerevent"])
 		event = href_list["triggerevent"]
 		screen = 2
-	
+
 	if(href_list["reset"])
 		reset()
 

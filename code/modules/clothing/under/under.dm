@@ -49,7 +49,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!hastie && istype(I, /obj/item/clothing/tie))
 		var/obj/item/clothing/tie/T = I
-		if(!T.tie_check(src, user)) 
+		if(!T.tie_check(src, user))
 			return ..()
 		user.drop_held_item()
 		hastie = T

@@ -635,7 +635,7 @@
 
 		if(!do_after(user, work_time, TRUE, src, BUSY_ICON_BUILD))
 			return
-			
+
 		user.visible_message("<span class='notice'>[user] removes [src]'s [cell.name].</span>",
 		"<span class='notice'>You remove [src]'s [cell.name].</span>")
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
@@ -736,7 +736,7 @@
 	if(!disassembled)
 		explosion(loc, -1, -1, 2, 0)
 	return ..()
-	
+
 
 
 /obj/machinery/marine_turret/take_damage(dam)
@@ -753,7 +753,7 @@
 			machine_stat = 1
 			if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS) && CHECK_BITFIELD(turret_flags, TURRET_ON))
 				sentry_alert(SENTRY_ALERT_FALLEN)
-	
+
 	return ..()
 
 

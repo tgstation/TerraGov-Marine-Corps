@@ -11,7 +11,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0
@@ -46,7 +46,7 @@
 		dat += text("Phoron coins: [amt_phoron] <A href='?src=\ref[src];remove=phoron'>Remove one</A><br>")
 	if(amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
-	
+
 	var/datum/browser/popup = new(user, "moneybag")
 	popup.set_content(dat)
 	popup.open()

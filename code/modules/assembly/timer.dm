@@ -119,7 +119,7 @@
 	if(href_list["time"])
 		timing = text2num(href_list["time"])
 		update_icon()
-		
+
 	if(href_list["repeat"])
 		loop = text2num(href_list["repeat"])
 
