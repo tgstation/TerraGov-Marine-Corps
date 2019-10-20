@@ -377,7 +377,7 @@
 	item_state = "m19c4"
 	max_shots = 100//codex stuff
 	load_method = CELL //codex stuff
-	ammo = /datum/ammo/energy/lasgun/pulse
+	ammo = /datum/ammo/energy/lasgun/pulsebolt
 	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = M43_STANDARD_AMMO_COST
 
