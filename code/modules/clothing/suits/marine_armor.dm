@@ -235,6 +235,7 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
 	var/obj/item/healthanalyzer/integrated/B18_analyzer = null
+	var/mob/living/carbon/human/wearer = null
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
@@ -243,8 +244,18 @@
 	B18_analyzer = new /obj/item/healthanalyzer/integrated
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
+	wearer = null
 	qdel(B18_analyzer)
 	. = ..()
+
+/obj/item/clothing/suit/storage/marine/specialist/dropped(mob/user)
+	. = ..()
+	wearer = null
+
+/obj/item/clothing/suit/storage/marine/specialist/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_WEAR_SUIT)
+		wearer = user
 
 /obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_scan()
 	set name = "B18 Automedic User Scan"
