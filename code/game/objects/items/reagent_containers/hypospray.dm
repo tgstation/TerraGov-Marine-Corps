@@ -116,7 +116,6 @@
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
 			user.knock_down(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -125,12 +124,10 @@
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		injected += R.name
-	var/contained = english_list(injected)
-	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
+	log_combat(user, A, "injected", src, "Reagents: [english_list(injected)]")
 
 	if(ismob(A))
 		var/mob/M = A
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 

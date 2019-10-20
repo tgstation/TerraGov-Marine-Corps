@@ -101,7 +101,6 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-			msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(C.a_intent)])")
 
 			visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
 

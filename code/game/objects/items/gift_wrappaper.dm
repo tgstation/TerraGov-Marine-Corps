@@ -253,4 +253,3 @@
 	H.forceMove(present)
 
 	log_combat(user, H, "wrapped")
-	msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")

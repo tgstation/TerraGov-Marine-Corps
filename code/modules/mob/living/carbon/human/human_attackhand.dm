@@ -71,7 +71,6 @@
 			if(!attack.is_usable(H)) return
 
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
-			msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
 			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "punch")
@@ -104,8 +103,6 @@
 
 			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "disarm")
-
-			msg_admin_attack("[key_name(H)] disarmed [src.name] ([src.ckey])")
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 

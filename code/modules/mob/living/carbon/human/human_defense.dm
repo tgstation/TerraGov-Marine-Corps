@@ -21,7 +21,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[ADMIN_TPMONTY(src)] was disarmed by a stun effect.")
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
@@ -313,8 +312,6 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
-				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))

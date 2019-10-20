@@ -15,7 +15,6 @@
 	//..()
 
 	log_combat(user, M, "attack", src)
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
 
 	if (M.stat < 2 && M.health < 50 && prob(90))
 		if(ishuman(M))

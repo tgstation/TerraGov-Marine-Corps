@@ -564,7 +564,6 @@
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
-		msg_admin_attack("[X.name] ([X.ckey]) spat acid on [A].")
 	X.visible_message("<span class='xenowarning'>\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
 	"<span class='xenowarning'>We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!</span>", null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)

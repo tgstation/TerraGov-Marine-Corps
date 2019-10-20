@@ -152,7 +152,6 @@
 		to_chat(M, "<span class='warning'>You are stunned by the powerful acid of the deathnettle!</span>")
 
 		log_combat(user, M, "hit", src)
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] on [ADMIN_TPMONTY(M)].")
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))
