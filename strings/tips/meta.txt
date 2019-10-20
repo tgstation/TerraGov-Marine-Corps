@@ -31,7 +31,7 @@ As a corpsman, scan before you treat and you can't be beat.
 As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient.
 As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
 As a corpsman, hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
-As a B18 specialist, your armor has a built in medical system.
+As a B18 specialist, your armor has a built in analyzing system.
 As a scout specialist, you can take your battle rifle or your custom shotgun.
 As a sniper specialist, you've got a tarp that can make you stealth so long as you don't move.
 As a pyro specialist, your flamethrower has an extinguisher built into it.
