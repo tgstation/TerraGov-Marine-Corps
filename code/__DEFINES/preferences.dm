@@ -48,7 +48,7 @@
 #define CHAT_GHOSTSIGHT		(1<<3)
 #define CHAT_PRAYER			(1<<4)
 #define CHAT_RADIO			(1<<5)
-#define CHAT_ATTACKLOGS		(1<<6)
+#define CHAT_ATTACKLOGS		(1<<6) //Unused
 #define CHAT_DEBUGLOGS		(1<<7)
 #define CHAT_GHOSTRADIO 	(1<<8)
 #define CHAT_FFATTACKLOGS 	(1<<9)

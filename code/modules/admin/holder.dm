@@ -247,7 +247,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 /world/proc/AVadmin()
 	return list(
 	/datum/admins/proc/show_player_panel,
-	/datum/admins/proc/pref_attack_logs,
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
