@@ -176,7 +176,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if((user != src) && check_shields(I.force, "the [I.name]"))
 		return 0
 
-	if(I.attack_verb && I.attack_verb.len)
+	if(LAZYLEN(I.attack_verb))
 		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 	else
 		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)

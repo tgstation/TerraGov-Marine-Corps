@@ -10,7 +10,6 @@
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	attack_verb = null
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
