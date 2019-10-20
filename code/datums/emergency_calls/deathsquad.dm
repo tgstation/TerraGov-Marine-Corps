@@ -46,3 +46,8 @@
 	SSjob.AssignRole(H, J.title)
 	J.assign_equip(H)
 	to_chat(H, "<span class='notice'>You are a member of the elite Asset Protection commando squad.</span>")
+
+	var/datum/job/J = SSjob.GetJobType(/datum/job/deathsquad/standard/energy)
+	SSjob.AssignRole(H, J.title)
+	J.assign_equip(H)
+	to_chat(H, "<span class='notice'>You are a member of the elite Asset Protection commando squad.</span>")
