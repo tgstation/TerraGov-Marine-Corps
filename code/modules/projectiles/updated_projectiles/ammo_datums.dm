@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/item/projectile/P)
-	staggerstun(M, P, 5, 1, 0, 0, 0, 1)
+	staggerstun(M, P, 5, 1, knockback = 1)
 
 /*
 //================================================
