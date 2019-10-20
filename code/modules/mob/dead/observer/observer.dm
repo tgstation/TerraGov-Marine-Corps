@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(SSticker?.mode)
 			var/countdown = SSticker.mode.get_queen_countdown()
 			if(countdown)
-				stat("Queen Re-Check:", countdown)
+				stat("Orphan hivemind collapse timer:", countdown)
 
 
 /mob/dead/observer/verb/reenter_corpse()

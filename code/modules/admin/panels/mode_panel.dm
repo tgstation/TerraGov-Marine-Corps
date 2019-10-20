@@ -16,7 +16,7 @@
 
 	var/countdown = SSticker.mode.get_queen_countdown()
 	if(countdown)
-		dat += "Queen Re-Check: [countdown]<br>"
+		dat += "Orphan hivemind collapse in [countdown]<br>"
 
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)

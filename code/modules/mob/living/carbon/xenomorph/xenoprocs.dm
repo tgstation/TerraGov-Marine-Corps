@@ -166,9 +166,12 @@
 		stat(null,"We are affected by a [msg_holder]RECOVERY pheromone.")
 
 
-	if(hivenumber != XENO_HIVE_CORRUPTED)
+	if(hivenumber == XENO_HIVE_NORMAL)
 		if(hive.hive_orders && hive.hive_orders != "")
 			stat(null,"Hive Orders: [hive.hive_orders]")
+		var/countdown = SSticker.mode.get_queen_countdown()
+		if(countdown)
+			stat("Orphan hivemind collapse timer:", countdown)
 	else
 		stat(null,"Hive Orders: Follow the instructions of our masters")
 

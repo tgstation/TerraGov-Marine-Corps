@@ -164,7 +164,7 @@
 			return FALSE
 
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
-			to_chat(src, "<span class='warning'>We must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
+			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_queen_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
 			return
 
 		if(mind)
