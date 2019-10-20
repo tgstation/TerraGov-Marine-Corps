@@ -38,7 +38,7 @@
 /obj/item/stack/medical/proc/radial_medical(mob/living/carbon/M as mob, mob/user as mob)
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/affecting = null
-	var/choice = show_radial_menu(user, H, radial_options, null, 64, null, TRUE)
+	var/choice = show_radial_menu(user, H, radial_options, null, 48, null, TRUE)
 	switch(choice)
 		if("head")
 			affecting = H.get_limb(BODY_ZONE_HEAD)
@@ -77,7 +77,6 @@
 	var/datum/limb/affecting = radial_medical(H, user)
 
 	if(!affecting)
-		to_chat(user, "<span class='warning'>[H] has no [parse_zone(user.zone_selected)]!</span>")
 		return TRUE
 
 	if(affecting.body_part == HEAD)
