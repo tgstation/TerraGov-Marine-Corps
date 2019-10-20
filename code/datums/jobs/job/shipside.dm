@@ -88,7 +88,7 @@ Make the TGMC proud!"})
 	head = /obj/item/clothing/head/tgmcberet/fc
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/megaphone
+	l_store = /obj/item/storage/pouch/medkit/full
 	back = /obj/item/smartgun_powerpack/fancy
 	suit_store = /obj/item/weapon/gun/smartgun
 
