@@ -115,7 +115,7 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(isdistress(SSticker?.mode) && !hive.living_xeno_ruler)
+	else if(!hive.check_ruler())
 		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
@@ -247,7 +247,7 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(isdistress(SSticker?.mode) && !hive.living_xeno_ruler)
+	if(!hive.check_ruler())
 		return
 	evolution_stored++
 	if(evolution_stored == xeno_caste.evolution_threshold - 1)
