@@ -73,7 +73,7 @@
 		. += slowdown
 
 	if(mobility_aura)
-		. -= 0.2 + 0.1 * mobility_aura // make MOVE order actually do something
+		. -= 0.1 + 0.1 * mobility_aura // - 0.2 delay if you're an aSL(spec, SG, etc)
 
 	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 

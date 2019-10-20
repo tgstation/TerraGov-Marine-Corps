@@ -634,7 +634,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(shooter_human.stagger)
 				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
-				. += shooter_human.marksman_aura * 7 // if your skill is TRAINED, then it's 7 percents. maybe. unsure.
+				. += shooter_human.marksman_aura * 2 + 4 // if your skill is TRAINED, then it's 8 percents. maybe. unsure.
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.45
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
