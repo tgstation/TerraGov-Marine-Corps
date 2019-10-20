@@ -33,4 +33,4 @@
 
 	DISABLE_BITFIELD(cuffs.flags_item, BEING_REMOVED)
 
-	dropItemToGround(cuffs) //This will call doUnEquip() > update_handcuffed() > UnregisterSignal()
+	dropItemToGround(cuffs) //This will call UnEquip() > update_handcuffed() > UnregisterSignal()
