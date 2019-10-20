@@ -9,6 +9,31 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
+	//ho shit son it's radial menu time.
+	var/static/radial_head = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_head")
+	var/static/radial_chest = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_chest")
+	var/static/radial_groin = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_groin")
+	var/static/radial_Larm = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Larm")
+	var/static/radial_Lhand = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Lhand")
+	var/static/radial_Rarm = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Rarm")
+	var/static/radial_Rhand = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Rhand")
+	var/static/radial_Lleg = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Lleg")
+	var/static/radial_Lfoot = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Lfoot")
+	var/static/radial_Rleg = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Rleg")
+	var/static/radial_Rfoot = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_Rfoot")
+	
+	//the list of the above
+	var/static/list/radial_options = list("head" = radial_head,
+											"chest" = radial_chest,
+											"groin" = radial_groin,
+											"Larm" = radial_Larm,
+											"Lhand" = radial_Lhand,
+											"Rarm" = radial_Rarm,
+											"Rhand" = radial_Rhand,
+											"Lleg" = radial_Lleg,
+											"Lfoot" = radial_Lfoot,
+											"Rleg" = radial_Rleg,
+											"Rfoot" = radial_Rfoot)
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
@@ -19,8 +44,29 @@
 		return TRUE
 
 	var/mob/living/carbon/human/H = M
-	var/datum/limb/affecting = H.get_limb(user.zone_selected)
+	var/datum/limb/affecting = null
 
+	var/choice = show_radial_menu_persistent(user, M, radial_options)
+	switch(choice)
+		if("head")
+			affecting = H.get_limb(BODY_ZONE_HEAD)
+		if("chest")
+			affecting = H.get_limb(BODY_ZONE_CHEST)
+		if("groin")
+			affecting = H.get_limb(BODY_ZONE_PRECISE_GROIN)
+		if("Larm")
+			affecting = H.get_limb(BODY_ZONE_L_ARM)
+		if("Lhand")
+			affecting = H.get_limb(BODY_ZONE_PRECISE_L_HAND)
+		if("Rarm")
+			affecting = H.get_limb(BODY_ZONE_R_ARM)
+		if("Rhand")
+			affecting = H.get_limb(BODY_ZONE_PRECISE_R_HAND)
+		if("Rleg")
+			affecting = H.get_limb(BODY_ZONE_R_LEG)
+		if("Rfoot")
+			affecting = H.get_limb(BODY_ZONE_PRECISE_R_FOOT)
+	
 	if(!affecting)
 		to_chat(user, "<span class='warning'>[H] has no [parse_zone(user.zone_selected)]!</span>")
 		return TRUE
