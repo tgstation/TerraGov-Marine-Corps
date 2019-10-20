@@ -228,7 +228,7 @@
 
 /obj/item/clothing/suit/storage/marine/specialist
 	name = "\improper B18 defensive armor"
-	desc = "A rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nHas an automated diagnostics system for checking it's wearer's health on the spot."
+	desc = "A rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nHas an automated diagnostics system for checking its wearer's health on the spot."
 	icon_state = "xarmor"
 	armor = list("melee" = 80, "bullet" = 110, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 20, "rad" = 20, "fire" = 80, "acid" = 80)
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
