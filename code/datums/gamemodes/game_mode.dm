@@ -612,7 +612,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return
 
 
-/datum/game_mode/proc/get_queen_countdown()
+/datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
 

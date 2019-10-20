@@ -505,7 +505,7 @@
 		round_finished = MODE_INFESTATION_M_MINOR
 
 
-/datum/game_mode/distress/get_queen_countdown()
+/datum/game_mode/distress/get_hivemind_collapse_countdown()
 	if(!orphan_hive_timer)
 		return
 	var/eta = timeleft(orphan_hive_timer) * 0.1

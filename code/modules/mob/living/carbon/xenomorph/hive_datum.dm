@@ -491,6 +491,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(living_xeno_ruler)
 		if(D.orphan_hive_timer)
 			deltimer(D.orphan_hive_timer)
+			D.orphan_hive_timer = null
 		return
 
 	if(D.orphan_hive_timer)
