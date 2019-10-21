@@ -123,7 +123,7 @@
 			showname = "."
 
 		var/used_verb = "attacked"
-		if(attack_verb && attack_verb.len)
+		if(LAZYLEN(attack_verb))
 			used_verb = pick(attack_verb)
 		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
 						"<span class='danger'>You attack [M] with [src].</span>", null, 5)

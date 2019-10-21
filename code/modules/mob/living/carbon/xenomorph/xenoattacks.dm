@@ -133,7 +133,7 @@
 				else
 					// copypasted from attack_alien.dm
 					//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-					var/damage = M.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(M)
+					var/damage = M.xeno_caste.melee_damage
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)

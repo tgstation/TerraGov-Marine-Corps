@@ -12,7 +12,7 @@
 	var/force = 0
 	var/damtype = BRUTE
 	var/attack_speed = 11
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember

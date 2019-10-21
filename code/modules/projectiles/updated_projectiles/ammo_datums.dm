@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 		step_away(victim, proj)
 
-/datum/ammo/proc/staggerstun(mob/victim, obj/item/projectile/proj, max_range = 2, stun = 0, weaken = 1, stagger = 2, slowdown = 1, knockback = 1, shake = 1, soft_size_threshold = 3,hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, obj/item/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(!isliving(victim))
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 45
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 5, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
@@ -324,7 +324,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 35
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 5, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -15
 
 /datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 5, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -360,7 +360,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 5, 0, 1, 2, 2)
+	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
 
 /*
 //================================================
@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
-	staggerstun(M, P, 40, 0, 1, 1)
+	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
 	name = "A19 high velocity smart bullet"
@@ -485,7 +485,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, 5, 0, 1, 2, 4)
+	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 4, knockback = 1)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -662,7 +662,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	accurate_range = 15
 	damage = 30
-	penetration = 0
+	scatter = -10
+	penetration = 5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -699,8 +700,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/turret/gauss
 	name = "gauss turret heavy slug"
-	damage = 50
-	penetration = 60
+	damage = 30
+	penetration = 30
 	accurate_range = 3
 
 /datum/ammo/bullet/turret/mini
@@ -973,7 +974,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-	staggerstun(C, P, 5, 0, 0, 1, 1, 0) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	for(var/r_id in ammo_reagents)
 		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)
