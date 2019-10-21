@@ -1,26 +1,51 @@
 /datum/component/bump_attack
     var/active = FALSE
+    var/action/bump_attack_toggle/toggle_action
 
 /datum/component/bump_attack/Initialize()
     . = ..()
     if(!ismovableatom(parent))
          return COMPONENT_INCOMPATIBLE
-    if(isxeno(parent))
-        RegisterSignal(parent, COMSIG_WELL_FIGURE_YOU_OUT_LATER, .proc/bump_attack_toggle)
+    if(ismob(parent))
+        toggle_action = new()
+        RegisterSignal(parent, COMSIG_ACTION_TRIGGER, .proc/bump_attack_toggle)
     else
         return COMPONENT_INCOMPATIBLE
 
-
-/datum/component/bump_attack/toggle_bump_attack(datum/source)
-    if(isxeno(parent))
-	    var/mob/living/carbon/xenomorph/xeno_bumper = parent
+/datum/component/bump_attack/proc/bump_attack_toggle(datum/source)
+    if(isliving(parent))
+	    var/mob/living/bumper = parent
     else
         return
+
 	active = !active
-	to_chat(xeno_bumper, "<span class='notice'>You will now [active ? "attack" : "push"] those who are in your way.</span>")
+	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 
 	if(active)
-		xeno_bumper.RegisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP, /mob/living/carbon/xenomorph/.proc/xeno_bump_attack)
+		bumper.RegisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP, .proc/bump_attack)
 	else
-		xeno_bumper.UnregisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP)
+		bumper.UnregisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP)
+        toggle_action.update_button_icon(active)
 
+/mob/living/proc/bump_attack(datum/source, atom/target)
+    if(!isliving(target))
+        return//we still want to push structures away and open doors
+	if(throwing || incapacitated() || next_move > world.time || a_intent == INTENT_HELP || a_intent == INTENT_GRAB)
+		return COMPONENT_MOVABLE_BUMP_RESOLVED
+	do_bump_attack(target)
+	return COMPONENT_MOVABLE_BUMP_RESOLVED
+
+/mob/living/proc/do_bump_attack(atom/target)
+    UnarmedAttack(target, TRUE)
+
+/mob/living/carbon/human/do_bump_attack(atom/target)//this isn't currently used anywhere, just here for the future
+    if(faction == target.faction)
+        return //FF
+    if(get_active_held_item())
+        return //We have something in our hand.
+    return ..()
+
+/mob/living/carbon/xenomorph/do_bump_attack(atom/target)
+    if(issamexenohive(target))
+        return //No more nibbling.
+    return ..()

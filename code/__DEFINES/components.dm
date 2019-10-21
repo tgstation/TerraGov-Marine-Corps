@@ -242,10 +242,6 @@
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
-//bumpattack component
-#define COMPONENT_BUMPATTACK_INACTIVE (1<<1)
-#define COMPONENT_BUMPATTACK_ACTIVE (1<<2)
-
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)
@@ -347,3 +343,7 @@
 #define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
 #define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
 #define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
+
+// /datum/action signals
+#define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)
+    #define COMPONENT_ACTION_BLOCK_TRIGGER 1
