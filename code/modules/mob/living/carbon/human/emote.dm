@@ -251,11 +251,11 @@
 	flags_emote = EMOTE_RESTRAINT_CHECK
 
 
-/datum/emote/living/carbon/human/sign/select_param(mob/user, params)
+/datum/emote/living/carbon/human/signal/select_param(mob/user, params)
 	params = text2num(params)
-	if(!isnum(params))
-		return message
-	params = CLAMP(params, 1, 10)
+	if(params == 1 || !isnum(params))
+		return "raises one finger."
+	params = num2text(CLAMP(params, 2, 10))
 	return ..()
 
 
