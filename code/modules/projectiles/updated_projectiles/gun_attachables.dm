@@ -623,15 +623,11 @@ Defined in conflicts.dm of the #defines folder.
 	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = 0.1
 
-/obj/item/attachable/scope/m4ra
+/obj/item/attachable/scope/mini/m4ra
 	name = "M4RA rail scope"
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	zoom_offset = 5
-	zoom_viewsize = 7
-	zoom_accuracy = SCOPE_RAIL_MINI
 	flags_attach_features = ATTACH_ACTIVATION
-
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
