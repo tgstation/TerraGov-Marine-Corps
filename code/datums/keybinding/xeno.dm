@@ -426,6 +426,13 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
+/datum/keybinding/xeno/tail_slash
+	key = "Unbound"
+	name = "tail_slash"
+	full_name = "Runner: Tail Slash"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TAIL_SLASH
+
 /datum/keybinding/xeno/toggle_agility
 	key = "Unbound"
 	name = "toggle_agility"

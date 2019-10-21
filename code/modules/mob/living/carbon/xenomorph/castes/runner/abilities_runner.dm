@@ -52,10 +52,10 @@
 	use_plasma(10) //Base cost of the Savage
 	src.visible_message("<span class='danger'>\ [src] savages [M]!</span>", \
 	"<span class='xenodanger'>We savage [M]!</span>", null, 5)
-	var/extra_dam = min(15, plasma_stored * 0.2)
+	var/extra_dam = min(15, plasma_stored * 0.15)
 	GLOB.round_statistics.runner_savage_attacks++
-	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
-	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE)
+	use_plasma(extra_dam) //There's already a large cooldown and runners regen plasma slowly. We can be nice.
 	savage_used = TRUE
 	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
 
@@ -132,3 +132,51 @@
 		flags_pass = initial(flags_pass) //Reset the passtable.
 	else
 		flags_pass = NONE //Reset the passtable.
+
+// ***************************************
+// *********** Tail slash
+// ***************************************
+/datum/action/xeno_action/activable/tail_slash
+	name = "Tail Slash"
+	action_icon_state = "tail_sweep"
+	mechanics_text = "Attack all adjacent units around you, dealing slash damage."
+	ability_name = "tail sweep"
+	plasma_cost = 15
+	cooldown_timer = 10 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_TAIL_SLASH
+
+/datum/action/xeno_action/activable/tail_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+/datum/action/xeno_action/activable/tail_slash/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We gather enough strength to tail slash again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/tail_slash/use_ability()
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.visible_message("<span class='xenowarning'>\The [X] swipes it's sharp tail in a wide circle!</span>", \
+	"<span class='xenowarning'>We swipe our sharp tail in a wide circle!</span>")
+
+	X.spin(4, 1)
+
+	var/slash_range = 1
+	var/list/L = orange(slash_range, X)		// Not actually the fruit
+
+	for (var/mob/living/carbon/human/H in L)
+		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
+			var/damage = X.xeno_caste.melee_damage
+			var/affecting = H.get_limb(ran_zone(null, 0))
+			if(!affecting) //Still nothing??
+				affecting = H.get_limb("chest") //Gotta have a torso?!
+			var/armor_block = H.run_armor_check(affecting, "melee")
+			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
+		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail slash!</span>")
+		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
+
+	succeed_activate()
+	add_cooldown()
