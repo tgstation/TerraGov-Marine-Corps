@@ -40,8 +40,8 @@
 #define MODE_INFECTION			(1<<4)
 #define MODE_HUMAN_ANTAGS		(1<<5)
 #define MODE_LZ_SHUTTERS		(1<<6)
-
 #define MODE_XENO_SPAWN_PROTECT	(1<<7)
+#define MODE_XENO_RULER			(1<<8)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)

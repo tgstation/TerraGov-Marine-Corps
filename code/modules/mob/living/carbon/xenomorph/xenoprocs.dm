@@ -115,7 +115,7 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(!hive.living_xeno_ruler)
+	else if(!hive.check_ruler())
 		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
@@ -249,11 +249,13 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(hive?.living_xeno_ruler)
-		evolution_stored++
-		if(evolution_stored == xeno_caste.evolution_threshold - 1)
-			to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
-			src << sound('sound/effects/xeno_evolveready.ogg')
+	if(!hive.check_ruler())
+		return
+	evolution_stored++
+	if(evolution_stored == xeno_caste.evolution_threshold - 1)
+		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
+		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
+
 
 /mob/living/carbon/xenomorph/show_inv(mob/user)
 	return

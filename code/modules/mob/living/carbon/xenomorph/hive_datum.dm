@@ -394,6 +394,16 @@
 	xeno_queen_timer = null
 
 
+/datum/hive_status/proc/check_ruler()
+	return TRUE
+
+
+/datum/hive_status/normal/check_ruler()
+	if(!SSticker?.mode || !(SSticker.mode.flags_round_type & MODE_XENO_RULER))
+		return TRUE
+	return living_xeno_ruler
+
+
 // ***************************************
 // *********** Queen
 // ***************************************
