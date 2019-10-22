@@ -1152,7 +1152,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	pixel_x = initialpixelx
 	pixel_y = initialpixely
 
-/atom/proc/contains(var/atom/A)
+/atom/proc/contains(atom/A)
 	if(!A)
 		return 0
 	for(var/atom/location = A.loc, location, location = location.loc)
