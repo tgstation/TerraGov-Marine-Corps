@@ -29,7 +29,7 @@
 	if(!hive)
 		return
 
-	if(!hive.living_xeno_ruler && hive.xeno_queen_timer > QUEEN_DEATH_TIMER * 0.5 && hivenumber == XENO_HIVE_NORMAL)
+	if(hivenumber == XENO_HIVE_NORMAL && !hive.living_xeno_ruler && hive.xeno_queen_timer && timeleft(hive.xeno_queen_timer) > QUEEN_DEATH_TIMER * 0.5)
 		to_chat(src, "<span class='warning'>The ruler is dead. The hivemind is weakened. Despair!</span>")
 		return
 

@@ -286,9 +286,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
 		if(SSticker?.mode)
-			var/countdown = SSticker.mode.get_queen_countdown()
+			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
 			if(countdown)
-				stat("Queen Re-Check:", countdown)
+				stat("Orphan hivemind collapse timer:", countdown)
 
 
 /mob/dead/observer/verb/reenter_corpse()

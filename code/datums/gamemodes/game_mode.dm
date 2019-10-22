@@ -608,11 +608,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	X.update_icons()
 
 
-/datum/game_mode/proc/check_queen_status(queen_time)
+/datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
 
-/datum/game_mode/proc/get_queen_countdown()
+/datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
 

@@ -165,13 +165,15 @@
 			if(4.0 to INFINITY) msg_holder = "very strong "
 		stat(null,"We are affected by a [msg_holder]RECOVERY pheromone.")
 
-
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		if(hive.hive_orders && hive.hive_orders != "")
-			stat(null,"Hive Orders: [hive.hive_orders]")
-	else
-		stat(null,"Hive Orders: Follow the instructions of our masters")
-
+	switch(hivenumber)
+		if(XENO_HIVE_NORMAL)
+			if(hive.hive_orders && hive.hive_orders != "")
+				stat(null,"Hive Orders: [hive.hive_orders]")
+			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(countdown)
+				stat("Orphan hivemind collapse timer:", countdown)
+		if(XENO_HIVE_CORRUPTED)
+			stat(null,"Hive Orders: Follow the instructions of our masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
