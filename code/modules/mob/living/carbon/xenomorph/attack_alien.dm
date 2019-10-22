@@ -141,7 +141,7 @@
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
-/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = FALSE)
+/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = TRUE)
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
@@ -149,9 +149,9 @@
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
-	if(!affecting || (random_location && !set_location) || (!ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
+	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("head") || (!ignore_destroyed && !affecting.is_usable()))
+	if(no_head && affecting == get_limb("head") || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
 	if(!affecting) //Still nothing??
 		affecting = get_limb("chest") //Gotta have a torso?!
