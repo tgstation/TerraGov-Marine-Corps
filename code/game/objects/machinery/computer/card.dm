@@ -74,7 +74,7 @@
 	updateUsrDialog()
 	attack_hand(user)
 
-
+/*
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
 	var/data[0]
 	data["src"] = "\ref[src]"
@@ -266,7 +266,7 @@
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 
 	return 1
-
+*/
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/circuitboard/computer/card/centcom"

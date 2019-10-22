@@ -12,7 +12,7 @@
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
-
+/*
 /obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttle_tag)
 	if(!shuttle)
@@ -73,7 +73,7 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
-
+*/
 /obj/machinery/computer/dropship_weapons/Topic(href, href_list)
 	. = ..()
 	if(.)

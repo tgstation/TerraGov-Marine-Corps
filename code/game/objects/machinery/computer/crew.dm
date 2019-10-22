@@ -49,7 +49,7 @@
 
 	updateUsrDialog()
 
-
+/*
 /obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	scan()
 
@@ -118,7 +118,7 @@
 		// should make the UI auto-update; doesn't seem to?
 		ui.set_auto_update(TRUE)
 
-
+*/
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(!H || !istype(H)) continue
