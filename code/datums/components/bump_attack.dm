@@ -8,7 +8,9 @@
 		return COMPONENT_INCOMPATIBLE
 	if(isliving(parent))
 		toggle_action = new()
-		RegisterSignal(parent, COMSIG_ACTION_TRIGGER, .proc/bump_attack_toggle)
+		RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/bump_attack_toggle)
+		toggle_action.give_action(parent)
+		toggle_action.update_button_icon(active)
 	else
 		return COMPONENT_INCOMPATIBLE
 
@@ -22,14 +24,14 @@
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, .proc/bump_action)
 	else
 		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
-		toggle_action.update_button_icon(active)
+	toggle_action.update_button_icon(active)
 
 /datum/component/bump_attack/proc/bump_action(datum/source, atom/target)
     if(isliving(parent))
         var/mob/living/bumper = parent
         bumper.bump_attack(target)
 
-/mob/living/proc/bump_attack(datum/source, atom/target)
+/mob/living/proc/bump_attack(atom/target)
 	if(!isliving(target) || a_intent == INTENT_HELP || a_intent == INTENT_GRAB || throwing || incapacitated())
 		return
 	if(next_move > world.time)
