@@ -409,7 +409,7 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"toggles_gameplay" = list(
 		"RADIAL_MEDICAL" = RADIAL_MEDICAL
-		)
+		),
 	"toggles_chat" = list(
 		"CHAT_OOC" = CHAT_OOC,
 		"CHAT_DEAD" = CHAT_DEAD,
