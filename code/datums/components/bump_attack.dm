@@ -22,9 +22,9 @@
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 
 	if(active)
-		bumper.RegisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP, .proc/bump_attack)
+		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, .proc/bump_attack)
 	else
-		bumper.UnregisterSignal(xeno_bumper, COMSIG_MOVABLE_BUMP)
+		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
         toggle_action.update_button_icon(active)
 
 /mob/living/proc/bump_attack(datum/source, atom/target)
