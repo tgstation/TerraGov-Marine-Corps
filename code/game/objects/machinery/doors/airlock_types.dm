@@ -449,42 +449,42 @@
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/general/sl
+/obj/machinery/door/airlock/mainship/marine/general/sl
 	name = "\improper Squad Leader Preparations"
-	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_LEADER)
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/general/spec
+/obj/machinery/door/airlock/mainship/marine/general/spec
 	name = "\improper Specialist Preparations"
-	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/general/smart
+/obj/machinery/door/airlock/mainship/marine/general/smart
 	name = "\improper Smartgunner Preparations"
-	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/general/corps
+/obj/machinery/door/airlock/mainship/marine/general/corps
 	name = "\improper Corpsman Preparations"
-	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_MEDPREP)
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/general/engi
+/obj/machinery/door/airlock/mainship/marine/general/engi
 	name = "\improper Engineer Preparations"
-	icon = 'icons/obj/doors/almayer/prepdoor.dmi'
+	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_access = list(ACCESS_MARINE_ENGPREP)
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/almayer/marine/requisitions
+/obj/machinery/door/airlock/mainship/marine/requisitions
 	name = "\improper Requisitions Bay"
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
