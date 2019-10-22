@@ -13,166 +13,39 @@
 	var/mob/living/carbon/human/H = M
 	var/radial_state = ""
 	var/datum/limb/part = null
-	
-	part = H.get_limb(BODY_ZONE_HEAD)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_head_un"
-		else
-			radial_state = "radial_head_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_head_both"
-		else
-			radial_state = "radial_head_burn"
-	var/radial_head = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
 
-	part = H.get_limb(BODY_ZONE_CHEST)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_chest_un"
-		else
-			radial_state = "radial_chest_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_chest_both"
-		else
-			radial_state = "radial_chest_burn"
-	var/radial_chest = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
+	var/list/radial_options = list()
 
-	part = H.get_limb(BODY_ZONE_PRECISE_GROIN)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_groin_un"
+	for(var/bodypart in GLOB.human_body_parts)
+		part = H.get_limb(bodypart)
+		if(!part.burn_dam)
+			if(!part.brute_dam)
+				radial_state = "radial_[bodypart]_un"
+			else
+				radial_state = "radial_[bodypart]_brute"
 		else
-			radial_state = "radial_groin_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_groin_both"
-		else
-			radial_state = "radial_groin_burn"
-	var/radial_groin = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
+			if(part.brute_dam)
+				radial_state = "radial_[bodypart]_both"
+			else
+				radial_state = "radial_[bodypart]_burn"
 
-	part = H.get_limb(BODY_ZONE_L_ARM)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Larm_un"
-		else
-			radial_state = "radial_Larm_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Larm_both"
-		else
-			radial_state = "radial_Larm_burn"
-	var/radial_Larm = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_PRECISE_L_HAND)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Lhand_un"
-		else
-			radial_state = "radial_Lhand_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Lhand_both"
-		else
-			radial_state = "radial_Lhand_burn"
-	var/radial_Lhand = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_R_ARM)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Rarm_un"
-		else
-			radial_state = "radial_Rarm_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Rarm_both"
-		else
-			radial_state = "radial_Rarm_burn"
-	var/radial_Rarm = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_PRECISE_R_HAND)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Rhand_un"
-		else
-			radial_state = "radial_Rhand_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Rhand_both"
-		else
-			radial_state = "radial_Rhand_burn"
-	var/radial_Rhand = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_L_LEG)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Lleg_un"
-		else
-			radial_state = "radial_Lleg_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Lleg_both"
-		else
-			radial_state = "radial_Lleg_burn"
-	var/radial_Lleg = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Lfoot_un"
-		else
-			radial_state = "radial_Lfoot_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Lfoot_both"
-		else
-			radial_state = "radial_Lfoot_burn"
-	var/radial_Lfoot = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_R_LEG)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Rleg_un"
-		else
-			radial_state = "radial_Rleg_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Rleg_both"
-		else
-			radial_state = "radial_Rleg_burn"
-	var/radial_Rleg = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
-	part = H.get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	if(!part.burn_dam)
-		if(!part.brute_dam)
-			radial_state = "radial_Rfoot_un"
-		else
-			radial_state = "radial_Rfoot_brute"
-	else
-		if(part.brute_dam)
-			radial_state = "radial_Rfoot_both"
-		else
-			radial_state = "radial_Rfoot_burn"
-	var/radial_Rfoot = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
-
+		radial_options[bodypart] = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
 
 	//the list of the above
-	var/list/radial_options = list("head" = radial_head,
-									"chest" = radial_chest,
-									"groin" = radial_groin,
-									"Larm" = radial_Larm,
-									"Lhand" = radial_Lhand,
-									"Rarm" = radial_Rarm,
-									"Rhand" = radial_Rhand,
-									"Lleg" = radial_Lleg,
-									"Lfoot" = radial_Lfoot,
-									"Rleg" = radial_Rleg,
-									"Rfoot" = radial_Rfoot)
+	var/list/radial_options_show = list("head" = radial_options[BODY_ZONE_HEAD],
+									"chest" = radial_options[BODY_ZONE_CHEST],
+									"groin" = radial_options[BODY_ZONE_PRECISE_GROIN],
+									"Larm" = radial_options[BODY_ZONE_L_ARM],
+									"Lhand" = radial_options[BODY_ZONE_PRECISE_L_HAND],
+									"Rarm" = radial_options[BODY_ZONE_R_ARM],
+									"Rhand" = radial_options[BODY_ZONE_PRECISE_R_HAND],
+									"Lleg" = radial_options[BODY_ZONE_L_LEG],
+									"Lfoot" = radial_options[BODY_ZONE_PRECISE_L_FOOT],
+									"Rleg" = radial_options[BODY_ZONE_R_LEG],
+									"Rfoot" = radial_options[BODY_ZONE_PRECISE_R_FOOT])
 
 	var/datum/limb/affecting = null
-	var/choice = show_radial_menu(user, H, radial_options, null, 48, null, TRUE)
+	var/choice = show_radial_menu(user, H, radial_options_show, null, 48, null, TRUE)
 	switch(choice)
 		if("head")
 			affecting = H.get_limb(BODY_ZONE_HEAD)
