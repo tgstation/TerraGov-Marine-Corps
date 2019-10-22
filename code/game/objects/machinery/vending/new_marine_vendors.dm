@@ -51,6 +51,9 @@
 
 	var/list/listed_products
 
+	ui_x = 600
+	ui_y = 700
+
 /obj/machinery/marine_selector/update_icon()
 	if(is_operational())
 		icon_state = initial(icon_state)
@@ -84,8 +87,15 @@
 
 	return TRUE
 
+/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+	if(!ui)
+		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/marine_selector/ui_data(mob/user)
 	var/list/display_list = list()
 
 	var/m_points = 0
@@ -118,115 +128,104 @@
 		"current_m_points" = m_points,
 		"displayed_records" = display_list,
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "marine_selector.tmpl", name , 600, 700)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-
-/obj/machinery/marine_selector/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/machinery/marine_selector/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("vend")
+			if(!allowed(usr))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-	if(href_list["vend"])
-		if(!allowed(usr))
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
+			var/idx = text2num(params["vend"])
+			var/obj/item/card/id/I = usr.get_idcard()
 
-		var/idx = text2num(href_list["vend"])
-		var/obj/item/card/id/I = usr.get_idcard()
+			var/list/L = listed_products[idx]
+			var/cost = L[2]
 
-		var/list/L = listed_products[idx]
-		var/cost = L[2]
+			if(use_points && I.marine_points < cost)
+				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-		if(use_points && I.marine_points < cost)
-			to_chat(usr, "<span class='warning'>Not enough points.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
+			var/turf/T = loc
+			if(length(T.contents) > 25)
+				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-		var/turf/T = loc
-		if(length(T.contents) > 25)
-			to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
+			var/bitf = L[4]
+			if(bitf)
+				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
+					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
+						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
+						return
+					else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
+						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
+						return
+					var/p_name = L[1]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
+					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+						p_name = "Heavy Armor Set"
+					if(!GLOB.available_specialist_sets.Find(p_name))
+						to_chat(usr, "<span class='warning'>That set is already taken</span>")
+						return
 
-		var/bitf = L[4]
-		if(bitf)
-			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
-				if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
-					to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
+				if(I.marine_buy_flags & bitf)
+					if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
+						if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
+						else
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
+					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
+						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
+						else
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
+					else
+						I.marine_buy_flags &= ~bitf
+				else
+					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
-				else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-					to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
-					return
+
+			var/type_p = L[3]
+
+			new type_p(loc)
+
+			if(icon_vend)
+				flick(icon_vend, src)
+
+			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
+				var/mob/living/carbon/human/H = usr
+				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
+				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
+				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+					new /obj/item/clothing/mask/rebreather/scarf(loc)
+
+
+			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
+				var/mob/living/carbon/human/H = usr
 				var/p_name = L[1]
 				if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 					p_name = "Scout Set"
 				else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
 					p_name = "Heavy Armor Set"
-				if(!GLOB.available_specialist_sets.Find(p_name))
-					to_chat(usr, "<span class='warning'>That set is already taken</span>")
-					return
+				if(p_name)
+					H.specset = p_name
+				H.update_action_buttons()
+				GLOB.available_specialist_sets -= p_name
 
-			if(I.marine_buy_flags & bitf)
-				if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-					if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
-					else
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-				else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-					if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-					else
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
-				else
-					I.marine_buy_flags &= ~bitf
-			else
-				to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
-				return
-
-		var/type_p = L[3]
-
-		new type_p(loc)
-
-		if(icon_vend)
-			flick(icon_vend, src)
-
-		if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
-			var/mob/living/carbon/human/H = usr
-			new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
-			new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
-			if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-				new /obj/item/clothing/mask/rebreather/scarf(loc)
-
-
-		if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			var/p_name = L[1]
-			if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
-				p_name = "Scout Set"
-			else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
-				p_name = "Heavy Armor Set"
-			if(p_name)
-				H.specset = p_name
-			H.update_action_buttons()
-			GLOB.available_specialist_sets -= p_name
-
-		if(use_points)
-			I.marine_points -= cost
+			if(use_points)
+				I.marine_points -= cost
 
 	updateUsrDialog()
-
-
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"

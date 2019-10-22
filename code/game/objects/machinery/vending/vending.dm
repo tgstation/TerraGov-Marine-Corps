@@ -65,6 +65,9 @@
 
 	var/knockdown_threshold = 100
 
+	ui_x = 450
+	ui_y = 600
+
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
@@ -354,11 +357,15 @@
 
 	return TRUE
 
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
+	if(!ui)
+		ui = new(user, src, ui_key, "vending", name, ui_x, ui_y, master_ui, state)
+		ui.open()
 
-
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
-
+/obj/machinery/vending/ui_data(mob/user)
 	var/list/display_list = list()
 	var/list/display_records = list()
 	display_records += product_records
@@ -382,53 +389,44 @@
 		"displayed_records" = display_list,
 		"isshared" = isshared
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name , 450, 600)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/vending/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/machinery/vending/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("remove_coin")
+			if(!coin)
+				to_chat(usr, "There is no coin in this machine.")
+				return
 
-	if(href_list["remove_coin"])
-		if(!coin)
-			to_chat(usr, "There is no coin in this machine.")
-			return
+			coin.forceMove(loc)
+			coin = null
+			usr.put_in_hands(coin)
+			to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 
-		coin.forceMove(loc)
-		coin = null
-		usr.put_in_hands(coin)
-		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+		if("vend")
+			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				flick(icon_deny, src)
+				return
 
-	if((href_list["vend"]) && vend_ready && !currently_vending)
-		if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
-			flick(icon_deny, src)
-			return
+			var/idx = text2num(params["vend"])
+			var/cat = text2num(params["cat"])
 
-		var/idx = text2num(href_list["vend"])
-		var/cat = text2num(href_list["cat"])
+			var/datum/data/vending_product/R = GetProductByID(idx,cat)
+			if(!istype(R) || !R.product_path || R.amount <= 0)
+				return
 
-		var/datum/data/vending_product/R = GetProductByID(idx,cat)
-		if(!istype(R) || !R.product_path || R.amount <= 0)
-			return
+			if(R.price == null)
+				vend(R, usr)
+			else
+				currently_vending = R
 
-		if(R.price == null)
-			vend(R, usr)
-		else
-			currently_vending = R
-
-	else if(href_list["cancel_buying"])
-		currently_vending = null
+		if("cancel_buying")
+			currently_vending = null
 
 	updateUsrDialog()
-
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH

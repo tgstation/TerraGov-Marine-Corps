@@ -255,6 +255,9 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
+	ui_x = 625
+	ui_y = 525
+
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
 	var/list/details = list()
@@ -344,8 +347,15 @@
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
+	if(!ui)
+		ui = new(user, src, ui_key, "sentry", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/marine_turret/ui_data(mob/user)
 	var/list/data = list(
 		"self_ref" = "\ref[src]",
 		"name" = copytext(src.name, 2),
@@ -364,34 +374,19 @@
 		"alerts_on" = CHECK_BITFIELD(turret_flags, TURRET_ALERTS),
 		"radial_mode" = CHECK_BITFIELD(turret_flags, TURRET_RADIAL),
 		"burst_size" = burst_size,
+		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		if(!istype(src, /obj/machinery/marine_turret/mini)) //Check for mini-sentry
-			ui = new(user, src, ui_key, "sentry.tmpl", "[src.name] UI", 625, 525)
-		else
-			ui = new(user, src, ui_key, "minisentry.tmpl", "[src.name] UI", 625, 525)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/marine_turret/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(usr.stat)
+/obj/machinery/marine_turret/ui_act(action, params)
+	if(..())
 		return
 
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user))
 		return
 
-	if(get_dist(loc, user.loc) > 1 || user.incapacitated())
-		return
-
-	user.set_interaction(src)
-	switch(href_list["op"])
+	switch(action)
 
 		if("burst")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)

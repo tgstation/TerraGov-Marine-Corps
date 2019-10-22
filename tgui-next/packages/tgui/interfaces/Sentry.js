@@ -100,22 +100,24 @@ export const Sentry = props => {
             {data.safety_toggle ? "Turn off the safety" : "Turn on the safety"}
           </Button>
         </LabeledList.Item>
-        <LabeledList.Item
-          label="Manual Override">
-          Manual override is currently
-          {data.manual_override ? (
-            <Box inline color="good">ON</Box>
-          ) : (
-            <Box inline color="bad">OFF</Box>
-          )}
-          <br />
-          <Button
-            onClick={() => act(ref, 'manual')}
-            icon={data.manual_override ? "times" : "check"}
-            disabled={!data.is_on}>
-            {data.manual_override ? "Turn off Manual Override" : "Turn on Manual Override"}
-          </Button>
-        </LabeledList.Item>
+        {!data.mini && (
+          <LabeledList.Item
+            label="Manual Override">
+            Manual override is currently
+            {data.manual_override ? (
+              <Box inline color="good">ON</Box>
+            ) : (
+              <Box inline color="bad">OFF</Box>
+            )}
+            <br />
+            <Button
+              onClick={() => act(ref, 'manual')}
+              icon={data.manual_override ? "times" : "check"}
+              disabled={!data.is_on}>
+              {data.manual_override ? "Turn off Manual Override" : "Turn on Manual Override"}
+            </Button>
+          </LabeledList.Item>
+        )}
         <LabeledList.Item
           label="Radial Mode">
           Radial Mode is currently
