@@ -5,13 +5,13 @@
 	var/static/atom/movable/vis_obj/action/bump_attack_inactive
 
 /datum/action/bump_attack_toggle/New()
-    . = ..()
-    button.overlays.Cut()
+	. = ..()
+	button.overlays.Cut()
 
 /datum/action/bump_attack_toggle/update_button_icon(active)
-    if(isnull(active))
-        return 
-    if(active)
+	if(isnull(active))
+		return
+	if(active)
 		button.vis_contents -= bump_attack_inactive
 		button.vis_contents += bump_attack_active
 	else
