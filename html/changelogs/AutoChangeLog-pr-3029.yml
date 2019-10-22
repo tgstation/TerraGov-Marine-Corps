@@ -1,0 +1,5 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - rscdel: "Ravager rage and its mechanics are no longer a thing"
+  - balance: "Ravager has been reverted to old ravager statline alongside a overall health buff"
