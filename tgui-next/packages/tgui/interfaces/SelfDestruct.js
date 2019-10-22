@@ -24,22 +24,22 @@ export const SelfDestruct = props => {
       <Box>
         {data.dest_status === 1 && (
           <Button
-          icon='exclamation-triangle'
-          content='ACTIVATE SYSTEM'
-          color='yellow'
-          onClick={() => act(ref, 'dest_start')} />
+            icon="exclamation-triangle"
+            content="ACTIVATE SYSTEM"
+            color="yellow"
+            onClick={() => act(ref, "dest_start")} />
         ) || data.dest_status === 2 && (
           <Fragment>
             <Button
-            icon='exclamation-triangle'
-            content='INITIATE'
-            color='red'
-            onClick={() => act(ref, 'dest_trigger')} />
+              icon="exclamation-triangle"
+              content="INITIATE"
+              color="red"
+              onClick={() => act(ref, "dest_trigger")} />
             <Button
-            icon='exclamation-triangle'
-            content='CANCEL'
-            color='yellow'
-            onClick={() => act(ref, 'dest_cancel')} />
+              icon="exclamation-triangle"
+              content="CANCEL"
+              color="yellow"
+              onClick={() => act(ref, "dest_cancel")} />
           </Fragment>
         ) || (
           <span className="bad">ERROR</span>

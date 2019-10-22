@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { act } from '../byond';
-import { Button, LabeledList, NoticeBox, ProgressBar, Section, Box } from '../components';
+import { AnimatedNumber, Box, Button, LabeledList, ProgressBar, Section} from '../components';
 
 export const Cryo = props => {
   const { state } = props;
@@ -9,7 +9,7 @@ export const Cryo = props => {
   const damageTypes = [
     {
       label: "Brute",
-      type: "bruteloss",
+      type: "bruteLoss",
     },
     {
       label: "Respiratory",
@@ -21,7 +21,7 @@ export const Cryo = props => {
     },
     {
       label: "Burn",
-      type: "fireloss",
+      type: "fireLoss",
     },
   ];
 
@@ -30,85 +30,99 @@ export const Cryo = props => {
       <Section
         title="Occupant">
         <LabeledList>
-          <LabeledList.Item label="Occupant">
-            <span>{data.occupant.name ? data.occupant.name : "No Occupant"}</span>
-          </LabeledList.Item>
-          {data.hasOccupant ? (
-            <LabeledList.Item label="State">
-              <span class='{data.occupant.statstate}'>{data.occupant.stat}</span>
-            </LabeledList.Item>
-            <LabeledList.Item label="Temperature">
-              <span class='{data.occupant.temperaturestatus}'>{data.occupant.bodyTemperature} K</span>
-            </LabeledList.Item>
-            <LabeledList.Item label="Health">
-              <ProgressBar
-                value={data.occupant.health
-                  / (data.occupant.maxHealth - data.occupant.minHealth)}></ProgressBar>
-            </LabeledList.Item>
-            <LabeledList.Item>
-              <LabeledList>
-                {damageTypes.map(damageType => (
-                  <LabeledList.Item label={damageType.label}>
-                    <ProgressBar value={data.occupant[damageType.type]/100} content={data.occupant[damageType.type]}/>
-                  </LabeledList.Item>
-                ))}
-              </LabeledList>
-            </LabeledList.Item>
-            ) : (
-              <LabeledList.Item>No Occupant</LabeledList.Item>
-            )}
+          <LabeledList.Item
+            label="Occupant"
+            content={data.occupant.name ? data.occupant.name : "No Occupant"} />
+          {!!data.hasOccupant && (
+            <Fragment>
+              <LabeledList.Item
+                label="State"
+                content={data.occupant.stat}
+                color={data.occupant.statstate} />
+              <LabeledList.Item
+                label="Temperature"
+                color={data.occupant.temperaturestatus}>
+                <AnimatedNumber value={data.occupant.bodyTemperature} /> K
+              </LabeledList.Item>
+              <LabeledList.Item
+                label="Health">
+                <ProgressBar
+                  value={data.occupant.health / data.occupant.maxHealth}
+                  color={(data.occupant.health > 0) ? "good" : "average"}>
+                  <AnimatedNumber value={data.occupant.health} />
+                </ProgressBar>
+              </LabeledList.Item>
+              {(damageTypes.map(damageType => (
+                <LabeledList.Item
+                  key={damageType.id}
+                  label={damageType.label}>
+                  <ProgressBar
+                    value={data.occupant[damageType.type]/100}>
+                    <AnimatedNumber value={data.occupant[damageType.type]} />
+                  </ProgressBar>
+                </LabeledList.Item>
+              )))}
+            </Fragment>
+          )}
         </LabeledList>
       </Section>
       <Section
         title="Cell">
         <LabeledList>
-          <LabeledList.Item label="Power">
-            <Button
-              icon={data.isOperating ? "power-off" : "close"}
-              disabled={data.isOpen}
-              onClick={() => act(ref, 'power')}
-              content={data.isOperating ? "On" : "Off"}/>
-          </LabeledList.Item>
-          <LabeledList.Item label="Temperature">
-           <span class='{data.temperaturestatus}'>{data.cellTemperature} K</span>
+          <LabeledList.Item
+            label="Power"
+            content={(
+              <Button
+                icon={data.isOperating ? "power-off" : "times"}
+                disabled={data.isOpen}
+                onClick={() => act(ref, 'power')}
+                content={data.isOperating ? "On" : "Off"}
+                color={data.isOperating && ("green")} />
+            )} />
+          <LabeledList.Item
+            label="Temperature">
+            <AnimatedNumber value={data.cellTemperature} /> K
           </LabeledList.Item>
           <LabeledList.Item label="Door">
             <Button
               icon={data.isOpen ? "unlock" : "lock"}
               onClick={() => act(ref, 'door')}
-              content={data.isOpen ? "Open" : "Closed"}/>
+              content={data.isOpen ? "Open" : "Closed"} />
             <Button
-              icon={data.autoEject ? ("sign-out") : ("sign-in")}
+              icon={data.autoEject ? "sign-out-alt" : "sign-in-alt"}
               onClick={() => act(ref, 'autoeject')}
-              content={data.autoEject ? "Auto" : "Manual"}/>
+              content={data.autoEject ? "Auto" : "Manual"} />
           </LabeledList.Item>
         </LabeledList>
       </Section>
       <Section
         title="Beaker"
-        button={(<Button
-                  icon="eject"
-                  disabled={!!data.isBeakerLoaded}
-                  onClick={() => act(ref, 'ejectbeaker')}
-                  content="Eject"/>)}>
+        buttons={(
+          <Button
+            icon="eject"
+            disabled={!data.isBeakerLoaded}
+            onClick={() => act(ref, 'ejectbeaker')}
+            content="Eject" />
+        )}>
         <LabeledList>
           <LabeledList.Item label="Contents">
             {data.isBeakerLoaded ? (
-              data.beakerContents ? (
-                <LabeledList>
+              data.beakerContents.length ? (
                 data.beakerContents.map(beakerContent => (
-                  <LabeledList.Item>
+                  <Box
+                    key={beakerContent.id}
+                    color="pale-blue" >
                     {beakerContent.volume} units of {beakerContent.name}
-                  </LabeledList.Item>
+                  </Box>
                 ))
-                </LabeledList>
-                ) : (
-                  <span class='bad'>Beaker Empty</span>
-                )
+              ) : (
+                <Box color="bad" content="Beaker Empty" />
+              )
             ) : (
-              <span class='average'>No Beaker</span>
+              <Box color="average" content="No Beaker" />
             )}
           </LabeledList.Item>
         </LabeledList>
       </Section>
     </Fragment>
+  ); };

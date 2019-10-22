@@ -19,7 +19,7 @@ export const MarineSelector = props => {
 
       <LabeledList>
         {data.displayed_records.map(display_record => (
-          <LabeledList.Item color={display_record.prod_color}>
+          <LabeledList.Item color={display_record.prod_color} key={display_record.id}>
             <Button
               disabled={!display_record.prod_available}
               onClick={() => act(ref, 'vend', {vend: display_record.prod_index})}>
@@ -28,4 +28,4 @@ export const MarineSelector = props => {
           </LabeledList.Item>
         ))}
       </LabeledList>
-    </Fragment>)};
+    </Fragment>); };

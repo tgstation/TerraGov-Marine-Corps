@@ -1,8 +1,5 @@
-import { Acclimator } from './interfaces/Acclimator';
-import { AiAirlock } from './interfaces/AiAirlock';
-import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
-import { APC } from './interfaces/APC';
+import { Apc } from './interfaces/Apc';
 import { AtmosAlertConsole } from './interfaces/AtmosAlertConsole';
 import { AtmosControlConsole } from './interfaces/AtmosControlConsole';
 import { AtmosFilter } from './interfaces/AtmosFilter';
@@ -10,42 +7,27 @@ import { AtmosMixer } from './interfaces/AtmosMixer';
 import { AtmosPump } from './interfaces/AtmosPump';
 import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
-import { BSA } from './interfaces/BSA';
 import { Canister } from './interfaces/Canister';
 import { Cargo } from './interfaces/Cargo';
-import { CellularEmporium } from './interfaces/CellularEmporium';
-import { CentcomPodlauncher } from './interfaces/CentcomPodlauncher';
 import { ChemDispenser } from './interfaces/ChemDispenser';
 import { Crayon } from './interfaces/Crayon';
+import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { KitchenSink } from './interfaces/KitchenSink';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { Wires } from './interfaces/Wires';
-import { Mint } from './interfaces/Mint';
+import { MarineSelector } from './interfaces/MarineSelector';
+import { SelfDestruct } from './interfaces/SelfDestruct';
+import { Sentry } from './interfaces/Sentry';
+import { Vending } from './interfaces/Vending';
 
 const ROUTES = {
-  airalarm: {
-    component: () => AirAlarm,
-    scrollable: true,
-  },
-  acclimator: {
-    component: () => Acclimator,
-    scrollable: false,
-  },
-  ai_airlock: {
-    component: () => AiAirlock,
-    scrollable: false,
-  },
-  canister: {
-    component: () => Canister,
-    scrollable: false,
-  },
   airlock_electronics: {
     component: () => AirlockElectronics,
     scrollable: false,
   },
   apc: {
-    component: () => APC,
+    component: () => Apc,
     scrollable: false,
   },
   atmos_alert: {
@@ -76,44 +58,52 @@ const ROUTES = {
     component: () => BrigTimer,
     scrollable: false,
   },
-  bsa: {
-    component: () => BSA,
+  canister: {
+    component: () => Canister,
     scrollable: false,
   },
   cargo: {
     component: () => Cargo,
     scrollable: true,
   },
-  cellular_emporium: {
-    component: () => CellularEmporium,
-    scrollable: true,
-  },
-  centcom_podlauncher: {
-    component: () => CentcomPodlauncher,
-    scrollable: false,
-  },
   chem_dispenser: {
     component: () => ChemDispenser,
     scrollable: true,
   },
-  thermomachine: {
-    component: () => ThermoMachine,
-    scrollable: false,
-  },
   crayon: {
     component: () => Crayon,
+    scrollable: true,
+  },
+  cryo: {
+    component: () => Cryo,
     scrollable: true,
   },
   disposal_unit: {
     component: () => DisposalUnit,
     scrollable: false,
   },
-  wires: {
-    component: () => Wires,
+  marineselector: {
+    component: () => MarineSelector,
+    scrollable: true,
+  },
+  selfdestruct: {
+    component: () => SelfDestruct,
+    scrollable: true,
+  },
+  sentry: {
+    component: () => Sentry,
+    scrollable: true,
+  },
+  vending: {
+    component: () => Vending,
+    scrollable: true,
+  },
+  thermomachine: {
+    component: () => ThermoMachine,
     scrollable: false,
   },
-  mint: {
-    component: () => Mint,
+  wires: {
+    component: () => Wires,
     scrollable: false,
   },
 };
