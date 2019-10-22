@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - bugfix: "Fixed broken evolution to Queen once the current one dies. There's a 5 minutes cooldown period to get a new one."
+  - tweak: "Xenos now know through their Stat panel how long until the hivemind collapses due to the lack of a ruler."
