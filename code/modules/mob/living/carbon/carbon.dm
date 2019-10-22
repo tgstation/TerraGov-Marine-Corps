@@ -231,7 +231,6 @@
 					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
 
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] has thrown [ADMIN_TPMONTY(M)].")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
 

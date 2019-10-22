@@ -448,7 +448,6 @@
 		flick_attack_overlay(M, "grab")
 
 		log_combat(src, M, "grabbed")
-		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)

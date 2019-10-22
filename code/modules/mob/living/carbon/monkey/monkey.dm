@@ -217,7 +217,6 @@
 				adjustBruteLoss(damage)
 
 				log_combat(H, src, "[pick(attack.attack_verb)]ed")
-				msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
 				updatehealth()
 			else

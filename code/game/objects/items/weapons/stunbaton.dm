@@ -174,7 +174,7 @@
 			L.knock_down(4)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
-	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
+	log_combat(user, L, "stunned", src)
 
 	deductcharge(hitcost)
 

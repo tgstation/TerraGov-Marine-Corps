@@ -86,14 +86,12 @@
 
 			user.visible_message("<span class='danger'>[user] gives [C] a swirlie!</span>", "<span class='notice'>You give [C] a swirlie!</span>", "You hear a toilet flushing.")
 			log_combat(user, C, "given a swirlie")
-			msg_admin_attack("[key_name(user)] gave [key_name(C)] a swirlie.")
 			if(!C.internal)
 				C.adjustOxyLoss(5)
 			swirlie = null
 		else
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
-			msg_admin_attack("[key_name(user)] slammed [key_name(C)] into the \the [src].")
 			C.apply_damage(8, BRUTE)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.

@@ -974,11 +974,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/proc/bullet_message(obj/item/projectile/proj, feedback_flags)
 	if(!proj.firer)
 		log_message("SOMETHING?? shot [key_name(src)] with a [proj]", LOG_ATTACK)
-		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [proj])")
 		return BULLET_MESSAGE_NO_SHOOTER
 	var/turf/T = get_turf(proj.firer)
-	log_combat(proj.firer, src, "shot", proj)
-	msg_admin_attack("[ADMIN_TPMONTY(proj.firer)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
+	log_combat(proj.firer, src, "shot", proj, "in [AREACOORD(T)]")
 	if(ishuman(proj.firer))
 		return BULLET_MESSAGE_HUMAN_SHOOTER
 	return BULLET_MESSAGE_OTHER_SHOOTER

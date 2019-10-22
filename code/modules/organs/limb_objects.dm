@@ -154,7 +154,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 				to_chat(brainmob, "<span class='warning'>[user] severs your brain's connection to the spine with [I]!</span>")
 
 				log_combat(user, brainmob, "debrained", I, "(INTENT: [uppertext(user.a_intent)])")
-				msg_admin_attack("[ADMIN_TPMONTY(user)] debrained [ADMIN_TPMONTY(brainmob)].")
 
 				//TODO: ORGAN REMOVAL UPDATE.
 				var/obj/item/organ/brain/B = new brain_item_type(loc)
