@@ -21,6 +21,7 @@ import { SelfDestruct } from './interfaces/SelfDestruct';
 import { Sentry } from './interfaces/Sentry';
 import { Vending } from './interfaces/Vending';
 import { MarineDropship } from './interfaces/MarineDropship';
+import { PortableVendor } from './interfaces/PortableVendor';
 
 const ROUTES = {
   airlock_electronics: {
@@ -91,9 +92,13 @@ const ROUTES = {
     component: () => MarineDropship,
     scrollable: true,
   },
+  portablevendor: {
+    component: () => PortableVendor,
+    scrollable: true,
+  },
   selfdestruct: {
     component: () => SelfDestruct,
-    scrollable: true,
+    scrollable: false,
   },
   sentry: {
     component: () => Sentry,

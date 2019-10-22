@@ -24,6 +24,9 @@
 
 	var/list/listed_products = list()
 
+	ui_x = 600
+	ui_y = 700
+
 
 /obj/item/portable_vendor/attack_hand(mob/living/user)
 	. = ..()
@@ -57,8 +60,15 @@
 
 	return TRUE
 
-/*
-/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+/obj/item/portable_vendor/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+	if(!ui)
+		ui = new(user, src, ui_key, "portablevendor", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/item/portable_vendor/ui_data(mob/user)
 	var/list/display_list = list()
 
 
@@ -85,58 +95,48 @@
 		"max_points" = max_points,
 		"displayed_records" = display_list,
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "portable_vendor.tmpl", name , 600, 700)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-*/
-
-/obj/item/portable_vendor/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/item/portable_vendor/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("vend")
+			if(!allowed(usr))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				return
 
-	if(href_list["vend"])
+			var/idx = text2num(params["vend"])
 
-		if(!allowed(usr))
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
-			return
+			var/list/L = listed_products[idx]
+			var/cost = L[2]
 
-		var/idx = text2num(href_list["vend"])
-
-		var/list/L = listed_products[idx]
-		var/cost = L[2]
-
-		if(use_points && points < cost)
-			to_chat(usr, "<span class='warning'>Not enough points.</span>")
-
-
-		var/turf/T = get_turf(src)
-		if(length(T.contents) > 25)
-			to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
-			return
+			if(use_points && points < cost)
+				to_chat(usr, "<span class='warning'>Not enough points.</span>")
 
 
-		if(use_points)
-			points -= cost
+			var/turf/T = get_turf(src)
+			if(length(T.contents) > 25)
+				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				return
 
-		playsound(src, "sound/machines/fax.ogg", 5)
-		fabricating = TRUE
-		update_overlays()
-		spawn(30)
-			var/type_p = L[3]
-			var/obj/IT = new type_p(get_turf(src))
-			if(loc == usr)
-				usr.put_in_hands(IT)
-			fabricating = FALSE
+
+			if(use_points)
+				points -= cost
+
+			playsound(src, "sound/machines/fax.ogg", 5)
+			fabricating = TRUE
 			update_overlays()
+			addtimer(CALLBACK(src, .proc/do_vend, L[3], usr), 3 SECONDS)
 
 	updateUsrDialog()
 
+/obj/item/portable_vendor/proc/do_vend(thing, mob/user)
+	var/obj/IT = new thing(get_turf(src))
+	if(loc == user)
+		user.put_in_hands(IT)
+	fabricating = FALSE
+	update_overlays()
 
 /obj/item/portable_vendor/proc/update_overlays()
 	if(overlays) overlays.Cut()
