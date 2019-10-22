@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { act } from '../byond';
-import { AnimatedNumber, Button, LabeledList, NoticeBox, ProgressBar, Section, Box } from '../components';
+import { Button, LabeledList, NoticeBox, Section, Box } from '../components';
 
 export const MarineSelector = props => {
   const { state } = props;
