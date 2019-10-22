@@ -13,10 +13,7 @@
         return COMPONENT_INCOMPATIBLE
 
 /datum/component/bump_attack/proc/bump_attack_toggle(datum/source)
-    if(isliving(parent))
-	    var/mob/living/bumper = parent
-    else
-  var/mob/living/bumper = parent
+    var/mob/living/bumper = parent
 
 	active = !active
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
@@ -28,10 +25,10 @@
 		toggle_action.update_button_icon(active)
 
 /mob/living/proc/bump_attack(datum/source, atom/target)
-    if(!isliving(target))
-        return//we still want to push structures away and open doors
-	if(throwing || incapacitated() || next_move > world.time || a_intent == INTENT_HELP || a_intent == INTENT_GRAB)
-		return COMPONENT_MOVABLE_BUMP_RESOLVED
+    if(!isliving(target) || a_intent == INTENT_HELP || a_intent == INTENT_GRAB || throwing || incapacitated())
+        return
+	if(next_move > world.time)
+		return COMPONENT_MOVABLE_BUMP_RESOLVED//we don't want to push people while on attack cooldown
 	do_bump_attack(target)
 	return COMPONENT_MOVABLE_BUMP_RESOLVED
 
