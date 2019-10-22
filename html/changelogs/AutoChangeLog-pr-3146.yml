@@ -1,4 +1,0 @@
-author: "MetroidLover"
-delete-after: True
-changes: 
-  - bugfix: "The basic Marine Helmets are now properly set when facing left"
