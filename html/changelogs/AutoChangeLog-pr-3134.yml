@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Xenos can switch with their toggle-nightvision hud icon between 4 light intensity levels, from marine-like no-nightvision to fully shadowless, instead of only having two options."
