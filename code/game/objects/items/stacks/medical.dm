@@ -9,8 +9,8 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-/obj/item/stack/medical/proc/radial_medical(mob/living/carbon/M as mob, mob/user as mob)
-	var/mob/living/carbon/human/H = M
+/obj/item/stack/medical/proc/radial_medical(mob/living/carbon/patient, mob/doctor)
+	var/mob/living/carbon/human/H = patient
 	var/radial_state = ""
 	var/datum/limb/part = null
 
@@ -45,7 +45,7 @@
 									"Rfoot" = radial_options[BODY_ZONE_PRECISE_R_FOOT])
 
 	var/datum/limb/affecting = null
-	var/choice = show_radial_menu(user, H, radial_options_show, null, 48, null, TRUE)
+	var/choice = show_radial_menu(doctor, H, radial_options_show, null, 48, null, TRUE)
 	switch(choice)
 		if("head")
 			affecting = H.get_limb(BODY_ZONE_HEAD)
