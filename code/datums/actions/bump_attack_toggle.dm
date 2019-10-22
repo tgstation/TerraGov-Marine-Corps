@@ -9,7 +9,7 @@
     button.overlays.Cut()
 
 /datum/action/bump_attack_toggle/update_button_icon(active)
-    if(isnull(active)
+    if(isnull(active))
         return 
     if(active)
 		button.vis_contents -= bump_attack_inactive

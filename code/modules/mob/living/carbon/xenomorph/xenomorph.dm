@@ -42,6 +42,7 @@
 
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 
+
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")

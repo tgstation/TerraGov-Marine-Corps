@@ -6,7 +6,7 @@
     . = ..()
     if(!ismovableatom(parent))
          return COMPONENT_INCOMPATIBLE
-    if(ismob(parent))
+    if(isliving(parent))
         toggle_action = new()
         RegisterSignal(parent, COMSIG_ACTION_TRIGGER, .proc/bump_attack_toggle)
     else
@@ -16,7 +16,7 @@
     if(isliving(parent))
 	    var/mob/living/bumper = parent
     else
-        return
+  var/mob/living/bumper = parent
 
 	active = !active
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
@@ -25,7 +25,7 @@
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, .proc/bump_attack)
 	else
 		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
-        toggle_action.update_button_icon(active)
+		toggle_action.update_button_icon(active)
 
 /mob/living/proc/bump_attack(datum/source, atom/target)
     if(!isliving(target))
