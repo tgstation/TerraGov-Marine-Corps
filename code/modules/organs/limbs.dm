@@ -785,7 +785,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		rval |= !W.disinfected
 	return rval
 
-/datum/limb/proc/clamp()
+/datum/limb/proc/clamp_bleeder()
 	var/rval = 0
 	src.limb_status &= ~LIMB_BLEEDING
 	for(var/datum/wound/W in wounds)
