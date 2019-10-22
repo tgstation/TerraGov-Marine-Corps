@@ -33,39 +33,42 @@ export const MarineDropship = props => {
           Ship Status <br />
           {data.ship_status}
         </NoticeBox>
-        <LabeledList>
-          {data.destinations.map(destination => (
-            <LabeledList.Item key={destination.id}>
-              <Button
-                onClick={() => act(ref, "move", {
-                  move: destination.id,
-                })}
-                disabled={!(data.shuttle_mode === "idle" || data.shuttle_mode === "call")}
-                content={destination.name} />
-            </LabeledList.Item>
-          ))}
-        </LabeledList>
+        {data.destinations.map(destination => (
+          <Box key={destination.id}>
+            <Button
+              onClick={() => act(ref, "move", {
+                move: destination.id,
+              })}
+              disabled={!(data.shuttle_mode === "idle" || data.shuttle_mode === "call")}>
+              {destination.name}
+            </Button>
+          </Box>
+        ))}
         <LabeledList label="Door Controls">
           <LabeledList.Item label="All">
             <Button
-              onClick={() => act(ref, "lockdown")}
-              content="Lockdown" />
+              onClick={() => act(ref, "lockdown")}>
+              Lockdown
+            </Button>
             <Button
-              onClick={() => act(ref, "release")}
-              content="Release" />
+              onClick={() => act(ref, "release")}>
+              Release
+            </Button>
           </LabeledList.Item>
           {doorLocks.map(doorLock => (
             <LabeledList.Item key={doorLock.id} label={doorLock.label}>
               <Button
                 onClick={() => act(ref, "lock", {
                   lock: doorLock.name,
-                })}
-                content="Lockdown" />
+                })}>
+                Lockdown
+              </Button>
               <Button
                 onClick={() => act(ref, "unlock", {
                   unlock: doorLock.name,
-                })}
-                content="Unlock" />
+                })}>
+                Unlock
+              </Button>
             </LabeledList.Item>
           ))}
         </LabeledList>

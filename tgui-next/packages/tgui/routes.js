@@ -20,7 +20,7 @@ import { MarineSelector } from './interfaces/MarineSelector';
 import { SelfDestruct } from './interfaces/SelfDestruct';
 import { Sentry } from './interfaces/Sentry';
 import { Vending } from './interfaces/Vending';
-import { MarineShuttle } from './interfaces/Vending';
+import { MarineDropship } from './interfaces/MarineDropship';
 
 const ROUTES = {
   airlock_electronics: {
@@ -88,7 +88,7 @@ const ROUTES = {
     scrollable: true,
   },
   marinedropship: {
-    component: () => MarineShuttle,
+    component: () => MarineDropship,
     scrollable: true,
   },
   selfdestruct: {

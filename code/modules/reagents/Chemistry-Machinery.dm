@@ -55,7 +55,7 @@
 	if (recharge_counter >= 4)
 		if(!is_operational())
 			return
-		var/usedpower = cell.give(recharge_amount)
+		var/usedpower = cell?.give(recharge_amount)
 		if(usedpower)
 			use_power(250*recharge_amount)
 		recharge_counter = 0
