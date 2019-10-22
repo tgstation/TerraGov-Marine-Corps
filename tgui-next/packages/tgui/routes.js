@@ -1,5 +1,5 @@
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
-import { Apc } from './interfaces/Apc';
+import { Apc } from './interfaces/APC';
 import { AtmosAlertConsole } from './interfaces/AtmosAlertConsole';
 import { AtmosControlConsole } from './interfaces/AtmosControlConsole';
 import { AtmosFilter } from './interfaces/AtmosFilter';
