@@ -16,9 +16,6 @@
 	// *** Tackle *** //
 	tackle_damage = 55
 
-	// *** RNG Attacks *** //
-	tail_chance = 0 //Inherited from old code. Tail's too big
-
 	// *** Speed *** //
 	speed = 0.1
 
