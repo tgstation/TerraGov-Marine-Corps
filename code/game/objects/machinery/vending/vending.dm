@@ -378,7 +378,6 @@
 		if(R.amount) prodname += ": [R.amount]"
 		else prodname += ": SOLD OUT"
 		if(R.price) prodname += " (Price: [R.price])"
-		prodname = "<color = [R.display_color]>[prodname]</color>"
 		display_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
 
 	var/list/data = list(

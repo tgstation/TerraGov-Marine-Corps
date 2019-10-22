@@ -9,23 +9,25 @@ export const MarineSelector = props => {
   return (
     <Fragment>
       <NoticeBox>Choose your equipment:</NoticeBox>
-      {data.show_points && (
-        <Box>Your Remaining Points: {data.current_m_points}</Box>
+      {(data.show_points > 0) && (
+        <NoticeBox>Your Remaining Points: {data.current_m_points}</NoticeBox>
       )}
       <Section>
-        <Box inline color="white">white = mandatory</Box>
-        <Box inline color="orange">orange = recommended</Box>
+        <Box color="white">white = mandatory</Box>
+        <Box color="orange">orange = recommended</Box>
       </Section>
 
-      <LabeledList>
-        {data.displayed_records.map(display_record => (
-          <LabeledList.Item color={display_record.prod_color} key={display_record.id}>
+      {data.displayed_records.map(display_record => (
+        <Box color={display_record.prod_color} key={display_record.id}>
+          {(display_record.prod_color) ? (
             <Button
               disabled={!display_record.prod_available}
               onClick={() => act(ref, 'vend', {vend: display_record.prod_index})}>
               {display_record.prod_name}
             </Button>
-          </LabeledList.Item>
-        ))}
-      </LabeledList>
+          ) : (
+            <NoticeBox>{display_record.prod_name}</NoticeBox>
+          )}
+        </Box>
+      ))}
     </Fragment>); };

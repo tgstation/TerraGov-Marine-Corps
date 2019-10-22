@@ -21,7 +21,7 @@ export const Vending = props => {
             content="Cancel" />
         </NoticeBox>
       ) : (
-        (data.premium_length > 0 || data.isshared)
+        ((data.premium_length > 0) || (data.isshared > 0))
           && (
             <Box inline>Coin slot: </Box>)+(
             data.coin ? (
@@ -33,18 +33,17 @@ export const Vending = props => {
       )}
       <Section label="Select an item:">
         {data.displayed_records.length > 0 ? (
-          <LabeledList>
-            {data.displayed_records.map(display_record => (
-              <LabeledList.Item key={display_record.id}>
-                <Button
-                  color={display_record.prod_color}
-                  onClick={() => act(ref, 'vend', {vend: display_record.prod_index, cat: display_record.prod_cat})}
-                  disabled={!display_record.amount}>
-                  {display_record.prod_name}
-                </Button>
-              </LabeledList.Item>
-            ))}
-          </LabeledList>
+          data.displayed_records.map(display_record => (
+            <Box key={display_record.id}>
+              <Button
+                onClick={() => act(ref, 'vend', {vend: display_record.prod_index, cat: display_record.prod_cat})}
+                disabled={!display_record.amount}>
+                <Box color={display_record.product_color} bold="1">
+                  {display_record.product_name}
+                </Box>
+              </Button>
+            </Box>
+          ))
         ) : (
           <Box color="red">No product loaded!</Box>
         )}
