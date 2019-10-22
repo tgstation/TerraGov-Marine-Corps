@@ -95,6 +95,9 @@
 	if(savefile_version < 38)
 		WRITE_FILE(S["menuoptions"], list())
 
+	if(savefile_version < 39)
+		WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
+
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
 
