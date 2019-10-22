@@ -83,11 +83,11 @@ export const Cryo = props => {
             label="Temperature">
             <AnimatedNumber value={data.cellTemperature} /> K
           </LabeledList.Item>
-          <LabeledList.Item label="Door">
+          <LabeledList.Item label="Auto-Release">
             <Button
-              icon={data.isOpen ? "unlock" : "lock"}
-              onClick={() => act(ref, 'door')}
-              content={data.isOpen ? "Open" : "Closed"} />
+              icon={data.notify ? "unlock" : "lock"}
+              onClick={() => act(ref, 'notice')}
+              content={data.notify ? "Disable Notification" : "Enable Notification"} />
             <Button
               icon={data.autoEject ? "sign-out-alt" : "sign-in-alt"}
               onClick={() => act(ref, 'autoeject')}

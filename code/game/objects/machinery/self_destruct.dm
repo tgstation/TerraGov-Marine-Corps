@@ -65,7 +65,7 @@
 			var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
 			I.activate_time = world.time
 			SSevacuation.initiate_self_destruct()
-			SStgui.try_update_ui(usr, src, "main",null)
+			. = TRUE
 
 		if("dest_trigger")
 			if(SSevacuation.initiate_self_destruct())

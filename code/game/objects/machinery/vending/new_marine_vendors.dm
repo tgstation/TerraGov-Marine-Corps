@@ -224,6 +224,7 @@
 
 			if(use_points)
 				I.marine_points -= cost
+			. = TRUE
 
 	updateUsrDialog()
 

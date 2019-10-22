@@ -404,6 +404,7 @@
 			coin = null
 			usr.put_in_hands(coin)
 			to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+			. = TRUE
 
 		if("vend")
 			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
@@ -422,9 +423,11 @@
 				vend(R, usr)
 			else
 				currently_vending = R
+			. = TRUE
 
 		if("cancel_buying")
 			currently_vending = null
+			. = TRUE
 
 	updateUsrDialog()
 
