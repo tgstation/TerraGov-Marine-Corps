@@ -12,17 +12,22 @@
 	else
 		return COMPONENT_INCOMPATIBLE
 
-/datum/component/bump_attack/proc/bump_attack_toggle(datum/source)
+/datum/component/bump_attack/proc/bump_attack_toggle(datum/source, atom/target)
 	var/mob/living/bumper = parent
 
 	active = !active
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 
 	if(active)
-		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, /mob/living/proc/bump_attack)
+		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, .proc/bump_action)
 	else
 		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 		toggle_action.update_button_icon(active)
+
+/datum/component/bump_attack/proc/bump_action(datum/source, atom/target)
+    if(isliving(parent))
+        var/mob/living/bumper = parent
+        bumper.bump_attack(target)
 
 /mob/living/proc/bump_attack(datum/source, atom/target)
 	if(!isliving(target) || a_intent == INTENT_HELP || a_intent == INTENT_GRAB || throwing || incapacitated())
