@@ -398,24 +398,10 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
-/datum/keybinding/xeno/ravage
-	key = "Unbound"
-	name = "ravage"
-	full_name = "Ravager: Ravage"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_RAVAGE
-
-/datum/keybinding/xeno/second_wind
-	key = "Unbound"
-	name = "second_wind"
-	full_name = "Ravager: Second Wind"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
-
 /datum/keybinding/xeno/toggle_savage
 	key = "Unbound"
 	name = "toggle_savage"
-	full_name = "Ravager: Toggle Savage"
+	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
 

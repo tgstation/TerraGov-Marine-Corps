@@ -644,8 +644,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
 		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
-	if(GLOB.round_statistics.ravager_ravage_victims)
-		dat += "[GLOB.round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
 	if(GLOB.round_statistics.warrior_limb_rips)
 		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
 	if(GLOB.round_statistics.crusher_stomp_victims)
