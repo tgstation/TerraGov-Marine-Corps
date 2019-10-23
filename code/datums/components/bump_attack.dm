@@ -30,7 +30,7 @@
 	return ..()
 
 
-/datum/component/bump_attack/proc/living_activation_toggle(datum/source, atom/target)
+/datum/component/bump_attack/proc/living_activation_toggle(datum/source)
 	var/mob/living/bumper = parent
 	active = !active
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
@@ -79,7 +79,7 @@
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	var/mob/living/carbon/xenomorph/bumper = parent
-	. = carbon_bump_action_checks()
+	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
 		return
 	if(bumper.issamexenohive(target))
