@@ -34,20 +34,20 @@
 /mob/living/proc/bump_attack(atom/target)
 	if(!isliving(target) || a_intent == INTENT_HELP || a_intent == INTENT_GRAB || throwing || incapacitated())
 		return
-	do_bump_attack(target)
-	return COMPONENT_BUMP_RESOLVED
+	return do_bump_attack(target)
 
 /mob/living/proc/do_bump_attack(atom/target)
 	if(next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED//we don't want to push people while on attack cooldown
 	UnarmedAttack(target, TRUE)
+	return COMPONENT_BUMP_RESOLVED
 
 /mob/living/carbon/human/do_bump_attack(atom/target)//this isn't currently used anywhere, just here for the future
 	if(isliving(target))
 		var/mob/living/living_target = target
 		if(faction == living_target.faction)
 			return //FF
-	if(get_active_held_item())
+	if(get_active_held_item())	
 		return //We have something in our hand.
 	return ..()
 
