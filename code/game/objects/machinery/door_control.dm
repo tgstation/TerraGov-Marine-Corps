@@ -158,3 +158,77 @@
 
 	icon_state = "launcherbtt"
 	active = 0
+
+//mainship door controls
+/obj/machinery/door_control/mainship/ammo
+	name = "Ammunition Storage"
+	id = "ammo2"
+	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/door_control/mainship/fuel
+	name = "Solid Fuel Storage"
+	id = "solid_fuel"	
+
+/obj/machinery/door_control/mainship/hangar
+	name = "Hangar Shutters"	
+	id = "hangar_shutters"
+
+/obj/machinery/door_control/mainship/research
+	name = "Medical Research Wing"
+	id = "researchdoorext"
+	req_access = list(ACCESS_MARINE_CMO)
+
+/obj/machinery/door_control/mainship/research/lockdown
+	name = "Research Lockdown"
+	id = "researchlockdownext"	
+
+/obj/machinery/door_control/mainship/brigarmory
+	name = "Brig Armory"	
+	id = "brig_armory"
+	req_access = list(ACCESS_MARINE_BRIG)
+
+/obj/machinery/door_control/mainship/checkpoint
+	name = "Checkpoint Shutters"
+	req_one_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_LEADER, ACCESS_MARINE_LOGISTICS)
+
+/obj/machinery/door_control/mainship/checkpoint/north
+	id = "northcheckpoint"
+
+/obj/machinery/door_control/mainship/checkpoint/south
+	id = "southcheckpoint"
+
+/obj/machinery/door_control/mainship/cic
+	name = "CIC Lockdown"
+	id = "cic_lockdown"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CAPTAIN)	
+
+/obj/machinery/door_control/mainship/cic/armory
+	name = "Armory Lockdown"	
+	id = "cic_armory"
+
+/obj/machinery/door_control/mainship/cic/hangar
+	name = "Hangar Lockdown"
+	id = "hangar_lockdown"	
+
+/obj/machinery/door_control/mainship/tcomms
+	name = "Telecommunications Entrance"
+	id = "tcomms"
+	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE)	
+
+/obj/machinery/door_control/mainship/corporate
+	name = "Privacy Shutters"
+	id = "cl_shutters"
+	req_access = list(ACCESS_NT_CORPORATE)	
+
+/obj/machinery/door_control/mainship/req	
+	name = "RO Line Shutters"
+	id = "ROlobby"
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_CAPTAIN)
+
+/obj/machinery/door_control/mainship/req/ro1	
+	name = "RO Line 1 Shutters"
+	id = "ROlobby1"
+
+/obj/machinery/door_control/mainship/req/ro2	
+	name = "RO Line 2 Shutters"
+	id = "ROlobby2"
