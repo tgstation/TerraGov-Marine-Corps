@@ -83,7 +83,7 @@ proc/radial_medical(mob/living/carbon/patient, mob/doctor)
 		return TRUE
 
 	var/mob/living/carbon/human/H = M
-	var/datum/limb/affecting = radial_medical(H, user)
+	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(H, user) : H.get_limb(user.zone_selected)
 
 	if(!affecting)
 		return TRUE
