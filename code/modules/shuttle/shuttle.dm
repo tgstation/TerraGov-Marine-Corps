@@ -420,6 +420,7 @@
 			mode = SHUTTLE_IGNITING
 			on_ignition()
 			setTimer(ignitionTime)
+			SEND_SIGNAL(src, COMSIG_SHUTTLE_IGNITING, destination)
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
@@ -579,6 +580,7 @@
 				mode = SHUTTLE_PREARRIVAL
 				on_prearrival()
 				setTimer(prearrivalTime)
+				SEND_SIGNAL(src, COMSIG_SHUTTLE_PREARRIVAL, destination)
 				return
 			var/error = initiate_docking(destination, preferred_direction)
 			if(error && error & (DOCKING_NULL_DESTINATION | DOCKING_NULL_SOURCE))
@@ -592,7 +594,9 @@
 				return
 			if(rechargeTime)
 				mode = SHUTTLE_RECHARGING
+				destination = null
 				setTimer(rechargeTime)
+				SEND_SIGNAL(src, COMSIG_SHUTTLE_RECHARGING)
 				return
 		if(SHUTTLE_RECALL)
 			if(initiate_docking(previous) != DOCKING_SUCCESS)
@@ -606,11 +610,13 @@
 				mode = SHUTTLE_CALL
 				setTimer(callTime * engine_coeff)
 				enterTransit()
+				SEND_SIGNAL(src, COMSIG_SHUTTLE_CALL, destination)
 				return
 
 	mode = SHUTTLE_IDLE
 	timer = 0
 	destination = null
+	SEND_SIGNAL(src, COMSIG_SHUTTLE_IDLE)
 
 /obj/docking_port/mobile/proc/check_effects()
 	if(!ripples.len)

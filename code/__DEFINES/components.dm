@@ -213,6 +213,12 @@
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 
+// shuttle signals
+#define COMSIG_SHUTTLE_IGNITING "shuttle_igniting"
+#define COMSIG_SHUTTLE_PREARRIVAL "shuttle_prearrival"
+#define COMSIG_SHUTTLE_CALL "shuttle_call"
+#define COMSIG_SHUTTLE_IDLE "shuttle_idle"
+#define COMSIG_SHUTTLE_RECHARGING "shuttle_recharging"
 
 // xeno stuff
 #define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
