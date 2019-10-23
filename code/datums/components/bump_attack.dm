@@ -41,46 +41,58 @@
 	toggle_action.update_button_icon(active)
 
 
-/datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
+/datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
 	var/mob/living/bumper = parent
 	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
+		return NONE
+
+
+/datum/component/bump_attack/proc/carbon_bump_action_checks()
+	var/mob/living/carbon/bumper = parent
+	switch(bumper.a_intent)
+		if(INTENT_HELP, INTENT_GRAB)
+			return NONE
+	if(bumper.get_active_held_item())
+		return NONE //We have something in our hand.
+
+
+/datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
+	. = living_bump_action_checks(target)
+	if(!isnull(.))
 		return
-	if(bumper.next_move > world.time)
-		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
-	bumper.UnarmedAttack(target, TRUE)
-	return COMPONENT_BUMP_RESOLVED
+	return living_do_bump_action(target)
 
 
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
 	var/mob/living/carbon/human/bumper = parent
-	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
+	. = living_bump_action_checks(target)
+	if(!isnull(.))
 		return
-	switch(bumper.a_intent)
-		if(INTENT_HELP, INTENT_GRAB)
-			return
+	. = carbon_bump_action_checks()
+	if(!isnull(.))
+		return
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
-	if(bumper.get_active_held_item())
-		return //We have something in our hand.
-	if(bumper.next_move > world.time)
-		return COMPONENT_BUMP_RESOLVED
-	bumper.UnarmedAttack(target, TRUE)
-	return COMPONENT_BUMP_RESOLVED
+	return living_do_bump_action(target)
 
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	var/mob/living/carbon/xenomorph/bumper = parent
-	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
+	. = living_bump_action_checks(target)
+	if(!isnull(.))
 		return
-	switch(bumper.a_intent)
-		if(INTENT_HELP, INTENT_GRAB)
-			return
+	. = carbon_bump_action_checks()
+	if(!isnull(.))
+		return
 	if(bumper.issamexenohive(target))
 		return //No more nibbling.
-	if(bumper.get_active_held_item())
-		return
+	return living_do_bump_action(target)
+
+
+/datum/component/bump_attack/proc/living_do_bump_action(atom/target)
+	var/mob/living/bumper = parent
 	if(bumper.next_move > world.time)
-		return COMPONENT_BUMP_RESOLVED
+		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
 	return COMPONENT_BUMP_RESOLVED
