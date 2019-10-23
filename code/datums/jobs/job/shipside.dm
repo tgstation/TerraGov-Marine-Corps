@@ -81,13 +81,14 @@ Make the TGMC proud!"})
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
 	ears = /obj/item/radio/headset/mainship/mcom
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/megaphone
+	l_store = /obj/item/storage/pouch/medkit/full
 	back = /obj/item/smartgun_powerpack/fancy
 	suit_store = /obj/item/weapon/gun/smartgun
 
