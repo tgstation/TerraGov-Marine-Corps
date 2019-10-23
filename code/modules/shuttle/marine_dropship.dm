@@ -238,9 +238,7 @@
 	addtimer(CALLBACK(src, .proc/reset_hijack), LOCKDOWN_TIME)
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
-	mode = SHUTTLE_IDLE
-	timer = 0
-	destination = null
+	set_idle()
 	hijack_state = HIJACK_STATE_CALLED_DOWN
 	request(S)
 	RegisterSignal(src, COMSIG_SHUTTLE_RECHARGING, .proc/start_hijack_timer)

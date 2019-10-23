@@ -420,7 +420,6 @@
 			mode = SHUTTLE_IGNITING
 			on_ignition()
 			setTimer(ignitionTime)
-			SEND_SIGNAL(src, COMSIG_SHUTTLE_IGNITING, destination)
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
@@ -434,6 +433,11 @@
 
 /obj/docking_port/mobile/proc/on_crash()
 	return
+
+/obj/docking_port/mobile/proc/set_idle()
+	timer = 0
+	mode = SHUTTLE_IDLE
+	destination = null
 
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
@@ -580,7 +584,6 @@
 				mode = SHUTTLE_PREARRIVAL
 				on_prearrival()
 				setTimer(prearrivalTime)
-				SEND_SIGNAL(src, COMSIG_SHUTTLE_PREARRIVAL, destination)
 				return
 			var/error = initiate_docking(destination, preferred_direction)
 			if(error && error & (DOCKING_NULL_DESTINATION | DOCKING_NULL_SOURCE))
@@ -610,12 +613,9 @@
 				mode = SHUTTLE_CALL
 				setTimer(callTime * engine_coeff)
 				enterTransit()
-				SEND_SIGNAL(src, COMSIG_SHUTTLE_CALL, destination)
 				return
 
-	mode = SHUTTLE_IDLE
-	timer = 0
-	destination = null
+	set_idle()
 	SEND_SIGNAL(src, COMSIG_SHUTTLE_IDLE)
 
 /obj/docking_port/mobile/proc/check_effects()
