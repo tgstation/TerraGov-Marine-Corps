@@ -227,7 +227,7 @@
 				request_to(S)
 				return
 	hijack_state = HIJACK_STATE_REQUESTED
-	RegisterSignal(src, COMSIG_SHUTTLE_IDLE, .proc/request_when_idle())
+	RegisterSignal(src, COMSIG_SHUTTLE_IDLE, .proc/request_when_idle)
 
 /obj/docking_port/mobile/marine_dropship/proc/request_when_idle()
 	UnregisterSignal(src, COMSIG_SHUTTLE_IDLE)
@@ -523,14 +523,14 @@
 			. = TRUE
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
+	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
+	if(!M)
+		return
 	if(!isxeno(usr) && M.hijack_state != HIJACK_STATE_NORMAL)
 		to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
 		return
 	. = ..()
 	if(.)
-		return
-	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
-	if(!M)
 		return
 	if(M.hijack_state == HIJACK_STATE_CRASHING)
 		return
