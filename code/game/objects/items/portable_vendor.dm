@@ -24,10 +24,6 @@
 
 	var/list/listed_products = list()
 
-	ui_x = 600
-	ui_y = 700
-
-
 /obj/item/portable_vendor/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -65,7 +61,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "portablevendor", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "portablevendor", name, 600, 700, master_ui, state)
 		ui.open()
 
 /obj/item/portable_vendor/ui_data(mob/user)
