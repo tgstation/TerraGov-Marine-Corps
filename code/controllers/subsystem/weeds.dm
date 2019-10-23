@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(weeds)
 			pending -= T
 			continue
 
-		for(var/direction in GLOB.cardinals) 
+		for(var/direction in GLOB.cardinals)
 			var/turf/AdjT = get_step(T, direction)
 			if (!(AdjT in N.node_turfs)) // only count our weed graph as eligble
 				continue
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(weeds)
 			creating[T] = N
 			break
 
-		
+
 	// We create weeds outside of the loop to not influence new weeds within the loop
 	for(var/A in creating)
 		if(MC_TICK_CHECK)

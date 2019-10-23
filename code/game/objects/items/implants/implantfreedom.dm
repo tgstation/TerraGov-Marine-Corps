@@ -13,9 +13,9 @@
 
 
 /obj/item/implant/freedom/trigger(emote, mob/living/carbon/source)
-	if(uses < 1)	
+	if(uses < 1)
 		return FALSE
-	
+
 	if(emote == activation_emote)
 		uses--
 		to_chat(source, "You feel a faint click.")

@@ -176,7 +176,7 @@
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
-			
+
 		new /obj/item/stack/rods(src, 2)
 		ChangeTurf(/turf/open/floor)
 		var/turf/open/floor/F = src

@@ -438,7 +438,7 @@
 		if(3)
 			process_bot()
 
-	if(refresh) 
+	if(refresh)
 		updateUsrDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
@@ -635,7 +635,7 @@
 
 	if(!isliving(A))
 		return ..()
-		
+
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()

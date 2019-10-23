@@ -13,17 +13,17 @@ GLOBAL_LIST_INIT(armour_to_descriptive_term, list("melee" = "melee attacks", "bu
 
 /datum/codex_entry/New(_display_name, list/_associated_paths, list/_associated_strings, _lore_text, _mechanics_text, _antag_text)
 
-	if(_display_name)       
+	if(_display_name)
 		display_name = _display_name
-	if(_associated_paths)   
+	if(_associated_paths)
 		associated_paths = _associated_paths
-	if(_associated_strings) 
+	if(_associated_strings)
 		associated_strings = _associated_strings
-	if(_lore_text)          
+	if(_lore_text)
 		lore_text = _lore_text
-	if(_mechanics_text)     
+	if(_mechanics_text)
 		mechanics_text = _mechanics_text
-	if(_antag_text)         
+	if(_antag_text)
 		antag_text = _antag_text
 
 	if(associated_paths && associated_paths.len)
@@ -47,9 +47,9 @@ example:
 	lore_text = "They say the first barsign ever invented was actually a severed head. Which is why the Kingshead is such a popular pub name."
 	antag_text = "I don't see how this could be used for antagonistic purposes."
 
-/datum/codex_entry/barsign 
+/datum/codex_entry/barsign
 	- The unique identifier path for this entry. this part must be unique.
-	display_name = "Barsign" 
+	display_name = "Barsign"
 		- what you want to show up in the big list of entries when people look at the codex as a whole.
 	associated_paths = list(/obj/structure/sign/double/barsign)
 		- This associated path will overwrite any automated process for generating a codex entry.

@@ -115,7 +115,7 @@
 	. = ..()
 	knife = new /obj/item/weapon/combat_knife
 	update_icon()
-	
+
 
 
 /obj/item/clothing/shoes/marine/som

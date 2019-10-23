@@ -221,7 +221,7 @@
 				"<span class='notice'>You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!</span>",\
 				"You hear metal strain.")
 		var/old_density = density
-		
+
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 

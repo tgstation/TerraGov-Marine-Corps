@@ -35,7 +35,7 @@
 	if(I.crit_fail)
 		to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 		return
-	
+
 	switch(state)
 		if(1)
 			if(iscablecoil(I))
@@ -43,7 +43,7 @@
 				if(C.get_amount() < 5)
 					to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
 					return
-				
+
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
 				"<span class='notice'>You start adding cables to [src].</span>")
@@ -63,7 +63,7 @@
 				to_chat(user, "<span class='notice'>You dismantle the frame</span>")
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
-		
+
 		if(2)
 			if(istype(I, /obj/item/circuitboard/machine))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -109,7 +109,7 @@
 					to_chat(user, "<span class='notice'>You remove the circuit board and other components.</span>")
 					for(var/obj/item/W in components)
 						W.forceMove(loc)
-				
+
 				desc = initial(desc)
 				req_components = null
 				components = null
@@ -121,7 +121,7 @@
 					if(req_components[R] > 0)
 						component_check = 0
 						break
-				
+
 				if(component_check)
 					playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 					var/obj/machinery/new_machine = new circuit.build_path(loc)

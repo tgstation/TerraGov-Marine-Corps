@@ -55,7 +55,7 @@
 		/datum/action/xeno_action/activable/spray_acid/cone,
 		/datum/action/xeno_action/toggle_pheromones
 		)
-		
+
 /datum/xeno_caste/praetorian/young
 	upgrade_name = "Young"
 

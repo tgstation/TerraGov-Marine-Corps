@@ -114,7 +114,7 @@ log transactions
 
 	if(ticks_left_locked_down > 0)
 		dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
-	
+
 	else if(authenticated_account)
 		if(authenticated_account.suspended)
 			dat += "<span class='warning'><b>Access to this account has been suspended, and the funds within frozen.</b></span>"

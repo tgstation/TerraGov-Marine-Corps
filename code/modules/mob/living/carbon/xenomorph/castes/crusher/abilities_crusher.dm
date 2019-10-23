@@ -28,7 +28,6 @@
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
-		damage += FRENZY_DAMAGE_BONUS(X)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
 			var/armor_block = M.run_armor_check("chest", "melee") * 0.5 //Only 50% armor applies vs stomp brute damage
@@ -129,7 +128,6 @@
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		damage += FRENZY_DAMAGE_BONUS(X)
 		var/armor_block = L.run_armor_check("chest", "melee")
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L

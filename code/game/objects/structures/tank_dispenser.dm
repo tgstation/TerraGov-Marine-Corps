@@ -105,5 +105,5 @@
 			to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
 			phorontanks--
 			update_icon()
-	
+
 	updateUsrDialog()

@@ -56,7 +56,7 @@
 		button.color = rgb(255, 255, 255, 255)
 	else
 		button.color = rgb(128, 0, 0, 128)
-	
+
 	return TRUE
 
 /datum/action/proc/action_activate()
@@ -66,7 +66,7 @@
 	return
 
 /datum/action/proc/can_use_action()
-	if(!QDELETED(owner)) 
+	if(!QDELETED(owner))
 		return TRUE
 
 /datum/action/proc/give_action(mob/M)

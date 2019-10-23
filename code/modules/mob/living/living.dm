@@ -413,11 +413,11 @@
 
 
 /mob/living/throw_at(atom/target, range, speed, thrower, spin)
-	if(!target || !src)	
+	if(!target || !src)
 		return 0
-	if(pulling) 
+	if(pulling)
 		stop_pulling() //being thrown breaks pulls.
-	if(pulledby) 
+	if(pulledby)
 		pulledby.stop_pulling()
 	set_frozen(TRUE) //can't move while being thrown
 	update_canmove()
@@ -706,7 +706,7 @@ below 100 is not dizzy
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/holding
 	if(l_hand || r_hand)
-		if(l_hand) 
+		if(l_hand)
 			holding = "They are holding \a [l_hand]"
 		if(r_hand)
 			if(holding)

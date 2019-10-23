@@ -26,10 +26,10 @@
 	. = ..()
 	if(.)
 		return TRUE
-	
+
 	if(istype(I, /obj/item/powerloader_clamp))
 		return
-	
+
 	return attack_hand(user)
 
 
@@ -146,7 +146,7 @@
 
 /obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))

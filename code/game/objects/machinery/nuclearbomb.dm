@@ -20,7 +20,7 @@
 	var/timer_enabled = FALSE
 	var/safety = TRUE
 	var/exploded = FALSE
-	var/removal_stage = NUKE_STAGE_NONE 
+	var/removal_stage = NUKE_STAGE_NONE
 	use_power = NO_POWER_USE
 	var/obj/effect/countdown/nuclearbomb/countdown
 
@@ -166,7 +166,7 @@
 	if(!lighthack)
 		flick("nuclearbombc", src)
 		icon_state = "nuclearbomb1"
-		
+
 	extended = TRUE
 
 
@@ -187,7 +187,7 @@
 			status = "Set-[safe_text]"
 		else
 			status = "Auth. S1-[safe_text]"
-	
+
 	var/html = {"
 	<b>Nuclear Fission Explosive</b><br />
 	<hr />
@@ -274,7 +274,7 @@
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
 				start_processing()
-				
+
 			if(!lighthack)
 				icon_state = (timer_enabled) ? "nuclearbomb2" : "nuclearbomb1"
 		if(href_list["safety"])

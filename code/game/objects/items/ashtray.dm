@@ -57,7 +57,7 @@
 
 	icon_state = icon_empty
 	desc = empty_desc
-	
+
 
 
 /obj/item/ashtray/plastic

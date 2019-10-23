@@ -2,11 +2,11 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
-	
+
 
 	var/list/survivors = list()
 
@@ -18,7 +18,7 @@
 
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
-	var/queen_death_countdown = 0
+	var/orphan_hive_timer
 
 
 /datum/game_mode/distress/announce()
@@ -497,18 +497,18 @@
 	return TRUE
 
 
-/datum/game_mode/distress/check_queen_status(queen_time)
+/datum/game_mode/distress/orphan_hivemind_collapse()
 	var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	hive.xeno_queen_timer = queen_time
-	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(!round_finished && !hive.living_xeno_ruler)
 		round_finished = MODE_INFESTATION_M_MINOR
 
 
-/datum/game_mode/distress/get_queen_countdown()
-	var/eta = (queen_death_countdown - world.time) * 0.1
+/datum/game_mode/distress/get_hivemind_collapse_countdown()
+	if(!orphan_hive_timer)
+		return
+	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 

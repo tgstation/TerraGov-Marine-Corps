@@ -10,23 +10,23 @@
 /datum/emergency_call/imperial/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
-	
+
 	if(!istype(spawn_loc))
 		return
-	
+
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
 	H.name = GLOB.namepool[/datum/namepool].random_name(H)
 	H.real_name = H.name
-	
+
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)
-	
+
 	if(original)
 		qdel(original)
-	
+
 	print_backstory(H)
-	
+
 	if(!leader)
 		// assign leader
 		leader = H
@@ -35,7 +35,7 @@
 		J.assign_equip(H)
 		to_chat(H, "<span class='notice'>You are a veteran of the Imperial Guard, a sergeant.\nYou lead your men to battle, and have fought many times.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		return
-	
+
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman/medicae)
 		SSjob.AssignRole(H, J.title)
@@ -43,7 +43,7 @@
 		to_chat(H, "<span class='notice'>You are a medicae of the Imperial Guard, a medic.\nYou help fellow guardsmen to live, and if they cannot be saved, you end their suffering.</span> <span class='danger'>FOR THE EMPEROR!</span>")
 		medics++
 		return
-	
+
 	var/datum/job/J = SSjob.GetJobType(/datum/job/imperial/guardsman)
 	SSjob.AssignRole(H, J.title)
 	J.assign_equip(H)

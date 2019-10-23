@@ -12,6 +12,13 @@
 	var/list/cryopods = list()
 	var/max_capacity // set this to override determining capacity by number of cryopods
 
+/obj/docking_port/mobile/escape_pod/escape_shuttle
+	name = "escape shuttle"
+	dir = EAST
+	dwidth = 3
+	width = 7
+	height = 9
+
 /obj/docking_port/mobile/escape_pod/register()
 	. = ..()
 	SSshuttle.escape_pods += src
@@ -90,6 +97,16 @@
 
 	roundstart_template = /datum/map_template/shuttle/escape_pod
 
+/obj/docking_port/stationary/escape_pod/escape_shuttle
+	name = "escape shuttle"
+	id = "escape hangar"
+	dir = EAST
+	dwidth = 3
+	width = 7
+	height = 9
+
+	roundstart_template = /datum/map_template/shuttle/escape_shuttle
+
 /obj/docking_port/stationary/escape_pod/right
 	dir = WEST
 
@@ -105,6 +122,9 @@
 	icon_state = "airlock_control_standby"
 	power_channel = ENVIRON
 	density = FALSE
+
+/obj/machinery/computer/shuttle/escape_pod/escape_shuttle
+	name = "escape shuttle controller"
 
 /obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user)
 	var/dat = "<A href='?src=[REF(src)];launch=1'>Launch</A><br>"

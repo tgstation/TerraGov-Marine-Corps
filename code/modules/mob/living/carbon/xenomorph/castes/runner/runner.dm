@@ -48,11 +48,11 @@
 		if(0.25 to 0.45)
 			visible_message("<span class='danger'>\The [src] strikes with vicious speed!</span>", \
 			"<span class='danger'>We strike with vicious speed!</span>")
-	
+
 	damage_mod += (damage * bonus)
 	hit_and_run = 0 //reset the hit and run bonus
 	return COMSIG_XENOMORPH_BONUS_APPLIED // dont stack our attack with bonus_dam
-	
+
 /mob/living/carbon/xenomorph/runner/handle_status_effects()
 	if(hit_and_run)
 		var/last_move = last_move_intent - 10

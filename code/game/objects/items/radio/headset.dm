@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	sl_direction = TRUE
 	to_chat(wearer, "<span class='notice'>You toggle the SL directional display on.</span>")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
-	
+
 
 /obj/item/radio/headset/mainship/proc/disable_sl_direction()
 	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
@@ -250,7 +250,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		SSdirection.stop_tracking("marine-sl", wearer)
 	else
 		SSdirection.stop_tracking(wearer.assigned_squad.tracking_id, wearer)
-	
+
 	sl_direction = FALSE
 	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
 	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)

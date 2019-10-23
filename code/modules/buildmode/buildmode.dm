@@ -37,7 +37,7 @@
 	holder.click_intercept = src
 	mode.enter_mode(src)
 
-	
+
 /datum/buildmode/proc/quit()
 	log_admin("[key_name(usr)] has left build mode.")
 	message_admins("[ADMIN_TPMONTY(usr)] has left build mode.")
@@ -111,7 +111,7 @@
 	else
 		close_switchstates()
 		open_modeswitch()
-	
+
 
 /datum/buildmode/proc/open_modeswitch()
 	switch_state = BM_SWITCHSTATE_MODE
@@ -129,7 +129,7 @@
 	else
 		close_switchstates()
 		open_dirswitch()
-	
+
 
 /datum/buildmode/proc/open_dirswitch()
 	switch_state = BM_SWITCHSTATE_DIR
@@ -174,7 +174,7 @@
 			new /datum/buildmode(M.client)
 			log_admin("[key_name(usr)] has entered build mode.")
 			message_admins("[ADMIN_TPMONTY(usr)] has entered build mode.")
-	
+
 
 #undef BM_SWITCHSTATE_NONE
 #undef BM_SWITCHSTATE_MODE

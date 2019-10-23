@@ -31,7 +31,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	if(destroyed && occupied)
 		to_chat(user, "<span class='notice'>You deactivate the hover field built into the case.</span>")
 		occupied = FALSE

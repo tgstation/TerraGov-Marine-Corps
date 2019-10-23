@@ -608,11 +608,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	X.update_icons()
 
 
-/datum/game_mode/proc/check_queen_status(queen_time)
+/datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
 
-/datum/game_mode/proc/get_queen_countdown()
+/datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
 
@@ -644,8 +644,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
 		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
-	if(GLOB.round_statistics.ravager_ravage_victims)
-		dat += "[GLOB.round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
 	if(GLOB.round_statistics.warrior_limb_rips)
 		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
 	if(GLOB.round_statistics.crusher_stomp_victims)
@@ -835,7 +833,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(xeno_candidate, "<span class='warning'>That xenomorph has been occupied.</span>")
 		return FALSE
 
-	if(!DEATHTIME_CHECK(xeno_candidate))
+	if(DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 

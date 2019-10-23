@@ -39,11 +39,11 @@
 	if(is_wired)
 		to_chat(user, "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>")
 	switch((obj_integrity / max_integrity) * 100)
-		if(75 to INFINITY) 
+		if(75 to INFINITY)
 			to_chat(user, "<span class='info'>It appears to be in good shape.</span>")
-		if(50 to 75) 
+		if(50 to 75)
 			to_chat(user, "<span class='warning'>It's slightly damaged, but still very functional.</span>")
-		if(25 to 50) 
+		if(25 to 50)
 			to_chat(user, "<span class='warning'>It's quite beat up, but it's holding together.</span>")
 		if(-INFINITY to 25)
 			to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
@@ -555,7 +555,7 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
-					
+
 			user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 			"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 			build_state = BARRICADE_METAL_ANCHORED

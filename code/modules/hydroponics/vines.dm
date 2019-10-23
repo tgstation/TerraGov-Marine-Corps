@@ -282,7 +282,7 @@
 
 /obj/effect/plant_controller/Initialize()
 	. = ..()
-	
+
 	if(!istype(loc,/turf/open/floor))
 		return INITIALIZE_HINT_QDEL
 

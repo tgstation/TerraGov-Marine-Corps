@@ -500,7 +500,7 @@
 
 /obj/structure/hoop/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(istype(I, /obj/item/grab) && get_dist(src, user) <= 1)
 		var/obj/item/grab/G = I
 		if(!isliving(G.grabbed_thing))

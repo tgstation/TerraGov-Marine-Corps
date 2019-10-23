@@ -31,13 +31,13 @@ They're all essentially identical when it comes to getting the job done.
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
 	base_mag_icon = icon_state
-	if(spawn_empty) 
+	if(spawn_empty)
 		current_rounds = 0
-	
+
 	switch(current_rounds)
-		if(-1) 
+		if(-1)
 			current_rounds = max_rounds //Fill it up. Anything other than -1 and 0 will just remain so.
-		if(0) 
+		if(0)
 			icon_state += "_e" //In case it spawns empty instead.
 
 /obj/item/ammo_magazine/update_icon(round_diff = 0)
@@ -406,27 +406,27 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(!deployed)
 		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
 		return
-	
+
 	if(!istype(I, /obj/item/ammo_magazine))
 		return
-	
+
 	var/obj/item/ammo_magazine/MG = I
-	
+
 	if(!(MG.flags_magazine & AMMUNITION_REFILLABLE))
 		return
-	
+
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-	
+
 	if(MG.current_rounds != MG.max_rounds)
 		to_chat(user, "<span class='warning'>The magazine is not full!</span>")
 		return
-	
+
 	if(magazine_amount == max_magazine_amount)
 		to_chat(user, "<span class='warning'>The [src] is already full.")
 		return
-	
+
 	qdel(MG)
 	magazine_amount++
 	update_icon()
@@ -435,15 +435,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/attack_hand(mob/living/user)
 	if(loc == user)
 		return ..()
-	
+
 	if(!deployed)
 		user.put_in_hands(src)
 		return
-	
+
 	if(magazine_amount == 0)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
-	
+
 	var/obj/item/ammo_magazine/MG = new magazine_type
 	user.put_in_hands(MG)
 	magazine_amount--
@@ -501,10 +501,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox/MouseDrop(atom/over_object)
 	if(!deployed)
 		return
-	
+
 	if(!ishuman(over_object))
 		return
-	
+
 	var/mob/living/carbon/human/H = over_object
 	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
 		deployed = FALSE
@@ -527,13 +527,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(current_rounds < 1)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
-	
+
 	var/obj/item/ammo_magazine/handful/H = new
 	var/rounds = min(current_rounds, 5)
-	
+
 	H.generate_handful(ammo_type, "12g", 5, rounds, /obj/item/weapon/gun/shotgun)
 	current_rounds -= rounds
-	
+
 	user.put_in_hands(H)
 	to_chat(user, "<span class='notice'>You grab <b>[rounds]</b> round\s from [src].</span>")
 	update_icon()
@@ -554,7 +554,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(H.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-	
+
 	if(current_rounds == max_rounds)
 		to_chat(user, "<span class='warning'>The [src] is already full.")
 		return

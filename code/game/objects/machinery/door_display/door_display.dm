@@ -76,7 +76,7 @@
 		data += "<a href='?src=\ref[src];open=0'>Close Door</a><br/>"
 	else
 		data += "<a href='?src=\ref[src];open=1'>Open Door</a><br/>"
-	
+
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Door controls</div>", 300, 240)
 	popup.set_content(data)
 	popup.open()

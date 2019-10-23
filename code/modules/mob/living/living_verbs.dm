@@ -1,7 +1,7 @@
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
-	
+
 	if(next_move > world.time)
 		return
 

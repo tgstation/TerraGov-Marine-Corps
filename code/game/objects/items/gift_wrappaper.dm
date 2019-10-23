@@ -230,7 +230,7 @@
 
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
-	if(!ishuman(target)) 
+	if(!ishuman(target))
 		return
 
 	var/mob/living/carbon/human/H = target
@@ -253,4 +253,3 @@
 	H.forceMove(present)
 
 	log_combat(user, H, "wrapped")
-	msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")

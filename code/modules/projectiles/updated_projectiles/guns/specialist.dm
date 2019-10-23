@@ -354,16 +354,17 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/bipod)
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-	fire_delay = 0.4 SECONDS
-	burst_amount = 3
+	fire_delay = 0.3 SECONDS
+	burst_amount = 5
 	accuracy_mult = 1.15
 	damage_falloff_mult = 0.5
 

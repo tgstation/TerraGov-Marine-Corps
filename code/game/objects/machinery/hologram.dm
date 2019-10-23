@@ -185,7 +185,7 @@
 		else
 			new_turf = get_step(src, GLOB.cardinals[offset])
 		replay_holo.forceMove(new_turf)
-	
+
 	updateUsrDialog()
 
 //do not allow AIs to answer calls or people will use it to meta the AI sattelite

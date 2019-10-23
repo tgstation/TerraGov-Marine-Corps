@@ -53,13 +53,13 @@
 			if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 				sleep_up()
 			return //No need for autofire on other modes.
-	
+
 	if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT))
 		return //We've updated the firemode. No need for more.
 	if(autofire_stat & AUTOFIRE_STAT_FIRING)
 		stop_autofiring() //Let's stop shooting to avoid issues.
 		return
-	
+
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
 	RegisterSignal(parent, list(COMSIG_PARENT_QDELETED), .proc/sleep_up)
@@ -80,7 +80,7 @@
 	autofire_off()
 
 	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
-	
+
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
 
@@ -146,7 +146,7 @@
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
-	
+
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
 
@@ -245,7 +245,7 @@
 		if(!timer)
 			return //Has already been deleted.
 		stoplag(1) //Let's try again next tick.
-	
+
 
 /datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	if(isnull(over_location)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
@@ -300,7 +300,7 @@
 		if(!process_shot())
 			return
 		stoplag(burstfire_shot_delay)
-	
+
 
 /datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
 	switch(slot)

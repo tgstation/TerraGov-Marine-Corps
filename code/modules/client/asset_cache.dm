@@ -488,7 +488,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"minor_button.png" = 'html/images/minor_button.png',
 		"none_button.png" = 'html/images/none_button.png',
 	)
-	
+
 /datum/asset/simple/logo
 	assets = list(
 		"ntlogo.png"	= 'html/images/ntlogo.png',
@@ -520,7 +520,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 				continue
 			common[filename] = fcopy_rsc(path + filename)
 			register_asset(filename, common[filename])
-	
+
 	for(var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)

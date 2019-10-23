@@ -16,7 +16,7 @@
 
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) 
+	if(user.incapacitated(TRUE))
 		return
 	go_out()
 
@@ -44,7 +44,7 @@
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		qdel(O)
-		
+
 /obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
 	if(!isliving(M))
 		return
@@ -81,7 +81,7 @@
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
-		
+
 	var/mob/M
 	if(!istype(I, /obj/item/grab))
 		return

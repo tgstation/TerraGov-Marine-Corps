@@ -197,7 +197,7 @@
 
 	if(SSinput.initialized)
 		set_macros()
-		
+
 	chatOutput.start() // Starts the chat
 
 	if(byond_version < 512 || (byond_build && byond_build < 1421))
@@ -231,7 +231,7 @@
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
-	
+
 	winset(src, null, "command=\".configure graphics-hwmode on\"")
 
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
@@ -295,7 +295,7 @@
 		if(menuitem)
 			menuitem.Load_checked(src)
 
-	
+
 	//This is down here because of the browse() calls in tooltip/New()
 	if(!tooltips && prefs.tooltips)
 		tooltips = new /datum/tooltip(src)
@@ -583,7 +583,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 
 	else if(!last_message_time)
 		last_message_time = world.time + SPAM_TRIGGER_TIME_PERIOD
-	
+
 	last_message = message
 
 	var/mute = message_cache >= SPAM_TRIGGER_AUTOMUTE || (weight_cache > SPAM_TRIGGER_WEIGHT_AUTOMUTE && message_cache != 1)
