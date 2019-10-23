@@ -124,7 +124,7 @@
 				add_splatter_floor(loc, 1)
 
 /mob/living/carbon/human/drip(amt)
-	if(in_stasis) // stasis now stops bloodloss
+	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
 		return
 	if(NO_BLOOD in species.species_flags)
 		return

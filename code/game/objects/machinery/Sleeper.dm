@@ -176,7 +176,9 @@
 		icon_state = "sleeper_0-r"
 
 /obj/machinery/sleeper/Destroy()
-	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
+	//clean up; end stasis; remove from processing
+	if(occupant)
+		REMOVE_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
 	occupant = null
 	STOP_PROCESSING(SSobj, src)
 	stop_processing()
@@ -237,7 +239,7 @@
 /obj/machinery/sleeper/process()
 	if (machine_stat & (NOPOWER|BROKEN))
 		if(occupant)
-			occupant.in_stasis = null
+			REMOVE_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
 		stasis = FALSE
 		filtering = FALSE
 		stop_processing() //Shut down; stasis off, filtering off, stop processing.
@@ -347,10 +349,10 @@
 		stasis = FALSE
 		return
 	if(stasis)
-		occupant.in_stasis = null
+		REMOVE_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
 		stasis = FALSE
 	else
-		occupant.in_stasis = STASIS_IN_BAG
+		ADD_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
 		stasis = TRUE
 
 /obj/machinery/sleeper/proc/go_out()
@@ -360,7 +362,7 @@
 		return
 	if(occupant in contents)
 		occupant.forceMove(loc)
-	occupant.in_stasis = null //disable stasis
+	REMOVE_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
 	stasis = FALSE
 	occupant = null
 	stop_processing()

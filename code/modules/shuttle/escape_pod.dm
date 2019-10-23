@@ -188,7 +188,7 @@
 /obj/machinery/cryopod/evacuation/go_out() //When the system ejects the occupant.
 	if(occupant)
 		occupant.forceMove(get_turf(src))
-		occupant.in_stasis = FALSE
+		REMOVE_TRAIT(occupant, TRAIT_STASIS, CRYOPOD_TRAIT)
 		occupant = null
 		icon_state = orient_right ? "body_scanner_0-r" : "body_scanner_0"
 
@@ -239,7 +239,7 @@
 	M.forceMove(src)
 	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M
-	occupant.in_stasis = STASIS_IN_CRYO_CELL
+	ADD_TRAIT(occupant, TRAIT_STASIS, CRYOPOD_TRAIT)
 	icon_state = orient_right ? "body_scanner_1-r" : "body_scanner_1"
 
 /obj/machinery/door/airlock/evacuation
