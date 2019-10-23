@@ -29,17 +29,17 @@
 /datum/component/bump_attack/proc/bump_action(datum/source, atom/target)
     if(isliving(parent))
         var/mob/living/bumper = parent
-        bumper.bump_attack(target)
+        return bumper.bump_attack(target)
 
 /mob/living/proc/bump_attack(atom/target)
 	if(!isliving(target) || a_intent == INTENT_HELP || a_intent == INTENT_GRAB || throwing || incapacitated())
 		return
-	if(next_move > world.time)
-		return COMPONENT_BUMP_RESOLVED//we don't want to push people while on attack cooldown
 	do_bump_attack(target)
 	return COMPONENT_BUMP_RESOLVED
 
 /mob/living/proc/do_bump_attack(atom/target)
+	if(next_move > world.time)
+		return COMPONENT_BUMP_RESOLVED//we don't want to push people while on attack cooldown
 	UnarmedAttack(target, TRUE)
 
 /mob/living/carbon/human/do_bump_attack(atom/target)//this isn't currently used anywhere, just here for the future
