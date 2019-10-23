@@ -47,8 +47,11 @@
 		return NONE
 
 
-/datum/component/bump_attack/proc/carbon_bump_action_checks()
+/datum/component/bump_attack/proc/carbon_bump_action_checks(atom/target)
 	var/mob/living/carbon/bumper = parent
+	. = living_bump_action_checks(target)
+	if(!isnull(.))
+		return
 	switch(bumper.a_intent)
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
@@ -65,10 +68,7 @@
 
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
 	var/mob/living/carbon/human/bumper = parent
-	. = living_bump_action_checks(target)
-	if(!isnull(.))
-		return
-	. = carbon_bump_action_checks()
+	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
 		return
 	var/mob/living/living_target = target
@@ -79,9 +79,6 @@
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
 	var/mob/living/carbon/xenomorph/bumper = parent
-	. = living_bump_action_checks(target)
-	if(!isnull(.))
-		return
 	. = carbon_bump_action_checks()
 	if(!isnull(.))
 		return
