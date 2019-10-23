@@ -28,6 +28,8 @@ proc/radial_medical(mob/living/carbon/patient, mob/doctor)
 				radial_state = "radial_[bodypart]_both"
 			else
 				radial_state = "radial_[bodypart]_burn"
+		if(part.surgery_open_stage)
+			radial_state = "radial_[bodypart]_surgery"
 
 		radial_options[bodypart] = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state)
 
