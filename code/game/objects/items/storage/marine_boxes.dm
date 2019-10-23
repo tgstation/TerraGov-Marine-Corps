@@ -520,8 +520,6 @@
 			S = /obj/item/storage/box/spec/sniper
 		if("Scout (Battle Rifle)")
 			S = /obj/item/storage/box/spec/scout
-		if("Scout (Shotgun)")
-			S = /obj/item/storage/box/spec/scoutshotgun
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)

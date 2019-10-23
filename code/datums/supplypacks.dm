@@ -250,17 +250,6 @@ WEAPONS
 	containername = "\improper MIC A7 Vindicator Minigun crate"
 	group = "Weapons"
 
-/datum/supply_packs/specshotgun
-	name = "ZX-76 Assault Shotgun crate (ZX-76 x1)"
-	contains = list(
-					/obj/item/weapon/gun/shotgun/merc/scout
-					)
-	cost = RO_PRICE_VERY_PRICY
-	containertype = /obj/structure/closet/crate/weapon
-	containername = "\improper ZX-76 Assault Shotgun crate"
-	group = "Weapons"
-
-
 /datum/supply_packs/flamethrower
 	name = "M240 Flamethrower crate (M240 x3)"
 	contains = list(
@@ -335,12 +324,20 @@ WEAPONS
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump,
 					/obj/item/weapon/gun/shotgun/pump,
+					/obj/item/weapon/gun/rifle/sx16,
+					/obj/item/weapon/gun/rifle/sx16,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette
+					/obj/item/ammo_magazine/shotgun/flechette,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
+					/obj/item/ammo_magazine/rifle/sx16_flechette,
 					)
 	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
