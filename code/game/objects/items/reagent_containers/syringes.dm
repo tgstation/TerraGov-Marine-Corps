@@ -71,7 +71,6 @@
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
 			L.knock_down(3)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
-			msg_admin_attack("[ADMIN_TPMONTY(usr)] got robusted by the cqc of [ADMIN_TPMONTY(M)].")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [L] to the ground before they could inject you!</span>", null, 5)
 			playsound(L.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -180,7 +179,6 @@
 							injected += R.name
 						var/contained = english_list(injected)
 						log_combat(user, M, "injected", src, "Reagents: [contained]")
-						msg_admin_attack("[ADMIN_TPMONTY(usr)] injected [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained].")
 
 				reagents.reaction(target, INJECT)
 
@@ -228,7 +226,6 @@
 /obj/item/reagent_container/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with [src.name].")
 
 	if(ishuman(target))
 

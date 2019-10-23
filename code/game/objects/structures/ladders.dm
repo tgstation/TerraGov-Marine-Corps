@@ -20,7 +20,7 @@
 	cam.c_tag = name
 
 	GLOB.ladder_list += src
-	
+
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -218,7 +218,7 @@
 			ladder_dir_name = lowertext(ladder_dir_name)
 			if(ladder_dir_name == "up")
 				ladder_dest = up
-			else 
+			else
 				ladder_dest = down
 
 		else if(up)
@@ -228,7 +228,7 @@
 		else if(down)
 			ladder_dir_name = "down"
 			ladder_dest = down
-		else 
+		else
 			return
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [G] [ladder_dir_name] [src].</span>",
@@ -256,9 +256,9 @@
 			if(ladder_dir_name == "Cancel")
 				return
 			ladder_dir_name = lowertext(ladder_dir_name)
-			if(ladder_dir_name == "up") 
+			if(ladder_dir_name == "up")
 				ladder_dest = up
-			else 
+			else
 				ladder_dest = down
 		else if(up)
 			ladder_dir_name = "up"
@@ -266,7 +266,7 @@
 		else if(down)
 			ladder_dir_name = "down"
 			ladder_dest = down
-		else 
+		else
 			return //just in case
 
 		user.visible_message("<span class='warning'>[user] takes position to throw [F] [ladder_dir_name] [src].</span>",

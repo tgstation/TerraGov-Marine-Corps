@@ -74,13 +74,13 @@
 
 /obj/structure/camera_assembly/Initialize(mapload, newDir)
 	. = ..()
-	
+
 	if(newDir)
 		setDir(newDir)
 
 	switch(dir)
 		if(NORTH)
-			pixel_y = 16 
+			pixel_y = 16
 		if(SOUTH)
 			pixel_y = -16
 		if(EAST)

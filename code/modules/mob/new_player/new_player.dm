@@ -32,7 +32,7 @@
 		GLOB.ready_players--
 
 	GLOB.new_player_list -= src
-	
+
 	return ..()
 
 
@@ -97,7 +97,7 @@
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-	
+
 
 /mob/new_player/Topic(href, href_list[])
 	. = ..()

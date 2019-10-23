@@ -217,11 +217,11 @@
 	desc = "A small bottle. Contains a mixture of iron and sugar - used as an odd-tasting treatment for blood loss."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/iron = 30, /datum/reagent/consumable/sugar = 30)
-	
+
 /obj/item/reagent_container/glass/bottle/neurotoxin
 	name = "\improper Neurotoxin bottle"
 	desc = "A small bottle. Contains artificialy synthesized neurotoxin- useful for testing treatments, or training troops."
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
-	
-	
+
+

@@ -100,7 +100,7 @@
 /obj/effect/landmark/start/latejoin/crash
 	delete_after_roundstart = FALSE
 
-	
+
 /obj/effect/landmark/start/latejoin/crash/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_NORMAL

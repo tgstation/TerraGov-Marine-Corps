@@ -137,7 +137,7 @@
 
 		if(!user.transferItemToLoc(I, src))
 			return
-			
+
 		state = 3
 
 		update_icon()

@@ -276,7 +276,6 @@
 	assailant.flick_attack_overlay(victim, "grab")
 
 	log_combat(assailant, victim, "psychically grabbed")
-	msg_admin_attack("[key_name(assailant)] psychically grabbed [key_name(victim)]" )
 
 	succeed_activate()
 	add_cooldown()
@@ -356,7 +355,6 @@
 	owner.changeNext_move(CLICK_CD_RANGE)
 
 	log_combat(owner, patient, "psychically cured")
-	msg_admin_attack("[key_name(owner)] psychically cured [key_name(patient)]" )
 
 	succeed_activate()
 	add_cooldown()

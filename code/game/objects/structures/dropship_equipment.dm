@@ -51,11 +51,11 @@
 		PC.update_icon()
 		installed_equipment = SE
 		SE.ship_base = src
-		
+
 		for(var/obj/docking_port/mobile/marine_dropship/S in SSshuttle.dropships)
-			if(S.id == ship_tag)	
-				SE.linked_shuttle = S	
-				S.equipments += SE	
+			if(S.id == ship_tag)
+				SE.linked_shuttle = S
+				S.equipments += SE
 				break
 
 		SE.update_equipment()
@@ -219,9 +219,9 @@
 				ship_base.installed_equipment = null
 				ship_base = null
 				if(linked_shuttle)
-					linked_shuttle.equipments -= src	
-					linked_shuttle = null	
-					if(linked_console && linked_console.selected_equipment == src)	
+					linked_shuttle.equipments -= src
+					linked_shuttle = null
+					if(linked_console && linked_console.selected_equipment == src)
 						linked_console.selected_equipment = null
 			update_equipment()
 			return TRUE //removed or uninstalled equipment

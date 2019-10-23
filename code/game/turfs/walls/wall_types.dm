@@ -461,7 +461,7 @@
 
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src)
-	
+
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
@@ -493,7 +493,7 @@
 		var/turf/T
 		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
-			if(!istype(T)) 
+			if(!istype(T))
 				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()

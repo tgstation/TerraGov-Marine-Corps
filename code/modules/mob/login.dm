@@ -9,14 +9,14 @@
 	client.images = list()
 	client.screen = list()				//remove hud items just in case
 
-	if(!hud_used) 
+	if(!hud_used)
 		create_mob_hud()
-	if(hud_used) 
+	if(hud_used)
 		hud_used.show_hud(hud_used.hud_version)
 
 	next_move = 1
 	sight |= SEE_SELF
-		
+
 	. = ..()
 
 	reload_huds()

@@ -182,7 +182,7 @@
 
 /obj/machinery/optable/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	
+
 	if(istype(I, /obj/item/tank/anesthetic))
 		if(anes_tank)
 			return

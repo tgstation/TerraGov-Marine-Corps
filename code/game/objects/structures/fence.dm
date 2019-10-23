@@ -114,7 +114,7 @@
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
-	
+
 	if(start_dir)
 		setDir(start_dir)
 

@@ -19,7 +19,7 @@
 				TGS_ERROR_LOG("Custom command [command_name] can't be used as it is empty or contains illegal characters!")
 				warned_command_names[command_name] = TRUE
 			continue
-		
+
 		if(command_name_types[command_name])
 			if(warnings_only)
 				TGS_ERROR_LOG("Custom commands [command_name_types[command_name]] and [stc] have the same name, only [command_name_types[command_name]] will be available!")

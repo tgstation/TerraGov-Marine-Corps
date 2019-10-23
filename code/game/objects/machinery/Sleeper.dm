@@ -132,7 +132,7 @@
 		connected.toggle_stasis()
 	if (href_list["ejectify"])
 		connected.eject()
-	
+
 	updateUsrDialog()
 
 
@@ -174,7 +174,7 @@
 	beaker = new /obj/item/reagent_container/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
-		
+
 /obj/machinery/sleeper/Destroy()
 	occupant?.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
@@ -418,7 +418,7 @@
 
 	if(usr.stat != CONSCIOUS)
 		return
-	
+
 	go_out()
 
 
@@ -434,7 +434,7 @@
 		beaker = null
 
 /obj/machinery/sleeper/relaymove(mob/user)
-	if(user.incapacitated(TRUE)) 
+	if(user.incapacitated(TRUE))
 		return
 	go_out()
 
@@ -456,10 +456,10 @@
 
 	visible_message("[M] climbs into the sleeper.", null, null, 3)
 	occupant = M
-	
+
 	start_processing()
 	connected.start_processing()
-	
+
 	icon_state = "sleeper_1"
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"

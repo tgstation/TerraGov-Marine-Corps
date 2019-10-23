@@ -16,9 +16,6 @@
 	// *** Tackle *** //
 	tackle_damage = 55
 
-	// *** RNG Attacks *** //
-	tail_chance = 0 //Inherited from old code. Tail's too big
-
 	// *** Speed *** //
 	speed = 0.1
 
@@ -134,4 +131,4 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)
-	
+

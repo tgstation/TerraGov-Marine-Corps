@@ -284,11 +284,11 @@
 	winset(player, control_id, params)
 
 
-/proc/_winshow(player, window, show = 1) 
+/proc/_winshow(player, window, show = 1)
 	winshow(player, window, show)
 
 
-/proc/_winget(player, control_id, params) 
+/proc/_winget(player, control_id, params)
 	winget(player, control_id, params)
 
 

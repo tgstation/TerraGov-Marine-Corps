@@ -21,6 +21,8 @@
 
 /datum/action/xeno_action/give_action(mob/living/L)
 	. = ..()
+	var/mob/living/carbon/xenomorph/X = L
+	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
 
@@ -30,6 +32,8 @@
 		UnregisterSignal(L, keybind_signal)
 	if(cooldown_id)
 		deltimer(cooldown_id)
+	var/mob/living/carbon/xenomorph/X = L
+	X.xeno_abilities -= src
 	return ..()
 
 

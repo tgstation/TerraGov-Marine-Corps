@@ -56,7 +56,7 @@
 			H.regenerate_icons()
 		if(H.mind)
 			H.mind.name = H.real_name
-		
+
 	if(delete_old_mob)
 		QDEL_IN(src, 1)
 

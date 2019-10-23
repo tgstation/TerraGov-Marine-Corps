@@ -178,7 +178,6 @@
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	log_combat(user, M, "attacked", src)
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 	var/t = user:zone_selected
 	if (t == "head")
@@ -263,7 +262,6 @@
 
 
 		log_combat(user, M, "attacked", src)
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to attack [ADMIN_TPMONTY(M)].")
 
 		if(prob(15))
 			M.knock_down(3)

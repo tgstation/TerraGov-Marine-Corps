@@ -10,7 +10,7 @@
 	var/antag = get_antag_info()
 	if(!lore && !mechanics && !antag)
 		return FALSE
-		
+
 	var/datum/codex_entry/entry = new(name, list(type), _lore_text = lore, _mechanics_text = mechanics, _antag_text = antag)
 	return entry
 

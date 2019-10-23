@@ -6,9 +6,6 @@
 
 //#define DEBUG_ATTACK_ALIEN
 
-/mob/living/carbon/xenomorph/proc/reset_critical_hit()
-	critical_proc = FALSE
-
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled)
 		return FALSE
@@ -58,8 +55,6 @@
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
 	var/tackle_pain = X.xeno_caste.tackle_damage
-	if(X.frenzy_aura)
-		tackle_pain = tackle_pain * (1 + (0.05 * X.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
@@ -163,7 +158,7 @@
 
 	// copypasted from attack_alien.dm
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage
 
 	X.do_attack_animation(src)
 
@@ -172,26 +167,6 @@
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
 	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
 	var/log = "slashed"
-	//Check for a special bite attack
-	if(prob(X.xeno_caste.bite_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
-		damage *= 1.5
-		attack_sound = "alien_bite"
-		attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [X]'s sharp teeth!</span>"
-		attack_message2 = "<span class='danger'>We viciously rend \the [src] with our teeth!</span>"
-		log = "bit"
-		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
-
-	//Check for a special bite attack
-	if(prob(X.xeno_caste.tail_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
-		damage *= 1.25
-		attack_flick = "tail"
-		attack_sound = 'sound/weapons/alien_tail_attack.ogg'
-		attack_message1 = "<span class='danger'>\The [src] is suddenly impaled by \the [X]'s sharp tail!</span>"
-		attack_message2 = "<span class='danger'>We violently impale \the [src] with our tail!</span>"
-		log = "tail-stabbed"
-		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)

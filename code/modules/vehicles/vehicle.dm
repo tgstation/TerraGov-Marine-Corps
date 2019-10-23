@@ -54,7 +54,7 @@
 		open = !open
 		update_icon()
 		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-	
+
 	else if(iscrowbar(I) && cell && open)
 		remove_cell(user)
 
@@ -121,7 +121,7 @@
 /obj/vehicle/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		visible_message("<span class='danger'>[src] blows apart!</span>")
-	
+
 	new /obj/item/stack/rods(loc)
 	new /obj/item/stack/rods(loc)
 	new /obj/item/stack/cable_coil/cut(loc)

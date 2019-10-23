@@ -107,4 +107,4 @@
 #define PIPING_LAYER_DOUBLE_SHIFT(T, PipingLayer) \
 	T.pixel_x = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_X;\
 	T.pixel_y = (PipingLayer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_P_Y;
-	
+

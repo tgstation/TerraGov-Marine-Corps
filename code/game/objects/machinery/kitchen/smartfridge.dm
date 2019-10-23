@@ -63,7 +63,7 @@
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			return
-		
+
 		attack_hand(user)
 
 	else if(machine_stat & NOPOWER)
@@ -158,7 +158,7 @@
 
 /obj/machinery/smartfridge/Topic(href, href_list)
 	. = ..()
-	if(.) 
+	if(.)
 		return
 
 	if (href_list["vend"])

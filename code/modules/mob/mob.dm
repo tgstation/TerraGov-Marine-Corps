@@ -335,7 +335,7 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		doUnEquip(I)
+		UnEquip(I)
 		put_in_hands(I)
 		return TRUE
 
@@ -448,7 +448,6 @@
 		flick_attack_overlay(M, "grab")
 
 		log_combat(src, M, "grabbed")
-		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
@@ -480,15 +479,15 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						
+	if(!canmove)
 		return FALSE
-	if(stat == DEAD)						
+	if(stat == DEAD)
 		return FALSE
-	if(anchored)						
+	if(anchored)
 		return FALSE
 	if(notransform)
 		return FALSE
-	if(restrained())					
+	if(restrained())
 		return FALSE
 	return TRUE
 
@@ -720,7 +719,7 @@
 
 //This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)	
+	if(!newname)
 		return FALSE
 
 	log_played_names(ckey, newname)

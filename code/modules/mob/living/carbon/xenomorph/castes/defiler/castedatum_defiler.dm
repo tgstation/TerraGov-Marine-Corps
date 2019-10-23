@@ -147,4 +147,4 @@
 
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = 8.5
-	
+

@@ -18,7 +18,7 @@
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/subspace/signal)
 	if(!on || !istype(signal) || !check_receive_level(signal) || signal.transmission_method != TRANSMISSION_SUBSPACE)
 		return
-		
+
 	if(!is_freq_listening(signal))
 		return
 

@@ -20,7 +20,7 @@
 
 	if(!length(valid_hairstyles))
 		return "Crewcut"
-		
+
 	return pick(valid_hairstyles)
 
 

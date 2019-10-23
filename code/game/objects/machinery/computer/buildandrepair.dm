@@ -24,7 +24,7 @@
 				if(!WT.remove_fuel(0, user))
 					to_chat(user, "[WT] must be on to complete this task.")
 					return
-					
+
 				playsound(loc, 'sound/items/welder.ogg', 25, 1)
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
@@ -80,7 +80,7 @@
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			
+
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
 

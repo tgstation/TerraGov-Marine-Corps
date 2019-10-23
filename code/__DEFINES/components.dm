@@ -171,7 +171,7 @@
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
-#define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): () 
+#define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
 
 //mob/living signals
 #define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()

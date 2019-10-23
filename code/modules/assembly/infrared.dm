@@ -213,7 +213,7 @@
 	dat += "<BR><B>Status</B>: [on ? "<A href='?src=[REF(src)];state=0'>On</A>" : "<A href='?src=[REF(src)];state=1'>Off</A>"]"
 	dat += "<BR><B>Visibility</B>: [visible ? "<A href='?src=[REF(src)];visible=0'>Visible</A>" : "<A href='?src=[REF(src)];visible=1'>Invisible</A>"]"
 	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
-		
+
 	var/datum/browser/popup = new(user, "infra", name)
 	popup.set_content(dat)
 	popup.open()
@@ -233,7 +233,7 @@
 		visible = !(visible)
 		update_icon()
 		refreshBeam()
-		
+
 	updateUsrDialog()
 
 

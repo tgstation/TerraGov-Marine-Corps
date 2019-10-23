@@ -140,7 +140,7 @@
 
 	if(href_list["start_UV"])
 		start_UV(usr)
-		
+
 	updateUsrDialog()
 	update_icon()
 

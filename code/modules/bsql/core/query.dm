@@ -21,7 +21,7 @@ BSQL_PROTECT_DATUM(/datum/BSQL_Operation/Query)
 			return FALSE
 		else
 			BSQL_ERROR(result)
-			
+
 /datum/BSQL_Operation/Query/WaitForCompletion()
 	. = ..()
 	if(.)

@@ -34,6 +34,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			class = "unknown"
 
 	usr.client.debug_variables(target)
-	
+
 	log_admin("[key_name(usr)] is debugging the [target] [class].")
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [target] [class].")
