@@ -989,7 +989,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/pulsebolt
 	name = "pulse bolt"
 	icon_state = "pulse2"
-	hud_state = "laser_overcharge"
+	hud_state = "pulse"
 	damage = 85 // this is gotta hurt...
 	max_range = 40
 	penetration = 100

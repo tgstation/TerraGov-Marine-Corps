@@ -375,6 +375,10 @@
 	force = 23 //Slightly more heftier than the M43, but without the stock.
 	icon_state = "m19c4"
 	item_state = "m19c4"
+	fire_sound = 'sound/weapons/guns/fire/pred_plasmacaster_fire.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
 	max_shots = 100//codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/pulsebolt
