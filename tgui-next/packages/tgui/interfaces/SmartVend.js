@@ -2,6 +2,7 @@
 import { Fragment } from 'inferno';
 import { act } from '../byond';
 import { Button, Section, Table, NoticeBox } from '../components';
+import { map } from 'common/fp';
 
 export const SmartVend = props => {
   const { state } = props;
@@ -29,24 +30,26 @@ export const SmartVend = props => {
               <Table.Cell>Quantity</Table.Cell>
               <Table.Cell>{data.verb ? data.verb : "Dispense"}</Table.Cell>
             </Table.Row>
-            {data.contents.map(content => (
-              <Table.Row key={content.id}>
-                <Table.Cell>{content.name}</Table.Cell>
-                <Table.Cell>{content.amount}</Table.Cell>
-                <Table.Cell>
-                  <Button
-                    disabled={content.amount < 1}
-                    onClick={() => act(ref, 'Release', {name: content.name, amount: 1})}>
-                    One
-                  </Button>
-                  <Button
-                    disabled={content.amount <= 1}
-                    onClick={() => act(ref, 'Release', {name: content.name})}>
-                    Many
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
-            ))}
+            {map((value, key) => {
+              return (
+                <Table.Row key={key}>
+                  <Table.Cell>{value.name}</Table.Cell>
+                  <Table.Cell>{value.amount}</Table.Cell>
+                  <Table.Cell>
+                    <Button
+                      disabled={value.amount < 1}
+                      onClick={() => act(ref, 'Release', {name: value.name, amount: 1})}>
+                      One
+                    </Button>
+                    <Button
+                      disabled={value.amount <= 1}
+                      onClick={() => act(ref, 'Release', {name: value.name})}>
+                      Many
+                    </Button>
+                  </Table.Cell>
+                </Table.Row>
+              );
+            })(data.contents)}
           </Table>
         )}
       </Section>
