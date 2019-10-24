@@ -92,9 +92,23 @@
 
 /obj/machinery/computer/shuttle/ert
 
+
+/obj/machinery/computer/shuttle/ert/valid_destinations()
+	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+	if(!istype(M))
+		CRASH("ert shuttle computer used with non-ert shuttle")
+	var/list/valid_destination_ids = list()
+	for(var/i in M.get_destinations())
+		var/obj/docking_port/stationary/ert/target/target_dock = i
+		valid_destination_ids += target_dock.id
+	return valid_destination_ids
+
+
 /obj/machinery/computer/shuttle/ert/ui_interact(mob/user)
 	. = ..()
 	var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
+	if(!istype(M))
+		CRASH("ert shuttle computer used with non-ert shuttle")
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M?.mode == SHUTTLE_IDLE)
 		if(is_centcom_level(M.z))

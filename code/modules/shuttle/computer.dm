@@ -35,6 +35,9 @@
 	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
+/obj/machinery/computer/shuttle/proc/valid_destinations()
+	return params2list(possible_destinations)
+
 /obj/machinery/computer/shuttle/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -62,6 +65,10 @@
 			if(M.mode != SHUTTLE_IDLE)
 				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
 				return TRUE
+		if(!(href_list["move"] in valid_destinations()))
+			log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
+			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
+			return TRUE
 		var/previous_status = M.mode
 		switch(SSshuttle.moveShuttle(shuttleId, href_list["move"], 1))
 			if(0)
