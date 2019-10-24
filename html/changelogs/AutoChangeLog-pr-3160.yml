@@ -1,0 +1,4 @@
+author: "nemvar"
+delete-after: True
+changes: 
+  - tweak: "Cryopods now prevent internal wounds from getting worse."
