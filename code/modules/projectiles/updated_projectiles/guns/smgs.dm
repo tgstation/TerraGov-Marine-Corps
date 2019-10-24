@@ -128,8 +128,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 1.25
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 1.05
 	scatter = 25
 	scatter_unwielded = 40
 
