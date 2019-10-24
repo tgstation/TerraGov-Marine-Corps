@@ -19,6 +19,8 @@
 	var/cmp_proc = /proc/cmp_list_asc
 	var/sortkey = "name"
 
+	ui_x = 900
+	ui_y = 800
 
 /obj/machinery/computer/crew/update_icon()
 	if(machine_stat & BROKEN)
@@ -30,27 +32,15 @@
 		icon_state = initial(icon_state)
 		machine_stat &= ~NOPOWER
 
-/obj/machinery/computer/crew/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
+/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-	if(href_list["sortkey"])
-		if(sortkey == href_list["sortkey"])
-			cmp_proc = (cmp_proc == /proc/cmp_list_asc) ? /proc/cmp_list_dsc : /proc/cmp_list_asc
-		else
-			sortkey = href_list["sortkey"]
-			cmp_proc = /proc/cmp_list_asc
-		return TRUE
+	if(!ui)
+		ui = new(user, src, ui_key, "crew", name, ui_x, ui_y, master_ui, state)
+		ui.open()
 
-	if(href_list["zlevel"])
-		displayed_z_level = text2num(href_list["zlevel"])
-		return TRUE
-
-	updateUsrDialog()
-
-/*
-/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
+/obj/machinery/computer/crew/ui_data(mob/user)
 	scan()
 
 	var/list/data = list()
@@ -108,17 +98,27 @@
 		if(DISPLAY_IN_TRANSIT)
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 800)
+	return data
 
-		ui.set_initial_data(data)
-		ui.open()
+/obj/machinery/computer/crew/ui_act(action, params
+	if(..())
+		return
 
-		// should make the UI auto-update; doesn't seem to?
-		ui.set_auto_update(TRUE)
+	switch(action)
+		if("sortkey")
+			if(sortkey == params["sortkey"])
+				cmp_proc = (cmp_proc == /proc/cmp_list_asc) ? /proc/cmp_list_dsc : /proc/cmp_list_asc
+			else
+				sortkey = params["sortkey"]
+				cmp_proc = /proc/cmp_list_asc
+			return TRUE
 
-*/
+		if("zlevel")
+			displayed_z_level = text2num(params["zlevel"])
+			return TRUE
+
+	updateUsrDialog()
+
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(!H || !istype(H)) continue
