@@ -365,3 +365,46 @@
 	update_icon(user)
 
 	return TRUE
+
+//-------------------------------------------------------
+//Deathsquad-only gun -- Model 2419 pulse rifle, the M19C4.
+
+/obj/item/weapon/gun/energy/lasgun/pulse
+	name = "\improper M19C4 pulse energy rifle"
+	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection."
+	force = 23 //Slightly more heftier than the M43, but without the stock.
+	icon_state = "m19c4"
+	item_state = "m19c4"
+	max_shots = 100//codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/pulsebolt
+	cell_type = /obj/item/cell/lasgun/pulse
+	charge_cost = M43_STANDARD_AMMO_COST
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 8
+	burst_delay = 0.2 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.95
+	scatter_unwielded = 25
+
+/obj/item/weapon/gun/energy/lasgun/pulse/update_icon(mob/user)
+	if(!cell || cell.charge <= 0)
+		icon_state = base_gun_icon + "_0"
+		if(flags_item & WIELDED)
+			item_state = "m19c4_0_w"
+		else
+			item_state = "m19c4_0"
+	else
+		var/remaining = CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+		icon_state = "[base_gun_icon]_[remaining]"
+		item_state = "m19c4_[remaining][flags_item & WIELDED ? "_w" : ""]"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/M = user
+		if(src == M.l_hand)
+			M.update_inv_l_hand()
+		else if (src == M.r_hand)
+			M.update_inv_r_hand()
