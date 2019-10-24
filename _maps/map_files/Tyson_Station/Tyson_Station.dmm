@@ -8105,9 +8105,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/darkish,
 /area/bridge)
-"aAB" = (
-/turf/open/floor/tile/darkish,
-/area/bridge)
 "aAC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9519,7 +9516,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/powercell,
-/obj/effect/spawner/newbomb,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/internal_affairs)
 "aFg" = (
@@ -16476,12 +16472,6 @@
 	dir = 10
 	},
 /area/maintenance/substation)
-"baI" = (
-/obj/effect/spawner/newbomb,
-/turf/open/floor/plating/warning{
-	dir = 4
-	},
-/area/lv624/lazarus/comms)
 "baJ" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/dark,
@@ -17476,10 +17466,6 @@
 	dir = 8
 	},
 /area/hallway/secondary/entry)
-"bcL" = (
-/obj/effect/spawner/newbomb,
-/turf/open/floor,
-/area/maintenance/substation)
 "bcM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -46546,7 +46532,7 @@ aIp
 aIR
 aJO
 aIp
-baI
+aIR
 aJO
 aHM
 aGR
@@ -49365,7 +49351,7 @@ aZe
 aZQ
 bal
 aZQ
-bcL
+aZQ
 bal
 beB
 biH
@@ -51128,7 +51114,7 @@ ayA
 azu
 axd
 aAd
-aAB
+awp
 aUT
 aeP
 aeP

@@ -555,7 +555,6 @@
 /turf/closed/wall,
 /area/lv624/lazarus/fitness)
 "bR" = (
-/obj/effect/spawner/newbomb/timer,
 /obj/structure/table/flipped,
 /obj/machinery/light{
 	dir = 1
@@ -3418,7 +3417,6 @@
 	},
 /area/lv624/lazarus/security)
 "km" = (
-/obj/effect/spawner/newbomb/timer,
 /obj/structure/table/flipped,
 /obj/machinery/light{
 	dir = 1
@@ -3573,7 +3571,6 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
 "kE" = (
-/obj/effect/spawner/newbomb/timer,
 /obj/structure/table/flipped,
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -3602,7 +3599,6 @@
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "kI" = (
-/obj/effect/spawner/newbomb/timer,
 /obj/structure/table/flipped,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
