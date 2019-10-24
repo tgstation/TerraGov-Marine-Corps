@@ -56,5 +56,11 @@
 #define HAS_TRAIT(target, trait) (target.status_traits ? (target.status_traits[trait] ? TRUE : FALSE) : FALSE)
 #define HAS_TRAIT_FROM(target, trait, source) (target.status_traits ? (target.status_traits[trait] ? (source in target.status_traits[trait]) : FALSE) : FALSE)
 
+//Traits
+#define TRAIT_STASIS "stasis"
+
 // common trait sources
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
+#define SLEEPER_TRAIT "sleeper"
+#define STASIS_BAG_TRAIT "stasis_bag"
+#define CRYOPOD_TRAIT "cryopod"
