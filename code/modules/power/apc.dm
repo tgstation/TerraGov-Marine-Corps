@@ -719,10 +719,10 @@
 	else
 		return 0
 
-/obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = FALSE) //used by attack_hand() and Topic()
 	if(IsAdminGhost(user))
 		return TRUE
-	if(isAI(user) && src.aidisabled)
+	if(isAI(user) && aidisabled)
 		if(!loud)
 			to_chat(user, "<span class='danger'>\The [src] has eee disabled!</span>")
 		return FALSE

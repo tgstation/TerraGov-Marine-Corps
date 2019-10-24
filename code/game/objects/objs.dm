@@ -265,9 +265,9 @@
 	return
 
 /mob/proc/set_machine(obj/O)
-	if(src.machine)
+	if(machine)
 		unset_machine()
-	src.machine = O
+	machine = O
 	if(istype(O))
 		O.obj_flags |= IN_USE
 
