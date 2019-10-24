@@ -200,56 +200,6 @@
 				update_icon()
 			return TRUE
 	return FALSE
-/*
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
-	data["contents"] = null
-	data["panel_open"] = CHECK_BITFIELD(machine_stat, PANEL_OPEN)
-	data["electrified"] = seconds_electrified > 0
-	data["shoot_inventory"] = shoot_inventory
-	data["locked"] = locked
-	data["secure"] = is_secure_fridge
-
-	var/list/items[0]
-	for (var/i=1 to length(item_quants))
-		var/K = item_quants[i]
-		var/count = item_quants[K]
-		if (count > 0)
-			items.Add(list(list("display_name" = html_encode(capitalize(K)), "vend" = i, "quantity" = count)))
-
-	if (items.len > 0)
-		data["contents"] = items
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
-		ui.set_initial_data(data)
-		ui.open()
-
-/obj/machinery/smartfridge/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if (href_list["vend"])
-		var/index = text2num(href_list["vend"])
-		var/amount = text2num(href_list["amount"])
-		var/K = item_quants[index]
-		var/count = item_quants[K]
-
-		// Sanity check, there are probably ways to press the button when it shouldn't be possible.
-		if(count > 0)
-			item_quants[K] = max(count - amount, 0)
-
-			var/i = amount
-			for(var/obj/O in contents)
-				if(O.name == K)
-					O.forceMove(loc)
-					i--
-					if (i <= 0)
-						return 1
-
-		return 1*/
 
 /obj/machinery/smartfridge/proc/throw_item()
 	var/obj/throw_item = null

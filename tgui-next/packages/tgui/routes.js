@@ -22,6 +22,8 @@ import { Sentry } from './interfaces/Sentry';
 import { Vending } from './interfaces/Vending';
 import { MarineDropship } from './interfaces/MarineDropship';
 import { PortableVendor } from './interfaces/PortableVendor';
+import { SmartVend } from './interfaces/SmartVend';
+
 
 const ROUTES = {
   airlock_electronics: {
@@ -102,6 +104,10 @@ const ROUTES = {
   },
   sentry: {
     component: () => Sentry,
+    scrollable: true,
+  },
+  smartvend: {
+    component: () => SmartVend,
     scrollable: true,
   },
   vending: {
