@@ -1154,10 +1154,10 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 /atom/proc/contains(atom/A)
 	if(!A)
-		return 0
+		return FALSE
 	for(var/atom/location = A.loc, location, location = location.loc)
 		if(location == src)
-			return 1
+			return TRUE
 
 /*
 
