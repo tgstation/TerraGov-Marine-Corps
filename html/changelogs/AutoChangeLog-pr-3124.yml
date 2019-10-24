@@ -1,0 +1,7 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - tweak: "Made batteries self-rechargable, only the pulse energy rifle's batteries can be recharged."
+  - tweak: "Changed the sprites of the laser bolts."
+  - tweak: "Changed the lens descriptions, adding more fluff."
+  - rscadd: "Added the M19C4 pulse energy rifle, an admin-only deathsquad weapon. Feast your eyes on destruction!"
