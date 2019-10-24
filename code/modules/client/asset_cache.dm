@@ -398,8 +398,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/tgui
 	assets = list(
 		// tgui-next
-		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/bundles/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/bundles/tgui.bundle.css',
+		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/tgui.bundle.css',
 		"shim-console.js" = 'tgui-next/packages/tgui/public/shim-console.js',
 		"shim-html5shiv.js" = 'tgui-next/packages/tgui/public/shim-html5shiv.js',
 		"shim-ie8.js" = 'tgui-next/packages/tgui/public/shim-ie8.js',
