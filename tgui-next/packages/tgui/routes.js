@@ -22,6 +22,7 @@ import { Sentry } from './interfaces/Sentry';
 import { Vending } from './interfaces/Vending';
 import { MarineDropship } from './interfaces/MarineDropship';
 import { PortableVendor } from './interfaces/PortableVendor';
+import { PortableGenerator } from './interfaces/PortableGenerator';
 import { SmartVend } from './interfaces/SmartVend';
 
 
@@ -93,6 +94,10 @@ const ROUTES = {
   marinedropship: {
     component: () => MarineDropship,
     scrollable: true,
+  },
+  portable_generator: {
+    component: () => PortableGenerator,
+    scrollable: false,
   },
   portablevendor: {
     component: () => PortableVendor,

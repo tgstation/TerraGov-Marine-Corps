@@ -288,6 +288,7 @@
 #include "code\datums\keybinding\mob.dm"
 #include "code\datums\keybinding\xeno.dm"
 #include "code\datums\looping_sounds\_looping_sound.dm"
+#include "code\datums\looping_sounds\machinery_sounds.dm"
 #include "code\datums\wires\_wires.dm"
 #include "code\datums\wires\airalarm.dm"
 #include "code\datums\wires\airlock.dm"
