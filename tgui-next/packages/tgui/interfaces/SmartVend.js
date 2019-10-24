@@ -12,14 +12,13 @@ export const SmartVend = props => {
     <Fragment>
       <Section
         title="Storage"
-        buttons={data.isdryer && (
+        buttons={!!data.isdryer && (
           <Button
             icon={data.drying ? "stop" : "tint"}
             onClick={() => act(ref, 'Dry')}>
             {data.drying ? "Stop drying" : "Dry"}
           </Button>
-        )}>
-      </Section>
+        )} />
       <Section>
         {data.contents.length === 0 ? (
           <NoticeBox>Unfortunately, this {data.name} is empty.</NoticeBox>
