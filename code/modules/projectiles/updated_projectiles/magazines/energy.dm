@@ -46,4 +46,4 @@
 	maxcharge = 2000 // 100 shots.
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 1 shot
-	charge_delay = 20 // Every two seconds.
+	charge_delay = 2 SECONDS
