@@ -84,11 +84,56 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	scatter = -10
+	
 
 
 //variant without ugl attachment
 /obj/item/weapon/gun/rifle/m41a/stripped
 	starting_attachment_types = list()
+
+/obj/item/weapon/gun/rifle/m59a2
+	name = "\improper M59A2 rifle"
+	desc = "The standard issue DMR rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 308 caseless ammunition."
+	icon_state = "m59a2"
+	item_state = "m59a2"
+	fire_sound = "gun_pulse"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "308 caseless" //codex
+	max_shells = 20 //codex
+	current_mag = /obj/item/ammo_magazine/riflemarksman
+	attachable_allowed = list(
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/stock/rifle,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+
+	fire_delay = 0.7 SECONDS
+	accuracy_mult = 1.25
+	scatter = -15
+	burst_amount = 1
 
 //-------------------------------------------------------
 //M41A PMC VARIANT

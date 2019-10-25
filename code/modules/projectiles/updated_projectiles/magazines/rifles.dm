@@ -33,6 +33,15 @@
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
+/obj/item/ammo_magazine/riflemarksman
+	name = "\improper M59A2 magazine (308)"
+	desc = "A 308 DMR magazine."
+	caliber = "minigun bullet"
+	icon_state = "m59a2"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/minigun
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/m59a2
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
