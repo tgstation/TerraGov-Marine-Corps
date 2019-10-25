@@ -654,14 +654,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 			hidden = null
 
 		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children) O.droplimb(amputation, delete_limb)
+		for(var/datum/limb/O in children)
+			O.droplimb(amputation, delete_limb)
 
 		//Replace all wounds on that arm with one wound on parent organ.
 		wounds.Cut()
 		if(parent && !amputation)
 			var/datum/wound/W
-			if(max_damage < 50) W = new/datum/wound/lost_limb/small(max_damage * 0.25)
-			else 				W = new/datum/wound/lost_limb(max_damage * 0.25)
+			if(max_damage < 50)
+				W = new/datum/wound/lost_limb/small(max_damage * 0.25)
+			else 				
+				W = new/datum/wound/lost_limb(max_damage * 0.25)
 
 			parent.wounds += W
 			parent.update_damages()
@@ -674,9 +677,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		switch(body_part)
 			if(HEAD)
 				if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
-					organ= new /obj/item/limb/head/synth(owner.loc, owner)
+					organ = new /obj/item/limb/head/synth(owner.loc, owner)
 				else
-					organ= new /obj/item/limb/head(owner.loc, owner)
+					organ = new /obj/item/limb/head(owner.loc, owner)
 				owner.dropItemToGround(owner.glasses, null, TRUE)
 				owner.dropItemToGround(owner.head, null, TRUE)
 				owner.dropItemToGround(owner.wear_ear, null, TRUE)
