@@ -66,7 +66,7 @@
 			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
-	if(affected_mob.in_stasis)
+	if(HAS_TRAIT(affected_mob, TRAIT_STASIS))
 		return FALSE //If they are in cryo, bag or cell, the embryo won't grow.
 
 	process_growth()
