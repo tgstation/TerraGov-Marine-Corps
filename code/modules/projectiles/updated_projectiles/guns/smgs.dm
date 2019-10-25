@@ -73,12 +73,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 1.15
+	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
-	scatter_unwielded = 25
+	scatter_unwielded = 30
 	aim_slowdown = 0.15
-	burst_amount = 3
+	burst_amount = 2
 
 
 //-------------------------------------------------------
