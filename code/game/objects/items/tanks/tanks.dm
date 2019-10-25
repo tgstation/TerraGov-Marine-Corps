@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive], the guage reads [return_pressure()] kPa.</span>")
+		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa.</span>")
 
 
 /obj/item/tank/attackby(obj/item/I, mob/user, params)

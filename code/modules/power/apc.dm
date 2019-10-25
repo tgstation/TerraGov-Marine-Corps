@@ -729,7 +729,7 @@
 	return TRUE
 
 /obj/machinery/power/apc/ui_act(action, params)
-	if(..() || !can_use(usr, 1) || locked)
+	if(..() || !can_use(usr, TRUE) || locked)
 		return
 	switch(action)
 		if("lock")
@@ -770,7 +770,7 @@
 			if(usr.has_unlimited_silicon_privilege)
 				overload_lighting()
 				. = TRUE
-	return 1
+	return TRUE
 
 /obj/machinery/power/apc/proc/report()
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"

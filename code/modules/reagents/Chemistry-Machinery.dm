@@ -65,6 +65,7 @@
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
 	dispensable_reagents = sortList(dispensable_reagents)
+	cell = new /obj/item/cell/hyper
 	start_processing()
 
 /obj/machinery/chem_dispenser/Destroy()
@@ -122,7 +123,7 @@
 		data["beakerMaxVolume"] = null
 		data["beakerTransferAmounts"] = null
 
-	var/chemicals[0]
+	var/list/chemicals = list()
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
@@ -213,10 +214,7 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
-	//ui_title = "Soda Dispens-o-matic"
-	//energy = 100
 	req_one_access = list()
-	//max_energy = 100
 	dispensable_reagents = list(
 		/datum/reagent/water,
 		/datum/reagent/consumable/drink/cold/ice,
@@ -244,20 +242,40 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
-			dispensable_reagents += list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
+			dispensable_reagents += list(
+				/datum/reagent/consumable/ethanol/thirteenloko,
+				/datum/reagent/consumable/drink/grapesoda)
 		else
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
-			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
+			dispensable_reagents -= list(
+				/datum/reagent/consumable/ethanol/thirteenloko,
+				/datum/reagent/consumable/drink/grapesoda)
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
-	//ui_title = "Booze Portal 9001"
-	//energy = 100
-	//max_energy = 100
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list(/datum/reagent/consumable/drink/cold/lemon_lime,/datum/reagent/consumable/sugar,/datum/reagent/consumable/drink/orangejuice,/datum/reagent/consumable/drink/limejuice,/datum/reagent/consumable/drink/cold/sodawater,/datum/reagent/consumable/drink/cold/tonic,/datum/reagent/consumable/ethanol/beer,/datum/reagent/consumable/ethanol/kahlua,/datum/reagent/consumable/ethanol/whiskey,/datum/reagent/consumable/ethanol/sake,/datum/reagent/consumable/ethanol/wine,/datum/reagent/consumable/ethanol/vodka,/datum/reagent/consumable/ethanol/gin,/datum/reagent/consumable/ethanol/rum,/datum/reagent/consumable/ethanol/tequila,/datum/reagent/consumable/ethanol/vermouth,/datum/reagent/consumable/ethanol/cognac,/datum/reagent/consumable/ethanol/ale,/datum/reagent/consumable/ethanol/mead)
+	dispensable_reagents = list(
+		/datum/reagent/consumable/drink/cold/lemon_lime,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/drink/orangejuice,
+		/datum/reagent/consumable/drink/limejuice,
+		/datum/reagent/consumable/drink/cold/sodawater,
+		/datum/reagent/consumable/drink/cold/tonic,
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/sake,
+		/datum/reagent/consumable/ethanol/wine,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/rum,
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/cognac,
+		/datum/reagent/consumable/ethanol/ale,
+		/datum/reagent/consumable/ethanol/mead)
 
 /obj/machinery/chem_dispenser/beer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -266,10 +284,18 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
-			dispensable_reagents += list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
+			dispensable_reagents += list(
+				/datum/reagent/consumable/ethanol/goldschlager,
+				/datum/reagent/consumable/ethanol/patron,
+				/datum/reagent/consumable/drink/watermelonjuice,
+				/datum/reagent/consumable/drink/berryjuice)
 		else
 			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
-			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
+			dispensable_reagents -= list(
+				/datum/reagent/consumable/ethanol/goldschlager,
+				/datum/reagent/consumable/ethanol/patron,
+				/datum/reagent/consumable/drink/watermelonjuice,
+				/datum/reagent/consumable/drink/berryjuice)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
