@@ -151,7 +151,7 @@
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
 	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("head") || (ignore_destroyed && !affecting.is_usable()))
+	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
 	if(!affecting) //Still nothing??
 		affecting = get_limb("chest") //Gotta have a torso?!
