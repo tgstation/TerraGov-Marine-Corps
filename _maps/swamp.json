@@ -1,0 +1,8 @@
+{
+    "map_name": "swamp",
+    "map_path": "map_files/Swamp",
+    "map_file": "swamp.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a unknown planet. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the planet. TGMC, gear up and get ready to respond!"
+}
