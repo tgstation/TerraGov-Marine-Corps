@@ -153,8 +153,6 @@
 		affecting = get_limb(ran_zone(null, 0))
 	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
-	if(!affecting) //Still nothing??
-		affecting = get_limb("chest") //Gotta have a torso?!
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
