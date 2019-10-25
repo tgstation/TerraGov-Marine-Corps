@@ -278,7 +278,8 @@
 	var/obj/item/I
 	switch(action)
 		if("cut")
-			if(iswirecutter(I) || IsAdminGhost(usr))
+			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
+			if(I || IsAdminGhost(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
 				cut_color(target_wire)
@@ -286,7 +287,8 @@
 			else
 				to_chat(L, "<span class='warning'>You need wirecutters!</span>")
 		if("pulse")
-			if(ismultitool(I) || IsAdminGhost(usr))
+			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
+			if(I || IsAdminGhost(usr))
 				if(I && holder)
 					I.play_tool_sound(holder, 20)
 				pulse_color(target_wire, L)
