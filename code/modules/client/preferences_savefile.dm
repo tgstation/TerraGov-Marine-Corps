@@ -149,8 +149,6 @@
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
-	READ_FILE(S["tgui_fancy"], tgui_fancy)
-	READ_FILE(S["tgui_lock"], tgui_lock)
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
@@ -176,9 +174,6 @@
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
-
-	tgui_fancy		= sanitize_integer(tgui_fancy, 0, 1, initial(tgui_fancy))
-	tgui_lock		= sanitize_integer(tgui_lock, 0, 1, initial(tgui_lock))
 
 	return TRUE
 
@@ -245,8 +240,6 @@
 	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["tooltips"], tooltips)
-	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
-	WRITE_FILE(S["tgui_lock"], tgui_lock)
 
 	return TRUE
 
