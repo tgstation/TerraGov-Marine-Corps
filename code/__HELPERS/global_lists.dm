@@ -168,6 +168,10 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/namepool/NP = new path
 		GLOB.namepool[path] = NP
 
+	for(var/path in subtypesof(/datum/game_mode))
+		var/datum/game_mode/GM = path
+		GLOB.gamemodes_by_name[initial(GM.name)] = path
+
 	return TRUE
 
 

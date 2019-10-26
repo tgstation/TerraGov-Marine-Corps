@@ -562,17 +562,18 @@
 
 
 /obj/item/proc/update_item_sprites()
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_LV_624)
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
 				icon_state = "m_[icon_state]"
 				item_state = "m_[item_state]"
-		if(MAP_ICE_COLONY)
+		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				icon_state = "s_[icon_state]"
 				item_state = "s_[item_state]"
-			if(flags_item_map_variant & ITEM_ICE_PROTECTION)
-				min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
+		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 
 /obj/item/verb/verb_pickup()

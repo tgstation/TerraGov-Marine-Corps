@@ -206,7 +206,7 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
@@ -232,7 +232,7 @@
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/bodybag/tarp/snow(src)
@@ -353,7 +353,7 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)

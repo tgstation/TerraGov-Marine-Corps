@@ -537,7 +537,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
