@@ -150,8 +150,10 @@
 			if(!GLOB.gamemodes_by_name[g])
 				log_world("map_config has an invalid gamemode name!")
 				return
+			if(g == /datum/game_mode/extended)
+				continue
 			gamemodes += GLOB.gamemodes_by_name[g]
-		gamemodes = typecacheof(gamemodes)
+		gamemodes = typecacheof(gamemodes+/datum/game_mode/extended) // always allow extended
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return
