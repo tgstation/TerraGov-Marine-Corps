@@ -6,7 +6,7 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 25 SECONDS
 	plasma_cost = 60
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE

@@ -18,7 +18,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -1.7
@@ -72,7 +72,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -1.8
@@ -105,7 +105,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1.9
@@ -139,7 +139,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -2

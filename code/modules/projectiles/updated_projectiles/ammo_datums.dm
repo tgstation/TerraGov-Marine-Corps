@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = 15
-	damage = 10
+	damage = 17
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
@@ -374,14 +374,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smg_empty"
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 25
+	damage = 30
 	accurate_range = 5
 	damage_falloff = 1
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 18
+	damage = 20
 	penetration = 40
 
 /datum/ammo/bullet/smg/ppsh
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 6
-	damage = 50
+	damage = 55
 	scatter = -15
 	penetration = 30
 
@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 32
+	damage = 45
 	accuracy = 10
 	penetration = 20
 
@@ -443,7 +443,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC
-	damage = 44
+	damage = 50
 	accuracy = -10
 	penetration = 20
 
@@ -462,7 +462,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	accuracy = -15
-	damage = 26
+	damage = 30
 	penetration = 20
 
 /*
@@ -537,7 +537,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 30
+	damage = 35
 	damage_falloff = 0.5
 	penetration = 50
 
@@ -547,7 +547,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 30
+	damage = 35
 	damage_falloff = 0.5
 	penetration = 50
 
@@ -891,6 +891,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43
 	name = "military laser bolt"
+	icon_state = "laser2"
 	hud_state = "laser"
 	damage = 22
 	penetration = 25
