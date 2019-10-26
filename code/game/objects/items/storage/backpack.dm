@@ -500,8 +500,8 @@
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
-	RegisterSignal(M, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_GUN_AUTOFIRED), .proc/on_gun_firing)
-	RegisterSignal(M, COMSIG_HUMAN_ATTACHMENT_FIRED, .proc/on_gun_attachment_firing)
+	RegisterSignal(M, list(COMSIG_MOB_GUN_FIRED, COMSIG_MOB_GUN_AUTOFIRED), .proc/on_gun_firing)
+	RegisterSignal(M, COMSIG_MOB_ATTACHMENT_FIRED, .proc/on_gun_attachment_firing)
 	RegisterSignal(M, COMSIG_MOB_THROW, .proc/on_throw)
 	RegisterSignal(M, COMSIG_MOB_ITEM_ATTACK, .proc/on_attack)
 
@@ -551,8 +551,8 @@
 
 	UnregisterSignal(user, list(
 		COMSIG_HUMAN_DAMAGE_TAKEN,
-		COMSIG_HUMAN_GUN_FIRED,
-		COMSIG_HUMAN_ATTACHMENT_FIRED,
+		COMSIG_MOB_GUN_FIRED,
+		COMSIG_MOB_ATTACHMENT_FIRED,
 		COMSIG_MOB_THROW,
 		COMSIG_MOB_ITEM_ATTACK))
 	STOP_PROCESSING(SSprocessing, src)

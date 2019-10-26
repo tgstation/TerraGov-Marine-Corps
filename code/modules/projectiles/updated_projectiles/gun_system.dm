@@ -681,7 +681,7 @@ and you're good to go.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
 
-		SEND_SIGNAL(user, COMSIG_HUMAN_GUN_FIRED, target, src)
+		SEND_SIGNAL(user, COMSIG_MOB_GUN_FIRED, target, src)
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
