@@ -114,7 +114,7 @@ const ROUTES = {
   },
   sentry: {
     component: () => Sentry,
-    scrollable: true,
+    scrollable: false,
   },
   smartvend: {
     component: () => SmartVend,

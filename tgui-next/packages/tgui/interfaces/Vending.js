@@ -21,7 +21,7 @@ export const Vending = props => {
             content="Cancel" />
         </NoticeBox>
       ) : (
-        ((data.premium_length > 0) || (data.isshared > 0))
+        (!!((data.premium_length > 0) || (data.isshared > 0)))
           && (
             <Box inline>Coin slot: </Box>)+(
             data.coin ? (

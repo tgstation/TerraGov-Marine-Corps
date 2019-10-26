@@ -14,141 +14,112 @@ export const Sentry = props => {
   const rounaver = (0.33 * data.rounds_max);
   return (
     <Fragment>
-      <TitleBar>{data.name}</TitleBar>
-      <NoticeBox>
-        The {data.name} is currently {data.is_on ? (
-          <Box inline color="good">ON</Box>
-        ) : (
-          <Box inline color="bad">OFF</Box>
-        )}
-        <Button
-          icon="power-off"
-          onClick={() => act(ref, 'power')}>
-          {data.is_on ? 'Turn Off' : 'Turn On'}
-        </Button>
-      </NoticeBox>
-      <LabeledList>
-        <LabeledList.Item
-          label="Power Cell Status">
-          <Box>
+      <TitleBar>Sentry Gun</TitleBar>
+      <Section title={data.name}
+        buttons={
+          <Button
+            icon="power-off"
+            selected={data.is_on}
+            onClick={() => act(ref, 'power')}>
+            {data.is_on ? 'On' : 'Off'}
+          </Button>
+        }>
+        <LabeledList>
+          <LabeledList.Item
+            label="Power Cell Status">
             <ProgressBar
+              content={data.has_cell?data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W' : 'No cell inserted'}
               value={data.cell_charge/data.cell_maxcharge}
               color={(data.cell_charge > cellgood)?"good":((data.cell_charge > cellaver)?"average":"bad")} />
-          </Box>
-          <Box>
-            {data.has_cell ? data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W' : 'No cell inserted'}
-          </Box>
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Structural Integrity">
-          <ProgressBar
-            value={data.health/data.health_max}
-            color={(data.health > healgood) ? "good" : ((data.health > healaver) ? "average" : "bad")} />
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Current Rounds">
-          <Box>
+          </LabeledList.Item>
+          <LabeledList.Item
+            label="Structural Integrity">
+            <ProgressBar
+              value={data.health/data.health_max}
+              color={(data.health > healgood) ? "good" : ((data.health > healaver) ? "average" : "bad")} />
+          </LabeledList.Item>
+          <LabeledList.Item
+            label="Current Rounds">
             <ProgressBar
               value={data.rounds/data.rounds_max}
+              content={data.rounds + ' out of ' +data.rounds_max}
               color={(data.rounds > roungood) ? "good" : ((data.rounds > rounaver) ? "average" : "bad")} />
-          </Box>
-          <Box>
-            {data.rounds} out of {data.rounds_max}
-          </Box>
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Burst Fire">
-          Burst fire is currently
-          {data.burst_fire ? (<Box inline color="good">ON</Box>) : (<Box inline color="bad">OFF</Box>)}
-          <br />
-          Burst count set to: {data.burst_size}
-          <br />
-          <Button
-            onClick={() => act(ref, 'burst')}
-            icon={data.burst_fire ? "step-forward" : "play"}
-            disabled={!data.is_on}>
-            {data.burst_fire ? "Turn off burst fire" : "Turn on burst fire"}
-          </Button>
-          <br />
-          <Button
-            onClick={() => act(ref, 'burstup')}
-            icon="plus"
-            disabled={!data.is_on}>
-            Increment Burst Count
-          </Button>
-          <br />
-          <Button
-            onClick={() => act(ref, 'burstdown')}
-            icon="minus"
-            disabled={!data.is_on}>
-            Decrement Burst Count
-          </Button>
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Weapon Safety">
-          Safety is currently
-          {data.safety_toggle ? (
-            <Box inline color="good">ON</Box> +'(Only Xenos will be targeted.)'
-          ) : (
-            <Box inline color="bad">OFF</Box> +'(Non-Xenos without IFF clearance will be targeted.)'
-          )}
-          <br />
-          <Button
-            onClick={() => act(ref, 'safety')}
-            icon={data.safety_toggle ? "times" : "check"}
-            disabled={!data.is_on}>
-            {data.safety_toggle ? "Turn off the safety" : "Turn on the safety"}
-          </Button>
-        </LabeledList.Item>
-        {!data.mini && (
-          <LabeledList.Item
-            label="Manual Override">
-            Manual override is currently
-            {data.manual_override ? (
-              <Box inline color="good">ON</Box>
-            ) : (
-              <Box inline color="bad">OFF</Box>
-            )}
-            <br />
-            <Button
-              onClick={() => act(ref, 'manual')}
-              icon={data.manual_override ? "times" : "check"}
-              disabled={!data.is_on}>
-              {data.manual_override ? "Turn off Manual Override" : "Turn on Manual Override"}
-            </Button>
           </LabeledList.Item>
-        )}
-        <LabeledList.Item
-          label="Radial Mode">
-          Radial Mode is currently
-          {data.radial_mode ? (
-            <Box inline color="good">ON</Box>
-          ) : (
-            <Box inline color="bad">OFF</Box>
+          <LabeledList.Item
+            buttons={
+              <Button
+                selected={data.burst_fire}
+                onClick={() => act(ref, 'burst')}
+                icon={data.burst_fire ? "step-forward" : "play"}
+                disabled={!data.is_on}>
+                Burst Fire
+              </Button>
+            }
+            label="Burst Fire" />
+          <LabeledList.Item
+            buttons={
+              <Fragment>
+                <Button
+                  onClick={() => act(ref, 'burstup')}
+                  icon="plus"
+                  disabled={!data.is_on} />
+                <Box inline mr={1} ml={1}>{data.burst_size}</Box>
+                <Button
+                  onClick={() => act(ref, 'burstdown')}
+                  icon="minus"
+                  disabled={!data.is_on} />
+              </Fragment>
+            }
+            label="Burst Count" />
+          <LabeledList.Item
+            buttons={
+              <Button
+                selected={data.safety_toggle}
+                onClick={() => act(ref, 'safety')}
+                icon={data.safety_toggle ? "check" : "times"}
+                disabled={!data.is_on}>
+                 Safety
+              </Button>
+            }
+            label="Weapon Safety">
+            {data.safety_toggle ? "Only Xenos" : "Everything"}
+          </LabeledList.Item>
+          {!data.mini && (
+            <LabeledList.Item
+              buttons={
+                <Button
+                  selected={data.manual_override}
+                  onClick={() => act(ref, 'manual')}
+                  icon={data.manual_override ? "check" : "times"}
+                  disabled={!data.is_on}>
+                  Manual Override
+                </Button>
+              }
+              label="Manual Override">
+            </LabeledList.Item>
           )}
-          <br />
-          <Button
-            onClick={() => act(ref, 'toggle_radial')}
-            icon={data.radial_mode ? "times" : "check"}
-            disabled={!data.is_on}>
-            {data.radial_mode ? "Turn off Radial Mode" : "Turn on Radial Mode"}
-          </Button>
-        </LabeledList.Item>
-        <LabeledList.Item
-          label="Alert Mode">
-          Alert Mode is currently
-          {data.alerts_on ? (
-            <Box inline color="good">ON</Box>
-          ) : (
-            <Box inline color="bad">OFF</Box>
-          )}
-          <br />
-          <Button
-            onClick={() => act(ref, 'toggle_alert')}
-            icon={data.alerts_on ? "times" : "check"}
-            disabled={!data.is_on}>
-            {data.alerts_on ? "Turn off Alert Mode" : "Turn on Alert Mode"}
-          </Button>
-        </LabeledList.Item>
-      </LabeledList>
+          <LabeledList.Item
+            buttons={
+              <Button
+                selected={data.radial_mode}
+                onClick={() => act(ref, 'toggle_radial')}
+                icon={data.radial_mode ? "check" : "times"}
+                disabled={!data.is_on}>
+                Radial Mode
+              </Button>
+            }
+            label="Radial Mode" />
+          <LabeledList.Item
+            buttons={
+              <Button
+                selected={data.alerts_on}
+                onClick={() => act(ref, 'toggle_alert')}
+                icon={data.alerts_on ? "check" : "times"}
+                disabled={!data.is_on}>
+                  Alert Mode
+              </Button>
+            }
+            label="Alert Mode" />
+        </LabeledList>
+      </Section>
     </Fragment>); };

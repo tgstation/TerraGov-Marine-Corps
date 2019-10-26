@@ -255,8 +255,8 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
-	ui_x = 625
-	ui_y = 525
+	ui_x = 360
+	ui_y = 320
 
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
