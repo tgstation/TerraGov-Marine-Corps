@@ -947,7 +947,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43
 	name = "military laser bolt"
-	hud_state = "laser2"
+	icon_state = "laser2"
+	hud_state = "laser"
 	damage = 25
 	penetration = 25
 
