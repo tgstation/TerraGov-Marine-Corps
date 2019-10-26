@@ -1,4 +1,0 @@
-author: "MetroidLover"
-delete-after: True
-changes: 
-  - bugfix: "fixed the MP5's accuracy values to no longer be more accurate when one-handed firing"
