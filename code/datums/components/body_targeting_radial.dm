@@ -10,8 +10,9 @@
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	toggle_action = new("Toggle Body-Targeting Radial", active_icon, inactive_icon)
+	toggle_action = new(null, "Toggle Body-Targeting Radial", active_icon, inactive_icon)
 	toggle_action.update_button_icon(active)
+	toggle_action.give_action(parent)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/toggle_ability)
 
 
@@ -23,7 +24,7 @@
 /datum/component/body_targeting_radial/proc/toggle_ability(datum/source)
 	active = !active
 	if(active)
-		RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, body_targeting_item_attack)
+		RegisterSignal(parent, COMSIG_MOB_ITEM_ATTACK, .proc/body_targeting_item_attack)
 	else
 		UnregisterSignal(parent, COMSIG_MOB_ITEM_ATTACK)
 	to_chat(parent, "<span class='notice'>Body-Targeting Radial [active ? "A" : "Dea"]ctivated.</span>")
@@ -60,9 +61,8 @@
 		if(part.surgery_open_stage)
 			radial_state = "radial_[bodypart]_surgery"
 
-		radial_options += list(bodypart = image(icon = 'icons/mob/radial.dmi', icon_state = radial_state))
+		radial_options += list(bodypart = list(image(icon = 'icons/mob/radial.dmi'), icon_state = radial_state))
 
-	var/datum/limb/affecting = null
 	var/choice = show_radial_menu(user, target, radial_options, null, 48, null, TRUE)
 	if(!choice)
 		return FALSE

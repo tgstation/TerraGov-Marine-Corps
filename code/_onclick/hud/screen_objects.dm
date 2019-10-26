@@ -453,7 +453,7 @@
 	return TRUE
 
 /obj/screen/zone_sel/proc/update_screen(selecting_choice)
-	selecting = choice
+	selecting = selecting_choice
 	update_icon()
 
 /obj/screen/zone_sel/update_icon()

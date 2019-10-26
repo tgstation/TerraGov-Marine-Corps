@@ -124,7 +124,7 @@
 	rest_icon.update_icon(owner)
 	static_inventory += rest_icon
 
-	zone_sel = new /obj/screen/zone_sel()
+	zone_sel = new
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha

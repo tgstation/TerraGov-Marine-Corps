@@ -4,7 +4,7 @@
 	var/atom/movable/vis_obj/action/inactive_icon
 
 
-/datum/action/toggle_action/New(action_name, active_icon, inactive_icon)
+/datum/action/toggle_action/New(Target, action_name, active_icon, inactive_icon)
 	. = ..()
 	name = action_name
 	button.overlays.Cut()

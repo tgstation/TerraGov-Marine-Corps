@@ -32,7 +32,7 @@
 	var/obj/screen/toggle_firemode
 	var/obj/screen/unique_action
 
-	var/obj/screen/zone_sel
+	var/obj/screen/zone_sel/zone_sel
 	var/obj/screen/pull_icon
 	var/obj/screen/throw_icon
 	var/obj/screen/rest_icon

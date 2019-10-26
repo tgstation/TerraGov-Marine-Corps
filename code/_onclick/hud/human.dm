@@ -209,7 +209,7 @@
 	unique_action = new /obj/screen/firearms/unique()
 	static_inventory += unique_action
 
-	zone_sel = new /obj/screen/zone_sel()
+	zone_sel = new
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha
