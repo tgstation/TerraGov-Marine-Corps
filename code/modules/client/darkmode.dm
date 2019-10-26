@@ -31,6 +31,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	//Buttons
 	winset(src, "changelog", "background-color = #494949;background-color = none")
 	winset(src, "changelog", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "discord", "background-color = #492020;background-color = none")
+	winset(src, "discord", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "rules", "background-color = #494949;background-color = none")
 	winset(src, "rules", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "wiki", "background-color = #494949;background-color = none")
@@ -39,8 +41,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "forum", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "github", "background-color = #3a3a3a;background-color = none")
 	winset(src, "github", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
-	winset(src, "report-issue", "background-color = #492020;background-color = none")
-	winset(src, "report-issue", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "webmap", "background-color = #3a3a3a;background-color = none")
+	winset(src, "webmap", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	//Status and verb tabs
 	winset(src, "output", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
 	winset(src, "output", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
@@ -81,6 +83,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	//Buttons
 	winset(src, "changelog", "background-color = none;background-color = #494949")
 	winset(src, "changelog", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "discord", "background-color = none;background-color = #494949")
+	winset(src, "discord", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "rules", "background-color = none;background-color = #494949")
 	winset(src, "rules", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "wiki", "background-color = none;background-color = #494949")
@@ -89,8 +93,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "forum", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "github", "background-color = none;background-color = #3a3a3a")
 	winset(src, "github", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
-	winset(src, "report-issue", "background-color = none;background-color = #492020")
-	winset(src, "report-issue", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "webmap", "background-color = none;background-color = #3a3a3a")
+	winset(src, "webmap", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	//Status and verb tabs
 	winset(src, "output", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
 	winset(src, "output", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
@@ -115,4 +119,3 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "asset_cache_browser", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "tooltip", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
 	winset(src, "tooltip", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
-	
