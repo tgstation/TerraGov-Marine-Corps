@@ -338,7 +338,7 @@
 /obj/item/storage/box/spec/sniper/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/sniper(src)
-	new /obj/item/clothing/head/helmet/marine/sniper(srr)
+	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
