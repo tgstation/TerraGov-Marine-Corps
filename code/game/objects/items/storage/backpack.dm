@@ -500,11 +500,10 @@
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
-	RegisterSignal(M, list(
-		COMSIG_HUMAN_GUN_FIRED,
-		COMSIG_HUMAN_ATTACHMENT_FIRED,
-		COMSIG_HUMAN_ITEM_THROW,
-		COMSIG_HUMAN_ITEM_ATTACK), .proc/action_taken)
+	RegisterSignal(M, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_GUN_AUTOFIRED), .proc/on_gun_firing)
+	RegisterSignal(M, COMSIG_HUMAN_ATTACHMENT_FIRED, .proc/on_gun_attachment_firing)
+	RegisterSignal(M, COMSIG_MOB_THROW, .proc/on_throw)
+	RegisterSignal(M, COMSIG_MOB_ITEM_ATTACK, .proc/on_attack)
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
@@ -554,8 +553,8 @@
 		COMSIG_HUMAN_DAMAGE_TAKEN,
 		COMSIG_HUMAN_GUN_FIRED,
 		COMSIG_HUMAN_ATTACHMENT_FIRED,
-		COMSIG_HUMAN_ITEM_THROW,
-		COMSIG_HUMAN_ITEM_ATTACK))
+		COMSIG_MOB_THROW,
+		COMSIG_MOB_ITEM_ATTACK))
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
@@ -610,7 +609,19 @@
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(datum/source, atom/target, obj/item/I, mob/living/wearer)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_gun_firing(datum/source, atom/target, obj/item/weapon/gun/firing_gun)
+	action_taken()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_gun_attachment_firing(datum/source, atom/target, obj/item/attachable/firing_attachment, obj/item/weapon/gun/master_gun)
+	action_taken()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_throw(datum/source, atom/target)
+	action_taken()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_attack(datum/source, mob/living/target, obj/item/used_item)
+	action_taken()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken()
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
