@@ -235,8 +235,6 @@
 	vendor_role = SQUAD_MARINE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("ARMOR (choose 1)", 0, null, null, null),
 							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
 							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
@@ -332,8 +330,6 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_engineer, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("ARMOR (choose 1)", 0, null, null, null),
 							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
 							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
@@ -397,8 +393,6 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_medic, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("ARMOR (choose 1)", 0, null, null, null),
 							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
 							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
@@ -466,8 +460,6 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_smartgunner, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("WEBBING (choose 1)", 0, null, null, null),
 							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
@@ -520,9 +512,7 @@
 	vendor_role = SQUAD_SPECIALIST
 	gives_webbing = FALSE
 
-	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_specialist, MARINE_CAN_BUY_UNIFORM, "white"),
+	listed_products = list(,
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -582,8 +572,6 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_squadleader, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -1048,65 +1036,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		else
 			new typepath(loc)
 	qdel(src)
-
-
-/obj/effect/essentials_set/basic
-	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE,
-						)
-
-
-/obj/effect/essentials_set/basic_smartgunner
-	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
-						)
-
-/obj/effect/essentials_set/basic_specialist
-	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
-						)
-
-/obj/effect/essentials_set/basic_squadleader
-	spawned_gear_list = list(
-						/obj/item/clothing/suit/storage/marine/leader,
-						/obj/item/clothing/head/helmet/marine/leader,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
-						)
-
-/obj/effect/essentials_set/basic_medic
-	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/corpsman,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine/corpsman,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
-						)
-
-/obj/effect/essentials_set/basic_engineer
-	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/tech,
-						/obj/item/clothing/glasses/welding,
-						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
-						)
 
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(

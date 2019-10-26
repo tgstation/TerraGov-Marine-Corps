@@ -9,12 +9,11 @@
 /datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	C.hud_set_squad()
-	C.nutrition = rand(60,250)
 	if(!C.mind?.assigned_squad)
 		return
 	var/datum/squad/S = C.mind.assigned_squad
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>.
-Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
+You will be deploying shortly, so head to your squad's prep room to get equipped."})
 
 
 //Squad Marine
@@ -41,7 +40,11 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
-
+	head = /obj/item/clothing/head/helmet/marine/standard
+	w_uniform = /obj/item/clothing/under/marine
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
 
 //Squad Engineer
 /datum/job/marine/engineer
@@ -68,6 +71,12 @@ Your squaddies will look to you when it comes to construction in the field of ba
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+	head = /obj/item/clothing/head/helmet/marine/tech
+	w_uniform = /obj/item/clothing/under/marine/engineer
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
+	glasses = /obj/item/clothing/glasses/welding
 
 
 //Squad Corpsman
@@ -95,6 +104,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/corpsman
+	head = /obj/item/clothing/head/helmet/marine/corpsman
+	w_uniform = /obj/item/clothing/under/marine/corpsman
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
+	glasses = /obj/item/clothing/glasses/hud/health
 
 
 //Squad Smartgunner
@@ -121,6 +136,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+	head = /obj/item/clothing/head/helmet/marine/standard
+	w_uniform = /obj/item/clothing/under/marine
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
 
 
 //Squad Specialist
@@ -151,6 +171,10 @@ You can serve a variety of roles, so choose carefully."})
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
+	w_uniform = /obj/item/clothing/under/marine
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
 
 
 //Squad Leader
@@ -181,6 +205,13 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+	head = /obj/item/clothing/head/helmet/marine/leader
+	w_uniform = /obj/item/clothing/under/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/leader
+	shoes = /obj/item/clothing/shoes/marine
+	l_store = /obj/item/weapon/combat_knife
+	r_store = /obj/item/storage/box/MRE
+	glasses = /obj/item/clothing/glasses/hud/health
 
 
 /datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
