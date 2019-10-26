@@ -315,8 +315,13 @@
 	src.ChangeTurf(/turf/open/space)
 	new /obj/structure/lattice( locate(src.x, src.y, src.z) )
 
+/turf/proc/ReplaceHoleWithLattice()
+	src.ChangeTurf(/turf/open/hole_lattice)
+	new /obj/structure/lattice( locate(src.x, src.y, src.z) )
 
-
+/turf/proc/ReplaceHoleWithFloor()
+	src.ChangeTurf(/turf/open/floor/plating)
+	new /obj/structure/lattice( locate(src.x, src.y, src.z) )
 
 /turf/proc/AdjacentTurfs()
 	var/L[] = new()

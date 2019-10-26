@@ -43,6 +43,7 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "black"
 
+
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
@@ -55,6 +56,65 @@
 /turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
 
+//Big Hole
+/turf/open/hole
+	name = "hole"
+	desc = "Part of the old hull has collapsed leaving a very big tripping hazard. Can be repaired with the help of an engineer."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "black"
+	density = TRUE
+
+/turf/open/hole/hole/is_weedable()
+	return FALSE
+
+/turf/open/hole/ex_act(severity) //Should make it indestructable
+	return
+
+/turf/open/hole/fire_act(exposed_temperature, exposed_volume)
+	return
+
+/turf/open/hole/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
+		if(L)
+			return
+		var/obj/item/stack/rods/R = I
+		if(!R.use(1))
+			return
+
+		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+		ReplaceHoleWithLattice()
+
+/turf/open/hole_lattice
+	name = "hole"
+	desc = "Part of the old hull has collapsed leaving a very big tripping hazard. Can be repaired with the help of an engineer."
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "black_lat"
+	density = FALSE
+
+/turf/open/hole_lattice/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
+	return
+
+/turf/open/hole_lattice/is_weedable()
+	return FALSE
+
+/turf/open/hole_lattice/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/stack/tile/plasteel))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src
+		if(L)
+			return
+		var/obj/item/stack/rods/R = I
+		if(!R.use(1))
+			return
+
+		to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+		ReplaceHoleWithFloor()
 
 //Others
 /turf/open/floor/mainship/terragov
@@ -176,7 +236,7 @@
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
-			
+
 		new /obj/item/stack/rods(src, 2)
 		ChangeTurf(/turf/open/floor)
 		var/turf/open/floor/F = src
