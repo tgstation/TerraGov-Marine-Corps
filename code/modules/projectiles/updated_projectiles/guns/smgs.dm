@@ -75,6 +75,7 @@
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
+	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.15
 	burst_amount = 2
