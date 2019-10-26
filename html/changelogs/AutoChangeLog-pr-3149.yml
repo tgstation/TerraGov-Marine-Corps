@@ -1,0 +1,8 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - balance: "Delimbs now occur based on thresholds instead of rng, see below for details"
+  - balance: "Delimbs occur when the limb has 75 or 100 brute damage occurred to it if it's a hand/foot or arm/leg respectively"
+  - balance: "When a limb is delimbed, only 25% of it's damage is transferred to it's \"parent\" (hand to arm to chest for example)"
+  - balance: "Bone breaks now only occur at 37 and 50 damage for hands/feet and arms/legs respectively"
+  - balance: "FOR XENOS: This means if you want to kill a marine as fast as possible, you target their chest, otherwise you can target a limb to disable a limb but expect a longer fight due to a decreased damage transfer upon limb dismembering"
