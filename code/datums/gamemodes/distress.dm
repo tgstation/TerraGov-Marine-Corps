@@ -539,3 +539,12 @@
 /datum/game_mode/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+/datum/game_mode/distress/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
+		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+		if(XENO_TIER_THREE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
