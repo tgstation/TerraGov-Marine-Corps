@@ -6,21 +6,18 @@
 
 /datum/component/bump_attack/Initialize()
 	. = ..()
-	if(!ismovableatom(parent))
+	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	toggle_action = new()
 	var/toggle_path
-	if(isliving(parent))
-		if(ishuman(parent))
-			bump_action_path = .proc/human_bump_action
-		else if(isxeno(parent))
-			bump_action_path = .proc/xeno_bump_action
-		else
-			bump_action_path = .proc/living_bump_action
-		toggle_path = .proc/living_activation_toggle
-		toggle_action.give_action(parent)
+	if(ishuman(parent))
+		bump_action_path = .proc/human_bump_action
+	else if(isxeno(parent))
+		bump_action_path = .proc/xeno_bump_action
 	else
-		return COMPONENT_INCOMPATIBLE
+		bump_action_path = .proc/living_bump_action
+	toggle_path = .proc/living_activation_toggle
+	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 
