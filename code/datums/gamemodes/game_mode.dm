@@ -37,6 +37,9 @@
 
 
 /datum/game_mode/proc/can_start()
+	if(!is_type_in_typecache(src.type, SSmapping.configs[GROUND_MAP].gamemodes))
+		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		return FALSE
 	if(GLOB.ready_players < required_players)
 		return FALSE
 	return TRUE

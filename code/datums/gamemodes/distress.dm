@@ -27,13 +27,14 @@
 
 /datum/game_mode/distress/can_start()
 	. = ..()
+	if(!.)
+		return
 	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_survivor()
-	return TRUE
 
 
 /datum/game_mode/distress/pre_setup()

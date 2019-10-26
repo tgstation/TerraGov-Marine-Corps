@@ -151,11 +151,12 @@
 				log_world("map_config has an invalid gamemode name!")
 				return
 			gamemodes += GLOB.gamemodes_by_name[g]
+		gamemodes = typecacheof(gamemodes)
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return
 	else
-		gamemodes = subtypesof(/datum/game_mode)
+		gamemodes = typecacheof(subtypesof(/datum/game_mode))
 
 	defaulted = FALSE
 	return TRUE
