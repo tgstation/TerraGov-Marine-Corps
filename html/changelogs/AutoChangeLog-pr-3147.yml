@@ -1,0 +1,5 @@
+author: "Isy232"
+delete-after: True
+changes: 
+  - balance: "Slowdown from weilded minigun 1 => 1.4"
+  - balance: "Burst Fire Count to 7"
