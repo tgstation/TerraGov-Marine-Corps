@@ -447,15 +447,18 @@
 	if(isobserver(user))
 		return
 
-	if(choice != selecting)
-		selecting = choice
-		update_icon(usr)
+	if(choice == selecting)
+		return TRUE
+	user.change_selected_zone(selecting)
 	return TRUE
 
-/obj/screen/zone_sel/update_icon(mob/user)
+/obj/screen/zone_sel/proc/update_screen(selecting_choice)
+	selecting = choice
+	update_icon()
+
+/obj/screen/zone_sel/update_icon()
 	cut_overlays()
 	add_overlay(mutable_appearance('icons/mob/screen/zone_sel.dmi', "[z_prefix][selecting]"))
-	user.zone_selected = selecting
 
 /obj/screen/zone_sel/alien
 	icon = 'icons/mob/screen/alien.dmi'

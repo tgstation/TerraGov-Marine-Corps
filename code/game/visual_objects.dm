@@ -32,6 +32,12 @@
 /atom/movable/vis_obj/action/bump_attack_inactive
 	icon_state = "bumpattack_off"
 
+/atom/movable/vis_obj/action/body_targeting_radial
+	icon_state = "template"
+
+/atom/movable/vis_obj/action/body_targeting_radial/active
+	icon_state = "template_on"
+
 
 /atom/movable/vis_obj/effect/muzzle_flash
 	icon = 'icons/obj/items/projectiles.dmi'

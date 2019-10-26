@@ -528,9 +528,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
 
-
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
-
 
 #define BODY_ZONE_HEAD		"head"
 #define BODY_ZONE_CHEST		"chest"
@@ -538,7 +536,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_R_ARM		"r_arm"
 #define BODY_ZONE_L_LEG		"l_leg"
 #define BODY_ZONE_R_LEG		"r_leg"
-
 
 #define BODY_ZONE_PRECISE_EYES		"eyes"
 #define BODY_ZONE_PRECISE_MOUTH		"mouth"
@@ -548,6 +545,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
+//Lacking eyes and mouth.
+GLOBAL_LIST_INIT(target_body_parts, list(
+	BODY_ZONE_HEAD,
+	BODY_ZONE_CHEST,
+	BODY_ZONE_L_ARM,
+	BODY_ZONE_R_ARM,
+	BODY_ZONE_L_LEG,
+	BODY_ZONE_R_LEG,
+	BODY_ZONE_PRECISE_GROIN,
+	BODY_ZONE_PRECISE_L_HAND,
+	BODY_ZONE_PRECISE_R_HAND,
+	BODY_ZONE_PRECISE_L_FOOT,
+	BODY_ZONE_PRECISE_R_FOOT	
+	))
 
 //Hostile simple animals
 #define AI_ON		1

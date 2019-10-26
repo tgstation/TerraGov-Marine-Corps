@@ -753,3 +753,11 @@
 
 /mob/proc/can_interact_with(datum/D)
 	return (D == src)
+
+
+/mob/proc/change_selected_zone(new_target)
+	if(new_target == zone_selected)
+		return
+	zone_selected = new_target
+	if(hud_used?.zone_sel)
+		hud_used.zone_sel.update_screen(new_target)
