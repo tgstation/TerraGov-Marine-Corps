@@ -228,8 +228,6 @@
 	mode_names = list()
 	votable_modes = list()
 	for(var/T in gamemode_cache)
-		if(!SSmapping.configs[GROUND_MAP].gamemodes[T])
-			continue
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()

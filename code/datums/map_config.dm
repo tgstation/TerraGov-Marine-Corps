@@ -145,20 +145,27 @@
 		log_world("map_config environment_traits is not a list!")
 		return
 	
+	var/list/gamemode_names = list()
+	for(var/t in subtypesof(/datum/game_mode))
+		var/datum/game_mode/G = t
+		gamemode_names += initial(G.config_tag)
+
 	if(islist(json["gamemodes"]))
 		for(var/g in json["gamemodes"])
-			if(!GLOB.gamemodes_by_name[g])
+			if(!(g in gamemode_names))
 				log_world("map_config has an invalid gamemode name!")
 				return
-			if(g == /datum/game_mode/extended)
+			if(g == "Extended") // always allow extended
 				continue
-			gamemodes += GLOB.gamemodes_by_name[g]
-		gamemodes = typecacheof(gamemodes+/datum/game_mode/extended) // always allow extended
+			gamemodes += g
+		gamemodes += "Extended"
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return
 	else
-		gamemodes = typecacheof(subtypesof(/datum/game_mode))
+		for(var/a in subtypesof(/datum/game_mode))
+			var/datum/game_mode/G = a
+			gamemodes += initial(G.config_tag)
 
 	defaulted = FALSE
 	return TRUE

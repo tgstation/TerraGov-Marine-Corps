@@ -37,7 +37,7 @@
 
 
 /datum/game_mode/proc/can_start()
-	if(!is_type_in_typecache(src.type, SSmapping.configs[GROUND_MAP].gamemodes))
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes))
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
