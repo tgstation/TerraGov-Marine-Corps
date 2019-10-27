@@ -134,6 +134,7 @@
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE)
+	SHOULD_CALL_PARENT(1)
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 
