@@ -302,7 +302,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
-	var/text = "<font color='blue'><B>\[Overwatch\]:</b> [format_message(message, sender)]</font>"
+	var/text = "<span class='notice'><B>\[Overwatch\]:</b> [format_message(message, sender)]</span>"
 	for(var/i in marines_list)
 		var/mob/living/L = i
 		message_member(L, text, sender)
@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/proc/message_leader(message, mob/living/carbon/human/sender)
 	if(!squad_leader || squad_leader.stat != CONSCIOUS || !squad_leader.client)
 		return FALSE
-	return message_member(squad_leader, "<font color='blue'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</font>", sender)
+	return message_member(squad_leader, "<span class='notice'><B>\[SL Overwatch\]:</b> [format_message(message, sender)]</span>", sender)
 
 
 /datum/squad/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
