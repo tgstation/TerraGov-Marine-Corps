@@ -512,7 +512,7 @@
 	vendor_role = SQUAD_SPECIALIST
 	gives_webbing = FALSE
 
-	listed_products = list(,
+	listed_products = list(
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
