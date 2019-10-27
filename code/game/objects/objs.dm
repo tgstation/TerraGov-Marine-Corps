@@ -158,9 +158,9 @@
 			"<span class='notice'>You hear metal clanking.</span>"
 			)
 
-	var/buckled_mob_backup = buckled_mob
+	var/mob/buckled_mob_backup = buckled_mob
 	buckled_mob = null
-	RemoveElement(/datum/element/newton)
+	buckled_mob_backup.RemoveElement(/datum/element/newton)
 	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
 	afterbuckle(buckled_mob_backup)
 
@@ -211,7 +211,7 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
-	AddElement(/datum/element/newton)
+	M.AddElement(/datum/element/newton)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 

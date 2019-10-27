@@ -161,7 +161,7 @@
 	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
 
 // /obj/item/weapon/gun signals
-#define COMSIG_GUN_FIRE "gun_fire"
+#define COMSIG_GUN_FIRE "gun_fire"								//:() (target, user)
 	#define COMPONENT_GUN_FIRED 1
 #define COMSIG_GUN_AUTOFIRE "gun_autofire"
 #define COMSIG_GUN_CLICKEMPTY "gun_clickempty"
