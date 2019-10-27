@@ -139,6 +139,7 @@
 
 
 /obj/proc/unbuckle(mob/user, silent = TRUE)
+	SHOULD_CALL_PARENT(1)
 	buckled_mob.buckled = null
 	buckled_mob.anchored = initial(buckled_mob.anchored)
 	buckled_mob.update_canmove()
@@ -159,6 +160,7 @@
 
 	var/buckled_mob_backup = buckled_mob
 	buckled_mob = null
+	RemoveElement(/datum/element/newton)
 	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
 	afterbuckle(buckled_mob_backup)
 
@@ -201,6 +203,7 @@
 
 //the actual buckling proc
 /obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
+	SHOULD_CALL_PARENT(1)
 	if(!silent)
 		send_buckling_message(M, user)
 	M.buckled = src
@@ -208,6 +211,7 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	AddElement(/datum/element/newton)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 

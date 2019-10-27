@@ -747,42 +747,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
 
-	var/direction = get_dir(user,target)
+	SEND_SIGNAL(user, COMSIG_MOB_EXTINGUISHER_USE, target, 4)
 
-	if(user.buckled && isobj(user.buckled) && !user.buckled.anchored )
-		spawn(0)
-			var/obj/structure/bed/chair/C = null
-			if(istype(user.buckled, /obj/structure/bed/chair))
-				C = user.buckled
-			var/obj/B = user.buckled
-			var/movementdirection = turn(direction,180)
-			if(C)
-				C.propelled = 4
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 3
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(1)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 2
-			sleep(2)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 1
-			sleep(2)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			if(C)
-				C.propelled = 0
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
-			sleep(3)
-			B.Move(get_step(user,movementdirection), movementdirection)
+	var/direction = get_dir(user,target)
 
 	var/turf/T = get_turf(target)
 	var/turf/T1 = get_step(T,turn(direction, 90))
