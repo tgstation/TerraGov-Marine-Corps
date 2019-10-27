@@ -110,7 +110,7 @@
 /mob/living/carbon/xenomorph/Stat()
 	. = ..()
 
-	if(!statpanel("Stats"))
+	if(!statpanel("Game"))
 		return
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))

@@ -47,6 +47,6 @@
 /mob/living/carbon/xenomorph/carrier/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
 		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
