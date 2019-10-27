@@ -132,12 +132,6 @@
 	max_storage_space = 8 // Rifle, stock, extended barrel, grip/bipod.
 	max_w_class = 3 //Can fit larger items
 
-/obj/item/clothing/suit/storage/marine/M3E
-	name = "\improper M3-E pattern marine armor"
-	desc = "A standard Marine M3 Edge Pattern Chestplate. High protection against cuts and slashes, but very little padding against bullets or explosions."
-	icon_state = "5"
-	armor = list("melee" = 70, "bullet" = 20, "laser" = 35, "energy" = 20, "bomb" = 15, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
-
 /obj/item/clothing/suit/storage/marine/M3P
 	name = "\improper M3-P pattern marine armor"
 	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
