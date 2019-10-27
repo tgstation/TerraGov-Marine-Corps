@@ -25,7 +25,6 @@
 	icon_state = "m43_e"
 	maxcharge = 1600
 
-
 /obj/item/cell/lasgun/M43/Initialize()
 	. = ..()
 	update_icon()
