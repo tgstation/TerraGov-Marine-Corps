@@ -25,7 +25,6 @@
 	icon_state = "m43_e"
 	maxcharge = 1600
 
-
 /obj/item/cell/lasgun/M43/Initialize()
 	. = ..()
 	update_icon()
@@ -34,16 +33,24 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
-/obj/item/cell/lasgun/update_icon()
-	return FALSE
-
 /obj/item/cell/lasgun/pulse
 	name = "\improper M19C4 pulse battery"
-	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle; Uses pulse-based energy rather than laser energy, massively increasing its firepower. It can also recharge on its own."
-	base_ammo_icon = "m43"
-	icon_state = "m43"
+	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle system; Uses pulse-based energy rather than laser energy, massively increasing its firepower. It can also recharge on its own."
+	base_ammo_icon = "pulse"
+	icon_state = "pulse"
 	gun_type = /obj/item/weapon/gun/energy/lasgun/pulse
 	maxcharge = 2000 // 100 shots.
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
+
+/obj/item/cell/lasgun/pulse/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/cell/lasgun/pulse/update_icon()
+	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
+	icon_state = "[base_ammo_icon]_[remaining]"
+
+/obj/item/cell/lasgun/update_icon()
+	return FALSE
