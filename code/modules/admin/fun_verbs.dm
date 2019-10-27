@@ -76,7 +76,7 @@
 	if(!SSticker)
 		return
 
-	check_hive_status()
+	check_hive_status(usr)
 
 	log_admin("[key_name(usr)] checked the hive status.")
 

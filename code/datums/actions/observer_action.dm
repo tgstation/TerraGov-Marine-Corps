@@ -28,4 +28,4 @@
 /datum/action/observer_action/show_hivestatus/action_activate()
 	if(!can_use_action())
 		return FALSE
-	check_hive_status()
+	check_hive_status(usr)

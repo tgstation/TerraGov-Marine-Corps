@@ -734,7 +734,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Show Hive Status"
 	set desc = "Check the status of the hive."
 
-	check_hive_status()
+	check_hive_status(usr)
 
 
 /mob/dead/observer/verb/view_manifest()
