@@ -98,6 +98,9 @@ a.popt {text-decoration: none;}
 .headminasay			{color: #5A0A7F;	font-weight: bold;}
 .boldannounce			{color: #ff0000;	font-weight: bold;}
 
+.staffpmout				{color: red;	font-weight: bold;}
+.staffpmin				{color: blue;	font-weight: bold;}
+
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
 

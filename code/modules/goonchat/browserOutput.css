@@ -243,10 +243,13 @@ a.popt {text-decoration: none;}
 .adminmsay				{color: #84664a;	font-weight: bold;}
 .headminmsay			{color: #665442;	font-weight: bold;}
 
-.admin					{color: #3d5bc3;	font-weight: bold;}
+.admin					{color: #ff0000;	font-weight: bold;}
 .asay					{color: #ab40dc;	font-weight: bold;}
 .headminasay			{color: #7a3a98;	font-weight: bold;}
 .boldannounce			{color: #c51e1e;	font-weight: bold;}
+
+.staffpmin				{color: #f0134d;	font-weight: bold;}
+.staffpmout				{color: #3e64ff;	font-weight: bold;}
 
 .adminnotice			{color: #3d5bc3;}
 .adminhelp              {color: #c51e1e;    font-weight: bold;}
@@ -254,10 +257,10 @@ a.popt {text-decoration: none;}
 .name					{					font-weight: bold;}
 
 .say					{color: #a4bad6;}
-.deadsay				{color: #7c32eb;}
+.deadsay				{color: #646695;}
 .radio					{color: #CE9178;}
 .deptradio				{color: #993399;}
-.comradio				{color: #3d5bc3;}
+.comradio				{color: #007acc;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #2b677e;}
 .airadio				{color: #811981;}
@@ -296,16 +299,16 @@ h1.alert, h2.alert		{color: #99aab5;}
 .info					{color: #3d5bc3;}
 .debuginfo				{color: #493D26;	font-style: italic;}
 .notice					{color: #3d5bc3;}
-.xenonotice				{color: #059223;}
+.xenonotice				{color: #b5cea8;}
 .boldnotice				{color: #3d5bc3;	font-weight: bold;}
-.warning				{color: #c51e1e;	font-style: italic;}
-.xenowarning			{color: #059223;	font-style: italic;}
-.danger					{color: #c51e1e;	font-weight: bold;}
-.xenodanger				{color: #059223;	font-weight: bold;}
+.warning				{color: #ce9178;	font-style: italic;}
+.xenowarning			{color: #6A9955;	font-style: italic;}
+.danger					{color: #d16969;	font-weight: bold;}
+.xenodanger				{color: #16825D;	font-weight: bold;}
 .avoidharm				{color:	#72a0e5;	font-weight: bold;}
-.highdanger				{color: #ff0000;	font-weight: bold; font-size: 1.5em;}
+.highdanger				{color: #f44747;	font-weight: bold; font-size: 1.5em;}
 .xenohighdanger			{color: #6a9955; 	font-weight: bold; font-size: 1.5em;}
-.xenoannounce           {color: #16825d;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
+.xenoannounce           {color: #4EC9B0;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 .hivemind				{color: #c586c0;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
