@@ -205,7 +205,7 @@
 			var/mob/living/carbon/human/H = usr
 			new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
 			new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
-			if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+			if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 				new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
