@@ -374,14 +374,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smg_empty"
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 30
+	damage = 23
 	accurate_range = 5
 	damage_falloff = 1
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 20
+	damage = 15
 	penetration = 40
 
 /datum/ammo/bullet/smg/ppsh
