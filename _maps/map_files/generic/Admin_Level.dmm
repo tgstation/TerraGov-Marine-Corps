@@ -616,22 +616,14 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "bX" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/rifle/lmg,
-/obj/item/ammo_magazine/lmg,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/structure/closet/secure_closet/guncabinet/lmg,
 /turf/open/floor/mainship{
 	dir = 9;
 	icon_state = "red"
 	},
 /area/centcom)
 "bY" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/launcher/rocket/m57a4,
-/obj/item/weapon/gun/launcher/rocket/m57a4,
-/obj/item/ammo_magazine/rocket/m57a4,
-/obj/item/ammo_magazine/rocket/m57a4,
+/obj/structure/closet/secure_closet/guncabinet/m57a4,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "red"
@@ -662,25 +654,14 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "cc" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/storage/box/nade_box/HIDP,
-/obj/item/storage/box/nade_box/M15,
-/obj/item/storage/box/nade_box/impact,
-/obj/item/storage/box/explosive_mines,
+/obj/structure/closet/secure_closet/guncabinet/explosives,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "red"
 	},
 /area/centcom)
 "cd" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/storage/box/spec/demolitionist,
-/obj/item/storage/box/spec/heavy_grenadier,
-/obj/item/storage/box/spec/heavy_gunner,
-/obj/item/storage/box/spec/pyro,
-/obj/item/storage/box/spec/scout,
-/obj/item/storage/box/spec/scoutshotgun,
-/obj/item/storage/box/spec/sniper,
+/obj/structure/closet/secure_closet/guncabinet/spec_boxes,
 /turf/open/floor/mainship{
 	dir = 5;
 	icon_state = "red"

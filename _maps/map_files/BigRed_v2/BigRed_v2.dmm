@@ -23468,8 +23468,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzJ" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/structure/closet/secure_closet/guncabinet/nt_lab,
 /turf/open/floor/tile/red/full,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzL" = (

@@ -4794,11 +4794,7 @@
 	},
 /area/icy_caves/caves/OOB)
 "qh" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
+/obj/structure/closet/secure_closet/guncabinet/highpower,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qi" = (
