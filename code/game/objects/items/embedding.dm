@@ -9,7 +9,7 @@
 	unembed_ourself()
 
 
-/obj/item/proc/unembed_ourself()
+/obj/item/proc/unembed_ourself(delete_self)
 	if(!embedded_into)
 		UnregisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED))
 		CRASH("unembed_ourself called with no embedded_into")
@@ -18,6 +18,9 @@
 	UnregisterSignal(embedded_into, COMSIG_MOVABLE_MOVED)
 	embedded_into = null
 	if(!QDELETED(src))
+		if(delete_self)
+			qdel(src)
+			return
 		forceMove(get_turf(loc))
 
 
