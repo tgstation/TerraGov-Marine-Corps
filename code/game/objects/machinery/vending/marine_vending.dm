@@ -690,7 +690,6 @@
 					/obj/item/clothing/suit/storage/marine = 10,
 					/obj/item/clothing/suit/storage/marine/M3HB = 10,
 					/obj/item/clothing/suit/storage/marine/M3LB = 10,
-					/obj/item/clothing/suit/storage/marine/M3P = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/M3E = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,

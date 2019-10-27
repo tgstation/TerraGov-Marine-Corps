@@ -138,21 +138,6 @@
 	icon_state = "5"
 	armor = list("melee" = 70, "bullet" = 20, "laser" = 35, "energy" = 20, "bomb" = 15, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/suit/storage/marine/M3P
-	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
-	icon_state = "6"
-	armor = list("melee" = 30, "bullet" = 70, "laser" = 45, "energy" = 30, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 45)
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET
-
-/obj/item/clothing/suit/storage/marine/M3P/tanker
-	name = "\improper M3 pattern tanker armor"
-	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
-	icon_state = "tanker"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
-
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."

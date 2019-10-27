@@ -196,7 +196,7 @@ You could use MTs help to repair and replace hardpoints."})
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/tanker
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker
+	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/helmet/marine/tanker
