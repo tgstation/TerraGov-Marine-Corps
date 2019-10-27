@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - rscadd: "you can now set traits for maps via json instead of them being hardcoded"
