@@ -42,15 +42,17 @@
 		return
 
 	var/output = "<div align='center'>"
+	output += "<i>You are part of the TerraGov Marine Corps, a military branch of the TerraGov council. Their mission is to enforce space law for the purpose of defending Earth's orbit as well as other solar colonies around the galaxy under the conflict of the Independent Colonial Confederation and intelligent Xenomorph aliens. \nThe TGMC is composed of willing men and woman all across TerraGov systems, from all races and quirks. \nAs the vessel approaches to the ordered location on the map, the cryostasis pods deactivate and awake you from your long-term stasis. Knowing that it's one of those days again, you hope that you'll make this out alive...</i>"
+	output +="<hr>"
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
+
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 	else
 		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
 		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
-
-	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
 	if(!IsGuestKey(key))
 		if(SSdbcore.Connect())
@@ -73,7 +75,7 @@
 
 	output += "</div>"
 
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Welcome to TGMC - [SSmapping.configs[SHIP_MAP].map_name]</div>", 560, 330, src)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(FALSE)
