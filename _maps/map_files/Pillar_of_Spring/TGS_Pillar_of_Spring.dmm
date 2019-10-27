@@ -2023,6 +2023,9 @@
 /area/mainship/medical/lower_medical)
 "hq" = (
 /obj/machinery/computer/med_data,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2086,9 +2089,6 @@
 /area/mainship/medical/operating_room_one)
 "hv" = (
 /obj/machinery/computer/crew,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2795,6 +2795,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"jp" = (
+/obj/machinery/door_display/research_cell/cell{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "jq" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -4492,7 +4500,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "nS" = (
-/obj/machinery/door/poddoor/shutters/mainship/containment{
+/obj/machinery/door/poddoor/shutters/mainship/cell{
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/cell,
@@ -5144,12 +5152,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/mainship/medical/medical_science)
-"pE" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 3"
-	},
-/turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "pF" = (
 /turf/open/floor/mainship/mono,
@@ -43142,7 +43144,7 @@ iz
 iV
 iV
 iV
-iL
+jp
 nD
 XD
 uM
@@ -43654,7 +43656,7 @@ id
 nD
 nD
 hP
-pE
+nD
 nD
 pC
 nD

@@ -9349,15 +9349,9 @@
 	},
 /area/mainship/medical/medical_science)
 "avx" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	id = "Containment Cell 3";
-	locked = 1;
-	name = "\improper Containment Cell 3"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "Containment Cell 3";
-	name = "\improper Containment Cell 3"
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10626,9 +10620,8 @@
 	},
 /area/mainship/medical/medical_science)
 "ayu" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 3";
-	pixel_x = 32
+/obj/machinery/door_display/research_cell/cell/cell1{
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -12631,9 +12624,8 @@
 	},
 /area/mainship/medical/medical_science)
 "aCc" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 4";
-	pixel_x = 32
+/obj/machinery/door_display/research_cell/cell/cell2{
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -14114,16 +14106,8 @@
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "aEY" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	id = "Containment Cell 4";
-	locked = 1;
-	name = "\improper Containment Cell 4"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "Containment Cell 4";
-	name = "\improper Containment Cell 4"
-	},
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell2,
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell2,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
