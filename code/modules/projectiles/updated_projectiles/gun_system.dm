@@ -950,6 +950,8 @@ and you're good to go.
 			projectile_to_fire.def_zone = user.zone_selected
 			if(C.stagger)
 				gun_scatter += 30
+		if(user.get_item_by_slot(SLOT_HEAD))
+			gun_accuracy_mult += user.get_item_by_slot(SLOT_HEAD).accuracy_mod
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
