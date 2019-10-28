@@ -6,14 +6,15 @@
 	icon_state = "x6" //Pure white 'X' with blue borders
 	var/datum/ai_node/datumnode = new/datum/ai_node() //Stores things about the AI node
 	var/turf/srcturf //The turf this is on
+	anchored = TRUE //No pulling those nodes yo
 	alpha = 255
 
 /obj/effect/AINode/Initialize() //Add ourselve to the global list of nodes
 	. = ..()
 	srcturf = loc
 	datumnode.parentnode = src
-	for(var/diagonal in GLOB.diagonals)
-		datumnode.add_construction(new/datum/construction_marker/xeno/weed_node(get_step(loc, diagonal), datumnode))
+	//for(var/diagonal in GLOB.diagonals)
+	//	datumnode.add_construction(new/datum/construction_marker/xeno/weed_node(get_step(loc, diagonal), datumnode))
 	//for(var/cardinal in GLOB.cardinals)
 	//	datumnode.add_construction(new/datum/construction_marker/xeno/sticky_resin(get_step(loc, cardinal), datumnode))
 	//datumnode.add_construction(new/datum/construction_marker/xeno/weed_node(loc, datumnode))
@@ -34,19 +35,8 @@
 			datumnode.adjacent_nodes += node
 
 /obj/effect/AINode/proc/add_to_notable_nodes(weight)
-	switch(weight)
-		if(ENEMY_PRESENCE)
-			if(src in GLOB.nodes_with_enemies)
-				return
-			GLOB.nodes_with_enemies += src
-			color = "#FFA500" //Orange: got some enemies here
 
 /obj/effect/AINode/proc/remove_from_notable_nodes(weight)
-	switch(weight)
-		if(ENEMY_PRESENCE)
-			GLOB.nodes_with_enemies -= src
-			datumnode.set_weight(ENEMY_PRESENCE, 0)
-			color = initial(color) //Nothing; just a regular node
 
 /obj/effect/AINode/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 

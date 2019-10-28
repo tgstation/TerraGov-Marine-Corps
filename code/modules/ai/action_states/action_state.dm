@@ -1,3 +1,4 @@
+
 /datum/action_state
 	var/datum/component/ai_behavior/parent_ai
 
@@ -11,14 +12,13 @@
 
 /datum/action_state/proc/Process()
 
-/datum/action_state/proc/CanComplete() //If we can complete the task
-
-/datum/action_state/proc/OnComplete(reason) //What we do once completing the the task, also inform the parent ai we finished it
+/datum/action_state/proc/Complete(reason) //What we do once completing the the task, also inform the parent ai we finished it
 	qdel(src)
 	return reason
 
 /datum/action_state/proc/GetTargetDir(smart_pathfind) //This supplements the direction we will be walking in for pathfinding
 
+/*
 /datum/action_state/random_move //We randomly move to a randomly picked node using simplistic node pathfinding VIA get_dir(start, end)
 	var/obj/effect/AINode/next_node //The node we're going to for going to the destination, this is what we walk to
 	var/list/weights //Want to make the random moving account for weights? here ya go then
@@ -51,7 +51,8 @@
 /datum/action_state/random_move/CanComplete()
 	var/mob/living/parent2 = parent_ai.parent
 	return get_dist(parent2, next_node) < 2 ? TRUE : FALSE
-
+*/
+/*
 /datum/action_state/random_move/scout //The scouting version, we look for humans nearby and do things if we find em
 
 /datum/action_state/random_move/scout/node_reached()
@@ -186,3 +187,4 @@
 	else
 		parent_ai.action_completed(NO_ENEMIES_FOUND)
 		..()
+*/

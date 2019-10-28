@@ -14,7 +14,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
-	var/faction = NO_FACTION
+	var/datum/mind/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
 
 /datum/component/ai_behavior/Initialize()
 	if(!ismovableatom(parent))
@@ -51,11 +51,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	return TRUE
 
 /datum/component/ai_behavior/proc/action_completed(reason) //Action state was completed, let's replace it with something else
-	switch(reason)
-		if(FINISHED_MOVE)
-			action_state = new/datum/action_state/random_move(src)
-
-/datum/component/ai_behavior/proc/HandleObstruction() //If HandleMovement fails, do some HandleObstruction()
+	mind.action_completed(reason)
 
 //Tile by tile movement electro boogaloo
 /datum/component/ai_behavior/proc/ProcessMove()
@@ -72,11 +68,9 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	totalmovedelay += parent2.movement_delay()
 
 	var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
-	//var/turf/directiontomove = get_dir(parentmob, get_step_towards(parentmob, atomtowalkto)) //We cache the direction so we can adjust move delay on things like diagonal move alongside other things
 	var/dumb_direction = action_state.GetTargetDir(TRUE)
-	if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck
-		HandleObstruction()
-		return 2
+	if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
+		return 5 //Attempts a move in 0.5 seconds
 
 	if(dumb_direction in GLOB.diagonals)
 		doubledelay = TRUE
