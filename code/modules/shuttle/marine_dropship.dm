@@ -423,6 +423,53 @@
 	data["hijack_state"] = shuttle.hijack_state
 	data["ship_status"] = shuttle.getStatusText()
 
+	var/locked = 0
+	var/reardoor = 0
+	for(var/i in shuttle.rear_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			reardoor++
+	if(!reardoor)
+		data["rear"] = 0
+	else if(reardoor==length(shuttle.rear_airlocks))
+		data["rear"] = 2
+		locked++
+	else
+		data["rear"] = 1
+	
+	var/leftdoor = 0
+	for(var/i in shuttle.left_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			leftdoor++
+	if(!leftdoor)
+		data["left"] = 0
+	else if(leftdoor==length(shuttle.left_airlocks))
+		data["left"] = 2
+		locked++
+	else
+		data["left"] = 1
+
+	var/rightdoor = 0
+	for(var/i in shuttle.right_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			rightdoor++
+	if(!rightdoor)
+		data["right"] = 0
+	else if(rightdoor==length(shuttle.right_airlocks))
+		data["right"] = 2
+		locked++
+	else
+		data["right"] = 1
+
+	if(locked == 3)
+		data["lockdown"] = 2
+	else if(!locked)
+		data["lockdown"] = 0
+	else
+		data["lockdown"] = 1
+
 	var/list/options = params2list(possible_destinations)
 	var/list/valid_destionations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
