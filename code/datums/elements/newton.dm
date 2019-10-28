@@ -51,4 +51,4 @@
 			return
 
 	repetition++
-	addtimer(CALLBACK(src, .proc/move_chair, B, movementdirection, repetition), timer_seconds, TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/move_chair, B, movementdirection, repetition), timer_seconds, TIMER_OVERRIDE|TIMER_UNIQUE)
