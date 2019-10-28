@@ -501,16 +501,16 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
-/turf/proc/check_alien_construction(mob/living/L, silent = FALSE)
+/turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
 		if(istype(O, /obj/item/clothing/mask/facehugger))
 			if(!silent)
-				to_chat(L, "<span class='warning'>There is a little one here already. Best move it.</span>")
+				to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")
 			return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				to_chat(L, "<span class='warning'>There's already an egg.</span>")
+				to_chat(builder, "<span class='warning'>There's already an egg.</span>")
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -534,13 +534,13 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 
 	if(density || has_obstacle)
 		if(!silent)
-			to_chat(L, "<span class='warning'>There's something built here already.</span>")
+			to_chat(builder, "<span class='warning'>There's something built here already.</span>")
 		return FALSE
 	return TRUE
 
-/turf/closed/check_alien_construction(mob/living/L, silent = FALSE)
+/turf/closed/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(!silent)
-		to_chat(L, "<span class='warning'>There's something built here already.</span>")
+		to_chat(builder, "<span class='warning'>There's something built here already.</span>")
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()

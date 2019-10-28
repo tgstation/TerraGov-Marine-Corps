@@ -8,6 +8,13 @@
 	icon = 'icons/turf/mainship.dmi'
 	icon_state = "default"
 
+/turf/open/floor/mainship/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+	if(planned_building == /turf/closed/wall/resin) //The Canterbury moves and will leave a hole in space if there's a resin wall.
+		if(!silent)
+			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
+		return FALSE
+	return TRUE
+
 /turf/open/floor/mainship/mono
 	icon_state = "mono"
 	icon_regular_floor = "mono"

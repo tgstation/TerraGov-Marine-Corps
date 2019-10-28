@@ -121,6 +121,15 @@
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
 
+
+/turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
+	if(planned_building == /turf/closed/wall/resin)
+		if(!silent)
+			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
+		return FALSE
+	return TRUE
+
+
 /turf/open/shuttle/dropship
 	name = "floor"
 	icon_state = "rasputin1"
