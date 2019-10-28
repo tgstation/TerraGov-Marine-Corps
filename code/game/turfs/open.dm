@@ -141,11 +141,11 @@ var/list/nofall = typecacheof(list(
 		X.emote(pick("needhelp1", "roar4", "roar5"))
 		X.stun(4)
 	visible_message("<span class='warning'>[AM] falls down into the ocean!</span>")
-	sleep(10)
+	addtimer(CALLBACK(src, .proc/splash, AM), 10)
+
+/turf/open/opensea/proc/splash(AM)
 	playsound(AM, 'sound/effects/splash.ogg', 25, 1)
 	qdel(AM)
-
-
 
 //Nostromo turfs
 

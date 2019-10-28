@@ -3,6 +3,10 @@
 	name = "Fiorina Orbital Penitentiary"
 	ceiling = CEILING_GLASS
 
+/area/prison/ocean
+	name = "\improper Ocean"
+	ceiling = CEILING_NONE
+
 //SECURITY
 /area/prison/security
 	name = "\improper Security Department"

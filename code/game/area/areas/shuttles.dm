@@ -165,4 +165,3 @@
 
 /area/shuttle/monorail
 	name = "Monorail Train"
-	ambience = list('sound/ambience/monorail_music.ogg')
