@@ -3,18 +3,27 @@
 	if(!ismob(target))
 		return ELEMENT_INCOMPATIBLE
 
+	RegisterSignal(target, COMSIG_HUMAN_ITEM_THROW, .proc/throw_item)
 	RegisterSignal(target, COMSIG_MOB_EXTINGUISHER_USE, .proc/exinguish)
 	RegisterSignal(target, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_GUN_AUTOFIRED), .proc/fire_gun)
 
 /datum/element/newton/Detach(datum/target, force)
 	. = ..()
-	UnregisterSignal(target, COMSIG_MOB_EXTINGUISHER_USE)
-	UnregisterSignal(target, list(COMSIG_HUMAN_GUN_FIRED, COMSIG_HUMAN_GUN_AUTOFIRED))
+	UnregisterSignal(target, list(
+		COMSIG_MOB_EXTINGUISHER_USE, 
+		COMSIG_HUMAN_ITEM_THROW, 
+		COMSIG_HUMAN_GUN_FIRED, 
+		COMSIG_HUMAN_GUN_AUTOFIRED))
 
 /datum/element/newton/proc/exinguish(datum/source, atom/target_atom, force)
 	var/mob/M = source
 
 	propel(M, get_dir(M, target_atom), force)
+
+/datum/element/newton/proc/throw_item(datum/source, atom/target)
+	var/mob/M = source
+
+	propel(M, get_dir(M, target), 0)
 
 /datum/element/newton/proc/fire_gun(datum/source, atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	propel(user, get_dir(user, target), 0)
