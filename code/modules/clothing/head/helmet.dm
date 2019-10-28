@@ -281,7 +281,7 @@
 	name = "\improper M10H pattern marine helmet"
 	desc = "A standard M10H Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon_state = "heavyhelmet"
-	armor = list("melee" = 85, "bullet" = 80, "laser" = 50, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 75, "bullet" = 70, "laser" = 50, "energy" = 20, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 45)
 	accuracy_mod = -0.10
 
 /obj/item/clothing/head/helmet/marine/leader
