@@ -27,13 +27,14 @@
 
 /datum/game_mode/distress/can_start()
 	. = ..()
+	if(!.)
+		return
 	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_survivor()
-	return TRUE
 
 
 /datum/game_mode/distress/pre_setup()
@@ -314,6 +315,9 @@
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -371,6 +375,7 @@
 						/obj/item/weapon/gun/smg/m39 = round(scale * 15),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
+						/obj/item/weapon/gun/rifle/sx16 = round(scale * 10),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -409,6 +414,7 @@
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/rifle/sx16 = round(scale * 15),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
@@ -418,6 +424,9 @@
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
 						/obj/item/cell/lasgun/M43 = round(scale * 25),
 
 						/obj/item/weapon/combat_knife = round(scale * 30),

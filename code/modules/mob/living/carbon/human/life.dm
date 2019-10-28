@@ -7,7 +7,7 @@
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	if(!in_stasis)
+	if(!HAS_TRAIT(src, TRAIT_STASIS))
 		if(stat != DEAD)
 
 			// Increase germ_level regularly

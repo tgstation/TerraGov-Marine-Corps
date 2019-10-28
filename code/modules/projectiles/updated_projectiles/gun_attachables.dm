@@ -425,7 +425,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/focuslens
 	name = "M43 focused lens"
-	desc = "Allows the lasgun to use the deadly focused bolts on overcharge."
+	desc = "Directs the beam into one specialized lens, allowing the lasgun to use the deadly focused bolts on overcharge, making it more like a high damaged sniper.."
 	slot = "muzzle"
 	icon_state = "focus"
 	attach_icon = "focus_a"
@@ -436,7 +436,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/widelens
 	name = "M43 wide lens"
-	desc = "Allows the lasgun to use the deadly wide range blast on overcharge."
+	desc = "Splits the lens into three, allowing the lasgun to use the deadly wide range blast on overcharge akin to a traditional ballistic shotgun."
 	slot = "muzzle"
 	icon_state = "wide"
 	attach_icon = "wide_a"
@@ -447,7 +447,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/efflens
 	name = "M43 efficient lens"
-	desc = "Allows the lasgun to use its energy much more efficiently."
+	desc = "Makes the lens smaller and lighter to use, allowing the lasgun to use its energy much more efficiently. \nDecreases energy output of the lasgun."
 	slot = "muzzle"
 	icon_state = "efficient"
 	attach_icon = "efficient_a"
@@ -455,9 +455,16 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 14
 	charge_mod = -5
 
+/obj/item/attachable/sx16barrel
+	name = "SX-16 barrel"
+	desc = "The standard barrel on the SX-16. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "sx16barrel"
+	flags_attach_features = NONE
+
 /obj/item/attachable/pulselens
 	name = "M43 pulse lens"
-	desc = "Allows the lasgun to shoot much quicker."
+	desc = "Agitates the lens, allowing the lasgun to discharge at a rapid rate. \nAllows the weapon to be fired automatically."
 	slot = "muzzle"
 	icon_state = "pulse"
 	attach_icon = "pulse_a"
@@ -766,6 +773,17 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "smgstock_a"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
+	accuracy_mod = 0.15
+	recoil_mod = -3
+	scatter_mod = -20
+	movement_acc_penalty_mod = 0.1
+
+/obj/item/attachable/stock/sx16
+	name = "SX-16 Stock"
+	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."
+	icon_state = "sx16stock"
+	wield_delay_mod = 0.4 SECONDS
+	size_mod = 1
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20

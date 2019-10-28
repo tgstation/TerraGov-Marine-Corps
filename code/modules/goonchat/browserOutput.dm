@@ -83,6 +83,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if("setMusicVolume")
 			data = setMusicVolume(arglist(params))
 
+		if("swaptodarkmode")
+			swaptodarkmode()
+
+		if("swaptolightmode")
+			swaptolightmode()
+
 	if(data)
 		ehjax_send(data = data)
 
@@ -166,7 +172,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 			if(length(found))
 				log_admin_private("[key_name(owner)] has a cookie from a banned account (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
-				message_admins("<font color='red'><b>Notice: </b></font><font color='blue'>[ADMIN_TPMONTY(owner.mob)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])</font>")
+				message_admins("<font color='red'><b>Notice: </b></font><span class='notice'>[ADMIN_TPMONTY(owner.mob)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])</font>")
 
 	cookieSent = TRUE
 
@@ -277,3 +283,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		to_chat_immediate(target, message, handle_whitespace)
 		return
 	SSchat.queue(target, message, handle_whitespace)
+
+/datum/chatOutput/proc/swaptolightmode()
+	owner.force_white_theme()
+
+/datum/chatOutput/proc/swaptodarkmode()
+	owner.force_dark_theme()

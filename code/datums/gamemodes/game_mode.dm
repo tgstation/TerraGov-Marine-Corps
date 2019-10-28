@@ -37,6 +37,11 @@
 
 
 /datum/game_mode/proc/can_start()
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes))
+		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		// start a gamemode vote, in theory this should never happen.
+		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
+		return FALSE
 	if(GLOB.ready_players < required_players)
 		return FALSE
 	return TRUE
@@ -537,7 +542,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)

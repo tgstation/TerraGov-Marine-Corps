@@ -55,7 +55,7 @@
 		alpha = initial(alpha) //stealth mode disengaged
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
 
 
@@ -70,7 +70,7 @@
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/on_bodybag_occupant_death)
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)

@@ -92,3 +92,10 @@ require only minor tweaks.
 #define SHIP_MAP "ship_map"
 #define ALL_MAPTYPES list(GROUND_MAP, SHIP_MAP)
 #define MAP_TO_FILENAME list(GROUND_MAP = "data/next_map.json", SHIP_MAP = "data/next_ship.json")
+
+// traity things
+#define MAP_COLD "COLD"
+
+#define MAP_ARMOR_STYLE_DEFAULT "default"
+#define MAP_ARMOR_STYLE_ICE "ice"
+#define MAP_ARMOR_STYLE_JUNGLE "jungle"

@@ -35,6 +35,8 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
+	if(!.)
+		return
 	// Check if enough players have signed up for xeno & queen roles.
 	init_scales()
 	var/ruler = initialize_xeno_leader()
@@ -43,7 +45,6 @@
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
-	return TRUE
 
 /datum/game_mode/crash/proc/init_scales()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)

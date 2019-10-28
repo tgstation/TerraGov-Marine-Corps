@@ -1,13 +1,27 @@
+/// Used to trigger signals and call procs registered for that signal
+/// The datum hosting the signal is automaticaly added as the first argument
+/// Returns a bitfield gathered from all registered procs
+/// Arguments given here are packaged in a list and given to _SendSignal
 #define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
 
 #define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
 
+/// Return this from `/datum/component/Initialize` or `datum/component/OnTransfer` to have the component be deleted if it's applied to an incorrect type.
+/// `parent` must not be modified if this is to be returned.
+/// This will be noted in the runtime logs
+#define COMPONENT_INCOMPATIBLE 1
+/// Returned in PostTransfer to prevent transfer, similar to `COMPONENT_INCOMPATIBLE`
+#define COMPONENT_NOTRANSFER 2
+
+/// Return value to cancel attaching
+#define ELEMENT_INCOMPATIBLE 1
+
+/// /datum/element flags
+#define ELEMENT_DETACH		(1 << 0)
+
 //shorthand
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
-#define COMPONENT_INCOMPATIBLE 1
-#define COMPONENT_NOTRANSFER 2
 
 // How multiple components of the exact same type are handled in the same datum
 
@@ -35,11 +49,16 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-#define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"			//before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
-#define COMSIG_TOPIC "handle_topic"                             //generic topic handler (usr, href_list)
+/// when a component is added to a datum: (/datum/component)
+#define COMSIG_COMPONENT_ADDED "component_added"
+/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
+#define COMSIG_COMPONENT_REMOVING "component_removing"
+/// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
+#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
+/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
+#define COMSIG_PARENT_QDELETING "parent_qdeleting"
+/// generic topic handler (usr, href_list)
+#define COMSIG_TOPIC "handle_topic"
 
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -104,6 +123,7 @@
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, dir)
 #define COMSIG_MOVABLE_CROSSED "movable_crossed"                //from base of atom/movable/Crossed(): (/atom/movable)
 #define COMSIG_MOVABLE_BUMP "movable_bump"						//from base of atom/movable/Bump(): (/atom)
+	#define COMPONENT_BUMP_RESOLVED (1<<0)
 #define COMSIG_MOVABLE_IMPACT "movable_impact"					//from base of atom/movable/throw_impact(): (/atom/hit_atom)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
@@ -342,3 +362,7 @@
 #define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
 #define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
 #define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
+
+// /datum/action signals
+#define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)
+	#define COMPONENT_ACTION_BLOCK_TRIGGER (1<<0)

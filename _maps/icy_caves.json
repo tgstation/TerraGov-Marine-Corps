@@ -1,0 +1,8 @@
+{
+    "map_name": "Icy Caves",
+    "map_path": "map_files/icy_caves",
+    "map_file": "icy_caves.dmm",
+    "shuttles": {
+    },
+    "announce_text": "A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a mining outpost, located on an ice cold planet. The ###SHIPNAME### is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!"
+}

@@ -56,9 +56,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 	"NUKE"
 	))
 
-#define STASIS_IN_BAG 		1
-#define STASIS_IN_CRYO_CELL 2
-
 
 // Diagonal movement for movable atoms
 #define FIRST_DIAG_STEP 	1

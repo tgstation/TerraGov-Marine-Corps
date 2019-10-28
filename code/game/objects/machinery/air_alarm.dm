@@ -510,11 +510,11 @@ Nitrous Oxide
 		if (AALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
 			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
-				AALARM_MODE_REPLACEMENT = "<font color='blue'>Replace Air - Siphons out air while replacing</font>",\
+				AALARM_MODE_REPLACEMENT = "<span class='notice'>Replace Air - Siphons out air while replacing</span>",\
 				AALARM_MODE_PANIC       = "<font color='red'>Panic - Siphons air out of the room</font>",\
 				AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
 				AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
-				AALARM_MODE_OFF         = "<font color='blue'>Off - Shuts off vents and scrubbers</font>",)
+				AALARM_MODE_OFF         = "<span class='notice'>Off - Shuts off vents and scrubbers</span>",)
 			for (var/m=1,m<=modes.len,m++)
 				if (mode==m)
 					output += "<li><A href='?src=\ref[src];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"

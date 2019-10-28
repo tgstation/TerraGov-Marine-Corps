@@ -21,7 +21,7 @@
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	recoil_unwielded = 2
+	recoil_unwielded = 0.5
 
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
@@ -53,7 +53,6 @@
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -73,10 +72,13 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 1.15
+	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.9
-	scatter = 15
-	scatter_unwielded = 25
+	scatter = 20
+	fire_delay = 0.2 SECONDS
+	scatter_unwielded = 30
+	aim_slowdown = 0.15
+	burst_amount = 2
 
 
 //-------------------------------------------------------
@@ -94,7 +96,6 @@
 	burst_amount = 4
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
-	scatter_unwielded = 40
 	damage_mult = 1.1
 
 
@@ -128,8 +129,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 1.25
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 1.05
 	scatter = 25
 	scatter_unwielded = 40
 
