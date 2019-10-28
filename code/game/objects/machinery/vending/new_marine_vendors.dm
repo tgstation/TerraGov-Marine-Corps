@@ -18,7 +18,7 @@
 
 
 
-#define MARINE_CAN_BUY_ALL			(1 << 16)
+#define MARINE_CAN_BUY_ALL			((1 << 16) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
 
@@ -157,23 +157,26 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			p_name += " ([p_cost] points)"
 
 		var/prod_available = FALSE
-		var/avail_flag = myprod[4]
-		if((!avail_flag && m_points >= p_cost) || (buy_flags & avail_flag))
+		var/list/avail_flags = GLOB.marine_selector_cats[category]
+		var/flags = NONE
+		if(LAZYLEN(avail_flags))
+			for(var/f in avail_flags)
+				flags |= f
+			if(buy_flags & flags)
+				prod_available = TRUE
+		else if(m_points >= p_cost)
 			prod_available = TRUE
 
-		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[5])))
+		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[4])))
 
 	var/list/cats = list()
 	for(var/i in GLOB.marine_selector_cats)
 		if(!display_list[i]) // vendor doesnt have this category
 			continue
-		cats[i] = list()
-		if(islist(GLOB.marine_selector_cats[i]))
-			var/choicesremaining = 0
-			for(var/flag in GLOB.marine_selector_cats[i])
-				if(buy_flags & flag)
-					choicesremaining++
-			cats[i]["choices"] = choicesremaining
+		cats[i] = 0
+		for(var/flag in GLOB.marine_selector_cats[i])
+			if(buy_flags & flag)
+				cats[i]++
 
 	var/list/data = list(
 		"vendor_name" = name,
@@ -195,11 +198,11 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					flick(icon_deny, src)
 				return
 
-			var/idx = text2num(params["vend"])
+			var/idx = text2path(params["vend"])
 			var/obj/item/card/id/I = usr.get_idcard()
 
 			var/list/L = listed_products[idx]
-			var/cost = L[2]
+			var/cost = L[3]
 
 			if(use_points && I.marine_points < cost)
 				to_chat(usr, "<span class='warning'>Not enough points.</span>")
@@ -213,8 +216,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
-
-			var/bitf = L[4]
+			var/bitf = NONE
+			var/list/C = GLOB.marine_selector_cats[L[1]]
+			for(var/i in C)
+				bitf |= i
 			if(bitf)
 				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
 					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
@@ -223,7 +228,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
 						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
-					var/p_name = L[1]
+					var/p_name = L[2]
 					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 						p_name = "Scout Set"
 					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
@@ -249,9 +254,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
-			var/type_p = L[3]
-
-			new type_p(loc)
+			new idx(loc)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -266,7 +269,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
-				var/p_name = L[1]
+				var/p_name = L[2]
 				if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 					p_name = "Scout Set"
 				else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
@@ -771,40 +774,40 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
 
-		/obj/item/storage/firstaid/regular = list(CAT_MEDSUP, "Firstaid kit", 6, null, "black"),
-		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 8, null, "orange"),
-		/obj/item/bodybag/cryobag = list(CAT_MEDSUP, "Stasis bag", 4, null, "orange"),
-		/obj/item/storage/pill_bottle/hypervene = list(CAT_MEDSUP, "Pillbottle (Hypervene)", 4, null, "black"),
-		/obj/item/storage/pill_bottle/quickclot = list(CAT_MEDSUP, "Pillbottle (Quick-Clot)", 4, null, "black"),
-		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Pillbottle (Bicaridine)", 4, null, "orange"),
-		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Pillbottle (Kelotane)", 4, null, "orange"),
-		/obj/item/storage/pill_bottle/dylovene = list(CAT_MEDSUP, "Pillbottle (Dylovene)", 4, null, "black"),
-		/obj/item/storage/pill_bottle/dexalin = list(CAT_MEDSUP, "Pillbottle (Dexalin)", 4, null, "black"),
-		/obj/item/storage/pill_bottle/tramadol = list(CAT_MEDSUP, "Pillbottle (Tramadol)", 4, null, "orange"),
-		/obj/item/storage/pill_bottle/inaprovaline = list(CAT_MEDSUP, "Pillbottle (Inaprovaline)", 4, null, "black"),
-		/obj/item/storage/pill_bottle/peridaxon = list(CAT_MEDSUP, "Pillbottle (Peridaxon)", 4, null, "black"),
-		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 15, null, "orange"),
-		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 15, null, "orange"),
-		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 15, null, "orange"),
-		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 15, null, "orange"),
-		/obj/item/reagent_container/hypospray/autoinjector/inaprovaline = list(CAT_MEDSUP, "Injector (Inaprovaline)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/bicaridine = list(CAT_MEDSUP, "Injector (Bicaridine)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/kelotane = list(CAT_MEDSUP, "Injector (Kelotane)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/dylovene = list(CAT_MEDSUP, "Injector (Dylovene)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/dexalinplus = list(CAT_MEDSUP, "Injector (Dexalin+)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/quickclot = list(CAT_MEDSUP, "Injector (Quick-Clot)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = list(CAT_MEDSUP, "Injector (Tricord)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, null, "black"),
-		/obj/item/reagent_container/hypospray/autoinjector/hyperzine = list(CAT_MEDSUP, "Injector (Hyperzine)", 10, null, "orange"),
-		/obj/item/reagent_container/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, null, "black"),
-		/obj/item/healthanalyzer = list(CAT_MEDSUP, "Health analyzer", 2, null, "black"),
-		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, null, "black"),
+		/obj/item/storage/firstaid/regular = list(CAT_MEDSUP, "Firstaid kit", 6, "black"),
+		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 8, "orange"),
+		/obj/item/bodybag/cryobag = list(CAT_MEDSUP, "Stasis bag", 4, "orange"),
+		/obj/item/storage/pill_bottle/hypervene = list(CAT_MEDSUP, "Pillbottle (Hypervene)", 4, "black"),
+		/obj/item/storage/pill_bottle/quickclot = list(CAT_MEDSUP, "Pillbottle (Quick-Clot)", 4, "black"),
+		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Pillbottle (Bicaridine)", 4, "orange"),
+		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Pillbottle (Kelotane)", 4, "orange"),
+		/obj/item/storage/pill_bottle/dylovene = list(CAT_MEDSUP, "Pillbottle (Dylovene)", 4, "black"),
+		/obj/item/storage/pill_bottle/dexalin = list(CAT_MEDSUP, "Pillbottle (Dexalin)", 4, "black"),
+		/obj/item/storage/pill_bottle/tramadol = list(CAT_MEDSUP, "Pillbottle (Tramadol)", 4, "orange"),
+		/obj/item/storage/pill_bottle/inaprovaline = list(CAT_MEDSUP, "Pillbottle (Inaprovaline)", 4, "black"),
+		/obj/item/storage/pill_bottle/peridaxon = list(CAT_MEDSUP, "Pillbottle (Peridaxon)", 4, "black"),
+		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 15, "orange"),
+		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 15, "orange"),
+		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 15, "orange"),
+		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 15, "orange"),
+		/obj/item/reagent_container/hypospray/autoinjector/inaprovaline = list(CAT_MEDSUP, "Injector (Inaprovaline)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/bicaridine = list(CAT_MEDSUP, "Injector (Bicaridine)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/kelotane = list(CAT_MEDSUP, "Injector (Kelotane)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/dylovene = list(CAT_MEDSUP, "Injector (Dylovene)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/dexalinplus = list(CAT_MEDSUP, "Injector (Dexalin+)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/quickclot = list(CAT_MEDSUP, "Injector (Quick-Clot)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = list(CAT_MEDSUP, "Injector (Tricord)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
+		/obj/item/reagent_container/hypospray/autoinjector/hyperzine = list(CAT_MEDSUP, "Injector (Hyperzine)", 10, "orange"),
+		/obj/item/reagent_container/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
+		/obj/item/healthanalyzer = list(CAT_MEDSUP, "Health analyzer", 2, "black"),
+		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 
-		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -832,28 +835,28 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
 
-		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", 5, null, "orange"),
-		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", 7, null, "orange"),
-		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, null, "orange"),
-		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, null, "black"),
-		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "UA-580 point defense sentry kit", 26, null, "black"),
-		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, null, "black"),
-		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, null, "black"),
-		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, null, "black"),
-		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, null, "black"),
-		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, null, "black"),
-		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, null, "black"),
-		/obj/item/explosive/grenade/incendiary = list(CAT_ENGSUP, "Incendiary grenade", 6, null, "black"),
-		/obj/item/multitool = list(CAT_ENGSUP, "Multitool", 1, null, "black"),
-		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, null, "black"),
-		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, null, "black"),
+		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", 5, "orange"),
+		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", 7, "orange"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, "orange"),
+		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
+		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "UA-580 point defense sentry kit", 26, "black"),
+		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, "black"),
+		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
+		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
+		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
+		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
+		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
+		/obj/item/explosive/grenade/incendiary = list(CAT_ENGSUP, "Incendiary grenade", 6, "black"),
+		/obj/item/multitool = list(CAT_ENGSUP, "Multitool", 1, "black"),
+		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
+		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 
-		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, null, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
+		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -881,15 +884,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/item/storage/box/m56_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
 
-		null = list(CAT_SPEAMM, "SPECIAL AMMUNITION", 0, null, null),
-
-		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, null, "black"),
-		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, null, "black"),
-		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, null, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, null, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, null, "black"),
+		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
+		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
+		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -926,14 +927,14 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Armor Set (Minigun)", 0, "white"),
 		/obj/item/storage/box/spec/pyro = list(CAT_ESS, "Pyro Set", 0, "white"),
 
-		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, null, "black"),
-		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, null, "black"),
-		/obj/item/ammo_magazine/pistol/vp70 = list(CAT_SPEAMM, "88M4 AP magazine", 15, null, "black"),
-		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, null, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, null, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/vp70 = list(CAT_SPEAMM, "88M4 AP magazine", 15, "black"),
+		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, "black"),
+		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
+		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
+		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
@@ -963,36 +964,36 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	listed_products = list(
 		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 
-		/obj/item/squad_beacon = list(CAT_LEDSUP, "Supply beacon", 10, null, "black"),
-		/obj/item/squad_beacon/bomb = list(CAT_LEDSUP, "Orbital beacon", 15, null, "black"),
-		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, null, "black"),
-		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", 10, null, "black"),
-		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 3, null, "black"),
-		/obj/item/detpack = list(CAT_LEDSUP, "Detonation pack", 5, null, "black"),
-		/obj/item/explosive/grenade/smokebomb = list(CAT_LEDSUP, "Smoke grenade", 2, null, "black"),
-		/obj/item/explosive/grenade/cloakbomb = list(CAT_LEDSUP, "Cloak grenade", 3, null, "black"),
-		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, null, "black"),
-		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, null, "black"),
-		/obj/item/explosive/grenade/impact = list(CAT_LEDSUP, "M40 IMDP grenade", 3, null, "black"),
-		/obj/item/weapon/gun/rifle/lmg = list(CAT_LEDSUP, "M41AE2 heavy pulse rifle", 12, null, "orange"),
-		/obj/item/ammo_magazine/lmg = list(CAT_LEDSUP, "M41AE2 magazine", 4, null, "black"),
-		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, null, "orange"),
-		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, null, "black"),
-		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, null, "black"),
-		/obj/item/radio = list(CAT_LEDSUP, "Station bounced radio", 1, null, "black"),
-		/obj/item/assembly/signaler = list(CAT_LEDSUP, "Signaler (for detpacks)", 1, null, "black"),
-		/obj/item/motiondetector = list(CAT_LEDSUP, "Motion detector", 5, null, "black"),
-		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, null, "orange"),
-		/obj/item/storage/box/zipcuffs = list(CAT_LEDSUP, "Ziptie box", 5, null, "black"),
-		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, null, "black"),
+		/obj/item/squad_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		/obj/item/squad_beacon/bomb = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
+		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, "black"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", 10, "black"),
+		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 3, "black"),
+		/obj/item/detpack = list(CAT_LEDSUP, "Detonation pack", 5, "black"),
+		/obj/item/explosive/grenade/smokebomb = list(CAT_LEDSUP, "Smoke grenade", 2, "black"),
+		/obj/item/explosive/grenade/cloakbomb = list(CAT_LEDSUP, "Cloak grenade", 3, "black"),
+		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
+		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, "black"),
+		/obj/item/explosive/grenade/impact = list(CAT_LEDSUP, "M40 IMDP grenade", 3, "black"),
+		/obj/item/weapon/gun/rifle/lmg = list(CAT_LEDSUP, "M41AE2 heavy pulse rifle", 12, "orange"),
+		/obj/item/ammo_magazine/lmg = list(CAT_LEDSUP, "M41AE2 magazine", 4, "black"),
+		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, "orange"),
+		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
+		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
+		/obj/item/radio = list(CAT_LEDSUP, "Station bounced radio", 1, "black"),
+		/obj/item/assembly/signaler = list(CAT_LEDSUP, "Signaler (for detpacks)", 1, "black"),
+		/obj/item/motiondetector = list(CAT_LEDSUP, "Motion detector", 5, "black"),
+		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
+		/obj/item/storage/box/zipcuffs = list(CAT_LEDSUP, "Ziptie box", 5, "black"),
+		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 
-		/obj/item/ammo_magazine/pistol/hp = list(CAT_SPEAMM, "HP M4A3 magazine", 5, null, "black"),
-		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, null, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, null, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, null, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, null, "black"),
+		/obj/item/ammo_magazine/pistol/hp = list(CAT_SPEAMM, "HP M4A3 magazine", 5, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
+		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
