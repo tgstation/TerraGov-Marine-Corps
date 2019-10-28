@@ -4851,7 +4851,6 @@
 /obj/item/attachable/burstfire_assembly,
 /obj/item/attachable/suppressor,
 /obj/item/attachable/suppressor,
-/obj/item/attachable/scope/m4ra,
 /obj/machinery/light/small{
 	dir = 1
 	},
