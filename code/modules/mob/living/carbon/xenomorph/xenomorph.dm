@@ -42,6 +42,8 @@
 
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 
+	AddComponent(/datum/component/bump_attack)
+
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)

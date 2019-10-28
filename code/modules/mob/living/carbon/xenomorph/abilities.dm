@@ -103,6 +103,7 @@
 
 	var/atom/A = X.selected_resin
 	to_chat(X, "<span class='notice'>We will now build <b>[initial(A.name)]\s</b> when secreting resin.</span>")
+	update_button_icon()
 	return succeed_activate()
 
 // Secrete Resin
@@ -138,7 +139,7 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
 
-	if(!T.check_alien_construction(X))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)
@@ -175,7 +176,7 @@
 	if(!alien_weeds)
 		return fail_activate()
 
-	if(!T.check_alien_construction(X))
+	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
 		return fail_activate()
 
 	if(X.selected_resin == /obj/structure/mineral_door/resin)

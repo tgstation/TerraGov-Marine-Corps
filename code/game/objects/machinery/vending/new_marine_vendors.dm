@@ -205,7 +205,7 @@
 			var/mob/living/carbon/human/H = usr
 			new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
 			new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
-			if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+			if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 				new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 
@@ -935,7 +935,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	listed_products = list(
 							list("SPECIALIST SETS (Choose one)", 0, null, null, null),
 							list("Scout Set (Battle Rifle)", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Scout Set (Shotgun)", 0, /obj/item/storage/box/spec/scoutshotgun, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Heavy Armor Set (Grenadier)", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),

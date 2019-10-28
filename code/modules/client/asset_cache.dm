@@ -444,7 +444,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css'
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
 	)
 
 

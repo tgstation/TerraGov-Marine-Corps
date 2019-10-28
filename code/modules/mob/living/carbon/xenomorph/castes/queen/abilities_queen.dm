@@ -452,7 +452,7 @@
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 600
+	plasma_cost = 150
 	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
@@ -500,7 +500,7 @@
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
-	plasma_cost = 600
+	plasma_cost = 150
 	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 

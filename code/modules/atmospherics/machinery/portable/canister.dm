@@ -108,7 +108,7 @@
 			new /obj/item/stack/sheet/metal (loc, 10)
 		else
 			new /obj/item/stack/sheet/metal (loc, 5)
-	qdel(src)
+	return ..()
 
 
 /obj/machinery/portable_atmospherics/canister/proc/canister_break()

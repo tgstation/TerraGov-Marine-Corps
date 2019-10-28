@@ -60,7 +60,9 @@
 	return TRUE
 
 /datum/action/proc/action_activate()
-	return
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	return TRUE
 
 /datum/action/proc/fail_activate()
 	return

@@ -53,7 +53,75 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">27 October 2019</h2>
+			<h3 class="author">Isy232 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Icy Caves Test Map</li>
+			</ul>
+			<h3 class="author">Kuro & MetroidLover updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Sniper has a helmet now</li>
+				<li class="imageadd">All new sprites for every Specialist</li>
+			</ul>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Darkmode enabled.</li>
+			</ul>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Updated the energy pulse rifle because I didn't have time to merge that carp.</li>
+			</ul>
+			<h3 class="author">spookydonut updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">you can now set traits for maps via json instead of them being hardcoded</li>
+			</ul>
+
+			<h2 class="date">26 October 2019</h2>
+			<h3 class="author">Isy232 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Ravager slash damage decreased by 10 to young maturity.</li>
+				<li class="balance">Ravager slash damage decreased by 15 to all maturity levels past young.</li>
+				<li class="balance">Slowdown from weilded minigun 1 => 1.4</li>
+				<li class="balance">Burst Fire Count to 7</li>
+			</ul>
+			<h3 class="author">MetroidLover updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Racks no longer have insane health</li>
+				<li class="bugfix">fixed the MP5's accuracy values to no longer be more accurate when one-handed firing</li>
+			</ul>
+			<h3 class="author">Spyroshark, Rohesie, and Manezinho updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Xenos can now toggle auto-attacking targets by bumping into them. Sprites by Manezinho.</li>
+				<li class="imageadd">Night vision mode sprites also by Manezinho.</li>
+			</ul>
+			<h3 class="author">ma44 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Xenomorphs will no longer attempt to slash destroyed (delimbed) limbs</li>
+				<li class="balance">Delimbs now occur based on thresholds instead of rng, see below for details</li>
+				<li class="balance">Delimbs occur when the limb has 75 or 100 brute damage occurred to it if it's a hand/foot or arm/leg respectively</li>
+				<li class="balance">When a limb is delimbed, only 25% of it's damage is transferred to it's "parent" (hand to arm to chest for example)</li>
+				<li class="balance">Bone breaks now only occur at 37 and 50 damage for hands/feet and arms/legs respectively</li>
+				<li class="balance">FOR XENOS: This means if you want to kill a marine as fast as possible, you target their chest, otherwise you can target a limb to disable a limb but expect a longer fight due to a decreased damage transfer upon limb dismembering</li>
+			</ul>
+
+			<h2 class="date">24 October 2019</h2>
+			<h3 class="author">XSlayer300 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Made batteries self-rechargable, only the pulse energy rifle's batteries can be recharged.</li>
+				<li class="tweak">Changed the sprites of the laser bolts.</li>
+				<li class="tweak">Changed the lens descriptions, adding more fluff.</li>
+				<li class="rscadd">Added the M19C4 pulse energy rifle, an admin-only deathsquad weapon. Feast your eyes on destruction!</li>
+			</ul>
+			<h3 class="author">nemvar updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Cryopods now prevent internal wounds from getting worse.</li>
+			</ul>
+
 			<h2 class="date">23 October 2019</h2>
+			<h3 class="author">grinkgo and Kwin_Original updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a new ship, the TGS Pillar of Spring, for low-mid pop</li>
+			</ul>
 			<h3 class="author">ma44 updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="rscdel">Ravager rage and its mechanics are no longer a thing</li>
@@ -358,49 +426,6 @@ also everything with the hyperzine rework I made earlier</li>
 			<h3 class="author">psykzz updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="rscadd">Marines lose when leaving without a nuke set on crash</li>
-			</ul>
-
-			<h2 class="date">26 August 2019</h2>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Reworked projectiles to use pixel movement (but not collisions, those are still tile-based), tracking the clicked pixel (unless a mob is clicked, in which case it will aim for the center of the target's tile for maximum accuracy, or unless scatter happens) in a straight line. For most bullets (rifles, SMGs, pistols, revolvers) the difference will be subtle at best, given how fast they are. It is more noticeable in tasers. For lasguns and faster projectiles the moving animation is outright disabled.</li>
-				<li class="bugfix">Fixed a speed inconsistency of old projectiles, which would make bullet speed lower if you clicked closer to your own sprite.</li>
-				<li class="balance">Tweaked accuracy to make the calculations a bit more sane. This may impact on it as reproducing the exact same behavior is hard, but it can be more easily adjusted now.</li>
-				<li class="balance">Once a sniper acquires a target through its laser market it will no longer need to click on it to aim it. Any shots while active will be auto-targeted to it.</li>
-				<li class="balance">Projectile speeds reduced all round the board. Xeno projectiles are slow, so you can see them traveling. Non-slug shotgun shells are slow and more visible. Slugs and regular bullets are fast, and hard to see. Sniper bullets and lasers are very fast, and even harder to see.</li>
-				<li class="balance">Scatter is now angle-based, so it doesn't matter if the target (where you click) is near or far. Maximum scatter is 45 degrees in either direction. Extra projectiles (additional buckshot and flechettes) have a smoother, less random scatter, firing in a cone.</li>
-				<li class="balance">Smartgun slowdown while wielded increased some to make it more defensive and less mobile..</li>
-			</ul>
-			<h3 class="author">psykzz updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">(Crash Only) Xenos now start with the first tier already unlocked.</li>
-				<li class="balance">bullets are now able to pass the fog barriers</li>
-			</ul>
-
-			<h2 class="date">25 August 2019</h2>
-			<h3 class="author">Compadre Sonoliento(sprites) Kuro(Idea) MetroidLover(Editing and recoloring sprites) updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">New B18 sprites with a darker look and glowing colored visor</li>
-			</ul>
-
-			<h2 class="date">23 August 2019</h2>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">M41A, lasgun, flechettes, smartgun and grenade launcher nerfed to different degrees to account for the xeno warding nerf.</li>
-			</ul>
-
-			<h2 class="date">22 August 2019</h2>
-			<h3 class="author">(Arachnidnexus) updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="imageadd">added new icons for the nuke disk generators</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Full-auto and autoburst modes added, along with actions to toggle those. Dakka-dakka!</li>
-			</ul>
-			<h3 class="author">grinkgo updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added some holopads around the Theseus.</li>
 			</ul>
 		</div>
 
