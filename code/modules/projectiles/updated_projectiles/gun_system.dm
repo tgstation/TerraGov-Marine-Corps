@@ -952,6 +952,8 @@ and you're good to go.
 				gun_scatter += 30
 		if(user.get_item_by_slot(SLOT_HEAD))
 			gun_accuracy_mult += user.get_item_by_slot(SLOT_HEAD).accuracy_mod
+		else
+			gun_accuracy_mult += 0.20 //nothing on your head? well if you're gonna die then might as well be accurate.
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value

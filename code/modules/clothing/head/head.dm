@@ -5,7 +5,7 @@
 	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = WEIGHT_CLASS_SMALL
 	var/anti_hug = 0
-	var/accuracy_mod = 0
+	var/accuracy_mod = 0 //used in gun_system.dm recommended between -1 and 1
 
 /obj/item/clothing/head/update_clothing_icon()
 	if (ismob(loc))
