@@ -49,7 +49,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/soft/red
 	r_store = /obj/item/radio
-	l_store = /obj/item/reagent_container/food/drinks/cans/dr_gibb
+	l_store = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	back = /obj/item/storage/backpack/satchel
 
 

@@ -53,7 +53,7 @@
 /obj/item/toy/balloon/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!I.reagents)
 			return
 

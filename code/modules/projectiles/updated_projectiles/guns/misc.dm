@@ -104,8 +104,8 @@
 		to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/reagent_container/syringe))
-		var/obj/item/reagent_container/syringe/S = I
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode == 2)
 			to_chat(user, "<span class='warning'>This syringe is broken!</span>")
 			return
@@ -144,7 +144,7 @@
 	else
 		var/turf/trg = get_turf(target)
 		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
-		var/obj/item/reagent_container/syringe/S = syringes[1]
+		var/obj/item/reagent_containers/syringe/S = syringes[1]
 		if((!S) || (!S.reagents))	//ho boy! wot runtimes!
 			return
 		S.reagents.trans_to(D, S.reagents.total_volume)

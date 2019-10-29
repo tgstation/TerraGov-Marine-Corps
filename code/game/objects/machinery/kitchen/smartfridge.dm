@@ -27,7 +27,7 @@
 	create_reagents(100, NO_REACT)
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
@@ -236,11 +236,11 @@
 	req_one_access_txt = "5;33"
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass/))
+	if(istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	if(istype(O,/obj/item/storage/pill_bottle/))
 		return 1
-	if(istype(O,/obj/item/reagent_container/pill/))
+	if(istype(O,/obj/item/reagent_containers/pill/))
 		return 1
 	return 0
 
@@ -255,7 +255,7 @@
 	icon_off = "smartfridge-off"
 
 /obj/machinery/smartfridge/secure/virology/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
 		return 1
 	return 0
 
@@ -267,7 +267,7 @@
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics can now access the fridge
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_container))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
 		return 1
 	return 0
 
@@ -282,5 +282,5 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment))
+	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1

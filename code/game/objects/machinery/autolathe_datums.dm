@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 
 /datum/autolathe/recipe/bucket
 	name = "bucket"
-	path = /obj/item/reagent_container/glass/bucket
+	path = /obj/item/reagent_containers/glass/bucket
 	category = "General"
 
 /datum/autolathe/recipe/flashlight
@@ -181,22 +181,22 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 
 /datum/autolathe/recipe/beaker
 	name = "glass beaker"
-	path = /obj/item/reagent_container/glass/beaker
+	path = /obj/item/reagent_containers/glass/beaker
 	category = "Medical"
 
 /datum/autolathe/recipe/beaker_large
 	name = "large glass beaker"
-	path = /obj/item/reagent_container/glass/beaker/large
+	path = /obj/item/reagent_containers/glass/beaker/large
 	category = "Medical"
 
 /datum/autolathe/recipe/vial
 	name = "glass vial"
-	path = /obj/item/reagent_container/glass/beaker/vial
+	path = /obj/item/reagent_containers/glass/beaker/vial
 	category = "Medical"
 
 /datum/autolathe/recipe/syringe
 	name = "syringe"
-	path = /obj/item/reagent_container/syringe
+	path = /obj/item/reagent_containers/syringe
 	category = "Medical"
 
 /datum/autolathe/recipe/consolescreen
