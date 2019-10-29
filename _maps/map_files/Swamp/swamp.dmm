@@ -1916,9 +1916,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Cryogenics Bay"
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
@@ -2711,20 +2708,11 @@
 	},
 /area/swamp/ship_crashed/north_hall)
 "aie" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
 /area/swamp/ship_crashed/north_prep)
 "aif" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_regular_floor = "cargo_arrow";
@@ -3267,11 +3255,7 @@
 	},
 /area/swamp/ship_crashed/fitness)
 "ajI" = (
-/obj/machinery/cryopod,
-/obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/plating/ground/dirt,
 /area/swamp/ship_crashed/cryo)
 "ajJ" = (
 /turf/open/floor/mainship{
@@ -3710,7 +3694,6 @@
 	},
 /area/swamp/ship_crashed/north_prep)
 "akH" = (
-/obj/machinery/cryopod/right,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
@@ -4042,7 +4025,6 @@
 /turf/open/floor/wood,
 /area/swamp/ship_crashed/fitness)
 "alj" = (
-/obj/machinery/cryopod,
 /obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
@@ -4120,7 +4102,6 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/north_ert)
 "alt" = (
-/obj/machinery/cryopod/right,
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
@@ -4479,11 +4460,11 @@
 /turf/open/floor/wood,
 /area/swamp/ship_crashed/fitness)
 "amk" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship{
-	icon_state = "redfull"
+	icon_state = "cargo"
 	},
 /area/swamp/ship_crashed/cryo)
 "aml" = (
@@ -4591,11 +4572,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/north_hall)
 "amy" = (
-/obj/machinery/cryopod,
 /obj/machinery/light{
-	dir = 1
+	dir = 8
 	},
-/obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -4610,7 +4589,10 @@
 	},
 /area/swamp/ship_crashed/north_hall)
 "amA" = (
-/obj/machinery/cryopod/right,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -4684,7 +4666,7 @@
 /turf/open/floor/plating/mainship,
 /area/swamp/ship_crashed/firing_range)
 "amN" = (
-/obj/machinery/cryopod,
+/obj/machinery/light,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -4826,9 +4808,6 @@
 	pixel_x = -30;
 	req_one_access_txt = "2;3;12;19";
 	throw_range = 15
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -4988,8 +4967,8 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/hangar)
 "anE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
+/obj/structure/bed/chair/office/dark{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/brief)
@@ -5251,19 +5230,27 @@
 /area/swamp/ship_crashed/north_prep)
 "aos" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 1
+	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
+/obj/machinery/computer/security/marinemainship{
+	dir = 8;
+	pixel_x = -17
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
 /area/swamp/ship_crashed/brief)
 "aot" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/brief)
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/swamp/ship_crashed/medbay_surgery)
 "aou" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6405,14 +6392,13 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/north_prep)
 "arl" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/landmark/map_item,
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/mainship{
-	icon_state = "cargo"
+	dir = 1;
+	icon_state = "sterile_green_side"
 	},
-/area/swamp/ship_crashed/brief)
+/area/swamp/ship_crashed/medbay)
 "arm" = (
 /turf/open/floor/mainship{
 	dir = 8;
@@ -7571,14 +7557,18 @@
 /area/swamp/ship_crashed/north_canteen)
 "aua" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/flashlight/lamp,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/swamp/ship_crashed/north_canteen)
+/obj/structure/window/reinforced/toughened{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	dir = 5;
+	icon_state = "silver"
+	},
+/area/swamp/ship_crashed/brief)
 "aub" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -7673,10 +7663,8 @@
 /turf/open/floor/engine,
 /area/swamp/ship_crashed/engineering)
 "aup" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	id_tag = "waste_lower_out"
-	},
-/turf/open/floor/engine,
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
 /area/swamp/ship_crashed/engineering)
 "auq" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -8034,11 +8022,9 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/hangar)
 "avi" = (
-/obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/space)
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/desertdam/river,
+/area/swamp/ground/jungle5)
 "avj" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -8153,51 +8139,39 @@
 	},
 /area/swamp/ship_crashed/cryo)
 "avw" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
+/turf/open/floor/mainship/mono{
+	icon_state = "floorscorched1"
 	},
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "red"
-	},
-/area/swamp/ship_crashed/cryo)
+/area/swamp/ship_crashed/north_hall)
 "avx" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
 	},
-/obj/machinery/computer/security/marinemainship{
-	dir = 8;
-	pixel_x = -17
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
-	},
-/area/swamp/ship_crashed/brief)
+/area/swamp/ship_crashed/medbay_surgery)
 "avy" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "cicladder1crash"
-	},
-/turf/open/floor/plating/mainship,
-/area/swamp/ship_crashed/brief)
-"avz" = (
-/obj/machinery/light,
-/obj/structure/ladder{
-	height = 1;
-	id = "cicladder2crash"
-	},
-/turf/open/floor/plating/mainship,
-/area/swamp/ship_crashed/brief)
-"avA" = (
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/brief)
+/area/swamp/ship_crashed/medbay_surgery)
+"avz" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/swamp/ship_crashed/medbay_surgery)
+"avA" = (
+/obj/machinery/iv_drip,
+/turf/open/ground/grass,
+/area/swamp/ship_crashed/medbay_surgery)
 "avB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -8542,12 +8516,11 @@
 	},
 /area/swamp/ship_crashed/engineering)
 "aww" = (
-/obj/machinery/atmospherics/components/binary/pump/on,
-/turf/open/floor/mainship{
-	icon_state = "orangecorner";
-	dir = 1
-	},
-/area/swamp/ship_crashed/engineering)
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating,
+/area/swamp/ship_crashed/weapons_bay)
 "awx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -8743,9 +8716,10 @@
 	},
 /area/swamp/ship_crashed/cryo)
 "awZ" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/open/floor/plating,
-/area/swamp/ship_crashed/engineering)
+/obj/structure/window/framed/mainship,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/space,
+/area/swamp/ship_crashed/weapons_bay)
 "axa" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -9802,25 +9776,27 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/engineering)
 "ayH" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 5
+/obj/structure/rack,
+/turf/open/floor/mainship{
+	dir = 9;
+	icon_state = "red"
 	},
-/obj/machinery/meter,
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/weapons_bay)
 "ayI" = (
-/obj/machinery/atmospherics/components/binary/valve/digital/on{
-	dir = 4
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/incendiary,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
 	},
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/weapons_bay)
 "ayJ" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
+/obj/structure/rack,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
 	},
-/turf/open/floor/plating,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/weapons_bay)
 "ayK" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -9830,10 +9806,13 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/brief)
 "ayL" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating,
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/explosive,
+/obj/structure/ob_ammo/warhead/explosive,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
 /area/swamp/ship_crashed/weapons_bay)
 "ayM" = (
 /obj/structure/table/mainship,
@@ -10056,14 +10035,10 @@
 	},
 /area/swamp/ship_crashed/cryo)
 "azp" = (
-/obj/machinery/cryopod/right,
-/obj/machinery/light{
-	dir = 4
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged3"
 	},
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
+/area/swamp/ship_crashed/north_hall)
 "azq" = (
 /obj/machinery/light{
 	dir = 8
@@ -10379,12 +10354,9 @@
 	},
 /area/swamp/ship_crashed/req)
 "aAk" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/elevatorshaft,
-/area/space)
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/desertdam/river,
+/area/swamp/ground/jungle8)
 "aAl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -10401,10 +10373,24 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/req)
+"aAo" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-21"
+	},
+/turf/open/floor/mainship{
+	dir = 2;
+	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
 "aAp" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/space,
+/obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
+/turf/open/floor/mainship{
+	dir = 10;
+	icon_state = "red"
+	},
 /area/swamp/ship_crashed/weapons_bay)
 "aAq" = (
 /turf/open/floor/mainship{
@@ -10717,6 +10703,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/engineering)
+"aBf" = (
+/obj/structure/computerframe,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green_corner";
+	dir = 1
+	},
+/area/swamp/ship_crashed/medbay)
 "aBg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -11107,6 +11100,14 @@
 	icon_state = "sterile_green_side"
 	},
 /area/swamp/ship_crashed/medbay)
+"aCb" = (
+/obj/structure/table/mainship,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
 "aCc" = (
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -11150,6 +11151,14 @@
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
+"aCi" = (
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/obj/structure/bed/chair/wheelchair,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "sterile_green_corner"
 	},
 /area/swamp/ship_crashed/medbay)
 "aCj" = (
@@ -11196,6 +11205,13 @@
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner";
 	dir = 1
+	},
+/area/swamp/ship_crashed/medbay)
+"aCo" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship{
+	dir = 2;
+	icon_state = "sterile_green_side"
 	},
 /area/swamp/ship_crashed/medbay)
 "aCp" = (
@@ -11311,6 +11327,14 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/weapons_bay)
+"aCB" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_container/spray/cleaner,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
 "aCC" = (
 /turf/open/floor/mainship{
 	dir = 1;
@@ -11978,14 +12002,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/engineering)
 "aDW" = (
-/obj/machinery/cryopod,
-/obj/machinery/light{
-	dir = 8
+/turf/open/floor/mainship/mono{
+	icon_state = "platingdmg2"
 	},
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
+/area/swamp/ship_crashed/north_hall)
 "aDX" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11996,22 +12016,14 @@
 	},
 /area/swamp/ship_crashed/cryo)
 "aDY" = (
-/obj/machinery/cryopod/right,
-/obj/machinery/light{
-	dir = 4
+/obj/effect/alien/weeds/node,
+/turf/open/floor/mainship/mono{
+	icon_state = "platingdmg1"
 	},
-/obj/item/clothing/mask/facehugger/dead,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
+/area/swamp/ship_crashed/north_hall)
 "aDZ" = (
-/obj/machinery/cryopod/right,
-/obj/item/clothing/mask/facehugger/dead,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
+/turf/open/ground/grass,
+/area/swamp/ship_crashed/medbay_surgery)
 "aEa" = (
 /obj/machinery/door/window/northright/briefing,
 /obj/structure/cable{
@@ -12048,19 +12060,16 @@
 /area/swamp/ship_crashed/brief)
 "aEd" = (
 /obj/structure/table/mainship,
-/obj/item/flashlight/lamp,
-/obj/effect/landmark/map_item,
-/obj/structure/window/reinforced/toughened{
-	dir = 1
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/window/reinforced/toughened{
-	dir = 4
+/obj/machinery/status_display{
+	pixel_y = 30
 	},
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "silver"
-	},
-/area/swamp/ship_crashed/brief)
+/turf/open/floor/mainship,
+/area/swamp/ship_crashed/south_canteen)
 "aEe" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -12131,6 +12140,15 @@
 	icon_state = "cargo_arrow"
 	},
 /area/swamp/ship_crashed/brief)
+"aEn" = (
+/obj/structure/table/mainship,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/turf/open/floor/mainship{
+	dir = 2;
+	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
 "aEo" = (
 /obj/machinery/line_nexter{
 	id = "line1"
@@ -12167,11 +12185,9 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/hangar)
 "aEu" = (
-/obj/docking_port/stationary/ert/target{
-	name = "Hangar"
-	},
-/turf/open/floor/plating,
-/area/swamp/ship_crashed/hangar)
+/obj/structure/computerframe,
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/req)
 "aEv" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -12969,6 +12985,17 @@
 	dir = 8
 	},
 /area/swamp/ship_crashed/brief)
+"aGa" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/gloves{
+	pixel_x = -5;
+	pixel_y = -5
+	},
+/turf/open/floor/mainship{
+	dir = 2;
+	icon_state = "sterile_green_side"
+	},
+/area/swamp/ship_crashed/medbay)
 "aGb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13063,8 +13090,9 @@
 /area/swamp/ship_crashed/req)
 "aGm" = (
 /obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
+	icon_state = "door_open";
+	not_weldable = 1;
+	no_panel = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/req)
@@ -13145,6 +13173,11 @@
 	icon_state = "sterile_green_side"
 	},
 /area/swamp/ship_crashed/medbay)
+"aGy" = (
+/obj/item/circuitboard/airlock,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating/plating_catwalk,
+/area/swamp/ship_crashed/engineering)
 "aGz" = (
 /obj/machinery/light{
 	dir = 4
@@ -13246,6 +13279,10 @@
 	icon_state = "tcomms"
 	},
 /area/swamp/ship_crashed/engineering)
+"aGM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/swamp/ship_crashed/engineering)
 "aGN" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/mainship{
@@ -13261,6 +13298,14 @@
 	dir = 1;
 	icon_state = "orange"
 	},
+/area/swamp/ship_crashed/engineering)
+"aGP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/engineering)
+"aGQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/engineering)
 "aGR" = (
 /obj/structure/table/mainship,
@@ -14013,6 +14058,10 @@
 	icon_state = "red"
 	},
 /area/swamp/ship_crashed/weapons_bay)
+"aIA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating/plating_catwalk,
+/area/swamp/ship_crashed/engineering)
 "aIB" = (
 /obj/machinery/light{
 	dir = 1
@@ -14145,19 +14194,13 @@
 	},
 /area/swamp/ship_crashed/medbay)
 "aIQ" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner";
-	dir = 1
-	},
-/area/swamp/ship_crashed/medbay)
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/swamp/ship_crashed/engineering)
 "aIR" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_side"
-	},
-/area/swamp/ship_crashed/medbay)
+/turf/closed/gm/dense,
+/area/swamp/ship_crashed/engineering)
 "aIS" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -14168,6 +14211,12 @@
 	},
 /turf/open/floor/plating,
 /area/swamp/ship_crashed/medbay)
+"aIT" = (
+/obj/item/stack/rods{
+	amount = 3
+	},
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/weapons_bay)
 "aIU" = (
 /obj/structure/sink{
 	pixel_y = 32
@@ -14194,6 +14243,10 @@
 	icon_state = "sterile_green_corner"
 	},
 /area/swamp/ship_crashed/medbay)
+"aIW" = (
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/weapons_bay)
 "aIX" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 4;
@@ -15100,14 +15153,15 @@
 	icon_state = "orange"
 	},
 /area/swamp/ship_crashed/engineering)
+"aKU" = (
+/obj/structure/rack,
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/weapons_bay)
 "aKV" = (
 /obj/structure/table/mainship,
 /obj/item/tool/lighter,
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/machinery/keycard_auth{
-	pixel_y = 25
 	},
 /turf/open/floor/mainship{
 	dir = 5;
@@ -15199,14 +15253,11 @@
 	},
 /area/swamp/ship_crashed/engineering)
 "aLc" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
+/obj/effect/decal/cleanable/blood/gibs/robot,
+/obj/structure/computerframe,
 /turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "red"
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
 	},
 /area/swamp/ship_crashed/weapons_bay)
 "aLd" = (
@@ -15316,6 +15367,13 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/req)
+"aLt" = (
+/obj/structure/computerframe,
+/turf/open/floor/mainship{
+	icon_plating = "tcomms";
+	icon_state = "tcomms"
+	},
+/area/swamp/ship_crashed/weapons_bay)
 "aLu" = (
 /obj/structure/bed/chair,
 /turf/open/floor,
@@ -15573,19 +15631,17 @@
 	},
 /area/swamp/ship_crashed/medbay)
 "aLX" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_corner"
+/obj/machinery/door/airlock/mainship/maint{
+	icon_state = "door_open";
+	not_weldable = 1;
+	no_panel = 1
 	},
-/area/swamp/ship_crashed/medbay)
+/turf/open/floor/mainship/mono,
+/area/swamp/ship_crashed/cryo)
 "aLY" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_side"
-	},
-/area/swamp/ship_crashed/medbay)
+/obj/structure/computerframe,
+/turf/open/floor/mainship,
+/area/swamp/ship_crashed/south_prep)
 "aLZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -15794,6 +15850,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/medbay_surgery)
+"aMv" = (
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged3"
+	},
+/area/swamp/ship_crashed/south_prep)
 "aMw" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -15894,15 +15955,12 @@
 /turf/open/floor,
 /area/swamp/ground/compound2)
 "aMJ" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
-/obj/structure/ob_ammo/warhead/incendiary,
 /turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
+	dir = 1;
+	icon_regular_floor = "cargo_arrow";
+	icon_state = "cargo_arrow"
 	},
-/area/swamp/ship_crashed/weapons_bay)
+/area/swamp/ship_crashed/south_prep)
 "aMK" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/tgmc_mre{
@@ -15917,12 +15975,10 @@
 	},
 /area/swamp/ship_crashed/req)
 "aML" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/weapons_bay)
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged2"
+	},
+/area/swamp/ship_crashed/south_prep)
 "aMM" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16252,6 +16308,14 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/swamp/ship_crashed/req)
+"aNu" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono{
+	icon_state = "floorscorched1"
+	},
+/area/swamp/ship_crashed/south_prep)
 "aNv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -16341,6 +16405,14 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/medbay_surgery)
+"aNH" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged3"
+	},
+/area/swamp/ship_crashed/south_prep)
 "aNI" = (
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/medbay_surgery)
@@ -16372,26 +16444,27 @@
 	},
 /area/swamp/ship_crashed/engineering)
 "aNM" = (
-/obj/item/circuitboard/airlock,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
+/turf/open/floor/mainship/mono{
+	icon_state = "platingdmg2"
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/south_prep)
 "aNN" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/obj/structure/disposaloutlet,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged4"
+	},
+/area/swamp/ship_crashed/south_ert)
 "aNO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged2"
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/south_ert)
 "aNP" = (
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/electrical,
@@ -16427,6 +16500,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/engineering)
+"aNT" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/mainship/mono{
+	icon_state = "platingdmg1"
+	},
+/area/swamp/ship_crashed/south_ert)
 "aNU" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship{
@@ -16434,6 +16518,14 @@
 	icon_state = "orange"
 	},
 /area/swamp/ship_crashed/engineering)
+"aNV" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono{
+	icon_state = "floorscorched2"
+	},
+/area/swamp/ship_crashed/south_ert)
 "aNW" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16484,13 +16576,10 @@
 	},
 /area/swamp/ship_crashed/engineering)
 "aOc" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/cluster,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
+/turf/open/floor/mainship/mono{
+	icon_state = "damaged4"
 	},
-/area/swamp/ship_crashed/weapons_bay)
+/area/swamp/ship_crashed/south_ert)
 "aOd" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/mainship,
@@ -16686,6 +16775,11 @@
 	icon_state = "sterile_green_side"
 	},
 /area/swamp/ship_crashed/medbay)
+"aOF" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/swamp/ship_crashed/medbay_surgery)
 "aOG" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16782,26 +16876,28 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/medbay_surgery)
 "aOS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/engineering)
-"aOT" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "engineeringladdercrash"
-	},
-/turf/open/floor/plating/mainship,
-/area/swamp/ship_crashed/engineering)
-"aOU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
+/turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/engineering)
+/area/swamp/ship_crashed/medbay_surgery)
+"aOT" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/swamp/ship_crashed/medbay_surgery)
+"aOU" = (
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/swamp/ship_crashed/medbay_surgery)
 "aOV" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
@@ -17017,15 +17113,10 @@
 	},
 /area/swamp/ship_crashed/engineering)
 "aPn" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/obj/structure/ob_ammo/warhead/explosive,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
 	},
-/area/swamp/ship_crashed/weapons_bay)
+/area/swamp/ship_crashed/medbay_surgery)
 "aPo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -17252,6 +17343,11 @@
 	icon_state = "damaged1"
 	},
 /area/swamp/ship_crashed/medbay_surgery)
+"aPL" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/swamp/ship_crashed/medbay_surgery)
 "aPM" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable{
@@ -17266,10 +17362,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/swamp/ship_crashed/medbay_surgery)
 "aPO" = (
-/obj/effect/landmark/map_item,
-/turf/open/floor/mainship/mono{
-	icon_state = "damaged3"
-	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/swamp/ship_crashed/medbay_surgery)
 "aPP" = (
 /turf/open/floor/mainship/mono{
@@ -17300,26 +17393,17 @@
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/engineering)
 "aPU" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/obj/structure/flora/tree/jungle/small,
+/turf/open/ground/desertdam/river,
+/area/swamp/ground/jungle6)
 "aPV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/obj/structure/flora/tree/jungle,
+/turf/open/floor/plating/ground/dirt,
+/area/swamp/ground/jungle6)
 "aPW" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/swamp/ship_crashed/engineering)
+/obj/structure/flora/tree/jungle,
+/turf/open/ground/desertdam/river,
+/area/swamp/ground/jungle2)
 "aPX" = (
 /turf/open/floor/mainship{
 	icon_state = "orangecorner"
@@ -17428,17 +17512,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/swamp/ship_crashed/engineering)
-"aQi" = (
-/obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/turf/open/floor/mainship{
-	dir = 10;
-	icon_state = "red"
-	},
-/area/swamp/ship_crashed/weapons_bay)
 "aQj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -17561,14 +17634,6 @@
 /obj/item/tool/weldingtool/largetank,
 /obj/item/tool/weldingtool/largetank,
 /obj/item/clothing/head/welding,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/swamp/ship_crashed/medbay)
-"aQv" = (
-/obj/machinery/computer/cryopod/medical{
-	dir = 8
-	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
@@ -17952,23 +18017,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/ground/dirt,
-/area/swamp/ship_crashed/medbay_surgery)
-"aRh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/swamp/ship_crashed/medbay_surgery)
-"aRi" = (
-/obj/machinery/iv_drip,
 /turf/open/floor/plating/ground/dirt,
 /area/swamp/ship_crashed/medbay_surgery)
 "aRj" = (
@@ -19582,13 +19630,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/req)
-"aUE" = (
-/obj/machinery/cryopod/right,
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
 "aUF" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -19692,33 +19733,6 @@
 	},
 /turf/open/floor/mainship,
 /area/swamp/ship_crashed/hangar)
-"aUV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_side";
-	dir = 6
-	},
-/area/swamp/ship_crashed/medbay)
-"aUW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_side"
-	},
-/area/swamp/ship_crashed/medbay)
-"aUX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_side";
-	dir = 10
-	},
-/area/swamp/ship_crashed/medbay)
 "aUY" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship{
@@ -19971,14 +19985,6 @@
 	icon_state = "bluefull"
 	},
 /area/swamp/ship_crashed/cryo)
-"aVn" = (
-/obj/machinery/cryopod/right,
-/obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/item/clothing/mask/facehugger/dead,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
-/area/swamp/ship_crashed/cryo)
 "aVo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Cryogenics Bay"
@@ -20220,44 +20226,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/hangar)
-"aVW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner";
-	dir = 4
-	},
-/area/swamp/ship_crashed/medbay)
-"aVX" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "med1crash"
-	},
-/turf/open/floor/plating/mainship,
-/area/swamp/ship_crashed/medbay)
-"aVY" = (
-/obj/structure/ladder{
-	height = 1;
-	id = "med2crash"
-	},
-/turf/open/floor/plating/mainship,
-/area/swamp/ship_crashed/medbay)
-"aVZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_corner"
-	},
-/area/swamp/ship_crashed/medbay)
 "aWa" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/swamp/ship_crashed/south_prep)
@@ -20286,39 +20254,6 @@
 	icon_state = "sterile_green_side"
 	},
 /area/swamp/ship_crashed/medbay)
-"aWe" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/swamp/ship_crashed/south_prep)
-"aWf" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/swamp/ship_crashed/south_prep)
-"aWg" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
-/area/swamp/ship_crashed/south_prep)
 "aWh" = (
 /obj/machinery/light{
 	dir = 4
@@ -21909,12 +21844,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/south_prep)
-"aZR" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/swamp/ship_crashed/south_prep)
 "aZS" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22009,20 +21938,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/ground/grass,
-/area/swamp/ship_crashed/south_prep)
-"baa" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22132,12 +22047,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/south_hall)
-"bai" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/swamp/ship_crashed/south_prep)
 "baj" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
@@ -22871,15 +22780,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
 /area/swamp/ground/jungle4)
-"bdc" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 8;
-	id = "space";
-	name = "Harmful Gas Ejector";
-	on = 1
-	},
-/turf/closed/gm/dense,
-/area/swamp/ground/jungle8)
 "bdd" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass,
@@ -24101,13 +24001,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/engineering)
-"bgN" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10
-	},
-/obj/machinery/meter,
-/turf/open/floor/mainship/mono,
-/area/swamp/ship_crashed/engineering)
 "bgO" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -24359,30 +24252,6 @@
 	},
 /turf/open/floor/mainship{
 	icon_state = "orange"
-	},
-/area/swamp/ship_crashed/engineering)
-"bhu" = (
-/obj/machinery/atmospherics/components/binary/pump/on{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "orange"
-	},
-/area/swamp/ship_crashed/engineering)
-"bhv" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 10
-	},
-/obj/machinery/meter,
-/turf/open/floor/mainship{
-	icon_state = "orange"
-	},
-/area/swamp/ship_crashed/engineering)
-"bhw" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/mainship{
-	icon_state = "orangecorner";
-	dir = 8
 	},
 /area/swamp/ship_crashed/engineering)
 "bhx" = (
@@ -24851,29 +24720,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swamp/ship_crashed/south_canteen)
-"biN" = (
-/obj/structure/table/mainship,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/status_display{
-	pixel_y = 30
-	},
-/obj/effect/landmark/map_item,
-/turf/open/floor/mainship,
-/area/swamp/ship_crashed/south_canteen)
-"biO" = (
-/obj/structure/table/mainship,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/map_item,
-/turf/open/floor/mainship,
-/area/swamp/ship_crashed/south_canteen)
 "biP" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
@@ -24942,26 +24788,6 @@
 	id_tag = "nit_lower_out"
 	},
 /turf/open/floor/engine/nitrogen,
-/area/swamp/ship_crashed/engineering)
-"biZ" = (
-/obj/machinery/atmospherics/components/unary/outlet_injector{
-	dir = 1;
-	id = "mix_lower_in";
-	on = 1
-	},
-/turf/open/floor/engine,
-/area/swamp/ship_crashed/engineering)
-"bja" = (
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/open/floor/engine,
-/area/swamp/ship_crashed/engineering)
-"bjb" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
-	dir = 1;
-	id_tag = "mixed_lower_out"
-	},
-/turf/open/floor/engine,
 /area/swamp/ship_crashed/engineering)
 "bjc" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -28742,16 +28568,6 @@
 	},
 /turf/open/floor/mainship,
 /area/swamp/ship_crashed/south_hall)
-"bsN" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/disposaloutlet,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/swamp/ship_crashed/south_ert)
 "bsO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28893,12 +28709,6 @@
 /turf/open/floor/plating/mainship/striped{
 	dir = 4
 	},
-/area/swamp/ship_crashed/south_ert)
-"btj" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt,
 /area/swamp/ship_crashed/south_ert)
 "btk" = (
 /obj/machinery/conveyor{
@@ -30759,7 +30569,7 @@ aaa
 aaa
 aaa
 aaa
-aAk
+aaa
 aaa
 aaa
 aaa
@@ -30955,7 +30765,7 @@ aaa
 aaa
 aaa
 aaa
-avi
+aaa
 aaa
 aaa
 aaa
@@ -32358,7 +32168,7 @@ bbV
 bbV
 bbV
 bbV
-bbq
+avi
 bbV
 bbU
 bbT
@@ -32939,7 +32749,7 @@ bbR
 bbV
 bbV
 bbV
-bbq
+avi
 bbV
 bbV
 bbV
@@ -33746,29 +33556,29 @@ bcx
 bba
 bba
 axa
-ayL
-aAp
-ayL
+aww
+awZ
+aww
 aCy
 aCy
 aCy
 aCy
 aCy
 ayT
-aLc
-aMJ
-aOc
-aPn
-aQi
-aCy
-aCy
-aCy
-aCy
-aCy
-aCy
+ayH
+ayI
+ayJ
 ayL
 aAp
-ayL
+aCy
+aCy
+aCy
+aCy
+aCy
+aCy
+aww
+awZ
+aww
 axa
 bdI
 bdI
@@ -33919,7 +33729,7 @@ bbS
 bbW
 bbV
 bbV
-bbq
+avi
 bbV
 bbV
 bbV
@@ -33953,14 +33763,14 @@ aIe
 ayT
 aIj
 aLg
-aLg
-aLg
+aIW
+aIT
 aFx
 ayT
 aRu
-aSx
-aEl
-aSx
+aLc
+aLt
+aLc
 aUH
 aVM
 aAq
@@ -34121,7 +33931,7 @@ bbV
 bbV
 bbV
 bbV
-bbq
+avi
 bbV
 bbV
 bbV
@@ -34148,9 +33958,9 @@ aEl
 aIf
 aJE
 aLd
-aML
-aML
-aML
+aIT
+aKU
+aKU
 aBz
 aJE
 aRw
@@ -34351,7 +34161,7 @@ aQj
 aJE
 aRw
 aSx
-aEl
+aLt
 aSx
 aUI
 aLg
@@ -34547,7 +34357,7 @@ aLf
 ayT
 aRx
 aEl
-aSx
+aLc
 aEl
 ayU
 aLg
@@ -39140,7 +38950,7 @@ bej
 bej
 bej
 bej
-bej
+bdF
 bdF
 bdF
 bdF
@@ -39329,15 +39139,15 @@ bej
 bej
 bej
 bej
+bdF
+bdF
 bej
 bej
 bej
 bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -39524,16 +39334,16 @@ bej
 bej
 bej
 bej
+bdF
+bdF
+bdF
+bdF
 bej
 bej
 bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -39719,17 +39529,17 @@ bej
 bej
 bej
 bej
+bdF
+bdF
+bdF
+bdF
+bdF
 bej
 bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -39914,18 +39724,18 @@ bdF
 bej
 bej
 bej
+bdF
+bdF
+bdF
+bdF
+bdF
+bdF
 bej
 bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -40111,17 +39921,17 @@ bej
 bej
 bej
 bej
+bdF
+bdF
+bdF
+bdF
 bej
 bej
 bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -40308,15 +40118,15 @@ bej
 bej
 bej
 bej
+bdF
+bdF
 bej
 bej
 bej
 bej
-bej
-bej
-bej
-bej
-bej
+bdF
+bdF
+bdF
 bdF
 bdF
 bdF
@@ -40511,8 +40321,8 @@ bfJ
 bfJ
 bfJ
 bfJ
-bfJ
-bfJ
+bfO
+bfO
 bfO
 bfO
 bfO
@@ -40707,7 +40517,7 @@ bfJ
 bfJ
 bfJ
 bfJ
-bfJ
+bfO
 bfO
 bfO
 bfO
@@ -41198,7 +41008,7 @@ azv
 aAA
 aAA
 aAA
-aEu
+aAA
 aAA
 aAA
 aAA
@@ -41682,8 +41492,8 @@ bfO
 bfO
 bfO
 bfO
-bfJ
-bfJ
+bfO
+bfO
 bfJ
 bfO
 bfO
@@ -44905,7 +44715,7 @@ bcc
 bcd
 baV
 baV
-baV
+aPV
 alb
 alR
 amC
@@ -47059,7 +46869,7 @@ baV
 bbj
 bcf
 bcf
-bcf
+aPU
 bcf
 bbB
 alb
@@ -48465,8 +48275,8 @@ aCc
 aCc
 aCc
 aCc
-aUV
-aVW
+aCc
+aAo
 aAK
 aYs
 aZs
@@ -48661,8 +48471,8 @@ aKH
 aCc
 aTm
 aCc
-aUW
-aVX
+aCc
+aCo
 aAK
 aYt
 aZt
@@ -48857,8 +48667,8 @@ aCc
 aCc
 aTn
 aCc
-aUW
-aVY
+aCc
+aCo
 aAK
 aRY
 aZu
@@ -49053,8 +48863,8 @@ aAN
 aPC
 aTo
 aTT
-aUX
-aVZ
+aCc
+aAo
 aAK
 aYu
 aZv
@@ -50615,7 +50425,7 @@ aAK
 aAK
 aOI
 aCc
-aQv
+aNh
 aCc
 aLT
 aAK
@@ -50805,9 +50615,9 @@ aDF
 aCc
 aFY
 aAK
-aIQ
+aBf
 aFP
-aLX
+aCi
 aAK
 aOJ
 aKH
@@ -51001,9 +50811,9 @@ aDC
 aCc
 aGt
 aAK
-aIR
+arl
 aCc
-aLY
+aEn
 aAK
 aOK
 aCc
@@ -51011,7 +50821,7 @@ aQw
 aRc
 aRT
 aAK
-aCd
+aHh
 aCc
 aVd
 aGx
@@ -51046,7 +50856,7 @@ bfr
 bfK
 bfp
 bfw
-bff
+aPW
 bfw
 bfw
 bfD
@@ -51197,9 +51007,9 @@ aDG
 aCc
 aGt
 aAK
-aIR
+aCB
 aKH
-aLY
+aCo
 aAK
 aOL
 aCc
@@ -51393,9 +51203,9 @@ aDC
 aCc
 aGt
 aAK
-aIR
+aCb
 aCc
-aLY
+aGa
 aAK
 aOM
 aCc
@@ -51403,7 +51213,7 @@ aCc
 aCc
 aRV
 aAK
-aCd
+aHh
 aCc
 aVa
 aFX
@@ -51833,7 +51643,7 @@ bfp
 bfw
 bfw
 bfw
-bff
+aPW
 bfw
 bfD
 bfH
@@ -53359,11 +53169,11 @@ aMs
 aPB
 aAK
 aPM
-aQz
-aRh
-aQz
-aQz
-aQz
+aot
+avz
+aOS
+aOS
+aOT
 aQz
 aVj
 aPN
@@ -53555,11 +53365,11 @@ aAK
 aAK
 aAK
 aPN
-aPN
-aRi
-aPN
-aPN
-aPN
+avx
+avA
+aDZ
+aDZ
+aOU
 aPN
 aPN
 aPN
@@ -53742,7 +53552,7 @@ agA
 aak
 age
 anh
-avx
+aos
 afu
 ayc
 azq
@@ -53750,14 +53560,14 @@ aBi
 aMt
 aNl
 aON
-aPO
-aPN
-aPN
+aPR
+avx
+aDZ
 aRW
 aPP
 aPR
-aPN
-aPN
+aPn
+aPL
 aQy
 aWQ
 aRY
@@ -53937,8 +53747,8 @@ ayi
 awi
 afn
 agi
-anE
-avy
+agB
+agB
 afu
 ayd
 aic
@@ -53947,13 +53757,13 @@ aMt
 aNG
 aOP
 aPP
-aPN
-aPN
+avx
+aDZ
 aQy
 aPQ
-aPN
-aPN
-aPN
+aDZ
+aDZ
+aOU
 aWx
 aWR
 aYC
@@ -54133,8 +53943,8 @@ ayj
 awj
 afn
 agk
-aos
-avz
+anE
+aNF
 afu
 aye
 aic
@@ -54143,13 +53953,13 @@ aMt
 apl
 aOQ
 aPQ
-aPN
-aPN
-aPN
+avy
+aOF
+aOF
 aQy
-aPN
-aPN
-aPN
+aOF
+aOF
+aPO
 aPP
 aWR
 aYL
@@ -54329,8 +54139,8 @@ ayi
 awi
 afn
 agB
-aot
-avA
+agB
+agB
 aak
 avD
 aic
@@ -55904,7 +55714,7 @@ azc
 azZ
 axI
 axI
-aEd
+aua
 aFn
 aHq
 aIq
@@ -57685,22 +57495,22 @@ bgr
 bhe
 aXi
 aVr
-aVv
-aWe
+aLY
+aMJ
 aWj
 aWK
 aYd
 aYK
 aVr
 aZH
-aZR
+aNu
 baf
 bsn
 bsr
 aVv
 bqs
 bqs
-brp
+aNO
 bqs
 bqs
 bqs
@@ -57857,7 +57667,7 @@ ayo
 agW
 aiX
 ahE
-arl
+awB
 awB
 awB
 awB
@@ -57870,7 +57680,7 @@ avD
 avD
 agB
 awB
-arl
+awB
 awB
 awB
 awB
@@ -57881,21 +57691,21 @@ bgq
 aRY
 aRY
 aVr
-aVv
-aWf
+aLY
+aMJ
 aWk
 aWa
 aYe
 aVv
 aVr
-aZI
+aML
 aZS
 aWa
 aZI
 bsr
 aVv
 bqs
-bsN
+aNN
 brp
 afh
 btf
@@ -58077,8 +57887,8 @@ bgq
 aXi
 bhq
 aVr
-aVv
-aWf
+aLY
+aMJ
 aWk
 aWa
 aYf
@@ -58095,7 +57905,7 @@ bsO
 brp
 brp
 brp
-btj
+aNV
 btl
 btm
 bqs
@@ -58273,8 +58083,8 @@ bgs
 aXi
 aRY
 aVr
-aVv
-aWg
+aMv
+aMJ
 aWl
 aWI
 aYe
@@ -58292,7 +58102,7 @@ bqs
 bqs
 bqs
 brp
-brp
+aOc
 bqs
 bqs
 brO
@@ -58478,15 +58288,15 @@ aZe
 aVr
 aZJ
 aZT
-bai
+aNH
 aVr
-aZI
+aML
 aZI
 brp
 bsP
 btb
 btb
-btb
+aNT
 btb
 btb
 btd
@@ -58676,7 +58486,7 @@ aZK
 aZU
 aZI
 aZI
-aZI
+aNM
 aZI
 brp
 bsQ
@@ -59635,9 +59445,9 @@ aFa
 aJO
 aKC
 afA
-aug
+aEu
 aqd
-aug
+aEu
 afA
 aRY
 aXq
@@ -61221,7 +61031,7 @@ aYF
 aZr
 aVr
 aWV
-baa
+aZZ
 bsh
 aWV
 aWV
@@ -61417,7 +61227,7 @@ aYG
 aWV
 aWV
 aWV
-bab
+aZZ
 bsh
 aWV
 aWV
@@ -61613,7 +61423,7 @@ aYH
 aZy
 aWV
 aWV
-bab
+aZZ
 bsh
 aWV
 aWV
@@ -63360,7 +63170,7 @@ afI
 afI
 afI
 afI
-awS
+aLX
 afI
 afI
 afI
@@ -63540,25 +63350,25 @@ agA
 axw
 agA
 afK
-ajI
+akH
 avr
 awT
 axX
-amN
+alg
 awT
 aCJ
-aDW
+amy
 avr
 aGo
 avr
-aDW
+amy
 avr
 awT
-amN
+alg
 axX
 awT
 aCJ
-amN
+alg
 afK
 aRY
 aZt
@@ -63740,21 +63550,21 @@ akH
 avr
 awT
 avr
-amA
+alg
 awT
 avr
 akH
 avr
 aGo
 avr
-amA
+alg
 avr
 awT
 akH
 avr
 awT
 avr
-amA
+alg
 afK
 aRY
 aZt
@@ -64135,14 +63945,14 @@ avr
 alj
 awT
 avr
-aDW
+amy
 avr
 aGq
 avr
-aDW
+amy
 avr
 aLv
-amN
+alg
 avr
 awV
 avr
@@ -64335,14 +64145,14 @@ akH
 avr
 aGo
 avr
-amA
+alg
 avr
 awT
-amA
+alg
 avr
 awW
 avr
-aUE
+amN
 afI
 aYN
 aZz
@@ -65304,8 +65114,8 @@ agA
 ayy
 azW
 afX
-amk
-avw
+ajI
+ajI
 axG
 ayb
 azo
@@ -65498,33 +65308,33 @@ atX
 amB
 awc
 ayv
-auP
-afI
-amy
+avw
+ajI
+ajI
+ajI
+ajI
 avr
+alg
 awT
 avr
-amN
-awT
-avr
-amN
+alg
 avr
 aHj
 avr
-amN
+alg
 avr
 awT
-amN
+alg
 avr
 aND
 avr
-ajI
+akH
 afI
 aYS
 aZz
 bhj
 bhO
-biN
+aEd
 bke
 bkb
 blv
@@ -65694,33 +65504,33 @@ atY
 auU
 agA
 ayu
-agA
-afK
-amA
+azp
+ajI
+ajI
+ajI
+ajI
 avr
+alg
 awU
 avr
 amA
-awU
-avr
-aDY
 avr
 aHj
 avr
-azp
+amk
 avr
 aLv
 akH
 avr
 awT
 avr
-aVn
+amH
 afK
 aRY
 aZt
 bhg
 bhP
-biO
+biQ
 bke
 blv
 blv
@@ -65890,12 +65700,12 @@ atX
 auU
 agA
 ayu
-agA
-afK
-amH
-avr
-awT
-avr
+aff
+ajI
+ajI
+ajI
+ajI
+ajI
 alg
 awT
 aCL
@@ -65916,7 +65726,7 @@ aWX
 aZt
 bhg
 bhP
-biO
+biQ
 bke
 bkb
 blv
@@ -66086,27 +65896,27 @@ atZ
 auU
 agA
 ayu
-agA
-afK
-amN
-avr
+aff
+ajI
+ajI
+ajI
+ajI
+ajI
+alg
 awT
 avr
-amN
-awT
-avr
-amN
+alg
 avr
 aHl
 avr
-amN
+alg
 avr
 awT
-amN
+alg
 avr
 awT
 avr
-amN
+alg
 afK
 aRY
 aZt
@@ -66278,27 +66088,27 @@ anq
 anq
 aoQ
 atl
-aua
+atX
 auU
 agA
 ayu
-agA
-afK
-amA
+aff
+ajI
+ajI
+ajI
+ajI
 avr
+amk
 awT
 avr
-azp
-awT
-avr
-aDZ
+alj
 avr
 aHm
 avr
-amA
+alg
 avr
 awT
-azp
+amk
 avr
 awT
 avr
@@ -66474,15 +66284,15 @@ anq
 anq
 asp
 atl
-aua
+atX
 auU
 awp
 ayv
-auP
-afI
-amO
-amO
-amO
+aDW
+ajI
+ajI
+ajI
+ajI
 amO
 afI
 amO
@@ -66670,14 +66480,14 @@ anq
 ars
 asp
 atl
-aua
+atX
 auU
 agA
 ayu
 agA
-atS
-agA
-awf
+aff
+aff
+aDY
 aEM
 agA
 agA
@@ -66700,7 +66510,7 @@ aRY
 aZt
 bhg
 bhP
-biO
+biQ
 bke
 bkb
 blv
@@ -68056,9 +67866,9 @@ aHN
 aJg
 aKO
 aGC
-aNM
-aOS
-aPU
+aGy
+aGP
+aIA
 aQB
 aGG
 aSd
@@ -68079,8 +67889,8 @@ bcP
 bcP
 bcP
 bcP
-bcO
-bcO
+bcP
+bcP
 bcO
 bcO
 bcO
@@ -68252,9 +68062,9 @@ atn
 aJh
 aGH
 aGH
-aNN
-aOT
-aPV
+aGH
+auZ
+aGH
 aGH
 aRl
 aSe
@@ -68272,9 +68082,9 @@ biW
 atn
 bcP
 bcP
-bcO
-bcO
-bcO
+bcP
+bcP
+bcP
 bcO
 bcO
 bcO
@@ -68448,9 +68258,9 @@ aHO
 aJi
 aws
 aMy
-aNO
-aOU
-aPW
+aGM
+aGQ
+aIQ
 aQC
 aRm
 aSg
@@ -69050,7 +68860,7 @@ atn
 aXy
 atn
 bgK
-bhu
+aGA
 atn
 atn
 atn
@@ -69246,10 +69056,10 @@ atn
 aAY
 atn
 aqT
-bhv
-ava
-biZ
-atn
+aGA
+ato
+ato
+ato
 bcO
 bcO
 bcO
@@ -69443,9 +69253,9 @@ aAX
 atn
 bgM
 aGA
-avb
-bja
-atn
+ato
+ato
+ato
 bcO
 bcO
 bcO
@@ -69610,10 +69420,10 @@ bbc
 bbc
 bbc
 atn
-aup
-ava
-aww
-ayH
+auk
+avb
+aDO
+auZ
 atn
 aBe
 atn
@@ -69637,11 +69447,11 @@ aVK
 atn
 aAW
 atn
-bgN
-bhw
-ava
-bjb
-atn
+auZ
+ato
+ato
+ato
+ato
 bcO
 bcO
 bcQ
@@ -69809,7 +69619,7 @@ atn
 atn
 atn
 auZ
-ayI
+auZ
 atn
 aBe
 atn
@@ -69833,11 +69643,11 @@ atn
 atn
 aAW
 atn
-auZ
-auZ
-atn
-atn
-atn
+aIR
+ato
+ato
+ato
+ato
 bcO
 bcO
 bcO
@@ -70004,8 +69814,8 @@ bbc
 ato
 ato
 atn
-awZ
-ayJ
+aup
+aup
 atn
 aBy
 aCt
@@ -70029,9 +69839,9 @@ atn
 aUy
 aVL
 atn
-awZ
-awZ
-atn
+aIR
+aIR
+ato
 bcO
 bcO
 bcO
@@ -70201,7 +70011,7 @@ ato
 ato
 atn
 bcP
-bdc
+bcP
 atn
 atn
 aCu
@@ -70226,8 +70036,8 @@ aAW
 atn
 atn
 bcP
-auZ
-atn
+aIR
+ato
 bcO
 bcO
 bcO
@@ -73946,7 +73756,7 @@ atn
 aTI
 aAY
 atn
-bdd
+bcO
 bcO
 bcO
 bcQ
@@ -75506,7 +75316,7 @@ bdt
 bdz
 bdD
 bdC
-bdd
+aAk
 bdC
 bdC
 bdC
@@ -75916,7 +75726,7 @@ bcP
 bcP
 bcP
 bcP
-bcO
+bdd
 bcO
 bcO
 bcO
