@@ -7,7 +7,7 @@
 	use_power = 1
 	idle_power_usage = 20
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
-	var/obj/item/reagent_container/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
@@ -39,7 +39,7 @@
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/reagent_container) && I.is_open_container())
+	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
@@ -49,7 +49,7 @@
 		updateUsrDialog()
 		icon_state = "mixer1"
 
-	else if(istype(I,/obj/item/reagent_container/glass))
+	else if(istype(I,/obj/item/reagent_containers/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
@@ -197,7 +197,7 @@
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 			while (count--)
-				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(loc)
+				var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = name
 				P.pill_desc = "A [name] pill."
@@ -215,7 +215,7 @@
 				var/name = reject_bad_text(input(user,"Name:","Name your bottle!",reagents.get_master_reagent_name()) as text|null)
 				if(!name)
 					return
-				var/obj/item/reagent_container/glass/bottle/P = new/obj/item/reagent_container/glass/bottle(loc)
+				var/obj/item/reagent_containers/glass/bottle/P = new/obj/item/reagent_containers/glass/bottle(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
@@ -224,7 +224,7 @@
 				reagents.trans_to(P,60)
 				P.update_icon()
 			else
-				var/obj/item/reagent_container/food/condiment/P = new/obj/item/reagent_container/food/condiment(loc)
+				var/obj/item/reagent_containers/food/condiment/P = new/obj/item/reagent_containers/food/condiment(loc)
 				reagents.trans_to(P,50)
 
 		else if (href_list["createautoinjector"])
@@ -232,7 +232,7 @@
 				var/name = reject_bad_text(input(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()) as text|null)
 				if(!name)
 					return
-				var/obj/item/reagent_container/hypospray/autoinjector/fillable/P = new/obj/item/reagent_container/hypospray/autoinjector/fillable(loc)
+				var/obj/item/reagent_containers/hypospray/autoinjector/fillable/P = new/obj/item/reagent_containers/hypospray/autoinjector/fillable(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] autoinjector"
 				P.pixel_x = rand(-7, 7) //random position
