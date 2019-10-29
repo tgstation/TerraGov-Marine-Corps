@@ -645,8 +645,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		else
 			limb_status = LIMB_DESTROYED
 		for(var/i in implants)
-			implants -= i
-			qdel(i)
+			var/obj/item/embedded_thing = i
+			embedded_thing.unembed_ourself(TRUE)
 
 		germ_level = 0
 		if(hidden)
