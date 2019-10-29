@@ -27,6 +27,19 @@
 		else
 			reagents.add_reagent(rid, amount, data)
 
+/obj/item/reagent_containers/food/snacks/proc/generate_trash(atom/location)
+	if(trash)
+		if(ispath(trash, /obj/item))
+			. = new trash(location)
+			trash = null
+			return
+		else if(isitem(trash))
+			var/obj/item/trash_item = trash
+			trash_item.forceMove(location)
+			. = trash
+			trash = null
+			return
+
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(mob/M)
 	if(!usr)
 		return
@@ -2080,7 +2093,7 @@
 	filling_color = "#FF3867"
 	bitesize = 2
 	tastes = list("watermelon" = 1)
-
+	juice_results= list(/datum/reagent/consumable/drink/watermelonjuice = 0)
 
 /obj/item/reagent_containers/food/snacks/sliceable/applecake
 	name = "Apple Cake"

@@ -13,6 +13,7 @@
 	volume = 60
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
+	grind_results= list()
 
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()

@@ -113,7 +113,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	icon_state = "sheet-uranium"
 	perunit = 2000
 	sheettype = "uranium"
-
+	grind_results= list(/datum/reagent/uranium = 20)
 
 /obj/item/stack/sheet/mineral/uranium/Initialize()
 	. = ..()
@@ -127,7 +127,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	perunit = 2000
 	sheettype = "phoron"
 	merge_type = /obj/item/stack/sheet/mineral/phoron
-
+	grind_results= list(/datum/reagent/toxin/phoron = 20)
 
 /obj/item/stack/sheet/mineral/phoron/small_stack
 	amount = 10
@@ -164,7 +164,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	perunit = 2000
 	sheettype = "gold"
 	number_of_extra_variants = 2
-
+	grind_results= list(/datum/reagent/gold = 20)
 
 /obj/item/stack/sheet/mineral/gold/Initialize()
 	. = ..()
@@ -178,7 +178,7 @@ obj/item/stack/sheet/mineral/iron/Initialize()
 	perunit = 2000
 	sheettype = "silver"
 	number_of_extra_variants = 2
-
+	grind_results= list(/datum/reagent/silver = 20)
 
 /obj/item/stack/sheet/mineral/silver/Initialize()
 	. = ..()

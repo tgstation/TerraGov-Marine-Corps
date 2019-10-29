@@ -8,6 +8,7 @@
 	init_reagent_flags = INJECTABLE
 
 	var/list/center_of_mass = newlist() //Center of mass
+	grind_results= list()
 
 /obj/item/reagent_containers/food/Initialize()
 	. = ..()

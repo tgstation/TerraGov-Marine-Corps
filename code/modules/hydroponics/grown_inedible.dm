@@ -95,6 +95,8 @@
 
 	var/potency_divisior = 5
 
+	grind_results= list(/datum/reagent/toxin/acid = 0)
+
 /obj/item/grown/nettle/Initialize()
 	. = ..()
 	force = round(5 + potency / potency_divisior)
@@ -132,6 +134,7 @@
 	name = "deathnettle"
 	icon_state = "deathnettle"
 	potency_divisior = 2.5
+	grind_results= list(/datum/reagent/toxin/acid/polyacid = 0)
 
 /obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
 

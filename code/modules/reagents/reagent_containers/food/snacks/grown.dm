@@ -47,6 +47,7 @@
 	potency = 40
 	filling_color = "#FFEE00"
 	trash = /obj/item/corncob
+	grind_results= list(/datum/reagent/consumable/cornoil = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/cherries
 	name = "cherries"
@@ -55,6 +56,7 @@
 	filling_color = "#FF0000"
 	gender = PLURAL
 	plantname = "cherry"
+	grind_results= list(/datum/reagent/consumable/cherryjelly = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/poppy
 	name = "poppy"
@@ -79,6 +81,7 @@
 	potency = 25
 	filling_color = "#E6E8DA"
 	plantname = "potato"
+	juice_results= list(/datum/reagent/consumable/nutriment = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -101,6 +104,7 @@
 	icon_state = "grapes"
 	filling_color = "#A332AD"
 	plantname = "grapes"
+	juice_results= list(/datum/reagent/consumable/drink/grapejuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/greengrapes
 	name = "bunch of green grapes"
@@ -132,6 +136,7 @@
 	icon_state = "berrypile"
 	filling_color = "#C2C9FF"
 	plantname = "berries"
+	juice_results= list(/datum/reagent/consumable/drink/berryjuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/plastellium
 	name = "clump of plastellium"
@@ -139,6 +144,7 @@
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 	plantname = "plastic"
+	grind_results= list(/datum/reagent/toxin/plasticide = 5)
 
 /obj/item/reagent_containers/food/snacks/grown/shand
 	name = "S'rendarr's Hand leaf"
@@ -207,6 +213,7 @@
 	potency = 15
 	filling_color = "#B422C7"
 	plantname = "poisonberries"
+	juice_results= list(/datum/reagent/consumable/drink/poisonberryjuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/deathberries
 	name = "bunch of death-berries"
@@ -290,6 +297,7 @@
 	potency = 20
 	filling_color = "#28FA59"
 	plantname = "lime"
+	juice_results= list(/datum/reagent/consumable/drink/limejuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/lemon
 	name = "lemon"
@@ -298,6 +306,7 @@
 	potency = 20
 	filling_color = "#FAF328"
 	plantname = "lemon"
+	juice_results= list(/datum/reagent/consumable/drink/lemonjuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/orange
 	name = "orange"
@@ -306,6 +315,7 @@
 	potency = 20
 	filling_color = "#FAAD28"
 	plantname = "orange"
+	juice_results= list(/datum/reagent/consumable/drink/orangejuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/whitebeet
 	name = "white-beet"
@@ -346,6 +356,8 @@
 	filling_color = "#E6E8B7"
 	icon_state = "soybeans"
 	plantname = "soybean"
+	grind_results= list(/datum/reagent/consumable/drink/milk/soymilk = 0)
+	juice_results= list(/datum/reagent/consumable/drink/tomatojuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/tomato
 	name = "tomato"
@@ -354,6 +366,7 @@
 	filling_color = "#FF0000"
 	potency = 10
 	plantname = "tomato"
+	grind_results= list(/datum/reagent/consumable/ketchup = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
 	..()
@@ -427,6 +440,7 @@
 	icon_state = "rice"
 	filling_color = "#FFF8DB"
 	plantname = "rice"
+	grind_results= list(/datum/reagent/consumable/rice = 5)
 
 /obj/item/reagent_containers/food/snacks/grown/kudzupod
 	name = "kudzu pod"
@@ -450,6 +464,7 @@
 	potency = 10
 	filling_color = "#FFC400"
 	plantname = "carrot"
+	juice_results= list(/datum/reagent/consumable/drink/carrotjuice = 0)
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
 	name = "reishi"
