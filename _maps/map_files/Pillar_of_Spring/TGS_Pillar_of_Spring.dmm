@@ -827,7 +827,7 @@
 /area/mainship/hallways/hangar)
 "cU" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 8
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -1511,12 +1511,6 @@
 "fI" = (
 /turf/open/space/basic,
 /area/space)
-"fL" = (
-/obj/machinery/autodoc,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/mainship/medical/lower_medical)
 "fM" = (
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
@@ -1897,12 +1891,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"hc" = (
-/obj/machinery/autodoc_console,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/mainship/medical/lower_medical)
 "hd" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship{
@@ -2035,6 +2023,9 @@
 /area/mainship/medical/lower_medical)
 "hq" = (
 /obj/machinery/computer/med_data,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2131,7 +2122,7 @@
 	},
 /area/mainship/hallways/hangar)
 "hA" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/autodoc,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2506,12 +2497,7 @@
 	},
 /area/mainship/medical/medical_science)
 "iz" = (
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "0";
-	req_one_access_txt = "14;3"
-	},
-/obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/structure/closet/secure_closet/guncabinet/incendiary,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2530,9 +2516,7 @@
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2811,6 +2795,14 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"jp" = (
+/obj/machinery/door_display/research_cell/cell{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "jq" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -3919,9 +3911,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
 "mm" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory{
-	req_one_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -4510,7 +4500,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "nS" = (
-/obj/machinery/door/poddoor/shutters/mainship/containment{
+/obj/machinery/door/poddoor/shutters/mainship/cell{
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/cell,
@@ -5162,12 +5152,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/mainship/medical/medical_science)
-"pE" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 3"
-	},
-/turf/closed/wall/mainship/white,
 /area/mainship/medical/medical_science)
 "pF" = (
 /turf/open/floor/mainship/mono,
@@ -7574,11 +7558,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "vH" = (
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -7592,13 +7572,7 @@
 	},
 /area/mainship/command/cic)
 "vJ" = (
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -8161,14 +8135,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "wW" = (
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "3"
-	},
-/obj/item/weapon/gun/shotgun/combat,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -8944,7 +8911,7 @@
 /area/mainship/engineering/engineering_workshop)
 "za" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -9483,7 +9450,7 @@
 	},
 /obj/item/healthanalyzer,
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10091,7 +10058,7 @@
 	d2 = 8
 	},
 /obj/machinery/camera/autoname/mainship{
-	dir = 1
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -17341,6 +17308,12 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/operating_room_one)
+"SL" = (
+/obj/machinery/autodoc_console,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/cryo_tubes)
 "SN" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -17520,6 +17493,23 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"Uq" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/lower_medical)
 "Uw" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	dir = 1
@@ -17648,7 +17638,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Vu" = (
-/obj/structure/table/mainship,
 /obj/structure/table/mainship,
 /obj/item/storage/box/MRE,
 /obj/item/facepaint/black,
@@ -43154,7 +43143,7 @@ iz
 iV
 iV
 iV
-iL
+jp
 nD
 XD
 uM
@@ -43666,7 +43655,7 @@ id
 nD
 nD
 hP
-pE
+nD
 nD
 pC
 nD
@@ -44682,7 +44671,7 @@ hn
 hJ
 hS
 Mc
-Md
+aY
 By
 Kh
 BB
@@ -45967,7 +45956,7 @@ cy
 aY
 nQ
 BC
-fL
+cy
 aY
 hi
 hA
@@ -46224,10 +46213,10 @@ cz
 zB
 nQ
 BC
-hc
-aY
+cz
+Md
 jF
-hA
+SL
 hF
 bd
 NQ
@@ -46736,7 +46725,7 @@ hd
 ey
 hh
 cC
-nQ
+Uq
 BC
 hy
 BF

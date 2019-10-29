@@ -19,6 +19,16 @@
 
 /obj/machinery/door_display/Initialize()
 	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -32
+		if(SOUTH)
+			pixel_y = 32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/door_display/LateInitialize()
@@ -231,3 +241,15 @@
 	open_shutter = FALSE
 
 	return TRUE
+
+/obj/machinery/door_display/research_cell/cell
+	name = "Containment Cell Control"
+	id = "Containment Cell"
+
+/obj/machinery/door_display/research_cell/cell/cell1
+	name = "Containment Cell 1 Control"
+	id = "Containment Cell 1"
+
+/obj/machinery/door_display/research_cell/cell/cell2
+	name = "Containment Cell 2 Control"
+	id = "Containment Cell 2"

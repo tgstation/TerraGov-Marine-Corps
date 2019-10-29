@@ -404,16 +404,16 @@
 
 /obj/machinery/door/airlock/mainship/research/glass/cell
 	name = "\improper Containment Cell"
-	id = "containmentcell"
+	id = "Containment Cell"
 	locked = TRUE
 
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell1
 	name = "\improper Containment Cell 1"
-	id = "containmentcell_1"
+	id = "Containment Cell 1"
 
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell2
 	name = "\improper Containment Cell 2"
-	id = "containmentcell_2"	
+	id = "Containment Cell 2"
 
 /obj/machinery/door/airlock/mainship/generic
 	name = "\improper Airlock"
