@@ -8,7 +8,7 @@
 	idle_power_usage = 20
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
 	var/obj/item/reagent_containers/beaker = null
-	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
+	var/obj/item/storage/pill_bottle/bottle = null
 	var/mode = 0
 	var/condi = 0
 	var/useramount = 30 // Last used amount
@@ -53,14 +53,40 @@
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
-		if(loaded_pill_bottle)
+		if(bottle)
 			to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 			return
 
-		loaded_pill_bottle = I
+		bottle = I
 		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
+
+/obj/machinery/chem_master/AltClick(mob/living/user)
+	if(!istype(user) || !can_interact(user))
+		return
+	replace_beaker(user)
+	return
+
+/obj/machinery/chem_master/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+	if(beaker)
+		beaker.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(beaker)
+	if(new_beaker)
+		beaker = new_beaker
+	else
+		beaker = null
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem_master/on_deconstruction()
+	replace_beaker()
+	if(bottle)
+		bottle.forceMove(drop_location())
+		adjust_item_drop_location(bottle)
+		bottle = null
+	return ..()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
 	if(istype(source))
@@ -80,9 +106,12 @@
 	var/mob/living/carbon/human/user = usr
 
 	if (href_list["ejectp"])
-		if(loaded_pill_bottle)
-			loaded_pill_bottle.loc = loc
-			loaded_pill_bottle = null
+		if(!bottle)
+			return FALSE
+		bottle.forceMove(drop_location())
+		adjust_item_drop_location(bottle)
+		bottle = null
+		return TRUE
 
 	if(beaker)
 		if (href_list["analyze"])
@@ -156,20 +185,17 @@
 			attack_hand(user)
 			return
 		else if (href_list["eject"])
-			if(beaker)
-				beaker.loc = loc
-				beaker = null
-				reagents.clear_reagents()
-				icon_state = "mixer0"
+			replace_beaker(usr)
+			return TRUE
 
 		else if (href_list["createpillbottle"])
 			if(!condi)
-				if(loaded_pill_bottle)
+				if(bottle)
 					to_chat(user, "<span class='warning'>A pill bottle is already loaded into the machine.</span>")
 					return
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
 				I.icon_state = "pill_canister"+pillbottlesprite
-				loaded_pill_bottle = I
+				bottle = I
 				to_chat(user, "<span class='notice'>The Chemmaster 3000 sets a pill bottle into the dispenser slot.</span>")
 				updateUsrDialog()
 
@@ -205,9 +231,9 @@
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = "pill"+pillsprite
 				reagents.trans_to(P,amount_per_pill)
-				if(loaded_pill_bottle)
-					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
-						loaded_pill_bottle.handle_item_insertion(P, TRUE)
+				if(bottle)
+					if(length(bottle.contents) < bottle.max_storage_space)
+						bottle.handle_item_insertion(P, TRUE)
 						updateUsrDialog()
 
 		else if (href_list["createbottle"])
@@ -315,14 +341,14 @@
 	var/dat = ""
 	if(!beaker)
 		dat = "Please insert beaker.<BR>"
-		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+		if(bottle)
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(bottle.contents)]/[bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 	else
 		dat += "<A href='?src=\ref[src];eject=1'>Eject beaker and Clear Buffer</A><BR>"
-		if(loaded_pill_bottle)
-			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[loaded_pill_bottle.contents.len]/[loaded_pill_bottle.max_storage_space]\]</A><BR><BR>"
+		if(bottle)
+			dat += "<A href='?src=\ref[src];ejectp=1'>Eject Pill Bottle \[[length(bottle.contents)]/[bottle.max_storage_space]\]</A><BR><BR>"
 		else
 			dat += "No pill bottle inserted.<BR><BR>"
 		if(!beaker.reagents.total_volume)
@@ -363,6 +389,37 @@
 	popup.set_content(dat)
 	popup.open()
 
+/obj/machinery/chem_master/proc/isgoodnumber(num)
+	if(isnum(num))
+		if(num > 200)
+			num = 200
+		else if(num < 0)
+			num = 0
+		else
+			num = round(num)
+		return num
+	else
+		return 0
+
+/obj/machinery/chem_master/proc/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
+	if (AM == beaker)
+		AM.pixel_x = -8
+		AM.pixel_y = 8
+		return null
+	else if (AM == bottle)
+		if (length(bottle.contents))
+			AM.pixel_x = -13
+		else
+			AM.pixel_x = -7
+		AM.pixel_y = -8
+		return null
+	else
+		var/md5 = md5(AM.name)
+		for (var/i in 1 to 32)
+			. += hex2num(md5[i])
+		. = . % 9
+		AM.pixel_x = ((.%3)*6)
+		AM.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
