@@ -408,7 +408,7 @@
 
 /mob/new_player/proc/ViewAliens()
 	var/output = "<div align='center'>"
-	output += "<p><i>Hailing from one of Saturn's colonies, as well as Mars and other unlisted habitats, the <b>xenomorph threat</b> remains at large. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the TGMC and NT colonies off-guard during their discovery in 2414. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by Queen Mother and spawned you there. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
+	output += "<p><i>Hailing from one of Saturn's colonies, as well as Mars and other unlisted habitats, the <b>xenomorph threat</b> remains at large. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the TGMC and NT colonies off-guard during their discovery in 2414. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
 	output += "</div>"
 
 	var/datum/browser/popup = new(src, "aliens", "<div align='center'>Xenomorph Hive</div>", 480, 280)
