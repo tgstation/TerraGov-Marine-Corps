@@ -4,6 +4,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	item_state = "helmet"
+	accuracy_mod = 0
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
