@@ -325,6 +325,9 @@
 #define COMSIG_XENOABILITY_FLING "xenoability_fling"
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 
+// unmanned things signals
+#define COMSIG_REMOTE_CONTROL_TOGGLE "remote_control_toggle"
+
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
