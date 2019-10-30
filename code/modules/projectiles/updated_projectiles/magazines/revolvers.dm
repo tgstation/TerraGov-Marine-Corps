@@ -15,7 +15,7 @@
 /obj/item/ammo_magazine/revolver/marksman
 	name = "\improper M44 marksman speed loader (.44)"
 	default_ammo = /datum/ammo/bullet/revolver/marksman
-	caliber = ".44"
+	caliber = ".44_m"
 	icon_state = "m_m44"
 
 /obj/item/ammo_magazine/revolver/heavy
@@ -40,6 +40,16 @@
 	icon_state = "sw357"
 	max_rounds = 6
 	gun_type = /obj/item/weapon/gun/revolver/small
+
+/obj/item/ammo_magazine/revolver/marksman/small
+	name = "\improper S&W speed loader (.357)"
+	default_ammo = /datum/ammo/bullet/revolver/marksman/small
+	caliber = ".357_m"
+	icon_state = "sw357"
+	max_rounds = 6
+	gun_type = list(
+				/obj/item/weapon/gun/revolver/small,
+				/obj/item/weapon/gun/revolver/mr76)
 
 
 /obj/item/ammo_magazine/revolver/mateba
@@ -100,7 +110,9 @@
 /obj/item/ammo_magazine/internal/revolver/small
 	default_ammo = /datum/ammo/bullet/revolver/small
 	caliber = ".357"
-	gun_type = /obj/item/weapon/gun/revolver/small
+	gun_type = list(
+				/obj/item/weapon/gun/revolver/small,
+				/obj/item/weapon/gun/revolver/mr76)
 
 //-------------------------------------------------------
 //BURST REVOLVER //
