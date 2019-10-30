@@ -35,7 +35,7 @@
 		attach_strings += "This needs to be activated to be used."
 
 	if(flags_attach_features & ATTACH_RELOADABLE)
-		attach_strings += "This can be reloaded with the appropriate ammunition."	
+		attach_strings += "This can be reloaded with the appropriate ammunition."
 
 	attach_strings += "<br><U>Always on modifications</U>:<br>"
 

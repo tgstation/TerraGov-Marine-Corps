@@ -19,6 +19,9 @@
 
 	var/traits = null
 	var/space_empty_levels = 1
+	var/list/environment_traits = list()
+	var/armor_style = "default"
+	var/list/gamemodes = list()
 
 	var/allow_custom_shuttles = TRUE
 	var/shuttles = list()
@@ -110,7 +113,6 @@
 		return
 
 	traits = json["traits"]
-	// "traits": [{"Linkage": "Cross"}, {"Space Ruins": true}]
 	if (islist(traits))
 		// "Station" is set by default, but it's assumed if you're setting
 		// traits you want to customize which level is cross-linked
@@ -133,6 +135,37 @@
 
 	if(json["announce_text"] && maptype == SHIP_MAP)
 		announce_text = replacetext(json["announce_text"], "###SHIPNAME###", map_name)
+
+	if(json["armor"])
+		armor_style = json["armor"]
+
+	if(islist(json["environment_traits"]))
+		environment_traits = json["environment_traits"]
+	else if(!isnull(json["environment_traits"]))
+		log_world("map_config environment_traits is not a list!")
+		return
+	
+	var/list/gamemode_names = list()
+	for(var/t in subtypesof(/datum/game_mode))
+		var/datum/game_mode/G = t
+		gamemode_names += initial(G.config_tag)
+
+	if(islist(json["gamemodes"]))
+		for(var/g in json["gamemodes"])
+			if(!(g in gamemode_names))
+				log_world("map_config has an invalid gamemode name!")
+				return
+			if(g == "Extended") // always allow extended
+				continue
+			gamemodes += g
+		gamemodes += "Extended"
+	else if(!isnull(json["gamemodes"]))
+		log_world("map_config gamemodes is not a list!")
+		return
+	else
+		for(var/a in subtypesof(/datum/game_mode))
+			var/datum/game_mode/G = a
+			gamemodes += initial(G.config_tag)
 
 	defaulted = FALSE
 	return TRUE

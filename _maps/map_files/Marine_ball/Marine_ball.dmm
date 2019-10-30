@@ -587,12 +587,7 @@
 	},
 /area/mainship/medical/medical_science)
 "bR" = (
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "0";
-	req_one_access_txt = "14;3"
-	},
-/obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/structure/closet/secure_closet/guncabinet,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -5122,8 +5117,6 @@
 /area/lv624/lazarus/armory)
 "ts" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/mainship,
 /area/lv624/lazarus/armory)
 "tt" = (

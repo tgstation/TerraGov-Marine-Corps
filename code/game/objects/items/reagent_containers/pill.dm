@@ -62,7 +62,6 @@
 		var/rgt_list_text = get_reagent_list_text()
 
 		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] fed [ADMIN_TPMONTY(M)] with [src.name] Reagents: [rgt_list_text].")
 
 		if(reagents.total_volume)
 			reagents.reaction(M, INGEST)
@@ -103,7 +102,6 @@
 		var/rgt_list_text = get_reagent_list_text()
 
 		log_combat(user, target, "spiked", src, "Reagents: [rgt_list_text]")
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] spiked \a [target] with a pill. Reagents: [rgt_list_text].")
 
 		reagents.trans_to(target, reagents.total_volume)
 		visible_message("<span class='warning'>[user] puts something in \the [target].", null, null, 2)

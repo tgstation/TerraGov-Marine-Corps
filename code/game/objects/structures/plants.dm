@@ -144,4 +144,4 @@ GLOBAL_LIST_INIT(reagent_effects, list(/datum/reagent/toxin,/datum/reagent/medic
 		overlays += fruit_overlay
 	else
 		to_chat(user, "<span class='warning'> There are no fruit left on [src].</span>")
-		
+

@@ -84,7 +84,7 @@
 
 		if(usr.incapacitated())
 			return
-			
+
 		active = !active
 		icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
 		if(!active)
@@ -99,7 +99,7 @@
 
 		update_clothing_icon()
 
-		update_action_button_icons()	
+		update_action_button_icons()
 
 /obj/item/clothing/mask/bandanna/green
 	name = "green bandanna"

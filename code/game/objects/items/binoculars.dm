@@ -45,13 +45,6 @@
 	. = ..()
 
 
-/obj/item/binoculars/tactical/attack_self(mob/user)
-	. = ..()
-	if(!user?.client)
-		return
-	user.client.click_intercept = src
-
-
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
 	if(!pa.Find("ctrl"))
@@ -71,6 +64,7 @@
 	. = ..()
 	user.reset_perspective(src)
 	user.update_sight()
+	user.client.click_intercept = src
 
 
 /obj/item/binoculars/tactical/update_remote_sight(mob/living/user)

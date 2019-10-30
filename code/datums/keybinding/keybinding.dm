@@ -19,6 +19,6 @@
 
 /datum/keybinding/proc/down(client/user)
 	return FALSE
-	
+
 /datum/keybinding/proc/up(client/user)
 	return FALSE

@@ -15,6 +15,8 @@
 		#include "map_files\Vapor_Processing\Vapor_Processing.dmm"
 		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Marine_ball\Marine_ball.dmm"
+		#include "map_files\Pillar_of_Spring\TGS_Pillar_of_Spring.dmm"
+		#include "map_files\icy_caves\icy_caves.dmm"
 		#ifdef TRAVISBUILDING
 		#endif
 	#endif

@@ -399,7 +399,7 @@
 		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
-		
+
 	if(M.client)
 		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
 		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "
@@ -479,7 +479,7 @@
 
 		if(isliving(M))
 			body += "<br>"
-			body += "<a href='?src=[ref];checkcontents=[REF(M)]'>Check Contents</a> | "			
+			body += "<a href='?src=[ref];checkcontents=[REF(M)]'>Check Contents</a> | "
 			body += "<a href='?src=[ref];offer=[REF(M)]'>Offer Mob</a> | "
 			body += "<a href='?src=[ref];give=[REF(M)]'>Give Mob</a>"
 

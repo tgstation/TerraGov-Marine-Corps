@@ -19,7 +19,7 @@
 
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
-	if(!signal) 
+	if(!signal)
 		return
 
 	var/id_tag = signal.data["tag"]
@@ -125,7 +125,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	return output
 
 /obj/machinery/computer/general_air_control/large_tank_control/receive_signal(datum/signal/signal)
-	if(!signal) 
+	if(!signal)
 		return
 
 	var/id_tag = signal.data["tag"]
@@ -238,7 +238,7 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	return output
 
 /obj/machinery/computer/general_air_control/supermatter_core/receive_signal(datum/signal/signal)
-	if(!signal) 
+	if(!signal)
 		return
 
 	var/id_tag = signal.data["tag"]
@@ -366,7 +366,7 @@ Rate: [volume_rate] L/sec<BR>"}
 	return output
 
 /obj/machinery/computer/general_air_control/fuel_injection/receive_signal(datum/signal/signal)
-	if(!signal) 
+	if(!signal)
 		return
 
 	var/id_tag = signal.data["tag"]

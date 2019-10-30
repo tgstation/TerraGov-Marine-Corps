@@ -49,7 +49,7 @@
 /mob/living/carbon/xenomorph/defender/Bump(atom/A)
 	if(!throwing || !throw_source || !thrower)
 		return ..()
-	if(!ishuman(A)) 
+	if(!ishuman(A))
 		return ..()
 	var/mob/living/carbon/human/H = A
 	var/extra_dmg = xeno_caste.melee_damage * 0.5 // 50% dmg reduction

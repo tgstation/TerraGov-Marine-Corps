@@ -211,6 +211,7 @@
 
 
 /obj/machinery/computer/security/marinemainship
+	name = "Ship Security Cameras"
 	density = FALSE
 	icon_state = "security_cam"
 	network = list("marinemainship")

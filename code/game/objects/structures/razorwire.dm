@@ -131,7 +131,6 @@
 			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 			"<span class='danger'>You sparta [M]'s against [src]!</span>")
 			log_combat(user, M, "spartaed", "", "against \the [src]")
-			msg_admin_attack("[key_name(usr)] spartaed [key_name(M)] against \the [src].")
 			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
 		else if(user.grab_level >= GRAB_AGGRESSIVE)

@@ -462,7 +462,7 @@
 	name = "Guardsman"
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
-	
+
 	// guardsmen don't use pistol, so he doesn't have experience with them, unless they use boltpistols
 	// shotguns too
 	firearms = SKILL_FIREARMS_TRAINED
@@ -471,11 +471,11 @@
 
 /datum/skills/imperial/SL
 	name = "Guardsman Sergeant" // veteran guardsman, practically better in all
-	
+
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_USE // can use smartgun
 	spec_weapons = SKILL_SPEC_TRAINED
-	
+
 	// higher SL skills
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
@@ -515,7 +515,7 @@
 	name = "Space Marine Apothecary" // a slightly less stronger space marine with medical skills
 	cqc = 4 // below SKILL_CQC_MASTER, no define for it
 	melee_weapons = SKILL_MELEE_TRAINED
-	
+
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 

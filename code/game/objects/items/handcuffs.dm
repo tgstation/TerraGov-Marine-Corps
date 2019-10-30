@@ -39,7 +39,6 @@
 			return
 
 		log_combat(user, H, "handcuffed", src, addition="(attempt)")
-		msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(H)]")
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
 		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, H)) && !H.handcuffed)

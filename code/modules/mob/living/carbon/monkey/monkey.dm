@@ -217,7 +217,6 @@
 				adjustBruteLoss(damage)
 
 				log_combat(H, src, "[pick(attack.attack_verb)]ed")
-				msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
 				updatehealth()
 			else
@@ -263,7 +262,7 @@
 /mob/living/carbon/monkey/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, text("Intent: []", a_intent))
 		stat(null, text("Move Mode: []", m_intent))
 
@@ -316,7 +315,7 @@
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
 		id_card = W.front_id
-	
+
 	return istype(id_card) ? id_card : null
 
 

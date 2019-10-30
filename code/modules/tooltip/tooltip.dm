@@ -46,7 +46,7 @@ Notes:
 	owner = C
 	var/datum/asset/stuff = get_asset_datum(/datum/asset/simple/jquery)
 	stuff.send(owner)
-	
+
 	owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
 
 	return ..()
@@ -73,7 +73,7 @@ Notes:
 		title = "<h1>[title]</h1>"
 	if(content)
 		content = "<p>[content]</p>"
-	
+
 	//Make our dumb param object
 	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}
 

@@ -375,7 +375,7 @@
 	burst_amount = 3
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
-	damage_mult = 1.4
+	damage_mult = 1.2
 	recoil_unwielded = 2
 
 //-------------------------------------------------------

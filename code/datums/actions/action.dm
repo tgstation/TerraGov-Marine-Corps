@@ -56,17 +56,19 @@
 		button.color = rgb(255, 255, 255, 255)
 	else
 		button.color = rgb(128, 0, 0, 128)
-	
+
 	return TRUE
 
 /datum/action/proc/action_activate()
-	return
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	return TRUE
 
 /datum/action/proc/fail_activate()
 	return
 
 /datum/action/proc/can_use_action()
-	if(!QDELETED(owner)) 
+	if(!QDELETED(owner))
 		return TRUE
 
 /datum/action/proc/give_action(mob/M)

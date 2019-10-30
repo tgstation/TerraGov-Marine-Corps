@@ -83,6 +83,7 @@
 	fire_delay = 0.4 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
+	scatter = -10
 
 
 //variant without ugl attachment
@@ -104,6 +105,7 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
 	damage_mult = 1.5
+	scatter = -10
 
 
 //-------------------------------------------------------
@@ -118,6 +120,8 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	aim_slowdown = 0.5
+	wield_delay = 1.35 SECONDS
 	max_shells = 95 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
 	attachable_allowed = list(
@@ -125,14 +129,30 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun)
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 	burst_amount = 4
-	accuracy_mult = 0.95
+	burst_delay = 1.5
+	accuracy_mult = 1.10
+	scatter = -10
 
 
 
@@ -175,7 +195,7 @@
 	fire_delay = 0.23 SECONDS
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
-	
+
 
 
 //-------------------------------------------------------
@@ -223,7 +243,7 @@
 	damage_mult = 0.8
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.14 SECONDS
-	
+
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -323,3 +343,40 @@
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+
+
+//-------------------------------------------------------
+//SX-16 AUTOMATIC SHOTGUN (It acts more like a rifle then a shotgun, so it makes sense to put it here)
+
+/obj/item/weapon/gun/rifle/sx16
+	name = "\improper SX-16 automatic shotgun"
+	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal"
+	icon_state = "sx16"
+	item_state = "sx16"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = "16 gauge" //codex
+	max_shells = 15 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/stock/sx16,
+						/obj/item/attachable/sx16barrel)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/sx16, /obj/item/attachable/sx16barrel)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 18, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 10, "stock_y" = 14)
+	gun_skill_category = GUN_SKILL_SHOTGUNS
+
+	fire_delay = 0.7 SECONDS
+	burst_amount = 0
+

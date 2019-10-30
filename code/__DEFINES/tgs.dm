@@ -211,7 +211,7 @@
 //Gets a list of connected tgs_chat_channel
 /world/proc/TgsChatChannelInfo()
 	return
-	
+
 //Sends a message to connected game chats
 //message: The message to send
 //channels: optional channels to limit the broadcast to

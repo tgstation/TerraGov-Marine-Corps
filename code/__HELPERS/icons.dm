@@ -147,7 +147,7 @@ ColorTone(rgb, tone)
 	if(gray)
 		MapColors(255/gray,0,0, 0,255/gray,0, 0,0,255/gray, 0,0,0)
 		Blend(tone, ICON_MULTIPLY)
-	else 
+	else
 		SetIntensity(0)
 	if(255-gray)
 		upper.Blend(rgb(gray,gray,gray), ICON_SUBTRACT)
@@ -331,7 +331,7 @@ ColorTone(rgb, tone)
 			which++
 		if(digits <= 2)
 			which++
-	
+
 	var/hue = 0
 	var/sat = 0
 	var/val = 0

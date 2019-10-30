@@ -45,6 +45,12 @@ SUBSYSTEM_DEF(mapping)
 			if(!configs || configs[i].defaulted)
 				to_chat(world, "<span class='boldannounce'>Unable to load next or default map config, defaulting.</span>")
 				configs[i] = old_config
+
+	if(configs[GROUND_MAP])
+		for(var/i in config.votable_modes)
+			if(!(i in configs[GROUND_MAP].gamemodes))
+				config.votable_modes -= i // remove invalid modes
+
 	loadWorld()
 	repopulate_sorted_areas()
 	preloadTemplates()

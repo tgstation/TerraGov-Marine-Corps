@@ -1,5 +1,5 @@
 /mob/CanPass(atom/movable/mover, turf/target)
-	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB)) 
+	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
@@ -134,7 +134,7 @@
 				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
 			if(MOVE_INTENT_WALK)
 				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
-		
+
 		SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
 
 		move_delay += L.movement_delay(direct)

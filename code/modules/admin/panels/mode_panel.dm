@@ -14,9 +14,9 @@
 	dat += "Current Game Mode: <B>[SSticker.mode.name]</B><BR>"
 	dat += "Round Duration: <B>[worldtime2text()]</B><BR>"
 
-	var/countdown = SSticker.mode.get_queen_countdown()
+	var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
 	if(countdown)
-		dat += "Queen Re-Check: [countdown]<br>"
+		dat += "Orphan hivemind collapse in [countdown]<br>"
 
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)

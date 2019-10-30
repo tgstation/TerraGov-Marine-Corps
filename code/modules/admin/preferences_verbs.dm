@@ -1,20 +1,3 @@
-/datum/admins/proc/pref_attack_logs()
-	set category = "Preferences"
-	set name = "Toggle Attack Log Messages"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	usr.client.prefs.load_preferences()
-	usr.client.prefs.toggles_chat ^= CHAT_ATTACKLOGS
-	usr.client.prefs.save_preferences()
-
-	if(usr.client.prefs.toggles_chat & CHAT_ATTACKLOGS)
-		to_chat(usr, "<span class='boldnotice'>You will now get attack log messages.</span>")
-	else
-		to_chat(usr, "<span class='boldnotice'>You will no longer get attack log messages.</span>")
-
-
 /datum/admins/proc/pref_ff_attack_logs()
 	set category = "Preferences"
 	set name = "Toggle FF Attack Log Messages"

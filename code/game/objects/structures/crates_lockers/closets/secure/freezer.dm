@@ -30,7 +30,7 @@
 	new /obj/item/reagent_container/food/condiment/sugar(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_container/food/snacks/meat/monkey(src)
-		
+
 /obj/structure/closet/secure_closet/freezer/meat/Initialize()
 	. = ..()
 	for(var/i in 1 to 4)

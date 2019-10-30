@@ -145,10 +145,10 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 		"<span class='notice'>You start welding [src]'s internal damage.</span>")
-		
+
 		if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return FALSE
-		
+
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		buildstate = GEOTHERMAL_MEDIUM_DAMAGE
 		user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
@@ -167,7 +167,7 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 		"<span class='notice'>You start securing [src]'s wiring.</span>")
-		
+
 		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return FALSE
 

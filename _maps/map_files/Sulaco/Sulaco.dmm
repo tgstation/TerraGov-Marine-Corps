@@ -3752,11 +3752,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
-"aig" = (
-/turf/open/floor,
-/area/sulaco/engineering/atmos{
-	name = "\improper Atmospherics"
-	})
 "aih" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
 	dir = 1
@@ -75561,7 +75556,7 @@ adz
 adz
 adz
 ahe
-aig
+afY
 ajo
 afX
 aii

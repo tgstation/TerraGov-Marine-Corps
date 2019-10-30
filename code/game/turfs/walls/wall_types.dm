@@ -107,6 +107,26 @@
 
 
 
+//tyson
+/turf/closed/wall/tyson
+	name = "outer wall"
+	hull = TRUE
+
+/turf/closed/wall/tyson/airlock
+	name = "rusted airlock"
+	icon = 'icons/obj/doors/Doorext.dmi'
+	icon_state = "door_locked"
+
+/turf/closed/wall/tyson/airlock/maint
+	icon = 'icons/obj/doors/Doormaint.dmi'
+
+/turf/closed/wall/tyson/poddoor
+	name = "rusted poddoor"
+	icon = 'icons/obj/doors/rapid_pdoor.dmi'
+	icon_state = "pdoor1"
+
+/turf/closed/wall/tyson/r_wall
+	icon_state = "rwall"
 
 //Sulaco walls.
 /turf/closed/wall/sulaco
@@ -441,7 +461,7 @@
 
 	user.changeNext_move(I.attack_speed)
 	user.do_attack_animation(src)
-	
+
 	var/damage = I.force
 	var/multiplier = 1
 	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
@@ -473,7 +493,7 @@
 		var/turf/T
 		for(var/i in GLOB.cardinals)
 			T = get_step(src, i)
-			if(!istype(T)) 
+			if(!istype(T))
 				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()

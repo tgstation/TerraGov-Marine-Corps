@@ -128,7 +128,7 @@
 					targetdirection = null
 				else
 					targetdirection = null
-	
+
 	updateUsrDialog()
 
 
