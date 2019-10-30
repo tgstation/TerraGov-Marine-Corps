@@ -477,7 +477,7 @@ obj/item/weapon/gun/revolver/mr76
 /obj/item/weapon/gun/revolver/small/unique_action(mob/user)
 	return revolver_trick(user)
 
-	/obj/item/weapon/gun/revolver/mr76/major
+/obj/item/weapon/gun/revolver/mr76/major
 	name = "\improper MR76 autorevolver custom"
 	desc = "A lean .357 made by Manurhin. One of the most reliable revolvers you will ever be able to use. This one uses a blue metal, and a custom grip and barrel. Not very flashy, but it will always look good during extended operations where cleaning is a leisure."
 	icon_state = "m_mr76"
