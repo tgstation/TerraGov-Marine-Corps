@@ -444,3 +444,43 @@
 	burst_delay = 0.5 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05
+//-------------------------------------------------------
+//.357 AUTOREVOLVER//Based on the Manurhin MR73 autorevolver carried by GIGN operators.
+obj/item/weapon/gun/revolver/mr76
+	name = "\improper Manurhin MR76 autorevolver"
+	desc = "A lean .357 made by Manurhin. One of the most reliable revolvers you will ever be able to use."
+	icon_state = "mr76"
+	item_state = "mr76"
+	caliber = ".357" //codex
+	max_shells = 6 //codex
+	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/revolver/small
+	force = 6
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	fire_delay = 0.3 SECONDS
+	scatter_unwielded = 20
+	recoil = 0
+	recoil_unwielded = 0
+	damage_mult = 1.25
+
+/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
+	return revolver_trick(user)
+
+	/obj/item/weapon/gun/revolver/mr76/major
+	name = "\improper MR76 autorevolver custom"
+	desc = "A lean .357 made by Manurhin. One of the most reliable revolvers you will ever be able to use. This one uses a blue metal, and a custom grip and barrel. Not very flashy, but it will always look good during extended operations where cleaning is a leisure."
+	icon_state = "m_mr76"
+	item_state = "m_mr76"
+
+	scatter_wielded = 30
+	wield_delay = 0 SECONDS
