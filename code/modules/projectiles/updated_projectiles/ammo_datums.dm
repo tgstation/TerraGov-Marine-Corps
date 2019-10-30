@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 6
-	damage = 55
+	damage = 50
 	scatter = -15
 	penetration = 30
 
@@ -443,9 +443,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC
-	damage = 50
+	damage = 35
 	accuracy = -10
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	damage = 30
-	penetration = 50
+	penetration = 30
 
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
