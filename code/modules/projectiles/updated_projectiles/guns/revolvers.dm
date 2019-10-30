@@ -469,7 +469,7 @@ obj/item/weapon/gun/revolver/mr76
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 0.3 SECONDS
 	scatter_unwielded = 20
-	scatter_wielded = -20
+	scatter = -20
 	recoil = 0
 	recoil_unwielded = 0
 	damage_mult = 1.25
@@ -483,6 +483,6 @@ obj/item/weapon/gun/revolver/mr76
 	icon_state = "m_mr76"
 	item_state = "m_mr76"
 
-	scatter_wielded = -30
+	scatter = -30
 	wield_delay = 0 SECONDS
 	damage_mult = 1.5
