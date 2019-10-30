@@ -67,6 +67,12 @@
 /datum/action/proc/fail_activate()
 	return
 
+/datum/action/proc/add_selected_frame()
+	button.vis_contents += selected_frame
+
+/datum/action/proc/remove_selected_frame()
+	button.vis_contents -= selected_frame
+
 /datum/action/proc/can_use_action()
 	if(!QDELETED(owner))
 		return TRUE

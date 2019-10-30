@@ -127,6 +127,7 @@
 	if(!enabled)
 		return
 	enabled = FALSE
+	toggle_action.remove_selected_frame()
 	UnregisterSignals(user)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
@@ -137,6 +138,7 @@
 	if(enabled)
 		return
 	enabled = TRUE
+	toggle_action.add_selected_frame()
 	RegisterSignals(user)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
@@ -237,11 +239,10 @@
 /datum/component/suit_autodoc/proc/configure(datum/source, mob/user)
 	interact(user)
 
-/datum/component/suit_autodoc/interact(mob/user)
-	. = ..()
-	if(.)
-		return
+#define SUIT_AUTODOC_DAM_MIN 50
+#define SUIT_AUTODOC_DAM_MAX 150
 
+/datum/component/suit_autodoc/interact(mob/user)
 	var/dat = {"
 	<A href='?src=\ref[src];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
 	<BR>
@@ -249,7 +250,7 @@
 	<A href='byond://?src=\ref[src];analyzer=1'>Scan Wearer</A><BR>
 	<A href='byond://?src=\ref[src];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
-	<B>Damage Trigger Threshold (Max 150, Min 50):</B><BR>
+	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
 	<A href='byond://?src=\ref[src];automed_damage=-50'>-50</A>
 	<A href='byond://?src=\ref[src];automed_damage=-10'>-10</A>
 	<A href='byond://?src=\ref[src];automed_damage=-5'>-5</A>
@@ -259,7 +260,7 @@
 	<A href='byond://?src=\ref[src];automed_damage=10'>+10</A>
 	<A href='byond://?src=\ref[src];automed_damage=50'>+50</A><BR>
 	<BR>
-	<B>Pain Trigger Threshold (Max 150, Min 50):</B><BR>
+	<B>Pain Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
 	<A href='byond://?src=\ref[src];automed_pain=-50'>-50</A>
 	<A href='byond://?src=\ref[src];automed_pain=-10'>-10</A>
 	<A href='byond://?src=\ref[src];automed_pain=-5'>-5</A>
@@ -273,8 +274,8 @@
 	popup.set_content(dat)
 	popup.open()
 
-#define SUIT_AUTODOC_DAM_MIN 50
-#define SUIT_AUTODOC_DAM_MAX 150
+/datum/component/suit_autodoc/can_interact(mob/user)
+	return TRUE
 
 /datum/component/suit_autodoc/Topic(href, href_list)
 	. = ..()
@@ -320,6 +321,8 @@
 
 /datum/action/suit_autodoc_toggle
 	name = "Toggle Suit Automedic"
+	action_icon = 'icons/mob/screen_alert.dmi'
+	action_icon_state = "suit_toggle"
 
 /datum/action/suit_autodoc_toggle/action_activate()
 	if(QDELETED(owner) || owner.incapacitated())
@@ -328,6 +331,8 @@
 
 /datum/action/suit_autodoc_scan
 	name = "Suit Automedic User Scan"
+	action_icon = 'icons/mob/screen_alert.dmi'
+	action_icon_state = "suit_scan"
 
 /datum/action/suit_autodoc_scan/action_activate()
 	if(QDELETED(owner) || owner.incapacitated())
@@ -336,8 +341,10 @@
 
 /datum/action/suit_autodoc_configure
 	name = "Configure Suit Automedic"
+	action_icon = 'icons/mob/screen_alert.dmi'
+	action_icon_state = "suit_configure"
 
 /datum/action/suit_autodoc_configure/action_activate()
-	if(QDELETED(owner) || !owner.incapacitated())
+	if(QDELETED(owner))
 		return
 	SEND_SIGNAL(target, COMPONENT_SUIT_AUTODOC_CONFIGURE, owner)
