@@ -126,7 +126,7 @@
 	if(!H.is_revivable())
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
-		
+
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT) && prob(95))
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return

@@ -52,5 +52,5 @@
 
 	if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))	//Resting your ears with earmuffs heals ear damage faster
 		return
-	
+
 	adjust_ear_damage(-0.15, 1)

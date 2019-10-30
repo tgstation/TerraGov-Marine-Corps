@@ -41,7 +41,7 @@
 
 	if(num == 0)
 		var/final = ""
-		for(var/i in 1 to placeholder) 
+		for(var/i in 1 to placeholder)
 			final = "[final]0"
 		return final
 
@@ -166,7 +166,7 @@
 //Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
 /proc/text2list(text, delimiter = "\n")
 	var/delim_len = length(delimiter)
-	if(delim_len < 1) 
+	if(delim_len < 1)
 		return list(text)
 
 	. = list()
@@ -187,13 +187,13 @@
 //Turns a direction into text
 /proc/num2dir(direction)
 	switch(direction)
-		if(1) 
+		if(1)
 			return NORTH
-		if(2) 
+		if(2)
 			return SOUTH
-		if(4) 
+		if(4)
 			return EAST
-		if(8) 
+		if(8)
 			return WEST
 
 
@@ -263,19 +263,19 @@
 //Converts an angle (degrees) into an ss13 direction
 /proc/angle2dir(degree)
 	degree = ((degree + 22.5) % 365)
-	if(degree < 45)		
+	if(degree < 45)
 		return NORTH
-	if(degree < 90)		
+	if(degree < 90)
 		return NORTHEAST
-	if(degree < 135)	
+	if(degree < 135)
 		return EAST
-	if(degree < 180)	
+	if(degree < 180)
 		return SOUTHEAST
-	if(degree < 225)	
+	if(degree < 225)
 		return SOUTH
-	if(degree < 270)	
+	if(degree < 270)
 		return SOUTHWEST
-	if(degree < 315)	
+	if(degree < 315)
 		return WEST
 	return NORTH|WEST
 
@@ -283,21 +283,21 @@
 //returns the north-zero clockwise angle in degrees, given a direction
 /proc/dir2angle(D)
 	switch(D)
-		if(NORTH)		
+		if(NORTH)
 			return 0
-		if(SOUTH)		
+		if(SOUTH)
 			return 180
-		if(EAST)		
+		if(EAST)
 			return 90
-		if(WEST)		
+		if(WEST)
 			return 270
-		if(NORTHEAST)	
+		if(NORTHEAST)
 			return 45
-		if(SOUTHEAST)	
+		if(SOUTHEAST)
 			return 135
-		if(NORTHWEST)	
+		if(NORTHWEST)
 			return 315
-		if(SOUTHWEST)	
+		if(SOUTHWEST)
 			return 225
 
 
@@ -309,45 +309,45 @@
 //Converts a blend_mode constant to one acceptable to icon.Blend()
 /proc/blendMode2iconMode(blend_mode)
 	switch(blend_mode)
-		if(BLEND_MULTIPLY) 
+		if(BLEND_MULTIPLY)
 			return ICON_MULTIPLY
-		if(BLEND_ADD)      
+		if(BLEND_ADD)
 			return ICON_ADD
-		if(BLEND_SUBTRACT) 
+		if(BLEND_SUBTRACT)
 			return ICON_SUBTRACT
-		else               
+		else
 			return ICON_OVERLAY
 
 
 //Converts a rights bitfield into a string
 /proc/rights2text(rights, seperator = "")
-	if(rights & R_ASAY)			
+	if(rights & R_ASAY)
 		. += "[seperator]+ASAY"
-	if(rights & R_ADMINTICKET)	
+	if(rights & R_ADMINTICKET)
 		. += "[seperator]+ADMINTICKET"
-	if(rights & R_ADMIN)		
+	if(rights & R_ADMIN)
 		. += "[seperator]+ADMIN"
-	if(rights & R_BAN)			
+	if(rights & R_BAN)
 		. += "[seperator]+BAN"
-	if(rights & R_FUN)			
+	if(rights & R_FUN)
 		. += "[seperator]+FUN"
-	if(rights & R_SERVER)		
+	if(rights & R_SERVER)
 		. += "[seperator]+SERVER"
-	if(rights & R_DEBUG)		
+	if(rights & R_DEBUG)
 		. += "[seperator]+DEBUG"
-	if(rights & R_PERMISSIONS)	
+	if(rights & R_PERMISSIONS)
 		. += "[seperator]+PERMISSIONS"
-	if(rights & R_COLOR)		
+	if(rights & R_COLOR)
 		. += "[seperator]+COLOR"
-	if(rights & R_VAREDIT)		
+	if(rights & R_VAREDIT)
 		. += "[seperator]+VAREDIT"
-	if(rights & R_SOUND)		
+	if(rights & R_SOUND)
 		. += "[seperator]+SOUND"
-	if(rights & R_SPAWN)		
+	if(rights & R_SPAWN)
 		. += "[seperator]+SPAWN"
-	if(rights & R_MENTOR)		
+	if(rights & R_MENTOR)
 		. += "[seperator]+MENTOR"
-	if(rights & R_DBRANKS)		
+	if(rights & R_DBRANKS)
 		. += "[seperator]+DBRANKS"
 
 	return .

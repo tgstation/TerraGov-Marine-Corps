@@ -6,19 +6,19 @@
 		xenos += new t(pick(locs))
 
 	sleep(10)
-	
+
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())
 
 	sleep(10)
-	
+
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())
 
 	sleep(10)
-	
+
 	for(var/i in xenos)
 		var/mob/living/carbon/xenomorph/X = i
 		X.upgrade_xeno(X.upgrade_next())

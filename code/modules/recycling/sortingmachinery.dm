@@ -426,14 +426,14 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 	else if(istype(I, /obj/item/tool/weldingtool) && c_mode)
 		var/obj/item/tool/weldingtool/W = I
-		
+
 		if(!W.remove_fuel(0, user))
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, "You start slicing the floorweld off the delivery chute.")
-		
+
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
 			return
 

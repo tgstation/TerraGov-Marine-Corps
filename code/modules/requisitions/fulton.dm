@@ -31,7 +31,7 @@
 	. = spirited_away.supply_export()
 	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
 	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [. ? . : "no"] point[. == 1 ? "" : "s"].</span>", null, 5)
-	
+
 	qdel(spirited_away)
 
 
@@ -107,7 +107,7 @@
 	if(!SSpoints)
 		to_chat(user, "<span class='notice'>Failure to form link with destination target.</span>")
 		return TRUE
-	
+
 	if(stat != DEAD)
 		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
 		return TRUE
@@ -138,7 +138,7 @@
 	if(!SSpoints)
 		to_chat(user, "<span class='warning'>Failure to form link with destination target.</span>")
 		return TRUE
-	
+
 	if(length(contents))
 		to_chat(user, "<span class='warning'>Maximum weight surpassed. Empty [src] in order to extract it.</span>")
 		return TRUE
@@ -195,9 +195,9 @@
 		var/mob/living/living_target = target
 		if(living_target.stat == DEAD)
 			return
-	
+
 	do_extract(target, user)
-	
+
 	if(linked_extraction_point)
 		movable_target.forceMove(get_turf(linked_extraction_point))
 		if(isliving(movable_target))

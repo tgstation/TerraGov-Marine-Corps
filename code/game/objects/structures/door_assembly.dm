@@ -143,9 +143,9 @@ obj/structure/door_assembly
 
 	if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
-		if(!t)	
+		if(!t)
 			return
-		if(!in_range(src, user) && loc != user)	
+		if(!in_range(src, user) && loc != user)
 			return
 		created_name = t
 
@@ -161,7 +161,7 @@ obj/structure/door_assembly
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
-			if(!WT.isOn()) 
+			if(!WT.isOn())
 				return
 			to_chat(user, "<span class='notice'>You welded the [glass] plating off!</span>")
 			var/M = text2path("/obj/item/stack/sheet/mineral/[glass]")
@@ -173,7 +173,7 @@ obj/structure/door_assembly
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
-			if(!WT.isOn()) 
+			if(!WT.isOn())
 				return
 			to_chat(user, "<span class='notice'>You welded the glass panel out!</span>")
 			new /obj/item/stack/sheet/glass/reinforced(loc)
@@ -184,7 +184,7 @@ obj/structure/door_assembly
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
-			if(!WT.isOn()) 
+			if(!WT.isOn())
 				return
 
 			to_chat(user, "<span class='notice'>You dissasembled the airlock assembly!</span>")
@@ -294,7 +294,7 @@ obj/structure/door_assembly
 
 			if(!S.use(2))
 				return
-				
+
 			to_chat(user, "<span class='notice'>You installed [M] plating into the airlock assembly.</span>")
 			glass = "[M]"
 

@@ -29,11 +29,12 @@ var opts = {
 	'scrollSnapTolerance': 10, //If within x pixels of bottom
 	'clickTolerance': 10, //Keep focus if outside x pixels of mousedown position on mouseup
 	'imageRetryDelay': 50, //how long between attempts to reload images (in ms)
-	'imageRetryLimit': 50, //how many attempts should we make? 
+	'imageRetryLimit': 50, //how many attempts should we make?
 	'popups': 0, //Amount of popups opened ever
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
+	'darkmode':true, //Are we using darkmode?
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
@@ -63,7 +64,7 @@ var opts = {
 	'updatedVolume': 0, //The volume level that is sent to the server
 	'musicStartAt': 0, //The position the music starts playing
 	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
-	
+
 	'defaultMusicVolume': 10,
 
 	'messageCombining': true,
@@ -156,7 +157,7 @@ function byondDecode(message) {
 	// The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
 	// Marvelous.
 	message = message.replace(/\+/g, "%20");
-	try { 
+	try {
 		// This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
 		if (decodeURIComponent) {
 			message = decodeURIComponent(message);
@@ -452,6 +453,20 @@ function toHex(n) {
 	return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
 }
 
+function swap() { //Swap to darkmode
+	if(opts.darkmode) {
+		document.getElementById("sheetofstyles").href = "browserOutput_white.css";
+		opts.darkmode = false;
+		runByond('?_src_=chat&proc=swaptolightmode');
+	}
+	else {
+		document.getElementById("sheetofstyles").href = "browserOutput.css";
+		opts.darkmode = true;
+		runByond('?_src_=chat&proc=swaptodarkmode');
+	}
+	setCookie('darkmode', (opts.darkmode ? 'true' : 'false'), 365);
+}
+
 function handleClientData(ckey, ip, compid) {
 	//byond sends player info to here
 	var currentData = {'ckey': ckey, 'ip': ip, 'compid': compid};
@@ -693,6 +708,7 @@ $(function() {
 		'shighlightColor': getCookie('highlightcolor'),
 		'smusicVolume': getCookie('musicVolume'),
 		'smessagecombining': getCookie('messagecombining'),
+		'sdarkmode': getCookie('darkmode'),
 	};
 
 	if (savedConfig.fontsize) {
@@ -702,6 +718,9 @@ $(function() {
 	if (savedConfig.lineheight) {
 		$("body").css('line-height', savedConfig.lineheight);
 		internalOutput('<span class="internal boldnshit">Loaded line height setting of: '+savedConfig.lineheight+'</span>', 'internal');
+	}
+	if(savedConfig.sdarkmode == 'true'){
+		swap();
 	}
 	if (savedConfig.shighlightTerms) {
 		var savedTerms = $.parseJSON(savedConfig.shighlightTerms);
@@ -732,7 +751,7 @@ $(function() {
 	else{
 		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
 	}
-	
+
 	if (savedConfig.smessagecombining) {
 		if (savedConfig.smessagecombining == 'false') {
 			opts.messageCombining = false;
@@ -909,6 +928,10 @@ $(function() {
 		handleToggleClick($subOptions, $(this));
 	});
 
+	$('#darkmodetoggle').click(function(e) {
+		swap();
+	});
+
 	$('#toggleAudio').click(function(e) {
 		handleToggleClick($subAudio, $(this));
 	});
@@ -1037,7 +1060,7 @@ $(function() {
 		$messages.empty();
 		opts.messageCount = 0;
 	});
-	
+
 	$('#musicVolumeSpan').hover(function() {
 		$('#musicVolumeText').addClass('hidden');
 		$('#musicVolume').removeClass('hidden');
@@ -1064,9 +1087,9 @@ $(function() {
 	});
 
 	$('img.icon').error(iconError);
-	
-	
-		
+
+
+
 
 	/*****************************************
 	*

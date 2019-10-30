@@ -292,7 +292,7 @@
 	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
 	icon_state = "m4ra"
 	item_state = "m4ra"
-	max_shells = 15 //codex
+	max_shells = 20 //codex
 	caliber = "10x24mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
@@ -300,6 +300,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
+	aim_slowdown = 0.5
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
@@ -314,14 +315,14 @@
 						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_SPEC
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/attachable/scope/m4ra, /obj/item/attachable/stock/rifle/marksman)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 2
 	burst_delay = 0.1 SECONDS
-	burst_accuracy_mult = 0.9
 	accuracy_mult = 1.05
 	scatter = 15
 	recoil = 2
@@ -354,16 +355,17 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/bipod)
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-	fire_delay = 0.4 SECONDS
-	burst_amount = 3
+	fire_delay = 0.3 SECONDS
+	burst_amount = 5
 	accuracy_mult = 1.15
 	damage_falloff_mult = 0.5
 
@@ -961,7 +963,7 @@
 	force = 20
 	wield_delay = 15
 	gun_skill_category = GUN_SKILL_SPEC
-	aim_slowdown = 1
+	aim_slowdown = 1.4
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_allowed = list(
@@ -969,7 +971,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 3
-	burst_amount = 8
+	burst_amount = 7
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5

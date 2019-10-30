@@ -25,21 +25,25 @@
 	update_inv_legcuffed()
 
 
-/mob/living/carbon/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/living/carbon/doUnEquip(obj/item/I)
 	. = ..()
-	if(!. || !I)
-		return FALSE
-
+	if(.)
+		return
 	if(I == back)
 		back = null
 		update_inv_back()
+		return ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_mask)
 		wear_mask = null
 		wear_mask_update(I)
+		return ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
 		update_handcuffed(null)
+		return ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == legcuffed)
 		update_legcuffed(null)
+		return ITEM_UNEQUIP_UNEQUIPPED
+
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
 	if(!equipping && internal)

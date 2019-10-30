@@ -90,7 +90,6 @@
 				injected += R.name
 			var/contained = english_list(injected)
 			log_combat(user, M, "splashed", src, "Reagents: [contained]")
-			msg_admin_attack("[ADMIN_TPMONTY(usr)] splashed [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 
 			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
 			reagents.reaction(target, TOUCH)

@@ -444,7 +444,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
 		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css'
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
 	)
 
 
@@ -488,7 +489,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"minor_button.png" = 'html/images/minor_button.png',
 		"none_button.png" = 'html/images/none_button.png',
 	)
-	
+
 /datum/asset/simple/logo
 	assets = list(
 		"ntlogo.png"	= 'html/images/ntlogo.png',
@@ -520,7 +521,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 				continue
 			common[filename] = fcopy_rsc(path + filename)
 			register_asset(filename, common[filename])
-	
+
 	for(var/path in uncommon_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)

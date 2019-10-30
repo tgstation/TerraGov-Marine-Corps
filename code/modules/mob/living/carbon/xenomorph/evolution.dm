@@ -164,7 +164,7 @@
 			return FALSE
 
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
-			to_chat(src, "<span class='warning'>We must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
+			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_queen_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
 			return
 
 		if(mind)
@@ -295,9 +295,12 @@
 		H.add_hud_to(new_xeno) //keep our mobhud choice
 		new_xeno.xeno_mobhud = TRUE
 
+	if(lighting_alpha != new_xeno.lighting_alpha)
+		new_xeno.toggle_nightvision(lighting_alpha)
+
 	new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
-	update_spits() //Update spits to new/better ones
+	new_xeno.update_spits() //Update spits to new/better ones
 
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
 	"<span class='xenodanger'>We emerge in a greater form from the husk of our old body. For the hive!</span>")

@@ -511,9 +511,9 @@
 
 	log_admin_private_asay("[key_name(src)]: [msg]")
 
-	var/color = "adminsay"
+	var/color = "asay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
-		color = "headminsay"
+		color = "headminasay"
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
@@ -544,11 +544,11 @@
 
 	log_admin_private_msay("[key_name(src)]: [msg]")
 
-	var/color = "mod"
+	var/color = "msay"
 	if(check_other_rights(src, R_DBRANKS, FALSE))
-		color = "headminmod"
+		color = "adminmsay"
 	else if(check_other_rights(src, R_ADMIN, FALSE))
-		color = "adminmod"
+		color = "headminmsay"
 
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
@@ -921,7 +921,7 @@
 	var/keywordparsedmsg = keywords_lookup(msg)
 
 	if(irc)
-		to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
+		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
 		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
 		ircreplyamount--
 		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
@@ -933,8 +933,8 @@
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_ADMIN)
 					else
 						new /datum/admin_help(msg, recipient, TRUE, TICKET_MENTOR)
-				to_chat(recipient, "<font size='3' color='red'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
-				to_chat(src, "<font size='3' color='blue'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
+				to_chat(recipient, "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
+				to_chat(src, "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></span>")
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
@@ -948,7 +948,7 @@
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				to_chat(recipient, "<font size='3' color='red'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: <span class='linkify'>[keywordparsedmsg]</span></font>")
 				window_flash(recipient, TRUE)
-				to_chat(src, "<font color='blue'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></font>")
+				to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[msg]</span></span>")
 
 			//Play the bwoink if enabled.
 			if(recipient.prefs.toggles_sound & SOUND_ADMINHELP)
@@ -966,14 +966,14 @@
 					to_chat(recipient, "<font color='red' size='4'><b>-- Private Message --</b></font>")
 					to_chat(recipient, "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
 					to_chat(recipient, "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
-					to_chat(src, "<font color='blue'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(src, "<span class='notice'><b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></span>")
 					SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient, TRUE)
 				else if(is_mentor(src))
 					to_chat(recipient, "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
-					to_chat(recipient, "<font color='blue'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></font>")
-					to_chat(recipient, "<font color='blue'><i>Click on the mentor's name to reply.</i></font>")
-					to_chat(src, "<font color='blue'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></font>")
+					to_chat(recipient, "<span class='notice'>[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: <span class='linkify'>[msg]</span></span>")
+					to_chat(recipient, "<span class='notice'><i>Click on the mentor's name to reply.</i></span>")
+					to_chat(src, "<span class='notice'><b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: <span class='linkify'>[msg]</span></span>")
 					SEND_SOUND(recipient, sound('sound/effects/mentorhelp.ogg', channel = CHANNEL_ADMIN))
 					window_flash(recipient)
 
@@ -988,7 +988,7 @@
 		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
 		for(var/client/X in GLOB.admins)
 			if(check_other_rights(X, R_ADMINTICKET, FALSE))
-				to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;IRC:</B> [keywordparsedmsg]</font>")
+				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;IRC:</B> [keywordparsedmsg]</span>")
 	else
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//Admins PMs go to admins, mentor PMs go to mentors and admins
@@ -997,26 +997,26 @@
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE))
-					to_chat(X, "<font color='blue'><B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<span class='notice'><B>Admin PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 		else if(is_mentor(src))
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE) || is_mentor(X))
-					to_chat(X, "<font color='blue'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<span class='notice'><B>Mentor PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 		else //Admins get all messages, mentors only mentor responses
 			var/datum/admin_help/AH = src.current_ticket
 			for(var/client/X in GLOB.admins)
 				if(X.key == key || X.key == recipient.key)
 					continue
 				if(check_other_rights(X, R_ADMINTICKET, FALSE))
-					to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+					to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 			if(AH?.tier == TICKET_MENTOR)
 				for(var/client/X in GLOB.admins)
 					if(X.key == key || X.key == recipient.key)
 						continue
 					if(is_mentor(X))
-						to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</font>")
+						to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 
 
 /proc/IrcPm(target, msg, sender)

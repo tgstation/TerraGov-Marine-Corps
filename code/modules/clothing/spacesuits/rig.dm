@@ -20,9 +20,9 @@
 		on = !on
 		icon_state = "rig[on]-[rig_color]"
 
-		if(on)	
+		if(on)
 			set_light(brightness_on)
-		else	
+		else
 			set_light(0)
 
 		if(istype(user,/mob/living/carbon/human))

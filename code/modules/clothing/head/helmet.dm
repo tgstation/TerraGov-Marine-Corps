@@ -290,7 +290,7 @@
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
-	icon_state = "grenadier_helmet"
+	icon_state = "minigunner_helmet"
 	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	resistance_flags = UNACIDABLE
@@ -301,11 +301,18 @@
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
-	desc = "A custom helmet designed for TGMC Scouts."
+	desc = "A custom helmet designed for TGMC Scouts. Made of light weight, experimental materials to provide great protection while also having less weight than the standard helmet."
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
+/obj/item/clothing/head/helmet/marine/sniper
+	name = "\improper M3-M helmet"
+	icon_state = "sniper_helmet"
+	desc = "A custom helmet designed for TGMC Marksmen. Fitted with a host of sensors and analyzers to grasp all aspects of the battlefield."
+	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"

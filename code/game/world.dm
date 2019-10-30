@@ -17,7 +17,7 @@ GLOBAL_VAR(restart_counter)
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	SetupExternalRSC()
-	
+
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()

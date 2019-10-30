@@ -82,7 +82,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				if(!src || !WT.isOn()) 
+				if(!src || !WT.isOn())
 					return
 				to_chat(user, "<span class='notice'>You dissasembled the windoor assembly!</span>")
 				new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
@@ -198,7 +198,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				if(!electronics) 
+				if(!electronics)
 					return
 
 				to_chat(user, "<span class='notice'>You've removed the airlock electronics!</span>")

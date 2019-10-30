@@ -56,7 +56,7 @@
 		var/obj/item/powerloader_clamp/PC = I
 		if(PC.linked_powerloader != src)
 			return
-		
+
 		unbuckle(user) //clicking the powerloader with its own clamp unbuckles the pilot.
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 		return TRUE
@@ -121,7 +121,7 @@
 				PC.forceMove(src)
 			else
 				clamp_equipped++
-		if(clamp_equipped != 2) 
+		if(clamp_equipped != 2)
 			unbuckle(M) //can't use the powerloader without both clamps equipped
 	else
 		move_delay = initial(move_delay)

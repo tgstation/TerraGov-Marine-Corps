@@ -42,7 +42,7 @@
 			sortkey = href_list["sortkey"]
 			cmp_proc = /proc/cmp_list_asc
 		return TRUE
-	
+
 	if(href_list["zlevel"])
 		displayed_z_level = text2num(href_list["zlevel"])
 		return TRUE

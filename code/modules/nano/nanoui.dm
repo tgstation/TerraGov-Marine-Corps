@@ -470,7 +470,7 @@ nanoui is used to open and update nano browser uis
 
 	addtimer(CALLBACK(src, .proc/on_close_winset_c, params), 2)
 
-		
+
 
 
 /datum/nanoui/proc/on_close_winset_c(params)

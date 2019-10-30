@@ -96,7 +96,7 @@
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
-				
+
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
@@ -120,7 +120,7 @@
 			A.state = 4
 			A.icon_state = "4"
 			
-		M.deconstruct(src)
+		M.decon(src)
 		qdel(src)
 
 	else if(isxeno(user))

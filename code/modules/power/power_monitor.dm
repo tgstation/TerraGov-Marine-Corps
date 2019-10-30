@@ -14,6 +14,12 @@
 	idle_power_usage = 300
 	active_power_usage = 300
 
+/obj/machinery/power/monitor/core
+	name = "Core Power Monitoring"
+
+/obj/machinery/power/monitor/grid
+	name = "Main Power Grid Monitoring"		
+
 /obj/machinery/power/monitor/Initialize()
 	. = ..()
 	var/obj/structure/cable/attached = null

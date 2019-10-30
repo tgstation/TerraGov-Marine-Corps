@@ -53,7 +53,7 @@
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
-	
+
 	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
@@ -70,7 +70,7 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		var/eta_status = SSevacuation?.get_status_panel_eta()
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
@@ -320,7 +320,7 @@
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
 		id_card = W.front_id
-			
+
 	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
@@ -873,7 +873,7 @@
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
-	if(!do_mob(usr, src, 6 SECONDS, extra_checks = CALLBACK(usr, .proc/incapacitated)))
+	if(!do_mob(usr, src, 6 SECONDS))
 		to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
 		return
 

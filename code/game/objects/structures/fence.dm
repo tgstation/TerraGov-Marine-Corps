@@ -105,6 +105,7 @@
 
 
 /obj/structure/fence/deconstruct(disassembled = TRUE)
+	SHOULD_CALL_PARENT(0)
 	if(disassembled)
 		new /obj/item/stack/rods(loc)
 	cut = TRUE
@@ -114,7 +115,7 @@
 
 /obj/structure/fence/Initialize(mapload, start_dir)
 	. = ..()
-	
+
 	if(start_dir)
 		setDir(start_dir)
 

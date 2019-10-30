@@ -220,7 +220,7 @@
 	switch(user.a_intent)
 		if(INTENT_HELP)
 			user.visible_message("[user] pets [src].", "<span class='notice'>You pet [src].</span>")
-		
+
 		if(INTENT_GRAB)
 			user.start_pulling(src)
 

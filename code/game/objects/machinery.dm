@@ -48,7 +48,7 @@
 				var/obj/item/I = i
 				I.forceMove(loc)
 			component_parts.Cut()
-	qdel(src)
+	return ..()
 
 
 /obj/machinery/proc/spawn_frame(disassembled)

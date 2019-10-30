@@ -94,7 +94,7 @@
 
 	var/deathtime = world.time - usr.timeofdeath
 
-	if(deathtime < 600) //They have ghosted after the announcement.
+	if(deathtime < 600 && !check_other_rights(usr.client, R_ADMIN, FALSE)) //They have ghosted after the announcement.
 		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
 		return
 

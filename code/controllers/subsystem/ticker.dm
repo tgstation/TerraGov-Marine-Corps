@@ -50,6 +50,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/music/PraiseTheLord.ogg',
 		'sound/music/BloodUponTheRisers.ogg',
 		'sound/music/DawsonChristian.ogg',
+		'sound/music/Bomber.ogg',
 	)
 
 	return ..()

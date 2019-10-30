@@ -173,4 +173,4 @@
 	huggers_max = 11
 	hugger_delay = 1.0 SECONDS
 	eggs_max = 6
-	
+

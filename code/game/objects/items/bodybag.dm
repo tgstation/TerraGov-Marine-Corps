@@ -240,8 +240,8 @@
 
 /obj/structure/closet/bodybag/cryobag/open()
 	if(bodybag_occupant)
-		bodybag_occupant.in_stasis = FALSE
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
+		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
 
 
@@ -256,8 +256,8 @@
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()
 	if(bodybag_occupant)
-		bodybag_occupant.in_stasis = STASIS_IN_BAG
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_bodybag_occupant_death)
+		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/on_bodybag_occupant_death)
 
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(datum/source, gibbed)

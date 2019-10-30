@@ -45,7 +45,7 @@
 				addtimer(CALLBACK(A, /obj/machinery/power/apc.proc/reset, wire), 10)
 
 
-/datum/wires/apc/on_cut(index, mend)	
+/datum/wires/apc/on_cut(index, mend)
 	var/obj/machinery/power/apc/A = holder
 	var/charge_percent = CLAMP(round(A.cell?.percent()), 0, 100)
 	switch(index)

@@ -158,7 +158,6 @@
 
 	if(organ_data.vital)
 		log_combat(user, target, "removed a vital organ ([src])", addition="(INTENT: [uppertext(user.a_intent)])")
-		msg_admin_attack("[ADMIN_TPMONTY(usr)] removed a vital organ ([src]) from [ADMIN_TPMONTY(target)].")
 		target.death()
 
 /obj/item/organ/eyes/removed(mob/living/target,mob/living/user)

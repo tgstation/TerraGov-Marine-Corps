@@ -23,7 +23,7 @@
 		traits += "This can only be fired with a two-handed grip."
 	else
 		traits += "It's best fired with a two-handed grip."
-		
+
 
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		traits += "It has a safety switch. Alt-Click it to toggle safety."
@@ -36,12 +36,12 @@
 
 
 	traits += "<br>Caliber: [caliber]"
-	
+
 	if(max_shells)
 		traits += "It can normally hold [max_shells] rounds."
 
 	if(max_shots)
-		traits += "Its maximum capacity is normally [max_shots] shots worth of power."	
+		traits += "Its maximum capacity is normally [max_shots] shots worth of power."
 
 	var/list/loading_ways = list()
 	if(load_method & SINGLE_CASING)
@@ -55,7 +55,7 @@
 	if(load_method & POWERPACK)
 		loading_ways += "it's powerpack."
 	traits += "Can be loaded using [english_list(loading_ways)]"
-	
+
 	if(attachable_allowed)
 		traits += "<br><U>You can attach</U>:"
 		for(var/X in attachable_allowed)
@@ -96,7 +96,7 @@
 	if(burst_amount > 1)
 		traits += "Shots fired on burst mode: [burst_amount]"
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
-	
+
 	. += jointext(traits, "<br>")
 
 /obj/item/weapon/gun/energy/get_mechanics_info()
@@ -119,7 +119,7 @@
 	. = ..()
 	. += "This is a stealthy weapon which fires poisoned bolts at your target. When it hits someone, they will suffer a stun effect, in \
 	addition to toxins. The energy crossbow recharges itself slowly, and can be concealed in your pocket or bag.<br>"
-	
+
 /obj/item/weapon/gun/energy/chameleon/get_antag_info()
 	. = ..()
 	. += "This gun is actually a hologram projector that can alter its appearance to mimick other weapons. To change the appearance, use \

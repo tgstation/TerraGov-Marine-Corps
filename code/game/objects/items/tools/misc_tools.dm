@@ -105,8 +105,6 @@
 	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
 //	to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 	log_combat(user, M, "stabbed", src)
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [name] to stab [ADMIN_TPMONTY(M)].")
-	return
 
 
 /*
@@ -168,6 +166,9 @@
 	throw_speed = 7
 	throw_range = 15
 	attack_verb = list("stamped")
+
+/obj/item/tool/stamp/qm
+	name = "Quartermaster's Stamp"	
 
 /obj/item/tool/stamp/captain
 	name = "captain's rubber stamp"

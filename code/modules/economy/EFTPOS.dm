@@ -108,7 +108,7 @@
 		dat += "<a href='?src=\ref[src];choice=change_code'>Change access code</a><br>"
 		dat += "<a href='?src=\ref[src];choice=change_id'>Change EFTPOS ID</a><br>"
 		dat += "Scan card to reset access code <a href='?src=\ref[src];choice=reset'>\[------\]</a>"
-	
+
 	var/datum/browser/popup = new(user, "etfpos", "<div align='center'>[eftpos_name]</div>")
 	popup.set_content(dat)
 	popup.open()

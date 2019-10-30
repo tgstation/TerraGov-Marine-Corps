@@ -12,7 +12,7 @@
 	var/force = 0
 	var/damtype = BRUTE
 	var/attack_speed = 11
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/sharp = FALSE		// whether this item cuts
 	var/edge = FALSE		// whether this item is more likely to dismember
@@ -298,7 +298,7 @@
 /obj/item/proc/mob_can_equip(mob/M, slot, warning = TRUE)
 	if(!slot)
 		return FALSE
-	
+
 	if(!M)
 		return FALSE
 
@@ -562,17 +562,18 @@
 
 
 /obj/item/proc/update_item_sprites()
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_LV_624)
+	switch(SSmapping.configs[GROUND_MAP].armor_style)
+		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(flags_item_map_variant & ITEM_JUNGLE_VARIANT)
 				icon_state = "m_[icon_state]"
 				item_state = "m_[item_state]"
-		if(MAP_ICE_COLONY)
+		if(MAP_ARMOR_STYLE_ICE)
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				icon_state = "s_[icon_state]"
 				item_state = "s_[item_state]"
-			if(flags_item_map_variant & ITEM_ICE_PROTECTION)
-				min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
+		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 
 /obj/item/verb/verb_pickup()
@@ -647,7 +648,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 		if(user.client.click_intercept)
 			user.client.click_intercept = null
-		
+
 		if(user.interactee == src)
 			user.unset_interaction()
 

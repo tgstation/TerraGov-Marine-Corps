@@ -148,4 +148,4 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
-	
+

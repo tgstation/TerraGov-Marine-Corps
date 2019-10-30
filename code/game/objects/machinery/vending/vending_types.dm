@@ -372,7 +372,7 @@
 		build_shared_inventory(shared)
 	else
 		build_inventory(shared)
-	
+
 
 /obj/machinery/vending/shared_vending/proc/build_shared_inventory(list/productlist, hidden = FALSE, req_coin = TRUE)
 	var/i = 1
@@ -380,7 +380,7 @@
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		var/price = prices[typepath]
-		if(isnull(amount)) 
+		if(isnull(amount))
 			amount = 1
 
 		var/obj/item/temp_path = typepath

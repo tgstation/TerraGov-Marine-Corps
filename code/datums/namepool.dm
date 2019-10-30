@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 		. = pick(SSstrings.get_list_from_file(firstname_male_pool))
 	else
 		. = pick(SSstrings.get_list_from_file(firstname_female_pool))
-	
+
 	. += " " + pick(SSstrings.get_list_from_file(lastname_pool))
 
 /datum/namepool/clf

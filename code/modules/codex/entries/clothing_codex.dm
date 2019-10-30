@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		. += "<br><br><U>You can also carry the following special items in this</U>:"
 		for(var/X in hold.bypass_w_limit)
 			var/obj/B = X
-			. += "<br>[initial(B.name)]"	
+			. += "<br>[initial(B.name)]"
 
 /obj/item/clothing/suit/storage/get_mechanics_info()
 	. = ..()
@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		. += "<br><U>You can also carry the following special items in this internal inventory</U>:"
 		for(var/X in pockets.bypass_w_limit)
 			var/obj/B = X
-			. += "<br>[initial(B.name)]"	
+			. += "<br>[initial(B.name)]"
 
 /obj/item/clothing/suit/armor/pcarrier/get_mechanics_info()
 	. = ..()

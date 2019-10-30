@@ -112,7 +112,7 @@
 			greytoggle = "Color"
 		else
 			greytoggle = "Greyscale"
-		
+
 	updateUsrDialog()
 
 
@@ -139,7 +139,7 @@
 		if(!copier_empty())
 			to_chat(user, "<span class='warning'>There is already something in [src]!</span>")
 			return
-			
+
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
 
@@ -155,12 +155,12 @@
 			return
 
 		photocopy = I
-		do_insertion(I, user)	
+		do_insertion(I, user)
 
 	else if(istype(I, /obj/item/toner))
 		if(toner > 0)
 			to_chat(user, "<span class='warning'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
-			
+
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
 		qdel(I)

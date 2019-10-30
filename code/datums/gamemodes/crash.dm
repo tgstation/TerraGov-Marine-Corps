@@ -35,6 +35,8 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
+	if(!.)
+		return
 	// Check if enough players have signed up for xeno & queen roles.
 	init_scales()
 	var/ruler = initialize_xeno_leader()
@@ -43,7 +45,6 @@
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
-	return TRUE
 
 /datum/game_mode/crash/proc/init_scales()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
@@ -175,7 +176,7 @@
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
-	
+
 	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
 
 
@@ -210,7 +211,7 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(xeno_hive.stored_larva)
 		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	var/new_xeno_batch = min(1, round(num_humans * 0.2))
+	var/new_xeno_batch = max(1, round(num_humans * 0.2))
 	for(var/i in new_xeno_batch)
 		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
 		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)

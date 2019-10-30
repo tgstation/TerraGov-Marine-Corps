@@ -74,14 +74,32 @@ a.popt {text-decoration: none;}
 .prefix					{					font-weight: bold;}
 
 .ooc					{					font-weight: bold;}
-.adminobserverooc		{color: #0099cc;	font-weight: bold;}
-.adminooc				{color: #b82e00;	font-weight: bold;}
+.colorooc				{color: #002eb8;	font-weight: bold;}
+.looc					{color: #6699CC;	font-weight: bold;}
+.hostooc				{color: #000000;	font-weight: bold;}
+.projleadooc			{color: #800080;	font-weight: bold;}
+.headcoderooc			{color: #000064;	font-weight: bold;}
+.headminooc				{color: #640000;	font-weight: bold;}
+.headmentorooc			{color: #004100;	font-weight: bold;}
+.adminooc				{color: #b4001e;	font-weight: bold;}
+.trialminooc			{color: #f03200;	font-weight: bold;}
+.candiminooc			{color: #ff5a1e;	font-weight: bold;}
+.mentorooc				{color: #008000;	font-weight: bold;}
+.maintainerooc			{color: #1e4cd6;	font-weight: bold;}
+.contributorooc			{color: #0064ff;	font-weight: bold;}
+.otherooc				{color: #643200;	font-weight: bold;}
 
-.adminobserver			{color: #996600;	font-weight: bold;}
+.msay					{color: #775c40;	font-weight: bold;}
+.adminmsay				{color: #66411e;	font-weight: bold;}
+.headminmsay			{color: #402A14;	font-weight: bold;}
+
 .admin					{color: #386aff;	font-weight: bold;}
-.adminsay				{color: #9611D4;	font-weight: bold;}
-.headminsay				{color: #5A0A7F;	font-weight: bold;}
+.asay					{color: #9611D4;	font-weight: bold;}
+.headminasay			{color: #5A0A7F;	font-weight: bold;}
 .boldannounce			{color: #ff0000;	font-weight: bold;}
+
+.staffpmout				{color: red;	font-weight: bold;}
+.staffpmin				{color: blue;	font-weight: bold;}
 
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
@@ -155,10 +173,6 @@ h1.alert, h2.alert		{color: #000000;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
-.mod					{color: #775c40;	font-weight: bold;}
-.modooc					{color: #184880;	font-weight: bold;}
-.adminmod				{color: #66411e;	font-weight: bold;}
-.headminmod				{color: #402A14;	font-weight: bold;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
 .skrell					{color: #00CED1;}

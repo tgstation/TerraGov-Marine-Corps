@@ -264,7 +264,7 @@
 				return
 			stop_overwatch()
 			return
-	
+
 	start_overwatch(selected_xeno)
 
 

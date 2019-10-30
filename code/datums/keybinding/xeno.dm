@@ -117,28 +117,28 @@
 	full_name = "Xeno: Neurotoxin Sting"
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
-	
+
 /datum/keybinding/xeno/plow_charge
 	key = "Unbound"
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
 	description = "A charge that plows through the victims."
 	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
-	
+
 /datum/keybinding/xeno/headbutt_charge
 	key = "Unbound"
 	name = "headbutt_charge"
 	full_name = "Bull: Headbutt Charge"
 	description = "A charge that tosses the victim forward or backwards, depending on intent."
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-	
+
 /datum/keybinding/xeno/gore_charge
 	key = "Unbound"
 	name = "gore_charge"
 	full_name = "Bull: Gore Charge"
 	description = "A charge that gores the victim."
 	keybind_signal = COMSIG_XENOABILITY_BULLGORE
-	
+
 /datum/keybinding/xeno/long_range_sight
 	key = "Unbound"
 	name = "long_range_sight"
@@ -398,24 +398,10 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
-/datum/keybinding/xeno/ravage
-	key = "Unbound"
-	name = "ravage"
-	full_name = "Ravager: Ravage"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_RAVAGE
-
-/datum/keybinding/xeno/second_wind
-	key = "Unbound"
-	name = "second_wind"
-	full_name = "Ravager: Second Wind"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_SECOND_WIND
-
 /datum/keybinding/xeno/toggle_savage
 	key = "Unbound"
 	name = "toggle_savage"
-	full_name = "Ravager: Toggle Savage"
+	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
 
