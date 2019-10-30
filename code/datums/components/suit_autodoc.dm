@@ -193,7 +193,7 @@
 		playsound(I,'sound/items/hypospray.ogg', 25, 0, 1)
 		to_chat(H, "<span class='notice'>[icon2html(I, H)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
 
-/datum/component/suit_autodoc/proc/nextuse_ready(var/message)
+/datum/component/suit_autodoc/proc/nextuse_ready(message)
 
 	var/obj/item/I = parent // guarenteed by Initialize()
 
