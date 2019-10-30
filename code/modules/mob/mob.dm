@@ -449,7 +449,7 @@
 		log_combat(src, M, "grabbed")
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"
