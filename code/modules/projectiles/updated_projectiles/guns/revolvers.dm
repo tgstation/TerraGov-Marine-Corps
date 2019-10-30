@@ -464,7 +464,7 @@ obj/item/weapon/gun/revolver/mr76
 						/obj/item/attachable/scope,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 24, "under_x" = 25, "under_y" = 17, "stock_x" = 25, "stock_y" = 17)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	fire_delay = 0.3 SECONDS
