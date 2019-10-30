@@ -14,11 +14,24 @@
 	var/damage_threshold = 50
 	var/pain_threshold = 70
 
-	var/list/burn_chems
-	var/list/oxy_chems
-	var/list/brute_chems
-	var/list/tox_chems
-	var/list/pain_chems
+	var/list/burn_chems = list(
+		/datum/reagent/medicine/kelotane,
+		/datum/reagent/medicine/tricordrazine)
+	var/list/oxy_chems = list(
+		/datum/reagent/medicine/dexalinplus,
+		/datum/reagent/medicine/inaprovaline,
+		/datum/reagent/medicine/tricordrazine)
+	var/list/brute_chems = list(
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/quickclot,
+		/datum/reagent/medicine/tricordrazine)
+	var/list/tox_chems = list(
+		/datum/reagent/medicine/dylovene,
+		/datum/reagent/medicine/spaceacillin,
+		/datum/reagent/medicine/tricordrazine)
+	var/list/pain_chems = list(
+		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/tramadol)
 
 	var/datum/action/suit_autodoc_toggle/toggle_action
 	var/datum/action/suit_autodoc_scan/scan_action
@@ -29,6 +42,18 @@
 	analyzer = new
 	toggle_action = new(parent)
 	scan_action = new(parent)
+	if(!isnull(chem_cooldown))
+		src.chem_cooldown = chem_cooldown
+	if(islist(burn_chems))
+		src.burn_chems = burn_chems
+	if(islist(oxy_chems))
+		src.oxy_chems = oxy_chems
+	if(islist(brute_chems))
+		src.brute_chems = brute_chems
+	if(islist(tox_chems))
+		src.tox_chems = tox_chems
+	if(islist(pain_chems))
+		src.pain_chems = pain_chems
 
 /datum/component/suit_autodoc/Destroy(force, silent)
 	QDEL_NULL(analyzer)
