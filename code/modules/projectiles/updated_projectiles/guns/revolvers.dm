@@ -474,7 +474,7 @@ obj/item/weapon/gun/revolver/mr76
 	recoil_unwielded = 0
 	damage_mult = 1.25
 
-/obj/item/weapon/gun/revolver/small/unique_action(mob/user)
+/obj/item/weapon/gun/revolver/mr76/unique_action(mob/user)
 	return revolver_trick(user)
 
 /obj/item/weapon/gun/revolver/mr76/major
