@@ -1,5 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
-
+	SHOULD_CALL_PARENT(0)
 	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 

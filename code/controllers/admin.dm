@@ -11,6 +11,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 	src.target = target
 
 /obj/effect/statclick/examine(mob/user)
+	SHOULD_CALL_PARENT(0)
 	return
 
 /obj/effect/statclick/proc/update(text)
