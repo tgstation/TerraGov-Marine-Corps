@@ -9,7 +9,7 @@
 
 	var/chem_cooldown = 2.5 MINUTES
 
-	var/enabled = TRUE
+	var/enabled = FALSE
 
 	var/damage_threshold = 50
 	var/pain_threshold = 70
@@ -35,6 +35,7 @@
 
 	var/datum/action/suit_autodoc_toggle/toggle_action
 	var/datum/action/suit_autodoc_scan/scan_action
+	var/datum/action/suit_autodoc_configure/configure_action
 
 /datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems)
 	if(!istype(parent, /obj/item))
@@ -42,6 +43,7 @@
 	analyzer = new
 	toggle_action = new(parent)
 	scan_action = new(parent)
+	configure_action = new(parent)
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
 	if(islist(burn_chems))
@@ -59,6 +61,7 @@
 	QDEL_NULL(analyzer)
 	QDEL_NULL(toggle_action)
 	QDEL_NULL(scan_action)
+	QDEL_NULL(configure_action)
 	return ..()
 
 /datum/component/suit_autodoc/RegisterWithParent()
@@ -87,34 +90,38 @@
 	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
-	var/list/details = list()
+	var/details
 	if(burn_nextuse > world.time)
-		details +=("Its burn treatment injector is currently refilling. It will resupply in [(burn_nextuse - world.time) * 0.1] seconds.</br>")
+		details += "Its burn treatment injector is currently refilling. It will resupply in [(burn_nextuse - world.time) * 0.1] seconds.</br>"
 
 	if(brute_nextuse > world.time)
-		details +=("Its trauma treatment injector is currently refilling. It will resupply in [(brute_nextuse - world.time) * 0.1] seconds.</br>")
+		details += "Its trauma treatment injector is currently refilling. It will resupply in [(brute_nextuse - world.time) * 0.1] seconds.</br>"
 
 	if(oxy_nextuse > world.time)
-		details +=("Its oxygenating injector is currently refilling. It will resupply in [(oxy_nextuse - world.time) * 0.1] seconds.</br>")
+		details += "Its oxygenating injector is currently refilling. It will resupply in [(oxy_nextuse - world.time) * 0.1] seconds.</br>"
 
 	if(tox_nextuse > world.time)
-		details +=("Its anti-toxin injector is currently refilling. It will resupply in [(tox_nextuse - world.time) * 0.1] seconds.</br>")
+		details += "Its anti-toxin injector is currently refilling. It will resupply in [(tox_nextuse - world.time) * 0.1] seconds.</br>"
 
 	if(pain_nextuse > world.time)
-		details +=("Its painkiller injector is currently refilling. It will resupply in [(pain_nextuse - world.time) * 0.1] seconds.</br>")
+		details += "Its painkiller injector is currently refilling. It will resupply in [(pain_nextuse - world.time) * 0.1] seconds.</br>"
 
-	to_chat(user, "<span class='danger'>[details.Join(" ")]</span>")
+	if(details)
+		to_chat(user, "<span class='danger'>[details]</span>")
 
 /datum/component/suit_autodoc/proc/dropped(datum/source, mob/user)
+	remove_actions(user)
 	disable(user)
 
 /datum/component/suit_autodoc/proc/equipped(datum/source, mob/equipper, slot)
 	var/obj/item/I = parent
 	if(slotdefine2slotbit(slot) & I.flags_equip_slot)
-		if(ishuman(equipper))
-			enable(equipper, enabled)
+		if(ishuman(equipper) && !enabled)
+			give_actions(equipper)
+			enable(equipper)
 		return
-	disable(equipper, !enabled)
+	if(enabled)
+		disable(equipper)
 
 /datum/component/suit_autodoc/proc/disable(mob/user, silent = FALSE)
 	if(!enabled)
@@ -211,10 +218,12 @@
 /datum/component/suit_autodoc/proc/give_actions(mob/user)
 	toggle_action.give_action(user)
 	scan_action.give_action(user)
+	configure_action.give_action(user)
 
 /datum/component/suit_autodoc/proc/remove_actions(mob/user)
 	toggle_action.remove_action(user)
 	scan_action.remove_action(user)
+	configure_action.remove_action(user)
 
 /datum/component/suit_autodoc/proc/action_toggle(datum/source, mob/user)
 	if(enabled)
@@ -329,6 +338,6 @@
 	name = "Configure Suit Automedic"
 
 /datum/action/suit_autodoc_configure/action_activate()
-	if(QDELETED(owner) || !can_interact(owner))
+	if(QDELETED(owner) || !owner.incapacitated())
 		return
 	SEND_SIGNAL(target, COMPONENT_SUIT_AUTODOC_CONFIGURE, owner)
