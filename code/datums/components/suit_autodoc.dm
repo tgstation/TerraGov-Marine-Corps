@@ -139,6 +139,9 @@
 /datum/component/suit_autodoc/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
 	treat_injuries()
 
+/datum/component/suit_autodoc/process()
+	treat_injuries()
+
 #define OVERDOSE_THRESHOLD_MODIFIER 0.5
 
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, nextuse, damage, threshold, message_prefix)
