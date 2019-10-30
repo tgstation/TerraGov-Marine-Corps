@@ -485,3 +485,4 @@ obj/item/weapon/gun/revolver/mr76
 
 	scatter_wielded = -30
 	wield_delay = 0 SECONDS
+	damage_mult = 1.5
