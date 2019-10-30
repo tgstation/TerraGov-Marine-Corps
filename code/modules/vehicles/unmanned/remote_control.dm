@@ -1,6 +1,3 @@
-#define COMSIG_REMOTE_CONTROL_TOGGLE "toggle remote control"
-#define COMSIG_REMOTE_CONTROL_CLICKON "clickedon"
-
 /datum/component/remote_control
 	var/mob/user
 	var/atom/target
