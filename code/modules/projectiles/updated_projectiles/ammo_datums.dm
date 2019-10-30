@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 
 /datum/ammo/bullet/revolver/marksman/small
-	name = "small revolver bullet"
+	name = "small slimeline revolver bullet"
 	hud_state = "revolver_small"
 	damage = 25
 	penetration = 10
