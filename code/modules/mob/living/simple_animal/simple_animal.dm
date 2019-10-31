@@ -40,8 +40,7 @@
 	var/deathmessage = ""
 
 	//Attack
-	melee_damage_lower = 0
-	melee_damage_upper = 0
+	melee_damage = 0
 	attacktext = "attacks"
 	attack_sound = null
 	friendly = "nuzzles" //If the mob does no damage with it's attack
@@ -224,7 +223,7 @@
 /mob/living/simple_animal/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, "Health: [round((health / maxHealth) * 100)]%")
 
 

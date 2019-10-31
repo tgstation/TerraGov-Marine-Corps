@@ -49,7 +49,7 @@
 	var/dat
 	if(!SSticker)
 		return
-	
+
 	if(mode) // accessing crew manifest
 
 		dat += "<h4>Crew Manifest</h4>"
@@ -60,7 +60,7 @@
 		dat += "<a href='?src=\ref[src];choice=print'>Print</a><br>"
 		dat += "<br>"
 		dat += "<a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
-	
+
 	else
 		var/header
 
@@ -326,7 +326,7 @@
 				printing = null
 	if (modify)
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
-	
+
 	updateUsrDialog()
 
 
@@ -408,7 +408,7 @@
 				usr.drop_held_item()
 				I.loc = src
 				modify = I
-	
+
 	else if(href_list["squad"])
 		if(allowed(usr))
 			if(modify && istype(modify))
@@ -434,5 +434,5 @@
 				to_chat(usr, "You need to insert a card to modify.")
 		else
 			to_chat(usr, "You don't have sufficient access to use this console.")
-	
+
 	updateUsrDialog()

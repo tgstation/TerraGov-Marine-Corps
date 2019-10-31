@@ -5,7 +5,7 @@
 /obj/item/weapon/gun/energy
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
-	var/charge_cost = 10 //100 shots.
+	charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
 	flags_gun_features = GUN_AMMO_COUNTER
 	general_codex_key = "energy weapons"
@@ -148,6 +148,7 @@
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
+	ammo_diff = null
 	cell_type = null
 	charge_cost = M43_STANDARD_AMMO_COST
 	attachable_allowed = list(
@@ -163,7 +164,11 @@
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini)
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/focuslens,
+						/obj/item/attachable/widelens,
+						/obj/item/attachable/efflens,
+						/obj/item/attachable/pulselens)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)
@@ -172,7 +177,7 @@
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
-
+	fire_delay = 3
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -180,7 +185,6 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
-
 
 /obj/item/weapon/gun/energy/lasgun/Initialize(mapload, ...)
 	. = ..()
@@ -191,6 +195,9 @@
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	//if(in_chamber)
 	//	delete_bullet(in_chamber, TRUE)
+	if(ammo_diff == null)
+		to_chat(user, "[icon2html(src, user)] You need an appropriate lens to enable overcharge mode.")
+		return
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
@@ -203,8 +210,8 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 		charge_cost = M43_OVERCHARGE_AMMO_COST
-		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
-		fire_delay = M43_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
+		ammo = GLOB.ammo_list[ammo_diff]
+		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
@@ -212,7 +219,7 @@
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
 		charge_cost = M43_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
-		fire_delay = 3
+		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
@@ -222,9 +229,8 @@
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 		A.update_hud(user)
-	
-	return TRUE
 
+	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user)
 		//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
@@ -359,3 +365,50 @@
 	update_icon(user)
 
 	return TRUE
+
+//-------------------------------------------------------
+//Deathsquad-only gun -- Model 2419 pulse rifle, the M19C4.
+
+/obj/item/weapon/gun/energy/lasgun/pulse
+	name = "\improper M19C4 pulse energy rifle"
+	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection."
+	force = 23 //Slightly more heftier than the M43, but without the stock.
+	icon_state = "m19c4"
+	item_state = "m19c4"
+	fire_sound = 'sound/weapons/guns/fire/pred_plasmacaster_fire.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	max_shots = 100//codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/pulsebolt
+	cell_type = /obj/item/cell/lasgun/pulse
+	charge_cost = M43_STANDARD_AMMO_COST
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 8
+	burst_delay = 0.2 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.95
+	scatter_unwielded = 25
+
+/obj/item/weapon/gun/energy/lasgun/pulse/update_icon(mob/user)
+	if(!cell || cell.charge <= 0)
+		icon_state = base_gun_icon + "_0"
+		if(flags_item & WIELDED)
+			item_state = "m19c4_0_w"
+		else
+			item_state = "m19c4_0"
+	else
+		var/remaining = CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+		icon_state = "[base_gun_icon]_[remaining]"
+		item_state = "m19c4_[remaining][flags_item & WIELDED ? "_w" : ""]"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/M = user
+		if(src == M.l_hand)
+			M.update_inv_l_hand()
+		else if (src == M.r_hand)
+			M.update_inv_r_hand()

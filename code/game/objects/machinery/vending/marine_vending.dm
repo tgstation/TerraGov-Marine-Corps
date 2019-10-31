@@ -32,6 +32,10 @@
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
 					/obj/item/attachable/bayonet = 10,
+					/obj/item/weapon/gun/rifle/sx16 = 10,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
+					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
 					)
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
@@ -48,7 +52,7 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		products2 = list(/obj/item/clothing/mask/rebreather/scarf = 10, /obj/item/clothing/mask/rebreather = 10)
 	build_inventory(products2)
 
@@ -84,6 +88,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/m4a3 = 10,
@@ -114,8 +119,10 @@
 					/obj/item/weapon/gun/revolver/m44 = 15,
 					/obj/item/weapon/gun/smg/m39 = 15,
 					/obj/item/weapon/gun/rifle/m41a = 20,
+					/obj/item/weapon/gun/rifle/lmg = 2,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
+					/obj/item/weapon/gun/rifle/sx16 = 10,
 					/obj/item/explosive/mine = 2,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
@@ -195,6 +202,9 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
+					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
+					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
+					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
 					/obj/item/smartgun_powerpack = 2
 					)
 
@@ -372,6 +382,7 @@
 					/obj/item/reagent_container/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 8,
 					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 4,
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
@@ -391,7 +402,8 @@
 					/obj/item/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
-	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3)
+	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3,
+					/obj/item/reagent_container/hypospray/autoinjector/hyperzine/expired =3)
 
 
 
@@ -435,7 +447,7 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/clothing/under/marine/medic = 4,
+						/obj/item/clothing/under/marine/corpsman = 4,
 						/obj/item/clothing/head/helmet/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/corpsman = 4,
 						/obj/item/storage/backpack/marine/satchel/corpsman = 4,
@@ -506,7 +518,6 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
-					/obj/item/storage/box/spec/scoutshotgun = 1,
 					/obj/item/storage/box/spec/pyro = 1
 			)
 	prices = list()
@@ -621,6 +632,10 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/suppressor = 8,
+						/obj/item/attachable/widelens = 4,
+						/obj/item/attachable/focuslens = 4,
+						/obj/item/attachable/efflens = 4,
+						/obj/item/attachable/pulselens = 4,
 
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/magnetic_harness = 8,
@@ -669,7 +684,7 @@
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
 					/obj/item/clothing/shoes/marine = 20,
-					/obj/item/clothing/under/marine = 20,
+					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
@@ -680,13 +695,21 @@
 					/obj/item/clothing/suit/storage/marine/M3E = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/glasses/mgoggles = 10,
+					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
+					/obj/item/clothing/mask/bandanna/skull = 10,
+					/obj/item/clothing/mask/bandanna/green = 10,
+					/obj/item/clothing/mask/bandanna/white = 10,
+					/obj/item/clothing/mask/bandanna/black = 10,
+					/obj/item/clothing/mask/bandanna = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/tank/emergency_oxygen = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 10,
 					/obj/item/storage/large_holster/m39 = 10,
@@ -729,19 +752,24 @@
 		switch(squad_tag)
 			if("Alpha")
 				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
-								/obj/item/clothing/gloves/marine/alpha = 10)
+								/obj/item/clothing/gloves/marine/alpha = 10,
+								/obj/item/clothing/mask/bandanna/alpha = 10)
 			if("Bravo")
 				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/gloves/marine/bravo = 10)
+								/obj/item/clothing/gloves/marine/bravo = 10,
+								/obj/item/clothing/mask/bandanna/bravo = 10)
 			if("Charlie")
 				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/gloves/marine/charlie = 10)
+								/obj/item/clothing/gloves/marine/charlie = 10,
+								/obj/item/clothing/mask/bandanna/charlie = 10)
 			if("Delta")
 				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/gloves/marine/delta = 10)
+								/obj/item/clothing/gloves/marine/delta = 10,
+								/obj/item/clothing/mask/bandanna/delta = 10)
 	else
 		products2 = list(/obj/item/radio/headset/mainship = 10,
-						/obj/item/clothing/gloves/marine = 10)
+						/obj/item/clothing/gloves/marine = 10,
+						/obj/item/clothing/mask/bandanna = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
 

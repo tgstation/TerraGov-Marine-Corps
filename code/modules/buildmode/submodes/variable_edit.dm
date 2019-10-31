@@ -28,7 +28,7 @@
 
 /datum/buildmode_mode/varedit/change_settings(client/c)
 	varholder = input(c, "Enter variable name:" ,"Name", "name")
-	
+
 	if(!vv_varname_lockcheck(varholder))
 		return
 

@@ -247,7 +247,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 /world/proc/AVadmin()
 	return list(
 	/datum/admins/proc/show_player_panel,
-	/datum/admins/proc/pref_attack_logs,
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
@@ -525,15 +524,6 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			to_chat(C, msg)
 
 
-/proc/msg_admin_attack(msg)
-	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message linkify'>[msg]</span></span>"
-	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE))
-			continue
-		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-			to_chat(C, msg)
-
-
 /proc/msg_admin_ff(msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green linkify'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
@@ -638,11 +628,9 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 
 
 /proc/IsAdminGhost(mob/user)
-	if(!istype(user))
+	if(!isobserver(user))
 		return FALSE
 	if(!user.client)
-		return FALSE
-	if(!isobserver(user))
 		return FALSE
 	if(!check_other_rights(user.client, R_ADMIN, FALSE)) // Are they allowed?
 		return FALSE

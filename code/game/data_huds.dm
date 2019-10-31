@@ -66,12 +66,12 @@
 
 
 /datum/atom_hud/medical/basic/proc/check_sensors(mob/living/carbon/human/H)
-	if(!istype(H)) 
+	if(!istype(H))
 		return FALSE
 	var/obj/item/clothing/under/U = H.w_uniform
-	if(!istype(U)) 
+	if(!istype(U))
 		return FALSE
-	if(U.sensor_mode <= 2) 
+	if(U.sensor_mode <= 2)
 		return FALSE
 	return TRUE
 
@@ -134,21 +134,21 @@
 
 	var/percentage = round(health * 100 / species.total_health)
 	switch(percentage)
-		if(100 to INFINITY) 
+		if(100 to INFINITY)
 			holder.icon_state = "hudhealth100"
-		if(90 to 99) 
+		if(90 to 99)
 			holder.icon_state = "hudhealth90"
-		if(80 to 89) 
+		if(80 to 89)
 			holder.icon_state = "hudhealth80"
-		if(70 to 79) 
+		if(70 to 79)
 			holder.icon_state = "hudhealth70"
-		if(60 to 69) 
+		if(60 to 69)
 			holder.icon_state = "hudhealth60"
-		if(50 to 59) 
+		if(50 to 59)
 			holder.icon_state = "hudhealth50"
-		if(45 to 49) 
+		if(45 to 49)
 			holder.icon_state = "hudhealth45"
-		if(40 to 44) 
+		if(40 to 44)
 			holder.icon_state = "hudhealth40"
 		if(35 to 39)
 			holder.icon_state = "hudhealth35"
@@ -170,7 +170,7 @@
 			holder.icon_state = "hudhealth-0"
 		if(-99 to -50)
 			holder.icon_state = "hudhealth-50"
-		else 
+		else
 			holder.icon_state = "hudhealth-100"
 
 
@@ -409,7 +409,7 @@
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = ""
 	holder.overlays.Cut()
-	
+
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
 		var/rank = job
@@ -426,12 +426,12 @@
 			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[fireteam]")
 			IMG2.color = squad_color
 			holder.overlays += IMG2
-	
+
 	else
 		switch(job)
 			if(SQUAD_HUD_SUPPORTED_OTHER_JOBS)
 				holder.icon_state = "hudmarine [job]"
-	
+
 	hud_list[SQUAD_HUD] = holder
 
 #undef SQUAD_HUD_SUPPORTED_SQUAD_JOBS
@@ -439,7 +439,7 @@
 
 
 /datum/atom_hud/order
-	hud_icons = list(ORDER_HUD)	
+	hud_icons = list(ORDER_HUD)
 
 
 /mob/living/carbon/human/proc/hud_set_order()

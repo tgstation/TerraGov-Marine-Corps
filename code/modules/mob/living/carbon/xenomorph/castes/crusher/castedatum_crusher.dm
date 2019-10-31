@@ -10,15 +10,11 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage = 30
 	attack_delay = 8.5
 
 	// *** Tackle *** //
 	tackle_damage = 55
-
-	// *** RNG Attacks *** //
-	tail_chance = 0 //Inherited from old code. Tail's too big
 
 	// *** Speed *** //
 	speed = 0.1
@@ -62,8 +58,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 35
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -91,8 +86,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -120,8 +114,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -138,4 +131,4 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)
-	
+

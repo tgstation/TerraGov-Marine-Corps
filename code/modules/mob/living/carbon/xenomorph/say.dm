@@ -29,7 +29,7 @@
 	if(!hive)
 		return
 
-	if(!hive.living_xeno_ruler && hive.xeno_queen_timer > QUEEN_DEATH_TIMER * 0.5 && hivenumber == XENO_HIVE_NORMAL)
+	if(hivenumber == XENO_HIVE_NORMAL && !hive.living_xeno_ruler && hive.xeno_queen_timer && timeleft(hive.xeno_queen_timer) > QUEEN_DEATH_TIMER * 0.5)
 		to_chat(src, "<span class='warning'>The ruler is dead. The hivemind is weakened. Despair!</span>")
 		return
 
@@ -54,7 +54,7 @@
 
 
 /mob/living/carbon/xenomorph/queen/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
-	if(ovipositor && X != src)
+	if(X != src)
 		show_message("(<a href='byond://?src=[REF(src)];watch_xeno_number=[X.nicknumber]'>F</a>) [X.hivemind_start()] <span class='message'>hisses, '[message]'</span>[X.hivemind_end()]", 2)
 	else
 		return ..()

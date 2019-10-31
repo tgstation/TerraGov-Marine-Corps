@@ -217,7 +217,6 @@
 				adjustBruteLoss(damage)
 
 				log_combat(H, src, "[pick(attack.attack_verb)]ed")
-				msg_admin_attack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)]")
 
 				updatehealth()
 			else
@@ -246,14 +245,14 @@
 	if (!..())
 		return 0
 
-	if(M.melee_damage_upper == 0)
+	if(M.melee_damage == 0)
 		M.emote("[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = M.melee_damage
 		adjustBruteLoss(damage)
 		updatehealth()
 
@@ -263,7 +262,7 @@
 /mob/living/carbon/monkey/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, text("Intent: []", a_intent))
 		stat(null, text("Move Mode: []", m_intent))
 
@@ -316,7 +315,7 @@
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
 		id_card = W.front_id
-	
+
 	return istype(id_card) ? id_card : null
 
 

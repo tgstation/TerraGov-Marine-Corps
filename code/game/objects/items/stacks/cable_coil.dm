@@ -3,6 +3,9 @@
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
+	singular_name = "cable length"
+	stack_name = "coil"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
@@ -48,14 +51,6 @@
 		w_class = WEIGHT_CLASS_TINY
 	else
 		w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/stack/cable_coil/examine(mob/user)
-	if(amount == 1)
-		to_chat(user, "A short piece of power cable.")
-	else if(amount == 2)
-		to_chat(user, "A piece of power cable.")
-	else
-		to_chat(user, "A coil of power cable. There are [amount] lengths of cable in the coil.")
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -116,11 +111,11 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
-		if(!S) 
+		if(!S)
 			return
 		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent == INTENT_HARM)
 			return ..()
-		
+
 		if(S.burn_dam > 0 && use(1))
 			if(issynth(H) && M == user)
 				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))

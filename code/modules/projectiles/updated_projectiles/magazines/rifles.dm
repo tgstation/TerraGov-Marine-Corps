@@ -82,11 +82,14 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/rifle/lmg
+/obj/item/ammo_magazine/lmg
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
-	max_rounds = 300
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
@@ -103,3 +106,32 @@
 	gun_type = /obj/item/weapon/gun/rifle/type71
 
 
+//-------------------------------------------------------
+//SX-16 AUTOMATIC SHOTGUN (makes more sense for it to be a rifle)
+
+/obj/item/ammo_magazine/rifle/sx16_buckshot
+	name = "\improper SX-16 buckshot magazine (16 gauge)"
+	desc = "A magazine of 16 gauge buckshot, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_buckshot
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16
+
+/obj/item/ammo_magazine/rifle/sx16_flechette
+	name = "\improper SX-16 flechette magazine (16 gauge)"
+	desc = "A magazine of 16 gauge flechette rounds, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_flechette
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16
+
+/obj/item/ammo_magazine/rifle/sx16_slug
+	name = "\improper SX-16 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the SX-16."
+	caliber = "16 gauge"
+	icon_state = "sx16_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
+	max_rounds = 15
+	gun_type = /obj/item/weapon/gun/rifle/sx16

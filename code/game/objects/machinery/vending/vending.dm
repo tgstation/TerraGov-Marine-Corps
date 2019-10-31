@@ -156,7 +156,7 @@
 
 	if(M.a_intent == INTENT_HARM)
 		M.do_attack_animation(src)
-		if(prob(M.xeno_caste.melee_damage_lower))
+		if(prob(M.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>We enter a frenzy and smash \the [src] apart!</span>", null, 5)
@@ -250,7 +250,7 @@
 		to_chat(user, "<span class='notice'>You insert the [I] into the [src]</span>")
 
 	else if(iswrench(I))
-		if(!wrenchable) 
+		if(!wrenchable)
 			return
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
@@ -342,12 +342,12 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	if(tipped_level == 2)
 		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
 		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			return FALSE
-			
+
 		user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 		flip_back()
 		return TRUE
@@ -426,7 +426,7 @@
 
 	else if(href_list["cancel_buying"])
 		currently_vending = null
-		
+
 	updateUsrDialog()
 
 

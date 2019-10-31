@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	if(!allowed(user))
 		return FALSE
-	
+
 	return TRUE
 
 
@@ -385,19 +385,19 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
-			if(isAI(usr))
-				return
 			selected_target = locate(href_list["selected_target"])
-			var/atom/cam_target = locate(href_list["cam_target"])
-			open_prompt(usr)
-			eyeobj.setLoc(get_turf(cam_target))
-			if(isliving(cam_target))
-				var/mob/living/L = cam_target
-				track(L)
-			else
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
+			if(!isAI(usr))
+				var/atom/cam_target = locate(href_list["cam_target"])
+				open_prompt(usr)
+				eyeobj.setLoc(get_turf(cam_target))
+				if(isliving(cam_target))
+					var/mob/living/L = cam_target
+					track(L)
+				else
+					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
 
 	updateUsrDialog()
+
 
 /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
 	. = ..()
@@ -998,17 +998,17 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	switch(command_aura)
 		if("move")
 			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
-			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
+			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!", ";ONWARDS!", ";MOVE MOVE MOVE!", ";ON YOUR FEET!", ";GET A MOVE ON!", ";ON THE DOUBLE!", ";ROLL OUT!", ";LET'S GO, LET'S GO!", ";MOVE OUT!", ";LEAD THE WAY!", ";FORWARD!", ";COME ON, MOVE!", ";HURRY, GO!")
 			say(message)
 			add_emote_overlay(move)
 		if("hold")
 			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
-			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
+			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!")
 			say(message)
 			add_emote_overlay(hold)
 		if("focus")
 			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
-			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
+			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
 	update_action_buttons()

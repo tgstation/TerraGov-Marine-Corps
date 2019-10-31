@@ -48,7 +48,7 @@
 				var/obj/item/I = i
 				I.forceMove(loc)
 			component_parts.Cut()
-	qdel(src)
+	return ..()
 
 
 /obj/machinery/proc/spawn_frame(disassembled)
@@ -172,6 +172,10 @@
 
 
 /obj/machinery/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(.)
+		return //Already handled.
+
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && wires && wires.interact(user))
 		return TRUE
 

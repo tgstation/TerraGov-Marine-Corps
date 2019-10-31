@@ -30,11 +30,11 @@
 		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
 		if(response != "Regular" && response != "Carbon-Copy")
 			return
-	
+
 	if(amount < 1)
 		to_chat(user, "<span class='notice'>[src] is empty!</span>")
 		return
-	
+
 	amount--
 	update_icon()
 
@@ -65,6 +65,7 @@
 
 
 /obj/structure/paper_bin/examine(mob/user)
+	. = ..()
 	if(amount)
 		to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
 	else

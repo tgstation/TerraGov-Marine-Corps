@@ -37,7 +37,7 @@
 /mob/living/carbon/xenomorph/larva/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 
@@ -73,7 +73,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/larva/update_icons()
 	generate_name()
-	
+
 	var/bloody = ""
 	if(amount_grown < 50)
 		bloody = "Bloody "

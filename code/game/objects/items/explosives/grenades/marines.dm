@@ -343,7 +343,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		set_light(5)
+		set_light(5, l_color = LIGHT_COLOR_FLARE)
 	else
 		icon_state = initial(icon_state)
 		set_light(0)

@@ -2,7 +2,7 @@
 	set name = "Secrets Panel"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))	
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"

@@ -80,12 +80,7 @@
 						if(SEC_LEVEL_BLUE to INFINITY)
 							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
 
-					var/old_level = GLOB.marine_main_ship.security_level
-					GLOB.marine_main_ship.set_security_level(tmp_alertlevel)
-					if(GLOB.marine_main_ship.security_level != old_level)
-						//Only notify the admins if an actual change happened
-						log_game("[key_name(usr)] has changed the security level to [GLOB.marine_main_ship.get_security_level()].")
-						message_admins("[ADMIN_TPMONTY(usr)] has changed the security level to [GLOB.marine_main_ship.get_security_level()].")
+					switch_alert_level(tmp_alertlevel)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
@@ -288,8 +283,13 @@
 		if("securitylevel")
 			tmp_alertlevel = text2num( href_list["newalertlevel"] )
 			if(!tmp_alertlevel)
-				tmp_alertlevel = 0
-			state = STATE_CONFIRM_LEVEL
+				tmp_alertlevel = SEC_LEVEL_GREEN
+			if(isAI(usr))
+				switch_alert_level(tmp_alertlevel)
+				tmp_alertlevel = SEC_LEVEL_GREEN
+				state = STATE_DEFAULT
+			else
+				state = STATE_CONFIRM_LEVEL
 
 		if("changeseclevel")
 			state = STATE_ALERT_LEVEL
@@ -405,6 +405,16 @@
 	onclose(user, "communications")
 
 /obj/machinery/computer/communications/proc/post_status(command, data1, data2)
+
+
+/obj/machinery/computer/communications/proc/switch_alert_level(new_level)
+	var/old_level = GLOB.marine_main_ship.security_level
+	GLOB.marine_main_ship.set_security_level(new_level)
+	if(GLOB.marine_main_ship.security_level == old_level)
+		return //Only notify the admins if an actual change happened
+	log_game("[key_name(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the security level from [GLOB.marine_main_ship.get_security_level(old_level)] to [GLOB.marine_main_ship.get_security_level()].")
+
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST

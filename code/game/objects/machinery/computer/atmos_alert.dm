@@ -14,7 +14,7 @@
 	set_frequency(receive_frequency)
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)
-	if(!signal) 
+	if(!signal)
 		return
 
 	var/zone = signal.data["zone"]
@@ -111,6 +111,6 @@
 		for(var/zone in minor_alarms)
 			if(ckey(zone) == removing_zone)
 				minor_alarms -= zone
-	
+
 	update_icon()
 	return

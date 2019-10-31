@@ -108,6 +108,7 @@
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -603,6 +604,7 @@
 /area/shuttle/drop1/lz1)
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -1287,14 +1289,10 @@
 /area/medical/medbay2)
 "el" = (
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "em" = (
 /turf/closed/gm/dense,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "en" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1302,14 +1300,10 @@
 	icon_state = "1-2"
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "eo" = (
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "ep" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
@@ -1447,27 +1441,19 @@
 /area/medical/medbay2)
 "eK" = (
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "eL" = (
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "eM" = (
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "eN" = (
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "eO" = (
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "eP" = (
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/tile/white,
@@ -1505,9 +1491,7 @@
 /area/lv624/lazarus/quartstorage)
 "eU" = (
 /turf/closed/gm/dense,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "eV" = (
 /obj/structure/morgue{
 	dir = 8
@@ -1568,15 +1552,11 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fb" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fc" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -1639,9 +1619,7 @@
 	icon_state = "4-8"
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fi" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -1649,23 +1627,17 @@
 	icon_state = "2-8"
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fj" = (
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fk" = (
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
 "fl" = (
 /obj/machinery/colony_floodlight,
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "fm" = (
 /obj/machinery/door/airlock/multi_tile/medical,
 /turf/open/floor{
@@ -1684,9 +1656,7 @@
 "fo" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fp" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1736,9 +1706,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fv" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
@@ -1757,39 +1725,27 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fx" = (
 /obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fy" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "fz" = (
 /turf/closed/wall/indestructible/mineral,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "fA" = (
 /turf/closed/mineral,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "fB" = (
 /turf/open/ground,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "fC" = (
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
@@ -1814,9 +1770,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fG" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1829,9 +1783,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fH" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -1844,9 +1796,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fI" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -1854,9 +1804,7 @@
 	icon_state = "4-8"
 	},
 /turf/closed/gm/dense,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "fJ" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -1908,17 +1856,13 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fP" = (
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fQ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1929,9 +1873,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "fS" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2324,9 +2266,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "gU" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
@@ -2347,27 +2287,21 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "gW" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "gX" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "gY" = (
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
@@ -2447,9 +2381,7 @@
 	icon_state = "1-2"
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "hn" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/grass,
@@ -2606,9 +2538,7 @@
 /area/lv624/lazarus/quart)
 "hO" = (
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "hP" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2616,9 +2546,7 @@
 	icon_state = "1-2"
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "hQ" = (
 /obj/structure/table/flipped,
 /obj/machinery/firealarm,
@@ -2654,15 +2582,11 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "hW" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "hX" = (
 /obj/effect/landmark/corpsespawner/syndicatesoldier,
 /turf/open/ground,
@@ -2682,9 +2606,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "ia" = (
 /obj/structure/table/flipped,
 /obj/machinery/light{
@@ -2755,17 +2677,13 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "im" = (
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "in" = (
 /obj/machinery/light{
 	dir = 1
@@ -2798,9 +2716,7 @@
 	dir = 8
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "it" = (
 /turf/open/floor{
 	icon_state = "red"
@@ -2874,9 +2790,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "iE" = (
 /obj/effect/landmark/corpsespawner/syndicatecommando,
 /turf/open/ground,
@@ -2928,9 +2842,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "iK" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3016,9 +2928,7 @@
 "iV" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "iW" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
@@ -3032,18 +2942,14 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "iZ" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "ja" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3217,9 +3123,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "jw" = (
 /obj/machinery/door/airlock/glass_mining,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3255,32 +3159,24 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "jA" = (
 /obj/structure/largecrate/supply/supplies/tables_racks,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "jB" = (
 /obj/structure/closet/crate,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "jC" = (
 /turf/open/floor/grass,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "jD" = (
 /obj/item/flash,
 /obj/structure/table/reinforced,
@@ -3334,9 +3230,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "jJ" = (
 /obj/effect/landmark/supplyspawner/food,
 /turf/open/floor/carpet,
@@ -3410,18 +3304,14 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "jT" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "jU" = (
 /obj/structure/table/reinforced,
 /turf/open/floor{
@@ -3584,9 +3474,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "kp" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -3887,24 +3775,16 @@
 /area/lv624/lazarus/comms)
 "le" = (
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "lf" = (
 /turf/closed/gm/dense,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "lg" = (
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "lh" = (
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "li" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
@@ -3942,9 +3822,7 @@
 	name = "Colonist Wes Uvin"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper East Compound"
-	})
+/area/vapor_processing/east_compound)
 "lq" = (
 /obj/structure/largecrate/random,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -3960,31 +3838,21 @@
 "ls" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "lt" = (
 /turf/closed/wall,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lv" = (
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lw" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lx" = (
 /obj/structure/ore_box,
 /obj/machinery/light,
@@ -3993,9 +3861,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "ly" = (
 /obj/effect/landmark/corpsespawner/clown,
 /turf/open/floor{
@@ -4006,41 +3872,29 @@
 "lA" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lB" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lC" = (
 /obj/structure/dispenser,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lD" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lE" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lF" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lG" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -4048,24 +3902,18 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lH" = (
 /turf/closed/wall,
 /area/storage/tools)
 "lI" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lJ" = (
 /obj/item/attachable/hydro_cannon,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -4073,15 +3921,11 @@
 	req_access_txt = "0"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lL" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lM" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -4089,9 +3933,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "lN" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/ground/grass/grass2,
@@ -4124,9 +3966,7 @@
 "lS" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "lT" = (
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
@@ -4273,9 +4113,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "mu" = (
 /obj/structure/fence,
 /obj/machinery/light{
@@ -4470,9 +4308,7 @@
 "nb" = (
 /obj/machinery/colony_floodlight,
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "nc" = (
 /obj/machinery/mecha_part_fabricator,
 /obj/structure/cable/yellow{
@@ -4614,9 +4450,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "nt" = (
 /obj/machinery/pipedispenser,
 /obj/structure/cable/yellow{
@@ -4691,9 +4525,7 @@
 "nB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 2"
-	})
+/area/vapor_processing/cargo2)
 "nC" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -4735,9 +4567,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "nG" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -4875,6 +4705,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "nZ" = (
@@ -4917,9 +4748,7 @@
 /area/crew_quarters/sleep/bedrooms)
 "of" = (
 /turf/closed/wall/resin,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "og" = (
 /obj/structure/table/flipped,
 /obj/item/rsp,
@@ -4965,9 +4794,7 @@
 "oo" = (
 /obj/effect/alien/weeds/node,
 /turf/closed/wall/resin,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "op" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
@@ -4978,9 +4805,7 @@
 	name = "Colonist Kegan Mills"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oq" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
@@ -4991,9 +4816,7 @@
 	},
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "or" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/scientist{
@@ -5004,16 +4827,12 @@
 	name = "Colonist Harry Trent"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "os" = (
 /obj/structure/bed/nest,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "ot" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -5029,9 +4848,7 @@
 	icon_state = "4-8"
 	},
 /turf/closed/wall,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "ov" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -5044,9 +4861,7 @@
 	icon_state = "1-4"
 	},
 /turf/closed/wall,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "ow" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -5095,15 +4910,11 @@
 /area/crew_quarters/sleep/bedrooms)
 "oC" = (
 /turf/closed/wall/resin/membrane,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oD" = (
 /obj/structure/bed/nest,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oE" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5139,14 +4950,10 @@
 "oK" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oL" = (
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oM" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
@@ -5156,9 +4963,7 @@
 	name = "Colonist Redo Koster"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oN" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5176,15 +4981,11 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "oP" = (
 /obj/machinery/door/airlock/colony,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "oQ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/whiteyellow/full,
@@ -5204,23 +5005,17 @@
 /obj/structure/mineral_door/resin,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oU" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oV" = (
 /obj/structure/bed/nest,
 /obj/item/weapon/gun/pistol/holdout,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "oW" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
@@ -5244,9 +5039,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "pa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
@@ -5262,9 +5055,7 @@
 	name = "Colonist Luther Yovin"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "pc" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained{
@@ -5302,9 +5093,7 @@
 	name = "Colonist Ben Harris"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "pi" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/doctor{
@@ -5314,9 +5103,7 @@
 	name = "Colonist Mio Linno"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "pj" = (
 /obj/structure/bed/nest,
 /obj/effect/landmark/corpsespawner/security{
@@ -5324,9 +5111,7 @@
 	name = "Colonist Ethan Peser"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1{
-	name = "\improper South Eastern Caves"
-	})
+/area/vapor_processing/caves/se)
 "pk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5337,9 +5122,7 @@
 "pl" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "pm" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
@@ -5450,9 +5233,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "pE" = (
 /obj/machinery/light{
 	dir = 8
@@ -5470,9 +5251,7 @@
 "pH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "pI" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light{
@@ -5586,18 +5365,14 @@
 /obj/structure/closet/firecloset,
 /obj/machinery/light,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qc" = (
 /turf/open/floor/grass,
 /area/lv624/ground/compound/sw)
 "qd" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "qe" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
@@ -5785,9 +5560,7 @@
 /obj/item/tool/mop,
 /obj/item/reagent_container/glass/bucket,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qG" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -5839,9 +5612,7 @@
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qO" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5850,19 +5621,15 @@
 	},
 /obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qP" = (
 /obj/structure/closet/jcloset,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained,
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -5871,18 +5638,14 @@
 	},
 /obj/structure/table/flipped,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qT" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/structure/table/flipped,
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qU" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow{
@@ -5893,9 +5656,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qV" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5903,9 +5664,7 @@
 	icon_state = "1-2"
 	},
 /turf/closed/wall,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "qW" = (
 /obj/machinery/power/monitor,
 /turf/open/floor/prison/whitepurple,
@@ -5959,9 +5718,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "rf" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -5969,9 +5726,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "rg" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -6008,9 +5763,7 @@
 	dir = 4
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "rl" = (
 /obj/machinery/light{
 	dir = 8
@@ -6033,9 +5786,7 @@
 	dir = 4
 	},
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper West Compound"
-	})
+/area/vapor_processing/west_compound)
 "ro" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -6052,9 +5803,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rq" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor,
@@ -6073,9 +5822,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
@@ -6094,9 +5841,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rv" = (
 /obj/structure/largecrate,
 /obj/structure/cable/yellow{
@@ -6117,18 +5862,14 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rx" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable/yellow{
@@ -6166,18 +5907,14 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rA" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rB" = (
 /obj/machinery/power/smes/buildable,
 /obj/structure/cable/yellow{
@@ -6213,9 +5950,7 @@
 	dir = 6
 	},
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rG" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6225,9 +5960,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6236,9 +5969,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rI" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -6246,9 +5977,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rJ" = (
 /obj/structure/largecrate/supply/powerloader,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6258,9 +5987,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rK" = (
 /obj/structure/largecrate/supply/supplies,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6270,9 +5997,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6371,9 +6096,7 @@
 "rY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "rZ" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -6465,9 +6188,7 @@
 	dir = 1;
 	icon_state = "whiteyellowcorner"
 	},
-/area/lv624/lazarus/quartstorage{
-	name = "\improper Cargo Bay 3"
-	})
+/area/vapor_processing/cargo3)
 "sj" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -6572,9 +6293,7 @@
 "sv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "sw" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -6678,9 +6397,7 @@
 /obj/machinery/colony_floodlight,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "sH" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsehelmet = /obj/item/clothing/head/helmet/riot;
@@ -6688,9 +6405,7 @@
 	name = "Colonist Fors Ilin"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "sI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -6851,9 +6566,7 @@
 	name = "Colonist Jac Mester"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "th" = (
 /obj/structure/table/flipped,
 /obj/effect/spawner/random/bomb_supply,
@@ -6867,9 +6580,7 @@
 "ti" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground/grass/grass2,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "tj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
@@ -7103,9 +6814,7 @@
 "tY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "tZ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
@@ -7148,25 +6857,19 @@
 	name = "Deputy Edgar Nogi"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "uf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/open/ground,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "ug" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/grass,
-/area/lv624/ground/compound{
-	name = "\improper South Compound"
-	})
+/area/vapor_processing/south_compound)
 "uh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7214,9 +6917,7 @@
 	name = "Deputy Maxwell Ligis"
 	},
 /turf/open/floor/plating,
-/area/maintenance/apmaint{
-	name = "Cargo Maintenance South"
-	})
+/area/vapor_processing/cargo_maint_s)
 "un" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7377,6 +7078,52 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/crew_quarters/sleep_male)
+"vJ" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
+"xc" = (
+/obj/machinery/computer/nuke_disk_generator/red,
+/turf/open/floor/plating,
+/area/lv624/lazarus/hydroponics)
+"Ca" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/vapor_processing/caves/se)
+"FJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"It" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
+"Iu" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/prison/yellow/full,
+/area/lv624/lazarus/engineering)
+"Md" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/internal_affairs)
+"OG" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/lv624/lazarus/security)
+"Sa" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Ss" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 
 (1,1,1) = {"
@@ -8046,7 +7793,7 @@ eK
 hT
 nr
 it
-it
+OG
 it
 jm
 it
@@ -10046,7 +9793,7 @@ bm
 ah
 bs
 cl
-bw
+xc
 bw
 bA
 bL
@@ -10883,7 +10630,7 @@ cW
 di
 dz
 dz
-dz
+Md
 dz
 dU
 cV
@@ -12805,7 +12552,7 @@ bc
 bB
 bB
 bB
-bB
+vJ
 bB
 bB
 bB
@@ -13184,7 +12931,7 @@ lh
 le
 pf
 uk
-pu
+Ss
 pz
 uG
 pf
@@ -14073,7 +13820,7 @@ eN
 eN
 eO
 li
-li
+FJ
 lj
 li
 qG
@@ -14143,7 +13890,7 @@ bB
 bD
 bB
 bB
-bB
+vJ
 bB
 bC
 bC
@@ -15308,7 +15055,7 @@ rt
 rD
 rt
 uq
-pk
+Sa
 gZ
 fY
 nn
@@ -15856,7 +15603,7 @@ gx
 gA
 gA
 gE
-gA
+It
 gA
 gA
 gw
@@ -15999,7 +15746,7 @@ eN
 eN
 eN
 fY
-gY
+Iu
 gY
 gZ
 gY
@@ -17158,7 +16905,7 @@ oq
 oC
 oL
 oU
-oL
+Ca
 oC
 os
 of

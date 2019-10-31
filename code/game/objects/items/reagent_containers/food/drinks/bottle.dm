@@ -72,7 +72,6 @@
 
 	//Attack logs
 	log_combat(user, target, "smashed", src)
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] attacked [ADMIN_TPMONTY(target)] with a bottle. (INTENT: [uppertext(user.a_intent)]).")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)

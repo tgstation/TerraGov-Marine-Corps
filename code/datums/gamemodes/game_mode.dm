@@ -37,6 +37,11 @@
 
 
 /datum/game_mode/proc/can_start()
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes))
+		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
+		// start a gamemode vote, in theory this should never happen.
+		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
+		return FALSE
 	if(GLOB.ready_players < required_players)
 		return FALSE
 	return TRUE
@@ -433,17 +438,28 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 
 /datum/game_mode/proc/setup_blockers()
+	set waitfor = FALSE
 	if(flags_round_type & MODE_FOG_ACTIVATED)
 		var/turf/T
 		while(GLOB.fog_blocker_locations.len)
 			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
 			GLOB.fog_blocker_locations.len--
 			new /obj/effect/forcefield/fog(T)
+			stoplag()
 		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
+	if(flags_round_type & MODE_LZ_SHUTTERS)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + 40 MINUTES)
 			//Called late because there used to be shutters opened earlier. To re-add them just copy the logic.
 
+	if(flags_round_type & MODE_XENO_SPAWN_PROTECT)
+		var/turf/T
+		while(GLOB.xeno_spawn_protection_locations.len)
+			T = GLOB.xeno_spawn_protection_locations[GLOB.xeno_spawn_protection_locations.len]
+			GLOB.xeno_spawn_protection_locations.len--
+			new /obj/effect/forcefield/fog(T)
+			stoplag()
+		addtimer(CALLBACK(src, .proc/remove_fog), 25 MINUTES + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
@@ -483,7 +499,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 
 		var/mob/living/L
-		if(!isliving(M))
+		if(!isliving(M) || isAI(M))
 			L = new /mob/living/carbon/human(picked)
 			M.mind.transfer_to(L, TRUE)
 		else
@@ -526,7 +542,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	H.mind.assigned_role = "Survivor"
 
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
@@ -536,7 +552,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/W = weapons[1]
 	var/obj/item/ammo_magazine/A = weapons[2]
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/belt_harness(H), SLOT_BELT)
 	H.put_in_hands(new W(H))
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
@@ -597,11 +613,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	X.update_icons()
 
 
-/datum/game_mode/proc/check_queen_status(queen_time)
+/datum/game_mode/proc/orphan_hivemind_collapse()
 	return
 
 
-/datum/game_mode/proc/get_queen_countdown()
+/datum/game_mode/proc/get_hivemind_collapse_countdown()
 	return
 
 
@@ -633,8 +649,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
 		dat += "[GLOB.round_statistics.queen_screech] Queen screeches."
-	if(GLOB.round_statistics.ravager_ravage_victims)
-		dat += "[GLOB.round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
 	if(GLOB.round_statistics.warrior_limb_rips)
 		dat += "[GLOB.round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
 	if(GLOB.round_statistics.crusher_stomp_victims)
@@ -824,7 +838,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(xeno_candidate, "<span class='warning'>That xenomorph has been occupied.</span>")
 		return FALSE
 
-	if(!DEATHTIME_CHECK(xeno_candidate))
+	if(DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 

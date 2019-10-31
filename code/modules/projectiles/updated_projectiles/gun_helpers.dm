@@ -167,22 +167,11 @@ should be alright.
 		return
 	var/mob/living/carbon/human/owner = user
 	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
-		return
+		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
+		if(!istype(B,/obj/item/belt_harness))
+			return
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	harness_return(user)
-	return TRUE
-
-/obj/item/weapon/gun/minigun/harness_check(mob/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/owner = user
-	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage/marine) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	var/obj/item/B = owner.belt
-	if(!istype(B,/obj/item/minigun_harness))
+	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
 		return
 	harness_return(user)
 	return TRUE
@@ -330,6 +319,10 @@ should be alright.
 		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
 		return
 
+	if(overcharge == TRUE)
+		to_chat(user, "<span class='warning'>You need to disable overcharge on [src]!</span>")
+		return
+
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
 	var/can_attach = 1
 	switch(attachment.slot)
@@ -475,6 +468,10 @@ should be alright.
 
 	if(zoom)
 		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		return
+
+	if(G.overcharge == TRUE)
+		to_chat(usr, "[icon2html(src, usr)] You need to disable overcharge mode to remove attachments.")
 		return
 
 	if(!rail && !muzzle && !under && !stock)
@@ -635,12 +632,8 @@ should be alright.
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
 		return
 
-	switch(length(gun_firemode_list))
-		if(0)
-			CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
-		if(1)
-			to_chat(usr, "<span class='warning'>This weapon has a single fire mode!</span>")
-			return
+	if(!length(gun_firemode_list))
+		CRASH("[src] called do_toggle_firemode() with an empty gun_firemode_list")
 
 	if(new_firemode)
 		if(!(new_firemode in gun_firemode_list))
@@ -697,6 +690,7 @@ should be alright.
 
 	if(gun_firemode == removed_firemode)
 		gun_firemode = gun_firemode_list[1]
+		do_toggle_firemode(user, gun_firemode)
 
 
 /obj/item/weapon/gun/proc/setup_firemodes()
@@ -715,6 +709,19 @@ should be alright.
 				var/mob/living/living_user = loc
 				if(src == living_user.l_hand || src == living_user.r_hand)
 					new_action.give_action(living_user)
+
+// The section for where you can do a fancy change to ammo types for most weapons.
+/obj/item/weapon/gun/proc/add_ammo_mod(ammo_mod)
+	return
+
+/obj/item/weapon/gun/proc/remove_ammo_mod()
+	return
+
+/obj/item/weapon/gun/energy/add_ammo_mod(ammo_mod)
+	ammo_diff = ammo_mod
+
+/obj/item/weapon/gun/energy/remove_ammo_mod()
+	ammo_diff = initial(ammo_diff)
 
 
 /obj/item/weapon/gun/verb/empty_mag()

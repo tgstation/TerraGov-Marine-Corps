@@ -68,7 +68,7 @@
 	to_chat(src, "<span class='xenowarning'><b>We can now savage our victims again.</b></span>")
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	update_action_buttons()
-	
+
 // ***************************************
 // *********** Pouncey
 // ***************************************
@@ -85,7 +85,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	
+
 	if(!A || A.layer >= FLY_LAYER)
 		return FALSE
 

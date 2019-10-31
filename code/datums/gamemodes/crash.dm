@@ -2,7 +2,7 @@
 	name = "Crash"
 	config_tag = "Crash"
 	required_players = 3
-	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
@@ -10,7 +10,7 @@
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
-	var/planet_nuked = FALSE
+	var/planet_nuked = CRASH_NUKE_NONE
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
@@ -35,6 +35,8 @@
 
 /datum/game_mode/crash/can_start()
 	. = ..()
+	if(!.)
+		return
 	// Check if enough players have signed up for xeno & queen roles.
 	init_scales()
 	var/ruler = initialize_xeno_leader()
@@ -43,7 +45,6 @@
 
 	if(!ruler && !xenos) // we need at least 1
 		return FALSE
-	return TRUE
 
 /datum/game_mode/crash/proc/init_scales()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
@@ -166,13 +167,17 @@
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
-		
+
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	if(HN)
+		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
-	addtimer(CALLBACK(src, .proc/add_larva), 10 MINUTES, TIMER_LOOP)
+	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
 
 
 /datum/game_mode/crash/announce()
@@ -182,22 +187,20 @@
 
 
 /datum/game_mode/crash/proc/add_larva()
-	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2] + HS.stored_larva
 	if(!num_xenos)
 		return respawn_xenos(num_humans)
 	var/marines_per_xeno = num_humans / num_xenos
 	switch(marines_per_xeno)
-		if(0)
-			return check_finished() //No more marines.
-		if(0 to 2) //Xenos grow up until they are a half the number of marines.
+		if(0 to 2)
 			return
 		if(2 to 3)
 			HS.stored_larva++
 		if(3 to 5)
-			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 10 marines.
+			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
 		else //If there's more than 5 marines per xenos, then xenos gain larvas to fill the gap.
 			HS.stored_larva += CLAMP(round(num_humans * 0.2), 1, num_humans - num_xenos)
 
@@ -208,7 +211,7 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(xeno_hive.stored_larva)
 		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	var/new_xeno_batch = min(1, round(num_humans * 0.2))
+	var/new_xeno_batch = max(1, round(num_humans * 0.2))
 	for(var/i in new_xeno_batch)
 		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
 		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
@@ -245,20 +248,23 @@
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
-	if(num_humans && !planet_nuked && marines_evac == CRASH_EVAC_NONE)
+	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE)
 		if(!num_xenos)
 			if(respawn_xenos(num_humans))
-				return FALSE //Xenos keep respawning for like an hour or so.
+				return FALSE //Xenos keep respawning.
 		else
-			if(num_humans / num_xenos > 5)
-				add_larva()
 			return FALSE
 
-	var/victory_options = (num_humans == 0 && num_xenos == 0) << 0 // Draw, for all other reasons
-	victory_options |= (!planet_nuked && num_humans == 0 && num_xenos > 0) << 1 // XENO Major (All marines killed)
-	victory_options |= (!planet_nuked && (marines_evac == CRASH_EVAC_COMPLETED || marines_evac == CRASH_EVAC_INPROGRESS && !length(GLOB.active_nuke_list)))	<< 2 // XENO Minor (Marines evac'd for over 5 mins without a nuke)
-	victory_options |= (planet_nuked && marines_evac == CRASH_EVAC_NONE) << 3 // Marine minor (Planet nuked, some human left on planet)
-	victory_options |= (planet_nuked && (marines_evac == CRASH_EVAC_INPROGRESS || marines_evac == CRASH_EVAC_COMPLETED)) << 4 // Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	// Draw, for all other reasons
+	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
+	// XENO Major (All marines killed)
+	victory_options |= (planet_nuked == CRASH_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
+	// XENO Minor (Marines evac'd for over 5 mins without a nuke)
+	victory_options |= (planet_nuked == CRASH_NUKE_NONE && (marines_evac == CRASH_EVAC_COMPLETED || (!length(GLOB.active_nuke_list) && marines_evac != CRASH_EVAC_NONE)))	<< 2
+	// Marine minor (Planet nuked, no one evac'd)
+	victory_options |= (planet_nuked == CRASH_NUKE_COMPLETED && marines_evac == CRASH_EVAC_NONE) << 3
+	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	victory_options |= ((planet_nuked == CRASH_NUKE_COMPLETED && marines_evac != CRASH_EVAC_NONE) || (planet_nuked == CRASH_NUKE_NONE && num_xenos == 0)) << 4
 
 	switch(victory_options)
 		if(CRASH_DRAW)
@@ -392,8 +398,16 @@
 
 	return TRUE
 
+/datum/game_mode/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	var/list/living_player_list = count_humans_and_xenos()
+	var/num_humans = living_player_list[1]
+	if(!num_humans) // no humans left on planet to try and restart it.
+		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
+
+	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
 
 /datum/game_mode/crash/proc/on_nuclear_explosion(datum/source, z_level)
+	planet_nuked = CRASH_NUKE_INPROGRESS
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
 /datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
@@ -415,7 +429,7 @@
 
 	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/nuke_selfdestruct
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, TRUE), nuketime)
+	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
 	Cinematic(CINEMATIC_SELFDESTRUCT, world)
@@ -431,3 +445,15 @@
 			continue
 		victim.adjustFireLoss(victim.maxHealth*2)
 		CHECK_TICK
+
+
+/datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	switch(new_xeno.tier)
+		if(XENO_TIER_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+		if(XENO_TIER_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+
+/datum/game_mode/crash/can_summon_dropship(mob/user)
+	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	return FALSE

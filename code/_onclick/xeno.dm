@@ -26,18 +26,6 @@
 	return
 
 
-/mob/living/carbon/xenomorph/queen/CtrlMiddleClickOn(atom/A)
-	. = ..()
-	if(!ovipositor)
-		return
-	if(!isxeno(A) || A == src)
-		return
-	var/mob/living/carbon/xenomorph/X = A
-	if(X.stat == DEAD)
-		return
-	set_queen_overwatch(A)
-
-
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!middle_mouse_toggle || !selected_ability)

@@ -23,8 +23,7 @@ SUBSYSTEM_DEF(chat)
 		return
 
 	if(!istext(message))
-		stack_trace("to_chat called with invalid input type")
-		return
+		CRASH("to_chat called with invalid input type")
 
 	if(target == world)
 		target = GLOB.clients
@@ -47,7 +46,7 @@ SUBSYSTEM_DEF(chat)
 		for(var/I in target)
 			var/mob/M = I
 			var/client/C = istype(M) ? M.client : I
-			
+
 			if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
 				SEND_TEXT(C, original_message)
 				continue

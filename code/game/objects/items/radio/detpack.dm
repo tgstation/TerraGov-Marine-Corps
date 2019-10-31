@@ -86,10 +86,10 @@
 			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
-		
+
 		user.visible_message("<span class='notice'>[user] begins disarming [src] with [I].</span>",
 		"<span class='notice'>You begin disarming [src] with [I].</span>")
-		
+
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 
@@ -163,15 +163,15 @@
 	else if(href_list["code"])
 		code += text2num(href_list["code"])
 		code = CLAMP(round(code), 1, 100)
-	
+
 	else if(href_list["det_mode"])
 		det_mode = !det_mode
 		update_icon()
-	
+
 	else if(href_list["power"])
 		on = !on
 		update_icon()
-	
+
 	else if(href_list["timer"])
 		timer += text2num(href_list["timer"])
 		timer = CLAMP(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
@@ -234,7 +234,7 @@
 		return FALSE
 	if(isobj(target))
 		var/obj/O = target
-		if(CHECK_BITFIELD(O.resistance_flags, UNACIDABLE|INDESTRUCTIBLE))
+		if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
 			return FALSE
 	if(iswallturf(target))
 		var/turf/closed/wall/W = target
@@ -245,6 +245,9 @@
 		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
+	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+		return FALSE
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
@@ -257,6 +260,9 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 
 	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
+		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
+			to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
+			return
 		user.drop_held_item()
 		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 		var/location
@@ -265,7 +271,7 @@
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
-	
+
 		notify_ghosts("<b>[user]</b> has planted \a <b>[name]</b> on <b>[target.name]</b> with a <b>[timer]</b> second fuse!", source = user, action = NOTIFY_ORBIT)
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")

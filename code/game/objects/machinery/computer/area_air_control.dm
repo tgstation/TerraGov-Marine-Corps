@@ -60,7 +60,7 @@
 		</head>
 		<body>
 			<center><h1>Area Air Control</h1></center>
-			<font color="red">[status]</font><br>
+			<span_class='danger'>[status]</span><br>
 			<a href="?src=[REF(src)];scan=1">Scan</a>
 			<table border="1" width="90%">"}
 

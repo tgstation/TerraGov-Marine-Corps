@@ -9,7 +9,7 @@
 	unembed_ourself()
 
 
-/obj/item/proc/unembed_ourself()
+/obj/item/proc/unembed_ourself(delete_self)
 	if(!embedded_into)
 		UnregisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED))
 		CRASH("unembed_ourself called with no embedded_into")
@@ -18,6 +18,9 @@
 	UnregisterSignal(embedded_into, COMSIG_MOVABLE_MOVED)
 	embedded_into = null
 	if(!QDELETED(src))
+		if(delete_self)
+			qdel(src)
+			return
 		forceMove(get_turf(loc))
 
 
@@ -119,7 +122,7 @@
 
 	if(!(limb_status & LIMB_ROBOT) && !(owner.species.species_flags & NO_BLOOD)) //There is no blood in protheses.
 		limb_status |= LIMB_BLEEDING
-	
+
 	if(prob(embedded.embedding.embedded_fall_chance))
 		take_damage_limb(embedded.embedding.embed_limb_damage * embedded.embedding.embedded_fall_dmg_multiplier)
 		owner.visible_message("<span class='danger'>[embedded] falls out of [owner]'s [display_name]!</span>",
@@ -135,7 +138,7 @@
 
 	if(!ishuman(usr) || usr.next_move > world.time)
 		return
-	
+
 	var/mob/living/carbon/human/user = usr
 
 	user.next_move = world.time + 2 SECONDS
@@ -167,7 +170,7 @@
 		CRASH("yank_out_object called for empty valid_objects, lenght of embedded_objects is [length(embedded_objects)]")
 
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
-	
+
 	if(user.get_active_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand for this!</span>")
 		return FALSE

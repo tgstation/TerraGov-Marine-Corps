@@ -162,7 +162,7 @@
 
 /obj/item/reagent_container/glass/bottle/peridaxon
 	name = "\improper Peridaxon bottle"
-	desc = "A small bottle. Contains Peridaxon - Used by lazy doctors to treat internal organ damage."
+	desc = "A small bottle. Contains Peridaxon - Used to treat internal organ damage."
 	icon_state = "bottle4"
 	volume = 20
 	list_reagents = list(/datum/reagent/medicine/peridaxon = 20)
@@ -194,8 +194,34 @@
 	icon_state = "bottle18"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
+/obj/item/reagent_container/glass/bottle/meralyne
+	name = "\improper Meralyne bottle"
+	desc = "A small bottle. Contains meralyne - used as a potent treatment against brute damage."
+	icon_state = "bottle14"
+	list_reagents = list(/datum/reagent/medicine/meralyne = 60)
+
 /obj/item/reagent_container/glass/bottle/dermaline
 	name = "\improper Dermaline bottle"
 	desc = "A small bottle. Contains dermaline - used as a potent treatment against burns."
-	icon_state = "bottle14"
-	list_reagents = list(/datum/reagent/medicine/dermaline = 15)
+	icon_state = "bottle15"
+	list_reagents = list(/datum/reagent/medicine/dermaline = 60)
+
+/obj/item/reagent_container/glass/bottle/meraderm
+	name = "\improper Meraderm bottle"
+	desc = "A small bottle. Contains meralylne and dermaline - used as a potent treatment against physical injuries."
+	icon_state = "bottle19"
+	list_reagents = list(/datum/reagent/medicine/dermaline = 30, /datum/reagent/medicine/meralyne = 30)
+
+/obj/item/reagent_container/glass/bottle/ironsugar
+	name = "\improper Ironsugar bottle"
+	desc = "A small bottle. Contains a mixture of iron and sugar - used as an odd-tasting treatment for blood loss."
+	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/iron = 30, /datum/reagent/consumable/sugar = 30)
+
+/obj/item/reagent_container/glass/bottle/neurotoxin
+	name = "\improper Neurotoxin bottle"
+	desc = "A small bottle. Contains artificialy synthesized neurotoxin- useful for testing treatments, or training troops."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
+
+

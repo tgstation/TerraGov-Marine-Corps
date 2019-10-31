@@ -32,7 +32,7 @@
 		GLOB.ready_players--
 
 	GLOB.new_player_list -= src
-	
+
 	return ..()
 
 
@@ -84,7 +84,7 @@
 	if(!SSticker)
 		return
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
@@ -97,7 +97,7 @@
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-	
+
 
 /mob/new_player/Topic(href, href_list[])
 	. = ..()

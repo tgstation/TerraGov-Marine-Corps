@@ -17,8 +17,7 @@
 	var/gib_flick = "gibbed-a"
 
 	// *** Melee Attacks *** //
-	var/melee_damage_lower = 10
-	var/melee_damage_upper = 20
+	var/melee_damage = 10
 	var/attack_delay = CLICK_CD_MELEE
 
 	var/savage_cooldown = 30 SECONDS
@@ -28,11 +27,6 @@
 	var/tacklemax = 1
 	var/tackle_chance = 100
 	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
-
-	// *** RNG Attacks *** //
-	var/bite_chance = 5 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
-	var/tail_chance = 10 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
-	var/rng_min_interval = 3 SECONDS //Prevents further critical hits until this much time elapses
 
 	// *** Speed *** //
 	var/speed = 1
@@ -108,8 +102,7 @@
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Drone Walking"
 	speak_emote = list("hisses")
-	melee_damage_lower = 5
-	melee_damage_upper = 10 //Arbitrary damage values
+	melee_damage = 5 //Arbitrary damage value
 	attacktext = "claws"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -120,7 +113,7 @@
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
@@ -150,8 +143,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
-	var/critical_proc = 0
-	var/critical_delay = 25
 
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
@@ -182,6 +173,7 @@
 
 	var/emotedown = 0
 
+	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 

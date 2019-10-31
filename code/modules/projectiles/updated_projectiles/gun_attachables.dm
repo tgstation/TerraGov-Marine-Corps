@@ -68,6 +68,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/fire_delay_mod = 0 //how long in deciseconds this adds to your base fire delay.
 
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 
@@ -82,6 +83,10 @@ Defined in conflicts.dm of the #defines folder.
 
 	var/attachment_action_type
 	var/scope_zoom_mod = FALSE //codex
+
+	var/ammo_mod = null			//what ammo the gun could also fire, different lasers usually.
+	var/charge_mod = 0		//how much charge difference it now costs to shoot. negative means more shots per mag.
+	var/gun_firemode_list_mod = null //what firemodes this attachment allows/adds.
 
 	var/obj/item/weapon/gun/master_gun
 
@@ -157,6 +162,12 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	+= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				+= attach_shell_speed_mod
 	master_gun.scope_zoom					+= scope_zoom_mod
+	if(ammo_mod)
+		master_gun.add_ammo_mod(ammo_mod)
+	if(charge_mod)
+		master_gun.charge_cost				+= charge_mod
+	for(var/i in gun_firemode_list_mod)
+		master_gun.add_firemode(i, user)
 
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
@@ -173,6 +184,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/living_user = master_gun.loc
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
+
 
 
 /obj/item/attachable/proc/Detach(mob/user)
@@ -211,6 +223,13 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.movement_acc_penalty_mult	-= movement_acc_penalty_mod
 	master_gun.shell_speed_mod				-=attach_shell_speed_mod
 	master_gun.scope_zoom					-= scope_zoom_mod
+	if(ammo_mod)
+		master_gun.remove_ammo_mod(ammo_mod)
+	if(master_gun.charge_cost)
+		master_gun.charge_cost				-= charge_mod
+	for(var/i in gun_firemode_list_mod)
+		master_gun.remove_firemode(i, user)
+
 
 	master_gun.update_force_list()
 
@@ -404,10 +423,55 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NONE
 
+/obj/item/attachable/focuslens
+	name = "M43 focused lens"
+	desc = "Directs the beam into one specialized lens, allowing the lasgun to use the deadly focused bolts on overcharge, making it more like a high damaged sniper.."
+	slot = "muzzle"
+	icon_state = "focus"
+	attach_icon = "focus_a"
+	pixel_shift_x = 17
+	pixel_shift_y = 13
+	ammo_mod = /datum/ammo/energy/lasgun/M43/overcharge
+	damage_mod = -0.15
 
+/obj/item/attachable/widelens
+	name = "M43 wide lens"
+	desc = "Splits the lens into three, allowing the lasgun to use the deadly wide range blast on overcharge akin to a traditional ballistic shotgun."
+	slot = "muzzle"
+	icon_state = "wide"
+	attach_icon = "wide_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
+	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
+	damage_mod = -0.15
 
+/obj/item/attachable/efflens
+	name = "M43 efficient lens"
+	desc = "Makes the lens smaller and lighter to use, allowing the lasgun to use its energy much more efficiently. \nDecreases energy output of the lasgun."
+	slot = "muzzle"
+	icon_state = "efficient"
+	attach_icon = "efficient_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 14
+	charge_mod = -5
 
+/obj/item/attachable/sx16barrel
+	name = "SX-16 barrel"
+	desc = "The standard barrel on the SX-16. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "sx16barrel"
+	flags_attach_features = NONE
 
+/obj/item/attachable/pulselens
+	name = "M43 pulse lens"
+	desc = "Agitates the lens, allowing the lasgun to discharge at a rapid rate. \nAllows the weapon to be fired automatically."
+	slot = "muzzle"
+	icon_state = "pulse"
+	attach_icon = "pulse_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 15
+	damage_mod = -0.15
+	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
 ///////////// Rail attachments ////////////////////////
 
@@ -559,15 +623,12 @@ Defined in conflicts.dm of the #defines folder.
 	scope_zoom_mod = TRUE
 	movement_acc_penalty_mod = 0.1
 
-/obj/item/attachable/scope/m4ra
+/obj/item/attachable/scope/mini/m4ra
 	name = "M4RA rail scope"
+	aim_speed_mod = 0
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
-	zoom_offset = 5
-	zoom_viewsize = 7
-	zoom_accuracy = SCOPE_RAIL_MINI
 	flags_attach_features = ATTACH_ACTIVATION
-
 
 /obj/item/attachable/scope/m42a
 	name = "m42a rail scope"
@@ -688,7 +749,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	accuracy_mod = 0.05
 	recoil_mod = -3
-	scatter_mod = -20
+	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
@@ -709,6 +770,17 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "smgstock_a"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
+	accuracy_mod = 0.15
+	recoil_mod = -3
+	scatter_mod = -20
+	movement_acc_penalty_mod = 0.1
+
+/obj/item/attachable/stock/sx16
+	name = "SX-16 Stock"
+	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."
+	icon_state = "sx16stock"
+	wield_delay_mod = 0.4 SECONDS
+	size_mod = 1
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20
@@ -764,10 +836,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
-	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
+	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility."
 	slot = "stock"
 	wield_delay_mod = 0.2 SECONDS
-	melee_mod = -5
 	size_mod = 2
 	icon_state = "44stock"
 	pixel_shift_x = 35
@@ -1051,7 +1122,6 @@ Defined in conflicts.dm of the #defines folder.
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue

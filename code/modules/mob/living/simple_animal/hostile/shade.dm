@@ -15,11 +15,10 @@
 	response_disarm = "flails at"
 	response_harm   = "punches"
 	speak_chance = 1
-	melee_damage_lower = 5
-	melee_damage_upper = 12
+	melee_damage = 12
 	attacktext = "metaphysically strikes"
 	stop_automated_movement = TRUE
 	status_flags = 0
 	faction = list("cult")
 	status_flags = CANPUSH
-	del_on_death = TRUE	
+	del_on_death = TRUE

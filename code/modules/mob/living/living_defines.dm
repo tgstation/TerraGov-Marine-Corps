@@ -7,6 +7,8 @@
 	//Health and life related vars
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
+	var/health_threshold_dead = -100
+	var/health_threshold_crit = 0
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
@@ -49,8 +51,7 @@
 	var/cameraFollow
 
 	// Putting these here for attack_animal().
-	var/melee_damage_lower = 0
-	var/melee_damage_upper = 0
+	var/melee_damage = 0
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"
@@ -60,7 +61,6 @@
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
 
 	var/chestburst = 0 // 0: normal, 1: bursting, 2: bursted.
-	var/in_stasis = FALSE //Is the mob in stasis bag?
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
 	var/tinttotal = TINT_NONE
@@ -72,7 +72,6 @@
 	var/resting = FALSE
 
 	var/list/icon/pipes_shown = list()
-	var/last_played_vent
 	var/is_ventcrawling
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
@@ -100,9 +99,6 @@
 
 	var/job
 	var/faction = "Neutral"
-
-	var/last_taste_time
-	var/last_taste_text
 
 	var/blood_volume = 0 //how much blood the mob has
 	var/heart_multi = 1 //Multiplier.

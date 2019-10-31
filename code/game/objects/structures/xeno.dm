@@ -75,7 +75,7 @@
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
-	
+
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
 	if(!ishuman(AM))
@@ -116,14 +116,13 @@
 		linked_carrier = builder
 
 /obj/effect/alien/resin/trap/examine(mob/user)
+	. = ..()
 	if(isxeno(user))
 		to_chat(user, "A hole for a little one to hide in ambush.")
 		if(hugger)
 			to_chat(user, "There's a little one inside.")
 		else
 			to_chat(user, "It's empty.")
-	else
-		..()
 
 
 /obj/effect/alien/resin/trap/flamer_fire_act()
@@ -224,7 +223,7 @@
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
-	
+
 	relativewall()
 	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)

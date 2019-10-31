@@ -185,7 +185,7 @@
 		else
 			new_turf = get_step(src, GLOB.cardinals[offset])
 		replay_holo.forceMove(new_turf)
-	
+
 	updateUsrDialog()
 
 //do not allow AIs to answer calls or people will use it to meta the AI sattelite
@@ -286,7 +286,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			HC.user.Hear(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
 
 	if(outgoing_call && speaker == outgoing_call.user)
-		outgoing_call.hologram.say(raw_message)
+		outgoing_call.hologram?.say(raw_message)
 
 
 /obj/machinery/holopad/proc/SetLightsAndPower()

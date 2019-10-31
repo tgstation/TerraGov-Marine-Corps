@@ -25,7 +25,7 @@
 
 /obj/structure/closet/secure_closet/marine/PopulateContents()
 	new /obj/item/clothing/shoes/marine(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
@@ -36,7 +36,7 @@
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"
@@ -89,7 +89,7 @@
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine/leader(src)
-	new /obj/item/clothing/under/marine(src)
+	new /obj/item/clothing/under/marine/standard(src)
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
 	name = "alpha leader equipment locker"
@@ -208,7 +208,7 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/corpsman(src)
-	new /obj/item/clothing/under/marine/medic(src)
+	new /obj/item/clothing/under/marine/corpsman(src)
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
 	name = "alpha medic equipment locker"
@@ -345,7 +345,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
@@ -461,7 +461,7 @@
 	new /obj/item/clothing/head/surgery/green(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/suit/surgical(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 

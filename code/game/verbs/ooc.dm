@@ -50,37 +50,34 @@
 
 	mob.log_talk(msg, LOG_OOC)
 
-	var/display_colour = "#002eb8"
+	var/display_colour
+	var/display_class = "colorooc"
 	if(holder?.rank && !holder.fakekey)
 		switch(holder.rank.name)
 			if("Host")
-				display_colour = "#000000"	//black
+				display_class = "hostooc"
 			if("Project Lead")
-				display_colour = "#800080"	//dark purple
+				display_class = "projleadooc"
 			if("Headcoder")
-				display_colour = "#800080"	//dark blue
+				display_class = "headcoderooc"
 			if("Headmin")
-				display_colour = "#640000"	//dark red
+				display_class = "headminooc"
 			if("Headmentor")
-				display_colour = "#004100"	//dark green
+				display_class = "headmentorooc"
 			if("Admin")
-				display_colour = "#b4001e"	//red
+				display_class = "adminooc"
 			if("Trial Admin")
-				display_colour = "#f03200"	//darker orange
-			if("Admin Candidate")
-				display_colour = "#ff5a1e"	//lighter orange
-			if("Admin Observer")
-				display_colour = "#1e4cd6"	//VERY slightly different light blue
+				display_class = "trialminooc"
+			if("Admin Candidate", "Admin Observer")
+				display_class = "candiminooc"
 			if("Mentor")
-				display_colour = "#008000"	//green
+				display_class = "mentorooc"
 			if("Maintainer")
-				display_colour = "#0064ff"	//different light blue
-			if("Debugger")
-				display_colour = "#0064ff"	//different light blue
-			if("Contributor")
-				display_colour = "#1e4cd6"	//VERY slightly different light blue
+				display_class = "maintainerooc"
+			if("Debugger", "Contributor")
+				display_class = "contributorooc"
 			else
-				display_colour = "#643200"	//brown, mostly /tg/ folks
+				display_class = "otherooc"
 
 		if(check_rights(R_COLOR))
 			if(CONFIG_GET(flag/allow_admin_ooccolor))
@@ -94,7 +91,10 @@
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+			if(display_colour)
+				to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+			else
+				to_chat(C, "<span class='[display_class]'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span>")
 
 
 /client/verb/looc_wrapper()
@@ -156,11 +156,11 @@
 	var/message
 
 	if(admin && isobserver(mob))
-		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span></font>"
+		message = "<span class='looc'><span class='prefix'>LOOC:</span> [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: <span class='message'>[msg]</span></span>"
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 	else
-		message = "<font color='#6699CC'><span class='ooc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span></font>"
+		message = "<span class='looc'><span class='prefix'>LOOC:</span> [mob.name]: <span class='message'>[msg]</span></span>"
 		for(var/mob/M in range(mob))
 			to_chat(M, message)
 
@@ -218,7 +218,7 @@
 		return
 
 	browse_messages(null, ckey, null, TRUE)
-	
+
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"

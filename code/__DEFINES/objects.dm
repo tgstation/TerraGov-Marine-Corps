@@ -56,9 +56,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 	"NUKE"
 	))
 
-#define STASIS_IN_BAG 		1
-#define STASIS_IN_CRYO_CELL 2
-
 
 // Diagonal movement for movable atoms
 #define FIRST_DIAG_STEP 	1
@@ -210,3 +207,12 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define POD_NAME 2
 #define POD_DESC 3
 #define POD_NUMBER 4
+
+//Item sprite variants
+#define ITEM_JUNGLE_VARIANT	(1<<0)
+#define ITEM_ICE_VARIANT	(1<<1)
+#define ITEM_ICE_PROTECTION	(1<<2)
+
+#define ITEM_UNEQUIP_FAIL 0
+#define ITEM_UNEQUIP_DROPPED 1
+#define ITEM_UNEQUIP_UNEQUIPPED 2

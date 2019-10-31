@@ -7,29 +7,14 @@
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
+	obj_flags = NONE
+
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
 		return ..()
 	else
 		return FALSE
-
-/obj/machinery/door/poddoor/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!I.pry_capable)
-		return
-
-	if(density && (machine_stat & NOPOWER) && !operating && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		operating = TRUE
-		addtimer(CALLBACK(src, .proc/pry_open), 15)
-
-/obj/machinery/door/poddoor/proc/pry_open()
-	open()
-	set_opacity(FALSE)
-	density = FALSE
-	operating = FALSE
-	update_icon()
 
 
 /obj/machinery/door/poddoor/try_to_activate_door(mob/user)
@@ -54,47 +39,72 @@
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'
 	dir = EAST
 	width = 2
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
+
+/obj/machinery/door/poddoor/two_tile_hor/execution
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "execution"
+
+/obj/machinery/door/poddoor/two_tile_hor/rocinante
+	name = "Rocinante Cargo Bay Door"
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "pirate_cargo"
+
+/obj/machinery/door/poddoor/two_tile_hor/secure
+	icon = 'icons/obj/doors/1x2blast_hor.dmi'
+	openspeed = 17
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/two_tile_ver
 	icon = 'icons/obj/doors/1x2blast_vert.dmi'
 	dir = NORTH
 	width = 2
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
+
+/obj/machinery/door/poddoor/two_tile_ver/riotarmory
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "riot_armory"
+
+/obj/machinery/door/poddoor/two_tile_ver/lethalarmory
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "lethal_armory"
+
+/obj/machinery/door/poddoor/two_tile_ver/secure
+	icon = 'icons/obj/doors/1x2blast_vert.dmi'
+	openspeed = 17
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/four_tile_hor
 	icon = 'icons/obj/doors/1x4blast_hor.dmi'
 	dir = EAST
 	width = 4
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
+
+/obj/machinery/door/poddoor/four_tile_hor/secure
+	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
+	openspeed = 17
+	resistance_flags = RESIST_ALL
 
 /obj/machinery/door/poddoor/four_tile_ver
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'
 	dir = NORTH
 	width = 4
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-
-/obj/machinery/door/poddoor/four_tile_hor/secure
-	icon = 'icons/obj/doors/1x4blast_hor_secure.dmi'
-	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = UNACIDABLE
 
 /obj/machinery/door/poddoor/four_tile_ver/secure
 	icon = 'icons/obj/doors/1x4blast_vert_secure.dmi'
 	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
-/obj/machinery/door/poddoor/two_tile_hor/secure
-	icon = 'icons/obj/doors/1x2blast_hor.dmi'
-	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-
-/obj/machinery/door/poddoor/two_tile_ver/secure
-	icon = 'icons/obj/doors/1x2blast_vert.dmi'
-	openspeed = 17
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-
-
+//mainship poddoors
 /obj/machinery/door/poddoor/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
@@ -102,6 +112,13 @@
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
 		/obj/machinery/door/airlock)
+
+/obj/machinery/door/poddoor/mainship/open
+    density = FALSE
+    opacity = FALSE
+    layer = PODDOOR_OPEN_LAYER
+    icon_state = "pdoor0"
+
 
 /obj/machinery/door/poddoor/mainship/ai
 	name = "\improper AI Core Shutters"
@@ -113,9 +130,21 @@
 	icon_state = "pdoor0"
 
 /obj/machinery/door/poddoor/mainship/ai/interior
-	name = "\improper AI Core Shutters"	
+	name = "\improper AI Core Shutters"
 	id = "ailockdowninterior"
 	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/mainship/ammo
+	name = "\improper Ammunition Storage"
+	id = "ammo2"	
+
+/obj/machinery/door/poddoor/mainship/open/cic
+	name = "\improper Combat Information Center Blast Door"
+	id = "cic_lockdown"
+
+/obj/machinery/door/poddooor/mainship/hangar
+	name = "\improper Hangar Lockdown"
+	id = "hangar_lockdown"	
 
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()

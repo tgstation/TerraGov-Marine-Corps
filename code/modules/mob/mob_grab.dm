@@ -68,12 +68,10 @@
 				icon_state = "disarm/kill1"
 				user.visible_message("<span class='danger'>[user] has tightened [user.p_their()] grip on [victim]'s neck!</span>", null, null, 5)
 				log_combat(user, victim, "strangled", addition="(kill intent)")
-				msg_admin_attack("[key_name(user)] strangled (kill intent) [key_name(victim)]")
 			if(GRAB_NECK)
 				icon_state = "disarm/kill"
 				user.visible_message("<span class='warning'>[user] has reinforced [user.p_their()] grip on [victim] (now neck)!</span>", null, null, 5)
 				log_combat(user, victim, "neck grabbed")
-				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
 				ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
 				RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 			if(GRAB_AGGRESSIVE)

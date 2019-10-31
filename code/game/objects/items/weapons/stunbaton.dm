@@ -174,7 +174,7 @@
 			L.knock_down(4)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
-	msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
+	log_combat(user, L, "stunned", src)
 
 	deductcharge(hitcost)
 
@@ -277,7 +277,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with. This one seems to be much more effective than its predecessor."
 	color = "#FF6666"
 
-	
+
 /obj/item/weapon/stunprod/improved/attack(mob/M, mob/user)
 	. = ..()
 	if(!isliving(M))

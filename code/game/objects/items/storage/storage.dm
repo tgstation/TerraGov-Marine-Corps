@@ -435,11 +435,11 @@
 		I.moveToNullspace()
 
 	orient2hud()
-	
+
 	for(var/i in can_see_content())
 		var/mob/M = i
 		show_to(M)
-	
+
 	if(!QDELETED(I))
 		I.on_exit_storage(src)
 		I.mouse_opacity = initial(I.mouse_opacity)

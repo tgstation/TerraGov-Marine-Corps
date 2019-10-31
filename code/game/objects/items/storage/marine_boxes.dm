@@ -195,6 +195,7 @@
 /obj/item/storage/box/m42c_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/sniper(src)
+	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
@@ -206,8 +207,8 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
@@ -226,13 +227,14 @@
 /obj/item/storage/box/m42c_system_Jungle/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/sniper/jungle(src)
+	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/m42_goggles(src)
 	new /obj/item/clothing/head/helmet/durag/jungle(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper/incendiary(src)
-	new /obj/item/weapon/gun/rifle/sniper/M42A/jungle(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
+	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/under/marine/sniper(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/bodybag/tarp/snow(src)
@@ -303,7 +305,7 @@
 /obj/item/storage/box/spec/demolitionist/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3T(src)
-	new /obj/item/clothing/head/helmet/marine(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
 	new /obj/item/weapon/gun/launcher/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
 	new /obj/item/ammo_magazine/rocket(src)
@@ -336,6 +338,7 @@
 /obj/item/storage/box/spec/sniper/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/sniper(src)
+	new /obj/item/clothing/head/helmet/marine/sniper(src)
 	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 	new /obj/item/ammo_magazine/sniper(src)
 	new /obj/item/ammo_magazine/sniper(src)
@@ -353,8 +356,8 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/explosive/grenade/cloakbomb(src)
 	new /obj/item/bodybag/tarp(src)
-	if(SSmapping.configs[GROUND_MAP].map_name == MAP_ICE_COLONY)
-		new /obj/item/clothing/head/helmet/marine(src)
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		new /obj/item/clothing/head/helmet/marine/standard(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
@@ -495,24 +498,10 @@
 	new /obj/item/clothing/suit/storage/marine/specialist(src)
 	new /obj/item/clothing/head/helmet/marine/specialist(src)
 	new /obj/item/weapon/gun/minigun(src)
-	new /obj/item/minigun_harness(src)
+	new /obj/item/belt_harness/marine(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
-
-/obj/item/minigun_harness
-	name = "\improper M45 heavy-duty harness"
-	desc = "A large belt with shoulder straps and clamps to hook onto a minigun, meant to keep the user from dropping their weapon."
-	icon = 'icons/obj/clothing/belts.dmi'
-	icon_state = "heavy_harness"
-	item_state = "heavy_harness"
-	flags_equip_slot = ITEM_SLOT_BELT
-	w_class = WEIGHT_CLASS_BULKY
-	time_to_equip = 2 SECONDS
-
-/obj/item/minigun_harness/equipped(mob/living/carbon/human/user, slot)
-	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
-
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -534,8 +523,6 @@
 			S = /obj/item/storage/box/spec/sniper
 		if("Scout (Battle Rifle)")
 			S = /obj/item/storage/box/spec/scout
-		if("Scout (Shotgun)")
-			S = /obj/item/storage/box/spec/scoutshotgun
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)

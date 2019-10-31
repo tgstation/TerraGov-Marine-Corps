@@ -13,6 +13,10 @@
 	var/maxcharge = 1000
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
+	var/self_recharge = FALSE // If true, the cell will recharge itself.
+	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
+	var/last_use = 0 // A tracker for use in self-charging
+	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)

@@ -5,8 +5,22 @@
 /obj/item/cell/Initialize()
 	. = ..()
 	charge = maxcharge
+	if(self_recharge)
+		START_PROCESSING(SSobj, src)
 
 	update_icon()
+
+/obj/item/cell/Destroy()
+	if(self_recharge)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/cell/process()
+	if(self_recharge)
+		if(world.time >= last_use + charge_delay)
+			give(charge_amount)
+	else
+		return PROCESS_KILL
 
 /obj/item/cell/update_icon()
 	cut_overlays()
@@ -28,6 +42,7 @@
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
+	last_use = world.time
 
 	if(charge < amount)
 		return FALSE
@@ -53,8 +68,9 @@
 
 
 /obj/item/cell/examine(mob/user)
+	. = ..()
 	if(maxcharge <= 2500)
-		to_chat(user, "[desc]\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
+		to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
 	else
 		to_chat(user, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%.")
 	if(crit_fail)

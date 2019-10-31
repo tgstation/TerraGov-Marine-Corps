@@ -55,7 +55,7 @@
 		alpha = initial(alpha) //stealth mode disengaged
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
 	return ..()
 
 
@@ -70,7 +70,7 @@
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/on_bodybag_occupant_death)
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
@@ -159,7 +159,7 @@
 		/obj/item/reagent_container/food/snacks/mre_pack/meal4,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal5,
 		/obj/item/reagent_container/food/snacks/mre_pack/meal6)
-		
+
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
@@ -303,6 +303,28 @@
 		/obj/item/reagent_container/food/snacks/spacetwinkie,
 		/obj/item/reagent_container/food/snacks/cookie,
 		/obj/item/reagent_container/food/snacks/chocolatebar)
-	
+
 	var/picked = pick(randompick)
 	new picked(src)
+
+
+//Harness Belts
+/obj/item/belt_harness
+	name = "gun sling"
+	desc = "A leather sling with a spot to attach a gun. Should keep you from losing your weapon, hopefully."
+	icon = 'icons/obj/clothing/belts.dmi'
+	icon_state = "gun_sling"
+	item_state = "gun_sling"
+	flags_equip_slot = ITEM_SLOT_BELT
+	w_class = WEIGHT_CLASS_BULKY
+	time_to_equip = 2 SECONDS
+
+/obj/item/belt_harness/marine
+	name = "\improper M45 pattern belt harness"
+	desc = "A shoulder worn strap with clamps that can attach to a gun. Should keep you from losing your weapon, hopefully."
+	icon_state = "heavy_harness"
+	item_state = "heavy_harness"
+
+/obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+	if(slot == SLOT_BELT)
+		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)

@@ -87,7 +87,7 @@
 		if(offhand && (offhand.flags_item & WIELDED))
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
-		else 
+		else
 			wielded_item.unwield(src) //Get rid of it.
 	if(wielded_item && wielded_item.zoom) //Adding this here while we're at it
 		wielded_item.zoom(src)
@@ -231,7 +231,6 @@
 					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
 
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] has thrown [ADMIN_TPMONTY(M)].")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
 
@@ -268,28 +267,27 @@
 	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR>"}
-	
+
 	var/datum/browser/popup = new(user, "mob[REF(src)]", "<div align='center'>[src]</div>", 325, 500)
 	popup.set_content(dat)
 	popup.open()
 
 //generates realistic-ish pulse output based on preset levels
-/mob/living/carbon/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
-	var/temp = 0								//see setup.dm:694
-	switch(src.pulse)
+/mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
+	switch(handle_pulse())
 		if(PULSE_NONE)
 			return PULSE_NONE
 		if(PULSE_SLOW)
-			temp = rand(40, 60)
+			var/temp = rand(40, 60)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_NORM)
-			temp = rand(60, 90)
+			var/temp = rand(60, 90)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_FAST)
-			temp = rand(90, 120)
+			var/temp = rand(90, 120)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_2FAST)
-			temp = rand(120, 160)
+			var/temp = rand(120, 160)
 			return num2text(method ? temp : temp + rand(-10, 10))
 		if(PULSE_THREADY)
 			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"

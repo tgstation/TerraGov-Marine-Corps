@@ -71,7 +71,8 @@
 
 	if(adminlog)
 		log_explosion("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [AREACOORD(epicenter)].")
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
+		if(!is_centcom_level(epicenter.z))
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in [ADMIN_VERBOSEJMP(epicenter)].")
 
 	//postpone processing for a bit
 	var/postponeCycles = max(round(devastation_range / 8), 1)

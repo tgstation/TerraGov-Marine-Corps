@@ -21,7 +21,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				c_hand = r_hand
 
 			if(c_hand && (stun_amount || agony_amount > 10))
-				msg_admin_attack("[ADMIN_TPMONTY(src)] was disarmed by a stun effect.")
 
 				dropItemToGround(c_hand)
 				if (affected.limb_status & LIMB_ROBOT)
@@ -176,7 +175,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if((user != src) && check_shields(I.force, "the [I.name]"))
 		return 0
 
-	if(I.attack_verb && I.attack_verb.len)
+	if(LAZYLEN(I.attack_verb))
 		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 	else
 		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
@@ -313,8 +312,6 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
-				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
@@ -386,7 +383,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/halloss_damage = LERP(70, 130, dist_pct) * reduction //Max 130 beside Queen, 70 at the edge
+	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
 	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")

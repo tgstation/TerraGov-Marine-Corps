@@ -5,6 +5,7 @@
 	var/client/clicker
 	var/mob/living/shooter
 	var/atom/target
+	var/turf/target_loc //For dealing with locking on targets due to BYOND engine limitations (the mouse input only happening when mouse moves).
 	var/autofire_stat = AUTOFIRE_STAT_SLEEPING
 	var/mouse_parameters
 	var/shots_fired = 0
@@ -52,16 +53,16 @@
 			if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 				sleep_up()
 			return //No need for autofire on other modes.
-	
+
 	if(autofire_stat & (AUTOFIRE_STAT_IDLE|AUTOFIRE_STAT_ALERT))
 		return //We've updated the firemode. No need for more.
 	if(autofire_stat & AUTOFIRE_STAT_FIRING)
 		stop_autofiring() //Let's stop shooting to avoid issues.
 		return
-	
+
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
-	RegisterSignal(parent, list(COMSIG_PARENT_QDELETED), .proc/sleep_up)
+	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/sleep_up)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
 
 	if(usercli)
@@ -78,7 +79,7 @@
 
 	autofire_off()
 
-	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETED, COMSIG_ITEM_EQUIPPED))
+	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_EQUIPPED))
 	
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
@@ -145,7 +146,7 @@
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
-	
+
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
 
@@ -157,6 +158,7 @@
 		stop_autofiring() //This can happen if we click and hold and then alt+tab, printscreen or other such action. MouseUp won't be called then and it will keep autofiring.
 
 	src.target = target
+	target_loc = get_turf(target)
 	mouse_parameters = params
 	start_autofiring()
 
@@ -232,6 +234,7 @@
 	shoota.on_autofire_stop(shots_fired)
 	shots_fired = 0
 	target = null
+	target_loc = null
 	mouse_parameters = null
 
 
@@ -242,27 +245,40 @@
 		if(!timer)
 			return //Has already been deleted.
 		stoplag(1) //Let's try again next tick.
-	
+
 
 /datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	if(isnull(over_location)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
 		var/list/modifiers = params2list(params)
 		var/new_target = params2turf(modifiers["screen-loc"], get_turf(source.eye), source)
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+		params = list2params(modifiers)
+		mouse_parameters = params
 		if(!new_target)
+			if(QDELETED(target)) //No new target acquired, and old one was deleted, get us out of here.
+				stop_autofiring()
+				CRASH("on_mouse_drag failed to get the turf under screen object [over_object.type]. Old target was incidentally QDELETED.")
 			target = get_turf(target) //If previous target wasn't a turf, let's turn it into one to avoid locking onto a potentially moving target.
+			target_loc = target
 			CRASH("on_mouse_drag failed to get the turf under screen object [over_object.type]")
 		target = new_target
+		target_loc = new_target
 		return
 	target = over_object
+	target_loc = get_turf(over_object)
 	mouse_parameters = params
 
 
 /datum/component/automatic_fire/proc/process_shot()
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return
+	if(get_turf(target) != target_loc) //Target moved since we last aimed.
+		target = target_loc //So we keep firing on the emptied tile until we move our mouse and find a new target.
 	switch(get_dist(shooter, target))
 		if(-1 to 0)
 			target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
+			target_loc = target
 		if(8 to INFINITY) //Can technically only go as far as 127 right now.
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
@@ -284,7 +300,7 @@
 		if(!process_shot())
 			return
 		stoplag(burstfire_shot_delay)
-	
+
 
 /datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
 	switch(slot)

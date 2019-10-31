@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 60
-	can_unwrench = TRUE
+	can_unwrench = FALSE
 	welded = FALSE
 	level = 1
 	layer = GAS_SCRUBBER_LAYER

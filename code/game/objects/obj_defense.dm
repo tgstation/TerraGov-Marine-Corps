@@ -1,26 +1,26 @@
 /obj/proc/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", sound_effect = TRUE, attack_dir, armour_penetration = 0)
 	if(QDELETED(src))
 		CRASH("[src] taking damage after deletion")
-	
+
 	if(sound_effect)
 		play_attack_sound(damage_amount, damage_type, damage_flag)
-	
+
 	if((resistance_flags & INDESTRUCTIBLE) || obj_integrity <= 0)
 		return
 	damage_amount = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armour_penetration)
-	
+
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
-	
+
 	obj_integrity = max(obj_integrity - damage_amount, 0)
 
 	update_icon()
-	
+
 	//BREAKING FIRST
 	if(integrity_failure && obj_integrity <= integrity_failure)
 		obj_break(damage_flag)
-	
+
 	//DESTROYING SECOND
 	if(obj_integrity <= 0)
 		obj_destruction(damage_flag)
@@ -103,7 +103,7 @@
 
 
 /obj/attack_animal(mob/living/simple_animal/M)
-	if(!M.melee_damage_upper && !M.obj_damage)
+	if(!M.melee_damage && !M.obj_damage)
 		M.emote("custom", message = "[M.friendly] [src].")
 		return 0
 	else
@@ -111,7 +111,7 @@
 		if(M.obj_damage)
 			. = attack_generic(M, M.obj_damage, M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
 		else
-			. = attack_generic(M, rand(M.melee_damage_lower,M.melee_damage_upper), M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
+			. = attack_generic(M, M.melee_damage, M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
 		if(. && !play_soundeffect)
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 100, 1)
 
@@ -124,7 +124,7 @@
 	"<span class='danger'>We slash [src]!</span>")
 	X.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	attack_generic(X, rand(X.xeno_caste.melee_damage_lower, X.xeno_caste.melee_damage_upper), BRUTE, "melee", FALSE)
+	attack_generic(X, X.xeno_caste.melee_damage, BRUTE, "melee", FALSE)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
@@ -134,6 +134,7 @@
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE)
+	SHOULD_CALL_PARENT(1)
 	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 

@@ -53,7 +53,7 @@ FLOOR SAFES
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			I.loc = src
-	
+
 	// do this after swallowing items for obvious reasons
 	if(loc && spawnkey)
 		new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.

@@ -74,4 +74,3 @@
 	if(!N.timer_enabled)
 		return
 	return round(N.get_time_left())
-	

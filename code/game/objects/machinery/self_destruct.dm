@@ -110,7 +110,7 @@
 	. = ..()
 	if(.)
 		return
-		
+
 	switch(active_state)
 		if(SELF_DESTRUCT_MACHINE_ACTIVE)
 			to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")

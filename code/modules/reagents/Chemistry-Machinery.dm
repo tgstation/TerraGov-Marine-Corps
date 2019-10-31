@@ -157,7 +157,7 @@
 	if(beaker)
 		to_chat(user, "Something is already loaded into the machine.")
 		return
-		
+
 	else if(istype(I, /obj/item/reagent_container) && I.is_open_container())
 		if(!user.transferItemToLoc(I, src))
 			return
@@ -165,7 +165,7 @@
 		beaker =  I
 		to_chat(user, "You set [I] on the machine.")
 		SSnano.update_uis(src) // update all UIs attached to src
-	
+
 	else if(istype(I, /obj/item/reagent_container/glass))
 		to_chat(user, "Take the lid off [I] first.")
 
@@ -268,7 +268,7 @@
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
-	
+
 	else if(istype(I,/obj/item/reagent_container/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
@@ -513,7 +513,7 @@
 			bottlesprite = href_list["bottle_sprite"]
 		else if(href_list["autoinjector_sprite"])
 			autoinjectorsprite = href_list["autoinjector_sprite"]
-	
+
 	updateUsrDialog()
 
 

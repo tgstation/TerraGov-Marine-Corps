@@ -6,7 +6,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
-	
+
 	opacity = TRUE
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
@@ -37,11 +37,12 @@
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
 
+	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/Initialize(mapload, ...)
 	. = ..()
-	
+
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
 
@@ -211,7 +212,7 @@
 /turf/closed/wall/proc/take_damage(damage)
 	if(hull) //Hull is literally invincible
 		return
-	
+
 	if(!damage)
 		return
 
@@ -230,7 +231,7 @@
 /turf/closed/wall/proc/repair_damage(repair_amount)
 	if(hull) //Hull is literally invincible
 		return
-	
+
 	if(!repair_amount)
 		return
 

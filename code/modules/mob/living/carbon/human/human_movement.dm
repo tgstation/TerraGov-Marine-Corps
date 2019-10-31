@@ -113,7 +113,7 @@
 	alpha = initial(alpha) //Sniper variant has *no* mobility stealth, but no drain on movement either
 
 /mob/living/carbon/human/Process_Spacemove()
-	if(restrained())	
+	if(restrained())
 		return FALSE
 
 	return ..()

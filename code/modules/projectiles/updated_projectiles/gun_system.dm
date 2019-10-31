@@ -10,7 +10,6 @@
 	throw_speed = 4
 	throw_range = 5
 	force 		= 5
-	attack_verb = null
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
@@ -52,7 +51,7 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
-	
+
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 0.1 SECONDS			//The delay in between shots. Lower = less delay = faster.
@@ -67,8 +66,10 @@
 
 
 	//Energy Weapons
+	var/charge_cost		= 0						//how much energy is consumed per shot.
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
+	var/ammo_diff		= null					//what ammo to use for overcharge
 
 	//Attachments.
 	var/list/attachable_overlays	= list("muzzle", "rail", "under", "stock", "mag") //List of overlays so we can switch them in an out, instead of using Cut() on overlays.
@@ -505,7 +506,7 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
-	
+
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
@@ -548,7 +549,7 @@ and you're good to go.
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 		return in_chamber
-	
+
 	make_casing(type_of_casings) // Drop a casing if needed.
 	in_chamber = null //If we didn't fire from attachable, let's set this so the next pass doesn't think it still exists.
 
@@ -855,7 +856,7 @@ and you're good to go.
 	if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
-	
+
 	if(world.time % 3)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
@@ -1104,7 +1105,7 @@ and you're good to go.
 			muzzle_flash.pixel_x = round(-3 * ((360 - angle) / 45))
 			muzzle_flash.pixel_y = 4
 			muzzle_flash.layer = initial(muzzle_flash.layer)
-	
+
 	muzzle_flash.transform = null
 	muzzle_flash.transform = turn(muzzle_flash.transform, angle)
 	flash_loc.vis_contents += muzzle_flash

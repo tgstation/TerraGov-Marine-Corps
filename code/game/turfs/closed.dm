@@ -288,3 +288,10 @@
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "wall0"
 	plane = GAME_PLANE
+
+/turf/closed/shuttle/dropship3
+	name = "\improper Rasputin"
+	icon = 'icons/turf/dropship3.dmi'
+	icon_state = "1"
+	opacity = FALSE
+/turf/closed/shuttle/dropship3/transparent

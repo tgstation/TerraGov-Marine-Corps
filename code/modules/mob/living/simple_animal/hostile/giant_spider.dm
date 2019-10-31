@@ -36,8 +36,7 @@
 	maxHealth = 200
 	health = 200
 	obj_damage = 60
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage = 20
 	faction = "Spider"
 	var/busy = SPIDER_IDLE
 	flags_pass = PASSTABLE
@@ -57,8 +56,7 @@
 	gender = FEMALE
 	maxHealth = 40
 	health = 40
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage = 10
 	poison_per_bite = 3
 	var/atom/movable/cocoon_target
 	var/fed = 0
@@ -73,8 +71,7 @@
 	icon_dead = "hunter_dead"
 	maxHealth = 120
 	health = 120
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage = 20
 	poison_per_bite = 5
 	move_to_delay = 5
 
@@ -88,8 +85,7 @@
 	icon_dead = "viper_dead"
 	maxHealth = 40
 	health = 40
-	melee_damage_lower = 1
-	melee_damage_upper = 1
+	melee_damage = 1
 	poison_per_bite = 12
 	move_to_delay = 4
 	poison_type = /datum/reagent/toxin
@@ -105,8 +101,7 @@
 	icon_dead = "tarantula_dead"
 	maxHealth = 300 // woah nelly
 	health = 300
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	melee_damage = 40
 	poison_per_bite = 0
 	move_to_delay = 8
 	speed = 7

@@ -9,8 +9,7 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 45
-	melee_damage_upper = 55
+	melee_damage = 50
 
 	// *** Tackle *** //
 	tackle_damage = 55
@@ -53,14 +52,23 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
-		/datum/action/xeno_action/grow_ovipositor,
+		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/toggle_pheromones
+		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/toggle_queen_zoom,
+		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/set_xeno_lead,
+		/datum/action/xeno_action/activable/queen_heal,
+		/datum/action/xeno_action/activable/queen_give_plasma,
+		/datum/action/xeno_action/queen_order,
+		/datum/action/xeno_action/deevolve
 		)
+
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_ZERO
@@ -71,8 +79,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 50
-	melee_damage_upper = 60
+	melee_damage = 55
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -108,8 +115,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 55
-	melee_damage_upper = 65
+	melee_damage = 60
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -145,8 +151,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 60
-	melee_damage_upper = 70
+	melee_damage = 65
 
 	// *** Tackle *** //
 	tackle_damage = 70

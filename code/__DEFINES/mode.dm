@@ -39,6 +39,9 @@
 #define MODE_FOG_ACTIVATED 		(1<<3)
 #define MODE_INFECTION			(1<<4)
 #define MODE_HUMAN_ANTAGS		(1<<5)
+#define MODE_LZ_SHUTTERS		(1<<6)
+#define MODE_XENO_SPAWN_PROTECT	(1<<7)
+#define MODE_XENO_RULER			(1<<8)
 
 #define MODE_LANDMARK_RANDOM_ITEMS			(1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TUNNELS	(1<<1)
@@ -74,6 +77,9 @@
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
+#define CRASH_NUKE_NONE "CRASH_NUKE_NONE"
+#define CRASH_NUKE_INPROGRESS "CRASH_NUKE_INPROGRESS"
+#define CRASH_NUKE_COMPLETED "CRASH_NUKE_COMPLETED"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -93,9 +99,6 @@
 
 #define MAX_TUNNELS_PER_MAP 	10
 
-#define QUEEN_DEATH_COUNTDOWN 	15 MINUTES
-#define QUEEN_DEATH_NOLARVA		7.5 MINUTES
-
 #define FOG_DELAY_INTERVAL		40 MINUTES
 
 #define EVACUATION_TIME_LOCK	30 MINUTES
@@ -110,5 +113,5 @@
 
 #define XENO_AFK_TIMER			5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) > GLOB.respawntime) && check_other_rights(M.client, R_ADMIN, FALSE)
+#define DEATHTIME_CHECK(M) (((world.time - M.timeofdeath) < GLOB.respawntime) && !check_other_rights(M.client, R_ADMIN, FALSE))
 #define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.respawntime * 0.1] seconds before rejoining the game!</span>")

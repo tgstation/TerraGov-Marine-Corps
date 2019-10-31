@@ -1,13 +1,3 @@
-//#define DEBUG_HUMAN_ARMOR
-
-/mob/living/carbon/human
-	name = "unknown"
-	real_name = "unknown"
-	icon = 'icons/mob/human.dmi'
-	icon_state = "body_m_s"
-	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
-
-
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
@@ -63,7 +53,7 @@
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
-	
+
 	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
@@ -80,7 +70,7 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		var/eta_status = SSevacuation?.get_status_panel_eta()
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
@@ -185,14 +175,14 @@
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
-	if(M.melee_damage_upper == 0)
+	if(M.melee_damage == 0)
 		M.emote("me", EMOTE_VISIBLE, "[M.friendly] [src]")
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
@@ -330,7 +320,7 @@
 	if(istype(id_card, /obj/item/storage/wallet))
 		var/obj/item/storage/wallet/W = id_card
 		id_card = W.front_id
-			
+
 	return istype(id_card) ? id_card : null
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
@@ -860,32 +850,35 @@
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
-	var/self = 0
+	var/self = FALSE
 
-	if(usr.stat > 0 || usr.restrained() || !isliving(usr)) return
-
-	if(usr == src)
-		self = 1
-	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",\
-		"<span class='notice'>You begin counting [src]'s pulse...</span>", null, 3)
-	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",\
-		"<span class='notice'>You begin counting your pulse...</span>", null, 3)
-
-	if(src.pulse)
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
-	else
-		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>"	)
+	if(!isliving(usr) || usr.incapacitated())
 		return
 
-	to_chat(usr, "Don't move until counting is finished.")
-	var/time = world.time
-	sleep(60)
-	if(usr.last_move_time >= time)	//checks if our mob has moved during the sleep()
-		to_chat(usr, "You moved while counting. Try again.")
+	if(usr == src)
+		self = TRUE
+
+	if(!self)
+		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",
+		"<span class='notice'>You begin counting [src]'s pulse.</span>", null, 3)
 	else
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",
+		"<span class='notice'>You begin counting your pulse.</span>", null, 3)
+
+	if(handle_pulse())
+		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+	else
+		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>")
+		return
+
+	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
+
+	if(!do_mob(usr, src, 6 SECONDS))
+		to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
+		return
+
+	to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)].</span>")
+
 
 /mob/living/carbon/human/verb/view_manifest()
 	set name = "View Crew Manifest"

@@ -4,7 +4,6 @@
 	var/mob/living/carbon/xenomorph/queen/living_xeno_queen
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/slashing_allowed = XENO_SLASHING_ALLOWED //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
 	var/hive_orders = "" //What orders should the hive have
@@ -67,8 +66,17 @@
 
 
 /datum/hive_status/proc/can_hive_have_a_queen()
-	return get_total_xeno_number() < xenos_per_queen
+	return (get_total_xeno_number() < xenos_per_queen)
 
+/datum/hive_status/normal/can_hive_have_a_queen()
+	return ((get_total_xeno_number() + stored_larva) < xenos_per_queen)
+
+/datum/hive_status/proc/get_total_tier_zeros()
+	return length(xenos_by_tier[XENO_TIER_ZERO])
+
+/datum/hive_status/normal/get_total_tier_zeros()
+	. = ..()
+	. += stored_larva
 
 // ***************************************
 // *********** List getters
@@ -90,6 +98,21 @@
 		for(var/i in xenos_by_typepath[typepath])
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
+				continue
+			xenos += X
+	return xenos
+
+// doing this by type means we get a pseudo sorted list
+/datum/hive_status/proc/get_leaderable_xenos()
+	var/list/xenos = list()
+	for(var/typepath in xenos_by_typepath)
+		if(typepath == /mob/living/carbon/xenomorph/queen) // hardcoded check for now
+			continue
+		for(var/i in xenos_by_typepath[typepath])
+			var/mob/living/carbon/xenomorph/X = i
+			if(is_centcom_level(X.z))
+				continue
+			if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos
@@ -280,9 +303,6 @@
 // *********** Xeno death
 // ***************************************
 /datum/hive_status/proc/on_xeno_death(mob/living/carbon/xenomorph/X)
-	if(living_xeno_queen?.observed_xeno == X)
-		living_xeno_queen.set_queen_overwatch(X, TRUE)
-
 	remove_from_lists(X)
 	dead_xenos += X
 
@@ -324,7 +344,7 @@
 // This proc attempts to find a new ruler to lead the hive.
 /datum/hive_status/proc/update_ruler()
 	if(living_xeno_ruler)
-		return TRUE //No succession required.
+		return //No succession required.
 
 	var/mob/living/carbon/xenomorph/successor
 
@@ -342,9 +362,10 @@
 
 	set_ruler(successor)
 
-	if(!living_xeno_ruler) //Succession failed.
-		start_ruler_timer()
-		return TRUE
+	handle_ruler_timer()
+
+	if(!living_xeno_ruler)
+		return //Succession failed.
 
 	if(announce)
 		xeno_message("<span class='xenoannounce'>\A [successor] has risen to lead the Hive! Rejoice!</span>", 3)
@@ -363,14 +384,24 @@
 	hive.update_leader_pheromones()
 
 
-/datum/hive_status/proc/start_ruler_timer()
+/datum/hive_status/proc/handle_ruler_timer()
 	return
 
 
 // safe for use by gamemode code, this allows per hive overrides
-/datum/hive_status/proc/check_queen_timer()
-	if(xeno_queen_timer && --xeno_queen_timer <= 1)
-		xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
+/datum/hive_status/proc/end_queen_death_timer()
+	xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
+	xeno_queen_timer = null
+
+
+/datum/hive_status/proc/check_ruler()
+	return TRUE
+
+
+/datum/hive_status/normal/check_ruler()
+	if(!SSticker?.mode || !(SSticker.mode.flags_round_type & MODE_XENO_RULER))
+		return TRUE
+	return living_xeno_ruler
 
 
 // ***************************************
@@ -382,6 +413,9 @@
 	if(living_xeno_queen != Q)
 		return FALSE
 	living_xeno_queen = null
+	if(!xeno_queen_timer)
+		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
+
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()
 	if(ckey && client)
@@ -449,6 +483,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	return ..()
 
+
 /datum/hive_status/normal/unbury_all_larva()
 	var/turf/larva_spawn
 	while(stored_larva > 0) // still some left
@@ -457,17 +492,26 @@ to_chat will check for valid clients itself already so no need to double check f
 		stored_larva--
 		CHECK_TICK // lets not lag everything
 
-/datum/hive_status/normal/start_ruler_timer()
+
+/datum/hive_status/normal/handle_ruler_timer()
 	if(!isdistress(SSticker?.mode))
 		return
 	var/datum/game_mode/distress/D = SSticker.mode
 
+	if(living_xeno_ruler)
+		if(D.orphan_hive_timer)
+			deltimer(D.orphan_hive_timer)
+			D.orphan_hive_timer = null
+		return
+
+	if(D.orphan_hive_timer)
+		return
+
+	var/timer_length = 7.5 MINUTES
 	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		D.queen_death_countdown = world.time + QUEEN_DEATH_COUNTDOWN
-		addtimer(CALLBACK(D, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_COUNTDOWN)
-	else
-		D.queen_death_countdown = world.time + QUEEN_DEATH_NOLARVA
-		addtimer(CALLBACK(D, /datum/game_mode.proc/check_queen_status, queen_time), QUEEN_DEATH_NOLARVA)
+		timer_length = 15 MINUTES
+
+	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/on_queen_life(mob/living/carbon/xenomorph/queen/Q)
@@ -528,7 +572,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
+	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
@@ -545,7 +589,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && !DEATHTIME_CHECK(xeno_candidate))
+	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
 		DEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 

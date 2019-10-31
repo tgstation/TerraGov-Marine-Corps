@@ -2,11 +2,11 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
-	
+
 
 	var/list/survivors = list()
 
@@ -18,7 +18,7 @@
 
 	var/latejoin_tally		= 0
 	var/latejoin_larva_drop = 0
-	var/queen_death_countdown = 0
+	var/orphan_hive_timer
 
 
 /datum/game_mode/distress/announce()
@@ -27,13 +27,14 @@
 
 /datum/game_mode/distress/can_start()
 	. = ..()
+	if(!.)
+		return
 	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_survivor()
-	return TRUE
 
 
 /datum/game_mode/distress/pre_setup()
@@ -243,6 +244,10 @@
 					/obj/item/attachable/compensator = round(scale * 10),
 					/obj/item/attachable/extended_barrel = round(scale * 10),
 					/obj/item/attachable/heavy_barrel = round(scale * 4),
+					/obj/item/attachable/widelens = round(scale * 4),
+					/obj/item/attachable/focuslens = round(scale * 4),
+					/obj/item/attachable/efflens = round(scale * 4),
+					/obj/item/attachable/pulselens = round(scale * 4),
 
 					/obj/item/attachable/scope = round(scale * 4),
 					/obj/item/attachable/scope/mini = round(scale * 4),
@@ -310,6 +315,9 @@
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -367,6 +375,7 @@
 						/obj/item/weapon/gun/smg/m39 = round(scale * 15),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
+						/obj/item/weapon/gun/rifle/sx16 = round(scale * 10),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -405,6 +414,7 @@
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/rifle/sx16 = round(scale * 15),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
@@ -414,6 +424,9 @@
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
+						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
 						/obj/item/cell/lasgun/M43 = round(scale * 25),
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
@@ -493,18 +506,18 @@
 	return TRUE
 
 
-/datum/game_mode/distress/check_queen_status(queen_time)
+/datum/game_mode/distress/orphan_hivemind_collapse()
 	var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	hive.xeno_queen_timer = queen_time
-	queen_death_countdown = 0
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(!round_finished && !hive.living_xeno_ruler)
 		round_finished = MODE_INFESTATION_M_MINOR
 
 
-/datum/game_mode/distress/get_queen_countdown()
-	var/eta = (queen_death_countdown - world.time) * 0.1
+/datum/game_mode/distress/get_hivemind_collapse_countdown()
+	if(!orphan_hive_timer)
+		return
+	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 

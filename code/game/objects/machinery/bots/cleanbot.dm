@@ -122,7 +122,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 		if("oddbutton")
 			oddbutton = !oddbutton
 			to_chat(usr, "<span class='notice'>You press the weird button.</span>")
-	
+
 	updateUsrDialog()
 
 

@@ -129,13 +129,11 @@
 			if(GRAB_PASSIVE)
 				M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
 				log_combat(user, M, "slammed", "", "against \the [src]")
-				msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 				M.apply_damage(7)
 				take_damage(10)
 			if(GRAB_AGGRESSIVE)
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				log_combat(user, M, "bashed", "", "against \the [src]")
-				msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
 				if(prob(50))
 					M.knock_down(1)
 				M.apply_damage(10)
@@ -143,7 +141,6 @@
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				log_combat(user, M, "crushed", "", "against \the [src]")
-				msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
 				M.knock_down(5)
 				M.apply_damage(20)
 				take_damage(50)
@@ -234,33 +231,29 @@
 	update_icon()
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(src, direction))
-			W.update_icon()
+			INVOKE_NEXT_TICK(W, /atom/movable.proc/update_icon)
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
 /obj/structure/window/update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
-	//This spawn is here so windows get properly updated when one gets deleted.
-	spawn(2)
-		if(!src)
-			return
-		if(!is_full_window())
-			icon_state = "[basestate]"
-			return
-		if(anchored)
-			for(var/obj/structure/window/W in orange(src, 1))
-				if(W.anchored && W.density	&& W.is_full_window()) //Only counts anchored, not-destroyed fill-tile windows.
-					if(abs(x - W.x) - abs(y - W.y)) //Doesn't count windows, placed diagonally to src
-						junction |= get_dir(src, W)
-		if(opacity)
+	if(!src)
+		return
+	if(!is_full_window())
+		icon_state = "[basestate]"
+		return
+	if(anchored)
+		for(var/obj/structure/window/W in orange(src, 1))
+			if(W.anchored && W.density	&& W.is_full_window()) //Only counts anchored, not-destroyed fill-tile windows.
+				if(abs(x - W.x) - abs(y - W.y)) //Doesn't count windows, placed diagonally to src
+					junction |= get_dir(src, W)
+	if(opacity)
+		icon_state = "[basestate][junction]"
+	else
+		if(reinf)
 			icon_state = "[basestate][junction]"
 		else
-			if(reinf)
-				icon_state = "[basestate][junction]"
-			else
-				icon_state = "[basestate][junction]"
-
-		return
+			icon_state = "[basestate][junction]"
 
 /obj/structure/window/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 800)
@@ -489,33 +482,22 @@
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."
 	max_integrity = 200
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
-	var/triggered = FALSE //indicates if the shutters have already been triggered
 
-/obj/structure/window/framed/prison/reinforced/hull/Destroy()
-	spawn_shutters()
-	.=..()
+/obj/structure/window/framed/prison/reinforced/hull/Initialize()
+	. = ..()
+	AddElement(/datum/element/windowshutter)
 
-/obj/structure/window/framed/prison/reinforced/hull/proc/spawn_shutters(from_dir = 0)
-	if(triggered)
-		return
-	else
-		triggered = TRUE
-	if(!from_dir) //air escaping sound effect for original window
-		playsound(src, 'sound/machines/hiss.ogg', 50, 1)
-	for(var/direction in GLOB.cardinals)
-		if(direction == from_dir)
-			continue //doesn't check backwards
-		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
-			W.spawn_shutters(turn(direction,180))
-	var/obj/machinery/door/poddoor/shutters/mainship/pressure/P = new(get_turf(src))
-	P.density = TRUE
-	switch(junction)
-		if(4,5,8,9,12)
-			P.setDir(SOUTH)
-		else
-			P.setDir(EAST)
-	spawn(16)
-		P.close()
+// dont even ask
+/obj/structure/window/framed/prison/reinforced/hull/tyson
+	icon_state = "col_window0"
+	basestate = "col_window"
+	window_frame = /obj/structure/window_frame/colony
+
+// no really
+/obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced
+	icon_state = "col_rwindow0"
+	basestate = "col_rwindow"
+	window_frame = /obj/structure/window_frame/colony/reinforced
 
 /obj/structure/window/framed/prison/cell
 	name = "cell window"

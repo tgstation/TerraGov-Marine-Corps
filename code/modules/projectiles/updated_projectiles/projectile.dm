@@ -149,7 +149,7 @@
 	if(isnum(angle))
 		dir_angle = angle
 	else
-		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel. 
+		if(isliving(target)) //If we clicked on a living mob, use the clicked atom tile's center for maximum accuracy. Else aim for the clicked pixel.
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR(target.x) - apx), (ABS_COOR(target.y) - apy))) //Using absolute pixel coordinates.
 		else
 			dir_angle = round(Get_Pixel_Angle((ABS_COOR_OFFSET(target.x, p_x) - apx), (ABS_COOR_OFFSET(target.y, p_y) - apy)))
@@ -279,7 +279,7 @@
 	if(modulus_excess)
 		required_moves -= modulus_excess
 		stored_moves += modulus_excess
-	
+
 	if(required_moves > SSprojectiles.global_max_tick_moves)
 		stored_moves += required_moves - SSprojectiles.global_max_tick_moves
 		required_moves = SSprojectiles.global_max_tick_moves
@@ -288,7 +288,7 @@
 
 /*
 CEILING() is used on some contexts:
-1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels. 
+1) For absolute pixel locations to tile conversions, as the coordinates are read from left-to-right (from low to high numbers) and each tile occupies 32 pixels.
 So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we are on the 33th (to 64th) we are then on the second tile.
 2) For number of pixel moves, as it is counting number of full (pixel) moves required.
 */
@@ -379,24 +379,23 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				break
-			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-				last_processed_turf = turf_crossed_by
-				ammo.on_hit_turf(turf_crossed_by, src)
-				turf_crossed_by.bullet_act(src)
-				if(border_escaped_through & (NORTH|SOUTH))
-					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
-					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
-				else
-					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
-					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
-				end_of_movement = i
-				break
 			if(scan_a_turf(turf_crossed_by, border_escaped_through))
 				last_processed_turf = turf_crossed_by
 				if(border_escaped_through & (NORTH|SOUTH)) //Escapes through X.
 					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
 				else //Escapes through Y.
+					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
+				end_of_movement = i
+				break
+			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+				last_processed_turf = turf_crossed_by
+				ammo.on_hit_turf(turf_crossed_by, src)
+				if(border_escaped_through & (NORTH|SOUTH))
+					x_pixel_dist_travelled += pixel_moves_until_crossing_x_border * x_offset
+					y_pixel_dist_travelled += pixel_moves_until_crossing_x_border * y_offset
+				else
 					x_pixel_dist_travelled += pixel_moves_until_crossing_y_border * x_offset
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
@@ -436,12 +435,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		x_pixel_dist_travelled += 32 * x_offset
 		y_pixel_dist_travelled += 32 * y_offset
 		last_processed_turf = next_turf
-		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(next_turf, src)
-			next_turf.bullet_act(src)
+		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
-		if(scan_a_turf(next_turf, movement_dir))
+		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			ammo.on_hit_turf(next_turf, src)
 			end_of_movement = i
 			break
 		if(distance_travelled >= proj_max_range)
@@ -503,6 +501,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
+
+		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
+			ammo.on_hit_turf(turf_to_scan, src)
 
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
@@ -646,13 +647,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(. > hit_roll) //Hit
 		return TRUE
-	
+
 	if((hit_roll - .) < 25) //Small difference, one more chance on a random bodypart, with penalties.
 		var/new_def_zone = pick(GLOB.base_miss_chance)
 		. -= GLOB.base_miss_chance[new_def_zone]
 		if(prob(.))
 			proj.def_zone = new_def_zone
-			return TRUE 
+			return TRUE
 
 	if(!lying) //Narrow miss!
 		animatation_displace_reset(src)
@@ -664,11 +665,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/on_dodged_bullet(obj/item/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>", 
+		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
 		"<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/item/projectile/proj)
-		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>", 
+		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
 		"<span class='avoidharm'>[src] narrowly misses us!</span>", null, 4)
 
 
@@ -784,6 +785,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			shrap.embed_into(src, proj.def_zone, TRUE)
 	else
 		bullet_message(proj, feedback_flags)
+
+	return TRUE
 
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/proj)
@@ -903,30 +906,40 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		livings_list += L
 
 	if(!length(livings_list))
-		return TRUE
+		return FALSE
 
 	var/mob/living/picked_mob = pick(livings_list)
 	if(proj.projectile_hit(picked_mob))
 		picked_mob.bullet_act(proj)
-	return TRUE
+		return TRUE
+	return FALSE
 
 
-// walls can get shot and damaged, but bullets (vs energy guns) do much less.
-/turf/closed/wall/bullet_act(obj/item/projectile/P)
+// walls can get shot and damaged, but bullets do much less.
+/turf/closed/wall/bullet_act(obj/item/projectile/proj)
 	. = ..()
-	if(!.)
+	if(.)
 		return
-	var/damage = P.damage
-	if(damage < 1) return
 
-	switch(P.ammo.damage_type)
-		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
-		else return
-	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
+	var/damage
+
+	switch(proj.ammo.damage_type)
+		if(BRUTE, BURN)
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
+			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+		else
+			return FALSE
+
+	if(damage < 1)
+		return FALSE
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		current_bulletholes++
+
+	if(prob(30))
+		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
 	take_damage(damage)
-	if(prob(30 + damage)) P.visible_message("<span class='warning'>[src] is damaged by [P]!</span>")
-	return 1
+	return TRUE
 
 
 //----------------------------------------------------------
@@ -961,43 +974,40 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/proc/bullet_message(obj/item/projectile/proj, feedback_flags)
 	if(!proj.firer)
 		log_message("SOMETHING?? shot [key_name(src)] with a [proj]", LOG_ATTACK)
-		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [proj])")
 		return BULLET_MESSAGE_NO_SHOOTER
 	var/turf/T = get_turf(proj.firer)
-	log_combat(proj.firer, src, "shot", proj)
-	msg_admin_attack("[ADMIN_TPMONTY(proj.firer)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
+	log_combat(proj.firer, src, "shot", proj, "in [AREACOORD(T)]")
 	if(ishuman(proj.firer))
-		SEND_SOUND(proj.firer, get_sfx("ballistic hitmarker"))
 		return BULLET_MESSAGE_HUMAN_SHOOTER
 	return BULLET_MESSAGE_OTHER_SHOOTER
 
 
 /mob/living/carbon/human/bullet_message(obj/item/projectile/proj, feedback_flags)
 	. = ..()
-	var/onlooker_feedback = "[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
-	var/victim_feedback
+	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		victim_feedback = "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
+		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
-		victim_feedback = "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback += "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
-		victim_feedback += " Your armor deflects the impact!"
+		victim_feedback += "Your armor deflects the impact!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
-		victim_feedback += " Your armor absorbs the impact!"
-	else 
+		victim_feedback += "Your armor absorbs the impact!"
+	else
 		if(feedback_flags & BULLET_FEEDBACK_PEN)
-			victim_feedback += " Your armor was penetrated!"
+			victim_feedback += "Your armor was penetrated!"
 		if(feedback_flags & BULLET_FEEDBACK_SHRAPNEL)
-			victim_feedback = " The impact sends <b>shrapnel</b> into the wound!"
+			victim_feedback += "The impact sends <b>shrapnel</b> into the wound!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
-		victim_feedback += " You burst into <b>flames!!</b> Stop drop and roll!"
-		onlooker_feedback += " [p_they(TRUE)] burst into flames!"
+		victim_feedback += "You burst into <b>flames!!</b> Stop drop and roll!"
+		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
-	visible_message("<span class='danger'>[onlooker_feedback]</span>",
-	"<span class='highdanger'>[victim_feedback]", null, 4)
+	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	"<span class='highdanger'>[victim_feedback.Join(" ")]", null, 4)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")

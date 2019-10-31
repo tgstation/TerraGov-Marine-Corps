@@ -265,7 +265,6 @@
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
@@ -546,19 +545,26 @@
 	updatehealth()
 
 /obj/flamer_fire/proc/updateicon()
-	if(burnlevel < 15)
-		color = "#c1c1c1" //make it darker to make show its weaker.
+	var/light_color = "LIGHT_COLOR_LAVA"
+	var/light_intensity = 3
+	switch(flame_color)
+		if("red")
+			light_color = LIGHT_COLOR_LAVA
+		if("blue")
+			light_color = LIGHT_COLOR_CYAN
+		if("green")
+			light_color = LIGHT_COLOR_GREEN
 	switch(firelevel)
 		if(1 to 9)
 			icon_state = "[flame_color]_1"
-			set_light(2)
+			light_intensity = 2
 		if(10 to 25)
 			icon_state = "[flame_color]_2"
-			set_light(4)
+			light_intensity = 4
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
-			set_light(6)
-
+			light_intensity = 6
+	set_light(light_intensity, null, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc

@@ -15,7 +15,7 @@
 	if (..(C))
 		C.network = network
 
-/obj/item/circuitboard/computer/security/deconstruct(obj/machinery/computer/security/C)
+/obj/item/circuitboard/computer/security/decon(obj/machinery/computer/security/C)
 	if (..(C))
 		network = C.network
 
@@ -95,7 +95,7 @@
 	if (..(C))
 		C.frequency = frequency
 
-/obj/item/circuitboard/computer/air_management/deconstruct(obj/machinery/computer/general_air_control/C)
+/obj/item/circuitboard/computer/air_management/decon(obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		frequency = C.frequency
 
