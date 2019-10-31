@@ -74,6 +74,16 @@
 	updateUsrDialog()
 	attack_hand(user)
 
+/obj/machinery/computer/card/attack_hand(mob/living/user)
+	if(user.wear_id)
+		return ..()
+	var/obj/item/card/id/newid = new(user)
+	newid.access = list(ACCESS_IFF_MARINE)
+	newid.assignment = "Passenger"
+	newid.registered_name = user.real_name
+
+	user.equip_to_slot(newid, SLOT_WEAR_ID)
+
 /*
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
 	var/data[0]
