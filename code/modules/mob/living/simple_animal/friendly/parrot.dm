@@ -90,7 +90,7 @@
 
 /mob/living/simple_animal/parrot/Stat()
 	. = ..()
-	if(statpanel("Status"))
+	if(statpanel("Game"))
 		stat("Held Item", held_item)
 
 

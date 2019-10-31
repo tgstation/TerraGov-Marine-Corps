@@ -119,8 +119,8 @@
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 			A.state = 4
 			A.icon_state = "4"
-
-		M.deconstruct(src)
+			
+		M.decon(src)
 		qdel(src)
 
 	else if(isxeno(user))

@@ -136,7 +136,7 @@
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
-/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
+/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = TRUE)
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
@@ -144,12 +144,10 @@
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
-	if(!affecting || (random_location && !set_location)) //No organ, just get a random one
+	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("head"))
+	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
-	if(!affecting) //Still nothing??
-		affecting = get_limb("chest") //Gotta have a torso?!
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -189,7 +187,6 @@
 		log_combat(X, src, log)
 
 	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-
 	var/armor_block = run_armor_check(affecting, "melee")
 
 	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.

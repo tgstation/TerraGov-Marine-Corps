@@ -202,3 +202,19 @@
 /obj/machinery/door/poddoor/shutters/mainship/corporate
 	name = "\improper Privacy Shutters"
 	id = "cl_shutters"
+
+/obj/machinery/door/poddoor/shutters/mainship/corporate
+	name = "\improper Privacy Shutters"
+	id = "cl_shutters"
+
+/obj/machinery/door/poddoor/shutters/mainship/cell
+	name = "\improper Containment Cell"
+	id = "Containment Cell"
+
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell1
+	name = "\improper Containment Cell 1"
+	id = "Containment Cell 1"
+
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell2
+	name = "\improper Containment Cell 2"
+	id = "Containment Cell 2"

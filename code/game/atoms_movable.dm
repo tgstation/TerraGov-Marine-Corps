@@ -193,7 +193,8 @@
 	SHOULD_CALL_PARENT(1)
 	if(!A)
 		CRASH("Bump was called with no argument.")
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A) & COMPONENT_BUMP_RESOLVED)
+		return TRUE
 	. = ..()
 	if(throwing)
 		throw_impact(A)

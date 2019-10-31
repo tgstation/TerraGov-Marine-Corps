@@ -8,7 +8,7 @@
 
 /obj/screen/alien/nightvision
 	name = "toggle night vision"
-	icon_state = "nightvision1"
+	icon_state = "nightvision2"
 	screen_loc = ui_alien_nightvision
 
 /obj/screen/alien/nightvision/Click()

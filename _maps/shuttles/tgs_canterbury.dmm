@@ -105,24 +105,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/guncabinet/mp_armory{
-	req_one_access_txt = "22;2;7"
-	},
-/obj/item/smartgun_powerpack/fancy,
-/obj/item/weapon/gun/smartgun,
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/weapon/gun/flamer,
-/obj/item/ammo_magazine/flamer_tank,
-/obj/item/ammo_magazine/pistol/ap,
-/obj/item/ammo_magazine/pistol/ap,
-/obj/item/ammo_magazine/smg/m39/ap,
-/obj/item/ammo_magazine/smg/m39/ap,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/pistol/m4a3,
+/obj/structure/closet/secure_closet/guncabinet/canterbury,
 /obj/machinery/firealarm{
 	dir = 1
 	},

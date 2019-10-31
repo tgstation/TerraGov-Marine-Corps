@@ -3,10 +3,8 @@
 	set desc = "Check the status of your current hive."
 	set category = "Alien"
 
-	if(isxenoqueen(src) && anchored)
-		check_hive_status(src, anchored)
-	else
-		check_hive_status(src)
+	check_hive_status(src)
+
 
 /proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
@@ -29,14 +27,16 @@
 
 	return xenoinfo
 
-/proc/check_hive_status(mob/living/carbon/xenomorph/user, anchored = FALSE)
+/proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
-	var/dat = "<html><head><title>Hive Status</title></head><body>"
+	var/dat = "<br>"
 
 	var/datum/hive_status/hive
-	if(istype(user) && user.hive)
-		hive = user.hive
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(xeno_user.hive)
+			hive = xeno_user.hive
 	else
 		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
@@ -87,8 +87,10 @@
 		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
-	dat += "</table></body>"
-	usr << browse(dat, "window=roundstatus;size=600x600")
+	dat += "</table>"
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 600, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 //Send a message to all xenos.
@@ -110,7 +112,7 @@
 /mob/living/carbon/xenomorph/Stat()
 	. = ..()
 
-	if(!statpanel("Stats"))
+	if(!statpanel("Game"))
 		return
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))

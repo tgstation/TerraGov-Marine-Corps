@@ -167,7 +167,7 @@
 		var/obj/item/obj = affected.implants[1]
 		user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool].</span>", \
 		"<span class='notice'>You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].</span>")
-		affected.implants -= obj
+		obj.unembed_ourself()
 
 		obj.loc = get_turf(target)
 		if(istype(obj,/obj/item/implant))

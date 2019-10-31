@@ -12781,12 +12781,10 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aHn" = (
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/highpower,
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aHo" = (
@@ -15030,12 +15028,10 @@
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
 "aNC" = (
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/highpower,
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aND" = (
@@ -15245,11 +15241,7 @@
 	},
 /area/ice_colony/surface/storage_unit/telecomms)
 "aOi" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/weapon/gun/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
-/obj/item/ammo_magazine/pistol/highpower,
+/obj/structure/closet/secure_closet/guncabinet/highpower,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command/crisis)
 "aOj" = (
@@ -18907,9 +18899,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "aXu" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/storage/pouch/magazine/large/pmc_m39,
-/obj/item/weapon/gun/smg/m39,
+/obj/structure/closet/secure_closet/guncabinet/pmc_m39,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -18931,11 +18921,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aXy" = (
-/obj/structure/closet/secure_closet/guncabinet,
-/obj/item/storage/pouch/magazine/large/pmc_m39,
-/obj/item/ammo_magazine/smg/m39/ap,
-/obj/item/ammo_magazine/smg/m39/ap,
-/obj/item/weapon/gun/smg/m39,
+/obj/structure/closet/secure_closet/guncabinet/pmc_m39,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},

@@ -374,14 +374,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "smg_empty"
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 30
+	damage = 23
 	accurate_range = 5
 	damage_falloff = 1
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 20
+	damage = 15
 	penetration = 40
 
 /datum/ammo/bullet/smg/ppsh
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 6
-	damage = 55
+	damage = 50
 	scatter = -15
 	penetration = 30
 
@@ -443,9 +443,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC
-	damage = 50
+	damage = 35
 	accuracy = -10
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	damage = 30
-	penetration = 50
+	penetration = 30
 
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
@@ -590,6 +590,62 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/spread/masterkey
 	damage = 30
 
+/datum/ammo/bullet/shotgun/sx16_buckshot
+	name = "shotgun buckshot shell"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 10
+	accuracy_var_high = 10
+	max_range = 10
+	damage = 40
+	damage_falloff = 2
+
+/datum/ammo/bullet/shotgun/sx16_buckshot/spread
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 10
+	damage = 30
+	damage_falloff = 2
+
+/datum/ammo/bullet/shotgun/sx16_flechette
+	name = "shotgun flechette shell"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 8
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 15
+	damage = 25
+	damage_falloff = 0.5
+	penetration = 25
+
+/datum/ammo/bullet/shotgun/sx16_flechette/spread
+	name = "additional flechette"
+	icon_state = "flechette"
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 15
+	damage = 25
+	damage_falloff = 0.5
+	penetration = 25
+
+/datum/ammo/bullet/shotgun/sx16_slug
+	name = "shotgun slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 3
+	max_range = 15
+	damage = 40
+	penetration = 20
+
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/item/projectile/P)
+	staggerstun(M, P, slowdown = 1, knockback = 1)
 
 /*
 //================================================
@@ -921,7 +977,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/energy/lasgun/M43/spread
 	name = "additional laser blast"
-	icon_state = "laser"
+	icon_state = "laser2"
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
@@ -930,6 +986,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 35
 	damage_falloff = 10
 	penetration = 0
+
+/datum/ammo/energy/lasgun/pulsebolt
+	name = "pulse bolt"
+	icon_state = "pulse2"
+	hud_state = "pulse"
+	damage = 85 // this is gotta hurt...
+	max_range = 40
+	penetration = 100
 
 /*
 //================================================

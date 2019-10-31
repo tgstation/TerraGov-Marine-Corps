@@ -22,17 +22,17 @@
 
 /mob/Stat()
 	. = ..()
-
-	if(statpanel("Stats"))
+	if(statpanel("Status"))
 		if(client)
 			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
+
+	if(statpanel("Game"))
 		if(GLOB.round_id)
 			stat("Round ID: [GLOB.round_id]")
 		stat("Operation Time: [worldtime2text()]")
 		stat("Current Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]")
 		stat("Current Ship: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]")
 		stat("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
-
 
 	if(client?.holder?.rank?.rights)
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
@@ -65,7 +65,6 @@
 				for(var/i in GLOB.sdql2_queries)
 					var/datum/SDQL2_query/Q = i
 					Q.generate_stat()
-
 
 	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))
@@ -370,7 +369,7 @@
 	if(prefs.lastchangelog != GLOB.changelog_hash)
 		prefs.lastchangelog = GLOB.changelog_hash
 		prefs.save_preferences()
-		winset(src, "infowindow.changelog", "background-color=none;font-style=;")
+		winset(src, "infowindow.changelog", "font-style=;")
 
 /mob/Topic(href, href_list)
 	. = ..()
@@ -450,7 +449,7 @@
 		log_combat(src, M, "grabbed")
 
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] [((ishuman(src) && ishuman(M)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"

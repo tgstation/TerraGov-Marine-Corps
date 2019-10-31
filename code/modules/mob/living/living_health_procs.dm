@@ -153,6 +153,9 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	GLOB.dead_xeno_list -= src
 
 /mob/living/proc/revive()
+	for(var/i in embedded_objects)
+		var/obj/item/embedded = i
+		embedded.unembed_ourself()
 
 	// shut down various types of badness
 	setToxLoss(0)

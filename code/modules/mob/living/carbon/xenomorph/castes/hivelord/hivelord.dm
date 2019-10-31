@@ -48,5 +48,5 @@
 /mob/living/carbon/xenomorph/hivelord/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, "Active Tunnel Sets: [tunnels.len * 0.5] / [HIVELORD_TUNNEL_SET_LIMIT]")
