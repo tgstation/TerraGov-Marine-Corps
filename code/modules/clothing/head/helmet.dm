@@ -196,7 +196,7 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 4
+	storage_slots = 3
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
@@ -205,7 +205,7 @@
 		/obj/item/ammo_magazine/pistol)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 4
+	max_storage_space = 3
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
