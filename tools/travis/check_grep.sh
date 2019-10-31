@@ -57,5 +57,18 @@ if grep -i 'nanotransen' _maps/**/*.dmm; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
     st=1
 fi;
+if ls _maps/*.json | grep -P "[A-Z]"; then
+    echo "Uppercase in a map json detected, these must be all lowercase."
+	st=1
+fi;
+for json in _maps/*.json
+do
+    filename="_maps/$(jq -r '.map_path' $json)/$(jq -r '.map_file' $json)"
+    if [ ! -f $filename ]
+    then
+        echo "found invalid file reference to $filename in _maps/$json"
+        st=1
+    fi
+done
 
 exit $st

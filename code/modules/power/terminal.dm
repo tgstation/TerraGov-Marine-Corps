@@ -78,6 +78,7 @@
 	new /obj/item/stack/cable_coil(get_turf(src), 10)
 	user.visible_message("<span class='notice'>[user] removes [src]'s wiring and terminal.</span>",
 			"<span class='notice'>You remove [src]'s wiring and terminal.</span>")
-	qdel(src)
-
+	
 	. = TRUE
+
+	return ..()

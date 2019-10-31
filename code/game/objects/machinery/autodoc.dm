@@ -528,8 +528,7 @@
 									break
 								if(!is_type_in_list(I,known_implants))
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									S.limb_ref.implants -= I
-									qdel(I)
+									I.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
 							close_encased(occupant, S.limb_ref)
 						if(!surgery)

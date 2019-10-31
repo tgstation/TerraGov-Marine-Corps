@@ -5,8 +5,22 @@
 /obj/item/cell/Initialize()
 	. = ..()
 	charge = maxcharge
+	if(self_recharge)
+		START_PROCESSING(SSobj, src)
 
 	update_icon()
+
+/obj/item/cell/Destroy()
+	if(self_recharge)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/cell/process()
+	if(self_recharge)
+		if(world.time >= last_use + charge_delay)
+			give(charge_amount)
+	else
+		return PROCESS_KILL
 
 /obj/item/cell/update_icon()
 	cut_overlays()
@@ -28,6 +42,7 @@
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
+	last_use = world.time
 
 	if(charge < amount)
 		return FALSE

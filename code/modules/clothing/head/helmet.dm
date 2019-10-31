@@ -301,11 +301,18 @@
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
-	desc = "A custom helmet designed for TGMC Scouts."
+	desc = "A custom helmet designed for TGMC Scouts. Made of light weight, experimental materials to provide great protection while also having less weight than the standard helmet."
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
+/obj/item/clothing/head/helmet/marine/sniper
+	name = "\improper M3-M helmet"
+	icon_state = "sniper_helmet"
+	desc = "A custom helmet designed for TGMC Marksmen. Fitted with a host of sensors and analyzers to grasp all aspects of the battlefield."
+	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"

@@ -3429,13 +3429,7 @@
 /turf/open/floor,
 /area/whiskey_outpost)
 "kk" = (
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "kl" = (
@@ -3464,19 +3458,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "kp" = (
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "kq" = (

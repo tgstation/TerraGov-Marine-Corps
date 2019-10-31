@@ -70,7 +70,7 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		var/eta_status = SSevacuation?.get_status_panel_eta()
 		if(eta_status)
 			stat("Evacuation in:", eta_status)
@@ -873,7 +873,7 @@
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
-	if(!do_mob(usr, src, 6 SECONDS, extra_checks = CALLBACK(usr, .proc/incapacitated)))
+	if(!do_mob(usr, src, 6 SECONDS))
 		to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
 		return
 

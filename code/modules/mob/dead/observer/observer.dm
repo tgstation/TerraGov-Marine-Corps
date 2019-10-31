@@ -271,7 +271,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
 			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
@@ -734,7 +734,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set name = "Show Hive Status"
 	set desc = "Check the status of the hive."
 
-	check_hive_status()
+	check_hive_status(usr)
 
 
 /mob/dead/observer/verb/view_manifest()

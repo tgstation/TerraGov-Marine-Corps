@@ -262,7 +262,7 @@
 /mob/living/carbon/monkey/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, text("Intent: []", a_intent))
 		stat(null, text("Move Mode: []", m_intent))
 

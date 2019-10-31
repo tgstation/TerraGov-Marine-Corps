@@ -414,7 +414,7 @@
 		return FALSE
 	living_xeno_queen = null
 	if(!xeno_queen_timer)
-		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER)
+		xeno_queen_timer = addtimer(CALLBACK(src, .proc/end_queen_death_timer), QUEEN_DEATH_TIMER, TIMER_STOPPABLE)
 
 
 /mob/living/carbon/xenomorph/larva/proc/burrow()

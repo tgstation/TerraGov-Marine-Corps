@@ -26,6 +26,13 @@
 	icon_state = "fmode_burst_auto"
 
 
+/atom/movable/vis_obj/action/bump_attack_active
+	icon_state = "bumpattack_on"
+
+/atom/movable/vis_obj/action/bump_attack_inactive
+	icon_state = "bumpattack_off"
+
+
 /atom/movable/vis_obj/effect/muzzle_flash
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "muzzle_flash"

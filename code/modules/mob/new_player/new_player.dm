@@ -84,7 +84,7 @@
 	if(!SSticker)
 		return
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
