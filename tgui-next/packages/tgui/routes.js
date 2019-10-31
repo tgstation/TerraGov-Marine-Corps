@@ -9,6 +9,7 @@ import { BorgPanel } from './interfaces/BorgPanel';
 import { BrigTimer } from './interfaces/BrigTimer';
 import { Canister } from './interfaces/Canister';
 import { Cargo } from './interfaces/Cargo';
+import { CAS } from './interfaces/CAS';
 import { ChemDispenser } from './interfaces/ChemDispenser';
 import { Crayon } from './interfaces/Crayon';
 import { Cryo } from './interfaces/Cryo';
@@ -70,6 +71,10 @@ const ROUTES = {
   },
   cargo: {
     component: () => Cargo,
+    scrollable: true,
+  },
+  cas: {
+    component: () => CAS,
     scrollable: true,
   },
   chem_dispenser: {
