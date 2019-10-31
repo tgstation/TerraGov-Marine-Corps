@@ -75,14 +75,17 @@
 	attack_hand(user)
 
 /obj/machinery/computer/card/attack_hand(mob/living/user)
-	if(user.wear_id)
+	if(!ishuman(user))
 		return ..()
-	var/obj/item/card/id/newid = new(user)
+	var/mob/living/carbon/human/H = user
+	if(H.wear_id)
+		return ..()
+	var/obj/item/card/id/newid = new(H)
 	newid.access = list(ACCESS_IFF_MARINE)
 	newid.assignment = "Passenger"
-	newid.registered_name = user.real_name
+	newid.registered_name = H.real_name
 
-	user.equip_to_slot(newid, SLOT_WEAR_ID)
+	H.equip_to_slot(newid, SLOT_WEAR_ID)
 
 /*
 /obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", datum/nanoui/ui = null, force_open = 1)
