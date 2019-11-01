@@ -258,7 +258,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double
 	name = "double barrel shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 Gauge Special slugs, but can only hold 2 at a time."
+	desc = "A double barreled shotgun of archaic, but sturdy design. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
@@ -610,11 +610,17 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a shell to unlock it.</b></span>")
+	to_chat(user,"<span class='warning'><b>[src] bolt has already been worked, locking the bolt; fire or unload a round to unlock it.</b></span>")
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/bolt/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] bolt.</b></span>")
+
+/obj/item/weapon/gun/shotgun/pump/bolt/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You open [src]'s breechloader, ejecting the cartridge.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
@@ -655,12 +661,17 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_fail_notice(mob/user)
 	playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
-	to_chat(user,"<span class='warning'><b>[src] lever has already been worked, locking the lever; fire or unload a shell to unlock it.</b></span>")
+	to_chat(user,"<span class='warning'><b>[src] lever has already been worked, locking the lever; fire or unload a round to unlock it.</b></span>")
 	recent_notice = world.time
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
 
+/obj/item/weapon/gun/shotgun/pump/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You pull [src]'s lever downward, ejecting the cartridge.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 Lever Action Shotgun"

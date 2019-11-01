@@ -605,7 +605,7 @@
 	updatehealth()
 
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
-	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects you from the flames.</span>")
+	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects us from the flames.</span>")
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)

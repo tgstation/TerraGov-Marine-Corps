@@ -276,7 +276,7 @@
 
 /obj/item/weapon/gun/smg/uzi
 	name = "\improper GAL9 submachinegun"
-	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Turn on burst mode for maximum firepower."
+	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire mode to full auto for maximum firepower."
 	icon_state = "uzi"
 	item_state = "uzi"
 	caliber = "9x19mm Parabellum" //codex
