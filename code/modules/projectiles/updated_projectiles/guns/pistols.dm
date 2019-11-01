@@ -185,7 +185,7 @@
 
 /obj/item/weapon/gun/pistol/heavy
 	name = "\improper Desert Eagle"
-	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>'Peace through superior firepower.'</i>"
+	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower.\"</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
 	muzzleflash_iconstate = "muzzle_flash_medium"

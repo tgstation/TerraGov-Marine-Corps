@@ -76,7 +76,7 @@
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
-	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."
+	desc = "An advanced stun device capable of firing bolts of ionized electricity. Used for nonlethal takedowns."
 	icon_state = "taser"
 	item_state = "taser"
 	muzzle_flash = null //TO DO.

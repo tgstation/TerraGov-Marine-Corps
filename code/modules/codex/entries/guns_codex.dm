@@ -132,7 +132,7 @@
 		an energy weapon by placing it in a wall-mounted or table-mounted charger such as those found in Medical or around the \
 		place. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
 		which can also be recharged at chargers. Additionally, most energy weapons can go straight through windows and hit whatever \
-		is on the other side, and are hitscan, making them accurate and useful against distant targets. \
+		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
 		<br>"
 	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
 		especially made popular with the rise of the xenomorph threat in 2414. Energy weapons are usually famed by private security firms \

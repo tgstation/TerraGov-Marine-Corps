@@ -328,8 +328,8 @@
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper AK-47K battle carbine"
-	desc = "A crude, cheaply produced battle carbine capable of automatic fire. Commonly found in the hands of criminals or mercenaries."
+	name = "\improper AK-47U battle carbine"
+	desc = "A crude, cheaply produced battle carbine capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
 	icon_state = "mar30"
 	item_state = "mar30"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
