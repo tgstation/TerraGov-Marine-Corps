@@ -254,7 +254,7 @@
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A pulse rifle"
-	desc = "An older design of the pulse rifle commonly used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
+	desc = "An older design of the pulse rifle used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
@@ -328,8 +328,8 @@
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper MAR-30 battle carbine"
-	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
+	name = "\improper AK-47K battle carbine"
+	desc = "A crude, cheaply produced battle carbine capable of automatic fire. Commonly found in the hands of criminals or mercenaries."
 	icon_state = "mar30"
 	item_state = "mar30"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
@@ -480,7 +480,7 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition."
+	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of divisions in the UPP army."
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -509,6 +509,7 @@
 
 /obj/item/weapon/gun/rifle/type71/carbine
 	name = "\improper Type 71 pulse carbine"
+	desc = "A carbine variant of the Type 71 pulse rifle for quicker aiming. A surpression model in addition to the main rifle is in progress."
 	icon_state = "type71c"
 	item_state = "type71c"
 	wield_delay = 0.2 SECONDS //Carbine is more lightweight
@@ -534,7 +535,7 @@
 
 /obj/item/weapon/gun/rifle/sx16
 	name = "\improper SX-16 automatic shotgun"
-	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal"
+	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues."
 	icon_state = "sx16"
 	item_state = "sx16"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'

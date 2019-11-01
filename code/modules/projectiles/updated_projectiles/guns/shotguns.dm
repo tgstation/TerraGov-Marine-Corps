@@ -221,7 +221,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate."
+	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate and a pre-attached grenade launcher."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -536,7 +536,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //Based off of the KSG
 /obj/item/weapon/gun/shotgun/pump/ksg
 	name = "\improper Kronos pump shotgun"
-	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity"
+	desc = "A peculiarly designed pump shotgun, featuring a massive magazine well, a compact bullpup design and military attachment compatablity. This pump shotgun is issued for counter-terrorist units and unlicensed private military contractors."
 	icon_state = "ksg"
 	item_state = "ksg"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_small.ogg'
@@ -571,7 +571,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
 	name = "\improper Mosin Nagant rifle"
-	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already."
+	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
@@ -621,7 +621,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever
 	name = "\improper Lever Action rifle"
-	desc = "A 44 magnum lever action rifle with side loading port."
+	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
 	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'//I like how this one sounds.

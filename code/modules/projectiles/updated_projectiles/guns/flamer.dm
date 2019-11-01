@@ -16,6 +16,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
+	general_codex_key = "flame weapons"
 
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
@@ -604,7 +605,7 @@
 	updatehealth()
 
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
-	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
+	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects you from the flames.</span>")
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
@@ -613,6 +614,6 @@
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
 	if(charge)
 		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
+	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")

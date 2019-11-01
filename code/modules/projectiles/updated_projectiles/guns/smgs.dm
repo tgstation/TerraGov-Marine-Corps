@@ -179,7 +179,7 @@
 
 /obj/item/weapon/gun/smg/mp7
 	name = "\improper MP27 submachinegun"
-	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms."
+	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
 	icon_state = "mp7"
 	item_state = "mp7"
 	caliber = "4.6x30mm" //codex
@@ -241,7 +241,7 @@
 
 /obj/item/weapon/gun/smg/ppsh
 	name = "\improper PPSh-17b submachinegun"
-	desc = "An unauthorized copy of a replica of a prototype submachinegun developed in a third world shit hole somewhere."
+	desc = "A replica of a 20th century USSR model submachinegun that many terrorist organizations had copied all over the years. Despite its small-hitting firepower, its reliablity, extreme longevity and high firepower rate proves useful for the hands of the user."
 	icon_state = "ppsh"
 	item_state = "ppsh"
 	caliber = "7.62x25mm" //codex
