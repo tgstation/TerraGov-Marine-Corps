@@ -131,7 +131,7 @@
 	mechanics_text = "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
 		an energy weapon by placing it in a wall-mounted or table-mounted charger such as those found in Medical or around the \
 		place. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
-		which can also be recharged at chargers. Additionally, most energy weapons can go straight through windows and hit whatever \
+		which can also be recharged at chargers. Most energy weapons' projectiles can go straight through windows and hit whatever \
 		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
 		<br>"
 	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
