@@ -37,7 +37,7 @@
 /mob/living/carbon/xenomorph/larva/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 

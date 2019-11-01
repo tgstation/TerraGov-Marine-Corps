@@ -12,7 +12,7 @@
 	melee_damage = 25
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1
@@ -61,7 +61,7 @@
 	melee_damage = 35
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 35
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -86,7 +86,7 @@
 	melee_damage = 40
 
 	// *** Tackle *** //
-	tackle_damage = 53
+	tackle_damage = 40
 
 	// *** Plasma *** //
 	plasma_max = 260
@@ -111,7 +111,7 @@
 	melee_damage = 45
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 45
 
 	// *** Plasma *** //
 	plasma_max = 270

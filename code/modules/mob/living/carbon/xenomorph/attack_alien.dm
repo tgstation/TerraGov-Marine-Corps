@@ -6,9 +6,6 @@
 
 //#define DEBUG_ATTACK_ALIEN
 
-/mob/living/carbon/xenomorph/proc/reset_critical_hit()
-	critical_proc = FALSE
-
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled)
 		return FALSE
@@ -58,8 +55,6 @@
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
 	var/tackle_pain = X.xeno_caste.tackle_damage
-	if(X.frenzy_aura)
-		tackle_pain = tackle_pain * (1 + (0.05 * X.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
@@ -141,7 +136,7 @@
 /mob/living/proc/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
 	return
 
-/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE)
+/mob/living/carbon/get_xeno_slash_zone(mob/living/carbon/xenomorph/X, set_location = FALSE, random_location = FALSE, no_head = FALSE, ignore_destroyed = TRUE)
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
@@ -149,12 +144,10 @@
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
-	if(!affecting || (random_location && !set_location)) //No organ, just get a random one
+	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
 		affecting = get_limb(ran_zone(null, 0))
-	if(no_head && affecting == get_limb("head"))
+	if(!affecting || (no_head && affecting == get_limb("head")) || (ignore_destroyed && !affecting.is_usable()))
 		affecting = get_limb("chest")
-	if(!affecting) //Still nothing??
-		affecting = get_limb("chest") //Gotta have a torso?!
 	return affecting
 
 /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
@@ -163,7 +156,7 @@
 
 	// copypasted from attack_alien.dm
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-	var/damage = X.xeno_caste.melee_damage + FRENZY_DAMAGE_BONUS(X)
+	var/damage = X.xeno_caste.melee_damage
 
 	X.do_attack_animation(src)
 
@@ -172,26 +165,6 @@
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
 	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
 	var/log = "slashed"
-	//Check for a special bite attack
-	if(prob(X.xeno_caste.bite_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
-		damage *= 1.5
-		attack_sound = "alien_bite"
-		attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [X]'s sharp teeth!</span>"
-		attack_message2 = "<span class='danger'>We viciously rend \the [src] with our teeth!</span>"
-		log = "bit"
-		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
-
-	//Check for a special bite attack
-	if(prob(X.xeno_caste.tail_chance) && !X.critical_proc && !no_crit && !X.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
-		damage *= 1.25
-		attack_flick = "tail"
-		attack_sound = 'sound/weapons/alien_tail_attack.ogg'
-		attack_message1 = "<span class='danger'>\The [src] is suddenly impaled by \the [X]'s sharp tail!</span>"
-		attack_message2 = "<span class='danger'>We violently impale \the [src] with our tail!</span>"
-		log = "tail-stabbed"
-		X.critical_proc = TRUE
-		addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/proc/reset_critical_hit), X.xeno_caste.rng_min_interval)
 
 	//Somehow we will deal no damage on this attack
 	if(!damage)
@@ -214,7 +187,6 @@
 		log_combat(X, src, log)
 
 	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-
 	var/armor_block = run_armor_check(affecting, "melee")
 
 	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.

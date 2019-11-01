@@ -392,11 +392,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
-#define FRENZY_DAMAGE_BONUS(Xenomorph) ((Xenomorph.frenzy_aura * 2))
-
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
-#define QUEEN_DEATH_TIMER 300 // 5 minutes
+#define QUEEN_DEATH_TIMER 5 MINUTES
 #define DEFENDER_CRESTDEFENSE_ARMOR 30
 #define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
 #define DEFENDER_FORTIFY_ARMOR 60
@@ -438,7 +436,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
-#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+#define XENO_TACKLE_ARMOR_PEN	0.8 //Actual armor pen is 1 - this value.
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -474,16 +472,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 
 //Ravager defines:
-#define RAVAGER_MAX_RAGE 50
-#define RAV_RAGE_ON_HIT					7.5 //+7.5 rage whenever we slash
-#define RAV_CHARGESPEED					100
-#define RAV_CHARGESTRENGTH				3
-#define RAV_CHARGEDISTANCE				7
+#define RAV_CHARGESPEED					2
+#define RAV_CHARGESTRENGTH				2
+#define RAV_CHARGEDISTANCE				4
 #define RAV_CHARGE_TYPE					3
-#define RAV_RAVAGE_DAMAGE_MULITPLIER	0.25 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
-#define RAV_RAVAGE_RAGE_MULITPLIER		0.03 //+25% +3% bonus damage per point of Rage.relative to base melee damage.
-#define RAV_DAMAGE_RAGE_MULITPLIER		0.25  //Gain Rage stacks equal to 25% of damage received.
-#define RAV_HANDLE_CHARGE				1
 
 //crusher defines
 #define CRUSHER_STOMP_LOWER_DMG			80
@@ -583,7 +575,3 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_NEST		"nest"
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
-
-// Xeno Cooldowns
-// -- Ravager
-#define COOLDOWN_RAV_NEXT_DAMAGE	"next_damage"

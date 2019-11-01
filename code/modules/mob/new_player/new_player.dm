@@ -42,15 +42,16 @@
 		return
 
 	var/output = "<div align='center'>"
-	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A></p>"
+	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
+	output +="<hr>"
+	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(src)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
+	output +="<hr>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 	else
-		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
 		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
-
-	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 
 	if(!IsGuestKey(key))
 		if(SSdbcore.Connect())
@@ -73,7 +74,7 @@
 
 	output += "</div>"
 
-	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>New Player Options</div>", 240, 300)
+	var/datum/browser/popup = new(src, "playersetup", "<div align='center'>Welcome to TGMC[SSmapping?.configs ? " - [SSmapping.configs[SHIP_MAP].map_name]" : ""]</div>", 300, 375)
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(FALSE)
@@ -84,7 +85,7 @@
 	if(!SSticker)
 		return
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
@@ -244,6 +245,14 @@
 		if("manifest")
 			ViewManifest()
 
+		if("lore")
+			ViewLore()
+
+		if("marines")
+			ViewMarines()
+
+		if("aliens")
+			ViewAliens()
 
 		if("SelectedJob")
 			if(!GLOB.enter_allowed)
@@ -378,6 +387,35 @@
 	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 400, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+/mob/new_player/proc/ViewLore()
+	var/output = "<div align='center'>"
+	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A>"
+	output += "</div>"
+
+	var/datum/browser/popup = new(src, "lore", "<div align='center'>Current Year: 2415</div>", 240, 300)
+	popup.set_content(output)
+	popup.open(FALSE)
+
+/mob/new_player/proc/ViewMarines()
+	var/output = "<div align='center'>"
+	output += "<p><i>The <b>TerraGov Marine Corps'</b> mission is to enforce space law for the purpose of defending Terra's orbit as well as other solar colonies around the galaxy under the conflict of the Independent Colonial Confederation and the intelligent xenomorph threat. \nThe TGMC is composed by willing men and women from all kinds of social strata, hailing from all across the TerraGov systems. \nAs the vessel approaches to the ordered location on space, the cryostasis pods deactivate and awake you from your long-term stasis. Knowing that it's one of those days again, you hope that you'll make this out alive...</i></p>"
+	output += "</div>"
+
+	var/datum/browser/popup = new(src, "marines", "<div align='center'>TerraGov Marine Corps</div>", 480, 280)
+	popup.set_content(output)
+	popup.open(FALSE)
+
+/mob/new_player/proc/ViewAliens()
+	var/output = "<div align='center'>"
+	output += "<p><i>Hailing from one of many unknown planets and other unlisted habitats, the <b>xenomorph threat</b> remains at large and still unclear. Extremely dangerous extraterrestrial lifeforms, part of the hive under the Queen Mother, had caught the TGMC and NT colonies off-guard during their discovery in 2414. \nThey are divided into castes, each with their specialized roles equivalent to a traditional squad member in a human force, thanks to the xenomorph's lifecycle. \nAfter days of ravaging the current area, a metal hive was sighted by the Queen Mother and transported you on the ground. With your intent to spread the hive is in motion, you and your fellow sisters get to work...</i></p>"
+	output += "</div>"
+
+	var/datum/browser/popup = new(src, "aliens", "<div align='center'>Xenomorph Hive</div>", 480, 280)
+	popup.set_content(output)
+	popup.open(FALSE)
+
+
 
 
 /mob/new_player/Move()

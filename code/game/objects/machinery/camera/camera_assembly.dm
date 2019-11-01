@@ -185,7 +185,7 @@
 /obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
-	qdel(src)
+	return ..()
 
 
 #undef STATE_WRENCHED

@@ -79,8 +79,6 @@
 			var/client/assailant = M.client
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
-				if(!istype(src, /mob/living/simple_animal/mouse))
-					msg_admin_attack("[ADMIN_TPMONTY(usr)] was hit by a [O], thrown by [ADMIN_TPMONTY(M)].")
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)

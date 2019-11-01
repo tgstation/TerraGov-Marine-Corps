@@ -227,7 +227,7 @@
 /mob/living/silicon/ai/Stat()
 	. = ..()
 
-	if(statpanel("Stats"))
+	if(statpanel("Game"))
 
 		if(stat != CONSCIOUS)
 			stat(null, text("Systems nonfunctional"))

@@ -7,7 +7,7 @@
 	mechanics_text = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
 	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner

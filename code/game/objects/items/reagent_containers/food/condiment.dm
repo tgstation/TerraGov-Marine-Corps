@@ -44,7 +44,6 @@
 			var/rgt_list_text = get_reagent_list_text()
 
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-			msg_admin_attack("[ADMIN_TPMONTY(usr)] fed [ADMIN_TPMONTY(M)] with [src.name].")
 
 			if(reagents.total_volume)
 				reagents.reaction(M, INGEST)

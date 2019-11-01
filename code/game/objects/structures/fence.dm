@@ -105,6 +105,7 @@
 
 
 /obj/structure/fence/deconstruct(disassembled = TRUE)
+	SHOULD_CALL_PARENT(0)
 	if(disassembled)
 		new /obj/item/stack/rods(loc)
 	cut = TRUE

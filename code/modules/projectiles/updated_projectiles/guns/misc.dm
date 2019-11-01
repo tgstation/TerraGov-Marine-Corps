@@ -171,11 +171,9 @@
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")
-						msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					else
 						M.log_message("<b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[key_name(M)]</b> with a <b>[src]</b> Reagents: ([R])", LOG_ATTACK)
-						msg_admin_attack("UNKNOWN shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
 

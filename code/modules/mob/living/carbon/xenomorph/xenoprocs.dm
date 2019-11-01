@@ -3,10 +3,8 @@
 	set desc = "Check the status of your current hive."
 	set category = "Alien"
 
-	if(isxenoqueen(src) && anchored)
-		check_hive_status(src, anchored)
-	else
-		check_hive_status(src)
+	check_hive_status(src)
+
 
 /proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
@@ -29,14 +27,16 @@
 
 	return xenoinfo
 
-/proc/check_hive_status(mob/living/carbon/xenomorph/user, anchored = FALSE)
+/proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
-	var/dat = "<html><head><title>Hive Status</title></head><body>"
+	var/dat = "<br>"
 
 	var/datum/hive_status/hive
-	if(istype(user) && user.hive)
-		hive = user.hive
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(xeno_user.hive)
+			hive = xeno_user.hive
 	else
 		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
@@ -87,8 +87,10 @@
 		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
-	dat += "</table></body>"
-	usr << browse(dat, "window=roundstatus;size=600x600")
+	dat += "</table>"
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 600, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
 
 
 //Send a message to all xenos.
@@ -110,12 +112,12 @@
 /mob/living/carbon/xenomorph/Stat()
 	. = ..()
 
-	if(!statpanel("Stats"))
+	if(!statpanel("Game"))
 		return
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat(null, "Evolve Progress (FINISHED)")
-	else if(!hive.living_xeno_ruler)
+	else if(!hive.check_ruler())
 		stat(null, "Evolve Progress (HALTED - NO RULER)")
 	else
 		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
@@ -165,13 +167,15 @@
 			if(4.0 to INFINITY) msg_holder = "very strong "
 		stat(null,"We are affected by a [msg_holder]RECOVERY pheromone.")
 
-
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		if(hive.hive_orders && hive.hive_orders != "")
-			stat(null,"Hive Orders: [hive.hive_orders]")
-	else
-		stat(null,"Hive Orders: Follow the instructions of our masters")
-
+	switch(hivenumber)
+		if(XENO_HIVE_NORMAL)
+			if(hive.hive_orders && hive.hive_orders != "")
+				stat(null,"Hive Orders: [hive.hive_orders]")
+			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
+			if(countdown)
+				stat("Orphan hivemind collapse timer:", countdown)
+		if(XENO_HIVE_CORRUPTED)
+			stat(null,"Hive Orders: Follow the instructions of our masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -224,7 +228,7 @@
 	. += speed + slowdown + speed_modifier
 
 	if(frenzy_aura)
-		. -= (frenzy_aura * 0.05)
+		. -= (frenzy_aura * 0.1)
 
 	if(hit_and_run) //We need to have the hit and run ability before we do anything
 		hit_and_run += 0.05 //increment the damage of our next attack by +5%
@@ -247,11 +251,13 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(hive?.living_xeno_ruler)
-		evolution_stored++
-		if(evolution_stored == xeno_caste.evolution_threshold - 1)
-			to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
-			src << sound('sound/effects/xeno_evolveready.ogg')
+	if(!hive.check_ruler())
+		return
+	evolution_stored++
+	if(evolution_stored == xeno_caste.evolution_threshold - 1)
+		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
+		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
+
 
 /mob/living/carbon/xenomorph/show_inv(mob/user)
 	return
@@ -363,19 +369,31 @@
 			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
 
 
-/mob/living/carbon/xenomorph/proc/toggle_nightvision()
-	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
-		lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
-		ENABLE_BITFIELD(sight, SEE_MOBS)
-		ENABLE_BITFIELD(sight, SEE_OBJS)
-		ENABLE_BITFIELD(sight, SEE_TURFS)
-	else
-		lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-		ENABLE_BITFIELD(sight, SEE_MOBS)
-		DISABLE_BITFIELD(sight, SEE_OBJS)
-		DISABLE_BITFIELD(sight, SEE_TURFS)
-	update_sight()
+/mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
+	if(!new_lighting_alpha)
+		switch(lighting_alpha)
+			if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+			if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+			if(LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE)
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+			else
+				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 
+	switch(new_lighting_alpha)
+		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			ENABLE_BITFIELD(sight, SEE_OBJS)
+			ENABLE_BITFIELD(sight, SEE_TURFS)
+		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
+			ENABLE_BITFIELD(sight, SEE_MOBS)
+			DISABLE_BITFIELD(sight, SEE_OBJS)
+			DISABLE_BITFIELD(sight, SEE_TURFS)
+
+	lighting_alpha = new_lighting_alpha
+
+	update_sight()
 
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)

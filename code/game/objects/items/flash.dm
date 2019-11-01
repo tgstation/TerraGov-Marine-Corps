@@ -29,7 +29,6 @@
 	if(!ishuman(M)) return
 
 	log_combat(user, M, "attempted to flash", src)
-	msg_admin_attack("[ADMIN_TPMONTY(usr)] used the [src.name] to flash [ADMIN_TPMONTY(M)].")
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_FLASH)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")

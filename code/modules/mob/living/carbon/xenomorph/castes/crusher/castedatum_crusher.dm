@@ -14,10 +14,7 @@
 	attack_delay = 8.5
 
 	// *** Tackle *** //
-	tackle_damage = 55
-
-	// *** RNG Attacks *** //
-	tail_chance = 0 //Inherited from old code. Tail's too big
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = 0.1
@@ -64,7 +61,7 @@
 	melee_damage = 30
 
 	// *** Tackle *** //
-	tackle_damage = 60
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = 0.1
@@ -92,7 +89,7 @@
 	melee_damage = 35
 
 	// *** Tackle *** //
-	tackle_damage = 65
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = 0.1
@@ -120,7 +117,7 @@
 	melee_damage = 40
 
 	// *** Tackle *** //
-	tackle_damage = 70
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = 0.1

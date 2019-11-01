@@ -348,7 +348,6 @@ Redefine as needed.
 			grab_level = TKGRAB_LETHAL
 			victim.set_knocked_down(2)
 			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
-			msg_admin_attack("[key_name(assailant)] psychically strangled (kill intent) [key_name(victim)]")
 			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")
 			victim.visible_message("<span class='danger'>The invisible force has tightened its grip on [victim]'s neck!</span>", null, null, 5)
 			assailant.do_attack_animation(victim, "bite")
@@ -356,7 +355,6 @@ Redefine as needed.
 		if(TKGRAB_LETHAL)
 			grab_level = TKGRAB_NONLETHAL
 			log_combat(assailant, victim, "neck grabbed")
-			msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(victim)]")
 			to_chat(assailant, "<span class='warning'>We loosen our psychic grip on [victim]'s neck!</span>")
 			victim.visible_message("<span class='warning'>The invisible force has loosened its grip on [victim]'s neck...</span>", null, null, 5)
 			assailant.flick_attack_overlay(victim, "grab")

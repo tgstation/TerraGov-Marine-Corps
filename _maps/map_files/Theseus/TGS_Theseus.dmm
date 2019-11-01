@@ -7808,15 +7808,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "asi" = (
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -8555,15 +8547,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "atS" = (
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -9365,15 +9349,9 @@
 	},
 /area/mainship/medical/medical_science)
 "avx" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	id = "Containment Cell 3";
-	locked = 1;
-	name = "\improper Containment Cell 3"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "Containment Cell 3";
-	name = "\improper Containment Cell 3"
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell1,
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
+	dir = 4
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -9845,12 +9823,7 @@
 	},
 /area/mainship/medical/medical_science)
 "awD" = (
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "0";
-	req_one_access_txt = "14;3"
-	},
-/obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/structure/closet/secure_closet/guncabinet/incendiary,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner";
 	dir = 1
@@ -10564,9 +10537,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "ayl" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory{
-	req_one_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -10649,9 +10620,8 @@
 	},
 /area/mainship/medical/medical_science)
 "ayu" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 3";
-	pixel_x = 32
+/obj/machinery/door_display/research_cell/cell/cell1{
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -12654,9 +12624,8 @@
 	},
 /area/mainship/medical/medical_science)
 "aCc" = (
-/obj/machinery/door_display/research_cell{
-	id = "Containment Cell 4";
-	pixel_x = 32
+/obj/machinery/door_display/research_cell/cell/cell2{
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -13460,12 +13429,7 @@
 	},
 /area/mainship/medical/medical_science)
 "aDD" = (
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "0";
-	req_one_access_txt = "14;3"
-	},
-/obj/item/weapon/gun/flamer,
-/obj/item/explosive/grenade/incendiary,
+/obj/structure/closet/secure_closet/guncabinet/incendiary,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "sterile_green_corner"
@@ -13953,13 +13917,7 @@
 	},
 /area/mainship/shipboard/brig_cells)
 "aEz" = (
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -14148,16 +14106,8 @@
 /turf/open/floor/plating,
 /area/mainship/medical/medical_science)
 "aEY" = (
-/obj/machinery/door/airlock/mainship/research/glass{
-	id = "Containment Cell 4";
-	locked = 1;
-	name = "\improper Containment Cell 4"
-	},
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
-	id = "Containment Cell 4";
-	name = "\improper Containment Cell 4"
-	},
+/obj/machinery/door/airlock/mainship/research/glass/cell/cell2,
+/obj/machinery/door/poddoor/shutters/mainship/cell/cell2,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -14564,19 +14514,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "aFL" = (
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/weapon/gun/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/item/ammo_magazine/rifle/m41aMK1,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -35746,9 +35684,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/guncabinet/mp_armory{
-	req_one_access_txt = "22;2;7"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
