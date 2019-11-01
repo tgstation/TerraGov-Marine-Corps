@@ -21,7 +21,7 @@
 	name = "riot helmet"
 	desc = "It's a helmet specifically designed to protect against close range attacks. It covers your ears."
 	icon_state = "riot"
-	armor = list("melee" = 82, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 60, "bullet" = 15, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 2, "rad" = 0, "fire" = 5, "acid" = 5)
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 
