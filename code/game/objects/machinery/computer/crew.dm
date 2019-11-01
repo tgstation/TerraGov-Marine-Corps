@@ -65,7 +65,7 @@
 				var/list/crewmemberData = list()
 
 				crewmemberData["sensor_type"] = C.sensor_mode
-				crewmemberData["status"] = "[H.stat]"
+				crewmemberData["status"] = H.stat
 				crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 				crewmemberData["tox"] = round(H.getToxLoss(), 1)
 				crewmemberData["fire"] = round(H.getFireLoss(), 1)
@@ -92,10 +92,13 @@
 
 	switch(displayed_z_level)
 		if(DISPLAY_ON_SHIP)
+			data["zlevel"] = 0
 			data["crewmembers"] = sortListUsingKey(crewmembers_on_ship, cmp_proc, sortkey)
 		if(DISPLAY_PLANETSIDE)
+			data["zlevel"] = 1
 			data["crewmembers"] = sortListUsingKey(crewmembers_planetside, cmp_proc, sortkey)
 		if(DISPLAY_IN_TRANSIT)
+			data["zlevel"] = 2
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
 
 	return data

@@ -12,6 +12,7 @@ import { Cargo } from './interfaces/Cargo';
 import { CAS } from './interfaces/CAS';
 import { ChemDispenser } from './interfaces/ChemDispenser';
 import { Crayon } from './interfaces/Crayon';
+import { Crew } from './interfaces/Crew';
 import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { KitchenSink } from './interfaces/KitchenSink';
@@ -26,6 +27,7 @@ import { PodLauncher } from './interfaces/PodLauncher';
 import { PortableVendor } from './interfaces/PortableVendor';
 import { PortableGenerator } from './interfaces/PortableGenerator';
 import { SmartVend } from './interfaces/SmartVend';
+import { SMES } from './interfaces/SMES';
 
 
 const ROUTES = {
@@ -77,6 +79,10 @@ const ROUTES = {
     component: () => CAS,
     scrollable: true,
   },
+  crew: {
+    component: () => Crew,
+    scrollable: true,
+  },
   chem_dispenser: {
     component: () => ChemDispenser,
     scrollable: true,
@@ -123,6 +129,10 @@ const ROUTES = {
   },
   smartvend: {
     component: () => SmartVend,
+    scrollable: true,
+  },
+  smes: {
+    component: () => SMES,
     scrollable: true,
   },
   vending: {

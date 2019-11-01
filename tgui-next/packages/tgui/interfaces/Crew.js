@@ -48,6 +48,7 @@ export const Crew = props => {
         {locations.map(location => (
           <Button
             key={location.id}
+            selected={location.zlevel === data.zlevel}
             onClick={() => act(ref, 'zlevel', { zlevel: location.zlevel})}>
             {location.label}
           </Button>
