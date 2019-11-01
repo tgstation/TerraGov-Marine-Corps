@@ -124,7 +124,7 @@
 	"<span class='danger'>We slash [src]!</span>")
 	X.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	attack_generic(X, X.xeno_caste.melee_damage, BRUTE, "melee", FALSE)
+	attack_generic(X, X.xeno_caste.melee_damage * (X.melee_dmg_mod), BRUTE, "melee", FALSE)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)

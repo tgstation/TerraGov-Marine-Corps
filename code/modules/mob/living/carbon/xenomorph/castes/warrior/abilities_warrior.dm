@@ -22,13 +22,15 @@
 
 	GLOB.round_statistics.warrior_agility_toggles++
 	if (X.agility)
-		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
+		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours, retract our claws and loosen our armored scales to ease our movement.</span>")
 		X.speed_modifier--
 		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
+		X.melee_dmg_mod = 0.4
 	else
-		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
+		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, extend our claws, hard scales setting back into place.</span>")
 		X.speed_modifier++
 		X.armor_bonus += WARRIOR_AGILITY_ARMOR
+		X.melee_dmg_mod = 1
 	X.update_icons()
 	add_cooldown()
 	return succeed_activate()
@@ -208,7 +210,7 @@
 	var/target_zone = check_zone(X.zone_selected)
 	if(!target_zone)
 		target_zone = "chest"
-	var/damage = X.xeno_caste.melee_damage
+	var/damage = X.xeno_caste.melee_damage * (X.melee_dmg_mod)
 	succeed_activate()
 	playsound(M, S, 50, 1)
 
