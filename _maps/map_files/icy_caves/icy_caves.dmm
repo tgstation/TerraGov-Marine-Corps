@@ -92,6 +92,21 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"ax" = (
+/obj/structure/closet/crate/weapon,
+/obj/item/weapon/gun/rifle/type71,
+/obj/item/weapon/gun/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/weapon/energy/sword,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "ay" = (
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
@@ -112,6 +127,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"aD" = (
+/obj/machinery/vending/security,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "aE" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating/mainship,
@@ -133,6 +152,12 @@
 /obj/structure/bed/nest,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
+"aH" = (
+/obj/structure/table/flipped,
+/obj/item/clothing/gloves/marine/som,
+/obj/item/clothing/gloves/marine/som,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "aI" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/structure/bed/nest,
@@ -154,19 +179,10 @@
 	},
 /area/icy_caves/caves/northern)
 "aN" = (
-/obj/structure/closet/crate/weapon,
-/obj/item/weapon/gun/rifle/type71,
-/obj/item/weapon/gun/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/obj/item/ammo_magazine/rifle/type71,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
+/obj/structure/table/flipped,
+/obj/item/flash,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "aO" = (
 /obj/structure/closet/crate/explosives,
 /obj/item/storage/box/nade_box,
@@ -1664,6 +1680,20 @@
 	dir = 1
 	},
 /area/icy_caves/caves/east)
+"gf" = (
+/obj/structure/table,
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
+"gg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/clothing/suit/armor/riot,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "gh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
@@ -1684,6 +1714,21 @@
 	dir = 9
 	},
 /area/icy_caves/caves/east)
+"gl" = (
+/obj/structure/table,
+/obj/item/clothing/shoes/swat,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
+"gm" = (
+/obj/structure/closet/crate,
+/obj/item/weapon/gun/shotgun/pump/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/obj/item/ammo_magazine/rifle/bolt,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "gn" = (
 /turf/closed/ice/straight,
 /area/icy_caves/outpost/LZ2)
@@ -3435,11 +3480,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/medbay)
-"lU" = (
-/obj/structure/table,
-/obj/structure/table,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/refinery)
 "lV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -4624,10 +4664,6 @@
 /obj/item/flashlight,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
-"pI" = (
-/obj/structure/table/flipped,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
 "pJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleEnd{
@@ -4684,12 +4720,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/OOB)
-"pQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
 "pR" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -14351,7 +14381,7 @@ jU
 kW
 jU
 lM
-lU
+lE
 li
 jU
 jU
@@ -24627,10 +24657,10 @@ om
 oY
 nS
 pB
-pH
-nS
-pQ
-nS
+aD
+gf
+gg
+gl
 pY
 qh
 nQ
@@ -24884,7 +24914,7 @@ oE
 oY
 nS
 pD
-pI
+aH
 pK
 pR
 pV
@@ -25141,7 +25171,7 @@ ot
 pd
 nS
 pD
-pI
+aN
 pL
 nS
 pW
@@ -25149,7 +25179,7 @@ qa
 qj
 nQ
 qo
-qq
+nS
 qs
 qx
 nQ
@@ -25398,15 +25428,15 @@ oG
 px
 nS
 pD
-nS
+pH
 pM
 pS
 pX
 qb
 qk
 nQ
-nQ
-nQ
+gm
+qq
 nQ
 nQ
 nQ
@@ -25662,9 +25692,9 @@ ot
 nS
 qk
 nQ
-gv
-gv
-gw
+nQ
+nQ
+nQ
 gw
 gw
 gw
@@ -30931,7 +30961,7 @@ ac
 ac
 ac
 ac
-aN
+ax
 aW
 af
 bj
