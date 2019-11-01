@@ -471,7 +471,7 @@
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
 	icon_state = "tools"
 	can_hold = list(
