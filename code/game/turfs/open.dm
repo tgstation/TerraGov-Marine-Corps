@@ -111,22 +111,23 @@
 	icon_state = "opensea"
 	can_bloody = FALSE
 
-var/static/list/canfall = typecacheof(list(
+GLOBAL_LIST_INIT(canfall, typecacheof(list(
 					/mob/living,
 					/obj/vehicle,
 					/obj/machinery,
 					/obj/item,
-					/obj/structure))
+					/obj/structure,
+					/obj/effect/alien/weeds)))
 
-var/static/list/nofall = typecacheof(list(
+GLOBAL_LIST_INIT(nofall, typecacheof(list(
 					/obj/structure/lattice,
-					/obj/structure/monorail))//just for specific things that should be able to float
+					/obj/structure/monorail)))//just for specific things that should be able to float
 
 /turf/open/opensea/Entered(atom/movable/AM)
 	. = ..()
 	if(has_catwalk)
 		return
-	if(!is_type_in_typecache(AM, canfall) || is_type_in_typecache(AM, nofall) || AM.throwing)
+	if(!is_type_in_typecache(AM, GLOB.canfall) || is_type_in_typecache(AM, GLOB.nofall) || AM.throwing)
 		return
 	drop(AM)
 
