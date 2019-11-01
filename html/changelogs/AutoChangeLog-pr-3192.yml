@@ -1,0 +1,5 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - tweak: "Redesigned the player setup menu, based on Baystation 12."
+  - rscadd: "Added a \"Background\" option for a headstart primer on TGMC."
