@@ -21,11 +21,11 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -1.7
+	speed = -1.6
 
 	// *** Plasma *** //
 	plasma_max = 100
-	plasma_gain = 1
+	plasma_gain = 2
 
 	// *** Health *** //
 	max_health = 100
@@ -75,11 +75,11 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.8
+	speed = -1.7
 
 	// *** Plasma *** //
 	plasma_max = 150
-	plasma_gain = 2
+	plasma_gain = 3
 
 	// *** Health *** //
 	max_health = 120
@@ -108,11 +108,11 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.9
+	speed = -1.8
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 2
+	plasma_gain = 3
 
 	// *** Health *** //
 	max_health = 150
@@ -142,11 +142,11 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -2
+	speed = -1.8
 
 	// *** Plasma *** //
 	plasma_max = 200
-	plasma_gain = 2
+	plasma_gain = 3
 
 	// *** Health *** //
 	max_health = 160
