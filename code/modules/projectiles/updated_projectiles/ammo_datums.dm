@@ -261,7 +261,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
-	damage = 25
+	damage = 22
 	accuracy = 10
 	penetration = 30
 	shrapnel_chance = 25
@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_heavy"
 	accuracy = -10
 	accuracy_var_low = 7
-	damage = 40
+	damage = 35
 	penetration = 5
 	shrapnel_chance = 25
 
@@ -282,14 +282,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = 15
-	damage = 20
+	damage = 17
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_special"
 	debilitate = list(0,0,0,0,0,0,0,2)
 	accuracy = 15
-	damage = 35
+	damage = 32
 	penetration = 10
 	shrapnel_chance = 25
 
@@ -402,13 +402,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
-	damage = 40
+	damage = 35
 	penetration = 0
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
-	damage = 30
+	damage = 26
 	penetration = 40
 
 /datum/ammo/bullet/rifle/incendiary
@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_slug"
 	shell_speed = 3
 	max_range = 15
-	damage = 70
+	damage = 62
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -513,7 +513,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = -10
 	max_range = 15
-	damage = 50
+	damage = 40
 	penetration = 5
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/item/projectile/proj)
@@ -562,7 +562,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 70
+	damage = 62
 	damage_falloff = 5
 	penetration = 0
 
@@ -583,7 +583,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 50
+	damage = 45
 	damage_falloff = 5
 	penetration = 0
 
@@ -678,7 +678,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 7
 	max_range = 20
 	scatter = 15
-	damage = 55
+	damage = 50
 	penetration = 20
 
 /datum/ammo/bullet/sniper/flak
@@ -717,9 +717,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	accurate_range = 15
-	damage = 30
+	damage = 23
 	scatter = -10
-	penetration = 5
+	penetration = 10
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -781,7 +781,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 50
+	damage = 42
 	penetration = 0
 	shrapnel_chance = 25
 
@@ -949,14 +949,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "military laser bolt"
 	icon_state = "laser2"
 	hud_state = "laser"
-	damage = 25
+	damage = 22
 	penetration = 25
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
-	damage = 46 //requires mod with -0.15 multiplier should math out to 40
+	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 40
 
@@ -971,7 +971,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 5
 	max_range = 5
-	damage = 46 //requires mod with -0.15 multiplier should math out to 40
+	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	damage_falloff = 10
 	penetration = 0
 
@@ -983,7 +983,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 5
 	max_range = 5
-	damage = 40
+	damage = 35
 	damage_falloff = 10
 	penetration = 0
 
@@ -1017,7 +1017,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 5.6)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 5.2)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
@@ -1028,7 +1028,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 15
+	damage = 10
 
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
@@ -1053,13 +1053,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.44)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.2)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 6.8)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.28)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 7.0)
 
 
 /datum/ammo/xeno/toxin/medium //Queen
@@ -1083,16 +1083,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 8)
 	added_spit_delay = 15
 	spit_cost = 100
-	damage = 35
+	damage = 25
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.2)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.0)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 9.8)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.4)
+	ammo_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 10.0)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1151,20 +1151,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 	armor_type = "acid"
-	damage = 20
+	damage = 18
 
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/item/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 25
+	damage = 20
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	damage = 30
+	damage = 23
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
 	var/turf/T = get_turf(M)

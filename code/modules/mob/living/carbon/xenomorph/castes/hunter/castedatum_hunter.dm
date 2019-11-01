@@ -15,7 +15,7 @@
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1.5
@@ -67,7 +67,7 @@
 	attack_delay = 6.75
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -1.6
@@ -98,7 +98,7 @@
 	attack_delay = 6.6
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -1.7
@@ -130,7 +130,7 @@
 	attack_delay = 6.5
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -1.7

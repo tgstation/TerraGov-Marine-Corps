@@ -14,7 +14,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -68,7 +68,7 @@
 	melee_damage = 25
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.3
