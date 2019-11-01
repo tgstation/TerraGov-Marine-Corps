@@ -17,7 +17,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = 0.5
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -38,10 +38,10 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	// *** Ranged Attack *** //
-	spit_delay = 4 SECONDS
+	spit_delay = 2.5 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
+	bomb_strength = 1.5 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
@@ -88,10 +88,10 @@
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
 
 	// *** Ranged Attack *** //
-	spit_delay = 3 SECONDS
+	spit_delay = 2.5 SECONDS
 
 	// *** Boiler Abilities *** //
-	bomb_strength = 1.5
+	bomb_strength = 1.75
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 

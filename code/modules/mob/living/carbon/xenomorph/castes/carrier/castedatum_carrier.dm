@@ -17,7 +17,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -39,7 +39,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 8, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = XENO_BOMB_RESIST_0, "bio" = 8, "rad" = 8, "fire" = 8, "acid" = 8)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5

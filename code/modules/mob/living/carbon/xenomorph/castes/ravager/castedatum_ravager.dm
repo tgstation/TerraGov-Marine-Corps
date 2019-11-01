@@ -9,11 +9,11 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 32
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 38
 
 	// *** Speed *** //
 	speed = -0.8
@@ -23,7 +23,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -34,7 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
+	armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 

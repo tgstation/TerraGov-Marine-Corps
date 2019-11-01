@@ -11,10 +11,10 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 33
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 34
 
 	// *** Speed *** //
 	speed = -1
@@ -24,7 +24,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 400

@@ -8,20 +8,20 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 29
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 650
 	plasma_gain = 21
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 200
 
 	// *** Evolution *** //
 	evolution_threshold = 200
@@ -34,7 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 14, "bullet" = 14, "laser" = 14, "energy" = 14, "bomb" = XENO_BOMB_RESIST_0, "bio" = 14, "rad" = 14, "fire" = 14, "acid" = 14)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -63,10 +63,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 31
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 36
 
 	// *** Speed *** //
 	speed = -0.6
@@ -82,7 +82,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	armor = list("melee" = 16, "bullet" = 16, "laser" = 16, "energy" = 16, "bomb" = XENO_BOMB_RESIST_0, "bio" = 16, "rad" = 16, "fire" = 16, "acid" = 16)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS

@@ -18,8 +18,8 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 200 //High plasma is need for charging
-	plasma_gain = 10
+	plasma_max = 225 //High plasma is need for charging
+	plasma_gain = 15
 
 	// *** Health *** //
 	max_health = 160
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

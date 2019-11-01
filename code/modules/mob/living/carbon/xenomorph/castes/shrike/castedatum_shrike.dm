@@ -16,7 +16,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -38,7 +38,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
@@ -79,7 +79,7 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 850
@@ -92,7 +92,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 25, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5

@@ -11,20 +11,20 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 25
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 240
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 18, "laser" = 18, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 10, "acid" = 20)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 10, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
@@ -65,10 +65,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 27
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 33
 
 	// *** Speed *** //
 	speed = -0.3
@@ -78,7 +78,7 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 245
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -96,7 +96,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
+	melee_damage = 29
 
 	// *** Tackle *** //
 	tackle_damage = 35

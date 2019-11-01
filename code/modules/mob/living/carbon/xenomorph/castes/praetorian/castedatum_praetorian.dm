@@ -9,10 +9,10 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 32.5
+	melee_damage = 40
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = 0.0
@@ -42,7 +42,7 @@
 	acid_spray_range = 4
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
+	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //

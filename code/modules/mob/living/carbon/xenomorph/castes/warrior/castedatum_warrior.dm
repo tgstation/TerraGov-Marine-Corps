@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	armor = list("melee" = 46, "bullet" = 46, "laser" = 46, "energy" = 46, "bomb" = XENO_BOMB_RESIST_0, "bio" = 46, "rad" = 46, "fire" = 22, "acid" = 46)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0

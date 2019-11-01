@@ -12,13 +12,13 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 15
+	melee_damage = 24
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 20
+	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -1.7
@@ -28,7 +28,7 @@
 	plasma_gain = 1
 
 	// *** Health *** //
-	max_health = 100
+	max_health = 130
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -40,7 +40,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 5, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = XENO_BOMB_RESIST_0, "bio" = 8, "rad" = 8, "fire" = 8, "acid" = 8)
 
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
@@ -67,12 +67,12 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 26
 
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -1.8
@@ -82,7 +82,7 @@
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 120
+	max_health = 140
 
 	// *** Evolution *** //
 	upgrade_threshold = 200

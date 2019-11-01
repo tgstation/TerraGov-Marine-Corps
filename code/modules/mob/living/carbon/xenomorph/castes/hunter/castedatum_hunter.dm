@@ -11,11 +11,11 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 32
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1.5
@@ -25,7 +25,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 160
 
 	// *** Evolution *** //
 	evolution_threshold = 200
@@ -38,11 +38,11 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = XENO_BOMB_RESIST_0, "bio" = 12, "rad" = 12, "fire" = 12, "acid" = 12)
 
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
-	pounce_delay = 15 SECONDS
+	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** //
 	actions = list(
@@ -86,7 +86,7 @@
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 12.5 SECONDS
+	pounce_delay = 12 SECONDS
 
 /datum/xeno_caste/hunter/elder
 	upgrade_name = "Elder"
