@@ -3,8 +3,8 @@
 /obj/item/unmanned_vehicle_remote
 	name = "Handheld Vehicle Remote Control"
 	desc = "Used to control an unmanned vehicle."
-	icon = 'icons/obj/det.dmi'
-	icon_state = "detpack_on"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "multitool2"
 	var/obj/vehicle/unmanned/vehicle_controlled = null
 
 /obj/item/unmanned_vehicle_remote/Initialize()
@@ -17,7 +17,6 @@
 	if(vehicle_controlled)
 		return
 
-	to_chat(user, "Linking target vehicle.")
 	vehicle_controlled = target
 	AddComponent(/datum/component/remote_control, target)
 
