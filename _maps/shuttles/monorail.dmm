@@ -60,7 +60,8 @@
 /area/shuttle/monorail)
 "k" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper Monorail Airlock"
+	name = "\improper Monorail Airlock";
+	req_one_access = null
 	},
 /obj/machinery/door/poddoor/shutters/transit/open,
 /turf/open/shuttle/dropship{

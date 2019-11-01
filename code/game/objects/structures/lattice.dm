@@ -94,3 +94,8 @@
 		O.has_catwalk = TRUE
 		O.overlays += image(icon, T, icon_state, CATWALK_LAYER)
 	return INITIALIZE_HINT_QDEL
+
+/obj/structure/catwalk/lattice//for the lattices above the ocean on prison
+	name = "lattice"
+	icon = 'icons/obj/structures/structures.dmi'
+	icon_state = "latticefull"
