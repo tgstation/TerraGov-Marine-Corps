@@ -197,7 +197,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 10
 	burst_amount = 2
-	burst_delay = 2
+	burst_delay = 6
 	accuracy_mult = 0.8
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
