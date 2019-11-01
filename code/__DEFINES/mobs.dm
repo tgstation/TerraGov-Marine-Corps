@@ -576,4 +576,24 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
 
-#define UPDATEHEALTH(MOB) addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 0, TIMER_UNIQUE)
+GLOBAL_VAR_INIT(updatehealthab, 0)
+
+/proc/updatehealthprofile(mob/living/updating_mob)
+	if(GLOB.updatehealthab)
+		updatehealthold(updating_mob)
+	else
+		updatehealthnew(updating_mob)
+	GLOB.updatehealthab = !GLOB.updatehealthab
+
+/proc/updatehealthold(mob/living/updating_mob)
+	updating_mob.updatehealth()
+
+/proc/updatehealthnew(mob/living/updating_mob)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/updatehealthnew_called, updating_mob), 1, TIMER_UNIQUE)
+
+/proc/updatehealthnew_called(mob/living/updating_mob)
+	updating_mob.updatehealth()
+
+#define UPDATEHEALTH(MOB) (updatehealthprofile(MOB))
+
+//#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
