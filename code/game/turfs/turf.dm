@@ -487,6 +487,9 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 /turf/open/ground/coast/is_weedable()
 	return FALSE
 
+/turf/open/opensea/is_weedable()
+	return FALSE
+
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 

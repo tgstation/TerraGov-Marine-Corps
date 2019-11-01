@@ -111,14 +111,14 @@
 	icon_state = "opensea"
 	can_bloody = FALSE
 
-var/list/canfall = typecacheof(list(
+var/static/list/canfall = typecacheof(list(
 					/mob/living,
 					/obj/vehicle,
 					/obj/machinery,
 					/obj/item,
 					/obj/structure))
 
-var/list/nofall = typecacheof(list(
+var/static/list/nofall = typecacheof(list(
 					/obj/structure/lattice,
 					/obj/structure/monorail))//just for specific things that should be able to float
 
