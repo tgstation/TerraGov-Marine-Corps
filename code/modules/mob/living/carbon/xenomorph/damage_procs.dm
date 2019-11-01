@@ -89,6 +89,7 @@
 
 	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
+	UPDATEHEALTH(src)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
@@ -120,7 +121,7 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage, updating_health)
+			adjustBruteLoss(damage)
 		if(BURN)
 			adjustFireLoss(damage)
 

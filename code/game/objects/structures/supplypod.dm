@@ -136,6 +136,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 			continue
 
 		L.adjustBruteLoss(damage)
+		UPDATEHEALTH(L)
 
 	var/explosion_sum = B[1] + B[2] + B[3] + B[4]
 	if(explosion_sum != 0)

@@ -70,14 +70,17 @@
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
 			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+				UPDATEHEALTH(H)
 				H.UpdateDamageIcon()
 			affecting = H.get_limb("r_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
 			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+				UPDATEHEALTH(H)
 				H.UpdateDamageIcon()
 		else
 			armor_block = H.run_armor_check("chest", "acid")
 			H.take_overall_damage(0, rand(12, 14))
+			UPDATEHEALTH(H)
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 
 

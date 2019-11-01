@@ -42,6 +42,7 @@
 		else
 			M.stun(1) //Otherwise we just get stunned.
 		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
+		UPDATEHEALTH(M)
 
 
 // ***************************************
@@ -125,6 +126,7 @@
 		var/damage = toss_distance * 5
 		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee")) //Armour functions against this.
 		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		L.knock_down(1, 1)

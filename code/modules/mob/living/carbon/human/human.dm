@@ -170,8 +170,10 @@
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_arm")
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-	if(update)	UpdateDamageIcon()
-	return 1
+	if(update)
+		UpdateDamageIcon()
+		UPDATEHEALTH(src)
+	return TRUE
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -186,9 +188,9 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor)
-		if(armor >= 1) //Complete negation
-			return
+		if(apply_damage(damage, BRUTE, affecting, armor))
+			UPDATEHEALTH(src)
+
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit

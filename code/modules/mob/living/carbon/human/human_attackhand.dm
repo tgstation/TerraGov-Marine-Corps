@@ -96,6 +96,7 @@
 
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)
+			UPDATEHEALTH(src)
 
 
 		if(INTENT_DISARM)

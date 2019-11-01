@@ -71,6 +71,7 @@
 	var/armor_block = H.run_armor_check(affecting, "melee")
 	H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
 	H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+	UPDATEHEALTH(H)
 	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(X, H)
@@ -139,6 +140,7 @@
 			var/armor_block = H.run_armor_check(affecting, "melee")
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+			UPDATEHEALTH(H)
 			H.knock_down(1, 1)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)

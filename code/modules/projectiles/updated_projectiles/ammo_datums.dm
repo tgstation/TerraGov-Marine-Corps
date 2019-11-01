@@ -166,6 +166,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			"[isxeno(victim)?"<span class='xenodanger'>We":"<span class='highdanger'>You"] are hit by backlash from \a </b>[proj.name]</b>!</span>")
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block)
+		UPDATEHEALTH(victim)
 
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
@@ -974,7 +975,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-	staggerstun(C, P, 5, 0, 0, 1, 1, 0) //Staggers and slows down briefly
+		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	for(var/r_id in ammo_reagents)
 		var/on_mob_amount = C.reagents.get_reagent_amount(r_id)

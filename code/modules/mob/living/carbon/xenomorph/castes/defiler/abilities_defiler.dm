@@ -86,6 +86,7 @@
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.apply_damage(100, HALLOSS)
 	C.apply_damage(10, BRUTE, "chest")
+	UPDATEHEALTH(C)
 	C.emote("scream")
 	GLOB.round_statistics.defiler_defiler_stings++
 	succeed_activate()

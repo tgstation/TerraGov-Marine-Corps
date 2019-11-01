@@ -138,6 +138,7 @@
 			if("fire")
 				M.apply_damage(power,BURN)
 				to_chat(M, "<span class='warning'>It burns!</span>")
+		UPDATEHEALTH(M)
 	else
 		var/mob/living/carbon/human/H = M
 		var/hit = H.attacked_by(src, user)

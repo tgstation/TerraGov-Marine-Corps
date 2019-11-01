@@ -511,9 +511,11 @@
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block)
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
 	take_overall_damage(0, damage, armor_block)
+	UPDATEHEALTH(src)
 	emote("scream")
 	knock_down(1)
 

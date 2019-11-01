@@ -575,3 +575,5 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_NEST		"nest"
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
+
+#define UPDATEHEALTH(MOB) addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 0, TIMER_UNIQUE)

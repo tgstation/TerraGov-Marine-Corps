@@ -52,8 +52,9 @@
 		return 0
 
 	apply_damage(shock_damage, BURN, def_zone)
+	UPDATEHEALTH(src)
 
-	playsound(loc, "sparks", 25, 1)
+	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			"<span class='warning'> [src] was shocked by the [source]!</span>", \

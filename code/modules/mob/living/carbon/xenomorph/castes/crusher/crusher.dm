@@ -26,6 +26,7 @@
 
 	if(severity == 1)
 		adjustBruteLoss(rand(200, 300), TRUE)
+		UPDATEHEALTH(src)
 
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()

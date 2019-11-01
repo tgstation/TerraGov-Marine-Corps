@@ -70,7 +70,7 @@
 		else
 			user.visible_message("<span class='danger'>[user] has attacked [user.p_them()]self with the bottle of [name]!</span>")
 
-	target.updatehealth()
+	UPDATEHEALTH(target)
 
 	//Attack logs
 	log_combat(user, target, "smashed", src)

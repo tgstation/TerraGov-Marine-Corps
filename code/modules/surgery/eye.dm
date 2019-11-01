@@ -80,7 +80,7 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s eyes with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, damaging [target]'s eyes with \the [tool]!</span>")
 	eyes.take_damage(5, 0)
-	target.apply_damage(10, BRUTE, affected)
+	target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 /datum/surgery_step/eye/mend_eyes
 	allowed_tools = list(
@@ -109,7 +109,7 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, stabbing \the [tool] into [target]'s eye!</span>",
 	"<span class='warning'>Your hand slips, stabbing \the [tool] into [target]'s eye!</span>")
 	E.take_damage(5, 0)
-	target.apply_damage(10, BRUTE, affected, 0, TRUE)
+	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 
 
 /datum/surgery_step/eye/cauterize
@@ -143,4 +143,4 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s eyes with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, searing [target]'s eyes with \the [tool]!</span>")
 	E.take_damage(5, 0)
-	target.apply_damage(5, BURN, affected)
+	target.apply_damage(5, BURN, affected, updating_health = TRUE)

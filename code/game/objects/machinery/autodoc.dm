@@ -86,6 +86,7 @@
 			return
 		if(surgery)
 			// keep them alive
+			var/updating_health = FALSE
 			occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
 			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 			if(filtering)
@@ -114,6 +115,7 @@
 			if(heal_brute)
 				if(occupant.getexternalBruteLoss() > 0)
 					occupant.heal_limb_damage(3, 0)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it stitches flesh together.")
 						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
@@ -123,6 +125,7 @@
 			if(heal_burn)
 				if(occupant.getFireLoss() > 0)
 					occupant.heal_limb_damage(0, 3)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
 						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
@@ -132,12 +135,15 @@
 			if(heal_toxin)
 				if(occupant.getToxLoss() > 0)
 					occupant.adjustToxLoss(-3)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and gurgles as it kelates the occupant.")
 						to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
 				else
 					heal_toxin = 0
 					visible_message("[src] speaks: Chelation complete.")
+			if(updating_health)
+				occupant.updatehealth()
 
 
 #define LIMB_SURGERY 1

@@ -290,6 +290,7 @@
 			if(prob(15))
 				M.knock_down(5)
 			M.apply_damage(8, BRUTE, "head")
+			UPDATEHEALTH(M)
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
 			"<span class='danger'>You slam [M]'s face against [src]!</span>")
 			log_combat(user, M, "slammed", "", "against \the [src]")
