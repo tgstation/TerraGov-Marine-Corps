@@ -24,7 +24,6 @@
 //Scientist
 /datum/job/survivor/scientist
 	title = "Scientist"
-	skills_type = /datum/skills/civilian/survivor/scientist
 	outfit = /datum/outfit/job/survivor/scientist
 
 
@@ -41,7 +40,6 @@
 //Doctor
 /datum/job/survivor/doctor
 	title = "Doctor's Assistant"
-	skills_type = /datum/skills/civilian/survivor/doctor
 	outfit = /datum/outfit/job/survivor/doctor
 
 
@@ -74,7 +72,6 @@
 //Security Guard
 /datum/job/survivor/security
 	title = "Security Guard"
-	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/security
 
 
@@ -107,7 +104,6 @@
 //Chef
 /datum/job/survivor/chef
 	title = "Chef"
-	skills_type = /datum/skills/civilian/survivor/chef
 	outfit = /datum/outfit/job/survivor/chef
 
 
@@ -140,7 +136,6 @@
 //Atmospherics Technician
 /datum/job/survivor/atmos
 	title = "Atmospherics Technician"
-	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
 
@@ -173,7 +168,6 @@
 //Miner
 /datum/job/survivor/miner
 	title = "Miner"
-	skills_type = /datum/skills/civilian/survivor/miner
 	outfit = /datum/outfit/job/survivor/miner
 
 
@@ -206,7 +200,6 @@
 //Colonial Marshal
 /datum/job/survivor/marshal
 	title = "Colonial Marshal"
-	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/marshal
 
 

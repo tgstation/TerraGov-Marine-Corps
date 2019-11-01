@@ -45,57 +45,13 @@
 
 /datum/skills/civilian/survivor
 	name = "Survivor"
-	engineer = SKILL_ENGINEER_ENGI //to hack airlocks so they're never stuck in a room.
-	firearms = SKILL_FIREARMS_DEFAULT
-	construction = SKILL_CONSTRUCTION_METAL
-	medical = SKILL_MEDICAL_NOVICE
-
-/datum/skills/civilian/survivor/doctor
-	name = "Survivor Doctor"
-	medical = SKILL_MEDICAL_COMPETENT
-	surgery = SKILL_SURGERY_EXPERT
-	firearms = SKILL_FIREARMS_UNTRAINED
-
-/datum/skills/civilian/survivor/scientist
-	name = "Survivor Scientist"
-	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_PROFESSIONAL
-	firearms = SKILL_FIREARMS_UNTRAINED
-
-/datum/skills/civilian/survivor/chef
-	name = "Survivor Chef"
-	melee_weapons = SKILL_MELEE_TRAINED
-	firearms = SKILL_FIREARMS_UNTRAINED
-
-/datum/skills/civilian/survivor/miner
-	name = "Survivor Miner"
-	powerloader = SKILL_POWERLOADER_TRAINED
-
-/datum/skills/civilian/survivor/atmos
-	name = "Survivor Atmos Tech"
 	engineer = SKILL_ENGINEER_MASTER
+	firearms = SKILL_FIREARMS_DEFAULT
 	construction = SKILL_CONSTRUCTION_MASTER
-
-/datum/skills/civilian/survivor/marshal
-	name = "Survivor Marshal"
-	cqc = SKILL_CQC_MP
-	firearms = SKILL_FIREARMS_DEFAULT
-	melee_weapons = SKILL_MELEE_DEFAULT
-	pistols = SKILL_PISTOLS_TRAINED
-	police = SKILL_POLICE_MP
-
-/datum/skills/civilian/survivor/prisoner
-	name = "Survivor Prisoner"
-	cqc = SKILL_CQC_DEFAULT
-	firearms = SKILL_FIREARMS_DEFAULT
-	melee_weapons = SKILL_MELEE_DEFAULT
-	pistols = SKILL_PISTOLS_DEFAULT
-
-/datum/skills/civilian/survivor/clown
-	name = "Survivor Clown"
-	cqc = SKILL_CQC_MP
-	melee_weapons = SKILL_MELEE_SUPER
-	firearms = SKILL_FIREARMS_UNTRAINED
+	medical = SKILL_MEDICAL_EXPERT
+	surgery = SKILL_SURGERY_EXPERT
+	powerloader = SKILL_POWERLOADER_PRO	
+	police = SKILL_POLICE_FLASH
 
 
 /datum/skills/combat_engineer
