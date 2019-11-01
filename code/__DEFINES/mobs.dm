@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
-#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+#define XENO_TACKLE_ARMOR_PEN	0.8 //Actual armor pen is 1 - this value.
 
 //Charge-Crush
 #define CHARGE_OFF			0
