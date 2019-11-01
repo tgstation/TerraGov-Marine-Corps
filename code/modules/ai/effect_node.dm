@@ -3,7 +3,7 @@
 /obj/effect/AINode //A effect that has a ai_node datum in it, used by AIs to pathfind over long distances as well as knowing what's happening at it
 	name = "AI Node"
 	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "x6" //Pure white 'X' with blue borders
+	icon_state = "x6" //Pure white 'X' with black borders
 	var/datum/ai_node/datumnode = new/datum/ai_node() //Stores things about the AI node
 	var/turf/srcturf //The turf this is on
 	anchored = TRUE //No pulling those nodes yo
