@@ -4624,11 +4624,11 @@
 /obj/item/flashlight,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
-"pJ" = (
 "pI" = (	
 /obj/structure/table/flipped,	
 /turf/open/floor/tile/dark2,	
 /area/icy_caves/outpost/security)
+"pJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
