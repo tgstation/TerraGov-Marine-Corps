@@ -3435,11 +3435,11 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/medbay)
-"lU" = (	
-/obj/structure/table,	
-/obj/structure/table,	
-/turf/open/floor/tile/dark2,	
-/area/icy_caves/outpost/refinery)
+"lU" = (
+/obj/structure/table,
+/obj/structure/table,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/refinery
 "lV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
