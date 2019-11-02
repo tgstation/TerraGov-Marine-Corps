@@ -465,6 +465,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 20
 
+/datum/ammo/bullet/rifle/t12
+	name = "T12 DMR bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 0
+	damage = 40
+	scatter = -15
+	penetration = 0
+
 /*
 //================================================
 					Shotgun Ammo
