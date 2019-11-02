@@ -254,9 +254,9 @@
 	icon_state = "m41ae2"
 	item_state = "m41ae2"
 	caliber = "10x24mm caseless" //codex
-	max_shells = 300 //codex
+	max_shells = 120 //codex
 	aim_slowdown = 0.8
-	wield_delay = 2 SECONDS
+	wield_delay = 1.3 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -264,9 +264,10 @@
 	current_mag = /obj/item/ammo_magazine/lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/rifle,
