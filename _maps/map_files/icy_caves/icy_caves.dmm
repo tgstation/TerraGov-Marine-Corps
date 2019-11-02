@@ -112,10 +112,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
-"aD" = (
-/obj/machinery/vending/security,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
 "aE" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating/mainship,
