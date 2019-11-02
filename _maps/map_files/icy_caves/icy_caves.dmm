@@ -1664,15 +1664,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/east)
-/area/icy_caves/outpost/security)
-"gg" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table,
-/obj/item/clothing/suit/armor/riot,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
 "gh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
