@@ -13,28 +13,40 @@
 	. = ..()
 	srcturf = loc
 	datumnode.parentnode = src
-	//for(var/diagonal in GLOB.diagonals)
-	//	datumnode.add_construction(new/datum/construction_marker/xeno/weed_node(get_step(loc, diagonal), datumnode))
-	//for(var/cardinal in GLOB.cardinals)
-	//	datumnode.add_construction(new/datum/construction_marker/xeno/sticky_resin(get_step(loc, cardinal), datumnode))
-	//datumnode.add_construction(new/datum/construction_marker/xeno/weed_node(loc, datumnode))
 	GLOB.allnodes += src
+
+//Current weights are nothing, wait for more ai updates
+//Parameter call example
+//GetBestAdjNode(list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1)) if these were defined
+//This means that the proc will pick out the *best* node
+
+/obj/effect/AINode/proc/GetBestAdjNode(list/weight_modifiers)
+	if(weight_modifiers)
+		var/obj/effect/AINode/node_to_return = datumnode.adjacent_nodes[1]
+		var/current_best_node = 0
+		var/current_score = 0
+		for(var/obj/effect/AINode/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
+			for(var/i = 1; i != weight_modifiers.len; i++)
+				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
+
+			if(current_score >= current_best_node)
+				current_best_node = current_score
+				node_to_return = node
+			current_score = 0
+
+		if(node_to_return)
+			return node_to_return
+
+	else //No weight modifier, return a adjacent random node
+		return pick(shuffle(datumnode.adjacent_nodes))
 
 /obj/effect/AINode/proc/MakeAdjacents()
 	datumnode.adjacent_nodes = list()
 	for(var/obj/effect/AINode/node in GLOB.allnodes)
 		if(node && (node != src) && (get_dist(src, node) < 16) && (get_dir(src, node) in CARDINAL_DIRS))
-			/*
-			var/list/turf/turfs = getline(src, node)
-			var/IsDense = FALSE
-			for(var/turf/turf in turfs)
-				if(istype(turf, /turf/closed))
-					IsDense = TRUE
-			if(!IsDense)
-			*/
 			datumnode.adjacent_nodes += node
 
-/obj/effect/AINode/proc/add_to_notable_nodes(weight)
+/obj/effect/AINode/proc/add_to_notable_nodes(weight) //For later:tm:
 
 /obj/effect/AINode/proc/remove_from_notable_nodes(weight)
 

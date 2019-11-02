@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(nodes)
 		nodes.MakeAdjacents()
 
 /datum/controller/subsystem/nodes/fire(resume = FALSE)
+	/* Will have things added to it later on once weights get expanded on
 	if(!resume)
 		current_run = GLOB.allnodes.Copy()
 	while(current_run.len)
@@ -22,3 +23,4 @@ SUBSYSTEM_DEF(nodes)
 		current_run.len--
 		if(TICK_CHECK)
 			return
+	*/

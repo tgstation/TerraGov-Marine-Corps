@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(ai_movement)
 	priority = FIRE_PRIORITY_DEFAULT
 	flags = SS_KEEP_TIMING
 	init_order = INIT_ORDER_AI_MOVE
-	wait = 0.5
+	wait = 0.5 //This somehow works a lot better than wait = 1, go figure
 	var/current_deci_second = 1 //What deci second we're at; 1 is 0.1, 2 is 0.2 ETC.
 
 	//AI datums to process, split into 20 lists, 1 for each 0.5 decisecond

@@ -14,10 +14,13 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
-	var/datum/mind/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
+	var/datum/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
 
-/datum/component/ai_behavior/Initialize()
+/datum/component/ai_behavior/Initialize(datum/ai_mind/mind_to_make)
 	if(!ismovableatom(parent))
+		return COMPONENT_INCOMPATIBLE
+	if(!mind_to_make)
+		stack_trace("AI component was initialized without a mind to initialize parameter, stopping component creation.")
 		return COMPONENT_INCOMPATIBLE
 	var/atom/movable/parent2 = parent
 	SSai.aidatums += src
@@ -28,17 +31,17 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 			parent2.forceMove(current_node.loc)
 		break
 	if(!current_node)
+		stack_trace("An AI component was being attached to a movable atom however there's no nodes nearby; component removed.")
 		remove_everything()
 		return
-	RegisterSignal(parent, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETED), .proc/remove_everything)
-	action_state = new/datum/action_state/random_move(src)
-	Init() //Late initialize
-
-/datum/component/ai_behavior/proc/Init() //Basically a late initialize, currently used for ai xeno abilities
+	mind = new mind_to_make(src)
+	mind.late_init()
+	RegisterSignal(parent, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED ), .proc/remove_everything)
 
 /datum/component/ai_behavior/proc/remove_everything() //Removes parent from processing AI and own component
 	SSai.aidatums -= src
 	SSai_movement.RemoveFromProcess(src)
+	qdel(mind)
 	qdel(src)
 
 /datum/component/ai_behavior/proc/Process() //Processes and updates things
@@ -55,29 +58,29 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 
 //Tile by tile movement electro boogaloo
 /datum/component/ai_behavior/proc/ProcessMove()
+	if(!QDELETED(action_state))
+		var/mob/living/carbon/parent2 = parent
+		if(!parent2.canmove)
+			return 2
+		var/totalmovedelay = 0
+		switch(parent2.m_intent)
+			if(MOVE_INTENT_RUN)
+				totalmovedelay += 2 + CONFIG_GET(number/movedelay/run_delay)
+			if(MOVE_INTENT_WALK)
+				totalmovedelay += 7 + CONFIG_GET(number/movedelay/walk_delay)
+		totalmovedelay += parent2.movement_delay()
 
-	var/mob/living/carbon/parent2 = parent
-	if(!parent2.canmove)
-		return 2
-	var/totalmovedelay = 0
-	switch(parent2.m_intent)
-		if(MOVE_INTENT_RUN)
-			totalmovedelay += 2 + CONFIG_GET(number/movedelay/run_delay)
-		if(MOVE_INTENT_WALK)
-			totalmovedelay += 7 + CONFIG_GET(number/movedelay/walk_delay)
-	totalmovedelay += parent2.movement_delay()
+		var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
+		var/dumb_direction = action_state.GetTargetDir(TRUE)
+		if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
+			return 5 //Attempts a move in 0.5 seconds
 
-	var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
-	var/dumb_direction = action_state.GetTargetDir(TRUE)
-	if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
-		return 5 //Attempts a move in 0.5 seconds
+		if(dumb_direction in GLOB.diagonals)
+			doubledelay = TRUE
 
-	if(dumb_direction in GLOB.diagonals)
-		doubledelay = TRUE
-
-	if(doubledelay)
-		move_delay = world.time + (totalmovedelay * SQRTWO)
-		return totalmovedelay * SQRTWO
-	else
-		move_delay = world.time + totalmovedelay
-		return totalmovedelay
+		if(doubledelay)
+			move_delay = world.time + (totalmovedelay * SQRTWO)
+			return totalmovedelay * SQRTWO
+		else
+			move_delay = world.time + totalmovedelay
+			return totalmovedelay

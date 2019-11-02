@@ -32,31 +32,6 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 			return node
 	return null
 
-//Current weights are ENEMY_PRESENCE & DANGER_SCALE
-//Parameter call example
-//GetBestAdjNode(list(ENEMY_PRESENCE = -100, DANGER_SCALE = -1))
-//This means that the proc will pick out the *best* node, score is negatively impacted by amount of enemies and danger scale
-
-/obj/effect/AINode/proc/GetBestAdjNode(list/weight_modifiers)
-	if(weight_modifiers)
-		var/obj/effect/AINode/node_to_return = datumnode.adjacent_nodes[1]
-		var/current_best_node = 0
-		var/current_score = 0
-		for(var/obj/effect/AINode/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
-			for(var/i = 1; i != weight_modifiers.len; i++)
-				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
-
-			if(current_score >= current_best_node)
-				current_best_node = current_score
-				node_to_return = node
-			current_score = 0
-
-		if(node_to_return)
-			return node_to_return
-
-	else //No weight modifier, return a adjacent random node
-		return pick(shuffle(datumnode.adjacent_nodes))
-
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node
 /proc/get_node_towards(obj/effect/AINode/startnode, obj/effect/AINode/destination)
@@ -78,7 +53,7 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 			listofhuman += human
 	return listofhuman
 
-/proc/GetRandomNode() //Gets a new random destination that isn't it's current node
+/proc/GetRandomNode() //Gets a new random destination, probably doesn't need this
 	return pick(GLOB.allnodes)
 
 /proc/LeftAndRightOfDir(direction) //Returns the left and right dir of the input dir, used for AI stutter step and cade movement
