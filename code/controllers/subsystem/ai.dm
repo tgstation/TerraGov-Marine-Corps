@@ -37,17 +37,3 @@ SUBSYSTEM_DEF(ai)
 		current_run.len--
 		if(TICK_CHECK)
 			return
-
-		/*
-		var/mob/living/carbon/Xenomorph/Drone/node/ai = current_run[current_run.len]
-		if(M.loc != last_turf[M])
-			last_turf[M] = M.loc
-			M.DoMove()
-			if(TICK_CHECK)
-				return
-			continue
-		M.DealWithObstruct()
-		M.DoMove()
-		if(TICK_CHECK)
-			return
-		*/

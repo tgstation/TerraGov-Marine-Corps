@@ -17,6 +17,7 @@ SUBSYSTEM_DEF(ai_movement)
 /datum/controller/subsystem/ai_movement/Initialize()
 	for(var/i in 1 to 20)
 		lists_of_lists += list(list())
+	return ..()
 
 /datum/controller/subsystem/ai_movement/proc/RemoveFromProcess(datum/component/ai_behavior/ai_datum)
 	for(var/list/list in lists_of_lists)
