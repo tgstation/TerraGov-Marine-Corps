@@ -17,7 +17,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/datum/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
 
 /datum/component/ai_behavior/Initialize(datum/ai_mind/mind_to_make)
-	if(!ismovableatom(parent))
+	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(!mind_to_make)
 		stack_trace("AI component was initialized without a mind to initialize parameter, stopping component creation.")
