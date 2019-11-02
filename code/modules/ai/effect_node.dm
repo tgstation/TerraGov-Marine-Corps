@@ -26,7 +26,7 @@
 		var/current_best_node = 0
 		var/current_score = 0
 		for(var/obj/effect/AINode/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
-			for(var/i = 1; i != weight_modifiers.len; i++)
+			for(var/i = 1 to length(weight_modifiers))
 				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
 
 			if(current_score >= current_best_node)
@@ -53,6 +53,6 @@
 /obj/effect/AINode/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 
 /obj/effect/AINode/debug/Initialize()
-	..()
+	. = ..()
 	alpha = 127
 	color = "#ffffff" //Color coding yo; white is 'unkonwn', green is 'safe' and red is 'danger'

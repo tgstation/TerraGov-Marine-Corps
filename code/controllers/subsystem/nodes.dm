@@ -2,6 +2,7 @@ SUBSYSTEM_DEF(nodes)
 	name = "Nodes"
 	init_order = INIT_ORDER_NODES
 	wait = 1 SECONDS
+	flags = SS_NO_FIRE //For now
 	var/list/current_run
 
 /datum/controller/subsystem/nodes/Initialize()
@@ -13,14 +14,3 @@ SUBSYSTEM_DEF(nodes)
 	for(var/obj/effect/AINode/nodes in GLOB.allnodes)
 		nodes.MakeAdjacents()
 
-/datum/controller/subsystem/nodes/fire(resume = FALSE)
-	/* Will have things added to it later on once weights get expanded on
-	if(!resume)
-		current_run = GLOB.allnodes.Copy()
-	while(current_run.len)
-		var/obj/effect/AINode/node = current_run[current_run.len]
-
-		current_run.len--
-		if(TICK_CHECK)
-			return
-	*/

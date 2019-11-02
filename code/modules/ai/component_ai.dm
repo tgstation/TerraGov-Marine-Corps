@@ -23,7 +23,6 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		stack_trace("AI component was initialized without a mind to initialize parameter, stopping component creation.")
 		return COMPONENT_INCOMPATIBLE
 	var/atom/movable/parent2 = parent
-	SSai.aidatums += src
 	SSai_movement.lists_of_lists[1] += src
 	for(var/obj/effect/AINode/node in range(7))
 		if(node)
@@ -32,25 +31,25 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		break
 	if(!current_node)
 		stack_trace("An AI component was being attached to a movable atom however there's no nodes nearby; component removed.")
-		remove_everything()
+		qdel(src)
 		return
 	mind = new mind_to_make(src)
 	mind.late_init()
-	RegisterSignal(parent, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED ), .proc/remove_everything)
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/qdel_self)
 
-/datum/component/ai_behavior/proc/remove_everything() //Removes parent from processing AI and own component
-	SSai.aidatums -= src
-	SSai_movement.RemoveFromProcess(src)
-	qdel(mind)
+/datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
 	qdel(src)
 
-/datum/component/ai_behavior/proc/Process() //Processes and updates things
+/datum/component/ai_behavior/Destroy()
+	SSai_movement.RemoveFromProcess(src)
+	qdel(mind)
+	..()
+
+/datum/component/ai_behavior/process() //Processes and updates things
 	if(QDELETED(parent))
 		return FALSE
 	var/mob/living/parent2 = parent
 	lastturf = parent2.loc
-	if(action_state)
-		action_state.Process()
 	return TRUE
 
 /datum/component/ai_behavior/proc/action_completed(reason) //Action state was completed, let's replace it with something else

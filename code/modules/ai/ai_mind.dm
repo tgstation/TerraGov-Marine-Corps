@@ -20,3 +20,5 @@
 	switch(reason)
 		if(FINISHED_MOVE)
 			parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
+
+/datum/ai_mind/proc/Process() //Processes every AI subsystem tick
