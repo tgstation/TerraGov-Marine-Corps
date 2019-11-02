@@ -71,7 +71,7 @@
 	return ..()
 
 /obj/item/weapon/combat_knife
-	name = "\improper M5 \"Night Raider\" survival knife"
+	name = "\improper M5 'Night Raider' survival knife"
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
