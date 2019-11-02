@@ -267,7 +267,8 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
-	return
+	SHOULD_CALL_PARENT(1)
+	SEND_SIGNAL(user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, gun)
 
 
 /////////// Muzzle Attachments /////////////////////////////////
@@ -960,6 +961,7 @@ Defined in conflicts.dm of the #defines folder.
 			qdel(G)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
@@ -1064,6 +1066,7 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return

@@ -199,9 +199,12 @@
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
 /mob/proc/throw_item(atom/target)
-	return
+	SHOULD_CALL_PARENT(1)
+	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
+
 
 /mob/living/carbon/throw_item(atom/target)
+	. = ..()
 	src.throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return

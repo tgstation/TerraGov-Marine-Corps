@@ -236,7 +236,3 @@
 
 mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
-
-/mob/living/carbon/human/throw_item(atom/target)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_HUMAN_ITEM_THROW, target, null, src)
