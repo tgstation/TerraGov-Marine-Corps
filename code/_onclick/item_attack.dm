@@ -89,7 +89,10 @@
 
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
+		return
+	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
+		return
 
 	if(flags_item & NOBLUDGEON)
 		return
@@ -111,8 +114,6 @@
 
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
-
-	SEND_SIGNAL(user, COMSIG_HUMAN_ITEM_ATTACK, M, src, user)
 
 	if(!ishuman(M))
 		var/showname = "."

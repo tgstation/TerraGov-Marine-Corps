@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
 	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5

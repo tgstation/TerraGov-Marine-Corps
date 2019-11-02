@@ -216,9 +216,6 @@
 #define FULL_BODY		(~0)
 //=================================================
 
-//defense zones for selecting them via the hud.
-#define DEFENSE_ZONES_LIVING list("head","chest","mouth","eyes","groin","l_leg","l_foot","r_leg","r_foot","l_arm","l_hand","r_arm","r_hand")
-
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
 // Used with human/proc/get_flags_heat_protection() and human/proc/get_flags_cold_protection()
 // The values here should add up to 1.
