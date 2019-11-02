@@ -89,7 +89,7 @@
 	caliber = "10x24mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
+	max_rounds = 120
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
