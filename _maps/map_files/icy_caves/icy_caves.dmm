@@ -154,10 +154,19 @@
 	},
 /area/icy_caves/caves/northern)
 "aN" = (
-/obj/structure/table/flipped,
-/obj/item/flash,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
+/obj/structure/closet/crate/weapon,
+/obj/item/weapon/gun/rifle/type71,
+/obj/item/weapon/gun/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/obj/item/ammo_magazine/rifle/type71,	
+/turf/open/floor/plating/mainship,	
+/area/icy_caves/caves/crashed_ship)
 "aO" = (
 /obj/structure/closet/crate/explosives,
 /obj/item/storage/box/nade_box,
