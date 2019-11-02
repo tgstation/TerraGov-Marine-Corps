@@ -1,30 +1,29 @@
 
-
 /obj/item/unmanned_vehicle_remote
-	name = "Handheld Vehicle Remote Control"
+	name = "Handheld Vehicle Controller"
 	desc = "Used to control an unmanned vehicle."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "multitool2"
-	var/obj/vehicle/unmanned/vehicle_controlled = null
+	var/obj/vehicle/unmanned/vehicle = null
+	var/controlling = FALSE
 
 /obj/item/unmanned_vehicle_remote/Initialize()
 	. = ..()
 
 /obj/item/unmanned_vehicle_remote/afterattack(atom/target, mob/user, flag)
-	if(!istype(target, /obj/vehicle/unmanned))
+	if(istype(target, /obj/vehicle/unmanned))
+		if(!vehicle)
+			vehicle = target
+			AddComponent(/datum/component/remote_control, target)
+			to_chat(user, "<span class='notice'>You link [target] to [src]</span>.")
+
+	if(SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user))
 		return
-
-	if(vehicle_controlled)
-		return
-
-	vehicle_controlled = target
-	AddComponent(/datum/component/remote_control, target)
-
 
 /obj/item/unmanned_vehicle_remote/attack_self(mob/user)
-	if(!vehicle_controlled)
+	if(!vehicle)
 		return
-	if(SEND_SIGNAL(src, COMSIG_REMOTE_CONTROL_TOGGLE, user))
+	if(SEND_SIGNAL(src, COMSIG_REMOTECONTROL_TOGGLE, user))
 		return
 
 /obj/item/unmanned_vehicle_remote/dropped(mob/user)

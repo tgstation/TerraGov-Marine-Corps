@@ -346,7 +346,7 @@
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 
 // remote control signals
-#define COMSIG_REMOTE_CONTROL_TOGGLE "remote_control_toggle"
+#define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
