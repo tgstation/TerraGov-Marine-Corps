@@ -133,12 +133,6 @@
 /obj/structure/bed/nest,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
-"aH" = (
-/obj/structure/table/flipped,
-/obj/item/clothing/gloves/marine/som,
-/obj/item/clothing/gloves/marine/som,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/security)
 "aI" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/structure/bed/nest,
