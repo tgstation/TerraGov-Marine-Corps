@@ -500,7 +500,12 @@
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
-	RegisterSignal(M, list(COMSIG_MOB_GUN_FIRED, COMSIG_MOB_GUN_AUTOFIRED, COMSIG_MOB_ATTACHMENT_FIRED, COMSIG_MOB_THROW, COMSIG_MOB_ITEM_ATTACK), .proc/action_taken)
+	RegisterSignal(M, list(
+		COMSIG_MOB_GUN_FIRED,
+		COMSIG_MOB_GUN_AUTOFIRED,
+		COMSIG_MOB_ATTACHMENT_FIRED,
+		COMSIG_MOB_THROW,
+		COMSIG_MOB_ITEM_ATTACK), .proc/action_taken)
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
