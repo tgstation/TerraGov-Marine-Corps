@@ -201,7 +201,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/toxin/plasticide,
 			/datum/reagent/medicine/inaprovaline,
 			/datum/reagent/space_drugs,
-			/datum/reagent/medicine/antidepressant/paroxetine,
 			/datum/reagent/mercury,
 			/datum/reagent/consumable/sugar,
 			/datum/reagent/radium,

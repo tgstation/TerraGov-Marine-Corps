@@ -154,16 +154,6 @@
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
-/obj/item/reagent_container/pill/methylphenidate
-	pill_desc = "A methylphenidate pill. This improves the ability to concentrate."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/methylphenidate = 15)
-	pill_id = 8
-
-/obj/item/reagent_container/pill/citalopram
-	pill_desc = "A citalopram pill. A mild anti-depressant."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/citalopram = 15)
-	pill_id = 9
-
 /obj/item/reagent_container/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
