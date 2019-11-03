@@ -23,7 +23,7 @@ import { SelfDestruct } from './interfaces/SelfDestruct';
 import { Sentry } from './interfaces/Sentry';
 import { Vending } from './interfaces/Vending';
 import { MarineDropship } from './interfaces/MarineDropship';
-import { PodLauncher } from './interfaces/PodLauncher';
+import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
 import { PortableVendor } from './interfaces/PortableVendor';
 import { PortableGenerator } from './interfaces/PortableGenerator';
 import { SmartVend } from './interfaces/SmartVend';
@@ -107,8 +107,8 @@ const ROUTES = {
     component: () => MarineDropship,
     scrollable: true,
   },
-  podlauncher: {
-    component: () => PodLauncher,
+  centcom_podlauncher: {
+    component: () => CentcomPodLauncher,
     scrollable: false,
   },
   portable_generator: {

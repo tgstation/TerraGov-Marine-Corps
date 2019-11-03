@@ -9,8 +9,11 @@
 	if(!P.bay || !P.podarea)
 		return
 
-	P.interact(usr)
+	to_chat(world, "verb")
 
+	P.ui_interact(usr)
+
+	to_chat(world, "post ui_interact")
 
 /datum/podlauncher
 	interaction_flags = INTERACT_UI_INTERACT
@@ -51,11 +54,13 @@
 	acceptableTurfs = list()
 	orderedArea = createOrderedArea(bay)
 
+	to_chat(world, "new")
 
 /datum/podlauncher/Destroy()
 	updateCursor(FALSE)
 	QDEL_NULL(temp_pod)
 	QDEL_NULL(selector)
+	to_chat(world, "destroy")
 	return ..()
 
 
@@ -65,6 +70,8 @@
 /datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+	to_chat(world, "ui_interact called")
 
 	if(!ui)
 		ui = new(user, src, ui_key, "podlauncher", "podlauncher", 1000, 700, master_ui, state)
