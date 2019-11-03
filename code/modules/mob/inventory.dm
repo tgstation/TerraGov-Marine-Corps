@@ -309,7 +309,18 @@
 	return equipped
 
 
+//Checks if we're holding a tool that has given quality
+//Returns the tool that has the best version of this quality
+/mob/proc/is_holding_tool_quality(quality)
+	var/obj/item/best_item
+	var/best_quality = INFINITY
 
+	for(var/obj/item/I in list(l_hand, r_hand))
+		if(I.tool_behaviour == quality && I.toolspeed < best_quality)
+			best_item = I
+			best_quality = I.toolspeed
+
+	return best_item
 
 
 // The mob is trying to strip an item from someone
@@ -323,3 +334,7 @@
 //returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
 	return
+
+//placeholder until tg inventory system
+/mob/proc/is_holding(obj/item/I)
+	return ((I == l_hand) || (I == r_hand))

@@ -33,7 +33,7 @@ if grep -P '^/*var/' code/**/*.dm; then
     echo "Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
-if grep -P '(?(?=^  .)(^  [^*\s])|(^ +\S))' code/**/*.dm; then
+if grep -P '(?(?=^ {1,2}.)(^ {1,2}[^*\/\s])|(^ +\S))' code/**/*.dm; then
     echo "space indentation detected"
     st=1
 fi;
