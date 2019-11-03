@@ -95,11 +95,11 @@
 
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_container/dropper,
-		/obj/item/reagent_container/glass/beaker,
-		/obj/item/reagent_container/glass/bottle,
-		/obj/item/reagent_container/pill,
-		/obj/item/reagent_container/syringe,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/tool/lighter,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
@@ -113,7 +113,7 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
-		/obj/item/reagent_container/hypospray,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
 		/obj/item/roller)
@@ -145,12 +145,12 @@
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
-		/obj/item/reagent_container/glass/bottle,
-		/obj/item/reagent_container/pill,
-		/obj/item/reagent_container/syringe,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical
 	)
 
@@ -171,11 +171,11 @@
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
@@ -202,13 +202,13 @@
 	can_hold = list(
 		/obj/item/explosive/grenade/flashbang,
 		/obj/item/explosive/grenade/chem_grenade/teargas,
-		/obj/item/reagent_container/spray/pepper,
+		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/restraints/handcuffs,
 		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/reagent_container/food/snacks/donut,
+		/obj/item/reagent_containers/food/snacks/donut,
 		/obj/item/weapon/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/tool/lighter/zippo,
@@ -271,7 +271,7 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_container/food/snacks
+		/obj/item/reagent_containers/food/snacks
 		)
 
 /obj/item/storage/belt/marine/upp

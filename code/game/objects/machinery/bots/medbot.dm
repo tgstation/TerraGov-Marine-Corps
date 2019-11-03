@@ -14,7 +14,7 @@
 	req_access =list(ACCESS_MARINE_MEDBAY)
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
 	var/list/botcard_access = list(ACCESS_MARINE_MEDBAY)
-	var/obj/item/reagent_container/glass/reagent_glass = null //Can be set to draw from this for reagents.
+	var/obj/item/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/frustration = 0
 	var/path[] = new()
@@ -180,7 +180,7 @@
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 
-	else if(istype(I, /obj/item/reagent_container/glass))
+	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(locked)
 			to_chat(user, "<span class='notice'>You cannot insert a beaker because the panel is locked.</span>")
 			return

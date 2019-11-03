@@ -2197,7 +2197,7 @@
 /area/desert_dam/building/lab_northwest/cafeteria)
 "ahQ" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -2418,7 +2418,7 @@
 /area/desert_dam/building/lab_northwest/cafeteria)
 "aiu" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/boiledspagetti,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -3154,8 +3154,8 @@
 /area/desert_dam/interior/lab_northeast/biology)
 "akv" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/hypospray,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor{
 	icon_state = "darkpurple2";
 	dir = 4
@@ -3719,7 +3719,7 @@
 /area/desert_dam/interior/lab_northeast/biology)
 "alQ" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/open/floor{
 	icon_state = "darkpurple2";
 	dir = 4
@@ -4202,7 +4202,7 @@
 	},
 /area/desert_dam/building/lab_northwest/west_wing_hallway)
 "amR" = (
-/obj/item/reagent_container/food/snacks/grown/banana{
+/obj/item/reagent_containers/food/snacks/grown/banana{
 	pixel_x = -8
 	},
 /obj/structure/rack{
@@ -5682,7 +5682,7 @@
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/bonegel,
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
@@ -6384,7 +6384,7 @@
 "asp" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/pen,
-/obj/item/reagent_container/glass/beaker/vial,
+/obj/item/reagent_containers/glass/beaker/vial,
 /turf/open/floor{
 	icon_state = "darkpurple2";
 	dir = 8
@@ -8012,7 +8012,7 @@
 /area/desert_dam/building/lab_northwest/chemistry)
 "awj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor{
 	icon_state = "whiteyellow";
 	dir = 2
@@ -11113,7 +11113,7 @@
 "aDY" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/donut_box,
-/obj/item/reagent_container/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor{
 	icon_state = "darkred2";
 	dir = 8
@@ -21155,7 +21155,7 @@
 "bdn" = (
 /obj/structure/safe,
 /obj/item/weapon/katana/replica,
-/obj/item/reagent_container/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 /turf/open/floor{
 	icon_state = "darkblue2";
 	dir = 1
@@ -24179,7 +24179,7 @@
 /area/desert_dam/interior/dam_interior/engine_room)
 "bkK" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkyellow2"
@@ -38286,9 +38286,9 @@
 /area/desert_dam/building/medical/chemistry)
 "bRy" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -38449,7 +38449,7 @@
 "bRS" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/syringes,
-/obj/item/reagent_container/dropper,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -42678,7 +42678,7 @@
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/bonegel,
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
@@ -42708,7 +42708,7 @@
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/bonegel,
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
@@ -43532,7 +43532,7 @@
 /area/desert_dam/building/medical/garage)
 "cec" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/open/floor{
 	icon_state = "whitegreen";
 	dir = 9
@@ -44884,7 +44884,7 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "cgM" = (
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreencorner"
@@ -45310,9 +45310,9 @@
 /area/desert_dam/building/medical/garage)
 "chX" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "chY" = (
@@ -45335,7 +45335,7 @@
 "cia" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor{
 	icon_state = "whitegreenfull";
 	dir = 2
@@ -50789,7 +50789,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "cvs" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
 /turf/open/floor{
 	icon_state = "freezerfloor"
 	},
@@ -50892,12 +50892,12 @@
 	},
 /area/desert_dam/building/cafeteria/loading)
 "cvG" = (
-/obj/item/reagent_container/food/snacks/meat{
+/obj/item/reagent_containers/food/snacks/meat{
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/food/snacks/meat,
-/obj/item/reagent_container/food/snacks/meat{
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat{
 	pixel_x = -1;
 	pixel_y = 2
 	},
@@ -53050,7 +53050,7 @@
 /area/desert_dam/building/security/lobby)
 "cAQ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/flask/detflask,
+/obj/item/reagent_containers/food/drinks/flask/detflask,
 /obj/item/clothing/head/det_hat,
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -56317,7 +56317,7 @@
 /area/desert_dam/building/security/staffroom)
 "cIG" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor,
 /area/desert_dam/building/security/staffroom)
 "cIH" = (
@@ -59148,28 +59148,28 @@
 /area/desert_dam/building/security/execution_chamber)
 "cPX" = (
 /obj/structure/closet/secure_closet/injection,
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	name = "\improper Lethal Injection"
 	},
 /turf/open/floor{

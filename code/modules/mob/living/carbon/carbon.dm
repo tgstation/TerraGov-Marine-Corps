@@ -52,8 +52,9 @@
 		return 0
 
 	apply_damage(shock_damage, BURN, def_zone)
+	UPDATEHEALTH(src)
 
-	playsound(loc, "sparks", 25, 1)
+	playsound(loc, "sparks", 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			"<span class='warning'> [src] was shocked by the [source]!</span>", \
@@ -199,9 +200,12 @@
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
 /mob/proc/throw_item(atom/target)
-	return
+	SHOULD_CALL_PARENT(1)
+	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
+
 
 /mob/living/carbon/throw_item(atom/target)
+	. = ..()
 	src.throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return

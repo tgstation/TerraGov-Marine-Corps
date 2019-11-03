@@ -15,8 +15,8 @@
 
 /obj/item/storage/bible/booze/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/food/drinks/cans/beer(src)
-	new /obj/item/reagent_container/food/drinks/cans/beer(src)
+	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
+	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
 	new /obj/item/spacecash(src)
 	new /obj/item/spacecash(src)
 	new /obj/item/spacecash(src)

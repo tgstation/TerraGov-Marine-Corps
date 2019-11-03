@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 17.5
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 35

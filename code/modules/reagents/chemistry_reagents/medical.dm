@@ -278,7 +278,7 @@
 		E.take_damage(0.5, TRUE)
 
 /datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 2) //Starts detoxing, hard
+	L.apply_damages(2, 2)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
@@ -296,7 +296,7 @@
 	L.setCloneLoss(0)
 	L.setOxyLoss(0)
 	L.radiation = 0
-	L.heal_limb_damage(5,5)
+	L.heal_limb_damage(5, 5)
 	L.adjustToxLoss(-5)
 	L.hallucination = 0
 	L.setBrainLoss(0)
@@ -479,7 +479,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
-			E.heal_damage(1)
+			E.heal_organ_damage(1)
 	return ..()
 
 /datum/reagent/medicine/imidazoline/overdose_process(mob/living/L, metabolism)
@@ -505,7 +505,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		if(I.damage)
 			if(L.bodytemperature > 169 && I.damage > 5)
 				continue
-			I.heal_damage(1)
+			I.heal_organ_damage(1)
 	return ..()
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
@@ -523,7 +523,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(2*REM,0)
+	L.heal_limb_damage(2*REM, 0)
 	return ..()
 
 
@@ -762,7 +762,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-1)
 		L.adjustOxyLoss(-1)
-		L.heal_limb_damage(1,1)
+		L.heal_limb_damage(1, 1)
 		L.adjustToxLoss(-1)
 	return ..()
 
@@ -778,7 +778,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(L.bodytemperature < 170)
 		L.adjustCloneLoss(-3)
 		L.adjustOxyLoss(-3)
-		L.heal_limb_damage(3,3)
+		L.heal_limb_damage(3, 3)
 		L.adjustToxLoss(-3)
 	return ..()
 
@@ -796,10 +796,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-1)
-			L.heal_limb_damage(1,1)
+			L.heal_limb_damage(1, 1)
 		if(16 to 35)
 			L.adjustCloneLoss(-2)
-			L.heal_limb_damage(2,1)
+			L.heal_limb_damage(2, 1)
 			L.status_flags &= ~DISFIGURED
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
@@ -950,13 +950,13 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	return ..()
 
 /datum/reagent/medicine/hypervene/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(1, 1) //Starts detoxing, hard
+	L.apply_damages(1, 1)
 	if(prob(10)) //heavy vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
 /datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(2, 2) //Starts detoxing, hard
+	L.apply_damages(2, 2)
 	if(prob(20)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.

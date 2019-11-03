@@ -203,8 +203,8 @@
 
 /obj/structure/closet/crate/hydroponics/prespawned/Initialize()
 	. = ..()
-	new /obj/item/reagent_container/spray/plantbgone(src)
-	new /obj/item/reagent_container/spray/plantbgone(src)
+	new /obj/item/reagent_containers/spray/plantbgone(src)
+	new /obj/item/reagent_containers/spray/plantbgone(src)
 	new /obj/item/tool/minihoe(src)
 
 /obj/structure/closet/crate/internals

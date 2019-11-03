@@ -38,7 +38,7 @@
 		else
 			name = "glass case"
 
-	else if(istype(I, /obj/item/reagent_container/syringe))
+	else if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!imp?.allow_reagents)
 			return
 
