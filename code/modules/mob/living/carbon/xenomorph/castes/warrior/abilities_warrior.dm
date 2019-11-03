@@ -220,8 +220,10 @@
 
 	add_cooldown()
 
+
 /mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	var/datum/limb/L = get_limb(target_zone)
@@ -242,6 +244,7 @@
 	add_slowdown(3)
 
 	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+	UPDATEHEALTH(src)
 
 // ***************************************
 // *********** Rip limb

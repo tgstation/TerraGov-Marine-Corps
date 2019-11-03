@@ -96,6 +96,7 @@
 		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 		M.apply_damage(10)
+		UPDATEHEALTH(M)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 

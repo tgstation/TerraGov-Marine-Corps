@@ -22,9 +22,11 @@
 		update_canmove()	//updates lying, canmove and icons
 
 
-/mob/living/proc/set_knocked_down(amount)
-	if(status_flags & CANKNOCKDOWN)
-		knocked_down = max(amount,0)
+/mob/living/proc/set_knocked_down(amount, update = TRUE)
+	if(!(status_flags & CANKNOCKDOWN))
+		return
+	knocked_down = max(amount, 0)
+	if(update)
 		update_canmove()	//updates lying, canmove and icons
 
 

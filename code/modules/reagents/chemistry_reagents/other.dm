@@ -296,10 +296,10 @@
 	return ..()
 
 /datum/reagent/lithium/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX)
 
 /datum/reagent/lithium/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(2, TOX) //Overdose starts getting bad
+	L.apply_damage(2, TOX)
 
 /datum/reagent/glycerol
 	name = "Glycerol"
@@ -325,7 +325,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(2*REM/L.metabolism_efficiency,IRRADIATE,0)
+	L.apply_effect(2*REM/L.metabolism_efficiency, IRRADIATE)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -391,7 +391,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency,IRRADIATE,0)
+	L.apply_effect(1/L.metabolism_efficiency, IRRADIATE)
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -540,10 +540,10 @@
 	return ..()
 
 /datum/reagent/impedrezene/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX)
 
 /datum/reagent/impedrezene/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(1, TOX) //Overdose starts getting bad
+	L.apply_damage(1, TOX)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
