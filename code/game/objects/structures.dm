@@ -155,12 +155,13 @@
 		if(prob(25))
 
 			var/damage = rand(15,30)
-			var/mob/living/carbon/human/H = M
-			if(!istype(H))
-				to_chat(H, "<span class='danger'>You land heavily!</span>")
+			if(!ishuman(M))
+				to_chat(M, "<span class='danger'>You land heavily!</span>")
 				M.apply_damage(damage, BRUTE)
+				UPDATEHEALTH(M)
 				return
 
+			var/mob/living/carbon/human/H = M
 			var/datum/limb/affecting
 
 			switch(pick(list("ankle","wrist","head","knee","elbow")))
@@ -182,9 +183,8 @@
 				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				H.apply_damage(damage, BRUTE)
 
+			UPDATEHEALTH(H)
 			H.UpdateDamageIcon()
-			H.updatehealth()
-	return
 
 
 /obj/structure/can_interact(mob/user)

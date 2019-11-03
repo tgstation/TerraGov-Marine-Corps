@@ -41,7 +41,7 @@
 	taste_description = "tomatoes"
 
 /datum/reagent/consumable/drink/tomatojuice/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0,0.2)
+	L.heal_limb_damage(0, 0.2)
 	return ..()
 
 
@@ -164,7 +164,7 @@
 	taste_description = "milk"
 
 /datum/reagent/consumable/drink/milk/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2,0)
+	L.heal_limb_damage(0.2)
 	if(holder.has_reagent(/datum/reagent/consumable/capsaicin))
 		holder.remove_reagent(/datum/reagent/consumable/capsaicin, 2)
 	return ..()
@@ -253,7 +253,7 @@
 	adj_temp = 5
 
 /datum/reagent/consumable/drink/coffee/soy_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2,0)
+	L.heal_limb_damage(0.2)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/cafe_latte
@@ -265,7 +265,7 @@
 	adj_temp = 5
 
 /datum/reagent/consumable/drink/coffee/cafe_latte/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0.2,0)
+	L.heal_limb_damage(0.2)
 	return ..()
 
 /datum/reagent/consumable/drink/tea

@@ -195,7 +195,7 @@
 	//Account for massive pressure differences
 	switch(env_pressure)
 		if(HAZARD_HIGH_PRESSURE to INFINITY)
-			adjustBruteLoss( min( ( (env_pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
+			adjustBruteLoss(min( ( (env_pressure / HAZARD_HIGH_PRESSURE) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE) )
 			pressure_alert = 2
 		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
 			pressure_alert = 1
