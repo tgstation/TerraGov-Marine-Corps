@@ -13,16 +13,7 @@
 /datum/action/New(Target)
 	target = Target
 	button = new
-	if(target)
-		var/image/IMG
-		if(ispath(target))
-			IMG = image(initial(target.icon), button, initial(target.icon_state))
-		else
-			IMG = image(target.icon, button, target.icon_state)
-		IMG.pixel_x = 0
-		IMG.pixel_y = 0
-		button.overlays += IMG
-	button.icon = icon(background_icon, background_icon_state)
+	set_button_icon()
 	button.source_action = src
 	button.name = name
 	if(desc)
@@ -34,6 +25,18 @@
 	QDEL_NULL(button)
 	target = null
 	return ..()
+
+/datum/action/proc/set_button_icon()
+	if(target)
+		var/image/IMG
+		if(ispath(target))
+			IMG = image(initial(target.icon), button, initial(target.icon_state))
+		else
+			IMG = image(target.icon, button, target.icon_state)
+		IMG.pixel_x = 0
+		IMG.pixel_y = 0
+		button.overlays += IMG
+	button.icon = icon(background_icon, background_icon_state)
 
 /datum/action/proc/should_show()
 	return TRUE

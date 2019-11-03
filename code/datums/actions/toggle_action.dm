@@ -2,11 +2,15 @@
 	name = "Generic Toggle Action"
 
 
-/datum/action/toggle_action/New(Target, action_name, active_state_icon)
+/datum/action/toggle_action/New(Target, action_name, button_icon)
 	. = ..()
 	name = action_name
-	button.overlays.Cut()
-	button.icon_state = active_state_icon
+	action_icon_state = button_icon
+	button.name = name
+
+
+/datum/action/toggle_action/set_button_icon()
+	button.icon = icon(background_icon, background_icon_state)
 
 
 /datum/action/bump_attack_toggle/update_button_icon(active)
