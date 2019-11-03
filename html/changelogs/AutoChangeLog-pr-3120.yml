@@ -1,0 +1,5 @@
+author: "spookydonut"
+delete-after: True
+changes: 
+  - rscadd: "Added tgui-next"
+  - rscdel: "Removes nanoui"
