@@ -9,21 +9,19 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/turf/destinationturf //Turf that we want to get to
 	var/turf/lastturf //If this is the same as parentmob turf at HandleMovement() then we made no progress in moving, do HandleObstruction from there
 	var/obj/effect/AINode/current_node //Current node the parentmob is at
-	var/atom/atomtowalkto //Generic atom we're walking to; action states determine what type
-	var/obj/effect/AINode/destination_node
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
 	var/datum/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
 
 /datum/component/ai_behavior/Initialize(datum/ai_mind/mind_to_make)
+	. = ..()
 	if(!iscarbon(parent))
 		return COMPONENT_INCOMPATIBLE
 	if(!mind_to_make)
 		stack_trace("AI component was initialized without a mind to initialize parameter, stopping component creation.")
 		return COMPONENT_INCOMPATIBLE
 	var/atom/movable/parent2 = parent
-	SSai_movement.lists_of_lists[1] += src
 	for(var/obj/effect/AINode/node in range(7))
 		if(node)
 			current_node = node
@@ -36,13 +34,17 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	mind = new mind_to_make(src)
 	mind.late_init()
 	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/qdel_self)
+	START_PROCESSING(SSprocessing, src)
+	ProcessMove() //Start that infinite loop of moving
 
 /datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
+	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
 	qdel(src)
 
 /datum/component/ai_behavior/Destroy()
-	SSai_movement.RemoveFromProcess(src)
 	qdel(mind)
+	if(!QDELETED(src))
+		STOP_PROCESSING(SSprocessing, src)
 	..()
 
 /datum/component/ai_behavior/process() //Processes and updates things
@@ -60,7 +62,8 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	if(!QDELETED(action_state))
 		var/mob/living/carbon/parent2 = parent
 		if(!parent2.canmove)
-			return 2
+			addtimer(CALLBACK(src, .proc/ProcessMove), 2)
+			return
 		var/totalmovedelay = 0
 		switch(parent2.m_intent)
 			if(MOVE_INTENT_RUN)
@@ -72,14 +75,17 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
 		var/dumb_direction = action_state.GetTargetDir(TRUE)
 		if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
-			return 5 //Attempts a move in 0.5 seconds
+			addtimer(CALLBACK(src, .proc/ProcessMove), 5) //Try moving again in half a second
+			return
 
 		if(dumb_direction in GLOB.diagonals)
 			doubledelay = TRUE
 
 		if(doubledelay)
 			move_delay = world.time + (totalmovedelay * SQRTWO)
-			return totalmovedelay * SQRTWO
+			addtimer(CALLBACK(src, .proc/ProcessMove), totalmovedelay * SQRTWO)
+			return
 		else
 			move_delay = world.time + totalmovedelay
-			return totalmovedelay
+			addtimer(CALLBACK(src, .proc/ProcessMove), totalmovedelay)
+			return

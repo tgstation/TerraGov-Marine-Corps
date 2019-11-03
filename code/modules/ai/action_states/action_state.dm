@@ -6,14 +6,18 @@
 	..()
 	if(parent_to_hook_to)
 		parent_ai = parent_to_hook_to
+		START_PROCESSING(SSprocessing, src)
 		return TRUE
 	else
 		stack_trace("A action state was initialized without a parent to hook onto, VERY BAD!!!")
 		qdel(src)
 		return FALSE
 
-//Called from AI process, this is NOT for assigning new states or removing and choosing next state, that's the AI behavior job
-//This is for updating things like random_move's next_node
+/datum/action_state/Destroy()
+	STOP_PROCESSING(SSprocessing, src)
+	return ..()
+
+/datum/action_state/process()
 
 /datum/action_state/proc/Complete(reason) //What we do once completing the the task, also inform the parent ai we finished it
 	parent_ai.action_completed(reason)

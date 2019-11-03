@@ -5,11 +5,12 @@
 	var/atom/atomtomoveto //Thing we moving to, MANUALLY ASSIGN THIS SOMEWHERE
 	var/distance_to_maintain //Distance we want to get to; also can be used to trigger specific things
 
-/datum/action_state/move_to_atom/New(parent_to_hook_to, atom/target)
+/datum/action_state/move_to_atom/New(datum/component/ai_behavior/parent_to_hook_to, atom/target)
 	. = ..()
 	if(.)
 		if(!QDELETED(target))
 			atomtomoveto = target
+			distance_to_maintain = parent_to_hook_to.distance_to_maintain
 		else
 			Complete(FINISHED_MOVE) //Hopefully this doesn't happen again
 
