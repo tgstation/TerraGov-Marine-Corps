@@ -879,7 +879,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	var/obj/item/radio/radio
-	var/obj/item/reagent_container/blood/OMinus/blood_pack
+	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
 /obj/machinery/autodoc_console/Initialize()

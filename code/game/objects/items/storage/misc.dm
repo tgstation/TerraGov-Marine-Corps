@@ -19,13 +19,13 @@
 	storage_slots = 6
 	var/startswith = 6
 	var/open = 0
-	can_hold = list(/obj/item/reagent_container/food/snacks/donut)
+	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/sheet/cardboard
 
 /obj/item/storage/donut_box/Initialize()
 	. = ..()
 	for(var/i in 1 to startswith)
-		new /obj/item/reagent_container/food/snacks/donut/normal(src)
+		new /obj/item/reagent_containers/food/snacks/donut/normal(src)
 	update_icon()
 	return
 
@@ -44,7 +44,7 @@
 		return
 	icon_state = "donutbox_o"
 	var/i = 0
-	for(var/obj/item/reagent_container/food/snacks/donut/D in contents)
+	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
 		i++
 		var/image/img = image('icons/obj/items/food.dmi', "[D.overlay_state]-[i]")
 		overlays += img

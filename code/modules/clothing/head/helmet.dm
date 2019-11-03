@@ -188,10 +188,10 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
-						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
+						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
@@ -200,7 +200,7 @@
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_container/food/drinks/flask,
+		/obj/item/reagent_containers/food/drinks/flask,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/pistol)
 	cant_hold = list(

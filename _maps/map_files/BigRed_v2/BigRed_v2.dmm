@@ -1399,7 +1399,7 @@
 /area/bigredv2/outside/marshal_office)
 "aeP" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/flask/detflask,
+/obj/item/reagent_containers/food/drinks/flask/detflask,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "aeQ" = (
@@ -1777,7 +1777,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "agb" = (
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/freezer,
 /area/bigredv2/caves/lambda_lab)
 "agc" = (
@@ -3017,7 +3017,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajN" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3521,7 +3521,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "ali" = (
-/obj/item/reagent_container/spray/plantbgone,
+/obj/item/reagent_containers/spray/plantbgone,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "alj" = (
@@ -4539,7 +4539,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "anV" = (
-/obj/item/reagent_container/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -7503,7 +7503,7 @@
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/coffee,
+/obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/phone,
 /turf/open/floor/carpet,
 /area/bigredv2/caves/lambda_lab)
@@ -8186,7 +8186,7 @@
 	},
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/gloves,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
@@ -9234,7 +9234,7 @@
 "aBN" = (
 /obj/structure/table,
 /obj/item/healthanalyzer,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aBO" = (
@@ -9861,7 +9861,7 @@
 "aDF" = (
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "aDI" = (
@@ -10483,7 +10483,7 @@
 	},
 /area/bigredv2/outside/medical)
 "aFE" = (
-/obj/item/reagent_container/pill/happy,
+/obj/item/reagent_containers/pill/happy,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aFF" = (
@@ -10777,7 +10777,7 @@
 	},
 /area/bigredv2/outside/virology)
 "aGt" = (
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aGu" = (
@@ -10836,7 +10836,7 @@
 /area/bigredv2/outside/medical)
 "aGD" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aGE" = (
@@ -11404,7 +11404,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIl" = (
-/obj/item/reagent_container/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "aIm" = (
@@ -13693,40 +13693,40 @@
 /area/bigredv2/outside/general_store)
 "aPw" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/chips,
-/obj/item/reagent_container/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPx" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/chips,
-/obj/item/reagent_container/food/snacks/cookie,
-/obj/item/reagent_container/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPy" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPz" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/waterbottle,
-/obj/item/reagent_container/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPA" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/waterbottle,
-/obj/item/reagent_container/food/drinks/cans/cola,
-/obj/item/reagent_container/food/drinks/cans/beer,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/beer,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPB" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask,
-/obj/item/reagent_container/food/drinks/cans/waterbottle,
-/obj/item/reagent_container/food/drinks/cans/beer,
+/obj/item/reagent_containers/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/beer,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aPD" = (
@@ -13982,15 +13982,15 @@
 /area/bigredv2/outside/w)
 "aQH" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/chips,
-/obj/item/reagent_container/food/snacks/cookie,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aQI" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/thirteenloko,
-/obj/item/reagent_container/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -13998,8 +13998,8 @@
 /area/bigredv2/outside/general_store)
 "aQJ" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask/vacuumflask,
-/obj/item/reagent_container/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -14320,30 +14320,30 @@
 /area/bigredv2/outside/virology)
 "aRK" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/cheesewedge,
-/obj/item/reagent_container/food/snacks/chips,
-/obj/item/reagent_container/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRL" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRN" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/thirteenloko,
-/obj/item/reagent_container/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRO" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/flask,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aRP" = (
@@ -14565,31 +14565,31 @@
 /area/bigredv2/outside/w)
 "aSD" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/cheesewedge,
-/obj/item/reagent_container/food/snacks/chips,
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSE" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSF" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/tonic,
-/obj/item/reagent_container/food/drinks/cans/waterbottle,
-/obj/item/reagent_container/food/drinks/cans/aspen,
+/obj/item/reagent_containers/food/drinks/cans/tonic,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSG" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask/vacuumflask,
-/obj/item/reagent_container/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aSI" = (
@@ -14941,7 +14941,7 @@
 /area/bigredv2/outside/virology)
 "aTM" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -14949,9 +14949,9 @@
 /area/bigredv2/outside/general_store)
 "aTN" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/bun,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -14959,13 +14959,13 @@
 /area/bigredv2/outside/general_store)
 "aTO" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/waterbottle,
-/obj/item/reagent_container/food/drinks/cans/aspen,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTP" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aTQ" = (
@@ -14990,7 +14990,7 @@
 /area/bigredv2/outside/general_store)
 "aTT" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
 	on = 1
@@ -15320,23 +15320,23 @@
 /area/bigredv2/outside/general_store)
 "aUS" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/bun,
-/obj/item/reagent_container/food/snacks/bun,
-/obj/item/reagent_container/food/snacks/cheesewedge,
-/obj/item/reagent_container/food/snacks/donut,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/donut,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUT" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/bun,
-/obj/item/reagent_container/food/snacks/bun,
-/obj/item/reagent_container/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUU" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/candy,
-/obj/item/reagent_container/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/bun,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUV" = (
@@ -15347,13 +15347,13 @@
 /area/bigredv2/outside/general_store)
 "aUY" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/coffee,
+/obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aUZ" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask/vacuumflask,
-/obj/item/reagent_container/food/drinks/cans/aspen,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
 "aVa" = (
@@ -15874,7 +15874,7 @@
 /area/bigredv2/outside/virology)
 "aWS" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/bottle/toxin,
+/obj/item/reagent_containers/glass/bottle/toxin,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "aWT" = (
@@ -16004,7 +16004,7 @@
 /area/bigredv2/outside/admin_building)
 "aXn" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "aXp" = (
@@ -16850,7 +16850,7 @@
 /area/bigredv2/outside/office_complex)
 "bag" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/beaker/sulphuric,
+/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/office_complex)
 "bah" = (
@@ -17269,7 +17269,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/reagent_container/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbX" = (
@@ -18114,7 +18114,7 @@
 /area/bigredv2/outside/c)
 "bfd" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/flask,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
 "bfe" = (
@@ -18777,7 +18777,7 @@
 /area/bigredv2/outside/cargo)
 "bhH" = (
 /obj/item/flashlight,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bhI" = (
@@ -19307,12 +19307,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bjh" = (
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bji" = (
-/obj/item/reagent_container/glass/bottle/tramadol,
+/obj/item/reagent_containers/glass/bottle/tramadol,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bjj" = (

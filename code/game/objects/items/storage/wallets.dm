@@ -21,7 +21,7 @@
 		/obj/item/paper,
 		/obj/item/tool/pen,
 		/obj/item/photo,
-		/obj/item/reagent_container/dropper,
+		/obj/item/reagent_containers/dropper,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/stamp)
 	flags_equip_slot = ITEM_SLOT_ID
