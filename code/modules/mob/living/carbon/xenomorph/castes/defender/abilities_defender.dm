@@ -53,7 +53,7 @@
 
 	GLOB.round_statistics.defender_headbutts++
 
-	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with it's armored crest!</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with its armored crest!</span>", \
 	"<span class='xenowarning'>We ram [H] with our armored crest!</span>")
 
 	succeed_activate()
@@ -122,7 +122,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.defender_tail_sweeps++
-	X.visible_message("<span class='xenowarning'>\The [X] sweeps it's tail in a wide circle!</span>", \
+	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
 	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
 
 	X.spin(4, 1)
