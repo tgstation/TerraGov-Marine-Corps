@@ -47,7 +47,6 @@
 		var/mob/M = H
 		holder = M.client //if its a mob, assign the mob's client to holder
 	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas //Locate the default bay (one) from the centcom map
-	to_chat(world, "[locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas]")
 	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sorted_areas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
@@ -419,9 +418,12 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			holder.mouse_pointer_icon = holder.mouse_up_icon //Icon for idle mouse (same as icon for when released)
 			holder.click_intercept = src //Create a click_intercept so we know where the user is clicking
 		else
+			var/mob/M = holder.mob
 			holder.mouse_up_icon = null
 			holder.mouse_down_icon = null
 			holder.click_intercept = null
+			if (M)
+				M.update_mouse_pointer() //set the moues icons to null, then call update_moues_pointer() which resets them to the correct values based on what the mob is doing (in a mech, holding a spell, etc)()
 
 /datum/centcom_podlauncher/InterceptClickOn(user,params,atom/target) //Click Intercept so we know where to send pods where the user clicks
 	var/list/pa = params2list(params)
@@ -517,7 +519,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 /datum/centcom_podlauncher/proc/launch(turf/A) //Game time started
 	if (isnull(A))
 		return
-	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
+	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod, temp_pod.loc) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
 	toLaunch.bay = bay //Bay is currently a nonstatic expression, so it cant go into toLaunch using DuplicateObject
 	toLaunch.update_icon()//we update_icon() here so that the door doesnt "flicker on" right after it lands
 	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/flyMeToTheMoon]

@@ -753,3 +753,9 @@
 
 /mob/proc/can_interact_with(datum/D)
 	return (D == src)
+
+///Update the mouse pointer of the attached client in this mob
+/mob/proc/update_mouse_pointer()
+	if (!client)
+		return
+	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)

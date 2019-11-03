@@ -320,6 +320,7 @@ export const CentcomPodLauncher = props => {
           <LabeledList.Item label="Style">
             {data.styles.map(style => (
               <Button
+                key={style.id}
                 content={style[1]}
                 selected={data.styleChoice === style[3]}
                 tooltip={style[2]}
