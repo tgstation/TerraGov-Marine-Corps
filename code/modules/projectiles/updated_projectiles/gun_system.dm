@@ -955,7 +955,7 @@ and you're good to go.
 		if(istype(head_slot))
 			gun_accuracy_mult += head_slot.accuracy_mod
 		else
-			gun_accuracy_mult += 0.20 //nothing on your head? well if you're gonna die then might as well be accurate.
+			gun_accuracy_mult += 0.2 //nothing on your head? well if you're gonna die then might as well be accurate.
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value

@@ -492,6 +492,9 @@
 	if(tinttotal == TINT_HEAVY)
 		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
 		return TRUE
+	else if (tinttotal == TINT_MILD)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 1)
+		return TRUE
 	else
 		clear_fullscreen("tint", 0)
 		return FALSE
