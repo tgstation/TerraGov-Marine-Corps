@@ -21,7 +21,7 @@
 
 	var/working_state = "dispenser_working"
 
-	var/obj/item/reagent_container/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list(
 		/datum/reagent/aluminum,
@@ -179,7 +179,7 @@
 			replace_beaker(usr)
 			. = TRUE
 
-/obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_container/new_beaker)
+/obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(beaker)
 		beaker.forceMove(drop_location())
 		if(user && Adjacent(user) && !issiliconoradminghost(user))
