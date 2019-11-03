@@ -620,6 +620,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 /proc/DuplicateObject(atom/original, atom/newloc)
+	RETURN_TYPE(original.type)
 	if(!original || !newloc)
 		return
 
