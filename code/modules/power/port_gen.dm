@@ -3,7 +3,7 @@
 	name = "portable generator"
 	desc = "A portable generator for emergency backup power."
 	icon = 'icons/obj/power.dmi'
-	icon_state = "portgen0_0"
+	icon_state = "portgen0"
 	density = TRUE
 	anchored = FALSE
 	use_power = NO_POWER_USE
@@ -59,7 +59,7 @@
 		soundloop.start()
 
 /obj/machinery/power/port_gen/update_icon()
-	icon_state = "[base_icon]_[active]"
+	icon_state = "[base_icon]"
 
 /obj/machinery/power/port_gen/process()
 	if(active)
@@ -265,7 +265,7 @@
 
 /obj/machinery/power/port_gen/pacman/super
 	name = "\improper S.U.P.E.R.P.A.C.M.A.N.-type portable generator"
-	icon_state = "portgen1_0"
+	icon_state = "portgen1"
 	base_icon = "portgen1"
 	circuit = /obj/item/circuitboard/machine/pacman/super
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
@@ -278,7 +278,7 @@
 /obj/machinery/power/port_gen/pacman/mrs
 	name = "\improper M.R.S.P.A.C.M.A.N.-type portable generator"
 	base_icon = "portgen2"
-	icon_state = "portgen2_0"
+	icon_state = "portgen2"
 	circuit = /obj/item/circuitboard/machine/pacman/mrs
 	sheet_path = /obj/item/stack/sheet/mineral/diamond
 	power_gen = 40000
