@@ -125,7 +125,7 @@
 			R.display_color = "white"
 //		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
 //			R.display_color = "white"
-//		else if(ispath(typepath,/obj/item/reagent_container) || ispath(typepath,/obj/item/stack/medical))
+//		else if(ispath(typepath,/obj/item/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
 //			R.display_color = "blue"
 		else
 			R.display_color = "black"

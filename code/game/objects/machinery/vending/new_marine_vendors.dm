@@ -780,18 +780,18 @@
 							list("syringe Case (120u Dermaline)", 15, /obj/item/storage/syringe_case/dermaline, null, "orange"),
 							list("syringe Case (120u Meraderm)", 15, /obj/item/storage/syringe_case/meraderm, null, "orange"),
 							list("syringe Case (120u Ironsugar)", 15, /obj/item/storage/syringe_case/ironsugar, null, "orange"),
-							list("Injector (Inaprovaline)", 1, /obj/item/reagent_container/hypospray/autoinjector/inaprovaline, null, "black"),
-							list("Injector (Bicaridine)", 1, /obj/item/reagent_container/hypospray/autoinjector/bicaridine, null, "black"),
-							list("Injector (Kelotane)", 1, /obj/item/reagent_container/hypospray/autoinjector/kelotane, null, "black"),
-							list("Injector (Dylovene)", 1, /obj/item/reagent_container/hypospray/autoinjector/dylovene, null, "black"),
-							list("Injector (Dexalin+)", 1, /obj/item/reagent_container/hypospray/autoinjector/dexalinplus, null, "black"),
-							list("Injector (Quick-Clot)", 1, /obj/item/reagent_container/hypospray/autoinjector/quickclot, null, "black"),
-							list("Injector (Oxycodone)", 1, /obj/item/reagent_container/hypospray/autoinjector/oxycodone, null, "black"),
-							list("Injector (Tricord)", 1, /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, null, "black"),
-							list("Injector (Hypervene)", 1, /obj/item/reagent_container/hypospray/autoinjector/hypervene, null, "black"),
+							list("Injector (Inaprovaline)", 1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, null, "black"),
+							list("Injector (Bicaridine)", 1, /obj/item/reagent_containers/hypospray/autoinjector/bicaridine, null, "black"),
+							list("Injector (Kelotane)", 1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane, null, "black"),
+							list("Injector (Dylovene)", 1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene, null, "black"),
+							list("Injector (Dexalin+)", 1, /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus, null, "black"),
+							list("Injector (Quick-Clot)", 1, /obj/item/reagent_containers/hypospray/autoinjector/quickclot, null, "black"),
+							list("Injector (Oxycodone)", 1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, null, "black"),
+							list("Injector (Tricord)", 1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, null, "black"),
+							list("Injector (Hypervene)", 1, /obj/item/reagent_containers/hypospray/autoinjector/hypervene, null, "black"),
 
-							list("Injector (Hyperzine)", 10, /obj/item/reagent_container/hypospray/autoinjector/hyperzine, null, "orange"),
-							list("Advanced hypospray", 2, /obj/item/reagent_container/hypospray/advanced, null, "black"),
+							list("Injector (Hyperzine)", 10, /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, null, "orange"),
+							list("Advanced hypospray", 2, /obj/item/reagent_containers/hypospray/advanced, null, "black"),
 							list("Health analyzer", 2, /obj/item/healthanalyzer, null, "black"),
 							list("Medical HUD glasses", 2, /obj/item/clothing/glasses/hud/health, null, "black"),
 
@@ -1116,7 +1116,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/roller/medevac,
 						/obj/item/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone,
+						/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 						)
 
 /obj/effect/essentials_set/engi
@@ -1155,7 +1155,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/medevac_beacon,
 						/obj/item/roller/medevac,
 						/obj/item/bodybag/cryobag,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						/obj/item/reagent_containers/hypospray/advanced/oxycodone
 						)
 
 

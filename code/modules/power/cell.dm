@@ -107,8 +107,8 @@
 /obj/item/cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container/syringe))
-		var/obj/item/reagent_container/syringe/S = I
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")

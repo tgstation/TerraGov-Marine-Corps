@@ -5,7 +5,7 @@
 #define SYRINGE_INJECT 1
 #define SYRINGE_BROKEN 2
 
-/obj/item/reagent_container/syringe
+/obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
 	icon = 'icons/obj/items/syringe.dmi'
@@ -21,18 +21,18 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
 
-/obj/item/reagent_container/syringe/on_reagent_change()
+/obj/item/reagent_containers/syringe/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_container/syringe/pickup(mob/user)
+/obj/item/reagent_containers/syringe/pickup(mob/user)
 	..()
 	update_icon()
 
-/obj/item/reagent_container/syringe/dropped(mob/user)
+/obj/item/reagent_containers/syringe/dropped(mob/user)
 	..()
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_self(mob/user as mob)
+/obj/item/reagent_containers/syringe/attack_self(mob/user as mob)
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -43,19 +43,19 @@
 			return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_hand(mob/living/user)
+/obj/item/reagent_containers/syringe/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	update_icon()
 
-/obj/item/reagent_container/syringe/attack_paw(mob/living/carbon/monkey/user)
+/obj/item/reagent_containers/syringe/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand()
 
-/obj/item/reagent_container/syringe/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user, params)
 	return
 
-/obj/item/reagent_container/syringe/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!target.reagents)
@@ -196,7 +196,7 @@
 				update_icon()
 
 
-/obj/item/reagent_container/syringe/update_icon()
+/obj/item/reagent_containers/syringe/update_icon()
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
 		overlays.Cut()
@@ -223,7 +223,7 @@
 		overlays += filling
 
 
-/obj/item/reagent_container/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
 
@@ -267,7 +267,7 @@
 	update_icon()
 
 
-/obj/item/reagent_container/syringe/ld50_syringe
+/obj/item/reagent_containers/syringe/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
 	icon = 'icons/obj/items/syringe.dmi'
@@ -277,7 +277,7 @@
 	possible_transfer_amounts = null //list(5,10,15)
 	volume = 50
 
-/obj/item/reagent_container/syringe/ld50_syringe/afterattack(obj/target, mob/user , flag)
+/obj/item/reagent_containers/syringe/ld50_syringe/afterattack(obj/target, mob/user , flag)
 	if(!target.reagents)
 		return
 
@@ -340,7 +340,7 @@
 	return
 
 
-/obj/item/reagent_container/syringe/ld50_syringe/update_icon()
+/obj/item/reagent_containers/syringe/ld50_syringe/update_icon()
 	var/rounded_vol = round(reagents.total_volume,50)
 	if(ismob(loc))
 		var/mode_t
@@ -361,60 +361,60 @@
 
 
 
-/obj/item/reagent_container/syringe/inaprovaline
+/obj/item/reagent_containers/syringe/inaprovaline
 	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
-/obj/item/reagent_container/syringe/inaprovaline/Initialize()
+/obj/item/reagent_containers/syringe/inaprovaline/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/dylovene
+/obj/item/reagent_containers/syringe/dylovene
 	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 
-/obj/item/reagent_container/syringe/dylovene/Initialize()
+/obj/item/reagent_containers/syringe/dylovene/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/antiviral
+/obj/item/reagent_containers/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
-/obj/item/reagent_container/syringe/antiviral/Initialize()
+/obj/item/reagent_containers/syringe/antiviral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/drugs
+/obj/item/reagent_containers/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list(/datum/reagent/space_drugs = 5, /datum/reagent/toxin/mindbreaker = 5, /datum/reagent/cryptobiolin = 5)
 
-/obj/item/reagent_container/syringe/drugs/Initialize()
+/obj/item/reagent_containers/syringe/drugs/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/ld50_syringe/choral
+/obj/item/reagent_containers/syringe/ld50_syringe/choral
 	list_reagents = list(/datum/reagent/toxin/chloralhydrate = 50)
 
-/obj/item/reagent_container/syringe/ld50_syringe/choral/Initialize()
+/obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/mixed
+/obj/item/reagent_containers/syringe/mixed
 	name = "syringe (mixed)"
 	desc = "Contains inaprovaline & dylovene."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 7, /datum/reagent/medicine/dylovene = 8)
 
-/obj/item/reagent_container/syringe/mixed/Initialize()
+/obj/item/reagent_containers/syringe/mixed/Initialize()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()

@@ -42,8 +42,8 @@
 		T.wet_floor(FLOOR_WET_WATER)
 
 /datum/reagent/water/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/item/reagent_container/food/snacks/monkeycube))
-		var/obj/item/reagent_container/food/snacks/monkeycube/cube = O
+	if(istype(O,/obj/item/reagent_containers/food/snacks/monkeycube))
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.package)
 			cube.Expand()
 
