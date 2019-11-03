@@ -1152,20 +1152,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 	armor_type = "acid"
-	damage = 18
+	damage = 20
 
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/item/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 20
+	damage = 23
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	damage = 23
+	damage = 28
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
 	var/turf/T = get_turf(M)
