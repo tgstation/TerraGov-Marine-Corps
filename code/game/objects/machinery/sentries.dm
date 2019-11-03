@@ -255,6 +255,9 @@
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
 
+	ui_x = 360
+	ui_y = 320
+
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
 	var/list/details = list()
@@ -344,8 +347,15 @@
 
 	return
 
-/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+/obj/machinery/marine_turret/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
+	if(!ui)
+		ui = new(user, src, ui_key, "sentry", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/marine_turret/ui_data(mob/user)
 	var/list/data = list(
 		"self_ref" = "\ref[src]",
 		"name" = copytext(src.name, 2),
@@ -364,34 +374,19 @@
 		"alerts_on" = CHECK_BITFIELD(turret_flags, TURRET_ALERTS),
 		"radial_mode" = CHECK_BITFIELD(turret_flags, TURRET_RADIAL),
 		"burst_size" = burst_size,
+		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		if(!istype(src, /obj/machinery/marine_turret/mini)) //Check for mini-sentry
-			ui = new(user, src, ui_key, "sentry.tmpl", "[src.name] UI", 625, 525)
-		else
-			ui = new(user, src, ui_key, "minisentry.tmpl", "[src.name] UI", 625, 525)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/marine_turret/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(usr.stat)
+/obj/machinery/marine_turret/ui_act(action, params)
+	if(..())
 		return
 
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user))
 		return
 
-	if(get_dist(loc, user.loc) > 1 || user.incapacitated())
-		return
-
-	user.set_interaction(src)
-	switch(href_list["op"])
+	switch(action)
 
 		if("burst")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -407,6 +402,7 @@
 				user.visible_message("<span class='notice'>[user] activates [src]'s burst fire mode.</span>",
 				"<span class='notice'>You activate [src]'s burst fire mode.</span>")
 				visible_message("<span class='notice'>A green light on [src] blinks rapidly.</span>")
+			. = TRUE
 
 		if("burstup")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -415,6 +411,7 @@
 			burst_size = CLAMP(burst_size + 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] increments the [src]'s burst count.</span>",
 			"<span class='notice'>You increment [src]'s burst fire count.</span>")
+			. = TRUE
 
 		if("burstdown")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -423,6 +420,7 @@
 			burst_size = CLAMP(burst_size - 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] decrements the [src]'s burst count.</span>",
 			"<span class='notice'>You decrement [src]'s burst fire count.</span>")
+			. = TRUE
 
 		if("safety")
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
@@ -433,6 +431,7 @@
 			user.visible_message("<span class='warning'>[user] [safe ? "" : "de"]activates [src]'s safety lock.</span>",
 			"<span class='warning'>You [safe ? "" : "de"]activate [src]'s safety lock.</span>")
 			visible_message("<span class='warning'>A red light on [src] blinks brightly!")
+			. = TRUE
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(!CHECK_BITFIELD(turret_flags, TURRET_MANUAL))
@@ -461,6 +460,7 @@
 				DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 				operator = null
 				user.unset_interaction()
+			. = TRUE
 
 		if("power")
 			if(!CHECK_BITFIELD(turret_flags, TURRET_ON))
@@ -482,6 +482,7 @@
 				"<span class='notice'>You deactivate [src].</span>")
 				visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 				update_icon()
+			. = TRUE
 
 		if("toggle_alert")
 			TOGGLE_BITFIELD(turret_flags, TURRET_ALERTS)
@@ -490,6 +491,7 @@
 			"<span class='notice'>You [alert ? "" : "de"]activate [src]'s alert notifications.</span>")
 			visible_message("<span class='notice'>The [name] buzzes in a monotone voice: 'Alert notification system [alert ? "initiated" : "deactivated"]'.</span>")
 			update_icon()
+			. = TRUE
 
 		if("toggle_radial")
 			TOGGLE_BITFIELD(turret_flags, TURRET_RADIAL)
@@ -498,6 +500,7 @@
 			visible_message("The [name] buzzes in a monotone voice: 'Radial mode [rad_msg]d'.'")
 			range = CHECK_BITFIELD(turret_flags, TURRET_RADIAL) ? 3 : 7
 			update_icon()
+			. = TRUE
 
 	attack_hand(user)
 

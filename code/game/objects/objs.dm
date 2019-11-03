@@ -255,6 +255,21 @@
 	. = ..()
 	ENABLE_BITFIELD(obj_flags, IN_USE)
 
+/mob/proc/unset_machine()
+	if(machine)
+		machine.on_unset_machine(src)
+		machine = null
+
+//called when the user unsets the machine.
+/atom/movable/proc/on_unset_machine(mob/user)
+	return
+
+/mob/proc/set_machine(obj/O)
+	if(machine)
+		unset_machine()
+	machine = O
+	if(istype(O))
+		O.obj_flags |= IN_USE
 
 /obj/vv_edit_var(var_name, var_value)
 	switch(var_name)

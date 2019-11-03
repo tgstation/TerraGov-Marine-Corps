@@ -157,6 +157,7 @@
 
 //Pick a random element from the list and remove it from the list.
 /proc/pick_n_take(list/L)
+	RETURN_TYPE(L[_].type)
 	if(!length(L))
 		return
 
@@ -471,6 +472,7 @@
 
 
 /proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+	RETURN_TYPE(/list)
 	. = list()
 	for(var/thing in atoms)
 		var/atom/A = thing

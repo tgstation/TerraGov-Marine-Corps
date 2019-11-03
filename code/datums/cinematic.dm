@@ -63,6 +63,9 @@ GLOBAL_LIST_EMPTY(cinematics)
 		if(C.is_global || !is_global)
 			return //Can't play two global or local cinematics at the same time
 
+	//Close all open windows if global
+	if(is_global)
+		SStgui.close_all_uis()
 
 	//Pause OOC
 	var/ooc_toggled = FALSE
@@ -76,13 +79,10 @@ GLOBAL_LIST_EMPTY(cinematics)
 		if(M in watchers)
 			M.notransform = TRUE //Should this be done for non-global cinematics or even at all ?
 			locked += M
-			//Close watcher ui's
-			SSnano.close_user_uis(M)
 			if(M.client)
 				watching += M.client
 				M.client.screen += screen
 		else if(is_global)
-			SSnano.close_user_uis(M)
 			M.notransform = TRUE
 			locked += M
 

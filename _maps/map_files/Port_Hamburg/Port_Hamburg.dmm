@@ -3733,9 +3733,6 @@
 /obj/structure/rack,
 /obj/item/clothing/head/soft/grey,
 /obj/item/clothing/head/soft/grey,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "alw" = (
@@ -4576,10 +4573,6 @@
 "anv" = (
 /obj/structure/rack,
 /obj/item/flashlight,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "anw" = (
@@ -17364,7 +17357,6 @@
 /obj/structure/mirror{
 	pixel_y = -30
 	},
-/obj/item/transfer_valve,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aYV" = (
@@ -17443,7 +17435,6 @@
 "aZd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
-/obj/item/transfer_valve,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "aZe" = (
@@ -17452,12 +17443,10 @@
 /obj/item/analyzer,
 /obj/item/multitool,
 /obj/item/assembly/prox_sensor,
-/obj/item/transfer_valve,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "aZf" = (
 /obj/structure/rack,
-/obj/item/transfer_valve,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "aZg" = (
