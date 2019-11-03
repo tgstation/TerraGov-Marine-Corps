@@ -2,15 +2,12 @@
 	var/active = FALSE
 	var/datum/action/toggle_action/toggle_action
 
-	var/static/atom/movable/vis_obj/action/body_targeting_radial/inactive_icon = new
-	var/static/atom/movable/vis_obj/action/body_targeting_radial/active/active_icon = new
-
 
 /datum/component/body_targeting_radial/Initialize()
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	toggle_action = new(null, "Toggle Body-Targeting Radial", active_icon, inactive_icon)
+	toggle_action = new(null, "Toggle Body-Targeting Radial", "body_targeting")
 	toggle_action.update_button_icon(active)
 	toggle_action.give_action(parent)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/toggle_ability)
