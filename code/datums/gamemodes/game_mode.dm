@@ -516,7 +516,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
-				var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/outfit/job/som/standard, /datum/outfit/job/clf/standard)
+				var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
 				var/datum/job/J = SSjob.GetJobType(job)
 				J.assign_equip(H)
 				H.regenerate_icons()
