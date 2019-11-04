@@ -401,7 +401,7 @@
 	else
 		return 0
 
-/obj/machinery/chem_master/proc/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
+/obj/machinery/chem_master/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
 	if (AM == beaker)
 		AM.pixel_x = -8
 		AM.pixel_y = 8
