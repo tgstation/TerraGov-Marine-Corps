@@ -29,9 +29,9 @@
 		apply_effect(EYE_BLUR, stun_amount)
 
 	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone, 0, FALSE, FALSE, FALSE)
-		apply_effect(STUTTER, agony_amount/10, 0, FALSE)
-		apply_effect(EYE_BLUR, agony_amount/10, 0, FALSE)
+		apply_damage(agony_amount, HALLOSS, def_zone)
+		apply_effect(STUTTER, agony_amount/10)
+		apply_effect(EYE_BLUR, agony_amount/10)
 
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)

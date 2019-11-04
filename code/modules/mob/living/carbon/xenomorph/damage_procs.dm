@@ -121,7 +121,7 @@
 
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage, updating_health)
+			adjustBruteLoss(damage)
 		if(BURN)
 			adjustFireLoss(damage)
 

@@ -459,7 +459,7 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS, updating_health = FALSE) //1st level neurotoxin effects: halloss/pain
+	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
 	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
@@ -495,7 +495,7 @@
 	if(L.getOxyLoss())
 		L.adjustOxyLoss(-REM)
 	if(L.getBruteLoss() || L.getFireLoss())
-		L.heal_limb_damage(REM, REM, FALSE)
+		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
