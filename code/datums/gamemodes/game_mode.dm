@@ -840,8 +840,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(xeno_candidate, "<span class='warning'>That xenomorph has been occupied.</span>")
 		return FALSE
 
-	if(DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
+	if(XENODEATHTIME_CHECK(xeno_candidate))
+		XENODEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
 	if(new_xeno.afk_timer_id) //We do not want to occupy them if they've only been gone for a little bit.

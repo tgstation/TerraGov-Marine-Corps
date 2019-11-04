@@ -572,8 +572,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		XENODEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother)
@@ -589,8 +589,8 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		XENODEATHTIME_MESSAGE(xeno_candidate)
 		return FALSE
 
 	if(!stored_larva)
