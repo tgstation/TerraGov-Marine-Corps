@@ -91,6 +91,7 @@
 
 /mob/living/Initialize()
 	. = ..()
+	update_move_intent_effects()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
 	if(stat != DEAD)

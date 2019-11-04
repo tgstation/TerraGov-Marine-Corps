@@ -67,27 +67,30 @@
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = H.species.unarmed
-			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
-			if(!attack.is_usable(H)) return
+			if(!attack.is_usable(H))
+				attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
+				return FALSE
 
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
 
 			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "punch")
 
-			var/max_dmg = 5
-			if(H.mind && H.mind.cm_skills)
-				max_dmg += user.mind.cm_skills.cqc
-			var/damage = rand(0, max_dmg)
-			if(!damage)
-				playsound(loc, attack.miss_sound, 25, 1)
+			if(!H.melee_damage || !prob(H.melee_accuracy))
+				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
-				return
+				return FALSE
+
+			var/max_dmg = H.melee_damage
+			if(H.mind.cm_skills)
+				max_dmg += H.mind.cm_skills.cqc
+			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			playsound(loc, attack.attack_sound, 25, 1)
+			playsound(loc, attack.attack_sound, 25, TRUE)
 
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))

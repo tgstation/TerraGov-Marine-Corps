@@ -700,11 +700,12 @@ and you're good to go.
 		return ..()
 
 	if(M != user && user.a_intent == INTENT_HARM)
+		. = ..()
+		if(!.)
+			return
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			..()
 			Fire(M, user)
 			return TRUE
-		..()
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
@@ -743,7 +744,6 @@ and you're good to go.
 			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 			A.update_hud(user)
 		return TRUE
-
 
 	if(M != user || user.zone_selected != "mouth")
 		return ..()

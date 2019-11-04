@@ -147,8 +147,8 @@
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
 	var/datum/armor/armor
-	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
-	var/armor_pheromone_bonus = 0 //
+	var/armor_bonus = 0
+	var/armor_pheromone_bonus = 0
 
 	var/fire_resist_modifier = 0
 

@@ -24,14 +24,23 @@
 		return FALSE
 	return ..()
 
+
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
-	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>", \
+	X.do_attack_animation(src)
+	if(!prob(X.melee_accuracy))
+		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
+		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
+		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
+		return FALSE
+	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
+	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",
 	"<span class='warning'>We shove [src]!</span>", null, 5)
 	return TRUE
 
 /mob/living/carbon/monkey/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	. = ..()
+	if(!.)
+		return
 	knock_down(8)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
@@ -39,6 +48,11 @@
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
 	X.do_attack_animation(src)
+	if(!prob(X.melee_accuracy))
+		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
+		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
+		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
+		return FALSE
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -154,10 +168,6 @@
 	if(!can_xeno_slash(X))
 		return FALSE
 
-	// copypasted from attack_alien.dm
-	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-	var/damage = X.xeno_caste.melee_damage
-
 	if(!prob(X.melee_accuracy))
 		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
 		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
@@ -230,22 +240,30 @@
 	UPDATEHEALTH(src)
 
 
+	return TRUE
+
+
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
-	if(stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
-		var/datum/effect_system/spark_spread/spark_system
-		spark_system = new /datum/effect_system/spark_spread()
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start(src)
-		playsound(loc, "alien_claw_metal", 25, 1)
-	return ..()
+	if(stat == DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
+		return FALSE
+	. = ..()
+	if(!.)
+		return
+	var/datum/effect_system/spark_spread/spark_system
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	spark_system.start(src)
+	playsound(loc, "alien_claw_metal", 25, TRUE)
+
 
 /mob/living/carbon/xenomorph/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(issamexenohive(X))
-		X.visible_message("<span class='warning'>\The [X] nibbles [src].</span>", \
+		X.visible_message("<span class='warning'>\The [X] nibbles [src].</span>",
 		"<span class='warning'>We nibble [src].</span>", null, 5)
-		return TRUE
+		return FALSE
 	return ..()
+
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
