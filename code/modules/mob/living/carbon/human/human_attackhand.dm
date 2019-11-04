@@ -201,7 +201,7 @@
 				status += " and "
 
 		switch(brutedamage)
-			if(0 to 20)
+			if(1 to 20)
 				status += "bruised"
 			if(20 to 40)
 				status += "battered"
@@ -212,7 +212,7 @@
 			status += " and "
 
 		switch(burndamage)
-			if(0 to 10)
+			if(1 to 10)
 				status += "numb"
 			if(10 to 40)
 				status += "blistered"

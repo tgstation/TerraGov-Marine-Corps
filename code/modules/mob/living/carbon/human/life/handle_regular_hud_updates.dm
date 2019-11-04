@@ -86,37 +86,12 @@
 		if(stat == DEAD)
 			hud_used.staminas.icon_state = "stamloss200"
 		else
-			switch(getStaminaLoss())
-				if(-INFINITY to -40)
-					hud_used.staminas.icon_state = "stamloss-50"
-				if(-40 to -30)
-					hud_used.staminas.icon_state = "stamloss-40"
-				if(-30 to -20)
-					hud_used.staminas.icon_state = "stamloss-30"
-				if(-20 to -15)
-					hud_used.staminas.icon_state = "stamloss-20"
-				if(-15 to -10)
-					hud_used.staminas.icon_state = "stamloss-15"
-				if(-10 to -5)
-					hud_used.staminas.icon_state = "stamloss-10"
-				if(-5 to -1)
-					hud_used.staminas.icon_state = "stamloss-5"
-				if(-1 to 25)
-					hud_used.staminas.icon_state = "stamloss0"
-				if(25 to 50)
-					hud_used.staminas.icon_state = "stamloss25"
-				if(50 to 75)
-					hud_used.staminas.icon_state = "stamloss50"
-				if(75 to 100)
-					hud_used.staminas.icon_state = "stamloss75"
-				if(100 to 125)
-					hud_used.staminas.icon_state = "stamloss100"
-				if(125 to 150)
-					hud_used.staminas.icon_state = "stamloss125"
-				if(150 to 175)
-					hud_used.staminas.icon_state = "stamloss150"
-				else
-					hud_used.staminas.icon_state = "stamloss175"
+			var/relative_stamloss = getStaminaLoss()
+			if(relative_stamloss < 0 && max_stamina_buffer)
+				relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
+			else
+				relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
+			hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
 
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
@@ -229,7 +204,7 @@
 	var/perceived_health = health
 	if(!(species.species_flags & NO_PAIN))
 		perceived_health -= traumatic_shock
-	if(!(species.species_flags & NO_STAMINA))
+	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= staminaloss
 
 	switch(perceived_health)
