@@ -36,6 +36,6 @@
 
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, n, direct)
 	var/mob/living/stamina_holder = parent
-	stamina_holder.adjustStaminaLoss(2)
+	stamina_holder.adjustStaminaLoss(1)
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
