@@ -158,7 +158,13 @@
 	//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 	var/damage = X.xeno_caste.melee_damage
 
-	X.do_attack_animation(src)
+	if(!prob(X.melee_accuracy))
+		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
+		X.visible_message("<span class='danger'>\The [X] slashes at [src], narroly missing!</span>",
+		"<span class='danger'>Our slash against [src] narroly misses!</span>")
+		return FALSE
+
+	var/damage = X.xeno_caste.melee_damage
 
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
