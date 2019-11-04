@@ -1008,7 +1008,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 30
+	damage = 45
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
@@ -1022,45 +1022,45 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
-	damage = 35
+	damage = 50
 
 /datum/ammo/xeno/toxin/upgrade2
-	damage = 40
+	damage = 55
 
 /datum/ammo/xeno/toxin/upgrade3
-	damage = 45
+	damage = 60
 
 
 /datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
 	added_spit_delay = 10
 	spit_cost = 75
-	damage = 35
+	damage = 55
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	damage = 40
+	damage = 60
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	damage = 45
+	damage = 65
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	damage = 50
+	damage = 70
 
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
 	added_spit_delay = 15
 	spit_cost = 100
-	damage = 40
+	damage = 60
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	damage = 45
+	damage = 65
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	damage = 50
+	damage = 70
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	damage = 55
+	damage = 75
 
 
 /datum/ammo/xeno/sticky

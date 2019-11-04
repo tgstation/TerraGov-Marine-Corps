@@ -64,7 +64,7 @@
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
-	var/armor_block = run_armor_check("chest", "melee")
+	var/armor_block = 0 //run_armor_check("chest", "melee")
 
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
