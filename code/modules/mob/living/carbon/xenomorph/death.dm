@@ -21,10 +21,13 @@
 	set_light(0)
 
 	if(!gibbed)
-		if(hud_used && hud_used.healths)
-			hud_used.healths.icon_state = "health_dead"
-		if(hud_used && hud_used.alien_plasma_display)
-			hud_used.alien_plasma_display.icon_state = "power_display_empty"
+		if(hud_used)
+			if(hud_used.healths)
+				hud_used.healths.icon_state = "health_dead"
+			if(hud_used.staminas)
+				hud_used.staminas.icon_state = "staminaloss200"
+			if(hud_used.alien_plasma_display)
+				hud_used.alien_plasma_display.icon_state = "power_display_empty"
 		update_icons()
 
 	death_cry()

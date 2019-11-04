@@ -35,6 +35,9 @@
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
+	AddComponent(/datum/component/stamina_behavior)
+
+
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"

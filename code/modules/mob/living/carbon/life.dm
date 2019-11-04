@@ -21,6 +21,11 @@
 	if(.)
 		return FALSE
 
+	handle_healths_hud_updates()
+	return TRUE
+
+
+/mob/living/carbon/proc/handle_healths_hud_updates()
 	if(hud_used?.healths)
 		switch(round(health * 100 / maxHealth))
 			if(100 to INFINITY)
@@ -37,7 +42,6 @@
 				hud_used.healths.icon_state = "health5"
 			else
 				hud_used.healths.icon_state = "health6"
-	return TRUE
 
 
 /mob/living/carbon/update_stat()
@@ -100,7 +104,7 @@
 	if(halloss)
 		halloss_recovery()
 
-	if(staminaloss)
+	if(staminaloss > -max_stamina_buffer)
 		handle_staminaloss()
 
 	if(sleeping)

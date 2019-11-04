@@ -62,6 +62,8 @@
 
 
 /mob/living/proc/handle_staminaloss()
+	if(m_intent == MOVE_INTENT_RUN)
+		return
 	adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
 
 
@@ -651,6 +653,9 @@ below 100 is not dizzy
 	else
 		if(layer == LYING_MOB_LAYER)
 			layer = initial(layer)
+
+	if(!canmove && m_intent == MOVE_INTENT_RUN)
+		toggle_move_intent(MOVE_INTENT_WALK)
 
 	return canmove
 

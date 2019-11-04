@@ -120,6 +120,7 @@
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	var/hivenumber = XENO_HIVE_NORMAL
 	job = ROLE_XENOMORPH
+	m_intent = MOVE_INTENT_RUN
 
 	var/datum/hive_status/hive
 

@@ -82,35 +82,41 @@
 	if(!hud_used)
 		return
 
-	if(hud_used.healths)
-		if(analgesic)
-			hud_used.healths.icon_state = "health_numb"
+	if(hud_used.staminas)
+		if(stat == DEAD)
+			hud_used.staminas.icon_state = "stamloss200"
 		else
-			switch(hal_screwyhud)
-				if(1)
-					hud_used.healths.icon_state = "health6"
-				if(2)
-					hud_used.healths.icon_state = "health7"
-				else if(health > get_crit_threshold())
-					var/perceived_health = health
-					if(!(species.species_flags & NO_PAIN))
-						perceived_health -= traumatic_shock
-					if(!(species.species_flags & NO_STAMINA))
-						perceived_health -= staminaloss
-
-					switch(perceived_health)
-						if(100 to INFINITY)
-							hud_used.healths.icon_state = "health0"
-						if(80 to 100)
-							hud_used.healths.icon_state = "health1"
-						if(60 to 80)
-							hud_used.healths.icon_state = "health2"
-						if(40 to 60)
-							hud_used.healths.icon_state = "health3"
-						if(20 to 40)
-							hud_used.healths.icon_state = "health4"
-						else
-							hud_used.healths.icon_state = "health5"
+			switch(getStaminaLoss())
+				if(-INFINITY to -40)
+					hud_used.staminas.icon_state = "stamloss-50"
+				if(-40 to -30)
+					hud_used.staminas.icon_state = "stamloss-40"
+				if(-30 to -20)
+					hud_used.staminas.icon_state = "stamloss-30"
+				if(-20 to -15)
+					hud_used.staminas.icon_state = "stamloss-20"
+				if(-15 to -10)
+					hud_used.staminas.icon_state = "stamloss-15"
+				if(-10 to -5)
+					hud_used.staminas.icon_state = "stamloss-10"
+				if(-5 to -1)
+					hud_used.staminas.icon_state = "stamloss-5"
+				if(-1 to 25)
+					hud_used.staminas.icon_state = "stamloss0"
+				if(25 to 50)
+					hud_used.staminas.icon_state = "stamloss25"
+				if(50 to 75)
+					hud_used.staminas.icon_state = "stamloss50"
+				if(75 to 100)
+					hud_used.staminas.icon_state = "stamloss75"
+				if(100 to 125)
+					hud_used.staminas.icon_state = "stamloss100"
+				if(125 to 150)
+					hud_used.staminas.icon_state = "stamloss125"
+				if(150 to 175)
+					hud_used.staminas.icon_state = "stamloss150"
+				else
+					hud_used.staminas.icon_state = "stamloss175"
 
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
@@ -194,3 +200,48 @@
 					hud_used.bodytemp_icon.icon_state = "temp-1"
 				else
 					hud_used.bodytemp_icon.icon_state = "temp0"
+
+
+/mob/living/carbon/human/handle_healths_hud_updates()
+	if(!hud_used?.healths)
+		return
+
+	if(stat == DEAD)
+		hud_used.healths.icon_state = "health7"
+		return
+
+	if(analgesic)
+		hud_used.healths.icon_state = "health_numb"
+		return
+
+	switch(hal_screwyhud)
+		if(1)
+			hud_used.healths.icon_state = "health6"
+			return
+		if(2)
+			hud_used.healths.icon_state = "health7"
+			return
+	
+	if(health < get_crit_threshold())
+		hud_used.healths.icon_state = "health6"
+		return
+
+	var/perceived_health = health
+	if(!(species.species_flags & NO_PAIN))
+		perceived_health -= traumatic_shock
+	if(!(species.species_flags & NO_STAMINA))
+		perceived_health -= staminaloss
+
+	switch(perceived_health)
+		if(100 to INFINITY)
+			hud_used.healths.icon_state = "health0"
+		if(80 to 100)
+			hud_used.healths.icon_state = "health1"
+		if(60 to 80)
+			hud_used.healths.icon_state = "health2"
+		if(40 to 60)
+			hud_used.healths.icon_state = "health3"
+		if(20 to 40)
+			hud_used.healths.icon_state = "health4"
+		else
+			hud_used.healths.icon_state = "health5"

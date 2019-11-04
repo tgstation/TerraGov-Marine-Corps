@@ -163,9 +163,9 @@
 		if(stunned)
 			adjust_stunned(-3)
 		if(knocked_down)
+			if(staminaloss)
+				adjustStaminaLoss(-20, FALSE)
 			adjust_knocked_down(-3)
-		if(staminaloss)
-			adjustStaminaLoss(-20, FALSE)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return

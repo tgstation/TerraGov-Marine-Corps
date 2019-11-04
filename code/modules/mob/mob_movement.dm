@@ -350,6 +350,8 @@
 		else
 			m_intent = MOVE_INTENT_RUN
 
+	SEND_SIGNAL(src, COMSIG_MOB_TOGGLEMOVEINTENT, m_intent)
+
 	if(hud_used?.static_inventory)
 		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
 			selector.update_icon(src)
@@ -368,9 +370,16 @@
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))
-			melee_accuracy = initial(melee_accuracy)
 		if(MOVE_INTENT_RUN)
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 3 + CONFIG_GET(number/movedelay/run_delay))
+
+
+/mob/living/carbon/human/update_move_intent_effects()
+	. = ..()
+	switch(m_intent)
+		if(MOVE_INTENT_WALK)
+			melee_accuracy = initial(melee_accuracy)
+		if(MOVE_INTENT_RUN)
 			melee_accuracy = 80
 
 

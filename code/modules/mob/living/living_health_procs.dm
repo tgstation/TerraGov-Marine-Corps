@@ -59,7 +59,7 @@
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	staminaloss = CLAMP(staminaloss + amount, 0, maxHealth * 2)
+	staminaloss = CLAMP(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
 	if(update)
 		updateStamina(feedback)
 
@@ -71,7 +71,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < maxHealth)
+	if(staminaloss < maxHealth * 1.5)
 		return
 	switch(knocked_down)
 		if(0)

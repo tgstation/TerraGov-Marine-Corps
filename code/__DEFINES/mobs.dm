@@ -556,7 +556,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define AI_OFF		3
 #define AI_Z_OFF	4
 
-
+//Stamina
+#define STAMINA_STATE_IDLE 0
+#define STAMINA_STATE_ACTIVE 1
 
 //Cooldowns
 #define COOLDOWN_CHEW 		"chew"
