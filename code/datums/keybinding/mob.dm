@@ -1,5 +1,5 @@
 /datum/keybinding/mob
-	category = CATEGORY_HUMAN
+	category = CATEGORY_MOB
 	weight = WEIGHT_MOB
 
 
@@ -146,18 +146,29 @@
 		user.mob.dropItemToGround(I)
 	return TRUE
 
-/datum/keybinding/mob/toggle_move_intent
+/datum/keybinding/mob/hold_run_move_intent
 	key = "Alt"
-	name = "toggle_move_intent"
-	full_name = "Hold to toggle move intent"
-	description = "Held down to cycle to the other move intent, release to cycle back"
+	name = "hold_run_move_intent"
+	full_name = "Hold to Run"
+	description = "Held down to run, release to return to walking mode."
 
-/datum/keybinding/mob/toggle_move_intent/down(client/user)
+/datum/keybinding/mob/hold_run_move_intent/down(client/user)
 	var/mob/M = user.mob
-	M.toggle_move_intent()
+	M.toggle_move_intent(MOVE_INTENT_RUN)
 	return TRUE
 
-/datum/keybinding/mob/toggle_move_intent/up(client/user)
+/datum/keybinding/mob/hold_run_move_intent/up(client/user)
+	var/mob/M = user.mob
+	M.toggle_move_intent(MOVE_INTENT_WALK)
+	return TRUE
+
+/datum/keybinding/mob/toggle_move_intent
+	key = "5"
+	name = "toggle_move_intent"
+	full_name = "Toggle move intent"
+	description = "Cycle to the other move intent."
+
+/datum/keybinding/mob/toggle_move_intent/down(client/user)
 	var/mob/M = user.mob
 	M.toggle_move_intent()
 	return TRUE

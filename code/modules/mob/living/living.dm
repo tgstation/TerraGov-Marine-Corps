@@ -62,7 +62,7 @@
 
 
 /mob/living/proc/handle_staminaloss()
-	if(m_intent == MOVE_INTENT_RUN)
+	if(m_intent == MOVE_INTENT_RUN && last_move_intent < world.time)
 		return
 	adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
 
