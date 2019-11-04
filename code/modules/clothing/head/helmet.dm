@@ -575,3 +575,4 @@
 	icon_state = "som_helmet_leader"
 	item_state = "som_helmet_leader"
 	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+
