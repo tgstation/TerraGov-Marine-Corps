@@ -33,10 +33,6 @@
 		apply_effect(STUTTER, agony_amount/10, 0, FALSE)
 		apply_effect(EYE_BLUR, agony_amount/10, 0, FALSE)
 
-	if(updating_health)
-		updatehealth()
-
-
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
