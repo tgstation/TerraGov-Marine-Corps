@@ -58,3 +58,6 @@
 #define SPECIFIC_HEAT_DEFAULT		200
 
 #define SPECIFIC_HEAT_PLASMA		500
+
+#define PILL_STYLE_COUNT 22 //Update this if you add more pill icons or you die
+#define RANDOM_PILL_STYLE 22 //Dont change this one though

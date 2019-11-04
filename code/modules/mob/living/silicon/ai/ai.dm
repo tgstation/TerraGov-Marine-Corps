@@ -261,3 +261,12 @@
 		return FALSE
 
 	return GLOB.cameranet.checkTurfVis(get_turf(A))
+
+/mob/living/silicon/ai/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+	if(control_disabled || incapacitated())
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
+	if(be_close && !in_range(M, src))
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return can_see(M) //stop AIs from leaving windows open and using then after they lose vision

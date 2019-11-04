@@ -4,7 +4,7 @@
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	ui_x = 470
 	ui_y = 290

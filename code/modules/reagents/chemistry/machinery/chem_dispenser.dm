@@ -8,7 +8,7 @@
 	idle_power_usage = 40
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 	ui_x = 565
 	ui_y = 620

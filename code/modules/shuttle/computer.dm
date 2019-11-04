@@ -3,7 +3,7 @@
 	desc = "A shuttle control computer."
 	icon_state = "syndishuttle"
 	req_access = list( )
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled

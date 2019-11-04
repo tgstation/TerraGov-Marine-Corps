@@ -4,7 +4,7 @@
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/circuitboard/computer/card"
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
 	var/mode = 0.0

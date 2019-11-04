@@ -264,21 +264,6 @@ class PackagingControls extends Component {
         )}
         {!condi && (
           <PackagingControlsItem
-            label="Patches"
-            amount={patchAmount}
-            amountUnit="patches"
-            sideNote="max 40u"
-            onChangeAmount={(e, value) => this.setState({
-              patchAmount: value,
-            })}
-            onCreate={() => act(ref, 'create', {
-              type: 'patch',
-              amount: patchAmount,
-              volume: 'auto',
-            })} />
-        )}
-        {!condi && (
-          <PackagingControlsItem
             label="Bottles"
             amount={bottleAmount}
             amountUnit="bottles"
@@ -289,21 +274,6 @@ class PackagingControls extends Component {
             onCreate={() => act(ref, 'create', {
               type: 'bottle',
               amount: bottleAmount,
-              volume: 'auto',
-            })} />
-        )}
-        {!!condi && (
-          <PackagingControlsItem
-            label="Packs"
-            amount={packAmount}
-            amountUnit="packs"
-            sideNote="max 10u"
-            onChangeAmount={(e, value) => this.setState({
-              packAmount: value,
-            })}
-            onCreate={() => act(ref, 'create', {
-              type: 'condimentPack',
-              amount: packAmount,
               volume: 'auto',
             })} />
         )}

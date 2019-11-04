@@ -878,3 +878,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/can_interact_with(datum/D)
 	return (D == src || IsAdminGhost(src))
+
+/mob/dead/observer/canUseTopic(atom/movable/M, be_close=FALSE, no_dexterity=FALSE, no_tk=FALSE)
+	return IsAdminGhost(usr)

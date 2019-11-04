@@ -11,6 +11,7 @@ import { Canister } from './interfaces/Canister';
 import { Cargo } from './interfaces/Cargo';
 import { CAS } from './interfaces/CAS';
 import { ChemDispenser } from './interfaces/ChemDispenser';
+import { ChemMaster } from './interfaces/ChemMaster';
 import { Crayon } from './interfaces/Crayon';
 import { Crew } from './interfaces/Crew';
 import { Cryo } from './interfaces/Cryo';
@@ -85,6 +86,10 @@ const ROUTES = {
   },
   chem_dispenser: {
     component: () => ChemDispenser,
+    scrollable: true,
+  },
+  chem_master: {
+    component: () => ChemMaster,
     scrollable: true,
   },
   crayon: {

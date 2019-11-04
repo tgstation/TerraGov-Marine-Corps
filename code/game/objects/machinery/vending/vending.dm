@@ -21,7 +21,7 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/vend_power_usage = 150 //actuators and stuff
 
 	var/active = TRUE //No sales pitches if off!

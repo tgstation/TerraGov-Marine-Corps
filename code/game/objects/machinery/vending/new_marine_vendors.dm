@@ -76,7 +76,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access_txt = "0"
 	req_one_access = null
 	req_one_access_txt = "0"
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/gives_webbing = FALSE
 	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
