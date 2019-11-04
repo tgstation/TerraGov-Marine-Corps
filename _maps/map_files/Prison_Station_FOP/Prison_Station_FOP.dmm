@@ -51105,6 +51105,11 @@
 "dbh" = (
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"dne" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/open/opensea,
+/area/prison/maintenance/residential/access/north)
 "dpL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/prison,
@@ -51212,9 +51217,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
-"eMu" = (
-/turf/open/space/basic,
-/area/prison/maintenance/residential/access/north)
 "fbF" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -51630,12 +51632,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
 /area/prison/cellblock/lowsec/se)
-"mzB" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/opensea,
-/area/prison/maintenance/residential/access/north)
 "mBb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -68256,11 +68252,11 @@ aab
 aab
 aab
 aab
-eMu
-mzB
+axI
+itR
 vQK
-wLD
-eMu
+dne
+axI
 aab
 aab
 aab
