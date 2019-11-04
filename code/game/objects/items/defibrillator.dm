@@ -143,7 +143,7 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR.</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest.</span>", \
+	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest.</span>",
 	"<span class='notice'>You start setting up the paddles on [H]'s chest.</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
