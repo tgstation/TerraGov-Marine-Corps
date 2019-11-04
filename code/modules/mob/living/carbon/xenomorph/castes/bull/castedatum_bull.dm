@@ -9,10 +9,10 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 28
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1
@@ -58,10 +58,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 33
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 35
 
 	// *** Plasma *** //
 	plasma_max = 250
@@ -83,10 +83,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 37
 
 	// *** Tackle *** //
-	tackle_damage = 53
+	tackle_damage = 40
 
 	// *** Plasma *** //
 	plasma_max = 260
@@ -108,10 +108,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 42
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 45
 
 	// *** Plasma *** //
 	plasma_max = 270

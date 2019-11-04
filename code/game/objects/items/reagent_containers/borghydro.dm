@@ -1,5 +1,5 @@
 
-/obj/item/reagent_container/borghypo
+/obj/item/reagent_containers/borghypo
 	name = "Robot Hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/items/syringe.dmi'
@@ -17,7 +17,7 @@
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
-/obj/item/reagent_container/borghypo/Initialize()
+/obj/item/reagent_containers/borghypo/Initialize()
 	. = ..()
 
 	for(var/T in reagent_ids)
@@ -28,18 +28,18 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/item/reagent_container/borghypo/Destroy()
+/obj/item/reagent_containers/borghypo/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/reagent_container/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
+/obj/item/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
 		return 0
 	charge_tick = 0
 
 	return 1
 
-/obj/item/reagent_container/borghypo/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack(mob/living/M as mob, mob/user as mob)
 	if(!istype(M))
 		return
 
@@ -61,7 +61,7 @@
 
 	return
 
-/obj/item/reagent_container/borghypo/attack_self(mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob)
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
 	if(!selection) return
 	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
@@ -70,7 +70,7 @@
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return
 
-/obj/item/reagent_container/borghypo/examine(mob/user)
+/obj/item/reagent_containers/borghypo/examine(mob/user)
 	..()
 	if (user != loc) return
 

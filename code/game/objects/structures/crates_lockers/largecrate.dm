@@ -96,7 +96,7 @@
 						/obj/item/multitool,
 						/obj/item/tool/crowbar,
 						/obj/item/flashlight,
-						/obj/item/reagent_container/food/snacks/donkpocket,
+						/obj/item/reagent_containers/food/snacks/donkpocket,
 						/obj/item/explosive/grenade/smokebomb,
 						/obj/item/circuitboard/airlock,
 						/obj/item/assembly/igniter,

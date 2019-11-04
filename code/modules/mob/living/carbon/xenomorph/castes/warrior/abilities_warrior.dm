@@ -41,8 +41,8 @@
 	action_icon_state = "lunge"
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
-	plasma_cost = 10
-	cooldown_timer = 10 SECONDS
+	plasma_cost = 25
+	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
@@ -117,8 +117,8 @@
 	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
-	plasma_cost = 30
-	cooldown_timer = 6 SECONDS
+	plasma_cost = 18
+	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
@@ -175,8 +175,8 @@
 	action_icon_state = "punch"
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
-	plasma_cost = 20
-	cooldown_timer = 6 SECONDS
+	plasma_cost = 12
+	cooldown_timer = 7 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
@@ -220,8 +220,10 @@
 
 	add_cooldown()
 
+
 /mob/living/proc/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
 	var/datum/limb/L = get_limb(target_zone)
@@ -242,6 +244,7 @@
 	add_slowdown(3)
 
 	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+	UPDATEHEALTH(src)
 
 // ***************************************
 // *********** Rip limb

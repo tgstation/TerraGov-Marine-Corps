@@ -10,7 +10,7 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	flags_armor_protection = 0
-	allowed = list (/obj/item/reagent_container/spray/plantbgone,/obj/item/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_container/glass/fertilizer,/obj/item/tool/minihoe)
+	allowed = list (/obj/item/reagent_containers/spray/plantbgone,/obj/item/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_containers/glass/fertilizer,/obj/item/tool/minihoe)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
@@ -205,7 +205,7 @@
 	icon_state = "fr_jacket_open"
 	item_state = "fr_jacket"
 	blood_overlay_type = "armor"
-	allowed = list(/obj/item/stack/medical, /obj/item/reagent_container/dropper, /obj/item/reagent_container/hypospray, /obj/item/reagent_container/syringe, \
+	allowed = list(/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray, /obj/item/reagent_containers/syringe, \
 	/obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/radio, /obj/item/tank/emergency_oxygen)
 	flags_armor_protection = CHEST|ARMS
 

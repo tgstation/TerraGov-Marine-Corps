@@ -174,6 +174,16 @@
 /proc/HrefTokenFormField(forceGlobal = FALSE)
 	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"
 
+//This proc checks whether subject has at least ONE of the rights specified in rights_required.
+/proc/check_rights_for(client/subject, rights_required)
+	if(subject && subject.holder)
+		return subject.holder.check_for_rights(rights_required)
+	return FALSE
+
+/datum/admins/proc/check_for_rights(rights_required)
+	if(rights_required && !(rights_required & rank.rights))
+		return FALSE
+	return TRUE
 
 /proc/check_rights(rights_required, show_msg = TRUE)
 	if(!usr?.client)
@@ -381,7 +391,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
-	/datum/admins/proc/launch_pod,
+	/client/proc/centcom_podlauncher,
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,

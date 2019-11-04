@@ -36,6 +36,6 @@
 	return FALSE
 
 
-/mob/living/simple_animal/hostile/retaliate/adjustBruteLoss(damage)
+/mob/living/simple_animal/hostile/retaliate/adjustBruteLoss(damage, updating_health = FALSE)
 	. = ..()
 	Retaliate()

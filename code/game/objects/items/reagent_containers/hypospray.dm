@@ -2,7 +2,7 @@
 /// HYPOSPRAY
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_container/hypospray
+/obj/item/reagent_containers/hypospray
 	name = "hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages."
 	icon = 'icons/obj/items/syringe.dmi'
@@ -20,13 +20,13 @@
 	var/core_name = "hypospray"
 	var/label = null
 
-/obj/item/reagent_container/hypospray/advanced
+/obj/item/reagent_containers/hypospray/advanced
 	name = "advanced hypospray"
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	core_name = "hypospray"
 
 
-/obj/item/reagent_container/hypospray/proc/empty(mob/user)
+/obj/item/reagent_containers/hypospray/proc/empty(mob/user)
 	if(alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
 		return
 	if(isturf(user.loc))
@@ -34,7 +34,7 @@
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
 
-/obj/item/reagent_container/hypospray/proc/label(mob/user)
+/obj/item/reagent_containers/hypospray/proc/label(mob/user)
 	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
 	if(!length(str))
 		to_chat(user, "<span class='notice'>Invalid text.</span>")
@@ -44,7 +44,7 @@
 	label = str
 
 
-/obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)
+/obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(!A.reagents)
 		return
 	if(!istype(user))
@@ -138,26 +138,26 @@
 
 	return TRUE
 
-/obj/item/reagent_container/hypospray/on_reagent_change()
+/obj/item/reagent_containers/hypospray/on_reagent_change()
 	if(reagents.holder_full())
 		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/hypospray/attack_hand(mob/living/user)
+/obj/item/reagent_containers/hypospray/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	update_icon()
 
-/obj/item/reagent_container/hypospray/pickup(mob/user)
+/obj/item/reagent_containers/hypospray/pickup(mob/user)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_container/hypospray/dropped(mob/user)
+/obj/item/reagent_containers/hypospray/dropped(mob/user)
 	. = ..()
 	update_icon()
 
-/obj/item/reagent_container/hypospray/update_icon()
+/obj/item/reagent_containers/hypospray/update_icon()
 	if(ismob(loc))
 		if(inject_mode)
 			icon_state = "hypo_i"
@@ -166,13 +166,13 @@
 	else
 		icon_state = "hypo"
 
-/obj/item/reagent_container/hypospray/advanced
+/obj/item/reagent_containers/hypospray/advanced
 	icon_state = "hypo"
 	init_reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
 
-/obj/item/reagent_container/hypospray/interact(mob/user)
+/obj/item/reagent_containers/hypospray/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -195,7 +195,7 @@
 	popup.open()
 
 
-/obj/item/reagent_container/hypospray/advanced/interact(mob/user)
+/obj/item/reagent_containers/hypospray/advanced/interact(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -220,7 +220,7 @@
 	popup.open()
 
 
-/obj/item/reagent_container/hypospray/Topic(href, href_list)
+/obj/item/reagent_containers/hypospray/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -249,7 +249,7 @@
 	updateUsrDialog()
 
 
-/obj/item/reagent_container/hypospray/advanced/Topic(href, href_list)
+/obj/item/reagent_containers/hypospray/advanced/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -259,15 +259,15 @@
 
 
 
-/obj/item/reagent_container/hypospray/advanced/tricordrazine
+/obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 
-/obj/item/reagent_container/hypospray/advanced/oxycodone
+/obj/item/reagent_containers/hypospray/advanced/oxycodone
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 
-/obj/item/reagent_container/hypospray/advanced/update_icon()
+/obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()
 
 	overlays.Cut()
@@ -287,7 +287,7 @@
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		overlays += filling
 
-/obj/item/reagent_container/hypospray/advanced/examine(mob/user as mob)
+/obj/item/reagent_containers/hypospray/advanced/examine(mob/user as mob)
 	. = ..()
 	if(get_dist(user,src) > 2)
 		to_chat(user, "<span class = 'warning'>You're too far away to see [src]'s reagent display!</span>")
@@ -295,7 +295,7 @@
 
 	display_reagents(user)
 
-/obj/item/reagent_container/hypospray/advanced/proc/display_reagents(mob/user)
+/obj/item/reagent_containers/hypospray/advanced/proc/display_reagents(mob/user)
 	if(!isnull(reagents))
 		var/list/dat = list()
 		dat += "\n \t <span class='notice'><b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]</span></br>"

@@ -175,7 +175,7 @@ OPERATIONS
 					/obj/item/seeds/bloodtomatoseed,
 					/obj/item/storage/pill_bottle/zoom,
 					/obj/item/storage/pill_bottle/happy,
-					/obj/item/reagent_container/food/drinks/bottle/pwine
+					/obj/item/reagent_containers/food/drinks/bottle/pwine
 					)
 
 	name = "contraband crate"
@@ -2339,13 +2339,13 @@ MEDICAL
 	contains = list(
 					/obj/item/storage/box/autoinjectors,
 					/obj/item/storage/box/syringes,
-					/obj/item/reagent_container/glass/bottle/inaprovaline,
-					/obj/item/reagent_container/glass/bottle/dylovene,
-					/obj/item/reagent_container/glass/bottle/bicaridine,
-					/obj/item/reagent_container/glass/bottle/dexalin,
-					/obj/item/reagent_container/glass/bottle/spaceacillin,
-					/obj/item/reagent_container/glass/bottle/kelotane,
-					/obj/item/reagent_container/glass/bottle/tramadol,
+					/obj/item/reagent_containers/glass/bottle/inaprovaline,
+					/obj/item/reagent_containers/glass/bottle/dylovene,
+					/obj/item/reagent_containers/glass/bottle/bicaridine,
+					/obj/item/reagent_containers/glass/bottle/dexalin,
+					/obj/item/reagent_containers/glass/bottle/spaceacillin,
+					/obj/item/reagent_containers/glass/bottle/kelotane,
+					/obj/item/reagent_containers/glass/bottle/tramadol,
 					/obj/item/storage/pill_bottle/inaprovaline,
 					/obj/item/storage/pill_bottle/dylovene,
 					/obj/item/storage/pill_bottle/bicaridine,
@@ -2451,11 +2451,11 @@ MEDICAL
 /datum/supply_packs/hypospray
 	name = "advanced hypospray crate (x5 advanced hyposprays)"
 	contains = list(
-					/obj/item/reagent_container/hypospray/advanced,
-					/obj/item/reagent_container/hypospray/advanced,
-					/obj/item/reagent_container/hypospray/advanced,
-					/obj/item/reagent_container/hypospray/advanced,
-					/obj/item/reagent_container/hypospray/advanced
+					/obj/item/reagent_containers/hypospray/advanced,
+					/obj/item/reagent_containers/hypospray/advanced,
+					/obj/item/reagent_containers/hypospray/advanced,
+					/obj/item/reagent_containers/hypospray/advanced,
+					/obj/item/reagent_containers/hypospray/advanced
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2754,16 +2754,16 @@ SUPPLIES
 /datum/supply_packs/janitor
 	name = "assorted janitorial supplies"
 	contains = list(
-					/obj/item/reagent_container/glass/bucket,
-					/obj/item/reagent_container/glass/bucket,
-					/obj/item/reagent_container/glass/bucket,
+					/obj/item/reagent_containers/glass/bucket,
+					/obj/item/reagent_containers/glass/bucket,
+					/obj/item/reagent_containers/glass/bucket,
 					/obj/item/tool/mop,
 					/obj/item/tool/wet_sign,
 					/obj/item/tool/wet_sign,
 					/obj/item/tool/wet_sign,
 					/obj/item/storage/bag/trash,
-					/obj/item/reagent_container/spray/cleaner,
-					/obj/item/reagent_container/glass/rag,
+					/obj/item/reagent_containers/spray/cleaner,
+					/obj/item/reagent_containers/glass/rag,
 					/obj/item/explosive/grenade/chem_grenade/cleaner,
 					/obj/item/explosive/grenade/chem_grenade/cleaner,
 					/obj/item/explosive/grenade/chem_grenade/cleaner,

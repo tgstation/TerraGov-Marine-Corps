@@ -1,4 +1,4 @@
-/obj/item/reagent_container/spray
+/obj/item/reagent_containers/spray
 	name = "spray bottle"
 	desc = "A spray bottle, with an unscrewable top."
 	icon = 'icons/obj/items/spray.dmi'
@@ -19,10 +19,10 @@
 	volume = 250
 
 
-/obj/item/reagent_container/spray/afterattack(atom/A as mob|obj, mob/user)
+/obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user)
 	//this is what you get for using afterattack() TODO: make is so this is only called if attackby() returns 0 or something
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
-	|| istype(A, /obj/item/reagent_container) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
+	|| istype(A, /obj/item/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart || istype(A, /obj/structure/ladder)))
 		return
 
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
@@ -51,7 +51,7 @@
 	playsound(src.loc, 'sound/effects/spray2.ogg', 25, 1, 3)
 
 
-/obj/item/reagent_container/spray/proc/Spray_at(atom/A)
+/obj/item/reagent_containers/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
 	reagents.trans_to(D, amount_per_transfer_from_this, 1/spray_size)
@@ -75,14 +75,14 @@
 		qdel(D)
 
 
-/obj/item/reagent_container/spray/attack_self(mob/user)
+/obj/item/reagent_containers/spray/attack_self(mob/user)
 	if(!possible_transfer_amounts)
 		return
 	amount_per_transfer_from_this = next_in_list(amount_per_transfer_from_this, possible_transfer_amounts)
 	spray_size = next_in_list(spray_size, spray_sizes)
 	to_chat(user, "<span class='notice'>You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray.</span>")
 
-/obj/item/reagent_container/spray/verb/empty()
+/obj/item/reagent_containers/spray/verb/empty()
 
 	set name = "Empty Spray Bottle"
 	set category = "Object"
@@ -96,22 +96,22 @@
 		addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 
 //space cleaner
-/obj/item/reagent_container/spray/cleaner
+/obj/item/reagent_containers/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
 
-/obj/item/reagent_container/spray/cleaner/drone
+/obj/item/reagent_containers/spray/cleaner/drone
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
 
-/obj/item/reagent_container/spray/cleaner/Initialize()
+/obj/item/reagent_containers/spray/cleaner/Initialize()
 	. = ..()
 	reagents.add_reagent(/datum/reagent/space_cleaner, volume)
 
 
-/obj/item/reagent_container/spray/surgery
+/obj/item/reagent_containers/spray/surgery
 	name = "sterilizing spray"
 	desc = "Infection and necrosis are a thing of the past!"
 	volume = 100
@@ -119,7 +119,7 @@
 
 
 //pepperspray
-/obj/item/reagent_container/spray/pepper
+/obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
 	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
 	icon_state = "pepperspray"
@@ -129,17 +129,17 @@
 	safety = TRUE
 	list_reagents = list(/datum/reagent/consumable/capsaicin/condensed = 40)
 
-/obj/item/reagent_container/spray/pepper/examine(mob/user)
+/obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	..()
 	if(get_dist(user,src) <= 1)
 		to_chat(user, "The safety is [safety ? "on" : "off"].")
 
-/obj/item/reagent_container/spray/pepper/attack_self(mob/user)
+/obj/item/reagent_containers/spray/pepper/attack_self(mob/user)
 	safety = !safety
 	to_chat(user, "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>")
 
 //water flower
-/obj/item/reagent_container/spray/waterflower
+/obj/item/reagent_containers/spray/waterflower
 	name = "water flower"
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/items/harvest.dmi'
@@ -151,7 +151,7 @@
 	list_reagents = list(/datum/reagent/water = 10)
 
 //chemsprayer
-/obj/item/reagent_container/spray/chemsprayer
+/obj/item/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
 	icon_state = "chemsprayer"
@@ -163,7 +163,7 @@
 
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
-/obj/item/reagent_container/spray/chemsprayer/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A as mob|obj)
 	var/Sprays[3]
 	for(var/i=1, i<=3, i++) // intialize sprays
 		if(src.reagents.total_volume < 1) break
@@ -201,7 +201,7 @@
 	return
 
 // Plant-B-Gone
-/obj/item/reagent_container/spray/plantbgone // -- Skie
+/obj/item/reagent_containers/spray/plantbgone // -- Skie
 	name = "Plant-B-Gone"
 	desc = "Kills those pesky weeds!"
 	icon_state = "plantbgone"
@@ -210,7 +210,7 @@
 	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)
 
 
-/obj/item/reagent_container/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
+/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	..()

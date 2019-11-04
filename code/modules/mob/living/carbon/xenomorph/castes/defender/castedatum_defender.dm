@@ -11,10 +11,10 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -65,10 +65,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 27
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.3
@@ -96,7 +96,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -128,7 +128,7 @@
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
-	melee_damage = 31
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 35

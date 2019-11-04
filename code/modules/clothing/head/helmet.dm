@@ -188,10 +188,10 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
-						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
+						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
@@ -203,7 +203,7 @@
 		/obj/item/reagent_container/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 3
+	max_storage_space = 2
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -289,7 +289,7 @@
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_state = "minigunner_helmet"
-	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
+	armor = list("melee" = 85, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	resistance_flags = UNACIDABLE
 	anti_hug = 6

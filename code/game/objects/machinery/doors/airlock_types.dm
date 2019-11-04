@@ -170,8 +170,9 @@
 
 /obj/machinery/door/airlock/uranium/proc/radiate()
 	for(var/mob/living/L in range (3,src))
-		L.apply_effect(15,IRRADIATE,0)
-	return
+		L.apply_effect(15, IRRADIATE)
+		UPDATEHEALTH(L)
+
 
 /obj/machinery/door/airlock/phoron
 	name = "\improper Phoron Airlock"

@@ -10,7 +10,10 @@
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 
-	var/auto_release = FALSE
+	ui_x = 400
+	ui_y = 550
+
+	var/autoeject = FALSE
 	var/release_notice = FALSE
 
 	var/temperature = 100
@@ -21,7 +24,7 @@
 	var/heat_capacity = 20000
 	var/conduction_coefficient = 0.3
 
-	var/obj/item/reagent_container/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/reagent_transfer = 0
 
 	var/obj/item/radio/headset/mainship/doc/radio
@@ -38,7 +41,7 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
 	. = ..()
 	initialize_directions = dir
-	beaker = new /obj/item/reagent_container/glass/beaker/cryomix
+	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
 
 
@@ -51,7 +54,7 @@
 	if(occupant)
 		if(occupant.stat == DEAD)
 			return
-		if(occupant.health > (occupant.maxHealth - 2) && auto_release) //release the patient automatically when at, or near full health
+		if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
 			go_out(TRUE)
 			return
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
@@ -67,7 +70,7 @@
 					occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
 				var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
 				var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-				occupant.heal_limb_damage(heal_brute,heal_fire)
+				occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
 		var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 		var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 		var/has_cryo_medicine = has_cryo || has_clonexa
@@ -203,7 +206,7 @@
 		if (usr.stat == DEAD) //and he's not dead....
 			return
 		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
-		auto_release = TRUE
+		autoeject = TRUE
 	else
 		if (usr.stat != CONSCIOUS)
 			return
@@ -223,12 +226,12 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
-		if(istype(I, /obj/item/reagent_container/glass/bucket))
+		if(istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, "<span class='warning'>That's too big to fit!</span>")
 			return
 
@@ -342,60 +345,85 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-	if(user == occupant || user.stat)
-		return
+	if(!ui)
+		ui = new(user, src, ui_key, "cryo", name, ui_x, ui_y, master_ui, state)
+		ui.open()
 
-	// this is the data which will be sent to the ui
-	var/data[0]
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_data(mob/user)
+	var/list/data = list()
 	data["isOperating"] = on
-	data["hasOccupant"] = occupant ? 1 : 0
-	data["autoRelease"] = auto_release
-	data["releaseNotice"] = release_notice
+	data["hasOccupant"] = occupant ? TRUE : FALSE
+	data["autoEject"] = autoeject
+	data["notify"] = release_notice
 
-	var/occupantData[0]
-	if (occupant)
-		occupantData["name"] = occupant.name
-		occupantData["stat"] = occupant.stat
-		occupantData["health"] = occupant.health
-		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = occupant.health_threshold_dead
-		occupantData["bruteLoss"] = occupant.getBruteLoss()
-		occupantData["oxyLoss"] = occupant.getOxyLoss()
-		occupantData["toxLoss"] = occupant.getToxLoss()
-		occupantData["fireLoss"] = occupant.getFireLoss()
-		occupantData["bodyTemperature"] = occupant.bodytemperature
-	data["occupant"] = occupantData;
+	data["occupant"] = list()
+	if(occupant)
+		var/mob/living/mob_occupant = occupant
+		data["occupant"]["name"] = mob_occupant.name
+		switch(mob_occupant.stat)
+			if(CONSCIOUS)
+				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["statstate"] = "good"
+			if(UNCONSCIOUS)
+				data["occupant"]["stat"] = "Unconscious"
+				data["occupant"]["statstate"] = "average"
+			if(DEAD)
+				data["occupant"]["stat"] = "Dead"
+				data["occupant"]["statstate"] = "bad"
+		data["occupant"]["health"] = round(mob_occupant.health, 1)
+		data["occupant"]["maxHealth"] = mob_occupant.maxHealth
+		data["occupant"]["minHealth"] = mob_occupant.health_threshold_dead
+		data["occupant"]["bruteLoss"] = round(mob_occupant.getBruteLoss(), 1)
+		data["occupant"]["oxyLoss"] = round(mob_occupant.getOxyLoss(), 1)
+		data["occupant"]["toxLoss"] = round(mob_occupant.getToxLoss(), 1)
+		data["occupant"]["fireLoss"] = round(mob_occupant.getFireLoss(), 1)
+		data["occupant"]["bodyTemperature"] = round(mob_occupant.bodytemperature, 1)
+		if(mob_occupant.bodytemperature < 255)
+			data["occupant"]["temperaturestatus"] = "good"
+		else if(mob_occupant.bodytemperature < T0C)
+			data["occupant"]["temperaturestatus"] = "average"
+		else
+			data["occupant"]["temperaturestatus"] = "bad"
 
 	data["cellTemperature"] = round(temperature)
-	data["cellTemperatureStatus"] = "good"
-	if(temperature > T0C) // if greater than 273.15 kelvin (0 celcius)
-		data["cellTemperatureStatus"] = "bad"
-	else if(temperature > 225)
-		data["cellTemperatureStatus"] = "average"
 
-	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["beakerLabel"] = null
-	data["beakerVolume"] = 0
-	if(beaker)
-		data["beakerLabel"] = beaker.label_text ? beaker.label_text : null
-		if (beaker.reagents && beaker.reagents.reagent_list.len)
-			for(var/datum/reagent/R in beaker.reagents.reagent_list)
-				data["beakerVolume"] += R.volume
+	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
+	var/beakerContents = list()
+	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
+		for(var/datum/reagent/R in beaker.reagents.reagent_list)
+			beakerContents += list(list("name" = R.name, "volume" = R.volume))
+	data["beakerContents"] = beakerContents
+	return data
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "cryo.tmpl", "Cryo Cell Control System", 520, 430)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
+/obj/machinery/atmospherics/components/unary/cryo_cell/ui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("power")
+			if(on)
+				on = FALSE
+			else
+				on = TRUE
+			update_icon()
+			. = TRUE
+		if("autoeject")
+			autoeject = !autoeject
+			. = TRUE
+		if("ejectbeaker")
+			if(beaker)
+				beaker.forceMove(drop_location())
+				if(Adjacent(usr) && !issilicon(usr))
+					usr.put_in_hands(beaker)
+				beaker = null
+				. = TRUE
+		if("notice")
+			release_notice = !release_notice
+			. = TRUE
+	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -404,44 +432,6 @@
 	on = TRUE
 	start_processing()
 	update_icon()
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(usr == occupant)
-		return 0 // don't update UIs attached to this object
-
-	if(href_list["switchOn"])
-		turn_on()
-
-	if(href_list["switchOff"])
-		turn_off()
-
-	if(href_list["ejectBeaker"])
-		if(beaker)
-			beaker.loc = get_step(loc, SOUTH)
-			beaker = null
-
-	if(href_list["ejectOccupant"])
-		if(!occupant)
-			return // don't update UIs attached to this object
-		go_out()
-
-	if(href_list["releaseOn"])
-		auto_release = TRUE
-
-	if(href_list["releaseOff"])
-		auto_release = FALSE
-
-	if(href_list["noticeOn"])
-		release_notice = TRUE
-
-	if(href_list["noticeOff"])
-		release_notice = FALSE
-
-	return 1 // update UIs attached to this object
-
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.

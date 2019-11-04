@@ -436,7 +436,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
-#define XENO_TACKLE_ARMOR_PEN	0.4 //Actual armor pen is 1 - this value.
+#define XENO_TACKLE_ARMOR_PEN	0.8 //Actual armor pen is 1 - this value.
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -496,7 +496,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
-#define GROWTH_TOXIN_METARATE		0.2
 
 //Boiler defines
 #define BOILER_LUMINOSITY					3
@@ -575,3 +574,5 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_NEST		"nest"
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
+
+#define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
