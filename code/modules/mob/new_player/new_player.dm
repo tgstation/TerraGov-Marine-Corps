@@ -457,18 +457,21 @@
 	spawning = TRUE
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/H = new(loc)
+	var/mob/living/carbon/human/spawning_human = new(loc)
+	GLOB.joined_player_list += ckey
 
+	if(!is_banned_from(ckey, "Appearance") &&  !GLOB.real_names_joined.Find(client.prefs.real_name))
+		client.prefs.copy_to(spawning_human)
 
-	if(!is_banned_from(ckey, "Appearance"))
-		client.prefs.copy_to(H)
+	GLOB.real_names_joined += spawning_human.real_name
+
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = FALSE					//we wish to transfer the key manually
-		mind.transfer_to(H)					//won't transfer key since the mind is not active
+		mind.transfer_to(spawning_human)	//won't transfer key since the mind is not active
 
-	. = H
+	. = spawning_human
 	new_character = .
 	if(transfer_after)
 		transfer_character()

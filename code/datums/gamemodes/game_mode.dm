@@ -106,7 +106,6 @@
 	for(var/i in GLOB.new_player_list)
 		var/mob/new_player/player = i
 		if(player.ready && player.mind)
-			GLOB.joined_player_list += player.ckey
 			player.create_character(FALSE)
 		else
 			player.new_player_panel()
@@ -766,10 +765,12 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return FALSE
+	if(!NP.client.prefs.random_name && GLOB.real_names_joined.Find(NP.client.prefs.real_name))
+		to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+		return FALSE
 	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return FALSE
-
 	return TRUE
 
 
