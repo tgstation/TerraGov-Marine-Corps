@@ -196,13 +196,11 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 3
+	storage_slots = 2
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_container/food/drinks/flask,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/pistol)
+		/obj/item/reagent_container/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
 	max_storage_space = 3
