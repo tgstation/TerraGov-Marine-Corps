@@ -206,6 +206,7 @@
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 #define COMSIG_LIVING_DO_MOVE_TURFTOTURF	"living_do_move_turftoturf"	//from the base of /client/Move()
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
+#define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"

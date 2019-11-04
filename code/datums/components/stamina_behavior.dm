@@ -25,13 +25,14 @@
 		return
 	stamina_state = STAMINA_STATE_ACTIVE
 	RegisterSignal(parent, COMSIG_LIVING_DO_MOVE_TURFTOTURF, .proc/on_move_run)
+	RegisterSignal(parent, COMSIG_LIVING_SET_CANMOVE, .proc/on_canmove_change)
 
 
 /datum/component/stamina_behavior/proc/stamina_idle()
 	if(stamina_state == STAMINA_STATE_IDLE)
 		return
 	stamina_state = STAMINA_STATE_IDLE
-	UnregisterSignal(parent, COMSIG_LIVING_DO_MOVE_TURFTOTURF)
+	UnregisterSignal(parent, list(COMSIG_LIVING_DO_MOVE_TURFTOTURF, COMSIG_LIVING_SET_CANMOVE))
 
 
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, n, direct)
@@ -39,3 +40,10 @@
 	stamina_holder.adjustStaminaLoss(1)
 	if(stamina_holder.staminaloss >= 0)
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
+
+
+/datum/component/stamina_behavior/proc/on_canmove_change(datum/source, canmove)
+	var/mob/living/stamina_holder = parent
+	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
+		return
+	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)

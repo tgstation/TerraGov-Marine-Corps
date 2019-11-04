@@ -634,7 +634,7 @@ below 100 is not dizzy
 		else
 			lying = 0
 
-	canmove =  !(stunned || frozen || laid_down)
+	set_canmove(!(stunned || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
@@ -654,10 +654,16 @@ below 100 is not dizzy
 		if(layer == LYING_MOB_LAYER)
 			layer = initial(layer)
 
-	if(!canmove && m_intent == MOVE_INTENT_RUN)
-		toggle_move_intent(MOVE_INTENT_WALK)
-
 	return canmove
+
+
+/mob/living/proc/set_canmove(newcanmove)
+	if(canmove == newcanmove)
+		return
+	canmove = newcanmove
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
+
+
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
 	return
