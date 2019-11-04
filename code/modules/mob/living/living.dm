@@ -64,7 +64,10 @@
 /mob/living/proc/handle_staminaloss()
 	if(m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS)
 		return
-	adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+	if(staminaloss > 0)
+		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+	else if(staminaloss > -max_stamina_buffer)
+		adjustStaminaLoss(-max_stamina_buffer * 0.2, TRUE, FALSE)
 
 
 /mob/living/proc/handle_regular_hud_updates()
