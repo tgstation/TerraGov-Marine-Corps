@@ -148,8 +148,7 @@
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
 	owner.icon_state = "Shrike Screeching"
-	var/facing = get_cardinal_dir(owner, target)
-	owner.setDir(facing)
+	owner.face_atom(target)
 
 	var/turf/lower_left
 	var/turf/upper_right
