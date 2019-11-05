@@ -12,8 +12,15 @@
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
+/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-/obj/machinery/computer/dropship_weapons/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+	if(!ui)
+		ui = new(user, src, ui_key, "cas", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/computer/dropship_weapons/ui_data(mob/user)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttle_tag)
 	if(!shuttle)
 		WARNING("[src] could not find shuttle [shuttle_tag] from SSshuttle")
@@ -67,14 +74,9 @@
 		"screen_mode" = screen_mode,
 	)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "dropship_weapons_console.tmpl", "Weapons Control", 500, 400)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/computer/dropship_weapons/Topic(href, href_list)
+/obj/machinery/computer/dropship_weapons/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -84,51 +86,52 @@
 		stack_trace("Invalid shuttle_tag [shuttle_tag]")
 		return
 
-	if(href_list["equip_interact"])
-		var/base_tag = text2num(href_list["equip_interact"])
-		var/obj/structure/dropship_equipment/E = shuttle_equipments[base_tag]
-		E.linked_console = src
-		E.equipment_interact(usr)
+	switch(action)
+		if("equip_interact")
+			var/base_tag = text2num(params["equip_interact"])
+			var/obj/structure/dropship_equipment/E = shuttle_equipments[base_tag]
+			E.linked_console = src
+			E.equipment_interact(usr)
 
-	if(href_list["open_fire"])
-		var/targ_id = text2num(href_list["open_fire"])
-		var/mob/living/L = usr
-		if(!istype(L))
-			return
-		if(!istype(SSjob.GetJob(L.mind.assigned_role), /datum/job/command/pilot)) //everyone can fire dropship weapons while fumbling.
-			L.visible_message("<span class='notice'>[L] fumbles around figuring out how to use the automated targeting system.</span>",
-			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
-			var/fumbling_time = 100 - 20 * L.mind.cm_skills.pilot
-			if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return FALSE
-		for(var/X in GLOB.active_laser_targets)
-			var/obj/effect/overlay/temp/laser_target/LT = X
-			if(LT.target_id == targ_id)
-				if(shuttle.mode != SHUTTLE_CALL)
-					to_chat(L, "<span class='warning'>Dropship can only fire while in flight.</span>")
-					return
-				if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
-					return
+		if("open_fire")
+			var/targ_id = text2num(params["open_fire"])
+			var/mob/living/L = usr
+			if(!istype(L))
+				return
+			if(!istype(SSjob.GetJob(L.mind.assigned_role), /datum/job/command/pilot)) //everyone can fire dropship weapons while fumbling.
+				L.visible_message("<span class='notice'>[L] fumbles around figuring out how to use the automated targeting system.</span>",
+				"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
+				var/fumbling_time = 100 - 20 * L.mind.cm_skills.pilot
+				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return FALSE
+			for(var/X in GLOB.active_laser_targets)
+				var/obj/effect/overlay/temp/laser_target/LT = X
+				if(LT.target_id == targ_id)
+					if(shuttle.mode != SHUTTLE_CALL)
+						to_chat(L, "<span class='warning'>Dropship can only fire while in flight.</span>")
+						return
+					if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
+						return
 
-				if(!selected_equipment?.is_weapon)
-					to_chat(L, "<span class='warning'>No weapon selected.</span>")
-					return
-				var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
-				if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
-					to_chat(L, "<span class='warning'>[DEW] has no ammo.</span>")
-					return
-				if(DEW.last_fired > world.time - DEW.firing_delay)
-					to_chat(L, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")
-					return
-				if(QDELETED(LT)) // Quick final check on the Laser target
-					return
-				DEW.open_fire(LT)
-				break
+					if(!selected_equipment?.is_weapon)
+						to_chat(L, "<span class='warning'>No weapon selected.</span>")
+						return
+					var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
+					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
+						to_chat(L, "<span class='warning'>[DEW] has no ammo.</span>")
+						return
+					if(DEW.last_fired > world.time - DEW.firing_delay)
+						to_chat(L, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")
+						return
+					if(QDELETED(LT)) // Quick final check on the Laser target
+						return
+					DEW.open_fire(LT)
+					break
 
-	if(href_list["deselect"])
-		selected_equipment = null
+		if("deselect")
+			selected_equipment = null
 
-	ui_interact(usr)
+	return TRUE
 
 
 /obj/machinery/computer/dropship_weapons/dropship1

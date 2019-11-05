@@ -11,7 +11,7 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 27
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -62,10 +62,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 30
 
 	// *** Tackle *** //
-	tackle_damage = 37
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -1.1
@@ -93,10 +93,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 34
 
 	// *** Tackle *** //
-	tackle_damage = 43
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -1.17
@@ -124,10 +124,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 36
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -1.2

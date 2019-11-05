@@ -15,6 +15,7 @@
 	throw_range = 15
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	tool_behaviour = TOOL_MULTITOOL
 
 	materials = list(/datum/material/metal = 50, /datum/material/glass = 20)
 

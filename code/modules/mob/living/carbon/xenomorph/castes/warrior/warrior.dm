@@ -30,9 +30,6 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/warrior/throw_item(atom/target)
-	throw_mode_off()
-
 /mob/living/carbon/xenomorph/warrior/stop_pulling()
 	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling

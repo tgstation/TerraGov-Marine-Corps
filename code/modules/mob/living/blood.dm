@@ -180,7 +180,7 @@
 
 
 //Transfers blood from container to mob
-/mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
+/mob/living/carbon/proc/inject_blood(obj/item/reagent_containers/container, amount)
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		reagents.add_reagent(R.type, amount, R.data)
 		reagents.update_total()
@@ -188,7 +188,7 @@
 
 
 //Transfers blood from container to human, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(obj/item/reagent_container/container, amount)
+/mob/living/carbon/human/inject_blood(obj/item/reagent_containers/container, amount)
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.

@@ -99,7 +99,7 @@
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
 	if(amount <= 0)
-		heal_damage(- amount)
+		heal_organ_damage(-amount)
 		return
 	if(robotic == ORGAN_ROBOT)
 		damage += (amount * 0.8)
@@ -110,7 +110,7 @@
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
 
-/datum/internal_organ/proc/heal_damage(amount)
+/datum/internal_organ/proc/heal_organ_damage(amount)
 	damage = max(damage - amount, 0)
 
 /datum/internal_organ/proc/emp_act(severity)
@@ -227,9 +227,9 @@
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
 			if(!owner.reagents.has_reagent(/datum/reagent/medicine/dylovene)) // Detox effect
-				heal_damage(0.2 * PROCESS_ACCURACY)
+				heal_organ_damage(0.2 * PROCESS_ACCURACY)
 			else
-				heal_damage(0.04 * PROCESS_ACCURACY)
+				heal_organ_damage(0.04 * PROCESS_ACCURACY)
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3

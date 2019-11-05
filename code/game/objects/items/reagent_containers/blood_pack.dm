@@ -1,4 +1,4 @@
-/obj/item/reagent_container/blood
+/obj/item/reagent_containers/blood
 	name = "BloodPack"
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/items/bloodpack.dmi'
@@ -8,7 +8,7 @@
 	var/blood_type
 
 
-/obj/item/reagent_container/blood/Initialize()
+/obj/item/reagent_containers/blood/Initialize()
 	. = ..()
 	if(blood_type)
 		name = "BloodPack [blood_type]"
@@ -16,10 +16,10 @@
 		update_icon()
 
 
-/obj/item/reagent_container/blood/on_reagent_change()
+/obj/item/reagent_containers/blood/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_container/blood/update_icon()
+/obj/item/reagent_containers/blood/update_icon()
 
 	var/percent = PERCENT(reagents.total_volume / volume)
 	switch(percent)
@@ -30,25 +30,25 @@
 		if(50.1 to INFINITY)
 			icon_state = "full"
 
-/obj/item/reagent_container/blood/APlus
+/obj/item/reagent_containers/blood/APlus
 	blood_type = "A+"
 
-/obj/item/reagent_container/blood/AMinus
+/obj/item/reagent_containers/blood/AMinus
 	blood_type = "A-"
 
-/obj/item/reagent_container/blood/BPlus
+/obj/item/reagent_containers/blood/BPlus
 	blood_type = "B+"
 
-/obj/item/reagent_container/blood/BMinus
+/obj/item/reagent_containers/blood/BMinus
 	blood_type = "B-"
 
-/obj/item/reagent_container/blood/OPlus
+/obj/item/reagent_containers/blood/OPlus
 	blood_type = "O+"
 
-/obj/item/reagent_container/blood/OMinus
+/obj/item/reagent_containers/blood/OMinus
 	blood_type = "O-"
 
-/obj/item/reagent_container/blood/empty
+/obj/item/reagent_containers/blood/empty
 	name = "Empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"

@@ -263,7 +263,7 @@
 
 		if(. > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(., BRUTE, "chest")
+			crushed_living.apply_damage(., BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
@@ -445,6 +445,7 @@
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	charger.knock_down(1)
 	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
+	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
 	return COMPONENT_MOVABLE_PREBUMP_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.

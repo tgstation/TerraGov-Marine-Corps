@@ -33,7 +33,7 @@ if grep -P '^/*var/' code/**/*.dm; then
     echo "Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
-if grep -P '(?(?=^  .)(^  [^*\s])|(^ +\S))' code/**/*.dm; then
+if grep -P '(?(?=^ {1,2}.)(^ {1,2}[^*\/\s])|(^ +\S))' code/**/*.dm; then
     echo "space indentation detected"
     st=1
 fi;
@@ -41,10 +41,16 @@ if grep -P '^\t+ ' code/**/*.dm; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;
-if pcregrep --buffer-size=100K -LMr '\n$' code/**/*.dm; then
-    echo "No newline at end of file detected"
-    st=1
-fi;
+nl='
+'
+nl=$'\n'
+while read f; do
+    t=$(tail -c2 $f; printf x); r1="${nl}$"; r2="${nl}${r1}"
+    if [[ ! ${t%x} =~ $r1 ]]; then
+        echo "file $f is missing a trailing newline"
+        st=1
+    fi;
+done < <(find . -type f -name '*.dm')
 if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
     echo "changed files contains proc argument starting with 'var'"
     st=1

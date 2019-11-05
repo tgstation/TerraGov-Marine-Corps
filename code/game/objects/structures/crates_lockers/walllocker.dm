@@ -73,8 +73,8 @@
 
 /obj/structure/closet/walllocker/medical_wall/full/PopulateContents()
 	new /obj/item/storage/firstaid/regular(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dylovene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 ///////// SECURE WALL LOCKERS /////////
 
@@ -130,9 +130,9 @@
 	new /obj/item/storage/syringe_case/tox(src)
 	new /obj/item/storage/syringe_case/oxy(src)
 	new /obj/item/storage/firstaid/adv(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(src)
 
 ///////////PERSONAL SECURE WALL LOCKER///////////////
 

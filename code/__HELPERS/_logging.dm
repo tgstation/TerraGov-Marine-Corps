@@ -188,6 +188,10 @@
 /proc/log_paper(text)
 	WRITE_LOG(GLOB.world_paper_log, "PAPER: [text]")
 
+/* ui logging */ 
+ 
+/proc/log_tgui(text)
+	WRITE_LOG(GLOB.tgui_log, text)
 
 /* For logging round startup. */
 /proc/start_log(log)

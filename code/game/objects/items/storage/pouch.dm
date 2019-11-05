@@ -91,7 +91,7 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/flashlight,
-		/obj/item/reagent_container/pill,
+		/obj/item/reagent_containers/pill,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/plasteel,
@@ -100,7 +100,7 @@
 /obj/item/storage/pouch/survival/full/Initialize()
 	. = ..()
 	new /obj/item/flashlight(src)
-	new /obj/item/reagent_container/pill/tramadol(src)
+	new /obj/item/reagent_containers/pill/tramadol(src)
 	new /obj/item/stack/medical/bruise_pack(src, 3)
 	new /obj/item/stack/sheet/metal(src, 40)
 	new /obj/item/stack/sheet/plasteel(src, 15)
@@ -116,7 +116,7 @@
 	storage_slots = 5
 	can_hold = list(
 		/obj/item/stack/medical/ointment,
-		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/splint)
 
@@ -126,8 +126,8 @@
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tramadol (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
@@ -139,7 +139,7 @@
 	storage_slots = 5
 	can_hold = list(
 		/obj/item/stack/medical/ointment,
-		/obj/item/reagent_container/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/splint)
 
@@ -151,8 +151,8 @@
 /obj/item/storage/pouch/firstaid/som/full/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tramadol(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/splint(src)
 
@@ -292,14 +292,14 @@
 
 	can_hold = list(
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_container/dropper,
-		/obj/item/reagent_container/pill,
-		/obj/item/reagent_container/glass/bottle,
-		/obj/item/reagent_container/syringe,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
-		/obj/item/reagent_container/hypospray)
+		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -314,7 +314,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_container/hypospray/autoinjector
+		/obj/item/reagent_containers/hypospray/autoinjector
 	)
 
 
@@ -324,7 +324,7 @@
 	icon_state = "syringe"
 	storage_slots = 5
 	max_storage_space = 10
-	can_hold = list(/obj/item/reagent_container/syringe)
+	can_hold = list(/obj/item/reagent_containers/syringe)
 
 
 /obj/item/storage/pouch/medkit

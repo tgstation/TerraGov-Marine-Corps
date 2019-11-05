@@ -190,8 +190,8 @@
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
 			playsound(loc, attacked_sound, 25, 1, -1)
 			attack_threshold_check(harm_intent_damage)
+			UPDATEHEALTH(src)
 			log_combat(user, src, "attacked")
-			updatehealth()
 			return TRUE
 
 
@@ -262,6 +262,7 @@
 		return FALSE
 	else
 		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
+		UPDATEHEALTH(src)
 		return TRUE
 
 

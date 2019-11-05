@@ -76,6 +76,9 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
+	ui_x = 450 
+	ui_y = 460
+
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
 	//The terminal is what the power computer looks for anyway.
@@ -651,10 +654,16 @@
 	interact(user)
 
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
-	if(!user)
-		return
 
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+	if(!ui)
+		ui = new(user, src, ui_key, "apc", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
 		"locked" = locked,
 		"isOperating" = operating,
@@ -662,14 +671,14 @@
 		"powerCellStatus" = cell ? cell.percent() : null,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
-		"totalLoad" = round(lastused_equip + lastused_light + lastused_environ),
+		"totalLoad" = DisplayPower(lastused_total),
 		"coverLocked" = coverlocked,
 		"siliconUser" = issilicon(user),
 
 		"powerChannels" = list(
 			list(
 				"title" = "Equipment",
-				"powerLoad" = round(lastused_equip),
+				"powerLoad" = DisplayPower(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
 					"auto" = list("eqp" = 3),
@@ -679,7 +688,7 @@
 			),
 			list(
 				"title" = "Lighting",
-				"powerLoad" = round(lastused_light),
+				"powerLoad" = DisplayPower(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
 					"auto" = list("lgt" = 3),
@@ -689,7 +698,7 @@
 			),
 			list(
 				"title" = "Environment",
-				"powerLoad" = round(lastused_environ),
+				"powerLoad" = DisplayPower(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
 					"auto" = list("env" = 3),
@@ -699,20 +708,69 @@
 			)
 		)
 	)
+	return data
 
-	//Update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		//The ui does not exist, so we'll create a new() one
-		//For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
-		//When the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		//Open the new ui window
-		ui.open()
-		//Auto update every Master Controller tick
-		ui.set_auto_update(1)
 
+/obj/machinery/power/apc/proc/setsubsystem(val)
+	if(cell && cell.charge > 0)
+		return (val==1) ? 0 : val
+	else if(val == 3)
+		return 1
+	else
+		return 0
+
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = FALSE) //used by attack_hand() and Topic()
+	if(IsAdminGhost(user))
+		return TRUE
+	if(isAI(user) && aidisabled)
+		if(!loud)
+			to_chat(user, "<span class='danger'>\The [src] has eee disabled!</span>")
+		return FALSE
+	return TRUE
+
+/obj/machinery/power/apc/ui_act(action, params)
+	if(..() || !can_use(usr, TRUE) || locked)
+		return
+	switch(action)
+		if("lock")
+			if(usr.has_unlimited_silicon_privilege)
+				if((machine_stat & (BROKEN|MAINT)))
+					to_chat(usr, "The APC does not respond to the command.")
+				else
+					locked = !locked
+					update_icon()
+					. = TRUE
+		if("cover")
+			coverlocked = !coverlocked
+			. = TRUE
+		if("breaker")
+			toggle_breaker(usr)
+			. = TRUE
+		if("charge")
+			chargemode = !chargemode
+			if(!chargemode)
+				charging = APC_NOT_CHARGING
+				update_icon()
+			. = TRUE
+		if("channel")
+			if(params["eqp"])
+				equipment = setsubsystem(text2num(params["eqp"]))
+				update_icon()
+				update()
+			else if(params["lgt"])
+				lighting = setsubsystem(text2num(params["lgt"]))
+				update_icon()
+				update()
+			else if(params["env"])
+				environ = setsubsystem(text2num(params["env"]))
+				update_icon()
+				update()
+			. = TRUE
+		if("overload")
+			if(usr.has_unlimited_silicon_privilege)
+				overload_lighting()
+				. = TRUE
+	return TRUE
 
 /obj/machinery/power/apc/proc/report()
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
@@ -745,52 +803,6 @@
 			environ = 3
 			update_icon()
 			update()
-
-
-/obj/machinery/power/apc/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(href_list["lock"])
-		coverlocked = !coverlocked
-
-	else if(href_list["breaker"])
-		operating = !operating
-		update()
-		update_icon()
-
-	else if(href_list["cmode"])
-		chargemode = !chargemode
-		if(!chargemode)
-			charging = APC_NOT_CHARGING
-			update_icon()
-
-	else if(href_list["eqp"])
-		var/val = text2num(href_list["eqp"])
-		equipment = (val == TRUE) ? FALSE : val
-		update_icon()
-		update()
-
-	else if(href_list["lgt"])
-		var/val = text2num(href_list["lgt"])
-		lighting = (val == TRUE) ? FALSE : val
-		update_icon()
-		update()
-
-	else if(href_list["env"])
-		var/val = text2num(href_list["env"])
-		environ = (val == TRUE) ? FALSE :val
-		update_icon()
-		update()
-
-	else if(href_list["close"])
-		SSnano.close_user_uis(usr, src)
-		return FALSE
-
-	updateUsrDialog()
-
-	return TRUE
-
 
 /obj/machinery/power/apc/surplus()
 	if(terminal)

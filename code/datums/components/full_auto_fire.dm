@@ -366,7 +366,7 @@
 	if(!reload_into_chamber(shooter))
 		click_empty(shooter)
 		return NONE
-	SEND_SIGNAL(shooter, COMSIG_HUMAN_GUN_AUTOFIRED, target, src, shooter)
+	SEND_SIGNAL(shooter, COMSIG_MOB_GUN_AUTOFIRED, target, src)
 	var/obj/screen/ammo/A = shooter.hud_used.ammo
 	A.update_hud(shooter) //Ammo HUD.
 	return COMPONENT_AUTOFIRE_SHOT_SUCCESS //All is well, we can continue shooting.

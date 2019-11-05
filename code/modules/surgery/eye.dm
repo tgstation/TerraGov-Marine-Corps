@@ -77,11 +77,10 @@
 
 /datum/surgery_step/eye/lift_eyes/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/eyes = target.internal_organs_by_name["eyes"]
-	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s eyes with \the [tool]!</span>", \
+	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s eyes with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, damaging [target]'s eyes with \the [tool]!</span>")
-	target.apply_damage(10, BRUTE, affected)
 	eyes.take_damage(5, 0)
-	target.updatehealth()
+	target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 /datum/surgery_step/eye/mend_eyes
 	allowed_tools = list(
@@ -107,11 +106,10 @@
 
 /datum/surgery_step/eye/mend_eyes/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
-	user.visible_message("<span class='warning'>[user]'s hand slips, stabbing \the [tool] into [target]'s eye!</span>", \
+	user.visible_message("<span class='warning'>[user]'s hand slips, stabbing \the [tool] into [target]'s eye!</span>",
 	"<span class='warning'>Your hand slips, stabbing \the [tool] into [target]'s eye!</span>")
-	target.apply_damage(10, BRUTE, affected, 0, TRUE)
 	E.take_damage(5, 0)
-	target.updatehealth()
+	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 
 
 /datum/surgery_step/eye/cauterize
@@ -142,8 +140,7 @@
 
 /datum/surgery_step/eye/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
-	user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s eyes with \the [tool]!</span>", \
+	user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s eyes with \the [tool]!</span>",
 	"<span class='warning'>Your hand slips, searing [target]'s eyes with \the [tool]!</span>")
-	target.apply_damage(5, BURN, affected)
 	E.take_damage(5, 0)
-	target.updatehealth()
+	target.apply_damage(5, BURN, affected, updating_health = TRUE)

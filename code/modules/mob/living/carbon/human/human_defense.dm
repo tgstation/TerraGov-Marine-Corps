@@ -29,7 +29,8 @@ Contains most of the procs that are called when a mob is attacked by something
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
 
-	..(stun_amount, agony_amount, def_zone)
+	return ..()
+
 
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
@@ -197,6 +198,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		user.flick_attack_overlay(src, "punch")
 
 	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
+	UPDATEHEALTH(src)
 
 	var/bloody = 0
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
@@ -301,6 +303,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O))
+			UPDATEHEALTH(src)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -390,6 +393,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	stunned += stun_duration
 	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
+	UPDATEHEALTH(src)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration * 20)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream
