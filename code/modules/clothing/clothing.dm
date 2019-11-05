@@ -1,37 +1,13 @@
 /obj/item/clothing
 	name = "clothing"
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
-	var/currently_affecting_user = FALSE
 	var/tint = TINT_NONE // headgear, mask and glasses, forvision impairment overlays
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-/obj/item/clothing/equipped(mob/living/user, slot)
-	. = ..()
-	if(tint)
-		if((slot & flags_equip_slot))
-			if(!currently_affecting_user)
-				add_tint(user)
-		else
-			if(currently_affecting_user)
-				remove_tint(user)
 
-/obj/item/clothing/dropped(mob/living/user)
-	if(currently_affecting_user)
-		remove_tint(user)
-	return ..()
-
-/obj/item/clothing/proc/add_tint(mob/living/user)
-	user.tinttotal += tint
-	currently_affecting_user = TRUE
-	user.update_tint()
-
-/obj/item/clothing/proc/remove_tint(mob/living/user)
-	user.tinttotal -= tint
-	currently_affecting_user = FALSE
-	user.update_tint()
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
