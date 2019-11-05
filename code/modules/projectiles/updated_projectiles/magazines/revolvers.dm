@@ -47,9 +47,23 @@
 	caliber = ".357_m"
 	icon_state = "sw357"
 	max_rounds = 6
-	gun_type = list(
-				/obj/item/weapon/gun/revolver/small,
-				/obj/item/weapon/gun/revolver/mr76)
+	gun_type = /obj/item/weapon/gun/revolver/small
+
+/obj/item/ammo_magazine/revolver/mr76
+	name = "\improper MR Speed Loader (.357)"
+	default_ammo = /datum/ammo/bullet/revolver/small
+	caliber = ".357"
+	icon_state = "mr76"
+	max_rounds = 6
+	gun_type = /obj/item/weapon/gun/revolver/mr76
+
+/obj/item/ammo_magazine/revolver/marksman/mr76
+	name = "\improper S&W speed loader (.357)"
+	default_ammo = /datum/ammo/bullet/revolver/marksman/small
+	caliber = ".357_m"
+	icon_state = "m_mr76"
+	max_rounds = 6
+	gun_type = /obj/item/weapon/gun/revolver/mr76
 
 
 /obj/item/ammo_magazine/revolver/mateba
