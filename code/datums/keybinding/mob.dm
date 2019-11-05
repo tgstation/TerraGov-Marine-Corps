@@ -155,19 +155,19 @@
 
 
 /datum/keybinding/mob/examine/down(client/user)
-	RegisterSignal(user.mob, COMSIG_MOB_CLICKON, .proc/examinate)
+	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
 	return TRUE
 
 
 /datum/keybinding/mob/examine/up(client/user)
-	UnregisterSignal(user.mob, COMSIG_MOB_CLICKON)
+	UnregisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
 	return TRUE
 
 
 /datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
 	var/mob/user = source
 	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
-		UnregisterSignal(user, COMSIG_MOB_CLICKON)
+		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
 		return
 	user.examinate(A)
 	var/turf/examined_turf = get_turf(A)
@@ -176,26 +176,6 @@
 		user.client.statpanel = examined_turf.name
 	return COMSIG_MOB_CANCEL_CLICKON
 
-
-/datum/keybinding/mob/hold_run_move_intent
-	key = "Shift"
-	name = "hold_run_move_intent"
-	full_name = "Hold to Run"
-	description = "Held down to run, release to return to walking mode."
-
-/datum/keybinding/mob/hold_run_move_intent/down(client/user)
-	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_DOWN) & COMSIG_KB_ACTIVATED)
-		return TRUE
-	var/mob/M = user.mob
-	M.toggle_move_intent(MOVE_INTENT_RUN)
-	return TRUE
-
-/datum/keybinding/mob/hold_run_move_intent/up(client/user)
-	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP) & COMSIG_KB_ACTIVATED)
-		return TRUE
-	var/mob/M = user.mob
-	M.toggle_move_intent(MOVE_INTENT_WALK)
-	return TRUE
 
 /datum/keybinding/mob/toggle_move_intent
 	key = "5"

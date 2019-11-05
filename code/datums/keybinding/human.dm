@@ -33,3 +33,24 @@
 	full_name = "Perform unique action"
 	description = ""
 	keybind_signal = COMSIG_KB_UNIQUEACTION
+
+
+/datum/keybinding/human/hold_run_move_intent
+	key = "Shift"
+	name = "hold_run_move_intent"
+	full_name = "Hold to Run"
+	description = "Held down to run, release to return to walking mode."
+	keybind_signal = COMSIG_KB_HOLD_RUN_MOVE_INTENT_DOWN
+
+/datum/keybinding/human/hold_run_move_intent/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.mob.toggle_move_intent(MOVE_INTENT_RUN)
+	return TRUE
+
+/datum/keybinding/human/hold_run_move_intent/up(client/user)
+	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP) & COMSIG_KB_ACTIVATED)
+		return TRUE
+	user.mob.toggle_move_intent(MOVE_INTENT_WALK)
+	return TRUE
