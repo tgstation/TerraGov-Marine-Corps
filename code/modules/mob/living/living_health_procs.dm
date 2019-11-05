@@ -60,6 +60,8 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	staminaloss = CLAMP(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+	if(amount > 0)
+		last_staminaloss_dmg = world.time
 	if(update)
 		updateStamina(feedback)
 
@@ -77,7 +79,7 @@
 		if(0)
 			if(feedback)
 				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
-					"<span class='warning'>You slump to the ground, you're in too exhausted to keep going...</span>")
+					"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
 			knock_down(4)
 		if(1 to 3)
 			set_knocked_down(4, FALSE)
