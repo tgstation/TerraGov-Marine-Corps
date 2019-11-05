@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - balance: "Xenos no longer lose stored larvas on a Queen death."
