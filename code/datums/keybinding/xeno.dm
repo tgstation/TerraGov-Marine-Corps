@@ -118,6 +118,13 @@
 	description = "Give some of your plasma to a teammate."
 	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
 
+/datum/keybinding/xeno/pounce
+	key = "Unbound"
+	name = "pounce"
+	full_name = "Pounce"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_POUNCE
+
 /datum/keybinding/xeno/plow_charge
 	key = "Unbound"
 	name = "plow_charge"
@@ -387,7 +394,7 @@
 /datum/keybinding/xeno/ravager_charge
 	key = "Unbound"
 	name = "ravager_charge"
-	full_name = "Ravager: Charge"
+	full_name = "Ravager: Eviscerating Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
@@ -397,13 +404,6 @@
 	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
-
-/datum/keybinding/xeno/pounce
-	key = "Unbound"
-	name = "pounce"
-	full_name = "Runner: Pounce"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
 /datum/keybinding/xeno/toggle_agility
 	key = "Unbound"
@@ -421,8 +421,8 @@
 
 /datum/keybinding/xeno/fling
 	key = "Unbound"
-	name = "toggle_fling"
-	full_name = "Warrior: Toggle Fling"
+	name = "fling"
+	full_name = "Warrior: Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
