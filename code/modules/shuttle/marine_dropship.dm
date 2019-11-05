@@ -100,10 +100,10 @@
 	id = "normandy"
 	roundstart_template = /datum/map_template/shuttle/dropship/two
 
-#define HIJACK_STATE_NORMAL 0
-#define HIJACK_STATE_REQUESTED 1
-#define HIJACK_STATE_CALLED_DOWN 2
-#define HIJACK_STATE_CRASHING 3
+#define HIJACK_STATE_NORMAL "hijack_state_normal"
+#define HIJACK_STATE_REQUESTED "hijack_state_requested"
+#define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
+#define HIJACK_STATE_CRASHING "hijack_state_crashing"
 
 #define LOCKDOWN_TIME 10 MINUTES
 
