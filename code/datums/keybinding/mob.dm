@@ -148,7 +148,7 @@
 
 
 /datum/keybinding/mob/examine
-	key = "Alt"
+	key = "Shift"
 	name = "examine_kb"
 	full_name = "Examine"
 	description = "Hold this key and click to examine things."
@@ -156,11 +156,12 @@
 
 /datum/keybinding/mob/examine/down(client/user)
 	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .proc/intercept_mouse_special)
 	return TRUE
 
 
 /datum/keybinding/mob/examine/up(client/user)
-	UnregisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
+	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
 	return TRUE
 
 
@@ -174,7 +175,11 @@
 	if(examined_turf && user.TurfAdjacent(examined_turf))
 		user.listed_turf = examined_turf
 		user.client.statpanel = examined_turf.name
-	return COMSIG_MOB_CANCEL_CLICKON
+	return COMSIG_MOB_CLICK_HANDLED
+
+
+/datum/keybinding/mob/examine/proc/intercept_mouse_special(datum/source)
+	return COMSIG_MOB_CLICK_CANCELED
 
 
 /datum/keybinding/mob/toggle_move_intent

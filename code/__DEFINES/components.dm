@@ -184,11 +184,13 @@
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
+#define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
+#define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
-	#define COMSIG_MOB_CANCEL_CLICKON 1
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
-	#define COMSIG_MOB_CANCEL_CLICK_SHIFT (1<<0)
-#define COMSIG_MOB_AUTOFIRE_CLICK_SHIFT "mob_autofire_click_shift"	//from base of datum/component/automatic_fire/proc/on_mouse_down(): (atom/A)
+#define COMSIG_MOB_CLICK_ALT "mob_click_alt"					//from base of mob/AltClickOn(): (atom/A)
+	#define COMSIG_MOB_CLICK_CANCELED (1<<0)
+	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()

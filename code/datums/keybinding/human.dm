@@ -36,7 +36,7 @@
 
 
 /datum/keybinding/human/hold_run_move_intent
-	key = "Shift"
+	key = "Alt"
 	name = "hold_run_move_intent"
 	full_name = "Hold to Run"
 	description = "Held down to run, release to return to walking mode."

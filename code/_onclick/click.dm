@@ -115,7 +115,7 @@
 	if(notransform)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
 	var/list/modifiers = params2list(params)
@@ -133,8 +133,7 @@
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return
-	if(modifiers["alt"])
-		AltClickOn(A)
+	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
@@ -350,8 +349,11 @@
 	This is overridden in ai.dm
 */
 /mob/proc/ShiftClickOn(atom/A)
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICK_SHIFT, A) & COMSIG_MOB_CANCEL_CLICK_SHIFT)
-		return FALSE
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_SHIFT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
 	return A.ShiftClick(src)
 
 
@@ -390,15 +392,20 @@
 
 /*
 	Alt click
-	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_ALT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
 	A.AltClick(src)
-	return
+	return TRUE
 
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
+	return TRUE
 
 
 /mob/proc/TurfAdjacent(turf/T)

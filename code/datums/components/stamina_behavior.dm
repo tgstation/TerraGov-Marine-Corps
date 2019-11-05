@@ -23,11 +23,11 @@
 
 
 /datum/component/stamina_behavior/proc/hold_run_move_intent_down(datum/source)
-	RegisterSignal(parent, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_AUTOFIRE_CLICK_SHIFT), .proc/skip_shift_click)
+	RegisterSignal(parent, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_CLICK_ALT), .proc/skip_special_click)
 
 
 /datum/component/stamina_behavior/proc/hold_run_move_intent_up(datum/source)
-	UnregisterSignal(parent, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_AUTOFIRE_CLICK_SHIFT))
+	UnregisterSignal(parent, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_MOB_CLICK_ALT))
 
 
 /datum/component/stamina_behavior/proc/stamina_active()
@@ -58,5 +58,5 @@
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
-/datum/component/stamina_behavior/proc/skip_shift_click(datum/source, atom/A)
-	return COMSIG_MOB_CANCEL_CLICK_SHIFT
+/datum/component/stamina_behavior/proc/skip_special_click(datum/source, atom/A)
+	return COMSIG_MOB_CLICK_CANCELED

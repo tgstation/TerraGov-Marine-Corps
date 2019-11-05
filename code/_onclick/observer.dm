@@ -20,7 +20,7 @@
 	if(check_click_intercept(params, A))
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_OBSERVER_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
+	if(SEND_SIGNAL(src, COMSIG_OBSERVER_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
 	var/list/modifiers = params2list(params)
