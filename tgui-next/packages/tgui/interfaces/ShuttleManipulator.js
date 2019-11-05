@@ -19,6 +19,15 @@ export const ShuttleManipulator = props => {
         {() => (
           <Section>
             <table>
+              <tr>
+                <td>JMP</td>
+                <td>Fly</td>
+                <td>Name</td>
+                <td>id</td>
+                <td>status</td>
+                <td>mode</td>
+                <td>hijack</td>
+              </tr>
               {shuttles.map(shuttle => (
                 <tr key={shuttle.id}>
                   <td>
@@ -59,6 +68,9 @@ export const ShuttleManipulator = props => {
                       </Fragment>
                     )}
                   </td>
+                  <td>
+                    {shuttle.hijack}
+                  </td>
                 </tr>
               ))}
             </table>
@@ -77,7 +89,7 @@ export const ShuttleManipulator = props => {
                 return (
                   <Tabs.Tab
                     key={templateId}
-                    label={template.port_id}
+                    label={template.shuttle_id}
                   >
                     {templates.map(actualTemplate => {
                       const isSelected = (actualTemplate.shuttle_id === selected.shuttle_id);
