@@ -246,12 +246,16 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "ay" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/alarm,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "az" = (
 /obj/machinery/door/poddoor/mainship{
@@ -312,7 +316,7 @@
 	dir = 6
 	},
 /turf/open/floor/mainship{
-	icon_state = "test_floor5"
+	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury)
 "aG" = (
@@ -344,7 +348,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship{
-	icon_state = "test_floor5"
+	icon_state = "test_floor4"
 	},
 /area/shuttle/canterbury)
 "aJ" = (
@@ -382,12 +386,16 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/mono,
+/obj/machinery/vending/dress_supply,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/uniform_supply,
-/turf/open/floor/mainship/mono,
+/obj/machinery/vending/attachments,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "aP" = (
 /obj/machinery/power/fusion_engine/random,
@@ -441,7 +449,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "aV" = (
 /obj/machinery/marine_selector/clothes/specialist/alpha,
@@ -530,7 +540,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "be" = (
 /obj/effect/landmark/start/marine/crash/squadspecialist,
@@ -649,20 +661,13 @@
 	},
 /area/shuttle/canterbury)
 "br" = (
-/obj/machinery/light/small{
-	icon_state = "bulb1";
+/obj/structure/window/reinforced/toughened{
+	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/alarm{
-	icon_state = "alarm0";
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/flares,
+/obj/machinery/marine_selector/clothes/leader/alpha,
 /turf/open/floor/mainship{
-	icon_state = "test_floor4"
+	icon_state = "cargo"
 	},
 /area/shuttle/canterbury)
 "bs" = (
@@ -774,7 +779,9 @@
 	dir = 4
 	},
 /obj/machinery/marine_selector/gear/leader,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "bC" = (
 /obj/machinery/marine_selector/clothes/smartgun/alpha,
@@ -1025,10 +1032,18 @@
 	},
 /area/shuttle/canterbury/medical)
 "ch" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 8
 	},
-/turf/open/floor/mainship,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
 /area/shuttle/canterbury)
 "ci" = (
 /obj/item/radio/intercom{
@@ -1061,15 +1076,18 @@
 "ck" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
+/obj/machinery/alarm{
+	icon_state = "alarm0";
+	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank,
+/obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship{
-	icon_state = "test_floor4"
+	icon_state = "cargo"
 	},
 /area/shuttle/canterbury)
 "cl" = (
@@ -1253,12 +1271,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cC" = (
-/obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/marine_selector/clothes/leader/alpha,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cD" = (
 /obj/structure/cable{
@@ -1568,7 +1584,7 @@ ci
 bV
 bV
 bV
-ck
+ch
 co
 "}
 (8,1,1) = {"
@@ -1614,7 +1630,7 @@ bP
 bW
 bW
 bW
-br
+ck
 cp
 "}
 (10,1,1) = {"
@@ -1629,8 +1645,8 @@ cS
 aO
 aU
 bd
-ch
-cC
+bN
+br
 bB
 an
 cG
@@ -1652,7 +1668,7 @@ cT
 an
 aV
 be
-ch
+cC
 bs
 bC
 an
@@ -1675,7 +1691,7 @@ cU
 an
 aW
 bk
-ch
+cC
 bt
 bD
 an
