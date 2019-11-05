@@ -132,3 +132,8 @@
 		playsound(user.loc, "alien_roar_larva", 15)
 	else
 		return ..()
+
+/datum/emote/living/carbon/xenomorph/dab
+	key = "dab"
+	key_third_person = "dabs"
+	message = "hits a nasty dab!"
