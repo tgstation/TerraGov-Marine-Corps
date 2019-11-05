@@ -816,6 +816,7 @@
 #include "code\modules\admin\verbs\legacy.dm"
 #include "code\modules\admin\verbs\map_template.dm"
 #include "code\modules\admin\verbs\pray.dm"
+#include "code\modules\admin\verbs\shuttlepanel.dm"
 #include "code\modules\admin\verbs\varedit.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\assembly\assembly.dm"
