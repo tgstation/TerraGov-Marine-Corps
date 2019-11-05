@@ -30,12 +30,10 @@
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
+	if(modifiers["shift"] && ShiftClickOn(A))
 		return
 	if(modifiers["alt"])
-		AltClickNoInteract(src, A)
-		return
+		return //Disabled for now. Need to sanitize the AltClickOn procs.
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return

@@ -120,7 +120,7 @@
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
-	if(modifiers["shift"])
+	if(modifiers["shift"] && !(SEND_SIGNAL(source.mob, COMSIG_MOB_AUTOFIRE_CLICK_SHIFT, target) & COMSIG_MOB_CANCEL_CLICK_SHIFT))
 		return
 	if(modifiers["ctrl"])
 		return

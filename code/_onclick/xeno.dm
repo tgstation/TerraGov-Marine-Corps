@@ -35,8 +35,8 @@
 
 
 /mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
-	. = ..()
 	if(!selected_ability || middle_mouse_toggle)
-		return
+		return ..()
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
+	return TRUE

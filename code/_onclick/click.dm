@@ -131,8 +131,7 @@
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
+	if(modifiers["shift"] && ShiftClickOn(A))
 		return
 	if(modifiers["alt"])
 		AltClickOn(A)
@@ -351,16 +350,14 @@
 	This is overridden in ai.dm
 */
 /mob/proc/ShiftClickOn(atom/A)
-	A.ShiftClick(src)
-	return
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICK_SHIFT, A) & COMSIG_MOB_CANCEL_CLICK_SHIFT)
+		return FALSE
+	return A.ShiftClick(src)
 
 
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
-		user.examinate(src)
-	return
-
+	return TRUE
 
 /*
 	Ctrl click
@@ -402,18 +399,6 @@
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
-	var/turf/T = get_turf(src)
-	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.statpanel = T.name
-
-
-// Use this instead of /mob/proc/AltClickOn(atom/A) where you only want turf content listing without additional atom alt-click interaction
-/atom/proc/AltClickNoInteract(mob/user, atom/A)
-	var/turf/T = get_turf(A)
-	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.statpanel = T.name
 
 
 /mob/proc/TurfAdjacent(turf/T)
