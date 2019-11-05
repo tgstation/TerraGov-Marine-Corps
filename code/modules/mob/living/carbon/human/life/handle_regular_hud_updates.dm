@@ -82,17 +82,6 @@
 	if(!hud_used)
 		return
 
-	if(hud_used.staminas)
-		if(stat == DEAD)
-			hud_used.staminas.icon_state = "stamloss200"
-		else
-			var/relative_stamloss = getStaminaLoss()
-			if(relative_stamloss < 0 && max_stamina_buffer)
-				relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
-			else
-				relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
-			hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
-
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
 			if(450 to INFINITY)
