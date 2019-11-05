@@ -57,8 +57,13 @@
 		return
 
 	if(DEATHTIME_CHECK(usr))
-		DEATHTIME_MESSAGE(usr)
-		return
+		if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				DEATHTIME_MESSAGE(usr)
+				return
+		else
+			DEATHTIME_MESSAGE(usr)
+			return
 
 	to_chat(usr, "<span class='notice'>You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b></span>")
 

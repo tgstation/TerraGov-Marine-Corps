@@ -573,8 +573,13 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		XENODEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother)
 
@@ -590,8 +595,13 @@ to_chat will check for valid clients itself already so no need to double check f
 		return FALSE
 
 	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
-		XENODEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	if(!stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
