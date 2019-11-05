@@ -50,23 +50,17 @@
 		DISABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 		DISABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
 		eye_protection = 0
-		tint = TINT_NONE
 		hug_memory = anti_hug
 		anti_hug = 0
+		remove_tint(user)
 	else
 		ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 		ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
 		eye_protection = initial(eye_protection)
-		tint = initial(tint)
 		anti_hug = hug_memory
+		add_tint(user)
 	if(user)
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
-
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.head == src)
-			H.update_tint()
 
 	update_clothing_icon()	//so our mob-overlays update
 

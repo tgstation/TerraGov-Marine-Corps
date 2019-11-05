@@ -177,21 +177,15 @@
 		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
 		DISABLE_BITFIELD(flags_armor_protection, EYES)
 		eye_protection = 0
-		tint = TINT_NONE
+		remove_tint(user)
 	else
 		ENABLE_BITFIELD(flags_inventory, COVEREYES)
 		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
 		ENABLE_BITFIELD(flags_armor_protection, EYES)
 		eye_protection = initial(eye_protection)
-		tint = initial(tint)
+		add_tint(user)
 	if(user)
 		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
-
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.glasses == src)
-			H.update_tint()
 
 	update_clothing_icon()
 

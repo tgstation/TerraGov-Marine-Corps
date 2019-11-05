@@ -483,7 +483,7 @@
 	return FALSE
 
 /mob/living/update_tint()
-	tinttotal = get_total_tint()
+	tinttotal = src.tinttotal
 	if(tinttotal >= TINT_BLIND)
 		blind_eyes(1)
 		return TRUE
