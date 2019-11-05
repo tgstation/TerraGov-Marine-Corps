@@ -489,11 +489,8 @@
 		return TRUE
 	else if(eye_blind == 1)
 		adjust_blindness(-1)
-	if(tinttotal == TINT_HEAVY)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
-		return TRUE
-	else if (tinttotal == TINT_MILD)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 1)
+	if(tinttotal)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, tinttotal)
 		return TRUE
 	else
 		clear_fullscreen("tint", 0)

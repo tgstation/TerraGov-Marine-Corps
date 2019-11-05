@@ -155,7 +155,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
-	tint = TINT_HEAVY
+	tint = TINT_5
 
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	toggle(user)
@@ -208,7 +208,7 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	tint = TINT_MILD
+	tint = TINT_4
 
 
 
@@ -219,7 +219,7 @@
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
-	tint = TINT_MILD
+	tint = TINT_3
 	eye_protection = 1
 
 /obj/item/clothing/glasses/sunglasses/blindfold

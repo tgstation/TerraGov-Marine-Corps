@@ -28,7 +28,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
-	tint = TINT_HEAVY
+	tint = TINT_5
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
