@@ -392,9 +392,7 @@
 	},
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/attachments{
-	req_access = null
-	},
+/obj/machinery/vending/attachments,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -450,9 +448,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/machinery/vending/marine/cargo_guns{
-	req_one_access = null
-	},
+/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -773,7 +769,6 @@
 /obj/item/tool/crowbar,
 /obj/item/pinpointer/advpinpointer,
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
@@ -856,6 +851,10 @@
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
+/area/shuttle/canterbury/medical)
+"bM" = (
+/obj/structure/window/framed/mainship/white,
+/turf/closed/wall/mainship/white,
 /area/shuttle/canterbury/medical)
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -993,6 +992,13 @@
 "cd" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
+/obj/item/reagent_container/spray/cleaner{
+	name = "Surgery Cleaner";
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/obj/item/reagent_container/spray/cleaner,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1003,6 +1009,7 @@
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/healthanalyzer,
+/obj/item/reagent_container/spray/cleaner,
 /obj/machinery/light,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1527,7 +1534,7 @@ aT
 bo
 bz
 bL
-bK
+bM
 bU
 cb
 cg
@@ -1551,9 +1558,9 @@ bo
 bA
 bT
 cI
-bK
-bK
-bK
+bM
+bM
+bM
 bo
 an
 "}
