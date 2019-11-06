@@ -210,7 +210,7 @@ WEAPONS
 	containername = "\improper Scout Specialist crate"
 	group = "Weapons"
 
-/datum/supply_packs/specscout
+/datum/supply_packs/specscout2
 	name = "Scout Specialist crate (MBX900 x1)"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/lever/mbx900
