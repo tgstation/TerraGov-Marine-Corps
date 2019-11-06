@@ -24,6 +24,13 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
+	handle_tracking()
+
+/mob/living/proc/handle_tracking()
+	if(track_amount > 0)
+		new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(src.loc)
+		track_amount--
+	return TRUE
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0

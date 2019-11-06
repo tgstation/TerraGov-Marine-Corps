@@ -210,6 +210,16 @@ WEAPONS
 	containername = "\improper Scout Specialist crate"
 	group = "Weapons"
 
+/datum/supply_packs/specscout
+	name = "Scout Specialist crate (MBX900 x1)"
+	contains = list(
+					/obj/item/weapon/gun/shotgun/pump/lever/mbx900
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper Scout Shotgun Specialist crate"
+	group = "Weapons"
+
 /datum/supply_packs/specdemo
 	name = "Demolitionist Specialist crate (M5 RPG x1)"
 	contains = list(
@@ -1790,6 +1800,20 @@ AMMO
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper incendiary sniper ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_mbx900
+	name = "MBX 900 ammo crate (x2 sabot, x2 buckshot, x1 tracking)"
+	contains = list(
+					/obj/item/ammo_magazine/mbx900/,
+					/obj/item/ammo_magazine/mbx900/,
+					/obj/item/ammo_magazine/mbx900/buckshot,
+					/obj/item/ammo_magazine/mbx900/buckshot,
+					/obj/item/ammo_magazine/mbx900/tracking
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper MBX 900 ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_rpg_regular

@@ -433,6 +433,39 @@
 	new /obj/item/explosive/grenade/cloakbomb(src)
 
 
+/obj/item/storage/box/spec/tracker
+	name = "\improper Scout equipment"
+	desc = "A large case containing Tracker equipment; this one features the .410 lever action shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "sniper_case"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 21
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+	spec_set = "scout shotgun"
+
+/obj/item/storage/box/spec/tracker/Initialize(mapload, ...)
+	. = ..()
+
+	new /obj/item/clothing/suit/storage/marine/M3S(src)
+	new /obj/item/clothing/head/helmet/marine/scout(src)
+	new /obj/item/clothing/glasses/thermal/m64_thermal_goggles(src)
+	new /obj/item/weapon/gun/shotgun/pump/lever/mbx900(src)
+	new /obj/item/ammo_magazine/mbx900/(src)
+	new /obj/item/ammo_magazine/mbx900/buckshot(src)
+	new /obj/item/ammo_magazine/mbx900/tracking(src)
+	new /obj/item/binoculars/tactical/scout(src)
+	new /obj/item/weapon/gun/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/ammo_magazine/pistol/m1911(src)
+	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
+	new /obj/item/motiondetector/scout(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/explosive/grenade/cloakbomb(src)
+	new /obj/item/bodybag/tarp(src)
+
 /obj/item/storage/box/spec/pyro
 	name = "\improper Pyrotechnician equipment"
 	desc = "A large case containing Pyrotechnician equipment. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -525,12 +558,14 @@
 			S = /obj/item/storage/box/spec/scout
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
+		if("Scout (Shotgun)")
+			S = /obj/item/storage/box/spec/tracker
 	new S(loc)
 	user.put_in_hands(S)
 	qdel()
 
 /obj/item/spec_kit/attack_self(mob/user)
-	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Demo")
+	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Scout (Shotgun)","Demo")
 	if(!selection)
 		return
 	var/turf/T = get_turf(loc)
@@ -545,6 +580,8 @@
 			new /obj/item/storage/box/spec/scout (T)
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
+		if("Scout (Shotgun)")
+			new /obj/item/storage/box/spec/tracker (T)
 	qdel(src)
 
 

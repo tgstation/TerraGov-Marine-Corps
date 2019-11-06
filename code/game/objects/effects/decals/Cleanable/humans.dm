@@ -106,6 +106,18 @@
 	amount = 0
 	var/drips
 
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid
+	name = "tracking fluid"
+	desc = "Tracking fluid from a tracking round."
+	basecolor = "#00FFFF"
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
+	name = "dried [src.name]"
+	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
+	color = adjust_brightness(color, -75)
+	amount = 0
+
 /obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"
 	desc = "It looks like a writing in blood."

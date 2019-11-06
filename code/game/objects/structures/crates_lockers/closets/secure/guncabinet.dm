@@ -97,6 +97,7 @@
 	new /obj/item/storage/box/spec/scout(src)
 	new /obj/item/storage/box/spec/scoutshotgun(src)
 	new /obj/item/storage/box/spec/sniper(src)
+	new /obj/item/storage/box/spec/tracker(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/highpower/PopulateContents()
