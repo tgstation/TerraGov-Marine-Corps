@@ -26,8 +26,13 @@
 
 
 /obj/effect/alien/weeds/Destroy()
+
 	if(parent_node)
 		SSweeds.add_weed(src)
+
+	if(loc)
+		for(var/obj/effect/alien/resin/R in loc.contents)
+			qdel(R)
 
 	var/oldloc = loc
 	. = ..()
