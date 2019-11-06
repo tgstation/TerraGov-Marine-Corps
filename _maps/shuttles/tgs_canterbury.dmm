@@ -246,6 +246,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/storage/box/sentry,
+/obj/item/storage/box/sentry,
+/obj/item/storage/box/sentry,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -386,7 +389,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/machinery/vending/dress_supply,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
