@@ -13,7 +13,7 @@
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 
 
 
@@ -196,14 +196,16 @@
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 2
+	storage_slots = 4
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask)
+		/obj/item/reagent_containers/food/drinks/flask,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 2
+	max_storage_space = 4
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -575,4 +577,3 @@
 	icon_state = "som_helmet_leader"
 	item_state = "som_helmet_leader"
 	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
-
