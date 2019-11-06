@@ -1,6 +1,6 @@
 /obj/effect/acid_hole
 	name = "hole"
-	desc = "What could have done this?"
+	desc = "What could have done this? Something agile enough could probably climb through."
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
 	anchored = TRUE
@@ -45,6 +45,8 @@
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
+			return
+		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
 	if(user.action_busy || user.lying)

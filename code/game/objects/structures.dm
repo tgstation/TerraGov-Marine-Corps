@@ -41,6 +41,14 @@
 
 	do_climb(usr)
 
+/obj/structure/attack_alien(mob/living/carbon/xenomorph/user)
+	. = ..()
+	do_climb(usr)
+
+/obj/structure/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	do_climb(usr)
+
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 	. = ..()
 	var/mob/living/H = user
