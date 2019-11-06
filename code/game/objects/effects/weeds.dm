@@ -10,7 +10,7 @@
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
 	var/parent_node
-	max_integrity = 4
+	max_integrity = 36
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -31,7 +31,9 @@
 		SSweeds.add_weed(src)
 
 	if(loc)
-		for(var/obj/effect/alien/resin/R in loc.contents)
+		for(var/obj/effect/alien/R in loc.contents)
+			if(R == src)
+				continue
 			qdel(R)
 
 	var/oldloc = loc
