@@ -366,6 +366,12 @@
 	update_move_intent_effects()
 
 
+/mob/living/carbon/human/toggle_move_intent(new_intent)
+	if(species.species_flags & NO_STAMINA && (m_intent == MOVE_INTENT_WALK || new_intent == MOVE_INTENT_RUN))
+		return
+	return ..()
+
+
 /mob/living/proc/update_move_intent_effects()
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)

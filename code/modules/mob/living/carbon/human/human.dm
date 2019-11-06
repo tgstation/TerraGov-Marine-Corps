@@ -35,8 +35,6 @@
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
-	AddComponent(/datum/component/stamina_behavior)
-
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -951,11 +949,11 @@
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
-
-	if(species)
-		return 1
-	else
-		return 0
+	
+	if(!(species.species_flags & NO_STAMINA))
+		AddComponent(/datum/component/stamina_behavior)
+		max_stamina_buffer = species.max_stamina_buffer
+	return TRUE
 
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
