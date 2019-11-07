@@ -662,7 +662,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
-	name = "\improper MBX-900 Lever Action Rifle"
+	name = "\improper MBX-900 Lever Action Shotgun"
 	desc = "A .410 lever action shotgun that fires as fast as you can operate the action."
 	icon_state = "mbx900"
 	item_state = "mbx900"
