@@ -113,7 +113,7 @@
 	basecolor = "#00FFFF"
 
 /obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
-	name = "dried [src.name]"
+	name = "dried [name]"
 	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
 	color = adjust_brightness(color, -75)
 	amount = 0
