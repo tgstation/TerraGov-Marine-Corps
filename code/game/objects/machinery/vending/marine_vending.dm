@@ -689,7 +689,7 @@
 					/obj/item/storage/backpack/marine/satchel = 10,
 					/obj/item/clothing/suit/storage/marine = 10,
 					/obj/item/clothing/suit/storage/marine/M3HB = 10,
-					/obj/item/clothing/suit/storage/marine/M3LB = 10,https://github.com/tgstation/TerraGov-Marine-Corps/pull/3270/files
+					/obj/item/clothing/suit/storage/marine/M3LB = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
