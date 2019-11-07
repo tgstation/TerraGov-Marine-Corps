@@ -866,3 +866,16 @@
 /obj/docking_port/mobile/proc/set_mode(new_mode)
 	mode = new_mode
 	SEND_SIGNAL(src, COMSIG_SHUTTLE_SETMODE, mode)
+
+
+/obj/docking_port/mobile/proc/can_move_topic(mob/user)
+	if(mode == SHUTTLE_RECHARGING)
+		to_chat(user, "<span class='warning'>The engines are not ready to use yet!</span>")
+		return FALSE
+	if(launch_status == ENDGAME_LAUNCHED)
+		to_chat(user, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
+		return FALSE
+	if(mode != SHUTTLE_IDLE)
+		to_chat(user, "<span class='warning'>Shuttle already in transit.</span>")
+		return FALSE
+	return TRUE

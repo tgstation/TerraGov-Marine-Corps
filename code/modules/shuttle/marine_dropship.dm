@@ -104,7 +104,7 @@
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
 #define HIJACK_STATE_CRASHING "hijack_state_crashing"
 
-#define LOCKDOWN_TIME 10 MINUTES
+#define LOCKDOWN_TIME 6 MINUTES
 #define GROUND_LOCKDOWN_TIME 3 MINUTES
 
 /obj/docking_port/mobile/marine_dropship
@@ -252,6 +252,20 @@
 	. = ..()
 	if(hijack_state == HIJACK_STATE_CRASHING)
 		priority_announce("DROPSHIP ON COLLISION COURSE. CRASH IMMINENT." , "EMERGENCY", sound = 'sound/AI/dropship_emergency.ogg')
+
+
+/obj/docking_port/mobile/marine_dropship/getStatusText()
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		return "control integrity compromised"
+	return ..()
+
+
+/obj/docking_port/mobile/marine_dropship/can_move_topic(mob/user)
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		to_chat(user, "<span class='warning'>Control integrity compromised!</span>")
+		return FALSE
+	return ..()
+
 
 /mob/living/carbon/xenomorph/proc/calldown_dropship()
 	set category = "Alien"
