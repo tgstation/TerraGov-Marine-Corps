@@ -30,11 +30,10 @@
 	if(parent_node)
 		SSweeds.add_weed(src)
 
-	if(loc)
-		for(var/obj/effect/alien/A in loc.contents)
-			if(A == src)
-				continue
-			qdel(A)
+	for(var/obj/effect/alien/A in loc.contents)
+		if(A == src)
+			continue
+		A.obj_destruction("melee")
 
 	var/oldloc = loc
 	. = ..()
