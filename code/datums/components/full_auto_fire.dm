@@ -80,7 +80,7 @@
 	autofire_off()
 
 	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_EQUIPPED))
-	
+
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
 
@@ -379,7 +379,7 @@
 	if(shooter.action_busy)
 		return FALSE
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(!do_after(shooter, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(shooter, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER,ignore_turf_checks = TRUE))
 		return FALSE
 
 #undef AUTOFIRE_MOUSEUP
