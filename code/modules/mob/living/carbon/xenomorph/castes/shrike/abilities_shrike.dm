@@ -145,6 +145,7 @@
 
 
 /datum/action/xeno_action/activable/unrelenting_force/use_ability(atom/target)
+	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
 	owner.icon_state = "Shrike Screeching"
