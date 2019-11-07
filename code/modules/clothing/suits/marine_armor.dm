@@ -120,7 +120,7 @@
 	name = "\improper M3-IS pattern marine armor"
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and weapon carrying capacity."
 	icon_state = "4"
-	armor = list("melee" = 55, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 30, "acid" = 40)
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 50, "bio" = 40, "rad" = 10, "fire" = 35, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
