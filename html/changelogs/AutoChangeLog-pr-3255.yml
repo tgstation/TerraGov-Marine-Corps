@@ -1,4 +1,0 @@
-author: "factoryman942"
-delete-after: True
-changes: 
-  - bugfix: "explosions no longer hit things on their centre tile multiple times, and rockets no longer explode twice. Xenos should be pulped less by explosions now."
