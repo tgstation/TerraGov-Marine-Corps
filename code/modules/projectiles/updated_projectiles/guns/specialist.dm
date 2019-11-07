@@ -310,7 +310,6 @@
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade
 						)
 
