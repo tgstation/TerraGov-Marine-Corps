@@ -414,12 +414,14 @@
 			else
 				destination = S
 				setTimer(callTime * engine_coeff)
-			mode = SHUTTLE_CALL
-		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)
+			set_mode(SHUTTLE_CALL)
+		if(SHUTTLE_IDLE, SHUTTLE_IGNITING, SHUTTLE_RECHARGING)
 			destination = S
-			mode = SHUTTLE_IGNITING
+			set_mode(SHUTTLE_IGNITING)
 			on_ignition()
 			setTimer(ignitionTime)
+		else
+			stack_trace("Called request() with mode: [mode].")
 
 // called on entering the igniting state
 /obj/docking_port/mobile/proc/on_ignition()
@@ -436,7 +438,7 @@
 
 /obj/docking_port/mobile/proc/set_idle()
 	timer = 0
-	mode = SHUTTLE_IDLE
+	set_mode(SHUTTLE_IDLE)
 	destination = null
 
 //recall the shuttle to where it was previously
@@ -447,11 +449,11 @@
 	remove_ripples()
 
 	invertTimer()
-	mode = SHUTTLE_RECALL
+	set_mode(SHUTTLE_RECALL)
 
 /obj/docking_port/mobile/proc/enterTransit()
 	if((SSshuttle.lockdown && is_station_level(z)) || !canMove())	//emp went off, no escape
-		mode = SHUTTLE_IDLE
+		set_mode(SHUTTLE_IDLE)
 		return
 	previous = null
 	if(!destination)
@@ -520,10 +522,11 @@
 
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
 	if(!use_ripples)
-		return
+		return FALSE
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
+	return TRUE
 
 /obj/docking_port/mobile/proc/remove_ripples()
 	QDEL_LIST(ripples)
@@ -541,8 +544,8 @@
 		var/turf/T1 = L1[i]
 		if(!T0 || !T1)
 			continue  // out of bounds
-		if(T0.type == T0.baseturfs)
-			continue  // indestructible
+		//if(T0.type == T0.baseturfs)
+		//	continue  // indestructible
 		if(!istype(T0.loc, area_type) || istype(T0.loc, /area/shuttle/transit))
 			continue  // not part of the shuttle
 		ripple_turfs += T1
@@ -581,7 +584,7 @@
 	switch(mode)
 		if(SHUTTLE_CALL, SHUTTLE_PREARRIVAL)
 			if(prearrivalTime && mode != SHUTTLE_PREARRIVAL)
-				mode = SHUTTLE_PREARRIVAL
+				set_mode(SHUTTLE_PREARRIVAL)
 				on_prearrival()
 				setTimer(prearrivalTime)
 				return
@@ -590,16 +593,15 @@
 				var/msg = "A mobile dock in transit exited initiate_docking() with an error. This is most likely a mapping problem: Error: [error],  ([src]) ([previous][ADMIN_JMP(previous)] -> [destination][ADMIN_JMP(destination)])"
 				WARNING(msg)
 				message_admins(msg)
-				mode = SHUTTLE_IDLE
+				set_mode(SHUTTLE_IDLE)
 				return
 			else if(error)
 				setTimer(20)
 				return
 			if(rechargeTime)
-				mode = SHUTTLE_RECHARGING
+				set_mode(SHUTTLE_RECHARGING)
 				destination = null
 				setTimer(rechargeTime)
-				SEND_SIGNAL(src, COMSIG_SHUTTLE_RECHARGING)
 				return
 		if(SHUTTLE_RECALL)
 			if(initiate_docking(previous) != DOCKING_SUCCESS)
@@ -610,13 +612,12 @@
 				setTimer(20)
 				return
 			else
-				mode = SHUTTLE_CALL
+				set_mode(SHUTTLE_CALL)
 				setTimer(callTime * engine_coeff)
 				enterTransit()
 				return
 
 	set_idle()
-	SEND_SIGNAL(src, COMSIG_SHUTTLE_IDLE)
 
 /obj/docking_port/mobile/proc/check_effects()
 	if(!ripples.len)
@@ -859,7 +860,11 @@
 /obj/docking_port/mobile/pod/on_emergency_dock()
 	if(launch_status == ENDGAME_LAUNCHED)
 		initiate_docking(SSshuttle.getDock("[id]_away")) //Escape pods dock at centcom
-		mode = SHUTTLE_ENDGAME
+		set_mode(SHUTTLE_ENDGAME)
 
 /obj/docking_port/mobile/emergency/on_emergency_dock()
 	return
+
+/obj/docking_port/mobile/proc/set_mode(new_mode)
+	mode = new_mode
+	SEND_SIGNAL(src, COMSIG_SHUTTLE_SETMODE, mode)
