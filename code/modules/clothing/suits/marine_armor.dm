@@ -533,7 +533,7 @@
 	name = "\improper M3-T light armor"
 	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."
 	icon_state = "demolitionist"
-	armor = list("melee" = 65, "bullet" = 50, "laser" = 40, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 55, "bullet" = 50, "laser" = 40, "energy" = 25, "bomb" = 50, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 25)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
 
@@ -541,14 +541,14 @@
 	name = "\improper M3-S light armor"
 	desc = "A custom set of M3 armor designed for TGMC Scouts."
 	icon_state = "scout_armor"
-	armor = list("melee" = 65, "bullet" = 80, "laser" = 40, "energy" = 25, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 60, "bullet" = 65, "laser" = 40, "energy" = 25, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 25)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/storage/marine/M35
 	name = "\improper M35 armor"
 	desc = "A custom set of M35 armor designed for use by TGMC Pyrotechnicians. Contains thick kevlar shielding, partial environmental shielding and thermal dissipators."
 	icon_state = "pyro_armor"
-	armor = list("melee" = 60, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 30, "rad" = 50, "fire" = 60, "acid" = 60)
+	armor = list("melee" = 60, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 30, "rad" = 50, "fire" = 60, "acid" = 50)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -558,7 +558,7 @@
 	name = "\improper M3 pattern recon armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
-	armor = list("melee" = 65, "bullet" = 70, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 55, "bullet" = 60, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 25)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/storage/marine/sniper/jungle
