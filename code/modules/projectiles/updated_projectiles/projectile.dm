@@ -502,9 +502,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
-		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(turf_to_scan, src)
-
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
 
