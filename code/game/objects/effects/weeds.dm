@@ -119,7 +119,7 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	var/node_range = NODERANGE
-	max_integrity = 100
+	max_integrity = 60
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 
