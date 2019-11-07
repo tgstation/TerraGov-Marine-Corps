@@ -41,7 +41,7 @@
 		use_wall_hole(user)
 
 
-/obj/effect/acid_hole/attack_alien(mob/living/carbon/xenomorph/user)
+/obj/effect/acid_hole/specialclick(mob/living/carbon/xenomorph/user)
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
