@@ -100,9 +100,10 @@
 	id = "normandy"
 	roundstart_template = /datum/map_template/shuttle/dropship/two
 
-#define HIJACK_STATE_NORMAL 0
-#define HIJACK_STATE_CALLED_DOWN 1
-#define HIJACK_STATE_CRASHING 2
+#define HIJACK_STATE_NORMAL "hijack_state_normal"
+#define HIJACK_STATE_REQUESTED "hijack_state_requested"
+#define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
+#define HIJACK_STATE_CRASHING "hijack_state_crashing"
 
 #define LOCKDOWN_TIME 10 MINUTES
 
@@ -123,6 +124,7 @@
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
 
+	var/obj/docking_port/stationary/hijack_request
 
 	var/list/equipments = list()
 	var/list/installed_equipment = list()
@@ -211,25 +213,35 @@
 		return
 	unlock_all()
 
-/obj/docking_port/mobile/marine_dropship/onTransitZ(old_z, new_z)
-	. = ..()
-	if(hijack_state != HIJACK_STATE_CALLED_DOWN)
-		return
-	if(is_ground_level(new_z))
-		addtimer(CALLBACK(src, .proc/reset_hijack), LOCKDOWN_TIME)
-	else if(is_mainship_level(new_z))
-		addtimer(CALLBACK(src, .proc/reset_hijack), 30 SECONDS)
-
 /obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
 		hijack_state = HIJACK_STATE_NORMAL
 
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
-	mode = SHUTTLE_IDLE
-	timer = 0
-	destination = null
+	switch(mode)
+		if(SHUTTLE_IDLE, SHUTTLE_IGNITING)			
+			request_to(S)
+			return
+		if(SHUTTLE_CALL)
+			if(!is_mainship_level(destination.z))
+				request_to(S)
+				return
+	hijack_state = HIJACK_STATE_REQUESTED
+	RegisterSignal(src, COMSIG_SHUTTLE_IDLE, .proc/request_when_idle)
+
+/obj/docking_port/mobile/marine_dropship/proc/request_when_idle()
+	UnregisterSignal(src, COMSIG_SHUTTLE_IDLE)
+	request_to(hijack_request)
+
+/obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer()
+	UnregisterSignal(src, COMSIG_SHUTTLE_IDLE)
+	addtimer(CALLBACK(src, .proc/reset_hijack), LOCKDOWN_TIME)
+
+/obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
+	set_idle()
 	hijack_state = HIJACK_STATE_CALLED_DOWN
 	request(S)
+	RegisterSignal(src, COMSIG_SHUTTLE_RECHARGING, .proc/start_hijack_timer)
 
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
@@ -509,20 +521,20 @@
 			. = TRUE
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
 	if(!M)
+		return
+	if(!isxeno(usr) && M.hijack_state != HIJACK_STATE_NORMAL)
+		to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
+		return
+	. = ..()
+	if(.)
 		return
 	if(M.hijack_state == HIJACK_STATE_CRASHING)
 		return
 
 	if(ishuman(usr) || isAI(usr))
 		if(!allowed(usr))
-			return
-		if(M.hijack_state == HIJACK_STATE_CALLED_DOWN)
-			to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
 			return
 		if(href_list["lockdown"])
 			

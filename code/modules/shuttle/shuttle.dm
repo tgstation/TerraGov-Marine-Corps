@@ -434,6 +434,11 @@
 /obj/docking_port/mobile/proc/on_crash()
 	return
 
+/obj/docking_port/mobile/proc/set_idle()
+	timer = 0
+	mode = SHUTTLE_IDLE
+	destination = null
+
 //recall the shuttle to where it was previously
 /obj/docking_port/mobile/proc/cancel()
 	if(mode != SHUTTLE_CALL)
@@ -592,7 +597,9 @@
 				return
 			if(rechargeTime)
 				mode = SHUTTLE_RECHARGING
+				destination = null
 				setTimer(rechargeTime)
+				SEND_SIGNAL(src, COMSIG_SHUTTLE_RECHARGING)
 				return
 		if(SHUTTLE_RECALL)
 			if(initiate_docking(previous) != DOCKING_SUCCESS)
@@ -608,9 +615,8 @@
 				enterTransit()
 				return
 
-	mode = SHUTTLE_IDLE
-	timer = 0
-	destination = null
+	set_idle()
+	SEND_SIGNAL(src, COMSIG_SHUTTLE_IDLE)
 
 /obj/docking_port/mobile/proc/check_effects()
 	if(!ripples.len)
