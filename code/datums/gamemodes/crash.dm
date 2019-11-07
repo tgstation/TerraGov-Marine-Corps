@@ -109,7 +109,7 @@
 
 	// Launch shuttle
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
+	for(var/obj/docking_port/stationary/crashmode/D in SSshuttle.stationary)
 		if(!shuttle.check_dock(D, silent=TRUE))
 			continue
 		valid_docks += D
