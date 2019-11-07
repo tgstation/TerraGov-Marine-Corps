@@ -109,18 +109,15 @@
 
 	// Launch shuttle
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/crashmode/D in SSshuttle.stationary)
-		if(!shuttle.check_dock(D, silent=TRUE))
+	for(var/obj/docking_port/stationary/crashmode/potential_crash_site in SSshuttle.stationary)
+		if(!shuttle.check_dock(potential_crash_site, silent = TRUE))
 			continue
-		valid_docks += D
+		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
-		CRASH("No valid docks found for shuttle!")
+		CRASH("No valid crash sides found!")
 		return
-	var/obj/docking_port/stationary/target = pick(valid_docks)
-	if(!target || !istype(target))
-		CRASH("Unable to get a valid shuttle target!")
-		return
+	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
