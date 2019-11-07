@@ -31,7 +31,7 @@
 		SSweeds.add_weed(src)
 
 	for(var/obj/effect/alien/A in loc.contents)
-		if(A == src)
+		if(A == src || A.gc_destroyed || A.ignore_weed_destruction)
 			continue
 		A.obj_destruction("melee")
 
@@ -128,6 +128,8 @@
 	max_integrity = 100
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+	ignore_weed_destruction = TRUE
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
