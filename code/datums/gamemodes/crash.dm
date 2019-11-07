@@ -120,8 +120,8 @@
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
-	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
+	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
+	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
 
 
 /datum/game_mode/crash/setup()
