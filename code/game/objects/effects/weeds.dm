@@ -167,4 +167,9 @@
 				turfs_to_check += AdjT
 				node_turfs += AdjT
 
+/obj/effect/alien/weeds/node/attacked_by(obj/item/weapon/claymore/mercsword/machete/I, mob/living/user)
+	I.force = 100
+	. = ..()
+	I.force = 40
+
 #undef NODERANGE
