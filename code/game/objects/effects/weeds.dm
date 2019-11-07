@@ -168,8 +168,8 @@
 				node_turfs += AdjT
 
 /obj/effect/alien/weeds/node/attacked_by(obj/item/weapon/claymore/mercsword/machete/I, mob/living/user)
-	I.force = 100
+	I.force = 100 //To make it remove all the nodes health in one hit.
 	. = ..()
-	I.force = 40
+	I.force = 40 //To return it to normal amounts of damage.
 
 #undef NODERANGE
