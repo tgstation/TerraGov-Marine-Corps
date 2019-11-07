@@ -8,9 +8,9 @@
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
@@ -207,9 +207,9 @@
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
 	icon_state = "8"
 	item_state = "armor"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	armor = list("melee" = 55, "bullet" = 75, "laser" = 35, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 35)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/tank/emergency_oxygen,
