@@ -87,3 +87,27 @@
 /datum/keybinding/carbon/select_harm_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_HARM)
 	return TRUE
+
+/datum/keybinding/mob/specialclick
+	key = "Control"
+	name = "specialclick"
+	full_name = "Special Click"
+	description = "Hold this key and click to trigger special object interactions."
+
+
+/datum/keybinding/mob/specialclick/down(client/user)
+	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON), .proc/specialclicky)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .proc/intercept_mouse_special)
+	return TRUE
+
+
+/datum/keybinding/mob/specialclick/up(client/user)
+	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON))
+	return TRUE
+
+/datum/keybinding/mob/specialclick/proc/specialclicky(datum/source, atom/A, params)
+	var/mob/living/carbon/user = source
+	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
+		UnregisterSignal(user, (COMSIG_MOB_CLICKON))
+		return
+	A.specialclick(user)
