@@ -31,7 +31,7 @@
 		SSweeds.add_weed(src)
 
 	for(var/obj/effect/alien/A in loc.contents)
-		if(A == src || A.gc_destroyed || A.ignore_weed_destruction)
+		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
 			continue
 		A.obj_destruction("melee")
 
