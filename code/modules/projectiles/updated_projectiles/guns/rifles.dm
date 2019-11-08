@@ -278,6 +278,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/stock/rifle,
 		/obj/item/attachable/suppressor,
