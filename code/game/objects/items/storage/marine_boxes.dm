@@ -505,7 +505,7 @@
 
 /obj/item/storage/box/spec/melee
 	name = "\improper Melee equipment crate"
-	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, detpacks, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing B18 prototype armor, force gloves, a katana and holster, a machete and holster, a broadsword, and 4 hyperzine injectors. \nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	spec_set = "melee"
