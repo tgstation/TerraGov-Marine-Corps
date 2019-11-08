@@ -117,7 +117,7 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/dmr
+						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/magnetic_harness,
