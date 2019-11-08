@@ -271,7 +271,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/dead/observer/Stat()
 	. = ..()
 
-	if(statpanel("Game"))
+	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
 			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
@@ -282,13 +282,30 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-		var/eta_status = SSevacuation?.get_status_panel_eta()
-		if(eta_status)
-			stat("Evacuation in:", eta_status)
-		if(SSticker?.mode)
-			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
-			if(countdown)
-				stat("Orphan hivemind collapse timer:", countdown)
+
+	if(statpanel("Game"))
+		var/status_value = SSevacuation?.get_status_panel_eta()
+		if(status_value)
+			stat("Evacuation in:", status_value)
+		if(SSticker.mode)
+			status_value = SSticker.mode.get_hivemind_collapse_countdown()
+			if(status_value)
+				stat("Orphan hivemind collapse timer:", status_value)
+		if(GLOB.respawn_allowed)
+			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
+			if(status_value <= 0)
+				stat("Respawn timer:", "<b>READY</b>")
+			else
+				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
+				status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
+				if(status_value <= 0)
+					stat("Xeno respawn timer:", "<b>READY</b>")
+				else
+					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+				if(normal_hive.stored_larva)
+					stat("Burrowed larva:", normal_hive.stored_larva)
 
 
 /mob/dead/observer/verb/reenter_corpse()

@@ -224,7 +224,7 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
+		stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 
 /mob/living/simple_animal/ex_act(severity)
