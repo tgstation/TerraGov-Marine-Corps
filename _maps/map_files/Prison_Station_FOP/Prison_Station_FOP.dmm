@@ -4973,7 +4973,7 @@
 /area/prison/research/secret/chemistry)
 "apb" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/darkpurple/full,
 /area/prison/research/secret/chemistry)
 "apc" = (
@@ -5248,7 +5248,7 @@
 /area/prison/medbay/surgery)
 "apR" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	pixel_x = -5;
 	pixel_y = 3
 	},
@@ -7940,8 +7940,8 @@
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "awq" = (
@@ -8200,7 +8200,7 @@
 /area/prison/research)
 "awW" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/grilledcheese,
 /turf/open/floor/prison{
 	icon_state = "kitchen"
 	},
@@ -10291,7 +10291,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aBS" = (
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
@@ -10542,7 +10542,7 @@
 /area/prison/chapel)
 "aCB" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -15505,16 +15505,16 @@
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/prison,
 /area/prison/cleaning)
 "aOq" = (
 /obj/structure/rack,
 /obj/item/storage/box/mousetraps,
-/obj/item/reagent_container/glass/bucket,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/prison,
 /area/prison/cleaning)
 "aOr" = (
@@ -18001,7 +18001,7 @@
 "aUo" = (
 /obj/machinery/chem_dispenser/beer,
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "aUp" = (
@@ -20887,7 +20887,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
 "bbt" = (
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/hallway/staff)
@@ -20895,8 +20895,8 @@
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/hallway/staff)
 "bbv" = (
@@ -25486,8 +25486,8 @@
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
 /obj/item/storage/box/lights,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "blM" = (
@@ -26721,8 +26721,8 @@
 /area/prison/hallway/central)
 "bow" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/glass/rag,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "box" = (
@@ -26856,12 +26856,12 @@
 /area/prison/yard)
 "boH" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/prison/hallway/central)
 "boI" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "boJ" = (
@@ -27936,7 +27936,7 @@
 /area/prison/residential/central)
 "brs" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/snacks/cracker,
+/obj/item/reagent_containers/food/snacks/cracker,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "brt" = (
@@ -28940,8 +28940,8 @@
 /area/prison/store)
 "buh" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/drinks/coffee,
-/obj/item/reagent_container/food/drinks/coffee,
+/obj/item/reagent_containers/food/drinks/coffee,
+/obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -28956,7 +28956,7 @@
 /area/prison/store)
 "buj" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -28964,7 +28964,7 @@
 /area/prison/store)
 "buk" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -29691,7 +29691,7 @@
 /area/prison/holding/holding1)
 "bvW" = (
 /obj/structure/rack,
-/obj/item/reagent_container/food/snacks/packaged_burrito,
+/obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -29699,7 +29699,7 @@
 /area/prison/store)
 "bvY" = (
 /obj/structure/rack,
-/obj/item/reagent_container/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -30274,7 +30274,7 @@
 /area/prison/holding/holding1)
 "bxA" = (
 /obj/structure/rack,
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -30458,7 +30458,7 @@
 /area/prison/holding/holding1)
 "byb" = (
 /obj/structure/rack,
-/obj/item/reagent_container/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -39353,7 +39353,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bTE" = (
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
@@ -41506,7 +41506,7 @@
 /area/prison/security)
 "bZs" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
 /turf/open/floor/prison/darkred/full,
 /area/prison/security)
 "bZt" = (
@@ -47513,8 +47513,8 @@
 /area/prison/security/briefing)
 "col" = (
 /obj/structure/rack,
-/obj/item/reagent_container/spray/pepper,
-/obj/item/reagent_container/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
 /turf/open/floor/prison,
 /area/prison/security/armory/riot)
 "com" = (

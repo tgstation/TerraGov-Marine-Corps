@@ -128,7 +128,7 @@
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
-	melee_damage = 31
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 35

@@ -285,7 +285,8 @@
 		if(world.time > last_event+15)
 			active = 1
 			for(var/mob/living/L in range(3,src))
-				L.apply_effect(12,IRRADIATE,0)
+				L.apply_effect(12, IRRADIATE)
+				UPDATEHEALTH(L)
 			for(var/turf/closed/wall/mineral/uranium/T in range(3,src))
 				T.radiate()
 			last_event = world.time

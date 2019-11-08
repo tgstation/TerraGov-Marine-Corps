@@ -15,7 +15,7 @@
 	items_to_spawn = list(\
 	/obj/item/clothing/suit/chickensuit,\
 	/obj/item/clothing/head/chicken,\
-	/obj/item/reagent_container/food/snacks/egg)
+	/obj/item/reagent_containers/food/snacks/egg)
 
 
 /obj/effect/landmark/itemspawner/gladiator

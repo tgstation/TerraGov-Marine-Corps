@@ -247,7 +247,7 @@
 /obj/structure/largecrate/supply/supplies/water
 	name = "\improper NT Bottled Water crate (x50)"
 	desc = "A crate containing fifty Nanotrasen Bottled Spring Water bottles."
-	supplies = list(/obj/item/reagent_container/food/drinks/cans/waterbottle = 50)
+	supplies = list(/obj/item/reagent_containers/food/drinks/cans/waterbottle = 50)
 
 /obj/structure/largecrate/supply/powerloader
 	name = "\improper Caterpillar P-5000 Work Loader crate"
@@ -283,7 +283,7 @@
 /obj/structure/largecrate/supply/medicine/blood
 	name = "blood supply crate (x12)"
 	desc = "A medical supply crate containing twelve bags of type O- blood."
-	supplies = list(/obj/item/reagent_container/blood/OMinus = 12)
+	supplies = list(/obj/item/reagent_containers/blood/OMinus = 12)
 
 /obj/structure/largecrate/supply/medicine/iv
 	name = "\improper IV stand crate (x3)"
@@ -293,7 +293,7 @@
 /obj/structure/largecrate/supply/medicine/optable
 	name = "medical operation crate (x1)"
 	desc = "A crate containing an operating table, two tanks of anasthetic, a surgery kit, some anasthetic injectors, and some space cleaner."
-	supplies = list(/obj/machinery/optable = 1, /obj/item/storage/surgical_tray = 1, /obj/item/tank/anesthetic = 2, /obj/item/reagent_container/spray/cleaner = 1)
+	supplies = list(/obj/machinery/optable = 1, /obj/item/storage/surgical_tray = 1, /obj/item/tank/anesthetic = 2, /obj/item/reagent_containers/spray/cleaner = 1)
 
 /obj/structure/largecrate/supply/medicine/medivend
 	name = "\improper NanotrasenMed Plus crate (x1)"

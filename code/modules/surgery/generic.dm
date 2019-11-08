@@ -219,7 +219,7 @@
 	else
 		user.visible_message("<span class='warning'>[user]'s hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>", \
 		"<span class='warning'>Your hand slips, tearing the edges of the incision on [target]'s [affected.display_name] with \the [tool]!</span>")
-	target.apply_damage(12, BRUTE, affected, 0, TRUE)
+	target.apply_damage(12, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 	affected.update_wounds()
 
 
@@ -254,5 +254,4 @@
 /datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>")
-	target.apply_damage(3, BURN, affected)
-	target.updatehealth()
+	target.apply_damage(3, BURN, affected, updating_health = TRUE)

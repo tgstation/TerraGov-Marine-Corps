@@ -2,7 +2,7 @@
 /// (Mixing) Glass
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_container/glass
+/obj/item/reagent_containers/glass
 	name = " "
 	var/base_name = " "
 	desc = " "
@@ -17,18 +17,18 @@
 	var/label_text = ""
 
 
-/obj/item/reagent_container/glass/Initialize()
+/obj/item/reagent_containers/glass/Initialize()
 	. = ..()
 	base_name = name
 
 
-/obj/item/reagent_container/glass/examine(mob/user)
+/obj/item/reagent_containers/glass/examine(mob/user)
 	..()
 	if(get_dist(user, src) > 2 && user != loc)
 		if(!is_open_container())
 			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
-/obj/item/reagent_container/glass/verb/attach_lid()
+/obj/item/reagent_containers/glass/verb/attach_lid()
 	set name = "Attach/Detach lid"
 	set category = "Object"
 	if(is_open_container())
@@ -41,7 +41,7 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	update_icon()
 
-/obj/item/reagent_container/glass/afterattack(obj/target, mob/user , proximity)
+/obj/item/reagent_containers/glass/afterattack(obj/target, mob/user , proximity)
 	if(!proximity)
 		return
 
@@ -104,7 +104,7 @@
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)
 			return
 
-/obj/item/reagent_container/glass/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
@@ -119,13 +119,13 @@
 		label_text = tmp_label
 		update_name_label()
 
-/obj/item/reagent_container/glass/proc/update_name_label()
+/obj/item/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")
 		name = base_name
 	else
 		name = "[base_name] ([label_text])"
 
-/obj/item/reagent_container/glass/beaker
+/obj/item/reagent_containers/glass/beaker
 	name = "beaker"
 	desc = "A beaker. Can hold up to 60 units."
 	icon = 'icons/obj/items/chemistry.dmi'
@@ -134,24 +134,24 @@
 	materials = list(/datum/material/glass = 500)
 	attack_speed = 4
 
-/obj/item/reagent_container/glass/beaker/on_reagent_change()
+/obj/item/reagent_containers/glass/beaker/on_reagent_change()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/pickup(mob/user)
+/obj/item/reagent_containers/glass/beaker/pickup(mob/user)
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/dropped(mob/user)
+/obj/item/reagent_containers/glass/beaker/dropped(mob/user)
 	..()
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/attack_hand(mob/living/user)
+/obj/item/reagent_containers/glass/beaker/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 	update_icon()
 
-/obj/item/reagent_container/glass/beaker/update_icon()
+/obj/item/reagent_containers/glass/beaker/update_icon()
 	overlays.Cut()
 
 	if(reagents.total_volume)
@@ -174,7 +174,7 @@
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
 
-/obj/item/reagent_container/glass/beaker/large
+/obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 120 units."
 	icon_state = "beakerlarge"
@@ -183,7 +183,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120)
 
-/obj/item/reagent_container/glass/beaker/noreact
+/obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
@@ -192,7 +192,7 @@
 	init_reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
 
-/obj/item/reagent_container/glass/beaker/bluespace
+/obj/item/reagent_containers/glass/beaker/bluespace
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology. Can hold up to 300 units."
 	icon_state = "beakerbluespace"
@@ -202,7 +202,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
 
 
-/obj/item/reagent_container/glass/beaker/vial
+/obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"
 	desc = "A small glass vial. Can hold up to 30 units."
 	icon_state = "vial"
@@ -211,34 +211,34 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
 
-/obj/item/reagent_container/glass/beaker/cryoxadone
+/obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 30)
 
 
-/obj/item/reagent_container/glass/beaker/cryoxadone/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryoxadone/Initialize()
 	. = ..()
 	update_icon()
 
 
-/obj/item/reagent_container/glass/beaker/cryomix
+/obj/item/reagent_containers/glass/beaker/cryomix
 	list_reagents = list(/datum/reagent/medicine/cryoxadone = 10, /datum/reagent/medicine/clonexadone = 10, /datum/reagent/iron = 10, /datum/reagent/medicine/tricordrazine = 10, /datum/reagent/medicine/quickclot = 5, /datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/dexalinplus = 5, /datum/reagent/medicine/spaceacillin = 5)
 
 
-/obj/item/reagent_container/glass/beaker/cryomix/Initialize()
+/obj/item/reagent_containers/glass/beaker/cryomix/Initialize()
 	. = ..()
 	update_icon()
 
 
-/obj/item/reagent_container/glass/beaker/sulphuric
+/obj/item/reagent_containers/glass/beaker/sulphuric
 	list_reagents = list(/datum/reagent/toxin/acid = 60)
 
 
-/obj/item/reagent_container/glass/beaker/sulphuric/Initialize()
+/obj/item/reagent_containers/glass/beaker/sulphuric/Initialize()
 	. = ..()
 	update_icon()
 
 
-/obj/item/reagent_container/glass/bucket
+/obj/item/reagent_containers/glass/bucket
 	desc = "It's a bucket."
 	name = "bucket"
 	icon = 'icons/obj/janitor.dmi'
@@ -250,7 +250,7 @@
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
 
-/obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user, params)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(isprox(I))
@@ -269,23 +269,23 @@
 		to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
-/obj/item/reagent_container/glass/bucket/update_icon()
+/obj/item/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()
 
 	if(!is_open_container())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
 
-/obj/item/reagent_container/glass/bucket/janibucket
+/obj/item/reagent_containers/glass/bucket/janibucket
 	name = "janitorial bucket"
 	desc = "It's a large bucket that fits in a janitorial cart."
 	icon_state = "janibucket"
 
-/obj/item/reagent_container/glass/bucket/janibucket/on_reagent_change()
+/obj/item/reagent_containers/glass/bucket/janibucket/on_reagent_change()
 	update_icon()
 
 
-/obj/item/reagent_container/glass/bucket/janibucket/update_icon()
+/obj/item/reagent_containers/glass/bucket/janibucket/update_icon()
 	..()
 	if(reagents.total_volume)
 		var/percent = round((reagents.total_volume / volume) * 100)

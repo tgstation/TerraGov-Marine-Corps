@@ -87,9 +87,9 @@
 						return
 					H.knock_down(3)
 					if(affecting.take_damage_limb(5))
+						UPDATEHEALTH(H)
 						H.UpdateDamageIcon()
-					H.updatehealth()
-	..()
+	return ..()
 
 // Shrapnel
 

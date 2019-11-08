@@ -9,8 +9,11 @@
 	if(!P.bay || !P.podarea)
 		return
 
-	P.interact(usr)
+	to_chat(world, "verb")
 
+	P.ui_interact(usr)
+
+	to_chat(world, "post ui_interact")
 
 /datum/podlauncher
 	interaction_flags = INTERACT_UI_INTERACT
@@ -51,22 +54,33 @@
 	acceptableTurfs = list()
 	orderedArea = createOrderedArea(bay)
 
+	to_chat(world, "new")
 
 /datum/podlauncher/Destroy()
 	updateCursor(FALSE)
 	QDEL_NULL(temp_pod)
 	QDEL_NULL(selector)
+	to_chat(world, "destroy")
 	return ..()
 
 
 /datum/podlauncher/can_interact(mob/user)
 	return TRUE
 
+/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-/datum/podlauncher/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
+	to_chat(world, "ui_interact called")
+
+	if(!ui)
+		ui = new(user, src, ui_key, "podlauncher", "podlauncher", 1000, 700, master_ui, state)
+		ui.open()
+
+/datum/podlauncher/ui_data(mob/user)
 	if(!temp_pod)
 		to_chat(user, "<span class='warning'>Pod has been deleted, closing the menu.</span>")
-		SSnano.close_user_uis(user, src, ui_key)
+		SStgui.close_user_uis(user, src)
 		return
 	var/list/data = list()
 	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? 1 : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0
@@ -103,463 +117,396 @@
 	data["leavingSound"] = temp_pod.leavingSound
 	data["soundVolume"] = temp_pod.soundVolume != initial(temp_pod.soundVolume)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "podlauncher.tmpl", "Launch Pod", 1000, 700)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-
-/datum/podlauncher/Topic(href, href_list)
-	. = ..()
-	if(.)
+/datum/podlauncher/ui_act(action, params)
+	if(..())
 		return
 
-
-	if(href_list["bay1"])
-		bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["bay2"])
-		bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["bay3"])
-		bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["bay4"])
-		bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["bay5"])
-		bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["teleportCentcom"])
-		var/mob/M = holder.mob
-		oldTurf = get_turf(M)
-		var/area/A = locate(bay) in GLOB.sorted_areas
-		var/list/turfs = list()
-		for(var/turf/T in A)
-			turfs.Add(T)
-		var/turf/T = safepick(turfs)
-		if(!T)
-			to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
-			return
-		M.forceMove(T)
-		log_admin("[key_name(usr)] jumped to [AREACOORD(A)]")
-		message_admins("[key_name_admin(usr)] jumped to [AREACOORD(A)]")
-		. = TRUE
-
-
-	else if(href_list["teleportBack"])
-		var/mob/M = holder.mob
-		if(!oldTurf)
-			to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
-			return
-		M.forceMove(oldTurf)
-		log_admin("[key_name(usr)] jumped to [AREACOORD(oldTurf)]")
-		message_admins("[key_name_admin(usr)] jumped to [AREACOORD(oldTurf)]")
-		. = TRUE
-
-
-	else if(href_list["launchClone"])
-		launchClone = !launchClone
-		. = TRUE
-
-
-	else if(href_list["launchOrdered"])
-		if(launchChoice == 1)
-			launchChoice = 0
-			updateSelector()
+	switch(action)
+		if("bay")
+			switch(text2num(params["bay"]))
+				if(1)
+					bay = locate(/area/centcom/supplypod/loading/one) in GLOB.sorted_areas
+				if(2)
+					bay = locate(/area/centcom/supplypod/loading/two) in GLOB.sorted_areas
+				if(3)
+					bay = locate(/area/centcom/supplypod/loading/three) in GLOB.sorted_areas
+				if(4)
+					bay = locate(/area/centcom/supplypod/loading/four) in GLOB.sorted_areas
+				if(5)
+					bay = locate(/area/centcom/supplypod/loading/ert) in GLOB.sorted_areas
+			refreshBay()
 			. = TRUE
-			return
-		launchChoice = 1
-		updateSelector()
-		. = TRUE
 
-
-	else if(href_list["launchRandom"])
-		if(launchChoice == 2)
-			launchChoice = 0
-			updateSelector()
-			. = TRUE
-			return
-		launchChoice = 2
-		updateSelector()
-		. = TRUE
-
-
-	else if(href_list["explosionCustom"])
-		if(explosionChoice == 1)
-			explosionChoice = 0
-			temp_pod.explosionSize = list(0, 0, 0, 0)
-			. = TRUE
-			return
-		var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flash")
-		var/list/boomInput = list()
-		for(var/i in 1 to length(expNames))
-			boomInput.Add(input("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0) as null|num)
-			if(isnull(boomInput[i]))
+		if("teleportCentcom")
+			var/mob/M = holder.mob
+			oldTurf = get_turf(M)
+			var/area/A = locate(bay) in GLOB.sorted_areas
+			var/list/turfs = list()
+			for(var/turf/T in A)
+				turfs.Add(T)
+			var/turf/T = safepick(turfs)
+			if(!T)
+				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
 				return
-			if(!isnum(boomInput[i]))
-				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to zero instead.</span>")
-				boomInput = 0
-		explosionChoice = 1
-		temp_pod.explosionSize = boomInput
-		. = TRUE
-
-
-	else if(href_list["explosionBus"])
-		if(explosionChoice == 2)
-			explosionChoice = 0
-			temp_pod.explosionSize = list(0, 0, 0, 0)
+			M.forceMove(T)
+			log_admin("[key_name(usr)] jumped to [AREACOORD(A)]")
+			message_admins("[key_name_admin(usr)] jumped to [AREACOORD(A)]")
 			. = TRUE
-			return
-		explosionChoice = 2
-		temp_pod.explosionSize = list(GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLAME_RANGE)
-		. = TRUE
 
-
-	else if(href_list["damageCustom"])
-		if(damageChoice == 1)
-			damageChoice = 0
-			temp_pod.damage = 0
+		if("teleportBack")
+			var/mob/M = holder.mob
+			if(!oldTurf)
+				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
+				return
+			M.forceMove(oldTurf)
+			log_admin("[key_name(usr)] jumped to [AREACOORD(oldTurf)]")
+			message_admins("[key_name_admin(usr)] jumped to [AREACOORD(oldTurf)]")
 			. = TRUE
-			return
-		var/damageInput = input("How much damage to deal", "Enter the amount of brute damage dealt by getting hit", 0) as null|num
-		if(isnull(damageInput))
-			return
-		if(!isnum(damageInput))
-			to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default (zero) instead.</span>")
-			damageInput = 0
-		damageChoice = 1
-		temp_pod.damage = damageInput
-		. = TRUE
 
-
-	else if(href_list["damageGib"])
-		if(damageChoice == 2)
-			damageChoice = 0
-			temp_pod.damage = 0
-			temp_pod.effectGib = FALSE
+		if("launchClone")
+			launchClone = !launchClone
 			. = TRUE
-			return
-		damageChoice = 2
-		temp_pod.damage = 5000
-		temp_pod.effectGib = TRUE
-		. = TRUE
 
-
-	else if(href_list["effectName"])
-		if(temp_pod.adminNamed)
-			temp_pod.adminNamed = FALSE
-			temp_pod.setStyle(temp_pod.style)
+		if("launchOrdered")
+			if(launchChoice == 1)
+				launchChoice = 0
+				updateSelector()
+				. = TRUE
+				return
+			launchChoice = 1
+			updateSelector()
 			. = TRUE
-			return
-		var/nameInput= input("Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) as null|text
-		if(isnull(nameInput))
-			return
-		var/descInput = input("Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) as null|text
-		if(isnull(descInput))
-			return
-		temp_pod.name = nameInput
-		temp_pod.desc = descInput
-		temp_pod.adminNamed = TRUE
-		. = TRUE
 
-
-	else if(href_list["effectStun"])
-		temp_pod.effectStun = !temp_pod.effectStun
-		. = TRUE
-
-
-	else if(href_list["effectLimb"])
-		temp_pod.effectLimb = !temp_pod.effectLimb
-		. = TRUE
-
-
-	else if(href_list["effectOrgans"])
-		temp_pod.effectOrgans = !temp_pod.effectOrgans
-		. = TRUE
-
-
-	else if(href_list["effectBluespace"])
-		temp_pod.bluespace = !temp_pod.bluespace
-		. = TRUE
-
-
-	else if(href_list["effectStealth"])
-		temp_pod.effectStealth = !temp_pod.effectStealth
-		. = TRUE
-
-
-	else if(href_list["effectQuiet"])
-		temp_pod.effectQuiet = !temp_pod.effectQuiet
-		. = TRUE
-
-
-	else if(href_list["effectMissile"])
-		temp_pod.effectMissile = !temp_pod.effectMissile
-		. = TRUE
-
-
-	else if(href_list["effectCircle"])
-		temp_pod.effectCircle = !temp_pod.effectCircle
-		. = TRUE
-
-
-	else if(href_list["effectBurst"])
-		effectBurst = !effectBurst
-		. = TRUE
-
-
-	else if(href_list["effectAnnounce"])
-		effectAnnounce = !effectAnnounce
-		. = TRUE
-
-
-	else if(href_list["effectReverse"])
-		temp_pod.reversing = !temp_pod.reversing
-		. = TRUE
-
-
-	else if(href_list["effectTarget"])
-		if(specificTarget)
-			specificTarget = null
+		if("launchRandom")
+			if(launchChoice == 2)
+				launchChoice = 0
+				updateSelector()
+				. = TRUE
+				return
+			launchChoice = 2
+			updateSelector()
 			. = TRUE
-			return
-		var/list/mobs = sortmobs()
-		var/inputTarget = input("Select a mob!", "Target", null, null) as null|anything in mobs
-		if(isnull(inputTarget))
-			return
-		var/mob/target = mobs[inputTarget]
-		specificTarget = target
-		. = TRUE
 
-
-	else if(href_list["fallDuration"])
-		if(temp_pod.fallDuration != initial(temp_pod.fallDuration))
-			temp_pod.fallDuration = initial(temp_pod.fallDuration)
+		if("explosionCustom")
+			if(explosionChoice == 1)
+				explosionChoice = 0
+				temp_pod.explosionSize = list(0, 0, 0, 0)
+				. = TRUE
+				return
+			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flash")
+			var/list/boomInput = list()
+			for(var/i in 1 to length(expNames))
+				boomInput.Add(input("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0) as null|num)
+				if(isnull(boomInput[i]))
+					return
+				if(!isnum(boomInput[i]))
+					to_chat(holder, "<span class='warning'>That wasnt a number! Value set to zero instead.</span>")
+					boomInput = 0
+			explosionChoice = 1
+			temp_pod.explosionSize = boomInput
 			. = TRUE
-			return
-		var/timeInput = input("Enter the duration of the pod's falling animation, in seconds", "Delay Time",  initial(temp_pod.fallDuration) * 0.1) as null|num
-		if(isnull(timeInput))
-			return
-		if(!isnum(timeInput))
-			to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default [initial(temp_pod.fallDuration) * 0.1] instead.</span>")
-			timeInput = initial(temp_pod.fallDuration)
-		temp_pod.fallDuration = 10 * timeInput
-		. = TRUE
 
-
-	else if(href_list["landingDelay"])
-		if(temp_pod.landingDelay != initial(temp_pod.landingDelay))
-			temp_pod.landingDelay = initial(temp_pod.landingDelay)
+		if("explosionBus")
+			if(explosionChoice == 2)
+				explosionChoice = 0
+				temp_pod.explosionSize = list(0, 0, 0, 0)
+				. = TRUE
+				return
+			explosionChoice = 2
+			temp_pod.explosionSize = list(GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLAME_RANGE)
 			. = TRUE
-			return
-		var/timeInput = input("Enter the time it takes for the pod to land, in seconds", "Delay Time", initial(temp_pod.landingDelay) * 0.1) as null|num
-		if(isnull(timeInput))
-			return
-		if(!isnum(timeInput))
-			to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.landingDelay) * 0.1] instead.</span>")
-			timeInput = initial(temp_pod.landingDelay)
-		temp_pod.landingDelay = 10 * timeInput
-		. = TRUE
 
-
-	else if(href_list["openingDelay"])
-		if(temp_pod.openingDelay != initial(temp_pod.openingDelay))
-			temp_pod.openingDelay = initial(temp_pod.openingDelay)
+		if("damageCustom")
+			if(damageChoice == 1)
+				damageChoice = 0
+				temp_pod.damage = 0
+				. = TRUE
+				return
+			var/damageInput = input("How much damage to deal", "Enter the amount of brute damage dealt by getting hit", 0) as null|num
+			if(isnull(damageInput))
+				return
+			if(!isnum(damageInput))
+				to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default (zero) instead.</span>")
+				damageInput = 0
+			damageChoice = 1
+			temp_pod.damage = damageInput
 			. = TRUE
-			return
-		var/timeInput = input("Enter the time it takes for the pod to open after landing, in seconds", "Delay Time", initial(temp_pod.openingDelay) * 0.1) as null|num
-		if(isnull(timeInput))
-			return
-		if(!isnum(timeInput))
-			to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.openingDelay) * 0.1] instead.</span>")
-			timeInput = initial(temp_pod.openingDelay)
-		temp_pod.openingDelay = 10 *  timeInput
-		. = TRUE
 
-
-	else if(href_list["departureDelay"])
-		if(temp_pod.departureDelay != initial(temp_pod.departureDelay))
-			temp_pod.departureDelay = initial(temp_pod.departureDelay)
+		if("damageGib")
+			if(damageChoice == 2)
+				damageChoice = 0
+				temp_pod.damage = 0
+				temp_pod.effectGib = FALSE
+				. = TRUE
+				return
+			damageChoice = 2
+			temp_pod.damage = 5000
+			temp_pod.effectGib = TRUE
 			. = TRUE
-			return
-		var/timeInput = input("Enter the time it takes for the pod to leave after opening, in seconds", "Delay Time", initial(temp_pod.departureDelay) * 0.1) as null|num
-		if(isnull(timeInput))
-			return
-		if(!isnum(timeInput))
-			to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.departureDelay) * 0.1] instead.</span>")
-			timeInput = initial(temp_pod.departureDelay)
-		temp_pod.departureDelay = 10 * timeInput
-		. = TRUE
 
-
-	else if(href_list["fallingSound"])
-		if((temp_pod.fallingSound) != initial(temp_pod.fallingSound))
-			temp_pod.fallingSound = initial(temp_pod.fallingSound)
-			temp_pod.fallingSoundLength = initial(temp_pod.fallingSoundLength)
+		if("effectName")
+			if(temp_pod.adminNamed)
+				temp_pod.adminNamed = FALSE
+				temp_pod.setStyle(temp_pod.style)
+				. = TRUE
+				return
+			var/nameInput= input("Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) as null|text
+			if(isnull(nameInput))
+				return
+			var/descInput = input("Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) as null|text
+			if(isnull(descInput))
+				return
+			temp_pod.name = nameInput
+			temp_pod.desc = descInput
+			temp_pod.adminNamed = TRUE
 			. = TRUE
-			return
-		var/soundInput = input(holder, "Please pick a sound file to play when the pod lands.", "Pick a Sound File") as null|sound
-		if(isnull(soundInput))
-			return
-		var/timeInput =  input(holder, "What is the exact length of the sound file, in seconds?", "Pick a Sound File", 0.3) as null|num
-		if(isnull(timeInput))
-			return
-		if(!isnum(timeInput))
-			to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.fallingSoundLength) * 0.1] instead.</span>")
-		temp_pod.fallingSound = soundInput
-		temp_pod.fallingSoundLength = 10 * timeInput
-		. = TRUE
 
-
-	else if(href_list["landingSound"])
-		if(!isnull(temp_pod.landingSound))
-			temp_pod.landingSound = null
+		if("effectStun")
+			temp_pod.effectStun = !temp_pod.effectStun
 			. = TRUE
-			return
-		var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! I reccomend a nice \"oh shit, i'm sorry\", incase you hit someone with the pod.", "Pick a Sound File") as null|sound
-		if(isnull(soundInput))
-			return
-		temp_pod.landingSound = soundInput
-		. = TRUE
 
-
-	else if(href_list["openingSound"])
-		if(!isnull(temp_pod.openingSound))
-			temp_pod.openingSound = null
+		if("effectLimb")
+			temp_pod.effectLimb = !temp_pod.effectLimb
 			. = TRUE
-			return
-		var/soundInput = input(holder, "Please pick a sound file to play when the pod opens! I reccomend a stock sound effect of kids cheering at a party, incase your pod is full of fun exciting stuff!", "Pick a Sound File") as null|sound
-		if(isnull(soundInput))
-			return
-		temp_pod.openingSound = soundInput
-		. = TRUE
 
-
-	else if(href_list["leavingSound"])
-		if(!isnull(temp_pod.leavingSound))
-			temp_pod.leavingSound = null
+		if("effectOrgans")
+			temp_pod.effectOrgans = !temp_pod.effectOrgans
 			. = TRUE
-			return
-		var/soundInput = input(holder, "Please pick a sound file to play when the pod leaves! I reccomend a nice slide whistle sound, especially if you're using the reverse pod effect.", "Pick a Sound File") as null|sound
-		if(isnull(soundInput))
-			return
-		temp_pod.leavingSound = soundInput
-		. = TRUE
 
-
-	else if(href_list["soundVolume"])
-		if(temp_pod.soundVolume != initial(temp_pod.soundVolume))
-			temp_pod.soundVolume = initial(temp_pod.soundVolume)
+		if("effectBluespace")
+			temp_pod.bluespace = !temp_pod.bluespace
 			. = TRUE
-			return
-		var/soundInput = input(holder, "Please pick a volume level between 1 and 100.", "Pick Admin Sound Volume") as null|num
-		if(isnull(soundInput))
-			return
-		temp_pod.soundVolume = soundInput
-		. = TRUE
+
+		if("effectStealth")
+			temp_pod.effectStealth = !temp_pod.effectStealth
+			. = TRUE
+
+		if("effectQuiet")
+			temp_pod.effectQuiet = !temp_pod.effectQuiet
+			. = TRUE
+
+		if("effectMissile")
+			temp_pod.effectMissile = !temp_pod.effectMissile
+			. = TRUE
+
+		if("effectCircle")
+			temp_pod.effectCircle = !temp_pod.effectCircle
+			. = TRUE
+
+		if("effectBurst")
+			effectBurst = !effectBurst
+			. = TRUE
+
+		if("effectAnnounce")
+			effectAnnounce = !effectAnnounce
+			. = TRUE
+
+		if("effectReverse")
+			temp_pod.reversing = !temp_pod.reversing
+			. = TRUE
+
+		if("effectTarget")
+			if(specificTarget)
+				specificTarget = null
+				. = TRUE
+				return
+			var/list/mobs = sortmobs()
+			var/inputTarget = input("Select a mob!", "Target", null, null) as null|anything in mobs
+			if(isnull(inputTarget))
+				return
+			var/mob/target = mobs[inputTarget]
+			specificTarget = target
+			. = TRUE
+
+		if("fallDuration")
+			if(temp_pod.fallDuration != initial(temp_pod.fallDuration))
+				temp_pod.fallDuration = initial(temp_pod.fallDuration)
+				. = TRUE
+				return
+			var/timeInput = input("Enter the duration of the pod's falling animation, in seconds", "Delay Time",  initial(temp_pod.fallDuration) * 0.1) as null|num
+			if(isnull(timeInput))
+				return
+			if(!isnum(timeInput))
+				to_chat(holder, "<span class='warning'>That wasn't a number! Value set to default [initial(temp_pod.fallDuration) * 0.1] instead.</span>")
+				timeInput = initial(temp_pod.fallDuration)
+			temp_pod.fallDuration = 10 * timeInput
+			. = TRUE
+
+		if("landingDelay")
+			if(temp_pod.landingDelay != initial(temp_pod.landingDelay))
+				temp_pod.landingDelay = initial(temp_pod.landingDelay)
+				. = TRUE
+				return
+			var/timeInput = input("Enter the time it takes for the pod to land, in seconds", "Delay Time", initial(temp_pod.landingDelay) * 0.1) as null|num
+			if(isnull(timeInput))
+				return
+			if(!isnum(timeInput))
+				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.landingDelay) * 0.1] instead.</span>")
+				timeInput = initial(temp_pod.landingDelay)
+			temp_pod.landingDelay = 10 * timeInput
+			. = TRUE
+
+		if("openingDelay")
+			if(temp_pod.openingDelay != initial(temp_pod.openingDelay))
+				temp_pod.openingDelay = initial(temp_pod.openingDelay)
+				. = TRUE
+				return
+			var/timeInput = input("Enter the time it takes for the pod to open after landing, in seconds", "Delay Time", initial(temp_pod.openingDelay) * 0.1) as null|num
+			if(isnull(timeInput))
+				return
+			if(!isnum(timeInput))
+				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.openingDelay) * 0.1] instead.</span>")
+				timeInput = initial(temp_pod.openingDelay)
+			temp_pod.openingDelay = 10 *  timeInput
+			. = TRUE
+
+		if("departureDelay")
+			if(temp_pod.departureDelay != initial(temp_pod.departureDelay))
+				temp_pod.departureDelay = initial(temp_pod.departureDelay)
+				. = TRUE
+				return
+			var/timeInput = input("Enter the time it takes for the pod to leave after opening, in seconds", "Delay Time", initial(temp_pod.departureDelay) * 0.1) as null|num
+			if(isnull(timeInput))
+				return
+			if(!isnum(timeInput))
+				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.departureDelay) * 0.1] instead.</span>")
+				timeInput = initial(temp_pod.departureDelay)
+			temp_pod.departureDelay = 10 * timeInput
+			. = TRUE
+
+		if("fallingSound")
+			if((temp_pod.fallingSound) != initial(temp_pod.fallingSound))
+				temp_pod.fallingSound = initial(temp_pod.fallingSound)
+				temp_pod.fallingSoundLength = initial(temp_pod.fallingSoundLength)
+				. = TRUE
+				return
+			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands.", "Pick a Sound File") as null|sound
+			if(isnull(soundInput))
+				return
+			var/timeInput =  input(holder, "What is the exact length of the sound file, in seconds?", "Pick a Sound File", 0.3) as null|num
+			if(isnull(timeInput))
+				return
+			if(!isnum(timeInput))
+				to_chat(holder, "<span class='warning'>That wasnt a number! Value set to default [initial(temp_pod.fallingSoundLength) * 0.1] instead.</span>")
+			temp_pod.fallingSound = soundInput
+			temp_pod.fallingSoundLength = 10 * timeInput
+			. = TRUE
+
+		if("landingSound")
+			if(!isnull(temp_pod.landingSound))
+				temp_pod.landingSound = null
+				. = TRUE
+				return
+			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! I reccomend a nice \"oh shit, i'm sorry\", incase you hit someone with the pod.", "Pick a Sound File") as null|sound
+			if(isnull(soundInput))
+				return
+			temp_pod.landingSound = soundInput
+			. = TRUE
+
+		if("openingSound")
+			if(!isnull(temp_pod.openingSound))
+				temp_pod.openingSound = null
+				. = TRUE
+				return
+			var/soundInput = input(holder, "Please pick a sound file to play when the pod opens! I reccomend a stock sound effect of kids cheering at a party, incase your pod is full of fun exciting stuff!", "Pick a Sound File") as null|sound
+			if(isnull(soundInput))
+				return
+			temp_pod.openingSound = soundInput
+			. = TRUE
+
+		if("leavingSound")
+			if(!isnull(temp_pod.leavingSound))
+				temp_pod.leavingSound = null
+				. = TRUE
+				return
+			var/soundInput = input(holder, "Please pick a sound file to play when the pod leaves! I reccomend a nice slide whistle sound, especially if you're using the reverse pod effect.", "Pick a Sound File") as null|sound
+			if(isnull(soundInput))
+				return
+			temp_pod.leavingSound = soundInput
+			. = TRUE
+
+		if("soundVolume")
+			if(temp_pod.soundVolume != initial(temp_pod.soundVolume))
+				temp_pod.soundVolume = initial(temp_pod.soundVolume)
+				. = TRUE
+				return
+			var/soundInput = input(holder, "Please pick a volume level between 1 and 100.", "Pick Admin Sound Volume") as null|num
+			if(isnull(soundInput))
+				return
+			temp_pod.soundVolume = soundInput
+			. = TRUE
+
+		if("styleStandard")
+			temp_pod.setStyle(STYLE_STANDARD)
+			. = TRUE
+
+		if("styleBluespace")
+			temp_pod.setStyle(STYLE_BLUESPACE)
+			. = TRUE
+
+		if("styleSyndie")
+			temp_pod.setStyle(STYLE_SYNDICATE)
+			. = TRUE
+
+		if("styleBlue")
+			temp_pod.setStyle(STYLE_BLUE)
+			. = TRUE
+
+		if("styleCult")
+			temp_pod.setStyle(STYLE_CULT)
+			. = TRUE
+
+		if("styleMissile")
+			temp_pod.setStyle(STYLE_MISSILE)
+			. = TRUE
+
+		if("styleSMissile")
+			temp_pod.setStyle(STYLE_RED_MISSILE)
+			. = TRUE
+
+		if("styleBox")
+			temp_pod.setStyle(STYLE_BOX)
+			. = TRUE
+
+		if("styleHONK")
+			temp_pod.setStyle(STYLE_HONK)
+			. = TRUE
 
 
-	else if(href_list["styleStandard"])
-		temp_pod.setStyle(STYLE_STANDARD)
-		. = TRUE
+		if("styleFruit")
+			temp_pod.setStyle(STYLE_FRUIT)
+			. = TRUE
 
+		if("styleInvisible")
+			temp_pod.setStyle(STYLE_INVISIBLE)
+			. = TRUE
 
-	else if(href_list["styleBluespace"])
-		temp_pod.setStyle(STYLE_BLUESPACE)
-		. = TRUE
+		if("styleGondola")
+			temp_pod.setStyle(STYLE_GONDOLA)
+			. = TRUE
 
+		if("styleSeeThrough")
+			temp_pod.setStyle(STYLE_SEETHROUGH)
+			. = TRUE
 
-	else if(href_list["styleSyndie"])
-		temp_pod.setStyle(STYLE_SYNDICATE)
-		. = TRUE
+		if("refresh")
+			refreshBay()
+			. = TRUE
 
+		if("giveLauncher")
+			launcherActivated = !launcherActivated
+			updateCursor(launcherActivated)
+			. = TRUE
 
-	else if(href_list["styleBlue"])
-		temp_pod.setStyle(STYLE_BLUE)
-		. = TRUE
+		if("clearBay")
+			if(alert(usr, "This will delete all objs and mobs in [bay]. Are you sure?", "Confirmation", "Yes", "No") != "Yes")
+				return
 
-
-	else if(href_list["styleCult"])
-		temp_pod.setStyle(STYLE_CULT)
-		. = TRUE
-
-
-	else if(href_list["styleMissile"])
-		temp_pod.setStyle(STYLE_MISSILE)
-		. = TRUE
-
-
-	else if(href_list["styleSMissile"])
-		temp_pod.setStyle(STYLE_RED_MISSILE)
-		. = TRUE
-
-
-	else if(href_list["styleBox"])
-		temp_pod.setStyle(STYLE_BOX)
-		. = TRUE
-
-
-	else if(href_list["styleHONK"])
-		temp_pod.setStyle(STYLE_HONK)
-		. = TRUE
-
-
-	else if(href_list["styleFruit"])
-		temp_pod.setStyle(STYLE_FRUIT)
-		. = TRUE
-
-
-	else if(href_list["styleInvisible"])
-		temp_pod.setStyle(STYLE_INVISIBLE)
-		. = TRUE
-
-
-	else if(href_list["styleGondola"])
-		temp_pod.setStyle(STYLE_GONDOLA)
-		. = TRUE
-
-
-	else if(href_list["styleSeeThrough"])
-		temp_pod.setStyle(STYLE_SEETHROUGH)
-		. = TRUE
-
-
-	else if(href_list["refresh"])
-		refreshBay()
-		. = TRUE
-
-
-	else if(href_list["giveLauncher"])
-		launcherActivated = !launcherActivated
-		updateCursor(launcherActivated)
-		. = TRUE
-
-
-	else if(href_list["clearBay"])
-		if(alert(usr, "This will delete all objs and mobs in [bay]. Are you sure?", "Confirmation", "Yes", "No") != "Yes")
-			return
-
-		clearBay()
-		refreshBay()
-		. = TRUE
-
+			clearBay()
+			refreshBay()
+			. = TRUE
 
 /datum/podlauncher/on_unset_interaction()
 	qdel(src)

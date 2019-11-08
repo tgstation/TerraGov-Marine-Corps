@@ -143,13 +143,13 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR.</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
-	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
+	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest.</span>",
+	"<span class='notice'>You start setting up the paddles on [H]'s chest.</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
 	if(!do_mob(user, H, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>",
-		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")
+		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest.</span>",
+		"<span class='warning'>You stop setting up the paddles on [H]'s chest.</span>")
 		return
 
 	//Do this now, order doesn't matter
@@ -199,7 +199,6 @@
 		H.adjustBruteLoss(-defib_heal_amt)
 		H.adjustFireLoss(-defib_heal_amt)
 		H.adjustToxLoss(-defib_heal_amt)
-		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
 

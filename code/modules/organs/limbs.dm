@@ -109,34 +109,30 @@
 	else
 		take_damage_limb(damage, 0, TRUE, TRUE)
 
-/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
+
+/datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	if(blocked >= 1) //Complete negation
 		return 0
 
 	if(blocked)
 		if(brute)
-			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+			brute *= CLAMP01(1-blocked) //Percentage reduction
 		if(burn)
-			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+			burn *= CLAMP01(1-blocked) //Percentage reduction
 
 	if((brute <= 0) && (burn <= 0))
 		return 0
 
 	if(limb_status & LIMB_DESTROYED)
 		return 0
+
 	if(limb_status & LIMB_ROBOT)
-
-		var/brmod = 0.66
-		var/bumod = 0.66
-
-		if(istype(owner,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = owner
-			if(H.species && H.species.species_flags & IS_SYNTHETIC)
-				brmod = H.species.brute_mod
-				bumod = H.species.burn_mod
-
-		brute *= brmod //~2/3 damage for ROBOLIMBS
-		burn *= bumod //~2/3 damage for ROBOLIMBS
+		if(issynth(owner))
+			brute *= owner.species.brute_mod
+			burn *= owner.species.burn_mod
+		else
+			brute *= 0.66 //~2/3 damage for ROBOLIMBS
+			burn *= 0.66 //~2/3 damage for ROBOLIMBS
 
 	//High brute damage or sharp objects may damage internal organs
 	if(internal_organs && ((sharp && brute >= 10) || brute >= 20) && prob(5))
@@ -197,7 +193,7 @@
 			if(possible_points.len)
 				//And pass the damage around, but not the chance to cut the limb off.
 				var/datum/limb/target = pick(possible_points)
-				target.take_damage_limb(remain_brute, remain_burn, sharp, edge, blocked, forbidden_limbs + src)
+				target.take_damage_limb(remain_brute, remain_burn, sharp, edge, blocked, FALSE, forbidden_limbs + src)
 
 
 	//Sync the organ's damage with its wounds
@@ -206,22 +202,26 @@
 	//If limb took enough damage, try to cut or tear it off
 
 	if(body_part == CHEST || body_part == GROIN)
-		owner.updatehealth()
+		if(updating_health)
+			owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
 	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet) && !(owner.species.species_flags & IS_SYNTHETIC) ) //Early return if the body part is a head but target is wearing a helmet and is not a synth
-		owner.updatehealth()
+		if(updating_health)
+			owner.updatehealth()
 		return update_icon()
 	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
 		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
 		return
 
-	owner.updatehealth()
+	if(updating_health)
+		owner.updatehealth()
 
 	var/result = update_icon()
 	return result
 
-/datum/limb/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+
+/datum/limb/proc/heal_limb_damage(brute, burn, internal = FALSE, robo_repair = FALSE, updating_health = FALSE)
 	if(limb_status & LIMB_ROBOT && !robo_repair)
 		return
 
@@ -232,9 +232,9 @@
 
 		// heal brute damage
 		if(W.damage_type == CUT || W.damage_type == BRUISE)
-			brute = W.heal_damage(brute)
+			brute = W.heal_wound_damage(brute)
 		else if(W.damage_type == BURN)
-			burn = W.heal_damage(burn)
+			burn = W.heal_wound_damage(burn)
 
 	if(internal)
 		limb_status &= ~LIMB_BROKEN
@@ -242,8 +242,9 @@
 		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
-	src.update_damages()
-	owner.updatehealth()
+	update_damages()
+	if(updating_health)
+		owner.updatehealth()
 
 	var/result = update_icon()
 	return result
@@ -529,7 +530,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			heal_amt = heal_amt / (wounds.len + 1)
 			// making it look prettier on scanners
 			heal_amt = round(heal_amt,0.1)
-			W.heal_damage(heal_amt)
+			W.heal_wound_damage(heal_amt)
 
 		// Salving also helps against infection, but only if it is small enoough
 		if((W.germ_level > 0 && W.germ_level < 50) && W.salved && prob(2))
@@ -1117,7 +1118,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		. = new /icon(race_icon, "[icon_name]_[g]")
 */
 
-/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, list/forbidden_limbs = list())
+/datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	. = ..()
 	if (!disfigured)
 		if (brute_dam > 40)

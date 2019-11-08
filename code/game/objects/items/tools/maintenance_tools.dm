@@ -201,7 +201,7 @@
 			if(issynth(H) && M == user)
 				if(user.action_busy || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 					return
-			S.heal_damage(15,0,0,1)
+			S.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
 			H.UpdateDamageIcon()
 			user.visible_message("<span class='warning'>\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src].</span>", \
 								"<span class='warning'>You patch some dents on \the [H]'s [S.display_name] with \the [src].</span>")

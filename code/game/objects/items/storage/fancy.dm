@@ -59,7 +59,7 @@
 	name = "egg box"
 	storage_slots = 12
 	max_storage_space = 24
-	spawn_type = /obj/item/reagent_container/food/snacks/egg
+	spawn_type = /obj/item/reagent_containers/food/snacks/egg
 	spawn_number = 12
 
 /*
@@ -234,7 +234,7 @@
 	icon_type = "vial"
 	name = "vial storage box"
 	storage_slots = 6
-	spawn_type = /obj/item/reagent_container/glass/beaker/vial
+	spawn_type = /obj/item/reagent_containers/glass/beaker/vial
 	spawn_number = 6
 
 /obj/item/storage/fancy/vials/prison
@@ -247,7 +247,7 @@
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
 	max_w_class = 3
-	can_hold = list(/obj/item/reagent_container/glass/beaker/vial)
+	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(ACCESS_MARINE_MEDBAY)

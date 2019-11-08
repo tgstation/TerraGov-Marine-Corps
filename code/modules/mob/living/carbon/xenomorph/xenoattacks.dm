@@ -15,8 +15,9 @@
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
 			var/damage = S.melee_damage
 			apply_damage(damage, BRUTE)
+			UPDATEHEALTH(src)
 			log_combat(S, src, "attacked")
-			updatehealth()
+
 
 /mob/living/carbon/xenomorph/attack_paw(mob/living/carbon/monkey/user)
 	. = ..()
@@ -34,7 +35,7 @@
 				visible_message("<span class='danger'>\The [user] bites \the [src].</span>", \
 				"<span class='danger'>We are bit by \the [user].</span>", null, 5)
 				apply_damage(rand(1, 3), BRUTE)
-				updatehealth()
+				UPDATEHEALTH(src)
 
 
 /mob/living/carbon/xenomorph/attack_hand(mob/living/user)
@@ -80,7 +81,7 @@
 				playsound(loc, attack.attack_sound, 25, 1)
 				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 				apply_damage(damage, BRUTE)
-				updatehealth()
+				UPDATEHEALTH(src)
 			else
 				playsound(loc, attack.miss_sound, 25, 1)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
@@ -149,6 +150,7 @@
 					M.flick_attack_overlay(src, "slash")
 					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE)
+					UPDATEHEALTH(src)
 
 			if(INTENT_DISARM)
 				M.do_attack_animation(src)

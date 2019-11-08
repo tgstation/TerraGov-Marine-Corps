@@ -6,7 +6,8 @@
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_NANO
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
-
+	ui_x = 470
+	ui_y = 290
 
 /obj/machinery/self_destruct/Initialize()
 	. = ..()
@@ -40,12 +41,22 @@
 	return ..()
 
 
-/obj/machinery/self_destruct/console/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
+/obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-	switch(href_list["command"])
+	if(!ui)
+		ui = new(user, src, ui_key, "selfdestruct", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/self_destruct/console/ui_data(mob/user)
+	return list("dest_status" = active_state)
+
+
+/obj/machinery/self_destruct/console/ui_act(action, params)
+	if(..())
+		return
+	switch(action)
 		if("dest_start")
 			to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")
 			to_chat(usr, "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>")
@@ -54,30 +65,18 @@
 			var/obj/machinery/self_destruct/rod/I = SSevacuation.dest_rods[SSevacuation.dest_index]
 			I.activate_time = world.time
 			SSevacuation.initiate_self_destruct()
-			var/data[] = list("dest_status" = active_state)
-			SSnano.try_update_ui(usr, src, "main",, data)
+			. = TRUE
 
 		if("dest_trigger")
 			if(SSevacuation.initiate_self_destruct())
-				SSnano.close_user_uis(usr, src, "main")
+				SStgui.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
 			if(!usr.mind?.assigned_role || !(usr.mind.assigned_role in GLOB.jobs_command))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return
 			if(SSevacuation.cancel_self_destruct())
-				SSnano.close_user_uis(usr, src, "main")
-
-
-/obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/data[] = list("dest_status" = active_state)
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if(!ui)
-		ui = new(user, src, ui_key, "self_destruct_console.tmpl", "OMICRON6 PAYLOAD", 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
+				SStgui.close_user_uis(usr, src, "main")
 
 
 /obj/machinery/self_destruct/rod

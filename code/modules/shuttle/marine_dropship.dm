@@ -368,6 +368,8 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo;normandy"
+	ui_x = 500
+	ui_y = 600
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
@@ -401,8 +403,15 @@
 
 	return TRUE
 
+/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-/obj/machinery/computer/shuttle/marine_dropship/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+	if(!ui)
+		ui = new(user, src, ui_key, "marinedropship", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/computer/shuttle/marine_dropship/ui_data(mob/user)
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(!shuttle)
 		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
@@ -414,6 +423,53 @@
 	data["hijack_state"] = shuttle.hijack_state
 	data["ship_status"] = shuttle.getStatusText()
 
+	var/locked = 0
+	var/reardoor = 0
+	for(var/i in shuttle.rear_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			reardoor++
+	if(!reardoor)
+		data["rear"] = 0
+	else if(reardoor==length(shuttle.rear_airlocks))
+		data["rear"] = 2
+		locked++
+	else
+		data["rear"] = 1
+	
+	var/leftdoor = 0
+	for(var/i in shuttle.left_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			leftdoor++
+	if(!leftdoor)
+		data["left"] = 0
+	else if(leftdoor==length(shuttle.left_airlocks))
+		data["left"] = 2
+		locked++
+	else
+		data["left"] = 1
+
+	var/rightdoor = 0
+	for(var/i in shuttle.right_airlocks)
+		var/obj/machinery/door/airlock/A = i
+		if(A.locked && A.density)
+			rightdoor++
+	if(!rightdoor)
+		data["right"] = 0
+	else if(rightdoor==length(shuttle.right_airlocks))
+		data["right"] = 2
+		locked++
+	else
+		data["right"] = 1
+
+	if(locked == 3)
+		data["lockdown"] = 2
+	else if(!locked)
+		data["lockdown"] = 0
+	else
+		data["lockdown"] = 1
+
 	var/list/options = params2list(possible_destinations)
 	var/list/valid_destionations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
@@ -423,14 +479,34 @@
 			continue
 		valid_destionations += list(list("name" = S.name, "id" = S.id))
 	data["destinations"] = valid_destionations
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "dropship_pilot_console.tmpl", "Pilot Control", 500, 600)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+/obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
+	if(..())
+		return
 
+	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
+	if(!M)
+		return
+	if(M.hijack_state == HIJACK_STATE_CRASHING)
+		return
+
+	switch(action)
+		if("move")
+			Topic(null, list("move" = params["move"]))
+			return
+		if("lockdown")
+			M.lockdown_all()
+			. = TRUE
+		if("release")
+			M.unlock_all()
+			. = TRUE
+		if("lock")
+			M.lockdown_airlocks(params["lock"])
+			. = TRUE
+		if("unlock")
+			M.unlock_airlocks(params["unlock"])
+			. = TRUE
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	. = ..()
@@ -449,9 +525,9 @@
 			to_chat(usr, "<span class='warning'>The shuttle isn't responding to commands.</span>")
 			return
 		if(href_list["lockdown"])
-			M.lockdown_all()
+			
 		else if(href_list["release"])
-			M.unlock_all()
+			
 		else if(href_list["lock"])
 			M.lockdown_airlocks(href_list["lock"])
 		else if(href_list["unlock"])

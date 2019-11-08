@@ -98,7 +98,7 @@
 	return ..()
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
 	if(!user)
 		return FALSE
 
@@ -124,12 +124,12 @@
 		stoplag(1)
 		P?.update(world.time - starttime)
 
-		if(QDELETED(user) || user.incapacitated(TRUE) || user.loc != Uloc || (extra_checks && !extra_checks.Invoke()))
+		if(QDELETED(user) || user.incapacitated(TRUE) || (!ignore_turf_checks && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if(Uloc != Tloc || Tloc != user)
+			if((!ignore_turf_checks && Uloc != Tloc) || Tloc != user)
 				. = FALSE
 				break
 
