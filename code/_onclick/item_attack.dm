@@ -115,6 +115,10 @@
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		power *= H.gloves.force_multiplier
+
 	if(!ishuman(M))
 		var/showname = "."
 		if(user)

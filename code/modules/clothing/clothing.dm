@@ -66,7 +66,7 @@
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
-
+	var/force_multiplier = 1 //Multiplier of melee damage.
 
 /obj/item/clothing/gloves/update_clothing_icon()
 	if (ismob(src.loc))

@@ -238,7 +238,7 @@
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
 	if(user.mind && user.mind.cm_skills)
-		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
 			wdelay += 3
 		else
 			var/skill_value = 0
@@ -919,7 +919,7 @@ and you're good to go.
 	// Apply any skill-based bonuses to accuracy
 		if(user.mind?.cm_skills)
 			var/skill_accuracy = 0
-			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+			if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
 				skill_accuracy = -1
 			else
 				switch(gun_skill_category)
@@ -1005,7 +1005,7 @@ and you're good to go.
 
 	if(user?.mind?.cm_skills)
 
-		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
+		if(user.mind.cm_skills.firearms <= 0) //no training in any firearms
 			total_recoil += 2
 		else
 			var/recoil_tweak

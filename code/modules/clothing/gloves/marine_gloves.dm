@@ -109,6 +109,11 @@
 	armor = list("melee" = 95, "bullet" = 95, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 20, "rad" = 20, "fire" = 80, "acid" = 80)
 	resistance_flags = UNACIDABLE
 
+/obj/item/clothing/gloves/marine/specialist/melee
+	name = "\improper B18-P melee gauntlets"
+	desc = "A pair of heavily armored gloves with built in magnetic fields that increases the arm strength and speed of the user. They're exceptionally bulky, and make it extremely difficult to fit your hands around a weapon's trigger."
+	force_multiplier = 1.5
+
 /obj/item/clothing/gloves/marine/veteran/PMC
 	name = "armored gloves"
 	desc = "Armored gloves used in special operations. They are also insulated against electrical shock."

@@ -503,6 +503,31 @@
 	new /obj/item/ammo_magazine/minigun(src)
 	new /obj/item/ammo_magazine/minigun(src)
 
+/obj/item/storage/box/spec/melee
+	name = "\improper Melee equipment crate"
+	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, detpacks, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "rocket_case"
+	spec_set = "melee"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 16
+	slowdown = 1
+	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	foldable = null
+
+/obj/item/storage/box/spec/melee/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/specialist/melee(src)
+	new /obj/item/clothing/head/helmet/marine/specialist/melee(src)
+	new /obj/item/clothing/gloves/marine/specialist/melee(src)
+	new /obj/item/storage/large_holster/katana/full(src)
+	new /obj/item/storage/large_holster/machete/full(src)
+	new /obj/item/weapon/claymore/mercsword(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
 	desc = "A paper box. Open it and get a specialist kit."

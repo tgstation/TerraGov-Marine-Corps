@@ -180,6 +180,10 @@
 		var/i = 0 //Tally up our victims.
 
 		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
+
+			if(istype(victim.wear_suit,/obj/item/clothing/suit/storage/marine/specialist/melee))
+				continue
+
 			distance = get_dist(src,victim)
 
 			splash_chance = 80 - (i * 5)

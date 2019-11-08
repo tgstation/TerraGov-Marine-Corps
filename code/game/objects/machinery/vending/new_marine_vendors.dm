@@ -909,7 +909,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 //todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
-GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set"))
+GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set", "Melee Set"))
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -925,6 +925,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/storage/box/spec/demolitionist = list(CAT_ESS, "Demolitionist Set", 0, "white"),
 		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Armor Set (Grenadier)", 0, "white"),
 		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Armor Set (Minigun)", 0, "white"),
+		/obj/item/storage/box/spec/melee = list(CAT_ESS, "Melee Set", 0, "white"),
 		/obj/item/storage/box/spec/pyro = list(CAT_ESS, "Pyro Set", 0, "white"),
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),

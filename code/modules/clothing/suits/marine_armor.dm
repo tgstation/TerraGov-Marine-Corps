@@ -528,23 +528,35 @@
 	updateUsrDialog()
 
 /obj/item/clothing/suit/storage/marine/specialist/melee
-	name = "\improper B18-P defensive armor"
-	desc = "A modified prototype variant of the B18 defensive armor. Most of the protective layers of armor are replaced with smart prototype hydralics that assist with movement.\nHas an automated diagnostics and medical system for keeping its wearer alive."
+	name = "\improper B18-P offensive armor"
+	desc = "A modified prototype variant of the B18 defensive armor. Most of the protective layers of armor are replaced with smart prototype hydralics that assist with movement and agility to help you avoid those pesky acid splashes.\nHas an automated diagnostics and medical system for keeping its wearer alive."
 	icon_state = "melee_armor"
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	slowdown = 0
-	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
-	resistance_flags = UNACIDABLE
-	allowed = list(
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/storage/bible,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete,
-		/obj/item/weapon/claymore
-	)
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 50)
+	flags_item_map_variant = NONE
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	var/stored_skill = -99 //To be safe.
+
+/obj/item/clothing/suit/storage/marine/specialist/melee/equipped(mob/user, slot)
+
+	. = ..()
+
+	if(user && user.mind && user.mind.cm_skills && slot == SLOT_WEAR_SUIT)
+		stored_skill = user.mind.cm_skills.firearms
+		user.mind.cm_skills.firearms = 0
+		to_chat(user,"<span class='warning'>Your bulky hands and armor make it difficult to use weapons...</span>")
+
+	return .
+
+
+/obj/item/clothing/suit/storage/marine/specialist/melee/dropped(mob/user)
+
+	. = ..()
+
+	if(user && user.mind && user.mind.cm_skills && stored_skill != -99)
+		to_chat(user,"<span class='notice'>You feel more comfortable using guns now.</notice>")
+		user.mind.cm_skills.firearms = stored_skill
+
+	return .
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"
