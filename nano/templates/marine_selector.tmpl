@@ -1,0 +1,35 @@
+
+
+
+<div itemLabel>
+	<h2>Choose your equipment:</h2>
+</div>
+
+{{if data.show_points}}
+	<div itemContent>
+		<h3>Your Remaining Points: <span class="white">{{:data.current_m_points}}</span></h3>
+	</div>
+{{/if}}
+<div itemContent>
+	<span class="white">white = mandatory</span>
+</div>
+
+<div style="font-weight: bold ; float: left ; clear : both ; width: 50% ; color: orange">
+	orange = recommended
+</div>
+
+<div itemLabel>
+	{{for data.displayed_records}}
+		{{if value.prod_color}}
+			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50% ; color: {{:value.prod_color}}">
+				{{:helper.link(value.prod_name, null, {'vend' : value.prod_index}, value.prod_available ? null : 'disabled', null)}}
+			</div>
+		{{else}}
+			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 50%">
+				<span class="white">{{:value.prod_name}}</span>
+			</div>
+		{{/if}}
+
+
+	{{/for}}
+</div>
