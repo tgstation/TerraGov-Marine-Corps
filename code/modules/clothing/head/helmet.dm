@@ -299,10 +299,10 @@
 	name = "\improper B18-P helmet"
 	desc = "The B18-P Helmet that goes along with the B18-P Offensive Armor. It's relatively lightweight, reinforced, and protects some of the face."
 	icon_state = "melee_helmet"
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 50)
+	armor = list("melee" = 65, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 50)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	resistance_flags = UNACIDABLE
-	anti_hug = 6
+	anti_hug = 3
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/helmet/marine/scout
