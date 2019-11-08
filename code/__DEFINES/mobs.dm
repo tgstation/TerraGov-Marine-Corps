@@ -438,8 +438,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
-#define XENO_TACKLE_ARMOR_PEN	0.8 //Actual armor pen is 1 - this value.
-
 //Charge-Crush
 #define CHARGE_OFF			0
 #define CHARGE_BUILDINGUP	1
@@ -465,7 +463,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
 #define HANDLE_SNEAK_ATTACK_CHECK				3
-#define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		2.0

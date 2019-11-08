@@ -405,6 +405,10 @@
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
+	var/turf/examined_turf = get_turf(src)
+	if(examined_turf && user.TurfAdjacent(examined_turf))
+		user.listed_turf = examined_turf
+		user.client.statpanel = examined_turf.name
 	return TRUE
 
 

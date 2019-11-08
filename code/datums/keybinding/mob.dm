@@ -171,10 +171,6 @@
 		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
 		return
 	user.examinate(A)
-	var/turf/examined_turf = get_turf(A)
-	if(examined_turf && user.TurfAdjacent(examined_turf))
-		user.listed_turf = examined_turf
-		user.client.statpanel = examined_turf.name
 	return COMSIG_MOB_CLICK_HANDLED
 
 

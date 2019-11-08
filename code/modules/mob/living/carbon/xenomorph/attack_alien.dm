@@ -64,9 +64,9 @@
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
-	var/armor_block = 0 //run_armor_check("chest", "melee")
+	var/armor_block = run_armor_check("chest", "melee")
 
-	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
+	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 
 	var/tackle_pain = X.xeno_caste.tackle_damage
 	if(protection_aura)
@@ -77,19 +77,15 @@
 			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [X.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
 			#endif
 			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 				tackle_pain *= 1.75 //Half the multiplier if running.
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
 				"<span class='danger'>We strike [src] with vicious precision!</span>")
 			else
-				armor_block *= HUNTER_SNEAK_TACKLE_ARMOR_PEN //Tackle armor penetration heightened.
 				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
 				staggerslow_stacks *= 2
-				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			knock_out(knockout_stacks)
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -103,7 +99,7 @@
 	if(dam_bonus)
 		tackle_pain += dam_bonus
 
-	apply_damage(tackle_pain, STAMINA, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
+	apply_damage(tackle_pain, STAMINA, "chest", armor_block)
 	updateshock()
 	UPDATEHEALTH(src)
 	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"
