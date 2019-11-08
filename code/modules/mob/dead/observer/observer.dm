@@ -282,8 +282,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				else if(isobserver(i))
 					var/mob/dead/observer/O = i
 					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-
-	if(statpanel("Game"))
 		var/status_value = SSevacuation?.get_status_panel_eta()
 		if(status_value)
 			stat("Evacuation in:", status_value)
