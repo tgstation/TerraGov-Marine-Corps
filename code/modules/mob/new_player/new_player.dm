@@ -460,7 +460,7 @@
 	var/mob/living/carbon/human/spawning_human = new(loc)
 	GLOB.joined_player_list += ckey
 
-	if(!is_banned_from(ckey, "Appearance") &&  !GLOB.real_names_joined.Find(client.prefs.real_name))
+	if(!is_banned_from(ckey, "Appearance"))
 		client.prefs.copy_to(spawning_human)
 
 	update_names_joined_list(spawning_human.real_name)
