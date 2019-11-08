@@ -870,7 +870,6 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	flags_attach_features = NONE
 	accuracy_mod = 0
 	recoil_mod = 0
 	scatter_mod = 0
