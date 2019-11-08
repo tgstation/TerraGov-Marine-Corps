@@ -93,6 +93,19 @@
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
+/obj/item/ammo_magazine/lmg/incendiary
+	name = "\improper M41A1 incendiary magazine (10x24mm)"
+	desc = "A semi-rectangular box of incendiary rounds for the M41AE2 Heavy Pulse Rifle."
+	icon_state = "m41ae2_incendiary"
+	default_ammo = /datum/ammo/bullet/rifle/incendiary
+
+/obj/item/ammo_magazine/lmg/ap
+	name = "\improper M41A1 AP magazine (10x24mm)"
+	desc = "A semi-rectangular box of armor piercing rounds for the M41AE2 Heavy Pulse Rifle."
+	icon_state = "m41ae2_ap"
+	default_ammo = /datum/ammo/bullet/rifle/ap
+
+
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
 
