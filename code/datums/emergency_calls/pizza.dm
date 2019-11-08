@@ -9,13 +9,12 @@
 	to_chat(H, "<B>Make sure you collect a tip.</b>")
 
 /datum/emergency_call/pizza/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!istype(spawn_loc))
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
 
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)

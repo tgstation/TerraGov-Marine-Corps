@@ -463,7 +463,7 @@
 	if(!is_banned_from(ckey, "Appearance") &&  !GLOB.real_names_joined.Find(client.prefs.real_name))
 		client.prefs.copy_to(spawning_human)
 
-	GLOB.real_names_joined[spawning_human.real_name] = TRUE
+	update_names_joined_list(spawning_human.real_name)
 
 	if(mind)
 		if(transfer_after)

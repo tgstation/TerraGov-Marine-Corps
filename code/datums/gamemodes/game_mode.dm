@@ -765,9 +765,14 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	if(!GLOB.enter_allowed)
 		to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.<spawn>")
 		return FALSE
-	if(!NP.client.prefs.random_name && GLOB.real_names_joined.Find(NP.client.prefs.real_name))
-		to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
-		return FALSE
+	if(!NP.client.prefs.random_name)
+		var/datum/job/job = SSjob.GetJob(rank)
+		var/name_to_check = NP.client.prefs.real_name
+		if(job.job_flags & JOB_FLAG_SPECIALNAME)
+			name_to_check = job.get_special_name(NP.client)
+		if(GLOB.real_names_joined.Find(name_to_check))
+			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+			return FALSE
 	if(!SSjob.AssignRole(NP, rank, TRUE))
 		to_chat(usr, "<span class='warning'>Failed to assign selected role.<spawn>")
 		return FALSE
