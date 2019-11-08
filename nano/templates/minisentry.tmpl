@@ -1,0 +1,93 @@
+<h3>{{:data.name}}:</h3>
+<br>
+<br>
+
+<div class="item">
+    
+    <div class="itemContent">
+        The {{:data.name}} is currently {{:data.is_on ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}
+    {{:helper.link(data.is_on ? 'Turn Off' : 'Turn On', 'power', {'?src' : data.self_ref, 'op' : 'power'})}}
+    
+    <br><br><br>
+    
+    <div class="itemLabel">
+        Power Cell Status:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.cell_charge, 0, data.cell_maxcharge, (data.cell_charge > (0.67 * data.cell_maxcharge)) ? 'good' : ((data.cell_charge > (0.33 * data.cell_maxcharge)) ? 'average' : 'bad'))}}
+        <br>
+        {{:data.has_cell ? data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W' : 'No cell inserted'}}
+    </div>
+    
+    <br><br>
+    
+    <div class="itemLabel">
+        Structural Integrity:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.health, 0, data.health_max, (data.health > (0.67 * data.health_max)) ? 'good' : ((data.health > (0.33 * data.health_max)) ? 'average' : 'bad'))}}
+        <br>
+        {{:(data.health * 100 / data.health_max) - ((data.health * 100 / data.health_max) % 1)}} %
+    </div>
+    
+    <br><br>
+    
+    <div class="itemLabel">
+        Current Rounds:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.rounds, 0, data.rounds_max, (data.rounds > (0.67 * data.rounds_max)) ? 'good' : ((data.rounds > (0.33 * data.rounds_max)) ? 'average' : 'bad'))}}
+        <br>
+        {{:data.rounds}} out of {{:data.rounds_max}}
+    </div>
+
+    <br><br>
+
+    <div class="itemLabel">
+        Burst Fire:
+    </div>
+    <div class="itemContent">
+        Burst fire is currently <b>{{:data.burst_fire ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>.
+		<br>
+		Burst count set to: <b>{{:data.burst_size}}</b>
+        <br>
+        {{:helper.link(data.burst_fire ? 'Turn off burst fire' : 'Turn on burst fire', data.burst_fire ? 'seek-next' : 'play', { '?src' : data.self_ref, 'op' : 'burst'}, data.is_on ? null : 'disabled')}}
+		<br>
+		{{:helper.link('Increment Burst Count', 'plus', { '?src' : data.self_ref, 'op' : 'burstup'}, data.is_on ? null : 'disabled')}}
+		<br>
+		{{:helper.link('Decrement Burst Count', 'minus', { '?src' : data.self_ref, 'op' : 'burstdown'}, data.is_on ? null : 'disabled')}}
+    </div>
+    
+    <br><br>
+        
+    <div class="itemLabel">
+        Weapon Safety:
+    </div>
+    <div class="itemContent">
+        Safety is currently <b>{{:data.safety_toggle ? '<span class="good">ON</span> (Only Xenos will be targeted.)' : '<span class="bad">OFF</span> (Non-Xenos without IFF clearance will be targeted.'}}</b>
+        <br>
+        {{:helper.link(data.safety_toggle ? 'Turn off the safety' : 'Turn on the safety', data.safety_toggle ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'safety'}, data.is_on ? null : 'disabled')}}
+    </div>
+    
+    <br><br>
+        
+    <div class="itemLabel">
+        Radial Mode:
+    </div>
+    <div class="itemContent">
+        Radial Mode is currently <b>{{:data.radial_mode ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.radial_mode ? 'Turn off Radial Mode' : 'Turn on Radial Mode', data.radial_mode ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'toggle_radial'}, data.is_on ? null : 'disabled')}}
+    </div>
+	
+    <br><br>
+        
+    <div class="itemLabel">
+        Alert Mode:
+    </div>
+    <div class="itemContent">
+        Alert Mode is currently <b>{{:data.alerts_on ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.alerts_on ? 'Turn off Alert Mode' : 'Turn on Alert Mode', data.alerts_on ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'toggle_alert'}, data.is_on ? null : 'disabled')}}
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			STATUS:
+		</div>
+		<div class="itemContent">
+			{{if data.dest_status == 0}}
+				<span class="idle">DISARMED</span>
+			{{else data.dest_status == 1}}
+				<span class="average">AWAITING INPUT</span>
+			{{else data.dest_status == 2}}
+				<span class="good">ARMED</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+			{{if data.dest_status == 1}}
+				{{:helper.link('ACTIVATE SYSTEM', 'alert', {'command' : 'dest_start'}, null, 'yellowButton')}}
+			{{else data.dest_status == 2}}
+				{{:helper.link('INITIATE', 'alert', {'command' : 'dest_trigger'}, null, 'redButton')}} 
+				{{:helper.link('CANCEL', 'alert', {'command' : 'dest_cancel'}, null, 'yellowButton')}}
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>

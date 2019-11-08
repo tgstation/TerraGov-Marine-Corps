@@ -1,0 +1,53 @@
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Escape Pod Status:
+		</div>
+		<div class="itemContent">
+			{{if data.docking_status == 4}}
+				<span class="idle">SYSTEMS OK</span>
+			{{else data.docking_status == 5}}
+				<span class="bad">SYSTEMS DOWN</span>				
+			{{else data.docking_status == 6}}
+				<span class="average">STANDING BY</span>
+			{{else data.docking_status == 7}}
+				<span class="idle">DELAYED</span>			
+			{{else data.docking_status == 8}}
+				<span class="average">LAUNCHING</span>	
+			{{else data.docking_status == 9}}
+				<span class="average">TRAVELING</span>		
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Docking Hatch:
+		</div>
+		<div class="itemContent">
+			{{if data.door_state == "open"}}
+				<span class="good">OPEN</span>
+			{{else data.door_state == "closed"}}
+				{{if data.door_lock == "locked"}}
+					<span class="good">SECURED</span>
+				{{else}}
+					<span class="good">UNSECURED</span>
+				{{/if}}
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+	</div>
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemContent" style="padding-top: 2px; width: 100%">
+		{{:helper.link('DOOR CONTROL', 'alert', {'command' : 'lock_door'}, data.can_lock ? null : 'disabled', data.can_force ? 'redButton' : null)}}
+		{{:helper.link('MANUAL EJECT', 'alert', {'command' : 'force_launch'}, data.can_force ? null : 'disabled', data.can_force ? 'redButton' : null)}}
+		{{:helper.link('DELAY LAUNCH', 'alert', {'command' : 'delay_launch'}, data.can_delay ? null : 'disabled', data.can_delay ? 'yellowButton' : null)}}
+		</div>
+	</div>
+</div>
