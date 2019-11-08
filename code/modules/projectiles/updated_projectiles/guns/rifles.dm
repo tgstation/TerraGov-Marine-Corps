@@ -94,12 +94,12 @@
 //-------------------------------------------------------
 //T12 DMR
 
-/obj/item/weapon/gun/rifle/t12
-	name = "\improper T12 designated marksman rifle"
-	desc = "The T12 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
-	icon_state = "t12"
-	item_state = "t12"
-	fire_sound = "gun_pulse"
+/obj/item/weapon/gun/rifle/t64
+	name = "\improper T64 designated marksman rifle"
+	desc = "The T-64 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
+	icon_state = "t64"
+	item_state = "t64"
+	fire_sound = "sound/weapons/guns/fire/T64.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -129,9 +129,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 1.0 SECONDS
+	fire_delay = 0.9 SECONDS
 	accuracy_mult = 1.15
 	scatter = -15
 	burst_amount = 1
