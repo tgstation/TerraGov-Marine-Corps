@@ -483,7 +483,7 @@
 	return FALSE
 
 
-/mob/living/proc/adjust_eye_tint(tint_amount)
+/mob/living/proc/adjust_tinttotal(tint_amount)
 	tinttotal += tint_amount
 	update_tint()
 

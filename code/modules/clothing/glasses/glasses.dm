@@ -44,9 +44,9 @@
 			if(H.glasses == src)
 				if(tint)
 					if(active)
-						H.adjust_eye_tint(tint)
+						H.adjust_tinttotal(tint)
 					else
-						H.adjust_eye_tint(-tint)
+						H.adjust_tinttotal(-tint)
 				H.update_sight()
 
 /obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
@@ -211,9 +211,9 @@
 		var/mob/living/carbon/human/wearer = loc
 		if(wearer.glasses == src)
 			if(active)
-				wearer.adjust_eye_tint(tint)
+				wearer.adjust_tinttotal(tint)
 			else
-				wearer.adjust_eye_tint(-initial(tint))
+				wearer.adjust_tinttotal(-initial(tint))
 
 	update_clothing_icon()
 

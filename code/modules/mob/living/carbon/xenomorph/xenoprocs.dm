@@ -382,7 +382,7 @@
 /mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
 	LAZYADD(stomach_contents, prey)
 	prey.knock_down(360)
-	prey.adjust_eye_tint(TINT_BLIND)
+	prey.adjust_tinttotal(TINT_BLIND)
 	prey.forceMove(src)
 	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
 
@@ -390,7 +390,7 @@
 /mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
 	LAZYREMOVE(stomach_contents, prey)
 	prey.forceMove(get_turf(src))
-	prey.adjust_eye_tint(-TINT_BLIND)
+	prey.adjust_tinttotal(-TINT_BLIND)
 	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 

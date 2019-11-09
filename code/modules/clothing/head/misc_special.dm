@@ -66,9 +66,9 @@
 		var/mob/living/carbon/human/wearer = loc
 		if(wearer.head == src)
 			if(!up)
-				wearer.adjust_eye_tint(tint)
+				wearer.adjust_tinttotal(tint)
 			else
-				wearer.adjust_eye_tint(-initial(tint))
+				wearer.adjust_tinttotal(-initial(tint))
 
 	update_clothing_icon()	//so our mob-overlays update
 

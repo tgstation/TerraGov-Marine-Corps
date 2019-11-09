@@ -223,7 +223,7 @@
 		if(isclothing(I))
 			var/obj/item/clothing/unequipped_clothing = I
 			if(unequipped_clothing.tint)
-				adjust_eye_tint(-unequipped_clothing.tint)
+				adjust_tinttotal(-unequipped_clothing.tint)
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
@@ -417,7 +417,7 @@
 	if(isclothing(W))
 		var/obj/item/clothing/equipped_clothing = W
 		if(equipped_clothing.tint)
-			adjust_eye_tint(equipped_clothing.tint)
+			adjust_tinttotal(equipped_clothing.tint)
 	
 	return TRUE
 
