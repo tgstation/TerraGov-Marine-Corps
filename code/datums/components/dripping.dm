@@ -3,7 +3,6 @@
 
 /datum/component/dripping
 	dupe_mode = COMPONENT_DUPE_ALLOWED
-	var/drip_time = 60 SECONDS
 	var/drip_counter = 1
 	var/drip_limit
 	var/drip_ratio
