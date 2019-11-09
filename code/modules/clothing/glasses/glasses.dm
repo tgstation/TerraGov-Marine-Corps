@@ -26,28 +26,7 @@
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
-		if(active)
-			active = FALSE
-			icon_state = deactive_state
-			user.update_inv_glasses()
-			to_chat(user, "You deactivate the optical matrix on [src].")
-			playsound(user, 'sound/items/googles_off.ogg', 15)
-		else
-			active = TRUE
-			icon_state = initial(icon_state)
-			user.update_inv_glasses()
-			to_chat(user, "You activate the optical matrix on [src].")
-			playsound(user, 'sound/items/googles_on.ogg', 15)
-
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				if(tint)
-					if(active)
-						H.adjust_tinttotal(tint)
-					else
-						H.adjust_tinttotal(-tint)
-				H.update_sight()
+		toggle_glasses(user)
 
 /obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
 	if(active)
@@ -57,7 +36,11 @@
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.glasses == src)
-			H.update_tint()
+			if(tint)
+				if(active)
+					H.adjust_tinttotal(tint)
+				else
+					H.adjust_tinttotal(-tint)
 			H.update_sight()
 
 	update_action_button_icons()
