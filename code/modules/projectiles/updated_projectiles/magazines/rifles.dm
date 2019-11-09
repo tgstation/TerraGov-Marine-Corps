@@ -37,9 +37,9 @@
 //T64 DMR
 
 /obj/item/ammo_magazine/rifledmr
-	name = "\improper T64 DMR magazine (10x27mm)"
+	name = "\improper T-64 DMR magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
-	caliber = "T64 DMR bullet"
+	caliber = "T-64 DMR bullet"
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/t64
