@@ -12,14 +12,17 @@
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
 	var/oxyloss = 0	//Oxygen depravation damage (no air in lungs)
 	var/toxloss = 0	//Toxic damage caused by being poisoned or radiated
-	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
+	var/staminaloss = 0 //Stamina
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
 	var/drowsyness = 0
 
+	var/last_staminaloss_dmg = 0 //world.time
+	var/max_stamina_buffer = 0
 	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
@@ -50,8 +53,8 @@
 
 	var/cameraFollow
 
-	// Putting these here for attack_animal().
 	var/melee_damage = 0
+	var/melee_accuracy = 100
 	var/attacktext = "attacks"
 	var/attack_sound
 	var/friendly = "nuzzles"

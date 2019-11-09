@@ -595,7 +595,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(lying && src != proj.original_target)
 		return FALSE
-	if(proj.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && (isnestedhost(src) || stat == DEAD))
+	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
