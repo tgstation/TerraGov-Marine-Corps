@@ -36,7 +36,7 @@
 //-------------------------------------------------------
 //T64 DMR
 
-/obj/item/ammo_magazine/rifle/standard_dmrmag
+/obj/item/ammo_magazine/rifle/standard_dmr
 	name = "\improper T-64 DMR magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
 	caliber = "T-64 DMR bullet"

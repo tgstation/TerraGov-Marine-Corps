@@ -423,7 +423,7 @@
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
 						/obj/item/ammo_magazine/smg/m39 = round(scale * 30),
 						/obj/item/ammo_magazine/rifle = round(scale * 25),
-						/obj/item/ammo_magazine/rifle/standard_dmrmag = round(scale * 25),
+						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale * 25),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
