@@ -89,7 +89,7 @@
 	return TRUE
 
 /datum/keybinding/carbon/specialclick
-	key = "Control"
+	key = "ctrl"
 	name = "specialclick"
 	full_name = "Special Click"
 	description = "Hold this key and click to trigger special object interactions."
@@ -97,7 +97,7 @@
 
 /datum/keybinding/carbon/specialclick/down(client/user)
 	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON), .proc/specialclicky)
-	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), /datum/keybinding/mob/examine/proc/intercept_mouse_special)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
 	return TRUE
 
 
