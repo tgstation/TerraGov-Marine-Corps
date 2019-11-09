@@ -691,11 +691,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	penetration = 20
 
-/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/M, obj/item/projectile/P)
-	if(M && istype(M,/mob/living/))
-		var/mob/living/L = M
-		L.track_amount += 20 //20 life ticks.
-	return TRUE
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/item/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 /*
 //================================================
