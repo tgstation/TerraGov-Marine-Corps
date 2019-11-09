@@ -60,7 +60,7 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/nt_lab/PopulateContents()
-	new /obj/item/weapon/gun/smg/m39_elite(src)
+	new /obj/item/weapon/gun/smg/m39/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/pmc_m39/PopulateContents()

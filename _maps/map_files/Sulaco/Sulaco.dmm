@@ -6848,11 +6848,11 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/m39,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -22187,7 +22187,7 @@
 /area/sulaco/hangar/one)
 "aSa" = (
 /obj/structure/table,
-/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/m39,
 /obj/structure/window/reinforced,
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
