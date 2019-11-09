@@ -10,7 +10,7 @@
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
 	var/parent_node
-	max_integrity = 4
+	max_integrity = 25
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -26,8 +26,14 @@
 
 
 /obj/effect/alien/weeds/Destroy()
+
 	if(parent_node)
 		SSweeds.add_weed(src)
+
+	for(var/obj/effect/alien/A in loc.contents)
+		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
+			continue
+		A.obj_destruction("melee")
 
 	var/oldloc = loc
 	. = ..()
@@ -122,6 +128,8 @@
 	max_integrity = 100
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+	ignore_weed_destruction = TRUE
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()

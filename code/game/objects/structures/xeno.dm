@@ -12,6 +12,7 @@
 	resistance_flags = UNACIDABLE
 	obj_flags = CAN_BE_HIT
 	var/on_fire = FALSE
+	var/ignore_weed_destruction = FALSE //Set this to true if this object isn't destroyed when the weeds under it is.
 
 
 /obj/effect/alien/attackby(obj/item/I, mob/user, params)
@@ -75,6 +76,8 @@
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
+	ignore_weed_destruction = TRUE
+
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -95,6 +98,8 @@
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
 	slow_amt = 4
+
+	ignore_weed_destruction = FALSE
 
 
 //Carrier trap
