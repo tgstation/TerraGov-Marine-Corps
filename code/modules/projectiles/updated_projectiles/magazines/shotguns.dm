@@ -52,7 +52,7 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 
 
-/obj/item/ammo_magazine/shotgun/mbx900/
+/obj/item/ammo_magazine/shotgun/mbx900
 	name = ".410 Sabot Ammo Box"
 	desc = "A box filled with .410 Sabot rounds."
 	icon_state = "mbx900_sabot"
