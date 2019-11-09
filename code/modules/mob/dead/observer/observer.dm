@@ -296,7 +296,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
+				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
 				if(status_value <= 0)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
