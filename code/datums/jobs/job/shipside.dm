@@ -607,6 +607,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	outfit = /datum/outfit/job/civilian/synthetic
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_SPECIALNAME
+
+
+/datum/job/civilian/synthetic/get_special_name(client/preference_source)
+	return preference_source.prefs.synthetic_name
 
 
 /datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
@@ -661,6 +666,11 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
+	job_flags = JOB_FLAG_SPECIALNAME
+
+
+/datum/job/ai/get_special_name(client/preference_source)
+	return preference_source.prefs.ai_name
 
 
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)

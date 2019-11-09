@@ -55,26 +55,17 @@
 	if(stat != DEAD)
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
-	else
-		var/deathtime = world.time - src.timeofdeath
-		var/deathtimeminutes = round(deathtime / 600)
-		var/pluralcheck = "minute"
-		if(deathtimeminutes == 0)
-			pluralcheck = ""
-		else if(deathtimeminutes == 1)
-			pluralcheck = " [deathtimeminutes] minute and"
-		else if(deathtimeminutes > 1)
-			pluralcheck = " [deathtimeminutes] minutes and"
-		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if(deathtime < (GLOB.respawntime) && !check_rights(R_ADMIN, FALSE))
-			to_chat(usr, "You must wait [GLOB.respawntime * 0.1] seconds to respawn!")
-			return
+	if(DEATHTIME_CHECK(usr))
+		if(check_other_rights(usr.client, R_ADMIN, FALSE))
+			if(alert(usr, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				DEATHTIME_MESSAGE(usr)
+				return
 		else
-			to_chat(usr, "You can respawn now, enjoy your new life!")
+			DEATHTIME_MESSAGE(usr)
+			return
 
-	to_chat(usr, "<span class='boldnotice'>Make sure to play a different character, and please roleplay correctly!</span>")
+	to_chat(usr, "<span class='notice'>You can respawn now, enjoy your new life!<br><b>Make sure to play a different character, and please roleplay correctly.</b></span>")
 
 	if(!client)
 		return

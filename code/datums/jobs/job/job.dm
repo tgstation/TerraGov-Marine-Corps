@@ -48,6 +48,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/skills_type = null
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
+	var/job_flags = NONE
 
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
@@ -223,3 +224,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /proc/guest_jobbans(job)
 	return (job in GLOB.jobs_command)
+
+
+/datum/job/proc/get_special_name(client/preference_source)
+	return
