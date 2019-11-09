@@ -118,7 +118,7 @@
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
-	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and weapon carrying capacity."
+	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and storage capacity."
 	icon_state = "4"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
