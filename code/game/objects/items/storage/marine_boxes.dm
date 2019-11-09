@@ -31,6 +31,7 @@
 	var/rounds_max = 500
 	actions_types = list(/datum/action/item_action/toggle)
 	var/reloading = FALSE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/smartgun_powerpack/Initialize()
 	. = ..()
