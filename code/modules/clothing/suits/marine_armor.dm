@@ -127,6 +127,7 @@
 	bypass_w_limit = list()
 	storage_slots = null
 	max_storage_space = 15 // Same as satchel
+	max_w_class = 3
 
 /obj/item/clothing/suit/storage/marine/M3E
 	name = "\improper M3-E pattern marine armor"
