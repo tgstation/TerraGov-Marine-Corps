@@ -1122,7 +1122,7 @@
 	burst_delay = 15
 	ammo = /datum/ammo/bullet/turret
 
-obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+/obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)
