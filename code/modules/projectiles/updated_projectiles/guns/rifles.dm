@@ -137,20 +137,20 @@
 
 
 //-------------------------------------------------------
-//M41A PMC VARIANT
+//M41A PULSE RIFLE
 
-/obj/item/weapon/gun/rifle/m41a_elite
-	name = "\improper M41A2 battle rifle"
-	desc = "A refined and redesigned version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
-	icon_state = "m41a2"
-	item_state = "m41a2"
+/obj/item/weapon/gun/rifle/m41a1
+	name = "\improper M41A1 pulse rifle"
+	desc = "The standard issue rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
+	icon_state = "m41a1"
+	item_state = "m41a1"
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x24mm caseless" //codex
 	max_shells = 40 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/ap
+	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
@@ -174,17 +174,33 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_item_map_variant = NONE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 	fire_delay = 0.4 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
+	scatter = -10
+
+
+//-------------------------------------------------------
+//M41A PMC VARIANT
+
+/obj/item/weapon/gun/rifle/m41a1/elite
+	name = "\improper M41A2 battle rifle"
+	desc = "A refined and redesigned version of the tried and tested M41A1 Pulse Rifle. Given only to elite units."
+	icon_state = "m41a2"
+	item_state = "m41a2"
+	current_mag = /obj/item/ammo_magazine/rifle/ap
+
+	flags_item_map_variant = NONE
+
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
 	damage_mult = 1.5
-	scatter = -10
 
 
 //-------------------------------------------------------

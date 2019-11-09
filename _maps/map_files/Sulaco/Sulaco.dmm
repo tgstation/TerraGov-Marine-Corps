@@ -23410,7 +23410,7 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/m41a1,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUN" = (
@@ -23506,14 +23506,14 @@
 	icon_state = "1-2"
 	},
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/m41a1,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/standard_assaultrifle,
 /obj/item/ammo_magazine/sniper/elite,
-/obj/item/weapon/gun/rifle/standard_carabine,
-/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/m41a1,
+/obj/item/weapon/gun/rifle/m41a1,
 /obj/item/attachable/attached_gun/flamer,
 /obj/item/attachable/attached_gun/shotgun,
 /obj/item/attachable/attached_gun/shotgun,
