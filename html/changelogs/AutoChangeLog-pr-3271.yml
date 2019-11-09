@@ -1,0 +1,4 @@
+author: "Kuro-ai"
+delete-after: True
+changes: 
+  - rscdel: "deletes edge and ballistic from marine vendors"
