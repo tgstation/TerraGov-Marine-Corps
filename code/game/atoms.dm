@@ -680,4 +680,3 @@ Proc for attack log creation, because really why not
 // For special click interactions (take first item out of container, quick-climb, etc.)
 /atom/proc/specialclick(mob/living/carbon/user)
 	return
-	
