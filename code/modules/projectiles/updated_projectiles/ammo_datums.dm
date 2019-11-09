@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 20
 
-/datum/ammo/bullet/rifle/t64
+/datum/ammo/bullet/rifle/standard_dmrammo
 	name = "DMR bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"

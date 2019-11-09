@@ -36,15 +36,15 @@
 //-------------------------------------------------------
 //T64 DMR
 
-/obj/item/ammo_magazine/rifledmr
+/obj/item/ammo_magazine/standard_dmrmag
 	name = "\improper T-64 DMR magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
 	caliber = "T-64 DMR bullet"
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/t64
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmrammo
 	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/t64
+	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL

@@ -263,7 +263,7 @@
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/rifledmr,
+		/obj/item/ammo_magazine/standard_dmrmag,
 		/obj/item/cell/lasgun,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/pistol,

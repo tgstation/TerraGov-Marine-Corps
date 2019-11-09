@@ -94,7 +94,7 @@
 //-------------------------------------------------------
 //T64 DMR
 
-/obj/item/weapon/gun/rifle/t64
+/obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper T-64 designated marksman rifle"
 	desc = "The T-64 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
 	icon_state = "t64"
@@ -105,7 +105,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
 	max_shells = 15 //codex
-	current_mag = /obj/item/ammo_magazine/rifledmr
+	current_mag = /obj/item/ammo_magazine/standard_dmrmag
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
