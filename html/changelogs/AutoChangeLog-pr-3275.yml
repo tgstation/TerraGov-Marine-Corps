@@ -1,4 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - balance: "Move delay from snow reduces from 75% to 50%. Chance to get stuck in snow reduced from 2% to 1%."
