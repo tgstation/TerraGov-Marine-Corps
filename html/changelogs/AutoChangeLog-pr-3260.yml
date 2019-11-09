@@ -1,0 +1,5 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "If you destroy a resin tile, any resin structures, except doors, walls, and strong sticky good, will be removed as well."
+  - balance: "Individual resin health increased from 8 to 25 (Knives do 25 damage)."
