@@ -1924,10 +1924,10 @@
 /area/shuttle/distress/start_big)
 "mo" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/m39_elite,
 /turf/open/floor/mainship{
 	icon_state = "plate"
 	},
@@ -2067,9 +2067,9 @@
 /area/shuttle/distress/start_big)
 "mC" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/m39_elite,
 /turf/open/floor/mainship{
 	icon_state = "plate"
 	},

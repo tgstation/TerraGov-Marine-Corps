@@ -6848,20 +6848,20 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/weapon/gun/shotgun/combat,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /turf/open/floor{
 	icon_state = "whiteredfull";
 	dir = 2
@@ -22187,11 +22187,11 @@
 /area/sulaco/hangar/one)
 "aSa" = (
 /obj/structure/table,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/structure/window/reinforced,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aSb" = (
@@ -23268,8 +23268,8 @@
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
 /obj/item/explosive/grenade/frag,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor{
 	icon_state = "red";
 	dir = 4
@@ -23410,7 +23410,7 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/m41a,
+/obj/item/weapon/gun/rifle/standard_carabine,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUN" = (
@@ -23506,14 +23506,14 @@
 	icon_state = "1-2"
 	},
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/m41a,
+/obj/item/weapon/gun/rifle/standard_carabine,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/m41aMK1,
+/obj/item/weapon/gun/rifle/standard_assaultrifle,
 /obj/item/ammo_magazine/sniper/elite,
-/obj/item/weapon/gun/rifle/m41a,
-/obj/item/weapon/gun/rifle/m41a,
+/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/standard_carabine,
 /obj/item/attachable/attached_gun/flamer,
 /obj/item/attachable/attached_gun/shotgun,
 /obj/item/attachable/attached_gun/shotgun,
@@ -24161,13 +24161,13 @@
 /obj/item/ammo_magazine/revolver/mateba,
 /obj/item/ammo_magazine/rifle/ap,
 /obj/item/ammo_magazine/rifle/incendiary,
-/obj/item/ammo_magazine/lmg,
+/obj/item/ammo_magazine/standard_lmg,
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/ammo_magazine/sniper/svd,
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/smg/m39/ap,
+/obj/item/ammo_magazine/smg/standard_smg/ap,
 /obj/item/ammo_magazine/smg/mp7,
 /obj/item/ammo_magazine/smg/p90,
 /obj/item/ammo_magazine/smg/skorpion,

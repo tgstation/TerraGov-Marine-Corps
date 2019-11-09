@@ -25,7 +25,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC
 	mask = /obj/item/clothing/mask/gas/PMC/leader
-	suit_store = /obj/item/weapon/gun/smg/m39/elite
+	suit_store = /obj/item/weapon/gun/smg/m39_elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_m39
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/satchel
@@ -162,7 +162,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
 	mask = /obj/item/clothing/mask/gas/PMC/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/m41a/elite
+	suit_store = /obj/item/weapon/gun/rifle/m41a_elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/satchel
