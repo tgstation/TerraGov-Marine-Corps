@@ -34,7 +34,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
 //-------------------------------------------------------
-//T12 DMR
+//T64 DMR
 
 /obj/item/ammo_magazine/rifledmr
 	name = "\improper T64 DMR magazine (10x27mm)"

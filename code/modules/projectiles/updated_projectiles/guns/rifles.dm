@@ -92,7 +92,7 @@
 
 
 //-------------------------------------------------------
-//T12 DMR
+//T64 DMR
 
 /obj/item/weapon/gun/rifle/t64
 	name = "\improper T64 designated marksman rifle"
