@@ -25,9 +25,7 @@
 	. = ..()
 	RegisterSignal(src, list(
 		COMSIG_XENOMORPH_DISARM_HUMAN,
-		COMSIG_XENOMORPH_ATTACK_LIVING),
-		.proc/hit_and_run_bonus)
-
+		COMSIG_XENOMORPH_ATTACK_LIVING)
 // ***************************************
 // *********** Life overrides
 // ***************************************
