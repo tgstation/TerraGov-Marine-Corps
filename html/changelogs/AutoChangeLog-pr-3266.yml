@@ -1,0 +1,6 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - bugfix: "Shuttles can no longer be called, redirected or summoned while in transit."
+  - bugfix: "Removed the broken dropship shutter button. Marines can still lockdown the doors through the computer, but xeno rulers can unlock them."
+  - balance: "Xenos that miss the hijack ride will be gibed, cleaning the planet, but increasing the number of stored larvas."
