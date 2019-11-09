@@ -266,7 +266,7 @@
 
 
 /obj/item/clothing/head/helmet/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/helmet/marine/tech
@@ -285,6 +285,8 @@
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 50, "energy" = 20, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 45)
 	accuracy_mod = -10
 	tint = TINT_1
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
