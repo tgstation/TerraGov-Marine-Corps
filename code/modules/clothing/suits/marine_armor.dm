@@ -124,13 +124,9 @@
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
 /obj/item/storage/internal/suit/marine/M3IS
-	bypass_w_limit = list(/obj/item/weapon/gun/,
-						/obj/item/storage/large_holster/machete,
-						/obj/item/weapon/claymore/mercsword/machete)
-	cant_hold = list() //for if you want to not allow certain weapons.
-	storage_slots = 1
-	max_storage_space = 8 // Rifle, stock, extended barrel, grip/bipod.
-	max_w_class = 3 //Can fit larger items
+	bypass_w_limit = list()
+	storage_slots = null
+	max_storage_space = 15 // Same as satchel
 
 /obj/item/clothing/suit/storage/marine/M3E
 	name = "\improper M3-E pattern marine armor"
