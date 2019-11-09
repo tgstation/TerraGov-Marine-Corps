@@ -236,6 +236,7 @@
 #include "code\datums\actions\xeno_action.dm"
 #include "code\datums\components\bump_attack.dm"
 #include "code\datums\components\component.dm"
+#include "code\datums\components\dripping.dm"
 #include "code\datums\components\full_auto_fire.dm"
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\rotation.dm"
