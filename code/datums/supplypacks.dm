@@ -1805,7 +1805,7 @@ AMMO
 /datum/supply_packs/ammo_mbx900
 	name = "MBX 900 ammo crate (x2 sabot, x2 buckshot, x1 tracking)"
 	contains = list(
-					/obj/item/ammo_magazine/shotgun/mbx900/,
+					/obj/item/ammo_magazine/shotgun/mbx900,
 					/obj/item/ammo_magazine/shotgun/mbx900/,
 					/obj/item/ammo_magazine/shotgun/mbx900/buckshot,
 					/obj/item/ammo_magazine/shotgun/mbx900/buckshot,
