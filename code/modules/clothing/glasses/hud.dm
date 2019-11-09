@@ -29,7 +29,7 @@
 	return ..()
 
 
-/obj/item/clothing/glasses/hud/activate_glasses(mob/user, feedback = FALSE)
+/obj/item/clothing/glasses/hud/activate_glasses(mob/user, silent = FALSE)
 	. = ..()
 	if(!ishuman(user))
 		return
@@ -39,7 +39,7 @@
 	activate_hud(hud_user)
 
 
-/obj/item/clothing/glasses/hud/deactivate_glasses(mob/user, feedback = FALSE)
+/obj/item/clothing/glasses/hud/deactivate_glasses(mob/user, silent = FALSE)
 	. = ..()
 	if(QDELETED(affected_user))
 		return

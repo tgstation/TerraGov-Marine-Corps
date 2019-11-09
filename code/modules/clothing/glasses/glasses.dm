@@ -31,9 +31,9 @@
 
 /obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
 	if(active)
-		deactivate_glasses(user, TRUE)
+		deactivate_glasses(user)
 	else
-		activate_glasses(user, TRUE)
+		activate_glasses(user)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(H.glasses == src)
@@ -43,20 +43,20 @@
 	update_action_button_icons()
 
 
-/obj/item/clothing/glasses/proc/activate_glasses(mob/user, feedback = FALSE)
+/obj/item/clothing/glasses/proc/activate_glasses(mob/user, silent = FALSE)
 	active = TRUE
 	icon_state = initial(icon_state)
 	user.update_inv_glasses()
-	if(feedback)
+	if(!silent)
 		to_chat(user, "You activate the optical matrix on [src].")
 		playsound(user, 'sound/items/googles_on.ogg', 15)
 
 
-/obj/item/clothing/glasses/proc/deactivate_glasses(mob/user, feedback = FALSE)
+/obj/item/clothing/glasses/proc/deactivate_glasses(mob/user, silent = FALSE)
 	active = FALSE
 	icon_state = deactive_state
 	user.update_inv_glasses()
-	if(feedback)
+	if(!silent)
 		to_chat(user, "You deactivate the optical matrix on [src].")
 		playsound(user, 'sound/items/googles_off.ogg', 15)
 
