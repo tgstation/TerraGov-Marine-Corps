@@ -24,7 +24,7 @@
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 25,
-					/obj/item/ammo_magazine/standard_dmrmag = 25,
+					/obj/item/ammo_magazine/rifle/standard_dmrmag = 25,
 					/obj/item/cell/lasgun/M43 = 20,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,

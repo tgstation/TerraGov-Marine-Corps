@@ -105,7 +105,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
 	max_shells = 15 //codex
-	current_mag = /obj/item/ammo_magazine/standard_dmrmag
+	current_mag = /obj/item/ammo_magazine/rifle/standard_dmrmag
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,

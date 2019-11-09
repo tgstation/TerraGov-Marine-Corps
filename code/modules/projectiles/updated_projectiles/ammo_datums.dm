@@ -456,9 +456,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
-	damage = 40
+	damage = 45
 	scatter = -15
-	penetration = 0
+	penetration = 15
 
 /*
 //================================================
