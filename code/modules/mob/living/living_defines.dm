@@ -24,7 +24,6 @@
 	var/is_dizzy = FALSE
 	var/druggy = 0
 	var/sleeping = 0
-	var/track_amount = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
