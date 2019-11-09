@@ -95,7 +95,7 @@
 //T64 DMR
 
 /obj/item/weapon/gun/rifle/t64
-	name = "\improper T64 designated marksman rifle"
+	name = "\improper T-64 designated marksman rifle"
 	desc = "The T-64 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
 	icon_state = "t64"
 	item_state = "t64"
