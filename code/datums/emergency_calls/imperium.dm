@@ -8,13 +8,12 @@
 	to_chat(H, "<B>Wait for the Emperor to give you objectives.</B>") // admin only ERT so have admins tell them what to do
 
 /datum/emergency_call/imperial/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!istype(spawn_loc))
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
 
 	H.name = GLOB.namepool[/datum/namepool].random_name(H)
 	H.real_name = H.name

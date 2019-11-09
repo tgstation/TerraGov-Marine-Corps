@@ -41,7 +41,7 @@
 			M.knock_down(1)
 		else
 			M.stun(1) //Otherwise we just get stunned.
-		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
+		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
 
@@ -125,7 +125,7 @@
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
 		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee")) //Armour functions against this.
-		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)

@@ -1,0 +1,5 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Marines are allowed to respawn after a certain time dead. We'll see how this goes."
+  - bugfix: "Marines can no longer join with the same name of someone else who joined the game and didn't cryo."

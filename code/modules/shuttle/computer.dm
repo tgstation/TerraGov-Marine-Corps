@@ -7,7 +7,6 @@
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
-	var/no_destination_swap = FALSE
 
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
@@ -55,16 +54,8 @@
 			to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
 			return TRUE
 		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
-		if(M.mode == SHUTTLE_RECHARGING)
-			to_chat(usr, "<span class='warning'>The engines are not ready to use yet!</span>")
+		if(!M.can_move_topic(usr))
 			return TRUE
-		if(M.launch_status == ENDGAME_LAUNCHED)
-			to_chat(usr, "<span class='warning'>You've already escaped. Never going back to that place again!</span>")
-			return TRUE
-		if(no_destination_swap)
-			if(M.mode != SHUTTLE_IDLE)
-				to_chat(usr, "<span class='warning'>Shuttle already in transit.</span>")
-				return TRUE
 		if(!(href_list["move"] in valid_destinations()))
 			log_admin("[key_name(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")
 			message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href dock exploit on [src] with target location \"[href_list["move"]]\"")

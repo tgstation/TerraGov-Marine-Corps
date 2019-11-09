@@ -39,7 +39,7 @@
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
-		armor = getArmor()
+		armor = getArmor(bio = 100)
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 

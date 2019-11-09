@@ -230,10 +230,10 @@
 	if(statpanel("Game"))
 
 		if(stat != CONSCIOUS)
-			stat(null, text("Systems nonfunctional"))
+			stat("System status:", "Nonfunctional")
 			return
 
-		stat(null, text("System integrity: [(health + 100) / 2]%"))
+		stat("System integrity:", "[(health + 100) / 2]%")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)

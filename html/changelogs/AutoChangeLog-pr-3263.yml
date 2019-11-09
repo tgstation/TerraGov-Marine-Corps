@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "Shrike Unrelenting Force now uses plasma properly."

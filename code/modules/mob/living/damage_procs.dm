@@ -31,7 +31,10 @@
 			adjustCloneLoss(damage)
 		if(HALLOSS)
 			adjustHalLoss(damage)
-	updatehealth()
+		if(STAMINA)
+			adjustStaminaLoss(damage)
+	if(updating_health)
+		updatehealth()
 	return TRUE
 
 

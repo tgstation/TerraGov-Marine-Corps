@@ -99,7 +99,7 @@
 
 		//Recently dead observers cannot be drafted.
 		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < GLOB.respawntime)
+		if(deathtime < GLOB.xenorespawntime)
 			continue
 
 		//Aghosted admins don't get picked

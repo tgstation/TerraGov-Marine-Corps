@@ -50,8 +50,7 @@
 			to_chat(H, "<span class='danger'>You feel a powerful shock course through your body!</span>")
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(G.siemens_coefficient)//not insulated
-				H.halloss += 10
-				H.stunned += 10
+				H.adjustStaminaLoss(200)
 				return
 	return ..(user)
 
