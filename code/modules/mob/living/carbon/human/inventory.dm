@@ -224,6 +224,8 @@
 			var/obj/item/clothing/unequipped_clothing = I
 			if(unequipped_clothing.tint)
 				adjust_tinttotal(-unequipped_clothing.tint)
+			if(unequipped_clothing.accuracy_mod)
+				adjust_tinttotal(-unequipped_clothing.accuracy_mod)
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
@@ -418,7 +420,9 @@
 		var/obj/item/clothing/equipped_clothing = W
 		if(equipped_clothing.tint)
 			adjust_tinttotal(equipped_clothing.tint)
-	
+		if(equipped_clothing.accuracy_mod)
+			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
+
 	return TRUE
 
 

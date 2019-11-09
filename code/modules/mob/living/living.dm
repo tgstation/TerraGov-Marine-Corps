@@ -501,6 +501,9 @@
 		clear_fullscreen("tint", 0)
 		return FALSE
 
+/mob/living/proc/adjust_mob_accuracy(accuracy_mod)
+	ranged_accuracy_mod += accuracy_mod
+	
 
 /mob/living/proc/smokecloak_on()
 
