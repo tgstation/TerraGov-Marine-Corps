@@ -26,8 +26,28 @@
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
-		toggle_glasses(user)
+		if(active)
+			active = FALSE
+			icon_state = deactive_state
+			user.update_inv_glasses()
+			to_chat(user, "You deactivate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_off.ogg', 15)
+		else
+			active = TRUE
+			icon_state = initial(icon_state)
+			user.update_inv_glasses()
+			to_chat(user, "You activate the optical matrix on [src].")
+			playsound(user, 'sound/items/googles_on.ogg', 15)
 
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.glasses == src)
+				if(tint)
+					if(active)
+						H.adjust_eye_tint(tint)
+					else
+						H.adjust_eye_tint(-tint)
+				H.update_sight()
 
 /obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
 	if(active)
@@ -187,11 +207,13 @@
 	if(user)
 		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
-
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.glasses == src)
-			H.update_tint()
+		var/mob/living/carbon/human/wearer = loc
+		if(wearer.glasses == src)
+			if(active)
+				wearer.adjust_eye_tint(tint)
+			else
+				wearer.adjust_eye_tint(-initial(tint))
 
 	update_clothing_icon()
 

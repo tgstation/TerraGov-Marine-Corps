@@ -897,6 +897,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
+	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
 	if(flags_item & WIELDED && wielded_stable())
@@ -945,19 +946,16 @@ and you're good to go.
 				gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 		projectile_to_fire.firer = user
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			projectile_to_fire.def_zone = user.zone_selected
-			if(C.stagger)
-				gun_scatter += 30
-		
-		var/obj/item/clothing/head/head_slot = user.get_item_by_slot(SLOT_HEAD)
-		if(istype(head_slot))
-			gun_accuracy_mult += head_slot.accuracy_mod
-		else
-			gun_accuracy_mult += 0.2 //nothing on your head? well if you're gonna die then might as well be accurate.
+		if(isliving(user))
+			var/mob/living/living_user = user
+			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				projectile_to_fire.def_zone = user.zone_selected
+				if(carbon_user.stagger)
+					gun_scatter += 30
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 

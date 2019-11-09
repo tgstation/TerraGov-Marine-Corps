@@ -658,7 +658,7 @@ TUNNEL
 		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
-	if(length(M.stomach_contents))
+	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 

@@ -299,6 +299,10 @@
 	if(equipped)
 		if(W.flags_armor_protection)
 			add_limb_armor(W)
+		if(isclothing(W))
+			var/obj/item/clothing/equipped_clothing = W
+			if(equipped_clothing.tint)
+				adjust_eye_tint(equipped_clothing.tint)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		if(src.back && W.loc != src.back)

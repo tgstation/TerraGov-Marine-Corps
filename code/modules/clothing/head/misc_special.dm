@@ -62,11 +62,13 @@
 	if(user)
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 
-
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.head == src)
-			H.update_tint()
+		var/mob/living/carbon/human/wearer = loc
+		if(wearer.head == src)
+			if(!up)
+				wearer.adjust_eye_tint(tint)
+			else
+				wearer.adjust_eye_tint(-initial(tint))
 
 	update_clothing_icon()	//so our mob-overlays update
 
