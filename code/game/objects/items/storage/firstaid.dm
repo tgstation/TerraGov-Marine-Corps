@@ -68,8 +68,8 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/syringe_case/regular(src)
 
@@ -85,9 +85,9 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/storage/syringe_case/tox(src)
 
 
@@ -101,9 +101,9 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/storage/syringe_case/oxy(src)
 
 
@@ -133,10 +133,10 @@
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/russianRed(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/bicaridine(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 
 
 	/*
@@ -153,75 +153,75 @@
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
-		/obj/item/reagent_container/pill,
-		/obj/item/reagent_container/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/paper,
-		/obj/item/reagent_container/syringe,
-		/obj/item/reagent_container/hypospray/autoinjector)
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/syringe_case/regular
 
 /obj/item/storage/syringe_case/regular/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
-	new /obj/item/reagent_container/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/burn
 
 /obj/item/storage/syringe_case/burn/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/kelotane(src)
-	new /obj/item/reagent_container/glass/bottle/oxycodone(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
 
 /obj/item/storage/syringe_case/tox
 
 /obj/item/storage/syringe_case/tox/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/dylovene(src)
-	new /obj/item/reagent_container/glass/bottle/hypervene(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/hypervene(src)
 
 /obj/item/storage/syringe_case/oxy
 
 /obj/item/storage/syringe_case/oxy/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
-	new /obj/item/reagent_container/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /obj/item/storage/syringe_case/meralyne
 
 /obj/item/storage/syringe_case/meralyne/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/meralyne(src)
-	new /obj/item/reagent_container/glass/bottle/meralyne(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
+	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 
 /obj/item/storage/syringe_case/dermaline
 
 /obj/item/storage/syringe_case/dermaline/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/dermaline(src)
-	new /obj/item/reagent_container/glass/bottle/dermaline(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
+	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 
 /obj/item/storage/syringe_case/meraderm
 
 /obj/item/storage/syringe_case/meraderm/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/meraderm(src)
-	new /obj/item/reagent_container/glass/bottle/meraderm(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
+	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
 /obj/item/storage/syringe_case/ironsugar
 
 /obj/item/storage/syringe_case/ironsugar/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/reagent_container/syringe(src)
-	new /obj/item/reagent_container/glass/bottle/ironsugar(src)
-	new /obj/item/reagent_container/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 
 /*
 * Pill Bottles
@@ -236,7 +236,7 @@
 	item_state = "contsolid"
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
-		/obj/item/reagent_container/pill,
+		/obj/item/reagent_containers/pill,
 		/obj/item/toy/dice,
 		/obj/item/paper)
 	allow_quick_gather = 1
@@ -278,85 +278,85 @@
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	icon_state = "pill_canister2"
-	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
+	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
 	icon_state = "pill_canister6"
-	pill_type_to_fill = /obj/item/reagent_container/pill/dylovene
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	icon_state = "pill_canister3"
-	pill_type_to_fill = /obj/item/reagent_container/pill/inaprovaline
+	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
 	icon_state = "pill_canister5"
-	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	icon_state = "pill_canister4"
-	pill_type_to_fill = /obj/item/reagent_container/pill/spaceacillin
+	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
 	icon_state = "pill_canister11"
-	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
+	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
 /obj/item/storage/pill_bottle/dexalin
 	name = "dexalin pill bottle"
 	icon_state = "pill_canister12"
-	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dexalin
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	icon_state = "pill_canister7"
-	pill_type_to_fill = /obj/item/reagent_container/pill/alkysine
+	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	icon_state = "pill_canister9"
-	pill_type_to_fill = /obj/item/reagent_container/pill/imidazoline
+	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	icon_state = "pill_canister10"
-	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
+	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
 	icon_state = "pill_canister1"
-	pill_type_to_fill = /obj/item/reagent_container/pill/russianRed
+	pill_type_to_fill = /obj/item/reagent_containers/pill/russianRed
 
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	icon_state = "pill_canister8"
-	pill_type_to_fill = /obj/item/reagent_container/pill/quickclot
+	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
 	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	icon_state = "pill_canister7"
-	pill_type_to_fill = /obj/item/reagent_container/pill/hypervene
+	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	icon_state = "pill_canister9"
-	pill_type_to_fill = /obj/item/reagent_container/pill/tricordrazine
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
 	desc = "Contains highly illegal drugs. When you want to see the rainbow."
 	max_storage_space = 7
-	pill_type_to_fill = /obj/item/reagent_container/pill/happy
+	pill_type_to_fill = /obj/item/reagent_containers/pill/happy
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
 	desc = "Containts highly illegal drugs. Trade brain for speed."
 	max_storage_space = 7
-	pill_type_to_fill = /obj/item/reagent_container/pill/zoom
+	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
 //Pill bottles with identification locks.
 
@@ -407,7 +407,7 @@
 /obj/item/storage/pill_bottle/restricted/ultrazine
 	icon_state = "pill_canister11"
 	max_storage_space = 5
-	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
+	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
 
 	req_access = list(ACCESS_NT_CORPORATE)
 	req_id_role = CORPORATE_LIAISON

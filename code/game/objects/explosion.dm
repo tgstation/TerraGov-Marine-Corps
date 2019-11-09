@@ -110,7 +110,7 @@
 					continue
 				A.ex_act(dist)
 
-		if(dist > 0)
+		else if(dist > 0)
 			T.ex_act(dist)
 			for(var/i in T)
 				var/atom/movable/AM = i

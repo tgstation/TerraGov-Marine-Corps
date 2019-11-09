@@ -1135,8 +1135,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				v = SSmapping
 			if("SSmobs")
 				v = SSmobs
-			if("SSnano")
-				v = SSnano
+			if("SStgui")
+				v = SStgui
 			if("SSnpcpool")
 				v = SSnpcpool
 			if("SSoverlays")

@@ -90,8 +90,8 @@
 		tackle_pain += dam_bonus
 
 	apply_damage(tackle_pain, HALLOSS, "chest", armor_block * XENO_TACKLE_ARMOR_PEN) //Only half armour applies vs tackle
-	updatehealth()
 	updateshock()
+	UPDATEHEALTH(src)
 	var/throttle_message = "<span class='danger'>\The [X] throttles [src]!</span>"
 	var/throttle_message2 = "<span class='danger'>We throttle [src]!</span>"
 	if(tackle_pain > 40)
@@ -221,7 +221,8 @@
 		damage += i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
-	updatehealth()
+	UPDATEHEALTH(src)
+
 
 /mob/living/silicon/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
@@ -271,6 +272,12 @@
 
 	switch(intent)
 		if(INTENT_HELP)
+			if(on_fire)
+				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+				ExtinguishMob()
+				X.visible_message("<span class='danger'>[X] effortlessly extinguishes the fire on [src]!</span>",
+					"<span class='notice'>We extinguished the fire on [src].</span>", null, 5)
+				return TRUE
 			X.visible_message("<span class='notice'>\The [X] caresses [src] with its scythe-like arm.</span>", \
 			"<span class='notice'>We caress [src] with our scythe-like arm.</span>", null, 5)
 			return FALSE

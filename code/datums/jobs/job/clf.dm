@@ -47,7 +47,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/uzi/extended, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tramadol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tramadol, SLOT_IN_R_POUCH)
 
 
 //CLF Medic

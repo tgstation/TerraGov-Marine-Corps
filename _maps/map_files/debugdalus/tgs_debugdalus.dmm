@@ -1654,7 +1654,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -2402,7 +2402,7 @@
 "afx" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/syringes,
-/obj/item/reagent_container/dropper,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2422,7 +2422,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -2434,7 +2434,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	name = "Surgery Cleaner";
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	pixel_x = 12;
@@ -2677,11 +2677,11 @@
 /area/mainship/medical/chemistry)
 "agh" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2693,7 +2693,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/pillbottles,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -3241,7 +3241,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -3253,7 +3253,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -3485,7 +3485,7 @@
 "aia" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3621,8 +3621,8 @@
 /area/mainship/medical/surgery_hallway)
 "aix" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_container/glass/beaker/cryoxadone,
-/obj/item/reagent_container/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3642,7 +3642,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -3654,7 +3654,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},

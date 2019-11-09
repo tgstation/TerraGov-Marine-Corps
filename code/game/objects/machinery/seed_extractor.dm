@@ -10,7 +10,7 @@
 /obj/machinery/seed_extractor/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	// Fruits and vegetables.
-	if(istype(I, /obj/item/reagent_container/food/snacks/grown) || istype(I, /obj/item/grown))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/grown) || istype(I, /obj/item/grown))
 		if(!user.temporarilyRemoveItemFromInventory(I))
 			return
 
@@ -19,7 +19,7 @@
 			var/obj/item/grown/F = I
 			new_seed_type = GLOB.seed_types[F.plantname]
 		else
-			var/obj/item/reagent_container/food/snacks/grown/F = I
+			var/obj/item/reagent_containers/food/snacks/grown/F = I
 			new_seed_type = GLOB.seed_types[F.plantname]
 
 		if(new_seed_type)

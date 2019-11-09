@@ -56,6 +56,7 @@
 		C.knock_down(10)
 		C.apply_damage(100, HALLOSS, part)
 		C.apply_damage(5, BURN, part)
+		UPDATEHEALTH(C)
 
 	else
 		playsound(src, 'sound/machines/twobeep.ogg', 60, 1)

@@ -4,7 +4,7 @@
 /mob/living/carbon/adjustHalLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	halloss = CLAMP(halloss+amount,0,maxHealth*2)
+	halloss = CLAMP(halloss + amount, 0, maxHealth * 2)
 
 /mob/living/carbon/proc/setHalLoss(amount)
 	if(status_flags & GODMODE)

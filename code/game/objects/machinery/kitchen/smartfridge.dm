@@ -20,14 +20,14 @@
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
-
+	var/visible_contents = TRUE
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
 	create_reagents(100, NO_REACT)
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
@@ -58,7 +58,7 @@
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, icon_panel)
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else if(ismultitool(I) || iswirecutter(I))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -86,7 +86,7 @@
 
 		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
 							"<span class='notice'>You add \the [I] to \the [src].")
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else if(istype(I, /obj/item/storage/bag/plants))
 		var/obj/item/storage/bag/plants/P = I
@@ -113,7 +113,7 @@
 			if(length(P.contents) > 0)
 				to_chat(user, "<span class='notice'>Some items are refused.</span>")
 
-		SSnano.update_uis(src)
+		updateUsrDialog()
 
 	else
 		to_chat(user, "<span class='notice'>\The [src] smartly refuses [I].</span>")
@@ -130,56 +130,75 @@
 
 	return TRUE
 
+///Really simple proc, just moves the object "O" into the hands of mob "M" if able, done so I could modify the proc a little for the organ fridge
+/obj/machinery/smartfridge/proc/dispense(obj/item/O, mob/M)
+	if(!M.put_in_hands(O))
+		O.forceMove(drop_location())
+		adjust_item_drop_location(O)
 
-/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	var/data[0]
-	data["contents"] = null
-	data["panel_open"] = CHECK_BITFIELD(machine_stat, PANEL_OPEN)
-	data["electrified"] = seconds_electrified > 0
-	data["shoot_inventory"] = shoot_inventory
-	data["locked"] = locked
-	data["secure"] = is_secure_fridge
-
-	var/list/items[0]
-	for (var/i=1 to length(item_quants))
-		var/K = item_quants[i]
-		var/count = item_quants[K]
-		if (count > 0)
-			items.Add(list(list("display_name" = html_encode(capitalize(K)), "vend" = i, "quantity" = count)))
-
-	if (items.len > 0)
-		data["contents"] = items
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "smartfridge.tmpl", src.name, 400, 500)
-		ui.set_initial_data(data)
+/obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "smartvend", name, ui_x, ui_y, master_ui, state)
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
-/obj/machinery/smartfridge/Topic(href, href_list)
+/obj/machinery/smartfridge/ui_data(mob/user)
+	. = list()
+
+	var/listofitems = list()
+	for (var/I in src)
+		var/atom/movable/O = I
+		if (!QDELETED(O))
+			if (listofitems[O.name])
+				listofitems[O.name]["amount"]++
+			else
+				listofitems[O.name] = list("name" = O.name, "type" = O.type, "amount" = 1)
+	sortList(listofitems)
+
+	.["contents"] = listofitems
+	.["name"] = name
+	.["isdryer"] = FALSE
+
+
+/obj/machinery/smartfridge/handle_atom_del(atom/A) // Update the UIs in case something inside gets deleted
+	SStgui.update_uis(src)
+
+/obj/machinery/smartfridge/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
+	switch(action)
+		if("Release")
+			var/desired = 0
 
-	if (href_list["vend"])
-		var/index = text2num(href_list["vend"])
-		var/amount = text2num(href_list["amount"])
-		var/K = item_quants[index]
-		var/count = item_quants[K]
+			if (params["amount"])
+				desired = text2num(params["amount"])
+			else
+				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
 
-		// Sanity check, there are probably ways to press the button when it shouldn't be possible.
-		if(count > 0)
-			item_quants[K] = max(count - amount, 0)
+			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
+				return FALSE
 
-			var/i = amount
-			for(var/obj/O in contents)
-				if(O.name == K)
-					O.forceMove(loc)
-					i--
-					if (i <= 0)
-						return 1
+			if(desired == 1 && Adjacent(usr) && !issilicon(usr))
+				for(var/obj/item/O in src)
+					if(O.name == params["name"])
+						dispense(O, usr)
+						break
+				if (visible_contents)
+					update_icon()
+				return TRUE
 
-		return 1
+			for(var/obj/item/O in src)
+				if(desired <= 0)
+					break
+				if(O.name == params["name"])
+					dispense(O, usr)
+					desired--
+			if (visible_contents)
+				update_icon()
+			return TRUE
+	return FALSE
 
 /obj/machinery/smartfridge/proc/throw_item()
 	var/obj/throw_item = null
@@ -236,11 +255,11 @@
 	req_one_access_txt = "5;33"
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass/))
+	if(istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	if(istype(O,/obj/item/storage/pill_bottle/))
 		return 1
-	if(istype(O,/obj/item/reagent_container/pill/))
+	if(istype(O,/obj/item/reagent_containers/pill/))
 		return 1
 	return 0
 
@@ -255,7 +274,7 @@
 	icon_off = "smartfridge-off"
 
 /obj/machinery/smartfridge/secure/virology/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
 		return 1
 	return 0
 
@@ -267,7 +286,7 @@
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics can now access the fridge
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_container))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
 		return 1
 	return 0
 
@@ -282,5 +301,5 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_container/glass) || istype(O,/obj/item/reagent_container/food/drinks) || istype(O,/obj/item/reagent_container/food/condiment))
+	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1

@@ -60,6 +60,8 @@
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
+		SStgui.on_transfer(current, new_character)
+
 	if(key)
 		if(new_character.key != key)					//if we're transferring into a body with a key associated which is not ours
 			new_character.ghostize(TRUE)						//we'll need to ghostize so that key isn't mobless.
@@ -71,8 +73,6 @@
 
 	if(isxeno(new_character))
 		QDEL_NULL(cm_skills)
-
-	SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself

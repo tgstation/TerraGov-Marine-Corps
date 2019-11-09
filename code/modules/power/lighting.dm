@@ -616,8 +616,8 @@
 /obj/item/light_bulb/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container/syringe))
-		var/obj/item/reagent_container/syringe/S = I
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")
 

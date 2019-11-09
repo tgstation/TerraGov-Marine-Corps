@@ -8,7 +8,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
-	custom_metabolism = 0.1
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	taste_description = "bitterness"
 	taste_multi = 1.2
 
@@ -20,26 +20,26 @@
 /datum/reagent/toxin/hptoxin
 	name = "Toxin"
 	description = "A toxic chemical."
-	custom_metabolism = 1
+	custom_metabolism = REAGENTS_METABOLISM * 5
 	toxpwr = 1
 	taste_description = "alchemy" //just anti-pwr-game stuff, no sci-fi or anything
 
 /datum/reagent/toxin/pttoxin
 	name = "Toxin"
 	description = "A toxic chemical."
-	custom_metabolism = 1
+	custom_metabolism = REAGENTS_METABOLISM * 5
 	toxpwr = 1
 	taste_description = "alchemy"
 
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
 	description = "A toxic chemical."
-	custom_metabolism = 1
+	custom_metabolism = REAGENTS_METABOLISM * 5
 	toxpwr = 0
 	taste_description = "alchemy"
 
 /datum/reagent/toxin/sdtoxin/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(1)
+	L.adjustOxyLoss(2*REM)
 	return ..()
 
 
@@ -59,7 +59,7 @@
 	taste_multi = 0.9
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(10,IRRADIATE,0)
+	L.apply_effect(10, IRRADIATE)
 	return ..()
 
 /datum/reagent/toxin/phoron
@@ -83,24 +83,24 @@
 
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/L, metabolism)
 	if(prob(33))
-		L.take_limb_damage(1*REM, 0)
+		L.take_limb_damage(REM, 0)
 	L.adjustOxyLoss(3)
 	if(prob(20))
 		L.emote("gasp")
 	return ..()
 
 /datum/reagent/toxin/lexorin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 1, 1) //Overdose starts getting bad
+	L.apply_damages(0, 1, 1)
 
 /datum/reagent/toxin/lexorin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(1, 0, 1) //Overdose starts getting bad
+	L.apply_damages(1, 0, 1)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
 	name = "Cyanide"
 	description = "A highly toxic chemical."
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 3
-	custom_metabolism = 0.4
+	custom_metabolism = REAGENTS_METABOLISM * 2
 
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(4*REM)
@@ -251,10 +251,10 @@
 	return ..()
 
 /datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 2)
 
 /datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 1) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 1)
 
 /datum/reagent/toxin/chloralhydrate
 	name = "Chloral Hydrate"
@@ -262,7 +262,7 @@
 	reagent_state = SOLID
 	color = "#000067" // rgb: 0, 0, 103
 	toxpwr = 0
-	custom_metabolism = 0.1 //Default 0.2
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
@@ -279,10 +279,10 @@
 	return ..()
 
 /datum/reagent/toxin/chloralhydrate/overdose_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 1, 2)
 
 /datum/reagent/toxin/chloralhydrate/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(0, 0, 0, 2) //Overdose starts getting bad
+	L.apply_damages(0, 0, 0, 2)
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -330,7 +330,7 @@
 	name = "Beer"
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	color = "#664300" // rgb: 102, 67, 0
-	custom_metabolism = 0.5 // Sleep toxins should always be consumed pretty fast
+	custom_metabolism = REAGENTS_METABOLISM * 2.5
 	taste_description = "piss water"
 
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
@@ -363,7 +363,7 @@
 	taste_description = "acid"
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(0, 1*REM)
+	L.take_limb_damage(0, REM)
 	return ..()
 
 /datum/reagent/toxin/acid/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
@@ -450,7 +450,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = 1.2 // Fast meta rate.
+	custom_metabolism = REAGENTS_METABOLISM * 6
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -486,7 +486,6 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = GROWTH_TOXIN_METARATE // 0.2, slow meta rate.
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0

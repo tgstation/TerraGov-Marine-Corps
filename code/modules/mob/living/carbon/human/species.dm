@@ -804,3 +804,68 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
+
+
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
+
+	if(blocked >= 1) //total negation
+		return 0
+
+	if(blocked)
+		damage *= CLAMP01(1-blocked) //Percentage reduction
+
+	if(!damage) //Complete negation
+		return 0
+
+	if(victim.protection_aura)
+		damage = round(damage * ((15 - victim.protection_aura) / 15))
+
+	var/datum/limb/organ = null
+	if(isorgan(def_zone))
+		organ = def_zone
+	else
+		if(!def_zone)
+			def_zone = ran_zone(def_zone)
+		organ = victim.get_limb(check_zone(def_zone))
+	if(!organ)
+		return FALSE
+
+	switch(damagetype)
+		if(BRUTE)
+			victim.damageoverlaytemp = 20
+			if(brute_mod)
+				damage *= brute_mod
+			if(organ.take_damage_limb(damage, 0, sharp, edge))
+				victim.UpdateDamageIcon()
+		if(BURN)
+			victim.damageoverlaytemp = 20
+			if(burn_mod)
+				damage *= burn_mod
+			if(organ.take_damage_limb(0, damage, sharp, edge))
+				victim.UpdateDamageIcon()
+		if(HALLOSS)
+			if(species_flags & NO_PAIN)
+				return
+			switch(damage)
+				if(-INFINITY to 0)
+					return FALSE
+				if(25 to 50)
+					if(prob(20))
+						victim.emote("pain")
+				if(50 to INFINITY)
+					if(prob(60))
+						victim.emote("pain")
+			victim.adjustHalLoss(damage)
+		if(TOX)
+			victim.adjustToxLoss(damage)
+		if(OXY)
+			victim.adjustOxyLoss(damage)
+		if(CLONE)
+			victim.adjustCloneLoss(damage)
+
+	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, src, damage)
+
+	if(updating_health)
+		victim.updatehealth()
+	return damage

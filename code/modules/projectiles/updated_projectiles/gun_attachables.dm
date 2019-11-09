@@ -267,7 +267,8 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
-	return
+	SHOULD_CALL_PARENT(1)
+	SEND_SIGNAL(user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, gun)
 
 
 /////////// Muzzle Attachments /////////////////////////////////
@@ -972,6 +973,7 @@ Defined in conflicts.dm of the #defines folder.
 			qdel(G)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
@@ -1060,8 +1062,8 @@ Defined in conflicts.dm of the #defines folder.
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/reagent_container))
-		var/obj/item/reagent_container/FT = object
+	else if(istype(object, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
@@ -1076,6 +1078,7 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return

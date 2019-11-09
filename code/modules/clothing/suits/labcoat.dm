@@ -8,14 +8,14 @@
 	allowed = list(
 		/obj/item/analyzer,
 		/obj/item/stack/medical,
-		/obj/item/reagent_container/dropper,
-		/obj/item/reagent_container/syringe,
-		/obj/item/reagent_container/hypospray,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/healthanalyzer,
 		/obj/item/flashlight/pen,
-		/obj/item/reagent_container/glass/bottle,
-		/obj/item/reagent_container/glass/beaker,
-		/obj/item/reagent_container/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
 		/obj/item/paper)
 	permeability_coefficient = 0.6

@@ -229,6 +229,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1.05
+	burst_amount = 0
 	fire_delay = 0.25 SECONDS
 
 
@@ -237,10 +238,11 @@
 	desc = "A cheap, reliable assault rifle chambered in 7.62x39mm. Commonly found in the hands of criminals or mercenaries. This is the carbine variant."
 	icon_state = "mar30"
 	item_state = "mar30"
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = null
 
 	fire_delay = 0.23 SECONDS
+	burst_amount = 3
 	accuracy_mult = 0.9
 	accuracy_mult_unwielded = 0.5
 

@@ -935,7 +935,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -1008,7 +1008,7 @@
 /area/security/main)
 "adE" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "adF" = (
@@ -1155,8 +1155,8 @@
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "aed" = (
-/obj/item/reagent_container/food/snacks/monkeycube,
-/obj/item/reagent_container/food/snacks/monkeycube,
+/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/reagent_containers/food/snacks/monkeycube,
 /obj/machinery/processor,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
@@ -1204,7 +1204,7 @@
 /area/maintenance/fpmaint)
 "aep" = (
 /obj/structure/bed/chair/office/dark,
-/obj/item/reagent_container/blood/OPlus,
+/obj/item/reagent_containers/blood/OPlus,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "aer" = (
@@ -1245,20 +1245,20 @@
 /area/maintenance/fpmaint)
 "aeB" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/blood,
+/obj/item/reagent_containers/blood,
 /obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "aeC" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/blood,
+/obj/item/reagent_containers/blood,
 /obj/item/tool/surgery/hemostat,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "aeD" = (
 /obj/structure/table/woodentable,
 /obj/item/restraints/handcuffs/zip,
-/obj/item/reagent_container/blood,
+/obj/item/reagent_containers/blood,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "aeE" = (
@@ -5323,7 +5323,7 @@
 /area/hallway/secondary/entry)
 "ask" = (
 /obj/item/tool/mop,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/janitor)
 "asl" = (
@@ -5397,7 +5397,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/tool,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_container/food/snacks/loadedbakedpotato,
+/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /turf/open/floor,
 /area/storage/primary)
 "asy" = (
@@ -5834,7 +5834,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/toolbox/mechanical,
 /obj/effect/spawner/random/tool,
-/obj/item/reagent_container/food/snacks/loadedbakedpotato,
+/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /turf/open/floor,
 /area/storage/primary)
 "atD" = (
@@ -6811,7 +6811,7 @@
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/decal/cleanable/blood,
 /obj/item/stack/sheet/mineral/plastic,
-/obj/item/reagent_container/food/snacks/meatpizzaslice,
+/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 /turf/open/floor,
 /area/janitor)
 "awE" = (
@@ -6893,7 +6893,7 @@
 /obj/item/tool/plantspray/weeds,
 /obj/item/tool/weedkiller/D24,
 /obj/item/tool/weedkiller/triclopyr,
-/obj/item/reagent_container/food/snacks/meatballsoup,
+/obj/item/reagent_containers/food/snacks/meatballsoup,
 /turf/open/floor,
 /area/hydroponics/garden)
 "awP" = (
@@ -7066,7 +7066,7 @@
 /obj/effect/spawner/random/toolbox,
 /obj/effect/spawner/random/tool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/item/reagent_container/food/snacks/loadedbakedpotato,
+/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /turf/open/floor,
 /area/storage/primary)
 "axr" = (
@@ -8010,7 +8010,7 @@
 /area/janitor)
 "aAi" = (
 /obj/item/tool/mop,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/janitor)
@@ -8103,10 +8103,6 @@
 "aAA" = (
 /obj/machinery/computer/card,
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/darkish,
-/area/bridge)
-"aAB" = (
-/obj/machinery/account_database,
 /turf/open/floor/tile/darkish,
 /area/bridge)
 "aAC" = (
@@ -8248,7 +8244,7 @@
 /area/bridge/meeting_room)
 "aBb" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/item/tool/hatchet,
 /obj/item/tool/minihoe,
 /obj/item/tool/shovel,
@@ -8836,7 +8832,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/tool,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_container/food/snacks/lemoncakeslice,
+/obj/item/reagent_containers/food/snacks/lemoncakeslice,
 /turf/open/floor,
 /area/crew_quarters/locker)
 "aCS" = (
@@ -9011,7 +9007,7 @@
 "aDp" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/tool,
-/obj/item/reagent_container/food/snacks/loadedbakedpotato,
+/obj/item/reagent_containers/food/snacks/loadedbakedpotato,
 /turf/open/floor,
 /area/crew_quarters/locker)
 "aDq" = (
@@ -9520,7 +9516,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/powercell,
-/obj/effect/spawner/newbomb,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/internal_affairs)
 "aFg" = (
@@ -10040,7 +10035,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_container/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/hotchili,
 /turf/open/floor/tile/red/yellowfull,
 /area/crew_quarters/locker)
 "aGR" = (
@@ -10663,7 +10658,7 @@
 "aJp" = (
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/retractor,
 /obj/item/tool/surgery/surgicaldrill,
@@ -12158,7 +12153,7 @@
 "aNS" = (
 /obj/structure/table,
 /obj/item/tool/surgery/cautery,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/syringe_case/tox,
 /obj/machinery/light{
 	dir = 1
@@ -12573,7 +12568,7 @@
 "aPf" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /obj/item/autopsy_scanner,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner";
@@ -12685,7 +12680,7 @@
 /turf/open/floor/tile/white,
 /area/medical/surgery)
 "aPy" = (
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/tile/white,
 /area/medical/surgery)
 "aPz" = (
@@ -12753,8 +12748,8 @@
 /area/medical/reception)
 "aPN" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/firealarm{
 	dir = 4
 	},
@@ -12786,7 +12781,7 @@
 /obj/item/clipboard,
 /obj/item/folder/white,
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/effect/spawner/random/bomb_supply,
 /turf/open/floor/tile/bar,
 /area/medical/chemistry)
@@ -13953,7 +13948,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor,
 /area/bridge/meeting_room)
 "aTP" = (
@@ -14531,8 +14526,8 @@
 /area/crew_quarters/bar)
 "aVx" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/condiment/peppermill,
-/obj/item/reagent_container/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/item/reagent_containers/food/condiment/saltshaker,
 /turf/open/floor,
 /area/crew_quarters/bar)
 "aVy" = (
@@ -14618,7 +14613,7 @@
 /area/crew_quarters/bar)
 "aVJ" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/condiment/sugar,
+/obj/item/reagent_containers/food/condiment/sugar,
 /turf/open/floor,
 /area/crew_quarters/bar)
 "aVK" = (
@@ -14634,7 +14629,7 @@
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/powercell,
-/obj/item/reagent_container/food/snacks/mushroompizzaslice,
+/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
 	dir = 8
@@ -14694,13 +14689,13 @@
 /area/mainship/hallways/port_hallway)
 "aVU" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/baguette,
+/obj/item/reagent_containers/food/snacks/baguette,
 /turf/open/floor,
 /area/crew_quarters/bar)
 "aVV" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor{
 	icon_state = "red"
 	},
@@ -14781,8 +14776,8 @@
 /area/hydroponics)
 "aWg" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor{
 	icon_state = "red"
 	},
@@ -14820,7 +14815,7 @@
 /area/crew_quarters/locker)
 "aWl" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor{
 	icon_state = "red"
 	},
@@ -16419,7 +16414,7 @@
 /obj/structure/safe/floor,
 /obj/item/implanter,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/reagent_container/food/snacks/orangecakeslice,
+/obj/item/reagent_containers/food/snacks/orangecakeslice,
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
 	dir = 8
@@ -16477,12 +16472,6 @@
 	dir = 10
 	},
 /area/maintenance/substation)
-"baI" = (
-/obj/effect/spawner/newbomb,
-/turf/open/floor/plating/warning{
-	dir = 4
-	},
-/area/lv624/lazarus/comms)
 "baJ" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/dark,
@@ -17477,10 +17466,6 @@
 	dir = 8
 	},
 /area/hallway/secondary/entry)
-"bcL" = (
-/obj/effect/spawner/newbomb,
-/turf/open/floor,
-/area/maintenance/substation)
 "bcM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18241,15 +18226,15 @@
 "beg" = (
 /obj/structure/table/mainship,
 /obj/item/paper,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker{
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/reagent_container/glass/beaker{
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/item/reagent_container/dropper,
+/obj/item/reagent_containers/dropper,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -19796,7 +19781,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
 "biy" = (
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/tile/white,
 /area/medical/morgue)
 "biA" = (
@@ -19809,7 +19794,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "biB" = (
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/tile/bar,
 /area/medical/surgery)
 "biC" = (
@@ -20029,7 +20014,7 @@
 /turf/open/floor/tile/white,
 /area/medical/genetics_cloning)
 "bjh" = (
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bji" = (
@@ -20056,7 +20041,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bjo" = (
@@ -20192,7 +20177,7 @@
 /area/hydroponics)
 "bjC" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/item/tool/hatchet,
 /obj/item/tool/minihoe,
 /obj/item/tool/shovel,
@@ -20923,7 +20908,7 @@
 /turf/open/floor/plating,
 /area/hallway/primary/port)
 "blk" = (
-/obj/item/reagent_container/food/snacks/no_raisin,
+/obj/item/reagent_containers/food/snacks/no_raisin,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -46547,7 +46532,7 @@ aIp
 aIR
 aJO
 aIp
-baI
+aIR
 aJO
 aHM
 aGR
@@ -49366,7 +49351,7 @@ aZe
 aZQ
 bal
 aZQ
-bcL
+aZQ
 bal
 beB
 biH
@@ -51129,7 +51114,7 @@ ayA
 azu
 axd
 aAd
-aAB
+awp
 aUT
 aeP
 aeP

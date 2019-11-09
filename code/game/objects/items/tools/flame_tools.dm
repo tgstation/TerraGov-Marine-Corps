@@ -243,7 +243,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 
-/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_container/glass/glass, mob/living/user, proximity)
+/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/living/user, proximity)
 	. = ..()
 	if(!proximity || lit) //can't dip if cigarette is lit
 		return

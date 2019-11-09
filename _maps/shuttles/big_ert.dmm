@@ -237,8 +237,8 @@
 /obj/structure/mirror{
 	pixel_y = -28
 	},
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/mainship{
 	icon_state = "plate"
 	},
@@ -251,7 +251,7 @@
 /obj/item/storage/pouch/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/mainship{
 	icon_state = "plate"
 	},

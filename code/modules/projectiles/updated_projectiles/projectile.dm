@@ -502,9 +502,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
-		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(turf_to_scan, src)
-
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
 
@@ -779,7 +776,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags)
 		proj.play_damage_effect(src)
-		apply_damage(damage, proj.ammo.damage_type, proj.def_zone) //This could potentially delete the source.
+		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
+			UPDATEHEALTH(src)
 		if(shrapnel_roll)
 			var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
 			shrap.embed_into(src, proj.def_zone, TRUE)

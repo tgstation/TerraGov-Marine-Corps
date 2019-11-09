@@ -457,6 +457,8 @@
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
 			target.apply_damage(15, BRUTE, "head")
+			UPDATEHEALTH(target)
+
 
 /obj/item/clothing/mask/facehugger/proc/Die()
 	reset_attach_status()
