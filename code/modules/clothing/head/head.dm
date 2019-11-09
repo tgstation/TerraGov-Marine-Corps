@@ -6,6 +6,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/anti_hug = 0
 
+/obj/item/clothing/head/update_clothing_icon()
+	if (ismob(loc))
+		var/mob/M = loc
+		M.update_inv_head()
+
 /obj/item/clothing/head/tgmcbandanna
 	name = "\improper TGMC bandanna"
 	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat. Comes in two stylish colors."
