@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "10x27mm"
+	name = "10x27mm caseless"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	shrapnel_chance = 0
