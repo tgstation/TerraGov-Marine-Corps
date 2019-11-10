@@ -633,6 +633,7 @@
 	density = FALSE
 	closed = TRUE
 	can_wire = TRUE
+	climbable = TRUE
 
 	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
 	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming

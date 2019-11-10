@@ -30,3 +30,5 @@ As a xeno, it's not a good idea to kill hosts during the crash phase if they can
 As a xeno, don't take too long attacking during the crash phase. The ship can be rigged to explode in twenty minutes, ending the round in a tie.
 As a xeno, remember that neurotox injected by defilers, sentinels, praetorian, and queen can overdose, killing a marine quickly. Try to avoid this when capturing, if they scream in pain they've probably had enough.
 As a xeno, you can use the crawl through vent verb found in the xeno tab to quickly find and use vents in the floor without having to alt-click them. 
+As a xeno, you can crawl through holes in walls made by acid by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them. If you're too big to pass through, you'll damage the wall instead.
+As a xeno, you can climb over window frames by SpecialClicking (Default: CTRL) on them or click-dragging yourself on them.
