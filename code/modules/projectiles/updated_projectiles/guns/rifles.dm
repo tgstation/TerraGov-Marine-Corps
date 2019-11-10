@@ -92,7 +92,7 @@
 
 
 //-------------------------------------------------------
-//T64 DMR
+//T-64 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper T-64 designated marksman rifle"
@@ -104,6 +104,9 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
+	aim_slowdown = 0.8
+	wield_delay = 1.0 SECONDS
+	force = 20
 	max_shells = 15 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
@@ -132,7 +135,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.9 SECONDS
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.15
 	scatter = -15
 	burst_amount = 0

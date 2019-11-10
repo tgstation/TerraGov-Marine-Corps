@@ -42,7 +42,7 @@
 	caliber = "T-64 DMR bullet"
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmrammo
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
