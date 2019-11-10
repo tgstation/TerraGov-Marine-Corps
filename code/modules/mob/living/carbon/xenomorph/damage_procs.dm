@@ -181,7 +181,7 @@
 
 		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
 
-			if(istype(victim.wear_suit,/obj/item/clothing/suit/storage/marine/specialist/melee))
+			if( (victim.wear_suit?.resistance_flags & UNACIDABLE) && (victim.head?.resistance_flags & UNACIDABLE) )
 				continue
 
 			distance = get_dist(src,victim)

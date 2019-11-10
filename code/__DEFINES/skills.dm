@@ -1,6 +1,7 @@
 
 //skill defines
 
+#define SKILL_INVALID -999 //Useful for comparing numbers.
 
 //firearms skill (general knowledge of guns) (hidden skill)
 //increase or decrase accuracy, recoil, and firing delay of rifles and smgs.

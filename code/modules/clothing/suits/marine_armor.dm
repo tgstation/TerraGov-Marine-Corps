@@ -534,13 +534,13 @@
 	armor = list("melee" = 65, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 50)
 	flags_item_map_variant = NONE
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	var/stored_skill = -99 //To be safe.
+	var/stored_skill = SKILL_INVALID //To be safe.
 
 /obj/item/clothing/suit/storage/marine/specialist/melee/equipped(mob/user, slot)
 
 	. = ..()
 
-	if(user && user.mind && user.mind.cm_skills && slot == SLOT_WEAR_SUIT)
+	if(user.mind?.cm_skills && slot == SLOT_WEAR_SUIT && stored_skill == SKILL_INVALID)
 		stored_skill = user.mind.cm_skills.firearms
 		user.mind.cm_skills.firearms = 0
 		to_chat(user,"<span class='warning'>Your bulky hands and armor make it difficult to use weapons...</span>")
@@ -552,9 +552,10 @@
 
 	. = ..()
 
-	if(user && user.mind && user.mind.cm_skills && stored_skill != -99)
+	if(user.mind?.cm_skills && stored_skill != SKILL_INVALID)
 		to_chat(user,"<span class='notice'>You feel more comfortable using guns now.</notice>")
 		user.mind.cm_skills.firearms = stored_skill
+		stored_skill = SKILL_INVALID
 
 	return .
 
