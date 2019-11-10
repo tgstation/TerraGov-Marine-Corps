@@ -137,8 +137,8 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
-	desc = "An auto-injector loaded with 4 units of Neuraline, a very potent anti-stun chemical."
-	amount_per_transfer_from_this = 4
-	volume = 4
+	desc = "An auto-injector loaded with 3 units of Neuraline, a very potent anti-stun chemical."
+	amount_per_transfer_from_this = 3
+	volume = 3
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/neuraline = 4)
