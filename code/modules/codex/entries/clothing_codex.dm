@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 		armor_strings += "<br>This will obstruct your vision."
 
 	if(accuracy_mod)
-		armor_strings += "<br>This will alter your shooting accuracy by [accuracy_mod]% when worn."
+		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
 	if(flags_inventory & NOPRESSUREDMAGE)
 		armor_strings += "Wearing this will protect you from the vacuum of space."
