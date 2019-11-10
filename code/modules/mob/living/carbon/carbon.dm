@@ -4,6 +4,8 @@
 
 
 /mob/living/carbon/Destroy()
+	if(afk_status == MOB_AFK)
+		set_afk_status(MOB_DISCONNECTED)
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
@@ -409,3 +411,52 @@
 		see_invisible = see_override
 
 	return ..()
+
+
+//AFK STATUS
+/mob/living/carbon/proc/set_afk_status(new_status, afk_timer)
+	switch(new_status)
+		if(MOB_CONNECTED, MOB_DISCONNECTED)
+			if(afk_timer_id)
+				deltimer(afk_timer_id)
+				afk_timer_id = null
+		if(MOB_AFK)
+			if(afk_status == MOB_AFK)
+				if(timeleft(afk_timer_id) > afk_timer)
+					deltimer(afk_timer_id) //We'll go with the shorter timer.
+				else
+					return
+			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+	afk_status = new_status
+
+
+/mob/living/carbon/proc/on_sdd_grace_period_end()
+	if(stat == DEAD)
+		return FALSE
+	if(isclientedaghost(src))
+		return FALSE
+	set_afk_status(MOB_DISCONNECTED)
+	return TRUE
+
+/mob/living/carbon/human/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	log_admin("[key_name(src)] (Job: [job]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [job]) has been away for 15 minutes.")
+
+/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	if(client)
+		return
+
+	var/mob/picked = get_alien_candidate()
+	if(!picked)
+		return
+
+	SSticker.mode.transfer_xeno(picked, src)
+
+	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
