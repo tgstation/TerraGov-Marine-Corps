@@ -103,8 +103,8 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x27mm caseless" //codex
-	aim_slowdown = 0.8
+	caliber = "10x27mm" //codex
+	aim_slowdown = 0.75
 	wield_delay = 1.0 SECONDS
 	force = 20
 	max_shells = 15 //codex
