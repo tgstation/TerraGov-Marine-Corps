@@ -448,6 +448,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 20
 
+/datum/ammo/bullet/rifle/standard_dmr
+	name = "10x27mm caseless"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 0
+	damage = 45
+	scatter = -15
+	penetration = 15
+
 /*
 //================================================
 					Shotgun Ammo
