@@ -114,10 +114,9 @@
 	name = "expired hyperzine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 4,
-						/datum/reagent/mercury = 1,
 						/datum/reagent/medicine/dexalin = 8,
 						/datum/reagent/medicine/inaprovaline = 8,
-						/datum/reagent/toxin = 4)
+						/datum/reagent/toxin = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "hyperzine autoinjector"
@@ -128,3 +127,26 @@
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 5,
 						/datum/reagent/medicine/dexalin = 10,
 						/datum/reagent/medicine/inaprovaline = 10)
+
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine
+	name = "synaptizine autoinjector"
+	desc = "An auto-injector loaded with a safe-to-use synaptizine mix, a good anti-stun chemical."
+	icon_state = "autoinjector-10"
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 5, 
+						/datum/reagent/medicine/tricordrazine = 15)
+
+/obj/item/reagent_containers/hypospray/autoinjector/synaptizine
+	name = "expired synaptizine autoinjector"
+	desc = "An auto-injector loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
+	icon_state = "autoinjector-10"
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, 
+						/datum/reagent/medicine/tricordrazine = 11,
+						/datum/reagant/toxin = 6)
+
+/obj/item/reagent_containers/hypospray/autoinjector/neuraline
+	name = "neuraline autoinjector"
+	desc = "An auto-injector loaded with 4 units of Neuraline, a very potent anti-stun chemical."
+	amount_per_transfer_from_this = 4
+	volume = 4
+	icon_state = "autoinjector-6"
+	list_reagents = list(/datum/reagent/medicine/neuraline = 4)
