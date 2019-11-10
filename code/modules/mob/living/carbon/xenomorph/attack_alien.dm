@@ -173,8 +173,6 @@
 		"<span class='danger'>Our slash against [src] narroly misses!</span>")
 		return FALSE
 
-	var/damage = X.xeno_caste.melee_damage
-
 	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
