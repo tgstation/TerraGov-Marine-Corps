@@ -274,7 +274,7 @@
 		return get_turf(L)
 
 /datum/emergency_call/proc/create_member(datum/mind/mind_to_assign) //Overriden in each distress call file.
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	var/turf/spawn_loc = get_spawn_point()
 
 	if(!istype(spawn_loc))

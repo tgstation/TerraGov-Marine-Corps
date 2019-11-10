@@ -1,9 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Stamina type of damage added. It comes and goes faster than other damage types, knocksdown the victim if it has too much of it, and is otherwise harmless."
-  - tweak: "Walk mode made severely faster, and the default for humans. They can run by making use of a stamina buffer, which they recover when not running. Synths don't have stamina, so they cannot sprint/run but are unaffected by stamina damage."
-  - balance: "Xenos now have melee armor. Humans also have melee accuracy, which is perfect while walking and only 80% when running. Their tackles now  fullyrespect melee armor."
-  - balance: "Neurotoxin no longer injects chems. It now deals direct stamina-damage, same as xeno tackles, resin spit and a few other things."
-  - rscadd: "Examine is now a keybind, defaulted to Shift. It merges old shift+click and alt+click on a turf near you. Alt defaults to run-while-holding, and you can shoot or attack while doing so. You can rebind it as well."
-  - balance: "The hunter is now much faster while stealthed, so as a consequence its sneak attack has been nerfed some. Probably needs further tweaks."
