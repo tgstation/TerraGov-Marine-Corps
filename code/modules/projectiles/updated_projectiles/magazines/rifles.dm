@@ -23,8 +23,9 @@
 
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper M41A1 incendiary magazine (10x24mm)"
-	desc = "A 10mm assault rifle magazine."
+	desc = "A 10mm incendiary assault rifle magazine. Lower magazine size due to larger rounds."
 	icon_state = "m41a1_incendiary"
+	max_rounds = 20
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 
 /obj/item/ammo_magazine/rifle/ap
@@ -32,6 +33,13 @@
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
+
+/obj/item/ammo_magazine/rifle/explosive
+	name = "\improper M41A1 explosive magazine (10x24mm)"
+	desc = "A 10mm explosive assault rifle magazine. Lower magazine size due to larger rounds."
+	icon_state = "m41a1_ext"
+	max_rounds = 20
+	default_ammo = /datum/ammo/bullet/rifle/explosive
 
 
 //-------------------------------------------------------
@@ -90,6 +98,26 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
+	gun_type = /obj/item/weapon/gun/rifle/lmg
+
+/obj/item/ammo_magazine/lmg/incendiary
+	name = "\improper M41AE2 incendiary ammo box (10x24mm)"
+	desc = "A semi-rectangular box of incendiary rounds for the M41AE2 Heavy Pulse Rifle. "
+	icon_state = "m41ae2"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/incendiary
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 100
+	gun_type = /obj/item/weapon/gun/rifle/lmg
+
+/obj/item/ammo_magazine/lmg/explosive
+	name = "\improper M41AE2 explosive ammo box (10x24mm)"
+	desc = "A semi-rectangular box of explosive rounds for the M41AE2 Heavy Pulse Rifle. You could saw down trees with this thing!"
+	icon_state = "m41ae2"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/explosive
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 100
 	gun_type = /obj/item/weapon/gun/rifle/lmg
 
 
