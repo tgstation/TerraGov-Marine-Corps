@@ -171,6 +171,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/oxycodone, /datum/reagent/medicine/tramadol)
+	purge_rate = 2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 3 * REM)
@@ -540,6 +542,8 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/oxycodone, /datum/reagent/medicine/tramadol)
+	purge_rate = 2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
@@ -661,7 +665,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	taste_multi = 2
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, metabolism)
-	L.reagent_move_delay_modifier -= 2
+	L.reagent_move_delay_modifier -= 1.5
 	if(prob(50))
 		L.adjust_knocked_down(-1)
 		L.adjust_stunned(-1)
@@ -676,19 +680,19 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		to_chat(L, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
 	if(prob(5))
 		L.emote(pick("twitch","blink_r","shiver"))
-		L.adjustHalLoss(20)
+		L.adjustHalLoss(10)
 	if(prob(20))
-		L.hallucination += 10
+		L.hallucination += 5
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/L, metabolism)
 	if(prob(10))
 		to_chat(L, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
-		L.adjustHalLoss(35)
-		L.stun(2)
+		L.adjustHalLoss(25)
+		L.stun(1)
 	if(prob(20))
-		L.hallucination += 15
+		L.hallucination += 10
 		L.confused += 3
 
 
@@ -724,7 +728,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		var/mob/living/carbon/human/H = L
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-		I.take_damage(4*REM)
+		I.take_damage(6*REM)
 	return
 
 
@@ -792,7 +796,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 	taste_description = "fish"
 
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/rezadone/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-2*REM)
@@ -819,7 +823,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
-	description = "An all-purpose antiviral agent."
+	description = "An all-purpose antiviral agent. Useful as a barrier against injected toxins."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	overdose_threshold = REAGENTS_OVERDOSE
