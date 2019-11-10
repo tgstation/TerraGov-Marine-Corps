@@ -316,16 +316,7 @@
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector)
 
-/obj/item/storage/pouch/autoinjector/full
-	name = "auto-injector pouch"
-	desc = "A pouch specifically for auto-injectors."
-	icon_state = "autoinjector"
-	storage_slots = 7
-	max_storage_space = 14
-	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector)
-	
-	/obj/item/storage/pouch/autoinjector/full/Initialize()
+/obj/item/storage/pouch/autoinjector/full/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
