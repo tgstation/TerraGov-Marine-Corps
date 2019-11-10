@@ -210,12 +210,13 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
-	icon_state = "bullet"
 	switch(new_caliber)
 		if("12g",".410")
 			icon_state = ammo_name
 		if("7.62x54mmR")
 			icon_state = "mosin bullet"
+		else
+			icon_state = "bullet"
 
 	default_ammo = new_ammo
 	caliber = new_caliber
