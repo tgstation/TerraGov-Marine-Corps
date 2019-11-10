@@ -39,7 +39,7 @@
 	desc = "A 10mm explosive assault rifle magazine. Lower magazine size due to larger rounds."
 	icon_state = "m41a1_ext"
 	max_rounds = 20
-	default_ammo = /datum/ammo/bullet/rifle/explosive
+	default_ammo = /datum/ammo/rocket/rifle
 
 
 //-------------------------------------------------------
@@ -115,7 +115,7 @@
 	desc = "A semi-rectangular box of explosive rounds for the M41AE2 Heavy Pulse Rifle. You could saw down trees with this thing!"
 	icon_state = "m41ae2"
 	caliber = "10x24mm caseless"
-	default_ammo = /datum/ammo/bullet/rifle/explosive
+	default_ammo = /datum/ammo/rocket/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 100
 	gun_type = /obj/item/weapon/gun/rifle/lmg
