@@ -1,7 +1,0 @@
-author: "David-Stormwell-TGCM"
-delete-after: True
-changes: 
-  - rscadd: "T64 DMR"
-  - rscadd: "10x27 Caliber ammo for the DMR"
-  - soundadd: "A new firing sound for the DMR"
-  - imageadd: "Gun Icons and magazine icons for it."
