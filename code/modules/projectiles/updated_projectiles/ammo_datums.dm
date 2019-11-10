@@ -457,9 +457,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	penetration = -20
 
-/datum/ammo/bullet/rifle/explosive/drop_nade(turf/T)
-	explosion(T, -1, -1, 1, 2)
+/datum/ammo/bullet/rifle/explosive/New()
 
+	. = ..()
+
+	smoke = new()
+
+
+
+/datum/ammo/bullet/rifle/explosive/set_smoke()
+
+	smoke = new
+
+
+
+/datum/ammo/bullet/rifle/explosive/drop_nade(turf/T)
+
+	explosion(T, -1, 1, 1, 2)
+
+	set_smoke()
+
+	smoke.set_up(1, T)
+
+	smoke.start()
 
 /*
 //================================================
