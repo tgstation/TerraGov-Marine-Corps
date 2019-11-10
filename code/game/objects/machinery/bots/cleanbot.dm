@@ -288,7 +288,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A
 		target = null
 
 /obj/machinery/bot/cleanbot/deconstruct(disassembled = TRUE)
-	new /obj/item/reagent_container/glass/bucket(loc)
+	new /obj/item/reagent_containers/glass/bucket(loc)
 	new /obj/item/assembly/prox_sensor(loc)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(loc)

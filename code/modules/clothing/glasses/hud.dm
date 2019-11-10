@@ -3,31 +3,59 @@
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags_atom = null //doesn't protect eyes because it's a monocle, duh
 	var/hud_type
+	var/mob/living/carbon/human/affected_user
 
 
-/obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
-	if(slot == SLOT_GLASSES && active)
-		var/datum/atom_hud/H = GLOB.huds[hud_type]
-		H.add_hud_to(user)
-	..()
+/obj/item/clothing/glasses/hud/Destroy()
+	if(affected_user)
+		deactivate_hud()
+	return ..()
 
-/obj/item/clothing/glasses/hud/dropped(mob/living/carbon/human/user)
-	if(istype(user) && active)
-		if(src == user.glasses) //dropped is called before the inventory reference is updated.
-			var/datum/atom_hud/H = GLOB.huds[hud_type]
-			H.remove_hud_from(user)
-	..()
 
-/obj/item/clothing/glasses/hud/attack_self(mob/user)
-	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(toggleable && H.glasses == src) //toggleable and worn
-			var/datum/atom_hud/MH = GLOB.huds[hud_type]
-			if(active)
-				MH.add_hud_to(user)
-			else
-				MH.remove_hud_from(user)
+/obj/item/clothing/glasses/hud/equipped(mob/user, slot)
+	if(!ishuman(user))
+		return ..()
+	if(slot == SLOT_GLASSES)
+		if(active)
+			activate_hud(user)
+	else if(affected_user)
+		deactivate_hud()
+	return ..()
+
+
+/obj/item/clothing/glasses/hud/dropped(mob/user)
+	if(affected_user)
+		deactivate_hud()
+	return ..()
+
+
+/obj/item/clothing/glasses/hud/activate_glasses(mob/user, silent = FALSE)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/hud_user = user
+	if(hud_user.glasses != src)
+		return
+	activate_hud(hud_user)
+
+
+/obj/item/clothing/glasses/hud/deactivate_glasses(mob/user, silent = FALSE)
+	. = ..()
+	if(QDELETED(affected_user))
+		return
+	deactivate_hud()
+
+
+/obj/item/clothing/glasses/hud/proc/activate_hud(mob/living/carbon/human/user)
+	var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
+	hud_datum.add_hud_to(user)
+	affected_user = user
+
+
+/obj/item/clothing/glasses/hud/proc/deactivate_hud()
+	var/datum/atom_hud/hud_datum = GLOB.huds[hud_type]
+	hud_datum.remove_hud_from(affected_user)
+	affected_user = null
 
 
 /obj/item/clothing/glasses/hud/health

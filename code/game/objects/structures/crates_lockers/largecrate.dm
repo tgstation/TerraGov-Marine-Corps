@@ -96,7 +96,7 @@
 						/obj/item/multitool,
 						/obj/item/tool/crowbar,
 						/obj/item/flashlight,
-						/obj/item/reagent_container/food/snacks/donkpocket,
+						/obj/item/reagent_containers/food/snacks/donkpocket,
 						/obj/item/explosive/grenade/smokebomb,
 						/obj/item/circuitboard/airlock,
 						/obj/item/assembly/igniter,
@@ -144,21 +144,20 @@
 	return ..()
 
 
-/obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
-	. = ..()
+/obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
+	if(!welder.isOn())
+		return FALSE
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
+	if(!welder.remove_fuel(1, user))
+		return TRUE
+	user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>",
+		"<span class='notice'>You weld open \the [src].</span>",
+		"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	deconstruct(TRUE)
+	return TRUE
 
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-			return
-		WT.remove_fuel(1, user)
-		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
-							"<span class='notice'>You weld open \the [src].</span>", \
-							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		deconstruct(TRUE)
-	else
-		return attack_hand(user)
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()

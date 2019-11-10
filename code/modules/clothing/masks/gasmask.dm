@@ -28,6 +28,10 @@
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
+/obj/item/clothing/mask/gas/PMC/damaged
+	name = "damaged M8 pattern armored balaclava"
+	anti_hug = 0
+
 /obj/item/clothing/mask/gas/PMC/upp
 	name = "\improper UPP armored commando balaclava"
 	icon_state = "upp_mask"

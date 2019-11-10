@@ -50,8 +50,7 @@
 			to_chat(H, "<span class='danger'>You feel a powerful shock course through your body!</span>")
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(G.siemens_coefficient)//not insulated
-				H.halloss += 10
-				H.stunned += 10
+				H.adjustStaminaLoss(200)
 				return
 	return ..(user)
 
@@ -458,6 +457,7 @@
 			var/turf/location = src.loc
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
+			UPDATEHEALTH(M)
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))

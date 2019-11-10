@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive]</span>")
+		to_chat(user, "<span class='notice'>\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa.</span>")
 
 
 /obj/item/tank/attackby(obj/item/I, mob/user, params)
@@ -62,86 +62,6 @@
 			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C)]&deg;C</span>")
 		else
 			to_chat(user, "<span class='notice'>Tank is empty!</span>")
-
-
-/obj/item/tank/attack_self(mob/user as mob)
-	if (pressure == 0)
-		return
-
-	ui_interact(user)
-
-/obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-
-	var/using_internal
-	if(istype(loc,/mob/living/carbon))
-		var/mob/living/carbon/location = loc
-		if(location.internal==src)
-			using_internal = 1
-
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["tankPressure"] = round(pressure)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
-	data["valveOpen"] = using_internal ? 1 : 0
-
-	data["maskConnected"] = 0
-	if(istype(loc,/mob/living/carbon))
-		var/mob/living/carbon/location = loc
-		if(location.internal == src || (location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS)))
-			data["maskConnected"] = 1
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "tanks.tmpl", "Tank", 500, 300)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
-
-/obj/item/tank/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if (usr.stat|| usr.restrained())
-		return 0
-	if (src.loc != usr)
-		return 0
-
-	if (href_list["dist_p"])
-		if (href_list["dist_p"] == "reset")
-			src.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if (href_list["dist_p"] == "max")
-			src.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
-		else
-			var/cp = text2num(href_list["dist_p"])
-			src.distribute_pressure += cp
-		src.distribute_pressure = min(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-	if (href_list["stat"])
-		if(istype(loc,/mob/living/carbon))
-			var/mob/living/carbon/location = loc
-			if(location.internal == src)
-				location.internal = null
-				to_chat(usr, "<span class='notice'>You close the tank release valve.</span>")
-				if (location.hud_used && location.hud_used.internals)
-					location.hud_used.internals.icon_state = "internal0"
-			else
-				if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
-					location.internal = src
-					to_chat(usr, "<span class='notice'>You open \the [src] valve.</span>")
-					if (location.hud_used && location.hud_used.internals)
-						location.hud_used.internals.icon_state = "internal1"
-				else
-					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
-
-	return 1
-
 
 /obj/item/tank/return_air()
 	return list(gas_type, temperature, distribute_pressure)

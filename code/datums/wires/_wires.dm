@@ -208,6 +208,8 @@
 		if(!remaining_pulses)
 			break
 
+/datum/wires/proc/interactable(mob/user)
+	return TRUE
 
 /datum/wires/proc/get_status()
 	return
@@ -233,10 +235,29 @@
 	return TRUE
 
 
-/datum/wires/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui, force_open = TRUE)
+/datum/wires/ui_host()
+	return holder
+
+/datum/wires/ui_status(mob/user)
+	if(interactable(user))
+		return ..()
+	return UI_CLOSE
+
+/datum/wires/ui_interact(mob/user, ui_key = "wires", datum/tgui/ui = null, force_open = FALSE, \
+							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "wires", "[holder.name] Wires", 350, 150 + wires.len * 30, master_ui, state)
+		ui.open()
+
+/datum/wires/ui_data(mob/user)
 	var/list/data = list()
 	var/list/payload = list()
 	var/reveal_wires = FALSE
+
+	// Admin ghost can see a purpose of each wire.
+	if(IsAdminGhost(user))
+		reveal_wires = TRUE
 
 	for(var/color in colors)
 		payload.Add(list(list(
@@ -245,66 +266,52 @@
 			"cut" = is_color_cut(color),
 			"attached" = is_attached(color)
 		)))
-
 	data["wires"] = payload
 	data["status"] = get_status()
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "wires.tmpl", holder, 500, 150 + length(wires) * 30)
-		ui.set_initial_data(data)
-		ui.open()
-
-	return TRUE
-
-
-/datum/wires/Topic(href, href_list)
-	. = ..()
-	if(.)
+/datum/wires/ui_act(action, params)
+	if(..() || !interactable(usr))
 		return
-
-	var/target_wire = href_list["wire"]
-	var/obj/item/I = usr.get_active_held_item()
-
-	if(href_list["cut"])
-		if(!iswirecutter(I))
-			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
-			return
-
-		cut_color(target_wire, usr)
-		. = TRUE
-
-	else if(href_list["pulse"])
-		if(!ismultitool(I))
-			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
-			return
-
-		pulse_color(target_wire, usr)
-		. = TRUE
-
-	else if(href_list["attach"])
-		if(is_attached(target_wire))
-			I = detach_assembly(target_wire)
-			if(!I)
-				return
-
-			usr.put_in_hands(I)
-			. = TRUE
-		else
-			if(!istype(I, /obj/item/assembly))
-				to_chat(usr, "<span class='warning'>You need an assembly!</span>")
-				return
-
-			var/obj/item/assembly/A = I
-			if(!A.attachable)
-				to_chat(usr, "<span class='warning'>You need an attachable assembly!</span>")
-				return
-
-			if(!usr.temporarilyRemoveItemFromInventory(A))
-				return
-			if(!attach_assembly(target_wire, A))
-				A.forceMove(get_turf(usr))
-			. = TRUE
-
+	var/target_wire = params["wire"]
+	var/mob/living/L = usr
+	var/obj/item/I
+	switch(action)
+		if("cut")
+			I = L.is_holding_tool_quality(TOOL_WIRECUTTER)
+			if(I || IsAdminGhost(usr))
+				if(I && holder)
+					I.play_tool_sound(holder, 20)
+				cut_color(target_wire)
+				. = TRUE
+			else
+				to_chat(L, "<span class='warning'>You need wirecutters!</span>")
+		if("pulse")
+			I = L.is_holding_tool_quality(TOOL_MULTITOOL)
+			if(I || IsAdminGhost(usr))
+				if(I && holder)
+					I.play_tool_sound(holder, 20)
+				pulse_color(target_wire, L)
+				. = TRUE
+			else
+				to_chat(L, "<span class='warning'>You need a multitool!</span>")
+		if("attach")
+			if(is_attached(target_wire))
+				I = detach_assembly(target_wire)
+				if(I)
+					L.put_in_hands(I)
+					. = TRUE
+			else
+				I = L.get_active_held_item()
+				if(istype(I, /obj/item/assembly))
+					var/obj/item/assembly/A = I
+					if(A.attachable)
+						if(!L.temporarilyRemoveItemFromInventory(A))
+							return
+						if(!attach_assembly(target_wire, A))
+							A.forceMove(L.drop_location())
+						. = TRUE
+					else
+						to_chat(L, "<span class='warning'>You need an attachable assembly!</span>")
 
 #undef MAXIMUM_EMP_WIRES

@@ -3,6 +3,28 @@
 	weight = WEIGHT_MOB
 
 
+/datum/keybinding/carbon/hold_run_move_intent
+	key = "Alt"
+	name = "hold_run_move_intent"
+	full_name = "Hold to Sprint/Stalk"
+	description = "Hold down to sprint if human or stalk if xeno, release to return to previous mode."
+	keybind_signal = COMSIG_KB_HOLD_RUN_MOVE_INTENT_DOWN
+
+/datum/keybinding/carbon/hold_run_move_intent/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.mob.toggle_move_intent(!initial(user.mob.m_intent))
+	return TRUE
+
+/datum/keybinding/carbon/hold_run_move_intent/up(client/user)
+	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP) & COMSIG_KB_ACTIVATED)
+		return TRUE
+	user.mob.toggle_move_intent(initial(user.mob.m_intent))
+	return TRUE
+
+
+
 /datum/keybinding/carbon/toggle_throw_mode
 	key = "R"
 	classic_key = "END"

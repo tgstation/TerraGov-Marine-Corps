@@ -28,6 +28,7 @@
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
 	var/vend_delay = 10 //How long does it take to vend?
 	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
+	var/currently_vending_index
 
 	// To be filled out at compile time
 	var/list/products	= list() // For each, use the following pattern:
@@ -64,6 +65,9 @@
 	var/scan_id = TRUE
 
 	var/knockdown_threshold = 100
+
+	ui_x = 450
+	ui_y = 600
 
 
 /obj/machinery/vending/Initialize(mapload, ...)
@@ -107,6 +111,21 @@
 /obj/machinery/vending/proc/select_gamemode_equipment(gamemode)
 	return
 
+GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
+	/obj/item/weapon/gun/rifle/m41a,
+	/obj/item/ammo_magazine/rifle,
+	/obj/item/weapon/combat_knife,
+	/obj/item/radio/headset/mainship/marine,
+	/obj/item/clothing/gloves/marine,
+	/obj/item/clothing/shoes/marine,
+	/obj/item/clothing/under/marine,
+	/obj/item/storage/backpack/marine/satchel,
+	/obj/item/clothing/suit/storage/marine,
+	/obj/item/storage/belt/marine,
+	/obj/item/storage/pouch/flare,
+	/obj/item/storage/pouch/firstaid
+)))
+
 /obj/machinery/vending/proc/build_inventory(list/productlist,hidden=0,req_coin=0)
 
 	for(var/typepath in productlist)
@@ -121,11 +140,11 @@
 		R.amount = amount
 		R.price = price
 
-		if(ispath(typepath,/obj/item/weapon/gun/rifle/m41a) || ispath(typepath,/obj/item/ammo_magazine/rifle) || ispath(typepath,/obj/item/weapon/combat_knife) || ispath(typepath,/obj/item/radio/headset/mainship/marine) || ispath(typepath,/obj/item/clothing/gloves/marine) || ispath(typepath,/obj/item/clothing/shoes/marine) || ispath(typepath,/obj/item/clothing/under/marine) || ispath(typepath,/obj/item/storage/backpack/marine/satchel) || ispath(typepath,/obj/item/clothing/suit/storage/marine) || ispath(typepath,/obj/item/storage/belt/marine) || ispath(typepath,/obj/item/storage/pouch/flare) || ispath(typepath,/obj/item/storage/pouch/firstaid) )
+		if(is_type_in_typecache(typepath, GLOB.vending_white_items))
 			R.display_color = "white"
 //		else if(ispath(typepath,/obj/item/clothing) || ispath(typepath,/obj/item/storage))
 //			R.display_color = "white"
-//		else if(ispath(typepath,/obj/item/reagent_container) || ispath(typepath,/obj/item/stack/medical))
+//		else if(ispath(typepath,/obj/item/reagent_containers) || ispath(typepath,/obj/item/stack/medical))
 //			R.display_color = "blue"
 		else
 			R.display_color = "black"
@@ -307,6 +326,7 @@
 			// Vend the item
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
+			currently_vending_index = null
 		else
 			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have that much money!</span>")
 	else
@@ -354,12 +374,18 @@
 
 	return TRUE
 
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
+	if(!ui)
+		ui = new(user, src, ui_key, "vending", name, ui_x, ui_y, master_ui, state)
+		ui.open()
 
-
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
-
+/obj/machinery/vending/ui_data(mob/user)
 	var/list/display_list = list()
+	var/list/hidden_list = list()
+	var/list/coin_list = list()
 	var/list/display_records = list()
 	display_records += product_records
 	if(extended_inventory)
@@ -371,64 +397,75 @@
 		if(R.amount) prodname += ": [R.amount]"
 		else prodname += ": SOLD OUT"
 		if(R.price) prodname += " (Price: [R.price])"
-		prodname = "<color = [R.display_color]>[prodname]</color>"
-		display_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
+		switch(R.category)
+			if(CAT_NORMAL)
+				display_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
+			if(CAT_HIDDEN)
+				hidden_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
+			if(CAT_COIN)
+				coin_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
+		
 
 	var/list/data = list(
 		"vendor_name" = name,
 		"currently_vending_name" = currently_vending ? sanitize(currently_vending.product_name) : null,
+		"currently_vending_index" = currently_vending_index,
 		"premium_length" = premium.len,
 		"coin" = coin ? coin.name : null,
 		"displayed_records" = display_list,
+		"hidden_records" = hidden_list,
+		"coin_records" = coin_list,
 		"isshared" = isshared
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name , 450, 600)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/vending/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/machinery/vending/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("remove_coin")
+			if(!coin)
+				to_chat(usr, "There is no coin in this machine.")
+				return
 
-	if(href_list["remove_coin"])
-		if(!coin)
-			to_chat(usr, "There is no coin in this machine.")
-			return
+			coin.forceMove(loc)
+			coin = null
+			usr.put_in_hands(coin)
+			to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+			. = TRUE
 
-		coin.forceMove(loc)
-		coin = null
-		usr.put_in_hands(coin)
-		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
+		if("vend")
+			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				flick(icon_deny, src)
+				return
 
-	if((href_list["vend"]) && vend_ready && !currently_vending)
-		if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
-			flick(icon_deny, src)
-			return
+			var/idx = text2num(params["vend"])
+			var/cat = text2num(params["cat"])
 
-		var/idx = text2num(href_list["vend"])
-		var/cat = text2num(href_list["cat"])
+			var/datum/data/vending_product/R = GetProductByID(idx,cat)
+			if(!istype(R) || !R.product_path || R.amount <= 0)
+				return
 
-		var/datum/data/vending_product/R = GetProductByID(idx,cat)
-		if(!istype(R) || !R.product_path || R.amount <= 0)
-			return
+			if(R.price == null)
+				vend(R, usr)
+			else
+				currently_vending = R
+				currently_vending_index = idx
+			. = TRUE
 
-		if(R.price == null)
-			vend(R, usr)
-		else
-			currently_vending = R
+		if("cancel_buying")
+			currently_vending = null
+			. = TRUE
 
-	else if(href_list["cancel_buying"])
-		currently_vending = null
+		if("swipe")
+			if(!ishuman(usr))
+				return
+			var/mob/living/carbon/human/H = usr
+			scan_card(H.wear_id)
+			. = TRUE
 
 	updateUsrDialog()
-
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH

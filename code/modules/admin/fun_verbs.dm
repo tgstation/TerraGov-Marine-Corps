@@ -1024,16 +1024,26 @@
 
 	var/obj/docking_port/stationary/target = valid_docks[dock]
 	if(!target)
+		to_chat(usr, "<span class='warning'>No valid dock found!</span>")
 		return
 
 	var/instant = FALSE
 	if(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No") == "Yes")
 		instant = TRUE
 
-	SSshuttle.moveShuttleToDock(D.id, target, !instant)
+	var/success = SSshuttle.moveShuttleToDock(D.id, target, !instant)
+	switch(success)
+		if(0)
+			success = "successfully"
+		if(1)
+			success = "failing to find the shuttle"
+		if(2)
+			success = "failing to dock"
+		else
+			success = "failing somehow"
 
-	log_admin("[key_name(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""].")
+	log_admin("[key_name(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""] [success].")
+	message_admins("[ADMIN_TPMONTY(usr)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""] [success].")
 
 
 /datum/admins/proc/play_cinematic()

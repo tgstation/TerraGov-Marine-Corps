@@ -296,7 +296,7 @@
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsemask = /obj/item/clothing/mask/gas/PMC
+	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
 	xenovictim = TRUE

@@ -5,7 +5,7 @@
 //	to mixed-drinks code. If you want an object that starts pre-loaded, you need to make it in addition to the other code.
 
 //Food items that aren't eaten normally and leave an empty container behind.
-/obj/item/reagent_container/food/condiment
+/obj/item/reagent_containers/food/condiment
 	name = "Condiment Container"
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/items/food.dmi'
@@ -146,16 +146,16 @@
 			center_of_mass = list("x"=16, "y"=6)
 			return
 
-/obj/item/reagent_container/food/condiment/enzyme
+/obj/item/reagent_containers/food/condiment/enzyme
 	name = "Universal Enzyme"
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
 	list_reagents = list(/datum/reagent/consumable/enzyme = 50)
 
-/obj/item/reagent_container/food/condiment/sugar
+/obj/item/reagent_containers/food/condiment/sugar
 	list_reagents = list(/datum/reagent/consumable/sugar = 50)
 
-/obj/item/reagent_container/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
+/obj/item/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
 	name = "Salt Shaker"											//	a large one.
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
@@ -164,7 +164,7 @@
 	volume = 20
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 20)
 
-/obj/item/reagent_container/food/condiment/peppermill
+/obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"

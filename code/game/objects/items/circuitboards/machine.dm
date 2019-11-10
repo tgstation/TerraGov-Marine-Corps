@@ -36,7 +36,7 @@ to destroy them and players will be able to make replacements.
 	req_components = list(
 							"/obj/item/stock_parts/matter_bin" = 2,
 							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/reagent_container/glass/beaker" = 2)
+							"/obj/item/reagent_containers/glass/beaker" = 2)
 
 
 /obj/item/circuitboard/machine/circuit_imprinter
@@ -46,7 +46,7 @@ to destroy them and players will be able to make replacements.
 	req_components = list(
 							"/obj/item/stock_parts/matter_bin" = 1,
 							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/reagent_container/glass/beaker" = 2)
+							"/obj/item/reagent_containers/glass/beaker" = 2)
 
 /obj/item/circuitboard/machine/pacman
 	name = "Circuit Board (PACMAN-type Generator)"

@@ -1,6 +1,6 @@
 
 
-/obj/item/reagent_container/food/drinks/drinkingglass
+/obj/item/reagent_containers/food/drinks/drinkingglass
 	name = "glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
@@ -611,20 +611,20 @@
 			return
 
 // for /obj/machinery/vending/sovietsoda
-/obj/item/reagent_container/food/drinks/drinkingglass/soda
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda
 	name = "soda glass"
 	desc = "A drinking glass for soda."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/sodawater = 50)
 
-/obj/item/reagent_container/food/drinks/drinkingglass/soda/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize()
 	. = ..()
 	on_reagent_change()
 
-/obj/item/reagent_container/food/drinks/drinkingglass/cola
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola
 	name = "cola glass"
 	desc = "A drinking glass for cola."
 	list_reagents = list(/datum/reagent/consumable/drink/cold/space_cola = 50)
 
-/obj/item/reagent_container/food/drinks/drinkingglass/cola/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize()
 	. = ..()
 	on_reagent_change()

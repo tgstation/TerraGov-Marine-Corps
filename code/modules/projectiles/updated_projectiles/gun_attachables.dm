@@ -1050,8 +1050,8 @@ Defined in conflicts.dm of the #defines folder.
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/reagent_container))
-		var/obj/item/reagent_container/FT = object
+	else if(istype(object, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))

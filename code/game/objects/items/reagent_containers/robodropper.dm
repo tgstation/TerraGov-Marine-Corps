@@ -1,5 +1,5 @@
 
-/obj/item/reagent_container/robodropper
+/obj/item/reagent_containers/robodropper
 	name = "Industrial Dropper"
 	desc = "A larger dropper. Transfers 10 units."
 	icon = 'icons/obj/items/chemistry.dmi'

@@ -13,7 +13,7 @@
 /mob/living/carbon/proc/update_legcuffed(obj/item/restraints/legcuffs/restraints)
 	if(restraints)
 		if(m_intent != MOVE_INTENT_WALK)
-			m_intent = MOVE_INTENT_WALK
+			toggle_move_intent(MOVE_INTENT_WALK)
 			if(hud_used?.move_intent)
 				hud_used.move_intent.icon_state = "walking"
 		legcuffed = restraints

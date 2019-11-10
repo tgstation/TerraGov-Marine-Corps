@@ -116,66 +116,79 @@
 		return
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-		stat(null, "Evolve Progress (FINISHED)")
+		stat("Evolve Progress:", "(FINISHED)")
 	else if(!hive.check_ruler())
-		stat(null, "Evolve Progress (HALTED - NO RULER)")
+		stat("Evolve Progress:", "(HALTED - NO RULER)")
 	else
-		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
+		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
 
 	if(upgrade_possible())
-		stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
-		stat(null, "Upgrade Progress (FINISHED)")
+		stat("Upgrade Progress:", "(FINISHED)")
 
 	if(xeno_caste.plasma_max > 0)
-		stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
 	if(hivenumber != XENO_HIVE_CORRUPTED)
 		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
-			stat(null,"Slashing of hosts is currently: PERMITTED.")
+			stat("Slashing of hosts status:", "ALLOWED")
 		else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-			stat(null,"Slashing of hosts is currently: LIMITED.")
+			stat("Slashing of hosts status:","RESTRICTED")
 		else
-			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
-	else
-		stat(null,"Slashing of hosts is decided by our masters.")
+			stat("Slashing of hosts status:","FORBIDDEN")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
 		switch(frenzy_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]FRENZY pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Frenzy pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]WARDING pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Warding pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]RECOVERY pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Recovery pheromone strength:", msg_holder)
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
-			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
+				stat("Hive Orders:", hive.hive_orders)
+			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(countdown)
 				stat("Orphan hivemind collapse timer:", countdown)
 		if(XENO_HIVE_CORRUPTED)
-			stat(null,"Hive Orders: Follow the instructions of our masters")
+			stat("Hive Orders:","Follow the instructions of our masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -513,9 +526,11 @@
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block)
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage(null, damage, null, null, null, armor_block)
+	take_overall_damage(0, damage, armor_block)
+	UPDATEHEALTH(src)
 	emote("scream")
 	knock_down(1)
 
