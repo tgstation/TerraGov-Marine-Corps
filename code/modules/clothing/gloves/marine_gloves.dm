@@ -116,23 +116,22 @@
 
 /obj/item/clothing/gloves/marine/specialist/melee/equipped(mob/user, slot)
 
-	. = ..()
-
 	if(user.mind?.cm_skills && stored_skill == SKILL_INVALID && slot == SLOT_GLOVES)
 		to_chat(user,"<span class='notice'>The gloves make you feel stronger.</notice>")
 		stored_skill = user.mind.cm_skills.melee_weapons
 		user.mind.cm_skills.melee_weapons += 1
 
+	return ..()
+
 
 /obj/item/clothing/gloves/marine/specialist/melee/dropped(mob/user)
-
-	. = ..()
 
 	if(user.mind?.cm_skills && stored_skill != SKILL_INVALID)
 		user.mind.cm_skills.melee_weapons = stored_skill
 		to_chat(user,"<span class='warning'>You no longer feel stronger.</span>")
 		stored_skill = SKILL_INVALID
 
+	return ..()
 
 /obj/item/clothing/gloves/marine/veteran/PMC
 	name = "armored gloves"
