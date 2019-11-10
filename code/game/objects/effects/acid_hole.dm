@@ -41,13 +41,14 @@
 		use_wall_hole(user)
 
 
-/obj/effect/acid_hole/specialclick(mob/living/carbon/xenomorph/user)
-	if(isxeno(user))	
-		if(holed_wall)
-			if(user.mob_size == MOB_SIZE_BIG)
-				expand_hole(user)
-				return
-			use_wall_hole(user)
+/obj/effect/acid_hole/specialclick(mob/living/carbon/user)
+	if(!isxeno(user))
+		return	
+	if(holed_wall)
+		if(user.mob_size == MOB_SIZE_BIG)
+			expand_hole(user)
+			return
+		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
 	if(user.action_busy || user.lying)
