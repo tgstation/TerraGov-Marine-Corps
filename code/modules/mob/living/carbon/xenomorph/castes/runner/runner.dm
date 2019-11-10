@@ -17,9 +17,6 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
 
-// ***************************************
-// *********** Init
-// ***************************************
 /mob/living/carbon/xenomorph/runner/update_stat()
 	. = ..()
 	if(stat != CONSCIOUS && layer != initial(layer))
