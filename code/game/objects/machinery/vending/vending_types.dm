@@ -193,7 +193,8 @@
 					/obj/item/stack/medical/splint = 5
 					)
 
-	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
+	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1,
+						/obj/item/reagent_containers/glass/bottle/neurotoxin = 1)
 
 	idle_power_usage = 211
 
