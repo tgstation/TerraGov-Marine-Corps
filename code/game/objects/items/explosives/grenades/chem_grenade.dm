@@ -11,9 +11,9 @@
 	force = 2
 	var/stage = CG_EMPTY
 	var/display_timer = FALSE
-	var/list/obj/item/reagent_container/glass/beakers = list()
-	var/list/allowed_containers = list(/obj/item/reagent_container/glass/beaker, /obj/item/reagent_container/glass/bottle)
-	var/list/banned_containers = list(/obj/item/reagent_container/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
+	var/list/obj/item/reagent_containers/glass/beakers = list()
+	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
+	var/list/banned_containers = list(/obj/item/reagent_containers/glass/beaker/bluespace) //Containers to exclude from specific grenade subtypes
 	var/affected_area = 3
 	var/obj/item/assembly_holder/nadeassembly = null
 	var/assemblyattacher
@@ -130,7 +130,7 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.medical > SKILL_MEDICAL_NOVICE)
 		if(length(beakers))
 			to_chat(user, "<span class='notice'>You scan the grenade and detect the following reagents:</span>")
-			for(var/obj/item/reagent_container/glass/G in beakers)
+			for(var/obj/item/reagent_containers/glass/G in beakers)
 				for(var/datum/reagent/R in G.reagents.reagent_list)
 					to_chat(user, "<span class='notice'>[R.volume] units of [R.name] in the [G.name].</span>")
 			if(length(beakers) == 1)
@@ -141,7 +141,7 @@
 		if(length(beakers) == 2 && beakers[1].name == beakers[2].name)
 			to_chat(user, "<span class='notice'>You see two [beakers[1].name]s inside the grenade.</span>")
 		else
-			for(var/obj/item/reagent_container/glass/G in beakers)
+			for(var/obj/item/reagent_containers/glass/G in beakers)
 				to_chat(user, "<span class='notice'>You see a [G.name] inside the grenade.</span>")
 
 
@@ -176,7 +176,7 @@
 		return
 
 	var/list/datum/reagents/reactants = list()
-	for(var/obj/item/reagent_container/glass/G in beakers)
+	for(var/obj/item/reagent_containers/glass/G in beakers)
 		reactants += G.reagents
 
 	var/turf/detonation_turf = get_turf(src)
@@ -207,7 +207,7 @@
 	name = "Large Chem Grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
-	allowed_containers = list(/obj/item/reagent_container/glass)
+	allowed_containers = list(/obj/item/reagent_containers/glass)
 	affected_area = 4
 
 
@@ -220,8 +220,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/metalfoam/Initialize(mapload, ...)
 	. = ..()
-	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/aluminum, 30)
 	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 10)
@@ -240,8 +240,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/incendiary/Initialize(mapload, ...)
 	. = ..()
-	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/aluminum, 15)
 	B1.reagents.add_reagent(/datum/reagent/fuel,20)
@@ -263,8 +263,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/antiweed/Initialize(mapload, ...)
 	. = ..()
-	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/toxin/plantbgone, 25)
 	B1.reagents.add_reagent(/datum/reagent/potassium, 25)
@@ -285,8 +285,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/cleaner/Initialize(mapload, ...)
 	. = ..()
-	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 40)
 	B2.reagents.add_reagent(/datum/reagent/water, 40)
@@ -305,8 +305,8 @@
 
 /obj/item/explosive/grenade/chem_grenade/teargas/Initialize(mapload, ...)
 	. = ..()
-	var/obj/item/reagent_container/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_container/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(/datum/reagent/consumable/capsaicin/condensed, 25)
 	B1.reagents.add_reagent(/datum/reagent/potassium, 25)

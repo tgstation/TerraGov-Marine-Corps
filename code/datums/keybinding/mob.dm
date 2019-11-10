@@ -1,5 +1,5 @@
 /datum/keybinding/mob
-	category = CATEGORY_HUMAN
+	category = CATEGORY_MOB
 	weight = WEIGHT_MOB
 
 
@@ -146,18 +146,40 @@
 		user.mob.dropItemToGround(I)
 	return TRUE
 
-/datum/keybinding/mob/toggle_move_intent
-	key = "Alt"
-	name = "toggle_move_intent"
-	full_name = "Hold to toggle move intent"
-	description = "Held down to cycle to the other move intent, release to cycle back"
 
-/datum/keybinding/mob/toggle_move_intent/down(client/user)
-	var/mob/M = user.mob
-	M.toggle_move_intent()
+/datum/keybinding/mob/examine
+	key = "Shift"
+	name = "examine_kb"
+	full_name = "Examine"
+	description = "Hold this key and click to examine things."
+
+
+/datum/keybinding/mob/examine/down(client/user)
+	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
 	return TRUE
 
-/datum/keybinding/mob/toggle_move_intent/up(client/user)
+
+/datum/keybinding/mob/examine/up(client/user)
+	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
+	return TRUE
+
+
+/datum/keybinding/mob/examine/proc/examinate(datum/source, atom/A, params)
+	var/mob/user = source
+	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
+		UnregisterSignal(user, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON))
+		return
+	user.examinate(A)
+	return COMSIG_MOB_CLICK_HANDLED
+
+/datum/keybinding/mob/toggle_move_intent
+	key = "5"
+	name = "toggle_move_intent"
+	full_name = "Toggle move intent"
+	description = "Cycle to the other move intent."
+
+/datum/keybinding/mob/toggle_move_intent/down(client/user)
 	var/mob/M = user.mob
 	M.toggle_move_intent()
 	return TRUE

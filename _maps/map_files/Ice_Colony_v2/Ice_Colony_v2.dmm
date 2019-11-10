@@ -662,7 +662,7 @@
 /area/ice_colony/surface/engineering/electric)
 "acx" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering/electric)
 "acy" = (
@@ -2089,7 +2089,7 @@
 /area/ice_colony/surface/engineering)
 "agz" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/human/burger,
+/obj/item/reagent_containers/food/snacks/human/burger,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	d1 = 4;
@@ -4864,10 +4864,10 @@
 /area/ice_colony/surface/engineering)
 "anA" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/tile/red/whitered{
 	dir = 9
 	},
@@ -5599,7 +5599,7 @@
 "apr" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
-/obj/item/reagent_container/glass/bottle/oxycodone{
+/obj/item/reagent_containers/glass/bottle/oxycodone{
 	pixel_x = 9;
 	pixel_y = 6
 	},
@@ -5608,11 +5608,11 @@
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aps" = (
-/obj/item/reagent_container/blood/empty{
+/obj/item/reagent_containers/blood/empty{
 	pixel_x = 25;
 	pixel_y = 9
 	},
-/obj/item/reagent_container/blood/empty{
+/obj/item/reagent_containers/blood/empty{
 	pixel_x = 25;
 	pixel_y = 9
 	},
@@ -5623,7 +5623,7 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/obj/item/reagent_container/blood/empty,
+/obj/item/reagent_containers/blood/empty,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -5661,12 +5661,12 @@
 "apA" = (
 /obj/structure/table/reinforced,
 /obj/item/defibrillator,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -9343,7 +9343,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/reagent_container/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/hotchili,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -9753,7 +9753,7 @@
 /area/ice_colony/surface/dorms/lavatory)
 "azL" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/dorms/lavatory)
 "azM" = (
@@ -15041,7 +15041,7 @@
 "aNE" = (
 /obj/structure/mopbucket,
 /obj/item/tool/mop,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
 "aNF" = (
@@ -15340,7 +15340,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aOy" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -15366,12 +15366,12 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_container/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOC" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/fortunecookie,
+/obj/item/reagent_containers/food/snacks/fortunecookie,
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -15380,7 +15380,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_container/food/snacks/hotchili{
+/obj/item/reagent_containers/food/snacks/hotchili{
 	pixel_x = -1;
 	pixel_y = 2
 	},
@@ -15395,7 +15395,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/reagent_container/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/hotchili,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aOG" = (
@@ -15406,7 +15406,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aOH" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/cans/beer,
+/obj/item/reagent_containers/food/drinks/cans/beer,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aOI" = (
@@ -15438,7 +15438,7 @@
 /area/ice_colony/surface/bar/bar)
 "aOM" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aON" = (
@@ -16029,7 +16029,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/hydroponics/lobby)
 "aQo" = (
-/obj/item/reagent_container/food/drinks/cans/beer,
+/obj/item/reagent_containers/food/drinks/cans/beer,
 /obj/machinery/door/window/northright{
 	dir = 4;
 	name = "Bar"
@@ -16356,7 +16356,7 @@
 	},
 /obj/structure/table,
 /obj/item/tool/soap,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 6;
 	pixel_y = -2
 	},
@@ -16438,7 +16438,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "aRj" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour,
 /obj/item/tool/kitchen/rollingpin,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
@@ -17196,7 +17196,7 @@
 /area/ice_colony/surface/bar/canteen)
 "aTf" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aTg" = (
@@ -18891,7 +18891,7 @@
 /obj/item/clothing/under/marine/veteran/PMC,
 /obj/item/clothing/head/helmet/marine/veteran/PMC,
 /obj/item/clothing/gloves/marine/veteran/PMC,
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/PMC/damaged,
 /obj/item/clothing/suit/storage/marine/veteran/PMC,
 /obj/item/weapon/gun/smg/m39/elite,
 /turf/open/floor/tile/dark/red2{
@@ -20242,12 +20242,12 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "bbj" = (
-/obj/item/reagent_container/food/snacks/meat{
+/obj/item/reagent_containers/food/snacks/meat{
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/food/snacks/meat,
-/obj/item/reagent_container/food/snacks/meat{
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat{
 	pixel_x = -1;
 	pixel_y = 2
 	},
@@ -23420,7 +23420,7 @@
 /area/ice_colony/surface/research)
 "bjY" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -23909,7 +23909,7 @@
 	pixel_x = 14;
 	pixel_y = 11
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/PMC/damaged,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
 "blA" = (
@@ -25336,7 +25336,7 @@
 /area/ice_colony/underground/crew/morgue)
 "bpC" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/morgue)
@@ -27633,7 +27633,7 @@
 "bvH" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/beakers,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/tile/red/whitered{
 	dir = 4
 	},
@@ -28285,7 +28285,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/reagent_container/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
 "bxm" = (
@@ -29605,7 +29605,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bAJ" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/dry_ramen,
+/obj/item/reagent_containers/food/drinks/dry_ramen,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bAK" = (
@@ -29739,7 +29739,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bBd" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/boiledspagetti,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bBe" = (
@@ -30400,7 +30400,7 @@
 /area/ice_colony/underground/crew/canteen)
 "bCB" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCC" = (
@@ -30419,7 +30419,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bCD" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCE" = (
@@ -30531,7 +30531,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/item/reagent_container/food/snacks/hotchili,
+/obj/item/reagent_containers/food/snacks/hotchili,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
 "bCT" = (
@@ -30891,10 +30891,10 @@
 /area/ice_colony/underground/security/interrogation)
 "bDM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/reagent_container/food/snacks/meat,
-/obj/item/reagent_container/food/snacks/meat,
-/obj/item/reagent_container/food/snacks/meat,
-/obj/item/reagent_container/food/snacks/meatsteak,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meatsteak,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -33529,7 +33529,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bKg" = (
 /obj/structure/safe,
-/obj/item/reagent_container/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 /obj/item/weapon/katana,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
@@ -35571,7 +35571,7 @@
 /area/ice_colony/underground/crew/lavatory)
 "bPO" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/underground/crew/lavatory)
 "bPP" = (
@@ -36036,7 +36036,7 @@
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/PMC/damaged,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -36045,7 +36045,7 @@
 /obj/structure/closet/secure_closet/security_empty{
 	name = "PMC Equipment Locker"
 	},
-/obj/item/clothing/mask/gas/PMC,
+/obj/item/clothing/mask/gas/PMC/damaged,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/responsehangar)
 "bRi" = (
@@ -36592,7 +36592,7 @@
 /area/ice_colony/underground/maintenance/east)
 "bSI" = (
 /obj/structure/rack,
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bSJ" = (
@@ -37551,8 +37551,8 @@
 /area/ice_colony/underground/hangar)
 "bVu" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/food/snacks/flour,
-/obj/item/reagent_container/food/snacks/flour{
+/obj/item/reagent_containers/food/snacks/flour,
+/obj/item/reagent_containers/food/snacks/flour{
 	pixel_x = 7;
 	pixel_y = 8
 	},
@@ -37821,7 +37821,7 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWc" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/snacks/boiledspagetti,
+/obj/item/reagent_containers/food/snacks/boiledspagetti,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bWd" = (

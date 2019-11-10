@@ -22,6 +22,8 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
+	var/ui_x	//For storing and overriding ui dimensions
+	var/ui_y
 
 /obj/machinery/Initialize()
 	. = ..()
@@ -436,3 +438,11 @@
 
 /obj/machinery/proc/remove_eye_control(mob/living/user)
 	return
+
+/obj/machinery/proc/adjust_item_drop_location(atom/movable/AM)	// Adjust item drop location to a 3x3 grid inside the tile, returns slot id from 0 to 8
+	var/md5 = md5(AM.name)										// Oh, and it's deterministic too. A specific item will always drop from the same slot.
+	for (var/i in 1 to 32)
+		. += hex2num(md5[i])
+	. = . % 9
+	AM.pixel_x = -8 + ((.%3)*8)
+	AM.pixel_y = -8 + (round( . / 3)*8)

@@ -14,13 +14,12 @@
 
 
 /datum/emergency_call/upp_commando/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!istype(spawn_loc))
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
 
 	H.name = GLOB.namepool[/datum/namepool/russian].random_name(H)
 	H.real_name = H.name

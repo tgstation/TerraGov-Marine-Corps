@@ -24,6 +24,7 @@ matrix:
         - tools/travis/check_filedirs.sh tgmc.dme
         - tools/travis/check_changelogs.sh
         - find . -name "*.php" -print0 | xargs -0 -n1 php -l
+        - tools/travis/build_tgui.sh
         - tools/travis/check_grep.sh
         - ~/dreamchecker
 

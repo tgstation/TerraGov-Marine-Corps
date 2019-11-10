@@ -186,12 +186,15 @@
 
 		if(INTENT_HARM, INTENT_DISARM)
 			user.do_attack_animation(src)
-			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",\
+			if(!prob(user.melee_accuracy))
+				user.visible_message("<span class='danger'>[user] misses [src]!</span>", null, null, 5)
+				return FALSE
+			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
 			playsound(loc, attacked_sound, 25, 1, -1)
 			attack_threshold_check(harm_intent_damage)
+			UPDATEHEALTH(src)
 			log_combat(user, src, "attacked")
-			updatehealth()
 			return TRUE
 
 
@@ -224,7 +227,7 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
+		stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 
 /mob/living/simple_animal/ex_act(severity)
@@ -262,6 +265,7 @@
 		return FALSE
 	else
 		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
+		UPDATEHEALTH(src)
 		return TRUE
 
 

@@ -23,6 +23,7 @@
 #define JOB_DISPLAY_ORDER_SUQAD_ENGINEER 		22
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 			23
 
+#define JOB_FLAG_SPECIALNAME (1<<0)
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.

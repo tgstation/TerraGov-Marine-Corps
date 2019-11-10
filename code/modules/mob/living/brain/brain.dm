@@ -21,5 +21,5 @@
 
 
 /mob/living/brain/update_canmove()
-	canmove = FALSE
+	set_canmove(FALSE)
 	return canmove

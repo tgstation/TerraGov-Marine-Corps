@@ -234,7 +234,7 @@ directive is properly returned.
 				else
 					to_chat(user, "You don't know what's in it.")
 			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
-				var/obj/item/reagent_container/C = src
+				var/obj/item/reagent_containers/C = src
 				if(!reagents.total_volume)
 					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
 				else if (reagents.total_volume<= C.volume*0.3)
@@ -675,3 +675,8 @@ Proc for attack log creation, because really why not
 		return FALSE
 
 	return TRUE
+
+
+// For special click interactions (take first item out of container, quick-climb, etc.)
+/atom/proc/specialclick(mob/living/carbon/user)
+	return

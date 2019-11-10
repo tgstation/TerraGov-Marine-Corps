@@ -22,8 +22,7 @@
 		if(S.surgery_open_stage == 0)
 			if (S && (S.limb_status & LIMB_ROBOT))
 				if(S.get_damage())
-					S.heal_damage(15, 15, robo_repair = 1)
-					H.updatehealth()
+					S.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE)
 					use(1)
 					user.visible_message("<span class='notice'>\The [user] applies some nanite paste at [user != M ? "\the [M]'s" : "\the"] [S.display_name] with \the [src].</span>",\
 					"<span class='notice'>You apply some nanite paste at [user == M ? "your" : "[M]'s"] [S.display_name].</span>")

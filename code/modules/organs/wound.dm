@@ -146,7 +146,7 @@
 	// heal the given amount of damage, and if the given amount of damage was more
 	// than what needed to be healed, return how much heal was left
 	// set @heals_internal to also heal internal organ damage
-	proc/heal_damage(amount, heals_internal = 0)
+	proc/heal_wound_damage(amount, heals_internal = FALSE)
 		if(src.internal && !heals_internal)
 			// heal nothing
 			return amount

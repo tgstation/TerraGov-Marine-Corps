@@ -465,7 +465,8 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
+				H.take_overall_damage(20) //Horribly maim any living creature jumping down disposals.  c'est la vie
+				UPDATEHEALTH(H)
 
 		sleep(1) //Was 1
 		var/obj/structure/disposalpipe/curr = loc

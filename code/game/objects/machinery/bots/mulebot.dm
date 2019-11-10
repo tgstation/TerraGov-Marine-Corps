@@ -657,7 +657,7 @@
 	H.apply_damage(0.5*damage, BRUTE, "r_leg")
 	H.apply_damage(0.5*damage, BRUTE, "l_arm")
 	H.apply_damage(0.5*damage, BRUTE, "r_arm")
-
+	UPDATEHEALTH(H)
 	H.add_splatter_floor(loc, 1)
 	bloodiness += 4
 

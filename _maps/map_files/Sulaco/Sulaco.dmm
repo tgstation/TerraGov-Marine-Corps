@@ -510,7 +510,7 @@
 "abv" = (
 /obj/structure/table,
 /obj/item/healthanalyzer,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/facepaint/brown,
 /turf/open/floor{
 	icon_state = "white"
@@ -747,13 +747,13 @@
 "ace" = (
 /obj/structure/table,
 /obj/item/tool/wrench,
-/obj/item/reagent_container/glass/beaker/cryoxadone{
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/glass/beaker/cryoxadone,
-/obj/item/reagent_container/glass/beaker/cryoxadone,
-/obj/item/reagent_container/glass/beaker/cryoxadone{
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -815,22 +815,22 @@
 /obj/item/storage/box/beakers,
 /obj/item/roller,
 /obj/item/roller,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay)
 "ack" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/bottle/dylovene{
+/obj/item/reagent_containers/glass/bottle/dylovene{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/reagent_container/glass/bottle/inaprovaline{
+/obj/item/reagent_containers/glass/bottle/inaprovaline{
 	pixel_x = 1
 	},
-/obj/item/reagent_container/glass/bottle/sleeptoxin{
+/obj/item/reagent_containers/glass/bottle/sleeptoxin{
 	pixel_x = -6;
 	pixel_y = 10
 	},
@@ -912,9 +912,9 @@
 	pixel_y = 4
 	},
 /obj/item/storage/box/gloves,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor{
@@ -1426,14 +1426,14 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "adF" = (
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus,
-/obj/item/reagent_container/blood/OMinus{
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -2544,7 +2544,7 @@
 /area/sulaco/medbay/surgery_one)
 "age" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner"
 	},
@@ -3984,9 +3984,9 @@
 "aiG" = (
 /obj/structure/table,
 /obj/item/tool/mop,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/bag/trash,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
@@ -4508,7 +4508,7 @@
 	pixel_y = -32
 	},
 /obj/structure/table,
-/obj/item/reagent_container/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -4692,7 +4692,7 @@
 /area/sulaco/medbay/storage2)
 "ajU" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "ajV" = (
@@ -5854,7 +5854,7 @@
 /obj/structure/table,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -6595,7 +6595,7 @@
 /area/sulaco/cafeteria)
 "anC" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
@@ -10958,7 +10958,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/monkeyburger,
+/obj/item/reagent_containers/food/snacks/monkeyburger,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -12046,7 +12046,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -12064,7 +12064,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/grilledcheese{
 	desc = "'The best grilled cheese this side of Uranus!' (tm)";
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
@@ -13726,11 +13726,11 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/donkpocket{
+/obj/item/reagent_containers/food/snacks/donkpocket{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -13745,7 +13745,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -14449,7 +14449,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aBE" = (
@@ -14482,7 +14482,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/hotdog,
+/obj/item/reagent_containers/food/snacks/hotdog,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -15051,7 +15051,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/power/apc{
 	dir = 4
 	},
@@ -15832,9 +15832,9 @@
 /area/sulaco/brig)
 "aEs" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/pepper,
-/obj/item/reagent_container/spray/pepper,
-/obj/item/reagent_container/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
 /obj/item/clothing/glasses/sunglasses,
 /turf/open/floor{
 	icon_state = "floor4"
@@ -16861,7 +16861,7 @@
 "aGB" = (
 /obj/structure/safe,
 /obj/item/weapon/chainofcommand,
-/obj/item/reagent_container/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/storage/bible{
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
@@ -17594,11 +17594,11 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/reagent_container/food/snacks/donkpocket{
+/obj/item/reagent_containers/food/snacks/donkpocket{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor,
 /area/sulaco/marine)
 "aId" = (
@@ -22614,10 +22614,10 @@
 /area/sulaco/research)
 "aSW" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/reagent_container/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /obj/item/tool/hand_labeler,
 /obj/item/autopsy_scanner,
 /turf/open/floor{
@@ -22759,8 +22759,8 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/bodybags,
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -23356,11 +23356,11 @@
 "aUG" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/table,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -23596,7 +23596,7 @@
 /area/sulaco/telecomms/office)
 "aVi" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/item/reagent_container/spray/cleaner{
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
 	name = "Chemistry Cleaner"
 	},
@@ -24567,7 +24567,7 @@
 /area/sulaco/maintenance/lower_maint)
 "aXk" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray,
+/obj/item/reagent_containers/spray,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor{
 	icon_state = "vault"
@@ -26849,14 +26849,14 @@
 /area/sulaco/liaison)
 "bcq" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/tea,
+/obj/item/reagent_containers/food/drinks/tea,
 /obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcr" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/flask/barflask{
+/obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = 6
 	},
 /obj/item/folder/white,
@@ -27330,8 +27330,8 @@
 "bdN" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/item/reagent_container/food/snacks/spacetwinkie,
-/obj/item/reagent_container/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/snacks/spacetwinkie,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "bdO" = (
@@ -27342,7 +27342,7 @@
 /obj/item/seeds/goldappleseed,
 /obj/item/tool/minihoe,
 /obj/item/tool/plantspray/weeds,
-/obj/item/reagent_container/glass/fertilizer/ez,
+/obj/item/reagent_containers/glass/fertilizer/ez,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "bdP" = (
@@ -27485,7 +27485,7 @@
 /obj/structure/safe{
 	spawnkey = 1
 	},
-/obj/item/reagent_container/food/drinks/flask/detflask{
+/obj/item/reagent_containers/food/drinks/flask/detflask{
 	desc = "A metal flask with a small text and a golden heart engraved on it.<br><br><i> 'From WY to miss Black, the most robust Cl we have.</i>'";
 	name = "Miss Black's Flask"
 	},

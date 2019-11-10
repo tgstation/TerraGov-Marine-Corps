@@ -3,6 +3,28 @@
 	weight = WEIGHT_MOB
 
 
+/datum/keybinding/carbon/hold_run_move_intent
+	key = "Alt"
+	name = "hold_run_move_intent"
+	full_name = "Hold to Sprint/Stalk"
+	description = "Hold down to sprint if human or stalk if xeno, release to return to previous mode."
+	keybind_signal = COMSIG_KB_HOLD_RUN_MOVE_INTENT_DOWN
+
+/datum/keybinding/carbon/hold_run_move_intent/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.mob.toggle_move_intent(!initial(user.mob.m_intent))
+	return TRUE
+
+/datum/keybinding/carbon/hold_run_move_intent/up(client/user)
+	if(SEND_SIGNAL(user.mob, COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP) & COMSIG_KB_ACTIVATED)
+		return TRUE
+	user.mob.toggle_move_intent(initial(user.mob.m_intent))
+	return TRUE
+
+
+
 /datum/keybinding/carbon/toggle_throw_mode
 	key = "R"
 	classic_key = "END"
@@ -65,3 +87,27 @@
 /datum/keybinding/carbon/select_harm_intent/down(client/user)
 	user.mob?.a_intent_change(INTENT_HARM)
 	return TRUE
+
+/datum/keybinding/carbon/specialclick
+	key = "ctrl"
+	name = "specialclick"
+	full_name = "Special Click"
+	description = "Hold this key and click to trigger special object interactions."
+
+
+/datum/keybinding/carbon/specialclick/down(client/user)
+	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON), .proc/specialclicky)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
+	return TRUE
+
+
+/datum/keybinding/carbon/specialclick/up(client/user)
+	UnregisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_CLICKON))
+	return TRUE
+
+/datum/keybinding/carbon/specialclick/proc/specialclicky(datum/source, atom/A, params)
+	var/mob/living/carbon/user = source
+	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
+		UnregisterSignal(user, (COMSIG_MOB_CLICKON))
+		return
+	A.specialclick(user)

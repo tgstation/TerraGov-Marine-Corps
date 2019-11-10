@@ -138,9 +138,9 @@
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
 		Die()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
@@ -457,6 +457,8 @@
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
 			target.apply_damage(15, BRUTE, "head")
+			UPDATEHEALTH(target)
+
 
 /obj/item/clothing/mask/facehugger/proc/Die()
 	reset_attach_status()

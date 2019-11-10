@@ -267,7 +267,7 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, gun)
 
 
@@ -1050,8 +1050,8 @@ Defined in conflicts.dm of the #defines folder.
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
 			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/reagent_container))
-		var/obj/item/reagent_container/FT = object
+	else if(istype(object, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))

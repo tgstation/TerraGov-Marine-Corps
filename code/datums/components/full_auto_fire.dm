@@ -80,7 +80,7 @@
 	autofire_off()
 
 	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_EQUIPPED))
-	
+
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
 
@@ -120,13 +120,15 @@
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
-	if(modifiers["shift"])
+	if(modifiers["shift"] && (world.time <= source.mob.next_click || source.mob.ShiftClickOn(target)))
+		source.click_intercepted = world.time
 		return
 	if(modifiers["ctrl"])
 		return
 	if(modifiers["middle"])
 		return
-	if(modifiers["alt"])
+	if(modifiers["alt"] && (world.time <= source.mob.next_click || source.mob.AltClickOn(target)))
+		source.click_intercepted = world.time
 		return
 
 	if(source.mob.in_throw_mode)
@@ -379,7 +381,7 @@
 	if(shooter.action_busy)
 		return FALSE
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-	if(!do_after(shooter, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+	if(!do_after(shooter, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 		return FALSE
 
 #undef AUTOFIRE_MOUSEUP
