@@ -43,7 +43,7 @@
 
 /datum/chemical_reaction/pttoxin
 	name = "Toxin"
-	results = list(/datum/reagent/toxin/water = 2)
+	results = list(/datum/reagent/water = 2)
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/sdtoxin
@@ -338,5 +338,5 @@
 /datum/chemical_reaction/xenogrow
 	name = "Mindbreaker"
 	results = list(/datum/reagent/toxin/mindbreaker = 1)
-	required_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 1, /datum/reagent/spaceacillin = 1)
+	required_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 1, /datum/reagent/medicine/spaceacillin = 1)
 
