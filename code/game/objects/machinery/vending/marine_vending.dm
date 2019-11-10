@@ -406,7 +406,7 @@
 
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
 					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 3,
-					/obj/item/reagent_container/hypospray/autoinjector/synaptizine/expired = 3)
+					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine/expired = 3)
 
 
 
