@@ -187,11 +187,6 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
-/obj/item/storage/backpack/satchel/rugged
-	name = "satchel"
-	desc = "A rugged satchel for workers of all types."
-	icon_state = "satchel-norm"
-
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
