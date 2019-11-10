@@ -681,6 +681,8 @@
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
+	X.add_slowdown(4) //This can stack.
+
 	add_cooldown()
 
 	return succeed_activate()
