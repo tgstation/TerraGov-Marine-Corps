@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
-	damage_type = BURN
+	damage = 20
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = -10
@@ -447,6 +447,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -15
 	damage = 30
 	penetration = 20
+
+/datum/ammo/bullet/rifle/explosive
+	name = "minirocket shell"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
+	accurate_range = 15
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	damage = 10
+	penetration = -20
+
+/datum/ammo/bullet/rifle/explosive/drop_nade(turf/T)
+	explosion(T, -1, -1, 1, 2)
+
 
 /*
 //================================================
