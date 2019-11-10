@@ -1,0 +1,5 @@
+author: "terranaut1"
+delete-after: True
+changes: 
+  - rscadd: "Specialclick framework added"
+  - tweak: "You can now specialclick (default: ctrl) to get over/through waist-high obstacles and through acid holes, or to rip them open."
