@@ -541,7 +541,7 @@
 	if(user.mind?.cm_skills && slot == SLOT_WEAR_SUIT && stored_skill == SKILL_INVALID)
 		stored_skill = user.mind.cm_skills.firearms
 		user.mind.cm_skills.firearms = 0
-		to_chat(user,"<span class='warning'>Your bulky hands and armor make it difficult to use weapons...</span>")
+		to_chat(user,"<span class='warning'>Your bulky hands and armor make it difficult to use guns...</span>")
 
 	return ..()
 
