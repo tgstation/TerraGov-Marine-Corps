@@ -916,7 +916,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/lasgun
-	name = "civilian laser bolt"
+	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = "laser"
@@ -929,11 +929,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
-	name = "military laser bolt"
 	icon_state = "laser2"
-	hud_state = "laser"
-	damage = 25
-	penetration = 10
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
