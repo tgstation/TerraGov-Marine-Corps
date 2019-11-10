@@ -150,22 +150,22 @@
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
 	var/list/randompick = list(
-		/obj/item/reagent_container/food/snacks/protein_pack,
-		/obj/item/reagent_container/food/snacks/protein_pack,
-		/obj/item/reagent_container/food/snacks/protein_pack,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal1,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal2,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal3,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal4,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal5,
-		/obj/item/reagent_container/food/snacks/mre_pack/meal6)
+		/obj/item/reagent_containers/food/snacks/protein_pack,
+		/obj/item/reagent_containers/food/snacks/protein_pack,
+		/obj/item/reagent_containers/food/snacks/protein_pack,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal3,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal6)
 
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
 
 
-/obj/item/reagent_container/food/snacks/protein_pack
+/obj/item/reagent_containers/food/snacks/protein_pack
 	name = "stale TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
@@ -176,13 +176,13 @@
 	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
 
 
-/obj/item/reagent_container/food/snacks/mre_pack
+/obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/TGMCtray
 	trash = null
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal1
+/obj/item/reagent_containers/food/snacks/mre_pack/meal1
 	name = "\improper TGMC Prepared Meal (banana bread)"
 	desc = "A slice of banana bread with cream pie spread. A slippery combination."
 	icon_state = "MREa"
@@ -191,7 +191,7 @@
 	bitesize = 3
 	tastes = list("something funny" = 2, "bread" = 4)
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal2
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2
 	name = "\improper TGMC Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
@@ -199,7 +199,7 @@
 	bitesize = 2
 	tastes = list("rice and pork" = 1)
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal3
+/obj/item/reagent_containers/food/snacks/mre_pack/meal3
 	name = "\improper TGMC Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
@@ -207,7 +207,7 @@
 	tastes = list("pasta" = 3, "ground beef" = 1)
 	bitesize = 3
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal4
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4
 	name = "\improper TGMC Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
@@ -215,7 +215,7 @@
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal5
+/obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
@@ -223,7 +223,7 @@
 	tastes = list("meat soup" = 2, "the jungle" = 2)
 	bitesize = 3
 
-/obj/item/reagent_container/food/snacks/mre_pack/meal6
+/obj/item/reagent_containers/food/snacks/mre_pack/meal6
 	name = "\improper TGMC Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
@@ -231,7 +231,7 @@
 	tastes = list("grilled tofu" = 2, "grass" = 1)
 	bitesize = 2
 
-/obj/item/reagent_container/food/snacks/mre_pack/xmas1
+/obj/item/reagent_containers/food/snacks/mre_pack/xmas1
 	name = "\improper Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
@@ -239,7 +239,7 @@
 	bitesize = 2
 	tastes = list("cookies" = 1, "artificial flavoring" = 1)
 
-/obj/item/reagent_container/food/snacks/mre_pack/xmas2
+/obj/item/reagent_containers/food/snacks/mre_pack/xmas2
 	name = "\improper Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
@@ -247,7 +247,7 @@
 	tastes = list("batter" = 3, "ginger" = 1)
 	bitesize = 2
 
-/obj/item/reagent_container/food/snacks/mre_pack/xmas3
+/obj/item/reagent_containers/food/snacks/mre_pack/xmas3
 	name = "\improper Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
@@ -263,14 +263,14 @@
 	. = ..()
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
-	new /obj/item/reagent_container/food/snacks/donkpocket(src)
-	new /obj/item/reagent_container/food/snacks/donkpocket(src)
+	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
+	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
 	var/list/randompick = list(
-		/obj/item/reagent_container/food/snacks/fries,
-		/obj/item/reagent_container/food/snacks/cheesyfries,
-		/obj/item/reagent_container/food/snacks/bigbiteburger,
-		/obj/item/reagent_container/food/snacks/taco,
-		/obj/item/reagent_container/food/snacks/hotdog)
+		/obj/item/reagent_containers/food/snacks/fries,
+		/obj/item/reagent_containers/food/snacks/cheesyfries,
+		/obj/item/reagent_containers/food/snacks/bigbiteburger,
+		/obj/item/reagent_containers/food/snacks/taco,
+		/obj/item/reagent_containers/food/snacks/hotdog)
 
 	for(var/i in 1 to 3)
 		var/picked = pick(randompick)
@@ -285,7 +285,7 @@
 	name = "\improper Nanotrasen brand MRE"
 	desc = "A prepackaged, long-lasting food box from Nanotrasen Industries.\nOn the box is the Nanotrasen logo, with a slogan surrounding it: \n<b>NANOTRASEN. BUILDING BETTER LUNCHES</b>"
 	icon_state = "mre2"
-	can_hold = list(/obj/item/reagent_container/food/snacks)
+	can_hold = list(/obj/item/reagent_containers/food/snacks)
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/storage/box/nt_mre/Initialize(mapload, ...)
@@ -293,16 +293,16 @@
 
 	pixel_y = rand(-3,3)
 	pixel_x = rand(-3,3)
-	new /obj/item/reagent_container/food/snacks/donkpocket(src)
-	new /obj/item/reagent_container/food/snacks/donkpocket(src)
-	new /obj/item/reagent_container/food/snacks/donkpocket(src)
-	new /obj/item/reagent_container/food/drinks/coffee(src)
+	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
+	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
+	new /obj/item/reagent_containers/food/snacks/donkpocket(src)
+	new /obj/item/reagent_containers/food/drinks/coffee(src)
 	var/list/randompick = list(
-		/obj/item/reagent_container/food/snacks/cheesiehonkers,
-		/obj/item/reagent_container/food/snacks/no_raisin,
-		/obj/item/reagent_container/food/snacks/spacetwinkie,
-		/obj/item/reagent_container/food/snacks/cookie,
-		/obj/item/reagent_container/food/snacks/chocolatebar)
+		/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+		/obj/item/reagent_containers/food/snacks/no_raisin,
+		/obj/item/reagent_containers/food/snacks/spacetwinkie,
+		/obj/item/reagent_containers/food/snacks/cookie,
+		/obj/item/reagent_containers/food/snacks/chocolatebar)
 
 	var/picked = pick(randompick)
 	new picked(src)

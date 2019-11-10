@@ -140,7 +140,7 @@
 	new /obj/item/tool/taperoll/police(src)
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/storage/belt/security(src)
-	new /obj/item/reagent_container/spray/pepper(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/weapon/gun/energy/taser(src)
 	new /obj/item/storage/box/holobadge(src)
@@ -188,7 +188,7 @@
 	new /obj/item/clothing/head/helmet(src)
 	new /obj/item/storage/belt/security(src)
 	new /obj/item/flash(src)
-	new /obj/item/reagent_container/spray/pepper(src)
+	new /obj/item/reagent_containers/spray/pepper(src)
 	new /obj/item/explosive/grenade/flashbang(src)
 	new /obj/item/weapon/baton(src)
 	new /obj/item/weapon/gun/energy/taser(src)
@@ -288,8 +288,8 @@
 
 /obj/structure/closet/secure_closet/injection/Initialize()
 	. = ..()
-	new /obj/item/reagent_container/syringe/ld50_syringe/choral(src)
-	new /obj/item/reagent_container/syringe/ld50_syringe/choral(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
+	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
 
 
 /obj/structure/closet/secure_closet/brig

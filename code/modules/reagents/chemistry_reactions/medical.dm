@@ -147,22 +147,6 @@
 	required_reagents = list(/datum/reagent/medicine/kelotane = 2, /datum/reagent/medicine/clonexadone = 2)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
-
-/datum/chemical_reaction/methylphenidate //TODO REMOVE OR MAKE IT NOT JUST A RP CHEM
-	name = "Methylphenidate"
-	results = list(/datum/reagent/medicine/antidepressant/methylphenidate = 3)
-	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/hydrogen = 1)
-
-/datum/chemical_reaction/citalopram //SAME AS ABOVE, RP CHEM
-	name = "Citalopram"
-	results = list(/datum/reagent/medicine/antidepressant/citalopram = 3)
-	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/carbon = 1)
-
-/datum/chemical_reaction/paroxetine//SAME, RP CHEM
-	name = "Paroxetine"
-	results = list(/datum/reagent/medicine/antidepressant/paroxetine = 3)
-	required_reagents = list(/datum/reagent/toxin/mindbreaker = 1, /datum/reagent/oxygen = 1, /datum/reagent/medicine/inaprovaline = 1)
-
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"
 	results = list(/datum/reagent/medicine/hypervene = 3)

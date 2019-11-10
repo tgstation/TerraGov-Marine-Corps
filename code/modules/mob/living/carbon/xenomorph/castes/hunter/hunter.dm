@@ -52,7 +52,7 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat(null, "Sneak Attack Multiplier: [sneak_bonus] / [HUNTER_SNEAKATTACK_MAX_MULTIPLIER]")
+		stat("Sneak Attack Multiplier:", "[sneak_bonus] / [HUNTER_SNEAKATTACK_MAX_MULTIPLIER]")
 
 // ***************************************
 // *********** Stealth overrides

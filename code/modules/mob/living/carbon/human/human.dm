@@ -35,6 +35,7 @@
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
+
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -170,8 +171,10 @@
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_arm")
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-	if(update)	UpdateDamageIcon()
-	return 1
+	if(update)
+		UpdateDamageIcon()
+		UPDATEHEALTH(src)
+	return TRUE
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -186,9 +189,9 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor)
-		if(armor >= 1) //Complete negation
-			return
+		if(apply_damage(damage, BRUTE, affecting, armor))
+			UPDATEHEALTH(src)
+
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -946,11 +949,12 @@
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
-
-	if(species)
-		return 1
-	else
-		return 0
+	
+	if(!(species.species_flags & NO_STAMINA))
+		AddComponent(/datum/component/stamina_behavior)
+		max_stamina_buffer = species.max_stamina_buffer
+		setStaminaLoss(-max_stamina_buffer)
+	return TRUE
 
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)

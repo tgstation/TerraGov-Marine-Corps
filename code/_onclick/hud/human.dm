@@ -164,6 +164,9 @@
 		healths = new /obj/screen/healths()
 		infodisplay += healths
 
+		staminas = new
+		infodisplay += staminas
+
 	if(hud_data.has_pressure)
 		pressure_icon = new /obj/screen()
 		pressure_icon.icon_state = "pressure0"

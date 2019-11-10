@@ -78,11 +78,11 @@
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)
-			take_limb_damage(20)
 			stun(rand(5, 10))
+			take_limb_damage(20)
 		if(2)
+			stun(rand(1, 5))
 			take_limb_damage(10)
-			stun(rand(1, ))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
@@ -94,7 +94,7 @@
 	return
 
 
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = FALSE)
+/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
 	return FALSE
 
 

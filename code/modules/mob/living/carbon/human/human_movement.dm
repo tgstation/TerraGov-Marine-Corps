@@ -9,14 +9,6 @@
 
 	var/reducible_tally = 0 //Tally elements that can be reduced are put here, then we apply hyperzine effects
 
-	var/health_deficiency = (100 - health)
-	if(health_deficiency >= 40)
-		reducible_tally += round(health_deficiency / 25)
-
-	if(!(species && (species.species_flags & NO_PAIN)))
-		if(halloss >= 10)
-			reducible_tally += round(halloss / 15) //halloss shouldn't slow you down if you can't even feel it
-
 	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
 	if(hungry >= 50) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
 		reducible_tally += hungry/50 //Goes from a slowdown of 1 all the way to 2 for total starvation

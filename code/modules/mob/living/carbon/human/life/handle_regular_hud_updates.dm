@@ -82,34 +82,6 @@
 	if(!hud_used)
 		return
 
-	if(hud_used.healths)
-		if(analgesic)
-			hud_used.healths.icon_state = "health_numb"
-		else
-			switch(hal_screwyhud)
-				if(1)
-					hud_used.healths.icon_state = "health6"
-				if(2)
-					hud_used.healths.icon_state = "health7"
-				else if(health > get_crit_threshold())
-					var/perceived_health = health - traumatic_shock
-					if(species && species.species_flags & NO_PAIN)
-						perceived_health = health
-
-					switch(perceived_health)
-						if(100 to INFINITY)
-							hud_used.healths.icon_state = "health0"
-						if(80 to 100)
-							hud_used.healths.icon_state = "health1"
-						if(60 to 80)
-							hud_used.healths.icon_state = "health2"
-						if(40 to 60)
-							hud_used.healths.icon_state = "health3"
-						if(20 to 40)
-							hud_used.healths.icon_state = "health4"
-						else
-							hud_used.healths.icon_state = "health5"
-
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
 			if(450 to INFINITY)
@@ -192,3 +164,48 @@
 					hud_used.bodytemp_icon.icon_state = "temp-1"
 				else
 					hud_used.bodytemp_icon.icon_state = "temp0"
+
+
+/mob/living/carbon/human/handle_healths_hud_updates()
+	if(!hud_used?.healths)
+		return
+
+	if(stat == DEAD)
+		hud_used.healths.icon_state = "health7"
+		return
+
+	if(analgesic)
+		hud_used.healths.icon_state = "health_numb"
+		return
+
+	switch(hal_screwyhud)
+		if(1)
+			hud_used.healths.icon_state = "health6"
+			return
+		if(2)
+			hud_used.healths.icon_state = "health7"
+			return
+	
+	if(health < get_crit_threshold())
+		hud_used.healths.icon_state = "health6"
+		return
+
+	var/perceived_health = health
+	if(!(species.species_flags & NO_PAIN))
+		perceived_health -= traumatic_shock
+	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
+		perceived_health -= staminaloss
+
+	switch(perceived_health)
+		if(100 to INFINITY)
+			hud_used.healths.icon_state = "health0"
+		if(80 to 100)
+			hud_used.healths.icon_state = "health1"
+		if(60 to 80)
+			hud_used.healths.icon_state = "health2"
+		if(40 to 60)
+			hud_used.healths.icon_state = "health3"
+		if(20 to 40)
+			hud_used.healths.icon_state = "health4"
+		else
+			hud_used.healths.icon_state = "health5"

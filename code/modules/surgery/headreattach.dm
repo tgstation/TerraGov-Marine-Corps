@@ -73,9 +73,7 @@
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, further rending flesh on [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, further rending flesh on [target]'s neck!</span>")
-		target.apply_damage(10, BRUTE, affected)
-		target.updatehealth()
-
+		target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 
 /datum/surgery_step/head/suture
@@ -104,9 +102,7 @@
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, ripping apart flesh on [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, ripping apart flesh on [target]'s neck!</span>")
-		target.apply_damage(10, BRUTE, affected)
-		target.updatehealth()
-
+		target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 
 /datum/surgery_step/head/prepare
@@ -138,9 +134,7 @@
 		affected = affected.parent
 		user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s neck!</span>", \
 		"<span class='warning'>Your hand slips, searing [target]'s [affected.display_name]!</span>")
-		target.apply_damage(10, BURN, affected)
-		target.updatehealth()
-
+		target.apply_damage(10, BURN, affected, updating_health = TRUE)
 
 
 /datum/surgery_step/head/attach
@@ -184,5 +178,4 @@
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s neck!</span>", \
 	"<span class='warning'>Your hand slips, damaging connectors on [target]'s neck!</span>")
-	target.apply_damage(10, BRUTE, affected, 0, TRUE)
-	target.updatehealth()
+	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)
