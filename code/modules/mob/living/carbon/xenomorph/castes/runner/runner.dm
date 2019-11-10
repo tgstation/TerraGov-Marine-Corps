@@ -24,8 +24,7 @@
 	. = ..()
 	RegisterSignal(src, list(
 		COMSIG_XENOMORPH_DISARM_HUMAN,
-		COMSIG_XENOMORPH_ATTACK_LIVING)
-
+		COMSIG_XENOMORPH_ATTACK_LIVING))
 
 /mob/living/carbon/xenomorph/runner/update_stat()
 	. = ..()
