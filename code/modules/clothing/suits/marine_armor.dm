@@ -545,8 +545,6 @@
 		user.mind.cm_skills.firearms = 0
 		to_chat(user,"<span class='warning'>Your bulky hands and armor make it difficult to use weapons...</span>")
 
-	return .
-
 
 /obj/item/clothing/suit/storage/marine/specialist/melee/dropped(mob/user)
 
@@ -556,8 +554,6 @@
 		to_chat(user,"<span class='notice'>You feel more comfortable using guns now.</notice>")
 		user.mind.cm_skills.firearms = stored_skill
 		stored_skill = SKILL_INVALID
-
-	return .
 
 /obj/item/clothing/suit/storage/marine/M3T
 	name = "\improper M3-T light armor"
