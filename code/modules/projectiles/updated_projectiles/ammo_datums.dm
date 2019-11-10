@@ -448,38 +448,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 20
 
-/datum/ammo/bullet/rifle/explosive
-	name = "minirocket shell"
-	hud_state = "rocket_he"
-	hud_state_empty = "rocket_empty"
-	accurate_range = 15
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
-	damage = 10
-	penetration = -20
-
-/datum/ammo/bullet/rifle/explosive/New()
-
-	. = ..()
-
-	smoke = new()
 
 
-
-/datum/ammo/bullet/rifle/explosive/set_smoke()
-
-	smoke = new
-
-
-
-/datum/ammo/bullet/rifle/explosive/drop_nade(turf/T)
-
-	explosion(T, -1, 1, 1, 2)
-
-	set_smoke()
-
-	smoke.set_up(1, T)
-
-	smoke.start()
 
 /*
 //================================================
@@ -909,6 +879,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	explosion(T,  -1, 2, 4, 5)
 
+/datum/ammo/rocket/rifle
+	name = "minirocket shell"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
+	accurate_range = 15
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	damage = 10
+	penetration = -20
+
+/datum/ammo/rocket/rifle/drop_nade(turf/T)
+	explosion(T, -1, 0, 1, 2)
 
 /*
 //================================================
