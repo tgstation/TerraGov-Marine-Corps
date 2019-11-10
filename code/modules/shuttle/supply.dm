@@ -51,7 +51,16 @@ GLOBAL_LIST_EMPTY(exports_types)
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	use_ripples = FALSE
 	var/list/gears = list()
-	var/list/railings = list()
+	var/list/obj/machinery/door/poddoor/railing/railings = list()
+
+
+/obj/docking_port/mobile/supply/Destroy(force)
+	for(var/i in railings)
+		var/obj/machinery/door/poddoor/railing/railing = i
+		railing.linked_pad = null
+	railings.Cut()
+	return ..()
+
 
 	//Export categories for this run, this is set by console sending the shuttle.
 //	var/export_categories = EXPORT_CARGO
@@ -91,6 +100,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
+			R.linked_pad = src
 			R.open()
 
 /obj/docking_port/mobile/supply/canMove()
