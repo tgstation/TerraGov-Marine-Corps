@@ -412,6 +412,7 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_join,
 	/datum/admins/proc/toggle_respawn,
 	/datum/admins/proc/set_respawn_time,
+	/datum/admins/proc/set_xenorespawn_time,
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay_start,
 	/datum/admins/proc/delay_end,

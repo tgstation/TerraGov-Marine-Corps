@@ -242,6 +242,7 @@
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\signal_redirect.dm"
 #include "code\datums\components\squeak.dm"
+#include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\elements\_element.dm"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"

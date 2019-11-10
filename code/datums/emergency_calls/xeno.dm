@@ -2,6 +2,7 @@
 	name = "Xenomorphs"
 	probability = 10
 	auto_shuttle_launch = TRUE
+	spawn_type = /mob/living/carbon/xenomorph
 
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/xenomorph/X)
@@ -17,16 +18,13 @@
 
 
 /datum/emergency_call/xenomorphs/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!istype(spawn_loc))
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/xenomorph/new_xeno
-
-	if(original)
-		qdel(original)
+	var/mob/original = M.current
+	var/mob/living/carbon/xenomorph/new_xeno = .
+	var/turf/spawn_loc = get_turf(new_xeno)
 
 	if(!leader)
 		new_xeno = new /mob/living/carbon/xenomorph/ravager(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcomm, so they don't get sent to a different hive.
@@ -51,3 +49,6 @@
 	new_xeno = new /mob/living/carbon/xenomorph/hunter/mature(spawn_loc, TRUE)
 	M.transfer_to(new_xeno, TRUE)
 	print_backstory(new_xeno)
+
+	if(original)
+		qdel(original)

@@ -115,7 +115,7 @@
 	if(notransform)
 		return
 
-	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CANCEL_CLICKON)
+	if(SEND_SIGNAL(src, COMSIG_MOB_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 
 	var/list/modifiers = params2list(params)
@@ -131,11 +131,9 @@
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
+	if(modifiers["shift"] && ShiftClickOn(A))
 		return
-	if(modifiers["alt"])
-		AltClickOn(A)
+	if(modifiers["alt"] && AltClickOn(A))
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
@@ -351,16 +349,17 @@
 	This is overridden in ai.dm
 */
 /mob/proc/ShiftClickOn(atom/A)
-	A.ShiftClick(src)
-	return
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_SHIFT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
+	return A.ShiftClick(src)
 
 
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
-	if(user.client && user.client.eye == user || user.client.eye == user.loc)
-		user.examinate(src)
-	return
-
+	return TRUE
 
 /*
 	Ctrl click
@@ -393,27 +392,24 @@
 
 /*
 	Alt click
-	Unused except for AI
 */
 /mob/proc/AltClickOn(atom/A)
+	switch(SEND_SIGNAL(src, COMSIG_MOB_CLICK_ALT, A))
+		if(COMSIG_MOB_CLICK_CANCELED)
+			return FALSE
+		if(COMSIG_MOB_CLICK_HANDLED)
+			return TRUE
 	A.AltClick(src)
-	return
+	return TRUE
 
 
 /atom/proc/AltClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_ALT, user)
-	var/turf/T = get_turf(src)
-	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.statpanel = T.name
-
-
-// Use this instead of /mob/proc/AltClickOn(atom/A) where you only want turf content listing without additional atom alt-click interaction
-/atom/proc/AltClickNoInteract(mob/user, atom/A)
-	var/turf/T = get_turf(A)
-	if(T && user.TurfAdjacent(T))
-		user.listed_turf = T
-		user.client.statpanel = T.name
+	var/turf/examined_turf = get_turf(src)
+	if(examined_turf && user.TurfAdjacent(examined_turf))
+		user.listed_turf = examined_turf
+		user.client.statpanel = examined_turf.name
+	return TRUE
 
 
 /mob/proc/TurfAdjacent(turf/T)
