@@ -110,7 +110,7 @@
 
 /datum/action/xeno_action/proc/succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost)
+	if(plasma_cost && !QDELETED(owner))
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.
