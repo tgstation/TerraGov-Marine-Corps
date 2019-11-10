@@ -687,6 +687,7 @@
 					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
+					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine = 10,
 					/obj/item/clothing/suit/storage/marine/M3HB = 10,
 					/obj/item/clothing/suit/storage/marine/M3LB = 10,
@@ -750,23 +751,18 @@
 		switch(squad_tag)
 			if("Alpha")
 				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
-								/obj/item/clothing/gloves/marine/alpha = 10,
 								/obj/item/clothing/mask/bandanna/alpha = 10)
 			if("Bravo")
 				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/gloves/marine/bravo = 10,
 								/obj/item/clothing/mask/bandanna/bravo = 10)
 			if("Charlie")
 				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/gloves/marine/charlie = 10,
 								/obj/item/clothing/mask/bandanna/charlie = 10)
 			if("Delta")
 				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/gloves/marine/delta = 10,
 								/obj/item/clothing/mask/bandanna/delta = 10)
 	else
-		products2 = list(/obj/item/radio/headset/mainship = 10,
-						/obj/item/clothing/gloves/marine = 10,
+		products2 = list(/obj/item/radio/headset/mainship = 20,
 						/obj/item/clothing/mask/bandanna = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
