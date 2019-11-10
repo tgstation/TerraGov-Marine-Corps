@@ -300,6 +300,8 @@
 // *********** Status changes
 // ***************************************
 /datum/hive_status/proc/on_xeno_logout(mob/living/carbon/xenomorph/ssd_xeno)
+	if(ssd_xeno.stat == DEAD)
+		return
 	LAZYADD(ssd_xenos, ssd_xeno)
 
 /datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
