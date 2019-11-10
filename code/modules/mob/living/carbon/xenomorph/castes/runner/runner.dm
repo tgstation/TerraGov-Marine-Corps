@@ -20,9 +20,6 @@
 // ***************************************
 // *********** Init
 // ***************************************
-/mob/living/carbon/xenomorph/runner/Initialize(mapload, can_spawn_in_centcomm)
-	. = ..()
-
 /mob/living/carbon/xenomorph/runner/update_stat()
 	. = ..()
 	if(stat != CONSCIOUS && layer != initial(layer))
