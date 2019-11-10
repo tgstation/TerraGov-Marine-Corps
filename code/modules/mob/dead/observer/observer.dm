@@ -507,8 +507,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			name += " - Synth"
 		else if(issurvivor(H))
 			name += " - Survivor"
-		else if(!ismarine(H))
-			name += " - Non-marine"
+		else if(!H.faction != "Marine")
+			name += " - [H.faction]"
 		if((H.client && H.client.is_afk()) || (!H.client && (H.key || H.ckey)))
 			if(isaghost(H))
 				if(admin)
