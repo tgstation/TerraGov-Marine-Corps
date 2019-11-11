@@ -950,7 +950,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(focus_chat)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 			else
-				winset(user, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
+				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
 
 		if("clientfps")
 			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
@@ -1006,10 +1006,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			// This is a mapping from JS keys to Byond - ref: https://keycode.info/
 			var/list/_kbMap = list(
-				"UP" = "North", "RIGHT" = "East", "DOWN" = "South", "LEFT" = "West",
-				"INSERT" = "Insert", "HOME" = "Northwest", "PAGEUP" = "Northeast",
-				"DEL" = "Delete", "END" = "Southwest",  "PAGEDOWN" = "Southeast",
-				"SPACEBAR" = "Space", "ALT" = "Alt", "SHIFT" = "Shift", "CONTROL" = "Ctrl"
+				"UP" = "North",
+				"RIGHT" = "East",
+				"DOWN" = "South",
+				"LEFT" = "West",
+				"INSERT" = "Insert",
+				"HOME" = "Northwest",
+				"PAGEUP" = "Northeast",
+				"DEL" = "Delete",
+				"END" = "Southwest",
+				"PAGEDOWN" = "Southeast",
+				"SPACEBAR" = "Space",
+				"ALT" = "Alt",
+				"SHIFT" = "Shift",
+				"CONTROL" = "Ctrl"
 			)
 			new_key = _kbMap[new_key] ? _kbMap[new_key] : new_key
 
@@ -1024,6 +1034,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			key_bindings[full_key] = sortList(key_bindings[full_key])
 
 			user << browse(null, "window=capturekeypress")
+			user.client.update_movement_keys()
 			save_preferences()
 			ShowKeybindings(user)
 			return

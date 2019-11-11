@@ -26,7 +26,7 @@
 	set waitfor = FALSE
 
 	keys_held.Cut()
-	for(var/i in 1 to 10)
+	for(var/i in 1 to HELD_KEY_BUFFER_LENGTH)
 		keys_held += null
 
 	erase_all_macros()
@@ -40,4 +40,4 @@
 	if(prefs.focus_chat)
 		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 	else
-		winset(src, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
+		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")

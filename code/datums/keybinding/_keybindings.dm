@@ -10,6 +10,9 @@
 	var/keybind_signal
 
 /datum/keybinding/New()
+	if(!keybind_signal)
+		CRASH("Keybind [src] called unredefined down() without a keybind_signal.")
+
 	if(!key)
 		return
 
@@ -18,7 +21,7 @@
 	hotkey_key = (initial(hotkey_key) != "Unbound") ? initial(hotkey_key) : key
 
 /datum/keybinding/proc/down(client/user)
-	return FALSE
+	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
 
 /datum/keybinding/proc/up(client/user)
 	return FALSE

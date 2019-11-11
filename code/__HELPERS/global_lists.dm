@@ -89,10 +89,11 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		E.emote_list[E.key] = E
 
 	// Keybindings (classic)
-	for(var/KB in (subtypesof(/datum/keybinding) - list(/datum/keybinding/human, /datum/keybinding/xeno)))
-		var/datum/keybinding/instance = new KB
-		if(!instance.name || !instance.key)
+	for(var/KB in subtypesof(/datum/keybinding))
+		var/datum/keybinding/keybinding = KB
+		if(!initial(keybinding.key))
 			continue
+		var/datum/keybinding/instance = new keybinding
 		GLOB.keybindings_by_name[instance.name] = instance
 
 		// Classic
