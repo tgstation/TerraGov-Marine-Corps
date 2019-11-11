@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
 	hud_state = "rifle_fire"
-	damage = 20
+	damage = 10
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	accuracy = -10
@@ -902,7 +902,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = -20
 
 /datum/ammo/rocket/rifle/drop_nade(turf/T)
-	explosion(T, -1, 1, 2, 2)
+	explosion(T, -1, -1, 2, 2)
 
 /*
 //================================================
