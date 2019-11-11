@@ -665,16 +665,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	damage_falloff = 2
 
-
 /datum/ammo/bullet/shotgun/mbx900_sabot
 	name = ".410 sabot"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	shell_speed = 5
 	max_range = 30
-	damage = 30
+	damage = 35
 	penetration = 40
-
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = ".410 tracker"
@@ -682,8 +680,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "shotgun_flechette"
 	shell_speed = 4
 	max_range = 30
-	damage = 10
-	penetration = 20
+	damage = 30
+	penetration = 10
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/item/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)

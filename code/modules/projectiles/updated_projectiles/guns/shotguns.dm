@@ -689,6 +689,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -699,11 +700,11 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	flags_item_map_variant = NONE
 
-	fire_delay = 8
+	fire_delay = 6
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 6
+	pump_delay = 2
