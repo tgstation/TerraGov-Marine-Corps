@@ -884,13 +884,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state 	= "bullet"
 	hud_state = "rocket_he"
 	hud_state_empty = "rocket_empty"
+	shell_speed = 1
 	accurate_range = 15
 	flags_ammo_behavior = AMMO_ROCKET
 	damage = 10
 	penetration = -20
 
 /datum/ammo/rocket/rifle/drop_nade(turf/T)
-	explosion(T, -1, -1, 1, 2)
+	explosion(T, -1, 1, 2, 2)
 
 /*
 //================================================
