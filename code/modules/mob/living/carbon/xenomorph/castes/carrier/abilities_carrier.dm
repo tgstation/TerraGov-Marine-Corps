@@ -133,7 +133,7 @@
 	name = "Place hugger trap"
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
-	plasma_cost = 400
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
@@ -174,7 +174,7 @@
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	mechanics_text = "Spawn a facehugger that is stored on your body."
-	plasma_cost = 200
+	plasma_cost = 100
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 
