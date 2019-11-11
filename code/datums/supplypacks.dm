@@ -13,6 +13,7 @@
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
+#define RO_PRICE_XENO_REQUIRED	200
 
 GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies"))
 
@@ -1791,6 +1792,26 @@ AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper incendiary sniper ammo crate"
 	group = "Ammo"
+
+/datum/supply_packs/ammo_incin_M41A1
+	name = "M41A1 incendiary magazines crate (10)"
+	contains = list(
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/incendiary
+					)
+	cost = RO_PRICE_XENO_REQUIRED
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper incendiary rifle ammo crate"
+	group = "Ammo"
+
 
 /datum/supply_packs/ammo_rpg_regular
 	name = "M5 RPG HE rockets crate (x6)"
