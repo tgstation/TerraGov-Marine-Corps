@@ -147,8 +147,8 @@
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
 
-	for(var/i in GLOB.nuke_spawn_locs)
-		new /obj/machinery/nuclearbomb(i)
+	var/obj/machinery/nuclearbomb/NB = new(pick(GLOB.nuke_spawn_locs))
+	NB.require_one_auth = TRUE
 
 	for(var/i in GLOB.shuttle_controls_list)
 		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
@@ -179,9 +179,8 @@
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
-	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
+	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.<br><br>Your objective is the following:<br>1.Locate and obtain a nuclear authentication disk from one of the three terminals located in this area.<br>2. Defend the nuclear authentication terminal as it generates an aunthentication generation program.<br>3. Locate and activate the plantary destruction device.<br>4. Defend the plantary destruction device as it detonates.<br>(Optional) 5. Flee the planet.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
-
 
 /datum/game_mode/crash/proc/add_larva()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
@@ -410,7 +409,11 @@
 /datum/game_mode/crash/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/area_name = get_area_name(nuke)
+	priority_announce("WARNING. WARNING. Planetary Nuke activated. WARNING. WARNING. Evacuate planet immediately. WARNING. WARNING.", "Priority Alert")
 	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
+
+	var/sound/S = sound('sound/machines/alarm.ogg',channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
 
 /datum/game_mode/crash/proc/play_cinematic(z_level)
 	GLOB.enter_allowed = FALSE

@@ -29,6 +29,8 @@
 	var/obj/item/disk/nuclear/green/g_auth
 	var/obj/item/disk/nuclear/blue/b_auth
 
+	var/require_one_auth = FALSE
+
 
 /obj/machinery/nuclearbomb/Initialize()
 	. = ..()
@@ -102,11 +104,10 @@
 			g_auth = I
 		if(/obj/item/disk/nuclear/blue)
 			b_auth = I
-	if(r_auth && g_auth && b_auth)
+	if( (r_auth && g_auth && b_auth) || (require_one_auth && (b_auth || g_auth || b_auth)) )
 		has_auth = TRUE
 
 	updateUsrDialog()
-
 
 /obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X)
 	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
