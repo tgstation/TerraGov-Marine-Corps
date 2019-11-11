@@ -448,6 +448,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 20
 
+/datum/ammo/bullet/rifle/standard_dmr
+	name = "10x27mm caseless"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 0
+	damage = 45
+	scatter = -15
+	penetration = 15
+
 /*
 //================================================
 					Shotgun Ammo
@@ -916,7 +928,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/lasgun
-	name = "civilian laser bolt"
+	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
 	armor_type = "laser"
@@ -929,11 +941,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 
 /datum/ammo/energy/lasgun/M43
-	name = "military laser bolt"
 	icon_state = "laser2"
-	hud_state = "laser"
-	damage = 25
-	penetration = 10
 
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
