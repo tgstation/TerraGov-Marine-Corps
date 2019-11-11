@@ -143,6 +143,7 @@
 					/obj/item/weapon/gun/shotgun/double = 2,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 2,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
+					/obj/item/weapon/gun/pistol/knife = 1
 					)
 	premium = list()
 
