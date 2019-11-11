@@ -881,15 +881,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/rocket/rifle
 	name = "minirocket shell"
+	icon_state 	= "bullet"
 	hud_state = "rocket_he"
 	hud_state_empty = "rocket_empty"
 	accurate_range = 15
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	flags_ammo_behavior = AMMO_ROCKET
 	damage = 10
 	penetration = -20
 
 /datum/ammo/rocket/rifle/drop_nade(turf/T)
-	explosion(T, -1, 0, 1, 2)
+	explosion(T, -1, -1, 1, 2)
 
 /*
 //================================================
