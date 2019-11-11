@@ -80,15 +80,12 @@
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
 	update_button_icon()
 
-//datum/action/xeno_action/create_boiler_bomb/update_button_icon()
-//	var/mob/living/carbon/xenomorph/boiler/X = owner
-//	button.overlays.Cut()
+/datum/action/xeno_action/create_boiler_bomb/update_button_icon()
+	var/mob/living/carbon/xenomorph/boiler/X = owner
+	button.overlays.Cut()
 	//the bit where the ammo counter sprite updates.
-//	if(X.ammo?.type == /datum/ammo/xeno/boiler_gas/corrosive)
-//		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
-//	else
-//		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
-//	return ..()
+	button.overlays += image('icons/mob/actions.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
+	return ..()
 
 // ***************************************
 // *********** Gas cloud bombs
