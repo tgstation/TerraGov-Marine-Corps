@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 32.5
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -67,10 +67,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 42.5
+	melee_damage = 32
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 42
 
 	// *** Speed *** //
 	speed = -0.15
@@ -101,10 +101,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 47.5
+	melee_damage = 35
 
 	// *** Tackle *** //
-	tackle_damage = 57
+	tackle_damage = 47
 
 	// *** Speed *** //
 	speed = -0.22
@@ -136,10 +136,10 @@
 	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage = 50.5
+	melee_damage = 37
 
 	// *** Tackle *** //
-	tackle_damage = 60
+	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = -0.25

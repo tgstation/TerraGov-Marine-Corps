@@ -1,5 +1,5 @@
 /datum/keybinding/living
-	category = CATEGORY_HUMAN
+	category = CATEGORY_LIVING
 	weight = WEIGHT_MOB
 
 
@@ -13,4 +13,3 @@
 	var/mob/living/L = user.mob
 	L.resist()
 	return TRUE
-

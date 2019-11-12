@@ -5,10 +5,25 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/adjustBruteLoss(amount)
+/mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	bruteloss = CLAMP(bruteloss+amount,0,maxHealth*2)
+	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth * 2)
+	if(updating_health)
+		updatehealth()
+
+
+/mob/living/proc/getFireLoss()
+	return fireloss
+
+/mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	fireloss = CLAMP(fireloss + amount, 0, maxHealth * 2)
+
+	if(updating_health)
+		updatehealth()
+
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
@@ -16,12 +31,13 @@
 /mob/living/proc/adjustOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	oxyloss = CLAMP(oxyloss+amount,0,maxHealth*2)
+	oxyloss = CLAMP(oxyloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	oxyloss = amount
+
 
 /mob/living/proc/getToxLoss()
 	return toxloss
@@ -29,20 +45,60 @@
 /mob/living/proc/adjustToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	toxloss = CLAMP(toxloss+amount,0,maxHealth*2)
+	toxloss = CLAMP(toxloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	toxloss = amount
 
-/mob/living/proc/getFireLoss()
-	return fireloss
 
-/mob/living/proc/adjustFireLoss(amount)
+/mob/living/proc/getStaminaLoss()
+	return staminaloss
+
+/mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	fireloss = CLAMP(fireloss+amount,0,maxHealth*2)
+	staminaloss = CLAMP(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+	if(amount > 0)
+		last_staminaloss_dmg = world.time
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/setStaminaLoss(amount, update = TRUE, feedback = TRUE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	staminaloss = amount
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/updateStamina(feedback = TRUE)
+	if(staminaloss < maxHealth * 1.5)
+		return
+	switch(knocked_down)
+		if(0)
+			if(feedback)
+				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
+					"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
+			knock_down(4)
+		if(1 to 3)
+			set_knocked_down(4, FALSE)
+
+
+/mob/living/carbon/human/updateStamina(feedback = TRUE)
+	. = ..()
+	if(!hud_used?.staminas)
+		return
+	if(stat == DEAD)
+		hud_used.staminas.icon_state = "stamloss200"
+		return
+	var/relative_stamloss = getStaminaLoss()
+	if(relative_stamloss < 0 && max_stamina_buffer)
+		relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
+	else
+		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
+	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
+
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -89,32 +145,34 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return
 
 
-
-
-
-
 // heal ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_limb_damage(brute, burn)
+/mob/living/proc/heal_limb_damage(brute, burn, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
-	src.updatehealth()
+	if(updating_health)
+		updatehealth()
+
 
 // damage ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_limb_damage(brute, burn)
+/mob/living/proc/take_limb_damage(brute, burn, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
-	src.updatehealth()
+	if(updating_health)
+		updatehealth()
+
 
 // heal MANY limbs, in random order
-/mob/living/proc/heal_overall_damage(brute, burn)
+/mob/living/proc/heal_overall_damage(brute, burn, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
-	src.updatehealth()
+	if(updating_health)
+		updatehealth()
+
 
 // damage MANY limbs, in random order
-/mob/living/proc/take_overall_damage(brute, burn, used_weapon = null, blocked = 0)
+/mob/living/proc/take_overall_damage(brute, burn, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return 0//godmode
 
@@ -123,16 +181,19 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	if(blocked)
 		if(brute)
-			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+			brute *= CLAMP01(1-blocked) //Percentage reduction
 		if(burn)
-			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+			burn *= CLAMP01(1-blocked) //Percentage reduction
 
 	if(!brute && !burn) //Complete negation
 		return 0
 
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
-	src.updatehealth()
+	if(updating_health)
+		updatehealth()
+	return TRUE
+
 
 /mob/living/proc/restore_all_organs()
 	return
@@ -158,6 +219,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		embedded.unembed_ourself()
 
 	// shut down various types of badness
+	setStaminaLoss(0)
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)
@@ -241,7 +303,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		O.perma_injury = 0
 		O.germ_level = 0
 		O.wounds.Cut()
-		O.heal_damage(1000, 1000, TRUE, TRUE)
+		O.heal_limb_damage(1000, 1000, TRUE, TRUE)
 		O.reset_limb_surgeries()
 
 	var/datum/limb/head/h = get_limb("head")

@@ -45,10 +45,10 @@
 			if(AM in T.affecting)
 				return
 
-		if(ismob(AM))
-			var/mob/M = AM
+		if(isliving(AM))
+			var/mob/living/stepping_mob = AM
 			if(immobilize)
-				M.canmove = 0
+				stepping_mob.set_canmove(FALSE)
 
 		affecting.Add(AM)
 		while(AM && !stopthrow)
@@ -82,10 +82,10 @@
 
 		affecting.Remove(AM)
 
-		if(ismob(AM))
-			var/mob/M = AM
+		if(isliving(AM))
+			var/mob/living/stepping_mob = AM
 			if(immobilize)
-				M.canmove = 1
+				stepping_mob.set_canmove(TRUE)
 
 /* Stops things thrown by a thrower, doesn't do anything */
 

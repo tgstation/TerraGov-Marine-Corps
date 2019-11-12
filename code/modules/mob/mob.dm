@@ -23,16 +23,16 @@
 /mob/Stat()
 	. = ..()
 	if(statpanel("Status"))
-		if(client)
-			stat(null, "Ping: [round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
+		if(GLOB.round_id)
+			stat("Round ID:", GLOB.round_id)
+		stat("Operation Time:", worldtime2text())
+		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
+		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 
 	if(statpanel("Game"))
-		if(GLOB.round_id)
-			stat("Round ID: [GLOB.round_id]")
-		stat("Operation Time: [worldtime2text()]")
-		stat("Current Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."]")
-		stat("Current Ship: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]")
-		stat("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+		if(client)
+			stat("Ping:", "[round(client.lastping, 1)]ms (Average: [round(client.avgping, 1)]ms)")
+		stat("Time Dilation:", "[round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 	if(client?.holder?.rank?.rights)
 		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
@@ -200,7 +200,7 @@
 
 
 /mob/proc/movement_delay()
-	. += cached_multiplicative_slowdown + next_move_slowdown
+	. = cached_multiplicative_slowdown + next_move_slowdown
 	next_move_slowdown = 0
 
 
@@ -528,9 +528,6 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/update_health_hud()
-	return
-
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
@@ -716,12 +713,24 @@
 	return ..()
 
 
+/mob/proc/update_joined_player_list(newname, oldname)
+	if(newname == oldname)
+		return
+	if(oldname)
+		GLOB.joined_player_list -= oldname
+	if(newname)
+		GLOB.joined_player_list[newname] = TRUE
+
+
 //This will update a mob's name, real_name, mind.name, GLOB.datacore records and id
 /mob/proc/fully_replace_character_name(oldname, newname)
 	if(!newname)
 		return FALSE
 
 	log_played_names(ckey, newname)
+
+	if(GLOB.joined_player_list[oldname])
+		update_joined_player_list(newname, oldname)
 
 	real_name = newname
 	name = newname
@@ -753,3 +762,16 @@
 
 /mob/proc/can_interact_with(datum/D)
 	return (D == src)
+
+///Update the mouse pointer of the attached client in this mob
+/mob/proc/update_mouse_pointer()
+	if (!client)
+		return
+	client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
+
+
+/mob/proc/update_names_joined_list(new_name, old_name)
+	if(old_name)
+		GLOB.real_names_joined -= old_name
+	if(new_name)
+		GLOB.real_names_joined[new_name] = TRUE

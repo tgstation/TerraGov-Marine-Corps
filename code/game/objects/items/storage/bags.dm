@@ -95,7 +95,7 @@
 	max_w_class = 3
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
-		/obj/item/reagent_container/food/snacks/grown,
+		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
 		/obj/item/grown)
 

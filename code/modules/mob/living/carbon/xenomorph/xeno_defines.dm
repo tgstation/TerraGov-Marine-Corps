@@ -26,7 +26,7 @@
 	var/tacklemin = 1
 	var/tacklemax = 1
 	var/tackle_chance = 100
-	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
+	var/tackle_damage = 20 //How much STAMINA damage a xeno deals when tackling
 
 	// *** Speed *** //
 	var/speed = 1
@@ -147,8 +147,8 @@
 	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
 
 	var/datum/armor/armor
-	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
-	var/armor_pheromone_bonus = 0 //
+	var/armor_bonus = 0
+	var/armor_pheromone_bonus = 0
 
 	var/fire_resist_modifier = 0
 
@@ -210,9 +210,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Runner vars
-	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
 
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen

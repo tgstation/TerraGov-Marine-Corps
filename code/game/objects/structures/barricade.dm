@@ -96,6 +96,7 @@
 		M.visible_message("<span class='danger'>The barbed wire slices into [M]!</span>",
 		"<span class='danger'>The barbed wire slices into us!</span>", null, 5)
 		M.apply_damage(10)
+		UPDATEHEALTH(M)
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_BARRICADE)
 	return ..()
 
@@ -632,6 +633,7 @@
 	density = FALSE
 	closed = TRUE
 	can_wire = TRUE
+	climbable = TRUE
 
 	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
 	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming

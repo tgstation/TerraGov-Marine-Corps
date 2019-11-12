@@ -76,7 +76,7 @@
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	desc = "A biohazard alert warning is printed on the box"
-	spawn_type = /obj/item/reagent_container/syringe
+	spawn_type = /obj/item/reagent_containers/syringe
 	spawn_number = 7
 	icon_state = "syringe"
 	w_class = WEIGHT_CLASS_SMALL
@@ -84,7 +84,7 @@
 /obj/item/storage/box/beakers
 	name = "box of beakers"
 	icon_state = "beaker"
-	spawn_type = /obj/item/reagent_container/glass/beaker
+	spawn_type = /obj/item/reagent_containers/glass/beaker
 	spawn_number = 7
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -114,26 +114,26 @@
 /obj/item/storage/box/drinkingglasses
 	name = "box of drinking glasses"
 	desc = "It has a picture of drinking glasses on it."
-	spawn_type = /obj/item/reagent_container/food/drinks/drinkingglass
+	spawn_type = /obj/item/reagent_containers/food/drinks/drinkingglass
 	spawn_number = 6
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
-	spawn_type = /obj/item/reagent_container/food/condiment
+	spawn_type = /obj/item/reagent_containers/food/condiment
 	spawn_number = 6
 
 /obj/item/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
-	spawn_type = /obj/item/reagent_container/food/drinks/sillycup
+	spawn_type = /obj/item/reagent_containers/food/drinks/sillycup
 	spawn_number = 7
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
-	spawn_type = /obj/item/reagent_container/food/snacks/donkpocket
+	spawn_type = /obj/item/reagent_containers/food/snacks/donkpocket
 	spawn_number = 6
 	w_class = WEIGHT_CLASS_NORMAL
 
@@ -142,23 +142,23 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "monkeycubebox"
-	spawn_type = /obj/item/reagent_container/food/snacks/monkeycube/wrapped
+	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
 	spawn_number = 5
 
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
-	spawn_type = /obj/item/reagent_container/food/snacks/monkeycube/wrapped/farwacube
+	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
 
 /obj/item/storage/box/monkeycubes/stokcubes
 	name = "stok cube box"
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-	spawn_type = /obj/item/reagent_container/food/snacks/monkeycube/wrapped/stokcube
+	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 
 /obj/item/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
 	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
-	spawn_type = /obj/item/reagent_container/food/snacks/monkeycube/wrapped/neaeracube
+	spawn_type = /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
@@ -234,14 +234,14 @@
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
 	icon_state = "syringe"
-	spawn_type = /obj/item/reagent_container/hypospray/autoinjector/tricordrazine
+	spawn_type = /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine
 	spawn_number = 7
 
 /obj/item/storage/box/quickclot
 	name = "box of quick-clot injectors"
 	desc = "Contains quick-clot autoinjectors."
 	icon_state = "syringe"
-	spawn_type = /obj/item/reagent_container/hypospray/autoinjector/quickclot
+	spawn_type = /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	spawn_number = 7
 
 /obj/item/storage/box/lights
@@ -410,10 +410,10 @@
 	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker")
 	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 	name = "[initial(name)] ([entree])"
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, entree)
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, side)
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, snack)
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, desert)
+	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, entree)
+	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, side)
+	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, snack)
+	new /obj/item/reagent_containers/food/snacks/packaged_meal(src, desert)
 
 /obj/item/storage/box/MRE/remove_from_storage()
 	. = ..()

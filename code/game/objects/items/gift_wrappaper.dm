@@ -40,8 +40,8 @@
 		/obj/item/toy/prize/seraph,
 		/obj/item/toy/spinningtoy,
 		/obj/item/toy/sword,
-		/obj/item/reagent_container/food/snacks/grown/ambrosiadeus,
-		/obj/item/reagent_container/food/snacks/grown/ambrosiavulgaris,
+		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/violin,
 		/obj/item/clothing/tie/horrible)
 

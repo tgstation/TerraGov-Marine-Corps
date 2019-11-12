@@ -1125,7 +1125,7 @@
 /obj/structure/table/mainship,
 /obj/item/camera,
 /obj/item/tool/extinguisher,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship{
@@ -1966,7 +1966,7 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -2529,7 +2529,7 @@
 /area/mainship/medical/medical_science)
 "iE" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable{
@@ -3508,7 +3508,7 @@
 /area/mainship/medical/medical_science)
 "lk" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/cans/aspen{
+/obj/item/reagent_containers/food/drinks/cans/aspen{
 	pixel_x = 8
 	},
 /obj/item/camera,
@@ -4187,10 +4187,10 @@
 /area/mainship/command/cic)
 "mY" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_container/food/drinks/bottle/sake{
+/obj/item/reagent_containers/food/drinks/bottle/sake{
 	pixel_x = -4
 	},
-/obj/item/reagent_container/food/drinks/bottle/sake{
+/obj/item/reagent_containers/food/drinks/bottle/sake{
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -4572,9 +4572,9 @@
 	pixel_y = 3
 	},
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_container/glass/beaker/bluespace,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/dropper,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /obj/machinery/alarm{
 	icon_state = "alarm0";
 	dir = 1
@@ -5342,8 +5342,8 @@
 /area/mainship/shipboard/chief_mp_office)
 "qc" = (
 /obj/structure/closet/secure_closet/warrant_officer,
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/item/reagent_container/food/snacks/meatsteak,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/meatsteak,
 /obj/item/weapon/telebaton,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
@@ -5590,8 +5590,8 @@
 /obj/item/tool/minihoe,
 /obj/item/tool/plantspray/weeds,
 /obj/item/tool/plantspray/weeds,
-/obj/item/reagent_container/glass/fertilizer/ez,
-/obj/item/reagent_container/glass/fertilizer/ez,
+/obj/item/reagent_containers/glass/fertilizer/ez,
+/obj/item/reagent_containers/glass/fertilizer/ez,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "qG" = (
@@ -5599,14 +5599,14 @@
 /area/mainship/squads/req)
 "qH" = (
 /obj/structure/closet/secure_closet/freezer,
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/item/reagent_container/food/drinks/bottle/sake,
-/obj/item/reagent_container/food/drinks/bottle/sake,
-/obj/item/reagent_container/food/drinks/bottle/wine,
-/obj/item/reagent_container/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qI" = (
@@ -5804,7 +5804,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "rn" = (
-/obj/item/reagent_container/food/snacks/grown/poppy,
+/obj/item/reagent_containers/food/snacks/grown/poppy,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
 "ro" = (
@@ -5835,7 +5835,7 @@
 	amount = 30
 	},
 /obj/structure/closet/toolcloset,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/bag/trash,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
@@ -5892,7 +5892,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "rA" = (
-/obj/item/reagent_container/food/snacks/grown/poppy,
+/obj/item/reagent_containers/food/snacks/grown/poppy,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5931,7 +5931,7 @@
 /area/mainship/shipboard/brig_cells)
 "rG" = (
 /obj/structure/closet/secure_closet/military_police,
-/obj/item/reagent_container/spray/pepper,
+/obj/item/reagent_containers/spray/pepper,
 /obj/item/tool/taperoll/police,
 /obj/item/taperecorder,
 /obj/item/roller,
@@ -6151,7 +6151,7 @@
 	pixel_y = 5
 	},
 /obj/item/newspaper,
-/obj/item/reagent_container/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/britcup,
 /obj/item/storage/box/matches,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -8980,7 +8980,7 @@
 /obj/item/tool/warning_cone,
 /obj/item/tool/warning_cone,
 /obj/item/tool/warning_cone,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/tool/wirecutters,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
@@ -12188,7 +12188,7 @@
 	pixel_x = -9;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Gl" = (
@@ -14389,7 +14389,7 @@
 /area/mainship/squads/general)
 "Km" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/surgical_tray,
 /obj/machinery/power/apc/mainship{
 	dir = 1
@@ -15776,7 +15776,7 @@
 	pixel_x = 6;
 	pixel_y = -2
 	},
-/obj/item/reagent_container/spray/surgery{
+/obj/item/reagent_containers/spray/surgery{
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -15899,7 +15899,7 @@
 "Nc" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
-/obj/item/reagent_container/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
 	dir = 5
@@ -16180,7 +16180,7 @@
 /area/mainship/squads/req)
 "NG" = (
 /obj/structure/rack,
-/obj/item/reagent_container/glass/bucket/janibucket,
+/obj/item/reagent_containers/glass/bucket/janibucket,
 /obj/item/tool/wet_sign,
 /obj/item/tool/wet_sign,
 /obj/item/tool/wet_sign,
@@ -16789,7 +16789,7 @@
 	amount = 50
 	},
 /obj/item/clothing/under/rank/roboticist,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner";
 	dir = 4
@@ -17742,7 +17742,7 @@
 /obj/item/clipboard{
 	pixel_x = 5
 	},
-/obj/item/reagent_container/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/binoculars,
 /obj/machinery/light,
 /turf/open/floor/wood,

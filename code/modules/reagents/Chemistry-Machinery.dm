@@ -9,46 +9,69 @@
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 	interaction_flags = INTERACT_MACHINE_NANO
-	var/ui_title = "Chem Dispenser 5000"
-	var/energy = 100
-	var/max_energy = 100
+
+	ui_x = 565
+	ui_y = 620
+
+	var/obj/item/cell/cell
+	var/powerefficiency = 0.1
 	var/amount = 30
-	var/accept_glass = FALSE //just used for the title name on the NanoUI now. Kinda misleading varname.
-	var/obj/item/reagent_container/beaker = null
-	var/recharged = 0
+	var/recharge_amount = 10
+	var/recharge_counter = 0
+
+	var/working_state = "dispenser_working"
+
+	var/obj/item/reagent_containers/beaker = null
 	var/hackedcheck = 0
 	var/list/dispensable_reagents = list(
-	/datum/reagent/aluminum,/datum/reagent/carbon,/datum/reagent/chlorine,/datum/reagent/copper,/datum/reagent/consumable/ethanol,/datum/reagent/fluorine,/datum/reagent/hydrogen,
-	/datum/reagent/iron,/datum/reagent/lithium,/datum/reagent/mercury,/datum/reagent/nitrogen,/datum/reagent/oxygen,/datum/reagent/phosphorus,/datum/reagent/potassium,
-	/datum/reagent/radium,/datum/reagent/toxin/acid,/datum/reagent/silicon,/datum/reagent/sodium,/datum/reagent/consumable/sugar,/datum/reagent/sulfur,/datum/reagent/water)
+		/datum/reagent/aluminum,
+		/datum/reagent/carbon,
+		/datum/reagent/chlorine,
+		/datum/reagent/copper,
+		/datum/reagent/consumable/ethanol,
+		/datum/reagent/fluorine,
+		/datum/reagent/hydrogen,
+		/datum/reagent/iron,
+		/datum/reagent/lithium,
+		/datum/reagent/mercury,
+		/datum/reagent/nitrogen,
+		/datum/reagent/oxygen,
+		/datum/reagent/phosphorus,
+		/datum/reagent/potassium,
+		/datum/reagent/radium,
+		/datum/reagent/toxin/acid,
+		/datum/reagent/silicon,
+		/datum/reagent/sodium,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/sulfur,
+		/datum/reagent/water
+	)
 
-/obj/machinery/chem_dispenser/proc/recharge()
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-	var/addenergy = 10
-	var/oldenergy = energy
-	energy = min(energy + addenergy, max_energy)
-	if(energy != oldenergy)
-		use_power(1500) // This thing uses up alot of power (this is still low as shit for creating reagents from thin air)
-		SSnano.update_uis(src) // update all UIs attached to src
+	var/list/recording_recipe
 
-/obj/machinery/chem_dispenser/power_change()
-	..()
-	SSnano.update_uis(src) // update all UIs attached to src
+	var/list/saved_recipes = list()
 
 /obj/machinery/chem_dispenser/process()
-	if(recharged <= 0)
-		recharge()
-		recharged = 15
-	else
-		recharged -= 1
+	if (recharge_counter >= 4)
+		if(!is_operational())
+			return
+		var/usedpower = cell?.give(recharge_amount)
+		if(usedpower)
+			use_power(250*recharge_amount)
+		recharge_counter = 0
+		return
+	recharge_counter++
 
 /obj/machinery/chem_dispenser/Initialize()
 	. = ..()
-	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
+	cell = new /obj/item/cell/hyper
 	start_processing()
 
+/obj/machinery/chem_dispenser/Destroy()
+	QDEL_NULL(beaker)
+	QDEL_NULL(cell)
+	return ..()
 
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
@@ -60,31 +83,31 @@
 				qdel(src)
 				return
 
+/obj/machinery/chem_dispenser/proc/work_animation()
+	if(working_state)
+		flick(working_state,src)
 
 /obj/machinery/chem_dispenser/handle_atom_del(atom/movable/AM)
 	if(AM == beaker)
 		beaker = null
 
-/**
-* The ui_interact proc is used to open and update Nano UIs
-* If ui_interact is not used then the UI will not update correctly
-* ui_interact is currently defined for /atom/movable
-*
-* @param user /mob The mob who is interacting with this ui
-* @param ui_key string A string key to use for this ui. Allows for multiple unique uis on one obj/mob (defaut value "main")
-*
-* @return nothing
-*/
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",datum/nanoui/ui = null, force_open = 0)
-	// this is the data which will be sent to the ui
-	var/data[0]
+
+/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+											datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "chem_dispenser", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/chem_dispenser/ui_data(mob/user)
+	var/data = list()
 	data["amount"] = amount
-	data["energy"] = round(energy)
-	data["maxEnergy"] = round(max_energy)
+	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
+	data["maxEnergy"] = cell.maxcharge * powerefficiency
 	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["glass"] = accept_glass
-	var beakerContents[0]
-	var beakerCurrentVolume = 0
+
+	var/beakerContents[0]
+	var/beakerCurrentVolume = 0
 	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
@@ -94,62 +117,79 @@
 	if (beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume
 		data["beakerMaxVolume"] = beaker.volume
+		data["beakerTransferAmounts"] = beaker.possible_transfer_amounts
 	else
 		data["beakerCurrentVolume"] = null
 		data["beakerMaxVolume"] = null
+		data["beakerTransferAmounts"] = null
 
-	var chemicals[0]
-	for (var/re in dispensable_reagents)
+	var/list/chemicals = list()
+	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			chemicals.Add(list(list("title" = temp.name, "id" = temp.type, "commands" = list("dispense" = temp.type)))) // list in a list because Byond merges the first list...
+			var/chemname = temp.name
+			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
 	data["chemicals"] = chemicals
+	data["recipes"] = saved_recipes
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 390, 655)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
+	data["recordingRecipe"] = recording_recipe
+	return data
 
-/obj/machinery/chem_dispenser/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/machinery/chem_dispenser/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("amount")
+			if(!is_operational() || QDELETED(beaker))
+				return
+			var/target = text2num(params["target"])
+			if(target in beaker.possible_transfer_amounts)
+				amount = target
+				work_animation()
+				. = TRUE
+		if("dispense")
+			if(!is_operational() || QDELETED(cell))
+				return
+			var/reagent_name = params["reagent"]
+			if(!recording_recipe)
+				var/reagent = GLOB.name2reagent[reagent_name]
+				if(beaker && dispensable_reagents.Find(reagent))
+					var/datum/reagents/R = beaker.reagents
+					var/free = R.maximum_volume - R.total_volume
+					var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
 
-	if(href_list["amount"])
-		amount = round(text2num(href_list["amount"]), 5) // round to nearest 5
-		if (amount < 0) // Since the user can actually type the commands himself, some sanity checking
-			amount = 0
-		if (amount > 240)
-			amount = 240
+					if(!cell.use(actual / powerefficiency))
+						say("Not enough energy to complete operation!")
+						return
+					R.add_reagent(reagent, actual)
 
-	if(href_list["dispense"])
-		var/dispensed = text2path(href_list["dispense"])
-		if(!dispensable_reagents.Find(dispensed))
-			log_admin_private("[key_name(usr)] attempted to dispense [dispensed] through [src], a reagent not contained by dispensable_reagents, at [AREACOORD(usr.loc)].")
-			message_admins("[ADMIN_TPMONTY(usr)] attempted to dispense [dispensed] through [src], a reagent not contained by dispensable_reagents. Possible HREF exploit.")
-			return
-		if(beaker?.is_open_container())
-			var/obj/item/reagent_container/B = src.beaker
-			var/datum/reagents/R = B.reagents
-			var/space = R.maximum_volume - R.total_volume
+					work_animation()
+			else
+				recording_recipe[reagent_name] += amount
+			. = TRUE
+		if("remove")
+			if(!is_operational() || recording_recipe)
+				return
+			var/amount = text2num(params["amount"])
+			if(beaker && amount in beaker.possible_transfer_amounts)
+				beaker.reagents.remove_all(amount)
+				work_animation()
+				. = TRUE
+		if("eject")
+			replace_beaker(usr)
+			. = TRUE
 
-			R.add_reagent(dispensed, min(amount, energy * 10, space))
-			energy = max(energy - min(amount, energy * 10, space) / 10, 0)
-
-	if(href_list["ejectBeaker"])
-		if(beaker)
-			var/obj/item/reagent_container/B = beaker
-			B.loc = loc
-			beaker = null
-
-	updateUsrDialog()
-
+/obj/machinery/chem_dispenser/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+	if(beaker)
+		beaker.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(beaker)
+	if(new_beaker)
+		beaker = new_beaker
+	else
+		beaker = null
+	update_icon()
+	return TRUE
 
 /obj/machinery/chem_dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -158,15 +198,15 @@
 		to_chat(user, "Something is already loaded into the machine.")
 		return
 
-	else if(istype(I, /obj/item/reagent_container) && I.is_open_container())
+	else if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		if(!user.transferItemToLoc(I, src))
 			return
 
 		beaker =  I
 		to_chat(user, "You set [I] on the machine.")
-		SSnano.update_uis(src) // update all UIs attached to src
+		updateUsrDialog()
 
-	else if(istype(I, /obj/item/reagent_container/glass))
+	else if(istype(I, /obj/item/reagent_containers/glass))
 		to_chat(user, "Take the lid off [I] first.")
 
 
@@ -174,12 +214,26 @@
 	icon_state = "soda_dispenser"
 	name = "soda fountain"
 	desc = "A drink fabricating machine, capable of producing many sugary drinks with just one touch."
-	ui_title = "Soda Dispens-o-matic"
-	energy = 100
-	accept_glass = TRUE
 	req_one_access = list()
-	max_energy = 100
-	dispensable_reagents = list(/datum/reagent/water,/datum/reagent/consumable/drink/cold/ice,/datum/reagent/consumable/drink/coffee,/datum/reagent/consumable/drink/milk/cream,/datum/reagent/consumable/drink/tea,/datum/reagent/consumable/drink/tea/icetea,/datum/reagent/consumable/drink/cold/space_cola,/datum/reagent/consumable/drink/cold/spacemountainwind,/datum/reagent/consumable/drink/cold/dr_gibb,/datum/reagent/consumable/drink/cold/space_up,/datum/reagent/consumable/drink/cold/tonic,/datum/reagent/consumable/drink/cold/sodawater,/datum/reagent/consumable/drink/cold/lemon_lime,/datum/reagent/consumable/sugar,/datum/reagent/consumable/drink/orangejuice,/datum/reagent/consumable/drink/lemonjuice,/datum/reagent/consumable/drink/watermelonjuice)
+	dispensable_reagents = list(
+		/datum/reagent/water,
+		/datum/reagent/consumable/drink/cold/ice,
+		/datum/reagent/consumable/drink/coffee,
+		/datum/reagent/consumable/drink/milk/cream,
+		/datum/reagent/consumable/drink/tea,
+		/datum/reagent/consumable/drink/tea/icetea,
+		/datum/reagent/consumable/drink/cold/space_cola,
+		/datum/reagent/consumable/drink/cold/spacemountainwind,
+		/datum/reagent/consumable/drink/cold/dr_gibb,
+		/datum/reagent/consumable/drink/cold/space_up,
+		/datum/reagent/consumable/drink/cold/tonic,
+		/datum/reagent/consumable/drink/cold/sodawater,
+		/datum/reagent/consumable/drink/cold/lemon_lime,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/drink/orangejuice,
+		/datum/reagent/consumable/drink/lemonjuice,
+		/datum/reagent/consumable/drink/watermelonjuice
+	)
 
 /obj/machinery/chem_dispenser/soda/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -188,21 +242,40 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
-			dispensable_reagents += list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
+			dispensable_reagents += list(
+				/datum/reagent/consumable/ethanol/thirteenloko,
+				/datum/reagent/consumable/drink/grapesoda)
 		else
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
-			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/thirteenloko, /datum/reagent/consumable/drink/grapesoda)
+			dispensable_reagents -= list(
+				/datum/reagent/consumable/ethanol/thirteenloko,
+				/datum/reagent/consumable/drink/grapesoda)
 
 /obj/machinery/chem_dispenser/beer
 	icon_state = "booze_dispenser"
 	name = "booze dispenser"
-	ui_title = "Booze Portal 9001"
-	energy = 100
-	accept_glass = 1
-	max_energy = 100
 	req_one_access = list()
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
-	dispensable_reagents = list(/datum/reagent/consumable/drink/cold/lemon_lime,/datum/reagent/consumable/sugar,/datum/reagent/consumable/drink/orangejuice,/datum/reagent/consumable/drink/limejuice,/datum/reagent/consumable/drink/cold/sodawater,/datum/reagent/consumable/drink/cold/tonic,/datum/reagent/consumable/ethanol/beer,/datum/reagent/consumable/ethanol/kahlua,/datum/reagent/consumable/ethanol/whiskey,/datum/reagent/consumable/ethanol/sake,/datum/reagent/consumable/ethanol/wine,/datum/reagent/consumable/ethanol/vodka,/datum/reagent/consumable/ethanol/gin,/datum/reagent/consumable/ethanol/rum,/datum/reagent/consumable/ethanol/tequila,/datum/reagent/consumable/ethanol/vermouth,/datum/reagent/consumable/ethanol/cognac,/datum/reagent/consumable/ethanol/ale,/datum/reagent/consumable/ethanol/mead)
+	dispensable_reagents = list(
+		/datum/reagent/consumable/drink/cold/lemon_lime,
+		/datum/reagent/consumable/sugar,
+		/datum/reagent/consumable/drink/orangejuice,
+		/datum/reagent/consumable/drink/limejuice,
+		/datum/reagent/consumable/drink/cold/sodawater,
+		/datum/reagent/consumable/drink/cold/tonic,
+		/datum/reagent/consumable/ethanol/beer,
+		/datum/reagent/consumable/ethanol/kahlua,
+		/datum/reagent/consumable/ethanol/whiskey,
+		/datum/reagent/consumable/ethanol/sake,
+		/datum/reagent/consumable/ethanol/wine,
+		/datum/reagent/consumable/ethanol/vodka,
+		/datum/reagent/consumable/ethanol/gin,
+		/datum/reagent/consumable/ethanol/rum,
+		/datum/reagent/consumable/ethanol/tequila,
+		/datum/reagent/consumable/ethanol/vermouth,
+		/datum/reagent/consumable/ethanol/cognac,
+		/datum/reagent/consumable/ethanol/ale,
+		/datum/reagent/consumable/ethanol/mead)
 
 /obj/machinery/chem_dispenser/beer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -211,10 +284,18 @@
 		hackedcheck = !hackedcheck
 		if(hackedcheck)
 			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
-			dispensable_reagents += list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
+			dispensable_reagents += list(
+				/datum/reagent/consumable/ethanol/goldschlager,
+				/datum/reagent/consumable/ethanol/patron,
+				/datum/reagent/consumable/drink/watermelonjuice,
+				/datum/reagent/consumable/drink/berryjuice)
 		else
 			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
-			dispensable_reagents -= list(/datum/reagent/consumable/ethanol/goldschlager, /datum/reagent/consumable/ethanol/patron, /datum/reagent/consumable/drink/watermelonjuice, /datum/reagent/consumable/drink/berryjuice)
+			dispensable_reagents -= list(
+				/datum/reagent/consumable/ethanol/goldschlager,
+				/datum/reagent/consumable/ethanol/patron,
+				/datum/reagent/consumable/drink/watermelonjuice,
+				/datum/reagent/consumable/drink/berryjuice)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -227,7 +308,7 @@
 	use_power = 1
 	idle_power_usage = 20
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
-	var/obj/item/reagent_container/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
@@ -259,7 +340,7 @@
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/reagent_container) && I.is_open_container())
+	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
@@ -269,7 +350,7 @@
 		updateUsrDialog()
 		icon_state = "mixer1"
 
-	else if(istype(I,/obj/item/reagent_container/glass))
+	else if(istype(I,/obj/item/reagent_containers/glass))
 		to_chat(user, "<span class='warning'>Take off the lid first.</span>")
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
@@ -417,7 +498,7 @@
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 			while (count--)
-				var/obj/item/reagent_container/pill/P = new/obj/item/reagent_container/pill(loc)
+				var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = name
 				P.pill_desc = "A [name] pill."
@@ -435,7 +516,7 @@
 				var/name = reject_bad_text(input(user,"Name:","Name your bottle!",reagents.get_master_reagent_name()) as text|null)
 				if(!name)
 					return
-				var/obj/item/reagent_container/glass/bottle/P = new/obj/item/reagent_container/glass/bottle(loc)
+				var/obj/item/reagent_containers/glass/bottle/P = new/obj/item/reagent_containers/glass/bottle(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
@@ -444,7 +525,7 @@
 				reagents.trans_to(P,60)
 				P.update_icon()
 			else
-				var/obj/item/reagent_container/food/condiment/P = new/obj/item/reagent_container/food/condiment(loc)
+				var/obj/item/reagent_containers/food/condiment/P = new/obj/item/reagent_containers/food/condiment(loc)
 				reagents.trans_to(P,50)
 
 		else if (href_list["createautoinjector"])
@@ -452,7 +533,7 @@
 				var/name = reject_bad_text(input(user,"Name:","Name your autoinjector!",reagents.get_master_reagent_name()) as text|null)
 				if(!name)
 					return
-				var/obj/item/reagent_container/hypospray/autoinjector/fillable/P = new/obj/item/reagent_container/hypospray/autoinjector/fillable(loc)
+				var/obj/item/reagent_containers/hypospray/autoinjector/fillable/P = new/obj/item/reagent_containers/hypospray/autoinjector/fillable(loc)
 				if(!name) name = reagents.get_master_reagent_name()
 				P.name = "[name] autoinjector"
 				P.pixel_x = rand(-7, 7) //random position
@@ -624,7 +705,7 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/inuse = 0
-	var/obj/item/reagent_container/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 	var/limit = 10
 	var/list/blend_items = list (
 
@@ -637,34 +718,34 @@
 		/obj/item/grown/nettle = list(/datum/reagent/toxin/acid = 0),
 
 		//Blender Stuff
-		/obj/item/reagent_container/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
-		/obj/item/reagent_container/food/snacks/grown/tomato = list(/datum/reagent/consumable/ketchup = 0),
-		/obj/item/reagent_container/food/snacks/grown/corn = list(/datum/reagent/consumable/cornoil = 0),
-		///obj/item/reagent_container/food/snacks/grown/wheat = list("flour" = -5),
-		/obj/item/reagent_container/food/snacks/grown/ricestalk = list(/datum/reagent/consumable/rice = -5),
-		/obj/item/reagent_container/food/snacks/grown/cherries = list(/datum/reagent/consumable/cherryjelly = 0),
-		/obj/item/reagent_container/food/snacks/grown/plastellium = list(/datum/reagent/toxin/plasticide = 5),
+		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
+		/obj/item/reagent_containers/food/snacks/grown/tomato = list(/datum/reagent/consumable/ketchup = 0),
+		/obj/item/reagent_containers/food/snacks/grown/corn = list(/datum/reagent/consumable/cornoil = 0),
+		///obj/item/reagent_containers/food/snacks/grown/wheat = list("flour" = -5),
+		/obj/item/reagent_containers/food/snacks/grown/ricestalk = list(/datum/reagent/consumable/rice = -5),
+		/obj/item/reagent_containers/food/snacks/grown/cherries = list(/datum/reagent/consumable/cherryjelly = 0),
+		/obj/item/reagent_containers/food/snacks/grown/plastellium = list(/datum/reagent/toxin/plasticide = 5),
 
 
 		//All types that you can put into the grinder to transfer the reagents to the beaker. !Put all recipes above this.!
-		/obj/item/reagent_container/pill = list(),
-		/obj/item/reagent_container/food = list()
+		/obj/item/reagent_containers/pill = list(),
+		/obj/item/reagent_containers/food = list()
 	)
 
 	var/list/juice_items = list (
 
 		//Juicer Stuff
-		/obj/item/reagent_container/food/snacks/grown/tomato = list(/datum/reagent/consumable/drink/tomatojuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/carrot = list(/datum/reagent/consumable/drink/carrotjuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/berries = list(/datum/reagent/consumable/drink/berryjuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/banana = list(/datum/reagent/consumable/drink/banana = 0),
-		/obj/item/reagent_container/food/snacks/grown/potato = list(/datum/reagent/consumable/nutriment = 0),
-		/obj/item/reagent_container/food/snacks/grown/lemon = list(/datum/reagent/consumable/drink/lemonjuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/orange = list(/datum/reagent/consumable/drink/orangejuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/lime = list(/datum/reagent/consumable/drink/limejuice = 0),
-		/obj/item/reagent_container/food/snacks/watermelonslice = list(/datum/reagent/consumable/drink/watermelonjuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/grapes = list(/datum/reagent/consumable/drink/grapejuice = 0),
-		/obj/item/reagent_container/food/snacks/grown/poisonberries = list(/datum/reagent/consumable/drink/poisonberryjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/tomato = list(/datum/reagent/consumable/drink/tomatojuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/carrot = list(/datum/reagent/consumable/drink/carrotjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/berries = list(/datum/reagent/consumable/drink/berryjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/banana = list(/datum/reagent/consumable/drink/banana = 0),
+		/obj/item/reagent_containers/food/snacks/grown/potato = list(/datum/reagent/consumable/nutriment = 0),
+		/obj/item/reagent_containers/food/snacks/grown/lemon = list(/datum/reagent/consumable/drink/lemonjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/orange = list(/datum/reagent/consumable/drink/orangejuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/lime = list(/datum/reagent/consumable/drink/limejuice = 0),
+		/obj/item/reagent_containers/food/snacks/watermelonslice = list(/datum/reagent/consumable/drink/watermelonjuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/grapes = list(/datum/reagent/consumable/drink/grapejuice = 0),
+		/obj/item/reagent_containers/food/snacks/grown/poisonberries = list(/datum/reagent/consumable/drink/poisonberryjuice = 0),
 	)
 
 
@@ -672,7 +753,7 @@
 
 /obj/machinery/reagentgrinder/Initialize()
 	. = ..()
-	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 
 
 /obj/machinery/reagentgrinder/update_icon()
@@ -683,7 +764,7 @@
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container) && I.is_open_container())
+	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
 			return TRUE
 
@@ -698,7 +779,7 @@
 		return TRUE
 
 	else if(istype(I, /obj/item/storage/bag/plants))
-		for(var/obj/item/reagent_container/food/snacks/grown/G in I.contents)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in I.contents)
 			I.contents -= G
 			G.forceMove(src)
 			holdingitems += G
@@ -809,7 +890,7 @@
 		holdingitems -= O
 	holdingitems = list()
 
-/obj/machinery/reagentgrinder/proc/is_allowed(obj/item/reagent_container/O)
+/obj/machinery/reagentgrinder/proc/is_allowed(obj/item/reagent_containers/O)
 	for (var/i in blend_items)
 		if(istype(O, i))
 			return TRUE
@@ -820,12 +901,12 @@
 		if (istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(obj/item/reagent_container/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_snack_by_id(obj/item/reagent_containers/food/snacks/O)
 	for(var/i in blend_items)
 		if(istype(O, i))
 			return blend_items[i]
 
-/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(obj/item/reagent_container/food/snacks/O)
+/obj/machinery/reagentgrinder/proc/get_allowed_juice_by_id(obj/item/reagent_containers/food/snacks/O)
 	for(var/i in juice_items)
 		if(istype(O, i))
 			return juice_items[i]
@@ -838,7 +919,7 @@
 	else
 		return round(O.potency)
 
-/obj/machinery/reagentgrinder/proc/get_juice_amount(obj/item/reagent_container/food/snacks/grown/O)
+/obj/machinery/reagentgrinder/proc/get_juice_amount(obj/item/reagent_containers/food/snacks/grown/O)
 	if (!istype(O))
 		return 5
 	else if (O.potency == -1)
@@ -862,7 +943,7 @@
 		inuse = 0
 		interact(usr)
 	//Snacks
-	for (var/obj/item/reagent_container/food/snacks/O in holdingitems)
+	for (var/obj/item/reagent_containers/food/snacks/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 
@@ -895,7 +976,7 @@
 		inuse = 0
 		interact(usr)
 	//Snacks and Plants
-	for (var/obj/item/reagent_container/food/snacks/O in holdingitems)
+	for (var/obj/item/reagent_containers/food/snacks/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 
@@ -960,7 +1041,7 @@
 		remove_object(O)
 
 	//Everything else - Transfers reagents from it into beaker
-	for (var/obj/item/reagent_container/O in holdingitems)
+	for (var/obj/item/reagent_containers/O in holdingitems)
 		if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
 		var/amount = O.reagents.total_volume

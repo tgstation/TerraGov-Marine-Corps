@@ -7,7 +7,7 @@
 
 	var/mob/living/carbon/human/attached = null
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
-	var/obj/item/reagent_container/beaker = null
+	var/obj/item/reagent_containers/beaker = null
 
 /obj/machinery/iv_drip/update_icon()
 	if(src.attached)
@@ -62,12 +62,12 @@
 /obj/machinery/iv_drip/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/reagent_container))
+	if(istype(I, /obj/item/reagent_containers))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
 
-		if((!istype(I, /obj/item/reagent_container/blood) && !istype(I, /obj/item/reagent_container/glass)) || istype(I, /obj/item/reagent_container/glass/bucket))
+		if((!istype(I, /obj/item/reagent_containers/blood) && !istype(I, /obj/item/reagent_containers/glass)) || istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
@@ -103,7 +103,7 @@
 	if(mode)
 		if(beaker.volume > 0)
 			var/transfer_amount = REAGENTS_METABOLISM
-			if(istype(beaker, /obj/item/reagent_container/blood))
+			if(istype(beaker, /obj/item/reagent_containers/blood))
 				// speed up transfer on blood packs
 				transfer_amount = 4
 			attached.inject_blood(beaker, transfer_amount)

@@ -9,6 +9,7 @@
 	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
+	var/hive_flags = NONE
 	var/list/xeno_leader_list
 	var/list/list/xenos_by_typepath
 	var/list/list/xenos_by_tier
@@ -388,6 +389,10 @@
 	return
 
 
+/datum/hive_status/proc/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	return
+
+
 // safe for use by gamemode code, this allows per hive overrides
 /datum/hive_status/proc/end_queen_death_timer()
 	xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
@@ -466,6 +471,7 @@ to_chat will check for valid clients itself already so no need to double check f
 // *********** Normal Xenos
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
+	hive_flags = HIVE_CAN_HIJACK
 	var/stored_larva = 0 // this hive has special burrowed larva
 	var/last_larva_time = 0
 
@@ -475,8 +481,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	if(!stored_larva) // no larva to deal with
 		return ..()
-
-	stored_larva = round(stored_larva * QUEEN_DEATH_LARVA_MULTIPLIER(Q))
 
 	if(isdistress(SSticker?.mode))
 		INVOKE_ASYNC(src, .proc/unbury_all_larva) // this is potentially a lot of calls so do it async
@@ -572,9 +576,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother)
 
@@ -589,9 +598,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	if(!stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
@@ -639,6 +653,28 @@ to_chat will check for valid clients itself already so no need to double check f
 	stored_larva--
 
 	return new_xeno
+
+
+/datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+
+
+/datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
+	if(new_mode != SHUTTLE_CALL)
+		return
+	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
+	var/left_behind = 0
+	for(var/i in get_all_xenos())
+		var/mob/living/carbon/xenomorph/boarder = i
+		var/area/boarder_location = get_area(boarder)
+		if(istype(boarder_location, /area/shuttle/dropship/alamo))
+			continue
+		boarder.gib()
+		stored_larva++
+		left_behind++
+	if(left_behind)
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
 
 
 // ***************************************
