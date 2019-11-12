@@ -35,9 +35,6 @@
 		WRITE_FILE(S["ghost_form"], GHOST_DEFAULT_FORM)
 		WRITE_FILE(S["ghost_others"], GHOST_OTHERS_DEFAULT_OPTION)
 
-	if(savefile_version < 26)
-		WRITE_FILE(S["key_bindings"], null)
-
 	if(savefile_version < 27)
 		switch(S["ui_style"])
 			if("Orange")
@@ -57,28 +54,8 @@
 		WRITE_FILE(S["jobs_high"], null)
 		WRITE_FILE(S["job_preferences"], list())
 
-	if(savefile_version < 30)
-		WRITE_FILE(S["key_bindings"], null)
-
-	if(savefile_version < 31)
-		WRITE_FILE(S["key_bindings"], null)
-
 	if(savefile_version < 32)
 		WRITE_FILE(S["observer_actions"], TRUE)
-
-	if(savefile_version < 33)
-		if(!length(S["key_bindings"]))
-			WRITE_FILE(S["key_bindings"], deepCopyList(GLOB.hotkey_keybinding_list_by_key))
-
-	if(savefile_version < 34)
-		READ_FILE(S["key_bindings"], key_bindings)
-		if(key_bindings)
-			key_bindings = sanitize_islist(key_bindings, list())
-			key_bindings["T"] = list(1 = "say")
-			key_bindings["M"] = list(1 = "me")
-			key_bindings["O"] = list(1 = "ooc")
-			key_bindings["L"] = list(1 = "looc")
-			WRITE_FILE(S["key_bindings"], key_bindings)
 
 	if(savefile_version < 35)
 		WRITE_FILE(S["focus_chat"], FALSE)
@@ -91,6 +68,9 @@
 
 	if(savefile_version < 38)
 		WRITE_FILE(S["menuoptions"], list())
+
+	if(savefile_version < 39)
+		WRITE_FILE(S["key_bindings"], null)
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
