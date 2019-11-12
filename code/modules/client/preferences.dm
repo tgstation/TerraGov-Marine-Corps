@@ -951,7 +951,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(focus_chat)
 				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
 			else
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_DISABLED]")
+				winset(user, null, "input.background-color=[COLOR_INPUT_DISABLED]")
 
 		if("clientfps")
 			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
