@@ -13,7 +13,7 @@
 
 /datum/keybinding/mob/face_north/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.northface()
@@ -30,7 +30,7 @@
 
 /datum/keybinding/mob/face_east/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.eastface()
@@ -47,7 +47,7 @@
 
 /datum/keybinding/mob/face_south/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.southface()
@@ -63,7 +63,7 @@
 
 /datum/keybinding/mob/face_west/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.westface()
@@ -78,7 +78,7 @@
 
 /datum/keybinding/mob/stop_pulling/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	if(M.pulling)
@@ -86,7 +86,7 @@
 	return TRUE
 
 /datum/keybinding/mob/cycle_intent_right
-	key = "Home"
+	key = "Northwest" // HOME
 	name = "cycle_intent_right"
 	full_name = "cycle_intent_right"
 	description = ""
@@ -94,7 +94,7 @@
 
 /datum/keybinding/mob/cycle_intent_right/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.a_intent_change(INTENT_HOTKEY_RIGHT)
@@ -109,7 +109,7 @@
 
 /datum/keybinding/mob/cycle_intent_left/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.a_intent_change(INTENT_HOTKEY_LEFT)
@@ -117,6 +117,7 @@
 
 /datum/keybinding/mob/swap_hands
 	key = "X"
+	classic_key = "Northeast" // PAGEUP
 	name = "swap_hands"
 	full_name = "Swap hands"
 	description = ""
@@ -124,7 +125,7 @@
 
 /datum/keybinding/mob/swap_hands/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.swap_hand()
 	return TRUE
@@ -138,7 +139,7 @@
 
 /datum/keybinding/mob/say/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.say_wrapper()
@@ -153,7 +154,7 @@
 
 /datum/keybinding/mob/me/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.me_wrapper()
@@ -161,7 +162,7 @@
 
 /datum/keybinding/mob/activate_inhand
 	key = "Z"
-	classic_key = "PAGEDOWN"
+	classic_key = "Southeast" // PAGEDOWN
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"
@@ -169,7 +170,7 @@
 
 /datum/keybinding/mob/activate_inhand/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.mode()
@@ -184,7 +185,7 @@
 
 /datum/keybinding/mob/drop_item/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	var/obj/item/I = M.get_active_held_item()
@@ -205,7 +206,7 @@
 
 /datum/keybinding/mob/examine/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
 	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
@@ -234,7 +235,7 @@
 
 /datum/keybinding/mob/toggle_move_intent/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/M = user.mob
 	M.toggle_move_intent()
@@ -249,7 +250,7 @@
 
 /datum/keybinding/mob/target_head_cycle/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_toggle_head()
 	return TRUE
@@ -263,7 +264,7 @@
 
 /datum/keybinding/mob/target_r_arm/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_r_arm()
 	return TRUE
@@ -277,7 +278,7 @@
 
 /datum/keybinding/mob/target_body_chest/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_chest()
 	return TRUE
@@ -291,7 +292,7 @@
 
 /datum/keybinding/mob/target_left_arm/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_l_arm()
 	return TRUE
@@ -305,7 +306,7 @@
 
 /datum/keybinding/mob/target_right_leg/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_r_leg()
 	return TRUE
@@ -319,7 +320,7 @@
 
 /datum/keybinding/mob/target_body_groin/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_groin()
 	return TRUE
@@ -333,7 +334,7 @@
 
 /datum/keybinding/mob/target_left_leg/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	user.body_l_leg()
 	return TRUE

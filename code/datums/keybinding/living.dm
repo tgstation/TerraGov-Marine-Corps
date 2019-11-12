@@ -12,7 +12,7 @@
 
 /datum/keybinding/living/resist/down(client/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
 	var/mob/living/L = user.mob
 	L.resist()

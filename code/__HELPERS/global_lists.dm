@@ -91,7 +91,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	// Keybindings (classic)
 	for(var/KB in subtypesof(/datum/keybinding))
 		var/datum/keybinding/keybinding = KB
-		if(!initial(keybinding.key))
+		if(!initial(keybinding.keybind_signal))
 			continue
 		var/datum/keybinding/instance = new keybinding
 		GLOB.keybindings_by_name[instance.name] = instance
