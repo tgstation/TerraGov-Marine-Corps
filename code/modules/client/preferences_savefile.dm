@@ -70,9 +70,7 @@
 		WRITE_FILE(S["menuoptions"], list())
 
 	if(savefile_version < 39)
-		key_bindings = sanitize_islist(key_bindings, list())
-		WRITE_FILE(S["key_bindings"], ((focus_chat) ? deepCopyList(GLOB.classic_keybinding_list_by_key) : deepCopyList(GLOB.hotkey_keybinding_list_by_key)))
-		parent.update_movement_keys()
+		WRITE_FILE(S["key_bindings"], null)
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
@@ -157,7 +155,9 @@
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
 	if(!length(key_bindings))
-		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
+		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.update_movement_keys()
+		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 3 SECONDS)
 
 	return TRUE
 
