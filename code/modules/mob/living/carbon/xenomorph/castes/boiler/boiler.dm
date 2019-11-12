@@ -35,6 +35,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/update_stat()
 	. = ..()
+	set_light(BOILER_LUMINOSITY)
 	if(stat == CONSCIOUS)
 		see_in_dark = 20
 
