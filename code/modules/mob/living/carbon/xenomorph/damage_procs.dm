@@ -187,8 +187,8 @@
 
 			if(splash_chance > 0 && prob(splash_chance))
 				var/chosen_zone = pick("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin")
-				var/datum/limb/E = get_limb(chosen_zone)
-				var/splash_damage = rand(10,25) - getarmor(chosen_zone, "acid")*0.5
+				var/datum/limb/E = victim.get_limb(chosen_zone)
+				var/splash_damage = rand(10,25) - victim.getarmor(chosen_zone, "acid")*0.5
 
 				if(splash_damage <= 0 || !E.take_damage_limb(burn = splash_damage))
 					continue
@@ -197,6 +197,6 @@
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
 				if(prob(60) && !victim.stat && !(victim.species.species_flags & NO_PAIN))
 					victim.emote("scream")
-				UpdateDamageIcon()
+				victim.UpdateDamageIcon()
 
 				victim_count++
