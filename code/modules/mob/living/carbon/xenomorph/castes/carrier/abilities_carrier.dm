@@ -7,6 +7,7 @@
 	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+	cooldown_timer = 3 SECONDS
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
