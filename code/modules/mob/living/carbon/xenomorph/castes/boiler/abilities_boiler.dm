@@ -72,7 +72,7 @@
 		to_chat(X, "<span class='notice'>We can carry no more globules.</span>")
 		return
 	succeed_activate()
-	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
+	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		X.corrosive_ammo++
 		to_chat(X, "<span class='notice'>We prepare a corrosive acid globule.</span>")
 	else
@@ -84,7 +84,7 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
 	//the bit where the ammo counter sprite updates.
-	button.overlays += image('icons/mob/actions.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
+	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
 	return ..()
 
 // ***************************************
@@ -225,6 +225,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
+	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()
 
