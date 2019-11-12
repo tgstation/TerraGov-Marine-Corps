@@ -1,0 +1,4 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Move delay from wearing B18 armor increased from +100% to +115%"
