@@ -203,8 +203,6 @@
 			new/obj/item/storage/backpack/satchel(src.loc)
 		if("cashbag")
 			new/obj/item/storage/bag/cash(src.loc)
-		if("monkey")
-			new/mob/living/carbon/monkey(src.loc)
 	processing = 0
 	menustat = "complete"
 	update_icon()
