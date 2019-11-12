@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/admin/admin_say
-	key = "F3"
+	hotkey_keys = list("F3")
 	name = "admin_say"
 	full_name = "Admin say"
 	description = "Talk with other admins."
@@ -19,7 +19,7 @@
 
 
 /datum/keybinding/admin/mentor_say
-	key = "F4"
+	hotkey_keys = list("F4")
 	name = "mentor_say"
 	full_name = "Mentor say"
 	description = "Speak with other mentors."
@@ -34,7 +34,7 @@
 
 
 /datum/keybinding/admin/dead_say
-	key = "F5"
+	hotkey_keys = list("F5")
 	name = "dead_say"
 	full_name = "Dead chat"
 	description = "Speak with the dead."
@@ -48,7 +48,7 @@
 	return TRUE
 
 /datum/keybinding/admin/toggle_buildmode_self
-	key = "F7"
+	hotkey_keys = list("F7")
 	name = "toggle_buildmode"
 	full_name = "Toggle Buildmode"
 	description = "Toggles buildmode"

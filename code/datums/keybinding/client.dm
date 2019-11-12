@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/client/get_help
-	key = "F1"
+	hotkey_keys = list("F1")
 	name = "get_help"
 	full_name = "Get Help"
 	description = "Ask an admin or mentor for help."
@@ -19,7 +19,7 @@
 
 
 /datum/keybinding/client/screenshot
-	key = "F2"
+	hotkey_keys = list("F2")
 	name = "screenshot"
 	full_name = "Screenshot"
 	description = "Take a screenshot."
@@ -34,7 +34,7 @@
 
 
 /datum/keybinding/client/minimal_hud
-	key = "F12"
+	hotkey_keys = list("F12")
 	name = "minimal_hud"
 	full_name = "Minimal HUD"
 	description = "Hide most HUD features"
@@ -49,9 +49,8 @@
 
 
 /datum/keybinding/client/ooc
-	key = "Unbound"
 	name = "ooc"
-	full_name = "OOC (Currently disabled)"
+	full_name = "OOC (Other than O)"
 	description = "Speak in OOC"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
 
@@ -64,9 +63,8 @@
 
 
 /datum/keybinding/client/looc
-	key = "Unbound"
 	name = "looc"
-	full_name = "LOOC (Currently disabled)"
+	full_name = "LOOC (Other than L)"
 	description = "Speak in local OOC"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
 

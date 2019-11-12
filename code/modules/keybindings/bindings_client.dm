@@ -37,6 +37,11 @@
 		QDEL_IN(src, 1)
 		return
 
+	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
+	if(prefs.focus_chat && length(_key) == 1 && _key != "Alt" && _key != "Ctrl" && _key != "Shift")
+		winset(src, null, "input.focus=true ; input.text=[url_encode(_key)]")
+		return
+
 	//offset by 1 because the buffer address is 0 indexed because the math was simpler
 	keys_held[current_key_address + 1] = _key
 	//the time a key was pressed isn't actually used anywhere (as of 2019-9-10) but this allows easier access usage/checking

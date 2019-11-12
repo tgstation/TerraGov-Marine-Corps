@@ -33,7 +33,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "statwindow", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "stat", "background-color = #FFFFFF ; tab-background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT] ; tab-text-color = [LIGHTMODE_TEXT] ; prefix-color = [LIGHTMODE_TEXT] ; suffix-color = [LIGHTMODE_TEXT]")
 	//Say, OOC, me Buttons etc.
-	winset(src, "input", "background-color = [prefs?.focus_chat ? COLOR_INPUT_ENABLED : COLOR_INPUT_DISABLED] ; text-color = [LIGHTMODE_TEXT]")
+	winset(src, "input", "background-color = [COLOR_INPUT_DISABLED] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "saybutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "oocbutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "mebutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
@@ -62,7 +62,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "statwindow", "background-color = [DARKMODE_DARKBACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "stat", "background-color = [DARKMODE_DARKBACKGROUND] ; tab-background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT] ; tab-text-color = [DARKMODE_TEXT] ; prefix-color = [DARKMODE_TEXT] ; suffix-color = [DARKMODE_TEXT]")
 	//Say, OOC, me Buttons etc.
-	winset(src, "input", "background-color = [prefs?.focus_chat ? DARKMODE_DARKBACKGROUND : DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
+	winset(src, "input", "background-color = [DARKMODE_DARKBACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "saybutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "oocbutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "mebutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")

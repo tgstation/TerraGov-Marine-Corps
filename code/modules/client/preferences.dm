@@ -517,14 +517,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/user_binds = list()
 	for(var/key in key_bindings)
 		for(var/kb_name in key_bindings[key])
-			user_binds[kb_name] = key
+			user_binds[kb_name] += list(key)
 
 	var/list/kb_categories = list()
 	// Group keybinds by category
 	for(var/name in GLOB.keybindings_by_name)
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[name]
-		if(!(kb.category in kb_categories))
-			kb_categories[kb.category] = list()
 		kb_categories[kb.category] += list(kb)
 
 	var/HTML = "<style>label { display: inline-block; width: 200px; }</style><body>"
@@ -536,11 +534,24 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		HTML += "<h3>[category]</h3>"
 		for(var/i in kb_categories[category])
 			var/datum/keybinding/kb = i
-			var/bound_key = user_binds[kb.name]
-			bound_key = (bound_key) ? bound_key : "Unbound"
-
-			HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key] Default: ( [focus_chat ? kb.hotkey_key : kb.classic_key] )</a>"
-			HTML += "<br>"
+			if(!length(user_binds[kb.name]))
+				HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=["Unbound"]'>Unbound</a>"
+				var/list/default_keys = focus_chat ? kb.hotkey_keys : kb.classic_keys
+				if(LAZYLEN(default_keys))
+					HTML += "| Default: [default_keys.Join(", ")]"
+				HTML += "<br>"
+			else
+				var/bound_key = user_binds[kb.name][1]
+				HTML += "<label>[kb.full_name]</label> <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+				for(var/bound_key_index in 2 to length(user_binds[kb.name]))
+					bound_key = user_binds[kb.name][bound_key_index]
+					HTML += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
+				if(length(user_binds[kb.name]) <= 2)
+					HTML += "| <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Add Secondary</a>"
+				var/list/default_keys = focus_chat ? kb.hotkey_keys : kb.classic_keys
+				if(LAZYLEN(default_keys))
+					HTML += "| Default: [default_keys.Join(", ")]"
+				HTML += "<br>"
 
 	HTML += "<br><br>"
 	HTML += "<a href ='?_src_=prefs;preference=keybindings_done'>Close</a>"
@@ -559,7 +570,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	<script>
 	var deedDone = false;
 	document.onkeyup = function(e) {
-		if(deedDone){return}
+		if(deedDone){ return; }
 		var alt = e.altKey ? 1 : 0;
 		var ctrl = e.ctrlKey ? 1 : 0;
 		var shift = e.shiftKey ? 1 : 0;
@@ -974,9 +985,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("focus_chat")
 			focus_chat = !focus_chat
 			if(focus_chat)
-				winset(user, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+				winset(user, null, "input.focus=true")
 			else
-				winset(user, null, "input.background-color=[COLOR_INPUT_DISABLED]")
+				winset(user, null, "map.focus=true")
 
 		if("clientfps")
 			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
@@ -1013,12 +1024,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/clear_key = text2num(href_list["clear_key"])
 			var/old_key = href_list["old_key"]
 			if(clear_key)
-				if(old_key != "Unbound") // if it was already set
-					if(key_bindings[old_key])
-						key_bindings[old_key] -= kb_name
-						if(!length(key_bindings[old_key]))
-							key_bindings -= old_key
-					key_bindings["Unbound"] += list(kb_name)
+				if(key_bindings[old_key])
+					key_bindings[old_key] -= kb_name
+					if(!length(key_bindings[old_key]))
+						key_bindings -= old_key
 				user << browse(null, "window=capturekeypress")
 				save_preferences()
 				ShowKeybindings(user)

@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/human/quick_equip
-	key = "E"
+	hotkey_keys = list("E")
 	name = "quick_equip"
 	full_name = "Quick equip"
 	description = ""
@@ -12,7 +12,7 @@
 
 
 /datum/keybinding/human/holster
-	key = "H"
+	hotkey_keys = list("H")
 	name = "holster"
 	full_name = "Holster"
 	description = ""
@@ -20,7 +20,7 @@
 
 
 /datum/keybinding/human/unique_action
-	key = "Space"
+	hotkey_keys = list("Space")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	description = ""

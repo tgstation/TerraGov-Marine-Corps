@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/living/resist
-	key = "B"
+	hotkey_keys = list("B")
 	name = "resist"
 	full_name = "Resist"
 	description = "Break free of your current state. Handcuffs, on fire, being trapped in an alien nest? Resist!"

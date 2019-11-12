@@ -29,6 +29,6 @@
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
 
 	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+		winset(src, null, "input.focus=true")
 	else
-		winset(src, null, "input.background-color=[COLOR_INPUT_DISABLED]")
+		winset(src, null, "map.focus=true")

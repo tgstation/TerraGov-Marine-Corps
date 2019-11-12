@@ -4,7 +4,7 @@
 
 
 /datum/keybinding/carbon/hold_run_move_intent
-	key = "Alt"
+	hotkey_keys = list("Alt")
 	name = "hold_run_move_intent"
 	full_name = "Hold to Sprint/Stalk"
 	description = "Hold down to sprint if human or stalk if xeno, release to return to previous mode."
@@ -25,8 +25,8 @@
 
 
 /datum/keybinding/carbon/toggle_throw_mode
-	key = "R"
-	classic_key = "Southwest" // END
+	hotkey_keys = list("R")
+	classic_keys = list("Southwest") // END
 	name = "toggle_throw_mode"
 	full_name = "Toggle throw mode"
 	description = "Toggle throwing the current item or not."
@@ -44,7 +44,7 @@
 
 
 /datum/keybinding/carbon/select_help_intent
-	key = "1"
+	hotkey_keys = list("1")
 	name = "select_help_intent"
 	full_name = "Select help intent"
 	description = ""
@@ -59,7 +59,7 @@
 
 
 /datum/keybinding/carbon/select_disarm_intent
-	key = "2"
+	hotkey_keys = list("2")
 	name = "select_disarm_intent"
 	full_name = "Select disarm intent"
 	description = ""
@@ -74,7 +74,7 @@
 
 
 /datum/keybinding/carbon/select_grab_intent
-	key = "3"
+	hotkey_keys = list("3")
 	name = "select_grab_intent"
 	full_name = "Select grab intent"
 	description = ""
@@ -89,7 +89,7 @@
 
 
 /datum/keybinding/carbon/select_harm_intent
-	key = "4"
+	hotkey_keys = list("4")
 	name = "select_harm_intent"
 	full_name = "Select harm intent"
 	description = ""
@@ -103,10 +103,10 @@
 	return TRUE
 
 /datum/keybinding/carbon/specialclick
-	key = "ctrl"
+	hotkey_keys = list("Ctrl")
 	name = "specialclick"
 	full_name = "Special Click"
-	description = "Hold this key and click to trigger special object interactions."
+	description = "Hold this hotkey_keys and click to trigger special object interactions."
 	keybind_signal = COMSIG_KB_CARBON_SPECIALCLICK_DOWN
 
 
