@@ -60,9 +60,6 @@
 		if(kb.down(src) && keycount >= MAX_COMMANDS_PER_KEY)
 			break
 
-	holder?.key_down(_key, src)
-	mob.focus?.key_down(_key, src)
-
 
 /client/verb/keyUp(_key as text)
 	set instant = TRUE
@@ -88,8 +85,7 @@
 		var/datum/keybinding/kb = GLOB.keybindings_by_name[kb_name]
 		if(kb.up(src))
 			break
-	holder?.key_up(_key, src)
-	mob.focus?.key_up(_key, src)
+
 
 // Called every game tick
 /client/keyLoop()

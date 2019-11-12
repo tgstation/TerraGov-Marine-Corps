@@ -395,8 +395,7 @@
 //Hijack for FC.
 	if(prefs.focus_chat)
 		winset(src, null, "input.background-color=[COLOR_INPUT_DISABLED]")
-	else
-		winset(src, null, "input.focus=true")
+
 	return ..()
 
 //checks if a client is afk
