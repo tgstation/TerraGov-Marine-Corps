@@ -11,6 +11,9 @@
 	keybind_signal = COMSIG_KB_ADMIN_ASAY_DOWN
 
 /datum/keybinding/admin/admin_say/down(client/user)
+	. = ..()
+	if(.)
+		return
 	user.get_asay()
 	return TRUE
 
@@ -23,6 +26,9 @@
 	keybind_signal = COMSIG_KB_ADMIN_MSAY_DOWN
 
 /datum/keybinding/admin/mentor_say/down(client/user)
+	. = ..()
+	if(.)
+		return
 	user.get_msay()
 	return TRUE
 
@@ -35,6 +41,9 @@
 	keybind_signal = COMSIG_KB_ADMIN_DSAY_DOWN
 
 /datum/keybinding/admin/dead_say/down(client/user)
+	. = ..()
+	if(.)
+		return
 	user.get_dsay()
 	return TRUE
 
@@ -46,5 +55,8 @@
 	keybind_signal = COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN
 
 /datum/keybinding/admin/toggle_buildmode_self/down(client/user)
+	. = ..()
+	if(.)
+		return
 	user.get_togglebuildmode()
 	return TRUE
