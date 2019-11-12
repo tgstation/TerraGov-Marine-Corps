@@ -164,6 +164,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/headset/mainship/LateInitialize(mapload)
+	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
 
