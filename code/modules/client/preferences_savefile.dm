@@ -70,7 +70,8 @@
 		WRITE_FILE(S["menuoptions"], list())
 
 	if(savefile_version < 39)
-		WRITE_FILE(S["key_bindings"], null)
+		WRITE_FILE(S["key_bindings"], ((focus_chat) ? deepCopyList(GLOB.classic_keybinding_list_by_key) : deepCopyList(GLOB.hotkey_keybinding_list_by_key)))
+		parent.update_movement_keys()
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
