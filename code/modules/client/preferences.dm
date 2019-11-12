@@ -1031,8 +1031,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/numpad = text2num(href_list["numpad"]) ? "Numpad" : ""
 			// var/key_code = text2num(href_list["key_code"])
 
-			to_chat(world, "[new_key] || [AltMod] || [CtrlMod] || [ShiftMod]")
-
 			if(GLOB._kbMap[new_key])
 				new_key = GLOB._kbMap[new_key]
 
