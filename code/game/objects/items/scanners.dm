@@ -82,7 +82,7 @@ REAGENT SCANNER
 	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
 		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
-		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
+		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
 		to_chat(user, "<span class='warning'>[src] can't make sense of this creature.</span>")
