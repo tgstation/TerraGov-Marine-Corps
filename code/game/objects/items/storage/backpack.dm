@@ -608,7 +608,8 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
