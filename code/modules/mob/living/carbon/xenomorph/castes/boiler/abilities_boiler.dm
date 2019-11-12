@@ -78,6 +78,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
+	set_light(current_ammo)
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -225,6 +226,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
+	set_light(X.corrosive_ammo + X.neuro_ammo)
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()
