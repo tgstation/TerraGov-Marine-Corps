@@ -155,45 +155,48 @@
 
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
+
 	if(!damage)
 		return FALSE
-	var/chance = 20 //base chance
-	if(damtype == BRUTE)
-		chance += 5
-	chance += chancemod + (damage * 0.33)
+
 	var/turf/T = loc
+
 	if(!T || !istype(T))
 		return
+
+	var/chance = 20 + chancemod + (damage * 0.33)
+	if(damtype == BRUTE)
+		chance += 5
 
 	if(radius > 1 || prob(chance))
 
 		var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T
 
-		if(!decal) //Let's not stack blood, it just makes lagggggs.
-			add_splatter_floor(T) //Drop some on the ground first.
+		if(!decal)
+			add_splatter_floor(T)
 		else
-			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
+			if(decal.random_icon_states && length(decal.random_icon_states) > 0)
 				decal.icon_state = pick(decal.random_icon_states)
 
-		var/splash_chance = 40 //Base chance of getting splashed. Decreases with # of victims.
-		var/distance = 0 //Distance, decreases splash chance.
-		var/i = 0 //Tally up our victims.
+		var/victim_count = 0 //Tally up our victims.
+		for(var/mob/living/carbon/human/victim in range(radius,src))
+			var/distance = get_dist(src,victim)
+			var/splash_chance = 80 + (distance * -15) - (victim_count * 5)
+			if(victim.loc == loc)
+				splash_chance += 30
 
-		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
+			if(splash_chance > 0 && prob(splash_chance))
+				var/chosen_zone = pick("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin")
+				var/datum/limb/E = get_limb(chosen_zone)
+				var/splash_damage = rand(10,25) - getarmor(chosen_zone, "acid")*0.5
 
-			if( (victim.wear_suit?.resistance_flags & UNACIDABLE) && (victim.head?.resistance_flags & UNACIDABLE) )
-				continue
+				if(splash_damage <= 0 || !E.take_damage_limb(burn = splash_damage))
+					continue
 
-			distance = get_dist(src,victim)
-
-			splash_chance = 80 - (i * 5)
-			if(victim.loc == loc) splash_chance += 30 //Same tile? BURN
-			splash_chance += distance * -15
-
-			if(splash_chance > 0 && prob(splash_chance)) //Success!
-				i++
 				victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
 				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
 				if(prob(60) && !victim.stat && !(victim.species.species_flags & NO_PAIN))
-					victim.emote("scream") //Topkek
-				victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
+					victim.emote("scream")
+				UpdateDamageIcon()
+
+				victim_count++
