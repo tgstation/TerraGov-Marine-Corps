@@ -24,7 +24,6 @@
 	return TRUE
 
 
-
 /datum/keybinding/carbon/toggle_throw_mode
 	key = "R"
 	classic_key = "Southwest" // END

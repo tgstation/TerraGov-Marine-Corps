@@ -340,7 +340,7 @@
 
 
 /mob/proc/toggle_move_intent(new_intent)
-	if(new_intent)
+	if(!isnull(new_intent))
 		if(new_intent == m_intent)
 			return FALSE
 		m_intent = new_intent
@@ -349,8 +349,6 @@
 			m_intent = MOVE_INTENT_WALK
 		else
 			m_intent = MOVE_INTENT_RUN
-	
-	to_chat(world, "toggle intent: [new_intent] || [m_intent]")
 
 	SEND_SIGNAL(src, COMSIG_MOB_TOGGLEMOVEINTENT, m_intent)
 
