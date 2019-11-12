@@ -565,11 +565,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
 	knockback(M,P)
 
-//buckshot variant only used by the masterkey shotgun attachment.
-/datum/ammo/bullet/shotgun/buckshot/masterkey
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
-	damage = 70
-
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
@@ -582,8 +577,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 4
 	penetration = 0
 
+//buckshot variant only used by the masterkey shotgun attachment.
+/datum/ammo/bullet/shotgun/buckshot/masterkey
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
+	damage = 25
+
 /datum/ammo/bullet/shotgun/spread/masterkey
-	damage = 30
+	damage = 25
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell"
