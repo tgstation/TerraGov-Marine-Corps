@@ -232,7 +232,7 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	var/mob/living/carbon/human/wearer = null
 	var/B18_burn_cooldown = null
 	var/B18_oxy_cooldown = null

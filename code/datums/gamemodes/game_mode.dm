@@ -458,7 +458,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			GLOB.xeno_spawn_protection_locations.len--
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
-		addtimer(CALLBACK(src, .proc/remove_fog), 25 MINUTES + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
+
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
