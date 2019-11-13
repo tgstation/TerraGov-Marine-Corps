@@ -307,7 +307,7 @@
 						/obj/item/ammo_magazine/rifle/ap = round(scale * 5),
 						/obj/item/ammobox/ext = round(scale * 1),
 						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
-						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
+						/obj/item/ammo_magazine/rifle/standard_lmg = round(scale * 15),
 						/obj/item/cell/lasgun/M43 = round(scale * 30),
 						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/shotgunbox = round(scale * 3),
