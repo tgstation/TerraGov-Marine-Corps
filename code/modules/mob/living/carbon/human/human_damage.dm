@@ -294,7 +294,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
 		UpdateDamageIcon()
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
 	speech_problem_flag = 1
 
@@ -345,7 +345,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		if(burn)
 			burn = round(burn * ((15 - protection_aura) / 15))
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
