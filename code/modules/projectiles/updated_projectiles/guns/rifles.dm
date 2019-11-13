@@ -358,7 +358,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/lmg
+	current_mag = /obj/item/ammo_magazine/standard_lmg
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -376,7 +376,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
 	fire_delay = 0.2 SECONDS
-	burst_amount = 1
+	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
 	scatter = 15

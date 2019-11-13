@@ -108,7 +108,7 @@
 
 /obj/item/ammo_magazine/standard_lmg
 	name = "\improper T-42 ammo box (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+	desc = "A drum magazine for the T-42 Light Machine Gun."
 	icon_state = "T42"
 	caliber = "10x24mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle
