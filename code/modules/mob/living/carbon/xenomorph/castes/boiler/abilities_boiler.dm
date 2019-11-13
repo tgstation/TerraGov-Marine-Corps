@@ -67,16 +67,16 @@
 
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
+	var/current_ammo = X.xeno_caste.corrosive_ammo + X.xeno_caste.neuro_ammo
 	if(current_ammo >= X.xeno_caste.max_ammo)
 		to_chat(X, "<span class='notice'>We can carry no more globules.</span>")
 		return
 	succeed_activate()
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		X.corrosive_ammo++
+		X.xeno_caste.corrosive_ammo++
 		to_chat(X, "<span class='notice'>We prepare a corrosive acid globule.</span>")
 	else
-		X.neuro_ammo++
+		X.xeno_caste.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
 	X.set_light(current_ammo)
 	update_button_icon()
@@ -85,7 +85,7 @@
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	button.overlays.Cut()
 	//the bit where the ammo counter sprite updates.
-	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.corrosive_ammo][X.neuro_ammo]")
+	button.overlays += image('icons/xeno/actions_boiler_glob.dmi', button, "bomb_count_[X.xeno_caste.corrosive_ammo][X.xeno_caste.neuro_ammo]")
 	return ..()
 
 // ***************************************
@@ -111,7 +111,7 @@
 
 /datum/action/xeno_action/activable/bombard/on_activation()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
-	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
+	var/current_ammo = X.xeno_caste.corrosive_ammo + X.xeno_caste.neuro_ammo
 	if(current_ammo <= 0)
 		to_chat(X, "<span class='notice'>We have nothing prepared to fire.</span>")
 		return FALSE
@@ -193,11 +193,11 @@
 		return
 
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
-		if(X.corrosive_ammo <= 0)
+		if(X.xeno_caste.corrosive_ammo <= 0)
 			to_chat(X, "<span class='warning'>We have no corrosive globules available.</span>")
 			return
 	else
-		if(X.neuro_ammo <= 0)
+		if(X.xeno_caste.neuro_ammo <= 0)
 			to_chat(X, "<span class='warning'>We have no neurotoxin globules available.</span>")
 			return
 
@@ -221,12 +221,14 @@
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 		X.corrosive_ammo--
+		X.xeno_caste.corrosive_ammo--
 	else
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
+		X.xeno_caste.neuro_ammo--
 
-	X.set_light(X.corrosive_ammo + X.neuro_ammo)
+	X.set_light(X.xeno_caste.corrosive_ammo + X.xeno_caste.neuro_ammo)
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()

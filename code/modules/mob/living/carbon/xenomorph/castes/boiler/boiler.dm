@@ -14,8 +14,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	var/corrosive_ammo = 0
-	var/neuro_ammo = 0
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/datum/effect_system/smoke_spread/xeno/smoke
 
@@ -52,4 +50,4 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/boiler/X = user
 	if(isxeno(X))
-		to_chat(X, "<span class='warning'>We contain [X.corrosive_ammo] corrosive globules and [X.neuro_ammo] neurotoxin globules.</span>")
+		to_chat(X, "<span class='warning'>We contain [X.xeno_caste.corrosive_ammo] corrosive globules and [X.xeno_caste.neuro_ammo] neurotoxin globules.</span>")
