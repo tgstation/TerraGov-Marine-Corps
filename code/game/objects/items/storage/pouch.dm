@@ -255,6 +255,10 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle
+	fill_type = /obj/item/ammo_magazine/rifle/ap
+	fill_number = 3
+
+/obj/item/storage/pouch/magazine/large/deathsquad_rifle
 	fill_type = /obj/item/ammo_magazine/rifle/explosive
 	fill_number = 3
 
