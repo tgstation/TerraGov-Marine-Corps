@@ -368,8 +368,8 @@
 /area/lv624/lazarus/console)
 "bo" = (
 /obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
+/turf/open/floor/tile/dark2,
+/area/icy_caves/caves/west)
 "bp" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
@@ -5254,8 +5254,27 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/research)
 "rh" = (
-/obj/structure/closet/crate/weapon,
+/obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark2,
+/area/icy_caves/caves/west)
+"ri" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/caves/west)
+"rj" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
+"rk" = (
+/obj/effect/landmark/corpsespawner/pmc,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
+"rl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/pmc,
+/turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "uT" = (
 /obj/structure/closet/secure_closet/medical3,
@@ -9112,7 +9131,7 @@ mj
 az
 dy
 dZ
-eq
+rh
 eE
 eR
 fb
@@ -9368,8 +9387,8 @@ mj
 mj
 az
 dy
-rh
-eq
+bo
+ri
 eE
 eq
 fc
@@ -9885,7 +9904,7 @@ lm
 nC
 er
 eE
-er
+rl
 nz
 lm
 lQ
@@ -10140,7 +10159,7 @@ mj
 az
 nA
 dc
-dc
+rj
 eE
 dc
 ln
@@ -10399,7 +10418,7 @@ ln
 nC
 dc
 eE
-dc
+rj
 dc
 de
 cZ
@@ -10654,7 +10673,7 @@ mj
 az
 de
 eb
-dc
+rk
 eE
 dc
 di
@@ -11425,7 +11444,7 @@ bW
 cO
 dA
 dc
-dc
+rj
 eE
 dc
 dc
@@ -11685,7 +11704,7 @@ dc
 dc
 eE
 dc
-dc
+rj
 dc
 dA
 gx
@@ -11944,7 +11963,7 @@ eE
 dc
 dc
 dc
-dc
+rj
 dc
 dc
 dc
@@ -32205,7 +32224,7 @@ ac
 aO
 aX
 af
-bo
+af
 ac
 bw
 nv
