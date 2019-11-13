@@ -491,10 +491,9 @@
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
-		L.jitter(1)
+		L.jitter(2)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	return ..()
-
 /datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
 	L.adjustOxyLoss(2)
 	L.jitter(4)
