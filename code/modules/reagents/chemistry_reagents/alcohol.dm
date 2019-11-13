@@ -292,7 +292,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
-						H.stun(3)
+						H.Stun(3)
 					E.take_damage(20)
 	return ..()
 
@@ -432,7 +432,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
 /datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
-	L.stun(2)
+	L.Stun(2)
 	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream

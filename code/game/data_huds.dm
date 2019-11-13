@@ -254,7 +254,7 @@
 				simple_status_hud.icon_state = "hud_con_kd"
 				status_hud.icon_state = "hud_con_kd"
 				return TRUE
-			if(stunned)
+			if(IsStun())
 				simple_status_hud.icon_state = "hud_con_stun"
 				status_hud.icon_state = "hud_con_stun"
 				return TRUE

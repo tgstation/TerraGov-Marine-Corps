@@ -447,7 +447,7 @@
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.set_stunned(5)
+			M.Stun(5)
 			M.set_knocked_down(5)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M

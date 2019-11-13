@@ -254,7 +254,7 @@ Redefine as needed.
 	if(focus)
 		var/mob/living/carbon/human/victim = focus
 		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-		victim.set_stunned(0)
+		victim.SetStun(0)
 		victim.grab_resist_level = 0
 		victim.update_canmove()
 		focus = null

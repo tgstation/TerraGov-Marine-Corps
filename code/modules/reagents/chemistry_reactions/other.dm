@@ -147,7 +147,7 @@
 
 			if(4 to 5)
 				if(M.flash_eyes())
-					M.stun(5)
+					M.Stun(5)
 
 
 /datum/chemical_reaction/napalm

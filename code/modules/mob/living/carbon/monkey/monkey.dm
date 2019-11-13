@@ -187,7 +187,7 @@
 					knock_down(5)
 					if (stuttering < 5)
 						stuttering = 5
-					stun(5)
+					Stun(5)
 
 					visible_message("<span class='danger'>[src] has been touched with the stun gloves by [H]!</span>", "<span class='warning'> You hear someone fall</span>")
 					return

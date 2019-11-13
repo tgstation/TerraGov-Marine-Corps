@@ -278,11 +278,6 @@
 	update_stat()
 	update_wounds()
 
-/mob/living/carbon/xenomorph/handle_stunned()
-	if(stunned)
-		adjust_stunned(-2)
-	return stunned
-
 /mob/living/carbon/xenomorph/handle_knocked_down()
 	if(knocked_down && client)
 		adjust_knocked_down(-5)

@@ -193,7 +193,7 @@
 				if (prob(75))
 					H.knock_out(time)
 				else
-					H.stun(time)
+					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
@@ -301,7 +301,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		if(prob(10))
-			M.stun(rand(1,3))
+			M.Stun(rand(1,3))
 			M.take_limb_damage(3)
 			return
 		else
@@ -323,7 +323,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.stun(rand(2,4))
+			M.Stun(rand(2,4))
 			M.take_limb_damage(4)
 			return
 		else

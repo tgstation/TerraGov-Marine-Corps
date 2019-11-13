@@ -64,3 +64,6 @@
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
+
+//mob traits
+#define TRAIT_STUNIMMUNE		"stun_immunity"

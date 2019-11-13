@@ -18,7 +18,6 @@
 	if(confused)
 		confused = max(0, confused - 1)
 
-	handle_stunned()
 	handle_knocked_down()
 	handle_knocked_out()
 	handle_drugged()
@@ -29,13 +28,6 @@
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		adjust_stunned(-1)
-		if(!stunned && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return stunned
 
 /mob/living/proc/handle_knocked_down()
 	if(knocked_down && client)
@@ -591,7 +583,7 @@ below 100 is not dizzy
 		else
 			lying = 0
 
-	set_canmove(!(stunned || frozen || laid_down))
+	set_canmove(!(IsStun() || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
@@ -720,7 +712,7 @@ below 100 is not dizzy
 		if("knockdown")
 			set_knocked_down(var_value)
 		if("stun")
-			set_stunned(var_value)
+			SetStun(var_value)
 		if("sleeping")
 			set_sleeping(var_value)
 		if("eye_blind")

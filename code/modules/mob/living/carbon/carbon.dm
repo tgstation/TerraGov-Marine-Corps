@@ -58,10 +58,10 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
+			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
 			knock_down(1)
 		else
-			stun(10)//This should work for now, more is really silly and makes you lay there forever
+			Stun(10)//This should work for now, more is really silly and makes you lay there forever
 			knock_down(10)
 	else
 		src.visible_message(
@@ -126,7 +126,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	stun(5)
+	Stun(5)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -156,8 +156,7 @@
 
 		if(knocked_out)
 			adjust_knockedout(-3)
-		if(stunned)
-			adjust_stunned(-3)
+		Stun(-3)
 		if(knocked_down)
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
@@ -317,7 +316,7 @@
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	stun(stun_level)
+	Stun(stun_level)
 	knock_down(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob

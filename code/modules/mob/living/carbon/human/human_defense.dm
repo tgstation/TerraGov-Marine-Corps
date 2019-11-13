@@ -389,7 +389,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-	stunned += stun_duration
+	Stun(stun_duration)
 	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)

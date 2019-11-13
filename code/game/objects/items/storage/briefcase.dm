@@ -27,7 +27,7 @@
 		if (prob(75))
 			M.knock_out(time)
 		else
-			M.stun(time)
+			M.Stun(time)
 		if(M.stat != 2)	M.stat = 1
 		visible_message("span class='danger'>[M] has been knocked unconscious!</span>", null, "<span class='warning'> You hear someone fall.</span>")
 	else

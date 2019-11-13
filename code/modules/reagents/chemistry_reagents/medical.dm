@@ -303,7 +303,7 @@
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
 	L.set_knocked_down(0)
-	L.set_stunned(0)
+	L.remove_all_status_effect()
 	L.set_knocked_out(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
@@ -331,7 +331,7 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
 	L.adjust_knockedout(-1)
-	L.adjust_stunned(-1)
+	L.AdjustStun(-1)
 	L.adjust_knocked_down(-1)
 	holder.remove_reagent("mindbreaker", 5)
 	L.hallucination = max(0, L.hallucination - 10)
@@ -365,7 +365,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.confused = max(L.confused-5, 0)
 	L.adjust_blurriness(-5)
 	L.adjust_knockedout(-2)
-	L.adjust_stunned(-2)
+	L.AdjustStun(-2)
 	L.adjust_knocked_down(-1)
 	L.adjust_sleeping(-2)
 	return ..()
@@ -674,7 +674,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
 		L.adjust_knocked_down(-1)
-		L.adjust_stunned(-1)
+		L.AdjustStun(-1)
 		L.adjust_knockedout(-1)
 	L.adjustHalLoss(-4*REM)
 	if(prob(2))
@@ -696,7 +696,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustHalLoss(35)
-		L.stun(2)
+		L.Stun(2)
 	if(prob(20))
 		L.hallucination += 15
 		L.confused += 3
@@ -708,7 +708,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.adjustHalLoss(50)
-		L.stun(3)
+		L.Stun(3)
 	if(prob(20))
 		L.hallucination += 20
 		L.confused += 5
@@ -722,7 +722,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.adjustHalLoss(65)
-		L.stun(4)
+		L.Stun(4)
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30

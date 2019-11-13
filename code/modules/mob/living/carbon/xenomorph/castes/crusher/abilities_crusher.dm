@@ -42,7 +42,7 @@
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
 			M.knock_down(1)
 		else
-			M.stun(1) //Otherwise we just get stunned.
+			M.Stun(1) //Otherwise we just get stunned.
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 

@@ -21,7 +21,7 @@
 	flash_pain()
 
 	if (stun_amount)
-		stun(stun_amount)
+		Stun(stun_amount)
 		knock_down(stun_amount)
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)

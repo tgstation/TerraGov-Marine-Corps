@@ -33,7 +33,7 @@
 	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
 		grab_resist_level = 0 //zero it out
-		L.set_stunned(0)
+		L.SetStun(0)
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 

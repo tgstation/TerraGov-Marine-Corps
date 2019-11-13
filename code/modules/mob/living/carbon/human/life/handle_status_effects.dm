@@ -64,14 +64,6 @@
 	return knocked_out
 
 
-/mob/living/carbon/human/handle_stunned()
-	if(stunned)
-		adjust_stunned(-species.stun_reduction)
-		if(!stunned && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return stunned
-
-
 /mob/living/carbon/human/proc/set_mobility_aura(new_aura)
 	if(mobility_aura == new_aura)
 		return

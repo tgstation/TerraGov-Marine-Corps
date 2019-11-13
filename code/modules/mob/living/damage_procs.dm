@@ -65,7 +65,7 @@
 		return 0
 	switch(effecttype)
 		if(STUN)
-			stun(effect/(blocked+1))
+			Stun(effect/(blocked+1))
 		if(WEAKEN)
 			knock_down(effect/(blocked+1))
 		if(PARALYZE)

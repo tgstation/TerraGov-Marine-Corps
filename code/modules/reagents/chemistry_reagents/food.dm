@@ -187,7 +187,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
-		victim.stun(5)
+		victim.Stun(5)
 		victim.knock_down(5)
 		//victim.knock_out(10)
 		//victim.drop_held_item()
@@ -197,7 +197,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
-				victim.stun(1)
+				victim.Stun(1)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
@@ -208,7 +208,7 @@
 			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
-		victim.stun(5)
+		victim.Stun(5)
 		victim.knock_down(5)
 		//victim.knock_out(10)
 		//victim.drop_held_item()

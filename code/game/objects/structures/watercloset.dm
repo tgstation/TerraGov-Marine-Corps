@@ -452,7 +452,7 @@
 		var/mob/living/L = user
 
 		flick("baton_active", src)
-		L.stun(10)
+		L.Stun(10)
 		L.stuttering = 10
 		L.knock_down(10)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
