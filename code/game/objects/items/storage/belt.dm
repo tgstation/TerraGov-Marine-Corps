@@ -273,7 +273,6 @@
 		/obj/item/explosive/mine,
 		/obj/item/reagent_containers/food/snacks
 		)
-	cant_hold = list(/obj/item/ammo_magazine/rifle/standard_lmg)
 
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
