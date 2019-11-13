@@ -68,8 +68,8 @@
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.selected_ability)
-		to_chat(X, "<span class='notice'>We can not prepare globules as we are now.</span>")
+	if(X.selected_ability) //bombarding or something else.
+		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must clear our mind of abilities!</span>")
 		return
 
 	var/current_ammo = corrosive_ammo + neuro_ammo
