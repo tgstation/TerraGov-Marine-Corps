@@ -474,6 +474,13 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
+/obj/item/attachable/t42barrel
+	name = "T-42 barrel"
+	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t42barrel"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot

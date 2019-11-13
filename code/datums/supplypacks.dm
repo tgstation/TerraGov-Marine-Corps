@@ -393,10 +393,10 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/standard_lmg,
 					/obj/item/ammo_magazine/rifle/standard_lmg
 					)
-	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
-	cost = RO_PRICE_VERY_CHEAP
+	name = "T-42 LMG squad crate (LMG x1, LMG ammo drums x1)"
+	cost = RO_PRICE_PRETTY_PRICY
 	containertype = /obj/structure/closet/crate
-	containername = "\improper M41AE2 HPR crate"
+	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle_squad
@@ -412,10 +412,10 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/standard_lmg,
 					/obj/item/ammo_magazine/rifle/standard_lmg
 					)
-	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
+	name = "T-42 LMG squad crate (LMG x5, LMG ammo drums x5)"
 	cost = RO_PRICE_PRETTY_PRICY
 	containertype = /obj/structure/closet/crate
-	containername = "\improper M41AE2 HPR squad crate"
+	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/combatshotgun
