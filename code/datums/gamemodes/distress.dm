@@ -318,7 +318,7 @@
 						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
-						/obj/item/ammo_magazine/lmg = round(scale * 15),
+						/obj/item/ammo_magazine/standard_lmg = round(scale * 15),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
