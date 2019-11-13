@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a
+	gun_type = /obj/item/weapon/gun/rifle/standard_carabine
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper M41A1 extended magazine (10x24mm)"
@@ -49,12 +49,12 @@
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/ammo_magazine/rifle/m41aMK1
+/obj/item/ammo_magazine/rifle/standard_assaultrifle
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
-	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 
 
 
@@ -94,7 +94,7 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/lmg
+/obj/item/ammo_magazine/rifle/standard_lmg
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"
@@ -102,7 +102,7 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
-	gun_type = /obj/item/weapon/gun/rifle/lmg
+	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 
 
 //-------------------------------------------------------
