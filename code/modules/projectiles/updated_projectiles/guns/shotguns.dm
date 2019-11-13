@@ -599,7 +599,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = 12
 	aim_slowdown = 0.5
 
-
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)
 
