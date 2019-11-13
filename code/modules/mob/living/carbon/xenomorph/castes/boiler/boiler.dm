@@ -45,9 +45,3 @@
 	visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
 	smoke.set_up(2, get_turf(src))
 	smoke.start()
-
-/mob/living/carbon/xenomorph/boiler/examine(mob/user)
-	. = ..()
-	var/mob/living/carbon/xenomorph/boiler/X = user
-	if(isxeno(X))
-		to_chat(X, "<span class='warning'>We contain [X.xeno_caste.corrosive_ammo] corrosive globules and [X.xeno_caste.neuro_ammo] neurotoxin globules.</span>")
