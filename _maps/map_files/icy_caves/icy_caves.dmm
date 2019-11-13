@@ -368,8 +368,8 @@
 /area/lv624/lazarus/console)
 "bo" = (
 /obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "bp" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
@@ -968,9 +968,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "dT" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/research)
 "dU" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/east)
@@ -1002,9 +1001,9 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/west)
 "ea" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/structure/bookcase/manuals/research_and_development,
 /turf/open/floor/tile/dark2,
-/area/icy_caves/caves/west)
+/area/icy_caves/outpost/research)
 "eb" = (
 /turf/closed/ice/end,
 /area/icy_caves/caves/west)
@@ -1732,6 +1731,10 @@
 "gn" = (
 /turf/closed/ice/straight,
 /area/icy_caves/outpost/LZ2)
+"go" = (
+/obj/machinery/computer/nuke_disk_generator/red,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/security)
 "gp" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
@@ -2128,6 +2131,9 @@
 	dir = 4
 	},
 /area/icy_caves/caves/south)
+"hN" = (
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "hO" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -2619,6 +2625,16 @@
 	dir = 4
 	},
 /area/icy_caves/caves/west)
+"jg" = (
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "jh" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/refinery)
@@ -2726,6 +2742,14 @@
 	dir = 8
 	},
 /area/icy_caves/caves/east)
+"jC" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "jD" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark2,
@@ -3480,6 +3504,14 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/medbay)
+"lU" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "lV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -3698,15 +3730,13 @@
 /area/icy_caves/outpost/medbay)
 "mK" = (
 /obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
+/obj/structure/barricade/wooden,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "mL" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -4664,6 +4694,14 @@
 /obj/item/flashlight,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
+"pI" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "pJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleEnd{
@@ -4720,6 +4758,14 @@
 	dir = 1
 	},
 /area/icy_caves/caves/OOB)
+"pQ" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "pR" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5033,9 +5079,101 @@
 	dir = 8
 	},
 /area/icy_caves/caves/OOB)
+"qG" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
+"qH" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
+"qI" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
+"qJ" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/mainship/research{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qK" = (
+/obj/structure/table,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qL" = (
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qM" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/science,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qN" = (
+/obj/structure/table,
+/obj/item/clothing/suit/storage/labcoat,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qO" = (
+/obj/structure/closet/crate/science,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qP" = (
+/obj/structure/closet/wardrobe/science_white,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qQ" = (
+/obj/structure/sign/science,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/research)
+"qR" = (
+/obj/item/bedsheet/rd,
+/obj/structure/bed,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "qS" = (
 /turf/closed/ice_rock/singleT,
 /area/icy_caves/outpost/outside)
+"qT" = (
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qU" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"qV" = (
+/obj/structure/table,
+/obj/item/weapon/gun/flare,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "uT" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/tile/dark2,
@@ -9155,7 +9293,7 @@ mj
 mj
 az
 dy
-ea
+eq
 eq
 eE
 eq
@@ -10495,12 +10633,12 @@ mj
 mj
 az
 ln
-qB
-nz
-ls
-gv
-gv
-gv
+dT
+dT
+dT
+dT
+dT
+dT
 gv
 gv
 gw
@@ -10752,12 +10890,12 @@ mj
 mj
 az
 ls
-mh
-mh
-gv
-gv
-gv
-gv
+dT
+ea
+qR
+jg
+qO
+qQ
 gv
 gw
 gw
@@ -11009,12 +11147,12 @@ mj
 mj
 az
 ls
-ls
-gv
-gv
-gv
-gv
-gv
+dT
+qM
+hN
+jC
+qU
+dT
 gv
 gw
 gw
@@ -11266,14 +11404,14 @@ nB
 nB
 bK
 nz
-bK
-gv
-gv
-gv
-gv
-gv
-gv
-gw
+dT
+qN
+qU
+lU
+mK
+qJ
+pI
+pQ
 gw
 gv
 iQ
@@ -11523,14 +11661,14 @@ lm
 nC
 pO
 qB
-gv
-gv
-gv
-gv
-gv
-gv
-gv
-gw
+dT
+qL
+qT
+hN
+hN
+dT
+aU
+qG
 gw
 gv
 iQ
@@ -11780,15 +11918,15 @@ nA
 nz
 ls
 mh
-gv
-gv
-gv
-gv
-gv
-gv
-gv
-gw
-gw
+dT
+qK
+qV
+qK
+qP
+qQ
+aU
+qG
+aU
 gv
 iQ
 jm
@@ -12037,15 +12175,15 @@ ln
 qB
 ls
 ls
+dT
+dT
+dT
+dT
+dT
+dT
 gv
-gv
-gv
-gv
-gv
-gv
-gv
-gw
-gw
+qG
+aU
 gv
 iQ
 jn
@@ -12301,8 +12439,8 @@ gv
 gv
 gv
 gv
-gw
-gw
+qG
+aU
 gv
 iQ
 js
@@ -12558,8 +12696,8 @@ gw
 gw
 gw
 gw
-gw
-gw
+qG
+aU
 gv
 iQ
 jt
@@ -12814,8 +12952,8 @@ gw
 gw
 gw
 gw
-gw
-gw
+aU
+qG
 gw
 gv
 iQ
@@ -13071,8 +13209,8 @@ gw
 gv
 gv
 gv
-gv
-gw
+aU
+qG
 gw
 gv
 iQ
@@ -13328,8 +13466,8 @@ gw
 gw
 gv
 gv
-gv
-gw
+aU
+qG
 gw
 gv
 iQ
@@ -13585,8 +13723,8 @@ gv
 gw
 gw
 gw
-gw
-gw
+aU
+qG
 fh
 gv
 iQ
@@ -13842,8 +13980,8 @@ gv
 gv
 gv
 gv
-gv
 aU
+qG
 aU
 aU
 iQ
@@ -14100,7 +14238,7 @@ gv
 gv
 gv
 gv
-aU
+qG
 aU
 aU
 iR
@@ -14357,7 +14495,7 @@ gv
 aU
 aU
 aU
-aU
+qG
 Tc
 aU
 iT
@@ -14614,7 +14752,7 @@ aU
 aU
 aU
 aU
-aU
+qG
 aU
 aU
 iQ
@@ -14871,7 +15009,7 @@ gw
 gw
 aU
 aU
-aU
+qG
 aU
 gw
 iQ
@@ -15128,7 +15266,7 @@ gw
 gw
 gw
 aU
-aU
+qG
 aU
 gw
 gw
@@ -15385,7 +15523,7 @@ gE
 gw
 gw
 aU
-aU
+qG
 aU
 aU
 aU
@@ -15642,20 +15780,20 @@ gR
 gw
 gw
 aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-aU
-mK
+qH
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+pI
+qI
 bP
 bP
 mS
@@ -25180,17 +25318,17 @@ qj
 nQ
 qo
 nS
-qs
+nS
 qx
 nQ
 gv
 gw
 gv
+gw
 nD
 lQ
 mh
-ln
-nC
+nt
 Ql
 "}
 (79,1,1) = {"
@@ -25436,18 +25574,18 @@ qb
 qk
 nQ
 gm
-qq
-nQ
-nQ
+nS
+nS
+qs
 nQ
 gw
 gw
 gv
+gw
 nD
 qB
 ls
 nt
-mi
 Ql
 "}
 (80,1,1) = {"
@@ -25685,26 +25823,26 @@ nS
 oY
 nS
 pB
-nS
+go
 oY
 nS
 ot
 nS
 qk
 nQ
+qq
+nS
+nS
+bo
 nQ
-nQ
-nQ
-gw
-gw
 gw
 gw
 gv
+gw
 nz
 ln
 nC
 nu
-mj
 Ql
 "}
 (81,1,1) = {"
@@ -25949,10 +26087,11 @@ nQ
 nQ
 nQ
 nQ
-gv
-gw
-gw
-gw
+nQ
+nQ
+nQ
+nQ
+nQ
 gw
 gw
 gv
@@ -25961,7 +26100,6 @@ nM
 ls
 nt
 nt
-mj
 Ql
 "}
 (82,1,1) = {"
@@ -26210,15 +26348,15 @@ gw
 gw
 gw
 gv
-gv
+gw
+gw
+gw
 nD
 nL
 lZ
 nO
 lQ
 nu
-mj
-mj
 Ql
 "}
 (83,1,1) = {"
@@ -26465,17 +26603,17 @@ gw
 gw
 gw
 gw
-gv
-lm
-nx
+gw
+gw
+gw
+gw
+gw
 nL
 nC
 ny
 nC
 nM
 nu
-mj
-mj
 Ql
 "}
 (84,1,1) = {"
@@ -26720,19 +26858,19 @@ gw
 gw
 gw
 gw
-ls
-lm
-nC
-mh
-mh
+gw
+gw
+gw
+gw
+gw
+gw
+gw
 nD
 nL
 nO
 nL
 ma
 nu
-mj
-mj
 Ql
 "}
 (85,1,1) = {"
@@ -26975,20 +27113,20 @@ gw
 gw
 gw
 gw
-ls
-nz
-nz
-mh
-nz
-nt
+gw
+gw
+gw
+gw
+gw
+gw
+gw
+gw
+gw
 mi
 mi
 mi
 mi
 mi
-mi
-mj
-mj
 mj
 Ql
 "}
@@ -27229,20 +27367,20 @@ gv
 gv
 gv
 gv
-nz
-nD
-nC
+gw
+gw
+gw
+gw
+gw
+gw
+gw
+lm
 nD
 nO
 nO
 nL
 ma
 nu
-mj
-mj
-mj
-mj
-mj
 mj
 mj
 mj
@@ -27486,19 +27624,19 @@ gv
 nz
 nD
 pO
+nz
+nD
+nC
+nD
+nO
 nO
 nL
-nC
+ma
 nt
 mi
 mi
 mi
 mi
-mj
-mj
-mj
-mj
-mj
 mj
 mj
 mj
@@ -27743,14 +27881,14 @@ nz
 mh
 nz
 nt
+nO
+nL
+nC
+nt
 mi
 mi
 mi
-mj
-mj
-mj
-mj
-mj
+mi
 mj
 mj
 mj
@@ -31992,7 +32130,7 @@ ac
 aO
 aX
 af
-bo
+af
 ac
 bw
 nv
@@ -34083,7 +34221,7 @@ bv
 bv
 bu
 du
-dT
+ds
 ds
 dt
 dt
