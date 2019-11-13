@@ -198,7 +198,7 @@
 					/obj/item/ammobox/ap = 1,
 					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammobox/ext = 1,
-					/obj/item/ammo_magazine/lmg = 10,
+					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/ammo_magazine/rifle/extended = 5,
 					/obj/item/cell/lasgun/M43 = 15,
 					/obj/item/cell/lasgun/M43/highcap = 5,
