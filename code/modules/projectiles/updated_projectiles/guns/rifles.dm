@@ -349,7 +349,7 @@
 
 obj/item/weapon/gun/rifle/standard_lmg
 	name = "\improper T-42 Light Machine Gun"
-	desc = "The T-42 LMG is the TGMCs current standard non-IFF capable LMG. It's known for its ability to put down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm"
+	desc = "The T-42 LMG is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = "10x24mm caseless" //codex
