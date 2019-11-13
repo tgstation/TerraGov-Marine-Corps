@@ -41,8 +41,8 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-/datum/chemical_reaction/pttoxin
-	name = "Toxin"
+/datum/chemical_reaction/ptwater
+	name = "Water"
 	results = list(/datum/reagent/water = 2)
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
