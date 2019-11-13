@@ -429,7 +429,7 @@
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
-/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
