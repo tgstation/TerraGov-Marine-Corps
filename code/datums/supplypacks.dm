@@ -391,7 +391,7 @@ WEAPONS
 /datum/supply_packs/gun/heavyrifle
 	contains = list(
 					/obj/item/weapon/gun/rifle/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg
+					/obj/item/ammo_magazine/rifle/standard_lmg
 					)
 	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -406,11 +406,11 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/standard_lmg,
 					/obj/item/weapon/gun/rifle/standard_lmg,
 					/obj/item/weapon/gun/rifle/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg
+					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/rifle/standard_lmg
 					)
 	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
 	cost = RO_PRICE_PRETTY_PRICY
@@ -1889,7 +1889,7 @@ AMMO
 					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/sniper/svd,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle,
 					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47/extended,
 					)
@@ -1907,8 +1907,8 @@ AMMO
 					/obj/item/ammo_magazine/rifle/extended,
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/incendiary,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle,
 					/obj/item/ammo_magazine/rifle/standard_lmg,
-					/obj/item/ammo_magazine/standard_lmg,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol/extended,
 					/obj/item/ammo_magazine/pistol/ap,

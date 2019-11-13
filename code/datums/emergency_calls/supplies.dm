@@ -12,8 +12,8 @@
 							/obj/item/ammo_magazine/flamer_tank \
 							), \
 						list(/obj/item/weapon/gun/rifle/standard_lmg, \
-							/obj/item/ammo_magazine/standard_lmg, \
-							/obj/item/ammo_magazine/standard_lmg, \
+							/obj/item/ammo_magazine/rifle/standard_lmg, \
+							/obj/item/ammo_magazine/rifle/standard_lmg, \
 							), \
 						list(/obj/item/weapon/gun/shotgun/combat, \
 							/obj/item/weapon/gun/shotgun/combat, \

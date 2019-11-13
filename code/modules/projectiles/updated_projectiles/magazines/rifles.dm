@@ -49,7 +49,7 @@
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/ammo_magazine/rifle/standard_lmg
+/obj/item/ammo_magazine/rifle/standard_assaultrifle
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	icon_state = "m41a"
@@ -94,7 +94,7 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/standard_lmg
+/obj/item/ammo_magazine/rifle/standard_lmg
 	name = "\improper M41AE2 ammo box (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
 	icon_state = "m41ae2"

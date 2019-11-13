@@ -47,7 +47,7 @@
 
 	premium = list(
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 1,
-					/obj/item/ammo_magazine/rifle/standard_lmg = 6
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6
 					)
 
 	prices = list()

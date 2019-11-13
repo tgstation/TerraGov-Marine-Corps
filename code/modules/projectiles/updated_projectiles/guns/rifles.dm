@@ -218,7 +218,7 @@
 	aim_slowdown = 0.5
 	wield_delay = 1.35 SECONDS
 	max_shells = 95 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/standard_lmg
+	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -358,7 +358,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_lmg
+	current_mag = /obj/item/ammo_magazine/rifle/standard_lmg
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/reddot,

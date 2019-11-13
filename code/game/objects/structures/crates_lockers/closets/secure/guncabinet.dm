@@ -70,9 +70,9 @@
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()
 	new /obj/item/weapon/gun/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
 	new /obj/item/weapon/gun/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/m57a4/PopulateContents()
@@ -114,11 +114,11 @@
 
 /obj/structure/closet/secure_closet/guncabinet/m41aMK1/PopulateContents()
 	new /obj/item/weapon/gun/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/weapon/gun/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/mp_armory
