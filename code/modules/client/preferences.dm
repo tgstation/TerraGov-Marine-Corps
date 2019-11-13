@@ -550,7 +550,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				for(var/bound_key_index in 2 to length(user_binds[kb.name]))
 					bound_key = user_binds[kb.name][bound_key_index]
 					HTML += " | <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name];old_key=[bound_key]'>[bound_key]</a>"
-				if(length(user_binds[kb.name]) <= 2)
+				if(length(user_binds[kb.name]) < MAX_KEYS_PER_KEYBIND)
 					HTML += "| <a href ='?_src_=prefs;preference=keybindings_capture;keybinding=[kb.name]'>Add Secondary</a>"
 				var/list/default_keys = focus_chat ? kb.hotkey_keys : kb.classic_keys
 				if(LAZYLEN(default_keys))

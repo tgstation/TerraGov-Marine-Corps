@@ -87,6 +87,8 @@
 #define MAX_KEYPRESS_AUTOKICK 50
 ///Length of held key rolling buffer
 #define HELD_KEY_BUFFER_LENGTH 15
+///Maximum keys allowed per keybind
+#define MAX_KEYS_PER_KEYBIND 3
 
 #define IRCREPLYCOUNT 2
 #define IRC_STATUS_THROTTLE 5
