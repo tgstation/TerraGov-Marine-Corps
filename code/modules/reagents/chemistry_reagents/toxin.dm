@@ -24,13 +24,6 @@
 	toxpwr = 1
 	taste_description = "alchemy" //just anti-pwr-game stuff, no sci-fi or anything
 
-/datum/reagent/toxin/pttoxin
-	name = "Toxin"
-	description = "A toxic chemical."
-	custom_metabolism = REAGENTS_METABOLISM * 5
-	toxpwr = 1
-	taste_description = "alchemy"
-
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
 	description = "A toxic chemical."
@@ -154,6 +147,7 @@
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
 	L.hallucination += 10
+	L.adjust_drugginess(1.1)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker/overdose_process(mob/living/L, metabolism)
@@ -492,12 +486,12 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	if(L.getOxyLoss())
-		L.adjustOxyLoss(-REM)
+	
 	if(L.getBruteLoss() || L.getFireLoss())
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
+		L.jitter(1)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	return ..()
 
