@@ -399,16 +399,16 @@ WEAPONS
 	containername = "\improper M41AE2 HPR crate"
 	group = "Weapons"
 
-/obj/item/weapon/gun/rifle/standard_lmg,
-                    /obj/item/weapon/gun/rifle/standard_lmg,
-                    /obj/item/ammo_magazine/standard_lmg,
-                    /obj/item/ammo_magazine/standard_lmg,                                    
-                    )
-    name = "surplus LMGs crate (T-42 x2, T-42 ammo x2)"
-    cost = RO_PRICE_VERY_CHEAP
-    containertype = /obj/structure/closet/crate
-    containername = "\improper LMGs crate"
-    group = "Weapons"
+/datum/supply_packs/gun/heavyrifle
+	contains = list(
+					/obj/item/weapon/gun/rifle/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg
+					)
+	name = "T-42 LMG crate (T-42 x1, T-42 ammo drum x1)"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "\improper T-42 LMG crate"
+	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle_squad
 	contains = list(
