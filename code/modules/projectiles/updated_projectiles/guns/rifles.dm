@@ -343,7 +343,45 @@
 
 
 //-------------------------------------------------------
+//T42 LIGHT MACHINE GUN
 
+/obj/item/weapon/gun/rifle/standard_lmg
+	name = "\improper T-42 Light Machine Gun"
+	desc = "The T-42 LMG is the TGMCs current standard non-IFF capable LMG. It's known for its ability to put down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm"
+	icon_state = "T42"
+	item_state = "T42"
+	caliber = "10x24mm caseless" //codex
+	max_shells = 120 //codex
+	aim_slowdown = 0.8
+	wield_delay = 1.35 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/lmg
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/t42barrel,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.05
+	scatter = 15
+	scatter_unwielded = 80
+	recoil_unwielded = 5
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE

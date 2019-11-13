@@ -103,6 +103,18 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/lmg
+//-------------------------------------------------------
+//T42 LIGHT MACHINE GUN
+
+/obj/item/ammo_magazine/standard_lmg
+	name = "\improper T-42 ammo box (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+	icon_state = "T42"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 120
+	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 
 
 //-------------------------------------------------------

@@ -318,6 +318,7 @@
 						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
+						/obj/item/ammo_magazine/lmg = round(scale * 15),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -374,6 +375,7 @@
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 10),
 						/obj/item/weapon/gun/smg/m39 = round(scale * 15),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
+						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 10),
@@ -414,6 +416,7 @@
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 25),
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
+						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 15),
@@ -422,6 +425,7 @@
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
 						/obj/item/ammo_magazine/smg/m39 = round(scale * 30),
+						/obj/item/ammo_magazine/standard_lmg = round(scale * 25),
 						/obj/item/ammo_magazine/rifle = round(scale * 25),
 						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale * 25),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
