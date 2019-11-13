@@ -303,6 +303,7 @@
 						/obj/item/ammo_magazine/smg/m39/extended = round(scale * 5),
 						/obj/item/ammobox = round(scale * 3),
 						/obj/item/ammo_magazine/rifle = round(scale * 15),
+						/obj/item/ammo_magazine/standard_lmg = round(scale * 15),
 						/obj/item/ammobox/ap = round (scale * 1),
 						/obj/item/ammo_magazine/rifle/ap = round(scale * 5),
 						/obj/item/ammobox/ext = round(scale * 1),
@@ -318,7 +319,6 @@
 						/obj/item/ammo_magazine/rifle/sx16_buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/sx16_slug = round(scale * 10),
-						/obj/item/ammo_magazine/standard_lmg = round(scale * 15),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
