@@ -197,10 +197,12 @@
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 
 	flags_item_map_variant = NONE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
 	damage_mult = 1.5
+	scatter = -10	
 
 
 //-------------------------------------------------------

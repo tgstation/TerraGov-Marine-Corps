@@ -128,7 +128,6 @@
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg/ap
-	type_of_casings = null
 
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
