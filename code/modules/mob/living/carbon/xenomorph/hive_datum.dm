@@ -670,6 +670,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/area/boarder_location = get_area(boarder)
 		if(istype(boarder_location, /area/shuttle/dropship/alamo))
 			continue
+		if(!is_ground_level(boarder.z))
+			continue
 		boarder.gib()
 		stored_larva++
 		left_behind++

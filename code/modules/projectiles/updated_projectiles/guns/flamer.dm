@@ -587,6 +587,8 @@
 		if(++j >= 11)
 			break
 		var/atom/A = i
+		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
+			continue
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
