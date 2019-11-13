@@ -27,7 +27,7 @@
 	mask = /obj/item/clothing/mask/gas/PMC
 	glasses = /obj/item/clothing/glasses/m42_goggles
 	suit_store = /obj/item/weapon/gun/rifle/m41a/elite
-	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
+	r_store = /obj/item/storage/pouch/magazine/large/deathsquad_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/commando
 
