@@ -67,7 +67,7 @@
 		if(STUN)
 			Stun(effect/(blocked+1))
 		if(WEAKEN)
-			knock_down(effect/(blocked+1))
+			Knockdown(effect/(blocked+1))
 		if(PARALYZE)
 			knock_out(effect/(blocked+1))
 		if(AGONY)

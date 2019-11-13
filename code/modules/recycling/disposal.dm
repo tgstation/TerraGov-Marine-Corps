@@ -149,7 +149,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
-	if(L.stat || L.IsStun() || L.knocked_down || flushing)
+	if(L.stat || L.IsStun() || L.IsKnockdown() || flushing)
 		return
 	if(L.loc == src)
 		go_out(L)

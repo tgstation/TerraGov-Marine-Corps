@@ -157,7 +157,7 @@
 		M.adjust_blurriness(force/7)
 		if(prob(20))
 			M.knock_out(force/6)
-			M.knock_down(force/15)
+			M.Knockdown(force/15)
 		M.drop_held_item()
 
 /obj/item/corncob

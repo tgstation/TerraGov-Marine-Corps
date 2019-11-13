@@ -86,7 +86,7 @@
 		icon_state = "[bloody][base_icon_state] Cuff"
 
 	else if(lying)
-		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
+		if((resting || sleeping) && (!IsKnockdown() && !knocked_out && health > 0))
 			icon_state = "[bloody][base_icon_state] Sleeping"
 		else
 			icon_state = "[bloody][base_icon_state] Stunned"

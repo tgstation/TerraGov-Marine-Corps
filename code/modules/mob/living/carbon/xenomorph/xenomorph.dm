@@ -45,6 +45,8 @@
 
 	AddComponent(/datum/component/bump_attack)
 
+	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
+
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -205,7 +207,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.knock_down(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		H.Knockdown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()

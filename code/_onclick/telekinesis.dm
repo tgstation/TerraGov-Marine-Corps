@@ -347,7 +347,7 @@ Redefine as needed.
 			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 				return FALSE
 			grab_level = TKGRAB_LETHAL
-			victim.set_knocked_down(2)
+			victim.SetKnockdown(2)
 			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
 			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")
 			victim.visible_message("<span class='danger'>The invisible force has tightened its grip on [victim]'s neck!</span>", null, null, 5)

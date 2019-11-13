@@ -18,7 +18,6 @@
 	if(confused)
 		confused = max(0, confused - 1)
 
-	handle_knocked_down()
 	handle_knocked_out()
 	handle_drugged()
 	handle_stuttering()
@@ -28,13 +27,6 @@
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-		if(!knocked_down && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return knocked_down
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
@@ -569,7 +561,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+	var/laid_down = (stat || IsKnockdown() || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
 		if(!lying)
@@ -710,7 +702,7 @@ below 100 is not dizzy
 	. = ..()
 	switch(var_name)
 		if("knockdown")
-			set_knocked_down(var_value)
+			SetKnockdown(var_value)
 		if("stun")
 			SetStun(var_value)
 		if("sleeping")

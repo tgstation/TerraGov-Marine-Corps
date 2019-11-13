@@ -136,7 +136,7 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
-	L.knock_down(10)
+	L.Knockdown(10)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -301,7 +301,7 @@
 	L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.knock_down(5)
+			L.Knockdown(5)
 		if(16 to INFINITY)
 			L.knock_out(5)
 	return ..()
@@ -321,7 +321,7 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.knock_down(5)
+			L.Knockdown(5)
 		if(16 to INFINITY)
 			L.knock_out(5)
 	return ..()
@@ -469,7 +469,7 @@
 		L.adjust_ear_damage(0, 1)
 		L.blind_eyes(5)
 	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.knock_down(1)
+		L.Knockdown(1)
 	return ..()
 
 

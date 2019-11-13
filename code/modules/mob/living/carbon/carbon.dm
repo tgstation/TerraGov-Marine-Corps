@@ -59,10 +59,10 @@
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			knock_down(1)
+			Knockdown(1)
 		else
 			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			knock_down(10)
+			Knockdown(10)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -157,10 +157,10 @@
 		if(knocked_out)
 			adjust_knockedout(-3)
 		Stun(-3)
-		if(knocked_down)
+		if(IsKnockdown())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-			adjust_knocked_down(-3)
+		AdjustKnockdown(-3)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -317,7 +317,7 @@
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	Stun(stun_level)
-	knock_down(weaken_level)
+	Knockdown(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir

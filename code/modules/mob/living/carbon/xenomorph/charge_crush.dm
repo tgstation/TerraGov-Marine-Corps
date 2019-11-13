@@ -464,7 +464,7 @@
 	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-	charger.knock_down(1)
+	charger.Knockdown(1)
 	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -504,9 +504,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			knock_down(CHARGE_SPEED(charge_datum) * 4)
+			Knockdown(CHARGE_SPEED(charge_datum) * 4)
 		if(CHARGE_BULL_HEADBUTT)
-			knock_down(CHARGE_SPEED(charge_datum) * 3)
+			Knockdown(CHARGE_SPEED(charge_datum) * 3)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

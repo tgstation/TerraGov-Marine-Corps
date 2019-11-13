@@ -79,7 +79,7 @@
 			L.flash_eyes()
 
 
-		L.knock_down(strength)
+		L.Knockdown(strength)
 
 
 /obj/machinery/flasher/emp_act(severity)

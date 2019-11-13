@@ -156,5 +156,5 @@
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>We shove \the [src]!</span>", null, 5)
 				if(ismonkey(src))
-					knock_down(8)
+					Knockdown(8)
 		return 1

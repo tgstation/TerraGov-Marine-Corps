@@ -52,6 +52,65 @@
 			S = apply_status_effect(STATUS_EFFECT_STUN, amount, updating)
 		return S
 
+///////////////////////////////// KNOCKDOWN /////////////////////////////////////
+
+/mob/living/proc/IsKnockdown() //If we're knocked down
+	return has_status_effect(STATUS_EFFECT_KNOCKDOWN)
+
+/mob/living/proc/AmountKnockdown() //How many deciseconds remain in our knockdown
+	var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
+	if(K)
+		return K.duration - world.time
+	return 0
+
+/mob/living/proc/KnockdownNoChain(amount, updating = TRUE, ignore_canstun = FALSE) // knockdown only if not already knockeddown
+	if(IsKnockdown())
+		return 0
+	return Knockdown(amount, updating, ignore_canstun)
+
+/mob/living/proc/Knockdown(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
+		if(K)
+			K.duration = max(world.time + amount, K.duration)
+		else if(amount > 0)
+			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
+		return K
+
+/mob/living/proc/SetKnockdown(amount, updating = TRUE, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
+		if(amount <= 0)
+			if(K)
+				qdel(K)
+		else
+			if(absorb_stun(amount, ignore_canstun))
+				return
+			if(K)
+				K.duration = world.time + amount
+			else
+				K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
+		return K
+
+/mob/living/proc/AdjustKnockdown(amount, updating = TRUE, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
+		if(K)
+			K.duration += amount
+		else if(amount > 0)
+			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
+		return K
+
 ///////////////////////////////////// STUN ABSORPTION /////////////////////////////////////
 
 /mob/living/proc/add_stun_absorption(key, duration, priority, message, self_message, examine_message)
@@ -88,28 +147,6 @@
 					to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
-
-
-/mob/living/proc/knock_down(amount, force)
-	if((status_flags & CANKNOCKDOWN) || force)
-		knocked_down = max(max(knocked_down,amount),0)
-		update_canmove()	//updates lying, canmove and icons
-
-
-/mob/living/proc/set_knocked_down(amount, update = TRUE)
-	if(!(status_flags & CANKNOCKDOWN))
-		return
-	knocked_down = max(amount, 0)
-	if(update)
-		update_canmove()	//updates lying, canmove and icons
-
-
-/mob/living/proc/adjust_knocked_down(amount)
-	if(status_flags & CANKNOCKDOWN)
-		knocked_down = max(knocked_down + amount,0)
-		update_canmove()	//updates lying, canmove and icons
-
 
 /mob/living/proc/knock_out(amount)
 	if(status_flags & CANKNOCKOUT)

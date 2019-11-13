@@ -500,7 +500,7 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
-	L.knock_down(3)
+	L.Knockdown(3)
 	switch(current_cycle)
 		if(15 to 35)
 			L.stuttering += 2

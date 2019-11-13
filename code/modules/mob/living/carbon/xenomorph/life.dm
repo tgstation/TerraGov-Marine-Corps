@@ -278,11 +278,6 @@
 	update_stat()
 	update_wounds()
 
-/mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-5)
-	return knocked_down
-
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE

@@ -640,7 +640,7 @@
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
 	L.Stun(8)
-	L.knock_down(5)
+	L.Knockdown(5)
 	L.lying = TRUE
 
 

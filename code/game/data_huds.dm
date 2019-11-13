@@ -250,7 +250,7 @@
 				simple_status_hud.icon_state = "hud_uncon_afk"
 				status_hud.icon_state = "hud_uncon_afk"
 				return TRUE
-			if(knocked_down) //I've fallen and I can't get up.
+			if(IsKnockdown()) //I've fallen and I can't get up.
 				simple_status_hud.icon_state = "hud_con_kd"
 				status_hud.icon_state = "hud_con_kd"
 				return TRUE
