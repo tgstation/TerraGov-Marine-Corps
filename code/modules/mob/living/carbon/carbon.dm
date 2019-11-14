@@ -4,10 +4,9 @@
 
 
 /mob/living/carbon/Destroy()
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
-		C.stomach_contents -= src
-	stomach_contents.Cut()
+	if(isxeno(loc))
+		var/mob/living/carbon/xenomorph/devourer = loc
+		devourer.do_regurgitate(src)
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -23,13 +22,9 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE)) return
-	if(user in src.stomach_contents)
-		if(user.client)
-			user.client.move_delay = world.time + 20
-		if(prob(30))
-			audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", null, 4)
-	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
+	if(user.incapacitated(TRUE))
+		return
+	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 

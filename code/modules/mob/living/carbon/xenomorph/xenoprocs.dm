@@ -360,23 +360,35 @@
 
 /mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
 	if(warning)
-		if(length(stomach_contents))
+		if(LAZYLEN(stomach_contents))
 			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
 			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
 		else
 			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
 
-	for(var/x in stomach_contents)
-		var/atom/movable/passenger = x
-		stomach_contents.Remove(passenger)
-		passenger.forceMove(get_turf(src))
-		SEND_SIGNAL(passenger, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
+	for(var/i in stomach_contents)
+		do_regurgitate(i)
 
 	if(content_cleanup)
 		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
 			var/atom/movable/stowaway = x
 			stowaway.forceMove(get_turf(src))
 			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
+
+
+/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
+	LAZYADD(stomach_contents, prey)
+	prey.knock_down(360)
+	prey.adjust_tinttotal(TINT_BLIND)
+	prey.forceMove(src)
+	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+
+
+/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
+	LAZYREMOVE(stomach_contents, prey)
+	prey.forceMove(get_turf(src))
+	prey.adjust_tinttotal(-TINT_BLIND)
+	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)

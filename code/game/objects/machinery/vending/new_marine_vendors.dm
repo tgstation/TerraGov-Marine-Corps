@@ -292,6 +292,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	vendor_role = SQUAD_MARINE
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
 		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
@@ -302,6 +303,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/head/helmet/marine = list(CAT_HEL, "Regular Helmet", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
@@ -1017,7 +1020,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
@@ -1027,7 +1029,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
