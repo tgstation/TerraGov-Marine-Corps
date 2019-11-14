@@ -157,6 +157,7 @@
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
+
 /datum/action/xeno_action/place_trap/action_activate()
 	var/turf/T = get_turf(owner)
 
