@@ -37,5 +37,5 @@ endmap
 map icy_caves
 endmap
 
-map dessert
+map desert
 endmap
