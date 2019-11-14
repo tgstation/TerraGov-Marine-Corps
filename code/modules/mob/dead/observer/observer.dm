@@ -462,7 +462,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					if(MOB_RECENTLY_DISCONNECTED)
 						name += " (AFK)"
 					if(MOB_DISCONNECTED)
-						name += " (SSD)"
+						name += " (DC)"
 
 		xenos[name] = X
 
@@ -518,7 +518,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					if(MOB_RECENTLY_DISCONNECTED)
 						name += " (AFK)"
 					if(MOB_DISCONNECTED)
-						name += " (SSD)"
+						name += " (DC)"
 
 		humans[name] = H
 
