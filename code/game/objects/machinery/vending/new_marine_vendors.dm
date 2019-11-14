@@ -969,8 +969,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
 		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, "black"),
 		/obj/item/explosive/grenade/impact = list(CAT_LEDSUP, "M40 IMDP grenade", 3, "black"),
-		/obj/item/weapon/gun/rifle/standard_lmg = list(CAT_LEDSUP, "T-42 LMG", 12, "orange"),
-		/obj/item/ammo_magazine/standard_lmg = list(CAT_LEDSUP, "T-42 LMG magazine", 4, "black"),
 		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, "orange"),
 		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
