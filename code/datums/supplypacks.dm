@@ -394,7 +394,7 @@ WEAPONS
 					/obj/item/ammo_magazine/standard_lmg
 					)
 	name = "T-42 LMG squad crate (LMG x1, LMG ammo drums x1)"
-	cost = RO_PRICE_PRETTY_PRICY
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
@@ -413,7 +413,7 @@ WEAPONS
 					/obj/item/ammo_magazine/standard_lmg
 					)
 	name = "T-42 LMG squad crate (LMG x5, LMG ammo drums x5)"
-	cost = RO_PRICE_PRETTY_PRICY
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate
 	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
