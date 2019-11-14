@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "Carrier hugger traps can no long be stacked on one tile."
