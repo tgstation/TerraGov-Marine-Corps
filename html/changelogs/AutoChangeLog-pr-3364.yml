@@ -1,0 +1,4 @@
+author: "Kuro-ai"
+delete-after: True
+changes: 
+  - bugfix: "Fixed M92 missing a empty sprite"
