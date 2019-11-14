@@ -237,12 +237,9 @@
 /turf/closed/wall/r_wall,
 /area/dessert/interior/engineering/atmospherics)
 "aY" = (
-/obj/structure/lamarr/destroyed,
-/obj/item/shard,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/obj/structure/bed/roller,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
 "aZ" = (
 /obj/machinery/atmospherics/components/unary/thermomachine,
 /obj/effect/decal/cleanable/cobweb,
@@ -609,13 +606,8 @@
 /turf/open/floor/wood,
 /area/dessert/interior/command)
 "ce" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "cf" = (
 /obj/structure/bed/chair/sofa/right,
@@ -1057,21 +1049,21 @@
 	},
 /area/dessert/interior/main_building)
 "di" = (
-/obj/structure/table,
-/obj/item/tool/surgery/scalpel/manager,
-/obj/structure/sink{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	icon_state = "pipe11-2";
+	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/area/dessert/interior/medbay)
+/turf/open/floor/tile/white,
+/area/dessert/interior/command/office)
 "dj" = (
-/obj/structure/table,
-/obj/item/tank/anesthetic,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/item/bedsheet/medical,
+/obj/structure/bed,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "dk" = (
 /obj/structure/table/flipped,
@@ -1097,65 +1089,72 @@
 	},
 /area/dessert/interior/main_building)
 "dm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/structure/table,
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "dn" = (
 /turf/open/ground,
 /area/dessert/outside/ne)
 "do" = (
-/obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/area/dessert/interior/science)
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "dp" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "dq" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
 	},
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "dr" = (
-/obj/machinery/bioprinter,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
 "ds" = (
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/obj/structure/table,
+/obj/effect/decal/remains/human,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
 "dt" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
 	},
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "du" = (
-/obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
+/turf/open/floor/tile/white,
 /area/dessert/interior/medbay)
 "dv" = (
-/obj/item/weapon/gun/pistol/b92fs,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/effect/landmark/corpsespawner/doctor,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/area/dessert/interior/science)
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "dw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
@@ -1316,45 +1315,40 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/dessert/outside/se)
 "ec" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "ed" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
 	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "ee" = (
-/obj/machinery/vending/phoronresearch,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "ef" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
 "eg" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
 "eh" = (
-/obj/item/ammo_magazine/pistol/b92fs,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "ei" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2,
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1369,72 +1363,73 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ek" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/structure/bed/chair/office/dark{
+	dir = 1
 	},
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "el" = (
-/obj/machinery/sleeper,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"em" = (
-/obj/structure/table,
-/obj/effect/decal/remains/human,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"en" = (
-/obj/machinery/sleep_console{
-	density = 0
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"eo" = (
-/obj/item/roller,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"ep" = (
-/obj/item/bedsheet/medical,
-/obj/structure/bed,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"eq" = (
-/obj/machinery/bodyscanner,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"er" = (
-/obj/machinery/body_scanconsole,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"es" = (
-/obj/structure/table,
-/obj/item/alien_embryo{
-	pixel_y = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"et" = (
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"em" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
 	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/rods{
+	amount = 40
+	},
+/obj/item/stack/rods{
+	amount = 40
+	},
+/obj/item/autopsy_scanner,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
+"en" = (
+/obj/item/storage/firstaid/toxin,
+/obj/structure/table,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"eo" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"ep" = (
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"eq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"er" = (
+/obj/item/bedsheet/medical,
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
+"es" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
+"et" = (
+/obj/structure/table,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "eu" = (
 /obj/structure/closet/lawcloset,
@@ -1917,13 +1912,11 @@
 /turf/open/floor/tile/white,
 /area/dessert/interior/main_building)
 "fN" = (
-/obj/structure/table,
-/obj/item/storage/surgical_tray,
-/obj/item/reagent_containers/spray/surgery,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/obj/machinery/light{
+	dir = 4
 	},
-/area/dessert/interior/medbay)
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
 "fO" = (
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/plating,
@@ -1945,194 +1938,133 @@
 /turf/open/floor/plating,
 /area/dessert/interior/engineering)
 "fT" = (
-/obj/item/tool/surgery/retractor,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/machinery/sleeper,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "fU" = (
-/obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/obj/machinery/sleep_console{
+	density = 0
 	},
+/turf/open/floor/tile/white,
 /area/dessert/interior/medbay)
 "fV" = (
-/obj/item/reagent_containers/spray/surgery,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/item/roller,
+/turf/open/floor/tile/white,
 /area/dessert/interior/medbay)
 "fW" = (
 /obj/structure/table,
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
-/obj/item/stack/sheet/metal{
-	amount = 30
-	},
-/obj/item/stack/sheet/metal{
-	amount = 30
-	},
-/obj/item/stack/rods{
-	amount = 40
-	},
-/obj/item/stack/rods{
-	amount = 40
-	},
-/obj/item/autopsy_scanner,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/obj/item/clipboard,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
 "fX" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/machinery/bodyscanner,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "fY" = (
+/obj/machinery/body_scanconsole,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"fZ" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"ga" = (
+/obj/item/weapon/gun/pistol/b92fs,
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
+"gb" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"gc" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"gd" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	icon_state = "vent_map-2";
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"ge" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
+"gf" = (
+/obj/item/ammo_magazine/pistol/b92fs,
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
+"gg" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"gh" = (
+/obj/machinery/bioprinter,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
+"gi" = (
+/obj/structure/table,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
+"gj" = (
 /obj/structure/table,
 /obj/item/clothing/suit/surgical,
 /obj/item/clothing/gloves/latex,
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/white,
 /area/dessert/interior/medbay)
-"fZ" = (
-/obj/structure/bed/roller,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"ga" = (
-/obj/item/storage/surgical_tray,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"gb" = (
-/obj/item/bedsheet/medical,
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"gc" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/machinery/light,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"gd" = (
-/obj/item/storage/firstaid/toxin,
-/obj/structure/table,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"ge" = (
-/obj/structure/closet/secure_closet/medical3,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"gf" = (
-/obj/machinery/vending/medical,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
-"gg" = (
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"gh" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"gi" = (
-/obj/structure/bed/chair/office/dark,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"gj" = (
-/obj/structure/table,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
 "gk" = (
-/obj/structure/table,
-/obj/item/trash/cheesie,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "gl" = (
 /obj/structure/table,
-/obj/item/folder,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/item/tool/surgery/scalpel/manager,
+/obj/structure/sink{
+	dir = 8
 	},
-/area/dessert/interior/science)
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "gm" = (
-/obj/item/shard,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/obj/structure/table,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "gn" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/dessert/outside/s)
 "go" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
+/obj/structure/table,
+/obj/item/alien_embryo{
+	pixel_y = 4
 	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "gp" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/item/shard,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "gq" = (
-/obj/item/clothing/mask/facehugger/dead,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/structure/lamarr/destroyed,
+/obj/item/shard,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "gr" = (
 /obj/structure/table,
-/obj/item/tool/surgery/scalpel{
-	pixel_y = 12
+/obj/item/book/manual/research_and_development,
+/obj/item/cell/hyper,
+/obj/machinery/light{
+	dir = 4
 	},
-/obj/machinery/light,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "gs" = (
 /obj/machinery/door/airlock/mainship/research{
@@ -2142,24 +2074,13 @@
 /turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "gt" = (
-/obj/structure/rack,
-/obj/item/clothing/glasses/regular,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
 "gu" = (
-/obj/effect/landmark/corpsespawner/scientist{
-	corpseback = null;
-	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
-	corpseuniform = /obj/item/clothing/under/colonist;
-	name = "Colonist Tevin Marks"
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
+/obj/item/storage/surgical_tray,
+/turf/open/floor/tile/white,
+/area/dessert/interior/medbay)
 "gv" = (
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -2192,7 +2113,7 @@
 /turf/open/floor/tile/dark,
 /area/dessert/interior/command/office)
 "gA" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/wood,
 /area/dessert/interior/command)
 "gB" = (
@@ -2362,12 +2283,8 @@
 /turf/open/floor/plating/dmg3,
 /area/dessert/interior/toilet)
 "hc" = (
-/obj/machinery/optable,
-/obj/effect/decal/cleanable/blood/gibs,
-/obj/machinery/light,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/item/tool/surgery/retractor,
+/turf/open/floor/tile/white,
 /area/dessert/interior/medbay)
 "hd" = (
 /obj/machinery/light{
@@ -2483,17 +2400,14 @@
 /turf/open/floor/tile/whiteyellow/corner,
 /area/dessert/interior/main_building)
 "hm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/open/floor/tile/red/full,
-/area/dessert/interior/command/office)
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
 "hn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/mainship/research{
@@ -2550,90 +2464,42 @@
 /turf/open/floor/wood,
 /area/dessert/interior/command)
 "ht" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor/tile/purple/whitepurplefull,
 /area/dessert/interior/science)
 "hu" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/bed/chair/office/dark{
+	dir = 8
 	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "hv" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
+/obj/item/clothing/mask/facehugger/dead,
+/turf/open/floor/tile/white,
 /area/dessert/interior/science)
 "hw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
-/area/dessert/interior/medbay)
+/turf/open/floor/tile/white,
+/area/dessert/interior/science)
 "hx" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/machinery/iv_drip,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "hy" = (
-/obj/effect/landmark/corpsespawner/doctor,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "hz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "hA" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/blue/whitebluefull,
 /area/dessert/interior/medbay)
 "hB" = (
 /obj/structure/cable/yellow{
@@ -2771,6 +2637,49 @@
 /obj/effect/landmark/start/xeno_spawn,
 /turf/open/ground,
 /area/dessert/hive)
+"hR" = (
+/obj/machinery/optable,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/dessert/interior/medbay)
+"hS" = (
+/obj/structure/table,
+/obj/item/tool/surgery/scalpel{
+	pixel_y = 12
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"hT" = (
+/obj/effect/landmark/corpsespawner/scientist{
+	corpseback = null;
+	corpseshoes = /obj/item/clothing/shoes/black;
+	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Tevin Marks"
+	},
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"hU" = (
+/obj/structure/rack,
+/obj/item/clothing/glasses/regular,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"hV" = (
+/obj/machinery/vending/phoronresearch,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"hW" = (
+/obj/structure/table,
+/obj/item/trash/cheesie,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
+"hX" = (
+/obj/structure/table,
+/obj/item/folder,
+/turf/open/floor/tile/purple/whitepurplefull,
+/area/dessert/interior/science)
 "hZ" = (
 /obj/structure/toilet{
 	dir = 4
@@ -2955,33 +2864,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/dessert/interior/engineering)
-"iy" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"iz" = (
-/obj/structure/table,
-/obj/item/book/manual/research_and_development,
-/obj/item/cell/hyper,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
-"iA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/dessert/interior/science)
 "iB" = (
 /obj/machinery/light{
 	dir = 1
@@ -12514,15 +12396,15 @@ cE
 cE
 cP
 db
-fZ
-hA
-fW
-el
-eq
-eq
-dr
-fU
+aY
+dt
+em
+fT
 fX
+fX
+gh
+gt
+hx
 db
 ev
 eB
@@ -12764,22 +12646,22 @@ aL
 bu
 bu
 bz
-hm
+di
 cn
 hf
 hf
 hf
 cQ
 db
-fZ
-hx
-gd
+aY
+du
 en
-er
-er
-fN
-ds
-gc
+fU
+fY
+fY
+gi
+ep
+hy
 db
 gE
 eC
@@ -13028,15 +12910,15 @@ cF
 cF
 ih
 db
-fZ
-hx
-eg
-ds
-ds
-ds
-fY
-ds
-ds
+aY
+du
+eo
+ep
+ep
+ep
+gj
+ep
+hz
 db
 ew
 eD
@@ -13285,15 +13167,15 @@ cG
 cF
 cT
 db
+aY
+dv
+ep
+fV
 fZ
-hy
-ds
-eo
-ef
-ds
-ds
-ds
-ds
+ep
+ep
+ep
+hz
 db
 ex
 eD
@@ -13542,15 +13424,15 @@ cF
 cF
 cT
 fO
-fZ
-hx
-ds
-ds
-ds
-ds
-ds
-ds
-ds
+aY
+du
+ep
+ep
+ep
+ep
+ep
+ep
+hz
 db
 cq
 eD
@@ -13799,15 +13681,15 @@ cF
 cF
 cT
 fO
-fZ
-hx
-ds
-ds
-ds
-ds
+aY
 du
-ds
-ds
+ep
+ep
+ep
+ep
+gk
+ep
+hz
 db
 cs
 eD
@@ -14056,15 +13938,15 @@ cH
 cF
 cT
 db
-ge
-hx
-eg
-ds
-ds
-gf
-di
-ga
-fV
+ce
+du
+eo
+ep
+ep
+gc
+gl
+gu
+hA
 db
 cf
 eD
@@ -14313,15 +14195,15 @@ cF
 cF
 cU
 dc
-hw
-hz
-dt
-dt
-dt
-ce
-dj
-fT
+do
+ec
+eq
+eq
+eq
+gd
+gm
 hc
+hR
 db
 cg
 eD
@@ -14570,15 +14452,15 @@ cF
 cF
 cT
 db
-ep
-ep
-gb
-ep
-ep
-ep
-dr
-fU
-fX
+dj
+dj
+er
+dj
+dj
+dj
+gh
+gt
+hx
 db
 ch
 eD
@@ -16112,15 +15994,15 @@ cH
 cF
 cT
 de
-gj
-gh
-gj
-gj
-gj
+dm
+ed
+dm
+dm
+dm
 de
-es
 go
-gr
+ht
+hS
 de
 hC
 gT
@@ -16369,15 +16251,15 @@ cF
 cF
 df
 hn
-ht
-dm
-dp
-gg
-gg
+hm
+ee
+es
+ef
+ef
 gs
-gm
 gp
-gu
+hu
+hT
 de
 gE
 gT
@@ -16626,15 +16508,15 @@ cF
 cG
 cT
 de
-hu
-gg
-gg
-ec
-gg
+dp
+ef
+ef
+ek
+ef
 de
-aY
 gq
-gt
+hv
+hU
 de
 eY
 gT
@@ -16883,11 +16765,11 @@ cF
 cF
 cT
 de
-hu
-do
-gj
-gj
-gg
+dp
+eg
+et
+et
+ef
 de
 de
 de
@@ -17140,15 +17022,15 @@ cF
 cF
 cT
 de
-hu
-gi
-gj
-gj
-gg
-gg
-gg
-iA
-ee
+dp
+eh
+et
+et
+ef
+ef
+ef
+hw
+hV
 de
 gE
 gT
@@ -17397,15 +17279,15 @@ cF
 cF
 cT
 de
-hv
-gi
-gj
-gj
-gi
-ed
-gg
-gg
-gj
+dq
+eh
+et
+et
+eh
+ge
+ef
+ef
+dm
 de
 cz
 gT
@@ -17654,15 +17536,15 @@ cF
 cF
 ih
 de
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gg
-gk
+dr
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+hW
 de
 ik
 gT
@@ -17911,15 +17793,15 @@ hf
 hf
 cR
 de
-gj
-ec
-gg
-gj
-dv
+dm
+ek
+ef
+et
+ga
+gf
+ef
 eh
-gg
-gi
-gl
+hX
 de
 cz
 dL
@@ -18168,15 +18050,15 @@ cJ
 cJ
 cY
 de
-em
-et
-iy
-dq
-ec
-ek
-iz
-gj
-gj
+ds
+el
+fN
+fW
+gb
+gg
+gr
+dm
+dm
 de
 eA
 eE
