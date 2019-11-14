@@ -174,7 +174,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		return FALSE
 
 	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src)
+		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(M.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
