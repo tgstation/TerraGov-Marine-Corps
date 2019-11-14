@@ -102,7 +102,7 @@
 	aim_slowdown = 0.75
 	wield_delay = 1.0 SECONDS
 	force = 20
-	max_shells = 15 //codex
+	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
@@ -130,7 +130,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.8 SECONDS
+	fire_delay = 0.9 SECONDS
 	accuracy_mult = 1.25
 	scatter = -15
 	burst_amount = 0
