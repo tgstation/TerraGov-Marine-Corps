@@ -65,28 +65,26 @@
 
 			H.start_pulling(src)
 
-		else
+		if(INTENT_DISARM, INTENT_HARM)
 			var/datum/unarmed_attack/attack = H.species.unarmed
-			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
 			if(!attack.is_usable(H))
-				return 0
+				attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
+				return FALSE
 
 			H.do_attack_animation(src)
 			H.flick_attack_overlay(src, "punch")
 
-			var/damage = rand(1, 3)
-			if(prob(85))
-				damage += attack.damage > 5 ? attack.damage : 0
-
-				playsound(loc, attack.attack_sound, 25, 1)
-				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
-				apply_damage(damage, BRUTE)
-				UPDATEHEALTH(src)
-			else
-				playsound(loc, attack.miss_sound, 25, 1)
+			if(!H.melee_damage || !prob(H.melee_accuracy))
+				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				return FALSE
 
-	return
+			playsound(loc, attack.attack_sound, 25, TRUE)
+			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+			apply_damage(melee_damage + attack.damage, BRUTE, "chest", armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
+			UPDATEHEALTH(src)
+
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.

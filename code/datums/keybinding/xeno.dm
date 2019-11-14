@@ -62,61 +62,68 @@
 	description = "Increases damage for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
-/datum/keybinding/xeno/transfer_plasma
-	key = "Unbound"
-	name = "transfer_plasma"
-	full_name = "Drone: Transfer Plasma"
-	description = "Give some of your plasma to a teammate."
-	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
-
 /datum/keybinding/xeno/larval_growth_sting
 	key = "Unbound"
 	name = "larval_growth_sting"
-	full_name = "Xeno: Larval Growth Sting"
+	full_name = "Larval Growth Sting"
 	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
 
 /datum/keybinding/xeno/shift_spits
 	key = "Unbound"
 	name = "shift_spits"
-	full_name = "Xeno: Toggle Spit Type"
+	full_name = "Toggle Spit Type"
 	description = "Switch from neurotoxin to acid spit."
 	keybind_signal = COMSIG_XENOABILITY_SHIFT_SPITS
 
 /datum/keybinding/xeno/corrosive_acid
 	key = "Unbound"
 	name = "corrosive_acid"
-	full_name = "Xeno: Corrosive Acid"
+	full_name = "Corrosive Acid"
 	description = "Cover an object with acid to slowly melt it. Takes a few seconds."
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
 /datum/keybinding/xeno/spray_acid
 	key = "Unbound"
 	name = "spray_acid"
-	full_name = "Xeon: Acid Spray"
+	full_name = "Acid Spray"
 	description = "Sprays some acid"
 	keybind_signal = COMSIG_XENOABILITY_SPRAY_ACID
 
 /datum/keybinding/xeno/xeno_spit
 	key = "Unbound"
 	name = "xeno_spit"
-	full_name = "Xeno: Spit"
+	full_name = "Spit"
 	description = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 
 /datum/keybinding/xeno/xenohide
 	key = "Unbound"
 	name = "xenohide"
-	full_name = "Xeno: Hide"
+	full_name = "Hide"
 	description = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 	keybind_signal = COMSIG_XENOABILITY_HIDE
 
 /datum/keybinding/xeno/neurotox_sting
 	key = "Unbound"
 	name = "neurotox_sting"
-	full_name = "Xeno: Neurotoxin Sting"
+	full_name = "Neurotoxin Sting"
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+
+/datum/keybinding/xeno/transfer_plasma
+	key = "Unbound"
+	name = "transfer_plasma"
+	full_name = "Transfer Plasma"
+	description = "Give some of your plasma to a teammate."
+	keybind_signal = COMSIG_XENOABILITY_TRANSFER_PLASMA
+
+/datum/keybinding/xeno/pounce
+	key = "Unbound"
+	name = "pounce"
+	full_name = "Pounce"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
 /datum/keybinding/xeno/plow_charge
 	key = "Unbound"
@@ -279,20 +286,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
-/datum/keybinding/xeno/screech
-	key = "Unbound"
-	name = "screech"
-	full_name = "Queen: Screech"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_SCREECH
-
-/datum/keybinding/xeno/watch_xeno
-	key = "Unbound"
-	name = "watch_xeno"
-	full_name = "Queen: Watch xeno"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
-
 /datum/keybinding/xeno/psychic_whisper
 	key = "Unbound"
 	name = "psychic_whisper"
@@ -317,30 +310,37 @@
 /datum/keybinding/xeno/psychic_fling
 	key = "Unbound"
 	name = "psychic_fling"
-	full_name = "Psychic Fling"
+	full_name = "Shrike: Psychic Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 
 /datum/keybinding/xeno/unrelenting_force
 	key = "Unbound"
 	name = "unrelenting_force"
-	full_name = "Unrelenting Force"
+	full_name = "Shrike: Unrelenting Force"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
-
-/datum/keybinding/xeno/psychic_choke
-	key = "Unbound"
-	name = "psychic_choke"
-	full_name = "Psychic Choke"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
 
 /datum/keybinding/xeno/psychic_heal
 	key = "Unbound"
 	name = "psychic_cure"
-	full_name = "Psychic Cure"
+	full_name = "Shrike: Psychic Cure"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+
+/datum/keybinding/xeno/screech
+	key = "Unbound"
+	name = "screech"
+	full_name = "Queen: Screech"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SCREECH
+
+/datum/keybinding/xeno/watch_xeno
+	key = "Unbound"
+	name = "watch_xeno"
+	full_name = "Queen: Watch Xeno"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	key = "Unbound"
@@ -352,35 +352,35 @@
 /datum/keybinding/xeno/xeno_leaders
 	key = "Unbound"
 	name = "xeno_leaders"
-	full_name = "Queen: Set leader"
+	full_name = "Queen: Set Leader"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_XENO_LEADERS
 
 /datum/keybinding/xeno/queen_heal
 	key = "Unbound"
 	name = "queen_heal"
-	full_name = "Queen: Give heal"
+	full_name = "Queen: Give Heal"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 /datum/keybinding/xeno/queen_give_plasma
 	key = "Unbound"
 	name = "queen_give_plasma"
-	full_name = "Queen: Give plasma"
+	full_name = "Queen: Give Plasma"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
 /datum/keybinding/xeno/queen_give_order
 	key = "Unbound"
 	name = "queen_give_order"
-	full_name = "Queen: Give order"
+	full_name = "Queen: Give Order"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_ORDER
 
 /datum/keybinding/xeno/deevolve
 	key = "Unbound"
 	name = "deevolve"
-	full_name = "Queen: Devolve xeno"
+	full_name = "Queen: Devolve Xeno"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_DEEVOLVE
 
@@ -394,7 +394,7 @@
 /datum/keybinding/xeno/ravager_charge
 	key = "Unbound"
 	name = "ravager_charge"
-	full_name = "Ravager: Charge"
+	full_name = "Ravager: Eviscerating Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
@@ -404,13 +404,6 @@
 	full_name = "Runner: Toggle Savage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_SAVAGE
-
-/datum/keybinding/xeno/pounce
-	key = "Unbound"
-	name = "pounce"
-	full_name = "Runner: Pounce"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_POUNCE
 
 /datum/keybinding/xeno/toggle_agility
 	key = "Unbound"
@@ -428,8 +421,8 @@
 
 /datum/keybinding/xeno/fling
 	key = "Unbound"
-	name = "toggle_fling"
-	full_name = "Warrior: Toggle Fling"
+	name = "fling"
+	full_name = "Warrior: Fling"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
@@ -440,3 +433,9 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
+/datum/keybinding/xeno/psychic_choke
+	key = "Unbound"
+	name = "psychic_choke"
+	full_name = "Psychic Choke (Unused)"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE

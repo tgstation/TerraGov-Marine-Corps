@@ -139,7 +139,10 @@
 
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/AltClick(mob/user)
-	user.handle_ventcrawl(src)
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	living_user.handle_ventcrawl(src)
 
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on

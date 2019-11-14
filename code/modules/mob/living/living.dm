@@ -13,7 +13,7 @@
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
-		no_stun = max(0,no_stun - 1) //decrement by 1.
+		no_stun = max(0, no_stun - 1) //decrement by 1.
 
 	if(confused)
 		confused = max(0, confused - 1)
@@ -24,6 +24,7 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
+
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -60,6 +61,15 @@
 	return slurring
 
 
+/mob/living/proc/handle_staminaloss()
+	if(world.time < last_staminaloss_dmg + 3 SECONDS || (m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS))
+		return
+	if(staminaloss > 0)
+		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+	else if(staminaloss > -max_stamina_buffer)
+		adjustStaminaLoss(-max_stamina_buffer * 0.08, TRUE, FALSE)
+
+
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
@@ -86,6 +96,7 @@
 
 /mob/living/Initialize()
 	. = ..()
+	update_move_intent_effects()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -626,7 +637,7 @@ below 100 is not dizzy
 		else
 			lying = 0
 
-	canmove =  !(stunned || frozen || laid_down)
+	set_canmove(!(stunned || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
@@ -647,6 +658,15 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+
+/mob/living/proc/set_canmove(newcanmove)
+	if(canmove == newcanmove)
+		return
+	canmove = newcanmove
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
+
+
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
 	return

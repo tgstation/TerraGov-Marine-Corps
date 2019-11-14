@@ -53,6 +53,53 @@
 	toxloss = amount
 
 
+/mob/living/proc/getStaminaLoss()
+	return staminaloss
+
+/mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	staminaloss = CLAMP(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+	if(amount > 0)
+		last_staminaloss_dmg = world.time
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/setStaminaLoss(amount, update = TRUE, feedback = TRUE)
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	staminaloss = amount
+	if(update)
+		updateStamina(feedback)
+
+/mob/living/proc/updateStamina(feedback = TRUE)
+	if(staminaloss < maxHealth * 1.5)
+		return
+	switch(knocked_down)
+		if(0)
+			if(feedback)
+				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
+					"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
+			knock_down(4)
+		if(1 to 3)
+			set_knocked_down(4, FALSE)
+
+
+/mob/living/carbon/human/updateStamina(feedback = TRUE)
+	. = ..()
+	if(!hud_used?.staminas)
+		return
+	if(stat == DEAD)
+		hud_used.staminas.icon_state = "stamloss200"
+		return
+	var/relative_stamloss = getStaminaLoss()
+	if(relative_stamloss < 0 && max_stamina_buffer)
+		relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
+	else
+		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
+	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
+
+
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
@@ -172,6 +219,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		embedded.unembed_ourself()
 
 	// shut down various types of badness
+	setStaminaLoss(0)
 	setToxLoss(0)
 	setOxyLoss(0)
 	setCloneLoss(0)

@@ -38,8 +38,8 @@
 //Ammo defines for gun/projectile related things.
 //flags_ammo_behavior
 #define AMMO_EXPLOSIVE 			(1<<0)
-#define AMMO_XENO_ACID 			(1<<1)
-#define AMMO_XENO_TOX			(1<<2)
+#define AMMO_XENO 				(1<<1)
+#define AMMO_XENO_TOX			(1<<2) //Unused value.
 #define AMMO_ENERGY 			(1<<3)
 #define AMMO_ROCKET				(1<<4)
 #define AMMO_SNIPER				(1<<5)

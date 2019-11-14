@@ -34,7 +34,7 @@
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	taste_description = "water"
 
 /datum/reagent/water/reaction_turf(turf/T, volume)
@@ -144,7 +144,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_multi = 0
 
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/oxygen/on_mob_life(mob/living/L, metabolism)
 	if(metabolism & IS_VOX)
@@ -157,7 +157,7 @@
 	color = "#6E3B08" // rgb: 110, 59, 8
 	taste_description = "metal"
 
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
@@ -166,7 +166,7 @@
 	color = "#808080" // rgb: 128, 128, 128
 	taste_multi = 0
 
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/nitrogen/on_mob_life(mob/living/L, metabolism)
 	if(metabolism & IS_VOX)
@@ -178,7 +178,7 @@
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
 	reagent_state = GAS
 	color = "#808080" // rgb: 128, 128, 128
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	taste_multi = 0
 
 /datum/reagent/potassium
@@ -187,7 +187,7 @@
 	color = "#A0A0A0" // rgb: 160, 160, 160
 	taste_description = "sweetness"
 
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/mercury
 	name = "Mercury"
@@ -208,14 +208,14 @@
 	name = "Sulfur"
 	description = "A chemical element with a pungent smell."
 	color = "#BF8C00" // rgb: 191, 140, 0
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	taste_description = "rotten eggs"
 
 /datum/reagent/carbon
 	name = "Carbon"
 	description = "A chemical element, the builing block of life."
 	color = "#1C1300" // rgb: 30, 20, 0
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	taste_description = "sour chalk"
 
 /datum/reagent/carbon/reaction_turf(turf/T, volume)
@@ -270,13 +270,13 @@
 	description = "A chemical element, readily reacts with water."
 	color = "#808080" // rgb: 128, 128, 128
 	taste_description = "salty metal"
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/phosphorus
 	name = "Phosphorus"
 	description = "A chemical element, the backbone of biological energy carriers."
 	color = "#832828" // rgb: 131, 40, 40
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	taste_description = "vinegar"
 
 /datum/reagent/lithium
@@ -306,7 +306,7 @@
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	reagent_state = LIQUID
 	color = "#808080" // rgb: 128, 128, 128
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
 /datum/reagent/nitroglycerin
 	name = "Nitroglycerin"
@@ -314,7 +314,7 @@
 	reagent_state = LIQUID
 	color = "#808080" // rgb: 128, 128, 128
 
-	custom_metabolism = 0.01
+	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/radium

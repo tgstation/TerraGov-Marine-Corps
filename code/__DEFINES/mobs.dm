@@ -87,6 +87,7 @@
 #define CUT 		"cut"
 #define BRUISE		"bruise"
 #define HALLOSS		"halloss"
+#define STAMINA		"stamina"
 //=================================================
 
 #define STUN		"stun"
@@ -105,6 +106,7 @@
 #define FIRELOSS 	(1<<1)
 #define TOXLOSS 	(1<<2)
 #define OXYLOSS 	(1<<3)
+#define STAMINALOSS	(1<<4)
 //=================================================
 
 //status_flags
@@ -177,8 +179,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
-#define MOVE_INTENT_WALK        1
-#define MOVE_INTENT_RUN         2
+#define MOVE_INTENT_WALK        0
+#define MOVE_INTENT_RUN         1
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
 #define ORGAN_ASSISTED	1
@@ -297,6 +299,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HAS_NO_HAIR 			(1<<12)
 #define IS_PLANT 				(1<<13)
 #define IS_SYNTHETIC 			(1<<14)
+#define NO_STAMINA 				(1<<15)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -392,8 +395,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Xeno Defines
 
+#define HIVE_CAN_HIJACK (1<<0)
+
 #define XENO_SLOWDOWN_REGEN 0.4
-#define XENO_HALOSS_REGEN 3
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define DEFENDER_CRESTDEFENSE_ARMOR 30
 #define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
@@ -405,8 +409,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
-
-#define QUEEN_DEATH_LARVA_MULTIPLIER(Xenomorph) ((Xenomorph.upgrade_as_number() + 1) * 0.17) // 85/68/51/34 for ancient/elder emp/elder queen/queen
 
 #define PLASMA_TRANSFER_AMOUNT 50
 #define PLASMA_SALVAGE_AMOUNT 40
@@ -436,8 +438,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 
-#define XENO_TACKLE_ARMOR_PEN	0.8 //Actual armor pen is 1 - this value.
-
 //Charge-Crush
 #define CHARGE_OFF			0
 #define CHARGE_BUILDINGUP	1
@@ -463,7 +463,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1
 #define HANDLE_SNEAK_ATTACK_CHECK				3
-#define HUNTER_SNEAK_TACKLE_ARMOR_PEN			0.5 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		2.0
@@ -496,7 +495,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
-#define GROWTH_TOXIN_METARATE		0.2
 
 //Boiler defines
 #define BOILER_LUMINOSITY					3
@@ -555,7 +553,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define AI_OFF		3
 #define AI_Z_OFF	4
 
-
+//Stamina
+#define STAMINA_STATE_IDLE 0
+#define STAMINA_STATE_ACTIVE 1
 
 //Cooldowns
 #define COOLDOWN_CHEW 		"chew"
