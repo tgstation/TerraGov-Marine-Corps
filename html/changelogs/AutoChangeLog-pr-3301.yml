@@ -1,0 +1,4 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Spitting as xeno slows you down for 2 seconds. The slow's magnitude is reduced when the duration is depleted."
