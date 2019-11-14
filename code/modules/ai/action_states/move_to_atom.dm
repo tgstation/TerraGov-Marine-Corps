@@ -20,5 +20,5 @@
 		Complete(FINISHED_MOVE)
 		return
 	if(smart_pathfind)
-		return get_dir(parent2, get_step_to(parent2, atomtomoveto, distance_to_maintain))
+		return get_dir(parent2, wrapped_get_step_to(parent2, atomtomoveto, distance_to_maintain))
 	return get_dir(parent2, atomtomoveto)

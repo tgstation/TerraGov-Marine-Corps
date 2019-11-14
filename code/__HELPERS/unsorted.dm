@@ -1259,3 +1259,7 @@ will handle it, but:
 		pois[name] = M
 
 	return pois
+
+//A wrapper proc for get_step_to(), very helpful for profiling byond's pathfinding
+/proc/wrapped_get_step_to(atom/start, atom/destination, min_distance = 0)
+	return get_step_to(start, destination, min_distance)

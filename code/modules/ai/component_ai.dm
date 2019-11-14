@@ -13,6 +13,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
 	var/datum/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
+	var/atom/atom_to_walk_to //An atom for the overall AI to walk to
 
 /datum/component/ai_behavior/Initialize(datum/ai_mind/mind_to_make)
 	. = ..()
@@ -73,7 +74,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		totalmovedelay += parent2.movement_delay()
 
 		var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
-		var/dumb_direction = action_state.GetTargetDir(TRUE)
+		var/dumb_direction = action_state.GetTargetDir(smart_pathfind = TRUE)
 		if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
 			addtimer(CALLBACK(src, .proc/ProcessMove), 5) //Try moving again in half a second
 			return
