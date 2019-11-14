@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(SSticker.mode)
 			status_value = SSticker.mode.get_hivemind_collapse_countdown()
 			if(status_value)
-				stat("Orphan hivemind collapse timer:", status_value)
+				stat("<b>Orphan hivemind collapse timer:</b>", status_value)
 		if(GLOB.respawn_allowed)
 			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
 			if(status_value <= 0)
