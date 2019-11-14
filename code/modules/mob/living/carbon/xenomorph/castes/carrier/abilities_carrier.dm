@@ -9,7 +9,7 @@
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 	cooldown_timer = 3 SECONDS
 
-/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE) // true
+/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
 	. = ..()
 	if(!.)
 		return FALSE
