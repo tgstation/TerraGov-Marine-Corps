@@ -315,7 +315,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //AFK status
 #define MOB_CONNECTED 0
-#define MOB_AFK 1 //Still within the grace period.
+#define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
 #define MOB_DISCONNECTED 2
 
 //Mob sizes

@@ -299,4 +299,4 @@
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	set_afk_status(MOB_AFK, 5 SECONDS)
+	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)

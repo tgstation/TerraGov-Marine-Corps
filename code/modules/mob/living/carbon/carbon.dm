@@ -4,7 +4,7 @@
 
 
 /mob/living/carbon/Destroy()
-	if(afk_status == MOB_AFK)
+	if(afk_status == MOB_RECENTLY_DISCONNECTED)
 		set_afk_status(MOB_DISCONNECTED)
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
@@ -420,8 +420,8 @@
 			if(afk_timer_id)
 				deltimer(afk_timer_id)
 				afk_timer_id = null
-		if(MOB_AFK)
-			if(afk_status == MOB_AFK)
+		if(MOB_RECENTLY_DISCONNECTED)
+			if(afk_status == MOB_RECENTLY_DISCONNECTED)
 				if(timeleft(afk_timer_id) > afk_timer)
 					deltimer(afk_timer_id) //We'll go with the shorter timer.
 				else

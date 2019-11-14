@@ -459,7 +459,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					name += " (AGHOSTED)"
 			else
 				switch(X.afk_status)
-					if(MOB_AFK)
+					if(MOB_RECENTLY_DISCONNECTED)
 						name += " (AFK)"
 					if(MOB_DISCONNECTED)
 						name += " (SSD)"
@@ -515,7 +515,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					name += " (AGHOSTED)"
 			else
 				switch(H.afk_status)
-					if(MOB_AFK)
+					if(MOB_RECENTLY_DISCONNECTED)
 						name += " (AFK)"
 					if(MOB_DISCONNECTED)
 						name += " (SSD)"

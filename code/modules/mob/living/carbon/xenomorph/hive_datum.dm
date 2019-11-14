@@ -127,7 +127,7 @@
 			continue
 		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
 			continue
-		if(only_away && ssd_xeno.afk_status == MOB_AFK)
+		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
 		xenos += ssd_xeno
 	return xenos
