@@ -2767,6 +2767,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground,
 /area/dessert/hive)
+"hQ" = (
+/obj/effect/landmark/start/xeno_spawn,
+/turf/open/ground,
+/area/dessert/hive)
 "hZ" = (
 /obj/structure/toilet{
 	dir = 4
@@ -6303,11 +6307,11 @@ as
 aa
 aF
 aF
-aF
-aF
-aF
-aF
-aF
+hQ
+hQ
+hQ
+hQ
+hQ
 aF
 aT
 aF
@@ -6560,11 +6564,11 @@ as
 aa
 aF
 aF
-aF
-aF
-aF
-aF
-aF
+hQ
+hQ
+hQ
+hQ
+hQ
 aF
 aa
 aF
@@ -6817,11 +6821,11 @@ as
 aa
 aE
 aF
-aF
-aF
-aF
-aF
-aF
+hQ
+hQ
+hQ
+hQ
+hQ
 aE
 aa
 aF
@@ -7074,11 +7078,11 @@ as
 aa
 aF
 aF
-aF
-aF
-aF
-aF
-aF
+hQ
+hQ
+hQ
+hQ
+hQ
 aF
 aa
 aa
@@ -7331,11 +7335,11 @@ as
 aa
 aF
 aF
-aF
-aF
-aF
-aF
-aF
+hQ
+hQ
+hQ
+hQ
+hQ
 aF
 aa
 aF
