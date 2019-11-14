@@ -391,12 +391,12 @@ WEAPONS
 /datum/supply_packs/gun/heavyrifle
 	contains = list(
 					/obj/item/weapon/gun/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg
+					/obj/item/ammo_magazine/standard_lmg
 					)
-	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
+	name = "T-42 LMG squad crate (LMG x1, LMG ammo drums x1)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
-	containername = "\improper M41AE2 HPR crate"
+	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle_squad
@@ -406,16 +406,16 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/standard_lmg,
 					/obj/item/weapon/gun/rifle/standard_lmg,
 					/obj/item/weapon/gun/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
-					/obj/item/ammo_magazine/rifle/standard_lmg
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg
 					)
-	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
-	cost = RO_PRICE_PRETTY_PRICY
+	name = "T-42 LMG squad crate (LMG x5, LMG ammo drums x5)"
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate
-	containername = "\improper M41AE2 HPR squad crate"
+	containername = "\improper T-42 LMG squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/combatshotgun
@@ -1908,7 +1908,7 @@ AMMO
 					/obj/item/ammo_magazine/rifle/ap,
 					/obj/item/ammo_magazine/rifle/incendiary,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-					/obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/ammo_magazine/standard_lmg,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol/extended,
 					/obj/item/ammo_magazine/pistol/ap,

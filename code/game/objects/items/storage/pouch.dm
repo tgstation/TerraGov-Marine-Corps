@@ -247,7 +247,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/rifle/standard_lmg
+	fill_type = /obj/item/ammo_magazine/standard_lmg
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
