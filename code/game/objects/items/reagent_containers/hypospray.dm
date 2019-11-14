@@ -49,6 +49,8 @@
 		return
 	if(!istype(user))
 		return
+	if(!in_range(A, user))
+		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
