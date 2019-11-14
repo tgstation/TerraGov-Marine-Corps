@@ -107,7 +107,7 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
  
-/obj/item/ammo_magazine/rifle/m41ae2_hpr
+/obj/item/ammo_magazine/m41ae2_hpr
     name = "\improper M41AE2 ammo box (10x24mm)"
     desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
     icon_state = "m41ae2"

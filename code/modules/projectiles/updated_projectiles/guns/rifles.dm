@@ -403,7 +403,7 @@
     dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-    current_mag = /obj/item/ammo_magazine/rifle/m41ae2_hpr
+    current_mag = /obj/item/ammo_magazine/m41ae2_hpr
     attachable_allowed = list(
                         /obj/item/attachable/extended_barrel,
                         /obj/item/attachable/reddot,
