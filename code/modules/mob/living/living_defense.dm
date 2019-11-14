@@ -165,7 +165,7 @@
 	. = ..()
 	set_light(0) //Reset lighting
 
-/mob/living/carbon/xenomorph/caste/boiler/ExtinguishMob()
+/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
 	. = ..()
 	set_light(BOILER_LUMINOSITY)
 
