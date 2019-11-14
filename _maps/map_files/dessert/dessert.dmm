@@ -2940,10 +2940,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/white,
 /area/dessert/interior/toilet)
-"iN" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/tile/red/full,
-/area/dessert/interior/command/office)
 
 (1,1,1) = {"
 au
@@ -13155,7 +13151,7 @@ bV
 bV
 bV
 ab
-iN
+at
 bu
 bu
 bu
