@@ -355,8 +355,8 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	aim_slowdown = 0.85
-	wield_delay = 1.35 SECONDS
+	aim_slowdown = 0.9
+	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -370,8 +370,7 @@
 						/obj/item/attachable/t42barrel,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/dmr,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope)
+						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -385,6 +384,7 @@
 	scatter = 15
 	scatter_unwielded = 80
 	recoil_unwielded = 5
+	damage_mult = 0.85
 
 
 //-------------------------------------------------------
