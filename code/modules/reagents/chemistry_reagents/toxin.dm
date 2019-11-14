@@ -486,7 +486,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	
 	if(L.getBruteLoss() || L.getFireLoss())
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())

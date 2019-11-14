@@ -429,7 +429,7 @@
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
-/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -680,6 +680,8 @@
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
+
+	X.add_slowdown(2)
 
 	add_cooldown()
 

@@ -370,8 +370,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
 	hud_state = "smg_light"
-	damage = 30
-	penetration = 5
+	damage = 23
+	penetration = 0
 	accuracy = -10
 
 /*
@@ -447,6 +447,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -15
 	damage = 30
 	penetration = 20
+
+/datum/ammo/bullet/rifle/standard_dmr
+	name = "10x27mm caseless"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 0
+	damage = 70
+	scatter = -15
+	penetration = 15
 
 /*
 //================================================
@@ -678,6 +690,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "crude sniper bullet"
 	hud_state = "sniper_crude"
 	iff_signal = null
+	damage = 65
+	penetration = 40
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"

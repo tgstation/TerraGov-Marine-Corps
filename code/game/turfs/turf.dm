@@ -512,6 +512,10 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 			if(!silent)
 				to_chat(builder, "<span class='warning'>There's already an egg.</span>")
 			return FALSE
+		if(istype(O, /obj/effect/alien/resin/trap))
+			if(!silent)
+				to_chat(builder, "<span class='warning'>There is already a trap here!</span>")
+			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
 			break

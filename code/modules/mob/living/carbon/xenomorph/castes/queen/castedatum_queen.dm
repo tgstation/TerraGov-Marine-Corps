@@ -58,7 +58,6 @@
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,

@@ -791,8 +791,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -840,8 +840,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -874,8 +874,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -918,8 +918,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
@@ -960,8 +960,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
 		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, "black"),
 		/obj/item/explosive/grenade/impact = list(CAT_LEDSUP, "M40 IMDP grenade", 3, "black"),
-		/obj/item/weapon/gun/rifle/lmg = list(CAT_LEDSUP, "M41AE2 heavy pulse rifle", 12, "orange"),
-		/obj/item/ammo_magazine/lmg = list(CAT_LEDSUP, "M41AE2 magazine", 4, "black"),
+		/obj/item/weapon/gun/rifle/standard_lmg = list(CAT_LEDSUP, "M41AE2 heavy pulse rifle", 12, "orange"),
+		/obj/item/ammo_magazine/rifle/standard_lmg = list(CAT_LEDSUP, "M41AE2 magazine", 4, "black"),
 		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, "orange"),
 		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
@@ -977,8 +977,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),

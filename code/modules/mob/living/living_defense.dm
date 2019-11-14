@@ -165,6 +165,10 @@
 	. = ..()
 	set_light(0) //Reset lighting
 
+/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
+	. = ..()
+	set_light(BOILER_LUMINOSITY)
+
 /mob/living/proc/update_fire()
 	return
 
