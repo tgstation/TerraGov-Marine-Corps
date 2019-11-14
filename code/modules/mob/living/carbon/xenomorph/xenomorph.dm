@@ -183,11 +183,6 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-2)
-	return knocked_out
-
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE

@@ -99,3 +99,14 @@
 	desc = "You've fallen asleep. Wait a bit and you should wake up. Unless you don't, considering how helpless you are."
 	icon_state = "asleep"
 
+//ADMIN SLEEP
+/datum/status_effect/incapacitating/adminsleep
+	id = "adminsleep"
+	alert_type = /obj/screen/alert/status_effect/adminsleep
+	needs_update_stat = TRUE
+	duration = -1
+
+/obj/screen/alert/status_effect/adminsleep
+	name = "Admin Slept"
+	desc = "You've been slept by an Admin."
+	icon_state = "asleep"

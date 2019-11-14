@@ -238,7 +238,7 @@
 				simple_status_hud.icon_state = "hud_uncon_afk"
 				status_hud.icon_state = "hud_uncon_afk"
 				return TRUE
-			if(knocked_out) //Should hopefully get out of it soon.
+			if(IsUnconscious()) //Should hopefully get out of it soon.
 				simple_status_hud.icon_state = "hud_uncon_ko"
 				status_hud.icon_state = "hud_uncon_ko"
 				return TRUE

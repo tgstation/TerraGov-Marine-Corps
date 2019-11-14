@@ -18,7 +18,6 @@
 	if(confused)
 		confused = max(0, confused - 1)
 
-	handle_knocked_out()
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
@@ -56,11 +55,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-1)
-	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
 	return
@@ -561,7 +555,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || IsKnockdown() || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
 		if(!lying)
@@ -706,7 +700,7 @@ below 100 is not dizzy
 		if("stun")
 			SetStun(var_value)
 		if("sleeping")
-			set_sleeping(var_value)
+			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")

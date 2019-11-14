@@ -28,7 +28,7 @@
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
 	L.jitter(5) //Overdose causes a spasm
-	L.knock_out(20)
+	L.Unconscious(20)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
 	L.setDrowsyness(L.drowsyness, 20)
@@ -59,7 +59,7 @@
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
 	if(prob(15))
-		L.knock_out(15)
+		L.Unconscious(15)
 	L.apply_damage(6*REM, CLONE)
 
 /datum/reagent/medicine/paracetamol
@@ -141,7 +141,7 @@
 
 /datum/reagent/medicine/leporazine/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.knock_out(15)
+		L.Unconscious(15)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
 	L.drowsyness  = max(L.drowsyness, 30)
@@ -302,13 +302,14 @@
 	L.setBrainLoss(0)
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
-	L.remove_all_status_effect()
-	L.set_knocked_out(0)
+	L.SetStun(0, FALSE)
+	L.SetUnconscious(0, FALSE)
+	L.SetKnockdown(0, FALSE)
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
 	L.confused = 0
-	L.set_sleeping(0)
+	L.SetSleeping(0, FALSE)
 	L.jitteriness = 0
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -329,7 +330,7 @@
 datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
-	L.adjust_knockedout(-1)
+	L.AdjustUnconscious(-1)
 	L.AdjustStun(-1)
 	L.AdjustKnockdown(-1)
 	holder.remove_reagent("mindbreaker", 5)
@@ -363,10 +364,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		C.drunkenness = max(C.drunkenness-5, 0)
 	L.confused = max(L.confused-5, 0)
 	L.adjust_blurriness(-5)
-	L.adjust_knockedout(-2)
+	L.AdjustUnconscious(-2)
 	L.AdjustStun(-2)
 	L.AdjustKnockdown(-1)
-	L.adjust_sleeping(-2)
+	L.AdjustSleeping(-2)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -616,7 +617,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 				L.Knockdown(amount * 0.10)
 				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
-				L.knock_out(amount * 0.1)
+				L.Unconscious(amount * 0.1)
 				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
 	return ..()
@@ -674,7 +675,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(50))
 		L.AdjustKnockdown(-1)
 		L.AdjustStun(-1)
-		L.adjust_knockedout(-1)
+		L.AdjustUnconscious(-1)
 	L.adjustHalLoss(-4*REM)
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))

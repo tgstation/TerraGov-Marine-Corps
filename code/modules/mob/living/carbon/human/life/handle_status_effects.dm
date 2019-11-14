@@ -49,11 +49,6 @@
 
 	return TRUE
 
-/mob/living/carbon/human/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-species.knock_out_reduction)
-	return knocked_out
-
 
 /mob/living/carbon/human/proc/set_mobility_aura(new_aura)
 	if(mobility_aura == new_aura)

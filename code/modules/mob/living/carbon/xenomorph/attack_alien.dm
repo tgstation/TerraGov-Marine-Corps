@@ -219,7 +219,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			knock_out(knockout_stacks) //...And we knock
+			Unconscious(knockout_stacks) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 

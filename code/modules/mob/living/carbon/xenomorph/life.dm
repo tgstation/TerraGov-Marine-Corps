@@ -53,7 +53,7 @@
 			death()
 		return
 
-	if(knocked_out || sleeping || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS

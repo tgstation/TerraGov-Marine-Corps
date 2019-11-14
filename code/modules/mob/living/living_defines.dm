@@ -26,16 +26,13 @@
 	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
-	var/sleeping = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/knocked_out = 0
 	var/frozen = 0
-	var/knocked_down = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0

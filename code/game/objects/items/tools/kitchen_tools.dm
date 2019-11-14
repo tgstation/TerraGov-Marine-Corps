@@ -191,7 +191,7 @@
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
-					H.knock_out(time)
+					H.Unconscious(time)
 				else
 					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1

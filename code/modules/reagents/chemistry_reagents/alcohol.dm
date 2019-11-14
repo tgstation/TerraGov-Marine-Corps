@@ -94,7 +94,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-4)
 	L.adjustDrowsyness(-2)
-	L.adjust_sleeping(-3)
+	L.AdjustSleeping(-3)
 	L.jitter(5)
 	return ..()
 
@@ -132,7 +132,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.adjustDrowsyness(-7)
-	L.adjust_sleeping(-40)
+	L.AdjustSleeping(-40)
 	L.jitter(5)
 	return ..()
 

@@ -68,7 +68,7 @@
 				Knockdown(5)
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				knock_out(5)
+				Unconscious(5)
 		if(150 to INFINITY)
 			if(shock_stage == 150 && !lying) emote("me", 1, "can no longer stand, collapsing!")
 			blur_eyes(2)
@@ -77,7 +77,7 @@
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				knock_out(5)
+				Unconscious(5)
 			Knockdown(5)
 
 
@@ -88,7 +88,7 @@
 	var/rate = BASE_HALLOSS_RECOVERY_RATE
 
 	if(lying || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
-		if(resting || sleeping) //we're deliberately resting, comfortably taking a breather
+		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
 			rate = REST_HALLOSS_RECOVERY_RATE
 		else
 			rate = DOWNED_HALLOSS_RECOVERY_RATE

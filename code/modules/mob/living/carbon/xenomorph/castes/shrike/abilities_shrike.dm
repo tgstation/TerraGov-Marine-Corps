@@ -348,7 +348,7 @@
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.set_knocked_out(0)
+		patient.SetUnconscious(0)
 		patient.SetStun(0)
 		patient.SetKnockdown(0)
 		patient.set_stagger(0)

@@ -114,7 +114,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			Unconscious(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable

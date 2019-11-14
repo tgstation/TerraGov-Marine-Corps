@@ -102,13 +102,13 @@
 /datum/reagent/space_drugs/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.5, TOX)
 	if(prob(5) && !L.stat)
-		L.knock_out(5)
+		L.Unconscious(5)
 	L.hallucination += 2
 
 /datum/reagent/space_drugs/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(10) && !L.stat)
-		L.knock_out(5)
+		L.Unconscious(5)
 		L.dizzy(8)
 
 /datum/reagent/serotrotium
@@ -134,7 +134,7 @@
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
-		L.sleeping(30)
+		L.Sleeping(30)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/oxygen

@@ -189,7 +189,7 @@
 		victim.blind_eyes(5)
 		victim.Stun(5)
 		victim.Knockdown(5)
-		//victim.knock_out(10)
+		//victim.Unconscious(10)
 		//victim.drop_held_item()
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
@@ -210,7 +210,7 @@
 		victim.blind_eyes(10)
 		victim.Stun(5)
 		victim.Knockdown(5)
-		//victim.knock_out(10)
+		//victim.Unconscious(10)
 		//victim.drop_held_item()
 
 
@@ -307,12 +307,12 @@
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(15))
-		L.knock_out(5)
+		L.Unconscious(5)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
-		L.knock_out(3)
+		L.Unconscious(3)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/consumable/sprinkles

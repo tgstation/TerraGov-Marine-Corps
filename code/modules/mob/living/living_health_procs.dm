@@ -241,7 +241,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	set_knocked_out(0)
 	remove_all_status_effect()
 	ExtinguishMob()
 	fire_stacks = 0

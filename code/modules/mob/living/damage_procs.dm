@@ -69,7 +69,7 @@
 		if(WEAKEN)
 			Knockdown(effect/(blocked+1))
 		if(PARALYZE)
-			knock_out(effect/(blocked+1))
+			Unconscious(effect/(blocked+1))
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)

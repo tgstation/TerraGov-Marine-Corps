@@ -105,7 +105,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		L.sleeping(2)
+		L.Sleeping(2)
 	return ..()
 
 /datum/reagent/toxin/minttoxin
@@ -160,14 +160,14 @@
 	L.adjustToxLoss(1)
 	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.knock_out(5)
+		L.Unconscious(5)
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustToxLoss(1)
 	L.adjustBrainLoss(1, TRUE)
 	L.jitter(5)
 	if(prob(10) && !L.stat)
-		L.knock_out(5)
+		L.Unconscious(5)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 //Reagents used for plant fertilizers.
@@ -242,10 +242,10 @@
 			L.blur_eyes(10)
 		if(16 to 40)
 			if(prob(10))
-				L.sleeping(10)
+				L.Sleeping(10)
 			L.drowsyness  = max(L.drowsyness, 20)
 		if(41 to INFINITY)
-			L.sleeping(20) //previously knockdown, no good for a soporific.
+			L.Sleeping(20) //previously knockdown, no good for a soporific.
 			L.drowsyness  = max(L.drowsyness, 30)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	return ..()
@@ -272,9 +272,9 @@
 			L.confused += 2
 			L.adjustDrowsyness(2)
 		if(21 to 60)
-			L.sleeping(5)
+			L.Sleeping(5)
 		if(61 to INFINITY)
-			L.sleeping(5)
+			L.Sleeping(5)
 			L.adjustToxLoss((current_cycle/2 - 50)*REM)
 	return ..()
 
@@ -303,7 +303,7 @@
 		if(7 to 15)
 			L.Knockdown(5)
 		if(16 to INFINITY)
-			L.knock_out(5)
+			L.Unconscious(5)
 	return ..()
 
 /datum/reagent/toxin/potassium_chlorophoride
@@ -323,7 +323,7 @@
 		if(7 to 15)
 			L.Knockdown(5)
 		if(16 to INFINITY)
-			L.knock_out(5)
+			L.Unconscious(5)
 	return ..()
 
 /datum/reagent/toxin/beer2	//disguised as normal beer
@@ -336,9 +336,9 @@
 /datum/reagent/toxin/beer2/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 50)
-			L.sleeping(5)
+			L.Sleeping(5)
 		if(51 to INFINITY)
-			L.sleeping(5)
+			L.Sleeping(5)
 			L.adjustToxLoss((current_cycle - 50)*REM)
 	return ..()
 

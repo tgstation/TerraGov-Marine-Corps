@@ -69,3 +69,4 @@
 //mob traits
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_BATONIMMUNE		"baton_immunity"
+#define TRAIT_SLEEPIMMUNE		"sleep_immunity"

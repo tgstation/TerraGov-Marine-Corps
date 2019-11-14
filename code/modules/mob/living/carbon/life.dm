@@ -56,7 +56,7 @@
 		death()
 		return
 
-	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 			disabilities |= DEAF
@@ -80,8 +80,8 @@
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(prob(5))
-			sleeping(1)
-			knock_out(5)
+			Sleeping(1)
+			Unconscious(5)
 
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
@@ -107,14 +107,14 @@
 	if(staminaloss > -max_stamina_buffer)
 		handle_staminaloss()
 
-	if(sleeping)
+	if(IsSleeping())
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.speech_problem_flag = 1
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				adjust_sleeping(-1)
+				AdjustSleeping(-1)
 		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
 				emote("snore")
@@ -159,7 +159,7 @@
 			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-				sleeping(40)
+				Sleeping(40)
 
 		if(drunkenness >=101) //Let's be honest, you should be dead by now
 			adjustToxLoss(4)

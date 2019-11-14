@@ -146,17 +146,20 @@
 	if(src == shaker)
 		return
 
-	if(lying || sleeping)
+	if(IsAdminSleeping())
+		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
+		return
+
+	if(lying || IsSleeping())
 		if(client)
-			adjust_sleeping(-5)
-		if(sleeping == 0)
+			AdjustSleeping(-5)
+		if(!IsSleeping())
 			set_resting(FALSE)
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		if(knocked_out)
-			adjust_knockedout(-3)
-		Stun(-3)
+		AdjustUnconscious(-3)
+		AdjustStun(-3)
 		if(IsKnockdown())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
@@ -296,11 +299,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(sleeping)
+	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		sleeping = 20 //Short nap
+		SetSleeping(20) //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM)

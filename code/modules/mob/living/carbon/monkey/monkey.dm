@@ -207,8 +207,8 @@
 				var/damage = rand(5, 10)
 				if (prob(40))
 					damage = rand(10, 15)
-					if (knocked_out < 5)
-						knock_out(rand(10, 15))
+					if (AmountUnconscious() < 5)
+						Unconscious(rand(10, 15))
 						visible_message("<span class='danger'>[H] has knocked out [src]!</span>")
 
 				adjustBruteLoss(damage)
@@ -227,9 +227,9 @@
 				H.start_pulling(src)
 				return 1
 			else
-				if (!( knocked_out ))
+				if (!IsUnconscious())
 					if (prob(25))
-						knock_out(2)
+						Unconscious(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						visible_message("<span class='danger'>[H] has pushed down [src]!</span>")
 					else
@@ -297,7 +297,7 @@
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			if (prob(50))
-				knock_out(10)
+				Unconscious(10)
 		else
 	return
 

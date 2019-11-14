@@ -25,7 +25,7 @@
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
-			M.knock_out(time)
+			M.Unconscious(time)
 		else
 			M.Stun(time)
 		if(M.stat != 2)	M.stat = 1

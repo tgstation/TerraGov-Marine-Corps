@@ -27,7 +27,7 @@
 /mob/living/incapacitated(ignore_restrained)
 	. = ..()
 	if(!.)
-		return (IsStun() || IsKnockdown() || knocked_out)
+		return (IsStun() || IsKnockdown() || IsUnconscious())
 
 
 /mob/living/restrained(ignore_checks)
