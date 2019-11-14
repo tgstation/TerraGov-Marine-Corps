@@ -388,6 +388,47 @@
 
 
 //-------------------------------------------------------
+//M41AE2 Heavy Pulse Rifle
+
+/obj/item/weapon/gun/rifle/m41ae2_hpr
+    name = "\improper M41AE2 heavy pulse rifle"
+    desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing. Like it's smaller brother, the M41A1, the M41AE2 is chambered in 10mm."
+    icon_state = "m41ae2"
+    item_state = "m41ae2"
+    caliber = "10x24mm caseless" //codex
+    max_shells = 200 //codex
+    aim_slowdown = 0.8
+    wield_delay = 2 SECONDS
+    fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+    dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+    unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+    reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+    current_mag = /obj/item/ammo_magazine/rifle/m41ae2_hpr
+    attachable_allowed = list(
+                        /obj/item/attachable/extended_barrel,
+                        /obj/item/attachable/reddot,
+                        /obj/item/attachable/verticalgrip,
+                        /obj/item/attachable/angledgrip,
+                        /obj/item/attachable/flashlight,
+                        /obj/item/attachable/bipod,
+                        /obj/item/attachable/stock/rifle,
+                        /obj/item/attachable/compensator,
+                        /obj/item/attachable/magnetic_harness,
+                        /obj/item/attachable/scope)
+ 
+    flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+    gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
+ 
+    fire_delay = 0.4 SECONDS
+    burst_amount = 5
+    burst_delay = 0.1 SECONDS
+    accuracy_mult_unwielded = 0.5
+    accuracy_mult = 1.05
+    scatter = 15
+    scatter_unwielded = 80
+    recoil_unwielded = 5
 
 
 //-------------------------------------------------------
