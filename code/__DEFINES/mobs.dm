@@ -300,6 +300,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_PLANT 				(1<<13)
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
+#define DETACHABLE_HEAD			(1<<16)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
