@@ -123,18 +123,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// We don't have a savefile or we failed to load them
 	random_character()
 	menuoptions = list()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 5 SECONDS)
+	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
 
 
 /datum/preferences/proc/load_default_keybindings(client/C)
 	if(QDELETED(C))
 		return
-	to_chat(C, "Empty keybindings, setting defaults")
-	var/choice = tgalert(C, "Would you prefer 'Hotkey' or 'Classic' defaults?", "Setup keybindings", "Hotkey", "Classic")
-	if(QDELETED(C))
-		return
-	focus_chat = (choice == "Classic")
-	key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+	to_chat(C, "Empty keybindings, setting default to hotkey mode")
+	focus_chat = FALSE
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 	C.update_movement_keys()
 	save_preferences()
 
