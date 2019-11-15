@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Legacy chat support re-enabled. It can be set with the Fix Chat verb in the OOC tab. It offers higher performance for low spec computers, at the cost of many features."
