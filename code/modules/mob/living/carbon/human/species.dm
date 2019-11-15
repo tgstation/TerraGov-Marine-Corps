@@ -808,12 +808,12 @@
 
 
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked >= 1) //total negation
+	if(hit_percent <= 0) //total negation
 		return 0
 
-	if(blocked)
-		damage *= CLAMP01(1-blocked) //Percentage reduction
+	damage *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!damage) //Complete negation
 		return 0
