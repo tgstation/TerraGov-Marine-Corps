@@ -511,7 +511,7 @@
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(2)
-	L.confused = max(L.confused, 20)
+	L.Confused(20)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)

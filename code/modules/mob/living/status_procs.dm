@@ -225,6 +225,51 @@
 			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount, updating)
 		return U
 
+//////////////////CONFUSED
+/mob/living/proc/IsConfused() //If we're unconscious
+	return has_status_effect(STATUS_EFFECT_CONFUSED)
+
+/mob/living/proc/AmountConfused() //How many deciseconds remain in our unconsciousness
+	var/datum/status_effect/confused/C = IsConfused()
+	if(C)
+		return C.duration - world.time
+	return 0
+
+/mob/living/proc/Confused(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))  || ignore_canstun)
+		var/datum/status_effect/confused/C = IsConfused()
+		if(C)
+			C.duration = max(world.time + amount, C.duration)
+		else if(amount > 0)
+			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount, updating)
+		return C
+
+/mob/living/proc/SetConfused(amount, updating = TRUE, ignore_canstun = FALSE) //Sets remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		var/datum/status_effect/confused/C = IsConfused()
+		if(amount <= 0)
+			if(C)
+				qdel(C)
+		else if(C)
+			C.duration = world.time + amount
+		else
+			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount, updating)
+		return C
+
+/mob/living/proc/AdjustConfused(amount, updating = TRUE, ignore_canstun = FALSE) //Adds to remaining duration
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, updating, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		var/datum/status_effect/confused/C = IsConfused()
+		if(C)
+			C.duration += amount
+		else if(amount > 0)
+			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount, updating)
+		return C
 
 ///////////////////////////////////// STUN ABSORPTION /////////////////////////////////////
 

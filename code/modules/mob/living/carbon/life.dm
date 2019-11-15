@@ -131,13 +131,13 @@
 
 		if(drunkenness >= 41)
 			if(prob(25))
-				confused += 2
+				AdjustConfused(2)
 			if(dizziness < 450) // To avoid giving the player overly dizzy too
 				dizzy(8)
 
 		if(drunkenness >= 51)
 			if(prob(5))
-				confused += 5
+				AdjustConfused(5)
 				vomit()
 			if(dizziness < 600)
 				dizzy(12)

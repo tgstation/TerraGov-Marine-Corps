@@ -54,6 +54,8 @@
 
 #define STATUS_EFFECT_ADMINSLEEP /datum/status_effect/incapacitating/adminsleep //the affected is admin slept
 
+#define STATUS_EFFECT_CONFUSED /datum/status_effect/confused // random direction chosen when trying to move
+
 #define STATUS_EFFECT_PACIFY /datum/status_effect/pacify //the affected is pacified, preventing direct hostile actions
 
 #define STATUS_EFFECT_BELLIGERENT /datum/status_effect/belligerent //forces the affected to walk, doing damage if they try to run

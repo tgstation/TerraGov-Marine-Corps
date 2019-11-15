@@ -433,7 +433,7 @@
 	L.adjustFireLoss(-0.5, 0)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
-	L.confused = max(L.confused - 5, 0)
+	L.AdjustConfused(-5)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb
@@ -445,7 +445,7 @@
 
 /datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(50)
-	L.confused += 2
+	L.AdjustConfused(2)
 	L.slurring += 2
 	switch(current_cycle)
 		if(40 to 49)
@@ -470,7 +470,7 @@
 			L.slurring += 2
 			L.jitter(2)
 		if(46 to 65)
-			L.confused += 2
+			L.AdjustConfused(2)
 			L.slurring += 2
 			L.jitter(3)
 		if(66 to 199)
@@ -482,7 +482,7 @@
 				L.Sleeping(8)
 		if(200 to INFINITY)
 			L.set_drugginess(50)
-			L.confused += 2
+			L.AdjustConfused(2)
 			L.slurring += 2
 			L.adjustToxLoss(2)
 			L.jitter(5)
@@ -506,10 +506,10 @@
 			L.stuttering += 2
 		if(36 to 55)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(2)
 		if(56 to 200)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(2)
 			L.set_drugginess(30)
 		if(201 to INFINITY)
 			L.set_drugginess(30)

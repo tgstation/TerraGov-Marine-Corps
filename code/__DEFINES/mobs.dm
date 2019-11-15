@@ -127,6 +127,7 @@
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 #define TK_USER			(1<<8)
 #define CANUNCONSCIOUS	(1<<9)
+#define CANCONFUSE		(1<<10)
 
 // =============================
 // hive types

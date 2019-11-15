@@ -54,7 +54,7 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.confused = max(L.confused, 20)
+	L.Confused(20)
 	L.apply_damage(2*REM, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
@@ -308,7 +308,7 @@
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
-	L.confused = 0
+	L.SetConfused(0, FALSE)
 	L.SetSleeping(0, FALSE)
 	L.jitteriness = 0
 	if(iscarbon(L))
@@ -362,7 +362,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
-	L.confused = max(L.confused-5, 0)
+	L.AdjustConfused(-5)
 	L.adjust_blurriness(-5)
 	L.AdjustUnconscious(-2)
 	L.AdjustStun(-2)
@@ -699,7 +699,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		L.Stun(2)
 	if(prob(20))
 		L.hallucination += 15
-		L.confused += 3
+		L.AdjustConfused(3)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -711,7 +711,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		L.Stun(3)
 	if(prob(20))
 		L.hallucination += 20
-		L.confused += 5
+		L.AdjustConfused(5)
 		L.dizzy(60)
 	L.adjustToxLoss(0.2*REM)
 	L.adjustBrainLoss(0.2*REM, TRUE)
@@ -726,7 +726,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.confused += 7
+		L.AdjustConfused(7)
 		L.dizzy(80)
 	L.adjustToxLoss(0.6*REM)
 	L.adjustBrainLoss(0.2*REM, TRUE)
@@ -854,7 +854,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
 	L.stuttering = max(L.stuttering-1, 0)
-	L.confused = max(L.confused-1, 0)
+	L.AdjustConfused(-1)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
 	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, REM, 0, 1)

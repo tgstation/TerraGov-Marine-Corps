@@ -269,7 +269,7 @@
 /datum/reagent/toxin/chloralhydrate/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 20)
-			L.confused += 2
+			L.AdjustConfused(2)
 			L.adjustDrowsyness(2)
 		if(21 to 60)
 			L.Sleeping(5)

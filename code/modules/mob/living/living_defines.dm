@@ -23,7 +23,6 @@
 
 	var/last_staminaloss_dmg = 0 //world.time
 	var/max_stamina_buffer = 0
-	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
 

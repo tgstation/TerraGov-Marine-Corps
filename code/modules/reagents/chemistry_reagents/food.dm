@@ -239,7 +239,7 @@
 	taste_description = "salt"
 
 /datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
-	L.confused = max(L.confused, 20)
+	L.Confused(20)
 	if(prob(10))
 		L.emote(pick("sigh","grumble","frown"))
 

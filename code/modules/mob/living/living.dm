@@ -15,9 +15,6 @@
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
-	if(confused)
-		confused = max(0, confused - 1)
-
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()

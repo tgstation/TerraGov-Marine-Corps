@@ -736,10 +736,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			L.dizzy(5)
 			L.stuttering += 5
 			if(prob(20))
-				L.confused += 3
+				L.AdjustConfused(3)
 		if(101 to INFINITY)
 			L.dizzy(6)
 			L.stuttering += 5
 			if(prob(20))
-				L.confused += 5
+				L.AdjustConfused(5)
 	return ..()

@@ -110,3 +110,13 @@
 	name = "Admin Slept"
 	desc = "You've been slept by an Admin."
 	icon_state = "asleep"
+
+//CONFUSED
+/datum/status_effect/confused
+	id = "confused"
+	alert_type = /obj/screen/alert/status_effect/confused
+
+/obj/screen/alert/status_effect/confused
+	name = "Confused"
+	desc = "You're dazed and confused."
+	icon_state = "asleep"
