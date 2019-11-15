@@ -645,7 +645,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	overdose_threshold = REAGENTS_OVERDOSE/30 //ONE unit.
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25 //Two units
 	scannable = TRUE //scannable now.  HUZZAH.
-	custom_metabolism = REAGENTS_METABOLISM * .25 //In body for 10 ticks
+	custom_metabolism = REAGENTS_METABOLISM * 0.25 //In body for 10 ticks
 
 /datum/reagent/medicine/quickclot_plus/on_mob_life(mob/living/L, metabolism)
 	L.apply_damage(10*REM, TOX) //50 toxin/unit
