@@ -211,14 +211,14 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.jitter(2)
-	L.reagent_move_delay_modifier -= .1
+	L.reagent_move_delay_modifier -= min( .3, volume * 0.005)
 	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
-	L.reagent_move_delay_modifier -= .1
+	L.apply_damage(0.2, TOX)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -227,9 +227,8 @@
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(0.2, TOX)
+	L.apply_damage(1.0, TOX)
 	L.jitter(5)
-	L.reagent_move_delay_modifier -= .1
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
 		L.knock_out(5)
