@@ -42,7 +42,8 @@
 /datum/reagent/water/on_mob_life(mob/living/L, metabolism)
 	if(volume < 4)
 		L.adjustStaminaLoss(-10*REM)
-		L.heal_limb_damage(.4, .4 * REM) //.2/tick of brute/burn
+		L.adjustBruteLoss(-0.2, 0)
+		L.adjustFireLoss(-0.2, 0)
 	if(volume < 30)
 		L.adjustStaminaLoss(-2*REM)
 	return ..()
