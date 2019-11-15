@@ -359,7 +359,6 @@
 		projectile_to_fire.p_x = text2num(mouse_control["icon-x"])
 	if(mouse_control["icon-y"])
 		projectile_to_fire.p_y = text2num(mouse_control["icon-y"])
-	simulate_recoil(0 , shooter)
 	play_fire_sound(shooter)
 	var/firing_angle = get_angle_with_scatter(shooter, target, get_scatter(projectile_to_fire.scatter, shooter), projectile_to_fire.p_x, projectile_to_fire.p_y)
 	muzzle_flash(firing_angle, shooter)

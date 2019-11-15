@@ -73,8 +73,6 @@
 		traits += "Damage modifier: [((damage_mult - 1) * 100) > 0 ? "+[(damage_mult - 1) * 100]" : "[(damage_mult - 1) * 100]"]%"
 	if(damage_falloff_mult)
 		traits += "Damage falloff: -[damage_falloff_mult] per tile travelled."
-	if(recoil)
-		traits += "Recoil: [recoil]"
 	if(scatter)
 		traits += "Scatter chance modifier: [scatter]%"
 	if(burst_scatter_mult)
@@ -83,8 +81,6 @@
 		traits += "Accuracy modifier: [accuracy_mod * 100]%"
 	if(accuracy_mult_unwielded)
 		traits += "Accuracy unwielded modifier: [((accuracy_mult_unwielded - 1) * 100) > 0 ? "+[(accuracy_mult_unwielded - 1) * 100]" : "[(accuracy_mult_unwielded - 1) * 100]"]%"
-	if(recoil_unwielded)
-		traits += "Recoil Unwielded: [recoil_unwielded]"
 	if(scatter_unwielded)
 		traits += "Unwielded Scatter chance modifier: [scatter_unwielded > 0 ? "+[scatter_unwielded]" : "[scatter_unwielded]"]%"
 	if(movement_acc_penalty_mult)

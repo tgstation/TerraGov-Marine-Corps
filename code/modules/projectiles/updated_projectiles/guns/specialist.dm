@@ -44,7 +44,6 @@
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.50
-	recoil = 2
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
@@ -236,17 +235,6 @@
 	fire_delay = 2.5 SECONDS
 	accuracy_mult = 1.50
 	scatter = 15
-	recoil = 5
-
-
-/obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
-	. = ..()
-	if(.)
-		var/mob/living/carbon/human/PMC_sniper = user
-		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
-			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
-			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.knock_down(5)
 
 //SVD //Based on the Dragunov sniper rifle.
 
@@ -281,7 +269,6 @@
 	burst_amount = 2
 	accuracy_mult = 0.85
 	scatter = 15
-	recoil = 2
 
 
 
@@ -324,7 +311,6 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult = 1.05
 	scatter = 15
-	recoil = 2
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -753,8 +739,6 @@
 	var/datum/effect_system/smoke_spread/smoke
 
 	fire_delay = 1 SECONDS
-	recoil = 3
-
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -971,8 +955,6 @@
 
 	fire_delay = 2
 	burst_amount = 7
-	recoil = 2
-	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
 

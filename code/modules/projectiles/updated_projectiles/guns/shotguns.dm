@@ -30,9 +30,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-
 
 /obj/item/weapon/gun/shotgun/Initialize()
 	. = ..()
@@ -202,9 +199,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
-
 
 /obj/item/weapon/gun/shotgun/merc/examine_ammo_count(mob/user)
 	if(in_chamber)
@@ -239,9 +233,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter = 20
 	scatter_unwielded = 40
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
-	recoil = 2
-	recoil_unwielded = 4
-
 
 /obj/item/weapon/gun/shotgun/combat/examine_ammo_count(mob/user)
 	if(in_chamber)
@@ -278,8 +269,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 
 /obj/item/weapon/gun/shotgun/double/examine_ammo_count(mob/user)
 	if(current_mag.chamber_closed)
@@ -372,9 +361,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	scatter = 20
 	scatter_unwielded = 40
 	damage_mult = 1.4
-	recoil = 3
-	recoil_unwielded = 5
-
 
 //-------------------------------------------------------
 //PUMP SHOTGUN
@@ -417,8 +403,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 14
 
 
@@ -522,8 +506,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 12
 
 //-------------------------------------------------------
@@ -556,8 +538,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 1
 	scatter = 15
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 12
 
 //------------------------------------------------------
@@ -594,8 +574,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 12
 	aim_slowdown = 0.5
 
@@ -640,8 +618,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 6
 
 /obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)

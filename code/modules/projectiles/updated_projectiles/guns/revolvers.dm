@@ -26,9 +26,6 @@
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 25
-	recoil = 2
-	recoil_unwielded = 3
-
 
 /obj/item/weapon/gun/revolver/Initialize()
 	. = ..()
@@ -341,9 +338,6 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 	damage_mult = 1.05
-	recoil = 0
-	recoil_unwielded = 0
-
 
 //-------------------------------------------------------
 //357 REVOLVER //Based on the generic S&W 357.
@@ -369,8 +363,6 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 	scatter_unwielded = 20
-	recoil = 0
-	recoil_unwielded = 0
 
 /obj/item/weapon/gun/revolver/small/unique_action(mob/user)
 	return revolver_trick(user)

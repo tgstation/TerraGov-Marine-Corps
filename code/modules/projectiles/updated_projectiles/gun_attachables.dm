@@ -153,8 +153,6 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.modify_burst_delay(burst_delay_mod)
 	if(burst_mod)
 		master_gun.modify_burst_amount(burst_mod, user)
-	master_gun.recoil						+= recoil_mod
-	master_gun.recoil_unwielded				+= recoil_unwielded_mod
 	master_gun.force						+= melee_mod
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
@@ -214,8 +212,6 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.modify_burst_delay(-burst_delay_mod)
 	if(burst_mod)
 		master_gun.modify_burst_amount(-burst_mod, user)
-	master_gun.recoil						-= recoil_mod
-	master_gun.recoil_unwielded				-= recoil_unwielded_mod
 	master_gun.force						-= melee_mod
 	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
@@ -1269,8 +1265,7 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	var/mob/living/master_user
-	var/deployment_accuracy_mod = 0.30
-	var/deployment_recoil_mod = -2
+	var/deployment_accuracy_mod = 0.40
 	var/deployment_scatter_mod = -20
 	var/deployment_burst_scatter_mod = -3
 
@@ -1282,7 +1277,6 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
-		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
 		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
 		icon_state = "bipod"
@@ -1307,7 +1301,6 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.aim_slowdown += 1
 		master_gun.wield_delay += 0.4 SECONDS
 		master_gun.accuracy_mult += deployment_accuracy_mod
-		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
 		icon_state = "bipod-on"

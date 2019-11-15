@@ -16,7 +16,6 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 40
-	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
 
@@ -202,7 +201,7 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
 	damage_mult = 1.5
-	scatter = -10	
+	scatter = -10
 
 
 //-------------------------------------------------------
@@ -383,7 +382,6 @@
 	accuracy_mult = 1.05
 	scatter = 15
 	scatter_unwielded = 80
-	recoil_unwielded = 5
 	damage_mult = 0.85
 
 
@@ -415,12 +413,12 @@
                         /obj/item/attachable/compensator,
                         /obj/item/attachable/magnetic_harness,
                         /obj/item/attachable/scope)
- 
+
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
     gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
- 
+
     fire_delay = 0.4 SECONDS
     burst_amount = 5
     burst_delay = 0.1 SECONDS
@@ -428,7 +426,6 @@
     accuracy_mult = 1.05
     scatter = 15
     scatter_unwielded = 80
-    recoil_unwielded = 5
 
 
 //-------------------------------------------------------

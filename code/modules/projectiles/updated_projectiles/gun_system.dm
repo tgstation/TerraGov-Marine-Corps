@@ -40,8 +40,6 @@
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
 	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
-	var/recoil 					= 0				//Screen shake when the weapon is fired.
-	var/recoil_unwielded 		= 0
 	var/scatter					= 20				//How much the bullet scatters when fired.
 	var/scatter_unwielded 		= 20
 	var/burst_scatter_mult		= 3				//Multiplier. Increases or decreases how much bonus scatter is added when burst firing (wielded only).
@@ -629,18 +627,14 @@ and you're good to go.
 				break
 			target = targloc //If the original targets gets destroyed, fire at its location.
 
-		var/recoil_comp = 0 //used by bipod and akimbo firing
-
 		//checking for a gun in other hand to fire akimbo
-		if(i == 1 && !reflex && !dual_wield)
-			if(user)
-				var/obj/item/IH = user.get_inactive_held_item()
-				if(istype(IH, /obj/item/weapon/gun))
-					var/obj/item/weapon/gun/OG = IH
-					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
-						OG.Fire(target,user,params, 0, TRUE)
-						dual_wield = TRUE
-						recoil_comp++
+		if(i == 1 && !reflex && !dual_wield && user)
+			var/obj/item/IH = user.get_inactive_held_item()
+			if(istype(IH, /obj/item/weapon/gun))
+				var/obj/item/weapon/gun/OG = IH
+				if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
+					OG.Fire(target,user,params, 0, TRUE)
+					dual_wield = TRUE
 
 		apply_gun_modifiers(projectile_to_fire, target)
 		setup_bullet_accuracy(projectile_to_fire, user, i, dual_wield) //User can be passed as null.
@@ -663,8 +657,6 @@ and you're good to go.
 		if(!QDELETED(user))
 			play_fire_sound(user)
 			muzzle_flash(firing_angle, user)
-			simulate_recoil(recoil_comp, user)
-
 
 		//This is where the projectile leaves the barrel and deals with projectile code only.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -719,7 +711,6 @@ and you're good to go.
 		setup_bullet_accuracy(projectile_to_fire, user) //We add any damage effects that we need.
 		projectile_to_fire.setDir(get_dir(user, M))
 		projectile_to_fire.distance_travelled = get_dist(user, M)
-		simulate_recoil(1, user) // 1 is a scalar value not boolean
 		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
@@ -771,7 +762,6 @@ and you're good to go.
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
 	var/sound_volume = (CHECK_BITFIELD(flags_gun_features, GUN_SILENCED) && !active_attachable) ? 25 : 60
 	playsound(user, actual_sound, sound_volume, 1)
-	simulate_recoil(2, user)
 	var/obj/item/weapon/gun/revolver/current_revolver = src
 	log_combat(user, null, "committed suicide with [src].")
 	message_admins("[ADMIN_TPMONTY(user)] committed suicide with [src].")
@@ -1000,44 +990,6 @@ and you're good to go.
 
 	if(!prob(.)) //RNG at work.
 		return 0
-
-
-/obj/item/weapon/gun/proc/simulate_recoil(recoil_bonus = 0, mob/user)
-	var/total_recoil = recoil_bonus
-	if(flags_item & WIELDED && wielded_stable())
-		total_recoil += recoil
-	else
-		total_recoil += recoil_unwielded
-		if(flags_gun_features & GUN_BURST_FIRING)
-			total_recoil += 1
-
-	if(user?.mind?.cm_skills)
-
-		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			total_recoil += 2
-		else
-			var/recoil_tweak
-			switch(gun_skill_category)
-				if(GUN_SKILL_PISTOLS)
-					recoil_tweak = user.mind.cm_skills.pistols
-				if(GUN_SKILL_SMGS)
-					recoil_tweak = user.mind.cm_skills.smgs
-				if(GUN_SKILL_RIFLES)
-					recoil_tweak = user.mind.cm_skills.rifles
-				if(GUN_SKILL_SHOTGUNS)
-					recoil_tweak = user.mind.cm_skills.shotguns
-				if(GUN_SKILL_HEAVY_WEAPONS)
-					recoil_tweak = user.mind.cm_skills.heavy_weapons
-				if(GUN_SKILL_SMARTGUN)
-					recoil_tweak = user.mind.cm_skills.smartgun
-				if(GUN_SKILL_SPEC)
-					recoil_tweak = user.mind.cm_skills.spec_weapons
-			if(recoil_tweak)
-				total_recoil -= recoil_tweak * 2
-	if(total_recoil > 0 && ishuman(user))
-		shake_camera(user, total_recoil + 1, total_recoil)
-		return TRUE
-
 
 /obj/item/weapon/gun/proc/muzzle_flash(angle, atom/movable/flash_loc)
 	if(!muzzle_flash || muzzle_flash.applied)

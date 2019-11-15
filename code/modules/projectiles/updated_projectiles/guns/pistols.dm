@@ -99,7 +99,6 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
-	recoil_unwielded = 2
 
 /obj/item/weapon/gun/pistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
@@ -211,8 +210,6 @@
 	fire_delay = 0.7 SECONDS
 	scatter_unwielded = 25
 	damage_mult = 1.2
-	recoil = 2
-	recoil_unwielded = 4
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	icon_state = "g_deagle"
@@ -284,8 +281,6 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 1 SECONDS
-	recoil = 2
-	recoil_unwielded = 3
 	accuracy_mult = 1.4
 
 //-------------------------------------------------------
@@ -336,8 +331,6 @@
 
 	fire_delay = 1 SECONDS
 	damage_mult = 1.5
-	recoil = 2
-	recoil_unwielded = 3
 	accuracy_mult = 1.5
 	scatter = 10
 
@@ -376,7 +369,6 @@
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.2
-	recoil_unwielded = 2
 
 //-------------------------------------------------------
 //VP78
@@ -402,8 +394,6 @@
 	burst_delay = 0.3 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	recoil = 2
-	recoil_unwielded = 3
 
 //-------------------------------------------------------
 /*
@@ -425,8 +415,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 3
-	recoil = 2
-	recoil_unwielded = 3
 
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.

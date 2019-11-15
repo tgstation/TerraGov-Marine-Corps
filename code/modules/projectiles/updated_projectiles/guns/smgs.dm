@@ -21,7 +21,6 @@
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
-	recoil_unwielded = 0.5
 
 
 /obj/item/weapon/gun/smg/unique_action(mob/user)
