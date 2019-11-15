@@ -48,13 +48,10 @@
 	return ..()
 
 /datum/reagent/water/overdose_crit_process(mob/living/L, metabolism) //Maybe don't chug water past where it's reasonable?
-	if(prob(10)
-		L.adjustStaminaLoss(100 * REM)
-		if(show_message)
-			to_chat(L, "<span class='warning'>Your stomach cramps painfully!</span>")
 	if(prob(5))
 		L.vomit()
 	return ..()
+
 /datum/reagent/water/reaction_turf(turf/T, volume)
 	if(volume >= 3)
 		T.wet_floor(FLOOR_WET_WATER)
