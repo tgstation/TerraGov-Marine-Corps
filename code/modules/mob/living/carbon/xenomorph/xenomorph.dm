@@ -299,4 +299,4 @@
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	addtimer(CALLBACK(src, .proc/handle_afk_takeover), 5 SECONDS)
+	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)

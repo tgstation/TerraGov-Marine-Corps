@@ -317,27 +317,3 @@
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
-
-
-/mob/living/carbon/xenomorph/proc/handle_afk_takeover()
-	if(QDELETED(src)) // Deleted by an admin.
-		return
-	if(client)
-		return
-	if(isclientedaghost(src)) // If aghosted, and admin still online
-		return
-	if(stat == DEAD)
-		return
-
-	if(afk_timer_id)
-		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
-		afk_timer_id = null
-
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	SSticker.mode.transfer_xeno(picked, src)
-
-	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
