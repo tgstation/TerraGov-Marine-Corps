@@ -152,7 +152,7 @@
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
-	description = "Kelotane is a drug used to treat burns."
+	description = "Kelotane is a drug used to treat burns. More effective in higher dosage, but causes slight pain and slowdown."
 	color = "#D8C58C"
 	scannable = TRUE
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -160,6 +160,11 @@
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 2 * REM)
+	if(volume > 5)
+		L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+	if(volume > 15)
+		L.heal_limb_damage(0, 1 * REM)
+		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -179,7 +184,12 @@
 	purge_rate = 2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 3 * REM)
+	L.heal_limb_damage(0, 4 * REM)
+	L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+	if(volume > 15)
+		L.heal_limb_damage(0, 2 * REM)
+		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
+	
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -269,7 +279,7 @@
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
+	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 2)
 	L.drowsyness = max(L.drowsyness- 2 * REM, 0)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
@@ -362,6 +372,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.adjustStaminaLoss(30*REM)
 	L.drowsyness = max(L.drowsyness-5, 0)
 	L.dizzy(-5)
 	L.stuttering = max(L.stuttering-5, 0)
@@ -522,14 +533,19 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
-	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
+	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma. More effective in higher dosage, but causes slight pain and slowdown."
 	color = "#E8756C"
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(2*REM, 0)
+	L.heal_limb_damage(2 * REM, 0)
+	if(volume > 5)
+		L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+	if(volume > 15)
+		L.heal_limb_damage(1 * REM)
+		L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	return ..()
 
 
@@ -551,6 +567,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
+	L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+	if(volume > 15)
+		L.heal_limb_damage(0, 2 * REM)
+		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	return ..()
 
 
