@@ -66,12 +66,6 @@
 		. = TRUE
 	take_damage(I.force, I.damtype, "melee")
 
-
-/obj/item/storage/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	user.changeNext_move(CLICK_CD_FASTEST)
-
-
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(.)
