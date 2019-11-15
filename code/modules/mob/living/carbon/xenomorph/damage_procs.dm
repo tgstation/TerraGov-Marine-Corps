@@ -2,9 +2,10 @@
 
 	flash_eyes()
 
-	if(severity < 3 && stomach_contents.len)
-		for(var/mob/M in stomach_contents)
-			M.ex_act(severity + 1)
+	if(severity < 3)
+		for(var/i in stomach_contents)
+			var/mob/living/carbon/prey = i
+			prey.ex_act(severity + 1)
 	var/bomb_armor = armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0

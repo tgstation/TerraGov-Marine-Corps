@@ -244,7 +244,7 @@
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
-					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/rifle/standard_lmg,
+					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 

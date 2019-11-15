@@ -7574,7 +7574,7 @@
 /area/mainship/command/cic)
 "vI" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
 /obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
