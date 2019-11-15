@@ -34,9 +34,27 @@
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
-	custom_metabolism = REAGENTS_METABOLISM * 0.05
-	taste_description = "water"
+	overdose_threshold = REAGENTS_OVERDOSE //I want the 30% chance of the "nauseous message
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 2 //100u
+	purge_rate = 1
+	taste_description = "hydration"
 
+/datum/reagent/water/on_mob_life(mob/living/L, metabolism)
+	if(volume < 4)
+		L.adjustStaminaLoss(-10*REM)
+		L.heal_limb_damage(.4, .4 * REM) //.2/tick of brute/burn
+	if(volume < 30)
+		L.adjustStaminaLoss(-2*REM)
+	return ..()
+
+/datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism) //Maybe don't chug water past where it's reasonable?
+	if(prob(10)
+		L.adjustStaminaLoss(100*REM)
+		if(show_message)
+			to_chat(L, "<span class='warning'>Your stomach cramps painfully!</span>")
+	if(prob(5))
+		L.vomit()
+	return ..()
 /datum/reagent/water/reaction_turf(turf/T, volume)
 	if(volume >= 3)
 		T.wet_floor(FLOOR_WET_WATER)
