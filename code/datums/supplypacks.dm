@@ -1247,37 +1247,6 @@ ATTACHMENTS
 /*******************************************************************************
 AMMO
 *******************************************************************************/
-
-/datum/supply_packs/ammobox
-	name = "M41A1 Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox
-					)
-	cost = RO_PRICE_NEAR_FREE
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxap
-	name = "M41A1 Ammo AP Box Crate"
-	contains = list(
-					/obj/item/ammobox/ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 AP ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxext
-	name = "M41A1 Ext Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/ext
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 Ext ammo box crate"
-	group = "Ammo"
-
 /datum/supply_packs/ammoboxm39
 	name = "M39 Ammo Box Crate"
 	contains = list(
@@ -1390,7 +1359,7 @@ AMMO
 	containername = "\improper regular ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_regular_m41a
+/datum/supply_packs/ammo_standardcarabine
 	name = "regular T-18 magazines crate (x8)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/standard_carabine,
@@ -1404,7 +1373,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 regular ammo crate"
+	containername = "\improper T-18 regular ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular_m4a3
@@ -1537,7 +1506,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_ap
-	name = "armor piercing magazines crate (M41A1 x2, M4A3 x2, M39 x2)"
+	name = "armor piercing magazines crate (M4A3 x2, M39 x2)"
 	contains = list(
 					/obj/item/ammo_magazine/pistol/ap,
 					/obj/item/ammo_magazine/pistol/ap,
@@ -1802,23 +1771,13 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_rifle
-	name = "large M41A1 ammo box crate (x400 rounds)"
+	name = "large 10x24mm ammo box crate (x400 rounds)"
 	contains = list(
 					/obj/item/big_ammo_box
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_box_rifle_ap
-	name = "large armor piercing M41A1 ammo box crate (x400 AP rounds)"
-	contains = list(
-					/obj/item/big_ammo_box/ap
-					)
-	cost = RO_PRICE_NORMAL
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M41A1 ammo box crate"
+	containername = "\improper 10x24mm ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_smg

@@ -371,7 +371,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 
-//Deployable ammo box
+//Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
 	name = "M41A1 Ammo Box"
 	desc = "A large, deployable ammo box."
