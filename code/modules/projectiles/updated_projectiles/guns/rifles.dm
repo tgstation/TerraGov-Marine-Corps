@@ -355,8 +355,8 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	slowdown = 0.9
-	aim_slowdown = 0.85
+	slowdown = 0.25
+	aim_slowdown = 0.2
 	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -382,7 +382,7 @@
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 0.75
-	scatter = 35
+	scatter = 25
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
