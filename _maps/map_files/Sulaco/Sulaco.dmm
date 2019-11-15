@@ -23510,7 +23510,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
+/obj/item/weapon/gun/rifle/m41a,
 /obj/item/ammo_magazine/sniper/elite,
 /obj/item/weapon/gun/rifle/m41a1,
 /obj/item/weapon/gun/rifle/m41a1,
