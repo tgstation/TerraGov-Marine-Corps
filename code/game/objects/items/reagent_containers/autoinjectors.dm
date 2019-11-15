@@ -50,9 +50,9 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
-	desc = "An autoinjector loaded with 1 unit of dexalin plus, designed to immediately oxygenate the entire body."
+	desc = "An autoinjector loaded with 3 uses of dexalin plus, designed to immediately oxygenate the entire body."
 	amount_per_transfer_from_this = 1
-	volume = 1
+	volume = 3
 	icon_state = "autoinjector-2"
 	list_reagents = list(/datum/reagent/medicine/dexalinplus = 1)
 
@@ -72,7 +72,8 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
-	desc = "An auto-injector loaded with 15 units of tramadol, a weak but effective painkiller for normal wounds."
+	desc = "An auto-injector loaded with 15 units of tramadol, an effective painkiller for normal wounds. Adjustible dosage, defaults to 3 uses of 5 units each."
+	amount_per_transfer_from_this = 5
 	icon_state = "autoinjector-10"
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 
@@ -87,21 +88,23 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/oxycodone
 	name = "oxycodone autoinjector"
-	desc = "An auto-injector loaded with 10 units of oxycodone, a powerful pankiller intended for life-threatening situations."
-	amount_per_transfer_from_this = 10
+	desc = "An auto-injector loaded with 10 units of oxycodone, a powerful pankiller intended for life-threatening situations. Adjustible dosage, defaults to 2 uses of 5 each."
+	amount_per_transfer_from_this = 5
 	volume = 10
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
-	desc = "An auto-injector loaded with 15 units of kelotane, a common burn medicine."
+	desc = "An auto-injector loaded with 15 units of kelotane, a common burn medicine. Adjustible dosage, defaults to 3 uses of 5 units each."
+	amount_per_transfer_from_this = 5
 	icon_state = "autoinjector-5"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/bicaridine
 	name = "bicaridine autoinjector"
-	desc = "An auto-injector loaded with 15 units of bicaridine, a common brute and circulatory damage medicine."
+	desc = "An auto-injector loaded with 15 units of bicaridine, a common brute damage medicine. Adjustible dosage, defaults to 3 uses of 5 units each."
+	amount_per_transfer_from_this = 5
 	icon_state = "autoinjector-3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
 
@@ -160,3 +163,26 @@
 	volume = 3
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/neuraline = 4)
+
+/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
+	name = "peridaxon plus autoinjector"
+	desc = "An auto-injector loaded with 3 seperate injections of Peridaxon Plus, a miracle drug for healing internal damage. !!DO NOT INJECT MORE THAN ONCE AT A TIME!!"
+	amount_per_transfer_from_this = 1
+	volume = 3
+	icon_state = "autoinjector-1"
+	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3)
+
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot_plus
+	name = "quickclot plus autoinjector"
+	desc = "An auto-injector loaded with 3 seperate injections of Quickclot Plus, a miracle drug for healing internal bleeding. !!DO NOT INJECT MORE THAN ONCE AT A TIME!!"
+	amount_per_transfer_from_this = 1
+	volume = 3
+	icon_state = "autoinjector-7"
+	list_reagents = list(/datum/reagent/medicine/quickclot_plus = 3)
+
+
+
+
+
+
+
