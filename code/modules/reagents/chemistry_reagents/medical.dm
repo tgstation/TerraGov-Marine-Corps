@@ -93,6 +93,8 @@
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/L)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	if(volume > 5)
+		L.reagent_move_delay_modifier = min(0.5, volume * 0.013)
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
@@ -113,6 +115,8 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.adjust_drugginess(1.1)
+	L.reagent_move_delay_modifier = min(1.0, volume * 0.05)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
