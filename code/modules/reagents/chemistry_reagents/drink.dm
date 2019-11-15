@@ -200,8 +200,8 @@
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
-	overdose_threshold = REAGENTS_OVERDOSE * 3
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
+	overdose_threshold = REAGENTS_OVERDOSE * 2
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 2
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
@@ -211,7 +211,7 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.jitter(2)
-	L.reagent_move_delay_modifier -= min(0.4, volume * 0.005)
+	L.reagent_move_delay_modifier -= min(0.5, volume * 0.0033) //150u for FULL speedboost, .3 is the max "safe" achievable.
 	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	return ..()
