@@ -1,7 +1,6 @@
 /mob/living/carbon
 	gender = MALE
 	var/datum/species/species //Contains icon generation and language information, set during New().
-	var/list/stomach_contents = list()
 
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
 	var/analgesic = 0 // when this is set, the mob isn't affected by shock or pain
@@ -44,3 +43,4 @@
 	var/overeatduration = 0		// How long this guy is overeating
 
 	var/afk_timer_id
+	var/afk_status = MOB_DISCONNECTED

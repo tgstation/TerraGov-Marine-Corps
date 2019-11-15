@@ -288,7 +288,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(SSticker.mode)
 			status_value = SSticker.mode.get_hivemind_collapse_countdown()
 			if(status_value)
-				stat("Orphan hivemind collapse timer:", status_value)
+				stat("<b>Orphan hivemind collapse timer:</b>", status_value)
 		if(GLOB.respawn_allowed)
 			status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
 			if(status_value <= 0)
@@ -296,7 +296,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				status_value = (timeofdeath + GLOB.respawntime - world.time) * 0.1
+				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
 				if(status_value <= 0)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
@@ -304,6 +304,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 				if(normal_hive.stored_larva)
 					stat("Burrowed larva:", normal_hive.stored_larva)
+				if(LAZYLEN(normal_hive.ssd_xenos))
+					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
 
 
 /mob/dead/observer/verb/reenter_corpse()
@@ -451,13 +453,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
 			name += " - [X.client.prefs.xeno_name]"
 
-		if(admin)
-			if(X.client && X.client.is_afk())
-				name += " (AFK)"
-			else if(!X.client && (X.key || X.ckey))
-				name += " (DC)"
-				if(!timeleft(X.afk_timer_id))
-					name += " 15+min"
+		if((X.client && X.client?.is_afk()) || (!X.client && (X.key || X.ckey)))
+			if(isaghost(X))
+				if(admin)
+					name += " (AGHOSTED)"
+			else
+				switch(X.afk_status)
+					if(MOB_RECENTLY_DISCONNECTED)
+						name += " (AFK)"
+					if(MOB_DISCONNECTED)
+						name += " (DC)"
 
 		xenos[name] = X
 
@@ -500,16 +505,20 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			name += " as ([H.real_name])"
 		if(issynth(H))
 			name += " - Synth"
-		if(admin)
-			if(H.client && H.client.is_afk())
-				name += " (AFK)"
-			else if(!H.client && (H.key || H.ckey))
-				if(isaghost(H))
+		else if(issurvivor(H))
+			name += " - Survivor"
+		else if(H.faction != "Marine")
+			name += " - [H.faction]"
+		if((H.client && H.client.is_afk()) || (!H.client && (H.key || H.ckey)))
+			if(isaghost(H))
+				if(admin)
 					name += " (AGHOSTED)"
-				else
-					name += " (DC)"
-					if(!timeleft(H.afk_timer_id))
-						name += " 15+min"
+			else
+				switch(H.afk_status)
+					if(MOB_RECENTLY_DISCONNECTED)
+						name += " (AFK)"
+					if(MOB_DISCONNECTED)
+						name += " (DC)"
 
 		humans[name] = H
 

@@ -59,6 +59,7 @@
 	var/attack_sound
 	var/friendly = "nuzzles"
 	var/wall_smash
+	var/ranged_accuracy_mod = 0
 
 	var/on_fire //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is

@@ -15,16 +15,18 @@
 	products = list(
 					/obj/item/weapon/gun/pistol/m4a3 = 25,
 					/obj/item/weapon/gun/revolver/m44 = 15,
-					/obj/item/weapon/gun/smg/m39 = 20,
-					/obj/item/weapon/gun/rifle/m41a = 25,
+					/obj/item/weapon/gun/smg/standard_smg = 20,
+					/obj/item/weapon/gun/rifle/standard_carabine = 25,
+					/obj/item/weapon/gun/rifle/standard_lmg = 15,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
-					/obj/item/ammo_magazine/smg/m39 = 30,
+					/obj/item/ammo_magazine/smg/standard_smg = 30,
 					/obj/item/ammo_magazine/rifle = 25,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
+					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/cell/lasgun/M43 = 20,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
@@ -42,12 +44,12 @@
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
 						/obj/item/ammo_magazine/pistol/ap = 2,
-						/obj/item/ammo_magazine/smg/m39/ap = 1
+						/obj/item/ammo_magazine/smg/standard_smg/ap = 1
 						)
 
 	premium = list(
-					/obj/item/weapon/gun/rifle/m41aMK1 = 1,
-					/obj/item/ammo_magazine/rifle/m41aMK1 = 6
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = 1,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6
 					)
 
 	prices = list()
@@ -119,9 +121,9 @@
 					/obj/item/weapon/gun/pistol/m4a3 = 20,
 					/obj/item/weapon/gun/pistol/m1911 = 5,
 					/obj/item/weapon/gun/revolver/m44 = 15,
-					/obj/item/weapon/gun/smg/m39 = 15,
-					/obj/item/weapon/gun/rifle/m41a = 20,
-					/obj/item/weapon/gun/rifle/lmg = 2,
+					/obj/item/weapon/gun/smg/standard_smg = 15,
+					/obj/item/weapon/gun/rifle/standard_carabine = 20,
+					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/weapon/gun/rifle/sx16 = 10,
@@ -185,17 +187,18 @@
 					/obj/item/ammo_magazine/revolver/marksman = 5,
 					/obj/item/ammo_magazine/revolver/heavy = 5,
 					/obj/item/ammobox/m39 = 3,
-					/obj/item/ammo_magazine/smg/m39 = 15,
+					/obj/item/ammo_magazine/smg/standard_smg = 15,
 					/obj/item/ammobox/m39ap = 1,
-					/obj/item/ammo_magazine/smg/m39/ap = 5,
+					/obj/item/ammo_magazine/smg/standard_smg/ap = 5,
 					/obj/item/ammobox/m39ext = 1,
-					/obj/item/ammo_magazine/smg/m39/extended = 5,
+					/obj/item/ammo_magazine/smg/standard_smg/extended = 5,
 					/obj/item/ammobox = 3,
 					/obj/item/ammo_magazine/rifle = 15,
 					/obj/item/ammobox/ap = 1,
 					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammobox/ext = 1,
 					/obj/item/ammo_magazine/rifle/extended = 5,
+					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/cell/lasgun/M43 = 15,
 					/obj/item/cell/lasgun/M43/highcap = 5,
 					/obj/item/shotgunbox = 3,
@@ -695,6 +698,7 @@
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/head/helmet/marine/heavy = 20,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,

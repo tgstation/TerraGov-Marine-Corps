@@ -114,7 +114,7 @@
 		return TRUE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		if(length(moving_xeno.stomach_contents))
+		if(LAZYLEN(moving_xeno.stomach_contents))
 			return FALSE
 		return TRUE
 	return FALSE

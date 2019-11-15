@@ -28,7 +28,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
-	tint = TINT_HEAVY
+	tint = TINT_5
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self(mob/user)
@@ -62,11 +62,13 @@
 	if(user)
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 
-
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.head == src)
-			H.update_tint()
+		var/mob/living/carbon/human/wearer = loc
+		if(wearer.head == src)
+			if(!up)
+				wearer.adjust_tinttotal(tint)
+			else
+				wearer.adjust_tinttotal(-initial(tint))
 
 	update_clothing_icon()	//so our mob-overlays update
 

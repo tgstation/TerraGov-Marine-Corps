@@ -1,8 +1,7 @@
 /mob/living/carbon/xenomorph/Login()
 	. = ..()
-	if(afk_timer_id)
-		deltimer(afk_timer_id)
-		afk_timer_id = null
+
+	hive.on_xeno_login(src)
 
 	if(lighting_alpha == LIGHTING_PLANE_ALPHA_NV_TRAIT)
 		ENABLE_BITFIELD(sight, SEE_MOBS)
