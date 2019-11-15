@@ -372,7 +372,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(30*REM)
+	L.adjustStaminaLoss(-30*REM)
 	L.drowsyness = max(L.drowsyness-5, 0)
 	L.dizzy(-5)
 	L.stuttering = max(L.stuttering-5, 0)
@@ -531,6 +531,34 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 6*REM, 6*REM)
 
+
+/datum/reagent/medicine/peridaxon_plus
+	name = "Peridaxon"
+	description = "Used to repair internal organs. Significant toxic and stun side effects."
+	color = "#C845DC"
+	overdose_threshold = REAGENTS_OVERDOSE/30
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	scannable = TRUE
+
+/datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
+	L.apply_damage(10*REM, TOX) //50 toxin/unit
+	L.adjustHalLoss(300) //You do not get up while this is in you. At all.
+	if(!ishuman(L))
+		return ..()
+	var/mob/living/carbon/human/H = L
+	for(var/datum/internal_organ/I in H.internal_organs)
+		I.heal_organ_damage(4*REM) //2/tick
+	return ..()
+
+/datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(20*REM, BRUTE)
+
+/datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(20*REM, BRUTE) //100 damage/unit. Don't OD.
+
+
+
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma. More effective in higher dosage, but causes slight pain and slowdown."
@@ -608,6 +636,38 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 4*REM, 4*REM)
+
+
+/datum/reagent/medicine/quickclot_plus
+	name = "Quick Clot Plus"
+	description = "A chemical designed to completely repair internal bleeding. Significant toxic and shock side effects, do not use in combat."
+	color = "#CC00FF"
+	overdose_threshold = REAGENTS_OVERDOSE/30 //ONE unit.
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25 //Two units
+	scannable = TRUE //scannable now.  HUZZAH.
+	custom_metabolism = REAGENTS_METABOLISM * .25 //In body for 10 ticks
+
+/datum/reagent/medicine/quickclot_plus/on_mob_life(mob/living/L, metabolism)
+	L.apply_damage(10*REM, TOX) //50 toxin/unit
+	L.adjustHalLoss(300) //You do not get up while this is in you. At all.
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/W in X.wounds)
+			if(W.internal)
+				W.damage = max(0, W.damage - (2*REM))
+				X.update_damages()
+				if (X.update_icon())
+					X.owner.UpdateDamageIcon(1)
+	return ..()
+
+
+/datum/reagent/medicine/quickclot_plus/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(20*REM, BRUTE) //100 brute/unit. Don't double-dose, and be quick with the hypervene.
+
+/datum/reagent/medicine/quickclot_plus/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(20*REM, BRUTE) //100 brute/unit, plus the 100 from before, PLUS the 50 toxin. You have like 5 ticks to recognize and hypervene. High-risk, high reward.
+
+
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
