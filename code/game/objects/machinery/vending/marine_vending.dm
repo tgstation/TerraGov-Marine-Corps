@@ -383,6 +383,7 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
+					/obj/item/reagent_containers/hypospray/autoinjector/combat = 8,
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
