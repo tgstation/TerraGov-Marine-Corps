@@ -211,7 +211,7 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.jitter(2)
-	L.reagent_move_delay_modifier -= min( .3, volume * 0.005)
+	L.reagent_move_delay_modifier -= min(0.4, volume * 0.005)
 	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	return ..()
