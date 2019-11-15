@@ -76,6 +76,15 @@
 	icon_state = "autoinjector-10"
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 
+
+/obj/item/reagent_containers/hypospray/autoinjector/combat
+	name = "combat autoinjector"
+	desc = "An auto-injector loaded with 5 units each of bicaridine, kelotane, and tramadol, intended for usage in high-stress situations"
+	icon_state = "autoinjector-3"//Could use a mixed-sprite for this, whenever someone feels like it.
+	list_reagents = list(/datum/reagent/medicine/bicaridine = 5,
+						/datum/reagent/medicine/kelotane = 5,
+						/datum/reagent/medicine/tramadol = 5)
+
 /obj/item/reagent_containers/hypospray/autoinjector/oxycodone
 	name = "oxycodone autoinjector"
 	desc = "An auto-injector loaded with 10 units of oxycodone, a powerful pankiller intended for life-threatening situations."
