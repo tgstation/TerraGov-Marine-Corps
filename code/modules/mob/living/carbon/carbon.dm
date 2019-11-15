@@ -434,7 +434,7 @@
 /mob/living/carbon/proc/on_sdd_grace_period_end()
 	if(stat == DEAD)
 		return FALSE
-	if(islivingclientedaghost(src))
+	if(isclientedaghost(src))
 		return FALSE
 	set_afk_status(MOB_DISCONNECTED)
 	return TRUE

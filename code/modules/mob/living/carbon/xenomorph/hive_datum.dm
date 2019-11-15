@@ -125,7 +125,7 @@
 		var/mob/living/carbon/xenomorph/ssd_xeno = i
 		if(is_centcom_level(ssd_xeno.z))
 			continue
-		if(islivingclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
+		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
 			continue
 		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
