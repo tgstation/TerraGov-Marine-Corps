@@ -164,7 +164,7 @@
 	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
-		L.Stun(2)
+		L.Stun(40)
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -252,7 +252,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.Stun(2)
+				L.Stun(40)
 	update()
 
 //Pipe affected by explosion

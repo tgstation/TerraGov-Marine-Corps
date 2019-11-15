@@ -269,7 +269,7 @@
 	playsound(victim,'sound/effects/magic.ogg', 75, 1)
 
 	victim.drop_all_held_items()
-	victim.Stun(2)
+	victim.Stun(40)
 
 	psychic_hold = new(assailant, victim, src) //Grab starts "inside" the shrike. It will auto-equip to her hands, set her as its master and her victim as its target, and then start processing the grab.
 

@@ -179,7 +179,7 @@ mob/living/carbon/proc/handle_hallucinations()
 							halbody = null
 			if(71 to 72)
 				//Fake death
-				Sleeping(20)
+				Sleeping(40 SECONDS)
 				hal_crit = 1
 				hal_screwyhud = 1
 				spawn(rand(50,100))

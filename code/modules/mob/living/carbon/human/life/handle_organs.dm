@@ -58,4 +58,4 @@
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		emote("collapse")
-		SetUnconscious(10)
+		SetUnconscious(20 SECONDS)

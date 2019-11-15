@@ -32,7 +32,7 @@
 	var/open_sound = 'sound/machines/click.ogg'
 	var/close_sound = 'sound/machines/click.ogg'
 
-	var/closet_stun_delay = 1
+	var/closet_stun_delay = 2 SECONDS
 
 	anchored = TRUE
 

@@ -187,8 +187,8 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
-		victim.Stun(5)
-		victim.Knockdown(5)
+		victim.Stun(10 SECONDS)
+		victim.Knockdown(10 SECONDS)
 		//victim.Unconscious(10)
 		//victim.drop_held_item()
 		return
@@ -197,7 +197,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
-				victim.Stun(1)
+				victim.Stun(20)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
@@ -208,8 +208,8 @@
 			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
-		victim.Stun(5)
-		victim.Knockdown(5)
+		victim.Stun(10 SECONDS)
+		victim.Knockdown(10 SECONDS)
 		//victim.Unconscious(10)
 		//victim.drop_held_item()
 
@@ -239,14 +239,14 @@
 	taste_description = "salt"
 
 /datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
-	L.Confused(20)
+	L.Confused(40 SECONDS)
 	if(prob(10))
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
 	L.jitter(5) //Turn super salty
 	if(prob(10))
-		L.Knockdown(10)
+		L.Knockdown(20 SECONDS)
 	if(prob(10))
 		L.emote(pick("cry","moan","pain"))
 
@@ -307,12 +307,12 @@
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(15))
-		L.Unconscious(5)
+		L.Unconscious(10 SECONDS)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
-		L.Unconscious(3)
+		L.Unconscious(60)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/consumable/sprinkles

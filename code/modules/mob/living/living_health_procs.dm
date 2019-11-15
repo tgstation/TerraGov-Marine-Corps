@@ -79,7 +79,7 @@
 		if(feedback)
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
 				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Knockdown(4)
+	Knockdown(80)
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)

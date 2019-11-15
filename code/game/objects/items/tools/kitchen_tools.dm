@@ -189,7 +189,7 @@
 				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
 					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
 					return
-				var/time = rand(2, 6)
+				var/time = rand(4 SECONDS, 12 SECONDS)
 				if (prob(75))
 					H.Unconscious(time)
 				else
@@ -264,7 +264,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Knockdown(3)
+			M.Knockdown(60)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -301,7 +301,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		if(prob(10))
-			M.Stun(rand(1,3))
+			M.Stun(rand(20,60))
 			M.take_limb_damage(3)
 			return
 		else
@@ -323,13 +323,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.Stun(rand(2,4))
+			M.Stun(rand(40,80))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Knockdown(2)
+				M.Knockdown(40)
 				return
 			return
 

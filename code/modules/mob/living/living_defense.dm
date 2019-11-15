@@ -21,8 +21,8 @@
 	flash_pain()
 
 	if (stun_amount)
-		Stun(stun_amount)
-		Knockdown(stun_amount)
+		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
+		Knockdown(stun_amount * 20)
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)
 
@@ -191,7 +191,7 @@
 
 /mob/living/proc/resist_fire(datum/source)
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Knockdown(4)
+	Knockdown(80)
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))	

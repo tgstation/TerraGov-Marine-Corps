@@ -58,11 +58,11 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			Knockdown(1)
+			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
+			Knockdown(20)
 		else
-			Stun(10)//This should work for now, more is really silly and makes you lay there forever
-			Knockdown(10)
+			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
+			Knockdown(20 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -126,7 +126,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	Stun(5)
+	Stun(10 SECONDS)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -152,18 +152,18 @@
 
 	if(lying || IsSleeping())
 		if(client)
-			AdjustSleeping(-5)
+			AdjustSleeping(-10 SECONDS)
 		if(!IsSleeping())
 			set_resting(FALSE)
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		AdjustUnconscious(-3)
-		AdjustStun(-3)
+		AdjustUnconscious(-60)
+		AdjustStun(-60)
 		if(IsKnockdown())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-		AdjustKnockdown(-3)
+		AdjustKnockdown(-60)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -303,7 +303,7 @@
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		SetSleeping(20) //Short nap
+		SetSleeping(40 SECONDS) //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM)

@@ -80,8 +80,8 @@
 		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(prob(5))
-			Sleeping(1)
-			Unconscious(5)
+			Sleeping(20)
+			Unconscious(10 SECONDS)
 
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
@@ -114,7 +114,7 @@
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				AdjustSleeping(-1)
+				AdjustSleeping(-20)
 		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
 				emote("snore")
@@ -131,13 +131,13 @@
 
 		if(drunkenness >= 41)
 			if(prob(25))
-				AdjustConfused(2)
+				AdjustConfused(40)
 			if(dizziness < 450) // To avoid giving the player overly dizzy too
 				dizzy(8)
 
 		if(drunkenness >= 51)
 			if(prob(5))
-				AdjustConfused(5)
+				AdjustConfused(10 SECONDS)
 				vomit()
 			if(dizziness < 600)
 				dizzy(12)
@@ -159,7 +159,7 @@
 			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-				Sleeping(40)
+				Sleeping(80 SECONDS)
 
 		if(drunkenness >=101) //Let's be honest, you should be dead by now
 			adjustToxLoss(4)

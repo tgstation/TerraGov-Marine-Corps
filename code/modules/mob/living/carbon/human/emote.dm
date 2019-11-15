@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.Unconscious(2)
+	user.Unconscious(40)
 
 
 /datum/emote/living/carbon/human/cough

@@ -3,5 +3,5 @@
 		drop_all_held_items()
 
 	if(pulledby.grab_level >= GRAB_KILL)
-		Knockdown(5)
+		Knockdown(10 SECONDS)
 		Losebreath(3)

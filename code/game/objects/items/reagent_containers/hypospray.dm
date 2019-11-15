@@ -116,7 +116,7 @@
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
 		if(M != user && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && ((M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP)))
-			user.Knockdown(3)
+			user.Knockdown(60)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)

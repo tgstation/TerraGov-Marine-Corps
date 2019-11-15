@@ -28,7 +28,7 @@
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
 	L.jitter(5) //Overdose causes a spasm
-	L.Unconscious(20)
+	L.Unconscious(40 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/overdose_crit_process(mob/living/L, metabolism)
 	L.setDrowsyness(L.drowsyness, 20)
@@ -54,12 +54,12 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.Confused(20)
+	L.Confused(40 SECONDS)
 	L.apply_damage(2*REM, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
 	if(prob(15))
-		L.Unconscious(15)
+		L.Unconscious(30 SECONDS)
 	L.apply_damage(6*REM, CLONE)
 
 /datum/reagent/medicine/paracetamol
@@ -141,7 +141,7 @@
 
 /datum/reagent/medicine/leporazine/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.Unconscious(15)
+		L.Unconscious(30 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
 	L.drowsyness  = max(L.drowsyness, 30)
@@ -330,9 +330,9 @@
 datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
-	L.AdjustUnconscious(-1)
-	L.AdjustStun(-1)
-	L.AdjustKnockdown(-1)
+	L.AdjustUnconscious(-20)
+	L.AdjustStun(-20)
+	L.AdjustKnockdown(-20)
 	holder.remove_reagent("mindbreaker", 5)
 	L.hallucination = max(0, L.hallucination - 10)
 	if(prob(80))
@@ -362,12 +362,12 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness-5, 0)
-	L.AdjustConfused(-5)
+	L.AdjustConfused(-10 SECONDS)
 	L.adjust_blurriness(-5)
-	L.AdjustUnconscious(-2)
-	L.AdjustStun(-2)
-	L.AdjustKnockdown(-1)
-	L.AdjustSleeping(-2)
+	L.AdjustUnconscious(-40)
+	L.AdjustStun(-40)
+	L.AdjustKnockdown(-20)
+	L.AdjustSleeping(-40)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -614,10 +614,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 			if(4 to 20)
 				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
 			if(21 to 50)
-				L.Knockdown(amount * 0.10)
+				L.Knockdown(amount * 2)
 				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
-				L.Unconscious(amount * 0.1)
+				L.Unconscious(amount * 2)
 				to_chat(L, "<span class='danger'>Your world convulses as a wave of extreme fatigue washes over you!</span>") //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
 
 	return ..()
@@ -673,9 +673,9 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		L.AdjustKnockdown(-1)
-		L.AdjustStun(-1)
-		L.AdjustUnconscious(-1)
+		L.AdjustKnockdown(-20)
+		L.AdjustStun(-20)
+		L.AdjustUnconscious(-20)
 	L.adjustHalLoss(-4*REM)
 	if(prob(2))
 		L.emote(pick("twitch","blink_r","shiver"))
@@ -696,10 +696,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustHalLoss(35)
-		L.Stun(2)
+		L.Stun(40)
 	if(prob(20))
 		L.hallucination += 15
-		L.AdjustConfused(3)
+		L.AdjustConfused(60)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -708,10 +708,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.adjustHalLoss(50)
-		L.Stun(3)
+		L.Stun(60)
 	if(prob(20))
 		L.hallucination += 20
-		L.AdjustConfused(5)
+		L.AdjustConfused(10 SECONDS)
 		L.dizzy(60)
 	L.adjustToxLoss(0.2*REM)
 	L.adjustBrainLoss(0.2*REM, TRUE)
@@ -722,11 +722,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("groans painfully!", "contorts with pain!"))
 		L.adjustHalLoss(65)
-		L.Stun(4)
+		L.Stun(80)
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.AdjustConfused(7)
+		L.AdjustConfused(14 SECONDS)
 		L.dizzy(80)
 	L.adjustToxLoss(0.6*REM)
 	L.adjustBrainLoss(0.2*REM, TRUE)
@@ -854,7 +854,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.dizzy(-1)
 	L.adjustDrowsyness(-1)
 	L.stuttering = max(L.stuttering-1, 0)
-	L.AdjustConfused(-1)
+	L.AdjustConfused(-20)
 	var/mob/living/carbon/C = L
 	C.drunkenness = max(C.drunkenness-4, 0)
 	L.reagents.remove_all_type(/datum/reagent/consumable/ethanol, REM, 0, 1)
