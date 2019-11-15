@@ -362,10 +362,10 @@ WEAPONS
 
 /datum/supply_packs/gun/rifles
 	contains = list(
-					/obj/item/weapon/gun/rifle/standard_carabine,
-					/obj/item/weapon/gun/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
+					/obj/item/weapon/gun/rifle/standard_carbine,
+					/obj/item/weapon/gun/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
 					)
 	name = "surplus rifles crate (T-18 x2, T-18 ammo x2)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -1340,11 +1340,11 @@ AMMO
 /datum/supply_packs/ammo_regular
 	name = "regular magazines crate (T-18 x5, M4A3 x2, M44 x2, M39 x2, M37A2 x1)"
 	contains = list(
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/pistol,
 					/obj/item/ammo_magazine/smg/standard_smg,
@@ -1359,17 +1359,17 @@ AMMO
 	containername = "\improper regular ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_standardcarabine
+/datum/supply_packs/ammo_standardcarbine
 	name = "regular T-18 magazines crate (x8)"
 	contains = list(
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine,
-					/obj/item/ammo_magazine/rifle/standard_carabine
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine,
+					/obj/item/ammo_magazine/rifle/standard_carbine
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo

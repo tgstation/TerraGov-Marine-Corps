@@ -39,7 +39,7 @@
 //-------------------------------------------------------
 //T18 Carbine
 
-/obj/item/ammo_magazine/rifle/standard_carabine
+/obj/item/ammo_magazine/rifle/standard_carbine
 	name = "\improper T-18 magazine (10x24mm)"
 	desc = "A 10mm Carbine magazine."
 	caliber = "10x24mm caseless"
@@ -47,7 +47,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 24
-	gun_type = /obj/item/weapon/gun/rifle/standard_carabine
+	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 //-------------------------------------------------------
 //T12 Assault Rifle

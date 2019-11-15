@@ -22821,7 +22821,7 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/standard_carbine,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship{
 	icon_state = "redfull"

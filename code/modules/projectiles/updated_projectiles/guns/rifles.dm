@@ -39,7 +39,7 @@
 //-------------------------------------------------------
 //T-18 Carbine
 
-/obj/item/weapon/gun/rifle/standard_carabine
+/obj/item/weapon/gun/rifle/standard_carbine
     name = "\improper T-18 Carbine"
     desc = "The T-18 Carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
@@ -50,7 +50,7 @@
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x24mm caseless" //codex
     max_shells = 24 //codex
-    current_mag = /obj/item/ammo_magazine/rifle/standard_carabine
+    current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
