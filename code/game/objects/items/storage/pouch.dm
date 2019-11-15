@@ -318,10 +318,10 @@
 
 /obj/item/storage/pouch/autoinjector/full/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
