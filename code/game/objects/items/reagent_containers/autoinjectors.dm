@@ -158,11 +158,11 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
-	desc = "An auto-injector loaded with 3 units of Neuraline, a very potent short-lived anti-stun chemical."
+	desc = "An auto-injector loaded with 3 uses of Neuraline, a very potent short-lived anti-stun chemical. Overdosing will cause brain damage."
 	amount_per_transfer_from_this = 3
-	volume = 3
+	volume = 9
 	icon_state = "autoinjector-6"
-	list_reagents = list(/datum/reagent/medicine/neuraline = 4)
+	list_reagents = list(/datum/reagent/medicine/neuraline = 9)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon plus autoinjector"
