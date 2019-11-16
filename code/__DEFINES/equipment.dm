@@ -81,9 +81,12 @@
 
 //vision obscuring facegear and etc.
 #define TINT_NONE 0
-#define TINT_MILD 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
+#define TINT_1 1
+#define TINT_2 2
+#define TINT_3 3
+#define TINT_4 4
+#define TINT_5 5
+#define TINT_BLIND 6
 
 //Inventory depth: limits how many nested storage items you can access directly.
 //1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc

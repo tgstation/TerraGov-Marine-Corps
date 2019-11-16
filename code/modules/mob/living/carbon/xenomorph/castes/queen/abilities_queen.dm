@@ -453,7 +453,7 @@
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
 	plasma_cost = 150
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 16 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 

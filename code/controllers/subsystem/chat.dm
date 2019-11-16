@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(chat)
 	message = replacetext(message, "\proper", "")
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
-		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
 	message += "<br>"
 
 
@@ -44,28 +44,40 @@ SUBSYSTEM_DEF(chat)
 
 	if(islist(target))
 		for(var/I in target)
-			var/mob/M = I
-			var/client/C = istype(M) ? M.client : I
+			var/client/C = CLIENT_FROM_VAR(I)
 
-			if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
-				SEND_TEXT(C, original_message)
+			if(!C)
+				return
+
+			//Send it to the old style output window.
+			SEND_TEXT(C, original_message)
+
+			if(!C.chatOutput?.working) //A player who hasn't updated his skin file.
 				continue
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
+				if(length(C.chatOutput.messageQueue) > 25)
+					continue
 				C.chatOutput.messageQueue += message
 				continue
 
 			payload[C] += twiceEncoded
 
 	else
-		var/mob/M = target
-		var/client/C = istype(M) ? M.client : target
+		var/client/C = CLIENT_FROM_VAR(target)
 
-		if(!C?.chatOutput?.working || (!C.chatOutput.loaded && length(C.chatOutput.messageQueue) > 25)) //A player who hasn't updated his skin file.
-			SEND_TEXT(C, original_message)
+		if(!C)
+			return
+
+		//Send it to the old style output window.
+		SEND_TEXT(C, original_message)
+
+		if(!C?.chatOutput?.working) //A player who hasn't updated his skin file.
 			return
 
 		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
+			if(length(C.chatOutput.messageQueue) > 25)
+				return
 			C.chatOutput.messageQueue += message
 			return
 

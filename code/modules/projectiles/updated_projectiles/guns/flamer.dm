@@ -504,18 +504,6 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/human/run_armor_check(def_zone = null, attack_flag = "melee")
-	. = ..()
-	if(attack_flag == "fire")
-		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-			show_message(text("Your suit protects you from most of the flames."), 1)
-			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
-
-/mob/living/carbon/xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
-	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
-		return 1
-	return ..()
-
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
@@ -587,6 +575,8 @@
 		if(++j >= 11)
 			break
 		var/atom/A = i
+		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
+			continue
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick

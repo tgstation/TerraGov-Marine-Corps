@@ -82,9 +82,6 @@
 /mob/living/proc/dizzy(amount)
 	return // For the time being, only carbons get dizzy.
 
-/mob/living/proc/update_tint()
-	return
-
 /mob/living/proc/blind_eyes(amount)
 	if(amount>0)
 		var/old_eye_blind = eye_blind

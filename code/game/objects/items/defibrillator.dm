@@ -69,7 +69,7 @@
 	update_icon()
 
 
-/mob/living/carbon/human/proc/get_ghost()
+/mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
@@ -84,7 +84,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst)
+	if(!heart || heart.is_broken() || !has_brain() || chestburst)
 		return FALSE
 	return TRUE
 

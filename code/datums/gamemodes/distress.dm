@@ -296,17 +296,18 @@
 						/obj/item/ammo_magazine/revolver/marksman = round(scale * 5),
 						/obj/item/ammo_magazine/revolver/heavy = round(scale * 5),
 						/obj/item/ammobox/m39 = round(scale * 3),
-						/obj/item/ammo_magazine/smg/m39 = round(scale * 15),
+						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 15),
 						/obj/item/ammobox/m39ap = round(scale * 1),
-						/obj/item/ammo_magazine/smg/m39/ap = round(scale * 5),
+						/obj/item/ammo_magazine/smg/standard_smg/ap = round(scale * 5),
 						/obj/item/ammobox/m39ext = round(scale * 1),
-						/obj/item/ammo_magazine/smg/m39/extended = round(scale * 5),
+						/obj/item/ammo_magazine/smg/standard_smg/extended = round(scale * 5),
 						/obj/item/ammobox = round(scale * 3),
 						/obj/item/ammo_magazine/rifle = round(scale * 15),
 						/obj/item/ammobox/ap = round (scale * 1),
 						/obj/item/ammo_magazine/rifle/ap = round(scale * 5),
 						/obj/item/ammobox/ext = round(scale * 1),
 						/obj/item/ammo_magazine/rifle/extended = round(scale * 5),
+						/obj/item/ammo_magazine/standard_lmg = round(scale * 15),
 						/obj/item/cell/lasgun/M43 = round(scale * 30),
 						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/shotgunbox = round(scale * 3),
@@ -372,8 +373,9 @@
 						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 20),
 						/obj/item/weapon/gun/pistol/m1911 = round(scale * 5),
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 10),
-						/obj/item/weapon/gun/smg/m39 = round(scale * 15),
-						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
+						/obj/item/weapon/gun/smg/standard_smg = round(scale * 15),
+						/obj/item/weapon/gun/rifle/standard_carabine = round(scale * 20),
+						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 10),
@@ -412,8 +414,9 @@
 		M.products = list(
 						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 30),
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 25),
-						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
-						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
+						/obj/item/weapon/gun/smg/standard_smg = round(scale * 30),
+						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 25),
+						/obj/item/weapon/gun/rifle/standard_carabine = round(scale * 30),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 15),
@@ -421,9 +424,10 @@
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
-						/obj/item/ammo_magazine/smg/m39 = round(scale * 30),
+						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 30),
 						/obj/item/ammo_magazine/rifle = round(scale * 25),
 						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale * 25),
+						/obj/item/ammo_magazine/standard_lmg = round(scale * 30),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
@@ -442,7 +446,7 @@
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
 							/obj/item/ammo_magazine/pistol/ap = round(scale * 2),
-							/obj/item/ammo_magazine/smg/m39/ap = round(scale * 2)
+							/obj/item/ammo_magazine/smg/standard_smg/ap = round(scale * 2)
 							)
 
 		//Rebuild the vendor's inventory to make our changes apply
