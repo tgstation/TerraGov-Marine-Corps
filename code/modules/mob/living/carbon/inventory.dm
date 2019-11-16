@@ -13,7 +13,7 @@
 /mob/living/carbon/proc/update_legcuffed(obj/item/restraints/legcuffs/restraints)
 	if(restraints)
 		if(m_intent != MOVE_INTENT_WALK)
-			m_intent = MOVE_INTENT_WALK
+			toggle_move_intent(MOVE_INTENT_WALK)
 			if(hud_used?.move_intent)
 				hud_used.move_intent.icon_state = "walking"
 		legcuffed = restraints
@@ -32,17 +32,24 @@
 	if(I == back)
 		back = null
 		update_inv_back()
-		return ITEM_UNEQUIP_UNEQUIPPED
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_mask)
 		wear_mask = null
 		wear_mask_update(I)
-		return ITEM_UNEQUIP_UNEQUIPPED
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
 		update_handcuffed(null)
-		return ITEM_UNEQUIP_UNEQUIPPED
+		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == legcuffed)
 		update_legcuffed(null)
-		return ITEM_UNEQUIP_UNEQUIPPED
+		. = ITEM_UNEQUIP_UNEQUIPPED
+	if(. == ITEM_UNEQUIP_UNEQUIPPED)
+		if(isclothing(I))
+			var/obj/item/clothing/unequipped_clothing = I
+			if(unequipped_clothing.tint)
+				adjust_tinttotal(-unequipped_clothing.tint)
+			if(unequipped_clothing.accuracy_mod)
+				adjust_mob_accuracy(-unequipped_clothing.accuracy_mod)
 
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
@@ -50,5 +57,4 @@
 		if(hud_used?.internals)
 			hud_used.internals.icon_state = "internal0"
 		internal = null
-	update_tint()
 	update_inv_wear_mask()

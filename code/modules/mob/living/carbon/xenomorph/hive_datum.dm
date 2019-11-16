@@ -9,11 +9,13 @@
 	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
+	var/hive_flags = NONE
 	var/list/xeno_leader_list
 	var/list/list/xenos_by_typepath
 	var/list/list/xenos_by_tier
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
+	var/list/ssd_xenos
 
 // ***************************************
 // *********** Init
@@ -117,20 +119,17 @@
 			xenos += X
 	return xenos
 
-/datum/hive_status/proc/get_ssd_xenos(only_away=FALSE)
+/datum/hive_status/proc/get_ssd_xenos(only_away = FALSE)
 	var/list/xenos = list()
-	for(var/typepath in xenos_by_typepath)
-		for(var/i in xenos_by_typepath[typepath])
-			var/mob/living/carbon/xenomorph/X = i
-			if(is_centcom_level(X.z))
-				continue
-			if(X.client)
-				continue
-			if(isclientedaghost(X)) //To prevent adminghosted xenos to be snatched.
-				continue
-			if(only_away && X.afk_timer_id)
-				continue
-			xenos += X
+	for(var/i in ssd_xenos)
+		var/mob/living/carbon/xenomorph/ssd_xeno = i
+		if(is_centcom_level(ssd_xeno.z))
+			continue
+		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
+			continue
+		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		xenos += ssd_xeno
 	return xenos
 
 // ***************************************
@@ -153,6 +152,9 @@
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
+
+	if(X.afk_status != MOB_CONNECTED)
+		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
 
@@ -236,6 +238,8 @@
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
+	LAZYREMOVE(ssd_xenos, X)
+
 	remove_leader(X)
 
 	return TRUE
@@ -291,6 +295,17 @@
 	for(var/i in xeno_leader_list)
 		var/mob/living/carbon/xenomorph/X = i
 		X.handle_xeno_leader_pheromones(living_xeno_queen)
+
+// ***************************************
+// *********** Status changes
+// ***************************************
+/datum/hive_status/proc/on_xeno_logout(mob/living/carbon/xenomorph/ssd_xeno)
+	if(ssd_xeno.stat == DEAD)
+		return
+	LAZYADD(ssd_xenos, ssd_xeno)
+
+/datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
+	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
 
 // ***************************************
 // *********** Xeno upgrades
@@ -388,6 +403,10 @@
 	return
 
 
+/datum/hive_status/proc/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	return
+
+
 // safe for use by gamemode code, this allows per hive overrides
 /datum/hive_status/proc/end_queen_death_timer()
 	xeno_message("The Hive is ready for a new ruler to evolve.", 3, TRUE)
@@ -466,6 +485,7 @@ to_chat will check for valid clients itself already so no need to double check f
 // *********** Normal Xenos
 // ***************************************
 /datum/hive_status/normal // subtype for easier typechecking and overrides
+	hive_flags = HIVE_CAN_HIJACK
 	var/stored_larva = 0 // this hive has special burrowed larva
 	var/last_larva_time = 0
 
@@ -570,9 +590,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_mother) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	return spawn_larva(xeno_candidate, chosen_mother)
 
@@ -587,9 +612,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(QDELETED(chosen_silo) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!isnewplayer(xeno_candidate) && DEATHTIME_CHECK(xeno_candidate))
-		DEATHTIME_MESSAGE(xeno_candidate)
-		return FALSE
+	if(!isnewplayer(xeno_candidate) && XENODEATHTIME_CHECK(xeno_candidate))
+		if(check_other_rights(xeno_candidate.client, R_ADMIN, FALSE))
+			if(alert(xeno_candidate, "You wouldn't normally qualify for this respawn. Are you sure you want to bypass it with your admin powers?", "Bypass Respawn", "Yes", "No") != "Yes")
+				XENODEATHTIME_MESSAGE(xeno_candidate)
+				return FALSE
+		else
+			XENODEATHTIME_MESSAGE(xeno_candidate)
+			return FALSE
 
 	if(!stored_larva)
 		to_chat(xeno_candidate, "<span class='warning'>There are no longer burrowed larvas available.</span>")
@@ -637,6 +667,30 @@ to_chat will check for valid clients itself already so no need to double check f
 	stored_larva--
 
 	return new_xeno
+
+
+/datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
+	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
+	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, .proc/on_hijack_depart)
+
+
+/datum/hive_status/normal/proc/on_hijack_depart(datum/source, new_mode)
+	if(new_mode != SHUTTLE_CALL)
+		return
+	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
+	var/left_behind = 0
+	for(var/i in get_all_xenos())
+		var/mob/living/carbon/xenomorph/boarder = i
+		var/area/boarder_location = get_area(boarder)
+		if(istype(boarder_location, /area/shuttle/dropship/alamo))
+			continue
+		if(!is_ground_level(boarder.z))
+			continue
+		boarder.gib()
+		stored_larva++
+		left_behind++
+	if(left_behind)
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
 
 
 // ***************************************

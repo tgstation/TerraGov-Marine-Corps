@@ -135,6 +135,8 @@
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isclothing(A) (istype(A, /obj/item/clothing))
+
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
@@ -190,7 +192,7 @@
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
-#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.ckey, 2)])
+#define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext(living.ckey, 2)] && living.get_ghost())
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

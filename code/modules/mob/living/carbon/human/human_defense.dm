@@ -154,16 +154,15 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!I || !user)	return 0
-
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
-	user.do_attack_animation(src)
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
-	if(!target_zone)
-		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
-		return 0
+	else if(!prob(user.melee_accuracy))
+		user.do_attack_animation(src)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		user.visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
+		return FALSE
 
 	var/datum/limb/affecting = get_limb(target_zone)
 	if (!affecting)
@@ -188,14 +187,12 @@ Contains most of the procs that are called when a mob is attacked by something
 		weapon_sharp = 0
 		weapon_edge = 0
 
+	user.do_attack_animation(src, used_item = I)
+
 	if(armor >= 1) //Complete negation
 		return 0
 	if(!I.force)
 		return 0
-	if(weapon_sharp)
-		user.flick_attack_overlay(src, "punch")
-	else
-		user.flick_attack_overlay(src, "punch")
 
 	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
 	UPDATEHEALTH(src)
@@ -354,16 +351,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		w_uniform.add_mob_blood(source)
 		update_inv_w_uniform()
 
-
-/mob/living/carbon/human/proc/handle_suit_punctures(damtype, damage)
-	if(!wear_suit) return
-	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
-	if(damtype != BURN && damtype != BRUTE) return
-
-	var/obj/item/clothing/suit/space/SS = wear_suit
-	var/penetrated_dam = max(0,(damage - SS.breach_threshold)) // - SS.damage)) - Consider uncommenting this if suits seem too hardy on dev.
-
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
 
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.

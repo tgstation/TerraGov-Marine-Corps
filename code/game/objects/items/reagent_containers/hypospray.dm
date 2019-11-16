@@ -49,6 +49,8 @@
 		return
 	if(!istype(user))
 		return
+	if(!in_range(A, user) || !user.Adjacent(A))
+		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
@@ -106,7 +108,7 @@
 	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_NOVICE)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
-		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
 
 	if(ismob(A))

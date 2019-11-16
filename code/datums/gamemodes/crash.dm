@@ -48,7 +48,7 @@
 
 /datum/game_mode/crash/proc/init_scales()
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
-	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
+	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/crash_coefficient) * GLOB.ready_players)), xeno_required_num)
 
 	var/current_smartgunners = 0
 	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
@@ -109,22 +109,19 @@
 
 	// Launch shuttle
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
-		if(!shuttle.check_dock(D, silent=TRUE))
+	for(var/obj/docking_port/stationary/crashmode/potential_crash_site in SSshuttle.stationary)
+		if(!shuttle.check_dock(potential_crash_site, silent = TRUE))
 			continue
-		valid_docks += D
+		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
-		CRASH("No valid docks found for shuttle!")
+		CRASH("No valid crash sides found!")
 		return
-	var/obj/docking_port/stationary/target = pick(valid_docks)
-	if(!target || !istype(target))
-		CRASH("Unable to get a valid shuttle target!")
-		return
+	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
-	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
+	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
+	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
 
 
 /datum/game_mode/crash/setup()

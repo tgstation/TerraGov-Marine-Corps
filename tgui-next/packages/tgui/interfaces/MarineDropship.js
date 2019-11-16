@@ -25,7 +25,7 @@ export const MarineDropship = props => {
   ];
 
   return (
-    data.hijack_state ? (
+    data.hijack_state !== "hijack_state_normal" ? (
       <NoticeBox>
         <Box>POSSIBLE HIJACK</Box>
         <Box>SYSTEMS REBOOTING...</Box>

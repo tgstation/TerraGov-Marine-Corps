@@ -84,7 +84,7 @@
 	GLOB.round_statistics.now_pregnant++
 	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
-	C.apply_damage(100, HALLOSS)
+	C.apply_damage(100, STAMINA)
 	C.apply_damage(10, BRUTE, "chest")
 	UPDATEHEALTH(C)
 	C.emote("scream")

@@ -161,8 +161,7 @@
 		if (!temp)
 			break
 		T = temp
-	X.do_attack_animation(H)
-	X.flick_attack_overlay(H, "disarm")
+	X.do_attack_animation(H, ATTACK_EFFECT_DISARM2)
 	H.throw_at(T, fling_distance, 1, X, 1)
 
 	add_cooldown()
@@ -213,8 +212,7 @@
 	playsound(M, S, 50, 1)
 
 	M.punch_act(X, damage, target_zone)
-	X.do_attack_animation(M)
-	X.flick_attack_overlay(M, "punch")
+	X.do_attack_animation(M, ATTACK_EFFECT_YELLOWPUNCH)
 	shake_camera(M, 2, 1)
 	step_away(M, X, 2)
 
@@ -243,7 +241,7 @@
 	adjust_stagger(3)
 	add_slowdown(3)
 
-	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
 	UPDATEHEALTH(src)
 
 // ***************************************

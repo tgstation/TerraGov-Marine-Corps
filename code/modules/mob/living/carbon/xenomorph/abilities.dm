@@ -27,10 +27,10 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/C = owner
-	if(!length(C.stomach_contents))
+	var/mob/living/carbon/xenomorph/devourer = owner
+	if(!LAZYLEN(devourer.stomach_contents))
 		if(!silent)
-			to_chat(C, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
+			to_chat(devourer, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -429,7 +429,7 @@
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
-/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -680,6 +680,8 @@
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
+
+	X.add_slowdown(2)
 
 	add_cooldown()
 

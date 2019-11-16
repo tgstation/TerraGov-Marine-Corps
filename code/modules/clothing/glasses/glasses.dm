@@ -5,8 +5,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = FALSE
-	var/toggleable = 0
-	var/active = 1
+	var/toggleable = FALSE
+	var/active = TRUE
 	flags_inventory = COVEREYES
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
@@ -26,27 +26,42 @@
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
-		if(active)
-			active = 0
-			icon_state = deactive_state
-			user.update_inv_glasses()
-			to_chat(user, "You deactivate the optical matrix on [src].")
-			playsound(user, 'sound/items/googles_off.ogg', 15)
-		else
-			active = 1
-			icon_state = initial(icon_state)
-			user.update_inv_glasses()
-			to_chat(user, "You activate the optical matrix on [src].")
-			playsound(user, 'sound/items/googles_on.ogg', 15)
+		toggle_glasses(user)
 
-		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
-			if(H.glasses == src)
-				H.update_tint()
-				H.update_sight()
+/obj/item/clothing/glasses/proc/toggle_glasses(mob/user)
+	if(active)
+		deactivate_glasses(user)
+	else
+		activate_glasses(user)
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.glasses == src)
+			if(tint)
+				if(active)
+					H.adjust_tinttotal(tint)
+				else
+					H.adjust_tinttotal(-tint)
+			H.update_sight()
 
-		update_action_button_icons()
+	update_action_button_icons()
 
+
+/obj/item/clothing/glasses/proc/activate_glasses(mob/user, silent = FALSE)
+	active = TRUE
+	icon_state = initial(icon_state)
+	user.update_inv_glasses()
+	if(!silent)
+		to_chat(user, "You activate the optical matrix on [src].")
+		playsound(user, 'sound/items/googles_on.ogg', 15)
+
+
+/obj/item/clothing/glasses/proc/deactivate_glasses(mob/user, silent = FALSE)
+	active = FALSE
+	icon_state = deactive_state
+	user.update_inv_glasses()
+	if(!silent)
+		to_chat(user, "You deactivate the optical matrix on [src].")
+		playsound(user, 'sound/items/googles_off.ogg', 15)
 
 
 /obj/item/clothing/glasses/science
@@ -143,7 +158,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
-	tint = TINT_HEAVY
+	tint = TINT_5
 
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	toggle(user)
@@ -175,11 +190,13 @@
 	if(user)
 		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
 
-
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.glasses == src)
-			H.update_tint()
+		var/mob/living/carbon/human/wearer = loc
+		if(wearer.glasses == src)
+			if(active)
+				wearer.adjust_tinttotal(tint)
+			else
+				wearer.adjust_tinttotal(-initial(tint))
 
 	update_clothing_icon()
 
@@ -196,7 +213,7 @@
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	tint = TINT_MILD
+	tint = TINT_4
 
 
 
@@ -207,7 +224,7 @@
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
-	tint = TINT_MILD
+	tint = TINT_3
 	eye_protection = 1
 
 /obj/item/clothing/glasses/sunglasses/blindfold

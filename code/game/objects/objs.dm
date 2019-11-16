@@ -39,7 +39,7 @@
 	if (islist(armor))
 		armor = getArmor(arglist(armor))
 	else if (!armor)
-		armor = getArmor()
+		armor = getArmor(bio = 100)
 	else if (!istype(armor, /datum/armor))
 		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
 
@@ -139,26 +139,27 @@
 
 
 /obj/proc/unbuckle(mob/user, silent = TRUE)
-	buckled_mob.buckled = null
-	buckled_mob.anchored = initial(buckled_mob.anchored)
-	buckled_mob.update_canmove()
+	var/mob/buckled_mob_backup = buckled_mob
+	buckled_mob = null
+	buckled_mob_backup.buckled = null
+	buckled_mob_backup.anchored = initial(buckled_mob_backup.anchored)
+	buckled_mob_backup.update_canmove()
 
 	if(!silent)
-		if(buckled_mob == user)
-			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self!</span>",
+		if(buckled_mob_backup == user)
+			buckled_mob_backup.visible_message(
+			"<span class='notice'>[buckled_mob_backup] unbuckled [buckled_mob_backup.p_them()]self!</span>",
 			"<span class='notice'>You unbuckle yourself from [src].</span>",
 			"<span class='notice'>You hear metal clanking</span>"
 			)
 		else
-			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob] was unbuckled by [user]!</span>",
-			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			var/by_user = user ? " by [user]" : ""
+			buckled_mob_backup.visible_message(
+			"<span class='notice'>[buckled_mob_backup] was unbuckled[by_user]!</span>",
+			"<span class='notice'>You were unbuckled from [src][by_user]].</span>",
 			"<span class='notice'>You hear metal clanking.</span>"
 			)
 
-	var/buckled_mob_backup = buckled_mob
-	buckled_mob = null
 	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
 	afterbuckle(buckled_mob_backup)
 

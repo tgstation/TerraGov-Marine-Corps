@@ -281,7 +281,11 @@
 		holder.icon_state = "hudhealth-100"
 		return TRUE
 
-	var/perceived_health = health - traumatic_shock
+	var/perceived_health = health
+	if(!(species.species_flags & NO_PAIN))
+		perceived_health -= traumatic_shock
+	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
+		perceived_health -= staminaloss
 
 	switch(perceived_health)
 		if(100 to INFINITY)

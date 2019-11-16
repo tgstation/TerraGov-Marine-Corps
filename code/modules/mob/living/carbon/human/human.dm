@@ -35,6 +35,7 @@
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 
+
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -948,11 +949,12 @@
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
-
-	if(species)
-		return 1
-	else
-		return 0
+	
+	if(!(species.species_flags & NO_STAMINA))
+		AddComponent(/datum/component/stamina_behavior)
+		max_stamina_buffer = species.max_stamina_buffer
+		setStaminaLoss(-max_stamina_buffer)
+	return TRUE
 
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
@@ -1032,20 +1034,6 @@
 			else
 				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
-
-
-/mob/living/carbon/human/get_total_tint()
-	. = ..()
-	var/obj/item/clothing/C
-	if(istype(head, /obj/item/clothing/head))
-		C = head
-		. += C.tint
-	if(istype(wear_mask, /obj/item/clothing/mask))
-		C = wear_mask
-		. += C.tint
-	if(istype(glasses, /obj/item/clothing/glasses))
-		C = glasses
-		. += C.tint
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

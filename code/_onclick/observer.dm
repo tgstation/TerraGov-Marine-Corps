@@ -20,6 +20,9 @@
 	if(check_click_intercept(params, A))
 		return
 
+	if(SEND_SIGNAL(src, COMSIG_OBSERVER_CLICKON, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["middle"])
 		ShiftMiddleClickOn(A)
@@ -30,12 +33,10 @@
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return
-	if(modifiers["shift"])
-		ShiftClickOn(A)
+	if(modifiers["shift"] && ShiftClickOn(A))
 		return
 	if(modifiers["alt"])
-		AltClickNoInteract(src, A)
-		return
+		return //Disabled for now. Need to sanitize the AltClickOn procs.
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
 		return

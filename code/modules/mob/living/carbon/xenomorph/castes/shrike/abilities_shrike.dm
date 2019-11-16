@@ -145,11 +145,11 @@
 
 
 /datum/action/xeno_action/activable/unrelenting_force/use_ability(atom/target)
+	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
 	owner.icon_state = "Shrike Screeching"
-	var/facing = get_cardinal_dir(owner, target)
-	owner.setDir(facing)
+	owner.face_atom(target)
 
 	var/turf/lower_left
 	var/turf/upper_right
@@ -273,7 +273,7 @@
 
 	assailant.changeNext_move(CLICK_CD_RANGE)
 
-	assailant.flick_attack_overlay(victim, "grab")
+	assailant.do_attack_animation(victim, ATTACK_EFFECT_GRAB)
 
 	log_combat(assailant, victim, "psychically grabbed")
 

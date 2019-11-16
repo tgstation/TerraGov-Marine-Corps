@@ -67,27 +67,29 @@
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.
 			var/datum/unarmed_attack/attack = H.species.unarmed
-			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
-			if(!attack.is_usable(H)) return
+			if(!attack.is_usable(H))
+				attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
+				return FALSE
 
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "punch")
-
-			var/max_dmg = 5
-			if(H.mind && H.mind.cm_skills)
-				max_dmg += user.mind.cm_skills.cqc
-			var/damage = rand(0, max_dmg)
-			if(!damage)
-				playsound(loc, attack.miss_sound, 25, 1)
+			if(!H.melee_damage || !prob(H.melee_accuracy))
+				H.do_attack_animation(src)
+				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
-				return
+				return FALSE
+
+			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+			var/max_dmg = H.melee_damage
+			if(H.mind.cm_skills)
+				max_dmg += H.mind.cm_skills.cqc
+			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")
 
-			playsound(loc, attack.attack_sound, 25, 1)
+			playsound(loc, attack.attack_sound, 25, TRUE)
 
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))
@@ -102,8 +104,7 @@
 		if(INTENT_DISARM)
 			log_combat(user, src, "disarmed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "disarm")
+			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 
@@ -164,66 +165,89 @@
 	return
 
 
-
-
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= get_crit_threshold())
-		if(src == M)
-			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
-				holo_card_color = null
-				update_targeted()
-				visible_message("<span class='notice'>[src] removes the holo card on [gender==MALE?"himself":"herself"].</span>", \
-					"<span class='notice'>You remove the holo card on yourself.</span>", null, 3)
-				return
-			visible_message("<span class='notice'>[src] examines [gender==MALE?"himself":"herself"].</span>", \
-				"<span class='notice'>You check yourself for injuries.</span>", null, 3)
+	if(src == M)
+		if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
+			holo_card_color = null
+			update_targeted()
+			visible_message("<span class='notice'>[src] removes the holo card on [p_them()]self.</span>",
+				"<span class='notice'>You remove the holo card on yourself.</span>", null, 3)
+			return
 
-			for(var/datum/limb/org in limbs)
-				var/status = ""
-				var/treat = ""
-				var/brutedamage = org.brute_dam
-				var/burndamage = org.burn_dam
-				var/brute_treated = org.is_bandaged()
-				var/burn_treated = org.is_salved()
+		visible_message("<span class='notice'>[src] examines [p_them()]self.</span>",
+			"<span class='notice'>You check yourself for injuries.</span>", null, 3)
+		check_self_for_injuries()
+		return
 
-				if(halloss > 0)
-					status = "tingling"
-					if(brutedamage > 0 || burndamage > 0)
-						status += " and "
-
-				if(brutedamage > 0)
-					status += "bruised"
-				else if(brutedamage > 20)
-					status += "battered"
-				else if(brutedamage > 40)
-					status += "mangled"
-				if(brutedamage > 0 && burndamage > 0)
-					status += " and "
-				if(burndamage > 40)
-					status += "peeling away"
-
-				else if(burndamage > 10)
-					status += "blistered"
-				else if(burndamage > 0)
-					status += "numb"
-
-				if(!status) status = "OK"
-
-				if(org.limb_status & LIMB_SPLINTED)
-					status += " <b>(SPLINTED)</b>"
-				if(org.limb_status & LIMB_STABILIZED)
-					status += " <b>(STABILIZED)</b>"
-				if(org.limb_status & LIMB_MUTATED)
-					status = "weirdly shapen."
-				if(org.limb_status & LIMB_DESTROYED)
-					status = "MISSING!"
-
-				if(brute_treated == FALSE && brutedamage > 0)
-					treat = "(Bandaged)"
-				if(brute_treated == FALSE && burn_treated == FALSE && brutedamage > 0 && burndamage > 0)
-					treat += " and "
-				if(burn_treated == FALSE && burndamage > 0)
-					treat += "(Salved)"
-
-				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
 	return ..()
+
+
+/mob/living/carbon/human/proc/check_self_for_injuries()
+	var/list/final_msg = list()
+
+	for(var/datum/limb/org in limbs)
+		var/status = ""
+		var/treat = ""
+		var/brutedamage = org.brute_dam
+		var/burndamage = org.burn_dam
+		var/brute_treated = org.is_bandaged()
+		var/burn_treated = org.is_salved()
+
+		if(halloss > 0)
+			status = "tingling"
+			if(brutedamage > 0 || burndamage > 0)
+				status += " and "
+
+		switch(brutedamage)
+			if(1 to 20)
+				status += "bruised"
+			if(20 to 40)
+				status += "battered"
+			if(40 to INFINITY)
+				status += "mangled"
+
+		if(brutedamage > 0 && burndamage > 0)
+			status += " and "
+
+		switch(burndamage)
+			if(1 to 10)
+				status += "numb"
+			if(10 to 40)
+				status += "blistered"
+			if(40 to INFINITY)
+				status += "peeling away"
+
+		if(!status)
+			status = "OK"
+
+		if(org.limb_status & LIMB_SPLINTED)
+			status += " <b>(SPLINTED)</b>"
+		if(org.limb_status & LIMB_STABILIZED)
+			status += " <b>(STABILIZED)</b>"
+		if(org.limb_status & LIMB_MUTATED)
+			status = "weirdly shapen."
+		if(org.limb_status & LIMB_DESTROYED)
+			status = "MISSING!"
+
+		if(brute_treated == FALSE && brutedamage > 0)
+			treat = "(Bandaged"
+			if(burn_treated == FALSE && burndamage > 0)
+				treat += " and Salved)"
+			else
+				treat += ")"
+		else if(burn_treated == FALSE && burndamage > 0)
+			treat += "(Salved)"
+
+		final_msg += "\t [status=="OK" ? "<span class='notice'> " : "<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>"
+
+	switch(staminaloss)
+		if(1 to 30)
+			final_msg += "<span class='info'>You feel fatigued.</span>"
+		if(30 to 60)
+			final_msg += "<span class='info'>You feel pretty tired.</span>"
+		if(60 to 90)
+			final_msg += "<span class='info'>You're quite worn out.</span>"
+		if(90 to INFINITY)
+			final_msg += "<span class='info'>You're completely exhausted.</span>"
+
+	to_chat(src, final_msg.Join("\n"))

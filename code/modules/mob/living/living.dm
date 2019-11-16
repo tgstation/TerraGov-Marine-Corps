@@ -13,7 +13,7 @@
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
 	if(no_stun)//anti-chainstun flag for alien tackles
-		no_stun = max(0,no_stun - 1) //decrement by 1.
+		no_stun = max(0, no_stun - 1) //decrement by 1.
 
 	if(confused)
 		confused = max(0, confused - 1)
@@ -24,6 +24,7 @@
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
+
 
 /mob/living/proc/handle_organs()
 	reagent_move_delay_modifier = 0
@@ -60,6 +61,15 @@
 	return slurring
 
 
+/mob/living/proc/handle_staminaloss()
+	if(world.time < last_staminaloss_dmg + 3 SECONDS || (m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS))
+		return
+	if(staminaloss > 0)
+		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+	else if(staminaloss > -max_stamina_buffer)
+		adjustStaminaLoss(-max_stamina_buffer * 0.08, TRUE, FALSE)
+
+
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
@@ -86,7 +96,7 @@
 
 /mob/living/Initialize()
 	. = ..()
-	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
+	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
@@ -99,9 +109,6 @@
 			qdel(embedded) //This should remove the object from the list via temporarilyRemoveItemFromInventory() => COMSIG_ITEM_DROPPED.
 		else
 			embedded.unembed_ourself() //This should remove the object from the list directly.
-	if(attack_icon)
-		qdel(attack_icon)
-		attack_icon = null
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
@@ -425,32 +432,6 @@
 	set_frozen(FALSE)
 	update_canmove()
 
-//to make an attack sprite appear on top of the target atom.
-/mob/living/proc/flick_attack_overlay(atom/target, attack_icon_state)
-	set waitfor = 0
-
-	attack_icon.icon_state = attack_icon_state
-	attack_icon.pixel_x = -target.pixel_x
-	attack_icon.pixel_y = -target.pixel_y
-	target.overlays += attack_icon
-	var/old_icon = attack_icon.icon_state
-	var/old_pix_x = attack_icon.pixel_x
-	var/old_pix_y = attack_icon.pixel_y
-	sleep(4)
-	if(target)
-		var/new_icon = attack_icon.icon_state
-		var/new_pix_x = attack_icon.pixel_x
-		var/new_pix_y = attack_icon.pixel_x
-		attack_icon.icon_state = old_icon //necessary b/c the attack_icon can change sprite during the sleep.
-		attack_icon.pixel_x = old_pix_x
-		attack_icon.pixel_y = old_pix_y
-
-		target.overlays -= attack_icon
-
-		attack_icon.icon_state = new_icon
-		attack_icon.pixel_x = new_pix_x
-		attack_icon.pixel_y = new_pix_y
-
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
@@ -471,25 +452,28 @@
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
 	return FALSE
 
-/mob/living/update_tint()
-	tinttotal = get_total_tint()
+
+/mob/living/proc/adjust_tinttotal(tint_amount)
+	tinttotal += tint_amount
+	update_tint()
+
+
+/mob/living/proc/update_tint()
 	if(tinttotal >= TINT_BLIND)
 		blind_eyes(1)
 		return TRUE
 	else if(eye_blind == 1)
 		adjust_blindness(-1)
-	if(tinttotal == TINT_HEAVY)
-		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+	if(tinttotal)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, tinttotal)
 		return TRUE
 	else
 		clear_fullscreen("tint", 0)
 		return FALSE
 
-/mob/living/proc/get_total_tint()
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
-		if(src in C.stomach_contents)
-			. = TINT_BLIND
+/mob/living/proc/adjust_mob_accuracy(accuracy_mod)
+	ranged_accuracy_mod += accuracy_mod
+	
 
 /mob/living/proc/smokecloak_on()
 
@@ -626,7 +610,7 @@ below 100 is not dizzy
 		else
 			lying = 0
 
-	canmove =  !(stunned || frozen || laid_down)
+	set_canmove(!(stunned || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
@@ -647,6 +631,15 @@ below 100 is not dizzy
 			layer = initial(layer)
 
 	return canmove
+
+
+/mob/living/proc/set_canmove(newcanmove)
+	if(canmove == newcanmove)
+		return
+	canmove = newcanmove
+	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
+
+
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
 	return

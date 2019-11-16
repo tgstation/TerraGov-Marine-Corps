@@ -700,11 +700,12 @@ and you're good to go.
 		return ..()
 
 	if(M != user && user.a_intent == INTENT_HARM)
+		. = ..()
+		if(!.)
+			return
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			..()
 			Fire(M, user)
 			return TRUE
-		..()
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
@@ -743,7 +744,6 @@ and you're good to go.
 			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 			A.update_hud(user)
 		return TRUE
-
 
 	if(M != user || user.zone_selected != "mouth")
 		return ..()
@@ -784,16 +784,20 @@ and you're good to go.
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
 
-	if(projectile_to_fire.ammo.damage_type == HALLOSS)
-		to_chat(user, "<span class = 'notice'>Ow...</span>")
-		user.apply_effect(110, AGONY, 0)
-	else
-		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
-		user.apply_damage(100, OXY)
-		if(ishuman(user) && user == M)
-			var/mob/living/carbon/human/HM = user
-			HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
-		user.death()
+	switch(projectile_to_fire.ammo.damage_type)
+		if(HALLOSS)
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
+			user.apply_effect(110, AGONY)
+		if(STAMINA)
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
+			user.apply_damage(200, STAMINA)
+		else
+			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
+			user.apply_damage(100, OXY)
+			if(ishuman(user) && user == M)
+				var/mob/living/carbon/human/HM = user
+				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
+			user.death()
 
 	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 	last_fired = world.time
@@ -893,6 +897,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
+	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
 	if(flags_item & WIELDED && wielded_stable())
@@ -941,13 +946,16 @@ and you're good to go.
 				gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 		projectile_to_fire.firer = user
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			projectile_to_fire.def_zone = user.zone_selected
-			if(C.stagger)
-				gun_scatter += 30
+		if(isliving(user))
+			var/mob/living/living_user = user
+			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				projectile_to_fire.def_zone = user.zone_selected
+				if(carbon_user.stagger)
+					gun_scatter += 30
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 

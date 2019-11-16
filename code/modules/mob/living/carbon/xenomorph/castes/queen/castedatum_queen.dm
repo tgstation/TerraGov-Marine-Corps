@@ -9,20 +9,20 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 30
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 700
-	plasma_gain = 30
+	plasma_max = 900
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -37,7 +37,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
 	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
@@ -53,11 +53,11 @@
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
@@ -79,20 +79,20 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 50
+	melee_damage = 35
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 800
-	plasma_gain = 40
+	plasma_max = 1000
+	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
@@ -115,20 +115,20 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 55
+	melee_damage = 40
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 900
-	plasma_gain = 50
+	plasma_max = 1100
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 3200
@@ -151,20 +151,20 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 45
 
 	// *** Tackle *** //
-	tackle_damage = 60
+	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 50
+	plasma_max = 1200
+	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 3200

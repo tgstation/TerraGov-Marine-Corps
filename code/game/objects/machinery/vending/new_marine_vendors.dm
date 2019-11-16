@@ -292,6 +292,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	vendor_role = SQUAD_MARINE
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
 		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
@@ -302,12 +303,12 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/head/helmet/marine = list(CAT_HEL, "Regular Helmet", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3P = list(CAT_AMR, "Ballistic Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3E = list(CAT_AMR, "Edge Melee Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
@@ -390,9 +391,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3P = list(CAT_AMR, "Ballistic Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3E = list(CAT_AMR, "Edge Melee Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
@@ -448,9 +447,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3P = list(CAT_AMR, "Ballistic Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3E = list(CAT_AMR, "Edge Melee Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
@@ -806,8 +803,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 6, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 6, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -855,8 +852,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -889,8 +886,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -934,8 +931,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
@@ -975,9 +972,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/explosive/grenade/cloakbomb = list(CAT_LEDSUP, "Cloak grenade", 3, "black"),
 		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
 		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, "black"),
-		/obj/item/explosive/grenade/impact = list(CAT_LEDSUP, "M40 IMDP grenade", 3, "black"),
-		/obj/item/weapon/gun/rifle/lmg = list(CAT_LEDSUP, "M41AE2 heavy pulse rifle", 12, "orange"),
-		/obj/item/ammo_magazine/lmg = list(CAT_LEDSUP, "M41AE2 magazine", 4, "black"),
 		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, "orange"),
 		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
@@ -993,8 +987,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/smg/m39/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
-		/obj/item/ammo_magazine/smg/m39/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
+		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -1026,7 +1020,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
@@ -1036,7 +1029,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,

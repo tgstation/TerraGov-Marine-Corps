@@ -310,7 +310,6 @@
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade
 						)
 
@@ -706,7 +705,7 @@
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
+		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
@@ -970,7 +969,7 @@
 						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 3
+	fire_delay = 2
 	burst_amount = 7
 	recoil = 2
 	recoil_unwielded = 4
@@ -982,7 +981,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 		if(user.action_busy)
 			return
 		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+		if(!do_after(user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			return
 	return ..()
 

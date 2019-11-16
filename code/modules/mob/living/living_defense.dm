@@ -9,9 +9,7 @@
 	The armour percentage which is deducted om the damage.
 */
 /mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
-	var/armor = 0.00 //Define our float
-	armor = getarmor(def_zone, attack_flag) * 0.01 //Change the armour into a %
-	return armor
+	return getarmor(def_zone, attack_flag)
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -164,6 +162,10 @@
 /mob/living/carbon/xenomorph/ExtinguishMob()
 	. = ..()
 	set_light(0) //Reset lighting
+
+/mob/living/carbon/xenomorph/boiler/ExtinguishMob()
+	. = ..()
+	set_light(BOILER_LUMINOSITY)
 
 /mob/living/proc/update_fire()
 	return

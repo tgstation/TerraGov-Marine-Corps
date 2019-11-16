@@ -8,10 +8,10 @@
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(!S.melee_damage)
+			M.do_attack_animation(src)
 			S.emote("me", EMOTE_VISIBLE, "[S.friendly] [src]")
 		else
-			M.do_attack_animation(src)
-			M.flick_attack_overlay(src, "punch")
+			M.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
 			var/damage = S.melee_damage
 			apply_damage(damage, BRUTE)
@@ -30,7 +30,7 @@
 			if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
 				return 0
 			if(health > 0)
-				user.do_attack_animation(src)
+				user.do_attack_animation(src, ATTACK_EFFECT_BITE)
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				visible_message("<span class='danger'>\The [user] bites \the [src].</span>", \
 				"<span class='danger'>We are bit by \the [user].</span>", null, 5)
@@ -65,28 +65,25 @@
 
 			H.start_pulling(src)
 
-		else
+		if(INTENT_DISARM, INTENT_HARM)
 			var/datum/unarmed_attack/attack = H.species.unarmed
-			if(!attack.is_usable(H)) attack = H.species.secondary_unarmed
 			if(!attack.is_usable(H))
-				return 0
+				attack = H.species.secondary_unarmed
+			if(!attack.is_usable(H))
+				return FALSE
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "punch")
-
-			var/damage = rand(1, 3)
-			if(prob(85))
-				damage += attack.damage > 5 ? attack.damage : 0
-
-				playsound(loc, attack.attack_sound, 25, 1)
-				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
-				apply_damage(damage, BRUTE)
-				UPDATEHEALTH(src)
-			else
-				playsound(loc, attack.miss_sound, 25, 1)
+			if(!H.melee_damage || !prob(H.melee_accuracy))
+				H.do_attack_animation(src)
+				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				return FALSE
 
-	return
+			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+			playsound(loc, attack.attack_sound, 25, TRUE)
+			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+			apply_damage(melee_damage + attack.damage, BRUTE, "chest", armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
+			UPDATEHEALTH(src)
+
 
 //Hot hot Aliens on Aliens action.
 //Actually just used for eating people.
@@ -126,8 +123,8 @@
 					playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
 			if(INTENT_HARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-				M.do_attack_animation(src)
 				if(issamexenohive(M))
+					M.do_attack_animation(src)
 					M.visible_message("<span class='warning'>\The [M] nibbles \the [src].</span>", \
 					"<span class='warning'>We nibble \the [src].</span>", null, 5)
 					return 1
@@ -138,6 +135,7 @@
 
 					//Somehow we will deal no damage on this attack
 					if(!damage)
+						M.do_attack_animation(src)
 						playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
 						M.visible_message("<span class='danger'>\The [M] lunges at [src]!</span>", \
 						"<span class='danger'>We lunge at [src]!</span>", null, 5)
@@ -147,14 +145,13 @@
 					"<span class='danger'>We slash [src]!</span>", null, 5)
 					log_combat(M, src, "slashed")
 
-					M.flick_attack_overlay(src, "slash")
+					M.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 					playsound(loc, "alien_claw_flesh", 25, 1)
 					apply_damage(damage, BRUTE)
 					UPDATEHEALTH(src)
 
 			if(INTENT_DISARM)
-				M.do_attack_animation(src)
-				M.flick_attack_overlay(src, "disarm")
+				M.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				M.visible_message("<span class='warning'>\The [M] shoves \the [src]!</span>", \
 				"<span class='warning'>We shove \the [src]!</span>", null, 5)

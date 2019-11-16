@@ -16,7 +16,7 @@
 
 	var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
 	if(countdown)
-		dat += "Orphan hivemind collapse in [countdown]<br>"
+		dat += "<b>Orphan hivemind collapse in [countdown]</b><br>"
 
 	dat += "<b>Evacuation:</b> "
 	switch(SSevacuation.evac_status)

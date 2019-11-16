@@ -85,7 +85,7 @@
 	if(!SSticker)
 		return
 
-	if(statpanel("Game"))
+	if(statpanel("Status"))
 		stat("Game Mode:", "[GLOB.master_mode]")
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
@@ -457,18 +457,21 @@
 	spawning = TRUE
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/H = new(loc)
-
+	var/mob/living/carbon/human/spawning_human = new(loc)
+	GLOB.joined_player_list += ckey
 
 	if(!is_banned_from(ckey, "Appearance"))
-		client.prefs.copy_to(H)
+		client.prefs.copy_to(spawning_human)
+
+	update_names_joined_list(spawning_human.real_name)
+
 	if(mind)
 		if(transfer_after)
 			mind.late_joiner = TRUE
 		mind.active = FALSE					//we wish to transfer the key manually
-		mind.transfer_to(H)					//won't transfer key since the mind is not active
+		mind.transfer_to(spawning_human)	//won't transfer key since the mind is not active
 
-	. = H
+	. = spawning_human
 	new_character = .
 	if(transfer_after)
 		transfer_character()

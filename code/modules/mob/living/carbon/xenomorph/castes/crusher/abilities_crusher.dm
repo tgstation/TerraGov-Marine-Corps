@@ -30,7 +30,7 @@
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
-			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee") * 0.5) //Only 50% armor applies vs stomp brute damage
+			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee"))
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -41,7 +41,7 @@
 			M.knock_down(1)
 		else
 			M.stun(1) //Otherwise we just get stunned.
-		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
+		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
 
@@ -54,7 +54,7 @@
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 40
-	cooldown_timer = 6 SECONDS
+	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
@@ -124,8 +124,8 @@
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee")) //Armour functions against this.
-		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee"))
+		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)

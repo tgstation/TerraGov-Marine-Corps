@@ -77,10 +77,10 @@
 	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
 		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
-		counter++
+		counter += 2 //Free burst time in ~10 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
+		counter += 2 //Accelerates larval growth somewhat. You don't want this stuff in your body. Larva hits Stage 5 in exactly 5 minutes (lower if healthy and nested), assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0

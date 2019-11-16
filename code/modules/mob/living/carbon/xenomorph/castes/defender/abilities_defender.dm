@@ -70,7 +70,7 @@
 		affecting = H.get_limb("chest") //Gotta have a torso?!
 	var/armor_block = H.run_armor_check(affecting, "melee")
 	H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
-	H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+	H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 	UPDATEHEALTH(H)
 	shake_camera(H, 2, 1)
 
@@ -139,7 +139,7 @@
 				affecting = H.get_limb("chest") //Gotta have a torso?!
 			var/armor_block = H.run_armor_check(affecting, "melee")
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
-			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 			UPDATEHEALTH(H)
 			H.knock_down(1, 1)
 		GLOB.round_statistics.defender_tail_sweep_hits++

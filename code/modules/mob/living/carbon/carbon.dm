@@ -4,10 +4,11 @@
 
 
 /mob/living/carbon/Destroy()
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
-		C.stomach_contents -= src
-	stomach_contents.Cut()
+	if(afk_status == MOB_RECENTLY_DISCONNECTED)
+		set_afk_status(MOB_DISCONNECTED)
+	if(isxeno(loc))
+		var/mob/living/carbon/xenomorph/devourer = loc
+		devourer.do_regurgitate(src)
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
@@ -23,13 +24,9 @@
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE)) return
-	if(user in src.stomach_contents)
-		if(user.client)
-			user.client.move_delay = world.time + 20
-		if(prob(30))
-			audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", null, 4)
-	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
+	if(user.incapacitated(TRUE))
+		return
+	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 
@@ -143,43 +140,43 @@
 	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
-/mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if(health >= get_crit_threshold())
-		if(src != M)
-			var/t_him = "it"
-			if (gender == MALE)
-				t_him = "him"
-			else if (gender == FEMALE)
-				t_him = "her"
-			if(lying || sleeping)
-				if(client)
-					adjust_sleeping(-5)
-				if(sleeping == 0)
-					set_resting(FALSE)
-				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
-									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
-				adjust_knockedout(-3)
-				adjust_stunned(-3)
-				adjust_knocked_down(-3)
+/mob/living/carbon/proc/help_shake_act(mob/living/carbon/shaker)
+	if(health < get_crit_threshold())
+		return
 
-				if(halloss > 0)
-					var/halloss_mod = 1
-					if(ishuman(src))
-						var/mob/living/carbon/human/H = src
-						if(H.protection_aura)
-							halloss_mod += 0.5 + 0.5 * H.protection_aura //SL Hold Aura bonus: +100% of the normal recovery bonus, SO: +150%, XO/CO: +200%
-					adjustHalLoss(REST_HALLOSS_RECOVERY_RATE * halloss_mod) //UP AND AT THEM SOLDIER!!
+	if(src == shaker)
+		return
 
+	if(lying || sleeping)
+		if(client)
+			adjust_sleeping(-5)
+		if(sleeping == 0)
+			set_resting(FALSE)
+		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
+			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-			else
-				var/mob/living/carbon/human/H = M
-				if(istype(H))
-					H.species.hug(H,src)
-				else
-					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
-								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
+		if(knocked_out)
+			adjust_knockedout(-3)
+		if(stunned)
+			adjust_stunned(-3)
+		if(knocked_down)
+			if(staminaloss)
+				adjustStaminaLoss(-20, FALSE)
+			adjust_knocked_down(-3)
 
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+		return
+
+	if(ishuman(shaker))
+		var/mob/living/carbon/human/shaker_human = shaker
+		shaker_human.species.hug(shaker_human, src)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+		return
+
+	shaker.visible_message("<span class='notice'>[shaker] hugs [src] to make [p_them()] feel better!</span>",
+		"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>", null, 4)
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
+
 
 //Throwing stuff
 
@@ -200,7 +197,7 @@
 		hud_used.throw_icon.icon_state = "act_throw_on"
 
 /mob/proc/throw_item(atom/target)
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_MOB_THROW, target)
 
 
@@ -414,3 +411,53 @@
 		see_invisible = see_override
 
 	return ..()
+
+
+//AFK STATUS
+/mob/living/carbon/proc/set_afk_status(new_status, afk_timer)
+	switch(new_status)
+		if(MOB_CONNECTED, MOB_DISCONNECTED)
+			if(afk_timer_id)
+				deltimer(afk_timer_id)
+				afk_timer_id = null
+		if(MOB_RECENTLY_DISCONNECTED)
+			if(afk_status == MOB_RECENTLY_DISCONNECTED)
+				if(timeleft(afk_timer_id) > afk_timer)
+					deltimer(afk_timer_id) //We'll go with the shorter timer.
+				else
+					return
+			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+	afk_status = new_status
+	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
+
+
+/mob/living/carbon/proc/on_sdd_grace_period_end()
+	if(stat == DEAD)
+		return FALSE
+	if(isclientedaghost(src))
+		return FALSE
+	set_afk_status(MOB_DISCONNECTED)
+	return TRUE
+
+/mob/living/carbon/human/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	log_admin("[key_name(src)] (Job: [job]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [job]) has been away for 15 minutes.")
+
+/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	if(client)
+		return
+
+	var/mob/picked = get_alien_candidate()
+	if(!picked)
+		return
+
+	SSticker.mode.transfer_xeno(picked, src)
+
+	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')

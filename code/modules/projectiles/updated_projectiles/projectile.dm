@@ -502,9 +502,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
-		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(turf_to_scan, src)
-
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
 
@@ -598,7 +595,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(lying && src != proj.original_target)
 		return FALSE
-	if(proj.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && (isnestedhost(src) || stat == DEAD))
+	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
@@ -666,11 +663,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses you!</span>", null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses us!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses us!</span>", null, 4)
 
 
 /mob/living/do_projectile_hit(obj/item/projectile/proj)

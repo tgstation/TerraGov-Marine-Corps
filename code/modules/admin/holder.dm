@@ -412,6 +412,7 @@ GLOBAL_PROTECT(admin_verbs_fun)
 	/datum/admins/proc/toggle_join,
 	/datum/admins/proc/toggle_respawn,
 	/datum/admins/proc/set_respawn_time,
+	/datum/admins/proc/set_xenorespawn_time,
 	/datum/admins/proc/end_round,
 	/datum/admins/proc/delay_start,
 	/datum/admins/proc/delay_end,
@@ -541,17 +542,6 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((SSticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
-
-
-/proc/afk_message(mob/living/carbon/human/H)
-	if(QDELETED(H))
-		return
-	if(H.stat == DEAD)
-		return
-	if(isclientedaghost(H))
-		return
-	log_admin("[key_name(H)] (Job: [H.job]) has been away for 15 minutes.")
-	message_admins("[ADMIN_TPMONTY(H)] (Job: [H.job]) has been away for 15 minutes.")
 
 
 /client/proc/find_stealth_key(txt)
