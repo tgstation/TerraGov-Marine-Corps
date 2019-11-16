@@ -36,11 +36,10 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	overdose_threshold = REAGENTS_OVERDOSE //I want the 30% chance of the "nauseous message
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 2 //100u
-	purge_list = list(/datum/reagent/all) //Slowly washes out chems in you.
-	purge_rate = 1
 	taste_description = "hydration"
 
 /datum/reagent/water/on_mob_life(mob/living/L, metabolism)
+	L.reagents.remove_all_type(/datum/reagent, REM, 0, 1) //slowly washes out chems in you
 	if(volume < 4)
 		L.adjustStaminaLoss(-10*REM)
 		L.adjustBruteLoss(-0.2, 0)
