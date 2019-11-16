@@ -387,7 +387,6 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-					/obj/item/reagent_containers/hypospray/autoinjector/neuraline = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
