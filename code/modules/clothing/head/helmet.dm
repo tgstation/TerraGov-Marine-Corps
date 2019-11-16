@@ -305,6 +305,15 @@
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/grenadier
+	name = "\improper B17 helmet"
+	desc = "A heavy duty helmet created to compliment the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
+	icon_state = "grenadier_helmet"
+	armor = list("melee" = 80, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 55, "rad" = 15, "fire" = 65, "acid" = 70)
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
+	resistance_flags = UNACIDABLE
+	anti_hug = 4
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"

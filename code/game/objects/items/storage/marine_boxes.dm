@@ -257,8 +257,8 @@
 /obj/item/storage/box/grenade_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/m92(src)
-	new /obj/item/storage/belt/grenade/b18(src)
-
+	new /obj/item/storage/belt/grenade/b17(src)
+    
 
 /obj/item/storage/box/rocket_system
 	name = "\improper M5 RPG crate"
@@ -461,7 +461,7 @@
 
 /obj/item/storage/box/spec/heavy_grenadier
 	name = "\improper Heavy Grenadier case"
-	desc = "A large case containing B18 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing B17 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -469,15 +469,17 @@
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
-	spec_set = "heavy gunner"
+	spec_set = "heavy grenadier"
 
 /obj/item/storage/box/spec/heavy_grenadier/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/m92(src)
-	new /obj/item/storage/belt/grenade/b18(src)
-	new /obj/item/clothing/gloves/marine/specialist(src)
-	new /obj/item/clothing/suit/storage/marine/specialist(src)
-	new /obj/item/clothing/head/helmet/marine/specialist(src)
+	new /obj/item/storage/belt/grenade/b17(src)
+	new /obj/item/clothing/suit/storage/marine/B17(src)
+	new /obj/item/clothing/head/helmet/marine/grenadier(src)
+	new /obj/item/storage/box/nade_box(src)
+	new /obj/item/storage/box/nade_box(src)
+	new /obj/item/storage/box/nade_box/HIDP(src)
 
 
 /obj/item/storage/box/spec/heavy_gunner
@@ -485,7 +487,7 @@
 	desc = "A large case containing B18 armor, munitions, and a goddamn minigun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
-	spec_set = "heavy grenadier"
+	spec_set = "heavy gunner"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 16
 	slowdown = 1

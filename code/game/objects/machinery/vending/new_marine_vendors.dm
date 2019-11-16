@@ -906,7 +906,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 //todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
-GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set"))
+GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set","Heavy Gunner Set", "Pyro Set"))
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -920,8 +920,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/storage/box/spec/scout = list(CAT_ESS, "Scout Set (Battle Rifle)", 0, "white"),
 		/obj/item/storage/box/spec/sniper = list(CAT_ESS, "Sniper Set", 0, "white"),
 		/obj/item/storage/box/spec/demolitionist = list(CAT_ESS, "Demolitionist Set", 0, "white"),
-		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Armor Set (Grenadier)", 0, "white"),
-		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Armor Set (Minigun)", 0, "white"),
+		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Grenadier Set", 0, "white"),
+		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Gunner Set", 0, "white"),
 		/obj/item/storage/box/spec/pyro = list(CAT_ESS, "Pyro Set", 0, "white"),
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
