@@ -12,6 +12,10 @@
 	name = "\improper North Shipping Area"
 	icon_state = "north"
 
+/area/desert/interior/shipping/central
+	name = "\improper Central Shipping Area"
+	icon_state = "purple"
+
 /area/desert/interior/shipping/south
 	name = "\improper South Shipping Area"
 	icon_state = "south"
