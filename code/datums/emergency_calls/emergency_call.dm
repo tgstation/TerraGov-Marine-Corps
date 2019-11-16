@@ -280,7 +280,7 @@
 	if(!istype(spawn_loc))
 		CRASH("[type] failed to find a proper spawn_loc")
 
-	return new spawn_type(spawn_loc)
+	return spawn_type ? new spawn_type(spawn_loc) : spawn_loc
 
 
 /datum/emergency_call/proc/spawn_items() //Allows us to spawn various things around the shuttle.

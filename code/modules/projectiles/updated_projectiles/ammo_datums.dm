@@ -370,8 +370,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
 	hud_state = "smg_light"
-	damage = 30
-	penetration = 5
+	damage = 23
+	penetration = 0
 	accuracy = -10
 
 /*
@@ -447,6 +447,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -15
 	damage = 30
 	penetration = 20
+
+/datum/ammo/bullet/rifle/standard_dmr
+	name = "10x27mm caseless"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	flags_ammo_behavior = AMMO_BALLISTIC
+	accurate_range_min = 0
+	damage = 70
+	scatter = -15
+	penetration = 15
 
 /*
 //================================================
@@ -678,6 +690,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "crude sniper bullet"
 	hud_state = "sniper_crude"
 	iff_signal = null
+	damage = 65
+	penetration = 40
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
@@ -800,7 +814,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke = new
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, -1, 2, 4, 5)
+	explosion(T, -1, 3, 5, 5)
 	set_smoke()
 	smoke.set_up(1, T)
 	smoke.start()
@@ -823,7 +837,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 250
+	damage = 300
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
@@ -851,7 +865,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 120
+	damage = 150
 	max_range = 20
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
@@ -861,13 +875,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	smoke.set_up(1, T)
 	smoke.start()
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 25, 25, 25, 15)
+	flame_radius(radius, T, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
-	damage = 150
+	damage = 200
 	max_range = 30
 
 /datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)

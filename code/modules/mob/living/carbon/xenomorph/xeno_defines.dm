@@ -136,6 +136,7 @@
 	var/max_grown = 200
 	var/time_of_birth
 
+	var/list/stomach_contents
 	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
@@ -210,9 +211,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Runner vars
-	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
 
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen

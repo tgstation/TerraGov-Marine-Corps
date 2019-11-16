@@ -2297,8 +2297,8 @@
 /area/whiskey_outpost/outside/east)
 "gn" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "go" = (
@@ -3765,7 +3765,7 @@
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/south)
 "lx" = (
-/obj/item/weapon/gun/rifle/m41a,
+/obj/item/weapon/gun/rifle/m41a1,
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/south)
 "ly" = (
