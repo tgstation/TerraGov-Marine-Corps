@@ -50,6 +50,7 @@
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x24mm caseless" //codex
     max_shells = 24 //codex
+   	force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
 						/obj/item/attachable/reddot,
@@ -72,7 +73,7 @@
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
 
-    fire_delay = 0.45 SECONDS
+    fire_delay = 0.4 SECONDS
     burst_delay = 0.10 SECONDS
     accuracy_mult = 1.10
     scatter = -5
@@ -94,6 +95,7 @@
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x24mm caseless" //codex
     max_shells = 50 //codex
+    force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
     attachable_allowed = list(
 						/obj/item/attachable/reddot,
