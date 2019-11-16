@@ -345,6 +345,11 @@
 	name = "tricordrazine pill bottle"
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	
+/obj/item/storage/pill_bottle/paracetamol
+	name = "\improper Paracetamol pill bottle"
+	icon_state = "pill_canister1"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
@@ -354,7 +359,7 @@
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
-	desc = "Containts highly illegal drugs. Trade brain for speed."
+	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
