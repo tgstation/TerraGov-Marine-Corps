@@ -69,7 +69,7 @@
 	update_icon()
 
 
-/mob/living/carbon/human/proc/get_ghost()
+/mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
