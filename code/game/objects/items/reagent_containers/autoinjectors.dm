@@ -54,7 +54,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 3
 	icon_state = "autoinjector-2"
-	list_reagents = list(/datum/reagent/medicine/dexalinplus = 1)
+	list_reagents = list(/datum/reagent/medicine/dexalinplus = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin
 	name = "anesthetic autoinjector"
