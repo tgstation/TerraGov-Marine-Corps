@@ -40,7 +40,7 @@
 //T18 Carbine
 
 /obj/item/ammo_magazine/rifle/standard_carbine
-	name = "\improper T-18 magazine (10x24mm)"
+	name = "\improper T-18 Carbine magazine (10x24mm)"
 	desc = "A 10mm Carbine magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t18"
@@ -53,7 +53,7 @@
 //T12 Assault Rifle
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	name = "\improper T-12 magazine (10x24mm)"
+	name = "\improper T-12 Assault Rifle magazine (10x24mm)"
 	desc = "A 10mm Carbine magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t12"
@@ -124,7 +124,7 @@
 //T-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper T-42 drum magazine (10x24mm)"
+	name = "\improper T-42 LMG drum magazine (10x24mm)"
 	desc = "A drum magazine for the T-42 Light Machine Gun."
 	icon_state = "t42"
 	caliber = "10x24mm caseless"

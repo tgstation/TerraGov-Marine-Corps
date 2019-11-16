@@ -1166,8 +1166,6 @@ ATTACHMENTS
 	contains = list(
 					/obj/item/attachable/stock/revolver,
 					/obj/item/attachable/stock/revolver,
-					/obj/item/attachable/stock/rifle,
-					/obj/item/attachable/stock/rifle,
 					/obj/item/attachable/stock/shotgun,
 					/obj/item/attachable/stock/shotgun,
 					/obj/item/attachable/stock/smg,
@@ -1191,19 +1189,6 @@ ATTACHMENTS
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper stock revolver attachment crate"
-	group = "Attachments"
-
-/datum/supply_packs/stock_rifle
-	name = "rifle stock attachment crate (x4)"
-	contains = list(
-					/obj/item/attachable/stock/rifle,
-					/obj/item/attachable/stock/rifle,
-					/obj/item/attachable/stock/rifle,
-					/obj/item/attachable/stock/rifle
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate
-	containername = "\improper rifle stock attachment crate"
 	group = "Attachments"
 
 /datum/supply_packs/stock_shotgun

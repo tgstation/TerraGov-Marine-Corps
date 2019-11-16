@@ -264,7 +264,6 @@
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
 					/obj/item/attachable/stock/shotgun = round(scale * 4),
-					/obj/item/attachable/stock/rifle = round(scale * 4) ,
 					/obj/item/attachable/stock/revolver = round(scale * 4),
 					/obj/item/attachable/stock/smg = round(scale * 4) ,
 					/obj/item/attachable/stock/tactical = round(scale * 3),

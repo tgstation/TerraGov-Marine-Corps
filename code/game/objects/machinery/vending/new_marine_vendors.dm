@@ -351,7 +351,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0,"orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0,"black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0,"black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0,"black"),
 	)
@@ -815,7 +814,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -862,7 +860,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -894,7 +891,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -937,7 +933,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -991,7 +986,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)

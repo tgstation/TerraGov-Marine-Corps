@@ -652,7 +652,6 @@
 						/obj/item/attachable/stock/smg = 3,
 						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/shotgun = 3,
-						/obj/item/attachable/stock/rifle = 3 ,
 						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/flamer = 3,
