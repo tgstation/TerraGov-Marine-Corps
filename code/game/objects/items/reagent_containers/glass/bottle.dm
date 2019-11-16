@@ -218,6 +218,20 @@
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/iron = 30, /datum/reagent/consumable/sugar = 30)
 
+
+/obj/item/reagent_containers/glass/bottle/alkysine
+	name = "\improper Alkysine bottle"
+	desc = "A small bottle. Contains alkysine, used as a treatment for brain damage, or the weakest possible painkiller."
+	icon_state = "bottle2"
+	list_reagents = list(/datum/reagent/medicine/alkysine =60)
+
+
+/obj/item/reagent_containers/glass/bottle/synaptizine
+	name = "\improper synaptizine bottle"
+	desc = "A small bottle. Contains synaptizine, a decent anti-stun chemical, and a very weak painkiller.."
+	icon_state = "bottle18"
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 60)
+
 /obj/item/reagent_containers/glass/bottle/neurotoxin
 	name = "\improper Neurotoxin bottle"
 	desc = "A small bottle. Contains artificialy synthesized neurotoxin- useful for testing treatments, or training troops."
