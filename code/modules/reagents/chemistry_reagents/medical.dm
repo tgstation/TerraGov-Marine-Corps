@@ -274,13 +274,14 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin/all, datum/reagent/consumable/drink/coffee) 
-	purge_rate = 15 //rate at which it purges specific chems
+	purge_list = list(datum/reagent/consumable/drink/coffee) 
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
+	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 2)
 	L.drowsyness = max(L.drowsyness- 2 * REM, 0)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
