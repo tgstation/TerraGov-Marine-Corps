@@ -530,6 +530,7 @@
 	desc = "The older brother of the B18. Practically an armored EOD suit made for use by close quarter explosive experts."
 	icon_state = "grenadier"
 	armor = list("melee" = 65, "bullet" = 70, "laser" = 45, "energy" = 50, "bomb" = 100, "bio" = 50, "rad" = 20, "fire" = 70, "acid" = 60)
+	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
