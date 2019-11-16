@@ -125,8 +125,7 @@
 			if(9 to 10)
 				icon_state = "deco_wall[r2]"
 	else
-
-
+		icon_state = "[walltype][junction]"
 
 //tyson
 /turf/closed/wall/tyson

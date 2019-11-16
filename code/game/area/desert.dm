@@ -4,40 +4,56 @@
 	icon_state = "blue"
 	ceiling = CEILING_METAL
 
+/area/desert/interior/shipping
+	name = "\improper Shipping Area"
+	icon_state = "hallC1"
+
+/area/desert/interior/shipping/north
+	name = "\improper North Shipping Area"
+	icon_state = "north"
+
+/area/desert/interior/shipping/south
+	name = "\improper South Shipping Area"
+	icon_state = "south"
+
+/area/desert/interior/shipping/east
+	name = "\improper East Shipping Area"
+	icon_state = "east"
+
 /area/desert/interior/main_building
-	name = "\improper central hub"
+	name = "\improper Facility Central Hub"
 	icon_state = "hallC1"
 
 /area/desert/interior/engineering/
-	name = "\improper engineering"
+	name = "\improper Facility Engineering"
 	icon_state = "engine_hallway"
 
 /area/desert/interior/security
-	name = "\improper security"
+	name = "\improper Facility Security"
 	icon_state = "security"
 
 /area/desert/interior/command
-	name = "\improper command room"
+	name = "\improper Facility Command Room"
 	icon_state = "bridge"
 
 /area/desert/interior/command/office
-	name = "\improper Administration"
+	name = "\improper Facility Administration"
 	icon_state = "mechbay"
 
 /area/desert/interior/medbay
-	name = "\improper medical bay"
+	name = "\improper Facility Medical Bay"
 	icon_state = "medbay"
 
 /area/desert/interior/engineering/atmospherics
-	name = "\improper atmospherics"
+	name = "\improper Atmospherics Substation"
 	icon_state = "atmos"
 
 /area/desert/interior/science/
-	name = "\improper science laboratory"
+	name = "\improper Facility Science Lab"
 	icon_state = "mechbay"
 
 /area/desert/interior/toilet
-	name = "\improper toilets"
+	name = "\improper Facility Toilets"
 	icon_state = "yellow"
 
 /area/desert/outside
