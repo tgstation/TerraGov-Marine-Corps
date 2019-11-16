@@ -274,7 +274,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(datum/reagent/consumable/drink/coffee) 
+	purge_list = list(/datum/reagent/consumable/drink/coffee) 
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
