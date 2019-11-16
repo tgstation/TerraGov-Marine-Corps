@@ -19,9 +19,6 @@ endmap
 map bigred_v2
 endmap
 
-map ice_colony_v2
-endmap
-
 map prison_station_fop
 endmap
 
