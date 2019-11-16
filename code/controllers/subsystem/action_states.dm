@@ -1,25 +1,22 @@
 //Handles the state_process() side of action_states
-PROCESSING_SUBSYSTEM_DEF(actionstate)
-	name = "AI action states"
-	flags = SS_NO_INIT
-	wait = 0.5 SECONDS
+SUBSYSTEM_DEF(actionstate)
+	name = "AI action states processing"
+	wait = 1 SECONDS
+	priority = FIRE_PRIORITY_ACTION_STATES
 	var/list/action_states = list()
 
-/datum/controller/subsystem/processing/actionstate/Initialize()
-	for(var/datum/element/action_state/action in subtypesof(/datum/element/action_state))
-		action_states += new action(src)
+	var/list/processing = list()
+	var/list/currentrun = list()
 
-	return ..()
-
-/datum/controller/subsystem/processing/actionstate/fire()
-	if (!resumed)
+/datum/controller/subsystem/actionstate/fire(resumed = FALSE)
+	if(!resumed)
 		src.currentrun = processing.Copy()
-	var/list/currentrun = src.currentrun
-	while(currentrun.len)
+	var/list/current_run = src.currentrun
+	while(current_run.len)
 		var/datum/element/action_state/thing = current_run[current_run.len]
 		current_run.len--
 		if(QDELETED(thing))
 			processing -= thing
-		state_process(thing)
+		thing.state_process()
 		if (MC_TICK_CHECK)
 			return

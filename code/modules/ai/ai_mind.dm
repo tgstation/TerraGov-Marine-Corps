@@ -14,11 +14,12 @@
 		stack_trace("AI mind had a qdel'd component after being late initialized. Removing it.")
 		qdel(src)
 		return
-	parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
+	//parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
 
 /datum/ai_mind/proc/action_completed(reason) //Parent component action state was completed, let's give it something else to do
 	switch(reason)
 		if(FINISHED_MOVE)
-			parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
+			return
+			//parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
 
 /datum/ai_mind/proc/Process() //Processes every AI subsystem tick

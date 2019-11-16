@@ -10,7 +10,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/turf/lastturf //If this is the same as parentmob turf at HandleMovement() then we made no progress in moving, do HandleObstruction from there
 	var/obj/effect/AINode/current_node //Current node the parentmob is at
 	var/move_delay = 0 //The next world.time we can do a move at
-	var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
+	//var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
 	var/datum/ai_mind/mind //Controls bsaic things like what to do once a action is completed or ability activations
 	var/atom/atom_to_walk_to //An atom for the overall AI to walk to
@@ -36,7 +36,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	mind.late_init()
 	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/qdel_self)
 	START_PROCESSING(SSprocessing, src)
-	ProcessMove() //Start that infinite loop of moving
+	AddElement(/datum/element/action_state/move_to_atom/node, pick(current_node.datumnode.adjacent_nodes), 1)
 
 /datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
 	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
@@ -58,6 +58,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 /datum/component/ai_behavior/proc/action_completed(reason) //Action state was completed, let's replace it with something else
 	mind.action_completed(reason)
 
+/*
 //Tile by tile movement electro boogaloo
 /datum/component/ai_behavior/proc/ProcessMove()
 	if(!QDELETED(action_state))
@@ -90,3 +91,4 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 			move_delay = world.time + totalmovedelay
 			addtimer(CALLBACK(src, .proc/ProcessMove), totalmovedelay)
 			return
+*/
