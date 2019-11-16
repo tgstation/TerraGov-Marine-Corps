@@ -219,87 +219,92 @@
 
 /mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code
-	var/equipped = 0
+	var/equipped = FALSE
+	var/in_storage = FALSE
 	switch(slot)
 		if(SLOT_BACK)
 			if(!src.back)
 				src.back = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_WEAR_MASK)
 			if(!src.wear_mask)
 				src.wear_mask = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
 				update_handcuffed(W)
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_BELT)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_WEAR_ID)
 			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_EARS)
 			if(!wear_ear)
 				wear_ear = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_GLASSES)
 			if(!src.glasses)
 				src.glasses = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_GLOVES)
 			if(!src.gloves)
 				src.gloves = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_HEAD)
 			if(!src.head)
 				src.head = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_SHOES)
 			if(!src.shoes)
 				src.shoes = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_WEAR_SUIT)
 			if(!src.wear_suit)
 				src.wear_suit = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_W_UNIFORM)
 			if(!src.w_uniform)
 				src.w_uniform = W
-				equipped = 1
+				equipped = TRUE
 		if(SLOT_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
-				equipped = 1
+				equipped = TRUE
+				in_storage = TRUE
 		if(SLOT_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
-				equipped = 1
+				equipped = TRUE
+				in_storage = TRUE
 		if(SLOT_S_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
-				equipped = 1
+				equipped = TRUE
+				in_storage = TRUE
 		if(SLOT_IN_BACKPACK)
 			if (src.back && istype(src.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)
 					W.loc = B
-					equipped = 1
+					equipped = TRUE
+					in_storage = TRUE
 
 	if(equipped)
-		if(W.flags_armor_protection)
+		if(W.flags_armor_protection && !in_storage)
 			add_limb_armor(W)
-		if(isclothing(W))
+		if(isclothing(W) && !in_storage)
 			var/obj/item/clothing/equipped_clothing = W
 			if(equipped_clothing.tint)
 				adjust_tinttotal(equipped_clothing.tint)
