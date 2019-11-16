@@ -107,7 +107,7 @@
 /datum/skills/combat_medic
 	name = "Combat Medic"
 	leadership = SKILL_LEAD_BEGINNER
-	medical = SKILL_MEDICAL_PRACTICED
+	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_TRAINED
 
 /datum/skills/combat_medic/crafty
@@ -128,7 +128,7 @@
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_EXPERT
+	medical = SKILL_MEDICAL_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_FLASH
@@ -253,19 +253,14 @@
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
-
-
-
 /datum/skills/SL
 	name = SQUAD_LEADER
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	medical = SKILL_MEDICAL_NOVICE
+	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-
-
 
 /datum/skills/SL/upp
 	name = "UPP Leader"
