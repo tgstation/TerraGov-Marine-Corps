@@ -399,8 +399,9 @@ This function restores all limbs.
 	zone = check_zone(zone)
 	for(var/X in limbs)
 		var/datum/limb/EO = X
-		if(EO.name == zone)
-			return EO
+		if(EO.name != zone)
+			continue
+		return EO
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, src)
