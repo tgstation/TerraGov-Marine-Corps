@@ -146,12 +146,13 @@
 
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
+
 	if(exploding)
 		return FALSE
 
 	. = ..()
 
-	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
+	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)) && Proj.ammo.armor_type != "acid")
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
