@@ -72,6 +72,7 @@
 	usable = TRUE
 	radio_freq = FREQ_DELTA
 
+GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)
 GLOBAL_LIST_EMPTY(helmetmarkings)
@@ -83,6 +84,9 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	var/image/armors1 = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
 	armor.color = color
 	armors1.color = color
+	var/image/gloves = image('icons/mob/hands.dmi',icon_state = "std-gloves")
+	gloves.color = color
+	GLOB.glovemarkings[type] = gloves
 	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
 	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
 	helmet.color = color

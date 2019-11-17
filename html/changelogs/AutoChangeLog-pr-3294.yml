@@ -1,0 +1,5 @@
+author: "Kuro-ai"
+delete-after: True
+changes: 
+  - rscadd: "Added prison variants to the code"
+  - imageadd: "added SL and SG armor sprites"

@@ -1,0 +1,5 @@
+author: "Mark9013100"
+delete-after: True
+changes: 
+  - tweak: "Marine gloves have been converted to use the greyscale system."
+  - rscadd: "Marine gloves are now available in surplus uniform vendors."

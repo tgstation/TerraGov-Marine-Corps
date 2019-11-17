@@ -33,7 +33,7 @@
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
 	pockets = /obj/item/storage/internal/suit/marine
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/storage/internal/suit/marine
 	bypass_w_limit = list(
