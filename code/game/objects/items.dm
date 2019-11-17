@@ -161,8 +161,6 @@
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
 
-	user.changeNext_move(CLICK_CD_RAPID)
-
 	if(QDELETED(src))
 		return
 
@@ -255,7 +253,6 @@
 		UPDATEHEALTH(H)
 		qdel(current_acid)
 		current_acid = null
-	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 
