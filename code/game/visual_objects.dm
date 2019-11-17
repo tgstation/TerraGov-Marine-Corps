@@ -40,7 +40,7 @@
 	plane = GAME_PLANE
 	var/applied = FALSE
 
-/atom/movable/vis_obj/effect/muzzle_flash/Initialize(mapload, new_icon_state)
+/atom/movable/vis_obj/effect/muzzle_flash/Initialize(new_icon_state)
     . = ..()
     if(new_icon_state)
         icon_state = new_icon_state
