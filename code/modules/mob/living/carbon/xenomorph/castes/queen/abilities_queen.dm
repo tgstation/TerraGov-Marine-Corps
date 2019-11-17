@@ -452,8 +452,8 @@
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 600
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 150
+	cooldown_timer = 16 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 
@@ -486,8 +486,8 @@
 /datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/patient = target
 	add_cooldown()
-	patient.adjustBruteLoss(-50)
-	patient.adjustFireLoss(-50)
+	patient.adjustBruteLoss(-100)
+	patient.adjustFireLoss(-100)
 	succeed_activate()
 	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
 	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
@@ -500,8 +500,8 @@
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
-	plasma_cost = 600
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 150
+	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
 

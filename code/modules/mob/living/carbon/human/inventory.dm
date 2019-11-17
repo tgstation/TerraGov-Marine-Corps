@@ -172,7 +172,6 @@
 			update_inv_wear_mask()
 		if(I.flags_inv_hide & HIDEEYES)
 			update_inv_glasses()
-		update_tint()
 		update_inv_head()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == gloves)
@@ -182,8 +181,6 @@
 	else if (I == glasses)
 		glasses = null
 		var/obj/item/clothing/glasses/G = I
-		if(G.tint)
-			update_tint()
 		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
 		if(!QDELETED(src))
@@ -220,8 +217,15 @@
 		update_inv_s_store()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
-	if(. == ITEM_UNEQUIP_UNEQUIPPED && I.flags_armor_protection)
-		remove_limb_armor(I)
+	if(. == ITEM_UNEQUIP_UNEQUIPPED)
+		if(I.flags_armor_protection)
+			remove_limb_armor(I)
+		if(isclothing(I))
+			var/obj/item/clothing/unequipped_clothing = I
+			if(unequipped_clothing.tint)
+				adjust_tinttotal(-unequipped_clothing.tint)
+			if(unequipped_clothing.accuracy_mod)
+				adjust_mob_accuracy(-unequipped_clothing.accuracy_mod)
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
@@ -306,8 +310,6 @@
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
-			if(G.tint)
-				update_tint()
 			if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 				update_sight()
 			update_inv_glasses()
@@ -328,7 +330,6 @@
 			if(head.flags_inv_hide & HIDEEYES)
 				update_inv_glasses()
 			W.equipped(src, slot)
-			update_tint()
 			update_inv_head()
 		if(SLOT_SHOES)
 			shoes = W
@@ -415,6 +416,12 @@
 
 	if(W.flags_armor_protection)
 		add_limb_armor(W)
+	if(isclothing(W))
+		var/obj/item/clothing/equipped_clothing = W
+		if(equipped_clothing.tint)
+			adjust_tinttotal(equipped_clothing.tint)
+		if(equipped_clothing.accuracy_mod)
+			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 
 	return TRUE
 

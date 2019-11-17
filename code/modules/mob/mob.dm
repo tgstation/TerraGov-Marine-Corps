@@ -444,7 +444,7 @@
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-		flick_attack_overlay(M, "grab")
+		do_attack_animation(M, ATTACK_EFFECT_GRAB)
 
 		log_combat(src, M, "grabbed")
 

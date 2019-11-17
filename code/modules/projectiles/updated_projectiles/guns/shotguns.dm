@@ -197,7 +197,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 10
 	burst_amount = 2
-	burst_delay = 2
+	burst_delay = 6
 	accuracy_mult = 0.8
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
@@ -597,6 +597,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 12
+	aim_slowdown = 0.5
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)

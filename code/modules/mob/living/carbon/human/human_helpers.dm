@@ -202,7 +202,7 @@
 		return TRUE
 	if(!has_eyes())
 		return FALSE
-	if(get_total_tint() >= TINT_BLIND)
+	if(tinttotal >= TINT_BLIND)
 		return FALSE
 	return TRUE
 

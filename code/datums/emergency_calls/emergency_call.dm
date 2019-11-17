@@ -274,13 +274,13 @@
 		return get_turf(L)
 
 /datum/emergency_call/proc/create_member(datum/mind/mind_to_assign) //Overriden in each distress call file.
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	var/turf/spawn_loc = get_spawn_point()
 
 	if(!istype(spawn_loc))
 		CRASH("[type] failed to find a proper spawn_loc")
 
-	return new spawn_type(spawn_loc)
+	return spawn_type ? new spawn_type(spawn_loc) : spawn_loc
 
 
 /datum/emergency_call/proc/spawn_items() //Allows us to spawn various things around the shuttle.
