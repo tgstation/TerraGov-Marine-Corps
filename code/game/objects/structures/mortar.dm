@@ -7,7 +7,7 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = INDESTRUCTIBLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
