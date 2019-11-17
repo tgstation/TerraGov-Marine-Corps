@@ -16,7 +16,8 @@
 					/obj/item/weapon/gun/pistol/m4a3 = 25,
 					/obj/item/weapon/gun/revolver/m44 = 15,
 					/obj/item/weapon/gun/smg/standard_smg = 20,
-					/obj/item/weapon/gun/rifle/standard_carabine = 25,
+					/obj/item/weapon/gun/rifle/standard_carbine = 25,
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
 					/obj/item/weapon/gun/rifle/standard_lmg = 15,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
@@ -24,7 +25,8 @@
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/standard_smg = 30,
-					/obj/item/ammo_magazine/rifle = 25,
+					/obj/item/ammo_magazine/rifle/standard_carbine = 25,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/cell/lasgun/M43 = 20,
@@ -46,12 +48,6 @@
 						/obj/item/ammo_magazine/pistol/ap = 2,
 						/obj/item/ammo_magazine/smg/standard_smg/ap = 1
 						)
-
-	premium = list(
-					/obj/item/weapon/gun/rifle/standard_assaultrifle = 1,
-					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6
-					)
-
 	prices = list()
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
@@ -122,7 +118,8 @@
 					/obj/item/weapon/gun/pistol/m1911 = 5,
 					/obj/item/weapon/gun/revolver/m44 = 15,
 					/obj/item/weapon/gun/smg/standard_smg = 15,
-					/obj/item/weapon/gun/rifle/standard_carabine = 20,
+					/obj/item/weapon/gun/rifle/standard_carbine = 20,
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
@@ -193,11 +190,8 @@
 					/obj/item/ammobox/m39ext = 1,
 					/obj/item/ammo_magazine/smg/standard_smg/extended = 5,
 					/obj/item/ammobox = 3,
-					/obj/item/ammo_magazine/rifle = 15,
-					/obj/item/ammobox/ap = 1,
-					/obj/item/ammo_magazine/rifle/ap = 5,
-					/obj/item/ammobox/ext = 1,
-					/obj/item/ammo_magazine/rifle/extended = 5,
+					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/cell/lasgun/M43 = 15,
 					/obj/item/cell/lasgun/M43/highcap = 5,
@@ -658,7 +652,6 @@
 						/obj/item/attachable/stock/smg = 3,
 						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/shotgun = 3,
-						/obj/item/attachable/stock/rifle = 3 ,
 						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/flamer = 3,

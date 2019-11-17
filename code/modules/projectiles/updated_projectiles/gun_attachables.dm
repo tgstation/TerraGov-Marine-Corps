@@ -481,6 +481,20 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "t42barrel"
 	flags_attach_features = NONE
 
+/obj/item/attachable/t18barrel
+	name = "T-18 barrel"
+	desc = "The standard barrel on the T-18. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t18barrel"
+	flags_attach_features = NONE
+
+/obj/item/attachable/t12barrel
+	name = "T-12 barrel"
+	desc = "The standard barrel on the T-12. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t12barrel"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -875,6 +889,20 @@ Defined in conflicts.dm of the #defines folder.
 	name = "T-64 Stock"
 	desc = "A standard DMR Stock."
 	icon_state = "dmrstock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t18stock
+	name = "T-18 Stock"
+	desc = "A standard Carbine Stock."
+	icon_state = "t18stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13

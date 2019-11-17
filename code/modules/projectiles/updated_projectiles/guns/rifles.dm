@@ -37,53 +37,95 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//M41A PULSE RIFLE
+//T-18 Carbine
 
-/obj/item/weapon/gun/rifle/standard_carabine
-	name = "\improper M41A1 pulse rifle"
-	desc = "The standard issue rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
-	icon_state = "m41a1"
-	item_state = "m41a1"
-	fire_sound = "gun_pulse"
-	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "10x24mm caseless" //codex
-	max_shells = 40 //codex
-	current_mag = /obj/item/ammo_magazine/rifle
-	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/compensator,
+/obj/item/weapon/gun/rifle/standard_carbine
+    name = "\improper T-18 Carbine"
+    desc = "The T-18 Carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode. Uses 10x24mm caseless ammunition."
+    icon_state = "t18"
+    item_state = "t18"
+    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+   	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+    unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+    reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+    caliber = "10x24mm caseless" //codex
+    max_shells = 24 //codex
+   	force = 20
+    current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
+    attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/t18barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/stock/t18stock,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/stock/rifle,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini)
+						/obj/item/attachable/attached_gun/shotgun)
 
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+    flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
+    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
 
-	fire_delay = 0.4 SECONDS
-	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	scatter = -10
+    fire_delay = 0.4 SECONDS
+    burst_delay = 0.10 SECONDS
+    accuracy_mult = 1.10
+    scatter = -5
+    burst_amount = 4
+    aim_slowdown = 0.35
+    damage_falloff_mult = 0.9
+
+//-------------------------------------------------------
+//T-12 Assault Rifle
+
+/obj/item/weapon/gun/rifle/standard_assaultrifle
+    name = "\improper T-12 Assault Rifle"
+    desc = "The T-12 Assault Rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 Carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+    icon_state = "t12"
+    item_state = "t12"
+    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+   	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+    unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+    reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+    caliber = "10x24mm caseless" //codex
+    max_shells = 50 //codex
+    force = 20
+    current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+    attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/t12barrel,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/stock/t18stock,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun)
+
+    flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t12barrel)
+    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
+
+    fire_delay = 0.33 SECONDS
+    burst_delay = 0.15 SECONDS
+    accuracy_mult = 1.15
+    scatter = -10
+    wield_delay = 1.0 SECONDS
+    burst_amount = 3
+    aim_slowdown = 0.5
+    damage_falloff_mult = 0.5
 
 
 //-------------------------------------------------------
@@ -208,7 +250,7 @@
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/weapon/gun/rifle/standard_assaultrifle
+/obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A pulse rifle"
 	desc = "An older design of the pulse rifle commonly used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
@@ -220,7 +262,7 @@
 	aim_slowdown = 0.5
 	wield_delay = 1.35 SECONDS
 	max_shells = 95 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	current_mag = /obj/item/ammo_magazine/rifle/m41a
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
