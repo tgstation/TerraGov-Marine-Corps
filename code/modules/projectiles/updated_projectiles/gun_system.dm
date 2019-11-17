@@ -15,6 +15,7 @@
 	flags_item = TWOHANDED
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -124,7 +125,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	muzzle_flash = new()
+	muzzle_flash = new(muzzleflash_iconstate)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
