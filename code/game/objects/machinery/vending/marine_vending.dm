@@ -691,7 +691,7 @@
 					/obj/item/clothing/suit/storage/marine/M3LB = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,
-					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/head/helmet/marine/standard = 20,
 					/obj/item/clothing/head/helmet/marine/heavy = 20,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
