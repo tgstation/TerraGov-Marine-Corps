@@ -33,15 +33,6 @@
 		deactivate_glasses(user)
 	else
 		activate_glasses(user)
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.glasses == src)
-			if(tint)
-				if(active)
-					H.adjust_tinttotal(tint)
-				else
-					H.adjust_tinttotal(-tint)
-			H.update_sight()
 
 	update_action_button_icons()
 
@@ -158,11 +149,22 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
-	tint = TINT_5
 
-/obj/item/clothing/glasses/welding/attack_self(mob/user)
-	toggle(user)
+/obj/item/clothing/glasses/welding/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_5)
 
+/obj/item/clothing/glasses/welding/proc/flip_up()
+	DISABLE_BITFIELD(flags_inventory, COVEREYES)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	DISABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = 0
+
+/obj/item/clothing/glasses/welding/proc/flip_down()
+	ENABLE_BITFIELD(flags_inventory, COVEREYES)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
+	ENABLE_BITFIELD(flags_armor_protection, EYES)
+	eye_protection = initial(eye_protection)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
@@ -170,52 +172,40 @@
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle(usr)
+		toggle_item_state(usr)
 
-/obj/item/clothing/glasses/welding/proc/toggle(mob/user)
+/obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
+	. = ..()
 	active = !active
 	icon_state = "[initial(icon_state)][!active ? "up" : ""]"
 	if(!active)
-		DISABLE_BITFIELD(flags_inventory, COVEREYES)
-		DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-		DISABLE_BITFIELD(flags_armor_protection, EYES)
-		eye_protection = 0
-		tint = TINT_NONE
+		flip_up()
 	else
-		ENABLE_BITFIELD(flags_inventory, COVEREYES)
-		ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
-		ENABLE_BITFIELD(flags_armor_protection, EYES)
-		eye_protection = initial(eye_protection)
-		tint = initial(tint)
+		flip_down()
 	if(user)
 		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/wearer = loc
-		if(wearer.glasses == src)
-			if(active)
-				wearer.adjust_tinttotal(tint)
-			else
-				wearer.adjust_tinttotal(-initial(tint))
 
 	update_clothing_icon()
 
 	update_action_button_icons()
 
 /obj/item/clothing/glasses/welding/flipped //spawn in flipped up.
+	active = FALSE
 
 /obj/item/clothing/glasses/welding/flipped/Initialize(mapload)
 	. = ..()
-	toggle()
+	flip_up()
+	AddComponent(/datum/component/clothing_tint, TINT_5, FALSE)
 
 /obj/item/clothing/glasses/welding/superior
 	name = "superior welding goggles"
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	tint = TINT_4
 
-
+/obj/item/clothing/glasses/welding/superior/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_4)
 
 //sunglasses
 
@@ -224,16 +214,22 @@
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
-	tint = TINT_3
 	eye_protection = 1
+
+/obj/item/clothing/glasses/sunglasses/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_3)
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
 	icon_state = "blindfold"
 	item_state = "blindfold"
-	tint = TINT_BLIND
 	eye_protection = 2
+
+/obj/item/clothing/glasses/sunglasses/blindfold/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_BLIND)
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
@@ -250,8 +246,11 @@
 
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
-	tint = TINT_NONE
 	eye_protection = 0
+
+/obj/item/clothing/glasses/sunglasses/fake/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"
