@@ -244,7 +244,7 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.5
 	damage_mult = 1.5
-	scatter = -10	
+	scatter = -10
 
 
 //-------------------------------------------------------
@@ -397,7 +397,8 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	aim_slowdown = 0.9
+	slowdown = 0.25
+	aim_slowdown = 0.2
 	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -416,18 +417,15 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel,/obj/item/attachable/bipod)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.05
-	scatter = 15
+	accuracy_mult = 0.75
+	scatter = 25
 	scatter_unwielded = 80
-	recoil_unwielded = 5
-	damage_mult = 0.85
-
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
@@ -457,12 +455,12 @@
                         /obj/item/attachable/compensator,
                         /obj/item/attachable/magnetic_harness,
                         /obj/item/attachable/scope)
- 
+
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
     gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
- 
+
     fire_delay = 0.4 SECONDS
     burst_amount = 5
     burst_delay = 0.1 SECONDS
