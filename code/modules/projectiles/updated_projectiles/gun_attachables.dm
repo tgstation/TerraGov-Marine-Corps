@@ -267,7 +267,7 @@ Defined in conflicts.dm of the #defines folder.
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, gun)
 
 
@@ -473,6 +473,13 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 15
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
+
+/obj/item/attachable/t42barrel
+	name = "T-42 barrel"
+	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t42barrel"
+	flags_attach_features = NONE
 
 ///////////// Rail attachments ////////////////////////
 
@@ -863,6 +870,20 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 	flags_attach_features = NONE
+
+/obj/item/attachable/stock/dmr
+	name = "T-64 Stock"
+	desc = "A standard DMR Stock."
+	icon_state = "dmrstock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 

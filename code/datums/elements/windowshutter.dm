@@ -3,20 +3,22 @@
 	if(!istype(target, /obj/structure/window))
 		return ELEMENT_INCOMPATIBLE
 
-	RegisterSignal(target, COMSIG_OBJ_DECONSTRUCT, .proc/spawn_shutter)
+	RegisterSignal(target, ELEMENT_CLOSE_SHUTTER_LINKED, .proc/spawn_shutter)
+	RegisterSignal(target, COMSIG_OBJ_DECONSTRUCT, .proc/spawn_shutter_first)
 
 /datum/element/windowshutter/Detach(datum/target, force)
 	. = ..()
-	UnregisterSignal(target, COMSIG_OBJ_DECONSTRUCT)
+	UnregisterSignal(target, list(COMSIG_OBJ_DECONSTRUCT, ELEMENT_CLOSE_SHUTTER_LINKED))
 
-/datum/element/windowshutter/proc/spawn_shutter(datum/source, from_dir=0)
-	if(!from_dir) //air escaping sound effect for original window
-		playsound(src, 'sound/machines/hiss.ogg', 50, 1)
+/datum/element/windowshutter/proc/spawn_shutter_first(datum/source)
+	playsound(source, 'sound/machines/hiss.ogg', 50, 1)
+	spawn_shutter(source)
+
+/datum/element/windowshutter/proc/spawn_shutter(datum/source)
+	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
-		if(direction == from_dir)
-			continue //doesn't check backwards
-		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(source,direction) )
-			spawn_shutter(W, turn(direction,180))
+		for(var/obj/structure/window/W in get_step(source,direction) )
+			SEND_SIGNAL(W, ELEMENT_CLOSE_SHUTTER_LINKED)
 	var/obj/machinery/door/poddoor/shutters/mainship/pressure/P = new(get_turf(source))
 	P.density = TRUE
 	var/obj/structure/window/attachee = source

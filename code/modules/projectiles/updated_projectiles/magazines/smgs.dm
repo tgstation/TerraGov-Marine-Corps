@@ -7,21 +7,21 @@
 //-------------------------------------------------------
 //M39 SMG ammo
 
-/obj/item/ammo_magazine/smg/m39
+/obj/item/ammo_magazine/smg/standard_smg
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "m39"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/m39
+	gun_type = /obj/item/weapon/gun/smg/standard_smg
 
-/obj/item/ammo_magazine/smg/m39/ap
+/obj/item/ammo_magazine/smg/standard_smg/ap
 	name = "\improper M39 AP magazine (10x20mm)"
 	icon_state = "m39_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
-/obj/item/ammo_magazine/smg/m39/extended
+/obj/item/ammo_magazine/smg/standard_smg/extended
 	name = "\improper M39 extended magazine (10x20mm)"
 	icon_state = "m39_ext"
 	max_rounds = 90

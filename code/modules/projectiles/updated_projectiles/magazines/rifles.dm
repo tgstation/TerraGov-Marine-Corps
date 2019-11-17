@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a
+	gun_type = /obj/item/weapon/gun/rifle/standard_carabine
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper M41A1 extended magazine (10x24mm)"
@@ -33,16 +33,28 @@
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 
+//-------------------------------------------------------
+//T64 DMR
+
+/obj/item/ammo_magazine/rifle/standard_dmr
+	name = "\improper T-64 DMR magazine (10x27mm)"
+	desc = "A 10mm DMR magazine."
+	caliber = "10x27mm caseless"
+	icon_state = "t64"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	max_rounds = 10
+	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/ammo_magazine/rifle/m41aMK1
+/obj/item/ammo_magazine/rifle/standard_assaultrifle
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
-	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 
 
 
@@ -80,18 +92,30 @@
 
 
 //-------------------------------------------------------
-//M41AE2 HEAVY PULSE RIFLE
+//T-42 Light Machine Gun
 
-/obj/item/ammo_magazine/lmg
-	name = "\improper M41AE2 ammo box (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
-	icon_state = "m41ae2"
+/obj/item/ammo_magazine/standard_lmg
+	name = "\improper T-42 drum magazine (10x24mm)"
+	desc = "A drum magazine for the T-42 Light Machine Gun."
+	icon_state = "t42"
 	caliber = "10x24mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
-	gun_type = /obj/item/weapon/gun/rifle/lmg
+	max_rounds = 120
+	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 
+//-------------------------------------------------------
+//M41AE2 HEAVY PULSE RIFLE
+ 
+/obj/item/ammo_magazine/m41ae2_hpr
+    name = "\improper M41AE2 ammo box (10x24mm)"
+    desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+    icon_state = "m41ae2"
+    caliber = "10x24mm caseless"
+    default_ammo = /datum/ammo/bullet/rifle
+    w_class = WEIGHT_CLASS_NORMAL
+    max_rounds = 200
+    gun_type = /obj/item/weapon/gun/rifle/m41ae2_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE

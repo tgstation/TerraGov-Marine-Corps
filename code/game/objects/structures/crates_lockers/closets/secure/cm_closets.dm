@@ -46,7 +46,7 @@
 /obj/structure/closet/secure_closet/marine/standard/alpha/PopulateContents()
 	. = ..()
 	new /obj/item/radio/headset/mainship/marine/alpha(src)
-	new /obj/item/clothing/gloves/marine/alpha(src)
+	new /obj/item/clothing/gloves/marine(src)
 
 
 /obj/structure/closet/secure_closet/marine/standard/bravo
@@ -57,7 +57,7 @@
 /obj/structure/closet/secure_closet/marine/standard/bravo/PopulateContents()
 	. = ..()
 	new /obj/item/radio/headset/mainship/marine/bravo(src)
-	new /obj/item/clothing/gloves/marine/bravo(src)
+	new /obj/item/clothing/gloves/marine(src)
 
 
 /obj/structure/closet/secure_closet/marine/standard/charlie
@@ -68,7 +68,7 @@
 /obj/structure/closet/secure_closet/marine/standard/charlie/PopulateContents()
 	. = ..()
 	new /obj/item/radio/headset/mainship/marine/charlie(src)
-	new /obj/item/clothing/gloves/marine/charlie(src)
+	new /obj/item/clothing/gloves/marine(src)
 
 
 /obj/structure/closet/secure_closet/marine/standard/delta
@@ -79,7 +79,7 @@
 /obj/structure/closet/secure_closet/marine/standard/delta/PopulateContents()
 	. = ..()
 	new /obj/item/radio/headset/mainship/marine/delta(src)
-	new /obj/item/clothing/gloves/marine/delta(src)
+	new /obj/item/clothing/gloves/marine(src)
 
 
 // MARINE LEADER
@@ -98,7 +98,7 @@
 
 /obj/structure/closet/secure_closet/marine/leader/alpha/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/alpha(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/alpha/lead(src)
 
 
@@ -109,7 +109,7 @@
 
 /obj/structure/closet/secure_closet/marine/leader/bravo/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/bravo(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/bravo/lead(src)
 
 
@@ -120,7 +120,7 @@
 
 /obj/structure/closet/secure_closet/marine/leader/charlie/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/charlie(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/charlie/lead(src)
 
 /obj/structure/closet/secure_closet/marine/leader/delta
@@ -130,7 +130,7 @@
 
 /obj/structure/closet/secure_closet/marine/leader/delta/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/delta(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/delta/lead(src)
 
 
@@ -157,7 +157,6 @@
 
 /obj/structure/closet/secure_closet/marine/engi/alpha/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/alpha/insulated(src)
 	new /obj/item/radio/headset/mainship/marine/alpha/engi(src)
 
 
@@ -168,7 +167,6 @@
 
 /obj/structure/closet/secure_closet/marine/engi/bravo/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/bravo/insulated(src)
 	new /obj/item/radio/headset/mainship/marine/bravo/engi(src)
 
 
@@ -179,7 +177,6 @@
 
 /obj/structure/closet/secure_closet/marine/engi/charlie/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/charlie/insulated(src)
 	new /obj/item/radio/headset/mainship/marine/charlie/engi(src)
 
 /obj/structure/closet/secure_closet/marine/engi/delta
@@ -189,7 +186,6 @@
 
 /obj/structure/closet/secure_closet/marine/engi/delta/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/delta/insulated(src)
 	new /obj/item/radio/headset/mainship/marine/delta/engi(src)
 
 
@@ -217,7 +213,7 @@
 
 /obj/structure/closet/secure_closet/marine/medic/alpha/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/alpha(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/alpha/med(src)
 
 
@@ -228,7 +224,7 @@
 
 /obj/structure/closet/secure_closet/marine/medic/bravo/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/bravo(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/bravo/med(src)
 
 
@@ -239,7 +235,7 @@
 
 /obj/structure/closet/secure_closet/marine/medic/charlie/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/charlie(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/charlie/med(src)
 
 
@@ -250,7 +246,7 @@
 
 /obj/structure/closet/secure_closet/marine/medic/delta/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/gloves/marine/delta(src)
+	new /obj/item/clothing/gloves/marine(src)
 	new /obj/item/radio/headset/mainship/marine/delta/med(src)
 
 

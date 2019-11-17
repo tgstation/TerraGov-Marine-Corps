@@ -31,6 +31,7 @@
 	var/rounds_max = 500
 	actions_types = list(/datum/action/item_action/toggle)
 	var/reloading = FALSE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/smartgun_powerpack/Initialize()
 	. = ..()
@@ -65,26 +66,26 @@
 		user.visible_message("[user.name] begins feeding an ammo belt into the M56 Smartgun.","You begin feeding a fresh ammo belt into the M56 Smartgun. Don't move or you'll be interrupted.")
 	else
 		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
-	var/reload_duration = 50
+	var/reload_duration = 5 SECONDS
 	var/obj/screen/ammo/A = user.hud_used.ammo
-	if(!automatic)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
-			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
-		if(do_after(user,reload_duration, TRUE, src, BUSY_ICON_GENERIC))
-			reload(user, mygun)
-			A.update_hud(user)
-		else
-			to_chat(user, "Your reloading was interrupted!")
-			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
-			reloading = FALSE
-	else
-		if(autoload_check(user, reload_duration, mygun, src))
-			reload(user, mygun, TRUE)
-			A.update_hud(user)
-		else
+	if(automatic)
+		if(!autoload_check(user, reload_duration, mygun, src) || !pcell)
 			to_chat(user, "The automated reload process was interrupted!")
-			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
+			playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
 			reloading = FALSE
+			return TRUE
+		reload(user, mygun, TRUE)
+		A.update_hud(user)
+		return TRUE
+	if(user.mind?.cm_skills && user.mind.cm_skills.smartgun > 0)
+		reload_duration = max(reload_duration - 1 SECONDS * user.mind.cm_skills.smartgun, 3 SECONDS)
+	if(!do_after(user, reload_duration, TRUE, src, BUSY_ICON_GENERIC) || !pcell)
+		to_chat(user, "Your reloading was interrupted!")
+		playsound(src,'sound/machines/buzz-two.ogg', 25, TRUE)
+		reloading = FALSE
+		return TRUE
+	reload(user, mygun)
+	A.update_hud(user)
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand(mob/living/user)

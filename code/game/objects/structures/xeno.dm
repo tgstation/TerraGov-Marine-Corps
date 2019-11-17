@@ -422,7 +422,7 @@
 		return attack_hand(M)
 
 	if(!issamexenohive(M))
-		M.do_attack_animation(src)
+		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>We crush \the [src]")
 		Burst(TRUE)
 		return
@@ -658,7 +658,7 @@ TUNNEL
 		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
-	if(length(M.stomach_contents))
+	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 

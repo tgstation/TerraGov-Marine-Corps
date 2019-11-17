@@ -342,6 +342,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"bc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "sterile"
+	},
+/area/mainship/hallways/hangar)
 "bd" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
@@ -5204,12 +5213,12 @@
 /area/mainship/living/port_emb)
 "pL" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/weapon/combat_knife,
 /obj/item/weapon/combat_knife,
 /turf/open/floor/mainship{
@@ -7565,8 +7574,8 @@
 /area/mainship/command/cic)
 "vI" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -8154,12 +8163,12 @@
 /area/mainship/engineering/upper_engineering)
 "wY" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/item/weapon/gun/pistol/m4a3,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -15990,18 +15999,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "Nn" = (
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "sterile"
-	},
-/area/mainship/hallways/hangar)
-"No" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/light,
 /turf/open/floor/mainship{
 	icon_state = "sterile"
@@ -49796,7 +49793,7 @@ bh
 bh
 bh
 gM
-No
+bc
 az
 eO
 eO

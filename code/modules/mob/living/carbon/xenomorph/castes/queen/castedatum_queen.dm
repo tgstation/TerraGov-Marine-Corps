@@ -15,7 +15,7 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = 0.4
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -58,7 +58,6 @@
 		/datum/action/xeno_action/activable/screech,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
@@ -86,7 +85,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = 0.3
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -122,7 +121,7 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = 0.2
 
 	// *** Plasma *** //
 	plasma_max = 1100
@@ -158,7 +157,7 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1200
