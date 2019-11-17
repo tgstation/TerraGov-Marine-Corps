@@ -694,8 +694,7 @@
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "cg" = (
-/obj/item/shard,
-/obj/structure/displaycase/destroyed,
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "ch" = (
