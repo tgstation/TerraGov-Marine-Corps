@@ -1,4 +1,0 @@
-author: "BurgerBB"
-delete-after: True
-changes: 
-  - balance: "Removes click delay for interacting with storage and generic items."
