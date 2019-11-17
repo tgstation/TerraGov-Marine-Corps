@@ -482,7 +482,6 @@
 	new /obj/item/storage/box/nade_box(src)
 	new /obj/item/storage/box/nade_box/HIDP(src)
 
-
 /obj/item/storage/box/spec/heavy_gunner
 	name = "\improper Heavy Minigunner case"
 	desc = "A large case containing B18 armor, munitions, and a goddamn minigun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
