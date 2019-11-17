@@ -1,0 +1,5 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - tweak: "Smoke removed from WP and AP rockets"
+  - balance: "WP Rockets use Fire Armor"
