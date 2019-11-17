@@ -1,0 +1,5 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Reworks the LMG again."
+  - balance: "Removes slowdown from LMG."
