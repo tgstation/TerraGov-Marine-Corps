@@ -705,10 +705,11 @@
 	if(pulling.anchored || !pulling.Adjacent(src))
 		stop_pulling()
 		return FALSE
-	if(target == loc && pulling.density)
-		return FALSE
 	var/move_dir = get_dir(pulling.loc, target)
-	pulling.Move(get_step(pulling.loc, move_dir), move_dir, glide_size)
+	var/turf/destination_turf = get_step(pulling.loc, move_dir)
+	if(!Adjacent(destination_turf) || (destination_turf == loc && pulling.density))
+		return FALSE
+	pulling.Move(destination_turf, move_dir, glide_size)
 	return TRUE
 
 
