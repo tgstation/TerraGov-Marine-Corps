@@ -12,4 +12,5 @@
 /// Then *that* result has 0. 15 added to it which is another smoothness trick. Serves to help prevent situations where movement "jumps"
 /// The whole result is then clamped to within the range above.
 /// Not very readable but it works
-#define DELAY_TO_GLIDE_SIZE(delay) (CLAMP(((32 / max(delay / world.tick_lag, 1)) * ((SStime_track.time_dilation_current / 100) + 1) + 0.15), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
+GLOBAL_VAR_INIT(glide_size_mod, 1)
+#define DELAY_TO_GLIDE_SIZE(delay) (CLAMP(((32 / max(delay / world.tick_lag, 1)) * ((SStime_track.time_dilation_current / 100) + 1) + GLOB.glide_size_mod), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
