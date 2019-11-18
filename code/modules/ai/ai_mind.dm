@@ -18,9 +18,9 @@
 
 /datum/ai_mind/proc/target_reached() //We reached a node, let's pick another node to go to
 	if(istype(parent_component.atom_to_walk_to, /obj/effect/AINode))
-		parent_component.parent.RemoveElement(/datum/element/action_state/move_to_atom/node)
+		parent_component.parent.RemoveElement(/datum/element/action_state/move_to_atom)
 		parent_component.current_node = parent_component.atom_to_walk_to
 		parent_component.atom_to_walk_to = pick(parent_component.current_node.datumnode.adjacent_nodes)
-		parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, parent_component.atom_to_walk_to, 1)
+		parent_component.parent.AddElement(/datum/element/action_state/move_to_atom, parent_component.atom_to_walk_to, 1)
 
 /datum/ai_mind/proc/Process() //Processes every AI subsystem tick
