@@ -85,10 +85,6 @@
 
 	var/mob/living/L = mob  //Already checked for isliving earlier
 
-//	var/double_delay = FALSE
-//	if(ISDIAGONALDIR(direct))
-//		double_delay = TRUE
-
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
 		return L.remote_control.relaymove(L, direct)
 
@@ -126,18 +122,9 @@
 	else
 		move_delay = world.time
 
-//	if(double_delay && L.cadecheck()) //Hacky
-//		direct = get_cardinal_dir(n, L.loc)
-//		direct = DIRFLIP(direct)
-//		n = get_step(L.loc, direct)
-
 	L.last_move_intent = world.time + 1 SECONDS
 
 	SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
-
-	//move_delay = L.movement_delay(direct)
-	//We are now going to move
-	//glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
 	if(L.confused)
 		var/newdir = 0

@@ -13,7 +13,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-
+	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -58,7 +58,7 @@
 // Here's where we rewrite how byond handles movement except slightly different
 // To be removed on step_ conversion
 // All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct=0)
+/atom/movable/Move(atom/newloc, direct = 0, glide_size_override = 0)
 	. = FALSE
 	if(!newloc || newloc == loc)
 		return
@@ -102,7 +102,7 @@
 //
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct)
+/atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
@@ -110,6 +110,10 @@
 	if(!loc || !newloc)
 		return FALSE
 	var/atom/oldloc = loc
+
+	//Early override for some cases like diagonal movement
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
 		if(!(direct & (direct - 1))) //Cardinal move
@@ -180,9 +184,14 @@
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
 				pulling.moving_from_pull = src
-				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				pulling.Move(T, get_dir(pulling, T), glide_size) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
+
+	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
+	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
+	if(glide_size_override)
+		set_glide_size(glide_size_override)
 
 	last_move = direct
 	last_move_time = world.time
@@ -690,6 +699,19 @@
 	return TRUE
 
 
+/atom/movable/proc/Move_Pulled(turf/target)
+	if(!pulling)
+		return FALSE
+	if(pulling.anchored || !pulling.Adjacent(src))
+		stop_pulling()
+		return FALSE
+	if(target == loc && pulling.density)
+		return FALSE
+	var/move_dir = get_dir(pulling.loc, target)
+	pulling.Move(get_step(pulling.loc, move_dir), move_dir, glide_size)
+	return TRUE
+
+
 /atom/movable/proc/check_pulling()
 	if(pulling)
 		var/atom/movable/pullee = pulling
@@ -715,6 +737,14 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
+
+
+/atom/movable/proc/set_glide_size(target = 8)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
+	glide_size = target
+
+	if(pulling)
+		pulling.set_glide_size(target)
 
 
 /atom/movable/vv_edit_var(var_name, var_value)
