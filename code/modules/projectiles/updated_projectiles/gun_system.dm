@@ -423,9 +423,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
-		var/bullet_ammo_type
+		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
-		bullet_ammo_type = in_chamber.ammo.type //we know something is in there.
 		if(current_mag)
 			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
