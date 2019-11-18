@@ -376,7 +376,7 @@
 
 // All signals a ai component can intercept from a action state if they wish to act upon it
 #define COMSIG_DISTANCE_MAINTAINED "distance_maintained" //We maintained distance with a atom we're walking to
-#define NODE_REACHED "node_reached" //We reached a node
+#define COMSIG_NODE_REACHED "node_reached" //We reached a node
 
 /*******Non-Signal Component Related Defines*******/
 

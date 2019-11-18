@@ -9,6 +9,7 @@
 /datum/element/action_state/Attach(mob/living/carbon/mob)
 	if(mob && istype(mob))
 		..()
+		RegisterSignal(mob, COMSIG_MOB_DEATH, .proc/RemoveElement, src) //Remove on death
 	else
 		return ELEMENT_INCOMPATIBLE
 

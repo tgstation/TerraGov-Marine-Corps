@@ -21,7 +21,9 @@
 /datum/ai_mind/proc/distance_maintained() //What we do when distance is maintained
 
 /datum/ai_mind/proc/node_reached() //We reached a node, let's pick another node to go to
-	parent_component.parent.DetachElement(/datum/element/action_state/move_to_atom/node)
-	parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, pick(parent_component.current_node.datumnode.adjacent_nodes), 1)
+	parent_component.parent.RemoveElement(/datum/element/action_state/move_to_atom/node)
+	parent_component.current_node = parent_component.atom_to_walk_to
+	parent_component.atom_to_walk_to = pick(parent_component.current_node.datumnode.adjacent_nodes)
+	parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, parent_component.atom_to_walk_to, 1)
 
 /datum/ai_mind/proc/Process() //Processes every AI subsystem tick
