@@ -1,10 +1,8 @@
 //Handles the state_process() side of action_states
 SUBSYSTEM_DEF(actionstate)
-	name = "AI action states processing"
-	wait = 1 SECONDS
+	name = "AI Action States Processing"
+	wait = 0.1 SECONDS
 	priority = FIRE_PRIORITY_ACTION_STATES
-	var/list/action_states = list()
-
 	var/list/processing = list()
 	var/list/currentrun = list()
 
@@ -17,6 +15,7 @@ SUBSYSTEM_DEF(actionstate)
 		current_run.len--
 		if(QDELETED(thing))
 			processing -= thing
+			continue
 		thing.state_process()
 		if (MC_TICK_CHECK)
 			return

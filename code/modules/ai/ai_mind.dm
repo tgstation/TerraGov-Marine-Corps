@@ -14,12 +14,14 @@
 		stack_trace("AI mind had a qdel'd component after being late initialized. Removing it.")
 		qdel(src)
 		return
+	RegisterSignal(parent_component.parent, COMSIG_DISTANCE_MAINTAINED, .proc/distance_maintained) //Distance was maintained
+	RegisterSignal(parent_component.parent, COMSIG_NODE_REACHED, .proc/node_reached) //A Node was maintained
 	//parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
 
-/datum/ai_mind/proc/action_completed(reason) //Parent component action state was completed, let's give it something else to do
-	switch(reason)
-		if(FINISHED_MOVE)
-			return
-			//parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
+/datum/ai_mind/proc/distance_maintained() //What we do when distance is maintained
+
+/datum/ai_mind/proc/node_reached() //We reached a node, let's pick another node to go to
+	parent_component.parent.DetachElement(/datum/element/action_state/move_to_atom/node)
+	parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, pick(parent_component.current_node.datumnode.adjacent_nodes), 1)
 
 /datum/ai_mind/proc/Process() //Processes every AI subsystem tick

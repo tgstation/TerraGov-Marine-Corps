@@ -36,7 +36,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	mind.late_init()
 	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/qdel_self)
 	START_PROCESSING(SSprocessing, src)
-	AddElement(/datum/element/action_state/move_to_atom, parent, pick(current_node.datumnode.adjacent_nodes), 1)
+	parent.AddElement(/datum/element/action_state/move_to_atom/node, pick(current_node.datumnode.adjacent_nodes), 1)
 
 /datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
 	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
@@ -54,9 +54,6 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/mob/living/parent2 = parent
 	lastturf = parent2.loc
 	return TRUE
-
-/datum/component/ai_behavior/proc/action_completed(reason) //Action state was completed, let's replace it with something else
-	mind.action_completed(reason)
 
 /*
 //Tile by tile movement electro boogaloo
