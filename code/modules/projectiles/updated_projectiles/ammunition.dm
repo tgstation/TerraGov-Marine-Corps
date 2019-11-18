@@ -378,18 +378,18 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 
-//Deployable ammo box
+//Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
-	name = "M41A1 Ammo Box"
+	name = "Carbine Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
 	var/magazine_amount = 10
 	var/max_magazine_amount = 10
-	var/max_magazine_rounds = 40
+	var/max_magazine_rounds = 24
 	var/ammo_type = /datum/ammo/bullet/rifle
-	var/magazine_type = /obj/item/ammo_magazine/rifle
+	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	var/deployed = FALSE
 
 

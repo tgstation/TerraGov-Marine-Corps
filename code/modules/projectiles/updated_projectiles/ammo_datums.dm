@@ -848,20 +848,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	damage = 50
 	penetration = 80
-	var/datum/effect_system/smoke_spread/smoke
-
-/datum/ammo/rocket/New()
-	. = ..()
-	smoke = new()
-
-/datum/ammo/rocket/set_smoke()
-	smoke = new
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
 	drop_nade(get_turf(M))
@@ -881,13 +870,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 300
+	damage = 275
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -906,6 +892,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "white phosphorous rocket"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
+	armor_type = "fire"
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
@@ -915,9 +902,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
 		return
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
