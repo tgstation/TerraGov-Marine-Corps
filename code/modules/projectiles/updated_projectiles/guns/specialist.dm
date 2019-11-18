@@ -741,8 +741,15 @@
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/verticalgrip
+	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_SPEC
@@ -752,7 +759,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/datum/effect_system/smoke_spread/smoke
 
-	fire_delay = 1 SECONDS
 	recoil = 3
 
 
@@ -771,21 +777,22 @@
 	if(gun_on_cooldown(user))
 		return
 
-	var/delay = 3
+	var/delay = 0
+
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 3
+
+	else if(has_attachment(/obj/item/attachable/scope))
+		delay += 10
 
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		delay += 6
 
-	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
+	if(delay && !do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
 	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, 1)
 	. = ..()
-
-
-	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
 
 	if(current_mag && !current_mag.current_rounds)
 		current_mag.loc = get_turf(src)

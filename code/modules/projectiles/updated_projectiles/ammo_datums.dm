@@ -801,12 +801,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 2
 	accuracy = 40
 	accurate_range = 20
-	max_range = 30
+	max_range = 40
 	damage = 50
 	penetration = 80
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, -1, 3, 5, 5)
+	explosion(T, 1, 3, 5, 5)
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
 	drop_nade(get_turf(M))
@@ -825,8 +825,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rocket_ap"
 	damage_falloff = 0
 	accurate_range = 15
-	penetration = 150
-	damage = 275
+	penetration = 1000 //IGNORE ALL THE ARMOR
+	damage = 195
+	max_range = 300
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
@@ -853,12 +854,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accurate_range = 15
 	damage = 150
-	max_range = 20
+	max_range = 40
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	explosion(T, -1, 1, 1, 1)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad
@@ -866,7 +868,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
 	damage = 200
-	max_range = 30
+	max_range = 50
 
 /datum/ammo/rocket/wp/quad/drop_nade(turf/T, radius = 3)
 	. = ..()
