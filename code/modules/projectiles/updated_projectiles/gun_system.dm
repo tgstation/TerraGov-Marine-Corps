@@ -425,12 +425,11 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
 		var/bullet_ammo_type
 		var/bullet_caliber
+		bullet_ammo_type = in_chamber.ammo.type //we know something is in there.
 		if(current_mag)
-			bullet_ammo_type = current_mag.default_ammo
-			bullet_caliber = current_mag.caliber
+			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
-			bullet_ammo_type = ammo.type
-			bullet_caliber = caliber
+			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
