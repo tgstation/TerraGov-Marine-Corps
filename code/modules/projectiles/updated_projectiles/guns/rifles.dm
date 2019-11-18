@@ -184,7 +184,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "The standard issue rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
+	desc = "The standard issue rifle of the TerraGov Marine Corps, commonly carried by most combat personnel. However, due to its availability and resources, the M41A1 is a very rare sight on TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -328,7 +328,7 @@
 
 /obj/item/weapon/gun/rifle/ak47/carbine
 	name = "\improper AK-47U battle carbine"
-	desc = "A crude, cheaply produced battle carbine capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
+	desc = "A crude, cheaply produced battle carbine copy capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
 	icon_state = "mar30"
 	item_state = "mar30"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
@@ -393,7 +393,7 @@
 //T-42 Light Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_lmg
-	name = "\improper T-42 Light Machine Gun"
+	name = "\improper T-42 light machine gun"
 	desc = "The T-42 LMG is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
@@ -435,7 +435,7 @@
 
 /obj/item/weapon/gun/rifle/m41ae2_hpr
     name = "\improper M41AE2 heavy pulse rifle"
-    desc = "A large weapon capable of laying down supressing fire. Currently undergoing field testing. Like it's smaller brother, the M41A1, the M41AE2 is chambered in 10mm."
+    desc = "A large weapon capable of laying down supressing fire, based on the M41A pulse rifle platform. Went under field testing, however it failed to surpass its trials and was replaced by the T-42 light machine gun."
     icon_state = "m41ae2"
     item_state = "m41ae2"
     caliber = "10x24mm caseless" //codex
