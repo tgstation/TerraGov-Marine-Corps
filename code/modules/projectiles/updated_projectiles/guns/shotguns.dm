@@ -672,7 +672,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = ".410"
 	load_method = SINGLE_CASING
-	max_shells = 5
+	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
 	gun_skill_category = GUN_SKILL_SPEC
 	type_of_casings = "cartridge"
@@ -697,7 +697,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip
 	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 27, "under_y" = 17, "stock_x" = 0, "stock_y" = 0)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item_map_variant = NONE
 

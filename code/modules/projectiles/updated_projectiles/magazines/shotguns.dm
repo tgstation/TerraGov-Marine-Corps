@@ -113,7 +113,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	name = "tubular magazine"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	caliber = ".410"
-	max_rounds = 5
+	max_rounds = 10
 	current_rounds = 0
 
 /obj/item/ammo_magazine/internal/shotgun/double
