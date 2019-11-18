@@ -741,7 +741,6 @@
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
 	attachable_allowed = list(
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/scope,
