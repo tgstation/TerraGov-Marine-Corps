@@ -22,7 +22,7 @@
 	plasma_gain = 8
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	evolution_threshold = 200
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 20, "acid" = 35)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -80,7 +80,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 50)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 23, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 
@@ -104,13 +104,13 @@
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 50, "rad" = 50, "fire" = 25, "acid" = 50)
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 45, "rad" = 45, "fire" = 25, "acid" = 45)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -135,13 +135,13 @@
 	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_0, "bio" = 55, "rad" = 55, "fire" = 27, "acid" = 55)
+	armor = list("melee" = 47, "bullet" = 47, "laser" = 47, "energy" = 47, "bomb" = XENO_BOMB_RESIST_2, "bio" = 47, "rad" = 47, "fire" = 27, "acid" = 47)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
