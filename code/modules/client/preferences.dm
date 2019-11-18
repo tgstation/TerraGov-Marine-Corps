@@ -123,17 +123,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// We don't have a savefile or we failed to load them
 	random_character()
 	menuoptions = list()
-	addtimer(CALLBACK(src, .proc/load_default_keybindings, C), 3 SECONDS)
-
-
-/datum/preferences/proc/load_default_keybindings(client/C)
-	if(QDELETED(C))
-		return
-	to_chat(C, "Empty keybindings, setting default to hotkey mode")
-	focus_chat = FALSE
-	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
 	C.update_movement_keys()
-	save_preferences()
 
 
 /datum/preferences/can_interact(mob/user)

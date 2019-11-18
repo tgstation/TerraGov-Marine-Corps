@@ -1,5 +1,34 @@
+//This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
 #define SAVEFILE_VERSION_MIN	20
+//This is the current version, anything below this will attempt to update (if it's not obsolete)
+//	You do not need to raise this if you are adding new values that have sane defaults.
+//	Only raise this value when changing the meaning/format/name/layout of an existing value
+//	where you would want the updater procs below to run
 #define SAVEFILE_VERSION_MAX	39
+
+/datum/preferences/proc/savefile_needs_update(savefile/S)
+	var/savefile_version
+	READ_FILE(S["version"], savefile_version)
+
+	if(savefile_version < SAVEFILE_VERSION_MIN)
+		S.dir.Cut()
+		return -2
+	if(savefile_version < SAVEFILE_VERSION_MAX)
+		return savefile_version
+	return -1
+
+//should these procs get fairly long
+//just increase SAVEFILE_VERSION_MIN so it's not as far behind
+//SAVEFILE_VERSION_MAX and then delete any obsolete if clauses
+//from these procs.
+//This only really meant to avoid annoying frequent players
+//if your savefile is 3 months out of date, then 'tough shit'.
+
+/datum/preferences/proc/update_preferences(current_version, savefile/S)
+	if(current_version < 39)
+		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.update_movement_keys()
+		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -22,9 +51,6 @@
 
 	if(savefile_version < 22)
 		WRITE_FILE(S["windowflashing"], TRUE)
-
-	if(savefile_version < 23)
-		WRITE_FILE(S["focus_chat"], TRUE)
 
 	if(savefile_version < 24)
 		WRITE_FILE(S["menuoptions"], list())
@@ -69,9 +95,6 @@
 	if(savefile_version < 38)
 		WRITE_FILE(S["menuoptions"], list())
 
-	if(savefile_version < 39)
-		WRITE_FILE(S["key_bindings"], null)
-
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
 
@@ -97,6 +120,10 @@
 	if(!S)
 		return FALSE
 	S.cd = "/"
+
+	var/needs_update = savefile_needs_update(S)
+	if(needs_update == -2)		//fatal, can't load any data
+		return FALSE
 
 	READ_FILE(S["version"], savefile_version)
 	if(!savefile_version || !isnum(savefile_version) || savefile_version != SAVEFILE_VERSION_MAX)
@@ -130,6 +157,10 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 
+	//try to fix any outdated data if necessary
+	if(needs_update >= 0)
+		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
+
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
@@ -154,10 +185,6 @@
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 
 	key_bindings 	= sanitize_islist(key_bindings, list())
-	if(!length(key_bindings))
-		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-		parent.update_movement_keys()
-		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 3 SECONDS)
 
 	return TRUE
 
