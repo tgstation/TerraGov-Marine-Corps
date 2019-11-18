@@ -17,7 +17,9 @@
 		GLOB.dead_mob_list += src
 	set_focus(src)
 	prepare_huds()
-	return ..()
+	. = ..()
+	update_config_movespeed()
+	update_movespeed(TRUE)
 
 
 /mob/Stat()
@@ -197,11 +199,6 @@
 
 	for(var/mob/M in get_hearers_in_view(range, src))
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
-
-
-/mob/proc/movement_delay()
-	. = cached_multiplicative_slowdown + next_move_slowdown
-	next_move_slowdown = 0
 
 
 //This proc is called whenever someone clicks an inventory ui slot.
@@ -460,6 +457,8 @@
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(M)
 		M.inertia_dir = 0
+	
+	update_pull_movespeed()
 
 	return AM.pull_response(src) //returns true if the response doesn't break the pull
 

@@ -1,6 +1,7 @@
 /mob/living/carbon/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+	set_nutrition_speed()
 
 
 /mob/living/carbon/Destroy()
@@ -135,7 +136,7 @@
 	if (istype(location, /turf))
 		location.add_vomit_floor(src, 1)
 
-	nutrition = max(nutrition - 40, 0)
+	adjust_nutrition(-40)
 	adjustToxLoss(-3)
 	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 

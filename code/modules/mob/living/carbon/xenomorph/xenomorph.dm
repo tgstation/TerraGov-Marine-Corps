@@ -60,7 +60,7 @@
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
-	speed = xeno_caste.speed
+	setXenoCasteSpeed(xeno_caste.speed)
 	armor = getArmor(arglist(xeno_caste.armor))
 
 

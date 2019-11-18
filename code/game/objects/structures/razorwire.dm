@@ -86,7 +86,7 @@
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(M)
-	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
+	M.add_slowdown(RAZORWIRE_SLOWDOWN)
 	DISABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return TRUE

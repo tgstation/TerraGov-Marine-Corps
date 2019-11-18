@@ -1067,6 +1067,7 @@
 #include "code\modules\mob\living\living_defines.dm"
 #include "code\modules\mob\living\living_health_procs.dm"
 #include "code\modules\mob\living\living_helpers.dm"
+#include "code\modules\mob\living\living_movement.dm"
 #include "code\modules\mob\living\living_powers.dm"
 #include "code\modules\mob\living\living_resist.dm"
 #include "code\modules\mob\living\living_verbs.dm"

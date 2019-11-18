@@ -210,35 +210,15 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+	. = ..()
+	if(!.)
 		return
 
-	var/obj/item/offhand = user.get_inactive_held_item()
-	if(offhand)
-		if(offhand == user.r_hand)
-			user.drop_r_hand()
-		else if(offhand == user.l_hand)
-			user.drop_l_hand()
-		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
-			return
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_slowdown)
 
-	if(ishuman(user))
-		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
-		var/mob/living/carbon/human/wielder = user
-		var/datum/limb/hand = wielder.get_limb(check_hand)
-		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, "<span class='warning'>Your other hand can't hold \the [src]!</span>")
-			return
-
-	flags_item 	   ^= WIELDED
-	name 	   += " (Wielded)"
-	item_state += "_w"
-	update_slowdown()
-	place_offhand(user, initial(name))
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.mind && user.mind.cm_skills)
+	if(user.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 			wdelay += 3
 		else
@@ -267,7 +247,6 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
-	return TRUE
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -278,20 +257,13 @@
 	if(zoom)
 		zoom(user)
 
-	update_slowdown()
+	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
 
 	return TRUE
-
-
-/obj/item/weapon/gun/proc/update_slowdown()
-	if(flags_item & WIELDED)
-		slowdown = initial(slowdown) + aim_slowdown
-	else
-		slowdown = initial(slowdown)
 
 
 //----------------------------------------------------------

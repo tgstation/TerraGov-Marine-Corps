@@ -198,16 +198,18 @@
 	return 1
 
 //Checks your plasma levels and gives a handy message.
-/mob/living/carbon/xenomorph/proc/check_plasma(value)
+/mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
-		return 0
+		if(!silent)
+			to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
-			to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
-			return 0
-	return 1
+			if(!silent)
+				to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)
 	plasma_stored = max(plasma_stored - value, 0)
@@ -235,13 +237,12 @@
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
-/mob/living/carbon/xenomorph/movement_delay(direct)
-	. = ..()
+/mob/living/carbon/xenomorph/proc/setXenoCasteSpeed(new_speed)
+	if(new_speed == 0)
+		remove_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED)
+		return
+	add_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED, TRUE, 0, NONE, TRUE, new_speed)
 
-	. += speed + slowdown + speed_modifier
-
-	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1)
 
 //Stealth handling
 

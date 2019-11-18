@@ -218,7 +218,7 @@
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-		frenzy_aura = frenzy_new
+		set_frenzy_aura(frenzy_new)
 		warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
@@ -305,15 +305,16 @@
 		#endif
 	return slowdown
 
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return 0
-	slowdown = adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
-	return slowdown
-
-
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
+
+/mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
+	if(frenzy_aura == new_aura)
+		return
+	frenzy_aura = new_aura
+	if(frenzy_aura)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

@@ -258,7 +258,7 @@
 				simple_status_hud.icon_state = "hud_con_stun"
 				status_hud.icon_state = "hud_con_stun"
 				return TRUE
-			if(stagger || slowdown)
+			if(stagger)
 				simple_status_hud.icon_state = "hud_con_stagger"
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE

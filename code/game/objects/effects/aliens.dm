@@ -43,7 +43,7 @@
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
-	var/slow_amt = 8
+	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
@@ -66,7 +66,7 @@
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
-			H.next_move_slowdown += slow_amt
+			H.adjust_slowdown(slow_amt)
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
 			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))

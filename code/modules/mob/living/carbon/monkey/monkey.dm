@@ -88,19 +88,16 @@
 
 	return ..()
 
-/mob/living/carbon/monkey/movement_delay()
+
+/mob/living/carbon/monkey/updatehealth()
 	. = ..()
+	var/health_deficiency = max((maxHealth - health), staminaloss)
+	
+	if(health_deficiency >= 40)
+		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency * 0.04)
+	else
+		remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
-	if(reagents)
-		if(reagents.has_reagent(/datum/reagent/medicine/hyperzine)) . -= 1
-
-	var/health_deficiency = (100 - health)
-	if(health_deficiency >= 45) . += (health_deficiency / 25)
-
-	if(bodytemperature < 283.222)
-		. += (283.222 - bodytemperature) / 10 * 1.75
-
-	. += CONFIG_GET(number/outdated_movedelay/monkey_delay)
 
 /mob/living/carbon/monkey/get_permeability_protection()
 	var/protection = 0

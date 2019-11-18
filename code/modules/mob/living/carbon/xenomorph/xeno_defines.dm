@@ -168,8 +168,6 @@
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
-	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
 
 	var/emotedown = 0

@@ -40,13 +40,6 @@
 		COMSIG_XENOMORPH_FIRE_BURNING), .proc/cancel_stealth)
 	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
-// ***************************************
-// *********** Mob override
-// ***************************************
-/mob/living/carbon/xenomorph/hunter/movement_delay()
-	. = ..()
-	if(stealth)
-		handle_stealth_movement()
 
 /mob/living/carbon/xenomorph/hunter/Stat()
 	. = ..()
@@ -61,7 +54,7 @@
 	if(damage_taken > 15)
 		cancel_stealth()
 
-/mob/living/carbon/xenomorph/hunter/proc/handle_stealth_movement()
+/mob/living/carbon/xenomorph/hunter/proc/handle_stealth_movement(datum/source, atom/oldloc, direction, Forced = FALSE)
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible

@@ -81,7 +81,7 @@
 		if(EYE_BLUR)
 			blur_eyes(effect/(blocked+1))
 		if(DROWSY)
-			drowsyness = max(drowsyness,(effect/(blocked+1)))
+			adjustDrowsyness(effect / (blocked + 1))
 	if(updating_health)
 		updatehealth()
 	return TRUE

@@ -50,7 +50,7 @@
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.next_move_slowdown += 1
+		H.adjust_slowdown(0.1)
 
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)

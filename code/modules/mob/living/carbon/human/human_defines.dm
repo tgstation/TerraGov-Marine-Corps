@@ -108,8 +108,6 @@
 	var/marksman_new = 0
 	var/aura_recovery_multiplier = 0
 
-	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
-
 	var/datum/squad/assigned_squad //the squad assigned to
 
 	var/cloaking = FALSE

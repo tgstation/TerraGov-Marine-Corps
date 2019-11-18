@@ -238,14 +238,14 @@
 		GLOB.round_statistics.defender_crest_lowerings++
 		armor = armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus += xeno_caste.crest_defense_armor
-		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN
+		add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
 		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 		armor_bonus -= xeno_caste.crest_defense_armor
-		speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
+		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	update_icons()
 
 // ***************************************

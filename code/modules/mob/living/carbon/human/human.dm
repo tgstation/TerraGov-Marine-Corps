@@ -954,6 +954,8 @@
 		AddComponent(/datum/component/stamina_behavior)
 		max_stamina_buffer = species.max_stamina_buffer
 		setStaminaLoss(-max_stamina_buffer)
+
+	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	return TRUE
 
 

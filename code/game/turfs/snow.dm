@@ -68,17 +68,9 @@
 	if(slayer > 0)
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
-			var/slow_amount = 0.5
-			var/can_stuck = 1
-			if(isxeno(C))
-				slow_amount = 0.25
-				can_stuck = 0
-			C.next_move_slowdown += slow_amount * slayer
+			C.adjust_slowdown(round(slayer * 0.2))
 			if(prob(1))
 				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
-			else if(can_stuck && slayer == 3 && prob(1))
-				to_chat(C, "<span class='warning'>You get stuck in [src] for a moment!</span>")
-				C.next_move_slowdown += 10
 	..()
 
 

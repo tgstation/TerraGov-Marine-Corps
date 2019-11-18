@@ -7,7 +7,6 @@
 	health = 225
 	maxHealth = 225
 	plasma_stored = 400
-	speed = -1
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_THREE

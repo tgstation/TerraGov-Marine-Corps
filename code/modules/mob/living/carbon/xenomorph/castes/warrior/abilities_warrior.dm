@@ -23,11 +23,11 @@
 	GLOB.round_statistics.warrior_agility_toggles++
 	if (X.agility)
 		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
-		X.speed_modifier--
+		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
 		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
 	else
 		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
-		X.speed_modifier++
+		X.remove_movespeed_modifier(type)
 		X.armor_bonus += WARRIOR_AGILITY_ARMOR
 	X.update_icons()
 	add_cooldown()

@@ -74,7 +74,7 @@
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
 	hit_sound = "alien_resin_move"
-	var/slow_amt = 8
+	var/slow_amt = 0.8
 
 	ignore_weed_destruction = TRUE
 
@@ -89,7 +89,7 @@
 	if(H.lying)
 		return
 
-	H.next_move_slowdown += slow_amt
+	H.adjust_slowdown(slow_amt)
 
 
 // Praetorian Sticky Resin spit uses this.
@@ -97,7 +97,7 @@
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
-	slow_amt = 4
+	slow_amt = 0.4
 
 	ignore_weed_destruction = FALSE
 
