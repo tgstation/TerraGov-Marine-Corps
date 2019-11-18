@@ -14,16 +14,13 @@
 		stack_trace("AI mind had a qdel'd component after being late initialized. Removing it.")
 		qdel(src)
 		return
-	RegisterSignal(parent_component.parent, COMSIG_DISTANCE_MAINTAINED, .proc/distance_maintained) //Distance was maintained
-	RegisterSignal(parent_component.parent, COMSIG_NODE_REACHED, .proc/node_reached) //A Node was maintained
-	//parent_component.action_state = new/datum/action_state/move_to_atom/node(parent_component, parent_component.current_node.GetBestAdjNode())
+	RegisterSignal(parent_component.parent, COMSIG_MOB_TARGET_REACHED, .proc/target_reached) //Target was reached; could be a enemy or a node
 
-/datum/ai_mind/proc/distance_maintained() //What we do when distance is maintained
-
-/datum/ai_mind/proc/node_reached() //We reached a node, let's pick another node to go to
-	parent_component.parent.RemoveElement(/datum/element/action_state/move_to_atom/node)
-	parent_component.current_node = parent_component.atom_to_walk_to
-	parent_component.atom_to_walk_to = pick(parent_component.current_node.datumnode.adjacent_nodes)
-	parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, parent_component.atom_to_walk_to, 1)
+/datum/ai_mind/proc/target_reached() //We reached a node, let's pick another node to go to
+	if(istype(parent_component.atom_to_walk_to, /obj/effect/AINode))
+		parent_component.parent.RemoveElement(/datum/element/action_state/move_to_atom/node)
+		parent_component.current_node = parent_component.atom_to_walk_to
+		parent_component.atom_to_walk_to = pick(parent_component.current_node.datumnode.adjacent_nodes)
+		parent_component.parent.AddElement(/datum/element/action_state/move_to_atom/node, parent_component.atom_to_walk_to, 1)
 
 /datum/ai_mind/proc/Process() //Processes every AI subsystem tick

@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(actionstate)
 	name = "AI Action States Processing"
 	wait = 0.1 SECONDS
 	priority = FIRE_PRIORITY_ACTION_STATES
+	flags = SS_NO_INIT
 	var/list/processing = list()
 	var/list/currentrun = list()
 

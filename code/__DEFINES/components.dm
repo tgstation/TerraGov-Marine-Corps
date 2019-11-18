@@ -375,8 +375,7 @@
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
 // All signals a ai component can intercept from a action state if they wish to act upon it
-#define COMSIG_DISTANCE_MAINTAINED "distance_maintained" //We maintained distance with a atom we're walking to
-#define COMSIG_NODE_REACHED "node_reached" //We reached a node
+#define COMSIG_MOB_TARGET_REACHED "mob_target_reached" //
 
 /*******Non-Signal Component Related Defines*******/
 
