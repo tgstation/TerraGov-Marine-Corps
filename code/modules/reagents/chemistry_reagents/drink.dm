@@ -214,12 +214,12 @@
 	switch(current_cycle)
 		if(1 to 150)
 			L.jitter(2)
-		if(150 to 250) //60u's processed starts this, "Warning" stage.
+		if(151 to 250) //60u's processed starts this, "Warning" stage.
 			L.jitter(5) //interferes with only reliable way of being at the regular OD "sweet spot"
 			L.apply_damage(0.2, TOX)
 			if(prob(20))
 				to_chat(L, "<span class='notice'>[pick("Your heart begins to race.", "You break into a cold sweat.", "You feel a painful burning sensation in your eyes.")]</span>")
-		if(250 to 300)	//100u processed, nasty side effects, probable death if untreated.	
+		if(251 to 300)	//100u processed, nasty side effects, probable death if untreated.	
 			L.jitter(7)
 			L.apply_damage(1.0, TOX) //Antitoxin will purge the coffee and reset the timer, should be obvious to anyone who scans that they need that.
 			L.adjust_blurriness(1.1) //Veery slow rise.
@@ -230,7 +230,7 @@
 				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 				if(E)
 					E.take_damage(0.2, TRUE)
-		if(300 to INFINITY) //Kill the bastards. Medbay can revive them even if dead, but field meds won't be able to treat the symptoms.
+		if(301 to INFINITY) //Kill the bastards. Medbay can revive them even if dead, but field meds won't be able to treat the symptoms.
 			L.jitter(10) //Should be VERY obvious something's wrong.
 			L.apply_damage(((current_cycle/300 - 300)*REM/4 + 1), TOX) //Either apply copious amounts of antitox/hypervene, or die and get dialized shipside.
 			L.adjust_blurriness (2.0) //You're going basically blind real fast. I don't wan't to use blindness for this, though.
@@ -240,7 +240,7 @@
 				var/mob/living/carbon/human/H = L
 				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 				if(E)
-					E.take_damage(2.0, TRUE) //Yes, this can make people unreviveable if they ignored all the warning signs. They've been on it for 10 full minutes.
+					E.take_damage(2.0, TRUE) //Yes, this can make people unreviveable without manual surgery if they ignored all the warning signs. They've been on it for 10 full minutes.
 		return ..()
 	if(volume < 5) 
 		L.reagent_move_delay_modifier -= (0.1) 
