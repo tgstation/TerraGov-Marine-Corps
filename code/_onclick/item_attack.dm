@@ -50,7 +50,7 @@
 	if(flags_item & NOBLUDGEON)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.do_attack_animation(O)
+	user.do_attack_animation(O, used_item = src)
 	return O.attacked_by(src, user)
 
 
@@ -65,12 +65,6 @@
 		log_combat(user, src, "attacked", I)
 		. = TRUE
 	take_damage(I.force, I.damtype, "melee")
-
-
-/obj/item/storage/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	user.changeNext_move(CLICK_CD_FASTEST)
-
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -124,14 +118,13 @@
 		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",
 			"<span class='danger'>You attack [M] with [src].</span>", null, 5)
 
-		user.do_attack_animation(M)
-
 		if(!prob(user.melee_accuracy))
+			user.do_attack_animation(M)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
 			user.visible_message("<span class='danger'>[user] misses [M] with \the [src]!</span>", null, null, 5)
 			return FALSE
 
-		user.flick_attack_overlay(M, "punch")
+		user.do_attack_animation(M, used_item = src)
 
 		if(hitsound)
 			playsound(loc, hitsound, 25, TRUE)

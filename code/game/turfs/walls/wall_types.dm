@@ -444,7 +444,7 @@
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
@@ -461,7 +461,7 @@
 		return attack_hand(user)
 
 	user.changeNext_move(I.attack_speed)
-	user.do_attack_animation(src)
+	user.do_attack_animation(src, used_item = I)
 
 	var/damage = I.force
 	var/multiplier = 1

@@ -428,6 +428,7 @@
 					return
 			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
 	afk_status = new_status
+	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
 
 
 /mob/living/carbon/proc/on_sdd_grace_period_end()

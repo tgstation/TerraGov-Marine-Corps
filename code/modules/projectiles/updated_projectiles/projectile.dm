@@ -663,11 +663,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses you!</span>", null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses us!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses us!</span>", null, 4)
 
 
 /mob/living/do_projectile_hit(obj/item/projectile/proj)

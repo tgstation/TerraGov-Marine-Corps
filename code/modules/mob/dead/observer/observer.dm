@@ -460,7 +460,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				switch(X.afk_status)
 					if(MOB_RECENTLY_DISCONNECTED)
-						name += " (AFK)"
+						name += " (Away)"
 					if(MOB_DISCONNECTED)
 						name += " (DC)"
 
@@ -516,7 +516,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				switch(H.afk_status)
 					if(MOB_RECENTLY_DISCONNECTED)
-						name += " (AFK)"
+						name += " (Away)"
 					if(MOB_DISCONNECTED)
 						name += " (DC)"
 

@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
 
 		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
-		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? -(i + 1 / 2) : i / 2))
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((i % 2) ? (-(i + 1) * 0.5) : (i * 0.5)))
 		if(new_angle < 0)
 			new_angle += 380
 		else if(new_angle > 380)
@@ -527,14 +527,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 2
+	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 8
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 35
+	damage = 20
 	damage_falloff = 0.5
-	penetration = 50
+	penetration = 20
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -542,33 +542,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 35
+	damage = 20
 	damage_falloff = 0.5
-	penetration = 50
+	penetration = 20
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 2
+	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
-	damage_falloff = 5
+	damage = 30
+	damage_falloff = 4
 	penetration = 0
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
 	knockback(M,P)
-
-//buckshot variant only used by the masterkey shotgun attachment.
-/datum/ammo/bullet/shotgun/buckshot/masterkey
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
-	damage = 70
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -578,25 +573,30 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
-	damage_falloff = 5
+	damage = 30
+	damage_falloff = 4
 	penetration = 0
 
+//buckshot variant only used by the masterkey shotgun attachment.
+/datum/ammo/bullet/shotgun/buckshot/masterkey
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/masterkey
+	damage = 25
+
 /datum/ammo/bullet/shotgun/spread/masterkey
-	damage = 30
+	damage = 25
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
-	bonus_projectiles_amount = 2
+	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 40
-	damage_falloff = 2
+	damage = 25
+	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_buckshot/spread
 	name = "additional buckshot"
@@ -604,22 +604,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 10
-	damage = 30
-	damage_falloff = 2
+	damage = 25
+	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
-	bonus_projectiles_amount = 2
+	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 8
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 25
+	damage = 15
 	damage_falloff = 0.5
-	penetration = 25
+	penetration = 15
 
 /datum/ammo/bullet/shotgun/sx16_flechette/spread
 	name = "additional flechette"
@@ -627,9 +627,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 25
+	damage = 15
 	damage_falloff = 0.5
-	penetration = 25
+	penetration = 15
 
 /datum/ammo/bullet/shotgun/sx16_slug
 	name = "shotgun slug"
@@ -804,20 +804,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	damage = 50
 	penetration = 80
-	var/datum/effect_system/smoke_spread/smoke
-
-/datum/ammo/rocket/New()
-	. = ..()
-	smoke = new()
-
-/datum/ammo/rocket/set_smoke()
-	smoke = new
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
 	drop_nade(get_turf(M))
@@ -837,13 +826,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 300
+	damage = 275
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -862,6 +848,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "white phosphorous rocket"
 	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
+	armor_type = "fire"
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
@@ -871,9 +858,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
 		return
-	set_smoke()
-	smoke.set_up(1, T)
-	smoke.start()
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
