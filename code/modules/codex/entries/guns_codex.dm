@@ -111,7 +111,7 @@
 /obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
 	. = ..()
 	if(gun_skill_category == GUN_SKILL_RIFLES)
-		. += "<br><br>To work the bolt press spacebar.<br>"
+		. += "<br><br>To work the weapon press spacebar.<br>"
 	else
 		. += "<br><br>To pump it press spacebar.<br>"
 
@@ -143,7 +143,7 @@
 /datum/codex_entry/ballistic_weapons
 	display_name = "ballistic weapons"
 	mechanics_text = "This weapon is a ballistic weapon; it fires solid shots using a magazine or loaded rounds of ammunition. You can \
-		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a magazine, or in the case of \
+		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a magazine, speedloader and loose rounds, or in the case of \
 		shotguns or some rifles, by opening the breech and clicking it with individual rounds. \
 		<br>"
 	lore_text = "Ballistic weapons are still used even now due to the relative expense of decent laser \
