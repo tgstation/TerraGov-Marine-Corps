@@ -181,6 +181,7 @@
 	color = "#DFD7AF" // rgb: 223, 215, 175
 	taste_description = "creamy milk"
 
+0\
 /datum/reagent/consumable/drink/grenadine
 	name = "Grenadine Syrup"
 	description = "Made in the modern day with proper pomegranate substitute. Who uses real fruit, anyways?"
@@ -210,15 +211,49 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
-	L.jitter(2)
-	L.reagent_move_delay_modifier -= min(0.5, volume * 0.0033) //150u for FULL speedboost, .3 is the max "safe" achievable.
+	switch(current_cycle)
+		if(1 to 150)
+			L.jitter(2)
+		if(150 to 250) //60u's processed starts this, "Warning" stage.
+			L.jitter(5) //interferes with only reliable way of being at the regular OD "sweet spot"
+			L.apply_damage(0.2, TOX)
+			if(prob(20))
+				to_chat(L, "<span class='notice'>[pick("Your heart begins to race.", "You break into a cold sweat.", "You feel a painful burning sensation in your eyes.")]</span>")
+		if(250 to 300)	//100u processed, nasty side effects, probable death if untreated.	
+			L.jitter(7)
+			L.apply_damage(1.0, TOX) //Antitoxin will purge the coffee and reset the timer, should be obvious to anyone who scans that they need that.
+			L.adjust_blurriness(1.1) //Veery slow rise.
+			if(prob(20))
+				to_chat(L, "<span class='warning'>[pick("Your chest begins to burn!.", "You shiver with tremors.", "It becomes very hard to keep your eyes open.")]</span>")
+			if(prob(5) && ishuman(L))
+				var/mob/living/carbon/human/H = L
+				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				if(E)
+					E.take_damage(0.2, TRUE)
+		if(300 to INFINITY) //Kill the bastards. Medbay can revive them even if dead, but field meds won't be able to treat the symptoms.
+			L.jitter(10) //Should be VERY obvious something's wrong.
+			L.apply_damage(((current_cycle/300 - 300)*REM/4 + 1), TOX) //Either apply copious amounts of antitox/hypervene, or die and get dialized shipside.
+			L.adjust_blurriness (2.0) //You're going basically blind real fast. I don't wan't to use blindness for this, though.
+			if(prob(20))
+				to_chat(L, "<span class='danger'>[pick("Your heart heaves, stops, and heaves again!.", "You feel like you are about to throw up!", "So tired, just need to lay down for a minute.")]</span>")
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				if(E)
+					E.take_damage(2.0, TRUE) //Yes, this can make people unreviveable if they ignored all the warning signs. They've been on it for 10 full minutes.
+		return ..()
+	if(volume < 5) 
+		L.reagent_move_delay_modifier -= (0.1) 
 	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
 	return ..()
 
-/datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
+/datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism) //0.2 boost achievable if at sweet spot, else 0.1 boost.
 	L.jitter(5)
 	L.apply_damage(0.2, TOX)
+	L.reagent_move_delay_modifier -= (0.1) 
+	if ((volume > 60) & (volume < 65))
+		L.reagent_move_delay_modifier -= (0.1) 
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -226,9 +261,12 @@
 			E.take_damage(0.2, TRUE)
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
-/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism) //0.3 boost achievable if at sweet spot, else 0.2 boost
 	L.apply_damage(1.0, TOX)
+	L.reagent_move_delay_modifier -= (0.2) 
 	L.jitter(5)
+	if ((volume > 100) & (volume < 105))
+		L.reagent_move_delay_modifier -= (0.1) 
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
 		L.knock_out(5)
