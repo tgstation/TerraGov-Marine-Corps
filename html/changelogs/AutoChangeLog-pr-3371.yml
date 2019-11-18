@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - tweak: "The cryosleep machines only accept bodies that have been disconnected for over 15 minutes, or who have ghosted while alive. They process them much quicker now."
