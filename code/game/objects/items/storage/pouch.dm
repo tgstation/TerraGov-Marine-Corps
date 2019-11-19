@@ -239,7 +239,7 @@
 	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large/pmc_m39
-	fill_type = /obj/item/ammo_magazine/smg/m39/ap
+	fill_type = /obj/item/ammo_magazine/smg/standard_smg/ap
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_p90
@@ -247,7 +247,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/lmg
+	fill_type = /obj/item/ammo_magazine/standard_lmg
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper

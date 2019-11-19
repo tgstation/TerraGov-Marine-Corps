@@ -705,7 +705,7 @@
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
+		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)

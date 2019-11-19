@@ -56,7 +56,6 @@
 		to_chat(src, "<span class='notice'>You try to move your [temp.display_name], but cannot!")
 		return
 
-	changeNext_move(CLICK_CD_MELEE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, A)
 	A.attack_hand(src)
 

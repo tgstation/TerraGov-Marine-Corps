@@ -4,7 +4,7 @@
 //-------------------------------------------------------
 //M41A PULSE RIFLE AMMUNITION
 
-/obj/item/ammo_magazine/rifle
+/obj/item/ammo_magazine/rifle/
 	name = "\improper M41A1 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
@@ -12,7 +12,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a
+	gun_type = /obj/item/weapon/gun/rifle/m41a1
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper M41A1 extended magazine (10x24mm)"
@@ -20,29 +20,70 @@
 	icon_state = "m41a1_ext"
 	max_rounds = 60
 	bonus_overlay = "m41a1_ex"
+	gun_type = /obj/item/weapon/gun/rifle/m41a1
 
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper M41A1 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m41a1_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
+	gun_type = /obj/item/weapon/gun/rifle/m41a1
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper M41A1 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
+	gun_type = /obj/item/weapon/gun/rifle/m41a1
 
+//-------------------------------------------------------
+//T18 Carbine
+
+/obj/item/ammo_magazine/rifle/standard_carbine
+	name = "\improper T-18 Carbine magazine (10x24mm)"
+	desc = "A 10mm Carbine magazine."
+	caliber = "10x24mm caseless"
+	icon_state = "t18"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 24
+	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
+
+//-------------------------------------------------------
+//T12 Assault Rifle
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle
+	name = "\improper T-12 Assault Rifle magazine (10x24mm)"
+	desc = "A 10mm Carbine magazine."
+	caliber = "10x24mm caseless"
+	icon_state = "t12"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 50
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
+
+//-------------------------------------------------------
+//T64 DMR
+
+/obj/item/ammo_magazine/rifle/standard_dmr
+	name = "\improper T-64 DMR magazine (10x27mm)"
+	desc = "A 10mm DMR magazine."
+	caliber = "10x27mm caseless"
+	icon_state = "t64"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	max_rounds = 10
+	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
-/obj/item/ammo_magazine/rifle/m41aMK1
+/obj/item/ammo_magazine/rifle/m41a
 	name = "\improper M41A magazine (10x24mm)"
 	desc = "A semi-rectangular box of rounds for the original M41A Pulse Rifle."
 	icon_state = "m41a"
 	max_rounds = 95
-	gun_type = /obj/item/weapon/gun/rifle/m41aMK1
+	gun_type = /obj/item/weapon/gun/rifle/m41a
 
 
 
@@ -80,18 +121,30 @@
 
 
 //-------------------------------------------------------
-//M41AE2 HEAVY PULSE RIFLE
+//T-42 Light Machine Gun
 
-/obj/item/ammo_magazine/lmg
-	name = "\improper M41AE2 ammo box (10x24mm)"
-	desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
-	icon_state = "m41ae2"
+/obj/item/ammo_magazine/standard_lmg
+	name = "\improper T-42 LMG drum magazine (10x24mm)"
+	desc = "A drum magazine for the T-42 Light Machine Gun."
+	icon_state = "t42"
 	caliber = "10x24mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 200
-	gun_type = /obj/item/weapon/gun/rifle/lmg
+	max_rounds = 120
+	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 
+//-------------------------------------------------------
+//M41AE2 HEAVY PULSE RIFLE
+ 
+/obj/item/ammo_magazine/m41ae2_hpr
+    name = "\improper M41AE2 ammo box (10x24mm)"
+    desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+    icon_state = "m41ae2"
+    caliber = "10x24mm caseless"
+    default_ammo = /datum/ammo/bullet/rifle
+    w_class = WEIGHT_CLASS_NORMAL
+    max_rounds = 200
+    gun_type = /obj/item/weapon/gun/rifle/m41ae2_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE

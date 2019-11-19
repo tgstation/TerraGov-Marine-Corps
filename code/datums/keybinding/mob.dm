@@ -156,7 +156,7 @@
 
 /datum/keybinding/mob/examine/down(client/user)
 	RegisterSignal(user.mob, list(COMSIG_MOB_CLICKON, COMSIG_OBSERVER_CLICKON), .proc/examinate)
-	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .proc/intercept_mouse_special)
+	RegisterSignal(user.mob, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP), .keybinding/proc/intercept_mouse_special)
 	return TRUE
 
 
@@ -172,11 +172,6 @@
 		return
 	user.examinate(A)
 	return COMSIG_MOB_CLICK_HANDLED
-
-
-/datum/keybinding/mob/examine/proc/intercept_mouse_special(datum/source)
-	return COMSIG_MOB_CLICK_CANCELED
-
 
 /datum/keybinding/mob/toggle_move_intent
 	key = "5"

@@ -161,8 +161,6 @@
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
 
-	user.changeNext_move(CLICK_CD_RAPID)
-
 	if(QDELETED(src))
 		return
 
@@ -255,7 +253,6 @@
 		UPDATEHEALTH(H)
 		qdel(current_acid)
 		current_acid = null
-	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 
@@ -571,6 +568,10 @@
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				icon_state = "s_[icon_state]"
 				item_state = "s_[item_state]"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				icon_state = "k_[icon_state]"
+				item_state = "k_[item_state]"
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -633,7 +634,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
 		return
 
-	if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+	if(!zoom && user.tinttotal >= TINT_5)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 

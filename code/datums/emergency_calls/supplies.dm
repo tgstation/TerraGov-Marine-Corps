@@ -1,19 +1,19 @@
 //Supply drop. Just crates, no members.
-#define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/m39, \
-							/obj/item/weapon/gun/smg/m39, \
-							/obj/item/ammo_magazine/smg/m39/extended, \
-							/obj/item/ammo_magazine/smg/m39/extended, \
-							/obj/item/ammo_magazine/smg/m39/ap, \
-							/obj/item/ammo_magazine/smg/m39/ap \
+#define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/standard_smg, \
+							/obj/item/weapon/gun/smg/standard_smg, \
+							/obj/item/ammo_magazine/smg/standard_smg/extended, \
+							/obj/item/ammo_magazine/smg/standard_smg/extended, \
+							/obj/item/ammo_magazine/smg/standard_smg/ap, \
+							/obj/item/ammo_magazine/smg/standard_smg/ap \
 							), \
 						list(/obj/item/weapon/gun/flamer, \
 							/obj/item/weapon/gun/flamer, \
 							/obj/item/ammo_magazine/flamer_tank, \
 							/obj/item/ammo_magazine/flamer_tank \
 							), \
-						list(/obj/item/weapon/gun/rifle/lmg, \
-							/obj/item/ammo_magazine/lmg, \
-							/obj/item/ammo_magazine/lmg, \
+						list(/obj/item/weapon/gun/rifle/standard_lmg, \
+							/obj/item/ammo_magazine/standard_lmg, \
+							/obj/item/ammo_magazine/standard_lmg, \
 							), \
 						list(/obj/item/weapon/gun/shotgun/combat, \
 							/obj/item/weapon/gun/shotgun/combat, \
@@ -27,8 +27,8 @@
 							/obj/item/detpack, \
 							/obj/item/assembly/signaler \
 							), \
-						list(/obj/item/weapon/gun/rifle/m41a, \
-							/obj/item/weapon/gun/rifle/m41a, \
+						list(/obj/item/weapon/gun/rifle/standard_carbine, \
+							/obj/item/weapon/gun/rifle/standard_carbine, \
 							/obj/item/ammo_magazine/rifle/incendiary, \
 							/obj/item/ammo_magazine/rifle/incendiary, \
 							/obj/item/ammo_magazine/rifle/incendiary, \

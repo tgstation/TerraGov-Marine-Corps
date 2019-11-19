@@ -273,7 +273,7 @@
 
 	assailant.changeNext_move(CLICK_CD_RANGE)
 
-	assailant.flick_attack_overlay(victim, "grab")
+	assailant.do_attack_animation(victim, ATTACK_EFFECT_GRAB)
 
 	log_combat(assailant, victim, "psychically grabbed")
 

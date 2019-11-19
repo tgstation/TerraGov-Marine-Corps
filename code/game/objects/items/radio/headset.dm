@@ -164,6 +164,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/Initialize()
 	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/headset/mainship/LateInitialize(mapload)
+	. = ..()
 	camera = new /obj/machinery/camera/headset(src)
 
 
@@ -242,10 +246,13 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/proc/disable_sl_direction()
-	if(wearer.mind && wearer.assigned_squad && wearer.hud_used?.SL_locator)
+	if(!wearer.assigned_squad)
+		return
+
+	if(wearer.mind && wearer.hud_used?.SL_locator)
 		wearer.hud_used.SL_locator.alpha = 0
 
-	if(wearer?.assigned_squad?.squad_leader == wearer)
+	if(wearer.assigned_squad.squad_leader == wearer)
 		SSdirection.clear_leader(wearer.assigned_squad.tracking_id)
 		SSdirection.stop_tracking("marine-sl", wearer)
 	else
@@ -253,7 +260,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	sl_direction = FALSE
 	to_chat(wearer, "<span class='notice'>You toggle the SL directional display off.</span>")
-	playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
+	playsound(loc, 'sound/machines/click.ogg', 15, 0, TRUE)
 
 
 

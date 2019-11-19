@@ -45,13 +45,13 @@
 	new /obj/item/weapon/gun/flamer(src)
 	new /obj/item/ammo_magazine/flamer_tank(src)
 	new /obj/item/weapon/gun/shotgun/combat(src)
-	new /obj/item/weapon/gun/smg/m39(src)
+	new /obj/item/weapon/gun/smg/standard_smg(src)
 	new /obj/item/weapon/gun/pistol/m4a3(src)
 
 	var/list/to_spawn = list(
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/clothing/suit/armor/bulletproof = 4,
-		/obj/item/ammo_magazine/smg/m39/ap = 2,
+		/obj/item/ammo_magazine/smg/standard_smg/ap = 2,
 		/obj/item/ammo_magazine/pistol/ap = 2,
 	)
 	for(var/typepath in to_spawn)
@@ -65,14 +65,14 @@
 
 /obj/structure/closet/secure_closet/guncabinet/pmc_m39/PopulateContents()
 	new /obj/item/storage/pouch/magazine/large/pmc_m39(src)
-	new /obj/item/weapon/gun/smg/m39(src)
+	new /obj/item/weapon/gun/smg/standard_smg(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()
-	new /obj/item/weapon/gun/rifle/lmg(src)
-	new /obj/item/ammo_magazine/lmg(src)
-	new /obj/item/weapon/gun/rifle/lmg(src)
-	new /obj/item/ammo_magazine/lmg(src)
+	new /obj/item/weapon/gun/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/weapon/gun/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/m57a4/PopulateContents()
@@ -97,6 +97,7 @@
 	new /obj/item/storage/box/spec/scout(src)
 	new /obj/item/storage/box/spec/scoutshotgun(src)
 	new /obj/item/storage/box/spec/sniper(src)
+	new /obj/item/storage/box/spec/tracker(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/highpower/PopulateContents()
@@ -113,12 +114,12 @@
 
 
 /obj/structure/closet/secure_closet/guncabinet/m41aMK1/PopulateContents()
-	new /obj/item/weapon/gun/rifle/m41aMK1(src)
-	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
-	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
-	new /obj/item/weapon/gun/rifle/m41aMK1(src)
-	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
-	new /obj/item/ammo_magazine/rifle/m41aMK1(src)
+	new /obj/item/weapon/gun/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/weapon/gun/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/mp_armory

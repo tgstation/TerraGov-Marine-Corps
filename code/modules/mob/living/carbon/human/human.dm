@@ -1036,20 +1036,6 @@
 		return TRUE
 
 
-/mob/living/carbon/human/get_total_tint()
-	. = ..()
-	var/obj/item/clothing/C
-	if(istype(head, /obj/item/clothing/head))
-		C = head
-		. += C.tint
-	if(istype(wear_mask, /obj/item/clothing/mask))
-		C = wear_mask
-		. += C.tint
-	if(istype(glasses, /obj/item/clothing/glasses))
-		C = glasses
-		. += C.tint
-
-
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
 	name = GLOB.namepool[/datum/namepool].get_random_name(gender)

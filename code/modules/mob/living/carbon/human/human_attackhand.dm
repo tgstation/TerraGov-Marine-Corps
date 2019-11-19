@@ -74,14 +74,13 @@
 
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "punch")
-
 			if(!H.melee_damage || !prob(H.melee_accuracy))
+				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 				return FALSE
 
+			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			var/max_dmg = H.melee_damage
 			if(H.mind.cm_skills)
 				max_dmg += H.mind.cm_skills.cqc
@@ -105,8 +104,7 @@
 		if(INTENT_DISARM)
 			log_combat(user, src, "disarmed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "disarm")
+			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 

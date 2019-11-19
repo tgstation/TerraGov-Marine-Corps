@@ -111,14 +111,15 @@
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
-	if(blocked >= 1) //Complete negation
-		return 0
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked)
-		if(brute)
-			brute *= CLAMP01(1-blocked) //Percentage reduction
-		if(burn)
-			burn *= CLAMP01(1-blocked) //Percentage reduction
+	if(hit_percent <= 0) //total negation
+		return FALSE
+
+	if(brute)
+		brute *= CLAMP01(hit_percent) //Percentage reduction
+	if(burn)
+		burn *= CLAMP01(hit_percent) //Percentage reduction
 
 	if((brute <= 0) && (burn <= 0))
 		return 0
@@ -636,10 +637,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 //Handles dismemberment
 /datum/limb/proc/droplimb(amputation, delete_limb = 0)
 	if(limb_status & LIMB_DESTROYED)
-		return
+		return FALSE
 	else
 		if(body_part == CHEST)
-			return
+			return FALSE
 
 		if(limb_status & LIMB_ROBOT)
 			limb_status = LIMB_DESTROYED|LIMB_ROBOT
@@ -730,7 +731,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
 		release_restraints()
 
-		if(vital) owner.death()
+		if(vital)
+			owner.death()
+		return TRUE
+
 
 /****************************************************
 			HELPERS
@@ -1144,3 +1148,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/head/reset_limb_surgeries()
 	..()
 	face_surgery_stage = 0
+
+
+/datum/limb/head/droplimb(amputation, delete_limb = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(!(owner.species.species_flags & DETACHABLE_HEAD))
+		owner.set_undefibbable()

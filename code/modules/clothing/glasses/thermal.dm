@@ -54,3 +54,11 @@
 	icon_state = "thermalimplants"
 	item_state = "syringe_kit"
 	toggleable = 0
+
+/obj/item/clothing/glasses/thermal/m64_thermal_goggles
+	name = "\improper M64 tracker sight"
+	desc = "A headset and thermal vision goggles system for the tracker specialization. Allows thermal imaging of living creatures. Click it to toggle."
+	icon = 'icons/obj/clothing/glasses.dmi'
+	icon_state = "m56_goggles"
+	deactive_state = "m56_goggles_0"
+	actions_types = list(/datum/action/item_action/toggle)

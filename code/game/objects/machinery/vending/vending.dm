@@ -112,7 +112,7 @@
 	return
 
 GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
-	/obj/item/weapon/gun/rifle/m41a,
+	/obj/item/weapon/gun/rifle/standard_carbine,
 	/obj/item/ammo_magazine/rifle,
 	/obj/item/weapon/combat_knife,
 	/obj/item/radio/headset/mainship/marine,

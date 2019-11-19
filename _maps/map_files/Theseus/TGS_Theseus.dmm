@@ -7842,14 +7842,14 @@
 /area/mainship/engineering/upper_engineering)
 "asm" = (
 /obj/structure/table/mainship,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8348,14 +8348,14 @@
 /area/mainship/medical/upper_medical)
 "atv" = (
 /obj/structure/table/mainship,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -15274,8 +15274,8 @@
 /area/mainship/shipboard/brig)
 "aHu" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -22821,7 +22821,7 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/m41a,
+/obj/item/weapon/gun/rifle/standard_carbine,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
@@ -22839,10 +22839,10 @@
 	},
 /area/mainship/shipboard/firing_range)
 "bak" = (
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
