@@ -13,6 +13,7 @@
 	var/base_icon = 'icons/effects/blood.dmi'
 	var/basecolor="#ff3b00" // Color when wet.
 	var/amount = 5
+	var/drying_timer
 
 
 /obj/effect/decal/cleanable/blood/Initialize()
@@ -26,12 +27,21 @@
 		for(var/obj/effect/decal/cleanable/blood/B in loc)
 			if(B == src)
 				continue
-			return INITIALIZE_HINT_QDEL
+			qdel(B)
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/decal/cleanable/blood/LateInitialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount+1))
+	if(QDELETED(src))
+		CRASH("[type] already deleted on LateInitialize. Loc: ([x], [y], [z])")
+	drying_timer = addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount + 1), TIMER_STOPPABLE)
+
+
+/obj/effect/decal/cleanable/blood/Destroy()
+	if(drying_timer)
+		deltimer(drying_timer)
+	return ..()
+
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[pick(list("FF0000","FF7F00","FFFF00","00FF00","0000FF","4B0082","8F00FF"))]"
@@ -105,6 +115,18 @@
 	random_icon_states = list("1","2","3","4","5")
 	amount = 0
 	var/drips
+
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid
+	name = "tracking fluid"
+	desc = "Tracking fluid from a tracking round."
+	basecolor = "#00FFFF"
+
+/obj/effect/decal/cleanable/blood/drip/tracking_fluid/dry()
+	name = "dried [name]"
+	desc = "Tracking fluid from a tracking round. It appears to have lost its color."
+	color = adjust_brightness(color, -75)
+	amount = 0
 
 /obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"

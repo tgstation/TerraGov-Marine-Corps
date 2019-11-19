@@ -116,7 +116,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = (caliber in list("12g", "7.62x54mmR")) ? 5 : 8
+	var/MR = (caliber in list("12g", "7.62x54mmR", ".410")) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -210,7 +210,14 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
-	icon_state = new_caliber == "12g" ? ammo_name : new_caliber == "7.62x54mmR" ? "mosin bullet" : "bullet" //What am I even doing with my life?
+	switch(new_caliber)
+		if("12g",".410")
+			icon_state = ammo_name
+		if("7.62x54mmR")
+			icon_state = "mosin bullet"
+		else
+			icon_state = "bullet"
+
 	default_ammo = new_ammo
 	caliber = new_caliber
 	max_rounds = maximum_rounds
@@ -481,6 +488,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_rounds = 100
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
+	var/caliber = "12g"
 
 
 /obj/item/shotgunbox/update_icon()
@@ -531,7 +539,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/obj/item/ammo_magazine/handful/H = new
 	var/rounds = min(current_rounds, 5)
 
-	H.generate_handful(ammo_type, "12g", 5, rounds, /obj/item/weapon/gun/shotgun)
+	H.generate_handful(ammo_type, caliber, 5, rounds, /obj/item/weapon/gun/shotgun)
 	current_rounds -= rounds
 
 	user.put_in_hands(H)
