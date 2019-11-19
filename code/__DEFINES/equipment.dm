@@ -81,9 +81,12 @@
 
 //vision obscuring facegear and etc.
 #define TINT_NONE 0
-#define TINT_MILD 1
-#define TINT_HEAVY 2
-#define TINT_BLIND 3
+#define TINT_1 1
+#define TINT_2 2
+#define TINT_3 3
+#define TINT_4 4
+#define TINT_5 5
+#define TINT_BLIND 6
 
 //Inventory depth: limits how many nested storage items you can access directly.
 //1: stuff in mob, 2: stuff in backpack, 3: stuff in box in backpack, etc
@@ -97,6 +100,11 @@
 #define ARMOR_LAMP_OVERLAY		(1<<1)
 #define ARMOR_LAMP_ON			(1<<2)
 #define ARMOR_IS_REINFORCED		(1<<3)
+//===========================================================================================
+
+//===========================================================================================
+//Marine gloves only, use for flags_glove_features.
+#define GLOVES_SQUAD_OVERLAY     (1<<0)
 //===========================================================================================
 
 //===========================================================================================
@@ -243,6 +251,8 @@
 #define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
 #define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
 #define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
+#define HEAVYHELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	15000	//For heavy helmets
+#define HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 		15000	//For heavy armor
 
 #define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
 #define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves

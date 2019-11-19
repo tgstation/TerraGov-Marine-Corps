@@ -33,7 +33,7 @@
 		update_icon(1, 0)
 
 	//PLACING/REMOVING/BUILDING
-/turf/open/snow/attackby(obj/item/I, mob/user, params)
+/turf/open/floor/plating/ground/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	//Light Stick
 	if(istype(I, /obj/item/lightstick))

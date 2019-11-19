@@ -214,7 +214,7 @@
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
-					victim.take_overall_damage(CHARGE_SPEED(src) * 10)
+					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee"))
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)

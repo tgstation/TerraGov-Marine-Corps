@@ -334,6 +334,15 @@
 	dir = 2
 	},
 /area/lv624/lazarus/medbay)
+"abC" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/secure_storage)
 "abD" = (
 /obj/effect/alien/weeds/node,
 /obj/structure/mineral_door/resin,
@@ -19036,39 +19045,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
-"bpm" = (
-/obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
-"bpn" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/table/mainship,
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
-"bpo" = (
-/obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/secure_storage)
 "bpp" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -20189,10 +20165,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
-"kUI" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/central2)
 "lda" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -30060,7 +30032,7 @@ bmw
 bna
 bnJ
 bot
-bpm
+bpp
 bot
 bnJ
 bro
@@ -30317,7 +30289,7 @@ bmw
 bnb
 bnJ
 bou
-bpn
+abC
 bou
 bnJ
 brp
@@ -30574,7 +30546,7 @@ bmw
 bnc
 bnJ
 bov
-bpo
+bpp
 bov
 bnJ
 brq
@@ -41424,7 +41396,7 @@ aai
 aaf
 aal
 aao
-kUI
+aao
 aao
 aao
 aao

@@ -103,6 +103,11 @@
 	config_entry_value = 0.04
 	min_val = 0.001
 
+/datum/config_entry/number/crash_coefficient
+	integer = FALSE
+	config_entry_value = 0.04
+	min_val = 0.001
+
 /datum/config_entry/number/survivor_coefficient
 	integer = FALSE
 	config_entry_value = 15

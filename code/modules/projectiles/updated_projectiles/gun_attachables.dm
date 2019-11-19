@@ -474,6 +474,27 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
+/obj/item/attachable/t42barrel
+	name = "T-42 barrel"
+	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t42barrel"
+	flags_attach_features = NONE
+
+/obj/item/attachable/t18barrel
+	name = "T-18 barrel"
+	desc = "The standard barrel on the T-18. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t18barrel"
+	flags_attach_features = NONE
+
+/obj/item/attachable/t12barrel
+	name = "T-12 barrel"
+	desc = "The standard barrel on the T-12. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t12barrel"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -878,6 +899,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/t18stock
+	name = "T-18 Stock"
+	desc = "A standard Carbine Stock."
+	icon_state = "t18stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 
@@ -1252,7 +1287,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
@@ -1272,7 +1307,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
-		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod

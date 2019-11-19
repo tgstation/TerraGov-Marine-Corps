@@ -2,17 +2,9 @@
 	category = CATEGORY_HUMAN
 	weight = WEIGHT_MOB
 
-/datum/keybinding/human/New()
-	. = ..()
-	if(!keybind_signal)
-		CRASH("Keybind [src] called unredefined down() without a keybind_signal.")
-
-/datum/keybinding/human/down(client/user)
-	return CHECK_BITFIELD(SEND_SIGNAL(user.mob, keybind_signal), COMSIG_KB_ACTIVATED)
-
 
 /datum/keybinding/human/quick_equip
-	key = "E"
+	hotkey_keys = list("E")
 	name = "quick_equip"
 	full_name = "Quick equip"
 	description = ""
@@ -20,7 +12,7 @@
 
 
 /datum/keybinding/human/holster
-	key = "H"
+	hotkey_keys = list("H")
 	name = "holster"
 	full_name = "Holster"
 	description = ""
@@ -28,7 +20,7 @@
 
 
 /datum/keybinding/human/unique_action
-	key = "Space"
+	hotkey_keys = list("Space")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	description = ""

@@ -45,6 +45,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
+"aan" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/admin_building)
 "aao" = (
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
@@ -105,6 +109,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aaz" = (
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "aaA" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/dark,
@@ -260,6 +268,24 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"aaY" = (
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 4;
+	name = "\improper Eta Lab Secure Storage";
+	req_access_txt = "0"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"aaZ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/s)
 "aba" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -315,6 +341,16 @@
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"abi" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/s)
 "abj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -498,12 +534,26 @@
 	dir = 6
 	},
 /area/bigredv2/outside/space_port)
+"abL" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/s)
 "abM" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
+"abN" = (
+/obj/structure/filingcabinet,
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "abO" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -561,6 +611,17 @@
 	dir = 2
 	},
 /area/bigredv2/caves/lambda_lab)
+"abW" = (
+/obj/structure/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"abX" = (
+/obj/machinery/light,
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "abY" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -600,6 +661,14 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves)
+"acd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ace" = (
 /obj/structure/cargo_container/green{
 	dir = 8
@@ -683,6 +752,14 @@
 "acp" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
+"acq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "acr" = (
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
@@ -709,12 +786,37 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
+"acu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"acv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "acw" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
+"acx" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "acy" = (
 /obj/machinery/botany,
 /turf/open/floor/tile/green/whitegreen{
@@ -729,6 +831,10 @@
 "acA" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/telecomm)
+"acB" = (
+/obj/structure/table,
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "acC" = (
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
@@ -786,6 +892,10 @@
 	},
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
+"acL" = (
+/obj/effect/landmark/corpsespawner/pmc,
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "acM" = (
 /obj/structure/table,
 /turf/open/floor/tile/white,
@@ -881,6 +991,11 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"add" = (
+/obj/structure/table,
+/obj/item/weapon/gun/rifle/type71/flamer,
+/turf/open/floor,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ade" = (
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -990,6 +1105,11 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
+"adx" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ady" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkish,
@@ -1071,6 +1191,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
+"adK" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/virology)
 "adL" = (
 /obj/machinery/light{
 	dir = 4
@@ -1088,6 +1212,12 @@
 /area/bigredv2/outside/marshal_office)
 "adO" = (
 /turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"adP" = (
+/obj/machinery/computer/nuke_disk_generator/red,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
 /area/bigredv2/outside/marshal_office)
 "adQ" = (
 /obj/structure/closet/walllocker/hydrant/full{
@@ -15289,10 +15419,6 @@
 /obj/item/tool/weedkiller/D24,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
-"aUM" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/virology)
 "aUN" = (
 /obj/structure/table,
 /obj/item/storage/pill_bottle/spaceacillin,
@@ -22600,30 +22726,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
-"bwd" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
-"bwg" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
-"bwh" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
 "bwj" = (
 /obj/effect/landmark/start/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22798,25 +22900,6 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bxi" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bxj" = (
-/obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bxk" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxm" = (
 /obj/machinery/light{
@@ -23445,12 +23528,6 @@
 /obj/structure/table,
 /obj/effect/spawner/random/tech_supply,
 /obj/item/phone,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
-"bzG" = (
-/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -25334,14 +25411,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"hsA" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "hzx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -25377,13 +25446,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"idM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/elevatorshaft,
-/area/bigredv2/caves/lambda_lab)
 "iiY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -25404,10 +25466,6 @@
 	},
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/virology)
-"iCv" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
 "iKn" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -25446,12 +25504,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/chapel)
-"jrq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "jHL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -26207,14 +26259,6 @@
 	dir = 2
 	},
 /area/bigredv2/outside/admin_building)
-"szw" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/nanotrasen_lab/inside)
 "sBV" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
@@ -31308,7 +31352,7 @@ aMz
 aYA
 aWe
 aMz
-aUM
+adK
 fmM
 aNc
 aNc
@@ -43233,7 +43277,7 @@ aPK
 aQV
 aRT
 aKn
-aVR
+aan
 aNF
 aVQ
 aKn
@@ -45134,7 +45178,7 @@ acP
 acP
 acP
 acp
-afn
+adP
 afT
 agE
 afS
@@ -46986,12 +47030,12 @@ bvA
 bvD
 btv
 btv
-bvp
-bvA
-bvA
-bvA
-bvA
-bwd
+aaZ
+bjw
+bjw
+bjw
+bjw
+bjw
 bwH
 bwM
 bxd
@@ -47203,12 +47247,12 @@ bjx
 bjZ
 bjy
 bjy
-blq
+abi
 bjw
 bjw
 bjw
 bjw
-bwg
+bwb
 bwF
 bwN
 byh
@@ -47420,12 +47464,12 @@ bkp
 bjy
 bjy
 bjy
-blq
+abi
 bwb
 bjw
 bjw
 bjw
-bwg
+bjw
 bwF
 bwO
 bxf
@@ -47637,12 +47681,12 @@ bjA
 bur
 bjy
 bjy
-blq
+abi
 bjw
-bjw
-bjw
-bjw
-bwg
+bwF
+bwF
+aaY
+bwF
 bwF
 bwF
 bwF
@@ -47854,15 +47898,15 @@ bjA
 bjA
 blv
 bjy
-blq
+abi
 bjw
-bjw
-bwb
-bjw
-bwg
+bwF
+bxC
+bxc
+bxc
+bAg
 bwF
 bwP
-bxg
 bxs
 bxo
 bxg
@@ -48071,16 +48115,16 @@ bjA
 bjA
 bur
 bjy
-blq
+abi
 bjw
-bjw
-bjw
-bjw
-bwg
+bwF
+bxC
+bxc
+bwK
+abX
 bwF
 bwP
-bxh
-bxt
+acd
 bxF
 bxF
 bxF
@@ -48288,16 +48332,16 @@ bjA
 bjA
 bjA
 blv
-blq
+abi
 bwb
-bjw
-bjw
-bjw
-bwg
+bwF
+bxC
+bxc
+bxc
+bAg
 bwF
 bwP
-bxi
-szw
+acq
 bxu
 bxu
 bxX
@@ -48505,15 +48549,15 @@ bjA
 bjH
 bkr
 bjy
-blq
+abi
 bjw
-bjw
-bjw
-bjw
-bwg
+bwF
+bxC
+bwK
+bxc
+bAg
 bwF
 bwQ
-bxj
 byM
 bxg
 bxL
@@ -48722,19 +48766,19 @@ bjH
 bjy
 bjy
 bjy
-blq
+abi
 bjw
-bjw
-bjw
-bjw
-bwg
+bwF
+abN
+add
+acB
+bAg
 bwF
 bwR
-bxh
-bxt
+acd
 bxG
 bxF
-bxF
+acv
 bxv
 byB
 bxg
@@ -48939,19 +48983,19 @@ bjy
 bjy
 bjy
 bjy
-blq
+abi
 bjw
-bjw
-bwb
-bjw
-bwg
+bwF
+abW
+bxc
+acL
+bAg
 bwF
 bwS
-jrq
-hsA
+acu
 vpT
 vpT
-vpT
+acx
 vpT
 byC
 bxE
@@ -49156,15 +49200,15 @@ bkb
 bun
 bjy
 bjy
-blq
+abi
 bjw
-bjw
-bjw
-bjw
-bwg
+bwF
+aaz
+bwK
+bxc
+bAg
 bwF
 bwT
-bxk
 bxw
 bxH
 bwT
@@ -49373,12 +49417,12 @@ bjw
 bjY
 bkb
 bkb
-blq
+abi
 bwb
-bjw
-bjw
-bjw
-bwg
+bwF
+bwF
+bwF
+bwF
 bwF
 bwF
 bwF
@@ -49590,12 +49634,12 @@ bjw
 bjY
 bjx
 bjx
-blq
+abi
 bjw
 bjw
 bjw
 bjw
-bwg
+bjw
 bwF
 bwU
 bwU
@@ -49807,12 +49851,12 @@ bjx
 bjZ
 bjy
 bjy
-blq
-bjw
-bjw
-bwb
-bjw
-bwh
+abL
+bvA
+bvA
+bvA
+bvA
+bvA
 bwI
 bwV
 bwV
@@ -50028,7 +50072,7 @@ blq
 bjw
 bjw
 bjw
-bjw
+bwb
 bjw
 bwF
 bwW
@@ -51127,7 +51171,7 @@ byE
 byU
 bze
 bwF
-bzG
+adx
 bzW
 bAp
 bAG
@@ -63379,7 +63423,7 @@ adZ
 afv
 adZ
 adZ
-idM
+aqY
 arF
 arF
 ate
@@ -68921,7 +68965,7 @@ aad
 aad
 aad
 aad
-iCv
+aad
 ptp
 tnm
 tnm

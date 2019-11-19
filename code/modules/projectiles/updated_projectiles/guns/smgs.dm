@@ -4,6 +4,7 @@
 	reload_sound = 'sound/weapons/guns/interact/smg_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/smg_cocked.ogg'
 	type_of_casings = "bullet"
+	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
@@ -40,9 +41,8 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
-//M39 SMG
 
-/obj/item/weapon/gun/smg/m39
+/obj/item/weapon/gun/smg/standard_smg
 	name = "\improper M39 submachinegun"
 	desc = "Armat Battlefield Systems M39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
@@ -50,7 +50,7 @@
 	caliber = "10x20mm caseless" //codex
 	max_shells = 40 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/m39
+	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -82,13 +82,54 @@
 
 
 //-------------------------------------------------------
+//M39 SMG
+
+/obj/item/weapon/gun/smg/m39
+	name = "\improper M39 submachinegun"
+	desc = "Armat Battlefield Systems M39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	icon_state = "m39"
+	item_state = "m39"
+	caliber = "10x20mm caseless" //codex
+	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	type_of_casings = null
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/stock/smg,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/gyro)
+
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
+
+	accuracy_mult = 0.95
+	accuracy_mult_unwielded = 0.9
+	scatter = 20
+	fire_delay = 0.2 SECONDS
+	scatter_unwielded = 30
+	aim_slowdown = 0.15
+	burst_amount = 2
+
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B2 submachinegun"
 	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
-	current_mag = /obj/item/ammo_magazine/smg/m39/ap
+	current_mag = /obj/item/ammo_magazine/smg/standard_smg/ap
+
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -97,7 +138,6 @@
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.1
-
 
 
 //-------------------------------------------------------

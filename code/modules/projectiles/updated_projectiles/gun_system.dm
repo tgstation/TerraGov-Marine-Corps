@@ -15,6 +15,7 @@
 	flags_item = TWOHANDED
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -124,7 +125,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	muzzle_flash = new()
+	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -423,14 +424,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
-		var/bullet_ammo_type
+		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
 		if(current_mag)
-			bullet_ammo_type = current_mag.default_ammo
-			bullet_caliber = current_mag.caliber
+			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
-			bullet_ammo_type = ammo.type
-			bullet_caliber = caliber
+			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
@@ -897,6 +896,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
+	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
 	if(flags_item & WIELDED && wielded_stable())
@@ -945,13 +945,16 @@ and you're good to go.
 				gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 		projectile_to_fire.firer = user
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			projectile_to_fire.def_zone = user.zone_selected
-			if(C.stagger)
-				gun_scatter += 30
+		if(isliving(user))
+			var/mob/living/living_user = user
+			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				projectile_to_fire.def_zone = user.zone_selected
+				if(carbon_user.stagger)
+					gun_scatter += 30
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 

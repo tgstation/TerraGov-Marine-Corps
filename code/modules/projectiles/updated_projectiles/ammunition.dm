@@ -116,7 +116,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = (caliber in list("12g", "7.62x54mmR")) ? 5 : 8
+	var/MR = (caliber in list("12g", "7.62x54mmR", ".410")) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -210,7 +210,14 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	var/ammo_name = A.name //Let's pull up the name.
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
-	icon_state = new_caliber == "12g" ? ammo_name : new_caliber == "7.62x54mmR" ? "mosin bullet" : "bullet" //What am I even doing with my life?
+	switch(new_caliber)
+		if("12g",".410")
+			icon_state = ammo_name
+		if("7.62x54mmR")
+			icon_state = "mosin bullet"
+		else
+			icon_state = "bullet"
+
 	default_ammo = new_ammo
 	caliber = new_caliber
 	max_rounds = maximum_rounds
@@ -371,18 +378,18 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 
-//Deployable ammo box
+//Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
-	name = "M41A1 Ammo Box"
+	name = "Carbine Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
 	var/magazine_amount = 10
 	var/max_magazine_amount = 10
-	var/max_magazine_rounds = 40
+	var/max_magazine_rounds = 24
 	var/ammo_type = /datum/ammo/bullet/rifle
-	var/magazine_type = /obj/item/ammo_magazine/rifle
+	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	var/deployed = FALSE
 
 
@@ -481,6 +488,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_rounds = 100
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
+	var/caliber = "12g"
 
 
 /obj/item/shotgunbox/update_icon()
@@ -531,7 +539,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/obj/item/ammo_magazine/handful/H = new
 	var/rounds = min(current_rounds, 5)
 
-	H.generate_handful(ammo_type, "12g", 5, rounds, /obj/item/weapon/gun/shotgun)
+	H.generate_handful(ammo_type, caliber, 5, rounds, /obj/item/weapon/gun/shotgun)
 	current_rounds -= rounds
 
 	user.put_in_hands(H)
@@ -596,19 +604,19 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "M39 Ammo Box"
 	icon_state = "ammoboxm39"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39
+	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
 
 /obj/item/ammobox/m39ap
 	name = "M39 AP Ammo Box"
 	icon_state = "ammoboxm39ap"
 	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
+	magazine_type = /obj/item/ammo_magazine/smg/standard_smg/ap
 
 /obj/item/ammobox/m39ext
 	name = "M39 Extended Ammo Box"
 	icon_state = "ammoboxm39ext"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
+	magazine_type = /obj/item/ammo_magazine/smg/standard_smg/extended
 
 
 /obj/item/shotgunbox/buckshot

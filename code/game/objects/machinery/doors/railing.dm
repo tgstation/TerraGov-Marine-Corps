@@ -10,6 +10,8 @@
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
 
+	var/obj/docking_port/mobile/supply/linked_pad
+
 
 /obj/machinery/door/poddoor/railing/opened
 	icon_state = "railing0"
@@ -21,6 +23,14 @@
 	if(dir == SOUTH)
 		closed_layer = ABOVE_MOB_LAYER
 	layer = closed_layer
+
+
+/obj/machinery/door/poddoor/railing/Destroy()
+	if(linked_pad)
+		linked_pad.railings -= src
+		linked_pad = null
+	return ..()
+
 
 /obj/machinery/door/poddoor/railing/CheckExit(atom/movable/O, turf/target)
 	if(!density)

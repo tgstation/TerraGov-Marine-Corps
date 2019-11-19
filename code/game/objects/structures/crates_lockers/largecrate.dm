@@ -233,18 +233,16 @@
 					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol/ap,
 					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/marksman,
 					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/extended,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/ap,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun/beanbag,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/ap,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/extended,
-					/obj/item/weapon/gun/smg/m39/elite = /obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/weapon/gun/smg/standard_smg = /obj/item/ammo_magazine/smg/standard_smg/ap,
+					/obj/item/weapon/gun/smg/standard_smg = /obj/item/ammo_magazine/smg/standard_smg/extended,
+					/obj/item/weapon/gun/smg/m39/elite = /obj/item/ammo_magazine/smg/standard_smg/ap,
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/lmg,
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
+					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 

@@ -930,6 +930,12 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"adp" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin3"
+	},
+/area/ice_colony/underground/responsehangar)
 "adq" = (
 /obj/effect/turf_overlay/icerock,
 /obj/effect/turf_overlay/icerock{
@@ -1034,6 +1040,12 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"adG" = (
+/obj/structure/filingcabinet/security,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/ice_colony/underground/responsehangar)
 "adH" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -1363,6 +1375,14 @@
 "aeC" = (
 /turf/closed/ice_rock/singleEnd,
 /area/ice_colony/exterior/surface/valley/north)
+"aeD" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/surface/storage_unit/research)
 "aeE" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -3892,6 +3912,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"akH" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/ice_colony/surface/hangar/checkpoint)
 "akI" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/tile/dark/yellow2,
@@ -15136,11 +15162,6 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/south)
-"aNR" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/ice_colony/surface/hangar/checkpoint)
 "aNS" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westleft{
@@ -23860,14 +23881,6 @@
 /obj/structure/bookcase/manuals/medical,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/library)
-"blt" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
-/area/ice_colony/surface/storage_unit/research)
 "blu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34077,12 +34090,6 @@
 	dir = 1
 	},
 /area/ice_colony/underground/hallway/south_east)
-"bLD" = (
-/obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/ice_colony/underground/responsehangar)
 "bLE" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -41002,10 +41009,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
-"uQF" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/crew/lavatory)
 "vdz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -56543,7 +56546,7 @@ bKW
 bNv
 bMC
 bOL
-uQF
+bOL
 bZm
 bOL
 bPP
@@ -57719,7 +57722,7 @@ aaQ
 aJL
 aJL
 aLA
-blt
+aeD
 aMa
 aLP
 aLP
@@ -77769,7 +77772,7 @@ aLW
 aMD
 aMT
 aNm
-aNR
+akH
 aOS
 aOf
 aON
@@ -90096,7 +90099,7 @@ blx
 blx
 blx
 bIY
-bQA
+adp
 bQA
 bQA
 bQT
@@ -92408,7 +92411,7 @@ aHY
 aNA
 aOs
 bvD
-bLD
+adG
 aGB
 aXu
 aXy

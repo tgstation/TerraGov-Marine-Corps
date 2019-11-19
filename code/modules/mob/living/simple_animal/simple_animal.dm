@@ -189,6 +189,7 @@
 			if(!prob(user.melee_accuracy))
 				user.visible_message("<span class='danger'>[user] misses [src]!</span>", null, null, 5)
 				return FALSE
+			user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 			visible_message("<span class='danger'>[user] [response_harm] [src]!</span>",
 			"<span class='userdanger'>[user] [response_harm] [src]!</span>")
 			playsound(loc, attacked_sound, 25, 1, -1)
