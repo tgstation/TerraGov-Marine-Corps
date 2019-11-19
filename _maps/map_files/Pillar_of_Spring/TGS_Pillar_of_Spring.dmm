@@ -390,6 +390,16 @@
 	icon_state = "cargo_arrow"
 	},
 /area/mainship/hallways/hangar)
+"bj" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"bk" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/command/self_destruct)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -17684,10 +17694,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"VP" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "VW" = (
 /obj/machinery/light{
 	dir = 4
@@ -47992,7 +47998,7 @@ Go
 Go
 Go
 Go
-Go
+bj
 Go
 Go
 Go
@@ -50291,7 +50297,6 @@ ci
 aN
 Gm
 Sn
-xp
 bh
 bh
 bh
@@ -50301,7 +50306,8 @@ bh
 bh
 bh
 bh
-VP
+bh
+bh
 bh
 bh
 bh
@@ -50806,7 +50812,7 @@ aN
 GH
 RF
 bh
-bh
+xp
 bh
 bh
 bh
@@ -52174,7 +52180,7 @@ lQ
 jb
 xe
 jb
-OF
+bk
 Qe
 OO
 OU
@@ -52431,7 +52437,7 @@ lU
 xl
 xf
 xL
-OF
+bk
 OF
 Mb
 Mb
