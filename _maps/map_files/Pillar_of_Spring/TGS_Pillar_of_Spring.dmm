@@ -364,9 +364,8 @@
 	},
 /area/mainship/medical/chemistry)
 "bf" = (
-/obj/machinery/door/poddoor/mainship{
-	icon_state = "pdoor1";
-	dir = 1
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -9547,8 +9546,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "AD" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -17199,6 +17198,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"RV" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/weapon_room)
 "RW" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -38283,8 +38288,8 @@ ad
 ad
 ad
 OB
-gR
-gR
+RV
+RV
 OB
 OB
 OB
