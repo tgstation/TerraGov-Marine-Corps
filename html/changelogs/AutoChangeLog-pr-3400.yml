@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "Cocking a gun now produces the correctly loaded in chamber round."
