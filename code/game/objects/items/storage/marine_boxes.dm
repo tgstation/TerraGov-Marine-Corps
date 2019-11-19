@@ -259,7 +259,6 @@
 	. = ..()
 	new /obj/item/weapon/gun/launcher/m92(src)
 	new /obj/item/storage/belt/grenade/b17(src)
-    
 
 /obj/item/storage/box/rocket_system
 	name = "\improper M5 RPG crate"
