@@ -1,0 +1,4 @@
+author: "terranaut1"
+delete-after: True
+changes: 
+  - bugfix: "changes shuttle crash/ert shuttle locations on the pillar to avoid shuttles crashing into each other"
