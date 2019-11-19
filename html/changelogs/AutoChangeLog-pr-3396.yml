@@ -1,4 +1,0 @@
-author: "Kuro-ai"
-delete-after: True
-changes: 
-  - bugfix: "Spare vendors no longer dispense wrong camo helmets."

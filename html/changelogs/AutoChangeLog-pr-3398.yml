@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - bugfix: "Flares no longer re-activate after being used up."
