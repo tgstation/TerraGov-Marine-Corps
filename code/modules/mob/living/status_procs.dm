@@ -178,6 +178,8 @@
 
 
 /mob/living/proc/adjust_bodytemperature(amount, min_temp = 0, max_temp = INFINITY)
+	if(bodytemperature < min_temp || bodytemperature > max_temp)
+		return
 	. = bodytemperature
 	bodytemperature = CLAMP(bodytemperature + amount, min_temp, max_temp)
 
