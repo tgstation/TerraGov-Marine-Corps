@@ -382,7 +382,7 @@
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
 
-/obj/item/storage/belt/grenade/b18
+/obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 16
@@ -390,7 +390,7 @@
 	max_storage_space = 48
 	can_hold = list(/obj/item/explosive/grenade)
 
-/obj/item/storage/belt/grenade/b18/Initialize()
+/obj/item/storage/belt/grenade/b17/Initialize()
 	. = ..()
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
