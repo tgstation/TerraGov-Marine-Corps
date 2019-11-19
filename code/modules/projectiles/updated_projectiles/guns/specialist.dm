@@ -293,6 +293,7 @@
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x24mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
