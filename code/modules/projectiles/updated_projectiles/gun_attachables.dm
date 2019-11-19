@@ -263,7 +263,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 
-/obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user)
+/obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user, silent)
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
@@ -988,26 +988,30 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, "It's empty.")
 
 
-
-
-
-/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user)
+/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user, silent)
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
-		return
-	if(!G.active) //can't load live grenades
-		if(!G.underslug_launchable)
+		if(!silent)
 			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
-			return
-		if(current_rounds >= max_rounds)
+		return FALSE
+	if(G.active) //can't load live grenades
+		return FALSE
+	if(!G.underslug_launchable)
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+		return FALSE
+	if(current_rounds >= max_rounds)
+		if(!silent)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
-			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-			current_rounds++
-			loaded_grenades += G.type
-			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
-			user.temporarilyRemoveItemFromInventory(G)
-			qdel(G)
+		return FALSE
+	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
+	current_rounds++
+	loaded_grenades += G.type
+	if(!silent)
+		to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
+	user.temporarilyRemoveItemFromInventory(G)
+	qdel(G)
+	return TRUE
+
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	. = ..()
@@ -1062,56 +1066,68 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user)
+/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user, silent)
 	if(istype(object, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/I = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(I.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>[I] is empty!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[I] is empty!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
 			current_rounds += transfered_rounds
 			I.current_rounds -= transfered_rounds
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-			to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
 	else if(istype(object, /obj/item/tool/weldpack))
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/reagent_containers))
 		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else
+	else if(!silent)
 		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
@@ -1204,23 +1220,25 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
+/obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user, silent)
 	if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
 		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 			if(current_rounds >= max_rounds)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				if(!silent)
+					to_chat(user, "<span class='warning'>[src] is full.</span>")
 			else
 				current_rounds++
 				mag.current_rounds--
 				mag.update_icon()
-				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
+				if(!silent)
+					to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
 				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
 			return
-	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
-
+	if(!silent)
+		to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
 
 
 /obj/item/attachable/verticalgrip

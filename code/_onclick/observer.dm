@@ -30,8 +30,7 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
+	if(modifiers["middle"] && MiddleClickOn(A))
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return

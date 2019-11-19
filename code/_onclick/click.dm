@@ -128,8 +128,7 @@
 	if(modifiers["ctrl"] && modifiers["middle"])
 		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["middle"])
-		MiddleClickOn(A)
+	if(modifiers["middle"] && MiddleClickOn(A))		
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return
@@ -339,7 +338,10 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
-	return
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	return TRUE
 
 
 
@@ -366,9 +368,6 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
-	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
-		return
 	A.CtrlClick(src)
 
 
