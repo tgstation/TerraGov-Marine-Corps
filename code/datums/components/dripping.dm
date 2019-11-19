@@ -24,7 +24,7 @@
 			src.drip_limit = drip_limit
 			RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/drip_on_walk)
 		if(DRIP_ON_TIME)
-			drip_counter = world.time + drip_ratio
+			drip_counter = world.time
 			src.drip_limit = world.time + drip_limit
 			START_PROCESSING(SSprocessing, src)
 		else
