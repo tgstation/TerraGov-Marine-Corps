@@ -351,7 +351,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0,"orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0,"black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0,"black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0,"black"),
 	)
@@ -815,7 +814,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -850,8 +848,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
@@ -864,7 +860,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -884,8 +879,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
@@ -898,7 +891,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -906,7 +898,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 //todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
-GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set"))
+GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set","Heavy Gunner Set", "Pyro Set"))
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -918,18 +910,17 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 	listed_products = list(
 		/obj/item/storage/box/spec/scout = list(CAT_ESS, "Scout Set (Battle Rifle)", 0, "white"),
+		/obj/item/storage/box/spec/tracker = list(CAT_ESS, "Scout Set (Shotgun)", 0, "white"),
 		/obj/item/storage/box/spec/sniper = list(CAT_ESS, "Sniper Set", 0, "white"),
 		/obj/item/storage/box/spec/demolitionist = list(CAT_ESS, "Demolitionist Set", 0, "white"),
-		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Armor Set (Grenadier)", 0, "white"),
-		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Armor Set (Minigun)", 0, "white"),
+		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Grenadier Set", 0, "white"),
+		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Gunner Set", 0, "white"),
 		/obj/item/storage/box/spec/pyro = list(CAT_ESS, "Pyro Set", 0, "white"),
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
 		/obj/item/ammo_magazine/pistol/vp70 = list(CAT_SPEAMM, "88M4 AP magazine", 15, "black"),
 		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 15, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 15, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 13, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 13, "black"),
 
@@ -943,7 +934,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)
@@ -984,8 +974,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/ammo_magazine/pistol/hp = list(CAT_SPEAMM, "HP M4A3 magazine", 5, "black"),
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
-		/obj/item/ammo_magazine/rifle/ap = list(CAT_SPEAMM, "AP M41A1 magazine", 6, "black"),
-		/obj/item/ammo_magazine/rifle/extended = list(CAT_SPEAMM, "Extended M41A1 magazine", 6, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/ap = list(CAT_SPEAMM, "AP M39 magazine", 5, "black"),
 		/obj/item/ammo_magazine/smg/standard_smg/extended = list(CAT_SPEAMM, "Extended M39 magazine", 5, "black"),
 
@@ -998,7 +986,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
-		/obj/item/attachable/stock/rifle = list(CAT_ATT, "M41A1 skeleton stock", 0, "black"),
 		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
 		/obj/item/attachable/stock/smg = list(CAT_ATT, "M39 submachinegun stock", 0, "black"),
 	)

@@ -103,6 +103,11 @@
 //===========================================================================================
 
 //===========================================================================================
+//Marine gloves only, use for flags_glove_features.
+#define GLOVES_SQUAD_OVERLAY     (1<<0)
+//===========================================================================================
+
+//===========================================================================================
 //Marine helmet only, use for flags_marine_helmet.
 #define HELMET_SQUAD_OVERLAY	(1<<0)
 #define HELMET_GARB_OVERLAY		(1<<1)
@@ -246,6 +251,8 @@
 #define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
 #define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
 #define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
+#define HEAVYHELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	15000	//For heavy helmets
+#define HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 		15000	//For heavy armor
 
 #define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
 #define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves

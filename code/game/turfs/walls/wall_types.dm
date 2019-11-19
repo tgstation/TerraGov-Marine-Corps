@@ -106,6 +106,26 @@
 	opacity = FALSE
 
 
+/turf/closed/wall/desert
+	name = "wall"
+	icon = 'icons/turf/chigusa.dmi'
+	icon_state = "chigusa0"
+	walltype = "chigusa"
+
+/turf/closed/wall/desert/handle_icon_junction(junction)
+	if (!walltype)
+		return
+	//lets make some detailed randomized shit happen.
+	var/r1 = rand(0,10) //Make a random chance for this to happen
+	var/r2 = rand(0,2) // Which wall if we do choose it
+	if(junction == 12)
+		switch(r1)
+			if(0 to 8)
+				icon_state = "[walltype]12"
+			if(9 to 10)
+				icon_state = "deco_wall[r2]"
+	else
+		icon_state = "[walltype][junction]"
 
 //tyson
 /turf/closed/wall/tyson
@@ -444,7 +464,7 @@
 
 
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>We claw \the [src].</span>")
 	playsound(src, "alien_resin_break", 25)
@@ -461,7 +481,7 @@
 		return attack_hand(user)
 
 	user.changeNext_move(I.attack_speed)
-	user.do_attack_animation(src)
+	user.do_attack_animation(src, used_item = I)
 
 	var/damage = I.force
 	var/multiplier = 1

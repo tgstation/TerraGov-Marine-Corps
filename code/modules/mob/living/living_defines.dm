@@ -80,8 +80,6 @@
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
-	var/image/attack_icon //the image used as overlay on the things we attack.
-
 	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
 
 	var/reagent_move_delay_modifier = 0 //negative values increase movement speed

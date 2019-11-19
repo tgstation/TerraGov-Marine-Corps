@@ -176,14 +176,16 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	if(status_flags & GODMODE)
 		return 0//godmode
 
-	if(blocked >= 1) //Complete negation
+	var/hit_percent = (100 - blocked) * 0.01
+
+	if(hit_percent <= 0) //total negation
 		return 0
 
 	if(blocked)
 		if(brute)
-			brute *= CLAMP01(1-blocked) //Percentage reduction
+			brute *= CLAMP01(hit_percent) //Percentage reduction
 		if(burn)
-			burn *= CLAMP01(1-blocked) //Percentage reduction
+			burn *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!brute && !burn) //Complete negation
 		return 0

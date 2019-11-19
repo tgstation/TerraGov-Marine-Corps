@@ -79,7 +79,7 @@
 				H.UpdateDamageIcon()
 		else
 			armor_block = H.run_armor_check("chest", "acid")
-			H.take_overall_damage(0, rand(12, 14))
+			H.take_overall_damage(0, rand(12, 14), armor_block)
 			UPDATEHEALTH(H)
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 
