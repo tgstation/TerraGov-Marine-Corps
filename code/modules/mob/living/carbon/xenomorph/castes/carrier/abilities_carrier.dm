@@ -9,8 +9,8 @@
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
 	cooldown_timer = 3 SECONDS
 
-/datum/action/xeno_action/activable/throw_hugger/get_cooldown()	
-	var/mob/living/carbon/xenomorph/carrier/X = owner	
+/datum/action/xeno_action/activable/throw_hugger/get_cooldown()
+	var/mob/living/carbon/xenomorph/carrier/X = owner
 	return X.xeno_caste.hugger_delay
 
 /datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
