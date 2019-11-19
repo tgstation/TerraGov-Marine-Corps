@@ -183,7 +183,7 @@ Administrative related.
 	min_val = 0
 
 /datum/config_entry/number/glide_size_mod
-	config_entry_value = 5
+	config_entry_value = 1.15
 /*
 Voting
 */

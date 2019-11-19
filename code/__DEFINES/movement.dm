@@ -8,8 +8,8 @@
 ///Broken down, here's what this does:w: 
 /// divides the world icon_size (32) by delay divided by ticklag to get the number of pixels something should be moving each tick.
 /// The division result is given a min value of 1 to prevent obscenely slow glide sizes from being set
-/// This is then multiplied by the world time dilation, which is somewhat of a hack but helps get things looking a little smoother.
-/// Then *that* result has 0. 15 added to it which is another smoothness trick. Serves to help prevent situations where movement "jumps"
+/// This is then multiplied by the 1 - world time dilation, which scales speeds based on time dialation. Keeps things tighter feeling when server starts crawling.
+/// Then that's multiplied by the config glide_size_mod. 1.15 by default feels pretty close to spot on. This is just to try to get byond to behave.
 /// The whole result is then clamped to within the range above.
 /// Not very readable but it works
-#define DELAY_TO_GLIDE_SIZE(delay) (CLAMP(((32 / max(delay / world.tick_lag, 1)) * ((SStime_track.time_dilation_current / 100) + 1) + CONFIG_GET(number/glide_size_mod)), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
+#define DELAY_TO_GLIDE_SIZE(delay) (CLAMP(((32 / max(delay / world.tick_lag, 1)) * (1 - (SStime_track.time_dilation_current / 100)) * CONFIG_GET(number/glide_size_mod)), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
