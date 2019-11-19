@@ -513,7 +513,7 @@ WEAPONS
 					/obj/item/explosive/grenade/frag/m15,
 					/obj/item/explosive/grenade/frag/m15
 					)
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive M15 grenades crate (WARNING)"
 	group = "Weapons"
@@ -527,7 +527,7 @@ WEAPONS
 					/obj/item/explosive/grenade/incendiary,
 					/obj/item/explosive/grenade/incendiary
 					)
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive M40 HIDP incendiary grenades crate (WARNING)"
 	group = "Weapons"
@@ -541,7 +541,7 @@ WEAPONS
 					/obj/item/explosive/grenade/frag,
 					/obj/item/explosive/grenade/frag
 					)
-	cost = RO_PRICE_VERY_CHEAP
+	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive M40 HEDP grenades crate (WARNING)"
 	group = "Weapons"
@@ -551,7 +551,7 @@ WEAPONS
 	contains = list(
 					/obj/item/storage/box/nade_box
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive HEDP grenade crate (WARNING)"
 	group = "Weapons"
@@ -561,7 +561,7 @@ WEAPONS
 	contains = list(
 					/obj/item/storage/box/nade_box/HIDP
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper explosive HIDP grenade crate (WARNING)"
 	group = "Weapons"
@@ -571,7 +571,7 @@ WEAPONS
 	contains = list(
 					/obj/item/storage/box/nade_box/M15
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper Fragmentation M15 grenade crate (WARNING)"
 	group = "Weapons"
