@@ -492,7 +492,8 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/m42c_system = 1,
 					/obj/item/storage/box/m42c_system_Jungle = 1,
-					/obj/item/storage/box/spec/pyro = 1
+					/obj/item/storage/box/spec/pyro = 1,
+					/obj/item/storage/box/spec/tracker = 1
 					)
 	prices = list()
 
@@ -517,7 +518,9 @@
 					/obj/item/storage/box/spec/heavy_grenadier = 1,
 					/obj/item/storage/box/spec/sniper = 1,
 					/obj/item/storage/box/spec/scout = 1,
-					/obj/item/storage/box/spec/pyro = 1
+					/obj/item/storage/box/spec/pyro = 1,
+					/obj/item/storage/box/spec/tracker = 1
+
 			)
 	prices = list()
 
@@ -691,7 +694,7 @@
 					/obj/item/clothing/suit/storage/marine/M3LB = 10,
 					/obj/item/clothing/suit/storage/marine/M3IS = 10,
 					/obj/item/clothing/suit/storage/marine/harness = 10,
-					/obj/item/clothing/head/helmet/marine = 20,
+					/obj/item/clothing/head/helmet/marine/standard = 20,
 					/obj/item/clothing/head/helmet/marine/heavy = 20,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,

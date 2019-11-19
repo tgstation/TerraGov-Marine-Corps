@@ -131,6 +131,12 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/weeds/node/strong
+	name = "strong purple sac"
+	desc = "A weird, pulsating node. This looks pretty tough."
+	node_range = NODERANGE*2
+	max_integrity = 120
+
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)

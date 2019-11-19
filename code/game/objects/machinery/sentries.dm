@@ -1046,7 +1046,6 @@
 	cell = H
 	rounds = 50000
 
-
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
@@ -1059,7 +1058,6 @@
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/living/user)
 	. = ..()
@@ -1087,6 +1085,15 @@
 		"<span class='notice'>You deactivate [src].</span>")
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
+
+/obj/machinery/marine_turret/premade/dumb/hostile
+	name = "malfunctioning UA 571-C sentry gun"
+	desc = "Oh god oh fuck."
+	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE
+
+/obj/machinery/marine_turret/premade/dumb/hostile/attack_hand(mob/living/user)
+	to_chat(user,"<span class='warning'>\The [src.name] refuses to cooperate!</span>")
+	return FALSE
 
 /obj/item/ammo_magazine/sentry/premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"

@@ -642,6 +642,50 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/item/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
+
+/datum/ammo/bullet/shotgun/mbx900_buckshot
+	name = ".410 buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 10
+	accuracy_var_high = 10
+	max_range = 10
+	damage = 40
+	damage_falloff = 2
+
+/datum/ammo/bullet/shotgun/mbx900_buckshot/spread
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	accuracy_var_low = 7
+	accuracy_var_high = 7
+	max_range = 10
+	damage = 30
+	damage_falloff = 2
+
+/datum/ammo/bullet/shotgun/mbx900_sabot
+	name = ".410 sabot"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 5
+	max_range = 30
+	damage = 35
+	penetration = 40
+
+/datum/ammo/bullet/shotgun/mbx900_tracker
+	name = ".410 tracker"
+	icon_state = "shotgun_slug"
+	hud_state = "shotgun_flechette"
+	shell_speed = 4
+	max_range = 30
+	damage = 30
+	penetration = 10
+
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/item/projectile/proj)
+	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
+
 /*
 //================================================
 					Sniper Ammo
