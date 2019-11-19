@@ -210,6 +210,16 @@ WEAPONS
 	containername = "\improper Scout Specialist crate"
 	group = "Weapons"
 
+/datum/supply_packs/specscout2
+	name = "Scout Specialist crate (MBX900 x1)"
+	contains = list(
+					/obj/item/weapon/gun/shotgun/pump/lever/mbx900
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper Scout Shotgun Specialist crate"
+	group = "Weapons"
+
 /datum/supply_packs/specdemo
 	name = "Demolitionist Specialist crate (M5 RPG x1)"
 	contains = list(
@@ -1629,6 +1639,20 @@ AMMO
 	containername = "\improper incendiary sniper ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_mbx900
+	name = "MBX 900 ammo crate (x2 sabot, x2 buckshot, x1 tracking)"
+	contains = list(
+					/obj/item/ammo_magazine/shotgun/mbx900,
+					/obj/item/ammo_magazine/shotgun/mbx900,
+					/obj/item/ammo_magazine/shotgun/mbx900/buckshot,
+					/obj/item/ammo_magazine/shotgun/mbx900/buckshot,
+					/obj/item/ammo_magazine/shotgun/mbx900/tracking
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper MBX 900 ammo crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammo_rpg_regular
 	name = "M5 RPG HE rockets crate (x6)"
 	contains = list(
@@ -1803,7 +1827,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_he
 	name = "M402 mortar ammo crate (x8 HE)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_VERY_CHEAP
 	contains = list(
 					/obj/item/mortal_shell/he,
 					/obj/item/mortal_shell/he,
@@ -1820,7 +1844,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_incend
 	name = "M402 mortar ammo crate (x8 Incend)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_VERY_CHEAP
 	contains = list(
 					/obj/item/mortal_shell/incendiary,
 					/obj/item/mortal_shell/incendiary,
@@ -1837,7 +1861,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_flare
 	name = "M402 mortar ammo crate (x10 Flare)"
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_NEAR_FREE
 	contains = list(
 					/obj/item/mortal_shell/flare,
 					/obj/item/mortal_shell/flare,
@@ -1856,7 +1880,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_smoke
 	name = "M402 mortar ammo crate (x10 Smoke)"
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_NEAR_FREE
 	contains = list(
 					/obj/item/mortal_shell/smoke,
 					/obj/item/mortal_shell/smoke,
@@ -1875,7 +1899,7 @@ AMMO
 
 /datum/supply_packs/mortar_ammo_flash
 	name = "M402 mortar ammo crate (x10 Flash)"
-	cost = RO_PRICE_NORMAL
+	cost = RO_PRICE_NEAR_FREE
 	contains = list(
 					/obj/item/mortal_shell/flash,
 					/obj/item/mortal_shell/flash,
