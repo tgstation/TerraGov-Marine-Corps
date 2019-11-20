@@ -677,7 +677,11 @@
 		return
 	if(occupant)
 		if(forceeject)
-			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant].")
+			if(!surgery)
+				visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
+				occupant.take_limb_damage(rand(10,20),rand(10,20))
+				go_out(AUTODOC_NOTICE_FORCE_EJECT)
+			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant] with surgical wounds and showering them in debris.")
 			occupant.take_limb_damage(rand(30,50),rand(30,50))
 			go_out(AUTODOC_NOTICE_FORCE_EJECT)
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
