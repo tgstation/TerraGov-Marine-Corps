@@ -179,6 +179,7 @@
 	//clean up; end stasis; remove from processing
 	if(occupant)
 		REMOVE_TRAIT(occupant, TRAIT_STASIS, SLEEPER_TRAIT)
+		go_out()
 	occupant = null
 	STOP_PROCESSING(SSobj, src)
 	stop_processing()

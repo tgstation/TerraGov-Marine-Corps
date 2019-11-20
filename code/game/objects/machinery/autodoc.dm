@@ -46,6 +46,7 @@
 	var/heal_toxin = 0
 	var/automaticmode = 0
 	var/event = 0
+	var/forceeject = FALSE
 
 	var/obj/machinery/autodoc_console/connected
 
@@ -674,6 +675,10 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	if(occupant)
+		if(forceeject)
+			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant].")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			go_out()
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
@@ -867,6 +872,11 @@
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
+
+obj/machinery/autodoc/Destroy()
+	forceeject = TRUE
+	eject()
+	return ..()
 
 /////////////////////////////////////////////////////////////
 
