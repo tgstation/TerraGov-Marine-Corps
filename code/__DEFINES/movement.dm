@@ -12,7 +12,7 @@
 /// Then that's multiplied by the config glide_size_mod. 1.15 by default feels pretty close to spot on. This is just to try to get byond to behave.
 /// The whole result is then clamped to within the range above.
 /// Not very readable but it works
-#define DELAY_TO_GLIDE_SIZE(delay) (CLAMP(((32 / max(delay / world.tick_lag, 1)) * (1 - (SStime_track.time_dilation_current / 100)) * CONFIG_GET(number/glide_size_mod)), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE))
+#define DELAY_TO_GLIDE_SIZE(delay) (round((CLAMP(((32 / max(delay / world.tick_lag, 1)) * (1 - (SStime_track.time_dilation_current / 100)) * (CONFIG_GET(number/glide_size_mod) * 0.01)), MIN_GLIDE_SIZE, MAX_GLIDE_SIZE)), 0.1))
 
-//The non-smooth and version, applied to the client on move
-#define DELAY_TO_GLIDE_SIZE_UNSMOOTH(delay) (glide_size = 32 / ((max(delay, tick_lag) * tick_lag) || 6))
+//Old behavior.
+#define DELAY_TO_GLIDE_SIZE_OLD(source, delay) (round(source.tick_lag ? (32 / (max(delay, source.tick_lag) * source.tick_lag)) : 0, 0.1))

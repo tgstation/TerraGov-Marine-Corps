@@ -13,7 +13,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 8
+	glide_size = 0
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -758,9 +758,9 @@
 	if(glide_size == target)
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
-	glide_size = target
-	if(pulling && pulling.glide_size != target)
-		pulling.set_glide_size(target)
+	//glide_size = target
+	//if(pulling && pulling.glide_size != target)
+	//	pulling.set_glide_size(target)
 	return TRUE
 
 /mob/set_glide_size(target = 8)
@@ -768,29 +768,30 @@
 	if(!.)
 		return
 	if(client)
-		client.glide_size = target
+		client.glide_size = DELAY_TO_GLIDE_SIZE_OLD(client, cached_multiplicative_slowdown)
 
 /obj/set_glide_size(target = 8)
 	. = ..()
 	if(!.)
 		return
-	if(buckled_mob && buckled_mob.glide_size != target)
-		buckled_mob.set_glide_size(target)
+	//if(buckled_mob && buckled_mob.glide_size != target)
+	//	buckled_mob.set_glide_size(target)
 
 /obj/structure/bed/set_glide_size(target = 8)
 	. = ..()
 	if(!.)
 		return
-	if(buckled_bodybag && buckled_bodybag.glide_size != target)
-		buckled_bodybag.set_glide_size(target)
-	glide_size = target
+	//if(buckled_bodybag && buckled_bodybag.glide_size != target)
+	//	buckled_bodybag.set_glide_size(target)
+	//glide_size = target
 
 
 /atom/movable/proc/reset_glide_size()
 	set_glide_size(initial(glide_size))
 
 /mob/reset_glide_size()
-	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
+	set_glide_size(initial(glide_size))
+	//set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 
 /atom/movable/vv_edit_var(var_name, var_value)

@@ -116,7 +116,7 @@ Key procs
 	if(!updating_glide_size || pulledby || buckled)
 		return
 
-	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
+	reset_glide_size()
 
 ///Get the move speed modifiers list of the mob
 /mob/proc/get_movespeed_modifiers()
