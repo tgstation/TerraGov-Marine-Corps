@@ -113,6 +113,7 @@ Key procs
 				continue
 		. += amt
 	cached_multiplicative_slowdown = .
+
 	if(!updating_glide_size || pulledby || buckled)
 		return
 
