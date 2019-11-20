@@ -49,9 +49,6 @@
 
 /datum/component/dripping/process()
 	var/mob/living/dripper = parent
-	if(QDELETED(dripper))
-		qdel(src)
-		return
 	if(world.time > drip_limit)
 		qdel(src)
 		return
