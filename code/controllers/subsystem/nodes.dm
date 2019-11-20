@@ -9,5 +9,5 @@ SUBSYSTEM_DEF(nodes)
 
 //Call this to manually make adjacencies
 /datum/controller/subsystem/nodes/proc/InitAllAdjacent()
-	for(var/obj/effect/AINode/nodes in GLOB.allnodes)
+	for(var/obj/effect/ai_node/nodes in GLOB.allnodes)
 		nodes.MakeAdjacents()

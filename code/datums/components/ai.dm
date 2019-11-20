@@ -8,7 +8,7 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 
 	var/turf/destinationturf //Turf that we want to get to
 	var/turf/lastturf //If this is the same as parentmob turf at HandleMovement() then we made no progress in moving, do HandleObstruction from there
-	var/obj/effect/AINode/current_node //Current node the parentmob is at
+	var/obj/effect/ai_node/current_node //Current node the parentmob is at
 	var/move_delay = 0 //The next world.time we can do a move at
 	//var/datum/action_state/action_state //If we have an action state we feed it info and see what it tells us what to do
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat
@@ -23,21 +23,28 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		stack_trace("AI component was initialized without a mind to initialize parameter, stopping component creation.")
 		return COMPONENT_INCOMPATIBLE
 	var/atom/movable/parent2 = parent
-	for(var/obj/effect/AINode/node in range(7))
+	for(var/obj/effect/ai_node/node in range(7))
 		if(node)
 			current_node = node
 			parent2.forceMove(current_node.loc)
 		break
 	if(!current_node)
-		stack_trace("An AI component was being attached to a movable atom however there's no nodes nearby; component removed.")
-		qdel(src)
+		stack_trace("An AI component was being attached to a target however there's no nodes nearby; component removed.")
 		return
 	mind = new mind_to_make(src)
 	mind.late_init()
-	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/qdel_self)
+	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/qdel_self)
 	START_PROCESSING(SSprocessing, src)
 	atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
 	parent.AddElement(/datum/element/action_state/move_to_atom, atom_to_walk_to, 1)
+	RegisterSignal(parent, COMSIG_MOB_TARGET_REACHED, .proc/target_reached) //Target was reached; could be a enemy or a node
+
+/datum/component/ai_behavior/proc/target_reached() //We reached a node, let's pick another node to go to
+	if(istype(atom_to_walk_to, /obj/effect/ai_node))
+		parent.RemoveElement(/datum/element/action_state/move_to_atom)
+		current_node = atom_to_walk_to
+		atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
+		parent.AddElement(/datum/element/action_state/move_to_atom, atom_to_walk_to, 1)
 
 /datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
 	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
@@ -55,38 +62,3 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 	var/mob/living/parent2 = parent
 	lastturf = parent2.loc
 	return TRUE
-
-/*
-//Tile by tile movement electro boogaloo
-/datum/component/ai_behavior/proc/ProcessMove()
-	if(!QDELETED(action_state))
-		var/mob/living/carbon/parent2 = parent
-		if(!parent2.canmove)
-			addtimer(CALLBACK(src, .proc/ProcessMove), 2)
-			return
-		var/totalmovedelay = 0
-		switch(parent2.m_intent)
-			if(MOVE_INTENT_RUN)
-				totalmovedelay += 2 + CONFIG_GET(number/movedelay/run_delay)
-			if(MOVE_INTENT_WALK)
-				totalmovedelay += 7 + CONFIG_GET(number/movedelay/walk_delay)
-		totalmovedelay += parent2.movement_delay()
-
-		var/doubledelay = FALSE //If we add on additional delay due to it being a diagonal move
-		var/dumb_direction = action_state.GetTargetDir(smart_pathfind = TRUE)
-		if(!step(parent2, dumb_direction)) //If this doesn't work, we're stuck, go figure
-			addtimer(CALLBACK(src, .proc/ProcessMove), 5) //Try moving again in half a second
-			return
-
-		if(dumb_direction in GLOB.diagonals)
-			doubledelay = TRUE
-
-		if(doubledelay)
-			move_delay = world.time + (totalmovedelay * SQRTWO)
-			addtimer(CALLBACK(src, .proc/ProcessMove), totalmovedelay * SQRTWO)
-			return
-		else
-			move_delay = world.time + totalmovedelay
-			addtimer(CALLBACK(src, .proc/ProcessMove), totalmovedelay)
-			return
-*/

@@ -22,19 +22,19 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 			return shuffle(list(SOUTH, WEST))
 
 //Returns a node that is in the direction of this node; must be in the src's adjacent node list
-/obj/effect/AINode/proc/GetNodeInDirInAdj(dir)
+/obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
 
 	if(!datumnode.adjacent_nodes || !datumnode.adjacent_nodes.len)
 		return null
 
-	for(var/obj/effect/AINode/node in datumnode.adjacent_nodes)
+	for(var/obj/effect/ai_node/node in datumnode.adjacent_nodes)
 		if(get_dir(src, node) == dir)
 			return node
 	return null
 
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node
-/proc/get_node_towards(obj/effect/AINode/startnode, obj/effect/AINode/destination)
+/proc/get_node_towards(obj/effect/ai_node/startnode, obj/effect/ai_node/destination)
 	if(startnode == destination)
 		return startnode
 	var/list/possibledir = DiagonalToCardinal(get_dir(startnode, destination))

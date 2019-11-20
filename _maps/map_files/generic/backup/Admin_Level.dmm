@@ -790,7 +790,7 @@
 /turf/open/floor/mainship,
 /area/centcom/aitest)
 "cx" = (
-/obj/effect/ai_node/debug,
+/obj/effect/AINode/debug,
 /turf/open/floor/mainship,
 /area/centcom/aitest)
 "cE" = (
