@@ -8,26 +8,24 @@ const LoginRequired = props => {
   const { config, data } = state;
   const { ref } = config;
   return (
-    <Fragment>
-      <Section title={"Unauthorized Access"}>
-        <NoticeBox>
+    <Section title={"Unauthorized Access"}>
+      <NoticeBox>
           Authentication required
-        </NoticeBox>
+      </NoticeBox>
 
-        <em style={{ margin: '15px', display: 'block' }}>
+      <em style={{ margin: '15px', display: 'block' }}>
           In order to use this console you must authenticate yourself.
-        </em>
-        <Flex justify={'center'} align={'center'}>
-          <Flex.Item>
-            <Button onClick={() => act(ref, 'change_operator', {})}>
+      </em>
+      <Flex justify={'center'} align={'center'}>
+        <Flex.Item>
+          <Button onClick={() => act(ref, 'change_operator', {})}>
               Authenticate
-            </Button>
-          </Flex.Item>
-        </Flex>
-      </Section>
-    </Fragment>
+          </Button>
+        </Flex.Item>
+      </Flex>
+    </Section>
   );
-}
+};
 
 const Main = props => {
   const { state } = props;
@@ -37,7 +35,7 @@ const Main = props => {
     current_squad,
     squad_leader = null,
     primary_objective = null,
-    secondary_objective = null
+    secondary_objective = null,
   } = data;
 
   const squad = current_squad ? `Overwatch: ${current_squad}` : "No Squad selected";
@@ -74,7 +72,7 @@ const Main = props => {
           <Button onClick={() => act(ref, 'message', {})}>
             Message Squad
           </Button>
-          <Button disabled={(squad_leader == null)} onClick={() => act(ref, 'sl_message', {})}>
+          <Button disabled={(squad_leader === null)} onClick={() => act(ref, 'sl_message', {})}>
             Message Leader
           </Button>
 
@@ -105,7 +103,7 @@ const Main = props => {
       </Section>
     </Fragment>
   );
-}
+};
 
 const Monitor = props => {
   const { state } = props;
@@ -114,7 +112,7 @@ const Monitor = props => {
   const { monitor_members } = data;
 
 
-  const renderMember = (member) => (
+  const renderMember = member => (
     <tr>
       <td>
         <Button onClick={() => act(ref, 'use_cam', {"cam_target": member.ref})}>
@@ -156,7 +154,7 @@ const Monitor = props => {
     </Fragment>
 
   );
-}
+};
 
 const Supply = props => {
   const { state } = props;
@@ -166,46 +164,44 @@ const Supply = props => {
 
   const time_left = Math.max(Math.round(supply_time_left * 0.1, 0), 0);
   return (
-  <Fragment>
     <Section title={"Supply"}>
 
-    <LabeledList>
+      <LabeledList>
 
-      <LabeledList.Item label="Can Launch">
-        {supply_can_launch ? 'True':'False'}
-      </LabeledList.Item>
+        <LabeledList.Item label="Can Launch">
+          {supply_can_launch ? 'True':'False'}
+        </LabeledList.Item>
 
-      <LabeledList.Item label="Squad Beacon">
-        {supply_valid_beacon ? <font color='green'>Transmitting!</font> : 'Not Transmitting'}
-      </LabeledList.Item>
+        <LabeledList.Item label="Squad Beacon">
+          {supply_valid_beacon ? <font color="green">Transmitting!</font> : 'Not Transmitting'}
+        </LabeledList.Item>
+
+        <br />
+
+        <LabeledList.Item label="Time left">
+          {time_left} seconds
+        </LabeledList.Item>
+
+        <br />
+
+        <LabeledList.Item label="X Offset">
+          {supply_x_offset} <Button onClick={() => act(ref, 'supply_x', {})}>Update</Button>
+        </LabeledList.Item>
+
+        <LabeledList.Item label="Y Offset">
+          {supply_y_offset} <Button onClick={() => act(ref, 'supply_y', {})}>Update</Button>
+        </LabeledList.Item>
+      </LabeledList>
 
       <br />
 
-      <LabeledList.Item label="Time left">
-        {time_left} seconds
-      </LabeledList.Item>
-
-      <br />
-
-      <LabeledList.Item label="X Offset">
-        {supply_x_offset} <Button onClick={() => act(ref, 'supply_x', {})}>Update</Button>
-      </LabeledList.Item>
-
-      <LabeledList.Item label="Y Offset">
-        {supply_y_offset} <Button onClick={() => act(ref, 'supply_y', {})}>Update</Button>
-      </LabeledList.Item>
-    </LabeledList>
-
-    <br />
-
-    <Section>
-      <Button disabled={!supply_can_launch} onClick={() => act(ref, 'dropsupply', {})}>Launch</Button>
-    </Section>
+      <Section>
+        <Button disabled={!supply_can_launch} onClick={() => act(ref, 'dropsupply', {})}>Launch</Button>
+      </Section>
 
     </Section>
-  </Fragment>
   );
-}
+};
 
 
 export const OverwatchConsole = props => {
@@ -214,7 +210,7 @@ export const OverwatchConsole = props => {
   const { ref } = config;
   const { logged_in, current_page, operator_name } = data;
 
-  if(!logged_in) {
+  if (!logged_in) {
     return (<LoginRequired {...props} />);
   }
 
@@ -225,10 +221,10 @@ export const OverwatchConsole = props => {
           <Flex.Item>
           </Flex.Item>
           <Flex.Item>
-          <span style={{ margin: '0 5px' }}> Welcome, <strong>{operator_name}</strong></span>
-          <Button onClick={() => act(ref, 'logout', {})}>
+            <span style={{ margin: '0 5px' }}> Welcome, <strong>{operator_name}</strong></span>
+            <Button onClick={() => act(ref, 'logout', {})}>
             Logout
-          </Button>
+            </Button>
           </Flex.Item>
         </Flex>
       </Section>

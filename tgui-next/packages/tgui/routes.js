@@ -114,7 +114,7 @@ const ROUTES = {
   },
   overwatch_console: {
     component: () => OverwatchConsole,
-    scrollable: true
+    scrollable: true,
   },
   portable_generator: {
     component: () => PortableGenerator,
