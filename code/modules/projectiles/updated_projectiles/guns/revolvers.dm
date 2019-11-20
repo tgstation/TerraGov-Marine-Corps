@@ -9,6 +9,7 @@
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
 	unload_sound = 'sound/weapons/guns/interact/revolver_unload.ogg'
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	var/hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	var/spin_sound = 'sound/effects/spin.ogg'
 	var/thud_sound = 'sound/effects/thud.ogg'
@@ -383,6 +384,7 @@
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
+	muzzleflash_iconstate = "muzzle_flash"
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/mateba.ogg'

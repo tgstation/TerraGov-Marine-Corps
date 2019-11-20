@@ -127,7 +127,7 @@
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
-	return TRUE
+	return ..()
 
 
 /turf/open/shuttle/dropship

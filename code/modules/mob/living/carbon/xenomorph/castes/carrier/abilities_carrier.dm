@@ -7,12 +7,13 @@
 	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+	cooldown_timer = 3 SECONDS
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	return X.xeno_caste.hugger_delay
 
-/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags = XACT_IGNORE_COOLDOWN) // true
+/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
 	. = ..()
 	if(!.)
 		return FALSE
@@ -42,6 +43,7 @@
 		X.put_in_active_hand(F)
 		F.GoActive(TRUE)
 		to_chat(X, "<span class='xenonotice'>We grab one of the facehugger in our storage. Now sheltering: [X.huggers.len] / [X.xeno_caste.huggers_max].</span>")
+		add_cooldown()
 		return succeed_activate()
 
 	if(!istype(F)) //something else in our hand
@@ -54,7 +56,6 @@
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
-		add_cooldown()
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)

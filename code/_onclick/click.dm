@@ -32,65 +32,6 @@
 		usr.MouseWheelOn(src, delta_x, delta_y, params)
 
 
-/client/Click(atom/object, atom/location, control, params)
-	if(!control)
-		return
-	if(click_intercepted)
-		if(click_intercepted >= world.time)
-			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
-			return
-		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
-	var/ab = FALSE
-	var/list/L = params2list(params)
-
-	var/dragged = L["drag"]
-	if(dragged && !L[dragged])
-		return
-
-	if(object && object == middragatom && L["left"])
-		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
-
-	var/mcl = CONFIG_GET(number/minute_click_limit)
-	if(mcl && !check_rights(R_ADMIN, FALSE))
-		var/minute = round(world.time, 600)
-		if(!clicklimiter)
-			clicklimiter = new(5)
-		if(minute != clicklimiter[3])
-			clicklimiter[3] = minute
-			clicklimiter[4] = 0
-		clicklimiter[4] += 1
-		if(clicklimiter[4] > mcl)
-			var/msg = "Your previous click was ignored because you've done too many in a minute."
-			if(minute != clicklimiter[5]) //only one admin message per-minute
-				clicklimiter[5] = minute
-				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
-				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
-				if(ab)
-					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
-					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
-			to_chat(src, "<span class='danger'>[msg]</span>")
-			return
-
-	var/scl = CONFIG_GET(number/second_click_limit)
-	if(scl && !check_rights(R_ADMIN, FALSE))
-		var/second = round(world.time, 10)
-		if(!clicklimiter)
-			clicklimiter = new(5)
-		if(second != clicklimiter[1])
-			clicklimiter[1] = second
-			clicklimiter[2] = 0
-		clicklimiter[2] += 1
-		if(clicklimiter[2] > scl)
-			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
-			return
-
-//Hijack for FC.
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
-
-	return ..()
-
-
 /*
 	Standard mob ClickOn()
 	Handles exceptions: Buildmode, middle click, modified clicks, mech actions
