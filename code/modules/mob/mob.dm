@@ -430,6 +430,10 @@
 
 	pulling = AM
 	AM.pulledby = src
+	if(M?.buckled)
+		M.buckled.set_glide_size(glide_size)
+	else
+		pulling.set_glide_size(glide_size)
 
 	var/obj/item/grab/G = new /obj/item/grab()
 	G.grabbed_thing = AM

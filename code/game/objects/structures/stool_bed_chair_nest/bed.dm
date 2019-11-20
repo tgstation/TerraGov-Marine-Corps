@@ -65,9 +65,15 @@ obj/structure/bed/Destroy()
 	update_icon()
 	if(buckling_y)
 		buckled_bodybag.pixel_y = buckling_y
+	if(B.pulledby)
+		B.pulledby.stop_pulling()
+	if(pulledby)
+		B.set_glide_size(pulledby.glide_size)
 
-/obj/structure/bed/unbuckle()
+/obj/structure/bed/unbuckle(mob/user)
 	if(buckled_bodybag)
+		if(!buckled_bodybag.pulledby)
+			buckled_bodybag.reset_glide_size()
 		buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 		buckled_bodybag.roller_buckled = null
 		buckled_bodybag = null
@@ -92,15 +98,16 @@ obj/structure/bed/Destroy()
 
 /obj/structure/bed/Move(NewLoc, direct)
 	. = ..()
-	if(. && buckled_bodybag && !handle_buckled_bodybag_movement(loc,direct)) //Movement fails if buckled mob's move fails.
+	if(. && buckled_bodybag && buckled_bodybag.loc != NewLoc && !handle_buckled_bodybag_movement(loc, direct)) //Movement fails if buckled mob's move fails.
 		return FALSE
 
 /obj/structure/bed/proc/handle_buckled_bodybag_movement(NewLoc, direct)
-	if(!(direct & (direct - 1))) //Not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled bodybag's movement.
-		if(!buckled_bodybag.Move(NewLoc, direct))
-			loc = buckled_bodybag.loc
-			return 0
-	return 1
+	if((direct & (direct - 1))) //The obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
+		return TRUE
+	if(buckled_bodybag.Move(NewLoc, direct))
+		return TRUE
+	forceMove(buckled_bodybag.loc)
+	return FALSE
 
 /obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
 	if(mover == buckled_bodybag)

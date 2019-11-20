@@ -144,6 +144,8 @@
 	buckled_mob_backup.buckled = null
 	buckled_mob_backup.anchored = initial(buckled_mob_backup.anchored)
 	buckled_mob_backup.update_canmove()
+	if(!buckled_mob_backup.pulledby)
+		buckled_mob_backup.reset_glide_size()
 
 	if(!silent)
 		if(buckled_mob_backup == user)
@@ -209,6 +211,10 @@
 	M.setDir(dir)
 	M.update_canmove()
 	src.buckled_mob = M
+	if(M.pulledby)
+		M.pulledby.stop_pulling()
+	if(pulledby)
+		M.set_glide_size(pulledby.glide_size)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
@@ -227,15 +233,19 @@
 /obj/Move(NewLoc, direct)
 	. = ..()
 	handle_rotation()
-	if(. && buckled_mob && !handle_buckled_mob_movement(loc,direct)) //movement fails if buckled mob's move fails.
-		. = 0
+	if(. && buckled_mob)
+		if(buckled_mob.loc == NewLoc)
+			return
+		return handle_buckled_mob_movement(loc, direct) //movement fails if buckled mob's move fails.
+
 
 /obj/proc/handle_buckled_mob_movement(NewLoc, direct)
-	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
-		if(!buckled_mob.Move(NewLoc, direct))
-			loc = buckled_mob.loc
-			return 0
-	return 1
+	if((direct & (direct - 1))) //The obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
+		return TRUE
+	if(buckled_mob.Move(NewLoc, direct))
+		return TRUE
+	forceMove(buckled_mob.loc)
+	return FALSE
 
 /obj/CanPass(atom/movable/mover, turf/target)
 	if(mover == buckled_mob) //can't collide with the thing you're buckled to

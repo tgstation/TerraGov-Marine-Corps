@@ -58,7 +58,7 @@
 // Here's where we rewrite how byond handles movement except slightly different
 // To be removed on step_ conversion
 // All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct = 0, glide_size_override = 0)
+/atom/movable/Move(atom/newloc, direct = 0, glide_size_override)
 	. = FALSE
 	if(!newloc || newloc == loc)
 		return
@@ -102,7 +102,7 @@
 //
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
+/atom/movable/Move(atom/newloc, direct, glide_size_override)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
@@ -112,7 +112,9 @@
 	var/atom/oldloc = loc
 
 	//Early override for some cases like diagonal movement
-	if(glide_size_override)
+	var/old_glide_size
+	if(!isnull(glide_size_override) && glide_size_override != glide_size)
+		old_glide_size = glide_size
 		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
@@ -184,14 +186,12 @@
 			//puller and pullee more than one tile away or in diagonal position
 			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
 				pulling.moving_from_pull = src
-				pulling.Move(T, get_dir(pulling, T), glide_size) //the pullee tries to reach our previous position
+				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
 
-	//glide_size strangely enough can change mid movement animation and update correctly while the animation is playing
-	//This means that if you don't override it late like this, it will just be set back by the movement update that's called when you move turfs.
-	if(glide_size_override)
-		set_glide_size(glide_size_override)
+	if(!isnull(old_glide_size))
+		set_glide_size(old_glide_size)
 
 	last_move = direct
 	last_move_time = world.time
@@ -686,6 +686,12 @@
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+		if(M.buckled)
+			M.buckled.set_glide_size(glide_size)
+		else
+			M.set_glide_size(glide_size)
+	else
+		pulling.set_glide_size(glide_size)
 	return TRUE
 
 
@@ -694,6 +700,14 @@
 		return FALSE
 
 	pulling.pulledby = null
+	if(ismob(pulling))
+		var/mob/pulled_mob = pulling
+		if(pulled_mob.buckled)
+			pulled_mob.buckled.reset_glide_size()
+		else
+			pulled_mob.reset_glide_size()
+	else
+		pulling.reset_glide_size()
 	pulling = null
 
 	return TRUE
@@ -709,7 +723,7 @@
 	var/turf/destination_turf = get_step(pulling.loc, move_dir)
 	if(!Adjacent(destination_turf) || (destination_turf == loc && pulling.density))
 		return FALSE
-	pulling.Move(destination_turf, move_dir, glide_size)
+	pulling.Move(destination_turf, move_dir)
 	return TRUE
 
 
@@ -741,11 +755,42 @@
 
 
 /atom/movable/proc/set_glide_size(target = 8)
+	if(glide_size == target)
+		return FALSE
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
 	glide_size = target
-
-	if(pulling)
+	if(pulling && pulling.glide_size != target)
 		pulling.set_glide_size(target)
+	return TRUE
+
+/mob/set_glide_size(target = 8)
+	. = ..()
+	if(!.)
+		return
+	if(client)
+		client.glide_size = target
+
+/obj/set_glide_size(target = 8)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_mob && buckled_mob.glide_size != target)
+		buckled_mob.set_glide_size(target)
+
+/obj/structure/bed/set_glide_size(target = 8)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_bodybag && buckled_bodybag.glide_size != target)
+		buckled_bodybag.set_glide_size(target)
+	glide_size = target
+
+
+/atom/movable/proc/reset_glide_size()
+	set_glide_size(initial(glide_size))
+
+/mob/reset_glide_size()
+	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 
 /atom/movable/vv_edit_var(var_name, var_value)
