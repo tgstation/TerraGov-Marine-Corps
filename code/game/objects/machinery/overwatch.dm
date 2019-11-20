@@ -19,7 +19,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	networks = list("marine")
 	open_prompt = FALSE
-	interaction_flags = INTERACT_MACHINE_DEFAULT
+	interaction_flags = INTERACT_MACHINE_NANO
+
+	ui_x = 800
+	ui_y = 600
 
 	var/state = OW_MAIN
 	var/x_offset_s = 0
@@ -39,6 +42,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	for(var/i in SSjob.squads)
 		var/datum/squad/S = SSjob.squads[i]
 		squads += S
+
+	current_squad = get_squad_by_id(squad_console)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/main
@@ -85,138 +90,248 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	return TRUE
 
 
-/obj/machinery/computer/camera_advanced/overwatch/interact(mob/user)
-	. = ..()
-	if(.)
+/obj/machinery/computer/camera_advanced/overwatch/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+	if(!ui)
+		message_admins("loading overwatch console?")
+		ui = new(user, src, ui_key, "overwatch_console", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+
+/obj/machinery/computer/camera_advanced/overwatch/ui_data(mob/user)
+	var/list/data = list(
+		"operator_name" = operator,
+		"current_page" = state,
+		"logged_in" = operator,
+	)
+
+	if(!current_squad)
+		return data
+
+	data["current_squad"] = current_squad.name
+	data["squad_leader"] = current_squad.squad_leader?.name
+	data["primary_objective"] = current_squad.primary_objective
+	data["secondary_objective"] = current_squad.secondary_objective
+
+	data["supply_time_left"] = (current_squad.supply_cooldown + 5 MINUTES) - world.time
+	data["supply_can_launch"] = FALSE
+	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send supply droppable items
+			data["supply_can_launch"] = TRUE
+			break
+	
+	data["supply_valid_beacon"] = isturf(current_squad?.sbeacon?.loc)
+	data["supply_x_offset"] = x_offset_s
+	data["supply_y_offset"] = y_offset_s
+
+
+	var/SL_z //z level of the Squad Leader
+	if(current_squad.squad_leader)
+		var/turf/SL_turf = get_turf(current_squad.squad_leader)
+		SL_z = SL_turf?.z
+
+	var/list/members = list()
+	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
+		// Ignore them if wrong z-level
+		var/turf/M_turf = get_turf(H)
+		switch(z_hidden)
+			if(HIDE_ON_GROUND)
+				if(is_ground_level(M_turf?.z))
+					continue
+			if(HIDE_ON_SHIP)
+				if(is_mainship_level(M_turf?.z))
+					continue
+
+		var/mob_name = H.real_name
+		var/mob_state = ""
+		var/role = "unknown"
+		var/fteam = ""
+		var/dist = -1
+		var/sl_direction = "?"
+		var/area_name = "<b>???</b>"
+		var/area/A = get_area(H)
+		if(A)
+			area_name = sanitize(A.name)
+		
+		// Get role
+		if(H.mind?.assigned_role)
+			role = H.mind.assigned_role
+		else if(H.job)
+			role = H.job
+		else if(istype(H.wear_id, /obj/item/card/id))
+			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
+			role = ID.rank
+
+		// Check dist and aSL
+		if(current_squad.squad_leader)
+			if(H == current_squad.squad_leader)
+				dist = 0
+				sl_direction = ""
+				if(H.mind && H.mind.assigned_role != SQUAD_LEADER)
+					role += " (acting SL)"
+			else if(M_turf && SL_z && M_turf.z == SL_z)
+				dist = get_dist(H, current_squad.squad_leader)
+				sl_direction = dir2text_short(get_dir(current_squad.squad_leader, H))
+		// Get mob state
+		switch(H.stat)
+			if(CONSCIOUS)
+				mob_state = "Conscious"
+			if(UNCONSCIOUS)
+				mob_state = "<b>Unconscious</b>"
+			if(DEAD)
+				if(dead_hidden)
+					continue
+				mob_state = "<font color='red'>DEAD</font>"
+		if((!H.key || !H.client) && H.stat != DEAD)
+			mob_state += " (SSD)"
+
+		// Get fireteam
+		var/obj/item/card/id/ID = H.wear_id
+		if(ID?.assigned_fireteam)
+			fteam = " \[[ID.assigned_fireteam]\]"
+
+		members.Add(list(list(
+			"ref" = REF(H),
+			"name" = mob_name,
+			"fire_team" = fteam,
+			"mob_state" = mob_state,
+			"role" = role,
+			"dist" = dist,
+			"direction" = sl_direction,
+			"area_name" = area_name,
+		)))
+	data["monitor_members"] = members 
+				
+// var/leader_text = ""
+// 	var/leader_count = 0
+// 	var/spec_text = ""
+// 	var/spec_count = 0
+// 	var/medic_text = ""
+// 	var/medic_count = 0
+// 	var/engi_text = ""
+// 	var/engi_count = 0
+// 	var/smart_text = ""
+// 	var/smart_count = 0
+// 	var/marine_text = ""
+// 	var/marine_count = 0
+// 	var/misc_text = ""
+// 	var/living_count = 0
+// 	var/conscious_text = ""
+// 	var/unconscious_text = ""
+// 	var/dead_text = ""
+// 	var/gibbed_text = ""
+// 	var/SL_z //z level of the Squad Leader
+// 	if(current_squad.squad_leader)
+// 		var/turf/SL_turf = get_turf(current_squad.squad_leader)
+// 		SL_z = SL_turf?.z
+// 	for(var/mob/living/carbon/human/H in current_squad.get_all_members())
+// 		var/mob_name = "unknown"
+// 		var/mob_state = ""
+// 		var/role = "unknown"
+// 		var/act_sl = ""
+// 		var/fteam = ""
+// 		var/dist = "<b>???</b>"
+// 		var/area_name = "<b>???</b>"
+// 		mob_name = H.real_name
+// 		var/area/A = get_area(H)
+// 		var/turf/M_turf = get_turf(H)
+// 		if(A)
+// 			area_name = sanitize(A.name)
+// 		switch(z_hidden)
+// 			if(HIDE_ON_GROUND)
+// 				if(is_ground_level(M_turf?.z))
+// 					continue
+// 			if(HIDE_ON_SHIP)
+// 				if(is_mainship_level(M_turf?.z))
+// 					continue
+
+// 		if(H.mind?.assigned_role)
+// 			role = H.mind.assigned_role
+// 		else if(H.job)
+// 			role = H.job
+// 		else if(istype(H.wear_id, /obj/item/card/id))
+// 			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
+// 			role = ID.rank
+// 		if(current_squad.squad_leader)
+// 			if(H == current_squad.squad_leader)
+// 				dist = "<b>N/A</b>"
+// 				if(H.mind && H.mind.assigned_role != SQUAD_LEADER)
+// 					act_sl = " (acting SL)"
+// 			else if(M_turf && SL_z && M_turf.z == SL_z)
+// 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
+// 		switch(H.stat)
+// 			if(CONSCIOUS)
+// 				mob_state = "Conscious"
+// 				living_count++
+// 				conscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+// 			if(UNCONSCIOUS)
+// 				mob_state = "<b>Unconscious</b>"
+// 				living_count++
+// 				unconscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+// 			if(DEAD)
+// 				if(dead_hidden)
+// 					continue
+// 				mob_state = "<font color='red'>DEAD</font>"
+// 				dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+// 		if((!H.key || !H.client) && H.stat != DEAD)
+// 			mob_state += " (SSD)"
+// 		var/obj/item/card/id/ID = H.wear_id
+// 		if(ID?.assigned_fireteam)
+// 			fteam = " \[[ID.assigned_fireteam]\]"
+// 		var/marine_infos = "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+// 		switch(role)
+// 			if(SQUAD_LEADER)
+// 				leader_text += marine_infos
+// 				leader_count++
+// 			if(SQUAD_SPECIALIST)
+// 				spec_text += marine_infos
+// 				spec_count++
+// 			if(SQUAD_CORPSMAN)
+// 				medic_text += marine_infos
+// 				medic_count++
+// 			if(SQUAD_ENGINEER)
+// 				engi_text += marine_infos
+// 				engi_count++
+// 			if(SQUAD_SMARTGUNNER)
+// 				smart_text += marine_infos
+// 				smart_count++
+// 			if(SQUAD_MARINE)
+// 				marine_text += marine_infos
+// 				marine_count++
+// 			else
+// 				misc_text += marine_infos
+// 	if(current_squad.overwatch_officer)
+// 		dat += "<b>Squad Overwatch:</b> [current_squad.overwatch_officer.name]<br>"
+// 	else
+// 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
+// 	dat += "----------------------<br>"
+// 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
+// 	dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><br>"
+// 	dat += "<b>[smart_count ? "Squad Smartgunner Deployed":"<font color='red'>No Smartgunner Deployed!</font>"]</b><br>"
+// 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
+// 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
+// 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"
+// 	dat += "<b>Marines alive: [living_count]</b><br><br>"
+// 	dat += "<table border='1' style='width:100%' align='center'><tr>"
+// 	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
+// 	if(!living_marines_sorting)
+// 		dat += leader_text + spec_text + medic_text + engi_text + smart_text + marine_text + misc_text
+// 	else
+// 		dat += conscious_text + unconscious_text + dead_text + gibbed_text
+
+
+
+
+
+	return data
+
+
+/obj/machinery/computer/camera_advanced/overwatch/ui_act(action, params)
+	if(..())
 		return
-
-	var/dat
-	if(!operator)
-		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
-	else
-		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
-		dat += "   <A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
-		dat += "----------------------<br>"
-		switch(state)
-			if(OW_MAIN)
-				if(!current_squad) //No squad has been set yet. Pick one.
-					dat += "<br>Current Squad: <A href='?src=\ref[src];operation=pick_squad'>----------</A><BR>"
-				else
-					dat += "<br><b>[current_squad.name] Squad</A></b>   "
-					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
-					dat += "----------------------<BR><BR>"
-					if(current_squad.squad_leader)
-						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
-						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
-						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
-					else
-						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-
-					dat += "<B>Primary Objective:</B> "
-					if(current_squad.primary_objective)
-						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
-					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
-					dat += "<b>Secondary Objective:</b> "
-					if(current_squad.secondary_objective)
-						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
-					else
-						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
-					dat += "<br>"
-					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
-					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
-					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
-					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
-					dat += "----------------------<br>"
-					dat += "<b>Rail Gun Control</b><br>"
-					dat += "<b>Current Rail Gun Status:</b> "
-					var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
-					if(cooldown_left > 0)
-						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-					else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
-						dat += "<font color='red'>Ammo depleted.</font><br>"
-					else
-						dat += "<font color='green'>Ready!</font><br>"
-					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
-					if(length(GLOB.active_laser_targets))
-						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
-							if(!istype(LT))
-								continue
-							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
-					else
-						dat += "<span class='warning'>None</span><br>"
-					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
-							if(!istype(OB))
-								continue
-							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-					else
-						dat += "<span class='warning'>None transmitting</span><br>"
-					dat += "<b>Selected Target:</b><br>"
-					if(!selected_target) // Clean the targets if nothing is selected
-						dat += "<span class='warning'>None</span><br>"
-					else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
-						dat += "<span class='warning'>None</span><br>"
-						selected_target = null
-					else
-						dat += "<font color='green'>[selected_target]</font><br>"
-					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
-					dat += "----------------------<br>"
-					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
-			if(OW_MONITOR)//Info screen.
-				dat += get_squad_info()
-			if(OW_SUPPLIES)
-				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
-				if(!current_squad)
-					dat += "No squad selected!"
-				else
-					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = (current_squad.supply_cooldown + 5000) - world.time
-					if(cooldown_left > 0)
-						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
-					else
-						dat += "<font color='green'>Ready!</font><br>"
-					dat += "<B>Launch Pad Status:</b> "
-					var/can_supply = FALSE
-					for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
-						if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send supply droppable items
-							can_supply = TRUE
-							break
-					if(can_supply)
-						dat += "<font color='green'>Supply drop loaded</font><BR>"
-					else
-						dat += "Empty<BR>"
-					dat += "<B>Supply Beacon Status:</b> "
-					if(current_squad.sbeacon)
-						if(isturf(current_squad.sbeacon.loc))
-							dat += "<font color='green'>Transmitting!</font><BR>"
-						else
-							dat += "Not Transmitting<BR>"
-					else
-						dat += "Not Transmitting<BR>"
-					dat += "<B>X-Coordinate Offset:</B> [x_offset_s] <A href='?src=\ref[src];operation=supply_x'>\[Change\]</a><BR>"
-					dat += "<B>Y-Coordinate Offset:</B> [y_offset_s] <A href='?src=\ref[src];operation=supply_y'>\[Change\]</a><BR><BR>"
-					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
-				dat += "<BR><BR>----------------------<br>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
-
-	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 550)
-	popup.set_content(dat)
-	popup.open()
-
-
-/obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(!href_list["operation"])
-		return
-
-	switch(href_list["operation"])
-		// main interface
+	switch(action)
 		if("back")
 			state = OW_MAIN
 		if("monitor")
@@ -244,12 +359,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				var/obj/item/card/id/ID = H.get_idcard()
 				visible_message("<span class='boldnotice'>Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad.</span>")
 				current_squad?.message_squad("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].")
-		if("change_main_operator")
-			if(operator != usr)
-				operator = usr
-				var/mob/living/carbon/human/H = operator
-				var/obj/item/card/id/ID = H.get_idcard()
-				visible_message("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
 		if("logout")
 			if(!current_squad)
 				return
@@ -322,6 +431,12 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				current_squad.secondary_objective = input + " ([worldtime2text()])"
 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
 				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
+		if("change_lead")
+			change_lead()
+		if("insubordination")
+			mark_insubordination()
+		if("squad_transfer")
+			transfer_squad()
 		if("supply_x")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
 			input = CLAMP(round(input), -5, 5)
@@ -332,38 +447,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			input = CLAMP(round(input), -5, 5)
 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Y-offset is now [input].</span>")
 			y_offset_s = input
-		if("refresh")
-			attack_hand(usr)
-		if("change_sort")
-			living_marines_sorting = !living_marines_sorting
-			if(living_marines_sorting)
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines are now sorted by health status.</span>")
-			else
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines are now sorted by rank.</span>")
-		if("hide_dead")
-			dead_hidden = !dead_hidden
-			if(dead_hidden)
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now not shown.</span>")
-			else
-				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
-		if("choose_z")
-			switch(z_hidden)
-				if(HIDE_NONE)
-					z_hidden = HIDE_ON_SHIP
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [SSmapping.configs[SHIP_MAP].map_name] are now hidden.</span>")
-				if(HIDE_ON_SHIP)
-					z_hidden = HIDE_ON_GROUND
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
-				if(HIDE_ON_GROUND)
-					z_hidden = HIDE_NONE
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>No location is ignored anymore.</span>")
-
-		if("change_lead")
-			change_lead()
-		if("insubordination")
-			mark_insubordination()
-		if("squad_transfer")
-			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
 				if((current_squad.supply_cooldown + 5 MINUTES) > world.time)
@@ -382,92 +465,391 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
 			else
 				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),usr)
-		if("back")
-			state = OW_MAIN
-		if("use_cam")
-			selected_target = locate(href_list["selected_target"])
-			if(!isAI(usr))
-				var/atom/cam_target = locate(href_list["cam_target"])
-				open_prompt(usr)
-				eyeobj.setLoc(get_turf(cam_target))
-				if(isliving(cam_target))
-					var/mob/living/L = cam_target
-					track(L)
-				else
-					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
-
-	updateUsrDialog()
 
 
-/obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
-	. = ..()
-	if(.)
-		return
+// /obj/machinery/computer/camera_advanced/overwatch/interact(mob/user)
+// 	. = ..()
+// 	if(.)
+// 		return
 
-	var/dat
-	if(!operator)
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
-	else
-		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
-		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
-		dat += "----------------------<br>"
-		switch(state)
-			if(OW_MAIN)
-				for(var/datum/squad/S in squads)
-					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
-					if(S.squad_leader)
-						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
-						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
-					else
-						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
-					if(S.overwatch_officer)
-						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
-					else
-						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
-				dat += "----------------------<br>"
-				dat += "<b>Orbital Bombardment Control</b><br>"
-				dat += "<b>Current Cannon Status:</b> "
-				var/cooldown_left = (GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) - world.time
-				if(cooldown_left > 0)
-					dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
-				else if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
-				else
-					dat += "<font color='green'>Ready!</font><br>"
-				dat += "<B>Laser Targets:</b><br>"
-				if(length(GLOB.active_laser_targets))
-					for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
-						if(!istype(LT))
-							continue
-						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
-				else
-					dat += "<span class='warning'>None</span><br>"
-				dat += "<B>Beacon Targets:</b><br>"
-				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
-						if(!istype(OB))
-							continue
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-				else
-					dat += "<span class='warning'>None transmitting</span><br>"
-				dat += "<b>Selected Target:</b><br>"
-				if(!selected_target) // Clean the targets if nothing is selected
-					dat += "<span class='warning'>None</span><br>"
-				else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
-					dat += "<span class='warning'>None</span><br>"
-					selected_target = null
-				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"
-				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
-				dat += "----------------------<BR>"
-				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
-			if(OW_MONITOR)//Info screen.
-				dat += get_squad_info()
+// 	var/dat
+// 	if(!operator)
+// 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
+// 	else
+// 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
+// 		dat += "   <A href='?src=\ref[src];operation=logout'>{Stop Overwatch}</A><BR>"
+// 		dat += "----------------------<br>"
+// 		switch(state)
+// 			if(OW_MAIN)
+// 				if(!current_squad) //No squad has been set yet. Pick one.
+// 					dat += "<br>Current Squad: <A href='?src=\ref[src];operation=pick_squad'>----------</A><BR>"
+// 				else
+// 					dat += "<br><b>[current_squad.name] Squad</A></b>   "
+// 					dat += "<A href='?src=\ref[src];operation=message'>\[Message Squad\]</a><br><br>"
+// 					dat += "----------------------<BR><BR>"
+// 					if(current_squad.squad_leader)
+// 						dat += "<B>Squad Leader:</B> <A href='?src=\ref[src];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
+// 						dat += "<A href='?src=\ref[src];operation=sl_message'>\[MSG\]</a> "
+// 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
+// 					else
+// 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
 
-	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
-	popup.set_content(dat)
-	popup.open()
+// 					dat += "<B>Primary Objective:</B> "
+// 					if(current_squad.primary_objective)
+// 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
+// 					else
+// 						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
+// 					dat += "<b>Secondary Objective:</b> "
+// 					if(current_squad.secondary_objective)
+// 						dat += "[current_squad.secondary_objective] <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
+// 					else
+// 						dat += "<b><font color=red>NONE!</font></b> <a href='?src=\ref[src];operation=set_secondary'>\[Set\]</a><br>"
+// 					dat += "<br>"
+// 					dat += "<A href='?src=\ref[src];operation=insubordination'>Report a marine for insubordination</a><BR>"
+// 					dat += "<A href='?src=\ref[src];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
+// 					dat += "<a href='?src=\ref[src];operation=supplies'>Supply Drop Control</a><br>"
+// 					dat += "<a href='?src=\ref[src];operation=monitor'>Squad Monitor</a><br>"
+// 					dat += "----------------------<br>"
+// 					dat += "<b>Rail Gun Control</b><br>"
+// 					dat += "<b>Current Rail Gun Status:</b> "
+// 					var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
+// 					if(cooldown_left > 0)
+// 						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
+// 					else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
+// 						dat += "<font color='red'>Ammo depleted.</font><br>"
+// 					else
+// 						dat += "<font color='green'>Ready!</font><br>"
+// 					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
+// 					if(length(GLOB.active_laser_targets))
+// 						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
+// 							if(!istype(LT))
+// 								continue
+// 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
+// 					else
+// 						dat += "<span class='warning'>None</span><br>"
+// 					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
+// 					if(length(GLOB.active_orbital_beacons))
+// 						for(var/obj/item/squad_beacon/bomb/OB in current_squad.squad_orbital_beacons)
+// 							if(!istype(OB))
+// 								continue
+// 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
+// 					else
+// 						dat += "<span class='warning'>None transmitting</span><br>"
+// 					dat += "<b>Selected Target:</b><br>"
+// 					if(!selected_target) // Clean the targets if nothing is selected
+// 						dat += "<span class='warning'>None</span><br>"
+// 					else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
+// 						dat += "<span class='warning'>None</span><br>"
+// 						selected_target = null
+// 					else
+// 						dat += "<font color='green'>[selected_target]</font><br>"
+// 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
+// 					dat += "----------------------<br>"
+// 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
+// 			if(OW_MONITOR)//Info screen.
+// 				dat += get_squad_info()
+// 			if(OW_SUPPLIES)
+// 				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
+// 				if(!current_squad)
+// 					dat += "No squad selected!"
+// 				else
+// 					dat += "<B>Current Supply Drop Status:</B> "
+// 					var/cooldown_left = (current_squad.supply_cooldown + 5000) - world.time
+// 					if(cooldown_left > 0)
+// 						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
+// 					else
+// 						dat += "<font color='green'>Ready!</font><br>"
+// 					dat += "<B>Launch Pad Status:</b> "
+// 					var/can_supply = FALSE
+// 					for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+// 						if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send supply droppable items
+// 							can_supply = TRUE
+// 							break
+// 					if(can_supply)
+// 						dat += "<font color='green'>Supply drop loaded</font><BR>"
+// 					else
+// 						dat += "Empty<BR>"
+// 					dat += "<B>Supply Beacon Status:</b> "
+// 					if(current_squad.sbeacon)
+// 						if(isturf(current_squad.sbeacon.loc))
+// 							dat += "<font color='green'>Transmitting!</font><BR>"
+// 						else
+// 							dat += "Not Transmitting<BR>"
+// 					else
+// 						dat += "Not Transmitting<BR>"
+// 					dat += "<B>X-Coordinate Offset:</B> [x_offset_s] <A href='?src=\ref[src];operation=supply_x'>\[Change\]</a><BR>"
+// 					dat += "<B>Y-Coordinate Offset:</B> [y_offset_s] <A href='?src=\ref[src];operation=supply_y'>\[Change\]</a><BR><BR>"
+// 					dat += "<A href='?src=\ref[src];operation=dropsupply'>\[LAUNCH!\]</a>"
+// 				dat += "<BR><BR>----------------------<br>"
+// 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
+// 				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a>"
+
+// 	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 550)
+// 	popup.set_content(dat)
+// 	popup.open()
+
+
+// /obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
+// 	. = ..()
+// 	if(.)
+// 		return
+
+// 	if(!href_list["operation"])
+// 		return
+
+// 	switch(href_list["operation"])
+// 		// main interface
+// 		if("back")
+// 			state = OW_MAIN
+// 		if("monitor")
+// 			state = OW_MONITOR
+// 		if("monitor1")
+// 			state = OW_MONITOR
+// 			current_squad = get_squad_by_id(ALPHA_SQUAD)
+// 		if("monitor2")
+// 			state = OW_MONITOR
+// 			current_squad = get_squad_by_id(BRAVO_SQUAD)
+// 		if("monitor3")
+// 			state = OW_MONITOR
+// 			current_squad = get_squad_by_id(CHARLIE_SQUAD)
+// 		if("monitor4")
+// 			state = OW_MONITOR
+// 			current_squad = get_squad_by_id(DELTA_SQUAD)
+// 		if("supplies")
+// 			state = OW_SUPPLIES
+// 		if("change_operator")
+// 			if(operator != usr)
+// 				if(current_squad)
+// 					current_squad.overwatch_officer = usr
+// 				operator = usr
+// 				var/mob/living/carbon/human/H = operator
+// 				var/obj/item/card/id/ID = H.get_idcard()
+// 				visible_message("<span class='boldnotice'>Basic overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name]. Please select a squad.</span>")
+// 				current_squad?.message_squad("Attention. Your Overwatch officer is now [ID ? "[ID.rank] ":""][operator.name].")
+// 		if("change_main_operator")
+// 			if(operator != usr)
+// 				operator = usr
+// 				var/mob/living/carbon/human/H = operator
+// 				var/obj/item/card/id/ID = H.get_idcard()
+// 				visible_message("<span class='boldnotice'>Main overwatch systems initialized. Welcome, [ID ? "[ID.rank] ":""][operator.name].</span>")
+// 		if("logout")
+// 			if(!current_squad)
+// 				return
+// 			var/obj/item/card/id/ID = operator.get_idcard()
+// 			current_squad.overwatch_officer = null //Reset the squad's officer.
+// 			current_squad.message_squad("Attention. [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"] is no longer your Overwatch officer. Overwatch functions deactivated.")
+// 			visible_message("<span class='boldnotice'>Overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
+// 			operator = null
+// 			current_squad = null
+// 			state = OW_MAIN
+// 		if("logout_main")
+// 			var/obj/item/card/id/ID = operator.get_idcard()
+// 			visible_message("<span class='boldnotice'>Main overwatch systems deactivated. Goodbye, [ID ? "[ID.rank] ":""][operator ? "[operator.name]":"sysadmin"].</span>")
+// 			operator = null
+// 			current_squad = null
+// 			selected_target = null
+// 			state = OW_MAIN
+// 		if("pick_squad")
+// 			if(operator == usr)
+// 				if(current_squad)
+// 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
+// 				else
+// 					var/list/squad_choices = list()
+// 					for(var/i in SSjob.squads)
+// 						var/datum/squad/S = SSjob.squads[i]
+// 						if(!S.overwatch_officer)
+// 							squad_choices += S.name
+
+// 					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+// 					if(!squad_name || operator != usr)
+// 						return
+// 					if(current_squad)
+// 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
+// 						return
+// 					var/datum/squad/selected = SSjob.squads[squad_name]
+// 					if(selected)
+// 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
+// 						current_squad = selected
+// 						current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+// 						current_squad.message_squad("Your Overwatch officer is: [operator.name].")
+// 						visible_message("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
+// 						attack_hand(usr)
+// 						if(!current_squad.drop_pad) //Why the hell did this not link?
+// 							for(var/obj/structure/supply_drop/S in GLOB.supply_pad_list)
+// 								S.force_link() //LINK THEM ALL!
+
+// 					else
+// 						to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Invalid input. Aborting.</span>")
+// 		if("message")
+// 			if(current_squad && operator == usr)
+// 				var/input = stripped_input(usr, "Please write a message to announce to the squad:", "Squad Message")
+// 				if(input)
+// 					current_squad.message_squad(input, usr) //message, adds username
+// 					visible_message("<span class='boldnotice'>Message sent to all Marines of squad '[current_squad]'.</span>")
+// 		if("sl_message")
+// 			if(current_squad && operator == usr)
+// 				var/input = stripped_input(usr, "Please write a message to announce to the squad leader:", "SL Message")
+// 				if(input)
+// 					current_squad.message_leader(input, usr)
+// 					visible_message("<span class='boldnotice'>Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'.</span>")
+// 		if("set_primary")
+// 			var/input = stripped_input(usr, "What will be the squad's primary objective?", "Primary Objective")
+// 			if(input)
+// 				current_squad.primary_objective = input + " ([worldtime2text()])"
+// 				current_squad.message_squad("Your primary objective has changed. See Status pane for details.")
+// 				visible_message("<span class='boldnotice'>Primary objective of squad '[current_squad]' set.</span>")
+// 		if("set_secondary")
+// 			var/input = stripped_input(usr, "What will be the squad's secondary objective?", "Secondary Objective")
+// 			if(input)
+// 				current_squad.secondary_objective = input + " ([worldtime2text()])"
+// 				current_squad.message_squad("Your secondary objective has changed. See Status pane for details.")
+// 				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
+// 		if("supply_x")
+// 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
+// 			input = CLAMP(round(input), -5, 5)
+// 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>X-offset is now [input].</span>")
+// 			x_offset_s = input
+// 		if("supply_y")
+// 			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
+// 			input = CLAMP(round(input), -5, 5)
+// 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Y-offset is now [input].</span>")
+// 			y_offset_s = input
+// 		if("refresh")
+// 			attack_hand(usr)
+// 		if("change_sort")
+// 			living_marines_sorting = !living_marines_sorting
+// 			if(living_marines_sorting)
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines are now sorted by health status.</span>")
+// 			else
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines are now sorted by rank.</span>")
+// 		if("hide_dead")
+// 			dead_hidden = !dead_hidden
+// 			if(dead_hidden)
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now not shown.</span>")
+// 			else
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Dead marines are now shown again.</span>")
+// 		if("choose_z")
+// 			switch(z_hidden)
+// 				if(HIDE_NONE)
+// 					z_hidden = HIDE_ON_SHIP
+// 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the [SSmapping.configs[SHIP_MAP].map_name] are now hidden.</span>")
+// 				if(HIDE_ON_SHIP)
+// 					z_hidden = HIDE_ON_GROUND
+// 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Marines on the ground are now hidden.</span>")
+// 				if(HIDE_ON_GROUND)
+// 					z_hidden = HIDE_NONE
+// 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>No location is ignored anymore.</span>")
+
+// 		if("change_lead")
+// 			change_lead()
+// 		if("insubordination")
+// 			mark_insubordination()
+// 		if("squad_transfer")
+// 			transfer_squad()
+// 		if("dropsupply")
+// 			if(current_squad)
+// 				if((current_squad.supply_cooldown + 5 MINUTES) > world.time)
+// 					to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Supply drop not yet available!</span>")
+// 				else
+// 					handle_supplydrop()
+// 		if("dropbomb")
+// 			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) > world.time)
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
+// 			else
+// 				handle_bombard()
+// 		if("shootrailgun")
+// 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
+// 			else if(!selected_target)
+// 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
+// 			else
+// 				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),usr)
+// 		if("back")
+// 			state = OW_MAIN
+// 		if("use_cam")
+// 			selected_target = locate(href_list["selected_target"])
+// 			if(!isAI(usr))
+// 				var/atom/cam_target = locate(href_list["cam_target"])
+// 				open_prompt(usr)
+// 				eyeobj.setLoc(get_turf(cam_target))
+// 				if(isliving(cam_target))
+// 					var/mob/living/L = cam_target
+// 					track(L)
+// 				else
+// 					to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Jumping to the latest available location of [cam_target].</span>")
+
+// 	updateUsrDialog()
+
+
+// /obj/machinery/computer/camera_advanced/overwatch/main/interact(mob/living/user)
+// 	. = ..()
+// 	if(.)
+// 		return
+
+// 	var/dat
+// 	if(!operator)
+// 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
+// 	else
+// 		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
+// 		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
+// 		dat += "----------------------<br>"
+// 		switch(state)
+// 			if(OW_MAIN)
+// 				for(var/datum/squad/S in squads)
+// 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+// 					if(S.squad_leader)
+// 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+// 						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
+// 					else
+// 						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
+// 					if(S.overwatch_officer)
+// 						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
+// 					else
+// 						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
+// 					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+// 				dat += "----------------------<br>"
+// 				dat += "<b>Orbital Bombardment Control</b><br>"
+// 				dat += "<b>Current Cannon Status:</b> "
+// 				var/cooldown_left = (GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) - world.time
+// 				if(cooldown_left > 0)
+// 					dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
+// 				else if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+// 					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
+// 				else
+// 					dat += "<font color='green'>Ready!</font><br>"
+// 				dat += "<B>Laser Targets:</b><br>"
+// 				if(length(GLOB.active_laser_targets))
+// 					for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
+// 						if(!istype(LT))
+// 							continue
+// 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
+// 				else
+// 					dat += "<span class='warning'>None</span><br>"
+// 				dat += "<B>Beacon Targets:</b><br>"
+// 				if(length(GLOB.active_orbital_beacons))
+// 					for(var/obj/item/squad_beacon/bomb/OB in GLOB.active_orbital_beacons)
+// 						if(!istype(OB))
+// 							continue
+// 						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
+// 				else
+// 					dat += "<span class='warning'>None transmitting</span><br>"
+// 				dat += "<b>Selected Target:</b><br>"
+// 				if(!selected_target) // Clean the targets if nothing is selected
+// 					dat += "<span class='warning'>None</span><br>"
+// 				else if(!(selected_target in GLOB.active_laser_targets) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
+// 					dat += "<span class='warning'>None</span><br>"
+// 					selected_target = null
+// 				else
+// 					dat += "<font color='green'>[selected_target.name]</font><br>"
+// 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
+// 				dat += "----------------------<BR>"
+// 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a>"
+// 			if(OW_MONITOR)//Info screen.
+// 				dat += get_squad_info()
+
+// 	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Main Overwatch Console</div>", 550, 550)
+// 	popup.set_content(dat)
+// 	popup.open()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)

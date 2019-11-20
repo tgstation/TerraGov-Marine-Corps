@@ -28,6 +28,7 @@ import { PortableVendor } from './interfaces/PortableVendor';
 import { PortableGenerator } from './interfaces/PortableGenerator';
 import { SmartVend } from './interfaces/SmartVend';
 import { SMES } from './interfaces/SMES';
+import { OverwatchConsole } from './interfaces/OverwatchConsole';
 
 
 const ROUTES = {
@@ -110,6 +111,10 @@ const ROUTES = {
   centcom_podlauncher: {
     component: () => CentcomPodLauncher,
     scrollable: false,
+  },
+  overwatch_console: {
+    component: () => OverwatchConsole,
+    scrollable: true
   },
   portable_generator: {
     component: () => PortableGenerator,
