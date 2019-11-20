@@ -305,6 +305,7 @@
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+
 /obj/item/clothing/head/helmet/marine/specialist/melee
 	name = "\improper B18-P helmet"
 	desc = "The B18-P Helmet that goes along with the B18-P Offensive Armor. It's relatively lightweight, reinforced, and protects some of the face."
@@ -314,6 +315,17 @@
 	resistance_flags = UNACIDABLE
 	anti_hug = 3
 	flags_item_map_variant = NONE
+
+/obj/item/clothing/head/helmet/marine/grenadier
+	name = "\improper B17 helmet"
+	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
+	icon_state = "grenadier_helmet"
+	armor = list("melee" = 80, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 55, "rad" = 15, "fire" = 65, "acid" = 70)
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
+	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = UNACIDABLE
+	anti_hug = 4
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"

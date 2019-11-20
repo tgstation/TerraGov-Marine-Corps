@@ -15,6 +15,7 @@
 	flags_item = TWOHANDED
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -124,7 +125,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	muzzle_flash = new()
+	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -423,14 +424,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
-		var/bullet_ammo_type
+		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
 		if(current_mag)
-			bullet_ammo_type = current_mag.default_ammo
-			bullet_caliber = current_mag.caliber
+			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
-			bullet_ammo_type = ammo.type
-			bullet_caliber = caliber
+			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X

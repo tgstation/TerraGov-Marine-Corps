@@ -124,7 +124,6 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/start/xeno_spawn
-	icon_state = "xeno_spawn"
 
 /obj/effect/landmark/start/xeno_spawn/Initialize()
 	. = ..()
