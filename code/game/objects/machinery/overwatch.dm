@@ -95,7 +95,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		message_admins("loading overwatch console?")
 		ui = new(user, src, ui_key, "overwatch_console", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
