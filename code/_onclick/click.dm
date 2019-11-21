@@ -338,12 +338,24 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
-	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
-		return FALSE
 	return TRUE
 
 
+/mob/living/carbon/human/MiddleClickOn(atom/A)
+	. = ..()
+	if(!middle_mouse_toggle)
+		return
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+
+
+/mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
+	. = ..()
+	if(!middle_mouse_toggle || !selected_ability)
+		return
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
 
 /*
 	Shift click
@@ -357,6 +369,24 @@
 		if(COMSIG_MOB_CLICK_HANDLED)
 			return TRUE
 	return A.ShiftClick(src)
+
+
+/mob/living/carbon/human/ShiftClickOn(atom/A)
+	if(middle_mouse_toggle)
+		return ..()
+	var/obj/item/held_thing = get_active_held_item()
+
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
+		return FALSE
+	return ..()
+
+
+/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
+	if(!selected_ability || middle_mouse_toggle)
+		return ..()
+	if(selected_ability.can_use_ability(A))
+		selected_ability.use_ability(A)
+	return TRUE
 
 
 /atom/proc/ShiftClick(mob/user)
