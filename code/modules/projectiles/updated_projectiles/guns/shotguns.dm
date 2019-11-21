@@ -675,7 +675,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
 	name = "\improper MBX-900 lever action shotgun"
-	desc = "A .410 lever action shotgun that fires as fast as you can operate the lever. A recently-adopted shotgun in the wake of the SX-16 automatic shotgun replacing the MIC ZX-76 assault shotgun for use in standard-issue TGMC specialist inventory."
+	desc = "A .410 bore lever action shotgun that fires as fast as you can operate the lever. A recently-adopted shotgun in the wake of the SX-16 automatic shotgun replacing the MIC ZX-76 assault shotgun for use in standard-issue TGMC specialist inventory."
 	icon_state = "mbx900"
 	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
