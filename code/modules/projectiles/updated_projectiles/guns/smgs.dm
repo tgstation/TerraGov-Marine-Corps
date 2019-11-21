@@ -43,7 +43,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/smg/standard_smg
-	name = "\improper T-19 Submachine Gun"
+	name = "\improper T-19 submachinegun"
 	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
@@ -302,7 +302,7 @@
 //FP9000 //Based on the FN P90
 
 /obj/item/weapon/gun/smg/p90
-	name = "\improper FN FP9000 Submachinegun"
+	name = "\improper FN FP9000 submachinegun"
 	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds."
 	icon_state = "FP9000"
 	item_state = "FP9000"
