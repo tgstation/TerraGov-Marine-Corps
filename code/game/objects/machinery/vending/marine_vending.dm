@@ -283,7 +283,14 @@
 
 
 /obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
-	. = ..()
+	if(machine_stat & (BROKEN|NOPOWER))
+		return
+
+	if(user.stat || user.restrained() || user.lying)
+		return
+
+	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
+		return
 
 	var/obj/item/I = A
 	if(istype(I, /obj/item/cell/lasgun))
