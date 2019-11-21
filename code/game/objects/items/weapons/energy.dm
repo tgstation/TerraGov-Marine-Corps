@@ -52,6 +52,7 @@
 	throwforce = 5.0
 	throw_speed = 1
 	throw_range = 5
+	attack_speed = 8
 	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -59,6 +60,9 @@
 	edge = 1
 	var/base_sword_icon = "sword"
 	var/sword_color
+
+/obj/item/weapon/energy/sword/spec
+	sword_color = "blue"
 
 /obj/item/weapon/energy/sword/IsShield()
 	if(active)
@@ -73,7 +77,7 @@
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
-		force = 30
+		force = 65
 		heat = 3500
 		if(base_sword_icon != "sword")
 			icon_state = "[base_sword_icon]1"
@@ -84,7 +88,7 @@
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
-		force = 3
+		force = 10
 		heat = 0
 		icon_state = "[base_sword_icon]0"
 		w_class = WEIGHT_CLASS_SMALL

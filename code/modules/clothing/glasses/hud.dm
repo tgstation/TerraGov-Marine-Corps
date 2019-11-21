@@ -91,8 +91,8 @@
 /obj/item/clothing/glasses/hud/xenohud
 	name = "XenoMate HUD"
 	desc = "A heads-up display that scans any nearby xenomorph's data."
-	icon_state = "securityhud"
-	deactive_state = "degoggles_sec"
+	icon_state = "xenohud"
+	deactive_state = "degoggles_xeno"
 	flags_armor_protection = 0
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
