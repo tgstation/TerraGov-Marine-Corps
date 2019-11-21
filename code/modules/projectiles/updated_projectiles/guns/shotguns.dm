@@ -626,7 +626,7 @@ can cause issues with ammo types getting mixed up during the burst.
 // Yee Haw it's a cowboy lever action gun!
 
 /obj/item/weapon/gun/shotgun/pump/lever
-	name = "\improper Lever Action rifle"
+	name = "\improper lever action rifle"
 	desc = "A .44 magnum lever action rifle with side loading port. It has a low fire rate, but it packs quite a punch in hunting."
 	icon_state = "mares_leg"
 	item_state = "mares_leg" //With thanks to D4n0w4r https://youtu.be/PV4uWGGb4xM
@@ -674,14 +674,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ..()
 
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
-	name = "\improper MBX-900 Lever Action Shotgun"
-	desc = "A .410 lever action shotgun that fires as fast as you can operate the action."
+	name = "\improper MBX-900 lever action shotgun"
+	desc = "A .410 lever action shotgun that fires as fast as you can operate the lever. A recently-adopted shotgun in the wake of the SX-16 automatic shotgun replacing the MIC ZX-76 assault shotgun for use in standard-issue TGMC specialist inventory."
 	icon_state = "mbx900"
 	item_state = "mbx900"
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = ".410"
+	caliber = ".410 bore"
 	load_method = SINGLE_CASING
 	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
@@ -714,9 +714,4 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 6
 	accuracy_mult = 1.4
-	accuracy_mult_unwielded = 0.7
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
 	pump_delay = 2

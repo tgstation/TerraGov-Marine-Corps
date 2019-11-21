@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
-	name = ".410 buckshot"
+	name = "hunting shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
@@ -666,7 +666,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 2
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
-	name = ".410 sabot"
+	name = "hunting shotgun sabot shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	shell_speed = 5
@@ -675,7 +675,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
-	name = ".410 tracker"
+	name = "hunting shotgun tracker round"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_flechette"
 	shell_speed = 4

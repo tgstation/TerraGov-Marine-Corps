@@ -914,7 +914,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode, has a 9 round internal magazine. Currently retired by the main TGMC forces for the addition of the SX-16, it is now only used in special operations and smaller divisions across Terra."
+	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode, has a 9 round internal magazine. Currently retired by the main TGMC forces for the addition of the SX-16 and later the MBX-900, it is now only used in special operations and smaller divisions across Terra."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex
