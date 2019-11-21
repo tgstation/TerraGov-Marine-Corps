@@ -211,7 +211,7 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
-	L.jitter(5)
+	L.jitter(2)
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
