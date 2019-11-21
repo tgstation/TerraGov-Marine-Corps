@@ -160,10 +160,10 @@
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 2 * REM)
 	if(volume > 5)
-		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(0, 1 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
+		L.reagent_shock_modifier -= PAIN_REDUCTION_LIGHT
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -184,10 +184,10 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 4 * REM)
-	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 7)
 		L.heal_limb_damage(0, 2 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
+		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
 	
 	return ..()
 
@@ -571,7 +571,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2 * REM, 0)
 	if(volume > 5)
-		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(1 * REM)
 		L.reagent_shock_modifier -= PAIN_REDUCTION_LIGHT
@@ -596,10 +596,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
-	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(0, 2 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
+		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
 	return ..()
 
 
