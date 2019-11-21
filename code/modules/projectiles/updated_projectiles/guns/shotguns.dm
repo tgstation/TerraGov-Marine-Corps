@@ -667,7 +667,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
 
-/obj/item/weapon/gun/shotgun/pump/unload(mob/user)
+/obj/item/weapon/gun/shotgun/pump/lever/unload(mob/user)
 	if(pump_lock)
 		to_chat(user, "<span class='notice'><b>You pull [src]'s lever downward, ejecting the cartridge.</b></span>")
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
