@@ -146,7 +146,7 @@
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
-	L.eye_blurry = max(current_cycle/10, 80)
+	L.eye_blurry = min(current_cycle/5, 50)
 	L.adjust_drugginess(1.1)
 	return ..()
 
