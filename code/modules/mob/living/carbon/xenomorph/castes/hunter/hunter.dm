@@ -11,7 +11,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	var/last_stealth = null
 	var/stealth = FALSE
-	var/can_sneak_attack = FALSE
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
