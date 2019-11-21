@@ -465,7 +465,7 @@
 
 /mob/living/carbon/verb/middle_mousetoggle()
 	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected abilitiy use."
+	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
 	set category = "IC"
 
 	middle_mouse_toggle = !middle_mouse_toggle
