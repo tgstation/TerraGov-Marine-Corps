@@ -692,13 +692,24 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/mob/living/carbon/xenomorph/X = i
 		if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
 			continue
-		if(count_flags & COUNT_IGNORE_XENO_RESEARCH && isxenoresearcharea(get_area(X)))
+		if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 			continue
 		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
 		num_xenos++
 
 	return list(num_humans, num_xenos)
+
+
+/datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
+	return FALSE
+
+/datum/game_mode/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+		return FALSE
+	if(isxenoresearcharea(get_area(xeno)))
+		return TRUE
+	return FALSE
 
 
 /datum/game_mode/proc/remove_fog()

@@ -80,7 +80,7 @@
 	//Automated bioscan / Queen Mother message
 	if(world.time > bioscan_current_interval)
 		announce_bioscans()
-		var/total[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_RESEARCH)
+		var/total[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_SPECIAL_AREA)
 		var/marines = total[1]
 		var/xenos = total[2]
 		var/bioscan_scaling_factor = xenos / max(marines, 1)
@@ -96,7 +96,7 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_RESEARCH)
+	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
@@ -537,12 +537,9 @@
 
 
 /datum/game_mode/distress/orphan_hivemind_collapse()
-	var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 	if(round_finished)
-		return
-	if(!hive.living_xeno_ruler || !isxenoresearcharea(get_area(hive.living_xeno_ruler)))
 		return
 	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
 		round_finished = MODE_INFESTATION_M_MINOR
