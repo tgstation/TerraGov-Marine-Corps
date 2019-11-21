@@ -208,21 +208,7 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(xeno_hive.stored_larva)
 		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	var/new_xeno_batch = max(1, round(num_humans * 0.2))
-	for(var/i in new_xeno_batch)
-		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
-		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
-
-		// Try to find someone for the xeno
-		var/xeno_candidate = get_alien_candidate()
-		if(!xeno_candidate)
-			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>")
-			continue
-
-		transfer_xeno(xeno_candidate, new_xeno)
-		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-
+	xeno_hive.stored_larva += max(1, round(num_humans * 0.2))
 	return TRUE
 
 
