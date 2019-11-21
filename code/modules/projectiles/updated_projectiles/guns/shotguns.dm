@@ -387,8 +387,8 @@ can cause issues with ammo types getting mixed up during the burst.
 //Shotguns in this category will need to be pumped each shot.
 
 /obj/item/weapon/gun/shotgun/pump
-	name = "\improper T-35 pump shotgun"
-	desc = "The T-35 is used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells. Use Unique Action to pump and load the shotgun after each shot."
+	name = "\improper M37A2 pump shotgun"
+	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "m37"
 	item_state = "m37"

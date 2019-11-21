@@ -49,8 +49,8 @@
 //M4A3 PISTOL
 
 /obj/item/weapon/gun/pistol/m4a3
-	name = "\improper T-27 pistol"
-	desc = "The T-17 pistol is one of the two standard issue handguns of the TerraGov Marine Corps. It's usually used as a emergency sidearm when your primary firearm runs out or you need something smaller than an SMG and don't want a cumbersome revolver. Uses 9mm pistol rounds."
+	name = "\improper M4A3 service pistol"
+	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the TerraGov Marine Corps."
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	caliber = "9x19mm Parabellum" //codex
@@ -67,8 +67,8 @@
 
 
 /obj/item/weapon/gun/pistol/m4a3/custom
-	name = "\improper T-27 custom pistol"
-	desc = "A T-17 pistol modified to have clearer sights, lightweight trigger and increased firepower. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
+	name = "\improper M4A3 custom pistol"
+	desc = "An M4A3 Service Pistol, the standard issue sidearm of the TerraGov Marine Corps. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 

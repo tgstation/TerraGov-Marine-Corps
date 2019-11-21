@@ -1,8 +1,8 @@
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
-	name = "\improper T-34 incinerator unit"
-	desc = "The T-34 flamethrower is rather deadly and should be treated with respect. A common sight for willing pyrostarters thanks to its effectiveness at soft targets. Accepts any ultra-thickened nepthal fuel of any type. Ignite the pilot light before operating. Uses Specialized fuel tanks to load Nephtal. Handle with extreme care. Lest you kill all your friends or something."
+	name = "\improper M240A1 incinerator unit"
+	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK

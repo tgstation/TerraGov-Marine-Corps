@@ -299,8 +299,8 @@
 //M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
 
 /obj/item/weapon/gun/revolver/m44
-	name = "\improper T-17E1 combat revolver"
-	desc = "The T-17E1 revolver is one of two standard issue sidearms used by the TerraGov Marine Corps. Usually used by people who prefer firepower and accuracy over the T-27s capacity or those who decide to use it as a pistol carbine with a stock due to it's surprisingly good marksmanship. Uses .44 rounds fed by hand or speed loaders."
+	name = "\improper M44 combat revolver"
+	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
