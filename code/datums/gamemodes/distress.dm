@@ -296,10 +296,6 @@
 						/obj/item/ammo_magazine/revolver/heavy = round(scale * 5),
 						/obj/item/ammobox/m39 = round(scale * 3),
 						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 15),
-						/obj/item/ammobox/m39ap = round(scale * 1),
-						/obj/item/ammo_magazine/smg/standard_smg/ap = round(scale * 5),
-						/obj/item/ammobox/m39ext = round(scale * 1),
-						/obj/item/ammo_magazine/smg/standard_smg/extended = round(scale * 5),
 						/obj/item/ammobox = round(scale * 3),
 						/obj/item/ammo_magazine/rifle/standard_carbine = round(scale * 15),
 						/obj/item/ammo_magazine/rifle/standard_assaultrifle = round(scale * 15),
@@ -347,7 +343,7 @@
 						/obj/item/storage/belt/grenade = round(scale * 5),
 						/obj/item/storage/belt/gun/m4a3 = round(scale * 10),
 						/obj/item/storage/belt/gun/m44 = round(scale * 5),
-						/obj/item/storage/large_holster/m39 = round(scale * 5),
+						/obj/item/storage/large_holster/t19 = round(scale * 5),
 						/obj/item/clothing/tie/storage/webbing = round(scale * 5),
 						/obj/item/clothing/tie/storage/brown_vest = round(scale * 5),
 						/obj/item/clothing/tie/storage/white_vest/medic = round(scale * 5),
@@ -447,7 +443,6 @@
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
 							/obj/item/ammo_magazine/pistol/ap = round(scale * 2),
-							/obj/item/ammo_magazine/smg/standard_smg/ap = round(scale * 2)
 							)
 
 		//Rebuild the vendor's inventory to make our changes apply
