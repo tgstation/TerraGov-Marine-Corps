@@ -181,7 +181,6 @@
 	color = "#DFD7AF" // rgb: 223, 215, 175
 	taste_description = "creamy milk"
 
-0\
 /datum/reagent/consumable/drink/grenadine
 	name = "Grenadine Syrup"
 	description = "Made in the modern day with proper pomegranate substitute. Who uses real fruit, anyways?"
@@ -212,6 +211,9 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.jitter(2)
+	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil)) 
+		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5) 
+	return ..() 
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
@@ -222,7 +224,7 @@
 			E.take_damage(0.1, TRUE)
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
-/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism) 
+/datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.2, TOX)
 	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
