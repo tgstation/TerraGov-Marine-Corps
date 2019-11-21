@@ -41,11 +41,11 @@
 /datum/reagent/water/on_mob_life(mob/living/L, metabolism)
 	L.reagents.remove_all_type(/datum/reagent, REM, 0, 1) //slowly washes out chems in you
 	if(volume < 4)
-		L.adjustStaminaLoss(-10*REM)
-		L.adjustBruteLoss(-0.2, 0)
-		L.adjustFireLoss(-0.2, 0)
+		L.adjustStaminaLoss(-4*REM)
+		L.adjustBruteLoss(-0.1, 0)
+		L.adjustFireLoss(-0.1, 0)
 	if(volume < 30)
-		L.adjustStaminaLoss(-2*REM)
+		L.adjustStaminaLoss(-1*REM)
 	return ..()
 
 /datum/reagent/water/overdose_crit_process(mob/living/L, metabolism) //Maybe don't chug water past where it's reasonable?
