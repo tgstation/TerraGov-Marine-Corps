@@ -151,7 +151,7 @@
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
-		playsound(src, "alien_resin_break", 25)
+		playsound(loc, 'sound/effects/alien_resin_break1.ogg', 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 		C.knock_down(2)
