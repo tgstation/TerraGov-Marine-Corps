@@ -4,6 +4,7 @@
 #define AUTODOC_NOTICE_NO_POWER 4
 #define AUTODOC_NOTICE_XENO_FUCKERY 5
 #define AUTODOC_NOTICE_IDIOT_EJECT 6
+#define AUTODOC_NOTICE_FORCE_EJECT 7
 
 #define ADSURGERY_INTERNAL 1
 #define ADSURGERY_GERMS 2
@@ -46,6 +47,7 @@
 	var/heal_toxin = 0
 	var/automaticmode = 0
 	var/event = 0
+	var/forceeject = FALSE
 
 	var/obj/machinery/autodoc_console/connected
 
@@ -674,6 +676,16 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	if(occupant)
+		if(forceeject)
+			if(!surgery)
+				visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
+				occupant.take_limb_damage(rand(10,20),rand(10,20))
+				go_out(AUTODOC_NOTICE_FORCE_EJECT)
+				return
+			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant] with surgical wounds and showering them in debris.")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			go_out(AUTODOC_NOTICE_FORCE_EJECT)
+			return
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
@@ -774,6 +786,9 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
+			if(AUTODOC_NOTICE_FORCE_EJECT)
+				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+				reason = "Reason for discharge: Destruction of linked Autodoc Medical System. Alerting security advised."
 		connected.radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
@@ -867,6 +882,11 @@
 	var/mob/living/carbon/human/H = occupant
 	med_scan(H, null, implants, TRUE)
 	start_processing()
+
+obj/machinery/autodoc/Destroy()
+	forceeject = TRUE
+	eject()
+	return ..()
 
 /////////////////////////////////////////////////////////////
 
