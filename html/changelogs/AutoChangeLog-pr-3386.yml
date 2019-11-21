@@ -1,4 +1,0 @@
-author: "terranaut1"
-delete-after: True
-changes: 
-  - bugfix: "Fixes Autodoc sending you into the Shadowrealm when destroyed"
