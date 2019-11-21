@@ -40,8 +40,8 @@
 //T-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-    name = "\improper T-18 Carbine"
-    desc = "The T-18 Carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode. Uses 10x24mm caseless ammunition."
+    name = "\improper T-18 carbine"
+    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to conserve ammunition. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
     fire_sound = "sound/weapons/guns/fire/t18.ogg"
@@ -85,8 +85,8 @@
 //T-12 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
-    name = "\improper T-12 Assault Rifle"
-    desc = "The T-12 Assault Rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 Carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+    name = "\improper T-12 assault rifle"
+    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
     icon_state = "t12"
     item_state = "t12"
     fire_sound = "sound/weapons/guns/fire/t18.ogg"
@@ -133,7 +133,7 @@
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper T-64 designated marksman rifle"
-	desc = "The T-64 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
+	desc = "The T-64 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -299,7 +299,7 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/ak47
-	name = "\improper AK-47 rifle"
+	name = "\improper AK-47 assault rifle"
 	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
 	icon_state = "ak47"
 	item_state = "ak47"
@@ -345,7 +345,7 @@
 //M16 RIFLE
 
 /obj/item/weapon/gun/rifle/m16
-	name = "\improper FN M16A4"
+	name = "\improper FN M16A4 assault rifle"
 	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
