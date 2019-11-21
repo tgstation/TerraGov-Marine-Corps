@@ -1,3 +1,6 @@
+#define DISTRESS_MARINE_DEPLOYMENT 0
+#define DISTRESS_DROPSHIP_CRASHED 1
+
 /datum/game_mode/distress
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
@@ -7,6 +10,7 @@
 
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
+	var/round_stage = DISTRESS_MARINE_DEPLOYMENT
 
 	var/list/survivors = list()
 
@@ -76,7 +80,7 @@
 	//Automated bioscan / Queen Mother message
 	if(world.time > bioscan_current_interval)
 		announce_bioscans()
-		var/total[] = count_humans_and_xenos()
+		var/total[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_RESEARCH)
 		var/marines = total[1]
 		var/xenos = total[2]
 		var/bioscan_scaling_factor = xenos / max(marines, 1)
@@ -92,23 +96,34 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/living_player_list[] = count_humans_and_xenos()
+	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_RESEARCH)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
 	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
-	else if(!num_humans && num_xenos)
-		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
-		round_finished = MODE_INFESTATION_X_MAJOR
-	else if(num_humans && !num_xenos)
+		return TRUE
+	if(!num_humans)
+		if(!num_xenos)
+			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
+			round_finished = MODE_INFESTATION_DRAW_DEATH
+			return TRUE
+		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]")
+			round_finished = MODE_INFESTATION_X_MAJOR
+			return TRUE
+		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]")
+		round_finished = MODE_INFESTATION_X_MINOR
+		return TRUE
+	if(!num_xenos)
+		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]")
+			round_finished = MODE_INFESTATION_M_MINOR
+			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]")
 		round_finished = MODE_INFESTATION_M_MAJOR
-	else if(!num_humans && !num_xenos)
-		message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
-		round_finished = MODE_INFESTATION_DRAW_DEATH
-
+		return TRUE
 	return FALSE
 
 
@@ -119,27 +134,35 @@
 	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
 	var/sound/xeno_track
 	var/sound/human_track
+	var/sound/ghost_track
 	switch(round_finished)
 		if(MODE_INFESTATION_X_MAJOR)
 			xeno_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 			human_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
+			ghost_track = xeno_track
 		if(MODE_INFESTATION_M_MAJOR)
 			xeno_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
 			human_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
+			ghost_track = human_track
 		if(MODE_INFESTATION_X_MINOR)
 			xeno_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
 			human_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
+			ghost_track = xeno_track
 		if(MODE_INFESTATION_M_MINOR)
 			xeno_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
 			human_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
+			ghost_track = human_track
 		if(MODE_INFESTATION_DRAW_DEATH)
-			xeno_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
-			human_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
+			ghost_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
+			xeno_track = ghost_track
+			human_track = ghost_track
 
 	xeno_track = sound(xeno_track)
+	xeno_track.channel = CHANNEL_CINEMATIC
 	human_track = sound(human_track)
 	human_track.channel = CHANNEL_CINEMATIC
-	xeno_track.channel = CHANNEL_CINEMATIC
+	ghost_track = sound(ghost_track)
+	ghost_track.channel = CHANNEL_CINEMATIC
 
 	for(var/i in GLOB.xeno_mob_list)
 		var/mob/M = i
@@ -149,7 +172,6 @@
 		var/mob/M = i
 		SEND_SOUND(M, human_track)
 
-	var/sound/ghost_sound = sound(pick('sound/misc/gone_to_plaid.ogg', 'sound/misc/good_is_dumb.ogg', 'sound/misc/hardon.ogg', 'sound/misc/surrounded_by_assholes.ogg', 'sound/misc/outstanding_marines.ogg', 'sound/misc/asses_kicked.ogg'), channel = CHANNEL_CINEMATIC)
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		if(ishuman(M.mind.current))
@@ -160,7 +182,7 @@
 			SEND_SOUND(M, xeno_track)
 			continue
 
-		SEND_SOUND(M, ghost_sound)
+		SEND_SOUND(M, ghost_track)
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
@@ -518,8 +540,14 @@
 	var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
-	if(!round_finished && !hive.living_xeno_ruler)
+	if(round_finished)
+		return
+	if(!hive.living_xeno_ruler || !isxenoresearcharea(get_area(hive.living_xeno_ruler)))
+		return
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
 		round_finished = MODE_INFESTATION_M_MINOR
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
 
 
 /datum/game_mode/distress/get_hivemind_collapse_countdown()

@@ -185,7 +185,7 @@
 
 /datum/game_mode/crash/proc/add_larva()
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2] + HS.stored_larva
 	if(!num_xenos)
@@ -241,7 +241,7 @@
 	if(!shuttle_landed)
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos()
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	var/num_xenos = living_player_list[2]
 
@@ -279,8 +279,10 @@
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
 			round_finished = MODE_CRASH_M_MAJOR
+		else
+			return FALSE
 
-	return FALSE
+	return TRUE
 
 
 /datum/game_mode/crash/declare_completion()
@@ -396,7 +398,7 @@
 	return TRUE
 
 /datum/game_mode/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
-	var/list/living_player_list = count_humans_and_xenos()
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
