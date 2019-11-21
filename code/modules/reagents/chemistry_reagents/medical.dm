@@ -158,6 +158,10 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
+	var/target_temp = L.get_standard_bodytemperature()
+	if(L.bodytemperature > target_temp)
+		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp) //smol cooldown to make fire less-bad.
+	return ..()
 	L.heal_limb_damage(0, 2 * REM)
 	if(volume > 5)
 		L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
@@ -183,6 +187,10 @@
 	purge_rate = 2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
+	var/target_temp = L.get_standard_bodytemperature()
+	if(L.bodytemperature > target_temp)
+		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp) //moderate cooldown to make fire less-bad.
+	return ..()
 	L.heal_limb_damage(0, 4 * REM)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 7)
