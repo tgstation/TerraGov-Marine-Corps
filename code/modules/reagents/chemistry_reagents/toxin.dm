@@ -138,7 +138,7 @@
 
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
+	description = "A powerful hallucinogen, it distorts the visual center of the brain."
 	color = "#B31008" // rgb: 139, 166, 233
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -146,7 +146,7 @@
 	taste_description = "sourness"
 
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/L, metabolism)
-	L.adjust_blurriness(current_cycle/10)
+	L.eye_blurry = max(current_cycle/10, 80)
 	L.adjust_drugginess(1.1)
 	return ..()
 
