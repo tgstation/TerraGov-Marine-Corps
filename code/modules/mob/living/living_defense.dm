@@ -8,7 +8,7 @@
 	Returns
 	The armour percentage which is deducted om the damage.
 */
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
 	return getarmor(def_zone, attack_flag)
 
 
