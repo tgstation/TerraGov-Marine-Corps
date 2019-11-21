@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "You can no longer get infinite lasgun cells from the lasgun charger."
