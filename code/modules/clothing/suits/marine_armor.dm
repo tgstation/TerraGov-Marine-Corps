@@ -529,7 +529,7 @@
 	name = "\improper B18-P offensive armor"
 	desc = "A modified prototype variant of the B18 defensive armor. Most of the protective layers of armor are replaced with smart prototype hydralics that assist with movement and agility to help you avoid those pesky acid splashes.\nHas an automated diagnostics and medical system for keeping its wearer alive."
 	icon_state = "melee_armor"
-	armor = list("melee" = 65, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 50)
+	armor = list("melee" = 65, "bullet" = 40, "laser" = 40, "energy" = 25, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 100)
 	flags_item_map_variant = NONE
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	var/stored_skill = SKILL_INVALID //To be safe.

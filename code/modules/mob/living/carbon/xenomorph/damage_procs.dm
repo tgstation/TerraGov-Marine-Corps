@@ -190,9 +190,9 @@
 			if(splash_chance > 0 && prob(splash_chance))
 				var/chosen_zone = pick("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin")
 				var/datum/limb/E = victim.get_limb(chosen_zone)
-				var/splash_damage = rand(10,25) - victim.getarmor(chosen_zone, "acid")*0.5
+				var/splash_damage = 15
 
-				if(splash_damage <= 0 || !E.take_damage_limb(burn = splash_damage))
+				if(splash_damage <= 0 || !E.take_damage_limb(burn = splash_damage, blocked = victim.getarmor(chosen_zone, "acid")))
 					continue
 
 				victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
