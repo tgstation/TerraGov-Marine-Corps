@@ -94,7 +94,7 @@
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/L)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(volume > 5)
-		L.reagent_move_delay_modifier = min(0.5, volume * 0.013)
+		L.adjust_drugginess(1.1)
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
@@ -116,7 +116,6 @@
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	L.adjust_drugginess(1.1)
-	L.reagent_move_delay_modifier = min(1.0, volume * 0.05)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -152,7 +151,7 @@
 
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
-	description = "Kelotane is a drug used to treat burns. More effective in higher dosage, but causes slight pain and slowdown."
+	description = "Kelotane is a drug used to treat burns. More effective in higher dosage, but causes slight pain."
 	color = "#D8C58C"
 	scannable = TRUE
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -161,10 +160,10 @@
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 2 * REM)
 	if(volume > 5)
-		L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(0, 1 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -185,10 +184,10 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(0, 4 * REM)
-	L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
-	if(volume > 15)
+	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
+	if(volume > 7)
 		L.heal_limb_damage(0, 2 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
+		L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	
 	return ..()
 
@@ -393,7 +392,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.adjustBrainLoss(2*REM, TRUE)
 
 /datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, metabolism)
-	L.adjustToxLoss(2*REM)
+	L.adjustBrainLoss(2*REM, TRUE) //perdiox can't counter someone pile-driving a 3 use hypo all at once.
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -550,7 +549,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		return ..()
 	var/mob/living/carbon/human/H = L
 	for(var/datum/internal_organ/I in H.internal_organs)
-		I.heal_organ_damage(4*REM) //2/tick
+		I.heal_organ_damage(4*REM) // 2/tick
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
@@ -572,10 +571,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2 * REM, 0)
 	if(volume > 5)
-		L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+		L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(1 * REM)
-		L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_shock_modifier -= PAIN_REDUCTION_LIGHT
 	return ..()
 
 
@@ -597,10 +596,10 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
-	L.reagent_move_delay_modifier = min(0.3, volume * 0.01)
+	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 15)
 		L.heal_limb_damage(0, 2 * REM)
-		L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
+		L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	return ..()
 
 
@@ -646,7 +645,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	color = "#CC00FF"
 	overdose_threshold = REAGENTS_OVERDOSE/30 //ONE unit.
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25 //Two units
-	scannable = TRUE //scannable now.  HUZZAH.
+	scannable = TRUE 
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //In body for 10 ticks
 
 /datum/reagent/medicine/quickclot_plus/on_mob_life(mob/living/L, metabolism)
