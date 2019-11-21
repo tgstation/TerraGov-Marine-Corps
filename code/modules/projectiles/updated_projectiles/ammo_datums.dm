@@ -586,7 +586,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
-	name = "medium shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
+	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
@@ -608,7 +608,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_flechette
-	name = "medium shotgun flechette shell"
+	name = "shotgun flechette shell"
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
@@ -632,7 +632,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 
 /datum/ammo/bullet/shotgun/sx16_slug
-	name = "medium shotgun slug"
+	name = "shotgun slug"
 	hud_state = "shotgun_slug"
 	shell_speed = 3
 	max_range = 15
