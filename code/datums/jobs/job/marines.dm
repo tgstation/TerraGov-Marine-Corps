@@ -9,12 +9,11 @@
 /datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	C.hud_set_squad()
-	C.nutrition = rand(60,250)
 	if(!C.mind?.assigned_squad)
 		return
 	var/datum/squad/S = C.mind.assigned_squad
 	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[S.color]>[lowertext(S.name)] squad</font></b>.
-Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
+Get equipped in your squad's prep room."})
 
 
 //Squad Marine
@@ -25,7 +24,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
-	outfit = /datum/outfit/job/marine/standard
+	outfit = /datum/outfit/job/marine
 	total_positions = -1
 
 
@@ -35,13 +34,12 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 What you lack alone, you gain standing shoulder to shoulder with the men and women of the corps. Ooh-rah!"})
 
 
-/datum/outfit/job/marine/standard
+/datum/outfit/job/marine/
 	name = SQUAD_MARINE
 	jobtype = /datum/job/marine/standard
-
 	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
-
+	w_uniform = /obj/item/clothing/under/marine/standard
+	shoes = /obj/item/clothing/shoes/marine/
 
 //Squad Engineer
 /datum/job/marine/engineer
@@ -65,9 +63,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/outfit/job/marine/engineer
 	name = SQUAD_ENGINEER
 	jobtype = /datum/job/marine/engineer
-
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
+	w_uniform = /obj/item/clothing/under/marine/engineer
 
 
 //Squad Corpsman
@@ -93,8 +89,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_CORPSMAN
 	jobtype = /datum/job/marine/corpsman
 
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/corpsman
+	w_uniform = /obj/item/clothing/under/marine/corpsman
 
 
 //Squad Smartgunner
@@ -118,9 +113,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
 	jobtype = /datum/job/marine/smartgunner
-
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
+	//I know there is nothing here, but this is kept for template purposes.
 
 
 //Squad Specialist
@@ -148,8 +141,6 @@ You can serve a variety of roles, so choose carefully."})
 	name = SQUAD_SPECIALIST
 	jobtype = /datum/job/marine/specialist
 
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
 
 
@@ -178,9 +169,7 @@ You are also in charge of communicating with command and letting them know about
 /datum/outfit/job/marine/leader
 	name = SQUAD_LEADER
 	jobtype = /datum/job/marine/leader
-
-	id = /obj/item/card/id/dogtag
-	back = /obj/item/storage/backpack/marine/satchel
+	//I know there is nothing here, but this is kept for template purposes.
 
 
 /datum/job/marine/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
