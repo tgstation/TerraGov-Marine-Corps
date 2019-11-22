@@ -123,6 +123,8 @@ Administrative related.
 
 /datum/config_entry/flag/use_exp_restrictions_other
 
+/datum/config_entry/flag/prevent_dupe_names
+
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
