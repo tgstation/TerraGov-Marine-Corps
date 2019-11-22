@@ -142,6 +142,8 @@
 	var/mob/buckled_mob_backup = buckled_mob
 	buckled_mob = null
 	buckled_mob_backup.buckled = null
+	buckled_mob_backup.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+	buckled_mob_backup.reset_glide_size()
 	buckled_mob_backup.anchored = initial(buckled_mob_backup.anchored)
 	buckled_mob_backup.update_canmove()
 
@@ -204,13 +206,17 @@
 /obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
 	if(!silent)
 		send_buckling_message(M, user)
-	M.buckled = src
-	M.loc = src.loc
-	M.setDir(dir)
-	M.update_canmove()
-	src.buckled_mob = M
 	if(M.pulledby)
 		M.pulledby.stop_pulling()
+	if(pulledby)
+		M.set_glide_size(pulledby.glide_size)
+	else
+		M.set_glide_size(glide_size)
+	M.buckled = src
+	M.glide_modifier_flags |= GLIDE_MOD_BUCKLED
+	M.setDir(dir)
+	M.update_canmove()
+	buckled_mob = M
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 

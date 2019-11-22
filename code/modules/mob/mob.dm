@@ -430,6 +430,13 @@
 
 	pulling = AM
 	AM.pulledby = src
+	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
+	if(M?.buckled)
+		if(!M.buckled.anchored)
+			return start_pulling(M.buckled)
+		M.buckled.set_glide_size(glide_size)
+	else
+		pulling.set_glide_size(glide_size)
 
 	var/obj/item/grab/G = new /obj/item/grab()
 	G.grabbed_thing = AM

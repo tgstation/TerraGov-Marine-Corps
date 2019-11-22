@@ -58,6 +58,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/proc/do_buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
 	B.visible_message("<span class='notice'>[user] buckles [B] to [src]!</span>")
 	B.roller_buckled = src
+	B.glide_modifier_flags |= GLIDE_MOD_BUCKLED
 	B.loc = loc
 	B.setDir(dir)
 	buckled_bodybag = B
@@ -67,11 +68,15 @@ obj/structure/bed/Destroy()
 		buckled_bodybag.pixel_y = buckling_y
 	if(B.pulledby)
 		B.pulledby.stop_pulling()
+	if(pulledby)
+		B.set_glide_size(pulledby.glide_size)
 
 /obj/structure/bed/unbuckle(mob/user)
 	if(buckled_bodybag)
 		buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 		buckled_bodybag.roller_buckled = null
+		buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+		buckled_bodybag.reset_glide_size()
 		buckled_bodybag = null
 		density = FALSE
 		update_icon()

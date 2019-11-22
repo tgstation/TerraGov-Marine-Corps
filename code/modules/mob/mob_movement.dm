@@ -122,8 +122,6 @@
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
-	
-	glide_size = (32 / (max((world.time - move_delay) + add_delay, tick_lag) || add_delay || 6)) * tick_lag
 
 	L.last_move_intent = world.time + 1 SECONDS
 
