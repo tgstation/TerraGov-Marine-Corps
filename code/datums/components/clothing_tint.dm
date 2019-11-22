@@ -11,10 +11,6 @@
 		src.tint = tint
 	if(!isnull(tint_state))
 		src.tint_state = tint_state
-	
-	//sanity checking
-	if(tint == TINT_NONE)
-		qdel(src)
 
 /datum/component/clothing_tint/Destroy(force, silent)
 	remove_tint()
