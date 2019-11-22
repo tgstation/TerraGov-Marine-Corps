@@ -61,7 +61,7 @@
 	icon_state = "yellow"
 
 /area/desert/outside
-	name = "\improper Colony Grounds"
+	name = "\improper Outside Colony Grounds"
 	icon_state = "red"
 	ceiling = CEILING_NONE
 
@@ -102,6 +102,6 @@
 	icon_state = "southwest"
 
 /area/desert/hive
-	name = "\improper Unknown Area"
+	name = "\improper Unknown Caves"
 	icon_state = "storage"
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND
