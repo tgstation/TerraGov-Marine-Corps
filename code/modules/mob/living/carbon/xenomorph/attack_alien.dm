@@ -73,23 +73,6 @@
 	var/tackle_pain = X.xeno_caste.tackle_damage
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
-	if(X.stealth_router(HANDLE_STEALTH_CHECK))
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [X.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-				tackle_pain *= 1.75 //Half the multiplier if running.
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
-				staggerslow_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
 
 	var/list/pain_mod = list()
 
@@ -202,27 +185,6 @@
 	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
 	var/armor_block = run_armor_check(affecting, "melee")
 
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
-			damage *= X.sneak_bonus //Massive damage on the sneak attack... hope you have armour.
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-			//...And we knock them out
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
-				staggerslow_stacks *= 2
-				knockout_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			knock_out(knockout_stacks) //...And we knock
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
 
 	var/list/damage_mod = list()
 
