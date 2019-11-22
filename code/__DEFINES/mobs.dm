@@ -466,15 +466,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			30 //3 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
-#define HANDLE_STEALTH_CHECK					1
-#define HANDLE_SNEAK_ATTACK_CHECK				3
-#define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
-#define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
-#define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		2.0
-#define HUNTER_SNEAKATTACK_RUN_REDUCTION		0.2
-#define HUNTER_SNEAKATTACK_WALK_INCREASE		1
-#define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 
 //Ravager defines:
 #define RAV_CHARGESPEED					2
