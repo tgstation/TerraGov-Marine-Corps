@@ -17,6 +17,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	name = "\improper Helms computer"
 	density = TRUE
 	anchored = TRUE
+	idle_power_usage = 10
 	var/open = FALSE
 	var/cooldown = FALSE
 
@@ -41,7 +42,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 /obj/machinery/computer/navigation/proc/get_power_amount()
 	//check current powernet for total available power
 	var/power_amount = 0
-
+	if(!powered())
+		return power_amount
+	
 	return power_amount
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
@@ -53,6 +56,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	. = ..()
 	if(.)
 		return
+
+	//should add a check here for id card. Captain and SO's are the only people who can fly this boat.
+
 	var/dat
 	dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
@@ -71,7 +77,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 	dat += "</b></center>"
 
-	var/datum/browser/popup = new(user, "arcade", "<div align='center'>Arcade</div>")
+	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
 	popup.open()
 
@@ -120,6 +126,10 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 /obj/machinery/computer/navigation/proc/do_change_orbit(var/current_orbit, var/direction)
 
 	//chug that sweet sweet powernet juice, like 80% of total
+	if(powered()) //do we still have power?
+		idle_power_usage = 5000
+	else
+		return
 
 	if(direction == "UP")
 		current_orbit++
