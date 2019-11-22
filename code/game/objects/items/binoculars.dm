@@ -33,8 +33,7 @@
 
 /obj/item/binoculars/tactical/examine()
 	..()
-	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
-	to_chat(usr, "<span class='notice'>The internal GPS reads: [src.x][src.y].</span>")
+	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.<br>The internal GPS reads: [src.x][src.y].</span>")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
