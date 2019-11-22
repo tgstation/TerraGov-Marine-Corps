@@ -50,8 +50,6 @@
 /mob/living/carbon/xenomorph/hunter/Stat()
 	. = ..()
 
-	if(statpanel("Game"))
-		stat("Sneak Attack Multiplier:", "[sneak_bonus] / [HUNTER_SNEAKATTACK_MAX_MULTIPLIER]")
 
 // ***************************************
 // *********** Stealth overrides
