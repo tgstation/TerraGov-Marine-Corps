@@ -1,6 +1,7 @@
 /datum/component/clothing_tint
 	var/tint = TINT_NONE
 	var/tint_state = TRUE
+	var/mob_tinted = FALSE
 	var/mob/living/tinted_mob
 
 /datum/component/clothing_tint/Initialize(tint, tint_state)
@@ -26,27 +27,28 @@
 	. = ..()
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED, COMSIG_ITEM_TOGGLE_ACTION))
 
-/datum/component/clothing_tint/proc/toggle_tint()
-	if(!tinted_mob)
+/datum/component/clothing_tint/proc/toggle_tint(datum/source, mob/user)
+	if(!user)
 		return
+	tint_state = !tint_state
 	if(tint_state)
-		remove_tint()
-	else
 		add_tint()
+	else
+		remove_tint()
 
 /datum/component/clothing_tint/proc/add_tint()
-	if(!tinted_mob || tint_state)
+	if(!tinted_mob || mob_tinted || !tint_state)
 		return
 	tinted_mob.adjust_tinttotal(tint)
 	tinted_mob.update_sight()
-	tint_state = TRUE
+	mob_tinted = TRUE
 
 /datum/component/clothing_tint/proc/remove_tint()
-	if(!tinted_mob || !tint_state)
+	if(!tinted_mob || !mob_tinted)
 		return
 	tinted_mob.adjust_tinttotal(-tint)
 	tinted_mob.update_sight()
-	tint_state = FALSE
+	mob_tinted = FALSE
 
 /datum/component/clothing_tint/proc/equipped_to_slot(datum/source, mob/user)
 	tinted_mob = user

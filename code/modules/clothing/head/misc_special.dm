@@ -52,12 +52,14 @@
 	eye_protection = 0
 	hug_memory = anti_hug
 	anti_hug = 0
+	icon_state = "[initial(icon_state)]up"
 
 /obj/item/clothing/head/welding/proc/flip_down()
 	ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
 	ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
 	eye_protection = initial(eye_protection)
 	anti_hug = hug_memory
+	icon_state = initial(icon_state)
 
 /obj/item/clothing/head/welding/toggle_item_state(mob/user)
 	. = ..()

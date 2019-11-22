@@ -152,19 +152,21 @@
 
 /obj/item/clothing/glasses/welding/Initialize()
 	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_5)
+	AddComponent(/datum/component/clothing_tint, TINT_5, TRUE)
 
 /obj/item/clothing/glasses/welding/proc/flip_up()
 	DISABLE_BITFIELD(flags_inventory, COVEREYES)
 	DISABLE_BITFIELD(flags_inv_hide, HIDEEYES)
 	DISABLE_BITFIELD(flags_armor_protection, EYES)
 	eye_protection = 0
+	icon_state = "[initial(icon_state)]up"
 
 /obj/item/clothing/glasses/welding/proc/flip_down()
 	ENABLE_BITFIELD(flags_inventory, COVEREYES)
 	ENABLE_BITFIELD(flags_inv_hide, HIDEEYES)
 	ENABLE_BITFIELD(flags_armor_protection, EYES)
 	eye_protection = initial(eye_protection)
+	icon_state = initial(icon_state)
 
 /obj/item/clothing/glasses/welding/verb/verbtoggle()
 	set category = "Object"
