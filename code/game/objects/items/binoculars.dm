@@ -147,7 +147,6 @@
 
 
 	var/turf/TU = get_turf(A)
-	var/area/targ_area = get_area(A)
 	if(!istype(TU))
 		return
 	if(user.action_busy)
