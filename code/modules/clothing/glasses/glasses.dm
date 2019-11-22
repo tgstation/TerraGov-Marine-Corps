@@ -220,7 +220,8 @@
 
 /obj/item/clothing/glasses/sunglasses/Initialize()
 	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_3)
+	if(eye_protection)
+		AddComponent(/datum/component/clothing_tint, TINT_3)
 
 /obj/item/clothing/glasses/sunglasses/blindfold
 	name = "blindfold"
@@ -249,10 +250,6 @@
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
-
-/obj/item/clothing/glasses/sunglasses/fake/Initialize()
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
 /obj/item/clothing/glasses/sunglasses/fake/prescription
 	name = "prescription sunglasses"
