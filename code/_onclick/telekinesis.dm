@@ -117,6 +117,7 @@ Redefine as needed.
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
+	. = ..()
 	switch(slot)
 		if(SLOT_L_HAND, SLOT_R_HAND)
 			return
