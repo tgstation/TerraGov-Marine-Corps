@@ -79,6 +79,10 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(!slowdown)
 		armor_strings += "<br>It will not slow the wearer down."
 
+	var/datum/component/clothing_tint/CT = GetComponent(/datum/component/clothing_tint)
+	if(CT?.tint != TINT_NONE)
+		armor_strings += "<br>This will obstruct your vision."
+
 	if(accuracy_mod)
 		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
