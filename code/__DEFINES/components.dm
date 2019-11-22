@@ -164,6 +164,9 @@
 #define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
 	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
 
+#define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
+	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
+
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
