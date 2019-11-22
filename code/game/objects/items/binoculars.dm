@@ -34,6 +34,7 @@
 /obj/item/binoculars/tactical/examine()
 	..()
 	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
+	to_chat(usr, "<span class='notice'>The internal GPS reads: [src.x][src.y].</span>")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -134,7 +135,7 @@
 
 	var/acquisition_time = target_acquisition_delay
 	if(user.mind.cm_skills)
-		acquisition_time = max(15, acquisition_time - 25*user.mind.cm_skills.leadership)
+		acquisition_time = max(5, acquisition_time - 15*user.mind.cm_skills.leadership)
 
 	var/datum/squad/S = user.assigned_squad
 
@@ -156,9 +157,6 @@
 				is_outside = TRUE
 			if(CEILING_GLASS)
 				is_outside = TRUE
-	if(!is_outside)
-		to_chat(user, "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>")
-		return
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
