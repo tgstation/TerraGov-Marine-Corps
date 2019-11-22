@@ -25,7 +25,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
-	fire_delay = 6
+	fire_delay = 3
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
@@ -196,12 +196,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	attachable_allowed = list(
-						/obj/item/attachable/compensator)
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator
+	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
 
-	fire_delay = 10
+	fire_delay = 5
 	burst_amount = 2
 	burst_delay = 6
 	accuracy_mult = 0.8
@@ -229,17 +231,28 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/stock/tactical)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/shotgun, //Yo dawg I heard you like shotguns, so we put a shotgun on your shotgun.
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/stock/tactical,
+		/obj/item/attachable/verticalgrip
+	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/unremovable/invisible)
 
-	fire_delay = 15 //one shot every 1.5 seconds.
+	fire_delay = 7
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 20
@@ -268,16 +281,16 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+			/obj/item/attachable/bayonet,
+			/obj/item/attachable/reddot,
+			/obj/item/attachable/gyro,
+			/obj/item/attachable/flashlight,
+			/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
-	fire_delay = 2
+	fire_delay = 1
 	burst_amount = 2
 	burst_delay = 2
 	accuracy_mult = 1.15
@@ -372,7 +385,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
-	fire_delay = 2
+	fire_delay = 1
 	accuracy_mult = 0.85
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
@@ -401,31 +414,35 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/recent_notice //world.time to see when they last got a notice.
 	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/stock/shotgun)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/stock/shotgun,
+		/obj/item/attachable/verticalgrip
+	)
 
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
-	fire_delay = 20
+	fire_delay = 10
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 14
+	pump_delay = 7
 
 
 /obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
@@ -514,23 +531,33 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound = 'sound/weapons/guns/interact/shotgun_cmb_pump.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/magnetic_harness)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip
+	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
-	fire_delay = 24
+	fire_delay = 12
 	accuracy_mult = 1.30
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 12
+	pump_delay = 6
 
 //-------------------------------------------------------
 //Based off of the KSG
@@ -544,27 +571,33 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound = 'sound/weapons/guns/interact/shotgun_ksg_pump.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip
+	)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
-	fire_delay = 24
+	fire_delay = 12
 	accuracy_mult = 1.30
 	accuracy_mult_unwielded = 1
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 12
+	pump_delay = 6
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
@@ -595,14 +628,14 @@ can cause issues with ammo types getting mixed up during the burst.
 									/obj/item/attachable/mosinbarrel,
 									/obj/item/attachable/stock/mosin)
 
-	fire_delay = 24
+	fire_delay = 12
 	accuracy_mult = 1.3
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 12
+	pump_delay = 6
 	aim_slowdown = 0.5
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
@@ -641,14 +674,14 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/bayonet)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 
-	fire_delay = 8
+	fire_delay = 4
 	accuracy_mult = 1.30
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 6
+	pump_delay = 3
 
 /obj/item/weapon/gun/shotgun/pump/lever/unique_action(mob/user)
 	return pump_shotgun(user)
@@ -681,6 +714,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list(
 		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/shotgun,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/compensator,
@@ -694,18 +729,17 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item_map_variant = NONE
 
-	fire_delay = 6
+	fire_delay = 3
 	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
 	scatter = 15
 	scatter_unwielded = 40
 	recoil = 2
 	recoil_unwielded = 4
-	pump_delay = 2
+	pump_delay = 1
