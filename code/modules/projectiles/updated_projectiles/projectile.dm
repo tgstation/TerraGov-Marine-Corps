@@ -988,7 +988,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
-		victim_feedback += "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback += "You are hit by [proj] in the [parse_zone(proj.def_zone)]!"
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Your armor deflects the impact!"
@@ -1005,7 +1005,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]", null, 4)
+	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
