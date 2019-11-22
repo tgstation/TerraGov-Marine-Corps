@@ -105,7 +105,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	updateUsrDialog()
 
 
-/obj/machinery/computer/navigation/proc/do_orbit_checks(var/direction)
+/obj/machinery/computer/navigation/proc/do_orbit_checks(direction)
 	var/current_orbit = GLOB.orbital_mechanics.current_orbit
 	if(cooldown)
 		return
@@ -113,7 +113,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(can_change_orbit(current_orbit, direction))
 		do_change_orbit(current_orbit, direction)
 
-/obj/machinery/computer/navigation/proc/can_change_orbit(var/current_orbit, var/direction)
+/obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
 	if(cooldown)
 		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
@@ -123,7 +123,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(get_power_amount() <= 500000)
 		return FALSE
 
-/obj/machinery/computer/navigation/proc/do_change_orbit(var/current_orbit, var/direction)
+/obj/machinery/computer/navigation/proc/do_change_orbit(current_orbit, direction)
 
 	//chug that sweet sweet powernet juice, like 80% of total
 	if(powered()) //do we still have power?
