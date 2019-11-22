@@ -1,13 +1,17 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define CURRENT_ORBIT 3
-
 #define ESCAPE_VELOCITY 5
 #define SAFE_DISTANCE 4
 #define STANDARD_ORBIT 3
 #define CLOSE_ORBIT 2
 #define SKIM_ATMOSPHERE 1
 
+//so we can use the current orbit in other files
+GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
+
+//just in case people want to add other ways of changing how the round feels
+/datum/orbital_mechanics
+	var/current_orbit = 0
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
@@ -36,9 +40,12 @@
 
 /obj/machinery/computer/navigation/proc/get_power_amount()
 	//check current powernet for total available power
+	var/power_amount = 0
+
 	return power_amount
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
+	GLOB.orbital_mechanics.current_orbit = STANDARD_ORBIT
 	. = ..()
 
 
@@ -49,17 +56,17 @@
 	var/dat
 	dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
-	dat += "<br><center><h3>[src.temp]</h3></center>" //display the current orbit level
-	dat += "<br><center>Health: [src.player_hp]|Magic: [src.player_mp]|Enemy Health: [src.enemy_hp]</center>" //display ship nav stats, power level, cooldown.
+	dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
+	dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [!cooldown]</center>" //display ship nav stats, power level, cooldown.
 
 	if(get_power_amount() >= 5000000) //some arbitrary number
 		dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
 		dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
 	else
-		dat += "<center><h4>Insufficient Power Reserves"
+		dat += "<center><h4>Insufficient Power Reserves to change orbit"
 		dat += "<br>"
 
-	if(CURRENT_ORBIT == ESCAPE_VELOCITY)
+	if(GLOB.orbital_mechanics.current_orbit == ESCAPE_VELOCITY)
 		dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X minutes
 
 	dat += "</b></center>"
@@ -75,12 +82,12 @@
 		return
 
 	if (href_list["UP"])
-		do_orbit_checks('UP')
+		do_orbit_checks("UP")
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
 
 	else if (href_list["DOWN"])
-		do_orbit_checks('DOWN')
+		do_orbit_checks("DOWN")
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
 
@@ -93,25 +100,33 @@
 
 
 /obj/machinery/computer/navigation/proc/do_orbit_checks(var/direction)
-	var/current_orbit = CURRENT_ORBIT
+	var/current_orbit = GLOB.orbital_mechanics.current_orbit
 	if(cooldown)
 		return
 
 	if(can_change_orbit(current_orbit, direction))
-		if(direction == 'UP')
-			current_orbit++
-		
-		if(direction == 'DOWN')
-			current_orbit--
+		do_change_orbit(current_orbit, direction)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(var/current_orbit, var/direction)
 	if(cooldown)
 		return FALSE
-	if(direction == 'UP' && current_orbit == ESCAPE_VELOCITY)
+	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
 		return FALSE
-	if(direction == 'DOWN' && current_orbit == SKIM_ATMOSPHERE)
+	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
 		return FALSE
 	if(get_power_amount() <= 500000)
 		return FALSE
+
+/obj/machinery/computer/navigation/proc/do_change_orbit(var/current_orbit, var/direction)
+
+	//chug that sweet sweet powernet juice, like 80% of total
+
+	if(direction == "UP")
+		current_orbit++
+	
+	if(direction == "DOWN")
+		current_orbit--
+
+	GLOB.orbital_mechanics.current_orbit = current_orbit
 
 //emp_act() not needed to be special
