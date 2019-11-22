@@ -618,7 +618,7 @@
 	var/mob/living/carbon/C = L
 	if(C.nutrition > 50)
 		C.overeatduration = 0
-		C.nutrition -= 10
+		C.adjust_nutrition(-10)
 	if(prob(20))
 		C.adjustToxLoss(0.1)
 	else
@@ -630,7 +630,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.nutrition > 100)
-			C.nutrition -= 10
+			C.adjust_nutrition(-10)
 
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 3, 1)

@@ -39,7 +39,7 @@
 /mob/living/carbon/proc/adjust_nutrition(amount)
 	. = nutrition
 	nutrition = max(nutrition + amount, 0)
-	adjust_nutrition_speed(nutrition, .)
+	adjust_nutrition_speed(.)
 
 /mob/living/carbon/proc/set_nutrition(amount)
 	. = nutrition
@@ -48,24 +48,14 @@
 
 /mob/living/carbon/proc/adjust_nutrition_speed(old_nutrition)
 	switch(nutrition)
-		if(0 to 250) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
-			if(old_nutrition <= 250)
-				return
+		if(0 to NUTRITION_HUNGRY) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
 			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5 - (nutrition / 250), 0.1)) //From 0.5 to 1.5
-		if(250 to 400)
-			if(old_nutrition > 250 || old_nutrition <= 400)
-				return
+		if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+			switch(old_nutrition)
+				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
+					return
 			remove_movespeed_modifier(MOVESPEED_ID_HUNGRY)
-		if(400 to INFINITY) //Overeating
-			if(old_nutrition > 400)
+		if(NUTRITION_OVERFED to INFINITY) //Overeating
+			if(old_nutrition > NUTRITION_OVERFED)
 				return
-			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)
-
-/mob/living/carbon/proc/set_nutrition_speed()
-	switch(nutrition)
-		if(0 to 250)
-			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5 - (nutrition / 250), 0.1)) //From 0.5 to 1.5
-		if(250 to 400) //400 is the threshold before overeating.
-			return
-		if(400 to INFINITY)
 			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)

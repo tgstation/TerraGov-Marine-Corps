@@ -17,7 +17,7 @@
 	current_cycle++
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.nutrition += nutriment_factor * REM
+		C.adjust_nutrition(nutriment_factor * REM)
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)

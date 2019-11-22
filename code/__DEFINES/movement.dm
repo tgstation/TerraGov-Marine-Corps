@@ -5,7 +5,7 @@
 //This shouldn't be higher than the icon size, and generally you shouldn't be changing this, but it's here just in case.
 #define MAX_GLIDE_SIZE 32
 
-///Broken down, here's what this does:w: 
+///Broken down, here's what this does:
 /// divides the world icon_size (32) by delay divided by ticklag to get the number of pixels something should be moving each tick.
 /// The division result is given a min value of 1 to prevent obscenely slow glide sizes from being set
 /// This is then multiplied by the 1 - world time dilation, which scales speeds based on time dialation. Keeps things tighter feeling when server starts crawling.

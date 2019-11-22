@@ -15,7 +15,7 @@
 		if(nutrition > 0 && stat != DEAD)
 			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > 450)
+		if(nutrition > NUTRITION_OVERFED)
 			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
