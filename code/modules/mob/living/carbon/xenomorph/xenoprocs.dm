@@ -325,13 +325,6 @@
 						else
 							to_chat(src, "<span class='xenodanger'>We attempt to savage our victim, but we aren't yet ready.</span>")
 
-					if(xeno_caste.charge_type == CHARGE_TYPE_MEDIUM)
-						if(stealth_router(HANDLE_STEALTH_CHECK))
-							M.adjust_stagger(3)
-							M.add_slowdown(1)
-							to_chat(src, "<span class='xenodanger'>Pouncing from the shadows, we stagger our victim.</span>")
-					playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)
 
 				if(CHARGE_TYPE_LARGE) //Ravagers plow straight through humans; we only stop on hitting a dense turf
 					return FALSE
