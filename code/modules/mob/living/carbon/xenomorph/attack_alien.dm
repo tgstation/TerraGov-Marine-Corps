@@ -135,8 +135,6 @@
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
-	else if(X.stealth_router(HANDLE_STEALTH_CHECK) && X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //We always get the limb we're aiming for if we're sneak attacking
-		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
 	if(!affecting || (random_location && !set_location) || (ignore_destroyed && !affecting.is_usable())) //No organ or it's destroyed, just get a random one
