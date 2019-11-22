@@ -47,7 +47,7 @@
 	if(.)
 		return
 	var/dat
-	dat += "<center><h4>[SHIP_NAME]</h4></center>"//get the current ship map name
+	dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 	dat += "<br><center><h3>[src.temp]</h3></center>" //display the current orbit level
 	dat += "<br><center>Health: [src.player_hp]|Magic: [src.player_mp]|Enemy Health: [src.enemy_hp]</center>" //display ship nav stats, power level, cooldown.
@@ -75,19 +75,14 @@
 		return
 
 	if (href_list["UP"])
-		CURRENT_ORBIT++
-		cooldown = TRUE
-		sleep(600 SECONDS) //five minutes or whatever is the better cooldown timer
-		cooldown = FALSE
 		do_orbit_checks('UP')
-
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
 
 	else if (href_list["DOWN"])
-		CURRENT_ORBIT--
-		cooldown = TRUE
-		sleep(600 SECONDS) //five minutes or whatever is the better cooldown timer
-		cooldown = FALSE
 		do_orbit_checks('DOWN')
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
 
 	else if (href_list["escape"])
 
@@ -99,16 +94,15 @@
 
 /obj/machinery/computer/navigation/proc/do_orbit_checks(var/direction)
 	var/current_orbit = CURRENT_ORBIT
+	if(cooldown)
+		return
 
 	if(can_change_orbit(current_orbit, direction))
-
-	if(direction == 'UP')
-		current_orbit++
-		set_cooldown_timer()
-	
-	if(direction == 'DOWN')
-		current_orbit--
-		set_cooldown_timer()
+		if(direction == 'UP')
+			current_orbit++
+		
+		if(direction == 'DOWN')
+			current_orbit--
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(var/current_orbit, var/direction)
 	if(cooldown)
