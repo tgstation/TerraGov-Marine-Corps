@@ -182,8 +182,6 @@ Administrative related.
 	integer = FALSE
 	min_val = 0
 
-/datum/config_entry/number/glide_size_mod
-	config_entry_value = 115
 /*
 Voting
 */

@@ -54,8 +54,9 @@
 		if(istype(driver.get_active_held_item(), /obj/item/weapon/gun)) //Wheelchair user has a gun out, so obviously can't move
 			return
 
-		if(driver.cached_multiplicative_slowdown)
-			move_delay += driver.cached_multiplicative_slowdown
+		if(driver.next_move_slowdown)
+			move_delay += driver.next_move_slowdown
+			driver.next_move_slowdown = 0
 
 	step(src, direction)
 

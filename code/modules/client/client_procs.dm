@@ -162,10 +162,7 @@
 	prefs.parent = src
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
-	if(prefs.clientfps)
-		fps = prefs.clientfps
-	else
-		fps = world.fps * 3 // 60 fps at 20 tps (tg default)
+	fps = prefs.clientfps
 
 	var/full_version = "[byond_version].[byond_build ? byond_build : "xxx"]"
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[full_version]")

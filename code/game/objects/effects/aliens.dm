@@ -66,7 +66,7 @@
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
-			H.adjust_slowdown(slow_amt)
+			H.next_move_slowdown += slow_amt
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
 			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))

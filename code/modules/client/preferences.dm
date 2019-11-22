@@ -959,15 +959,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "map.focus=true")
 
 		if("clientfps")
-			var/desiredfps = input(user, "Choose your desired fps. (0 = 3x server tickrate (currently:[world.fps * 3]))", "Character Preference", clientfps)  as null|num
+			var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 			if(isnull(desiredfps))
 				return
 			desiredfps = CLAMP(desiredfps, 0, 240)
 			clientfps = desiredfps
-			if(desiredfps)
-				parent.fps = desiredfps
-			else
-				parent.fps = world.fps * 3 // 60 fps at 20 tps (tg default)
+			parent.fps = desiredfps
 
 		if("tooltips")
 			tooltips = !tooltips

@@ -67,13 +67,9 @@ obj/structure/bed/Destroy()
 		buckled_bodybag.pixel_y = buckling_y
 	if(B.pulledby)
 		B.pulledby.stop_pulling()
-	if(pulledby)
-		B.set_glide_size(pulledby.glide_size)
 
 /obj/structure/bed/unbuckle(mob/user)
 	if(buckled_bodybag)
-		if(!buckled_bodybag.pulledby)
-			buckled_bodybag.reset_glide_size()
 		buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 		buckled_bodybag.roller_buckled = null
 		buckled_bodybag = null

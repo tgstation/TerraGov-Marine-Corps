@@ -13,7 +13,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 0
+
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -58,7 +58,7 @@
 // Here's where we rewrite how byond handles movement except slightly different
 // To be removed on step_ conversion
 // All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct = 0, glide_size_override)
+/atom/movable/Move(atom/newloc, direct = 0)
 	. = FALSE
 	if(!newloc || newloc == loc)
 		return
@@ -102,7 +102,7 @@
 //
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct, glide_size_override)
+/atom/movable/Move(atom/newloc, direct)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
@@ -110,12 +110,6 @@
 	if(!loc || !newloc)
 		return FALSE
 	var/atom/oldloc = loc
-
-	//Early override for some cases like diagonal movement
-	var/old_glide_size
-	if(!isnull(glide_size_override) && glide_size_override != glide_size)
-		old_glide_size = glide_size
-		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
 		if(!(direct & (direct - 1))) //Cardinal move
@@ -189,9 +183,6 @@
 				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
 				pulling.moving_from_pull = null
 			check_pulling()
-
-	if(!isnull(old_glide_size))
-		set_glide_size(old_glide_size)
 
 	last_move = direct
 	last_move_time = world.time
@@ -686,12 +677,7 @@
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
-		if(M.buckled)
-			M.buckled.set_glide_size(glide_size)
-		else
-			M.set_glide_size(glide_size)
-	else
-		pulling.set_glide_size(glide_size)
+
 	return TRUE
 
 
@@ -700,14 +686,6 @@
 		return FALSE
 
 	pulling.pulledby = null
-	if(ismob(pulling))
-		var/mob/pulled_mob = pulling
-		if(pulled_mob.buckled)
-			pulled_mob.buckled.reset_glide_size()
-		else
-			pulled_mob.reset_glide_size()
-	else
-		pulling.reset_glide_size()
 	pulling = null
 
 	return TRUE
@@ -752,46 +730,6 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
-
-
-/atom/movable/proc/set_glide_size(target = 8)
-	if(glide_size == target)
-		return FALSE
-	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
-	//glide_size = target
-	//if(pulling && pulling.glide_size != target)
-	//	pulling.set_glide_size(target)
-	return TRUE
-
-/mob/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	if(client)
-		client.glide_size = DELAY_TO_GLIDE_SIZE_OLD(client, cached_multiplicative_slowdown)
-
-/obj/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	//if(buckled_mob && buckled_mob.glide_size != target)
-	//	buckled_mob.set_glide_size(target)
-
-/obj/structure/bed/set_glide_size(target = 8)
-	. = ..()
-	if(!.)
-		return
-	//if(buckled_bodybag && buckled_bodybag.glide_size != target)
-	//	buckled_bodybag.set_glide_size(target)
-	//glide_size = target
-
-
-/atom/movable/proc/reset_glide_size()
-	set_glide_size(initial(glide_size))
-
-/mob/reset_glide_size()
-	set_glide_size(initial(glide_size))
-	//set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 
 /atom/movable/vv_edit_var(var_name, var_value)

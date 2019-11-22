@@ -116,11 +116,14 @@
 		var/atom/O = L.loc
 		return O.relaymove(L, direct)
 
-	var/add_delay = mob.cached_multiplicative_slowdown
+	var/add_delay = mob.cached_multiplicative_slowdown + mob.next_move_slowdown
+	mob.next_move_slowdown = 0
 	if(old_move_delay + (add_delay * MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
+	
+	glide_size = (32 / (max((world.time - move_delay) + add_delay, tick_lag) || add_delay || 6)) * tick_lag
 
 	L.last_move_intent = world.time + 1 SECONDS
 

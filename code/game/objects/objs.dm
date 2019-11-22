@@ -144,8 +144,6 @@
 	buckled_mob_backup.buckled = null
 	buckled_mob_backup.anchored = initial(buckled_mob_backup.anchored)
 	buckled_mob_backup.update_canmove()
-	if(!buckled_mob_backup.pulledby)
-		buckled_mob_backup.reset_glide_size()
 
 	if(!silent)
 		if(buckled_mob_backup == user)
@@ -213,8 +211,6 @@
 	src.buckled_mob = M
 	if(M.pulledby)
 		M.pulledby.stop_pulling()
-	if(pulledby)
-		M.set_glide_size(pulledby.glide_size)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 

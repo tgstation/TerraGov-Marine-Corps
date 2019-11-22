@@ -49,15 +49,22 @@
 		return
 	if(iscarbon(AM))
 		var/mob/living/carbon/C = AM
+		var/river_slowdown = 1.75
 
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = AM
 			cleanup(H)
 
+		else if(isxeno(C))
+			if(!isxenoboiler(C))
+				river_slowdown = 1.3
+			else
+				river_slowdown = -0.5
+
 		if(C.on_fire)
 			C.ExtinguishMob()
 
-		C.add_slowdown(4)
+		C.next_move_slowdown += river_slowdown
 
 
 /turf/open/ground/river/proc/cleanup(mob/living/carbon/human/H)

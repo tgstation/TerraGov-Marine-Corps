@@ -68,7 +68,7 @@
 	if(slayer > 0)
 		if(iscarbon(AM))
 			var/mob/living/carbon/C = AM
-			C.adjust_slowdown(round(slayer * 0.2))
+			C.next_move_slowdown += (isxeno(C) ? 0.25 : 0.5) * slayer
 			if(prob(1))
 				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
 	..()

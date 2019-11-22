@@ -86,7 +86,5 @@
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default
 
-	var/updating_glide_size = TRUE //Whether the mob is updating glide size when movespeed updates or not
-
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0

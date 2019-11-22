@@ -37,5 +37,3 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 			log_played_names(client.ckey, name, real_name)
-
-	reset_glide_size()

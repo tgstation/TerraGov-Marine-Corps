@@ -396,7 +396,7 @@
 				return
 	if(pulling == AM)
 		stop_pulling()
-	AM.Move(get_step(AM.loc, t), t, glide_size)
+	AM.Move(get_step(AM.loc, t), t)
 	now_pushing = FALSE
 
 
