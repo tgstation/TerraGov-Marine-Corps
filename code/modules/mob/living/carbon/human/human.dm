@@ -986,8 +986,11 @@
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			G.set_light(0)
+		for(var/obj/item/weapon/gun/lit_gun in contents)
+			if(!isattachmentflashlight(lit_gun.rail))
+				continue
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
+			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)

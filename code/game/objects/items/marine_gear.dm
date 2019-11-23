@@ -326,5 +326,6 @@
 	item_state = "heavy_harness"
 
 /obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)

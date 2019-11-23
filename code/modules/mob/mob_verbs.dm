@@ -3,6 +3,9 @@
 	set category = "Object"
 	set src = usr
 
+	if(next_move > world.time)
+		return
+
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
@@ -16,9 +19,9 @@
 		if (W)
 			W.attack_self(src)
 			update_inv_r_hand()
-	if(next_move < world.time)
-		next_move = world.time + 2
-	return
+
+	if(next_move <= world.time)
+		changeNext_move(CLICK_CD_FASTEST)
 
 
 /mob/verb/memory()

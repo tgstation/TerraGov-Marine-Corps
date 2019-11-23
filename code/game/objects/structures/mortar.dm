@@ -7,7 +7,6 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_m402"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/targ_x = 0 //Initial target coordinates
@@ -386,13 +385,21 @@
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
-	new /obj/item/mortal_shell/flare(src)
-	new /obj/item/mortal_shell/flare(src)
-	new /obj/item/mortal_shell/smoke(src)
-	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)

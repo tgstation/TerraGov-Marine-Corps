@@ -222,8 +222,6 @@
 			remove_limb_armor(I)
 		if(isclothing(I))
 			var/obj/item/clothing/unequipped_clothing = I
-			if(unequipped_clothing.tint)
-				adjust_tinttotal(-unequipped_clothing.tint)
 			if(unequipped_clothing.accuracy_mod)
 				adjust_mob_accuracy(-unequipped_clothing.accuracy_mod)
 
@@ -418,8 +416,6 @@
 		add_limb_armor(W)
 	if(isclothing(W))
 		var/obj/item/clothing/equipped_clothing = W
-		if(equipped_clothing.tint)
-			adjust_tinttotal(equipped_clothing.tint)
 		if(equipped_clothing.accuracy_mod)
 			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 

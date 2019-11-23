@@ -1,12 +1,3 @@
-// Set a client's focus to an object and override these procs on that object to let it handle keypresses
-/datum/proc/key_down(key, client/user) // Called when a key is pressed down initially
-	return
-
-
-/datum/proc/key_up(key, client/user) // Called when a key is released
-	return
-
-
 /datum/proc/keyLoop(client/user) // Called once every frame
 	set waitfor = FALSE
 	return
@@ -26,7 +17,7 @@
 	set waitfor = FALSE
 
 	keys_held.Cut()
-	for(var/i in 1 to 10)
+	for(var/i in 1 to HELD_KEY_BUFFER_LENGTH)
 		keys_held += null
 
 	erase_all_macros()
@@ -38,6 +29,6 @@
 		winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[command]")
 
 	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+		winset(src, null, "input.focus=true")
 	else
-		winset(src, null, "input.focus=false input.background-color=[COLOR_INPUT_DISABLED]")
+		winset(src, null, "map.focus=true")

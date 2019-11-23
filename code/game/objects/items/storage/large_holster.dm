@@ -99,7 +99,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m39_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	can_hold = list(/obj/item/weapon/gun/smg/standard_smg)
+	can_hold = list(/obj/item/weapon/gun/smg/m39)
 
 /obj/item/storage/large_holster/m39/update_icon()
 	var/mob/user = loc
@@ -113,6 +113,31 @@
 	if(istype(user)) user.update_inv_belt()
 
 /obj/item/storage/large_holster/m39/full/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/smg/m39(src)
+	update_icon()
+
+/obj/item/storage/large_holster/t19
+	name = "\improper M276 pattern T-19 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the T-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "t19_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
+	base_icon = "t19_holster"
+	flags_equip_slot = ITEM_SLOT_BELT
+	can_hold = list(/obj/item/weapon/gun/smg/standard_smg)
+
+/obj/item/storage/large_holster/t19/update_icon()
+	var/mob/user = loc
+	if(contents.len)
+		var/obj/I = contents[1]
+		icon_state = "[base_icon]_full_[I.icon_state]"
+		item_state = "[base_icon]_full"
+	else
+		icon_state = base_icon
+		item_state = base_icon
+	if(istype(user)) user.update_inv_belt()
+
+/obj/item/storage/large_holster/t19/full/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_smg(src)
 	update_icon()

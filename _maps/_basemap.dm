@@ -17,6 +17,7 @@
 		#include "map_files\Marine_ball\Marine_ball.dmm"
 		#include "map_files\Pillar_of_Spring\TGS_Pillar_of_Spring.dmm"
 		#include "map_files\icy_caves\icy_caves.dmm"
+		#include "map_files\desert\desert.dmm"
 		#ifdef TRAVISBUILDING
 		#endif
 	#endif

@@ -55,16 +55,18 @@
 
 
 /atom/movable/proc/attacked_by()
-	return
+	return FALSE
 
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force)
-		user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>", \
-					"<span class='warning'>You hit [src] with [I]!</span>")
-		log_combat(user, src, "attacked", I)
-		. = TRUE
+	if(!I.force)
+		return FALSE
+	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
+		"<span class='warning'>You hit [src] with [I]!</span>")
+	log_combat(user, src, "attacked", I)
 	take_damage(I.force, I.damtype, "melee")
+	return TRUE
+
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
