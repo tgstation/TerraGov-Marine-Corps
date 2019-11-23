@@ -46,6 +46,8 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
+#define COMSIG_GLOB_SHUTTLE_REQUESTED "!shuttle_requested"			//from base of /obj/docking_port/mobile/request(): (docking_port/source, docking_port/dest, list/multipliers)
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals

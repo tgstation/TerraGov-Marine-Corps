@@ -607,11 +607,19 @@
 			return
 		do_hijack(M, CT, X)
 
+/obj/machinery/computer/shuttle/marine_dropship/proc/hijack_flight_time(datum/source, obj/docking_port/stationary/sorc, obj/docking_port/stationary/dest, list/flight_time_mods)
+	if(!istype(source, /obj/docking_port/mobile/marine_dropship))
+		return
+	var/obj/docking_port/mobile/marine_dropship/D = source
+	if(!D.crashing || D.hijack_state != HIJACK_STATE_CRASHING)
+		return
+	if(is_ground_level(D.z) && is_mainship_level(dest?.z))
+		flight_time_mods += 4 // four times longer flight time
 
 /obj/machinery/computer/shuttle/marine_dropship/proc/do_hijack(obj/docking_port/mobile/marine_dropship/crashing_dropship, obj/docking_port/stationary/marine_dropship/crash_target/crash_target, mob/living/carbon/xenomorph/user)
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
-	crashing_dropship.callTime = 2 MINUTES
 	crashing_dropship.crashing = TRUE
+	RegisterSignal(SSdcs, COMSIG_GLOB_SHUTTLE_REQUESTED, .proc/hijack_flight_time)
 	crashing_dropship.unlock_all()
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 	to_chat(user, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")

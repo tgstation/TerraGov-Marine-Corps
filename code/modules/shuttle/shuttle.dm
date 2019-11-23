@@ -400,20 +400,28 @@
 	if(mode == SHUTTLE_IGNITING && destination == S)
 		return
 
+	var/list/flight_time_mods = list() // to pass by reference
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_REQUESTED, get_docked(), S, flight_time_mods)
+
+	var/signalled_modifier = 1
+	for(var/i in flight_time_mods)
+		signalled_modifier *= i
+
 	switch(mode)
 		if(SHUTTLE_CALL)
 			if(S == destination)
-				if(timeLeft(1) < callTime * engine_coeff)
-					setTimer(callTime * engine_coeff)
+				if(timeLeft(1) < callTime * engine_coeff * signalled_modifier)
+					setTimer(callTime * engine_coeff * signalled_modifier)
 			else
 				destination = S
-				setTimer(callTime * engine_coeff)
+				setTimer(callTime * engine_coeff * signalled_modifier)
 		if(SHUTTLE_RECALL)
 			if(S == destination)
-				setTimer(callTime * engine_coeff - timeLeft(1))
+				setTimer(callTime * engine_coeff * signalled_modifier - timeLeft(1))
 			else
 				destination = S
-				setTimer(callTime * engine_coeff)
+				setTimer(callTime * engine_coeff * signalled_modifier)
 			set_mode(SHUTTLE_CALL)
 		if(SHUTTLE_IDLE, SHUTTLE_IGNITING, SHUTTLE_RECHARGING)
 			destination = S
@@ -610,8 +618,16 @@
 				setTimer(20)
 				return
 			else
+				var/list/flight_time_mods = list() // to pass by reference
+
+				SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_REQUESTED, get_docked(), destination, flight_time_mods)
+
+				var/signalled_modifier = 1
+				for(var/i in flight_time_mods)
+					signalled_modifier *= i
+
 				set_mode(SHUTTLE_CALL)
-				setTimer(callTime * engine_coeff)
+				setTimer(callTime * engine_coeff * signalled_modifier)
 				enterTransit()
 				return
 
