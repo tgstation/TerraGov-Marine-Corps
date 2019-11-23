@@ -3,17 +3,16 @@ SUBSYSTEM_DEF(job)
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
 
-	var/list/occupations = list()		//List of all jobs.
+	var/list/occupations = list()		//List of all potential jobs.
+	var/list/active_occupations			//Jobs in use by the game mode.
 	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles.
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
-	var/list/squads = list()			//List of squads.
+	var/list/squads = list()			//List of potential squads.
+	var/list/active_squads = list()		//Squads being used by the game mode.
 
 	var/list/unassigned = list()		//Players who need jobs.
 	var/initial_players_to_assign = 0 	//Used for checking against population caps.
-
-	var/list/prioritized_jobs = list()
-	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead.
 
 	var/overflow_role = SQUAD_MARINE
 
@@ -101,7 +100,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
-	for(var/datum/job/job in shuffle(occupations))
+	for(var/datum/job/job in shuffle(active_occupations))
 		if((job.current_positions < job.total_positions) || job.total_positions == -1)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
 			if(AssignRole(player, job.title))
@@ -155,7 +154,7 @@ SUBSYSTEM_DEF(job)
 	// Hopefully this will add more randomness and fairness to job giving.
 
 	// Loop through all levels from high to low
-	var/list/shuffledoccupations = shuffle(occupations)
+	var/list/shuffledoccupations = shuffle(active_occupations)
 	var/list/levels = list(JOBS_PRIORITY_HIGH, JOBS_PRIORITY_MEDIUM, JOBS_PRIORITY_LOW)
 
 	for(var/level in levels)

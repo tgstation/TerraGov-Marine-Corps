@@ -490,7 +490,7 @@
 	if(!job)
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		for(var/datum/job/J in SSjob.occupations)
+		for(var/datum/job/J in SSjob.active_occupations)
 			if(J && J.current_positions < J.total_positions && J.title != job.title)
 				return FALSE
 	if(is_banned_from(ckey, rank))

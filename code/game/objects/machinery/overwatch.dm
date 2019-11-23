@@ -36,8 +36,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/Initialize()
 	. = ..()
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
+	for(var/i in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[i]
 		squads += S
 
 
@@ -273,8 +273,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/i in SSjob.squads)
-						var/datum/squad/S = SSjob.squads[i]
+					for(var/i in SSjob.active_squads)
+						var/datum/squad/S = SSjob.active_squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[squad_name]
+					var/datum/squad/selected = SSjob.active_squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected

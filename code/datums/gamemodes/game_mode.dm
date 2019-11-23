@@ -4,6 +4,7 @@
 	var/votable = TRUE
 	var/probability = 0
 	var/required_players = 0
+	var/squads_max_number = 4
 
 	var/round_finished
 	var/list/round_end_states = list()
@@ -41,6 +42,12 @@
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
+		return FALSE
+	if(!set_valid_job_types())
+		return FALSE
+	if(!set_valid_squads())
+		return FALSE
+	if(!initialize_scales())
 		return FALSE
 	if(GLOB.ready_players < required_players)
 		return FALSE
@@ -860,3 +867,105 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		return FALSE
 
 	return new_xeno
+
+/datum/game_mode/proc/set_valid_job_types()
+	if(!SSjob?.initialized)
+		to_chat(world, "<span class='boldnotice'>Error setting up valid jobs, no job subsystem found initialized.</span>")
+		CRASH("Error setting up valid jobs, no job subsystem found initialized.")
+	if(!length(valid_job_types))
+		SSjob.active_occupations = SSjob.occupations
+		return TRUE
+	SSjob.active_occupations.Cut()
+	for(var/j in SSjob.occupations)
+		var/datum/job/job = j
+		if(!valid_job_types.Find(job.type))
+			job.total_positions = 0
+			continue
+		job.total_positions = initial(job.total_positions)
+		SSjob.active_occupations += job
+	if(!length(SSjob.active_occupations))
+		to_chat(world, "<span class='boldnotice'>Error, game mode has only invalid jobs assigned.</span>")
+		return FALSE
+	return TRUE
+
+/datum/game_mode/proc/set_valid_squads()
+	to_chat(world, "squads_max_number: [squads_max_number] | map squads_max_num: [SSmapping.configs[SHIP_MAP].squads_max_num]")
+	var/max_squad_num = min(squads_max_number, SSmapping.configs[SHIP_MAP].squads_max_num)
+	if(max_squad_num >= length(SSjob.squads))
+		SSjob.active_squads = SSjob.squads
+		return TRUE
+	if(max_squad_num == 0)
+		return TRUE
+	var/list/preferred_squads = list()
+	for(var/s in SSjob.squads)
+		preferred_squads[s] = 1
+	if(!length(preferred_squads))
+		to_chat(world, "<span class='boldnotice'>Error, no squads found.</span>")
+		return FALSE
+	for(var/i in GLOB.new_player_list)
+		var/mob/new_player/player = i
+		if(!player.ready || !player.client?.prefs?.preferred_squad)
+			continue
+		var/squad_choice = player.client.prefs.preferred_squad
+		if(squad_choice == "None")
+			continue
+		if(!preferred_squads[squad_choice])
+			stack_trace("[player.client] has in its prefs [squad_choice] for a squad. Not valid.")
+			continue
+		preferred_squads[squad_choice]++
+	preferred_squads = sortInsert(preferred_squads, associative = TRUE) //Shuffle them by order pref.
+
+	for(var/i in preferred_squads)
+		to_chat(world, "Squad: [i]")
+	to_chat(world, "max_squad_num: [max_squad_num]")
+	
+	SSjob.active_squads = preferred_squads.Cut(max_squad_num + 1)
+
+	for(var/i in SSjob.active_squads)
+		to_chat(world, "Squad: [i]")
+	return TRUE
+
+/datum/game_mode/proc/initialize_scales()
+	if(!length(SSjob.active_squads))
+		return TRUE
+	
+	var/current_smartgunners = 0
+	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
+	var/smartie_per_squad = maximum_smartgunners / length(SSjob.active_squads)
+	var/current_specialists = 0
+	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
+	var/spec_per_squad = maximum_specialists / length(SSjob.active_squads)
+
+	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
+	SL.total_positions = length(SSjob.active_squads)
+
+	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
+	SG.total_positions = maximum_smartgunners
+
+	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
+	SP.total_positions = maximum_specialists
+
+	for(var/i in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[i]
+
+		if(current_specialists < maximum_specialists)
+			if(current_specialists + CEILING(spec_per_squad, 1) > maximum_specialists)
+				S.max_specialists = round(spec_per_squad) //Floor
+				current_specialists += S.max_specialists
+				continue
+			S.max_specialists = CEILING(spec_per_squad, 1)
+			current_specialists += S.max_specialists
+		else
+			S.max_specialists = 0
+
+		if(current_smartgunners < maximum_specialists)
+			if(current_smartgunners + CEILING(smartie_per_squad, 1) > maximum_specialists)
+				S.max_smartgun = round(smartie_per_squad) //Floor
+				current_smartgunners += S.max_smartgun
+				continue
+			S.max_smartgun = CEILING(smartie_per_squad, 1)
+			current_smartgunners += S.max_smartgun
+		else
+			S.max_smartgun = 0
+
+	return TRUE
