@@ -141,7 +141,6 @@
 	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		(1<<1)
 	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		(1<<2)
 #define COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE "movable_prebump_exit_movable" //from base of /turf/Exit(): (/atom/movable)
-	#define COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED	(1<<0)
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//from base of /atom/movable/proc/set_glide_size(): (target)
 
 // /turf signals

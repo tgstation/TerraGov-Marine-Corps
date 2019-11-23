@@ -237,6 +237,17 @@
 #define PRECRUSH_PLOWED -2
 #define PRECRUSH_ENTANGLED -3
 
+/proc/precrush2signal(precrush)
+	switch(precrush)
+		if(PRECRUSH_STOPPED)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(PRECRUSH_PLOWED)
+			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+		if(PRECRUSH_ENTANGLED)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
+		else
+			return NONE
+
 // Charge is divided into two acts: before and after the crushed thing taking damage, as that can cause it to be deleted.
 /datum/action/xeno_action/ready_charge/proc/do_crush(datum/source, atom/crushed)
 	var/mob/living/carbon/xenomorph/charger = owner
@@ -274,18 +285,9 @@
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
-				return COMPONENT_MOVABLE_PREBUMP_PLOWED|COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED
-
-		var/postcrush = crushed_living.post_crush_act(charger, src)
-		switch(postcrush)
-			if(PRECRUSH_STOPPED)
-				return COMPONENT_MOVABLE_PREBUMP_STOPPED
-			if(PRECRUSH_PLOWED)
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
-			if(PRECRUSH_ENTANGLED)
-				return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
-			else
-				return NONE
+
+		return precrush2signal(crushed_living.post_crush_act(charger, src))
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
@@ -298,9 +300,9 @@
 			if(crushed_behavior & STOP_CRUSHER_ON_DEL)
 				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 			else
-				return COMPONENT_MOVABLE_PREBUMP_PLOWED|COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED
+				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
-		return crushed_obj.post_crush_act(charger, src)
+		return precrush2signal(crushed_obj.post_crush_act(charger, src))
 
 	if(isturf(crushed))
 		var/turf/crushed_turf = crushed

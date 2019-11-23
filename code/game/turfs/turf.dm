@@ -127,13 +127,13 @@
 		var/atom/movable/thing = i
 		if(thing.Cross(mover))
 			continue
-		switch(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing))
-			if(COMPONENT_MOVABLE_PREBUMP_STOPPED)
-				return FALSE //Stopped, bump no longer necessary.
-			if(COMPONENT_MOVABLE_PREBUMP_PLOWED)
-				continue //We've plowed through.
-			if(COMPONENT_MOVABLE_PREBUMP_ENTANGLED)
-				return TRUE //We've entered the tile and gotten entangled inside it.
+		var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_MOVABLE, thing)
+		if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
+			return FALSE //Stopped, bump no longer necessary.
+		if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
+			continue //We've plowed through.
+		if(signalreturn & COMPONENT_MOVABLE_PREBUMP_ENTANGLED)
+			return TRUE //We've entered the tile and gotten entangled inside it.
 		if(QDELETED(mover)) //Mover deleted from Cross/CanPass, do not proceed.
 			return FALSE
 		else if(!firstbump || ((thing.layer > firstbump.layer || thing.flags_atom & ON_BORDER) && !(firstbump.flags_atom & ON_BORDER)))
@@ -156,7 +156,10 @@
 		var/atom/movable/thing = i
 		if(!thing.Uncross(mover, newloc))
 			if(thing.flags_atom & ON_BORDER)
-				if(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing) & COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED)
+				var/signalreturn = SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
+				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
+					return FALSE
+				if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
 					continue // no longer in the way
 				mover.Bump(thing)
 				return FALSE
