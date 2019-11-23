@@ -11,7 +11,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 //just in case people want to add other ways of changing how the round feels
 /datum/orbital_mechanics
-	var/current_orbit = 0
+	var/current_orbit = 3
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
@@ -20,6 +20,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	idle_power_usage = 10
 	var/open = FALSE
 	var/cooldown = FALSE
+	var/changing_orbit = FALSE
 
 //-------------------------------------------
 // Standard procs
@@ -122,6 +123,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return FALSE
 	if(get_power_amount() <= 500000)
 		return FALSE
+	return TRUE
 
 /obj/machinery/computer/navigation/proc/do_change_orbit(current_orbit, direction)
 
@@ -130,7 +132,8 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		idle_power_usage = 5000
 	else
 		return
-
+	changing_orbit = TRUE
+	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 5 MINUTES)
 	if(direction == "UP")
 		current_orbit++
 	
