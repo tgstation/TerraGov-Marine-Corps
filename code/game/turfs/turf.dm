@@ -156,6 +156,8 @@
 		var/atom/movable/thing = i
 		if(!thing.Uncross(mover, newloc))
 			if(thing.flags_atom & ON_BORDER)
+				if(SEND_SIGNAL(mover, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing) & COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED)
+					continue // no longer in the way
 				mover.Bump(thing)
 				return FALSE
 		if(QDELETED(mover))

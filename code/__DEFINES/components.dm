@@ -137,9 +137,11 @@
 #define COMSIG_MOVABLE_CLOSET_DUMPED "movable_closet_dumped"
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
-	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		-1
-	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		-2
-	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		-3
+	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		(1<<0)
+	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		(1<<1)
+	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		(1<<2)
+#define COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE "movable_prebump_exit_movable" //from base of /turf/Exit(): (/atom/movable)
+	#define COMPONENT_MOVABLE_PREBUMP_EXIT_PLOWED	(1<<0)
 #define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//from base of /atom/movable/proc/set_glide_size(): (target)
 
 // /turf signals
