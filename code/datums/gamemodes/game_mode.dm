@@ -534,7 +534,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	M.transfer_to(H, TRUE)
 	H.client.prefs.copy_to(H)
 
-	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/survivor_job = /datum/job/rambosurvivor/generic
 	var/datum/job/J = new survivor_job
 
 	J.assign_equip(H)

@@ -16,7 +16,21 @@
 	siemens_coefficient = 0.7
 	w_class = WEIGHT_CLASS_NORMAL
 
-
+/obj/item/clothing/head/ruggedhelm
+	name = "rugged helmet"
+	desc = "A helmet used by workers in dangerous environments."
+	icon_state = "helmet"
+	item_state = "helmet"
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	flags_atom = CONDUCT
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
+	flags_cold_protection = HEAD
+	flags_heat_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
