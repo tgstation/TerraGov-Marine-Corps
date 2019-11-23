@@ -18,10 +18,11 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
-	var/open = FALSE
 	var/cooldown = FALSE
 	var/changing_orbit = FALSE
 	var/authenticated = 0
+	var/shorted = FALSE
+	var/aidisabled = FALSE
 
 //-------------------------------------------
 // Standard procs
@@ -31,11 +32,10 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	. = ..()
 
 	if(isscrewdriver(I)) //keep this? make it hackable so regular marines can run?
-		open = !open
+		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
-		to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
-
-//figure out where the hacking wire stuff is.
+		to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
+		return
 
 //-------------------------------------------
 // Special procs
