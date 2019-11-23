@@ -55,6 +55,6 @@
 			A.update_icon()
 		if(WIRE_IDSCAN)
 			if(!mend)
-				A.locked = TRUE
+				A.authenticated = TRUE
 		if(WIRE_AI)
 			A.aidisabled = mend // Enable/disable AI control.
