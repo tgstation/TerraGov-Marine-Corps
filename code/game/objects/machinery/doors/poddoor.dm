@@ -71,6 +71,18 @@
 	opacity = FALSE
 	id = "riot_armory"
 
+/obj/machinery/door/poddoor/two_tile_ver/thunderdome1
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "thunder1"
+
+/obj/machinery/door/poddoor/two_tile_ver/thunderdome2
+	icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	id = "thunder2"
+
 /obj/machinery/door/poddoor/two_tile_ver/lethalarmory
 	icon_state = "pdoor0"
 	density = FALSE
