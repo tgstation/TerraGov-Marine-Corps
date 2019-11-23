@@ -255,6 +255,8 @@
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED //Already handled, no need to continue.
 		if(PRECRUSH_PLOWED)
 			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+		if(PRECRUSH_ENTANGLED)
+			. = COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 
 	var/preserved_name = crushed.name
 
