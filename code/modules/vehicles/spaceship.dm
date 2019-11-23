@@ -1,10 +1,10 @@
 //A thing for 'navigating' the current ship map up or down the gravity well.
 
-#define ESCAPE_VELOCITY 5
-#define SAFE_DISTANCE 4
-#define STANDARD_ORBIT 3
-#define CLOSE_ORBIT 2
-#define SKIM_ATMOSPHERE 1
+#define ESCAPE_VELOCITY 	5
+#define SAFE_DISTANCE 		4
+#define STANDARD_ORBIT 		3
+#define CLOSE_ORBIT 		2
+#define SKIM_ATMOSPHERE 	1
 
 //so we can use the current orbit in other files
 GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
@@ -21,6 +21,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	var/open = FALSE
 	var/cooldown = FALSE
 	var/changing_orbit = FALSE
+	var/authenticated = 0
 
 //-------------------------------------------
 // Standard procs
@@ -50,6 +51,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	GLOB.orbital_mechanics.current_orbit = STANDARD_ORBIT
+	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 	. = ..()
 
 
@@ -61,22 +63,28 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	//should add a check here for id card. Captain and SO's are the only people who can fly this boat.
 
 	var/dat
-	dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
-	dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
-	dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [!cooldown]</center>" //display ship nav stats, power level, cooldown.
+	if(authenticated)
+		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A> \]"
+		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
-	if(get_power_amount() >= 5000000) //some arbitrary number
-		dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
-		dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
+		dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
+		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [!cooldown]</center>" //display ship nav stats, power level, cooldown.
+
+		if(get_power_amount() >= 5000000) //some arbitrary number
+			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
+			dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
+		else
+			dat += "<center><h4>Insufficient Power Reserves to change orbit"
+			dat += "<br>"
+
+		if(GLOB.orbital_mechanics.current_orbit == ESCAPE_VELOCITY)
+			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X minutes
+
+		dat += "</b></center>"
+
 	else
-		dat += "<center><h4>Insufficient Power Reserves to change orbit"
-		dat += "<br>"
-
-	if(GLOB.orbital_mechanics.current_orbit == ESCAPE_VELOCITY)
-		dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X minutes
-
-	dat += "</b></center>"
+		dat += "<BR>\[ <A HREF='?src=\ref[src];login=1'>LOG IN</A> \]"
 
 	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
@@ -87,6 +95,28 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	. = ..()
 	if(.)
 		return
+
+	if("login")
+		if(isAI(usr))
+			authenticated = 2
+			updateUsrDialog()
+			return
+		var/mob/living/carbon/human/C = usr
+		var/obj/item/card/id/I = C.get_active_held_item()
+		if(istype(I))
+			if(check_access(I))
+				authenticated = 1
+			if(ACCESS_MARINE_BRIDGE in I.access)
+				authenticated = 2
+		else
+			I = C.wear_id
+			if(istype(I))
+				if(check_access(I))
+					authenticated = 1
+				if(ACCESS_MARINE_BRIDGE in I.access)
+					authenticated = 2
+	if("logout")
+		authenticated = 0
 
 	if (href_list["UP"])
 		do_orbit_checks("UP")
@@ -118,8 +148,10 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(cooldown)
 		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
+		to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
+		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. ")
 		return FALSE
 	if(get_power_amount() <= 500000)
 		return FALSE
