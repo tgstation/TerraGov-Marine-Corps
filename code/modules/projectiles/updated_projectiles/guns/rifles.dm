@@ -136,6 +136,7 @@
 	desc = "The T-64 is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
 	icon_state = "t64"
 	item_state = "t64"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = "sound/weapons/guns/fire/T64.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -186,6 +187,7 @@
 	desc = "The standard issue rifle of the TerraGov Marine Corps. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = "gun_pulse"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
@@ -303,6 +305,7 @@
 	icon_state = "ak47"
 	item_state = "ak47"
 	caliber = "7.62x39mm" //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
@@ -347,6 +350,7 @@
 	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "5.56x45mm" //codex
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
@@ -479,6 +483,7 @@
 	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition."
 	icon_state = "type71"
 	item_state = "type71"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "7.62x39mm" //codex
 	max_shells = 40 //codex
 	fire_sound = 'sound/weapons/guns/fire/type71.ogg'

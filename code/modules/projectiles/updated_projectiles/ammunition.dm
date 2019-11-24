@@ -601,7 +601,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
 
 /obj/item/ammobox/m39
-	name = "M39 Ammo Box"
+	name = "T-19 Ammo Box"
 	icon_state = "ammoboxm39"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
@@ -610,13 +610,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "M39 AP Ammo Box"
 	icon_state = "ammoboxm39ap"
 	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/standard_smg/ap
+	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
 
 /obj/item/ammobox/m39ext
 	name = "M39 Extended Ammo Box"
 	icon_state = "ammoboxm39ext"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/standard_smg/extended
+	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
 
 
 /obj/item/shotgunbox/buckshot

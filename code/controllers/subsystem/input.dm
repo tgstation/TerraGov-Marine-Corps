@@ -7,15 +7,9 @@ SUBSYSTEM_DEF(input)
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
 
 	var/list/macro_set
-	var/list/movement_keys
-
 
 /datum/controller/subsystem/input/Initialize()
-	macro_set = list("Any" = "\"KeyDown \[\[*\]\]\"", "Any+UP" = "\"KeyUp \[\[*\]\]\"", "Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
-		"Tab" = "\".winset \\\"input.focus=true?map.focus=true:input.focus=true\\\"\"", "Escape" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",)
-
-	movement_keys = list("W" = NORTH, "A" = WEST, "S" = SOUTH, "D" = EAST,// WASD
-		"North" = NORTH, "West" = WEST, "South" = SOUTH, "East" = EAST)	// Arrow keys & Numpad
+	setup_default_macro_sets()
 
 	initialized = TRUE
 
@@ -23,13 +17,26 @@ SUBSYSTEM_DEF(input)
 
 	return ..()
 
+// This is for when macro sets are eventualy datumized
+/datum/controller/subsystem/input/proc/setup_default_macro_sets()
+	macro_set = list(
+	"Any" = "\"KeyDown \[\[*\]\]\"",
+	"Any+UP" = "\"KeyUp \[\[*\]\]\"",
+	"O" = "ooc",
+	"L" = "looc",
+	"T" = ".say",
+	"M" = ".me",
+	"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
+	"Tab" = "\".winset \\\"input.focus=true ? map.focus=true : input.focus=true\\\"\"",
+	"Escape" = "\".winset \\\"input.text=\\\"\\\"\\\"\"")
+
 
 /datum/controller/subsystem/input/proc/refresh_client_macro_sets()
 	var/list/clients = GLOB.clients
 	for(var/i in 1 to length(clients))
 		var/client/user = clients[i]
 		user.set_macros()
-
+		user.update_movement_keys()
 
 /datum/controller/subsystem/input/fire()
 	var/list/clients = GLOB.clients //Cache, makes it faster.
