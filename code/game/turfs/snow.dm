@@ -9,6 +9,11 @@
 	icon_state = "snow_0"
 	hull_floor = TRUE
 
+// Melting snow
+/turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)
+	slayer = 0
+	update_icon(1, 0)
+
 //Xenos digging up snow
 /turf/open/floor/plating/ground/snow/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent == INTENT_GRAB)
