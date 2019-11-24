@@ -167,6 +167,10 @@
 			to_chat(src, "<span class='warning'>We must wait about [timeleft(hive.xeno_queen_timer) * 0.1] seconds for the hive to recover from the previous Queen's death.<span>")
 			return
 
+		if(isxenoresearcharea(get_area(src)))
+			to_chat(src, "<span class='warning'>Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!</span>")
+			return
+
 		if(mind)
 			mind.assigned_role = ROLE_XENO_QUEEN
 
@@ -188,6 +192,10 @@
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a living Shrike. The hive cannot contain more than one psychic energy repository.</span>")
+			return
+
+		if(isxenoresearcharea(get_area(src)))
+			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
 			return
 
 		if(mind)

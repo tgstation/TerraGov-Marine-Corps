@@ -37,6 +37,10 @@
 		AI.anchored = FALSE
 		CHECK_TICK
 
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/distress/distress_mode = SSticker.mode
+		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED
+
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
 	//clear areas around the shuttle with explosions
