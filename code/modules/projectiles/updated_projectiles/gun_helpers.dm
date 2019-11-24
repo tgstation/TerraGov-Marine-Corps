@@ -206,22 +206,23 @@ should be alright.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(flags_gun_features & GUN_BURST_FIRING)
+	if(.)
 		return
 
-	. = ..()
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return
 
 	if(istype(I,/obj/item/attachable) && check_inactive_hand(user))
 		attach_to_gun(user, I)
 		return
 
 	//the active attachment is reloadable
-	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user))
-		active_attachable.reload_attachment(I, user)
+	if(active_attachable?.flags_attach_features & ATTACH_RELOADABLE && check_inactive_hand(user) && active_attachable.reload_attachment(I, user, TRUE))
 		return
 
 	if((istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/cell/lasgun)) && check_inactive_hand(user))
 		reload(user, I)
+		return
 
 
 //tactical reloads

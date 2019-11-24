@@ -145,8 +145,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 
-	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
-
 	var/datum/armor/armor
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
