@@ -28,7 +28,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
 	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
 	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/squad_console = NO_SQUAD //Is this associated to a specific squad?
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
@@ -48,19 +47,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/alpha
 	name = "Alpha Overwatch Console"
-	squad_console = ALPHA_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/bravo
 	name = "Bravo Overwatch Console"
-	squad_console = BRAVO_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/charlie
 	name = "Charlie Overwatch Console"
-	squad_console = CHARLIE_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
-	squad_console = DELTA_SQUAD
 
 
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
