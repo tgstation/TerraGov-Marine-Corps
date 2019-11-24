@@ -1,6 +1,6 @@
 /datum/emergency_call/pmc
 	name = "PMC"
-	probability = 25
+	probability = 15
 	shuttle_id = "distress_pmc"
 
 
@@ -41,7 +41,7 @@
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen contractor team in responding to the TGMC distress signal sent out nearby. Address the situation and get your team to safety!</span>")
 		return
 
-	if(prob(50))
+	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
 		SSjob.AssignRole(H, J.title)
 		J.assign_equip(H)
