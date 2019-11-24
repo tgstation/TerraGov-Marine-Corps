@@ -296,7 +296,6 @@
 	name = "Section 1 Podlocks";
 	pixel_x = 0;
 	pixel_y = -24;
-	step_y = 0
 	},
 /turf/open/floor/mainship{
 	icon_state = "blue"
@@ -314,7 +313,6 @@
 	id = "thunder2";
 	name = "Section 2 Podlocks";
 	pixel_y = -24;
-	step_x = 0
 	},
 /turf/open/floor/mainship{
 	icon_state = "blue"
