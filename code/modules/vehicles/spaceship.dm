@@ -37,6 +37,11 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 		return
 
+/obj/machinery/computer/navigation/Initialize() //need anything special?
+	GLOB.orbital_mechanics.current_orbit = STANDARD_ORBIT
+	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
+	. = ..()
+
 //-------------------------------------------
 // Special procs
 //-------------------------------------------
@@ -49,18 +54,10 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	
 	return power_amount
 
-/obj/machinery/computer/navigation/Initialize() //need anything special?
-	GLOB.orbital_mechanics.current_orbit = STANDARD_ORBIT
-	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
-	. = ..()
-
-
 /obj/machinery/computer/navigation/interact(mob/user)
 	. = ..()
 	if(.)
 		return
-
-	//should add a check here for id card. Captain and SO's are the only people who can fly this boat.
 
 	var/dat
 
@@ -147,6 +144,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
 	if(cooldown)
 		return FALSE
+	if(changing_orbit)
+		to_chat(usr, "The ship is currently changing orbit.")
+		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
 		to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
 		return FALSE
@@ -162,10 +162,13 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	//chug that sweet sweet powernet juice, like 80% of total
 	if(powered()) //do we still have power?
 		idle_power_usage = 5000
+		addtimer(VARSET_CALLBACK(src, idle_power_usage, 10), 5 MINUTES)
 	else
 		return
 	changing_orbit = TRUE
-	addtimer(VARSET_CALLBACK(src, changing_orbit, FALSE), 5 MINUTES)
+	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
+
+/obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
 	if(direction == "UP")
 		current_orbit++
 	
@@ -173,5 +176,6 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		current_orbit--
 
 	GLOB.orbital_mechanics.current_orbit = current_orbit
+	changing_orbit = FALSE
 
 //emp_act() not needed to be special
