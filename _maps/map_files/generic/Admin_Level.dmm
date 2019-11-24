@@ -310,7 +310,7 @@
 /area/tdome/tdomeadmin)
 "bK" = (
 /obj/machinery/button/door/indestructible{
-	bound_y = 16;
+	bound_y = 0;
 	id = "thunder2";
 	name = "Section 2 Podlocks";
 	pixel_y = -24;
@@ -560,6 +560,12 @@
 	icon_state = "panelscorched"
 	},
 /area/deathmatch)
+"dh" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/tdome)
 "dj" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/mainship{
@@ -567,13 +573,22 @@
 	dir = 5
 	},
 /area/tdome/tdome1)
-"dO" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
+"du" = (
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
 	},
-/turf/open/floor/mainship/mono,
-/area/tdome/tdomeadmin)
+/area/tdome/tdome2)
+"dI" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 1
+	},
+/area/tdome)
+"dV" = (
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "dW" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -596,15 +611,20 @@
 	dir = 5
 	},
 /area/centcom)
-"ef" = (
-/obj/structure/window/framed/mainship/hull,
-/turf/closed/wall/mainship/outer,
-/area/tdome)
 "ej" = (
 /turf/open/floor/plating{
 	icon_state = "test_floor5"
 	},
 /area/centcom/supply)
+"em" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
 "eo" = (
 /turf/open/floor/mainship,
 /area/centcom)
@@ -613,6 +633,21 @@
 	name = "reinforced hull"
 	},
 /area/centcom/control)
+"es" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/thunderdome/two,
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome2)
+"eU" = (
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "plating_striped";
+	dir = 4
+	},
+/area/tdome/tdome1)
 "eX" = (
 /obj/structure/bed/chair/comfy{
 	icon_state = "comfychair";
@@ -671,15 +706,6 @@
 	icon_state = "tcomms"
 	},
 /area/centcom/control)
-"fq" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
 "fx" = (
 /turf/closed/wall/mainship/outer{
 	name = "reinforced hull"
@@ -697,12 +723,6 @@
 "fF" = (
 /turf/open/floor/mainship,
 /area/centcom/ferry)
-"fR" = (
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome1)
 "fW" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
@@ -720,13 +740,6 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom)
-"ga" = (
-/obj/machinery/cryopod/right,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
 "gc" = (
 /turf/open/floor/mainship{
 	icon_state = "orangecorner";
@@ -774,6 +787,16 @@
 	dir = 1
 	},
 /area/centcom)
+"go" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "gv" = (
 /turf/open/floor/mainship{
 	icon_state = "blue";
@@ -799,49 +822,53 @@
 	},
 /turf/open/floor/plating,
 /area/centcom)
-"gC" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
+"gA" = (
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
+/turf/open/floor/mainship{
+	icon_state = "plating_striped";
+	dir = 4
+	},
+/area/tdome/tdome1)
+"gD" = (
+/obj/structure/platform,
+/turf/open/floor/mainship/mono,
+/area/tdome)
+"hd" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/tdome)
+"hl" = (
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/tdome)
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
-"hG" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
-	dir = 6
-	},
-/area/tdome)
-"ib" = (
-/obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 1
-	},
-/obj/effect/landmark/thunderdome/admin,
+"hC" = (
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
 	},
 /area/tdome/tdomeadmin)
-"il" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
-	},
+"hD" = (
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
+"ii" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/carpet,
 /area/tdome/tdomeobserve)
 "in" = (
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
 	},
 /area/centcom/supply)
-"io" = (
-/obj/structure/bed/chair/sofa,
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
 "ip" = (
 /turf/open/floor/mainship{
 	dir = 8;
@@ -858,6 +885,18 @@
 	icon_state = "cargo_arrow"
 	},
 /area/centcom/supply)
+"iN" = (
+/obj/structure/bed/chair/sofa,
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
+"iP" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/mainship/mono,
+/area/tdome/tdomeadmin)
 "iU" = (
 /turf/closed/wall/mainship/white,
 /area/shuttle/distress/start_big)
@@ -886,26 +925,38 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/distress/start_big)
-"jx" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating_striped";
-	dir = 8
-	},
-/area/tdome/tdome2)
 "jA" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
+"jD" = (
+/turf/open/floor/mainship,
+/area/tdome/tdomeadmin)
+"jO" = (
+/obj/structure/bed/chair/comfy{
+	icon_state = "comfychair";
+	dir = 1
+	},
+/obj/effect/landmark/thunderdome/admin,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
+"jZ" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "kd" = (
 /turf/open/floor/mainship{
 	icon_state = "bluecorner"
 	},
 /area/centcom)
-"kf" = (
-/turf/open/floor/wood,
+"kg" = (
+/turf/open/floor/carpet{
+	icon_state = "carpetside";
+	dir = 4
+	},
 /area/tdome/tdomeobserve)
 "kj" = (
 /turf/open/floor/mainship{
@@ -913,12 +964,6 @@
 	dir = 6
 	},
 /area/centcom)
-"kk" = (
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
 "kp" = (
 /obj/structure/bed/chair/wood/normal{
 	icon_state = "wooden_chair";
@@ -1764,6 +1809,11 @@
 	icon_state = "plate"
 	},
 /area/shuttle/distress/start_big)
+"mn" = (
+/obj/structure/bed/chair/sofa/corner,
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
 "mo" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/m39,
@@ -2312,19 +2362,17 @@
 	dir = 1
 	},
 /area/centcom)
-"og" = (
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
-"oq" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
-	dir = 4
+"oh" = (
+/obj/structure/bed/chair/sofa/right,
+/obj/machinery/light{
+	dir = 1
 	},
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
+"os" = (
+/turf/closed/wall/mainship/outer,
 /area/tdome)
-"ot" = (
-/turf/open/floor/mainship,
-/area/tdome/tdomeadmin)
 "oL" = (
 /turf/open/floor/grass,
 /area/centcom)
@@ -2862,12 +2910,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor,
 /area/deathmatch)
-"qY" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
-	dir = 1
-	},
-/area/tdome)
 "ra" = (
 /obj/structure/table,
 /obj/item/clothing/under/marine/veteran/freelancer,
@@ -2980,28 +3022,36 @@
 /obj/item/weapon/baseballbat/metal,
 /turf/open/ground/river,
 /area/deathmatch)
+"rC" = (
+/obj/structure/closet/walllocker/medical_wall{
+	icon_state = "medical_wall";
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
+"rU" = (
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome1)
 "si" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/centcom)
-"sr" = (
-/turf/open/floor/mainship{
-	icon_state = "plating_striped";
+"sk" = (
+/obj/structure/platform{
+	icon_state = "platform";
 	dir = 8
 	},
-/area/tdome/tdome2)
-"ss" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/thunderdome/two,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
-"sw" = (
-/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/tdome)
+"sG" = (
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
 "sO" = (
@@ -3010,32 +3060,18 @@
 	icon_state = "red"
 	},
 /area/centcom)
-"ud" = (
-/obj/machinery/light{
-	dir = 1
+"tn" = (
+/turf/open/floor/mainship/mono,
+/area/tdome)
+"tF" = (
+/obj/structure/prop/mainship/hangar_stencil{
+	icon_state = "dropship2"
 	},
 /turf/open/floor/mainship{
-	icon_state = "plating_striped";
-	dir = 4
-	},
-/area/tdome/tdome1)
-"uh" = (
-/obj/structure/closet/radiation,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "blue"
-	},
-/area/tdome/tdomeadmin)
-"uK" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
+	icon_state = "plating";
 	dir = 5
 	},
-/area/tdome)
-"va" = (
-/obj/structure/platform_decoration,
-/turf/open/floor/mainship,
-/area/tdome)
+/area/tdome/tdome2)
 "wm" = (
 /obj/machinery/light{
 	dir = 1
@@ -3048,39 +3084,8 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom/control)
-"wB" = (
-/obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 1
-	},
-/obj/effect/landmark/thunderdome/admin,
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "blue"
-	},
-/area/tdome/tdomeadmin)
-"wU" = (
-/obj/structure/bed/chair/sofa/right,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"xo" = (
-/obj/structure/prop/mainship/hangar_stencil{
-	icon_state = "dropship2"
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
-"xr" = (
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+"wZ" = (
+/turf/open/floor/stairs/rampbottom,
 /area/tdome/tdomeadmin)
 "xw" = (
 /obj/machinery/light{
@@ -3088,6 +3093,33 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom)
+"yl" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/thunderdome/two,
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome2)
+"yo" = (
+/obj/structure/bed/chair/sofa/left{
+	icon_state = "sofaend_left";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
+"yA" = (
+/turf/open/floor/carpet{
+	icon_state = "carpetside";
+	dir = 8
+	},
+/area/tdome/tdomeobserve)
 "yG" = (
 /obj/machinery/light{
 	dir = 1
@@ -3103,52 +3135,53 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom/ferry)
+"yR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "plating_striped";
+	dir = 8
+	},
+/area/tdome/tdome2)
 "yW" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/centcom)
-"zg" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/wood,
-/area/tdome/tdomeobserve)
 "zk" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/grass,
 /area/centcom)
-"zE" = (
-/turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 1
-	},
-/area/tdome/tdomeobserve)
+"zx" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/mainship,
+/area/tdome)
 "zQ" = (
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "redcorner"
 	},
 /area/centcom)
-"Ah" = (
-/obj/structure/bed/chair/sofa{
-	icon_state = "sofamiddle";
-	dir = 8
+"Ae" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
 	},
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"AH" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
-	dir = 8
-	},
+/turf/open/floor/mainship,
 /area/tdome)
+"Ag" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/tdome/tdomeadmin)
+"Aj" = (
+/obj/machinery/light,
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
+	},
+/turf/open/floor/mainship/mono,
+/area/tdome/tdomeadmin)
 "AS" = (
 /obj/machinery/light{
 	dir = 4
@@ -3159,25 +3192,24 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/centcom)
-"Cc" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/tdome)
-"Cf" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/tdome)
-"Ck" = (
-/obj/machinery/light{
-	dir = 4
-	},
+"Bn" = (
+/obj/structure/table/mainship,
 /turf/open/floor/mainship{
-	dir = 4;
+	dir = 6;
 	icon_state = "blue"
 	},
 /area/tdome/tdomeadmin)
+"Cf" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/tdome)
+"CS" = (
+/obj/structure/bed/chair/sofa{
+	icon_state = "sofamiddle";
+	dir = 8
+	},
+/obj/effect/landmark/thunderdome/observe,
+/turf/open/floor/carpet,
+/area/tdome/tdomeobserve)
 "DK" = (
 /obj/machinery/light,
 /turf/open/floor/mainship{
@@ -3185,20 +3217,18 @@
 	icon_state = "tcomms"
 	},
 /area/centcom/control)
-"DZ" = (
-/turf/closed/wall/mainship/outer,
-/area/tdome)
-"Eh" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/light{
-	dir = 4
+"DL" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
+	dir = 1
 	},
-/turf/open/floor/grass,
-/area/centcom)
-"EC" = (
-/turf/open/floor/mainship/terragov/north,
-/area/tdome)
-"Fg" = (
+/obj/effect/landmark/thunderdome/one,
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome1)
+"DS" = (
 /obj/structure/bed/chair/sofa/left,
 /obj/machinery/light{
 	dir = 1
@@ -3206,74 +3236,121 @@
 /obj/effect/landmark/thunderdome/observe,
 /turf/open/floor/carpet,
 /area/tdome/tdomeobserve)
+"Eh" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/centcom)
+"EP" = (
+/obj/machinery/cryopod/right,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
 "Fi" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/tdome)
-"FC" = (
-/obj/structure/table/gamblingtable,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"FL" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
+"Fn" = (
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/thunderdome/two,
 /turf/open/floor/mainship{
 	icon_state = "plating";
 	dir = 5
 	},
 /area/tdome/tdome2)
-"Ia" = (
-/obj/machinery/light,
+"Fy" = (
+/obj/machinery/door/poddoor/two_tile_ver/thunderdome1,
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/tdome)
+"Gd" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 8
+	},
+/area/tdome)
+"Gt" = (
+/obj/machinery/door/poddoor/two_tile_ver/thunderdome2,
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/tdome)
+"Gu" = (
 /turf/open/floor/mainship{
 	icon_state = "plating_striped";
 	dir = 4
 	},
 /area/tdome/tdome1)
-"Iv" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/tdome/tdomeadmin)
-"IC" = (
-/turf/open/floor/mainship/terragov/north{
-	icon_state = "logo_directional_north";
-	dir = 9
-	},
+"Gy" = (
+/turf/open/floor/mainship/terragov/north,
 /area/tdome)
+"GA" = (
+/turf/open/floor/stairs/rampbottom{
+	icon_state = "rampbottom";
+	dir = 1
+	},
+/area/tdome/tdomeobserve)
+"Hh" = (
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome2)
+"Hw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
 "Je" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/centcom)
-"JB" = (
-/obj/machinery/door/poddoor/two_tile_ver/thunderdome2,
+"Jh" = (
+/obj/machinery/light,
 /turf/open/floor/mainship{
-	icon_state = "test_floor4"
+	icon_state = "plating_striped";
+	dir = 8
 	},
-/area/tdome)
+/area/tdome/tdome2)
 "JO" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
-"Kl" = (
-/turf/open/floor/mainship/terragov{
-	icon_state = "logo_central";
-	dir = 1
+"KZ" = (
+/obj/effect/forcefield{
+	desc = "You can't get in. Heh.";
+	name = "Blocker"
 	},
-/area/tdome)
-"KT" = (
-/turf/open/floor/mainship/mono,
-/area/tdome)
-"LI" = (
+/turf/open/floor/wood,
+/area/tdome/tdomeobserve)
+"Lv" = (
 /turf/open/floor/mainship/terragov/north{
 	icon_state = "logo_directional_north";
 	dir = 10
 	},
 /area/tdome)
+"LI" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
 "LM" = (
 /obj/machinery/light{
 	dir = 4
@@ -3287,17 +3364,11 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/centcom/ferry)
-"Mb" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/tdome)
-"Mg" = (
-/obj/structure/platform_decoration{
-	icon_state = "platform_deco";
+"LW" = (
+/turf/open/floor/mainship/terragov{
+	icon_state = "logo_central";
 	dir = 1
 	},
-/turf/open/floor/mainship,
 /area/tdome)
 "MS" = (
 /obj/structure/flora/pottedplant{
@@ -3305,13 +3376,8 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom)
-"NE" = (
-/turf/open/floor/stairs/rampbottom,
-/area/tdome/tdomeadmin)
-"NZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
+"Nv" = (
+/obj/structure/closet/radiation,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
@@ -3323,43 +3389,31 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
-"Ov" = (
-/obj/machinery/door/poddoor/two_tile_ver/thunderdome1,
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/tdome)
 "OG" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"Ps" = (
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome1)
 "Pw" = (
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "redcorner"
 	},
 /area/centcom)
-"PU" = (
-/obj/structure/table/mainship,
+"PD" = (
+/obj/machinery/light,
 /turf/open/floor/mainship{
-	dir = 6;
 	icon_state = "blue"
 	},
 /area/tdome/tdomeadmin)
-"Qs" = (
-/obj/machinery/light,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
+"PW" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/closed/wall/mainship/outer,
+/area/tdome)
+"Qq" = (
+/turf/open/floor/mainship{
+	icon_state = "plating_striped";
+	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/tdome/tdomeadmin)
+/area/tdome/tdome2)
 "QN" = (
 /obj/docking_port/stationary/crashmode/loading,
 /turf/open/space,
@@ -3370,109 +3424,46 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
-"Rs" = (
-/turf/open/floor/mainship{
-	icon_state = "plating_striped";
-	dir = 4
+"RM" = (
+/obj/structure/bed/chair/comfy{
+	icon_state = "comfychair";
+	dir = 1
 	},
-/area/tdome/tdome1)
-"Ry" = (
-/obj/machinery/light,
+/obj/effect/landmark/thunderdome/admin,
 /turf/open/floor/mainship{
-	icon_state = "plating_striped";
-	dir = 8
-	},
-/area/tdome/tdome2)
-"Rz" = (
-/obj/structure/closet/firecloset/full,
-/turf/open/floor/mainship{
-	dir = 1;
+	dir = 5;
 	icon_state = "blue"
 	},
 /area/tdome/tdomeadmin)
-"RA" = (
-/obj/structure/bed/chair/sofa/corner,
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"SQ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside";
+"Sb" = (
+/obj/machinery/light{
 	dir = 4
 	},
-/area/tdome/tdomeobserve)
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/tdome/tdomeadmin)
 "TC" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
 	icon_state = "test_floor5"
 	},
 /area/centcom/supply)
-"Uj" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/tdome)
-"UF" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/obj/effect/landmark/thunderdome/two,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
-"UJ" = (
-/obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/effect/landmark/thunderdome/one,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome1)
-"Vs" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "blue"
-	},
-/area/tdome/tdomeadmin)
-"VE" = (
-/obj/effect/landmark/ai_multicam_room,
-/turf/open/ai_visible,
-/area/ai_multicam_room)
-"VI" = (
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/tdome/tdome2)
-"VY" = (
+"TL" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/tdome/tdomeobserve)
-"Wf" = (
-/obj/structure/platform,
-/turf/open/floor/mainship/mono,
-/area/tdome)
-"Wg" = (
-/obj/structure/closet/walllocker/medical_wall{
-	icon_state = "medical_wall";
-	dir = 8
-	},
+"VE" = (
+/obj/effect/landmark/ai_multicam_room,
+/turf/open/ai_visible,
+/area/ai_multicam_room)
+"VT" = (
+/obj/structure/table/mainship,
 /turf/open/floor/mainship{
-	dir = 4;
 	icon_state = "blue"
 	},
 /area/tdome/tdomeadmin)
@@ -3482,45 +3473,47 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom/supply)
-"WB" = (
-/obj/machinery/light{
+"WO" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 9
+	},
+/area/tdome)
+"WU" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 5
+	},
+/area/tdome)
+"Xr" = (
+/obj/structure/bed/chair/dropship/passenger{
+	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/tdome)
-"WT" = (
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"Xl" = (
-/obj/structure/bed/chair/sofa/left{
-	icon_state = "sofaend_left";
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/thunderdome/observe,
-/turf/open/floor/carpet,
-/area/tdome/tdomeobserve)
-"Xo" = (
-/obj/structure/closet/toolcloset,
+/obj/effect/landmark/thunderdome/two,
 /turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "blue"
+	icon_state = "plating";
+	dir = 5
 	},
-/area/tdome/tdomeadmin)
-"Xs" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
-/area/tdome/tdomeadmin)
+/area/tdome/tdome2)
 "Xu" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/centcom)
+"XK" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 6
+	},
+/area/tdome)
+"XM" = (
+/turf/open/floor/mainship/terragov/north{
+	icon_state = "logo_directional_north";
+	dir = 4
+	},
+/area/tdome)
 "XV" = (
 /obj/machinery/light,
 /turf/open/floor/mainship{
@@ -3533,6 +3526,13 @@
 	},
 /turf/open/floor/grass,
 /area/centcom)
+"Yo" = (
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "plating";
+	dir = 5
+	},
+/area/tdome/tdome1)
 "YR" = (
 /obj/machinery/light{
 	dir = 1
@@ -4432,15 +4432,15 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
+os
+os
+os
+os
+os
+os
+os
+os
+os
 aa
 aa
 aa
@@ -4534,15 +4534,15 @@ aa
 aa
 aa
 aa
-DZ
+os
 aD
 aK
 aK
 aK
 aK
 aK
-Ps
-DZ
+Yo
+os
 aa
 aa
 aa
@@ -4636,15 +4636,15 @@ aa
 aa
 aa
 aa
-DZ
+os
 aE
-fR
-fR
-fR
+rU
+rU
+rU
 dj
-fR
-UJ
-DZ
+rU
+DL
+os
 aa
 aa
 aa
@@ -4738,15 +4738,15 @@ aa
 aa
 aa
 aa
-DZ
+os
 aE
-fR
-fR
-fR
-fR
-fR
-UJ
-DZ
+rU
+rU
+rU
+rU
+rU
+DL
+os
 aa
 aa
 aa
@@ -4840,15 +4840,15 @@ aa
 aa
 aa
 aa
-DZ
+os
 aE
-fR
-fR
-fR
-fR
-fR
-UJ
-DZ
+rU
+rU
+rU
+rU
+rU
+DL
+os
 aa
 aa
 aa
@@ -4942,15 +4942,15 @@ aa
 aa
 aa
 aa
-DZ
-ud
-Rs
-Rs
-Rs
-Rs
-Rs
-Ia
-DZ
+os
+gA
+Gu
+Gu
+Gu
+Gu
+Gu
+eU
+os
 aa
 aa
 aa
@@ -5043,17 +5043,17 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-Mb
-Ov
-DZ
-Mb
-Ov
-DZ
-DZ
-DZ
+os
+os
+os
+hl
+Fy
+os
+hl
+Fy
+os
+os
+os
 aa
 aa
 aa
@@ -5145,17 +5145,17 @@ aa
 aa
 aa
 aa
-DZ
+os
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-DZ
+os
 aa
 aa
 aa
@@ -5247,17 +5247,17 @@ aa
 aa
 aa
 aa
-DZ
-WB
+os
+dh
 Cf
 Cf
 aA
-KT
+tn
 aA
 Cf
 Cf
 Fi
-DZ
+os
 aa
 aa
 aa
@@ -5349,17 +5349,17 @@ aa
 aa
 aa
 aa
-DZ
+os
 aA
 Cf
 aA
 aA
-KT
+tn
 aA
 aA
 Cf
 aA
-DZ
+os
 aa
 aa
 aa
@@ -5446,22 +5446,22 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-WB
+os
+os
+os
+os
+os
+os
+dh
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 Fi
-DZ
+os
 aa
 aa
 aa
@@ -5548,27 +5548,27 @@ aa
 aa
 aa
 aa
-DZ
+os
 ab
 ai
 ao
-WT
-ef
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
+os
+os
+os
+os
+os
+os
 aa
 aa
 aa
@@ -5650,27 +5650,27 @@ aa
 aa
 aa
 aa
-DZ
-io
-WT
-WT
-WT
-ef
+os
+iN
+hD
+hD
+hD
+PW
 aA
 aA
 aA
-KT
-KT
+tn
+tn
 aA
 aA
 aA
 aA
-ef
+PW
 bo
-Vs
+Hw
 by
 bJ
-DZ
+os
 aa
 aa
 aa
@@ -5752,27 +5752,27 @@ aa
 aa
 aa
 aa
-DZ
-Fg
-WT
-FC
-WT
-ef
+os
+DS
+hD
+ii
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-ef
-ib
-ot
-ot
+PW
+jO
+jD
+jD
 bB
-DZ
+os
 aa
 aa
 aa
@@ -5854,27 +5854,27 @@ aa
 aa
 aa
 aa
-DZ
-WT
-WT
-WT
-WT
-ef
+os
+hD
+hD
+hD
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
 aB
 br
-ot
-ot
+jD
+jD
 bK
-DZ
+os
 aa
 aa
 aa
@@ -5956,27 +5956,27 @@ aa
 aa
 aa
 aa
-DZ
-SQ
-SQ
-SQ
-SQ
-ef
-Cc
-Cc
+os
+kg
+kg
+kg
+kg
+PW
+hd
+hd
 aL
 aA
-KT
+tn
 aA
-va
-Cc
-Cc
-DZ
+zx
+hd
+hd
+os
 bn
-ot
-ot
+jD
+jD
 bL
-DZ
+os
 aa
 aa
 aa
@@ -6058,27 +6058,27 @@ aa
 aa
 aa
 aa
-DZ
-ga
-kf
-kf
-kf
-DZ
-zg
-gC
+os
+EP
+sG
+sG
+sG
+os
+go
+KZ
 aJ
-KT
-KT
-KT
-Wf
-dO
-Qs
-DZ
-Rz
-Iv
-ot
+tn
+tn
+tn
+gD
+iP
+Aj
+os
+hC
+Ag
+jD
 bL
-DZ
+os
 aa
 aa
 aa
@@ -6160,27 +6160,27 @@ aa
 aa
 aa
 aa
-DZ
-og
-kf
-kf
-sw
-DZ
+os
+dV
+sG
+sG
+jZ
+os
 az
-gC
+KZ
 aJ
-IC
-AH
-LI
-Wf
-dO
+WO
+Gd
+Lv
+gD
+iP
 ZY
-DZ
-NZ
-Iv
-ot
+os
+em
+Ag
+jD
 bL
-DZ
+os
 aa
 aa
 aa
@@ -6262,27 +6262,27 @@ aa
 aa
 aa
 aa
-DZ
-kf
-kf
-kf
-kf
-zE
-kf
-gC
+os
+sG
+sG
+sG
+sG
+GA
+sG
+KZ
 aJ
-qY
-Kl
-EC
-Wf
-dO
-ot
-NE
+dI
+LW
+Gy
+gD
+iP
+jD
+wZ
 br
-ot
-ot
-xr
-DZ
+jD
+jD
+PD
+os
 aa
 aa
 aa
@@ -6364,27 +6364,27 @@ aa
 aa
 aa
 aa
-DZ
-og
-kf
-kf
-sw
-DZ
+os
+dV
+sG
+sG
+jZ
+os
 az
-gC
+KZ
 aJ
-uK
-oq
-hG
-Wf
-dO
+WU
+XM
+XK
+gD
+iP
 ZY
-DZ
-NZ
-Iv
-ot
-Xs
-DZ
+os
+em
+Ag
+jD
+VT
+os
 aa
 aa
 aa
@@ -6466,27 +6466,27 @@ aa
 aa
 aa
 aa
-DZ
-VY
-kf
-kf
-kf
-DZ
-zg
-gC
+os
+TL
+sG
+sG
+sG
+os
+go
+KZ
 aJ
-KT
-KT
-KT
-Wf
-dO
-Qs
-DZ
-Xo
-Iv
-ot
-Xs
-DZ
+tn
+tn
+tn
+gD
+iP
+Aj
+os
+LI
+Ag
+jD
+VT
+os
 aa
 aa
 aa
@@ -6568,27 +6568,27 @@ aa
 aa
 aa
 aa
-DZ
-il
-il
-il
-il
-ef
-Uj
-Uj
+os
+yA
+yA
+yA
+yA
+PW
+sk
+sk
 aM
 aA
-KT
+tn
 aA
-Mg
-Uj
-Uj
-DZ
-uh
-ot
-ot
-Xs
-DZ
+Ae
+sk
+sk
+os
+Nv
+jD
+jD
+VT
+os
 aa
 aa
 aa
@@ -6670,27 +6670,27 @@ aa
 aa
 aa
 aa
-DZ
-WT
-WT
-WT
-WT
-ef
+os
+hD
+hD
+hD
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
 aB
 br
-ot
-ot
-Xs
-DZ
+jD
+jD
+VT
+os
 aa
 aa
 aa
@@ -6772,27 +6772,27 @@ aa
 aa
 aa
 aa
-DZ
-wU
-WT
-FC
-WT
-ef
+os
+oh
+hD
+ii
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-ef
-ib
-ot
-ot
-Xs
-DZ
+PW
+jO
+jD
+jD
+VT
+os
 aa
 aa
 aa
@@ -6874,27 +6874,27 @@ aa
 aa
 aa
 aa
-DZ
-io
-WT
-WT
-WT
-ef
+os
+iN
+hD
+hD
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-ef
-wB
-Ck
-Wg
-PU
-DZ
+PW
+RM
+Sb
+rC
+Bn
+os
 aa
 aa
 aa
@@ -6976,27 +6976,27 @@ aa
 aa
 aa
 aa
-DZ
-RA
-Ah
-Xl
-WT
-ef
+os
+mn
+CS
+yo
+hD
+PW
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
+os
+os
+os
+os
+os
+os
 aa
 aa
 aa
@@ -7078,22 +7078,22 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-WB
+os
+os
+os
+os
+os
+os
+dh
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 Fi
-DZ
+os
 aa
 aa
 aa
@@ -7185,17 +7185,17 @@ aa
 aa
 aa
 aa
-DZ
+os
 aA
 Cf
 aA
 aA
-KT
+tn
 aA
 aA
 Cf
 aA
-DZ
+os
 aa
 aa
 aa
@@ -7287,17 +7287,17 @@ aa
 aa
 aa
 aa
-DZ
-WB
+os
+dh
 Cf
 Cf
 aA
-KT
+tn
 aA
 Cf
 Cf
 Fi
-DZ
+os
 aa
 aa
 aa
@@ -7389,17 +7389,17 @@ aa
 aa
 aa
 aa
-DZ
+os
 aA
 aA
 aA
 aA
-KT
+tn
 aA
 aA
 aA
 aA
-DZ
+os
 aa
 aa
 aa
@@ -7491,17 +7491,17 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-Mb
-JB
-DZ
-Mb
-JB
-DZ
-DZ
-DZ
+os
+os
+os
+hl
+Gt
+os
+hl
+Gt
+os
+os
+os
 aa
 aa
 aa
@@ -7594,15 +7594,15 @@ aa
 aa
 aa
 aa
-DZ
-jx
-sr
-sr
-sr
-sr
-sr
-Ry
-DZ
+os
+yR
+Qq
+Qq
+Qq
+Qq
+Qq
+Jh
+os
 aa
 aa
 aa
@@ -7696,15 +7696,15 @@ aa
 aa
 aa
 aa
-DZ
-ss
-kk
-kk
-kk
-xo
-kk
-FL
-DZ
+os
+es
+du
+du
+du
+tF
+du
+Xr
+os
 aa
 aa
 aa
@@ -7798,15 +7798,15 @@ aa
 aa
 aa
 aa
-DZ
-ss
-kk
-kk
-kk
-kk
-kk
-FL
-DZ
+os
+es
+du
+du
+du
+du
+du
+Xr
+os
 aa
 aa
 aa
@@ -7900,15 +7900,15 @@ aa
 aa
 aa
 aa
-DZ
-ss
-kk
-kk
-kk
-kk
-kk
-FL
-DZ
+os
+es
+du
+du
+du
+du
+du
+Xr
+os
 aa
 aa
 aa
@@ -8002,15 +8002,15 @@ aa
 aa
 aa
 aa
-DZ
-fq
-UF
-UF
-UF
-UF
-UF
-VI
-DZ
+os
+Fn
+yl
+yl
+yl
+yl
+yl
+Hh
+os
 aa
 aa
 aa
@@ -8104,15 +8104,15 @@ aa
 aa
 aa
 aa
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
-DZ
+os
+os
+os
+os
+os
+os
+os
+os
+os
 aa
 aa
 aa
