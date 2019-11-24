@@ -128,12 +128,12 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if (href_list["UP"])
 		do_orbit_checks("UP")
 		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 
 	else if (href_list["DOWN"])
 		do_orbit_checks("DOWN")
 		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 5 MINUTES)
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 
 	else if (href_list["escape"])
 
@@ -153,6 +153,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
 	if(cooldown)
+		to_chat(usr, "The ship is currently recalculating based on previous selection.")
 		return FALSE
 	if(changing_orbit)
 		to_chat(usr, "The ship is currently changing orbit.")
@@ -161,7 +162,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
-		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. ")
+		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. RETURNING TO SAFE ORBIT")
 		return FALSE
 	if(get_power_amount() <= 500000)
 		return FALSE
