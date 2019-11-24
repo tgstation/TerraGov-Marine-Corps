@@ -1,0 +1,4 @@
+author: "Terranaut & Ceyella"
+delete-after: True
+changes: 
+  - bugfix: "synths no longer acquire a sixth sense after being dead for too long"
