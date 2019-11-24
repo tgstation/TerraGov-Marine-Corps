@@ -36,6 +36,8 @@
 		E.fire_act()
 	for(var/obj/structure/bed/nest/N in loc)//Nests
 		N.fire_act()
+	for(var/turf/open/floor/plating/ground/snow/S in loc)//Snow
+		S.fire_act()
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)
 	..()

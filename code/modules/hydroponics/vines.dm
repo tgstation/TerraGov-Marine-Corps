@@ -126,6 +126,7 @@
 			var/mob/living/carbon/V = locate() in src.loc
 			if(V && (V.stat != DEAD) && (V.buckled != src)) // If mob exists and is not dead or captured.
 				V.buckled = src
+				V.glide_modifier_flags |= GLIDE_MOD_BUCKLED
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V

@@ -3,10 +3,9 @@
 
 /datum/component/dripping
 	dupe_mode = COMPONENT_DUPE_ALLOWED
-	var/drip_counter = 1
+	var/drip_counter
 	var/drip_limit
 	var/drip_ratio
-	var/dripping_timer
 	var/dripped_type = /obj/effect/decal/cleanable/blood/drip/tracking_fluid
 
 
@@ -21,18 +20,19 @@
 	src.drip_ratio = drip_ratio
 	switch(drip_mode)
 		if(DRIP_ON_WALK)
+			drip_counter = 1
 			src.drip_limit = drip_limit
 			RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/drip_on_walk)
 		if(DRIP_ON_TIME)
-			src.drip_limit = drip_limit + world.time
-			dripping_timer = addtimer(CALLBACK(src, .proc/timed_drip), drip_ratio, TIMER_STOPPABLE|TIMER_LOOP)
+			drip_counter = world.time
+			src.drip_limit = world.time + drip_limit
+			START_PROCESSING(SSprocessing, src)
 		else
 			return COMPONENT_INCOMPATIBLE
 
 
 /datum/component/dripping/Destroy(force, silent)
-	if(dripping_timer)
-		deltimer(dripping_timer)
+	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
 
@@ -47,8 +47,14 @@
 		qdel(src)
 
 
-/datum/component/dripping/proc/timed_drip()
+/datum/component/dripping/process()
 	var/mob/living/dripper = parent
+	if(world.time > drip_limit)
+		qdel(src)
+		return
+	if(world.time < drip_counter)
+		return
+	drip_counter += drip_ratio
 	if(!isturf(dripper.loc))
 		return
 	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)

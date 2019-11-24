@@ -9,7 +9,7 @@
 /datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	C.hud_set_squad()
-	C.nutrition = rand(60,250)
+	C.set_nutrition(rand(60, 250))
 	if(!C.mind?.assigned_squad)
 		return
 	var/datum/squad/S = C.mind.assigned_squad

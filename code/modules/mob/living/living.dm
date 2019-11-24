@@ -27,7 +27,6 @@
 
 
 /mob/living/proc/handle_organs()
-	reagent_move_delay_modifier = 0
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
 
@@ -293,25 +292,7 @@
 	if(hud_used?.pull_icon)
 		hud_used.pull_icon.icon_state = "pull0"
 
-
-/mob/living/movement_delay()
-
-	. = ..()
-
-	if (do_bump_delay)
-		. += 10
-		do_bump_delay = 0
-
-	if (drowsyness > 0)
-		. += 6
-
-	if(pulling?.drag_delay)	//Dragging stuff can slow you down a bit.
-		var/pull_delay = pulling.drag_delay
-		if(ismob(pulling))
-			var/mob/M = pulling
-			if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
-				pull_delay = M.buckled.drag_delay
-		. += max(pull_speed + pull_delay + 3 * grab_level, 0) //harder grab makes you slower
+	update_pull_movespeed()
 
 
 /mob/living/is_injectable(allowmobs = TRUE)
@@ -415,7 +396,7 @@
 				return
 	if(pulling == AM)
 		stop_pulling()
-	step(AM, t)
+	AM.Move(get_step(AM.loc, t), t, glide_size)
 	now_pushing = FALSE
 
 

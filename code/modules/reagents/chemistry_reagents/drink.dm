@@ -19,7 +19,7 @@
 	if(adj_dizzy != 0)
 		L.dizzy(adj_dizzy)
 	if(adj_drowsy != 0)
-		L.drowsyness = max(0,L.drowsyness + adj_drowsy)
+		L.adjustDrowsyness(adj_drowsy)
 	if(adj_sleepy != 0)
 		L.adjust_sleeping(adj_sleepy)
 	return ..()
@@ -449,7 +449,7 @@
 	L.slurring += 2
 	switch(current_cycle)
 		if(40 to 49)
-			L.drowsyness += 2
+			L.adjustDrowsyness(2)
 		if(51 to 200)
 			L.sleeping(3)
 		if(201 to INFINITY)
