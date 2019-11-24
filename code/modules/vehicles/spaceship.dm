@@ -162,7 +162,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
-		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. RETURNING TO SAFE ORBIT")
+		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.")
 		return FALSE
 	if(get_power_amount() <= 500000)
 		return FALSE
