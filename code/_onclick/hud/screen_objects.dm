@@ -14,11 +14,6 @@
 	return ..()
 
 
-/obj/screen/examine(mob/user)
-	SHOULD_CALL_PARENT(0)
-	return
-
-
 /obj/screen/proc/component_click(obj/screen/component_button/component, params)
 	return
 

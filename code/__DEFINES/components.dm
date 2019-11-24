@@ -67,10 +67,6 @@
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 
-#define COMPONENT_SUIT_AUTODOC_TOGGLE "suit_autodoc_toggle"	//from /datum/action/suit_autodoc_toggle/action_activate(): (mob/owner)
-#define COMPONENT_SUIT_AUTODOC_SCAN "suit_autodoc_scan"		//from /datum/action/suit_autodoc_scan/action_activate(): (mob/owner)
-#define COMPONENT_SUIT_AUTODOC_CONFIGURE "suit_autodoc_configure"	//from /datum/action/suit_autodoc_configure/action_activate(): (mob/owner)
-
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)

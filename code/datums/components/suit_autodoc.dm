@@ -1,3 +1,6 @@
+#define SUIT_AUTODOC_DAM_MIN 50
+#define SUIT_AUTODOC_DAM_MAX 150
+
 /datum/component/suit_autodoc
 	var/obj/item/healthanalyzer/integrated/analyzer
 
@@ -37,13 +40,14 @@
 	var/datum/action/suit_autodoc_scan/scan_action
 	var/datum/action/suit_autodoc_configure/configure_action
 
-/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems)
+	var/mob/living/carbon/wearer
+
+	var/overdose_threshold_mod = 0.5
+
+/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems, overdose_threshold_mod)
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
 	analyzer = new
-	toggle_action = new(parent)
-	scan_action = new(parent)
-	configure_action = new(parent)
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
 	if(islist(burn_chems))
@@ -56,32 +60,42 @@
 		src.tox_chems = tox_chems
 	if(islist(pain_chems))
 		src.pain_chems = pain_chems
+	if(!isnull(overdose_threshold_mod))
+		src.overdose_threshold_mod = overdose_threshold_mod
 
 /datum/component/suit_autodoc/Destroy(force, silent)
 	QDEL_NULL(analyzer)
 	QDEL_NULL(toggle_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(configure_action)
+	wearer = null
 	return ..()
 
 /datum/component/suit_autodoc/RegisterWithParent()
 	. = ..()
+	toggle_action = new(parent)
+	scan_action = new(parent)
+	configure_action = new(parent)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
-	RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/dropped)
-	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/equipped)
-	RegisterSignal(parent, COMPONENT_SUIT_AUTODOC_TOGGLE, .proc/action_toggle)
-	RegisterSignal(parent, COMPONENT_SUIT_AUTODOC_SCAN, .proc/scan_user)
-	RegisterSignal(parent, COMPONENT_SUIT_AUTODOC_CONFIGURE, .proc/configure)
+	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/action_toggle)
+	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
+	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
 
 /datum/component/suit_autodoc/UnregisterFromParent()
+	. = ..()
 	UnregisterSignal(parent, list(
 		COMSIG_PARENT_EXAMINE,
+		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
-		COMSIG_ITEM_EQUIPPED,
-		COMPONENT_SUIT_AUTODOC_TOGGLE,
-		COMPONENT_SUIT_AUTODOC_SCAN,
-		COMPONENT_SUIT_AUTODOC_CONFIGURE))
-	return ..()
+		COMSIG_ITEM_EQUIPPED_TO_SLOT))
+	UnregisterSignal(toggle_action, COMSIG_ACTION_TRIGGER)
+	UnregisterSignal(scan_action, COMSIG_ACTION_TRIGGER)
+	UnregisterSignal(configure_action, COMSIG_ACTION_TRIGGER)
+	QDEL_NULL(toggle_action)
+	QDEL_NULL(scan_action)
+	QDEL_NULL(configure_action)
 
 /datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
 	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
@@ -110,39 +124,39 @@
 		to_chat(user, "<span class='danger'>[details]</span>")
 
 /datum/component/suit_autodoc/proc/dropped(datum/source, mob/user)
-	remove_actions(user)
-	disable(user)
+	if(!iscarbon(user))
+		return
+	remove_actions()
+	disable()
+	wearer = null
 
 /datum/component/suit_autodoc/proc/equipped(datum/source, mob/equipper, slot)
-	var/obj/item/I = parent
-	if(slotdefine2slotbit(slot) & I.flags_equip_slot)
-		if(ishuman(equipper) && !enabled)
-			give_actions(equipper)
-			enable(equipper)
+	if(!iscarbon(equipper)) // living can equip stuff but only carbon has traumatic shock
 		return
-	if(enabled)
-		disable(equipper)
+	wearer = equipper
+	enable()
+	give_actions()
 
-/datum/component/suit_autodoc/proc/disable(mob/user, silent = FALSE)
+/datum/component/suit_autodoc/proc/disable(silent = FALSE)
 	if(!enabled)
 		return
 	enabled = FALSE
 	toggle_action.remove_selected_frame()
-	UnregisterSignals(user)
+	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(user, "<span class='warning'>[parent] lets out a beep as its automedical suite deactivates.</span>")
+		to_chat(wearer, "<span class='warning'>[parent] lets out a beep as its automedical suite deactivates.</span>")
 		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
 
-/datum/component/suit_autodoc/proc/enable(mob/user, silent = FALSE)
+/datum/component/suit_autodoc/proc/enable(silent = FALSE)
 	if(enabled)
 		return
 	enabled = TRUE
 	toggle_action.add_selected_frame()
-	RegisterSignals(user)
+	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
 	if(!silent)
-		to_chat(user, "<span class='notice'>[parent] lets out a hum as its automedical suite activates.</span>")
+		to_chat(wearer, "<span class='notice'>[parent] lets out a hum as its automedical suite activates.</span>")
 		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 /datum/component/suit_autodoc/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
@@ -150,8 +164,6 @@
 
 /datum/component/suit_autodoc/process()
 	treat_injuries()
-
-#define OVERDOSE_THRESHOLD_MODIFIER 0.5
 
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, nextuse, damage, threshold, message_prefix)
 	if(!length(chems) || nextuse > world.time || damage < threshold)
@@ -164,7 +176,7 @@
 		var/amount_to_administer = CLAMP(\
 									initial(R.overdose_threshold) - H.reagents.get_reagent_amount(R),\
 									0,\
-									initial(R.overdose_threshold) * OVERDOSE_THRESHOLD_MODIFIER)
+									initial(R.overdose_threshold) * overdose_threshold_mod)
 		if(amount_to_administer)
 			H.reagents.add_reagent(R, amount_to_administer)
 			drugs += " [initial(R.name)]: [amount_to_administer]U"
@@ -172,38 +184,34 @@
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
 
-#undef OVERDOSE_THRESHOLD_MODIFIER
-
 /datum/component/suit_autodoc/proc/treat_injuries()
-	var/obj/item/I = parent // guarenteed by Initialize()
-	var/mob/living/carbon/human/H = I.loc // uncertain
-	if(!istype(H))
-		return
+	if(!wearer)
+		CRASH("attempting to treat_injuries with no wearer")
 
-	var/burns = inject_chems(burn_chems, H, burn_nextuse, H.getFireLoss(), damage_threshold, "Significant tissue burns detected. Restorative injection")
+	var/burns = inject_chems(burn_chems, wearer, burn_nextuse, wearer.getFireLoss(), damage_threshold, "Significant tissue burns detected. Restorative injection")
 	if(burns)
 		burn_nextuse = world.time + chem_cooldown
 		addtimer(CALLBACK(src, .proc/nextuse_ready, "Burn treatment"), chem_cooldown)
-	var/brute = inject_chems(brute_chems, H, brute_nextuse, H.getBruteLoss(), damage_threshold, "Significant tissue burns detected. Restorative injection")
+	var/brute = inject_chems(brute_chems, wearer, brute_nextuse, wearer.getBruteLoss(), damage_threshold, "Significant tissue burns detected. Restorative injection")
 	if(brute)
 		brute_nextuse = world.time + chem_cooldown
 		addtimer(CALLBACK(src, .proc/nextuse_ready, "Trauma treatment"), chem_cooldown)
-	var/oxy = inject_chems(oxy_chems, H, oxy_nextuse, H.getOxyLoss(), damage_threshold, "Low blood oxygen detected. Reoxygenating preparation")
+	var/oxy = inject_chems(oxy_chems, wearer, oxy_nextuse, wearer.getOxyLoss(), damage_threshold, "Low blood oxygen detected. Reoxygenating preparation")
 	if(oxy)
 		oxy_nextuse = world.time + chem_cooldown
 		addtimer(CALLBACK(src, .proc/nextuse_ready, "Oxygenation treatment"), chem_cooldown)
-	var/tox = inject_chems(tox_chems, H, tox_nextuse, H.getToxLoss(), damage_threshold, "Significant blood toxicity detected. Chelating agents and curatives")
+	var/tox = inject_chems(tox_chems, wearer, tox_nextuse, wearer.getToxLoss(), damage_threshold, "Significant blood toxicity detected. Chelating agents and curatives")
 	if(tox)
 		tox_nextuse = world.time + chem_cooldown
 		addtimer(CALLBACK(src, .proc/nextuse_ready, "Toxicity treatment"), chem_cooldown)
-	var/pain = inject_chems(pain_chems, H, pain_nextuse, H.traumatic_shock, pain_threshold, "User pain at performance impeding levels. Painkillers")
+	var/pain = inject_chems(pain_chems, wearer, pain_nextuse, wearer.traumatic_shock, pain_threshold, "User pain at performance impeding levels. Painkillers")
 	if(pain)
 		pain_nextuse = world.time + chem_cooldown
 		addtimer(CALLBACK(src, .proc/nextuse_ready, "Painkiller"), chem_cooldown)
 
 	if(burns || brute || oxy || tox || pain)
-		playsound(I,'sound/items/hypospray.ogg', 25, 0, 1)
-		to_chat(H, "<span class='notice'>[icon2html(I, H)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
+		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
+		to_chat(wearer, "<span class='notice'>[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
 
 /datum/component/suit_autodoc/proc/nextuse_ready(message)
 
@@ -217,58 +225,55 @@
 
 	to_chat(H, "<span class='notice'>[I] beeps: [message] reservoir replenished.</span>")
 
-/datum/component/suit_autodoc/proc/give_actions(mob/user)
-	toggle_action.give_action(user)
-	scan_action.give_action(user)
-	configure_action.give_action(user)
+/datum/component/suit_autodoc/proc/give_actions()
+	toggle_action.give_action(wearer)
+	scan_action.give_action(wearer)
+	configure_action.give_action(wearer)
 
-/datum/component/suit_autodoc/proc/remove_actions(mob/user)
-	toggle_action.remove_action(user)
-	scan_action.remove_action(user)
-	configure_action.remove_action(user)
+/datum/component/suit_autodoc/proc/remove_actions()
+	toggle_action.remove_action(wearer)
+	scan_action.remove_action(wearer)
+	configure_action.remove_action(wearer)
 
-/datum/component/suit_autodoc/proc/action_toggle(datum/source, mob/user)
+/datum/component/suit_autodoc/proc/action_toggle(datum/source)
 	if(enabled)
-		disable(user)
+		disable()
 	else
-		enable(user)
+		enable()
 
-/datum/component/suit_autodoc/proc/scan_user(datum/source, mob/user)
-	analyzer.attack(user, user, TRUE)
+/datum/component/suit_autodoc/proc/scan_user(datum/source)
+	analyzer.attack(wearer, wearer, TRUE)
 
-/datum/component/suit_autodoc/proc/configure(datum/source, mob/user)
-	interact(user)
-
-#define SUIT_AUTODOC_DAM_MIN 50
-#define SUIT_AUTODOC_DAM_MAX 150
+/datum/component/suit_autodoc/proc/configure(datum/source)
+	interact(wearer)
 
 /datum/component/suit_autodoc/interact(mob/user)
 	var/dat = {"
-	<A href='?src=\ref[src];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
+	<A href='?src=[REF(src)];automed_on=1'>Turn Automed System: [enabled ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Integrated Health Analyzer:</B><BR>
-	<A href='byond://?src=\ref[src];analyzer=1'>Scan Wearer</A><BR>
-	<A href='byond://?src=\ref[src];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
+	<A href='byond://?src=[REF(src)];analyzer=1'>Scan Wearer</A><BR>
+	<A href='byond://?src=[REF(src)];toggle_mode=1'>Turn Scanner HUD Mode: [analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
-	<A href='byond://?src=\ref[src];automed_damage=-50'>-50</A>
-	<A href='byond://?src=\ref[src];automed_damage=-10'>-10</A>
-	<A href='byond://?src=\ref[src];automed_damage=-5'>-5</A>
-	<A href='byond://?src=\ref[src];automed_damage=-1'>-1</A> [damage_threshold]
-	<A href='byond://?src=\ref[src];automed_damage=1'>+1</A>
-	<A href='byond://?src=\ref[src];automed_damage=5'>+5</A>
-	<A href='byond://?src=\ref[src];automed_damage=10'>+10</A>
-	<A href='byond://?src=\ref[src];automed_damage=50'>+50</A><BR>
+	<A href='byond://?src=[REF(src)];automed_damage=-50'>-50</A>
+	<A href='byond://?src=[REF(src)];automed_damage=-10'>-10</A>
+	<A href='byond://?src=[REF(src)];automed_damage=-5'>-5</A>
+	<A href='byond://?src=[REF(src)];automed_damage=-1'>-1</A> [damage_threshold]
+	<A href='byond://?src=[REF(src)];automed_damage=1'>+1</A>
+	<A href='byond://?src=[REF(src)];automed_damage=5'>+5</A>
+	<A href='byond://?src=[REF(src)];automed_damage=10'>+10</A>
+	<A href='byond://?src=[REF(src)];automed_damage=50'>+50</A><BR>
 	<BR>
 	<B>Pain Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
-	<A href='byond://?src=\ref[src];automed_pain=-50'>-50</A>
-	<A href='byond://?src=\ref[src];automed_pain=-10'>-10</A>
-	<A href='byond://?src=\ref[src];automed_pain=-5'>-5</A>
-	<A href='byond://?src=\ref[src];automed_pain=-1'>-1</A> [pain_threshold]
-	<A href='byond://?src=\ref[src];automed_pain=1'>+1</A>
-	<A href='byond://?src=\ref[src];automed_pain=5'>+5</A>
-	<A href='byond://?src=\ref[src];automed_pain=10'>+10</A>
-	<A href='byond://?src=\ref[src];automed_pain=50'>+50</A><BR>"}
+	<A href='byond://?src=[REF(src)];automed_pain=-50'>-50</A>
+	<A href='byond://?src=[REF(src)];automed_pain=-10'>-10</A>
+	<A href='byond://?src=[REF(src)];automed_pain=-5'>-5</A>
+	<A href='byond://?src=[REF(src)];automed_pain=-1'>-1</A> [pain_threshold]
+	<A href='byond://?src=[REF(src)];automed_pain=1'>+1</A>
+	<A href='byond://?src=[REF(src)];automed_pain=5'>+5</A>
+	<A href='byond://?src=[REF(src)];automed_pain=10'>+10</A>
+	<A href='byond://?src=[REF(src)];automed_pain=50'>+50</A><BR>"}
 
 	var/datum/browser/popup = new(user, "Suit Automedic")
 	popup.set_content(dat)
@@ -282,26 +287,24 @@
 	if(.)
 		return
 
-	var/obj/item/I = parent
-	var/mob/living/carbon/human/H = I.loc
-	if(!istype(H) || usr != H)
+	if(wearer != usr)
 		return
 
 	if(href_list["automed_on"])
 		if(enabled)
-			disable(usr)
+			disable()
 		else
-			enable(usr)
+			enable()
 
 	else if(href_list["analyzer"]) //Integrated scanner
-		analyzer.attack(usr, usr, TRUE)
+		analyzer.attack(wearer, wearer, TRUE)
 
 	else if(href_list["toggle_mode"]) //Integrated scanner
 		analyzer.hud_mode = !analyzer.hud_mode
 		if(analyzer.hud_mode)
-			to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
+			to_chat(wearer, "<span class='notice'>The scanner now shows results on the hud.</span>")
 		else
-			to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
+			to_chat(wearer, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
 
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
@@ -312,10 +315,7 @@
 		pain_threshold = round(pain_threshold)
 		pain_threshold = CLAMP(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 
-	interact(usr)
-
-#undef SUIT_AUTODOC_DAM_MAX
-#undef SUIT_AUTODOC_DAM_MIN
+	interact(wearer)
 
 //// Action buttons
 
@@ -324,27 +324,15 @@
 	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_toggle"
 
-/datum/action/suit_autodoc_toggle/action_activate()
-	if(QDELETED(owner) || owner.incapacitated())
-		return
-	SEND_SIGNAL(target, COMPONENT_SUIT_AUTODOC_TOGGLE, owner)
-
 /datum/action/suit_autodoc_scan
 	name = "Suit Automedic User Scan"
 	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_scan"
-
-/datum/action/suit_autodoc_scan/action_activate()
-	if(QDELETED(owner) || owner.incapacitated())
-		return
-	SEND_SIGNAL(target, COMPONENT_SUIT_AUTODOC_SCAN, owner)
 
 /datum/action/suit_autodoc_configure
 	name = "Configure Suit Automedic"
 	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_configure"
 
-/datum/action/suit_autodoc_configure/action_activate()
-	if(QDELETED(owner))
-		return
-	SEND_SIGNAL(target, COMPONENT_SUIT_AUTODOC_CONFIGURE, owner)
+#undef SUIT_AUTODOC_DAM_MAX
+#undef SUIT_AUTODOC_DAM_MIN
