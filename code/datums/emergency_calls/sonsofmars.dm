@@ -1,7 +1,7 @@
 //Sons of Mars
 /datum/emergency_call/som
 	name = "SOM"
-	probability = 20
+	probability = 15
 
 
 /datum/emergency_call/som/print_backstory(mob/living/carbon/human/H)
