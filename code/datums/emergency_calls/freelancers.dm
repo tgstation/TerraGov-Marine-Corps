@@ -1,6 +1,6 @@
 /datum/emergency_call/freelancers
 	name = "Freelancers"
-	probability = 25
+	probability = 30
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
