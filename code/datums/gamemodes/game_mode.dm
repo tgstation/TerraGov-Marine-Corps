@@ -926,43 +926,28 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	if(!length(SSjob.active_squads))
 		return TRUE
 
-	var/current_smartgunners = 0
-	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
-	var/smartie_per_squad = maximum_smartgunners / length(SSjob.active_squads)
-	var/current_specialists = 0
-	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
-	var/spec_per_squad = maximum_specialists / length(SSjob.active_squads)
+	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/marine/leader)
+	scaled_job.total_positions = length(SSjob.active_squads)
 
-	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
-	SL.total_positions = length(SSjob.active_squads)
+	scaled_job = SSjob.GetJobType(/datum/job/marine/specialist)
+	var/specs_per_squad = round(scaled_job.total_positions / length(SSjob.active_squads)) //Floor
+	var/uneven_specs = scaled_job.total_positions % length(SSjob.active_squads)
 
-	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
-	SG.total_positions = maximum_smartgunners
-
-	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
-	SP.total_positions = maximum_specialists
+	scaled_job = SSjob.GetJobType(/datum/job/marine/smartgunner)
+	var/smarties_per_squad = round(scaled_job.total_positions / length(SSjob.active_squads)) //Floor
+	var/uneven_smarties = scaled_job.total_positions % length(SSjob.active_squads)
 
 	for(var/i in SSjob.active_squads)
-		var/datum/squad/S = SSjob.active_squads[i]
+		var/datum/squad/scaled_squad = SSjob.active_squads[i]
 
-		if(current_specialists < maximum_specialists)
-			if(current_specialists + CEILING(spec_per_squad, 1) > maximum_specialists)
-				S.max_specialists = round(spec_per_squad) //Floor
-				current_specialists += S.max_specialists
-				continue
-			S.max_specialists = CEILING(spec_per_squad, 1)
-			current_specialists += S.max_specialists
-		else
-			S.max_specialists = 0
+		scaled_squad.max_specialists = specs_per_squad
+		if(uneven_specs)
+			scaled_squad.max_specialists++
+			uneven_specs--
 
-		if(current_smartgunners < maximum_specialists)
-			if(current_smartgunners + CEILING(smartie_per_squad, 1) > maximum_specialists)
-				S.max_smartgun = round(smartie_per_squad) //Floor
-				current_smartgunners += S.max_smartgun
-				continue
-			S.max_smartgun = CEILING(smartie_per_squad, 1)
-			current_smartgunners += S.max_smartgun
-		else
-			S.max_smartgun = 0
+		scaled_squad.max_smartgun = smarties_per_squad
+		if(uneven_smarties)
+			scaled_squad.max_smartgun++
+			uneven_smarties--
 
 	return TRUE
