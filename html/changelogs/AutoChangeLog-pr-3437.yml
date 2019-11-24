@@ -1,0 +1,5 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Most of the area outside Desert Outpost can now be targeted via rangefinder."
+  - bugfix: "Fixed some of the east walls near LZ1 being meltable when they shouldn't."
