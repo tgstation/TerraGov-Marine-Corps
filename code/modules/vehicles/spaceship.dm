@@ -38,7 +38,6 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
-	GLOB.orbital_mechanics.current_orbit = STANDARD_ORBIT
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 	. = ..()
 
