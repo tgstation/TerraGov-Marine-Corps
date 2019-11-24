@@ -452,7 +452,7 @@
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 150
+	plasma_cost = 200
 	cooldown_timer = 16 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
@@ -484,13 +484,37 @@
 
 
 /datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
+	if(owner.action_busy)
+		return FALSE
+
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+
+	GLOB.round_statistics.psychic_cures++
+	owner.visible_message("<span class='xenowarning'>A strange psychic aura is suddenly emitted from \the [owner]!</span>", \
+	"<span class='xenowarning'>We cure [target] with the power of our mind!</span>")
+	target.visible_message("<span class='xenowarning'>[target] suddenly shimmers in a chill light.</span>", \
+	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+
+	playsound(target,'sound/effects/magic.ogg', 75, 1)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	add_cooldown()
-	patient.adjustBruteLoss(-100)
-	patient.adjustFireLoss(-100)
+	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+		if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+		patient.set_knocked_out(0)
+		patient.set_stunned(0)
+		patient.set_knocked_down(0)
+		patient.set_stagger(0)
+		patient.set_slowdown(0)
+	patient.updatehealth()
+
+	owner.changeNext_move(CLICK_CD_RANGE)
+
+	log_combat(owner, patient, "psychically cured")
+
 	succeed_activate()
-	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
-	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
+	add_cooldown()
+
 
 
 // ***************************************
