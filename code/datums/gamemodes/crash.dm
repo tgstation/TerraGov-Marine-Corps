@@ -313,14 +313,6 @@
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
 
-/*
-/datum/game_mode/crash/AttemptLateSpawn(mob/new_player/NP, rank)
-	// reset their squad to the correct squad for the gamemode.
-	if(rank in GLOB.jobs_marines)
-		NP.mind.assigned_squad = SSjob.squads[starting_squad]
-
-	return ..()
-*/
 
 /datum/game_mode/crash/handle_late_spawn()
 	var/datum/game_mode/crash/GM = SSticker.mode

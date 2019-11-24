@@ -11,7 +11,7 @@
 	var/max_engineers = 3
 	var/max_medics = 4
 	var/max_smartgun = 1
-	var/max_specialists = 4 // Test
+	var/max_specialists = 1
 	var/max_leaders = 1
 
 	var/num_engineers = 0
