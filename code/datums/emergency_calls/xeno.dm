@@ -1,6 +1,6 @@
 /datum/emergency_call/xenomorphs
 	name = "Xenomorphs"
-	probability = 10
+	probability = 15
 	auto_shuttle_launch = TRUE
 	spawn_type = /mob/living/carbon/xenomorph
 
