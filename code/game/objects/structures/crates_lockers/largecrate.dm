@@ -236,8 +236,6 @@
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/smg/standard_smg = /obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/weapon/gun/smg/standard_smg = /obj/item/ammo_magazine/smg/standard_smg/extended,
 					/obj/item/weapon/gun/smg/m39/elite = /obj/item/ammo_magazine/smg/standard_smg/ap,
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
