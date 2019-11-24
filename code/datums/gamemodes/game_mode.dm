@@ -37,19 +37,20 @@
 	return TRUE
 
 
-/datum/game_mode/proc/can_start()
-	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes))
+/datum/game_mode/proc/can_start(bypass_checks = FALSE)
+	if(!(config_tag in SSmapping.configs[GROUND_MAP].gamemodes) && !bypass_checks)
 		log_world("attempted to start [src.type] on "+SSmapping.configs[GROUND_MAP].map_name+" which doesn't support it.")
 		// start a gamemode vote, in theory this should never happen.
 		addtimer(CALLBACK(SSvote, /datum/controller/subsystem/vote.proc/initiate_vote, "gamemode", "SERVER"), 10 SECONDS)
 		return FALSE
-	if(!set_valid_job_types())
+	if(GLOB.ready_players < required_players && !bypass_checks)
+		to_chat(world, "<b>Unable to start [name].</b> Not enough players, [required_players] players needed.")
 		return FALSE
-	if(!set_valid_squads())
+	if(!set_valid_job_types() && !bypass_checks)
 		return FALSE
-	if(!initialize_scales())
+	if(!set_valid_squads() && !bypass_checks)
 		return FALSE
-	if(GLOB.ready_players < required_players)
+	if(!initialize_scales() && !bypass_checks)
 		return FALSE
 	return TRUE
 
@@ -878,10 +879,10 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	SSjob.active_occupations.Cut()
 	for(var/j in SSjob.occupations)
 		var/datum/job/job = j
-		if(!valid_job_types.Find(job.type))
+		if(!valid_job_types[job.type])
 			job.total_positions = 0
 			continue
-		job.total_positions = initial(job.total_positions)
+		job.total_positions = valid_job_types[job.type]
 		SSjob.active_occupations += job
 	if(!length(SSjob.active_occupations))
 		to_chat(world, "<span class='boldnotice'>Error, game mode has only invalid jobs assigned.</span>")
@@ -889,14 +890,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return TRUE
 
 /datum/game_mode/proc/set_valid_squads()
-	to_chat(world, "squads_max_number: [squads_max_number] | map squads_max_num: [SSmapping.configs[SHIP_MAP].squads_max_num]")
 	var/max_squad_num = min(squads_max_number, SSmapping.configs[SHIP_MAP].squads_max_num)
 	if(max_squad_num >= length(SSjob.squads))
 		SSjob.active_squads = SSjob.squads
 		return TRUE
 	if(max_squad_num == 0)
 		return TRUE
-	var/list/preferred_squads = list()
+	var/list/preferred_squads = shuffle(SSjob.squads)
 	for(var/s in SSjob.squads)
 		preferred_squads[s] = 1
 	if(!length(preferred_squads))
@@ -913,22 +913,19 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			stack_trace("[player.client] has in its prefs [squad_choice] for a squad. Not valid.")
 			continue
 		preferred_squads[squad_choice]++
-	preferred_squads = sortInsert(preferred_squads, associative = TRUE) //Shuffle them by order pref.
+	sortTim(preferred_squads, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
 
-	for(var/i in preferred_squads)
-		to_chat(world, "Squad: [i]")
-	to_chat(world, "max_squad_num: [max_squad_num]")
-	
-	SSjob.active_squads = preferred_squads.Cut(max_squad_num + 1)
+	preferred_squads.len = max_squad_num
+	for(var/s in preferred_squads) //Back from weight to type.
+		preferred_squads[s] = SSjob.squads[s]
+	SSjob.active_squads = preferred_squads.Copy()
 
-	for(var/i in SSjob.active_squads)
-		to_chat(world, "Squad: [i]")
 	return TRUE
 
 /datum/game_mode/proc/initialize_scales()
 	if(!length(SSjob.active_squads))
 		return TRUE
-	
+
 	var/current_smartgunners = 0
 	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
 	var/smartie_per_squad = maximum_smartgunners / length(SSjob.active_squads)

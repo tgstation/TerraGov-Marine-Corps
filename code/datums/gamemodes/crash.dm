@@ -10,6 +10,18 @@
 
 	squads_max_number = 1
 
+	valid_job_types = list(
+		/datum/job/marine/standard = -1,
+		/datum/job/marine/engineer = 8,
+		/datum/job/marine/corpsman = 8,
+		/datum/job/marine/smartgunner = 4,
+		/datum/job/marine/specialist = 4,
+		/datum/job/marine/leader = 1,
+		/datum/job/medical/professor = 1,
+		/datum/job/civilian/synthetic = 1,
+		/datum/job/command/fieldcommander = 1
+	)
+
 	// Round end conditions
 	var/shuttle_landed = FALSE
 	var/planet_nuked = CRASH_NUKE_NONE
@@ -25,17 +37,7 @@
 	var/latejoin_larva_drop = 0
 
 
-/datum/game_mode/crash/New()
-	. = ..()
-	// All marine roles, MD, Synth, and FC
-	valid_job_types = subtypesof(/datum/job/marine) + list(
-		/datum/job/medical/professor,
-		/datum/job/civilian/synthetic,
-		/datum/job/command/fieldcommander
-	)
-
-
-/datum/game_mode/crash/can_start()
+/datum/game_mode/crash/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
@@ -43,8 +45,7 @@
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
 
-
-	if(!ruler && !xenos) // we need at least 1
+	if(!ruler && !xenos && !bypass_checks) // we need at least 1
 		return FALSE
 
 

@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(job)
 	flags = SS_NO_FIRE
 
 	var/list/occupations = list()		//List of all potential jobs.
-	var/list/active_occupations			//Jobs in use by the game mode.
+	var/list/active_occupations	= list() //Jobs in use by the game mode.
 	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles.
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
@@ -79,9 +79,6 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(!job.player_old_enough(player.client))
 			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
-			return FALSE
-		if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
-			JobDebug("AR job disallowed by gamemode, Player: [player], Job:[job.title]")
 			return FALSE
 		if(rank in GLOB.jobs_marines)
 			if(handle_initial_squad(player, rank, latejoin))

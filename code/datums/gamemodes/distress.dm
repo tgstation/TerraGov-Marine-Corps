@@ -25,14 +25,13 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
-/datum/game_mode/distress/can_start()
+/datum/game_mode/distress/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
-	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
-	if(!found_queen && !found_xenos)
+	if(!found_queen && !found_xenos && !bypass_checks)
 		return FALSE
 	initialize_survivor()
 
@@ -171,6 +170,7 @@
 
 
 /datum/game_mode/distress/initialize_scales()
+	. = ..()
 	if(!.)
 		return
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)

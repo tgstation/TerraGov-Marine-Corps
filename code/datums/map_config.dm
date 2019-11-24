@@ -134,11 +134,8 @@
 		return
 
 	temp = json["squads"]
-	if(istext(temp))
-		squads_max_num = text2num(temp)
-		if(!isnum(squads_max_num))
-			squads_max_num = initial(squads_max_num)
-			stack_trace("squads_max_num reverted to initial value due to unlawful value in the map json")
+	if(isnum(temp))
+		squads_max_num = temp
 	else if(!isnull(temp))
 		log_world("map_config squads_max_num is not a number!")
 		return
