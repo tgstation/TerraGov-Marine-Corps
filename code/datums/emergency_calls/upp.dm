@@ -1,6 +1,6 @@
 /datum/emergency_call/upp
 	name = "UPP"
-	probability = 10
+	probability = 15
 	shuttle_id = "distress_upp"
 
 
