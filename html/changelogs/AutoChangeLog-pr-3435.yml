@@ -1,0 +1,4 @@
+author: "InterroLouis"
+delete-after: True
+changes: 
+  - tweak: "M240-T now uses spec skill"
