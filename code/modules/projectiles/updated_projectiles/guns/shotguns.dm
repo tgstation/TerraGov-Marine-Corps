@@ -401,19 +401,21 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/recent_notice //world.time to see when they last got a notice.
 	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/stock/shotgun)
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/stock/shotgun,
+		/obj/item/attachable/verticalgrip
+	)
 
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
