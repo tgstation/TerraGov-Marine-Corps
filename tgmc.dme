@@ -333,6 +333,7 @@
 #include "code\datums\wires\autolathe.dm"
 #include "code\datums\wires\mulebot.dm"
 #include "code\datums\wires\radio.dm"
+#include "code\datums\wires\spaceship.dm"
 #include "code\datums\wires\vending.dm"
 #include "code\game\atoms.dm"
 #include "code\game\atoms_movable.dm"
