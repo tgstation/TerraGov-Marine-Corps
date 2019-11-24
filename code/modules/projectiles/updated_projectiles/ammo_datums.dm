@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 40
+	penetration = 75
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -544,7 +544,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 20
+	penetration = 75
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -557,7 +557,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 30
+	damage = 40
 	damage_falloff = 4
 	penetration = 10
 
@@ -573,7 +573,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 30
+	damage = 40
 	damage_falloff = 4
 	penetration = 0
 
@@ -619,7 +619,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 15
 	damage_falloff = 0.5
-	penetration = 15
+	penetration = 60
 
 /datum/ammo/bullet/shotgun/sx16_flechette/spread
 	name = "additional flechette"
@@ -629,7 +629,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 15
 	damage_falloff = 0.5
-	penetration = 15
+	penetration = 60
 
 /datum/ammo/bullet/shotgun/sx16_slug
 	name = "shotgun slug"
