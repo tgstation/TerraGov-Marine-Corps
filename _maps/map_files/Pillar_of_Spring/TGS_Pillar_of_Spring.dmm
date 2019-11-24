@@ -389,16 +389,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/mainship/hallways/hangar)
-"bj" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"bk" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/command/self_destruct)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2841,11 +2831,6 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"js" = (
-/obj/machinery/marine_selector/gear/medic,
-/obj/machinery/marine_selector/gear/medic,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "jt" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship,
@@ -4123,6 +4108,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
+"mJ" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/weapon_room)
 "mK" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
@@ -11864,6 +11855,12 @@
 	icon_state = "cargo_arrow"
 	},
 /area/mainship/engineering/engine_core)
+"Fm" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/command/self_destruct)
 "Fn" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -17208,12 +17205,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
-"RV" = (
-/obj/machinery/door/poddoor/mainship/umbilical/south{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/weapon_room)
 "RW" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -17448,6 +17439,10 @@
 	icon_state = "green"
 	},
 /area/mainship/squads/req)
+"TJ" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "TM" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-21"
@@ -38294,8 +38289,8 @@ ad
 ad
 ad
 OB
-RV
-RV
+mJ
+mJ
 OB
 OB
 OB
@@ -48003,7 +47998,7 @@ Go
 Go
 Go
 Go
-bj
+TJ
 Go
 Go
 Go
@@ -52185,7 +52180,7 @@ lQ
 jb
 xe
 jb
-bk
+Fm
 Qe
 OO
 OU
@@ -52442,7 +52437,7 @@ lU
 xl
 xf
 xL
-bk
+Fm
 OF
 Mb
 Mb
@@ -53424,7 +53419,7 @@ bq
 aO
 bZ
 qC
-js
+jj
 jG
 jj
 jG
