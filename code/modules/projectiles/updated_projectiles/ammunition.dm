@@ -211,7 +211,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
 	switch(new_caliber)
-		if("12g",".410", "16 gauge")
+		if("12g",".410")
 			icon_state = ammo_name
 		if("7.62x54mmR")
 			icon_state = "mosin bullet"
