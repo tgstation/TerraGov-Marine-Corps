@@ -1355,7 +1355,6 @@ Defined in conflicts.dm of the #defines folder.
 		icon_state = "bipod-on"
 		attach_icon = "bipod_a-on"
 
-	master_gun.update_slowdown()
 	master_gun.update_attachable(slot)
 
 	for(var/i in master_gun.actions)

@@ -140,6 +140,7 @@
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		-1
 	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		-2
 	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		-3
+#define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//from base of /atom/movable/proc/set_glide_size(): (target)
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)

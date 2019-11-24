@@ -44,6 +44,8 @@
 		update_legcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	if(. == ITEM_UNEQUIP_UNEQUIPPED)
+		if(I.slowdown)
+			remove_movespeed_modifier(I.type)
 		if(isclothing(I))
 			var/obj/item/clothing/unequipped_clothing = I
 			if(unequipped_clothing.accuracy_mod)
