@@ -2843,7 +2843,6 @@
 /area/mainship/squads/req)
 "js" = (
 /obj/machinery/marine_selector/gear/medic,
-/obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jt" = (
