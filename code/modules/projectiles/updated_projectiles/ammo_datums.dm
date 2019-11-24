@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 7
+	bonus_projectiles_amount = 6
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
@@ -654,6 +654,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 10
 	max_range = 10
 	damage = 40
+	penetration = 10
 	damage_falloff = 2
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
@@ -662,7 +663,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 10
-	damage = 30
+	damage = 40
+	penetration = 10
 	damage_falloff = 2
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
@@ -672,7 +674,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 5
 	max_range = 30
 	damage = 35
-	penetration = 40
+	penetration = 50
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = ".410 tracker"
