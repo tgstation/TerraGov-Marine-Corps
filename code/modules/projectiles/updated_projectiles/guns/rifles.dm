@@ -184,7 +184,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "The standard issue rifle of the TerraGov Marine Corps, commonly carried by most combat personnel. However, due to its availability and resources, the M41A1 is a very rare sight on TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "The standard issue rifle of the TerraGov Marine Corps, carried by a few coporate mercenaries. However, due to its availability and resources, the M41A1 is a very rare sight on TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
