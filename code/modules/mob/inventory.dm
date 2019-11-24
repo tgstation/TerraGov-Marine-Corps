@@ -301,8 +301,6 @@
 			add_limb_armor(W)
 		if(isclothing(W))
 			var/obj/item/clothing/equipped_clothing = W
-			if(equipped_clothing.tint)
-				adjust_tinttotal(equipped_clothing.tint)
 			if(equipped_clothing.accuracy_mod)
 				adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 		W.layer = ABOVE_HUD_LAYER
