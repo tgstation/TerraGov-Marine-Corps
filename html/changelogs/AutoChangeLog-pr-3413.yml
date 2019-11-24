@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - tweak: "UGLs and similar are now shot once active via middle mouse button or shift click, like xeno abilities, instead of ctrl+click. You can also load and unload rifle magazines while it's active. You can find the option to toggle this in the IC tab instead of the Alien one."
