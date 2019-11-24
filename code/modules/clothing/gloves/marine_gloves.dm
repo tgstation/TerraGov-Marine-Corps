@@ -72,14 +72,14 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	siemens_coefficient = 0
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"
-	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	resistance_flags = UNACIDABLE
 
 
@@ -88,7 +88,7 @@
 	desc = "Gloves with origins dating back to the old mining colonies."
 	icon_state = "som"
 	item_state = "som"
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 
 /obj/item/clothing/gloves/marine/som/veteran
@@ -96,4 +96,4 @@
 	desc = "Gloves with origins dating back to the old mining colonies. Seem to have more care and wear on them."
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
-	armor = list("melee" = 70, "bullet" = 70, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 25, "rad" = 25, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
