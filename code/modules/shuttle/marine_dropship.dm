@@ -344,6 +344,9 @@
 		if(!locked_sides)
 			to_chat(user, "<span class='warning'>The bird is already on the ground, open and vulnerable.</span>")
 			return FALSE
+		if(locked_sides < 3 && !isalamoarea(get_area(user)))
+			to_chat(user, "<span class='warning'>At least one side is still unlocked!</span>")
+			return FALSE
 		D.unlock_all()
 		to_chat(user, "<span class='xenodanger'>We crack open the metal bird's shell.</span>")
 		if(D.hijack_state != HIJACK_STATE_NORMAL)
