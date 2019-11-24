@@ -9,7 +9,6 @@
 	plasma_stored = 350
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_ZERO
-	speed = -0.8
 	pixel_x = -12
 	old_x = -12
 	pull_speed = -2

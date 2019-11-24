@@ -8303,7 +8303,6 @@
 /area/bigredv2/outside/medical)
 "ayT" = (
 /obj/structure/table,
-/obj/structure/table,
 /obj/item/bodybag/cryobag,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1

@@ -152,12 +152,3 @@
 	// *** Defender Abilities *** //
 	crest_defense_armor = 25
 	fortify_armor = 50
-
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/toggle_crest_defense,
-		/datum/action/xeno_action/fortify,
-		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/tail_sweep
-		)

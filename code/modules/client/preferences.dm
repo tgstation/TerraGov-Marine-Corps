@@ -959,7 +959,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				winset(user, null, "map.focus=true")
 
 		if("clientfps")
-			var/desiredfps = input(user, "Choose your desired FPS. (0 = synced with server tick rate, currently:[world.fps])", "FPS", clientfps) as null|num
+			var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 			if(isnull(desiredfps))
 				return
 			desiredfps = CLAMP(desiredfps, 0, 240)

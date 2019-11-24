@@ -191,6 +191,7 @@
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
 
+#define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
@@ -198,6 +199,7 @@
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+#define isalamoarea(A) (istype(A, /area/shuttle/dropship/alamo))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))

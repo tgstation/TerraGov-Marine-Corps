@@ -32,7 +32,7 @@
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
 	var/losebreath = 0
-	var/nutrition = 400
+	var/nutrition = NUTRITION_WELLFED
 
 	var/obj/item/back //Human/Monkey
 	var/obj/item/tank/internal = null//Human/Monkey
@@ -44,3 +44,5 @@
 
 	var/afk_timer_id
 	var/afk_status = MOB_DISCONNECTED
+
+	var/middle_mouse_toggle = TRUE //This toggles whether special clicks use middle mouse clicking or shift clicking

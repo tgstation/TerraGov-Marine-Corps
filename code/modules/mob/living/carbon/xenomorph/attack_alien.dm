@@ -209,7 +209,6 @@
 			#endif
 			var/staggerslow_stacks = 2
 			var/knockout_stacks = 1
-			damage *= X.sneak_bonus //Massive damage on the sneak attack... hope you have armour.
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \

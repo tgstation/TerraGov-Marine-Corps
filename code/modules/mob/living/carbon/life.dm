@@ -77,7 +77,7 @@
 		dizzy(-restingpwr)
 
 	if(drowsyness)
-		drowsyness = max(drowsyness - restingpwr, 0)
+		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(prob(5))
 			sleeping(1)
@@ -153,7 +153,7 @@
 			adjustToxLoss(0.2)
 			if(prob(10) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
-				drowsyness += 5
+				adjustDrowsyness(5)
 
 		if(drunkenness >= 91)
 			adjustBrainLoss(0.2, TRUE)
@@ -189,17 +189,6 @@
 /mob/living/carbon/proc/handle_slowdown()
 	if(slowdown)
 		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
-	return slowdown
-
-/mob/living/carbon/proc/adjust_slowdown(amount)
-	if(amount > 0)
-		slowdown = max(slowdown, amount) //Slowdown overlaps rather than stacking.
-	else
-		slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/add_slowdown(amount)
-	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
 	return slowdown
 
 /mob/living/carbon/proc/breathe()

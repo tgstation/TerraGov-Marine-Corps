@@ -8,32 +8,19 @@
 	density = TRUE
 	move_delay = 8
 	max_integrity = 200
+	vehicle_flags = VEHICLE_MUST_TURN
+	move_sounds = list('sound/mecha/powerloader_step.ogg', 'sound/mecha/powerloader_step2.ogg')
+	change_dir_sounds = list('sound/mecha/powerloader_turn.ogg', 'sound/mecha/powerloader_turn2.ogg')
 	var/panel_open = FALSE
 
-/obj/vehicle/powerloader/New()
+
+/obj/vehicle/powerloader/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/apc(src)
-	for(var/i = 1, i <= 2, i++)
+	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)
 		PC.linked_powerloader = src
 
-/obj/vehicle/powerloader/relaymove(mob/user, direction)
-	if(user.incapacitated())
-		return
-	if(direction in GLOB.diagonals)
-		return
-	if(!direction)
-		return
-	if(world.time > last_move_time + move_delay)
-		if(dir != direction)
-			last_move_time = world.time
-			setDir(direction)
-			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
-			. = TRUE
-		else
-			. = step(src, direction)
-			if(.)
-				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
 /obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
