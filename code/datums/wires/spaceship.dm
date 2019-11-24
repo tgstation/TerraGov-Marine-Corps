@@ -17,14 +17,14 @@
 	if(!.)
 		return FALSE
 	var/obj/machinery/computer/navigation/A = holder
-	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN) && A.buildstage == 2)
+	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
 		return TRUE
 
 
 /datum/wires/navigation/get_status()
 	var/obj/machinery/computer/navigation/A = holder
 	var/list/status = list()
-	status += "The interface light is [A.locked ? "red" : "green"]."
+	status += "The interface light is [A.authenticated ? "red" : "green"]."
 	status += "The short indicator is [A.shorted ? "lit" : "off"]."
 	status += "The AI connection light is [!A.aidisabled ? "on" : "off"]."
 	return status

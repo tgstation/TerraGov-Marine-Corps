@@ -42,6 +42,16 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 	. = ..()
 
+/obj/machinery/computer/navigation/proc/reset(wire)
+	switch(wire)
+		if(WIRE_POWER)
+			if(!wires.is_cut(WIRE_POWER))
+				shorted = FALSE
+				update_icon()
+		if(WIRE_AI)
+			if(!wires.is_cut(WIRE_AI))
+				aidisabled = FALSE
+
 //-------------------------------------------
 // Special procs
 //-------------------------------------------
