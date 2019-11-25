@@ -18,6 +18,9 @@
 	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 	var/buckling_y = 0
+	var/move_sounds
+	var/change_dir_sounds
+	var/vehicle_flags = NONE
 
 	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
@@ -25,24 +28,45 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/New()
-	..()
-	//spawn the cell you want in each vehicle
+/obj/vehicle/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_NORMAL
+
+
+/obj/vehicle/LateInitialize(mapload)
+	. = ..()
+	reset_glide_size()
+
 
 /obj/vehicle/relaymove(mob/user, direction)
 	if(user.incapacitated())
-		return
+		return FALSE
 
 	if(direction in GLOB.diagonals)
+		return FALSE
+
+	if(world.time < last_move_time + move_delay)
 		return
 
-	if(world.time > last_move_time + move_delay)
-		if(on && powered && cell && cell.charge < charge_use)
-			turn_off()
-		else if(!on && powered)
+	if(powered)
+		if(!on)
 			to_chat(user, "<span class='warning'>Turn on the engine first.</span>")
-		else
-			. = step(src, direction)
+			return FALSE
+		if(cell && cell.charge < charge_use)
+			turn_off()
+			return FALSE
+
+	if(vehicle_flags & VEHICLE_MUST_TURN && dir != direction)
+		last_move_time = world.time
+		setDir(direction)
+		if(LAZYLEN(change_dir_sounds))
+			playsound(src, pick(change_dir_sounds), 25, TRUE)
+		return TRUE
+
+	. = Move(get_step(src, direction))
+	if(. && LAZYLEN(move_sounds))
+		playsound(src, pick(move_sounds), 25, TRUE)
+
 
 /obj/vehicle/attackby(obj/item/I, mob/user, params)
 	. = ..()

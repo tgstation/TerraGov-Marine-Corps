@@ -1,75 +1,13 @@
-/mob/living/carbon/human/movement_delay()
+/mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
-
+	if(!.)
+		return
 	if(interactee)// moving stops any kind of interaction
 		unset_interaction()
+	if(shoes && !buckled)
+		var/obj/item/clothing/shoes/S = shoes
+		S.step_action()
 
-	if(species.slowdown)
-		. += species.slowdown
-
-	var/reducible_tally = 0 //Tally elements that can be reduced are put here, then we apply hyperzine effects
-
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
-	if(hungry >= 50) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
-		reducible_tally += hungry/50 //Goes from a slowdown of 1 all the way to 2 for total starvation
-
-	//Equipment slowdowns
-	if(w_uniform)
-		reducible_tally += w_uniform.slowdown
-
-	if(wear_suit)
-		reducible_tally += wear_suit.slowdown
-
-	if(shock_stage >= 10)
-		reducible_tally += 3
-
-	if(bodytemperature < species.cold_level_1)
-		reducible_tally += 2 //Major slowdown if you're freezing
-
-	if(temporary_slowdown)
-		temporary_slowdown = max(temporary_slowdown - 1, 0)
-		reducible_tally += 2 //Temporary slowdown slows hard
-
-	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
-	. += max(-0.7, reducible_tally)
-
-	if(istype(get_active_held_item(), /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = get_active_held_item() //If wielding, it will ALWAYS be on the active hand
-		. += G.slowdown
-
-	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
-		for(var/organ_name in list("l_hand","r_hand","l_arm","r_arm","chest","groin","head"))
-			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.limb_status & LIMB_DESTROYED))
-				. += 4
-			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
-				. += 0.65
-			else if(E.limb_status & LIMB_BROKEN)
-				. += 1.5
-	else
-		if(shoes)
-			var/obj/item/clothing/shoes/S = shoes
-			S.step_action()
-			. += shoes.slowdown
-
-		for(var/organ_name in list("l_foot","r_foot","l_leg","r_leg","chest","groin","head"))
-			var/datum/limb/E = get_limb(organ_name)
-			if(!E || (E.limb_status & LIMB_DESTROYED))
-				. += 4
-			if(E.limb_status & LIMB_SPLINTED || E.limb_status & LIMB_STABILIZED)
-				. += 0.75
-			else if(E.limb_status & LIMB_BROKEN)
-				. += 1.5
-
-	if(slowdown)
-		. += slowdown
-
-	if(mobility_aura)
-		. -= 0.1 + 0.1 * mobility_aura
-
-	. += CONFIG_GET(number/outdated_movedelay/human_delay)
-
-	. = max(-2.5, . + reagent_move_delay_modifier) //hyperzine and ultrazine
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)
 	if(!user.cloaking)

@@ -139,26 +139,29 @@
 
 
 /obj/proc/unbuckle(mob/user, silent = TRUE)
-	buckled_mob.buckled = null
-	buckled_mob.anchored = initial(buckled_mob.anchored)
-	buckled_mob.update_canmove()
+	var/mob/buckled_mob_backup = buckled_mob
+	buckled_mob = null
+	buckled_mob_backup.buckled = null
+	buckled_mob_backup.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+	buckled_mob_backup.reset_glide_size()
+	buckled_mob_backup.anchored = initial(buckled_mob_backup.anchored)
+	buckled_mob_backup.update_canmove()
 
 	if(!silent)
-		if(buckled_mob == user)
-			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self!</span>",
+		if(buckled_mob_backup == user)
+			buckled_mob_backup.visible_message(
+			"<span class='notice'>[buckled_mob_backup] unbuckled [buckled_mob_backup.p_them()]self!</span>",
 			"<span class='notice'>You unbuckle yourself from [src].</span>",
 			"<span class='notice'>You hear metal clanking</span>"
 			)
 		else
-			buckled_mob.visible_message(
-			"<span class='notice'>[buckled_mob] was unbuckled by [user]!</span>",
-			"<span class='notice'>You were unbuckled from [src] by [user].</span>",
+			var/by_user = user ? " by [user]" : ""
+			buckled_mob_backup.visible_message(
+			"<span class='notice'>[buckled_mob_backup] was unbuckled[by_user]!</span>",
+			"<span class='notice'>You were unbuckled from [src][by_user]].</span>",
 			"<span class='notice'>You hear metal clanking.</span>"
 			)
 
-	var/buckled_mob_backup = buckled_mob
-	buckled_mob = null
 	UnregisterSignal(buckled_mob_backup, COMSIG_LIVING_DO_RESIST)
 	afterbuckle(buckled_mob_backup)
 
@@ -203,11 +206,17 @@
 /obj/proc/do_buckle(mob/M, mob/user, silent = FALSE)
 	if(!silent)
 		send_buckling_message(M, user)
+	if(M.pulledby)
+		M.pulledby.stop_pulling()
+	if(pulledby)
+		M.set_glide_size(pulledby.glide_size)
+	else
+		M.set_glide_size(glide_size)
 	M.buckled = src
-	M.loc = src.loc
+	M.glide_modifier_flags |= GLIDE_MOD_BUCKLED
 	M.setDir(dir)
 	M.update_canmove()
-	src.buckled_mob = M
+	buckled_mob = M
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
 	afterbuckle(M)
 
@@ -226,15 +235,19 @@
 /obj/Move(NewLoc, direct)
 	. = ..()
 	handle_rotation()
-	if(. && buckled_mob && !handle_buckled_mob_movement(loc,direct)) //movement fails if buckled mob's move fails.
-		. = 0
+	if(. && buckled_mob)
+		if(buckled_mob.loc == NewLoc)
+			return
+		return handle_buckled_mob_movement(loc, direct) //movement fails if buckled mob's move fails.
+
 
 /obj/proc/handle_buckled_mob_movement(NewLoc, direct)
-	if(!(direct & (direct - 1))) //not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
-		if(!buckled_mob.Move(NewLoc, direct))
-			loc = buckled_mob.loc
-			return 0
-	return 1
+	if((direct & (direct - 1))) //The obj's diagonal move is split into two cardinal moves and those moves will handle the buckled mob's movement.
+		return TRUE
+	if(buckled_mob.Move(NewLoc, direct))
+		return TRUE
+	forceMove(buckled_mob.loc)
+	return FALSE
 
 /obj/CanPass(atom/movable/mover, turf/target)
 	if(mover == buckled_mob) //can't collide with the thing you're buckled to

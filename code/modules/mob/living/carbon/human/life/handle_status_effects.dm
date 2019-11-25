@@ -31,7 +31,7 @@
 				if(command_aura == "focus" && command_aura_strength > H.marksman_new)
 					H.marksman_new = command_aura_strength
 
-	mobility_aura = mobility_new
+	set_mobility_aura(mobility_new)
 	protection_aura = protection_new
 	marksman_aura = marksman_new
 
@@ -70,3 +70,13 @@
 		if(!stunned && !no_stun) //anti chain stun
 			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
 	return stunned
+
+
+/mob/living/carbon/human/proc/set_mobility_aura(new_aura)
+	if(mobility_aura == new_aura)
+		return
+	mobility_aura = new_aura
+	if(mobility_aura)
+		add_movespeed_modifier(MOVESPEED_ID_MOBILITY_AURA, TRUE, 0, NONE, TRUE, -(0.1 + 0.1 * mobility_aura))
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_MOBILITY_AURA)

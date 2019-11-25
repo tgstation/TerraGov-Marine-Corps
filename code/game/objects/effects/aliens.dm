@@ -43,7 +43,7 @@
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
-	var/slow_amt = 8
+	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
@@ -79,7 +79,7 @@
 				H.UpdateDamageIcon()
 		else
 			armor_block = H.run_armor_check("chest", "acid")
-			H.take_overall_damage(0, rand(12, 14))
+			H.take_overall_damage(0, rand(12, 14), armor_block)
 			UPDATEHEALTH(H)
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 

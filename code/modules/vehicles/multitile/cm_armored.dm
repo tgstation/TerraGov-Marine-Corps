@@ -557,8 +557,6 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 	var/damage = M.xeno_caste.melee_damage + dam_bonus
 
-	M.do_attack_animation(src)
-
 	//Somehow we will deal no damage on this attack
 	if(!damage)
 		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
@@ -567,8 +565,8 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		"<span class='danger'>We lunge at [src]!</span>")
 		return FALSE
 
-	else
-		playsound(loc, "alien_claw_metal", 25, 1)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	playsound(loc, "alien_claw_metal", 25, 1)
 
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_TANK)
 

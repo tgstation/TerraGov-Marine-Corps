@@ -69,7 +69,7 @@
 	update_icon()
 
 
-/mob/living/carbon/human/proc/get_ghost()
+/mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
@@ -84,7 +84,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst)
+	if(!heart || heart.is_broken() || !has_brain() || chestburst)
 		return FALSE
 	return TRUE
 
@@ -218,6 +218,7 @@
 	H.apply_effect(10, EYE_BLUR)
 	H.apply_effect(10, PARALYZE)
 	H.update_canmove()
+	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 

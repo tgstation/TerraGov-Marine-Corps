@@ -77,29 +77,29 @@
 	flags_inv_hide = HIDEFACE|HIDELOWHAIR
 	flags_armor_protection = FACE
 
-	/obj/item/clothing/mask/bandanna/verb/toggle()
-		set category = "Object"
-		set name = "Adjust bandanna"
-		set src in usr
+/obj/item/clothing/mask/bandanna/verb/toggle()
+	set category = "Object"
+	set name = "Adjust bandanna"
+	set src in usr
 
-		if(usr.incapacitated())
-			return
+	if(usr.incapacitated())
+		return
 
-		active = !active
-		icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
-		if(!active)
-			DISABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
-			DISABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-			DISABLE_BITFIELD(flags_armor_protection, FACE)
-		else
-			ENABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
-			ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
-			ENABLE_BITFIELD(flags_armor_protection, FACE)
-		to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
+	active = !active
+	icon_state = "[initial(icon_state)][!active ? "_down" : ""]"
+	if(!active)
+		DISABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
+		DISABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
+		DISABLE_BITFIELD(flags_armor_protection, FACE)
+	else
+		ENABLE_BITFIELD(flags_inventory, (COVERMOUTH|ALLOWREBREATH))
+		ENABLE_BITFIELD(flags_inv_hide, (HIDEFACE|HIDELOWHAIR))
+		ENABLE_BITFIELD(flags_armor_protection, FACE)
+	to_chat(usr, "You [active ? "pull [src] up to cover your face" : "pull [src] off your face"].")
 
-		update_clothing_icon()
+	update_clothing_icon()
 
-		update_action_button_icons()
+	update_action_button_icons()
 
 /obj/item/clothing/mask/bandanna/green
 	name = "green bandanna"

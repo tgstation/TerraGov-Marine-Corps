@@ -57,6 +57,11 @@
 
 	move_inside_wrapper(usr, usr)
 
+/obj/machinery/bodyscanner/Destroy()
+	locked = FALSE
+	go_out()
+	return ..()
+
 /obj/machinery/bodyscanner/proc/go_out()
 	if (!occupant || locked)
 		return

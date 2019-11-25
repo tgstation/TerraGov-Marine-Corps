@@ -15274,7 +15274,7 @@
 /area/mainship/shipboard/brig)
 "aHu" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/rifle/standard_lmg,
+/obj/item/ammo_magazine/standard_lmg,
 /obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
@@ -22821,7 +22821,7 @@
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/standard_carabine,
+/obj/item/weapon/gun/rifle/standard_carbine,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship{
 	icon_state = "redfull"

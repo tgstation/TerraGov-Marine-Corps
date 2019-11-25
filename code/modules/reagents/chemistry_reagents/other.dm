@@ -140,18 +140,18 @@
 	if(prob(7))
 		L.emote(pick("twitch","drool","moan","gasp","yawn"))
 	if(prob(2))
-		L.drowsyness += 5
+		L.adjustDrowsyness(5)
 	return ..()
 
 /datum/reagent/serotrotium/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.3, TOX)
-	L.drowsyness = max(L.drowsyness, 5)
+	L.setDrowsyness(max(L.drowsyness, 5))
 
 /datum/reagent/serotrotium/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(0.7, TOX)
 	if(prob(10) && !L.stat)
 		L.sleeping(30)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/oxygen
 	name = "Oxygen"
@@ -550,7 +550,7 @@
 	if(prob(80))
 		L.adjustBrainLoss(2*REM, TRUE)
 	if(prob(50))
-		L.drowsyness = max(L.drowsyness, 3)
+		L.setDrowsyness(max(L.drowsyness, 3))
 	if(prob(10))
 		L.emote("drool")
 	return ..()
@@ -634,7 +634,7 @@
 	var/mob/living/carbon/C = L
 	if(C.nutrition > 50)
 		C.overeatduration = 0
-		C.nutrition -= 10
+		C.adjust_nutrition(-10)
 	if(prob(20))
 		C.adjustToxLoss(0.1)
 	else
@@ -646,7 +646,7 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.nutrition > 100)
-			C.nutrition -= 10
+			C.adjust_nutrition(-10)
 
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(1, 3, 1)

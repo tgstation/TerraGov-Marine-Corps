@@ -11,21 +11,6 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 
 */
 
-
-//#define DARKMODE_BACKGROUND "#202020"
-//#define DARKMODE_DARKBACKGROUND "#171717"
-//#define DARKMODE_TEXT "#a4bad6"
-
-#define LIGHTMODE_BACKGROUND "none"
-#define LIGHTMODE_TEXT "#000000"
-
-#define DARKMODE_DARKBACKGROUND "#1e1e1e"
-#define DARKMODE_BACKGROUND "#333333"
-#define DARKMODE_TEXT "#a4bad6"
-#define DARKMODE_GRAYBUTTON "#494949"
-#define DARKMODE_DARKGRAYBUTTON "#3a3a3a"
-
-
 /client/proc/force_white_theme() //There's no way round it. We're essentially changing the skin by hand. It's painful but it works, and is the way Lummox suggested.
 	//Main windows
 	winset(src, "infowindow", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
@@ -48,7 +33,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "statwindow", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "stat", "background-color = #FFFFFF ; tab-background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT] ; tab-text-color = [LIGHTMODE_TEXT] ; prefix-color = [LIGHTMODE_TEXT] ; suffix-color = [LIGHTMODE_TEXT]")
 	//Say, OOC, me Buttons etc.
-	winset(src, "input", "background-color = #d3b5b5 ; text-color = [LIGHTMODE_TEXT]")
+	winset(src, "input", "background-color = [COLOR_INPUT_DISABLED] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "saybutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "oocbutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "mebutton", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
@@ -77,7 +62,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "statwindow", "background-color = [DARKMODE_DARKBACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "stat", "background-color = [DARKMODE_DARKBACKGROUND] ; tab-background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT] ; tab-text-color = [DARKMODE_TEXT] ; prefix-color = [DARKMODE_TEXT] ; suffix-color = [DARKMODE_TEXT]")
 	//Say, OOC, me Buttons etc.
-	winset(src, "input", "background-color = #1e1e1e ; text-color = [DARKMODE_TEXT]")
+	winset(src, "input", "background-color = [DARKMODE_DARKBACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "saybutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "oocbutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "mebutton", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")

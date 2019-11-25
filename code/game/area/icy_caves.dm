@@ -60,6 +60,11 @@
 	icon_state = "security"
 	ceiling = CEILING_METAL
 
+/area/icy_caves/outpost/research
+	name = "\improper Research Post"
+	icon_state = "blue"
+	ceiling = CEILING_METAL
+
 /area/icy_caves/outpost/LZ1
 	name = "\improper Landing Zone One"
 	icon_state = "green"

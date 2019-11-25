@@ -32,19 +32,11 @@
 
 
 /obj/item/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(!istype(user))
-		return
 	if(user.pulling == user.buckled)
 		return //can't move the thing you're sitting on.
-	if(istype(target, /obj/effect))//if you click a blood splatter with a grab instead of the turf,
-		target = get_turf(target)	//we still try to move the grabbed thing to the turf.
-	if(!isturf(target) || istype(target, /turf/open/floor/mainship/empty))
-		return
-	var/turf/T = target
-	if(T.density || !T.Adjacent(user))
-		return
-	user.changeNext_move(CLICK_CD_MELEE)
-	step(user.pulling, get_dir(user.pulling.loc, T))
+	target = get_turf(target)	//we still try to move the grabbed thing to the turf.
+	if(user.Move_Pulled(target))
+		user.changeNext_move(CLICK_CD_MELEE)
 
 
 /obj/item/grab/attack_self(mob/user)
@@ -99,7 +91,7 @@
 	if(prey.stat == DEAD)
 		to_chat(src, "<span class='warning'>Ew, [prey] is already starting to rot.</span>")
 		return NONE
-	if(length(stomach_contents)) //Only one thing in the stomach at a time, please
+	if(LAZYLEN(stomach_contents)) //Only one thing in the stomach at a time, please
 		to_chat(src, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
 		return NONE
 	for(var/obj/effect/forcefield/fog in range(1, src))
@@ -131,12 +123,7 @@
 
 	//Then, we place the mob where it ought to be
 
-	stomach_contents.Add(prey)
-	prey.knock_down(360)
-	prey.blind_eyes(1)
-	prey.forceMove(src)
-
-	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+	do_devour(prey)
 
 	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 
@@ -148,7 +135,7 @@
 		return FALSE
 	if(prey.buckled || prey.stat == DEAD)
 		return FALSE
-	if(length(stomach_contents))
+	if(LAZYLEN(stomach_contents))
 		return FALSE
 	return TRUE
 

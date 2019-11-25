@@ -297,7 +297,7 @@
 	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)

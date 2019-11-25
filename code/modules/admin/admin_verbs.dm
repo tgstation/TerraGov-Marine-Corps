@@ -1213,3 +1213,11 @@
 	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
 	browser.set_content(dat)
 	browser.open(FALSE)
+
+
+/client/proc/get_togglebuildmode()
+	set name = "Toggle Build Mode"
+	set category = "Fun"
+	if(!check_rights(R_SPAWN))
+		return
+	togglebuildmode(mob)

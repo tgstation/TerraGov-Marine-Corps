@@ -4,10 +4,15 @@
 #define ATTACK_EFFECT_SMASH		"smash"
 #define ATTACK_EFFECT_CLAW		"claw"
 #define ATTACK_EFFECT_DISARM	"disarm"
+#define ATTACK_EFFECT_DISARM2	"disarm_2"
 #define ATTACK_EFFECT_BITE		"bite"
 #define ATTACK_EFFECT_MECHFIRE	"mech_fire"
 #define ATTACK_EFFECT_MECHTOXIN	"mech_toxin"
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
+#define ATTACK_EFFECT_GRAB		"grab"
+#define ATTACK_EFFECT_REDSLASH	"redslash"
+#define ATTACK_EFFECT_REDSTAB	"redstab"
+#define ATTACK_EFFECT_YELLOWPUNCH	"yellowpunch"
 
 //Embedded objects
 #define EMBEDDEED_DEL_ON_HOLDER_DEL	(1<<0)

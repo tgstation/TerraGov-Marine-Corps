@@ -11,6 +11,13 @@
 #define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
 
 
+//Nutrition
+
+#define NUTRITION_STARVING 150
+#define NUTRITION_HUNGRY 250
+#define NUTRITION_WELLFED 400
+#define NUTRITION_OVERFED 450
+
 //=================================================
 /*
 	Germs and infections
@@ -300,6 +307,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_PLANT 				(1<<13)
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
+#define DETACHABLE_HEAD			(1<<16)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -312,6 +320,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
 //=================================================
+
+//AFK status
+#define MOB_CONNECTED 0
+#define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
+#define MOB_DISCONNECTED 2
 
 //Mob sizes
 #define MOB_SIZE_SMALL			0

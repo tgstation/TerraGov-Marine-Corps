@@ -954,6 +954,8 @@
 		AddComponent(/datum/component/stamina_behavior)
 		max_stamina_buffer = species.max_stamina_buffer
 		setStaminaLoss(-max_stamina_buffer)
+
+	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	return TRUE
 
 
@@ -986,8 +988,11 @@
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			G.set_light(0)
+		for(var/obj/item/weapon/gun/lit_gun in contents)
+			if(!isattachmentflashlight(lit_gun.rail))
+				continue
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
+			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1034,20 +1039,6 @@
 			else
 				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
-
-
-/mob/living/carbon/human/get_total_tint()
-	. = ..()
-	var/obj/item/clothing/C
-	if(istype(head, /obj/item/clothing/head))
-		C = head
-		. += C.tint
-	if(istype(wear_mask, /obj/item/clothing/mask))
-		C = wear_mask
-		. += C.tint
-	if(istype(glasses, /obj/item/clothing/glasses))
-		C = glasses
-		. += C.tint
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

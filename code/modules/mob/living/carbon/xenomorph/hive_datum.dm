@@ -15,6 +15,7 @@
 	var/list/list/xenos_by_tier
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
+	var/list/ssd_xenos
 
 // ***************************************
 // *********** Init
@@ -118,20 +119,17 @@
 			xenos += X
 	return xenos
 
-/datum/hive_status/proc/get_ssd_xenos(only_away=FALSE)
+/datum/hive_status/proc/get_ssd_xenos(only_away = FALSE)
 	var/list/xenos = list()
-	for(var/typepath in xenos_by_typepath)
-		for(var/i in xenos_by_typepath[typepath])
-			var/mob/living/carbon/xenomorph/X = i
-			if(is_centcom_level(X.z))
-				continue
-			if(X.client)
-				continue
-			if(isclientedaghost(X)) //To prevent adminghosted xenos to be snatched.
-				continue
-			if(only_away && X.afk_timer_id)
-				continue
-			xenos += X
+	for(var/i in ssd_xenos)
+		var/mob/living/carbon/xenomorph/ssd_xeno = i
+		if(is_centcom_level(ssd_xeno.z))
+			continue
+		if(isclientedaghost(ssd_xeno)) //To prevent adminghosted xenos to be snatched.
+			continue
+		if(only_away && ssd_xeno.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		xenos += ssd_xeno
 	return xenos
 
 // ***************************************
@@ -154,6 +152,9 @@
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
 		return FALSE
+
+	if(X.afk_status != MOB_CONNECTED)
+		LAZYADD(ssd_xenos, X)
 
 	xenos_by_typepath[X.caste_base_type] += X
 
@@ -237,6 +238,8 @@
 		stack_trace("failed to remove a xeno from hive status typepath list, nothing was removed!?")
 		return FALSE
 
+	LAZYREMOVE(ssd_xenos, X)
+
 	remove_leader(X)
 
 	return TRUE
@@ -292,6 +295,17 @@
 	for(var/i in xeno_leader_list)
 		var/mob/living/carbon/xenomorph/X = i
 		X.handle_xeno_leader_pheromones(living_xeno_queen)
+
+// ***************************************
+// *********** Status changes
+// ***************************************
+/datum/hive_status/proc/on_xeno_logout(mob/living/carbon/xenomorph/ssd_xeno)
+	if(ssd_xeno.stat == DEAD)
+		return
+	LAZYADD(ssd_xenos, ssd_xeno)
+
+/datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
+	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
 
 // ***************************************
 // *********** Xeno upgrades
@@ -667,8 +681,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/left_behind = 0
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/boarder = i
-		var/area/boarder_location = get_area(boarder)
-		if(istype(boarder_location, /area/shuttle/dropship/alamo))
+		if(isalamoarea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
 			continue

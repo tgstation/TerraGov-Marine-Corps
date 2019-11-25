@@ -293,6 +293,7 @@
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x24mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
@@ -705,7 +706,7 @@
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
+		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)

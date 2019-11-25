@@ -20,7 +20,7 @@
 
 /obj/effect/landmark/supplyspawner/weapons
 	name = "weapon supplies"
-	supply = list(/obj/structure/largecrate/supply/weapons/m41a = 2,
+	supply = list(/obj/structure/largecrate/supply/weapons/standard_carbine = 2,
 				/obj/structure/largecrate/supply/weapons/shotgun = 2,
 				/obj/structure/largecrate/supply/weapons/m39 = 2,
 				/obj/structure/largecrate/supply/weapons/pistols = 2,
@@ -96,10 +96,10 @@
 	name = "weapons chest"
 	icon_state = "chest"
 
-/obj/structure/largecrate/supply/weapons/m41a
-	name = "\improper M41A1 pulse rifle weapons chest (x10)"
-	desc = "A weapons chest containing ten M41A1 rifles."
-	supplies = list(/obj/item/weapon/gun/rifle/standard_carabine = 10)
+/obj/structure/largecrate/supply/weapons/standard_carbine
+	name = "\improper T-18 Carbine weapons chest (x10)"
+	desc = "A weapons chest containing ten T-18 Carbines."
+	supplies = list(/obj/item/weapon/gun/rifle/standard_carbine = 10)
 
 /obj/structure/largecrate/supply/weapons/shotgun
 	name = "\improper M37A2 pump action shotgun weapons chest (x10)"
@@ -122,8 +122,8 @@
 	supplies = list(/obj/item/weapon/gun/flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
-	name = "\improper M41AE2 heavy pulse rifle weapons chest (x2)"
-	desc = "A weapons chest containing two M41AE2 heavy pulse rifles."
+	name = "\improper T-42 LMG weapons chest (x2)"
+	desc = "A weapons chest containing two T-42 LMG."
 	supplies = list(/obj/item/weapon/gun/rifle/standard_lmg = 2)
 
 /obj/structure/largecrate/supply/weapons/sentries

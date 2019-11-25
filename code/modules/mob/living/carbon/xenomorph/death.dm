@@ -3,7 +3,7 @@
 	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 /mob/living/carbon/xenomorph/death(gibbed)
-	if(length(stomach_contents))
+	if(LAZYLEN(stomach_contents))
 		empty_gut()
 		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
 

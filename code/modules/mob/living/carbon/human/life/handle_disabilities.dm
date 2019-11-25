@@ -24,7 +24,7 @@
 /mob/living/carbon/human/handle_impaired_vision()
 	. = ..()
 
-	if(!(disabilities & BLIND) && tinttotal >= TINT_HEAVY) // Covered eyes, heal faster
+	if(!(disabilities & BLIND) && tinttotal >= TINT_5) // Covered eyes, heal faster
 		adjust_blindness(-1)
 		adjust_blurriness(-2)
 

@@ -8,10 +8,8 @@
 	Returns
 	The armour percentage which is deducted om the damage.
 */
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
-	var/armor = 0.00 //Define our float
-	armor = getarmor(def_zone, attack_flag) * 0.01 //Change the armour into a %
-	return armor
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
+	return getarmor(def_zone, attack_flag)
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -194,6 +192,14 @@
 /mob/living/proc/resist_fire(datum/source)
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
 	knock_down(4, TRUE)
+
+	var/turf/T = get_turf(src)
+	if(istype(T, /turf/open/floor/plating/ground/snow))	
+		visible_message("<span class='danger'>[src] rolls in the snow, putting themselves out!</span>", \
+		"<span class='notice'>You extinguish yourself in the snow!</span>", null, 5)
+		ExtinguishMob()
+		return
+
 	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
 	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
 	if(fire_stacks <= 0)

@@ -51,7 +51,6 @@
 	var/list/to_spawn = list(
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/clothing/suit/armor/bulletproof = 4,
-		/obj/item/ammo_magazine/smg/standard_smg/ap = 2,
 		/obj/item/ammo_magazine/pistol/ap = 2,
 	)
 	for(var/typepath in to_spawn)
@@ -70,9 +69,9 @@
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()
 	new /obj/item/weapon/gun/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
 	new /obj/item/weapon/gun/rifle/standard_lmg(src)
-	new /obj/item/ammo_magazine/rifle/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/m57a4/PopulateContents()
@@ -97,6 +96,7 @@
 	new /obj/item/storage/box/spec/scout(src)
 	new /obj/item/storage/box/spec/scoutshotgun(src)
 	new /obj/item/storage/box/spec/sniper(src)
+	new /obj/item/storage/box/spec/tracker(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/highpower/PopulateContents()

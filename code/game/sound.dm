@@ -197,7 +197,7 @@
 			if("alien_resin_build")
 				S = pick('sound/effects/alien_resin_build1.ogg','sound/effects/alien_resin_build2.ogg','sound/effects/alien_resin_build3.ogg')
 			if("alien_resin_break")
-				S = pick('sound/effects/alien_resin_break1.ogg','sound/effects/alien_resin_break2.ogg','sound/effects/alien_resin_break3.ogg')
+				S = pick('sound/effects/alien_resin_break1.ogg','sound/effects/alien_resin_break2.ogg')
 			if("alien_resin_move")
 				S = pick('sound/effects/alien_resin_move1.ogg','sound/effects/alien_resin_move2.ogg')
 			if("alien_talk")

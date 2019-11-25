@@ -32,6 +32,7 @@
 	disrupt(user)
 
 /obj/item/chameleon/equipped(mob/user, slot)
+	. = ..()
 	disrupt(user)
 
 /obj/item/chameleon/attack_self(mob/user)
