@@ -155,7 +155,7 @@
 	display_name = "flame weapons"
 	mechanics_text = "This is a flame weapon; it unleashes a stream of fire using a incinerator tank. You can \
 		refill liquid fuel by either using specialized fueltank backpacks made for the weapon or other fueltanks \
-		used by welders, although they're not effective. Unlike energy or ballistic weapons, flame weapons can \
+		used by welders, although they're not as effective. Unlike energy or ballistic weapons, flame weapons can \
 		pierce through entities, people or not. Depending on the flame type, the flames' longevity, range and spray \
 		shape varies from type to type. \
 		<br>"
