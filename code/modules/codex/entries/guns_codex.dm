@@ -162,7 +162,7 @@
 	lore_text = "Traditional flamethrowers were developed in the 1st century and saw frequent use in the 20th century \
 		in the first two world wars on Terra. Thanks to their questionable purpose of burning people alive, rebel \
 		armies, militia groups and terrorist organizations make use of the weapon for centuries to come. It wasn't issued \
-		to inventory for the TerraGov Marine Corps along with lasguns until 2414, where aliens are vulnerable to intense heat."
+		to inventory for the TerraGov Marine Corps along with lasguns until 2414, due to the xenomorph threat and its vulnerability to intense heat."
 
 /datum/codex_entry/explosive_weapons
 	display_name = "explosive weapons"
