@@ -69,7 +69,8 @@
 	if(modifiers["ctrl"] && modifiers["middle"])
 		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))		
+	if(modifiers["middle"])
+		MiddleClickOn(A)
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return
@@ -279,24 +280,9 @@
 	Only used for swapping hands
 */
 /mob/proc/MiddleClickOn(atom/A)
-	return TRUE
+	return
 
 
-/mob/living/carbon/human/MiddleClickOn(atom/A)
-	. = ..()
-	if(!middle_mouse_toggle)
-		return
-	var/obj/item/held_thing = get_active_held_item()
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
-		return FALSE
-
-
-/mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
-	. = ..()
-	if(!middle_mouse_toggle || !selected_ability)
-		return
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
 
 /*
 	Shift click
@@ -312,24 +298,6 @@
 	return A.ShiftClick(src)
 
 
-/mob/living/carbon/human/ShiftClickOn(atom/A)
-	if(middle_mouse_toggle)
-		return ..()
-	var/obj/item/held_thing = get_active_held_item()
-
-	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_SHIFTCLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
-		return FALSE
-	return ..()
-
-
-/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
-	if(!selected_ability || middle_mouse_toggle)
-		return ..()
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
-	return TRUE
-
-
 /atom/proc/ShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_SHIFT, user)
 	return TRUE
@@ -339,6 +307,9 @@
 	For most objects, pull
 */
 /mob/proc/CtrlClickOn(atom/A)
+	var/obj/item/held_thing = get_active_held_item()
+	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_CLICKCTRLON, A, src) & COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED)
+		return
 	A.CtrlClick(src)
 
 

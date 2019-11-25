@@ -1122,21 +1122,21 @@ and you're good to go.
 		return
 	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
 		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
+	RegisterSignal(src, COMSIG_ITEM_CLICKCTRLON, .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
-	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
+	UnregisterSignal(src, COMSIG_ITEM_CLICKCTRLON)
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
+	. = COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))
-		return
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		to_chat(user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(user) //If it's empty, let them know.
