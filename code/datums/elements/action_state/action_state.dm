@@ -9,5 +9,3 @@
 /datum/element/action_state/Destroy()
 	STOP_PROCESSING(SSactionstate, src)
 	return ..()
-
-/datum/element/action_state/process()

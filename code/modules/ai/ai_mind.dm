@@ -14,5 +14,3 @@
 		stack_trace("AI mind had a qdel'd component after being late initialized. Removing it.")
 		qdel(src)
 		return
-
-/datum/ai_mind/process() //Processes every AI subsystem tick
