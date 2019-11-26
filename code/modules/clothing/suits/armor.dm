@@ -122,7 +122,7 @@
 	icon_state = "riot"
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = SLOWDOWN_ARMOR_HEAVY
+	slowdown = 1
 	armor = list("melee" = 80, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
@@ -136,7 +136,7 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
 	icon_state = "riot"
 	item_state = "swat"
-	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	slowdown = 1.15
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 35, "energy" = 20, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 /obj/item/clothing/suit/armor/swat
@@ -221,7 +221,7 @@
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	slowdown = 0.55
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 	siemens_coefficient = 0.7
 
