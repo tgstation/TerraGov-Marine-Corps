@@ -216,6 +216,7 @@
 				return
 			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
 				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!</span>")
+				return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
 			return
