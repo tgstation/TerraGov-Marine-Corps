@@ -292,10 +292,9 @@
 "bB" = (
 /obj/machinery/button/door/indestructible{
 	bound_y = 16;
+	dir = 1;
 	id = "thunder1";
-	name = "Section 1 Podlocks";
-	pixel_x = 0;
-	pixel_y = -24;
+	name = "Section 1 Podlocks"
 	},
 /turf/open/floor/mainship{
 	icon_state = "blue"
@@ -310,9 +309,9 @@
 "bK" = (
 /obj/machinery/button/door/indestructible{
 	bound_y = 0;
+	dir = 1;
 	id = "thunder2";
-	name = "Section 2 Podlocks";
-	pixel_y = -24;
+	name = "Section 2 Podlocks"
 	},
 /turf/open/floor/mainship{
 	icon_state = "blue"
