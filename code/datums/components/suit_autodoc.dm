@@ -17,24 +17,11 @@
 	var/damage_threshold = 50
 	var/pain_threshold = 70
 
-	var/list/burn_chems = list(
-		/datum/reagent/medicine/kelotane,
-		/datum/reagent/medicine/tricordrazine)
-	var/list/oxy_chems = list(
-		/datum/reagent/medicine/dexalinplus,
-		/datum/reagent/medicine/inaprovaline,
-		/datum/reagent/medicine/tricordrazine)
-	var/list/brute_chems = list(
-		/datum/reagent/medicine/bicaridine,
-		/datum/reagent/medicine/quickclot,
-		/datum/reagent/medicine/tricordrazine)
-	var/list/tox_chems = list(
-		/datum/reagent/medicine/dylovene,
-		/datum/reagent/medicine/spaceacillin,
-		/datum/reagent/medicine/tricordrazine)
-	var/list/pain_chems = list(
-		/datum/reagent/medicine/oxycodone,
-		/datum/reagent/medicine/tramadol)
+	var/list/burn_chems
+	var/list/oxy_chems
+	var/list/brute_chems
+	var/list/tox_chems
+	var/list/pain_chems
 
 	var/datum/action/suit_autodoc_toggle/toggle_action
 	var/datum/action/suit_autodoc_scan/scan_action
@@ -52,14 +39,37 @@
 		src.chem_cooldown = chem_cooldown
 	if(islist(burn_chems))
 		src.burn_chems = burn_chems
+	else
+		src.burn_chems = list(
+			/datum/reagent/medicine/kelotane,
+			/datum/reagent/medicine/tricordrazine)
 	if(islist(oxy_chems))
 		src.oxy_chems = oxy_chems
+	else
+		src.oxy_chems = list(
+			/datum/reagent/medicine/dexalinplus,
+			/datum/reagent/medicine/inaprovaline,
+			/datum/reagent/medicine/tricordrazine)
 	if(islist(brute_chems))
 		src.brute_chems = brute_chems
+	else
+		src.brute_chems = list(
+			/datum/reagent/medicine/bicaridine,
+			/datum/reagent/medicine/quickclot,
+			/datum/reagent/medicine/tricordrazine)
 	if(islist(tox_chems))
 		src.tox_chems = tox_chems
+	else
+		src.tox_chems = list(
+			/datum/reagent/medicine/dylovene,
+			/datum/reagent/medicine/spaceacillin,
+			/datum/reagent/medicine/tricordrazine)
 	if(islist(pain_chems))
 		src.pain_chems = pain_chems
+	else
+		src.pain_chems = list(
+			/datum/reagent/medicine/oxycodone,
+			/datum/reagent/medicine/tramadol)
 	if(!isnull(overdose_threshold_mod))
 		src.overdose_threshold_mod = overdose_threshold_mod
 
@@ -90,9 +100,6 @@
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
-	UnregisterSignal(toggle_action, COMSIG_ACTION_TRIGGER)
-	UnregisterSignal(scan_action, COMSIG_ACTION_TRIGGER)
-	UnregisterSignal(configure_action, COMSIG_ACTION_TRIGGER)
 	QDEL_NULL(toggle_action)
 	QDEL_NULL(scan_action)
 	QDEL_NULL(configure_action)
