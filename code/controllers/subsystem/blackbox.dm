@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(blackbox)
 	set waitfor = FALSE
 	if(sealed)
 		return
-	if(!L || !L.key || !L.mind)
+	if(!L?.key || !L.mind)
 		return
 	var/sqlname = L.real_name
 	var/sqlkey = L.ckey
