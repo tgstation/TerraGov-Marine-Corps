@@ -575,7 +575,7 @@
 //=============================//PMCS\\==================================
 
 /obj/item/clothing/suit/storage/marine/veteran
-	flags_armor_features = ARMOR_LAMP_OVERLAY\
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -832,7 +832,7 @@
 	slowdown = 0.2
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
-	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDSS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
