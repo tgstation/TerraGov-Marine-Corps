@@ -167,7 +167,7 @@
 /datum/codex_entry/explosive_weapons
 	display_name = "explosive weapons"
 	mechanics_text = "This is an explosive weapon; it fires a projectile capable of detonating once it reaches its target. You can \
-		reload it by clicking the weapon with either rockets or grenades, depending on the weapon type. Explosive \
+		reload it by clicking the weapon with either rockets or grenades, depending on its type. Explosive \
 		weapons are usually unwieldly to use during combat situations and they usually cause massive collateral damage \
 		if misused. \
 		<br>"
