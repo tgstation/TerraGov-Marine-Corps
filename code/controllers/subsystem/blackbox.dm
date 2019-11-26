@@ -174,3 +174,59 @@ SUBSYSTEM_DEF(blackbox)
 	key_type = new_key_type
 	version = new_version
 	json = list()
+
+
+/datum/controller/subsystem/blackbox/proc/ReportDeath(mob/living/L)
+	set waitfor = FALSE
+	if(sealed)
+		return
+	if(!L || !L.key || !L.mind)
+		return
+	var/sqlname = L.real_name
+	var/sqlkey = L.ckey
+	var/sqljob = L.mind.assigned_role
+	var/sqlspecial = "unused" // unused
+	var/sqlpod = get_area_name(L, TRUE)
+	var/laname = "unused" // unused
+	var/lakey = "unused" // unused
+	var/sqlbrute = L.getBruteLoss()
+	var/sqlfire = L.getFireLoss()
+	var/sqlbrain = -1 // unused
+	var/sqloxy = L.getOxyLoss()
+	var/sqltox = L.getToxLoss()
+	var/sqlclone = L.getCloneLoss()
+	var/sqlstamina = L.getStaminaLoss()
+	var/x_coord = L.x
+	var/y_coord = L.y
+	var/z_coord = L.z
+	var/last_words = "no last words" // unused
+	var/suicide = L.suiciding
+	var/map = SSmapping.configs[GROUND_MAP].map_name
+
+	if(!SSdbcore.Connect())
+		return
+
+	sqlname = sanitizeSQL(sqlname)
+	sqlkey = sanitizeSQL(sqlkey)
+	sqljob = sanitizeSQL(sqljob)
+	sqlspecial = sanitizeSQL(sqlspecial)
+	sqlpod = sanitizeSQL(sqlpod)
+	laname = sanitizeSQL(laname)
+	lakey = sanitizeSQL(lakey)
+	sqlbrute = sanitizeSQL(sqlbrute)
+	sqlfire = sanitizeSQL(sqlfire)
+	sqlbrain = sanitizeSQL(sqlbrain)
+	sqloxy = sanitizeSQL(sqloxy)
+	sqltox = sanitizeSQL(sqltox)
+	sqlclone = sanitizeSQL(sqlclone)
+	sqlstamina = sanitizeSQL(sqlstamina)
+	x_coord = sanitizeSQL(x_coord)
+	y_coord = sanitizeSQL(y_coord)
+	z_coord = sanitizeSQL(z_coord)
+	last_words = sanitizeSQL(last_words)
+	suicide = sanitizeSQL(suicide)
+	map = sanitizeSQL(map)
+	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery("INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide) VALUES ('[sqlpod]', '[x_coord]', '[y_coord]', '[z_coord]', '[map]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', [GLOB.round_id], '[SQLtime()]', '[sqljob]', '[sqlspecial]', '[sqlname]', '[sqlkey]', '[laname]', '[lakey]', [sqlbrute], [sqlfire], [sqlbrain], [sqloxy], [sqltox], [sqlclone], [sqlstamina], '[last_words]', [suicide])")
+	if(query_report_death)
+		query_report_death.Execute(async = TRUE)
+		qdel(query_report_death)

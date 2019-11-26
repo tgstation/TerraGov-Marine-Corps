@@ -19,6 +19,7 @@
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
 
 	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.

@@ -23,6 +23,7 @@
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_acid_sprays")
 
 	succeed_activate()
 

@@ -89,6 +89,7 @@
 /datum/action/xeno_action/activable/psychic_fling/use_ability(atom/target)
 	var/mob/living/victim = target
 	GLOB.round_statistics.psychic_flings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 
 	owner.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [owner]!</span>", \
 	"<span class='xenowarning'>We violently fling [victim] with the power of our mind!</span>")
@@ -260,6 +261,7 @@
 		assailant.drop_held_item() //Do we have a hugger? No longer.
 
 	GLOB.round_statistics.psychic_chokes++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_chokes")
 	assailant.visible_message("<span class='xenowarning'>A strange and violent psychic aura is suddenly emitted from \the [assailant]!</span>", \
 	"<span class='xenowarning'>We choke [victim] with the power of our mind!</span>")
 	victim.visible_message("<span class='xenowarning'>[victim] is suddenly grabbed by the neck by an unseen force!</span>", \
@@ -335,6 +337,7 @@
 		return FALSE
 
 	GLOB.round_statistics.psychic_cures++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
 	owner.visible_message("<span class='xenowarning'>A strange psychic aura is suddenly emitted from \the [owner]!</span>", \
 	"<span class='xenowarning'>We cure [target] with the power of our mind!</span>")
 	target.visible_message("<span class='xenowarning'>[target] suddenly shimmers in a chill light.</span>", \
