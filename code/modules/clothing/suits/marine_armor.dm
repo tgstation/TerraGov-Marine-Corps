@@ -98,14 +98,14 @@
 	name = "\improper M3-H pattern marine armor"
 	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of slowdown."
 	icon_state = "1"
-	armor = list("melee" = 65, "bullet" = 70, "laser" = 60, "energy" = 30, "bomb" = 60, "bio" = 50, "rad" = 20, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 65, "bullet" = 70, "laser" = 60, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 20, "fire" = 50, "acid" = 30)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/storage/marine/M3LB
 	name = "\improper M3-LB pattern marine armor"
-	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
+	desc = "A standard Marine M3 Light Build Pattern Chestplate. Fitted with lightweight, toxin-resistant plating. Lesser encumbrance and protection."
 	icon_state = "2"
-	armor = list("melee" = 30, "bullet" = 20, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 60, "rad" = 0, "fire" = 10, "acid" = 60)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 
 /obj/item/clothing/suit/storage/marine/harness
@@ -115,12 +115,14 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0
 	flags_atom = NONE
+	time_to_unequip = 0
+	time_to_equip = 0
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
 	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and storage capacity."
 	icon_state = "4"
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 50, "bio" = 40, "rad" = 10, "fire" = 35, "acid" = 45)
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 40, "energy" = 20, "bomb" = 50, "bio" = 20, "rad" = 10, "fire" = 35, "acid" = 25)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	pockets = /obj/item/storage/internal/suit/marine/M3IS
 
