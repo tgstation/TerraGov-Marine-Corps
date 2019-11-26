@@ -470,7 +470,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = 6
+	wield_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
