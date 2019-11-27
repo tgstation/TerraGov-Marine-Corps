@@ -81,6 +81,11 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/katana)
 
+/obj/item/storage/large_holster/katana/full/Initialize()
+	. = ..()
+	icon_state = "katana_holster_full"
+	new /obj/item/weapon/katana(src)
+
 /obj/item/storage/large_holster/t35
 	name = "\improper L44 T-35 scabbard"
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
