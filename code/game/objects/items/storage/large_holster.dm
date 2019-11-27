@@ -86,6 +86,42 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/katana)
 
+/obj/item/storage/large_holster/t35
+	name = "\improper L44 T-35 scabbard"
+	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	icon_state = "t35_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/pump/t35)
+
+/obj/item/storage/large_holster/t35/full/Initialize()
+	. = ..()
+	icon_state = "t35_holster_full"
+	new /obj/item/weapon/gun/shotgun/pump/t35(src)
+	base_icon = icon_state
+
+/obj/item/storage/large_holster/machete
+	name = "\improper H5 pattern M2132 machete scabbard"
+	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
+	base_icon = "machete_holster"
+	icon_state = "machete_holster"
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	can_hold = list(/obj/item/weapon/claymore/mercsword/machete)
+
+/obj/item/storage/large_holster/machete/full/Initialize()
+	. = ..()
+	icon_state = "machete_holster_full"
+	new /obj/item/weapon/claymore/mercsword/machete(src)
+
+/obj/item/storage/large_holster/katana
+	name = "\improper katana scabbard"
+	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
+	base_icon = "katana_holster"
+	icon_state = "katana_holster"
+	force = 12
+	attack_verb = list("bludgeoned", "struck", "cracked")
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	can_hold = list(/obj/item/weapon/katana)
+
 /obj/item/storage/large_holster/katana/full/Initialize()
 	. = ..()
 	icon_state = "katana_holster_full"

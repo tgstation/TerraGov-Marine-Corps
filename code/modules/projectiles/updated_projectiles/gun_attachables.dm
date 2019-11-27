@@ -928,6 +928,17 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/t35stock
+	name = "\improper T-35 stock"
+	desc = "A non-standard heavy stock for the T-35 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
+	slot = "stock"
+	wield_delay_mod = 0.4 SECONDS
+	icon_state = "t35stock"
+	accuracy_mod = 0.15
+	recoil_mod = -3
+	scatter_mod = -20
+	movement_acc_penalty_mod = 0.1
+
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 

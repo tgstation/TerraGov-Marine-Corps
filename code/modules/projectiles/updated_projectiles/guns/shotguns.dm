@@ -709,3 +709,43 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 2
+
+//------------------------------------------------------
+//T-35 Pump shotgun
+/obj/item/weapon/gun/shotgun/pump/t35
+	name = "\improper T-35 Pump shotgun"
+	desc = "The T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "t35"
+	item_state = "t35"
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	max_shells = 9
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/stock/t35stock)
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+
+	flags_item_map_variant = NONE
+
+	fire_delay = 20
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	scatter = 20
+	scatter_unwielded = 40
+	recoil = 2
+	recoil_unwielded = 4
+	pump_delay = 14
+
