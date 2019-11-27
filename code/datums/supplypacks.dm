@@ -4,15 +4,6 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-#define RO_PRICE_NEAR_FREE		10
-#define RO_PRICE_VERY_CHEAP		20
-#define RO_PRICE_CHEAP			30
-#define RO_PRICE_NORMAL			40
-#define RO_PRICE_PRICY			60
-#define RO_PRICE_KINDA_PRICY	50
-#define RO_PRICE_PRETTY_PRICY	80
-#define RO_PRICE_VERY_PRICY		100
-#define RO_PRICE_MAX_PRICY		120
 
 GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies"))
 
