@@ -21,6 +21,7 @@
 	X.agility = !X.agility
 
 	GLOB.round_statistics.warrior_agility_toggles++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	if (X.agility)
 		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
 		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
@@ -90,6 +91,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
 	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>We lunge at [A]!</span>")
 
@@ -143,6 +145,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/human/H = A
 	GLOB.round_statistics.warrior_flings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
 	X.visible_message("<span class='xenowarning'>\The [X] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>We effortlessly fling [H] to the side!</span>")
@@ -202,6 +205,7 @@
 		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_punches")
 
 	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
 	var/target_zone = check_zone(X.zone_selected)
@@ -276,6 +280,7 @@
 		to_chat(src, "<span class='xenowarning'>We can't rip off that limb.</span>")
 		return FALSE
 	GLOB.round_statistics.warrior_limb_rips++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_limb_rips")
 	var/limb_time = rand(40,60)
 
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \

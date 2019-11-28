@@ -470,7 +470,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = 8
+	wield_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
@@ -485,7 +485,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 2 SECONDS
+	fire_delay = 2.3 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
