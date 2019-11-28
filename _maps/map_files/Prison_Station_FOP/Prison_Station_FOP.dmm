@@ -1,7 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/carpet,
+/area/prison/command/office)
 "aab" = (
 /turf/open/beach/sea,
 /area/space)
+"aac" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/prison/trim/red{
+	dir = 1
+	},
+/area/prison/security/checkpoint/maxsec_highsec)
+"aad" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "acD" = (
 /obj/effect/step_trigger/teleporter/random{
 	name = "tele_space";
@@ -5613,12 +5628,6 @@
 	dir = 4
 	},
 /area/prison/hangar_storage/research)
-"aqR" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/prison/trim/red{
-	dir = 1
-	},
-/area/prison/security/checkpoint/maxsec_highsec)
 "aqS" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/trim/red{
@@ -16621,11 +16630,6 @@
 /area/prison/cellblock/lowsec/nw)
 "aQv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/carpet,
-/area/prison/command/office)
-"aQw" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/med_data/laptop,
 /turf/open/floor/carpet,
 /area/prison/command/office)
 "aQx" = (
@@ -50800,10 +50804,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
-"cxE" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating,
-/area/prison/pirate)
 "cxF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -51768,10 +51768,6 @@
 	},
 /turf/closed/wall/r_wall/prison,
 /area/prison/hangar/civilian)
-"ium" = (
-/obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/floor/wood,
-/area/prison/residential/north)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -58468,7 +58464,7 @@ aab
 aab
 aab
 avm
-ium
+axb
 awi
 axa
 avN
@@ -74771,7 +74767,7 @@ cio
 cwS
 cjw
 cjw
-cxE
+cjw
 cjw
 ckn
 cyt
@@ -76808,7 +76804,7 @@ ckn
 cmg
 cmS
 ckn
-ckn
+aad
 coq
 coq
 cfL
@@ -77734,7 +77730,7 @@ adO
 aab
 aab
 aqq
-aqR
+aac
 arw
 arN
 asV
@@ -111431,7 +111427,7 @@ aab
 aab
 aNH
 aOW
-aQw
+aaa
 aRP
 aSK
 aOW

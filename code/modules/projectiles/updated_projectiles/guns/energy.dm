@@ -118,9 +118,9 @@
 	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	load_method = CELL //codex
-
 	ammo = /datum/ammo/energy/lasgun
 	flags_equip_slot = ITEM_SLOT_BACK
+	muzzleflash_iconstate = "muzzle_flash_laser"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
@@ -382,6 +382,7 @@
 	max_shots = 100//codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/pulsebolt
+	muzzleflash_iconstate = "muzzle_flash_pulse"
 	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = M43_STANDARD_AMMO_COST
 

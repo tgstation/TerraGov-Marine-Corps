@@ -251,6 +251,8 @@
 #define HELMET_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For normal helmets
 #define ARMOR_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For armor
 #define ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 			600	//For armor
+#define HEAVYHELMET_MAX_HEAT_PROTECTION_TEMPERATURE 	15000	//For heavy helmets
+#define HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE 		15000	//For heavy armor
 
 #define GLOVES_MIN_COLD_PROTECTION_TEMPERATURE 			200	//For some gloves (black and)
 #define GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE 			650	//For some gloves
@@ -314,3 +316,7 @@
 	SLOT_IN_BELT,\
 	SLOT_IN_HEAD\
 	)
+
+#define ITEM_NOT_EQUIPPED 0
+#define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
+#define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.

@@ -16,7 +16,21 @@
 	siemens_coefficient = 0.7
 	w_class = WEIGHT_CLASS_NORMAL
 
-
+/obj/item/clothing/head/ruggedhelm
+	name = "rugged helmet"
+	desc = "A helmet used by workers in dangerous environments."
+	icon_state = "helmet"
+	item_state = "helmet"
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	flags_atom = CONDUCT
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
+	flags_cold_protection = HEAD
+	flags_heat_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
@@ -284,9 +298,11 @@
 	icon_state = "heavyhelmet"
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 50, "energy" = 20, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 45)
 	accuracy_mod = -10
-	tint = TINT_1
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/heavy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_1)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
@@ -305,6 +321,16 @@
 	anti_hug = 6
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/grenadier
+	name = "\improper B17 helmet"
+	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
+	icon_state = "grenadier_helmet"
+	armor = list("melee" = 80, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 55, "rad" = 15, "fire" = 65, "acid" = 70)
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
+	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = UNACIDABLE
+	anti_hug = 4
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"

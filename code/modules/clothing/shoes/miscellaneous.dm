@@ -24,6 +24,14 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/shoes/ruggetboot
+	name = "Rugget Boots"
+	desc = "A pair of boots used by workers in dangerous environments."
+	icon_state = "swat"
+	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	flags_inventory = NOSLIPPING
+	siemens_coefficient = 0.6
+
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"

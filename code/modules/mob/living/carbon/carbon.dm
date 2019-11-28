@@ -1,6 +1,7 @@
 /mob/living/carbon/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+	adjust_nutrition_speed(0)
 
 
 /mob/living/carbon/Destroy()
@@ -15,9 +16,7 @@
 	. = ..()
 	if(.)
 		if(nutrition && stat != DEAD)
-			nutrition -= HUNGER_FACTOR/10
-			if(m_intent == MOVE_INTENT_RUN)
-				nutrition -= HUNGER_FACTOR/10
+			adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -135,7 +134,7 @@
 	if (istype(location, /turf))
 		location.add_vomit_floor(src, 1)
 
-	nutrition = max(nutrition - 40, 0)
+	adjust_nutrition(-40)
 	adjustToxLoss(-3)
 	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
@@ -461,3 +460,15 @@
 
 	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
 	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
+
+
+/mob/living/carbon/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
+	set category = "IC"
+
+	middle_mouse_toggle = !middle_mouse_toggle
+	if(!middle_mouse_toggle)
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
+	else
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")

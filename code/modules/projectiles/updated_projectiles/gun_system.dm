@@ -15,6 +15,7 @@
 	flags_item = TWOHANDED
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -124,7 +125,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	muzzle_flash = new()
+	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -209,35 +210,15 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+	. = ..()
+	if(!.)
 		return
 
-	var/obj/item/offhand = user.get_inactive_held_item()
-	if(offhand)
-		if(offhand == user.r_hand)
-			user.drop_r_hand()
-		else if(offhand == user.l_hand)
-			user.drop_l_hand()
-		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
-			return
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_slowdown)
 
-	if(ishuman(user))
-		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
-		var/mob/living/carbon/human/wielder = user
-		var/datum/limb/hand = wielder.get_limb(check_hand)
-		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, "<span class='warning'>Your other hand can't hold \the [src]!</span>")
-			return
-
-	flags_item 	   ^= WIELDED
-	name 	   += " (Wielded)"
-	item_state += "_w"
-	update_slowdown()
-	place_offhand(user, initial(name))
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.mind && user.mind.cm_skills)
+	if(user.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 			wdelay += 3
 		else
@@ -266,7 +247,6 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
-	return TRUE
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -277,20 +257,13 @@
 	if(zoom)
 		zoom(user)
 
-	update_slowdown()
+	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
 
 	return TRUE
-
-
-/obj/item/weapon/gun/proc/update_slowdown()
-	if(flags_item & WIELDED)
-		slowdown = initial(slowdown) + aim_slowdown
-	else
-		slowdown = initial(slowdown)
 
 
 //----------------------------------------------------------
@@ -423,14 +396,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
-		var/bullet_ammo_type
+		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
 		if(current_mag)
-			bullet_ammo_type = current_mag.default_ammo
-			bullet_caliber = current_mag.caliber
+			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
-			bullet_ammo_type = ammo.type
-			bullet_caliber = caliber
+			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
@@ -1151,21 +1122,21 @@ and you're good to go.
 		return
 	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
 		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, COMSIG_ITEM_CLICKCTRLON, .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
+	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
-	UnregisterSignal(src, COMSIG_ITEM_CLICKCTRLON)
+	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
-	. = COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))
+		return
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(user) //If it's empty, let them know.

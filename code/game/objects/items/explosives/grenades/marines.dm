@@ -277,6 +277,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
+	if(!fuel) //it's out of fuel, an empty shell.
+		return
 	if(!active)
 		turn_on()
 

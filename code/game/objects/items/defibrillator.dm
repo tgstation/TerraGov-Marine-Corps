@@ -218,6 +218,7 @@
 	H.apply_effect(10, EYE_BLUR)
 	H.apply_effect(10, PARALYZE)
 	H.update_canmove()
+	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 

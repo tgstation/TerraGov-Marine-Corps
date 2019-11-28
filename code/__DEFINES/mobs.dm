@@ -11,6 +11,13 @@
 #define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
 
 
+//Nutrition
+
+#define NUTRITION_STARVING 150
+#define NUTRITION_HUNGRY 250
+#define NUTRITION_WELLFED 400
+#define NUTRITION_OVERFED 450
+
 //=================================================
 /*
 	Germs and infections

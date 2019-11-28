@@ -23510,7 +23510,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
+/obj/item/weapon/gun/rifle/m41a,
 /obj/item/ammo_magazine/sniper/elite,
 /obj/item/weapon/gun/rifle/m41a1,
 /obj/item/weapon/gun/rifle/m41a1,
@@ -24167,7 +24167,7 @@
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/incendiary,
-/obj/item/ammo_magazine/smg/standard_smg/ap,
+/obj/item/ammo_magazine/smg/m39/ap,
 /obj/item/ammo_magazine/smg/mp7,
 /obj/item/ammo_magazine/smg/p90,
 /obj/item/ammo_magazine/smg/skorpion,

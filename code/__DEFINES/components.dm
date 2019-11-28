@@ -140,6 +140,7 @@
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		-1
 	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		-2
 	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		-3
+#define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//from base of /atom/movable/proc/set_glide_size(): (target)
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
@@ -153,13 +154,20 @@
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
 	#define COMPONENT_NO_INTERACT 1
 #define COMSIG_ITEM_EQUIPPED "item_equip"						//from base of obj/item/equipped(): (/mob/equipper, slot)
+#define COMSIG_ITEM_EQUIPPED_TO_SLOT "item_equip_to_slot"			//from base of obj/item/equipped(): (/mob/equipper)
+#define COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT "item_equip_not_in_slot"	//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
 	#define COMPONENT_NO_ATTACK_OBJ 1
+#define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 
-#define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
-	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
+#define COMSIG_ITEM_MIDDLECLICKON "item_middleclickon"					//from base of mob/MiddleClickOn(): (/atom, /mob)
+#define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/ShiftClickOn(): (/atom, /mob)
+	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
+
+#define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
+	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
@@ -284,9 +292,50 @@
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)
+#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
+#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
+#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
+#define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
+#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
+#define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
+#define COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN "keybinding_carbon_selecthelpintent_down"
+#define COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN "keybinding_carbon_selectdisarmintent_down"
+#define COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN "keybinding_carbon_selectgrabintent_down"
+#define COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN "keybinding_carbon_selectharmintent_down"
+#define COMSIG_KB_CARBON_SPECIALCLICK_DOWN "keybinding_carbon_specialclick_down"
+#define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
+#define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
+#define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
+#define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
+#define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
+#define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
+#define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
+#define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
+#define COMSIG_KB_MOB_FACEWEST_DOWN "keybinding_mob_facewest_down"
+#define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
+#define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
+#define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
+#define COMSIG_KB_MOB_SWAPHANDS_DOWN "keybinding_mob_swaphands_down"
+#define COMSIG_KB_MOB_SAY_DOWN "keybinding_mob_say_down"
+#define COMSIG_KB_MOB_ME_DOWN "keybinding_mob_me_down"
+#define COMSIG_KB_MOB_ACTIVATEINHAND_DOWN "keybinding_mob_activateinhand_down"
+#define COMSIG_KB_MOB_DROPITEM_DOWN "keybinding_mob_dropitem_down"
+#define COMSIG_KB_MOB_EXAMINE_DOWN "keybinding_mob_examine_down"
+#define COMSIG_KB_MOB_TOGGLEMOVEINTENT_DOWN "keybinding_mob_togglemoveintent_down"
+#define COMSIG_KB_MOB_TARGETCYCLEHEAD_DOWN "keybinding_mob_targetcyclehead_down"
+#define COMSIG_KB_MOB_TARGETRIGHTARM_DOWN "keybinding_mob_targetrightarm_down"
+#define COMSIG_KB_MOB_TARGETBODYCHEST_DOWN "keybinding_mob_targetbodychest_down"
+#define COMSIG_KB_MOB_TARGETLEFTARM_DOWN "keybinding_mob_targetleftarm_down"
+#define COMSIG_KB_MOB_TARGETRIGHTLEG_DOWN "keybinding_mob_targetrightleg_down"
+#define COMSIG_KB_MOB_TARGETBODYGROIN_DOWN "keybinding_mob_targetbodygroin_down"
+#define COMSIG_KB_MOB_TARGETLEFTLEG_DOWN "keybinding_mob_targetleftleg_down"
+#define COMSIG_KB_MOVEMENT_NORTH_DOWN "keybinding_movement_north_down"
+#define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
+#define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
+#define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
 
 // mob keybinds
-#define COMSIG_KB_HOLD_RUN_MOVE_INTENT_DOWN "keybinding_hold_run_move_intent_down"
 #define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
 
 // xeno abilities for keybindings

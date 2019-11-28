@@ -43,6 +43,7 @@
 	to_chat(stealthy_beno, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	stealthy_beno.last_stealth = world.time
 	stealthy_beno.stealth = TRUE
+	stealthy_beno.RegisterSignal(stealthy_beno, COMSIG_MOVABLE_MOVED, /mob/living/carbon/xenomorph/hunter/.proc/handle_stealth_movement)
 	stealthy_beno.handle_stealth()
 	add_cooldown()
 	addtimer(CALLBACK(stealthy_beno, /mob/living/carbon/xenomorph/hunter/.proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
@@ -52,6 +53,7 @@
 	if(!stealth)//sanity check/safeguard
 		return
 	to_chat(src, "<span class='xenodanger'>We emerge from the shadows.</span>")
+	UnregisterSignal(src, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency
