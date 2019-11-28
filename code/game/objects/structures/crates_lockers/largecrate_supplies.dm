@@ -103,7 +103,7 @@
 
 /obj/structure/largecrate/supply/weapons/shotgun
 	name = "\improper T-35 pump action shotgun weapons chest (x10)"
-	desc = "A weapons chest containing ten T-19 pump shotguns."
+	desc = "A weapons chest containing ten T-35 pump shotguns."
 	supplies = list(/obj/item/weapon/gun/shotgun/pump/t35 = 10)
 
 /obj/structure/largecrate/supply/weapons/m39
