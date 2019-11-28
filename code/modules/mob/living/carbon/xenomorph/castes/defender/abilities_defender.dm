@@ -52,6 +52,7 @@
 		return fail_activate()
 
 	GLOB.round_statistics.defender_headbutts++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_headbutts")
 
 	X.visible_message("<span class='xenowarning'>\The [X] rams [H] with its armored crest!</span>", \
 	"<span class='xenowarning'>We ram [H] with our armored crest!</span>")
@@ -122,6 +123,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.defender_tail_sweeps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
 	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
 	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
 
@@ -143,6 +145,7 @@
 			UPDATEHEALTH(H)
 			H.knock_down(1, 1)
 		GLOB.round_statistics.defender_tail_sweep_hits++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
 
 		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
@@ -236,6 +239,7 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
 		armor = armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus += xeno_caste.crest_defense_armor
 		add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
@@ -243,6 +247,7 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
 		armor_bonus -= xeno_caste.crest_defense_armor
 		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
@@ -289,6 +294,7 @@
 
 /mob/living/carbon/xenomorph/defender/proc/set_fortify(on, silent = FALSE)
 	GLOB.round_statistics.defender_fortifiy_toggles++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")

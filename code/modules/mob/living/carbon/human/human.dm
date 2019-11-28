@@ -15,6 +15,7 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	GLOB.round_statistics.total_humans_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)

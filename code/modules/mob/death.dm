@@ -73,4 +73,7 @@
 
 	update_icons()
 
+	if(SSticker.HasRoundStarted())
+		SSblackbox.ReportDeath(src)
+		
 	return TRUE
