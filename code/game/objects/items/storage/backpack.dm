@@ -677,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
