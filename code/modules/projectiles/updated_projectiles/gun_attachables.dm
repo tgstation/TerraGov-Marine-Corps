@@ -937,7 +937,6 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
