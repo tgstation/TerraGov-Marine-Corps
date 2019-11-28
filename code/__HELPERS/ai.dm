@@ -1,26 +1,3 @@
-//A file containing helpers for nodes and direction related things
-
-GLOBAL_LIST_EMPTY(allnodes)
-GLOBAL_LIST_EMPTY(nodes_with_enemies)
-GLOBAL_LIST_EMPTY(nodes_with_construction)
-
-//Converts input direction to a list of either two same directions if the input is cardinal
-//Otherwise will return the two directions that make up the diagonal
-/proc/DiagonalToCardinal(direct)
-	if(direct in GLOB.cardinals)
-		return list(direct, direct)
-	return list(NSCOMPONENT(direct), EWCOMPONENT(direct))
-
-	switch(direct)
-		if(NORTHEAST)
-			return shuffle(list(NORTH, EAST))
-		if(NORTHWEST)
-			return shuffle(list(NORTH, WEST))
-		if(SOUTHEAST)
-			return shuffle(list(SOUTH, EAST))
-		if(SOUTHWEST)
-			return shuffle(list(SOUTH, WEST))
-
 //Returns a node that is in the direction of this node; must be in the src's adjacent node list
 /obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
 
@@ -55,25 +32,3 @@ GLOBAL_LIST_EMPTY(nodes_with_construction)
 
 /proc/GetRandomNode() //Gets a new random destination, probably doesn't need this
 	return pick(GLOB.allnodes)
-
-/proc/LeftAndRightOfDir(direction) //Returns the left and right dir of the input dir, used for AI stutter step and cade movement
-	var/list/somedirs = list()
-	switch(direction)
-		if(NORTH)
-			somedirs = list(WEST, EAST)
-		if(SOUTH)
-			somedirs = list(EAST, WEST)
-		if(WEST)
-			somedirs = list(SOUTH, NORTH)
-		if(EAST)
-			somedirs = list(NORTH, SOUTH)
-		if(NORTHEAST)
-			somedirs = list(NORTH, EAST)
-		if(NORTHWEST)
-			somedirs = list(NORTH, WEST)
-		if(SOUTHEAST)
-			somedirs = list(SOUTH, EAST)
-		if(SOUTHWEST)
-			somedirs = list(SOUTH, WEST)
-
-	return(somedirs)

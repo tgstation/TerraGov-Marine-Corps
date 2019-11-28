@@ -32,7 +32,6 @@ Base datums for stuff like humans or xenos have possible actions to do as well a
 		stack_trace("An AI component was being attached to a target however there's no nodes nearby; component removed.")
 		return
 	mind = new mind_to_make(src)
-	mind.late_init()
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/qdel_self)
 	START_PROCESSING(SSprocessing, src)
 	atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)

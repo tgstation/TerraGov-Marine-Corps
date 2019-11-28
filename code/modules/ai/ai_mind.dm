@@ -8,9 +8,3 @@
 	..()
 	if(component_to_hook_to)
 		parent_component = component_to_hook_to
-
-/datum/ai_mind/proc/late_init() //Used for checking if there's a parent component and initial action states/decisions
-	if(QDELETED(parent_component))
-		stack_trace("AI mind had a qdel'd component after being late initialized. Removing it.")
-		qdel(src)
-		return

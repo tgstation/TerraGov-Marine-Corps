@@ -10,7 +10,7 @@
 		if(get_dist(mob, atoms_to_walk_to[mob]) == distances_to_maintain[mob])
 			SEND_SIGNAL(mob, COMSIG_MOB_TARGET_REACHED)
 			continue
-		move_delay = mob.movement_delay()
+		move_delay = mob.cached_multiplicative_slowdown
 		if(world.time <= mob.last_move_time + move_delay)
 			continue
 		else
