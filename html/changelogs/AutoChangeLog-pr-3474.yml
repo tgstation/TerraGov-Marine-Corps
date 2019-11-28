@@ -1,0 +1,5 @@
+author: "XElectricX"
+delete-after: True
+changes: 
+  - tweak: "Ship Techs get can unlock colony APCs and set airlock accesses."
+  - tweak: "Circuitboards are tiny sized instead of small."
