@@ -29,14 +29,13 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
-/datum/game_mode/distress/can_start()
+/datum/game_mode/distress/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
-	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
-	if(!found_queen && !found_xenos)
+	if(!found_queen && !found_xenos && !bypass_checks)
 		return FALSE
 	initialize_survivor()
 
@@ -192,35 +191,14 @@
 	announce_round_stats()
 
 
-/datum/game_mode/distress/proc/initialize_scales()
+/datum/game_mode/distress/initialize_scales()
+	. = ..()
+	if(!.)
+		return
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
-
-	var/current_smartgunners = 0
-	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
-	var/current_specialists = 0
-	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
-
-	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
-	SG.total_positions = maximum_smartgunners
-
-	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
-	SP.total_positions = maximum_specialists
-
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		if(current_specialists >= maximum_specialists)
-			S.max_specialists = 0
-		else
-			S.max_specialists = 1
-			current_specialists++
-		if(current_smartgunners >= maximum_smartgunners)
-			S.max_smartgun = 0
-		else
-			S.max_smartgun = 1
-			current_smartgunners++
 
 
 /datum/game_mode/distress/proc/initialize_survivor()
@@ -550,12 +528,11 @@
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
-/datum/game_mode/distress/handle_late_spawn()
-	var/datum/game_mode/distress/D = SSticker.mode
-	D.latejoin_tally++
+/datum/game_mode/distress/handle_late_spawn(mob/late_spawner)
+	latejoin_tally++
 
-	if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
-		D.latejoin_tally -= D.latejoin_larva_drop
+	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
+		latejoin_tally -= latejoin_larva_drop
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 

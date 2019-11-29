@@ -27,7 +27,7 @@
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
@@ -463,7 +463,7 @@
 	},
 /area/shuttle/canterbury)
 "aV" = (
-/obj/machinery/marine_selector/clothes/specialist/alpha,
+/obj/machinery/marine_selector/clothes/specialist,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -481,7 +481,7 @@
 	},
 /area/shuttle/canterbury)
 "aY" = (
-/obj/machinery/marine_selector/clothes/engi/alpha,
+/obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -674,7 +674,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/machinery/marine_selector/clothes/leader/alpha,
+/obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -794,7 +794,7 @@
 	},
 /area/shuttle/canterbury)
 "bC" = (
-/obj/machinery/marine_selector/clothes/smartgun/alpha,
+/obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -812,7 +812,7 @@
 	},
 /area/shuttle/canterbury)
 "bF" = (
-/obj/machinery/marine_selector/clothes/medic/alpha,
+/obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -901,7 +901,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
-/obj/machinery/marine_selector/clothes/alpha,
+/obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -1312,7 +1312,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cG" = (
-/obj/machinery/door/airlock/mainship/marine/alpha{
+/obj/machinery/door/airlock/mainship/marine{
 	icon_state = "door_closed";
 	dir = 8;
 	req_access = list();

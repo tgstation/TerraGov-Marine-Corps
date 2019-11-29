@@ -115,15 +115,3 @@
 	integer = FALSE
 	min_val = 0
 	config_entry_value = 4
-
-
-/datum/config_entry/number/specialist_coefficient
-	integer = FALSE
-	config_entry_value = 5
-	min_val = 0.001
-
-
-/datum/config_entry/number/smartgunner_coefficient
-	integer = FALSE
-	config_entry_value = 5
-	min_val = 0.001
