@@ -31,7 +31,7 @@
 	sprite_sheet_id = 1
 	icon_state = "beanie_cargo"
 	flags_inv_hide = HIDETOPHAIR
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /obj/item/clothing/head/tgmcberet
@@ -58,14 +58,14 @@
 	name = "\improper Command Master at Arms beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. It shines with the glow of corrupt authority and a smudge of doughnut."
 	icon_state = "beretwo"
-	armor = list("melee" = 10, "bullet" = 15, "laser" = 5, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 15, "bullet" = 30, "laser" = 5, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_item_map_variant = NONE
 
 /obj/item/clothing/head/tgmcberet/fc
 	name = "\improper Field Commander beret"
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	icon_state = "beretfc"
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 15, "bullet" = 30, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 	flags_item_map_variant = NONE
 
 
