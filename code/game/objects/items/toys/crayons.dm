@@ -90,7 +90,6 @@
 /obj/item/toy/crayon/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
-//		user.nutrition += 5
 		if(uses)
 			uses -= 5
 			if(uses <= 0)

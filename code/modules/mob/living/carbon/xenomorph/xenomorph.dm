@@ -19,6 +19,7 @@
 	GLOB.alive_xeno_list += src
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
 
 	if(!can_spawn_in_centcomm && is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
@@ -60,7 +61,7 @@
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
-	speed = xeno_caste.speed
+	setXenoCasteSpeed(xeno_caste.speed)
 	armor = getArmor(arglist(xeno_caste.armor))
 
 
@@ -299,4 +300,4 @@
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
-	addtimer(CALLBACK(src, .proc/handle_afk_takeover), 5 SECONDS)
+	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)

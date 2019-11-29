@@ -14,6 +14,7 @@
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
@@ -130,6 +131,12 @@
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 
 	ignore_weed_destruction = TRUE
+
+/obj/effect/alien/weeds/node/strong
+	name = "strong purple sac"
+	desc = "A weird, pulsating node. This looks pretty tough."
+	node_range = NODERANGE*2
+	max_integrity = 120
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()

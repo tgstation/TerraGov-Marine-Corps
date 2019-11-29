@@ -7,6 +7,7 @@
 	unload_sound = 'sound/weapons/guns/interact/pistol_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/pistol_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
+	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
 	materials = list(/datum/material/metal = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -187,6 +188,7 @@
 	desc = "A pistol chambered in.50ae that comes with a serious kick. This one is engraved, <i>'Peace through superior firepower.'</i>"
 	icon_state = "deagle"
 	item_state = "deagle"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = ".50 AE" //codex
 	max_shells = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/deagle.ogg'
@@ -436,6 +438,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	desc = "A powerful sidearm issued mainly to highly trained elite assassin necro-cyber-agents."
 	icon_state = "c70"
 	item_state = "c70"
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = ".70 Mankey" //codex
 	max_shells = 300 //codex
 	current_mag = /obj/item/ammo_magazine/pistol/chimp

@@ -168,7 +168,7 @@
 	L.jitter(5)
 	if(prob(10) && !L.stat)
 		L.knock_out(5)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.setDrowsyness(max(L.drowsyness, 30))
 
 //Reagents used for plant fertilizers.
 /datum/reagent/toxin/fertilizer
@@ -270,7 +270,7 @@
 	switch(current_cycle)
 		if(1 to 20)
 			L.confused += 2
-			L.drowsyness += 2
+			L.adjustDrowsyness(2)
 		if(21 to 60)
 			L.sleeping(5)
 		if(61 to INFINITY)
@@ -492,8 +492,6 @@
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	if(L.getOxyLoss())
-		L.adjustOxyLoss(-REM)
 	if(L.getBruteLoss() || L.getFireLoss())
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())

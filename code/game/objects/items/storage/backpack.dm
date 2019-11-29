@@ -187,6 +187,11 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/rugged
+	name = "satchel"
+	desc = "A rugged satchel for workers of all types."
+	icon_state = "satchel-norm"
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
@@ -608,7 +613,8 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
@@ -671,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -731,6 +738,7 @@
 	name = "\improper TGMC Pyrotechnician fueltank"
 	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
+	worn_accessible = TRUE
 	max_fuel = 500
 
 

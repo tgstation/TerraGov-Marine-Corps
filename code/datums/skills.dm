@@ -50,6 +50,16 @@
 	construction = SKILL_CONSTRUCTION_METAL
 	medical = SKILL_MEDICAL_NOVICE
 
+/datum/skills/civilian/survivor/master
+	name = "Survivor"
+	firearms = SKILL_FIREARMS_DEFAULT
+	medical = SKILL_MEDICAL_EXPERT
+	surgery = SKILL_SURGERY_EXPERT
+	construction = SKILL_CONSTRUCTION_MASTER
+	engineer = SKILL_ENGINEER_MASTER
+	powerloader = SKILL_POWERLOADER_MASTER
+	police = SKILL_POLICE_FLASH 
+
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
 	medical = SKILL_MEDICAL_COMPETENT

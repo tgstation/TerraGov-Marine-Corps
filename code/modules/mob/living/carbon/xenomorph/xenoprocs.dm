@@ -186,7 +186,7 @@
 				stat("Hive Orders:", hive.hive_orders)
 			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(countdown)
-				stat("Orphan hivemind collapse timer:", countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
 		if(XENO_HIVE_CORRUPTED)
 			stat("Hive Orders:","Follow the instructions of our masters")
 
@@ -198,16 +198,18 @@
 	return 1
 
 //Checks your plasma levels and gives a handy message.
-/mob/living/carbon/xenomorph/proc/check_plasma(value)
+/mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
-		return 0
+		if(!silent)
+			to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
-			to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
-			return 0
-	return 1
+			if(!silent)
+				to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)
 	plasma_stored = max(plasma_stored - value, 0)
@@ -235,16 +237,12 @@
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
-/mob/living/carbon/xenomorph/movement_delay(direct)
-	. = ..()
+/mob/living/carbon/xenomorph/proc/setXenoCasteSpeed(new_speed)
+	if(new_speed == 0)
+		remove_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED)
+		return
+	add_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED, TRUE, 0, NONE, TRUE, new_speed)
 
-	. += speed + slowdown + speed_modifier
-
-	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1)
-
-	if(hit_and_run) //We need to have the hit and run ability before we do anything
-		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
 //Stealth handling
 
@@ -363,23 +361,35 @@
 
 /mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
 	if(warning)
-		if(length(stomach_contents))
+		if(LAZYLEN(stomach_contents))
 			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
 			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
 		else
 			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
 
-	for(var/x in stomach_contents)
-		var/atom/movable/passenger = x
-		stomach_contents.Remove(passenger)
-		passenger.forceMove(get_turf(src))
-		SEND_SIGNAL(passenger, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
+	for(var/i in stomach_contents)
+		do_regurgitate(i)
 
 	if(content_cleanup)
 		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
 			var/atom/movable/stowaway = x
 			stowaway.forceMove(get_turf(src))
 			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
+
+
+/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
+	LAZYADD(stomach_contents, prey)
+	prey.knock_down(360)
+	prey.adjust_tinttotal(TINT_BLIND)
+	prey.forceMove(src)
+	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+
+
+/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
+	LAZYREMOVE(stomach_contents, prey)
+	prey.forceMove(get_turf(src))
+	prey.adjust_tinttotal(-TINT_BLIND)
+	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -517,6 +527,7 @@
 
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
 	cooldowns[COOLDOWN_ACID] = TRUE
 	var/armor_block = run_armor_check("chest", "acid")
@@ -617,18 +628,6 @@
 	else
 		H.remove_hud_from(src)
 	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
-
-
-/mob/living/carbon/xenomorph/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected abilitiy use."
-	set category = "Alien"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>")
 
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)

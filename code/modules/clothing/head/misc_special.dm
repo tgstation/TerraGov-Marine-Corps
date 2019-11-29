@@ -17,7 +17,7 @@
 	icon_state = "welding"
 	item_state = "welding"
 	materials = list(/datum/material/metal = 3000, /datum/material/glass = 1000)
-	var/up = 0
+	var/up = FALSE
 	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
@@ -28,11 +28,14 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 2
 	eye_protection = 2
-	tint = TINT_HEAVY
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
+/obj/item/clothing/head/welding/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_5)
+
 /obj/item/clothing/head/welding/attack_self(mob/user)
-	toggle(user)
+	toggle_item_state(user)
 
 
 /obj/item/clothing/head/welding/verb/verbtoggle()
@@ -41,42 +44,45 @@
 	set src in usr
 
 	if(!usr.incapacitated())
-		toggle(usr)
+		toggle_item_state(usr)
 
-/obj/item/clothing/head/welding/proc/toggle(mob/user)
+/obj/item/clothing/head/welding/proc/flip_up()
+	DISABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+	DISABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+	eye_protection = 0
+	hug_memory = anti_hug
+	anti_hug = 0
+	icon_state = "[initial(icon_state)]up"
+
+/obj/item/clothing/head/welding/proc/flip_down()
+	ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+	ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+	eye_protection = initial(eye_protection)
+	anti_hug = hug_memory
+	icon_state = initial(icon_state)
+
+/obj/item/clothing/head/welding/toggle_item_state(mob/user)
+	. = ..()
 	up = !up
 	icon_state = "[initial(icon_state)][up ? "up" : ""]"
 	if(up)
-		DISABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-		DISABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
-		eye_protection = 0
-		tint = TINT_NONE
-		hug_memory = anti_hug
-		anti_hug = 0
+		flip_up()
 	else
-		ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-		ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
-		eye_protection = initial(eye_protection)
-		tint = initial(tint)
-		anti_hug = hug_memory
+		flip_down()
 	if(user)
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
-
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		if(H.head == src)
-			H.update_tint()
 
 	update_clothing_icon()	//so our mob-overlays update
 
 	update_action_button_icons()
 
 /obj/item/clothing/head/welding/flipped //spawn in flipped up.
+	up = TRUE
 
 /obj/item/clothing/head/welding/flipped/Initialize(mapload)
 	. = ..()
-	toggle()
+	flip_up()
+	AddComponent(/datum/component/clothing_tint, TINT_5, FALSE)
 
 /*
 * Cakehat
@@ -156,5 +162,6 @@
 	update_icon(user, remove = TRUE)
 
 /obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user)
+	. = ..()
 	if(user.head && istype(user.head, /obj/item/clothing/head/kitty))
 		update_icon(user)

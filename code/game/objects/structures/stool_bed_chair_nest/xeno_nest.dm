@@ -106,7 +106,8 @@
 
 	user.visible_message("<span class='warning'>[user] pins [L] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [L] into [src], preparing the securing resin.</span>")
-	if(!do_after(user, 15, TRUE, L, BUSY_ICON_HOSTILE))
+	
+	if(!do_mob(user, L, 1.5 SECONDS, BUSY_ICON_HOSTILE))
 		return
 	if(QDELETED(src))
 		return

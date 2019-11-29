@@ -458,7 +458,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			GLOB.xeno_spawn_protection_locations.len--
 			new /obj/effect/forcefield/fog(T)
 			stoplag()
-		addtimer(CALLBACK(src, .proc/remove_fog), 25 MINUTES + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
+
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = GLOB.deathmatch.Copy()
@@ -534,7 +534,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	M.transfer_to(H, TRUE)
 	H.client.prefs.copy_to(H)
 
-	var/survivor_job = pick(subtypesof(/datum/job/survivor))
+	var/survivor_job = /datum/job/rambosurvivor/generic
 	var/datum/job/J = new survivor_job
 
 	J.assign_equip(H)
@@ -674,13 +674,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			to_chat(player, output)
 
 
-/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_ssd = FALSE)
+/datum/game_mode/proc/count_humans_and_xenos(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	var/num_humans = 0
 	var/num_xenos = 0
 
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
-		if(!H.client && !count_ssd)
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
 		if(H.status_flags & XENO_HOST)
 			continue
@@ -690,13 +690,26 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	for(var/i in GLOB.alive_xeno_list)
 		var/mob/living/carbon/xenomorph/X = i
-		if(!X.client && !count_ssd)
+		if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+			continue
+		if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 			continue
 		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
 		num_xenos++
 
 	return list(num_humans, num_xenos)
+
+
+/datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
+	return FALSE
+
+/datum/game_mode/distress/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
+	if(round_stage == DISTRESS_DROPSHIP_CRASHED)
+		return FALSE
+	if(isxenoresearcharea(get_area(xeno)))
+		return TRUE
+	return FALSE
 
 
 /datum/game_mode/proc/remove_fog()
@@ -855,7 +868,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			XENODEATHTIME_MESSAGE(xeno_candidate)
 			return FALSE
 
-	if(new_xeno.afk_timer_id) //We do not want to occupy them if they've only been gone for a little bit.
+	if(new_xeno.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
 		to_chat(xeno_candidate, "<span class='warning'>That player hasn't been away long enough. Please wait [round(timeleft(new_xeno.afk_timer_id) * 0.1)] second\s longer.</span>")
 		return FALSE
 

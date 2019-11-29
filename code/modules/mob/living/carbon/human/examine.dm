@@ -225,13 +225,10 @@
 
 	msg += "<span class='warning'>"
 
-	if(nutrition < 100)
+	if(nutrition < NUTRITION_STARVING)
 		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		/*if(user.nutrition < 100)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
-		msg += "[t_He] [t_is] quite chubby.\n"
+	else if(nutrition >= NUTRITION_OVERFED)
+		msg += "[t_He] looks a bit stuffed.\n"
 
 	msg += "</span>"
 

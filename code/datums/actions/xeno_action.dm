@@ -110,7 +110,7 @@
 
 /datum/action/xeno_action/proc/succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(plasma_cost)
+	if(plasma_cost && !QDELETED(owner))
 		X.use_plasma(plasma_cost)
 
 //checks if the linked ability is on some cooldown.
@@ -226,6 +226,9 @@
 
 //override this
 /datum/action/xeno_action/activable/proc/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(QDELETED(owner))
+		return FALSE
+
 	var/flags_to_check = use_state_flags|override_flags
 
 	var/mob/living/carbon/xenomorph/X = owner

@@ -59,6 +59,7 @@
 	var/attack_sound
 	var/friendly = "nuzzles"
 	var/wall_smash
+	var/ranged_accuracy_mod = 0
 
 	var/on_fire //The "Are we on fire?" var
 	var/fire_stacks = 0 //Tracks how many stacks of fire we have on, max is
@@ -79,11 +80,6 @@
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
-	var/image/attack_icon //the image used as overlay on the things we attack.
-
-	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
-
-	var/reagent_move_delay_modifier = 0 //negative values increase movement speed
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 

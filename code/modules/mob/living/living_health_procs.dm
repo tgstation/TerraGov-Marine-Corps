@@ -144,6 +144,24 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 /mob/living/proc/set_Losebreath(amount, forced = FALSE)
 	return
 
+/mob/living/proc/adjustDrowsyness(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	setDrowsyness(max(drowsyness + amount, 0))
+
+/mob/living/proc/setDrowsyness(amount)
+	if(status_flags & GODMODE)
+		return FALSE
+	if(drowsyness == amount)
+		return
+	. = drowsyness //Old value
+	drowsyness = amount
+	if(drowsyness)
+		if(!.)
+			add_movespeed_modifier(MOVESPEED_ID_DROWSINESS, TRUE, 0, NONE, TRUE, 6)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
+
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_limb_damage(brute, burn, updating_health = FALSE)
@@ -176,14 +194,16 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	if(status_flags & GODMODE)
 		return 0//godmode
 
-	if(blocked >= 1) //Complete negation
+	var/hit_percent = (100 - blocked) * 0.01
+
+	if(hit_percent <= 0) //total negation
 		return 0
 
 	if(blocked)
 		if(brute)
-			brute *= CLAMP01(1-blocked) //Percentage reduction
+			brute *= CLAMP01(hit_percent) //Percentage reduction
 		if(burn)
-			burn *= CLAMP01(1-blocked) //Percentage reduction
+			burn *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!brute && !burn) //Complete negation
 		return 0
@@ -276,7 +296,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 /mob/living/carbon/revive()
-	nutrition = 400
+	set_nutrition(400)
 	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
@@ -343,7 +363,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 /mob/living/carbon/xenomorph/revive()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
-	slowdown = 0
+	set_slowdown(0)
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
 	return ..()

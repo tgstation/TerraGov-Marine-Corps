@@ -214,6 +214,16 @@
 	src.item_state = "reactiveoff"
 	..()
 
+/obj/item/clothing/suit/armor/rugged
+	name = "rugged armor"
+	desc = "A suit of armor used by workers in dangerous environments."
+	icon_state = "swatarmor"
+	item_state = "armor"
+	var/obj/item/weapon/gun/holstered = null
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	slowdown = SLOWDOWN_ARMOR_LIGHT 
+	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	siemens_coefficient = 0.7
 
 
 

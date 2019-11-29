@@ -85,10 +85,11 @@
 
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
-			if(nutrition >= 300)
-				nutrition -= 10
-			else if(nutrition >= 200)
-				nutrition -= 3
+			switch(nutrition)
+				if(300 to INFINITY)
+					adjust_nutrition(-10)
+				if(200 to 300)
+					adjust_nutrition(-3)
 
 		//Bleeding out
 		var/blood_max = 0

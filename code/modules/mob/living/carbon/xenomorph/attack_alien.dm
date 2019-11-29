@@ -26,12 +26,13 @@
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
-	X.do_attack_animation(src)
 	if(!prob(X.melee_accuracy))
+		X.do_attack_animation(src)
 		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",
 	"<span class='warning'>We shove [src]!</span>", null, 5)
@@ -47,17 +48,18 @@
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
-	X.do_attack_animation(src)
 	if(!prob(X.melee_accuracy))
+		X.do_attack_animation(src)
 		playsound(loc, 'sound/weapons/slashmiss.ogg', 25, TRUE)
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
 	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
+		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
-	X.flick_attack_overlay(src, "disarm")
+	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
 	if(!knocked_down && !no_stun && (traumatic_shock > 100))
 		knock_down(1)
@@ -172,7 +174,6 @@
 
 	var/damage = X.xeno_caste.melee_damage
 
-	var/attack_flick =  "slash"
 	var/attack_sound = "alien_claw_flesh"
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
 	var/attack_message2 = "<span class='danger'>We slash [src]!</span>"
@@ -186,7 +187,7 @@
 		"<span class='danger'>We lunge at [src]!</span>", null, 5)
 		return FALSE
 
-	X.flick_attack_overlay(src, attack_flick)
+	X.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
 
 	//The normal attack proceeds
 	playsound(loc, attack_sound, 25, 1)
@@ -208,7 +209,6 @@
 			#endif
 			var/staggerslow_stacks = 2
 			var/knockout_stacks = 1
-			damage *= X.sneak_bonus //Massive damage on the sneak attack... hope you have armour.
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
@@ -265,7 +265,7 @@
 	if(stat == DEAD)
 		if(length(light_sources))
 			playsound(loc, "alien_claw_metal", 25, 1)
-			X.flick_attack_overlay(src, "slash")
+			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 			disable_lights(sparks = TRUE)
 			to_chat(X, "<span class='warning'>We disable whatever annoying lights the dead creature possesses.</span>")
 		else

@@ -1,35 +1,31 @@
 /mob/living/carbon/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_CARBON_DEVOURED_BY_XENO, .proc/on_devour_by_xeno)
+	adjust_nutrition_speed(0)
 
 
 /mob/living/carbon/Destroy()
-	if(iscarbon(loc))
-		var/mob/living/carbon/C = loc
-		C.stomach_contents -= src
-	stomach_contents.Cut()
+	if(afk_status == MOB_RECENTLY_DISCONNECTED)
+		set_afk_status(MOB_DISCONNECTED)
+	if(isxeno(loc))
+		var/mob/living/carbon/xenomorph/devourer = loc
+		devourer.do_regurgitate(src)
 	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
 	if(.)
 		if(nutrition && stat != DEAD)
-			nutrition -= HUNGER_FACTOR/10
-			if(m_intent == MOVE_INTENT_RUN)
-				nutrition -= HUNGER_FACTOR/10
+			adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
 
 /mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE)) return
-	if(user in src.stomach_contents)
-		if(user.client)
-			user.client.move_delay = world.time + 20
-		if(prob(30))
-			audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", null, 4)
-	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
+	if(user.incapacitated(TRUE))
+		return
+	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/xenomorph/larva/L = user
 		L.initiate_burst(src)
 
@@ -138,7 +134,7 @@
 	if (istype(location, /turf))
 		location.add_vomit_floor(src, 1)
 
-	nutrition = max(nutrition - 40, 0)
+	adjust_nutrition(-40)
 	adjustToxLoss(-3)
 	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
@@ -414,3 +410,65 @@
 		see_invisible = see_override
 
 	return ..()
+
+
+//AFK STATUS
+/mob/living/carbon/proc/set_afk_status(new_status, afk_timer)
+	switch(new_status)
+		if(MOB_CONNECTED, MOB_DISCONNECTED)
+			if(afk_timer_id)
+				deltimer(afk_timer_id)
+				afk_timer_id = null
+		if(MOB_RECENTLY_DISCONNECTED)
+			if(afk_status == MOB_RECENTLY_DISCONNECTED)
+				if(timeleft(afk_timer_id) > afk_timer)
+					deltimer(afk_timer_id) //We'll go with the shorter timer.
+				else
+					return
+			afk_timer_id = addtimer(CALLBACK(src, .proc/on_sdd_grace_period_end), afk_timer, TIMER_STOPPABLE)
+	afk_status = new_status
+	SEND_SIGNAL(src, COMSIG_CARBON_SETAFKSTATUS, new_status, afk_timer)
+
+
+/mob/living/carbon/proc/on_sdd_grace_period_end()
+	if(stat == DEAD)
+		return FALSE
+	if(isclientedaghost(src))
+		return FALSE
+	set_afk_status(MOB_DISCONNECTED)
+	return TRUE
+
+/mob/living/carbon/human/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	log_admin("[key_name(src)] (Job: [job]) has been away for 15 minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [job]) has been away for 15 minutes.")
+
+/mob/living/carbon/xenomorph/on_sdd_grace_period_end()
+	. = ..()
+	if(!.)
+		return
+	if(client)
+		return
+
+	var/mob/picked = get_alien_candidate()
+	if(!picked)
+		return
+
+	SSticker.mode.transfer_xeno(picked, src)
+
+	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
+	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
+
+
+/mob/living/carbon/verb/middle_mousetoggle()
+	set name = "Toggle Middle/Shift Clicking"
+	set desc = "Toggles between using middle mouse click and shift click for selected ability use."
+	set category = "IC"
+
+	middle_mouse_toggle = !middle_mouse_toggle
+	if(!middle_mouse_toggle)
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
+	else
+		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")

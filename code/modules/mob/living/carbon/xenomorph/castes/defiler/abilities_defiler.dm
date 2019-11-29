@@ -82,6 +82,7 @@
 	var/obj/item/alien_embryo/embryo = new(C)
 	embryo.hivenumber = X.hivenumber
 	GLOB.round_statistics.now_pregnant++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 	to_chat(X, "<span class='xenodanger'>Our stinger successfully implants a larva into the host.</span>")
 	to_chat(C, "<span class='danger'>You feel horrible pain as something large is forcefully implanted in your thorax.</span>")
 	C.apply_damage(100, STAMINA)
@@ -89,6 +90,7 @@
 	UPDATEHEALTH(C)
 	C.emote("scream")
 	GLOB.round_statistics.defiler_defiler_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
 	succeed_activate()
 	return ..()
 
@@ -140,6 +142,7 @@
 		return fail_activate()
 
 	GLOB.round_statistics.defiler_neurogas_uses++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
 
 	X.visible_message("<span class='xenodanger'>[X] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>We emit neurogas!</span>")

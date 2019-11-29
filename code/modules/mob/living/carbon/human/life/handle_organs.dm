@@ -10,16 +10,12 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(issynth(src))
-		nutrition = 350 //synthetics are never hungry
-
-	else
-
+	if(!issynth(src)) //synthetics are never hungry
 		//Nutrition decrease
-		if(nutrition > 0 && stat != 2)
-			nutrition = max (0, nutrition - HUNGER_FACTOR)
+		if(nutrition > 0 && stat != DEAD)
+			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > 450)
+		if(nutrition > NUTRITION_OVERFED)
 			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
