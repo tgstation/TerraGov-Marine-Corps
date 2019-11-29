@@ -708,6 +708,22 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	return list(num_humans, num_xenos)
 
+/datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+	var/total_worth = 0
+
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		var/datum/job/job = SSjob.GetJob(H.job)
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			continue
+		if(H.status_flags & XENO_HOST)
+			continue
+		if(!(H.z in z_levels) || isspaceturf(H.loc))
+			continue
+		total_worth += job.larvaworth
+
+	return total_worth
+
 
 /datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
 	return FALSE
@@ -822,7 +838,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	qdel(NP)
 
 
-/datum/game_mode/proc/handle_late_spawn(mob/late_spawner)
+/datum/game_mode/proc/handle_late_spawn(mob/living/late_spawner)
 	return
 
 

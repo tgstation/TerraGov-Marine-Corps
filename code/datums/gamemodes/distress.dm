@@ -20,8 +20,8 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
-	var/latejoin_tally		= 0
-	var/latejoin_larva_drop = 0
+	var/latejoin_larvapoints		= 0
+	var/latejoin_larvapoints_required = 0
 	var/orphan_hive_timer
 
 
@@ -195,7 +195,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
+	latejoin_larvapoints_required = CONFIG_GET(number/larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
@@ -528,11 +528,14 @@
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
-/datum/game_mode/distress/handle_late_spawn(mob/late_spawner)
-	latejoin_tally++
+/datum/game_mode/distress/handle_late_spawn(mob/living/late_spawner)
+	var/datum/job/job = SSjob.GetJob(late_spawner.job)
+	latejoin_larvapoints += job.larvaworth
+	to_chat(world, "[latejoin_larvapoints]")
 
-	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
-		latejoin_tally -= latejoin_larva_drop
+	if(latejoin_larvapoints >= latejoin_larvapoints_required)
+		latejoin_larvapoints -= latejoin_larvapoints_required
+		to_chat(world, "[latejoin_larvapoints]")
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 

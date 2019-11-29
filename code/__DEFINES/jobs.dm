@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(jobs_unassigned, list(SQUAD_MARINE))
 #define XP_REQ_INTERMEDIATE 60
 #define XP_REQ_EXPERIENCED 180
 
-// how much a job is going to contribute towards burrowed larva. see the respective game mode dm for how many points per larva
+// how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
 #define LARVA_POINTS_SHIPSIDE 1
-#define LARVA_POINTS_SYNTH 2
+#define LARVA_POINTS_SHIPSIDE_STRONG 2
 #define LARVA_POINTS_REGULAR 3
 #define LARVA_POINTS_STRONG 4.5

@@ -20,7 +20,7 @@
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/command/captain/radio_help_message(mob/M)
@@ -61,7 +61,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	outfit = /datum/outfit/job/command/fieldcommander
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_REGULAR
 
 /datum/job/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
@@ -107,7 +107,7 @@ Make the TGMC proud!"})
 	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/command/staffofficer/radio_help_message(mob/M)
@@ -142,7 +142,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
 
 
 /datum/job/command/pilot/radio_help_message(mob/M)
@@ -182,7 +182,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	outfit = /datum/outfit/job/command/tank_crew
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_REGULAR
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/command/tank_crew/radio_help_message(mob/M)
@@ -229,7 +229,7 @@ You could use MTs help to repair and replace hardpoints."})
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/police/officer
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/police/officer/radio_help_message(mob/M)
@@ -271,7 +271,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	outfit = /datum/outfit/job/police/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
 
 
 /datum/job/police/chief/radio_help_message(mob/M)
@@ -321,7 +321,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	outfit = /datum/outfit/job/engineering/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/engineering/chief/radio_help_message(mob/M)
@@ -362,7 +362,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	skills_type = /datum/skills/ST
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/engineering/tech
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/engineering/tech/radio_help_message(mob/M)
@@ -409,7 +409,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	outfit = /datum/outfit/job/requisitions/officer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/requisitions/officer/radio_help_message(mob/M)
@@ -455,7 +455,7 @@ A happy ship is a well-functioning ship."})
 	outfit = /datum/outfit/job/medical/professor
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/medical/professor/radio_help_message(mob/M)
@@ -498,7 +498,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 /datum/job/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
@@ -538,7 +538,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/medical/researcher/radio_help_message(mob/M)
@@ -585,7 +585,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/civilian/liaison/radio_help_message(mob/M)
@@ -621,7 +621,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_SPECIALNAME
-	var/larvaworth = LARVA_POINTS_SYNTH
+	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
 
 
 /datum/job/civilian/synthetic/get_special_name(client/preference_source)
@@ -681,7 +681,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
 	job_flags = JOB_FLAG_SPECIALNAME
-	var/larvaworth = LARVA_POINTS_SHIPSIDE
+	larvaworth = LARVA_POINTS_SHIPSIDE
 
 
 /datum/job/ai/get_special_name(client/preference_source)
