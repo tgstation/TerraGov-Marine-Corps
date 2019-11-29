@@ -1177,10 +1177,10 @@ ATTACHMENTS
 /datum/supply_packs/stock_shotgun
 	name = "shotgun stock attachment crate (x4)"
 	contains = list(
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock
 			)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate

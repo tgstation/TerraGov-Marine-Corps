@@ -82,7 +82,6 @@
 					/obj/item/storage/backpack/marine/standard = 15,
 					/obj/item/storage/backpack/marine/satchel = 15,
 					/obj/item/storage/large_holster/machete/full = 10,
-					/obj/item/storage/large_holster/t35 = 10,
 					/obj/item/storage/belt/marine = 15,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/sparepouch = 10,
@@ -656,7 +655,7 @@
 
 						/obj/item/attachable/stock/t19stock = 3,
 						/obj/item/attachable/stock/revolver = 3,
-						/obj/item/attachable/stock/shotgun = 3,
+						/obj/item/attachable/stock/t35stock = 3,
 						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/flamer = 3,

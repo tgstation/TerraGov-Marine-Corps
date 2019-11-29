@@ -285,7 +285,7 @@
 					/obj/item/attachable/bipod = round(scale * 8),
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
-					/obj/item/attachable/stock/shotgun = round(scale * 4),
+					/obj/item/attachable/stock/t35stock = round(scale * 4),
 					/obj/item/attachable/stock/revolver = round(scale * 4),
 					/obj/item/attachable/stock/smg = round(scale * 4) ,
 					/obj/item/attachable/stock/tactical = round(scale * 3),
@@ -359,7 +359,6 @@
 						/obj/item/storage/backpack/marine/standard = round(scale * 15),
 						/obj/item/storage/backpack/marine/satchel = round(scale * 15),
 						/obj/item/storage/large_holster/machete/full = round(scale * 10),
-						/obj/item/storage/large_holster/t35 = round(scale * 10),
 						/obj/item/storage/belt/marine = round(scale * 15),
 						/obj/item/storage/belt/shotgun = round(scale * 10),
 						/obj/item/storage/belt/grenade = round(scale * 5),
