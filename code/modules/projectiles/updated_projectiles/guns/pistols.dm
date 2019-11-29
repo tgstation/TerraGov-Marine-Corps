@@ -22,6 +22,7 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/compensator,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
@@ -109,6 +110,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/quickfire)
@@ -150,6 +152,7 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
@@ -171,7 +174,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 15, "stock_x" = 21, "stock_y" = 17)
 	starting_attachment_types = list(
 									/obj/item/attachable/lasersight,
-									/obj/item/attachable/suppressor
+									/obj/item/attachable/flashlight,
+									/obj/item/attachable/suppressor,
+									/obj/item/attachable/underbarrel_light,
 									)
 
 	fire_delay = 0.6 SECONDS
@@ -201,6 +206,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
@@ -238,6 +244,7 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/quickfire,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/burstfire_assembly)
 
@@ -307,6 +314,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/lasersight,
@@ -364,6 +372,7 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
@@ -482,6 +491,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,

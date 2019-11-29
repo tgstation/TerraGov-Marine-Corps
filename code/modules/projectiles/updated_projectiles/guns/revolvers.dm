@@ -311,6 +311,7 @@
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/extended_barrel,
@@ -337,6 +338,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/extended_barrel)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
@@ -362,6 +364,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope,
@@ -393,6 +396,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
@@ -435,6 +439,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,

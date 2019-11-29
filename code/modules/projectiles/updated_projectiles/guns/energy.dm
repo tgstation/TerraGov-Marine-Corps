@@ -159,6 +159,7 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
