@@ -336,3 +336,34 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
 	log_manifest(message)
+
+
+/datum/controller/subsystem/job/proc/initialize_job_scales()
+	if(!length(active_squads))
+		return TRUE
+
+	var/datum/job/scaled_job = GetJobType(/datum/job/marine/leader)
+	scaled_job.total_positions = length(active_squads)
+
+	scaled_job = GetJobType(/datum/job/marine/specialist)
+	var/specs_per_squad = round(scaled_job.total_positions / length(active_squads)) //Floor
+	var/uneven_specs = scaled_job.total_positions % length(active_squads)
+
+	scaled_job = GetJobType(/datum/job/marine/smartgunner)
+	var/smarties_per_squad = round(scaled_job.total_positions / length(active_squads)) //Floor
+	var/uneven_smarties = scaled_job.total_positions % length(active_squads)
+
+	for(var/i in active_squads)
+		var/datum/squad/scaled_squad = active_squads[i]
+
+		scaled_squad.max_specialists = specs_per_squad
+		if(uneven_specs)
+			scaled_squad.max_specialists++
+			uneven_specs--
+
+		scaled_squad.max_smartgun = smarties_per_squad
+		if(uneven_smarties)
+			scaled_squad.max_smartgun++
+			uneven_smarties--
+
+	return TRUE

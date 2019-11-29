@@ -314,12 +314,11 @@
 	return HS.spawn_larva(xeno_candidate, mother)
 
 
-/datum/game_mode/crash/handle_late_spawn()
-	var/datum/game_mode/crash/GM = SSticker.mode
-	GM.latejoin_tally++
+/datum/game_mode/crash/handle_late_spawn(mob/late_spawner)
+	latejoin_tally++
 
-	if(GM.latejoin_larva_drop && GM.latejoin_tally >= GM.latejoin_larva_drop)
-		GM.latejoin_tally -= GM.latejoin_larva_drop
+	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
+		latejoin_tally -= latejoin_larva_drop
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 

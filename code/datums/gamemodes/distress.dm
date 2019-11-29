@@ -503,12 +503,11 @@
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
-/datum/game_mode/distress/handle_late_spawn()
-	var/datum/game_mode/distress/D = SSticker.mode
-	D.latejoin_tally++
+/datum/game_mode/distress/handle_late_spawn(mob/late_spawner)
+	latejoin_tally++
 
-	if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
-		D.latejoin_tally -= D.latejoin_larva_drop
+	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
+		latejoin_tally -= latejoin_larva_drop
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 
