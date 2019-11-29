@@ -2816,7 +2816,6 @@
  
     //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
-    if(reagents.total_volume)
         if(iscarbon(loc))
             var/mob/living/carbon/C = loc
             if (src == C.wear_mask) // if it's in the human/monkey mouth, transfer reagents to the mob
