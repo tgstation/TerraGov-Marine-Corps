@@ -37,10 +37,8 @@ SUBSYSTEM_DEF(blackbox)
 		SSdbcore.SetRoundID()
 
 
-	if(!CONFIG_GET(flag/use_exp_tracking))
-		return
-
-	update_exp(10, FALSE)
+	if(CONFIG_GET(flag/use_exp_tracking))
+		update_exp(10, FALSE)
 
 
 /datum/controller/subsystem/blackbox/vv_get_var(var_name)
