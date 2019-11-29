@@ -273,6 +273,7 @@
 
 					/obj/item/attachable/scope = round(scale * 4),
 					/obj/item/attachable/scope/mini = round(scale * 4),
+					/obj/item/attachable/underbarrel_light = round(scale * 14),
 					/obj/item/attachable/flashlight = round(scale * 14),
 					/obj/item/attachable/reddot = round(scale * 14),
 					/obj/item/attachable/magnetic_harness = round(scale * 10),
@@ -460,6 +461,7 @@
 						/obj/item/storage/box/m94 = round(scale * 10),
 
 						/obj/item/attachable/flashlight = round(scale * 25),
+						/obj/item/attachable/underbarrel_light = round(scale * 25),
 						/obj/item/attachable/bayonet = round(scale * 25)
 						)
 
