@@ -41,6 +41,7 @@
 	var/obj/screen/toxin_icon
 	var/obj/screen/internals
 	var/obj/screen/healths
+	var/obj/screen/stamina_hud/staminas
 	var/obj/screen/fire_icon
 	var/obj/screen/bodytemp_icon
 
@@ -119,6 +120,7 @@
 	toxin_icon = null
 	internals = null
 	healths = null
+	staminas = null
 	fire_icon = null
 	bodytemp_icon = null
 

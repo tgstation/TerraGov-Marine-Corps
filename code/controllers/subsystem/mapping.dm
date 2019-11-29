@@ -174,6 +174,10 @@ SUBSYSTEM_DEF(mapping)
 		query_round_map_name.Execute()
 		qdel(query_round_map_name)
 
+	// Also saving this as a feedback var as we don't have ship_name in the round table.
+	SSblackbox.record_feedback("text", "ground_map", 1, ground_map.map_name)
+	SSblackbox.record_feedback("text", "ship_map", 1, ship_map.map_name)
+
 	if(LAZYLEN(FailedZs))	//but seriously, unless the server's filesystem is messed up this will never happen
 		var/msg = "RED ALERT! The following map files failed to load: [FailedZs[1]]"
 		if(FailedZs.len > 1)

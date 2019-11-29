@@ -395,6 +395,24 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
+/datum/asset/simple/tgui
+	assets = list(
+		// tgui-next
+		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/tgui.bundle.css',
+		"shim-console.js" = 'tgui-next/packages/tgui/public/shim-console.js',
+		"shim-html5shiv.js" = 'tgui-next/packages/tgui/public/shim-html5shiv.js',
+		"shim-ie8.js" = 'tgui-next/packages/tgui/public/shim-ie8.js',
+		"shim-dom4.js" = 'tgui-next/packages/tgui/public/shim-dom4.js',
+		"shim-css-om.js" = 'tgui-next/packages/tgui/public/shim-css-om.js',
+	)
+
+/datum/asset/group/tgui
+	children = list(
+		/datum/asset/simple/tgui,
+		/datum/asset/simple/fontawesome
+	)
+
 /datum/asset/simple/changelog
 	assets = list(
 		"88x31.png" = 'html/images/88x31.png',
@@ -426,6 +444,16 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		/datum/asset/spritesheet/goonchat
 	)
 
+/datum/asset/simple/fontawesome
+	verify = FALSE
+	assets = list(
+		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
+		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
+		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
+		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
+		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
+		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
+	)
 
 /datum/asset/simple/jquery
 	verify = FALSE
@@ -443,7 +471,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
 		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
+		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
 		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
 	)
@@ -495,46 +523,3 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"ntlogo.png"	= 'html/images/ntlogo.png',
 		"tgmclogo.png"	= 'html/images/tgmclogo.png'
 	)
-
-
-/datum/asset/nanoui
-	var/list/common = list()
-
-	var/list/common_dirs = list(
-		"nano/css/",
-		"nano/images/",
-		"nano/js/"
-	)
-	var/list/uncommon_dirs = list(
-		"nano/templates/"
-	)
-
-
-/datum/asset/nanoui/register()
-	// Crawl the directories to find files.
-	for(var/path in common_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
-				continue
-			if(!fexists(path + filename))
-				continue
-			common[filename] = fcopy_rsc(path + filename)
-			register_asset(filename, common[filename])
-
-	for(var/path in uncommon_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
-				continue
-			if(!fexists(path + filename))
-				continue
-			register_asset(filename, fcopy_rsc(path + filename))
-
-
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon, FALSE)
-	send_asset_list(client, common, TRUE)

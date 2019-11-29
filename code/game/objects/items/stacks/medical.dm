@@ -213,7 +213,7 @@
 						user.visible_message("<span class='notice'>[user] smears some bioglue over [W.desc] on [M]'s [affecting.display_name].</span>",
 						"<span class='notice'>You smear some bioglue over [W.desc] on [M]'s [affecting.display_name].</span>")
 				if(bandaged)
-					affecting.heal_damage(heal_amt, 0)
+					affecting.heal_limb_damage(heal_amt, updating_health = TRUE)
 				use(1)
 		else
 			if(H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
@@ -256,7 +256,7 @@
 			else
 				user.visible_message("<span class='notice'>[user] covers wounds on [M]'s [affecting.display_name] with regenerative membrane.</span>",
 				"<span class='notice'>You cover wounds on [M]'s [affecting.display_name] with regenerative membrane.</span>")
-				affecting.heal_damage(0, heal_amt)
+				affecting.heal_limb_damage(burn = heal_amt, updating_health = TRUE)
 				use(1)
 		else
 			if(H.can_be_operated_on()) //Checks if mob is lying down on table for surgery

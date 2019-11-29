@@ -527,8 +527,8 @@
 		force_update = TRUE
 		process()
 
-	else if(istype(I, /obj/item/reagent_container/syringe))
-		var/obj/item/reagent_container/syringe/S = I
+	else if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode == 1)
 			if(seed)
 				return FALSE
@@ -593,7 +593,7 @@
 		var/obj/item/storage/bag/plants/S = I
 
 		attack_hand(user)
-		for(var/obj/item/reagent_container/food/snacks/grown/G in user.loc)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in user.loc)
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, TRUE, user)

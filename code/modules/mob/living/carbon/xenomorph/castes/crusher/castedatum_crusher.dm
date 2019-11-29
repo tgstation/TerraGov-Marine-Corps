@@ -10,11 +10,11 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 32
 	attack_delay = 8.5
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = 0.1
@@ -58,10 +58,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 35
 
 	// *** Tackle *** //
-	tackle_damage = 60
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = 0.1
@@ -77,7 +77,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 5, "acid" = 90)
+	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -86,10 +86,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 37
 
 	// *** Tackle *** //
-	tackle_damage = 65
+	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = 0.1
@@ -105,7 +105,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 10, "acid" = 95)
+	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -114,10 +114,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 42
 
 	// *** Tackle *** //
-	tackle_damage = 70
+	tackle_damage = 55
 
 	// *** Speed *** //
 	speed = 0.1
@@ -130,5 +130,5 @@
 	max_health = 350
 
 	// *** Defense *** //
-	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 15, "acid" = 100)
+	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
 

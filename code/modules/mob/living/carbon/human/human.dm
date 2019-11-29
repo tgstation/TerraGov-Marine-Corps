@@ -15,6 +15,7 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	GLOB.round_statistics.total_humans_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -34,6 +35,7 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -170,8 +172,10 @@
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
 			if("l_arm")
 				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-	if(update)	UpdateDamageIcon()
-	return 1
+	if(update)
+		UpdateDamageIcon()
+		UPDATEHEALTH(src)
+	return TRUE
 
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
@@ -186,9 +190,9 @@
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
-		apply_damage(damage, BRUTE, affecting, armor)
-		if(armor >= 1) //Complete negation
-			return
+		if(apply_damage(damage, BRUTE, affecting, armor))
+			UPDATEHEALTH(src)
+
 
 /mob/living/carbon/human/show_inv(mob/living/user)
 	var/obj/item/clothing/under/suit
@@ -946,11 +950,14 @@
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
+	
+	if(!(species.species_flags & NO_STAMINA))
+		AddComponent(/datum/component/stamina_behavior)
+		max_stamina_buffer = species.max_stamina_buffer
+		setStaminaLoss(-max_stamina_buffer)
 
-	if(species)
-		return 1
-	else
-		return 0
+	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
+	return TRUE
 
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
@@ -982,8 +989,11 @@
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			G.set_light(0)
+		for(var/obj/item/weapon/gun/lit_gun in contents)
+			if(!isattachmentflashlight(lit_gun.rail))
+				continue
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
+			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
@@ -1030,20 +1040,6 @@
 			else
 				to_chat(src, "<span class='notice'>Your sources of light shorts out.</span>")
 		return TRUE
-
-
-/mob/living/carbon/human/get_total_tint()
-	. = ..()
-	var/obj/item/clothing/C
-	if(istype(head, /obj/item/clothing/head))
-		C = head
-		. += C.tint
-	if(istype(wear_mask, /obj/item/clothing/mask))
-		C = wear_mask
-		. += C.tint
-	if(istype(glasses, /obj/item/clothing/glasses))
-		C = glasses
-		. += C.tint
 
 
 /mob/living/carbon/human/proc/randomize_appearance()

@@ -4,6 +4,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	item_state = "helmet"
+	accuracy_mod = 0
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
@@ -13,9 +14,23 @@
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
+	w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/clothing/head/ruggedhelm
+	name = "rugged helmet"
+	desc = "A helmet used by workers in dangerous environments."
+	icon_state = "helmet"
+	item_state = "helmet"
+	armor = list("melee" = 50, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	flags_atom = CONDUCT
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES
+	flags_cold_protection = HEAD
+	flags_heat_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
 	w_class = WEIGHT_CLASS_BULKY
-
-
 
 /obj/item/clothing/head/helmet/riot
 	name = "riot helmet"
@@ -188,24 +203,22 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_container/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_container/food/drinks/flask/marine = "helmet_flask",
-						/obj/item/reagent_container/food/snacks/enrg_bar = "helmet_snack_eat",
-						/obj/item/reagent_container/food/snacks/packaged_burrito = "helmet_snack_burrito",
+						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
+						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles")
 
 /obj/item/storage/internal/marinehelmet
-	storage_slots = 4
+	storage_slots = 2
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_container/food/drinks/flask,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/pistol)
+		/obj/item/reagent_containers/food/drinks/flask)
 	cant_hold = list(
 		/obj/item/stack/)
-	max_storage_space = 4
+	max_storage_space = 2
 
 /obj/item/clothing/head/helmet/marine/Initialize()
 	. = ..()
@@ -267,36 +280,57 @@
 
 
 /obj/item/clothing/head/helmet/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/helmet/marine/corpsman
 	name = "\improper M10 corpsman helmet"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/heavy
+	name = "\improper M10H pattern marine helmet"
+	desc = "A standard M10H Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
+	icon_state = "heavyhelmet"
+	armor = list("melee" = 75, "bullet" = 70, "laser" = 50, "energy" = 20, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 45)
+	accuracy_mod = -10
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/helmet/marine/heavy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_1)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list("melee" = 75, "bullet" = 65, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/head/helmet/marine/specialist
 	name = "\improper B18 helmet"
 	desc = "The B18 Helmet that goes along with the B18 Defensive Armor. It's heavy, reinforced, and protects more of the face."
 	icon_state = "minigunner_helmet"
-	armor = list("melee" = 95, "bullet" = 105, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
+	armor = list("melee" = 85, "bullet" = 80, "laser" = 75, "energy" = 65, "bomb" = 70, "bio" = 15, "rad" = 15, "fire" = 65, "acid" = 65)
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	resistance_flags = UNACIDABLE
 	anti_hug = 6
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
+/obj/item/clothing/head/helmet/marine/grenadier
+	name = "\improper B17 helmet"
+	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."
+	icon_state = "grenadier_helmet"
+	armor = list("melee" = 80, "bullet" = 70, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 55, "rad" = 15, "fire" = 65, "acid" = 70)
+	flags_inv_hide = HIDEALLHAIR|HIDEEARS
+	max_heat_protection_temperature = HEAVYARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
+	resistance_flags = UNACIDABLE
+	anti_hug = 4
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
@@ -304,7 +338,7 @@
 	desc = "A custom helmet designed for TGMC Scouts. Made of light weight, experimental materials to provide great protection while also having less weight than the standard helmet."
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/sniper
 	name = "\improper M3-M helmet"
@@ -312,16 +346,16 @@
 	desc = "A custom helmet designed for TGMC Marksmen. Fitted with a host of sensors and analyzers to grasp all aspects of the battlefield."
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 40)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
 	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
-	armor = list("melee" = 85, "bullet" = 80, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 50, "acid" = 50)
+	armor = list("melee" = 85, "bullet" = 80, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 10, "fire" = 90, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 
 /obj/item/clothing/head/helmet/marine/pilot
@@ -577,3 +611,4 @@
 	icon_state = "som_helmet_leader"
 	item_state = "som_helmet_leader"
 	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+

@@ -34,7 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -63,7 +63,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 27
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -76,13 +76,13 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 7, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -96,7 +96,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 33
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -115,7 +115,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
+	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -129,7 +129,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -148,7 +148,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 15, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS

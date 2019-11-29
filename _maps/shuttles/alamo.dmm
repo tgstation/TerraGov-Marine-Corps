@@ -196,7 +196,6 @@
 	},
 /area/shuttle/dropship/alamo)
 "aL" = (
-/obj/machinery/door_control/dropship,
 /turf/open/shuttle/dropship{
 	icon_state = "floor8"
 	},

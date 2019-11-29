@@ -9,10 +9,10 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 28
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1
@@ -22,7 +22,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 160
+	max_health = 180
 
 	// *** Evolution *** //
 	evolution_threshold = 200
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -58,23 +58,23 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 33
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 35
 
 	// *** Plasma *** //
 	plasma_max = 250
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 185
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 18, "acid" = 28)
 
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
@@ -83,23 +83,23 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 37
 
 	// *** Tackle *** //
-	tackle_damage = 53
+	tackle_damage = 40
 
 	// *** Plasma *** //
 	plasma_max = 260
 	plasma_gain = 22
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 20, "acid" = 30)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
@@ -108,20 +108,20 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 42
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 45
 
 	// *** Plasma *** //
 	plasma_max = 270
 	plasma_gain = 24
 
 	// *** Health *** //
-	max_health = 215
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 33, "bullet" = 33, "laser" = 33, "energy" = 33, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 25, "acid" = 33)

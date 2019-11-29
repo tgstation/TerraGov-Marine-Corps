@@ -187,6 +187,11 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/rugged
+	name = "satchel"
+	desc = "A rugged satchel for workers of all types."
+	icon_state = "satchel-norm"
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
@@ -501,15 +506,17 @@
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
 	RegisterSignal(M, list(
-		COMSIG_HUMAN_GUN_FIRED,
-		COMSIG_HUMAN_ATTACHMENT_FIRED,
-		COMSIG_HUMAN_ITEM_THROW,
-		COMSIG_HUMAN_ITEM_ATTACK), .proc/action_taken)
+		COMSIG_MOB_GUN_FIRED,
+		COMSIG_MOB_GUN_AUTOFIRED,
+		COMSIG_MOB_ATTACHMENT_FIRED,
+		COMSIG_MOB_THROW,
+		COMSIG_MOB_ITEM_ATTACK), .proc/action_taken)
 
 	START_PROCESSING(SSprocessing, src)
 	wearer.cloaking = TRUE
 
 	return TRUE
+
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/on_cloak()
 	if(wearer)
@@ -552,10 +559,11 @@
 
 	UnregisterSignal(user, list(
 		COMSIG_HUMAN_DAMAGE_TAKEN,
-		COMSIG_HUMAN_GUN_FIRED,
-		COMSIG_HUMAN_ATTACHMENT_FIRED,
-		COMSIG_HUMAN_ITEM_THROW,
-		COMSIG_HUMAN_ITEM_ATTACK))
+		COMSIG_MOB_GUN_FIRED,
+		COMSIG_MOB_GUN_AUTOFIRED,
+		COMSIG_MOB_ATTACHMENT_FIRED,
+		COMSIG_MOB_THROW,
+		COMSIG_MOB_ITEM_ATTACK))
 	STOP_PROCESSING(SSprocessing, src)
 	wearer.cloaking = FALSE
 
@@ -605,12 +613,13 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken(datum/source, atom/target, obj/item/I, mob/living/wearer)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
@@ -668,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -728,6 +738,7 @@
 	name = "\improper TGMC Pyrotechnician fueltank"
 	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
+	worn_accessible = TRUE
 	max_fuel = 500
 
 

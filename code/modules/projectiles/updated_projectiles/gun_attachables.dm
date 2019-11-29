@@ -263,11 +263,12 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/proc/activate_attachment(mob/user, turn_off) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
 
-/obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user)
+/obj/item/attachable/proc/reload_attachment(obj/item/I, mob/user, silent)
 	return
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
-	return
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(user, COMSIG_MOB_ATTACHMENT_FIRED, target, src, gun)
 
 
 /////////// Muzzle Attachments /////////////////////////////////
@@ -472,6 +473,27 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 15
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
+
+/obj/item/attachable/t42barrel
+	name = "T-42 barrel"
+	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t42barrel"
+	flags_attach_features = NONE
+
+/obj/item/attachable/t18barrel
+	name = "T-18 barrel"
+	desc = "The standard barrel on the T-18. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t18barrel"
+	flags_attach_features = NONE
+
+/obj/item/attachable/t12barrel
+	name = "T-12 barrel"
+	desc = "The standard barrel on the T-12. CANNOT BE REMOVED."
+	slot = "muzzle"
+	icon_state = "t12barrel"
+	flags_attach_features = NONE
 
 ///////////// Rail attachments ////////////////////////
 
@@ -863,6 +885,49 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
+/obj/item/attachable/stock/dmr
+	name = "T-64 Stock"
+	desc = "A standard DMR Stock."
+	icon_state = "dmrstock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t18stock
+	name = "T-18 Stock"
+	desc = "A standard Carbine Stock."
+	icon_state = "t18stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t19stock
+	name = "T-19 Submachine Gun stock"
+	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	slot = "stock"
+	wield_delay_mod = 0.4 SECONDS
+	melee_mod = 5
+	size_mod = 1
+	icon_state = "t19stock"
+	pixel_shift_x = 39
+	pixel_shift_y = 11
+	accuracy_mod = 0.15
+	recoil_mod = -3
+	scatter_mod = -20
+	movement_acc_penalty_mod = 0.1
+
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 
@@ -938,28 +1003,33 @@ Defined in conflicts.dm of the #defines folder.
 		to_chat(user, "It's empty.")
 
 
-
-
-
-/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user)
+/obj/item/attachable/attached_gun/grenade/reload_attachment(obj/item/explosive/grenade/G, mob/user, silent)
 	if(!istype(G))
-		to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
-		return
-	if(!G.active) //can't load live grenades
-		if(!G.underslug_launchable)
+		if(!silent)
 			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
-			return
-		if(current_rounds >= max_rounds)
+		return FALSE
+	if(G.active) //can't load live grenades
+		return FALSE
+	if(!G.underslug_launchable)
+		if(!silent)
+			to_chat(user, "<span class='warning'>[src] doesn't accept that type of grenade.</span>")
+		return FALSE
+	if(current_rounds >= max_rounds)
+		if(!silent)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else
-			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
-			current_rounds++
-			loaded_grenades += G.type
-			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
-			user.temporarilyRemoveItemFromInventory(G)
-			qdel(G)
+		return FALSE
+	playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
+	current_rounds++
+	loaded_grenades += G.type
+	if(!silent)
+		to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
+	user.temporarilyRemoveItemFromInventory(G)
+	qdel(G)
+	return TRUE
+
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
@@ -1011,59 +1081,72 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user)
+/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user, silent)
 	if(istype(object, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/I = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(I.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>[I] is empty!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[I] is empty!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
 			current_rounds += transfered_rounds
 			I.current_rounds -= transfered_rounds
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-			to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
 	else if(istype(object, /obj/item/tool/weldpack))
 		var/obj/item/tool/weldpack/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
 		var/obj/item/storage/backpack/marine/engineerpack/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else if(istype(object, /obj/item/reagent_container))
-		var/obj/item/reagent_container/FT = object
+	else if(istype(object, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/FT = object
 		if(current_rounds >= max_rounds)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else if(!FT.reagents.get_reagent_amount(/datum/reagent/fuel))
-			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+			if(!silent)
+				to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
 		else
 			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount(/datum/reagent/fuel))
 			current_rounds += transfered_rounds
 			FT.reagents.remove_reagent(/datum/reagent/fuel, transfered_rounds)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			if(!silent)
+				to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
 			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-	else
+	else if(!silent)
 		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	. = ..()
 	if(get_dist(user,target) > max_range+3)
 		to_chat(user, "<span class='warning'>Too far to fire the attachment!</span>")
 		return
@@ -1152,23 +1235,25 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
+/obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user, silent)
 	if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
 		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
 			if(current_rounds >= max_rounds)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				if(!silent)
+					to_chat(user, "<span class='warning'>[src] is full.</span>")
 			else
 				current_rounds++
 				mag.current_rounds--
 				mag.update_icon()
-				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
+				if(!silent)
+					to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
 				playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
 			return
-	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
-
+	if(!silent)
+		to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
 
 
 /obj/item/attachable/verticalgrip
@@ -1235,7 +1320,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/bipod
 	name = "bipod"
-	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size and slows firing speed."
+	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
@@ -1255,7 +1340,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
-		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod
@@ -1289,7 +1373,6 @@ Defined in conflicts.dm of the #defines folder.
 		icon_state = "bipod-on"
 		attach_icon = "bipod_a-on"
 
-	master_gun.update_slowdown()
 	master_gun.update_attachable(slot)
 
 	for(var/i in master_gun.actions)

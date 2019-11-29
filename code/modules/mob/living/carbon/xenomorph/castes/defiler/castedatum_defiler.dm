@@ -11,10 +11,10 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 32.5
+	melee_damage = 27
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1
@@ -24,7 +24,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -35,10 +35,10 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = DEFILER_CLAW_AMOUNT
+	neuro_claws_amount = 5
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -62,10 +62,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 30
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -1.1
@@ -81,10 +81,10 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 17, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 35, "bullet" = 17, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 7.5
+	neuro_claws_amount = 6
 
 /datum/xeno_caste/defiler/elder
 	upgrade_name = "Elder"
@@ -93,10 +93,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 42.5
+	melee_damage = 34
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -1.17
@@ -112,10 +112,10 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 38, "bullet" = 19, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 38, "acid" = 38)
+	armor = list("melee" = 38, "bullet" = 19, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 8.2
+	neuro_claws_amount = 7
 
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
@@ -124,10 +124,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 47.5
+	melee_damage = 36
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -1.2
@@ -143,8 +143,8 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 8.5
+	neuro_claws_amount = 8
 

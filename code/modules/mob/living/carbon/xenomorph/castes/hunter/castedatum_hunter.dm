@@ -11,11 +11,11 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 30
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1.5
@@ -38,7 +38,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
@@ -63,11 +63,11 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 33
 	attack_delay = 6.75
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -1.6
@@ -83,7 +83,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	armor = list("melee" = 13, "bullet" = 13, "laser" = 13, "energy" = 13, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 5, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 12.5 SECONDS
@@ -94,11 +94,11 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 37
 	attack_delay = 6.6
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -1.7
@@ -114,7 +114,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 7, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 11.0 SECONDS
@@ -126,11 +126,11 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 40
 	attack_delay = 6.5
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -1.7
@@ -146,7 +146,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS

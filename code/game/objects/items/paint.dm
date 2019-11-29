@@ -1,6 +1,6 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 
-/obj/item/reagent_container/glass/paint
+/obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items/items.dmi'

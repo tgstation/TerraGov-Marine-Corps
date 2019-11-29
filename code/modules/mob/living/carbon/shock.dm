@@ -4,7 +4,7 @@
 /mob/living/carbon/adjustHalLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	halloss = CLAMP(halloss+amount,0,maxHealth*2)
+	halloss = CLAMP(halloss + amount, 0, maxHealth * 2)
 
 /mob/living/carbon/proc/setHalLoss(amount)
 	if(status_flags & GODMODE)
@@ -30,12 +30,37 @@
 /mob/living/carbon/proc/adjustShock_Stage(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	shock_stage = CLAMP(shock_stage+amount,0,maxHealth*2)
+	. = shock_stage
+	shock_stage = CLAMP(shock_stage + amount, 0, maxHealth * 2)
+	adjust_pain_speed_mod(.)
 
 /mob/living/carbon/proc/setShock_Stage(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
+	. = shock_stage
 	shock_stage = amount
+	adjust_pain_speed_mod(.)
+
+
+/mob/living/carbon/proc/adjust_pain_speed_mod(old_pain)
+	switch(shock_stage)
+		if(0 to 10)
+			if(old_pain <= 10)
+				return
+			remove_movespeed_modifier(MOVESPEED_ID_PAIN)
+		if(10 to 30)
+			if(old_pain > 10 || old_pain <= 30)
+				return
+			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 1)
+		if(30 to 50)
+			if(old_pain > 30 || old_pain <= 50)
+				return
+			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 2)
+		if(50 to INFINITY)
+			if(old_pain > 50)
+				return
+			add_movespeed_modifier(MOVESPEED_ID_PAIN, TRUE, 0, NONE, TRUE, 3)
+
 
 // proc to find out in how much pain the mob is at the moment
 /mob/living/carbon/proc/updateshock()

@@ -29,7 +29,8 @@ Contains most of the procs that are called when a mob is attacked by something
 					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
 
-	..(stun_amount, agony_amount, def_zone)
+	return ..()
+
 
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
@@ -153,50 +154,59 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!I || !user)	return 0
+	if(!I.force)
+		return FALSE
 
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
-	user.do_attack_animation(src)
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
-	if(!target_zone)
-		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
-		return 0
+	else if(!prob(user.melee_accuracy))
+		user.do_attack_animation(src)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		user.visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
+		return FALSE
 
 	var/datum/limb/affecting = get_limb(target_zone)
-	if (!affecting)
-		return 0
+	if(!affecting)
+		CRASH("[src] called attacked_by [user] with [I] aiming at [def_zone] but found no affecting limb")
 	if(affecting.limb_status & LIMB_DESTROYED)
 		to_chat(user, "What [affecting.display_name]?")
-		return 0
+		return FALSE
 	var/hit_area = affecting.display_name
 
 	if((user != src) && check_shields(I.force, "the [I.name]"))
-		return 0
+		return FALSE
 
-	if(LAZYLEN(I.attack_verb))
-		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
-	else
-		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 
-	var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].")
+	var/armor = run_armor_check(affecting, "melee")
+	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
+	var/armor_verb
+	switch(armor)
+		if(100 to INFINITY)
+			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, 5)
+			user.do_attack_animation(src, used_item = I)
+			return TRUE
+		if(-INFINITY to 25)//Nothing
+		if(25 to 50)
+			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
+		if(50 to 75)
+			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
+		if(75 to 100)
+			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
+	
+	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
+
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if ((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
-		weapon_sharp = 0
-		weapon_edge = 0
+	if((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
 
-	if(armor >= 1) //Complete negation
-		return 0
-	if(!I.force)
-		return 0
-	if(weapon_sharp)
-		user.flick_attack_overlay(src, "punch")
-	else
-		user.flick_attack_overlay(src, "punch")
+	user.do_attack_animation(src, used_item = I)
 
 	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
+	UPDATEHEALTH(src)
 
 	var/bloody = 0
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
@@ -249,7 +259,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
 			I.embed_into(src, affecting)
 
-	return 1
+	return TRUE
+
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM,speed = 5)
@@ -301,6 +312,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O))
+			UPDATEHEALTH(src)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -352,16 +364,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		update_inv_w_uniform()
 
 
-/mob/living/carbon/human/proc/handle_suit_punctures(damtype, damage)
-	if(!wear_suit) return
-	if(!istype(wear_suit,/obj/item/clothing/suit/space)) return
-	if(damtype != BURN && damtype != BRUTE) return
-
-	var/obj/item/clothing/suit/space/SS = wear_suit
-	var/penetrated_dam = max(0,(damage - SS.breach_threshold)) // - SS.damage)) - Consider uncommenting this if suits seem too hardy on dev.
-
-	if(penetrated_dam) SS.create_breaches(damtype, penetrated_dam)
-
 //This looks for a "marine", ie. non-civilian ID on a person. Used with the m56 Smartgun code.
 //Does not actually check for station jobs or access yet, cuz I'm mad lazy.
 //Updated and renamed a bit. Will probably updated properly once we have a new ID system in place, as this is just a workaround ~N.
@@ -390,6 +392,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	stunned += stun_duration
 	knock_down(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
+	UPDATEHEALTH(src)
 	if(!ear_deaf)
 		adjust_ear_damage(deaf = stun_duration * 20)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream

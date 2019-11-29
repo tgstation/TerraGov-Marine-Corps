@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -85,7 +85,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 33, "bullet" = 33, "laser" = 33, "energy" = 33, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -120,7 +120,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -150,10 +150,10 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 255
+	max_health = 260
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 37, "bullet" = 37, "laser" = 37, "energy" = 37, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

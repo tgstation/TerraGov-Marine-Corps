@@ -10,10 +10,11 @@
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
 	var/parent_node
-	max_integrity = 4
+	max_integrity = 25
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
@@ -26,8 +27,14 @@
 
 
 /obj/effect/alien/weeds/Destroy()
+
 	if(parent_node)
 		SSweeds.add_weed(src)
+
+	for(var/obj/effect/alien/A in loc.contents)
+		if(QDELETED(A) || A == src || A.ignore_weed_destruction)
+			continue
+		A.obj_destruction("melee")
 
 	var/oldloc = loc
 	. = ..()
@@ -119,9 +126,17 @@
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
 	var/node_range = NODERANGE
-	max_integrity = 100
+	max_integrity = 60
 
 	var/node_turfs = list() // list of all potential turfs that we can expand to
+
+	ignore_weed_destruction = TRUE
+
+/obj/effect/alien/weeds/node/strong
+	name = "strong purple sac"
+	desc = "A weird, pulsating node. This looks pretty tough."
+	node_range = NODERANGE*2
+	max_integrity = 120
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()

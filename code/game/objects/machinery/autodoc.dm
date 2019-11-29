@@ -4,6 +4,7 @@
 #define AUTODOC_NOTICE_NO_POWER 4
 #define AUTODOC_NOTICE_XENO_FUCKERY 5
 #define AUTODOC_NOTICE_IDIOT_EJECT 6
+#define AUTODOC_NOTICE_FORCE_EJECT 7
 
 #define ADSURGERY_INTERNAL 1
 #define ADSURGERY_GERMS 2
@@ -46,6 +47,7 @@
 	var/heal_toxin = 0
 	var/automaticmode = 0
 	var/event = 0
+	var/forceeject = FALSE
 
 	var/obj/machinery/autodoc_console/connected
 
@@ -86,6 +88,7 @@
 			return
 		if(surgery)
 			// keep them alive
+			var/updating_health = FALSE
 			occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
 			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 			if(filtering)
@@ -113,7 +116,8 @@
 					visible_message("[src] speaks: Blood transfer complete.")
 			if(heal_brute)
 				if(occupant.getexternalBruteLoss() > 0)
-					occupant.heal_limb_damage(3,0)
+					occupant.heal_limb_damage(3, 0)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it stitches flesh together.")
 						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
@@ -122,7 +126,8 @@
 					visible_message("[src] speaks: Trauma repair surgery complete.")
 			if(heal_burn)
 				if(occupant.getFireLoss() > 0)
-					occupant.heal_limb_damage(0,3)
+					occupant.heal_limb_damage(0, 3)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
 						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
@@ -132,12 +137,15 @@
 			if(heal_toxin)
 				if(occupant.getToxLoss() > 0)
 					occupant.adjustToxLoss(-3)
+					updating_health = TRUE
 					if(prob(10))
 						visible_message("[src] whirrs and gurgles as it kelates the occupant.")
 						to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
 				else
 					heal_toxin = 0
 					visible_message("[src] speaks: Chelation complete.")
+			if(updating_health)
+				occupant.updatehealth()
 
 
 #define LIMB_SURGERY 1
@@ -426,7 +434,7 @@
 							sleep(((S.limb_ref.brute_dam - 20)/2)*surgery_mod)
 							if(!surgery)
 								break
-							S.limb_ref.heal_damage(S.limb_ref.brute_dam - 20,0)
+							S.limb_ref.heal_limb_damage(S.limb_ref.brute_dam - 20)
 						if(!surgery)
 							break
 						S.limb_ref.limb_status &= ~LIMB_BROKEN
@@ -668,6 +676,16 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	if(occupant)
+		if(forceeject)
+			if(!surgery)
+				visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
+				occupant.take_limb_damage(rand(10,20),rand(10,20))
+				go_out(AUTODOC_NOTICE_FORCE_EJECT)
+				return
+			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant] with surgical wounds and showering them in debris.")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			go_out(AUTODOC_NOTICE_FORCE_EJECT)
+			return
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
@@ -768,6 +786,9 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
+			if(AUTODOC_NOTICE_FORCE_EJECT)
+				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+				reason = "Reason for discharge: Destruction of linked Autodoc Medical System. Alerting security advised."
 		connected.radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
@@ -862,6 +883,11 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
+obj/machinery/autodoc/Destroy()
+	forceeject = TRUE
+	eject()
+	return ..()
+
 /////////////////////////////////////////////////////////////
 
 //Auto Doc console that links up to it.
@@ -879,7 +905,7 @@
 	use_power = 1
 	idle_power_usage = 40
 	var/obj/item/radio/radio
-	var/obj/item/reagent_container/blood/OMinus/blood_pack
+	var/obj/item/reagent_containers/blood/OMinus/blood_pack
 
 
 /obj/machinery/autodoc_console/Initialize()

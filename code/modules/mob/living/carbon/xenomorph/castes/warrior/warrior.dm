@@ -7,7 +7,6 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
-	speed = -0.3
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_TWO
@@ -30,9 +29,6 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/warrior/throw_item(atom/target)
-	throw_mode_off()
-
 /mob/living/carbon/xenomorph/warrior/stop_pulling()
 	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
@@ -68,6 +64,7 @@
 	use_plasma(10)
 
 	GLOB.round_statistics.warrior_grabs++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	grab_level = GRAB_NECK
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)

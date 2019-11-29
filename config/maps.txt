@@ -39,3 +39,7 @@ endmap
 
 map icy_caves
 endmap
+
+map desert
+endmap
+

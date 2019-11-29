@@ -96,6 +96,8 @@
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
 
+#define issiliconoradminghost(A) (istype(A, /mob/living/silicon) || IsAdminGhost(A))
+
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
 //Simple animals
@@ -133,7 +135,11 @@
 
 #define isitem(A) (istype(A, /obj/item))
 
+#define isclothing(A) (istype(A, /obj/item/clothing))
+
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
+
+#define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
 #define iswrench(I) (istype(I, /obj/item/tool/wrench))
 
@@ -185,13 +191,15 @@
 #define isdistress(O) (istype(O, /datum/game_mode/distress))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
 
+#define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
 // Admin
 #define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
-#define isclientedaghost(mob) (isaghost(mob) && GLOB.directory[copytext(mob.ckey, 2)])
+#define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext(living.ckey, 2)] && living.get_ghost())
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
+#define isalamoarea(A) (istype(A, /area/shuttle/dropship/alamo))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))

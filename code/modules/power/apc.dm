@@ -64,7 +64,7 @@
 	var/overload = 1 //Used for the Blackout malf module
 	var/beenhit = 0 //Used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
-	var/update_state = -1
+	var/update_state = NONE
 	var/update_overlay = -1
 	var/global/status_overlays = 0
 	var/updating_icon = 0
@@ -75,6 +75,9 @@
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
+
+	ui_x = 450 
+	ui_y = 460
 
 /obj/machinery/power/apc/connect_to_network()
 	//Override because the APC does not directly connect to the network; it goes through a terminal.
@@ -225,17 +228,17 @@
 
 	var/last_update_state = update_state
 	var/last_update_overlay = update_overlay
-	update_state = 0
+	update_state = NONE
 	update_overlay = 0
 
 	if(machine_stat & BROKEN)
 		ENABLE_BITFIELD(update_state, UPSTATE_BROKE)
 	if(machine_stat & MAINT)
 		ENABLE_BITFIELD(update_state, UPSTATE_MAINT)
-	if(opened)
-		if(opened == APC_COVER_OPENED)
+	switch(opened)
+		if(APC_COVER_OPENED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED1)
-		if(opened == APC_COVER_REMOVED)
+		if(APC_COVER_REMOVED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED2)
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
@@ -245,33 +248,39 @@
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
 		if(operating)
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
-		if(!charging)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING0)
-		else if(charging == APC_CHARGING)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING1)
-		else if(charging == APC_FULLY_CHARGED)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING2)
 
-		if (!equipment)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT0)
-		else if(equipment == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT1)
-		else if(equipment == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT2)
+		switch(charging)
+			if(APC_NOT_CHARGING)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING0)
+			if(APC_CHARGING)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING1)
+			if(APC_FULLY_CHARGED)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING2)
 
-		if(!lighting)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING0)
-		else if(lighting == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING1)
-		else if(lighting == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING2)
+		switch(equipment)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT2)
 
-		if(!environ)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON0)
-		else if(environ == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON1)
-		else if(environ == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON2)
+		switch(lighting)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING2)
+
+		switch(environ)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON2)
+
 	if(opened && cell && !CHECK_BITFIELD(update_state, UPSTATE_MAINT) && ((CHECK_BITFIELD(update_state, UPSTATE_OPENED1) && !CHECK_BITFIELD(update_state, UPSTATE_BROKE)) || CHECK_BITFIELD(update_state, UPSTATE_OPENED2)))
 		ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN)
 
@@ -288,7 +297,7 @@
 	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
@@ -651,10 +660,16 @@
 	interact(user)
 
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
-	if(!user)
-		return
 
+/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+
+	if(!ui)
+		ui = new(user, src, ui_key, "apc", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
 		"locked" = locked,
 		"isOperating" = operating,
@@ -662,14 +677,14 @@
 		"powerCellStatus" = cell ? cell.percent() : null,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
-		"totalLoad" = round(lastused_equip + lastused_light + lastused_environ),
+		"totalLoad" = DisplayPower(lastused_total),
 		"coverLocked" = coverlocked,
 		"siliconUser" = issilicon(user),
 
 		"powerChannels" = list(
 			list(
 				"title" = "Equipment",
-				"powerLoad" = round(lastused_equip),
+				"powerLoad" = DisplayPower(lastused_equip),
 				"status" = equipment,
 				"topicParams" = list(
 					"auto" = list("eqp" = 3),
@@ -679,7 +694,7 @@
 			),
 			list(
 				"title" = "Lighting",
-				"powerLoad" = round(lastused_light),
+				"powerLoad" = DisplayPower(lastused_light),
 				"status" = lighting,
 				"topicParams" = list(
 					"auto" = list("lgt" = 3),
@@ -689,7 +704,7 @@
 			),
 			list(
 				"title" = "Environment",
-				"powerLoad" = round(lastused_environ),
+				"powerLoad" = DisplayPower(lastused_environ),
 				"status" = environ,
 				"topicParams" = list(
 					"auto" = list("env" = 3),
@@ -699,20 +714,69 @@
 			)
 		)
 	)
+	return data
 
-	//Update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		//The ui does not exist, so we'll create a new() one
-		//For a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
-		//When the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		//Open the new ui window
-		ui.open()
-		//Auto update every Master Controller tick
-		ui.set_auto_update(1)
 
+/obj/machinery/power/apc/proc/setsubsystem(val)
+	if(cell && cell.charge > 0)
+		return (val==1) ? 0 : val
+	else if(val == 3)
+		return 1
+	else
+		return 0
+
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = FALSE) //used by attack_hand() and Topic()
+	if(IsAdminGhost(user))
+		return TRUE
+	if(isAI(user) && aidisabled)
+		if(!loud)
+			to_chat(user, "<span class='danger'>\The [src] has eee disabled!</span>")
+		return FALSE
+	return TRUE
+
+/obj/machinery/power/apc/ui_act(action, params)
+	if(..() || !can_use(usr, TRUE) || locked)
+		return
+	switch(action)
+		if("lock")
+			if(usr.has_unlimited_silicon_privilege)
+				if((machine_stat & (BROKEN|MAINT)))
+					to_chat(usr, "The APC does not respond to the command.")
+				else
+					locked = !locked
+					update_icon()
+					. = TRUE
+		if("cover")
+			coverlocked = !coverlocked
+			. = TRUE
+		if("breaker")
+			toggle_breaker(usr)
+			. = TRUE
+		if("charge")
+			chargemode = !chargemode
+			if(!chargemode)
+				charging = APC_NOT_CHARGING
+				update_icon()
+			. = TRUE
+		if("channel")
+			if(params["eqp"])
+				equipment = setsubsystem(text2num(params["eqp"]))
+				update_icon()
+				update()
+			else if(params["lgt"])
+				lighting = setsubsystem(text2num(params["lgt"]))
+				update_icon()
+				update()
+			else if(params["env"])
+				environ = setsubsystem(text2num(params["env"]))
+				update_icon()
+				update()
+			. = TRUE
+		if("overload")
+			if(usr.has_unlimited_silicon_privilege)
+				overload_lighting()
+				. = TRUE
+	return TRUE
 
 /obj/machinery/power/apc/proc/report()
 	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip+lastused_light+lastused_environ]) : [cell? cell.percent() : "N/C"] ([charging])"
@@ -745,52 +809,6 @@
 			environ = 3
 			update_icon()
 			update()
-
-
-/obj/machinery/power/apc/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-	if(href_list["lock"])
-		coverlocked = !coverlocked
-
-	else if(href_list["breaker"])
-		operating = !operating
-		update()
-		update_icon()
-
-	else if(href_list["cmode"])
-		chargemode = !chargemode
-		if(!chargemode)
-			charging = APC_NOT_CHARGING
-			update_icon()
-
-	else if(href_list["eqp"])
-		var/val = text2num(href_list["eqp"])
-		equipment = (val == TRUE) ? FALSE : val
-		update_icon()
-		update()
-
-	else if(href_list["lgt"])
-		var/val = text2num(href_list["lgt"])
-		lighting = (val == TRUE) ? FALSE : val
-		update_icon()
-		update()
-
-	else if(href_list["env"])
-		var/val = text2num(href_list["env"])
-		environ = (val == TRUE) ? FALSE :val
-		update_icon()
-		update()
-
-	else if(href_list["close"])
-		SSnano.close_user_uis(usr, src)
-		return FALSE
-
-	updateUsrDialog()
-
-	return TRUE
-
 
 /obj/machinery/power/apc/surplus()
 	if(terminal)
@@ -955,19 +973,21 @@
 
 /proc/autoset(val, on)
 
-	if(on == 0) //Turn things off
-		if(val == 2) //If on, return off
-			return 0
-		else if(val == 3) //If auto-on, return auto-off
-			return 1
+	switch(on)
+		if(0) //Turn things off
+			switch(val)
+				if(2) //If on, return off
+					return 0
+				if(3) //If auto-on, return auto-off
+					return 1
 
-	else if(on == 1) //Turn things auto-on
-		if(val == 1) //If auto-off, return auto-on
-			return 3
+		if(1) //Turn things auto-on
+			if(val == 1) //If auto-off, return auto-on
+				return 3
 
-	else if(on == 2) //Turn things auto-off
-		if(val == 3) //If auto-on, return auto-off
-			return 1
+		if(2) //Turn things auto-off
+			if(val == 3) //If auto-on, return auto-off
+				return 1
 	return val
 
 

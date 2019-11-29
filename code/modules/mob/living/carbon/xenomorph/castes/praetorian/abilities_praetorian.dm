@@ -7,7 +7,7 @@
 	mechanics_text = "Spray a cone of dangerous acid at your target."
 	ability_name = "spray acid"
 	plasma_cost = 200
-	cooldown_timer = 20 SECONDS
+	cooldown_timer = 40 SECONDS
 
 /datum/action/xeno_action/activable/spray_acid/cone/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -23,6 +23,7 @@
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_acid_sprays")
 
 	succeed_activate()
 
@@ -30,13 +31,16 @@
 	X.visible_message("<span class='xenowarning'>\The [X] spews forth a wide cone of acid!</span>", \
 	"<span class='xenowarning'>We spew forth a cone of acid!</span>", null, 5)
 
-	X.speed += 2
+	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 2)
 	do_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
 	add_cooldown()
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph/.proc/reset_speed), rand(20,30))
+	addtimer(CALLBACK(src, .proc/reset_speed), rand(2 SECONDS, 3 SECONDS))
 
-/mob/living/carbon/xenomorph/proc/reset_speed()
-	speed = xeno_caste.speed
+/datum/action/xeno_action/activable/spray_acid/cone/proc/reset_speed()
+	var/mob/living/carbon/xenomorph/spraying_xeno = owner
+	if(QDELETED(spraying_xeno))
+		return
+	spraying_xeno.remove_movespeed_modifier(type)
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
 

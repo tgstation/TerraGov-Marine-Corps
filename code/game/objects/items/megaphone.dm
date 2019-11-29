@@ -29,7 +29,7 @@
 	message = capitalize(message)
 	user.log_talk(message, LOG_SAY, "(megaphone)")
 	if ((src.loc == user && usr.stat == 0))
-		audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
+		user.send_speech("<FONT size=4>[message]</FONT>", message_language = user.get_default_language())
 
 		spamcheck = TRUE
 		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)

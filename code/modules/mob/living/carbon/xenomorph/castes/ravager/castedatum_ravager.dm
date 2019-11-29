@@ -13,7 +13,7 @@
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -0.8
@@ -34,9 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
@@ -60,10 +58,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 43
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 40
 
 	// *** Speed *** //
 	speed = -0.9
@@ -73,15 +71,13 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 265
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_2, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 20, "acid" = 35)
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -90,10 +86,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 50
+	melee_damage = 48
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -0.97
@@ -109,9 +105,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 58, "bullet" = 58, "laser" = 58, "energy" = 58, "bomb" = XENO_BOMB_RESIST_2, "bio" = 58, "rad" = 58, "fire" = 58, "acid" = 58)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 38, "bullet" = 38, "laser" = 38, "energy" = 38, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 25, "acid" = 38)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -120,10 +114,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 55
+	melee_damage = 50
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = -1
@@ -139,7 +133,5 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_2, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 28, "acid" = 40)
 

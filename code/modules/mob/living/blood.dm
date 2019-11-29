@@ -85,10 +85,11 @@
 
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
-			if(nutrition >= 300)
-				nutrition -= 10
-			else if(nutrition >= 200)
-				nutrition -= 3
+			switch(nutrition)
+				if(300 to INFINITY)
+					adjust_nutrition(-10)
+				if(200 to 300)
+					adjust_nutrition(-3)
 
 		//Bleeding out
 		var/blood_max = 0
@@ -180,7 +181,7 @@
 
 
 //Transfers blood from container to mob
-/mob/living/carbon/proc/inject_blood(obj/item/reagent_container/container, amount)
+/mob/living/carbon/proc/inject_blood(obj/item/reagent_containers/container, amount)
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		reagents.add_reagent(R.type, amount, R.data)
 		reagents.update_total()
@@ -188,7 +189,7 @@
 
 
 //Transfers blood from container to human, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(obj/item/reagent_container/container, amount)
+/mob/living/carbon/human/inject_blood(obj/item/reagent_containers/container, amount)
 	var/b_id = get_blood_id()
 	for(var/datum/reagent/R in container.reagents.reagent_list)
 		// If its blood, lets check its compatible or not and cause some toxins.

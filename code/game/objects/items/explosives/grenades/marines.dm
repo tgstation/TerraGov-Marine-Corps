@@ -277,6 +277,8 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
+	if(!fuel) //it's out of fuel, an empty shell.
+		return
 	if(!active)
 		turn_on()
 
@@ -362,6 +364,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE))
 			var/armor_block = L.run_armor_check(target_zone, "fire")
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block) //Do more damage if launched from a proper launcher and active
+			UPDATEHEALTH(L)
 
 	// Flares instantly burn out nodes when thrown at them.
 	var/obj/effect/alien/weeds/node/N = locate() in loc

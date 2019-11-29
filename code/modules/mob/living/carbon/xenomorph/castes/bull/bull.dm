@@ -7,7 +7,6 @@
 	health = 160
 	maxHealth = 160
 	plasma_stored = 200
-	speed = -1
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 

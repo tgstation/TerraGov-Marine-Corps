@@ -276,7 +276,7 @@
 				H.show_message(text("Your suit protects you from most of the flames."), 1)
 				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
 		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
-
+		UPDATEHEALTH(M)
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 
@@ -366,6 +366,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
+	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
@@ -489,7 +490,8 @@
 			C.flamer_fire_act(fire_stacks)
 
 			var/armor_block = C.run_armor_check("chest", "fire")
-			C.apply_damage(fire_damage, BURN, null, armor_block)
+			if(C.apply_damage(fire_damage, BURN, null, armor_block))
+				UPDATEHEALTH(C)
 			if(C.IgniteMob())
 				C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isxeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
@@ -503,46 +505,34 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/human/run_armor_check(def_zone = null, attack_flag = "melee")
-	. = ..()
-	if(attack_flag == "fire")
-		if(istype(wear_suit, /obj/item/clothing/suit/fire) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-			show_message(text("Your suit protects you from most of the flames."), 1)
-			return CLAMP(. * 1.5, 0.75, 1) //Min 75% resist, max 100%
-
-/mob/living/carbon/xenomorph/run_armor_check(def_zone = null, attack_flag = "melee")
-	if(attack_flag == "fire" && (xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
-		return 1
-	return ..()
-
 
 // override this proc to give different walking-over-fire effects
-/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+/mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 		IgniteMob()
 	var/armor_block = run_armor_check(null, "fire")
-	apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
-
+	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
+		UPDATEHEALTH(src)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
-
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
 		var/armor_block = run_armor_check(null, "fire")
-		apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block)
+		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
+			UPDATEHEALTH(src)	
 		return
 	. = ..()
 	if(isxeno(pulledby))
 		var/mob/living/carbon/xenomorph/X = pulledby
 		X.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod=1)
+/mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	fire_mod = fire_resist
-	. = ..(burnlevel, firelevel, fire_mod) // reduce damage by src.fire_resist
-	updatehealth()
+	return ..()
+
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"
@@ -586,6 +576,8 @@
 		if(++j >= 11)
 			break
 		var/atom/A = i
+		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
+			continue
 		A.flamer_fire_act(burnlevel, firelevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick

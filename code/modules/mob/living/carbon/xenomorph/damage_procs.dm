@@ -2,9 +2,10 @@
 
 	flash_eyes()
 
-	if(severity < 3 && stomach_contents.len)
-		for(var/mob/M in stomach_contents)
-			M.ex_act(severity + 1)
+	if(severity < 3)
+		for(var/i in stomach_contents)
+			var/mob/living/carbon/prey = i
+			prey.ex_act(severity + 1)
 	var/bomb_armor = armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
@@ -89,24 +90,25 @@
 
 	apply_damage(b_loss, BRUTE)
 	apply_damage(f_loss, BURN)
-	updatehealth()
+	UPDATEHEALTH(src)
 
 
-/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
-	if(blocked >= 1) //total negation
-		return FALSE
+/mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked)
-		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+	if(hit_percent <= 0) //total negation
+		return 0
+
+	damage *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!damage) //no damage
-		return FALSE
+		return 0
 
 	//We still want to check for blood splash before we get to the damage application.
 	var/chancemod = 0
-	if(used_weapon && sharp)
+	if(sharp)
 		chancemod += 10
-	if(used_weapon && edge) //Pierce weapons give the most bonus
+	if(edge) //Pierce weapons give the most bonus
 		chancemod += 12
 	if(def_zone != "chest") //Which it generally will be, vs xenos
 		chancemod += 5
@@ -125,11 +127,12 @@
 		if(BURN)
 			adjustFireLoss(damage)
 
-	updatehealth()
-	return TRUE
+	if(updating_health)
+		updatehealth()
+	return damage
 
 
-/mob/living/carbon/xenomorph/adjustBruteLoss(amount)
+/mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
@@ -137,13 +140,21 @@
 
 	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
-/mob/living/carbon/xenomorph/adjustFireLoss(amount)
+	if(updating_health)
+		updatehealth()
+
+
+/mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+
+	if(updating_health)
+		updatehealth()
+
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

@@ -50,26 +50,22 @@
 	if(flags_item & NOBLUDGEON)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
-	user.do_attack_animation(O)
+	user.do_attack_animation(O, used_item = src)
 	return O.attacked_by(src, user)
 
 
 /atom/movable/proc/attacked_by()
-	return
+	return FALSE
 
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force)
-		user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>", \
-					"<span class='warning'>You hit [src] with [I]!</span>")
-		log_combat(user, src, "attacked", I)
-		. = TRUE
+	if(!I.force)
+		return FALSE
+	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
+		"<span class='warning'>You hit [src] with [I]!</span>")
+	log_combat(user, src, "attacked", I)
 	take_damage(I.force, I.damtype, "melee")
-
-
-/obj/item/storage/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	user.changeNext_move(CLICK_CD_FASTEST)
+	return TRUE
 
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
@@ -89,17 +85,16 @@
 
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
-
-	if(flags_item & NOBLUDGEON)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
+		return
+	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
 		return
 
-	if (!istype(M)) // not sure if this is the right thing...
-		return 0
+	if(flags_item & NOBLUDGEON)
+		return FALSE
 
-	if (M.can_be_operated_on())        //Checks if mob is lying down on table for surgery
-		if (do_surgery(M,user,src))
-			return 0
+	if(M.can_be_operated_on() && do_surgery(M,user,src)) //Checks if mob is lying down on table for surgery
+		return FALSE
 
 	/////////////////////////
 
@@ -112,8 +107,6 @@
 	if(user.mind && user.mind.cm_skills)
 		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
 
-	SEND_SIGNAL(user, COMSIG_HUMAN_ITEM_ATTACK, M, src, user)
-
 	if(!ishuman(M))
 		var/showname = "."
 		if(user)
@@ -124,25 +117,30 @@
 		var/used_verb = "attacked"
 		if(LAZYLEN(attack_verb))
 			used_verb = pick(attack_verb)
-		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",\
-						"<span class='danger'>You attack [M] with [src].</span>", null, 5)
+		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",
+			"<span class='danger'>You attack [M] with [src].</span>", null, 5)
 
-		user.do_attack_animation(M)
-		user.flick_attack_overlay(M, "punch")
+		if(!prob(user.melee_accuracy))
+			user.do_attack_animation(M)
+			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+			user.visible_message("<span class='danger'>[user] misses [M] with \the [src]!</span>", null, null, 5)
+			return FALSE
+
+		user.do_attack_animation(M, used_item = src)
 
 		if(hitsound)
-			playsound(loc, hitsound, 25, 1)
+			playsound(loc, hitsound, 25, TRUE)
 		switch(damtype)
 			if("brute")
-				M.apply_damage(power,BRUTE)
+				M.apply_damage(power, BRUTE, user.zone_selected, M.get_living_armor("melee", user.zone_selected))
 			if("fire")
-				M.apply_damage(power,BURN)
-				to_chat(M, "<span class='warning'>It burns!</span>")
-		M.updatehealth()
+				if(M.apply_damage(power, BURN, user.zone_selected, M.get_living_armor(damtype, user.zone_selected)))
+					to_chat(M, "<span class='warning'>It burns!</span>")
+		UPDATEHEALTH(M)
 	else
 		var/mob/living/carbon/human/H = M
 		var/hit = H.attacked_by(src, user)
 		if (hit && hitsound)
-			playsound(loc, hitsound, 25, 1)
+			playsound(loc, hitsound, 25, TRUE)
 		return hit
-	return 1
+	return TRUE

@@ -293,6 +293,7 @@
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
+	muzzleflash_iconstate = "muzzle_flash_medium"
 	caliber = "10x24mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
@@ -310,7 +311,6 @@
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade
 						)
 
@@ -365,7 +365,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 11, "rail_y" = 18, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 	fire_delay = 0.3 SECONDS
-	burst_amount = 5
+	burst_amount = 4
 	accuracy_mult = 1.15
 	damage_falloff_mult = 0.5
 
@@ -470,7 +470,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = 8
+	wield_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
@@ -485,7 +485,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 2 SECONDS
+	fire_delay = 2.3 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
@@ -706,7 +706,7 @@
 		log_explosion("[key_name(user)] fired a grenade [F] from \a [src] at [AREACOORD(user.loc)].")
 		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F] from \a [src].")
 		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
+		F.activate()
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
@@ -970,7 +970,7 @@
 						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 3
+	fire_delay = 2
 	burst_amount = 7
 	recoil = 2
 	recoil_unwielded = 4
@@ -982,7 +982,7 @@ obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = 
 		if(user.action_busy)
 			return
 		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_DANGER))
+		if(!do_after(user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			return
 	return ..()
 

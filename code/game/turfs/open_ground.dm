@@ -94,6 +94,7 @@
 	if(!istype(L))
 		return
 	L.apply_damage(55, TOX)
+	UPDATEHEALTH(L)
 
 
 /turf/open/ground/coast

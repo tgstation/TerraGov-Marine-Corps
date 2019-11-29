@@ -116,66 +116,79 @@
 		return
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-		stat(null, "Evolve Progress (FINISHED)")
+		stat("Evolve Progress:", "(FINISHED)")
 	else if(!hive.check_ruler())
-		stat(null, "Evolve Progress (HALTED - NO RULER)")
+		stat("Evolve Progress:", "(HALTED - NO RULER)")
 	else
-		stat(null, "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]")
+		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
 
 	if(upgrade_possible())
-		stat(null, "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
-		stat(null, "Upgrade Progress (FINISHED)")
+		stat("Upgrade Progress:", "(FINISHED)")
 
 	if(xeno_caste.plasma_max > 0)
-		stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
+		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
 	if(hivenumber != XENO_HIVE_CORRUPTED)
 		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
-			stat(null,"Slashing of hosts is currently: PERMITTED.")
+			stat("Slashing of hosts status:", "ALLOWED")
 		else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-			stat(null,"Slashing of hosts is currently: LIMITED.")
+			stat("Slashing of hosts status:","RESTRICTED")
 		else
-			stat(null,"Slashing of hosts is currently: FORBIDDEN.")
-	else
-		stat(null,"Slashing of hosts is decided by our masters.")
+			stat("Slashing of hosts status:","FORBIDDEN")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
 		switch(frenzy_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]FRENZY pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Frenzy pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]WARDING pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Warding pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
-			if(-INFINITY to 1.0) msg_holder = "very weak "
-			if(1.1 to 2.0) msg_holder = "weak "
-			if(2.1 to 2.9) msg_holder = ""
-			if(3.0 to 3.9) msg_holder = "strong "
-			if(4.0 to INFINITY) msg_holder = "very strong "
-		stat(null,"We are affected by a [msg_holder]RECOVERY pheromone.")
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Recovery pheromone strength:", msg_holder)
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
-				stat(null,"Hive Orders: [hive.hive_orders]")
-			var/countdown = SSticker.mode.get_hivemind_collapse_countdown()
+				stat("Hive Orders:", hive.hive_orders)
+			var/countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(countdown)
-				stat("Orphan hivemind collapse timer:", countdown)
+				stat("<b>Orphan hivemind collapse timer:</b>", countdown)
 		if(XENO_HIVE_CORRUPTED)
-			stat(null,"Hive Orders: Follow the instructions of our masters")
+			stat("Hive Orders:","Follow the instructions of our masters")
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -185,16 +198,18 @@
 	return 1
 
 //Checks your plasma levels and gives a handy message.
-/mob/living/carbon/xenomorph/proc/check_plasma(value)
+/mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
-		return 0
+		if(!silent)
+			to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
-			to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
-			return 0
-	return 1
+			if(!silent)
+				to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)
 	plasma_stored = max(plasma_stored - value, 0)
@@ -222,16 +237,12 @@
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level
-/mob/living/carbon/xenomorph/movement_delay(direct)
-	. = ..()
+/mob/living/carbon/xenomorph/proc/setXenoCasteSpeed(new_speed)
+	if(new_speed == 0)
+		remove_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED)
+		return
+	add_movespeed_modifier(MOVESPEED_ID_XENO_CASTE_SPEED, TRUE, 0, NONE, TRUE, new_speed)
 
-	. += speed + slowdown + speed_modifier
-
-	if(frenzy_aura)
-		. -= (frenzy_aura * 0.1)
-
-	if(hit_and_run) //We need to have the hit and run ability before we do anything
-		hit_and_run += 0.05 //increment the damage of our next attack by +5%
 
 //Stealth handling
 
@@ -350,23 +361,35 @@
 
 /mob/living/carbon/xenomorph/proc/empty_gut(warning = FALSE, content_cleanup = FALSE)
 	if(warning)
-		if(length(stomach_contents))
+		if(LAZYLEN(stomach_contents))
 			visible_message("<span class='xenowarning'>\The [src] hurls out the contents of their stomach!</span>", \
 			"<span class='xenowarning'>We hurl out the contents of our stomach!</span>", null, 5)
 		else
 			to_chat(src, "<span class='warning'>There is nothing to regurgitate.</span>")
 
-	for(var/x in stomach_contents)
-		var/atom/movable/passenger = x
-		stomach_contents.Remove(passenger)
-		passenger.forceMove(get_turf(src))
-		SEND_SIGNAL(passenger, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
+	for(var/i in stomach_contents)
+		do_regurgitate(i)
 
 	if(content_cleanup)
 		for(var/x in contents) //Get rid of anything that may be stuck inside us as well
 			var/atom/movable/stowaway = x
 			stowaway.forceMove(get_turf(src))
 			stack_trace("[stowaway] found in [src]'s contents. It shouldn't have ended there.")
+
+
+/mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
+	LAZYADD(stomach_contents, prey)
+	prey.knock_down(360)
+	prey.adjust_tinttotal(TINT_BLIND)
+	prey.forceMove(src)
+	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
+
+
+/mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
+	LAZYREMOVE(stomach_contents, prey)
+	prey.forceMove(get_turf(src))
+	prey.adjust_tinttotal(-TINT_BLIND)
+	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -504,6 +527,7 @@
 
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
 	cooldowns[COOLDOWN_ACID] = TRUE
 	var/armor_block = run_armor_check("chest", "acid")
@@ -513,9 +537,11 @@
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block)
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage(null, damage, null, null, null, armor_block)
+	take_overall_damage(0, damage, armor_block)
+	UPDATEHEALTH(src)
 	emote("scream")
 	knock_down(1)
 
@@ -602,18 +628,6 @@
 	else
 		H.remove_hud_from(src)
 	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
-
-
-/mob/living/carbon/xenomorph/verb/middle_mousetoggle()
-	set name = "Toggle Middle/Shift Clicking"
-	set desc = "Toggles between using middle mouse click and shift click for selected abilitiy use."
-	set category = "Alien"
-
-	middle_mouse_toggle = !middle_mouse_toggle
-	if(!middle_mouse_toggle)
-		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>")
-	else
-		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>")
 
 
 /mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)

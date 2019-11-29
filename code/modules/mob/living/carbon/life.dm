@@ -21,6 +21,11 @@
 	if(.)
 		return FALSE
 
+	handle_healths_hud_updates()
+	return TRUE
+
+
+/mob/living/carbon/proc/handle_healths_hud_updates()
 	if(hud_used?.healths)
 		switch(round(health * 100 / maxHealth))
 			if(100 to INFINITY)
@@ -37,11 +42,10 @@
 				hud_used.healths.icon_state = "health5"
 			else
 				hud_used.healths.icon_state = "health6"
-	return TRUE
 
 
 /mob/living/carbon/update_stat()
-	.=..()
+	. = ..()
 	if(status_flags & GODMODE)
 		return
 
@@ -73,7 +77,7 @@
 		dizzy(-restingpwr)
 
 	if(drowsyness)
-		drowsyness = max(drowsyness - restingpwr, 0)
+		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(prob(5))
 			sleeping(1)
@@ -82,8 +86,6 @@
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
 		jitter(-restingpwr)
-
-	halloss_recovery()
 
 	if(hallucination)
 		if(hallucination >= 20)
@@ -99,15 +101,11 @@
 			hallucinations -=a
 			qdel(a)
 
-	if(halloss > maxHealth*2) //Re-adding, but doubling the allowance to 200, and making it a knockdown so the victim can still interact somewhat
-		if(prob(20))
-			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
-			"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
-			if(prob(25) && ishuman(src)) //only humans can scream, shame.
-				emote("scream")
-		knock_down(5)
-		setHalLoss(maxHealth*2)
+	if(halloss)
+		halloss_recovery()
 
+	if(staminaloss > -max_stamina_buffer)
+		handle_staminaloss()
 
 	if(sleeping)
 		if(ishuman(src))
@@ -155,7 +153,7 @@
 			adjustToxLoss(0.2)
 			if(prob(10) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
-				drowsyness += 5
+				adjustDrowsyness(5)
 
 		if(drunkenness >= 91)
 			adjustBrainLoss(0.2, TRUE)
@@ -191,17 +189,6 @@
 /mob/living/carbon/proc/handle_slowdown()
 	if(slowdown)
 		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
-	return slowdown
-
-/mob/living/carbon/proc/adjust_slowdown(amount)
-	if(amount > 0)
-		slowdown = max(slowdown, amount) //Slowdown overlaps rather than stacking.
-	else
-		slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/add_slowdown(amount)
-	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
 	return slowdown
 
 /mob/living/carbon/proc/breathe()

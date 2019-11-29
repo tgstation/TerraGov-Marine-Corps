@@ -43,12 +43,12 @@
 	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/attachable/stock/smg, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/meatbread, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
 
 //PMC Gunner
@@ -84,12 +84,12 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/mine/pmc, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 
@@ -127,10 +127,10 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
@@ -162,7 +162,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
 	mask = /obj/item/clothing/mask/gas/PMC/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/m41a/elite
+	suit_store = /obj/item/weapon/gun/rifle/m41a1/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/satchel
@@ -173,10 +173,10 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/PMC, SLOT_IN_SUIT)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)

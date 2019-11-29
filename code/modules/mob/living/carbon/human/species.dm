@@ -46,6 +46,7 @@
 	var/exhale_type = "carbon_dioxide"      // Exhaled gas type.
 
 	var/total_health = 100  //new maxHealth
+	var/max_stamina_buffer = 50
 
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
 	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
@@ -280,7 +281,7 @@
 	brute_mod = 0.15
 	burn_mod = 1.50
 	reagent_tag = IS_HORROR
-	species_flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION
+	species_flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_SLIP|NO_CHEM_METABOLIZATION|NO_STAMINA
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
@@ -503,7 +504,7 @@
 	breath_type = "nitrogen"
 	poison_type = "oxygen"
 
-	species_flags = NO_SCAN|NO_BLOOD|NO_PAIN
+	species_flags = NO_SCAN|NO_BLOOD|NO_PAIN|NO_STAMINA
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"
@@ -541,7 +542,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -574,7 +575,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 
@@ -627,7 +628,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -804,3 +805,72 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
+
+
+/datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
+	var/hit_percent = (100 - blocked) * 0.01
+
+	if(hit_percent <= 0) //total negation
+		return 0
+
+	damage *= CLAMP01(hit_percent) //Percentage reduction
+
+	if(!damage) //Complete negation
+		return 0
+
+	if(victim.protection_aura)
+		damage = round(damage * ((15 - victim.protection_aura) / 15))
+
+	var/datum/limb/organ = null
+	if(isorgan(def_zone))
+		organ = def_zone
+	else
+		if(!def_zone)
+			def_zone = ran_zone(def_zone)
+		organ = victim.get_limb(check_zone(def_zone))
+	if(!organ)
+		return FALSE
+
+	switch(damagetype)
+		if(BRUTE)
+			victim.damageoverlaytemp = 20
+			if(brute_mod)
+				damage *= brute_mod
+			if(organ.take_damage_limb(damage, 0, sharp, edge))
+				victim.UpdateDamageIcon()
+		if(BURN)
+			victim.damageoverlaytemp = 20
+			if(burn_mod)
+				damage *= burn_mod
+			if(organ.take_damage_limb(0, damage, sharp, edge))
+				victim.UpdateDamageIcon()
+		if(HALLOSS)
+			if(species_flags & NO_PAIN)
+				return
+			switch(damage)
+				if(-INFINITY to 0)
+					return FALSE
+				if(25 to 50)
+					if(prob(20))
+						victim.emote("pain")
+				if(50 to INFINITY)
+					if(prob(60))
+						victim.emote("pain")
+			victim.adjustHalLoss(damage)
+		if(TOX)
+			victim.adjustToxLoss(damage)
+		if(OXY)
+			victim.adjustOxyLoss(damage)
+		if(CLONE)
+			victim.adjustCloneLoss(damage)
+		if(STAMINA)
+			if(species_flags & NO_STAMINA)
+				return
+			victim.adjustStaminaLoss(damage)
+
+	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
+
+	if(updating_health)
+		victim.updatehealth()
+	return damage

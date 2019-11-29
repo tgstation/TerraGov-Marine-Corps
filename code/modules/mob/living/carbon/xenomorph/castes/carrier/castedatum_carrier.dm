@@ -11,7 +11,7 @@
 	wound_type = "carrier" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -20,8 +20,8 @@
 	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 250
-	plasma_gain = 8
+	plasma_max = 500
+	plasma_gain = 20
 
 	// *** Health *** //
 	max_health = 200
@@ -39,7 +39,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -73,7 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 27
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -82,8 +82,8 @@
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 300
-	plasma_gain = 10
+	plasma_max = 600
+	plasma_gain = 25
 
 	// *** Health *** //
 	max_health = 220
@@ -92,7 +92,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -109,7 +109,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -118,17 +118,17 @@
 	speed = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 350
-	plasma_gain = 12
+	plasma_max = 700
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 230
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 7, "bullet" = 7, "laser" = 7, "energy" = 7, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
 
 	// *** Pheromones *** //
 	aura_strength = 2.3
@@ -145,7 +145,7 @@
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -154,17 +154,17 @@
 	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 400
-	plasma_gain = 15
+	plasma_max = 800
+	plasma_gain = 38
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5

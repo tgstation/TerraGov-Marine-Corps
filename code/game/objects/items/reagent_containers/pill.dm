@@ -2,7 +2,7 @@
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/reagent_container/pill
+/obj/item/reagent_containers/pill
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = null
@@ -14,15 +14,15 @@
 	var/pill_desc = "An unknown pill." //the real description of the pill, shown when examined by a medically trained person
 	var/pill_id
 
-/obj/item/reagent_container/pill/Initialize()
+/obj/item/reagent_containers/pill/Initialize()
 	. = ..()
 	if(!icon_state)
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
-/obj/item/reagent_container/pill/attack_self(mob/user as mob)
+/obj/item/reagent_containers/pill/attack_self(mob/user as mob)
 	return
 
-/obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
+/obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
 
 	if(M == user)
 
@@ -74,7 +74,7 @@
 
 		return FALSE
 
-/obj/item/reagent_container/pill/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -83,9 +83,9 @@
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		var/obj/item/reagent_container/R = null
+		var/obj/item/reagent_containers/R = null
 		var/liquidate = null
-		if(istype(target,/obj/item/reagent_container))
+		if(istype(target,/obj/item/reagent_containers))
 			R = target
 			if(R.liquifier)
 				liquidate = TRUE
@@ -113,123 +113,113 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
-/obj/item/reagent_container/pill/dylovene
+/obj/item/reagent_containers/pill/dylovene
 	pill_desc = "A dylovene pill. It neutralizes many common toxins."
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 	pill_id = 1
 
-/obj/item/reagent_container/pill/tox
+/obj/item/reagent_containers/pill/tox
 	pill_desc = "A toxins pill. It's highly toxic."
 	list_reagents = list(/datum/reagent/toxin = 50)
 	pill_id = 2
 
-/obj/item/reagent_container/pill/cyanide
+/obj/item/reagent_containers/pill/cyanide
 	desc = "A cyanide pill. Don't swallow this!"
 	pill_desc = null//so even non medics can see what this pill is.
 	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
 	pill_id = 2
 
-/obj/item/reagent_container/pill/adminordrazine
+/obj/item/reagent_containers/pill/adminordrazine
 	pill_desc = "An adminordrazine pill. It's magic. We don't have to explain it."
 	list_reagents = list(/datum/reagent/medicine/adminordrazine = 50)
 	pill_id = 3
 
-/obj/item/reagent_container/pill/sleeptoxin
+/obj/item/reagent_containers/pill/sleeptoxin
 	pill_desc = "A sleeping pill commonly used to treat insomnia."
 	list_reagents = list(/datum/reagent/toxin/sleeptoxin = 15)
 	pill_id = 4
 
-/obj/item/reagent_container/pill/kelotane
+/obj/item/reagent_containers/pill/kelotane
 	pill_desc = "A kelotane pill. Used to treat burns."
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
 	pill_id = 5
 
-/obj/item/reagent_container/pill/paracetamol
+/obj/item/reagent_containers/pill/paracetamol
 	pill_desc = "A paracetamol pill. Painkiller for the ages."
 	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
 	pill_id = 6
 
-/obj/item/reagent_container/pill/tramadol
+/obj/item/reagent_containers/pill/tramadol
 	pill_desc = "A tramadol pill. A simple painkiller."
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
 
-/obj/item/reagent_container/pill/methylphenidate
-	pill_desc = "A methylphenidate pill. This improves the ability to concentrate."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/methylphenidate = 15)
-	pill_id = 8
-
-/obj/item/reagent_container/pill/citalopram
-	pill_desc = "A citalopram pill. A mild anti-depressant."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/citalopram = 15)
-	pill_id = 9
-
-/obj/item/reagent_container/pill/inaprovaline
+/obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
 	pill_id = 10
 
-/obj/item/reagent_container/pill/dexalin
+/obj/item/reagent_containers/pill/dexalin
 	pill_desc = "A dexalin pill. Used to treat oxygen deprivation."
 	list_reagents = list(/datum/reagent/medicine/dexalin = 15)
 	pill_id = 11
 
-/obj/item/reagent_container/pill/spaceacillin
+/obj/item/reagent_containers/pill/spaceacillin
 	pill_desc = "A spaceacillin pill. Used to treat infected wounds and slow down viral infections."
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 10)
 	pill_id = 12
 
-/obj/item/reagent_container/pill/happy
+/obj/item/reagent_containers/pill/happy
 	pill_desc = "A Happy Pill! Happy happy joy joy!"
 	list_reagents = list(/datum/reagent/space_drugs = 15, /datum/reagent/consumable/sugar = 15, /datum/reagent/consumable/laughter = 5)
 	pill_id = 13
 
-/obj/item/reagent_container/pill/zoom
+/obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 5, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 2)
 	pill_id = 14
 
-/obj/item/reagent_container/pill/russianRed
+/obj/item/reagent_containers/pill/russianRed
 	pill_desc = "A Russian Red pill. A very dangerous radiation-countering substance."
 	list_reagents = list(/datum/reagent/medicine/russianred = 10)
 	pill_id = 15
 
-/obj/item/reagent_container/pill/peridaxon
+/obj/item/reagent_containers/pill/peridaxon
 	pill_desc = "A peridaxon pill. Heals internal organ damage."
 	list_reagents = list(/datum/reagent/medicine/peridaxon = 10)
 	pill_id = 16
 
-/obj/item/reagent_container/pill/imidazoline
+/obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."
 	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
 	pill_id = 17
 
-/obj/item/reagent_container/pill/alkysine
+/obj/item/reagent_containers/pill/alkysine
 	pill_desc = "An Alkysine pill. Heals brain damage."
 	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
 	pill_id = 18
 
-/obj/item/reagent_container/pill/bicaridine
+/obj/item/reagent_containers/pill/bicaridine
 	pill_desc = "A bicaridine pill. Heals brute damage."
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 15)
 	pill_id = 19
 
-/obj/item/reagent_container/pill/quickclot
+/obj/item/reagent_containers/pill/quickclot
 	pill_desc = "A quick-clot pill. Stabilizes internal bleeding temporarily."
 	list_reagents = list(/datum/reagent/medicine/quickclot = 10)
 	pill_id = 20
 
-/obj/item/reagent_container/pill/tricordrazine
+/obj/item/reagent_containers/pill/tricordrazine
 	pill_desc = "A tricordrazine pill. Broad spectrum medication that slowly heals all damage types."
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 15)
 	pill_id = 9
 
-/obj/item/reagent_container/pill/hypervene
+/obj/item/reagent_containers/pill/hypervene
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list(/datum/reagent/medicine/hypervene = 3)
 	pill_id = 14
 
-/obj/item/reagent_container/pill/ultrazine
+/obj/item/reagent_containers/pill/ultrazine
 	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21

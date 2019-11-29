@@ -379,17 +379,17 @@
 /area/lv624/lazarus/armory)
 "abu" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
+/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
 /obj/structure/rack,
-/obj/item/reagent_container/hypospray/autoinjector/dexalinplus{
+/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/reagent_container/hypospray/autoinjector/quickclot{
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
+/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "abv" = (
@@ -2096,7 +2096,7 @@
 "agO" = (
 /obj/structure/table,
 /obj/item/storage/surgical_tray,
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -2264,7 +2264,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "ahi" = (
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /obj/machinery/door_control{
 	id = "OR2";
 	name = "OR2 Shutters";
@@ -2498,8 +2498,8 @@
 /area/lv624/lazarus/medbay)
 "ahG" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker{
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 4
 	},
 /obj/structure/extinguisher_cabinet{
@@ -2649,7 +2649,7 @@
 /area/lv624/ground/jungle7)
 "ahZ" = (
 /obj/structure/table,
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /obj/item/tool/surgery/FixOVein,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -2755,7 +2755,7 @@
 /area/lv624/ground/jungle7)
 "ain" = (
 /obj/structure/table,
-/obj/item/reagent_container/hypospray/autoinjector/quickclot,
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
 /obj/item/tool/surgery/bonegel,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
@@ -2770,7 +2770,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "aip" = (
-/obj/item/reagent_container/spray,
+/obj/item/reagent_containers/spray,
 /obj/item/healthanalyzer,
 /obj/structure/table,
 /turf/open/floor/tile/blue/whitebluecorner{
@@ -3356,8 +3356,8 @@
 /area/port_hamburg/cargo)
 "akm" = (
 /obj/structure/closet,
-/obj/item/reagent_container/food/snacks/mint,
-/obj/item/reagent_container/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/mint,
+/obj/item/reagent_containers/food/snacks/mint,
 /turf/open/floor/tile/dark,
 /area/port_hamburg/cargo)
 "akn" = (
@@ -3383,7 +3383,7 @@
 /area/port_hamburg/cargo)
 "akq" = (
 /obj/structure/closet,
-/obj/item/reagent_container/food/snacks/mimeburger,
+/obj/item/reagent_containers/food/snacks/mimeburger,
 /turf/open/floor/tile/dark,
 /area/port_hamburg/cargo)
 "akr" = (
@@ -3392,7 +3392,7 @@
 /area/port_hamburg/cargo)
 "aks" = (
 /obj/structure/closet,
-/obj/item/reagent_container/food/snacks/packaged_meal,
+/obj/item/reagent_containers/food/snacks/packaged_meal,
 /turf/open/floor/tile/dark,
 /area/port_hamburg/cargo)
 "akt" = (
@@ -3733,9 +3733,6 @@
 /obj/structure/rack,
 /obj/item/clothing/head/soft/grey,
 /obj/item/clothing/head/soft/grey,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "alw" = (
@@ -3743,7 +3740,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/obj/item/reagent_container/food/snacks/packaged_burrito,
+/obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "alx" = (
@@ -3754,7 +3751,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 50
 	},
-/obj/item/reagent_container/food/snacks/packaged_burrito,
+/obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "aly" = (
@@ -4302,7 +4299,7 @@
 	dir = 8
 	},
 /obj/structure/closet,
-/obj/item/reagent_container/food/snacks/packaged_meal,
+/obj/item/reagent_containers/food/snacks/packaged_meal,
 /turf/open/floor/tile/dark,
 /area/port_hamburg/cargo)
 "amH" = (
@@ -4562,9 +4559,9 @@
 "ans" = (
 /obj/structure/rack,
 /obj/item/stack/medical/bruise_pack,
-/obj/item/reagent_container/blood/empty,
-/obj/item/reagent_container/blood/empty,
-/obj/item/reagent_container/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "ant" = (
@@ -4576,17 +4573,13 @@
 "anv" = (
 /obj/structure/rack,
 /obj/item/flashlight,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
-/obj/item/transfer_valve,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "anw" = (
 /obj/structure/rack,
 /obj/item/weapon/combat_knife,
 /obj/item/weapon/combat_knife,
-/obj/item/reagent_container/food/snacks/packaged_burrito,
+/obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "anx" = (
@@ -4753,7 +4746,7 @@
 "anT" = (
 /obj/structure/rack,
 /obj/item/weapon/claymore/mercsword/machete,
-/obj/item/reagent_container/food/snacks/packaged_burrito,
+/obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "anU" = (
@@ -4891,7 +4884,7 @@
 /area/lv624/lazarus/research)
 "aol" = (
 /obj/item/stack/sheet/metal,
-/obj/item/reagent_container/spray/chemsprayer,
+/obj/item/reagent_containers/spray/chemsprayer,
 /turf/open/floor/plating,
 /area/port_hamburg/cargo)
 "aom" = (
@@ -5897,7 +5890,7 @@
 /turf/open/floor/marking/bot,
 /area/port_hamburg/cargo)
 "aqV" = (
-/obj/item/reagent_container/food/drinks/cans/starkist,
+/obj/item/reagent_containers/food/drinks/cans/starkist,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "aqW" = (
@@ -5915,7 +5908,7 @@
 	pixel_y = 22
 	},
 /obj/item/book/manual/barman_recipes,
-/obj/item/reagent_container/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aqY" = (
@@ -6093,14 +6086,14 @@
 /area/lv624/lazarus/kitchen)
 "arE" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/grown/tomato,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/food/drinks/bottle/davenport,
+/obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/food/drinks/bottle/davenport,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "arF" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "arG" = (
@@ -6271,7 +6264,7 @@
 /area/lv624/lazarus/kitchen)
 "asi" = (
 /obj/structure/table,
-/obj/item/reagent_container/hypospray/autoinjector/quickclot,
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "asj" = (
@@ -6348,7 +6341,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "asw" = (
-/obj/item/reagent_container/food/snacks/grown/banana,
+/obj/item/reagent_containers/food/snacks/grown/banana,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "asx" = (
@@ -6370,11 +6363,11 @@
 /area/lv624/ground/compound/c)
 "asA" = (
 /obj/structure/table,
-/obj/item/reagent_container/glass/bucket{
+/obj/item/reagent_containers/glass/bucket{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -6692,7 +6685,7 @@
 /obj/item/trash/snack_bowl{
 	pixel_y = 9
 	},
-/obj/item/reagent_container/food/drinks/h_chocolate,
+/obj/item/reagent_containers/food/drinks/h_chocolate,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "atG" = (
@@ -7550,7 +7543,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/quartstorage/outdoors)
 "avW" = (
-/obj/item/reagent_container/food/snacks/grown/banana{
+/obj/item/reagent_containers/food/snacks/grown/banana{
 	pixel_x = -8
 	},
 /obj/structure/rack,
@@ -7601,7 +7594,7 @@
 /area/lv624/lazarus/hydroponics)
 "awd" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/machinery/light,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
@@ -8781,8 +8774,8 @@
 "aze" = (
 /obj/structure/table,
 /obj/item/flashlight,
-/obj/item/reagent_container/food/drinks/drinkingglass,
-/obj/item/reagent_container/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "azf" = (
@@ -9167,7 +9160,7 @@
 /obj/item/spacecash/c100{
 	pixel_x = -12
 	},
-/obj/item/reagent_container/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -10085,7 +10078,7 @@
 /turf/open/floor/plating,
 /area/janitor)
 "aCX" = (
-/obj/item/reagent_container/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "aCY" = (
@@ -10101,16 +10094,16 @@
 	pixel_y = 30
 	},
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/donkpocket{
+/obj/item/reagent_containers/food/snacks/donkpocket{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/reagent_container/food/snacks/donkpocket{
+/obj/item/reagent_containers/food/snacks/donkpocket{
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aDa" = (
@@ -10213,8 +10206,8 @@
 /area/lv624/lazarus/sleep_female)
 "aDr" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/drinkingglass,
-/obj/item/reagent_container/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aDt" = (
@@ -10464,7 +10457,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "aEf" = (
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/structure/flora/pottedplant,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/tile/purple/taupepurple{
@@ -10907,7 +10900,7 @@
 /turf/open/floor,
 /area/port_hamburg/cargo2)
 "aFe" = (
-/obj/item/reagent_container/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -11311,7 +11304,7 @@
 /area/lv624/lazarus/chapel)
 "aGe" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_container/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -11862,7 +11855,7 @@
 /area/lv624/ground/compound/se)
 "aHH" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/drinks/bottle/gin,
+/obj/item/reagent_containers/food/drinks/bottle/gin,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "aHI" = (
@@ -11894,7 +11887,7 @@
 	pixel_x = 30
 	},
 /obj/item/explosive/grenade/chem_grenade/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aHM" = (
@@ -13673,12 +13666,12 @@
 /turf/open/floor/animated/bcircuit,
 /area/lv624/lazarus/engineering)
 "aMx" = (
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aMy" = (
 /obj/machinery/chem_dispenser,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aMz" = (
@@ -14328,7 +14321,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aPk" = (
-/obj/item/reagent_container/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
@@ -15305,7 +15298,7 @@
 /area/port_hamburg/docks)
 "aSP" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/grilledcheese,
 /obj/item/tool/extinguisher,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
@@ -15565,9 +15558,9 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /obj/item/flashlight,
 /turf/open/floor/wood,
 /area/port_hamburg/abandoned_dorm)
@@ -16864,25 +16857,25 @@
 /area/lv624/lazarus/hydroponics)
 "aXW" = (
 /obj/structure/table,
-/obj/item/reagent_container/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "aXX" = (
 /obj/structure/table,
 /obj/item/trash/chips,
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "aXY" = (
 /obj/structure/table,
-/obj/item/reagent_container/food/condiment/saltshaker,
-/obj/item/reagent_container/food/condiment/peppermill{
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/reagent_container/glass/beaker,
-/obj/item/reagent_container/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "aXZ" = (
@@ -16890,17 +16883,17 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
-/obj/item/reagent_container/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "aYa" = (
 /obj/structure/table,
-/obj/item/reagent_container/spray/plantbgone{
+/obj/item/reagent_containers/spray/plantbgone{
 	pixel_x = 12
 	},
-/obj/item/reagent_container/spray/plantbgone,
+/obj/item/reagent_containers/spray/plantbgone,
 /obj/item/seeds,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
@@ -17301,7 +17294,7 @@
 	pixel_y = 12
 	},
 /obj/machinery/light,
-/obj/item/reagent_container/hypospray/advanced,
+/obj/item/reagent_containers/hypospray/advanced,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -17324,7 +17317,7 @@
 /area/lv624/lazarus/research)
 "aYP" = (
 /obj/structure/table,
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -17336,14 +17329,14 @@
 	},
 /area/port_hamburg/cargo_jungle2)
 "aYR" = (
-/obj/item/reagent_container/spray/cleaner,
-/obj/item/reagent_container/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plating,
 /area/janitor)
 "aYS" = (
 /obj/item/tool/mop,
 /obj/structure/rack,
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -17354,7 +17347,7 @@
 	pixel_x = 5
 	},
 /obj/structure/rack,
-/obj/item/reagent_container/spray/surgery,
+/obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -17364,7 +17357,6 @@
 /obj/structure/mirror{
 	pixel_y = -30
 	},
-/obj/item/transfer_valve,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "aYV" = (
@@ -17443,7 +17435,6 @@
 "aZd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
-/obj/item/transfer_valve,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "aZe" = (
@@ -17452,12 +17443,10 @@
 /obj/item/analyzer,
 /obj/item/multitool,
 /obj/item/assembly/prox_sensor,
-/obj/item/transfer_valve,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "aZf" = (
 /obj/structure/rack,
-/obj/item/transfer_valve,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "aZg" = (
@@ -17617,9 +17606,9 @@
 	icon_state = "tabledir";
 	dir = 9
 	},
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/food/snacks/donkpocket,
-/obj/item/reagent_container/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donkpocket,
 /turf/open/floor/wood,
 /area/port_hamburg/abandoned_dorm)
 "aZF" = (
@@ -17808,7 +17797,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/item/reagent_container/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "bah" = (
@@ -18407,7 +18396,7 @@
 /area/port_hamburg/mine)
 "bbP" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/reagent_container/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bbQ" = (
@@ -19268,7 +19257,7 @@
 /area/lv624/lazarus/medbay)
 "bfi" = (
 /obj/structure/table,
-/obj/item/reagent_container/hypospray,
+/obj/item/reagent_containers/hypospray,
 /obj/item/tool/surgery/FixOVein,
 /obj/machinery/light{
 	dir = 1

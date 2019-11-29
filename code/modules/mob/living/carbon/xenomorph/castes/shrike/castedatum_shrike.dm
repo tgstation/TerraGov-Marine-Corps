@@ -16,7 +16,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -38,7 +38,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
@@ -50,6 +50,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
+		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
@@ -79,7 +80,7 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 850
@@ -92,7 +93,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 10, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -110,20 +111,20 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_2, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 15, "acid" = 18)
 
 	// *** Pheromones *** //
 	aura_strength = 2.8
@@ -141,20 +142,20 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 925
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 18, "acid" = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3

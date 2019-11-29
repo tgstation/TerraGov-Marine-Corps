@@ -349,8 +349,8 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	total_positions = 5
 	supervisors = "the chief ship engineer and the requisitions officer"
 	selection_color = "#fff5cc"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/ST
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/engineering/tech
@@ -607,6 +607,11 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	outfit = /datum/outfit/job/civilian/synthetic
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
+	job_flags = JOB_FLAG_SPECIALNAME
+
+
+/datum/job/civilian/synthetic/get_special_name(client/preference_source)
+	return preference_source.prefs.synthetic_name
 
 
 /datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
@@ -661,6 +666,11 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
+	job_flags = JOB_FLAG_SPECIALNAME
+
+
+/datum/job/ai/get_special_name(client/preference_source)
+	return preference_source.prefs.ai_name
 
 
 /datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)

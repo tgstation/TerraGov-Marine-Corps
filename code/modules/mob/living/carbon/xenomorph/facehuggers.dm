@@ -76,7 +76,7 @@
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
-		user.do_attack_animation(src)
+		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		Die()
@@ -138,9 +138,9 @@
 
 /obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
 		Die()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
@@ -443,6 +443,7 @@
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
 		Die()
 	else
@@ -457,6 +458,8 @@
 		else //Huggered but not impregnated, deal damage.
 			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
 			target.apply_damage(15, BRUTE, "head")
+			UPDATEHEALTH(target)
+
 
 /obj/item/clothing/mask/facehugger/proc/Die()
 	reset_attach_status()

@@ -1,13 +1,3 @@
-/*
-* Cryogenic refrigeration unit. Basically a despawner.
-* Stealing a lot of concepts/code from sleepers due to massive laziness.
-* The despawn tick will only fire if it's been more than time_till_despawned ticks
-* since time_entered, which is world.time when the occupant moves in.
-* ~ Zuhayr
-*/
-
-//Main cryopod console.
-
 #define CRYOCONSOLE_MOB_LIST 1
 #define CRYOCONSOLE_ITEM_LIST 2
 
@@ -190,8 +180,6 @@
 
 	var/mob/living/occupant //Person waiting to be despawned.
 	var/orient_right = FALSE // Flips the sprite.
-	var/time_till_despawn = 10 MINUTES
-	var/time_entered
 	var/obj/item/radio/radio
 
 /obj/machinery/cryopod/right
@@ -212,23 +200,6 @@
 	var/mirror = orient_right ? "-r" : ""
 	icon_state = "body_scanner_[occupied][mirror]"
 
-/obj/machinery/cryopod/process()
-	if(QDELETED(occupant))
-		stop_processing()
-		update_icon()
-		return
-
-	if(occupant.stat == DEAD) //Occupant is dead, abort.
-		go_out()
-		return
-
-	//Allow a ten minute gap between entering the pod and actually despawning.
-	if(world.time - time_entered < time_till_despawn)
-		return
-
-	occupant.despawn(src)
-	stop_processing()
-	update_icon()
 
 /mob/living/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
 
@@ -265,6 +236,8 @@
 			GLOB.datacore.general -= G
 			qdel(G)
 
+	GLOB.real_names_joined -= real_name
+
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
 	//Make an announcement and log the person entering storage.
@@ -275,6 +248,7 @@
 	if(pod)
 		pod.visible_message("<span class='notice'>[pod] hums and hisses as it moves [real_name] into hypersleep storage.</span>")
 		pod.occupant = null
+		pod.update_icon()
 		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", FREQ_COMMON)
 
 	qdel(src)
@@ -444,9 +418,8 @@
 
 /obj/machinery/cryopod/proc/climb_in(mob/living/carbon/user, mob/helper)
 	if(helper && user != helper)
-		var/sec_left = timeleft(user.afk_timer_id)
-		if(!user.client && sec_left)
-			to_chat(helper, "<span class='notice'>You should wait another [round((sec_left * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
+		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
+			to_chat(helper, "<span class='notice'>You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep.</span>")
 			return
 
 		helper.visible_message("<span class='notice'>[helper] starts putting [user] into [src].</span>",
@@ -465,19 +438,46 @@
 		return
 
 	user.forceMove(src)
+
 	occupant = user
 	update_icon()
+	log_game("[key_name(user)] has entered a stasis pod.")
+	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
+
+	RegisterSignal(user, COMSIG_MOB_DEATH, .proc/go_out)
+
+	if(user.afk_status == MOB_DISCONNECTED)
+		addtimer(CALLBACK(src, .proc/despawn_mob, user), 5 SECONDS)
+		return
 
 	to_chat(user, "<span class='notice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 	to_chat(user, "<span class='boldnotice'>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</span>")
-	time_entered = world.time
-	start_processing()
-	log_game("[key_name(user)] has entered a stasis pod.")
-	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
+
+	RegisterSignal(user, COMSIG_CARBON_SETAFKSTATUS, .proc/on_user_afk_change)
+
+
+/obj/machinery/cryopod/proc/despawn_mob(mob/living/carbon/user)
+	if(QDELETED(user) || user.loc != src)
+		return
+	user.despawn(src)
+
+
+/obj/machinery/cryopod/proc/on_user_afk_change(datum/source, new_status, afk_timer)
+	if(new_status != MOB_DISCONNECTED)
+		return
+	UnregisterSignal(source, list(COMSIG_CARBON_SETAFKSTATUS, COMSIG_MOB_DEATH))
+	var/mob/living/carbon/user = source
+	if(user.loc != src)
+		stack_trace("[user] disconnected while linked to [src] but without being inside it")
+		return
+	user.despawn(src)
+
 
 /obj/machinery/cryopod/proc/go_out()
 	if(QDELETED(occupant))
 		return
+
+	UnregisterSignal(occupant, list(COMSIG_CARBON_SETAFKSTATUS, COMSIG_MOB_DEATH))
 
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = contents - radio
@@ -487,5 +487,4 @@
 		A.forceMove(get_turf(src))
 
 	occupant = null
-	stop_processing()
 	update_icon()

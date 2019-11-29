@@ -301,6 +301,23 @@
 	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [GLOB.respawntime * 0.1] seconds.")
 
 
+/datum/admins/proc/set_xenorespawn_time(time as num)
+	set category = "Server"
+	set name = "Set Xeno Respawn Timer"
+	set desc = "Sets the global xeno respawn timer."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(time < 0)
+		return
+
+	GLOB.xenorespawntime = time
+
+	log_admin("[key_name(usr)] set the xeno respawn time to [GLOB.xenorespawntime * 0.1] seconds.")
+	message_admins("[ADMIN_TPMONTY(usr)] set the xeno respawn time to [GLOB.xenorespawntime * 0.1] seconds.")
+
+
 /datum/admins/proc/end_round()
 	set category = "Server"
 	set name = "End Round"

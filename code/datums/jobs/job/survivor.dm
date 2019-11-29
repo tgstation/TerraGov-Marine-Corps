@@ -218,3 +218,23 @@
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
+
+
+
+// Rambo Survivors
+
+//Generic
+/datum/job/rambosurvivor/generic
+	title = "Survivor"
+	skills_type = /datum/skills/civilian/survivor/master
+	outfit = /datum/outfit/job/survivor/rgeneric
+
+/datum/outfit/job/survivor/rgeneric
+	name = "Survivor"
+	jobtype = /datum/job/rambosurvivor/generic
+
+	w_uniform = /obj/item/clothing/under/color/grey
+	wear_suit = /obj/item/clothing/suit/armor/rugged
+	shoes = /obj/item/clothing/shoes/ruggetboot
+	back = /obj/item/storage/backpack/satchel/rugged
+	gloves = /obj/item/clothing/gloves/ruggedgloves

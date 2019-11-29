@@ -17,7 +17,7 @@
 	current_cycle++
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
-		C.nutrition += nutriment_factor * REM
+		C.adjust_nutrition(nutriment_factor * REM)
 	if(adj_temp)
 		L.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : INFINITY), (adj_temp > 0 ? 0 : targ_temp))
 	holder.remove_reagent(type, custom_metabolism)
@@ -35,7 +35,7 @@
 
 /datum/reagent/consumable/nutriment/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		L.heal_limb_damage(brute_heal,burn_heal)
+		L.heal_limb_damage(brute_heal, burn_heal)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
@@ -134,7 +134,7 @@
 			if(prob(5))
 				to_chat(L, discomfort_message)
 		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount,AGONY,0)
+			L.apply_effect(agony_amount, AGONY)
 			if(prob(5))
 				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
 				to_chat(L, discomfort_message)
@@ -313,7 +313,7 @@
 	L.apply_damage(2, TOX)
 	if(prob(60))
 		L.knock_out(3)
-	L.drowsyness = max(L.drowsyness, 30)
+	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
@@ -400,8 +400,8 @@
 
 /datum/reagent/consumable/honey/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/consumable/sugar,3)
-	L.adjustBruteLoss(-0,5 * REM, FALSE)
-	L.adjustFireLoss(-0,5 * REM, FALSE)
-	L.adjustOxyLoss(-0,5 * REM, FALSE)
-	L.adjustToxLoss(-0,5 * REM, FALSE)
+	L.adjustBruteLoss(-0,5 * REM)
+	L.adjustFireLoss(-0,5 * REM)
+	L.adjustOxyLoss(-0,5 * REM)
+	L.adjustToxLoss(-0,5 * REM)
 	return ..()

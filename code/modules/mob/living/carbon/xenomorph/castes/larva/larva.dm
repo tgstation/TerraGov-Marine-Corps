@@ -38,7 +38,7 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat(null, "Progress: [amount_grown]/[max_grown]")
+		stat("Progress:", "[amount_grown]/[max_grown]")
 
 
 //Larva Progression.. Most of this stuff is obsolete.

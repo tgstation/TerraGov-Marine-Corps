@@ -100,8 +100,7 @@
 /datum/surgery_step/face/fix_face/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, tearing skin on [target]'s face with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, tearing skin on [target]'s face with \the [tool]!</span>")
-	target.apply_damage(10, BRUTE, affected, 0, TRUE)
-	target.updatehealth()
+	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)
 
 
 /datum/surgery_step/face/cauterize
@@ -133,5 +132,4 @@
 /datum/surgery_step/face/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s face with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, leaving a small burn on [target]'s face with \the [tool]!</span>")
-	target.apply_damage(4, BURN, affected)
-	target.updatehealth()
+	target.apply_damage(4, BURN, affected, updating_health = TRUE)

@@ -58,9 +58,6 @@
 			move_delay += driver.next_move_slowdown
 			driver.next_move_slowdown = 0
 
-		if(driver.temporary_slowdown)
-			move_delay += 2 //Temporary slowdown slows hard
-
 	step(src, direction)
 
 
@@ -87,6 +84,7 @@
 		occupant.apply_effect(6, WEAKEN, blocked)
 		occupant.apply_effect(6, STUTTER, blocked)
 		occupant.apply_damage(10, BRUTE, def_zone)
+		UPDATEHEALTH(occupant)
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 25, 1)
 		if(isliving(A))
 			var/mob/living/victim = A
@@ -96,6 +94,7 @@
 			victim.apply_effect(6, WEAKEN, blocked)
 			victim.apply_effect(6, STUTTER, blocked)
 			victim.apply_damage(10, BRUTE, def_zone)
+			UPDATEHEALTH(victim)
 		occupant.visible_message("<span class='danger'>[occupant] crashed into \the [A]!</span>")
 
 /obj/structure/bed/chair/wheelchair/proc/create_track()

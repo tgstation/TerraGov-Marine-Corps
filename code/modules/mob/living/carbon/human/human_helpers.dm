@@ -202,7 +202,7 @@
 		return TRUE
 	if(!has_eyes())
 		return FALSE
-	if(get_total_tint() >= TINT_BLIND)
+	if(tinttotal >= TINT_BLIND)
 		return FALSE
 	return TRUE
 
@@ -236,7 +236,3 @@
 
 mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
-
-/mob/living/carbon/human/throw_item(atom/target)
-	. = ..()
-	SEND_SIGNAL(src, COMSIG_HUMAN_ITEM_THROW, target, null, src)

@@ -24,6 +24,7 @@
 	if(swirlie)
 		user.visible_message("<span class='danger'>[user] slams the toilet seat onto [swirlie.name]'s head!</span>", "<span class='notice'>You slam the toilet seat onto [swirlie.name]'s head!</span>", "You hear reverberating porcelain.")
 		swirlie.apply_damage(8, BRUTE)
+		UPDATEHEALTH(swirlie)
 		return
 
 	if(cistern && !open)
@@ -93,6 +94,7 @@
 			user.visible_message("<span class='danger'>[user] slams [C] into the [src]!</span>", "<span class='notice'>You slam [C] into the [src]!</span>")
 			log_combat(user, C, "slammed", "", "into the \the [src]")
 			C.apply_damage(8, BRUTE)
+			UPDATEHEALTH(C)
 
 	else if(cistern && !issilicon(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
 		if(I.w_class > 3)
@@ -143,8 +145,7 @@
 
 		user.visible_message("<span class='danger'>[user] slams [GM] into the [src]!</span>", "<span class='notice'>You slam [GM] into the [src]!</span>")
 		GM.apply_damage(8, BRUTE)
-
-
+		UPDATEHEALTH(GM)
 
 
 /obj/machinery/shower
@@ -431,7 +432,7 @@
 		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
-	var/obj/item/reagent_container/RG = I
+	var/obj/item/reagent_containers/RG = I
 	if(istype(RG) && RG.is_open_container() && RG.reagents.total_volume < RG.reagents.maximum_volume)
 		RG.reagents.add_reagent(/datum/reagent/water, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")

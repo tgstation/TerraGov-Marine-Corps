@@ -109,6 +109,12 @@ can cause issues with ammo types getting mixed up during the burst.
 	new_handful.generate_handful(selection, ".44", 8, 1, /obj/item/weapon/gun/shotgun)
 	return new_handful
 
+/obj/item/weapon/gun/shotgun/pump/lever/mbx900/retrieve_shell(selection)
+	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
+	new_handful.generate_handful(selection, ".410", 8, 1, /obj/item/weapon/gun/shotgun)
+	return new_handful
+
+
 /obj/item/weapon/gun/shotgun/proc/check_chamber_position()
 	return 1
 
@@ -197,7 +203,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 10
 	burst_amount = 2
-	burst_delay = 2
+	burst_delay = 6
 	accuracy_mult = 0.8
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
@@ -597,6 +603,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	pump_delay = 12
+	aim_slowdown = 0.5
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)
@@ -653,3 +660,52 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/pump/lever/pump_notice(mob/user)
 	to_chat(user, "<span class='notice'><b>You work [src] lever.</b></span>")
+
+
+/obj/item/weapon/gun/shotgun/pump/lever/mbx900
+	name = "\improper MBX-900 Lever Action Shotgun"
+	desc = "A .410 lever action shotgun that fires as fast as you can operate the action."
+	icon_state = "mbx900"
+	item_state = "mbx900"
+	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'//I like how this one sounds.
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = ".410"
+	load_method = SINGLE_CASING
+	max_shells = 10
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
+	gun_skill_category = GUN_SKILL_SPEC
+	type_of_casings = "cartridge"
+	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+
+	attachable_allowed = list(
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/quickfire,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/verticalgrip
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
+
+	flags_item_map_variant = NONE
+
+	fire_delay = 6
+	accuracy_mult = 1.4
+	accuracy_mult_unwielded = 0.7
+	scatter = 15
+	scatter_unwielded = 40
+	recoil = 2
+	recoil_unwielded = 4
+	pump_delay = 2

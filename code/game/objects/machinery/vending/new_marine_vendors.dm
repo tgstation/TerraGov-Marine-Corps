@@ -1,31 +1,69 @@
-#define MARINE_CAN_BUY_UNIFORM 		1
-#define MARINE_CAN_BUY_SHOES	 	2
-#define MARINE_CAN_BUY_HELMET 		4
-#define MARINE_CAN_BUY_ARMOR	 	8
-#define MARINE_CAN_BUY_GLOVES 		16
-#define MARINE_CAN_BUY_EAR	 		32
-#define MARINE_CAN_BUY_BACKPACK 	64
-#define MARINE_CAN_BUY_R_POUCH 		128
-#define MARINE_CAN_BUY_L_POUCH 		256
-#define MARINE_CAN_BUY_BELT 		512
-#define MARINE_CAN_BUY_GLASSES		1024
-#define MARINE_CAN_BUY_MASK			2048
-#define MARINE_CAN_BUY_ESSENTIALS	4096
-#define MARINE_CAN_BUY_ATTACHMENT	8192
-#define MARINE_CAN_BUY_ATTACHMENT2	16384
+#define MARINE_CAN_BUY_UNIFORM 		(1 << 0)
+#define MARINE_CAN_BUY_SHOES	 	(1 << 1)
+#define MARINE_CAN_BUY_HELMET 		(1 << 2)
+#define MARINE_CAN_BUY_ARMOR	 	(1 << 3)
+#define MARINE_CAN_BUY_GLOVES 		(1 << 4)
+#define MARINE_CAN_BUY_EAR	 		(1 << 5)
+#define MARINE_CAN_BUY_BACKPACK 	(1 << 6)
+#define MARINE_CAN_BUY_R_POUCH 		(1 << 7)
+#define MARINE_CAN_BUY_L_POUCH 		(1 << 8)
+#define MARINE_CAN_BUY_BELT 		(1 << 9)
+#define MARINE_CAN_BUY_GLASSES		(1 << 10)
+#define MARINE_CAN_BUY_MASK			(1 << 11)
+#define MARINE_CAN_BUY_ESSENTIALS	(1 << 12)
+#define MARINE_CAN_BUY_ATTACHMENT	(1 << 13)
+#define MARINE_CAN_BUY_ATTACHMENT2	(1 << 14)
 
-#define MARINE_CAN_BUY_WEBBING		32768
+#define MARINE_CAN_BUY_WEBBING		(1 << 15)
 
 
 
-#define MARINE_CAN_BUY_ALL			65535
+#define MARINE_CAN_BUY_ALL			((1 << 16) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
+
+#define CAT_ESS "ESSENTIALS"
+#define CAT_STD "STANDARD EQUIPMENT"
+#define CAT_SHO "SHOES"
+#define CAT_HEL "HATS"
+#define CAT_AMR "ARMOR"
+#define CAT_GLO "GLOVES"
+#define CAT_EAR "EAR"
+#define CAT_BAK "BACKPACK"
+#define CAT_POU "POUCHES"
+#define CAT_WEB "WEBBING"
+#define CAT_BEL "BELT"
+#define CAT_MAS "MASKS"
+#define CAT_ATT "GUN ATTACHMENTS"
+
+#define CAT_MEDSUP "MEDICAL SUPPLIES"
+#define CAT_ENGSUP "ENGINEERING SUPPLIES"
+#define CAT_LEDSUP "LEADER SUPPLIES"
+#define CAT_SPEAMM "SPECIAL AMMUNITION"
 
 /obj/item/card/id/var/marine_points = MARINE_TOTAL_BUY_POINTS
 /obj/item/card/id/var/marine_buy_flags = MARINE_CAN_BUY_ALL
 
-
+GLOBAL_LIST_INIT(marine_selector_cats, list(
+		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_SHO = list(MARINE_CAN_BUY_SHOES),
+		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
+		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
+		CAT_GLO = list(MARINE_CAN_BUY_GLOVES),
+		CAT_EAR = list(MARINE_CAN_BUY_EAR),
+		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
+		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
+		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
+		CAT_BEL = list(MARINE_CAN_BUY_BELT),
+		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
+		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
+		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
+		CAT_MEDSUP = null,
+		CAT_ENGSUP = null,
+		CAT_LEDSUP = null,
+		CAT_SPEAMM = null,
+	))
 
 /obj/machinery/marine_selector
 	name = "\improper Theoretical Marine selector"
@@ -49,7 +87,11 @@
 	var/icon_vend
 	var/icon_deny
 
+	var/list/categories
 	var/list/listed_products
+
+	ui_x = 600
+	ui_y = 700
 
 /obj/machinery/marine_selector/update_icon()
 	if(is_operational())
@@ -84,9 +126,19 @@
 
 	return TRUE
 
+/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
-/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 0)
+	if(!ui)
+		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/marine_selector/ui_data(mob/user)
 	var/list/display_list = list()
+
+	for(var/c in categories)
+		display_list[c] = list()
 
 	var/m_points = 0
 	var/buy_flags = NONE
@@ -96,210 +148,212 @@
 		buy_flags = I.marine_buy_flags
 
 
-	for(var/i in 1 to listed_products.len)
+	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
-		var/p_name = myprod[1]
-		var/p_cost = myprod[2]
+		var/category = myprod[1]
+		var/p_name = myprod[2]
+		var/p_cost = myprod[3]
 		if(p_cost > 0)
 			p_name += " ([p_cost] points)"
 
 		var/prod_available = FALSE
-		var/avail_flag = myprod[4]
-		if((!avail_flag && m_points >= p_cost) || (buy_flags & avail_flag))
+		var/list/avail_flags = GLOB.marine_selector_cats[category]
+		var/flags = NONE
+		if(LAZYLEN(avail_flags))
+			for(var/f in avail_flags)
+				flags |= f
+			if(buy_flags & flags)
+				prod_available = TRUE
+		else if(m_points >= p_cost)
 			prod_available = TRUE
 
-								//place in main list, name, cost, available or not, color.
-		display_list += list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[5]))
+		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[4])))
 
+	var/list/cats = list()
+	for(var/i in GLOB.marine_selector_cats)
+		if(!display_list[i]) // vendor doesnt have this category
+			continue
+		cats[i] = 0
+		for(var/flag in GLOB.marine_selector_cats[i])
+			if(buy_flags & flag)
+				cats[i]++
 
 	var/list/data = list(
 		"vendor_name" = name,
 		"show_points" = use_points,
 		"current_m_points" = m_points,
 		"displayed_records" = display_list,
+		"cats" = cats,
 	)
+	return data
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "marine_selector.tmpl", name , 600, 700)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-
-/obj/machinery/marine_selector/Topic(href, href_list)
-	. = ..()
-	if(.)
+/obj/machinery/marine_selector/ui_act(action, params)
+	if(..())
 		return
+	switch(action)
+		if("vend")
+			if(!allowed(usr))
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-	if(href_list["vend"])
-		if(!allowed(usr))
-			to_chat(usr, "<span class='warning'>Access denied.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
+			var/idx = text2path(params["vend"])
+			var/obj/item/card/id/I = usr.get_idcard()
 
-		var/idx = text2num(href_list["vend"])
-		var/obj/item/card/id/I = usr.get_idcard()
+			var/list/L = listed_products[idx]
+			var/cost = L[3]
 
-		var/list/L = listed_products[idx]
-		var/cost = L[2]
+			if(use_points && I.marine_points < cost)
+				to_chat(usr, "<span class='warning'>Not enough points.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
 
-		if(use_points && I.marine_points < cost)
-			to_chat(usr, "<span class='warning'>Not enough points.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
+			var/turf/T = loc
+			if(length(T.contents) > 25)
+				to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
+				if(icon_deny)
+					flick(icon_deny, src)
+				return
+			var/bitf = NONE
+			var/list/C = GLOB.marine_selector_cats[L[1]]
+			for(var/i in C)
+				bitf |= i
+			if(bitf)
+				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
+					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
+						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
+						return
+					else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
+						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
+						return
+					var/p_name = L[2]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
+					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+						p_name = "Heavy Armor Set"
+					if(!GLOB.available_specialist_sets.Find(p_name))
+						to_chat(usr, "<span class='warning'>That set is already taken</span>")
+						return
 
-		var/turf/T = loc
-		if(length(T.contents) > 25)
-			to_chat(usr, "<span class='warning'>The floor is too cluttered, make some space.</span>")
-			if(icon_deny)
-				flick(icon_deny, src)
-			return
-
-		var/bitf = L[4]
-		if(bitf)
-			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
-				if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
-					to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
+				if(I.marine_buy_flags & bitf)
+					if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
+						if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
+						else
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
+					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
+						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
+						else
+							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
+					else
+						I.marine_buy_flags &= ~bitf
+				else
+					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
-				else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-					to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
-					return
-				var/p_name = L[1]
+
+			new idx(loc)
+
+			if(icon_vend)
+				flick(icon_vend, src)
+
+			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
+				var/mob/living/carbon/human/H = usr
+				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
+				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
+				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+					new /obj/item/clothing/mask/rebreather/scarf(loc)
+
+
+			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				var/p_name = L[2]
 				if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
 					p_name = "Scout Set"
 				else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
 					p_name = "Heavy Armor Set"
-				if(!GLOB.available_specialist_sets.Find(p_name))
-					to_chat(usr, "<span class='warning'>That set is already taken</span>")
-					return
+				if(p_name)
+					H.specset = p_name
+				H.update_action_buttons()
+				GLOB.available_specialist_sets -= p_name
 
-			if(I.marine_buy_flags & bitf)
-				if(bitf == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-					if(I.marine_buy_flags & MARINE_CAN_BUY_R_POUCH)
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
-					else
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-				else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-					if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-					else
-						I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
-				else
-					I.marine_buy_flags &= ~bitf
-			else
-				to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
-				return
-
-		var/type_p = L[3]
-
-		new type_p(loc)
-
-		if(icon_vend)
-			flick(icon_vend, src)
-
-		if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
-			var/mob/living/carbon/human/H = usr
-			new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
-			new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
-			if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-				new /obj/item/clothing/mask/rebreather/scarf(loc)
-
-
-		if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			var/p_name = L[1]
-			if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
-				p_name = "Scout Set"
-			else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
-				p_name = "Heavy Armor Set"
-			if(p_name)
-				H.specset = p_name
-			H.update_action_buttons()
-			GLOB.available_specialist_sets -= p_name
-
-		if(use_points)
-			I.marine_points -= cost
+			if(use_points)
+				I.marine_points -= cost
+			. = TRUE
 
 	updateUsrDialog()
-
-
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
 	vendor_role = SQUAD_MARINE
+	categories = list(
+		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
+		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
+		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
+		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
+		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
+		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
+		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
+	)
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("ARMOR (choose 1)", 0, null, null, null),
-							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
-							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "orange"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "orange"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "orange"),
-							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
-							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
-							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
-							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Tool pouch (tools included)", 0, /obj/item/storage/pouch/tools/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Construction pouch (materials included)", 0, /obj/item/storage/pouch/construction/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Tan bandanna", 0, /obj/item/clothing/mask/bandanna, MARINE_CAN_BUY_MASK, "black"),
-							list("Green bandanna", 0, /obj/item/clothing/mask/bandanna/green, MARINE_CAN_BUY_MASK, "black"),
-							list("White bandanna", 0, /obj/item/clothing/mask/bandanna/white, MARINE_CAN_BUY_MASK, "black"),
-							list("Black bandanna", 0, /obj/item/clothing/mask/bandanna/black, MARINE_CAN_BUY_MASK, "black"),
-							list("Skull bandanna", 0, /obj/item/clothing/mask/bandanna/skull, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M43 Efficient lens", 0, /obj/item/attachable/efflens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M43 Focus lens", 0, /obj/item/attachable/focuslens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M43 Wide lens", 0, /obj/item/attachable/widelens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M43 pulse lens", 0, /obj/item/attachable/pulselens, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular Helmet", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
+		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
+		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
+		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/large_holster/m37 = list(CAT_BAK, "Shotgun scabbard", 0, "black"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "orange"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "orange"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
+		/obj/item/storage/belt/gun/m4a3 = list(CAT_BEL, "Pistol belt", 0, "black"),
+		/obj/item/storage/belt/gun/m44 = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "orange"),
+		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "orange"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0,"orange"),
+		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0,"black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0,"black"),
+		/obj/item/storage/pouch/magazine/pistol = list(CAT_POU, "Pistol magazine pouch", 0,"black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0,"black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0,"black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0,"black"),
+		/obj/item/clothing/mask/bandanna = list(CAT_MAS, "Tan bandanna", 0,"black"),
+		/obj/item/clothing/mask/bandanna/green = list(CAT_MAS, "Green bandanna", 0,"black"),
+		/obj/item/clothing/mask/bandanna/white = list(CAT_MAS, "White bandanna", 0,"black"),
+		/obj/item/clothing/mask/bandanna/black = list(CAT_MAS, "Black bandanna", 0,"black"),
+		/obj/item/clothing/mask/bandanna/skull = list(CAT_MAS, "Skull bandanna", 0,"black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0,"black"),
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0,"black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
+		/obj/item/attachable/efflens = list(CAT_ATT, "M43 Efficient lens", 0,"black"),
+		/obj/item/attachable/focuslens = list(CAT_ATT, "M43 Focus lens", 0,"black"),
+		/obj/item/attachable/widelens = list(CAT_ATT, "M43 Wide lens", 0,"black"),
+		/obj/item/attachable/pulselens = list(CAT_ATT, "M43 pulse lens", 0,"black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0,"black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0,"orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0,"black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0,"black"),
+	)
 
 
 
@@ -332,45 +386,36 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_engineer, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("ARMOR (choose 1)", 0, null, null, null),
-							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
-							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/tech, MARINE_CAN_BUY_BACKPACK, "orange"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/tech, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Machete scabbard", 0, /obj/item/storage/large_holster/machete/full, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Welderpack", 0, /obj/item/storage/backpack/marine/engineerpack, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Brown Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("Tool belt", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "orange"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Construction pouch", 0, /obj/item/storage/pouch/construction, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Tools pouch", 0, /obj/item/storage/pouch/tools/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Electronics pouch", 0, /obj/item/storage/pouch/electronics/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							)
+		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
+		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
+		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/large_holster/m37 = list(CAT_BAK, "Shotgun scabbard", 0, "black"),
+		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "Welderpack", 0, "black"),
+		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical Brown Vest", 0, "orange"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/belt/utility/full = list(CAT_BEL, "Tool belt", 0, "orange"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/construction = list(CAT_POU, "Construction pouch", 0, "orange"),
+		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
+		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tools pouch", 0, "black"),
+		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+	)
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -397,43 +442,34 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_medic, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("ARMOR (choose 1)", 0, null, null, null),
-							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
-							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Harness", 0, /obj/item/clothing/suit/storage/marine/harness, MARINE_CAN_BUY_ARMOR, "black"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/corpsman, MARINE_CAN_BUY_BACKPACK, "orange"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Brown Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
-							list("Corpsman White Vest", 0, /obj/item/clothing/tie/storage/white_vest/medic, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("Lifesaver belt", 0, /obj/item/storage/belt/combatLifesaver, MARINE_CAN_BUY_BELT, "orange"),
-							list("Medical belt", 0, /obj/item/storage/belt/medical, MARINE_CAN_BUY_BELT, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Medical pouch", 0, /obj/item/storage/pouch/medical, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Medkit pouch", 0, /obj/item/storage/pouch/medkit, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Autoinjector pouch", 0, /obj/item/storage/pouch/autoinjector, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							)
+		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
+		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated Storage Armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "orange"),
+		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical Brown Vest", 0, "orange"),
+		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "Corpsman White Vest", 0, "black"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/belt/combatLifesaver = list(CAT_BEL, "Lifesaver belt", 0, "orange"),
+		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
+		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "orange"),
+		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "orange"),
+		/obj/item/storage/pouch/autoinjector = list(CAT_POU, "Autoinjector pouch", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+	)
 
 
 
@@ -466,33 +502,28 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_smartgunner, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "orange"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("M39 holster belt", 0, /obj/item/storage/large_holster/m39, MARINE_CAN_BUY_BELT, "orange"),
-							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
-							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
-							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
-							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "orange"),
-							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-								)
+		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "orange"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/large_holster/t19 = list(CAT_BEL, "T-19 holster belt", 0, "orange"),
+		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
+		/obj/item/storage/belt/gun/m4a3 = list(CAT_BEL, "Pistol belt", 0, "black"),
+		/obj/item/storage/belt/gun/m44 = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "orange"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+	)
 
 
 
@@ -521,39 +552,33 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_specialist, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("M39 holster belt", 0, /obj/item/storage/large_holster/m39, MARINE_CAN_BUY_BELT, "black"),
-							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
-							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
-							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
-							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large magazine pouch", 0, /obj/item/storage/pouch/magazine/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							)
+		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
+		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/large_holster/m37 = list(CAT_BAK, "Shotgun scabbard", 0, "black"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/large_holster/t19 = list(CAT_BEL, "T-19 holster belt", 0, "black"),
+		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
+		/obj/item/storage/belt/gun/m4a3 = list(CAT_BEL, "Pistol belt", 0, "black"),
+		/obj/item/storage/belt/gun/m44 = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+	)
 
 
 
@@ -582,43 +607,37 @@
 	gives_webbing = FALSE
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Standard Kit", 0, /obj/effect/essentials_set/basic_squadleader, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Machete scabbard", 0, /obj/item/storage/large_holster/machete/full, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
-							list("M39 holster belt", 0, /obj/item/storage/large_holster/m39, MARINE_CAN_BUY_BELT, "black"),
-							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
-							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
-							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("Belt Harness", 0, /obj/item/belt_harness/marine, MARINE_CAN_BUY_BELT, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large general pouch", 0, /obj/item/storage/pouch/general/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large magazine pouch", 0, /obj/item/storage/pouch/magazine/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medkit pouch", 0, /obj/item/storage/pouch/medkit, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Tool pouch (tools included)", 0, /obj/item/storage/pouch/tools/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Construction pouch (materials included)", 0, /obj/item/storage/pouch/construction/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Sidearm pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							)
+		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
+		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/large_holster/m37 = list(CAT_BAK, "Shotgun scabbard", 0, "black"),
+		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/large_holster/t19 = list(CAT_BEL, "T-19 holster belt", 0, "black"),
+		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
+		/obj/item/storage/belt/gun/m4a3 = list(CAT_BEL, "Pistol belt", 0, "black"),
+		/obj/item/storage/belt/gun/m44 = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "Large general pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
+		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+	)
 
 
 
@@ -650,87 +669,76 @@
 	lock_flags = JOB_LOCK
 
 	listed_products = list(
-							list("STANDARD EQUIPMENT", 0, null, null, null),
-							list("Essential Synthetic Set", 0, /obj/effect/essentials_set/synth, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("UNIFORM (choose 1)", 0, null, null, null),
-							list("TGMC marine uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Medical scrubs", 0, /obj/item/clothing/under/rank/medical/green, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Engineering uniform", 0, /obj/item/clothing/under/marine/officer/engi, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Officer uniform", 0, /obj/item/clothing/under/marine/officer/logistics, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("TGMC dress uniform", 0, /obj/item/clothing/under/whites, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Pilot bodysuit", 0, /obj/item/clothing/under/marine/officer/pilot, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Military police uniform", 0, /obj/item/clothing/under/marine/mp, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Researcher outfit", 0, /obj/item/clothing/under/marine/officer/researcher, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Chef uniform", 0, /obj/item/clothing/under/rank/chef, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("Bartender uniform", 0, /obj/item/clothing/under/rank/bartender, MARINE_CAN_BUY_UNIFORM, "black"),
-							list("OUTERWEAR (choose 1)", 0, null, null, null),
-							list("Hazard vest", 0, /obj/item/clothing/suit/storage/hazardvest, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Surgical apron", 0, /obj/item/clothing/suit/surgical , MARINE_CAN_BUY_ARMOR, "black"),
-							list("Labcoat", 0, /obj/item/clothing/suit/storage/labcoat, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Researcher's labcoat", 0, /obj/item/clothing/suit/storage/labcoat/researcher, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Snow suit", 0, /obj/item/clothing/suit/storage/snow_suit , MARINE_CAN_BUY_ARMOR, "black"),
-							list("M70 flak jacket", 0, /obj/item/clothing/suit/armor/vest/pilot, MARINE_CAN_BUY_ARMOR, "black"),
-							list("N2 pattern MA armor", 0, /obj/item/clothing/suit/storage/marine/MP, MARINE_CAN_BUY_ARMOR, "black"),
-							list("M3 pattern officer armor", 0, /obj/item/clothing/suit/storage/marine/MP/RO, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Chef's apron", 0, /obj/item/clothing/suit/chef, MARINE_CAN_BUY_ARMOR, "black"),
-							list("Waistcoat", 0, /obj/item/clothing/suit/wcoat, MARINE_CAN_BUY_ARMOR, "black"),
-							list("BACKPACK (choose 1)", 0, null, null, null),
-							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Lightweight IMP backpack", 0, /obj/item/storage/backpack/marine, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Industrial backpack", 0, /obj/item/storage/backpack/industrial, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("TGMC corpsman backpack", 0, /obj/item/storage/backpack/marine/corpsman, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("TGMC technician backpack", 0, /obj/item/storage/backpack/marine/tech , MARINE_CAN_BUY_BACKPACK, "black"),
-							list("TGMC technician welderpack", 0, /obj/item/storage/backpack/marine/engineerpack , MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Lightweight combat pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Officer cloak", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("Officer cloak, red", 0, /obj/item/storage/backpack/marine/satchel/officer_cloak_red, MARINE_CAN_BUY_BACKPACK, "black"),
-							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
-							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
-							list("White medical vest", 0, /obj/item/clothing/tie/storage/white_vest/medic, MARINE_CAN_BUY_WEBBING, "black"),
-							list("GLOVES (choose 1)", 0, null, null, null),
-							list("Insulated gloves", 0, /obj/item/clothing/gloves/yellow, MARINE_CAN_BUY_GLOVES, "black"),
-							list("Latex gloves", 0, /obj/item/clothing/gloves/latex , MARINE_CAN_BUY_GLOVES, "black"),
-							list("Officer gloves", 0, /obj/item/clothing/gloves/marine/officer, MARINE_CAN_BUY_GLOVES, "black"),
-							list("White gloves", 0, /obj/item/clothing/gloves/white, MARINE_CAN_BUY_GLOVES, "black"),
-							list("BELT (choose 1)", 0, null, null, null),
-							list("M276 pattern medical storage rig", 0, /obj/item/storage/belt/medical, MARINE_CAN_BUY_BELT, "black"),
-							list("M276 pattern lifesaver bag", 0, /obj/item/storage/belt/combatLifesaver, MARINE_CAN_BUY_BELT, "black"),
-							list("M276 pattern toolbelt rig", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "black"),
-							list("M276 pattern security rig ", 0, /obj/item/storage/belt/security/MP/full, MARINE_CAN_BUY_BELT, "black"),
-							list("G8 general utility pouch", 0, /obj/item/storage/belt/sparepouch, MARINE_CAN_BUY_BELT, "black"),
-							list("SHOES (choose 1)", 0, null, null, null),
-							list("Marine combat boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "black"),
-							list("White shoes", 0, /obj/item/clothing/shoes/white, MARINE_CAN_BUY_SHOES, "black"),
-							list("Formal shoes", 0, /obj/item/clothing/shoes/marinechief, MARINE_CAN_BUY_SHOES, "black"),
-							list("POUCHES (choose 2)", 0, null, null, null),
-							list("Large general pouch", 0, /obj/item/storage/pouch/general/large , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Tool pouch", 0, /obj/item/storage/pouch/tools/full , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Construction pouch", 0, /obj/item/storage/pouch/construction/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Electronics pouch", 0, /obj/item/storage/pouch/electronics/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medical pouch", 0, /obj/item/storage/pouch/medical, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Medkit pouch", 0, /obj/item/storage/pouch/medkit , (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Autoinjector pouch", 0, /obj/item/storage/pouch/autoinjector, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Radio pouch", 0, /obj/item/storage/pouch/radio, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Field pouch", 0, /obj/item/storage/pouch/field_pouch/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("HATS (choose 1)", 0, null, null, null),
-							list("Hard hat", 0, /obj/item/clothing/head/hardhat, MARINE_CAN_BUY_HELMET, "black"),
-							list("Welding helmet", 0, /obj/item/clothing/head/welding , MARINE_CAN_BUY_HELMET, "black"),
-							list("Surgical cap", 0, /obj/item/clothing/head/surgery/green, MARINE_CAN_BUY_HELMET, "black"),
-							list("TGMC cap", 0, /obj/item/clothing/head/tgmccap, MARINE_CAN_BUY_HELMET, "black"),
-							list("Boonie hat", 0, /obj/item/clothing/head/boonie, MARINE_CAN_BUY_HELMET, "black"),
-							list("Marine beret", 0, /obj/item/clothing/head/beret/marine, MARINE_CAN_BUY_HELMET, "black"),
-							list("MP beret", 0, /obj/item/clothing/head/tgmcberet/red, MARINE_CAN_BUY_HELMET, "black"),
-							list("Engineering beret", 0, /obj/item/clothing/head/beret/eng, MARINE_CAN_BUY_HELMET, "black"),
-							list("Ushanka", 0, /obj/item/clothing/head/ushanka, MARINE_CAN_BUY_HELMET, "black"),
-							list("Top hat", 0, /obj/item/clothing/head/collectable/tophat, MARINE_CAN_BUY_HELMET, "black"),
-							list("MASKS", 0, null, null, null),
-							list("Sterile mask", 0, /obj/item/clothing/mask/surgical, MARINE_CAN_BUY_MASK, "black"),
-							list("Rebreather", 0, /obj/item/clothing/mask/rebreather, MARINE_CAN_BUY_MASK, "black"),
-							list("Heat absorbent coif", 0, /obj/item/clothing/mask/rebreather/scarf, MARINE_CAN_BUY_MASK, "black"),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-							)
+		/obj/effect/essentials_set/synth = list(CAT_ESS, "Essential Synthetic Set", 0, "white"),
+		/obj/item/clothing/under/marine = list(CAT_STD, "TGMC marine uniform", 0, "black"),
+		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs", 0, "black"),
+		/obj/item/clothing/under/marine/officer/engi = list(CAT_STD, "Engineering uniform", 0, "black"),
+		/obj/item/clothing/under/marine/officer/logistics = list(CAT_STD, "Officer uniform", 0, "black"),
+		/obj/item/clothing/under/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),
+		/obj/item/clothing/under/marine/officer/pilot = list(CAT_STD, "Pilot bodysuit", 0, "black"),
+		/obj/item/clothing/under/marine/mp = list(CAT_STD, "Military police uniform", 0, "black"),
+		/obj/item/clothing/under/marine/officer/researcher = list(CAT_STD, "Researcher outfit", 0, "black"),
+		/obj/item/clothing/under/rank/chef = list(CAT_STD, "Chef uniform", 0, "black"),
+		/obj/item/clothing/under/rank/bartender = list(CAT_STD, "Bartender uniform", 0, "black"),
+		/obj/item/clothing/suit/storage/hazardvest = list(CAT_AMR, "Hazard vest", 0, "black"),
+		/obj/item/clothing/suit/surgical = list(CAT_AMR, "Surgical apron", 0, "black"),
+		/obj/item/clothing/suit/storage/labcoat = list(CAT_AMR, "Labcoat", 0, "black"),
+		/obj/item/clothing/suit/storage/labcoat/researcher = list(CAT_AMR, "Researcher's labcoat", 0, "black"),
+		/obj/item/clothing/suit/storage/snow_suit = list(CAT_AMR, "Snow suit", 0, "black"),
+		/obj/item/clothing/suit/armor/vest/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/MP = list(CAT_AMR, "N2 pattern MA armor", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/MP/RO = list(CAT_AMR, "M3 pattern officer armor", 0, "black"),
+		/obj/item/clothing/suit/chef = list(CAT_AMR, "Chef's apron", 0, "black"),
+		/obj/item/clothing/suit/wcoat = list(CAT_AMR, "Waistcoat", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
+		/obj/item/storage/backpack/marine = list(CAT_BAK, "Lightweight IMP backpack", 0, "black"),
+		/obj/item/storage/backpack/industrial = list(CAT_BAK, "Industrial backpack", 0, "black"),
+		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "TGMC corpsman backpack", 0, "black"),
+		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "TGMC technician backpack", 0, "black"),
+		/obj/item/storage/backpack/marine/engineerpack = list(CAT_BAK, "TGMC technician welderpack", 0, "black"),
+		/obj/item/storage/backpack/lightpack = list(CAT_BAK, "Lightweight combat pack", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel/officer_cloak = list(CAT_BAK, "Officer cloak", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel/officer_cloak_red = list(CAT_BAK, "Officer cloak, red", 0, "black"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Webbing", 0, "black"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
+		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "White medical vest", 0, "black"),
+		/obj/item/clothing/gloves/yellow = list(CAT_GLO, "Insulated gloves", 0, "black"),
+		/obj/item/clothing/gloves/latex = list(CAT_GLO, "Latex gloves", 0, "black"),
+		/obj/item/clothing/gloves/marine/officer = list(CAT_GLO, "Officer gloves", 0, "black"),
+		/obj/item/clothing/gloves/white = list(CAT_GLO, "White gloves", 0, "black"),
+		/obj/item/storage/belt/medical = list(CAT_BEL, "M276 pattern medical storage rig", 0, "black"),
+		/obj/item/storage/belt/combatLifesaver = list(CAT_BEL, "M276 pattern lifesaver bag", 0, "black"),
+		/obj/item/storage/belt/utility/full = list(CAT_BEL, "M276 pattern toolbelt rig", 0, "black"),
+		/obj/item/storage/belt/security/MP/full = list(CAT_BEL, "M276 pattern security rig ", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/clothing/shoes/marine = list(CAT_SHO, "Marine combat boots", 0, "black"),
+		/obj/item/clothing/shoes/white = list(CAT_SHO, "White shoes", 0, "black"),
+		/obj/item/clothing/shoes/marinechief = list(CAT_SHO, "Formal shoes", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "Large general pouch", 0, "black"),
+		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch", 0, "black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
+		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
+		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "black"),
+		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/autoinjector = list(CAT_POU, "Autoinjector pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/radio = list(CAT_POU, "Radio pouch", 0, "black"),
+		/obj/item/storage/pouch/field_pouch/full = list(CAT_POU, "Field pouch", 0, "black"),
+		/obj/item/clothing/head/hardhat = list(CAT_HEL, "Hard hat", 0, "black"),
+		/obj/item/clothing/head/welding = list(CAT_HEL, "Welding helmet", 0, "black"),
+		/obj/item/clothing/head/surgery/green = list(CAT_HEL, "Surgical cap", 0, "black"),
+		/obj/item/clothing/head/tgmccap = list(CAT_HEL, "TGMC cap", 0, "black"),
+		/obj/item/clothing/head/boonie = list(CAT_HEL, "Boonie hat", 0, "black"),
+		/obj/item/clothing/head/beret/marine = list(CAT_HEL, "Marine beret", 0, "black"),
+		/obj/item/clothing/head/tgmcberet/red = list(CAT_HEL, "MP beret", 0, "black"),
+		/obj/item/clothing/head/beret/eng = list(CAT_HEL, "Engineering beret", 0, "black"),
+		/obj/item/clothing/head/ushanka = list(CAT_HEL, "Ushanka", 0, "black"),
+		/obj/item/clothing/head/collectable/tophat = list(CAT_HEL, "Top hat", 0, "black"),
+		/obj/item/clothing/mask/surgical = list(CAT_MAS, "Sterile mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+	)
 
 
 
@@ -744,12 +752,12 @@
 	icon_state = "marinearmory"
 	use_points = TRUE
 	listed_products = list(
-		list("GUN ATTACHMENTS (Choose 1)", 0, null, null, null),
-		list("Vertical Grip", 0, /obj/item/attachable/verticalgrip, MARINE_CAN_BUY_ATTACHMENT, "black"),
-		list("Red-dot sight", 0, /obj/item/attachable/reddot, MARINE_CAN_BUY_ATTACHMENT, "black"),
-		list("Recoil Compensator", 0, /obj/item/attachable/compensator, MARINE_CAN_BUY_ATTACHMENT, "black"),
-		list("Laser Sight", 0, /obj/item/attachable/lasersight,  MARINE_CAN_BUY_ATTACHMENT, "black")
-		)
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical Grip", 0, "black"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red-dot sight", 0, "black"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil Compensator", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser Sight", 0, "black")
+	)
+
 
 
 /obj/machinery/marine_selector/gear/medic
@@ -760,65 +768,53 @@
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
-							list("MEDICAL SET (Mandatory)", 0, null, null, null),
-							list("Essential Medic Set", 0, /obj/effect/essentials_set/medic, MARINE_CAN_BUY_ESSENTIALS, "white"),
+		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
 
-							list("MEDICAL SUPPLIES", 0, null, null, null),
-							list("Firstaid kit", 6, /obj/item/storage/firstaid/regular, null, "black"),
-							list("Advanced firstaid kit", 8, /obj/item/storage/firstaid/adv, null, "orange"),
-							list("Stasis bag", 4, /obj/item/bodybag/cryobag, null, "orange"),
-							list("Pillbottle (Hypervene)", 4, /obj/item/storage/pill_bottle/hypervene, null, "black"),
-							list("Pillbottle (Quick-Clot)", 4, /obj/item/storage/pill_bottle/quickclot, null, "black"),
-							list("Pillbottle (Bicaridine)", 4, /obj/item/storage/pill_bottle/bicaridine, null, "orange"),
-							list("Pillbottle (Kelotane)", 4, /obj/item/storage/pill_bottle/kelotane, null, "orange"),
-							list("Pillbottle (Dylovene)", 4, /obj/item/storage/pill_bottle/dylovene, null, "black"),
-							list("Pillbottle (Dexalin)", 4, /obj/item/storage/pill_bottle/dexalin, null, "black"),
-							list("Pillbottle (Tramadol)", 4, /obj/item/storage/pill_bottle/tramadol, null, "orange"),
-							list("Pillbottle (Inaprovaline)", 4, /obj/item/storage/pill_bottle/inaprovaline, null, "black"),
-							list("Pillbottle (Peridaxon)", 4, /obj/item/storage/pill_bottle/peridaxon, null, "black"),
-							list("syringe Case (120u Meralyne)", 15, /obj/item/storage/syringe_case/meralyne, null, "orange"),
-							list("syringe Case (120u Dermaline)", 15, /obj/item/storage/syringe_case/dermaline, null, "orange"),
-							list("syringe Case (120u Meraderm)", 15, /obj/item/storage/syringe_case/meraderm, null, "orange"),
-							list("syringe Case (120u Ironsugar)", 15, /obj/item/storage/syringe_case/ironsugar, null, "orange"),
-							list("Injector (Inaprovaline)", 1, /obj/item/reagent_container/hypospray/autoinjector/inaprovaline, null, "black"),
-							list("Injector (Bicaridine)", 1, /obj/item/reagent_container/hypospray/autoinjector/bicaridine, null, "black"),
-							list("Injector (Kelotane)", 1, /obj/item/reagent_container/hypospray/autoinjector/kelotane, null, "black"),
-							list("Injector (Dylovene)", 1, /obj/item/reagent_container/hypospray/autoinjector/dylovene, null, "black"),
-							list("Injector (Dexalin+)", 1, /obj/item/reagent_container/hypospray/autoinjector/dexalinplus, null, "black"),
-							list("Injector (Quick-Clot)", 1, /obj/item/reagent_container/hypospray/autoinjector/quickclot, null, "black"),
-							list("Injector (Oxycodone)", 1, /obj/item/reagent_container/hypospray/autoinjector/oxycodone, null, "black"),
-							list("Injector (Tricord)", 1, /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, null, "black"),
-							list("Injector (Hypervene)", 1, /obj/item/reagent_container/hypospray/autoinjector/hypervene, null, "black"),
+		/obj/item/storage/firstaid/regular = list(CAT_MEDSUP, "Firstaid kit", 6, "black"),
+		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 8, "orange"),
+		/obj/item/bodybag/cryobag = list(CAT_MEDSUP, "Stasis bag", 4, "orange"),
+		/obj/item/storage/pill_bottle/hypervene = list(CAT_MEDSUP, "Pillbottle (Hypervene)", 4, "black"),
+		/obj/item/storage/pill_bottle/quickclot = list(CAT_MEDSUP, "Pillbottle (Quick-Clot)", 4, "black"),
+		/obj/item/storage/pill_bottle/bicaridine = list(CAT_MEDSUP, "Pillbottle (Bicaridine)", 4, "orange"),
+		/obj/item/storage/pill_bottle/kelotane = list(CAT_MEDSUP, "Pillbottle (Kelotane)", 4, "orange"),
+		/obj/item/storage/pill_bottle/dylovene = list(CAT_MEDSUP, "Pillbottle (Dylovene)", 4, "black"),
+		/obj/item/storage/pill_bottle/dexalin = list(CAT_MEDSUP, "Pillbottle (Dexalin)", 4, "black"),
+		/obj/item/storage/pill_bottle/tramadol = list(CAT_MEDSUP, "Pillbottle (Tramadol)", 4, "orange"),
+		/obj/item/storage/pill_bottle/inaprovaline = list(CAT_MEDSUP, "Pillbottle (Inaprovaline)", 4, "black"),
+		/obj/item/storage/pill_bottle/peridaxon = list(CAT_MEDSUP, "Pillbottle (Peridaxon)", 4, "black"),
+		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 15, "orange"),
+		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 15, "orange"),
+		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 15, "orange"),
+		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 15, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = list(CAT_MEDSUP, "Injector (Inaprovaline)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = list(CAT_MEDSUP, "Injector (Bicaridine)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = list(CAT_MEDSUP, "Injector (Kelotane)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = list(CAT_MEDSUP, "Injector (Dylovene)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = list(CAT_MEDSUP, "Injector (Dexalin+)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = list(CAT_MEDSUP, "Injector (Quick-Clot)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = list(CAT_MEDSUP, "Injector (Tricord)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = list(CAT_MEDSUP, "Injector (Hyperzine)", 10, "orange"),
+		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
+		/obj/item/healthanalyzer = list(CAT_MEDSUP, "Health analyzer", 2, "black"),
+		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 
-							list("Injector (Hyperzine)", 10, /obj/item/reagent_container/hypospray/autoinjector/hyperzine, null, "orange"),
-							list("Advanced hypospray", 2, /obj/item/reagent_container/hypospray/advanced, null, "black"),
-							list("Health analyzer", 2, /obj/item/healthanalyzer, null, "black"),
-							list("Medical HUD glasses", 2, /obj/item/clothing/glasses/hud/health, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 
-							list("SPECIAL AMMUNITION", 0, null, null, null),
-							list("AP M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/ap, null, "black"),
-							list("Extended M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/extended, null, "black"),
-							list("AP M39 magazine", 6, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
-							list("Extended M39 magazine", 6, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
-
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
+	)
 
 
 
@@ -830,52 +826,39 @@
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 	listed_products = list(
-							list("ENGINEER SET (Mandatory)", 0, null, null, null),
-							list("Essential Engineer Set", 0, /obj/effect/essentials_set/engi, MARINE_CAN_BUY_ESSENTIALS, "white"),
+		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
 
-							list("ENGINEER SUPPLIES", 0, null, null, null),
-							list("Metal x10", 5, /obj/item/stack/sheet/metal/small_stack, null, "orange"),
-							list("Plasteel x10", 7, /obj/item/stack/sheet/plasteel/small_stack, null, "orange"),
-							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "orange"),
-							list("Plasma cutter", 20, /obj/item/tool/pickaxe/plasmacutter, null, "black"),
-							list("UA-580 point defense sentry kit", 26, /obj/item/storage/box/minisentry, null, "black"),
-							list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "black"),
-							list("Detonation pack", 5, /obj/item/detpack, null, "black"),
-							list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "black"),
-							list("Range Finder", 10, /obj/item/binoculars/tactical/range, null, "black"),
-							list("High capacity powercell", 1, /obj/item/cell/high, null, "black"),
-							list("M20 mine box", 18, /obj/item/storage/box/explosive_mines, null, "black"),
-							list("Incendiary grenade", 6, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("Multitool", 1, /obj/item/multitool, null, "black"),
-							list("General circuit board", 1, /obj/item/circuitboard/general, null, "black"),
-							list("Signaler (for detpacks)", 1, /obj/item/assembly/signaler, null, "black"),
+		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", 5, "orange"),
+		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", 7, "orange"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, "orange"),
+		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
+		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "UA-580 point defense sentry kit", 26, "black"),
+		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, "black"),
+		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
+		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
+		/obj/item/binoculars/tactical/range = list(CAT_ENGSUP, "Range Finder", 10, "black"),
+		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "black"),
+		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "black"),
+		/obj/item/explosive/grenade/incendiary = list(CAT_ENGSUP, "Incendiary grenade", 6, "black"),
+		/obj/item/multitool = list(CAT_ENGSUP, "Multitool", 1, "black"),
+		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
+		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 
-							list("SPECIAL AMMUNITION", 0, null, null, null),
-							list("AP M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/ap, null, "black"),
-							list("Extended M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/extended, null, "black"),
-							list("AP M41A1 magazine", 6, /obj/item/ammo_magazine/rifle/ap, null, "black"),
-							list("Extended M41A1 magazine", 6, /obj/item/ammo_magazine/rifle/extended, null, "black"),
-							list("AP M39 magazine", 5, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
-							list("Extended M39 magazine", 5, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
+	)
 
 
 
@@ -887,42 +870,29 @@
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-							list("SMARTGUN SET (Mandatory)", 0, null, null, null),
-							list("Essential Smartgunner Set", 0, /obj/item/storage/box/m56_system, MARINE_CAN_BUY_ESSENTIALS, "white"),
+		/obj/item/storage/box/m56_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
 
-							list("SPECIAL AMMUNITION", 0, null, null, null),
+		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
 
-							list("M56 powerpack", 45, /obj/item/smartgun_powerpack, null, "black"),
-							list("AP M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/ap, null, "black"),
-							list("Extended M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/extended, null, "black"),
-							list("AP M41A1 magazine", 15, /obj/item/ammo_magazine/rifle/ap, null, "black"),
-							list("Extended M41A1 magazine", 15, /obj/item/ammo_magazine/rifle/extended, null, "black"),
-							list("AP M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
-							list("Extended M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
-
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
+	)
 
 
 //todo: move this to some sort of kit controller/datum
 //the global list of specialist sets that haven't been claimed yet.
-GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Armor Set", "Pyro Set"))
+GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Demolitionist Set", "Heavy Grenadier Set","Heavy Gunner Set", "Pyro Set"))
 
 
 /obj/machinery/marine_selector/gear/spec
@@ -933,42 +903,31 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	listed_products = list(
-							list("SPECIALIST SETS (Choose one)", 0, null, null, null),
-							list("Scout Set (Battle Rifle)", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Heavy Armor Set (Grenadier)", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Heavy Armor Set (Minigun)", 0, /obj/item/storage/box/spec/heavy_gunner, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Pyro Set", 0, /obj/item/storage/box/spec/pyro, MARINE_CAN_BUY_ESSENTIALS, "white"),
+		/obj/item/storage/box/spec/scout = list(CAT_ESS, "Scout Set (Battle Rifle)", 0, "white"),
+		/obj/item/storage/box/spec/tracker = list(CAT_ESS, "Scout Set (Shotgun)", 0, "white"),
+		/obj/item/storage/box/spec/sniper = list(CAT_ESS, "Sniper Set", 0, "white"),
+		/obj/item/storage/box/spec/demolitionist = list(CAT_ESS, "Demolitionist Set", 0, "white"),
+		/obj/item/storage/box/spec/heavy_grenadier = list(CAT_ESS, "Heavy Grenadier Set", 0, "white"),
+		/obj/item/storage/box/spec/heavy_gunner = list(CAT_ESS, "Heavy Gunner Set", 0, "white"),
+		/obj/item/storage/box/spec/pyro = list(CAT_ESS, "Pyro Set", 0, "white"),
 
-							list("SPECIAL AMMUNITION", 0, null, null, null),
-							list("AP M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/ap, null, "black"),
-							list("Extended M4A3 magazine", 10, /obj/item/ammo_magazine/pistol/extended, null, "black"),
-							list("88M4 AP magazine", 15, /obj/item/ammo_magazine/pistol/vp70, null, "black"),
-							list("M44 marksman speed loader", 15, /obj/item/ammo_magazine/revolver/marksman, null, "black"),
-							list("AP M41A1 magazine", 15, /obj/item/ammo_magazine/rifle/ap, null, "black"),
-							list("Extended M41A1 magazine", 15, /obj/item/ammo_magazine/rifle/extended, null, "black"),
-							list("AP M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
-							list("Extended M39 magazine", 13, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 10, "black"),
+		/obj/item/ammo_magazine/pistol/vp70 = list(CAT_SPEAMM, "88M4 AP magazine", 15, "black"),
+		/obj/item/ammo_magazine/revolver/marksman = list(CAT_SPEAMM, "M44 marksman speed loader", 15, "black"),
 
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
+	)
 
 
 
@@ -981,60 +940,44 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	req_access = list(ACCESS_MARINE_LEADER)
 
 	listed_products = list(
-							list("SQUAD LEADER SET (Mandatory)", 0, null, null, null),
-							list("Essential SL Set", 0, /obj/effect/essentials_set/leader, MARINE_CAN_BUY_ESSENTIALS, "white"),
+		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 
-							list("LEADER SUPPLIES", 0, null, null, null),
-							list("Supply beacon", 10, /obj/item/squad_beacon, null, "black"),
-							list("Orbital beacon", 15, /obj/item/squad_beacon/bomb, null, "black"),
-							list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "black"),
-							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "black"),
-							list("Plastique explosive", 3, /obj/item/explosive/plastique, null, "black"),
-							list("Detonation pack", 5, /obj/item/detpack, null, "black"),
-							list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "black"),
-							list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "black"),
-							list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
-							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
-							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
-							list("M41AE2 magazine", 4, /obj/item/ammo_magazine/lmg, null, "black"),
-							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
-							list("Flamethrower tank", 4, /obj/item/ammo_magazine/flamer_tank, null, "black"),
-							list("Whistle", 5, /obj/item/whistle, null, "black"),
-							list("Station bounced radio", 1, /obj/item/radio, null, "black"),
-							list("Signaler (for detpacks)", 1, /obj/item/assembly/signaler, null, "black"),
-							list("Motion detector", 5, /obj/item/motiondetector, null, "black"),
-							list("Advanced firstaid kit", 10, /obj/item/storage/firstaid/adv, null, "orange"),
-							list("Ziptie box", 5, /obj/item/storage/box/zipcuffs, null, "black"),
-							list("V1 thermal-dampening tarp", 5, /obj/structure/closet/bodybag/tarp, null, "black"),
+		/obj/item/squad_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
+		/obj/item/squad_beacon/bomb = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
+		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, "black"),
+		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", 10, "black"),
+		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 3, "black"),
+		/obj/item/detpack = list(CAT_LEDSUP, "Detonation pack", 5, "black"),
+		/obj/item/explosive/grenade/smokebomb = list(CAT_LEDSUP, "Smoke grenade", 2, "black"),
+		/obj/item/explosive/grenade/cloakbomb = list(CAT_LEDSUP, "Cloak grenade", 3, "black"),
+		/obj/item/explosive/grenade/incendiary = list(CAT_LEDSUP, "M40 HIDP incendiary grenade", 3, "black"),
+		/obj/item/explosive/grenade/frag = list(CAT_LEDSUP, "M40 HEDP grenade", 3, "black"),
+		/obj/item/weapon/gun/flamer = list(CAT_LEDSUP, "Flamethrower", 12, "orange"),
+		/obj/item/ammo_magazine/flamer_tank = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
+		/obj/item/whistle = list(CAT_LEDSUP, "Whistle", 5, "black"),
+		/obj/item/radio = list(CAT_LEDSUP, "Station bounced radio", 1, "black"),
+		/obj/item/assembly/signaler = list(CAT_LEDSUP, "Signaler (for detpacks)", 1, "black"),
+		/obj/item/motiondetector = list(CAT_LEDSUP, "Motion detector", 5, "black"),
+		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
+		/obj/item/storage/box/zipcuffs = list(CAT_LEDSUP, "Ziptie box", 5, "black"),
+		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 
-							list("SPECIAL AMMUNITION", 0, null, null, null),
-							list("HP M4A3 magazine", 5, /obj/item/ammo_magazine/pistol/hp, null, "black"),
-							list("AP M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/ap, null, "black"),
-							list("Extended M4A3 magazine", 3, /obj/item/ammo_magazine/pistol/extended, null, "black"),
-							list("AP M41A1 magazine", 6, /obj/item/ammo_magazine/rifle/ap, null, "black"),
-							list("Extended M41A1 magazine", 6, /obj/item/ammo_magazine/rifle/extended, null, "black"),
-							list("AP M39 magazine", 5, /obj/item/ammo_magazine/smg/m39/ap, null, "black"),
-							list("Extended M39 magazine", 5, /obj/item/ammo_magazine/smg/m39/extended, null, "black"),
+		/obj/item/ammo_magazine/pistol/hp = list(CAT_SPEAMM, "HP M4A3 magazine", 5, "black"),
+		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
+		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),
 
-							list("GUN ATTACHMENTS (Choose 2)", 0, null, null, null),
-							list("MUZZLE ATTACHMENTS", 0, null, null, null),
-							list("Suppressor", 0, /obj/item/attachable/suppressor, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Extended barrel", 0, /obj/item/attachable/extended_barrel, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Recoil compensator", 0, /obj/item/attachable/compensator, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("RAIL ATTACHMENTS", 0, null, null, null),
-							list("Magnetic harness", 0, /obj/item/attachable/magnetic_harness, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("Red dot sight", 0, /obj/item/attachable/reddot, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Quickfire assembly", 0, /obj/item/attachable/quickfire, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("UNDERBARREL ATTACHMENTS", 0, null, null, null),
-							list("Laser sight", 0, /obj/item/attachable/lasersight, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Vertical grip", 0, /obj/item/attachable/verticalgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("Angled grip", 0, /obj/item/attachable/angledgrip, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "orange"),
-							list("STOCKS", 0, null, null, null),
-							list("M41A1 skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M37 wooden stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							list("M39 submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-							)
+		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
+		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
+		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
+		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
+		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
+		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
+		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
+		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
+		/obj/item/attachable/stock/shotgun = list(CAT_ATT, "M37 wooden stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachine Gun stock", 0, "black"),
+	)
 
 
 /obj/effect/essentials_set
@@ -1052,7 +995,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
@@ -1062,7 +1004,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/standard,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
@@ -1116,7 +1057,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/roller/medevac,
 						/obj/item/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone,
+						/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 						)
 
 /obj/effect/essentials_set/engi
@@ -1155,7 +1096,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/medevac_beacon,
 						/obj/item/roller/medevac,
 						/obj/item/bodybag/cryobag,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						/obj/item/reagent_containers/hypospray/advanced/oxycodone
 						)
 
 

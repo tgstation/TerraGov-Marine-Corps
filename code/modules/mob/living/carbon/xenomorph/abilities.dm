@@ -27,10 +27,10 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/C = owner
-	if(!length(C.stomach_contents))
+	var/mob/living/carbon/xenomorph/devourer = owner
+	if(!LAZYLEN(devourer.stomach_contents))
 		if(!silent)
-			to_chat(C, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
+			to_chat(devourer, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -72,6 +72,7 @@
 	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	return succeed_activate()
 
 // Choose Resin
@@ -383,6 +384,7 @@
 	succeed_activate()
 
 	GLOB.round_statistics.larval_growth_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "larval_growth_stings")
 
 	add_cooldown()
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
@@ -429,7 +431,7 @@
 	var/acid_type = /obj/effect/xenomorph/acid
 	keybind_signal = COMSIG_XENOABILITY_CORROSIVE_ACID
 
-/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE)
+/datum/action/xeno_action/activable/corrosive_acid/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -681,6 +683,8 @@
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
+	X.add_slowdown(2)
+
 	add_cooldown()
 
 	return succeed_activate()
@@ -746,6 +750,7 @@
 	add_cooldown()
 
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 

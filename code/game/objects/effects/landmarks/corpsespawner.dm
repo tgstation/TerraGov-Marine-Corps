@@ -43,6 +43,8 @@
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
@@ -296,7 +298,7 @@
 	corpsebelt = /obj/item/storage/belt/gun/m4a3/vp70
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/PMC
-	corpsemask = /obj/item/clothing/mask/gas/PMC
+	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
 	xenovictim = TRUE

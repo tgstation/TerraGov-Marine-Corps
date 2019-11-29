@@ -229,10 +229,15 @@
 	apy += pixel_y
 
 	GLOB.round_statistics.total_projectiles_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired")
+
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullets_fired++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullets_fired")
 		if(ammo.bonus_projectiles_amount)
 			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+			SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_bullets_fired")
+
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
@@ -502,9 +507,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(!thing_to_hit.projectile_hit(src, cardinal_move)) //Calculated from combination of both ammo accuracy and gun accuracy.
 			continue
 
-		if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
-			ammo.on_hit_turf(turf_to_scan, src)
-
 		thing_to_hit.do_projectile_hit(src)
 		return TRUE
 
@@ -598,7 +600,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/projectile_hit(obj/item/projectile/proj, cardinal_move, uncrossing)
 	if(lying && src != proj.original_target)
 		return FALSE
-	if(proj.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX) && (isnestedhost(src) || stat == DEAD))
+	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
@@ -666,11 +668,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/proc/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses you!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses you!</span>", null, 4)
 
 /mob/living/carbon/xenomorph/on_dodged_bullet(obj/item/projectile/proj)
 		visible_message("<span class='avoidharm'>[proj] misses [src]!</span>",
-		"<span class='avoidharm'>[src] narrowly misses us!</span>", null, 4)
+		"<span class='avoidharm'>[proj] narrowly misses us!</span>", null, 4)
 
 
 /mob/living/do_projectile_hit(obj/item/projectile/proj)
@@ -779,7 +781,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			feedback_flags |= BULLET_FEEDBACK_SCREAM
 		bullet_message(proj, feedback_flags)
 		proj.play_damage_effect(src)
-		apply_damage(damage, proj.ammo.damage_type, proj.def_zone) //This could potentially delete the source.
+		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
+			UPDATEHEALTH(src)
 		if(shrapnel_roll)
 			var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
 			shrap.embed_into(src, proj.def_zone, TRUE)
@@ -796,6 +799,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_humans++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_humans")
 
 
 /mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/proj)
@@ -809,6 +813,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_xenos++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
 
 
 /mob/living/proc/check_proj_block(obj/item/projectile/proj)
@@ -990,7 +995,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
 		victim_feedback += "You've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
 	else
-		victim_feedback += "You are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback += "You are hit by [proj] in the [parse_zone(proj.def_zone)]!"
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
 		victim_feedback += "Your armor deflects the impact!"
@@ -1007,7 +1012,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]", null, 4)
+	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1020,6 +1025,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 		GLOB.round_statistics.total_bullet_hits_on_marines++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_marines")
 
 
 /mob/living/carbon/xenomorph/bullet_message(obj/item/projectile/proj, feedback_flags)

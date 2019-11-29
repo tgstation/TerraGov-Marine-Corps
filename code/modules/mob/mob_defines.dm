@@ -80,5 +80,13 @@
 	var/turf/listed_turf	//the current turf being examined in the stat panel
 	var/dextrous = FALSE //Has enough dexterity to interact with advanced objects?
 
+	/// The machine the mob is interacting with (this is very bad old code btw)
+	var/obj/machinery/machine = null
+
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default
+
+	var/updating_glide_size = TRUE //Whether the mob is updating glide size when movespeed updates or not
+
+	/// Can they interact with station electronics
+	var/has_unlimited_silicon_privilege = 0

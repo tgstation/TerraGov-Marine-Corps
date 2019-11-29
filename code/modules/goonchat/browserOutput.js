@@ -34,7 +34,7 @@ var opts = {
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
-	'darkmode':true, //Are we using darkmode?
+	'darkmode':false, //Are we using darkmode?
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu

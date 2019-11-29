@@ -12,6 +12,7 @@
 	resistance_flags = UNACIDABLE
 	obj_flags = CAN_BE_HIT
 	var/on_fire = FALSE
+	var/ignore_weed_destruction = FALSE //Set this to true if this object isn't destroyed when the weeds under it is.
 
 
 /obj/effect/alien/attackby(obj/item/I, mob/user, params)
@@ -75,6 +76,8 @@
 	hit_sound = "alien_resin_move"
 	var/slow_amt = 8
 
+	ignore_weed_destruction = TRUE
+
 
 /obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
 	. = ..()
@@ -95,6 +98,8 @@
 	desc = "A thin layer of disgusting sticky slime."
 	max_integrity = 6
 	slow_amt = 4
+
+	ignore_weed_destruction = FALSE
 
 
 //Carrier trap
@@ -146,7 +151,7 @@
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
-		playsound(loc, 'sound/effects/alien_resin_break1.ogg', 25)
+		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 		C.knock_down(2)
@@ -417,7 +422,7 @@
 		return attack_hand(M)
 
 	if(!issamexenohive(M))
-		M.do_attack_animation(src)
+		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>We crush \the [src]")
 		Burst(TRUE)
 		return
@@ -653,7 +658,7 @@ TUNNEL
 		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
-	if(length(M.stomach_contents))
+	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 

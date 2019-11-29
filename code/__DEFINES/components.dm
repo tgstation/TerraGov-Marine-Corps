@@ -65,6 +65,7 @@
 	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
+#define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
@@ -139,6 +140,7 @@
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED		-1
 	#define COMPONENT_MOVABLE_PREBUMP_PLOWED		-2
 	#define COMPONENT_MOVABLE_PREBUMP_ENTANGLED		-3
+#define COMSIG_MOVABLE_UPDATE_GLIDE_SIZE "movable_glide_size"	//from base of /atom/movable/proc/set_glide_size(): (target)
 
 // /turf signals
 #define COMSIG_TURF_CHANGE "turf_change"						//from base of turf/ChangeTurf(): (path, list/new_baseturfs, flags, list/transferring_comps)
@@ -152,13 +154,20 @@
 #define COMSIG_ITEM_ATTACK_SELF "item_attack_self"				//from base of obj/item/attack_self(): (/mob)
 	#define COMPONENT_NO_INTERACT 1
 #define COMSIG_ITEM_EQUIPPED "item_equip"						//from base of obj/item/equipped(): (/mob/equipper, slot)
+#define COMSIG_ITEM_EQUIPPED_TO_SLOT "item_equip_to_slot"			//from base of obj/item/equipped(): (/mob/equipper)
+#define COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT "item_equip_not_in_slot"	//from base of obj/item/equipped(): (/mob/equipper, slot)
 #define COMSIG_ITEM_DROPPED "item_drop"							//from base of obj/item/dropped(): (mob/user)
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
 	#define COMPONENT_NO_ATTACK_OBJ 1
+#define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 
-#define COMSIG_ITEM_CLICKCTRLON "item_ctrlclickon"					//from base of mob/CtrlClickOn(): (/atom, /mob)
-	#define COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED (1<<0)				//from base of mob/CtrlClickOn(): (/atom, /mob)
+#define COMSIG_ITEM_MIDDLECLICKON "item_middleclickon"					//from base of mob/MiddleClickOn(): (/atom, /mob)
+#define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/ShiftClickOn(): (/atom, /mob)
+	#define COMPONENT_ITEM_CLICKON_BYPASS (1<<0)
+
+#define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
+	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
@@ -184,14 +193,29 @@
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
+#define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
+#define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
-	#define COMSIG_MOB_CANCEL_CLICKON 1
+#define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
+#define COMSIG_MOB_CLICK_ALT "mob_click_alt"					//from base of mob/AltClickOn(): (atom/A)
+	#define COMSIG_MOB_CLICK_CANCELED (1<<0)
+	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
+#define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
+#define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/target, /obj/item/attacking_item)
+	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
+#define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
+#define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
+#define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
+#define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
+
+//mob/dead/observer
+#define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
 
 //mob/living signals
 #define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
@@ -199,14 +223,18 @@
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 #define COMSIG_LIVING_DO_MOVE_TURFTOTURF	"living_do_move_turftoturf"	//from the base of /client/Move()
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
+#define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
+#define COMSIG_CARBON_SETAFKSTATUS "carbon_setafkstatus"		//from base of /mob/living/set_afk_status(): (new_status, afk_timer)
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 
+// shuttle signals
+#define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
 
 // xeno stuff
 #define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
@@ -264,6 +292,51 @@
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)
+#define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
+#define COMSIG_KB_ADMIN_MSAY_DOWN "keybinding_admin_msay_down"
+#define COMSIG_KB_ADMIN_DSAY_DOWN "keybinding_admin_dsay_down"
+#define COMSIG_KB_CARBON_HOLDRUNMOVEINTENT_DOWN "keybinding_carbon_holdrunmoveintent_down"
+#define COMSIG_KB_ADMIN_TOGGLEBUILDMODE_DOWN "keybinding_admin_togglebuildmode_down"
+#define COMSIG_KB_CARBON_TOGGLETHROWMODE_DOWN "keybinding_carbon_togglethrowmode_down"
+#define COMSIG_KB_CARBON_SELECTHELPINTENT_DOWN "keybinding_carbon_selecthelpintent_down"
+#define COMSIG_KB_CARBON_SELECTDISARMINTENT_DOWN "keybinding_carbon_selectdisarmintent_down"
+#define COMSIG_KB_CARBON_SELECTGRABINTENT_DOWN "keybinding_carbon_selectgrabintent_down"
+#define COMSIG_KB_CARBON_SELECTHARMINTENT_DOWN "keybinding_carbon_selectharmintent_down"
+#define COMSIG_KB_CARBON_SPECIALCLICK_DOWN "keybinding_carbon_specialclick_down"
+#define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
+#define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
+#define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_OOC_DOWN "keybinding_client_ooc_down"
+#define COMSIG_KB_CLIENT_LOOC_DOWN "keybinding_client_looc_down"
+#define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
+#define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
+#define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
+#define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
+#define COMSIG_KB_MOB_FACEWEST_DOWN "keybinding_mob_facewest_down"
+#define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
+#define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
+#define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
+#define COMSIG_KB_MOB_SWAPHANDS_DOWN "keybinding_mob_swaphands_down"
+#define COMSIG_KB_MOB_SAY_DOWN "keybinding_mob_say_down"
+#define COMSIG_KB_MOB_ME_DOWN "keybinding_mob_me_down"
+#define COMSIG_KB_MOB_ACTIVATEINHAND_DOWN "keybinding_mob_activateinhand_down"
+#define COMSIG_KB_MOB_DROPITEM_DOWN "keybinding_mob_dropitem_down"
+#define COMSIG_KB_MOB_EXAMINE_DOWN "keybinding_mob_examine_down"
+#define COMSIG_KB_MOB_TOGGLEMOVEINTENT_DOWN "keybinding_mob_togglemoveintent_down"
+#define COMSIG_KB_MOB_TARGETCYCLEHEAD_DOWN "keybinding_mob_targetcyclehead_down"
+#define COMSIG_KB_MOB_TARGETRIGHTARM_DOWN "keybinding_mob_targetrightarm_down"
+#define COMSIG_KB_MOB_TARGETBODYCHEST_DOWN "keybinding_mob_targetbodychest_down"
+#define COMSIG_KB_MOB_TARGETLEFTARM_DOWN "keybinding_mob_targetleftarm_down"
+#define COMSIG_KB_MOB_TARGETRIGHTLEG_DOWN "keybinding_mob_targetrightleg_down"
+#define COMSIG_KB_MOB_TARGETBODYGROIN_DOWN "keybinding_mob_targetbodygroin_down"
+#define COMSIG_KB_MOB_TARGETLEFTLEG_DOWN "keybinding_mob_targetleftleg_down"
+#define COMSIG_KB_MOVEMENT_NORTH_DOWN "keybinding_movement_north_down"
+#define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
+#define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
+#define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+
+// mob keybinds
+#define COMSIG_KB_HOLD_RUN_MOVE_INTENT_UP "keybinding_hold_run_move_intent_up"
 
 // xeno abilities for keybindings
 
@@ -356,12 +429,6 @@
 #define REDIRECT_TRANSFER_WITH_TURF 1
 
 #define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"			//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
-
-#define COMSIG_HUMAN_GUN_FIRED "human_gun_fired"				//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
-#define COMSIG_HUMAN_GUN_AUTOFIRED "human_gun_autofired"
-#define COMSIG_HUMAN_ATTACHMENT_FIRED "human_attachment_fired"
-#define COMSIG_HUMAN_ITEM_ATTACK "human_item_attack"			//from base of obj/item/attack(): (/mob/living/target, obj/item/I, /mob/living/carbon/human/user)
-#define COMSIG_HUMAN_ITEM_THROW "human_item_throw"
 
 // /datum/action signals
 #define COMSIG_ACTION_TRIGGER "action_trigger"                        //from base of datum/action/proc/Trigger(): (datum/action)

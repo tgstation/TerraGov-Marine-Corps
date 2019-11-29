@@ -8,7 +8,6 @@
 	maxHealth = 200
 	plasma_stored = 50
 	drag_delay = 6 //pulling a big dead xeno is hard
-	speed = 0
 	mob_size = MOB_SIZE_BIG
 	var/list/huggers = list()
 	var/eggs_cur = 0
@@ -48,5 +47,5 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat(null, "Stored Huggers: [huggers.len] / [xeno_caste.huggers_max]")
-		stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
+		stat("Stored Huggers:", "[LAZYLEN(huggers)] / [xeno_caste.huggers_max]")
+		stat("Stored Eggs:", "[LAZYLEN(eggs_cur)] / [xeno_caste.eggs_max]")

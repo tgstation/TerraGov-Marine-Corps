@@ -63,7 +63,7 @@
 
 /obj/machinery/bioprinter/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/reagent_container/food/snacks/meat))
+	if(istype(I, /obj/item/reagent_containers/food/snacks/meat))
 		to_chat(user, "<span class='notice'>\The [src] processes \the [I].</span>")
 		stored_matter += 50
 		user.drop_held_item()

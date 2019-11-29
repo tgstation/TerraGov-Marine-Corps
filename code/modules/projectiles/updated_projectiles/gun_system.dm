@@ -15,6 +15,7 @@
 	flags_item = TWOHANDED
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
+	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
@@ -124,7 +125,7 @@
 	setup_firemodes()
 	AddComponent(/datum/component/automatic_fire, fire_delay, burst_delay, burst_amount, gun_firemode, loc) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 
-	muzzle_flash = new()
+	muzzle_flash = new(src, muzzleflash_iconstate)
 
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
@@ -209,35 +210,15 @@
 		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(mob/user)
-	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+	. = ..()
+	if(!.)
 		return
 
-	var/obj/item/offhand = user.get_inactive_held_item()
-	if(offhand)
-		if(offhand == user.r_hand)
-			user.drop_r_hand()
-		else if(offhand == user.l_hand)
-			user.drop_l_hand()
-		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
-			return
+	user.add_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_slowdown)
 
-	if(ishuman(user))
-		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
-		var/mob/living/carbon/human/wielder = user
-		var/datum/limb/hand = wielder.get_limb(check_hand)
-		if(!istype(hand) || !hand.is_usable())
-			to_chat(user, "<span class='warning'>Your other hand can't hold \the [src]!</span>")
-			return
-
-	flags_item 	   ^= WIELDED
-	name 	   += " (Wielded)"
-	item_state += "_w"
-	update_slowdown()
-	place_offhand(user, initial(name))
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.mind && user.mind.cm_skills)
+	if(user.mind?.cm_skills)
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 			wdelay += 3
 		else
@@ -266,7 +247,6 @@
 	A.add_hud(user)
 	A.update_hud(user)
 	do_wield(user, wdelay)
-	return TRUE
 
 
 /obj/item/weapon/gun/unwield(mob/user)
@@ -277,20 +257,13 @@
 	if(zoom)
 		zoom(user)
 
-	update_slowdown()
+	user.remove_movespeed_modifier(MOVESPEED_ID_AIM_SLOWDOWN)
 
 	var/obj/screen/ammo/A = user.hud_used?.ammo
 	if(A)
 		A.remove_hud(user)
 
 	return TRUE
-
-
-/obj/item/weapon/gun/proc/update_slowdown()
-	if(flags_item & WIELDED)
-		slowdown = initial(slowdown) + aim_slowdown
-	else
-		slowdown = initial(slowdown)
 
 
 //----------------------------------------------------------
@@ -423,14 +396,12 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		"<span class='notice'>You cock [src], clearing a [in_chamber.name] from its chamber.</span>", null, 4)
 
 		// Get gun information from the current mag if its equipped otherwise the default ammo & caliber
-		var/bullet_ammo_type
+		var/bullet_ammo_type = in_chamber.ammo.type
 		var/bullet_caliber
 		if(current_mag)
-			bullet_ammo_type = current_mag.default_ammo
-			bullet_caliber = current_mag.caliber
+			bullet_caliber = current_mag.caliber //make sure it's the functional caliber
 		else
-			bullet_ammo_type = ammo.type
-			bullet_caliber = caliber
+			bullet_caliber = caliber //if not, the codex caliber will have to do.
 
 		// Try to find an existing handful in our hands or on the floor under us
 		var/obj/item/ammo_magazine/handful/X
@@ -681,7 +652,7 @@ and you're good to go.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
 
-		SEND_SIGNAL(user, COMSIG_HUMAN_GUN_FIRED, target, src, user)
+		SEND_SIGNAL(user, COMSIG_MOB_GUN_FIRED, target, src)
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
@@ -700,11 +671,12 @@ and you're good to go.
 		return ..()
 
 	if(M != user && user.a_intent == INTENT_HARM)
+		. = ..()
+		if(!.)
+			return
 		if(!active_attachable && gun_firemode == GUN_FIREMODE_BURSTFIRE && burst_amount > 1)
-			..()
 			Fire(M, user)
 			return TRUE
-		..()
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
@@ -743,7 +715,6 @@ and you're good to go.
 			var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 			A.update_hud(user)
 		return TRUE
-
 
 	if(M != user || user.zone_selected != "mouth")
 		return ..()
@@ -784,16 +755,20 @@ and you're good to go.
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
 
-	if(projectile_to_fire.ammo.damage_type == HALLOSS)
-		to_chat(user, "<span class = 'notice'>Ow...</span>")
-		user.apply_effect(110, AGONY, 0)
-	else
-		user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
-		user.apply_damage(100, OXY)
-		if(ishuman(user) && user == M)
-			var/mob/living/carbon/human/HM = user
-			HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
-		user.death()
+	switch(projectile_to_fire.ammo.damage_type)
+		if(HALLOSS)
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
+			user.apply_effect(110, AGONY)
+		if(STAMINA)
+			to_chat(user, "<span class = 'notice'>Ow...</span>")
+			user.apply_damage(200, STAMINA)
+		else
+			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
+			user.apply_damage(100, OXY)
+			if(ishuman(user) && user == M)
+				var/mob/living/carbon/human/HM = user
+				HM.set_undefibbable() //can't be defibbed back from self inflicted gunshot to head
+			user.death()
 
 	user.log_message("commited suicide with [src]", LOG_ATTACK, "red") //Apply the attack log.
 	last_fired = world.time
@@ -893,6 +868,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
+	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded
 
 	if(flags_item & WIELDED && wielded_stable())
@@ -941,13 +917,16 @@ and you're good to go.
 				gun_accuracy_mult += skill_accuracy * 0.15 // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 		projectile_to_fire.firer = user
-		if(iscarbon(user))
-			var/mob/living/carbon/C = user
-			projectile_to_fire.def_zone = user.zone_selected
-			if(C.stagger)
-				gun_scatter += 30
+		if(isliving(user))
+			var/mob/living/living_user = user
+			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			if(iscarbon(user))
+				var/mob/living/carbon/carbon_user = user
+				projectile_to_fire.def_zone = user.zone_selected
+				if(carbon_user.stagger)
+					gun_scatter += 30
 
-	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
+	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 
@@ -1143,21 +1122,21 @@ and you're good to go.
 		return
 	if(attaching.flags_attach_features & ATTACH_PROJECTILE)
 		return //These are handled through regular Fire() for now.
-	RegisterSignal(src, COMSIG_ITEM_CLICKCTRLON, .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
+	RegisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON), .proc/do_fire_attachment) //For weapons with special projectiles not handled via Fire()
 
 
 /obj/item/weapon/gun/proc/on_gun_attachment_detach(obj/item/attachable/attached_gun/detaching)
 	active_attachable = null
-	UnregisterSignal(src, COMSIG_ITEM_CLICKCTRLON)
+	UnregisterSignal(src, list(COMSIG_ITEM_MIDDLECLICKON, COMSIG_ITEM_SHIFTCLICKON))
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
-	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		return NONE //By default, let people CTRL+grab others if they are one-handing the weapon.
-	. = COMPONENT_ITEM_CLICKCTRLON_INTERCEPTED
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))
+		return
+	if(!CHECK_BITFIELD(flags_item, WIELDED))
+		to_chat(user, "<span class='warning'>[active_attachable] must be wielded to fire!</span>")
 		return
 	if(active_attachable.current_rounds <= 0)
 		click_empty(user) //If it's empty, let them know.
@@ -1167,5 +1146,4 @@ and you're good to go.
 		to_chat(user, "<span class='warning'>[active_attachable] is not ready to fire!</span>")
 		return
 	active_attachable.fire_attachment(target, src, user) //Fire it.
-	SEND_SIGNAL(user, COMSIG_HUMAN_ATTACHMENT_FIRED, target, active_attachable, user)
 	last_fired = world.time
