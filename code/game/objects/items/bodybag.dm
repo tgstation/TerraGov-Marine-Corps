@@ -84,6 +84,12 @@
 	return ..()
 
 
+/obj/structure/closet/bodybag/is_buckled()
+	if(roller_buckled)
+		return roller_buckled
+	return ..()
+
+
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
 		name = bag_name

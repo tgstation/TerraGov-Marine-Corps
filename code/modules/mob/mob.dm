@@ -402,13 +402,10 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
-		return FALSE
-
-	if(AM.anchored || AM.throwing)
 		return FALSE
 
 	if(throwing || incapacitated())
@@ -433,18 +430,17 @@
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 
+	var/atom/movable/buckle = AM.is_buckled()
+	if(buckle)
+		if(buckle.anchored)
+			return
+		return start_pulling(buckle)
+	
+	AM.set_glide_size(glide_size)
+
 	pulling = AM
 	AM.pulledby = src
 	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
-
-	var/mob/pulled_mob = ismob(AM) ? AM : null
-
-	if(pulled_mob?.buckled)
-		if(!pulled_mob.buckled.anchored)
-			return start_pulling(pulled_mob.buckled)
-		pulled_mob.buckled.set_glide_size(glide_size)
-	else
-		pulling.set_glide_size(glide_size)
 
 	var/obj/item/grab/grab_item = new /obj/item/grab()
 	grab_item.grabbed_thing = AM
@@ -457,7 +453,8 @@
 	if(hud_used?.pull_icon)
 		hud_used.pull_icon.icon_state = "pull"
 
-	if(pulled_mob)
+	if(ismob(AM))
+		var/mob/pulled_mob = AM
 		log_combat(src, pulled_mob, "grabbed")
 		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
 

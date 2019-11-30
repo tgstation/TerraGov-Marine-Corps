@@ -58,12 +58,15 @@ obj/structure/bed/Destroy()
 
 
 //Unsafe proc
-/obj/structure/bed/proc/do_buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
+/obj/structure/bed/proc/buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
+	if(buckled_bodybag || buckled)
+		return
 	B.visible_message("<span class='notice'>[user] buckles [B] to [src]!</span>")
 	B.roller_buckled = src
 	B.glide_modifier_flags |= GLIDE_MOD_BUCKLED
 	B.loc = loc
 	B.setDir(dir)
+	B.layer = layer + 0.1
 	buckled_bodybag = B
 	density = TRUE
 	update_icon()
@@ -78,11 +81,13 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/proc/unbuckle_bodybag(mob/user)
 	if(!buckled_bodybag)
 		return
+	buckled_bodybag.layer = initial(buckled_bodybag.layer)
 	buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 	buckled_bodybag.roller_buckled = null
 	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
 	buckled_bodybag = null
+	buckled = null
 	density = FALSE
 	update_icon()
 
@@ -116,7 +121,7 @@ obj/structure/bed/Destroy()
 	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)
-			do_buckle_bodybag(B, user)
+			buckle_bodybag(B, user)
 			return TRUE
 	else
 		return ..()

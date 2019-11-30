@@ -787,7 +787,13 @@
 		return FALSE
 	if(anchored || throwing)
 		return FALSE
+	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
+		return FALSE
 	return TRUE
+
+
+/atom/movable/proc/is_buckled()
+	return buckled
 
 
 /atom/movable/proc/set_glide_size(target = 8)

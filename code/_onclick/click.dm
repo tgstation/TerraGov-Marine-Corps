@@ -357,7 +357,6 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	H.start_pulling(src)
-	H.changeNext_move(CLICK_CD_MELEE)
 
 
 /*
