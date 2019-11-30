@@ -163,7 +163,7 @@
 				return //RIP benos.
 			if(xeno_hive.stored_larva)
 				return //No need for respawns nor to end the game. They can use their burrowed larvas.
-			xeno_hive.stored_larva += max(1, round(latejoin_larvapoints / latejoin_larvapoints_required)) //At least one
+			xeno_hive.stored_larva += max(1, round(latejoin_larvapoints) //At least one
 			return 
 		if(latejoin_larvapoints < 1)
 			return //Things are balanced, no burrowed needed

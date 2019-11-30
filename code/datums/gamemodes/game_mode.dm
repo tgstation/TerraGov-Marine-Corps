@@ -728,17 +728,17 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/num_xenos = xeno_hive.get_total_xeno_number() - length(xeno_hive.get_ssd_xenos()) + xeno_hive.stored_larva
 	latejoin_larvapoints = (get_total_joblarvaworth() - (num_xenos * latejoin_larvapoints_required)) / latejoin_larvapoints_required
-	if(!num_xenos)
-		if(!isdistress(SSticker?.mode) && !length(GLOB.xeno_resin_silos))
+	if(!num_xenos) //Distress ends here
+		if(!length(GLOB.xeno_resin_silos)) //Crash ends here
 			check_finished(TRUE)
 			return //RIP benos.
 		if(xeno_hive.stored_larva)
 			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_hive.stored_larva += max(1, round(latejoin_larvapoints / latejoin_larvapoints_required)) //At least one
+		xeno_hive.stored_larva += max(1, round(latejoin_larvapoints)) //At least one
 		return 
-		if(latejoin_larvapoints < 1)
-			return //Things are balanced, no burrowed needed
-		xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
+	if(latejoin_larvapoints < 1)
+		return //Things are balanced, no burrowed needed
+	xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
 
 
 /datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
