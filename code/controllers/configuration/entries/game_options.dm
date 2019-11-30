@@ -111,11 +111,6 @@
 	config_entry_value = 15
 	min_val = 1
 
-/datum/config_entry/number/latejoin_larva_required_num
-	integer = FALSE
-	min_val = 0
-	config_entry_value = 4
-
 /datum/config_entry/number/larvapoints_required
 	config_entry_value = 9
 	min_val = 1

@@ -153,7 +153,6 @@
 		larva_check_interval = world.time + 1 MINUTES
 		var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-		var/num_humans = living_player_list[1]
 		var/num_xenos = living_player_list[2] + xeno_hive.stored_larva
 		var/total_jobworth = get_total_joblarvaworth()
 		latejoin_larvapoints = total_jobworth / (max(1, num_xenos) * latejoin_larvapoints_required)
@@ -163,18 +162,12 @@
 				return //RIP benos.
 			if(xeno_hive.stored_larva)
 				return //No need for respawns nor to end the game. They can use their burrowed larvas.
-			xeno_hive.stored_larva += max(1, round(num_humans * 0.2))
-			return
+			xeno_hive.stored_larva += max(1, round(latejoin_larvapoints / latejoin_larvapoints_required)) //At least one
+			return 
 		if(latejoin_larvapoints < latejoin_larvapoints_required)
-			return
-		if(latejoin_larvapoints >= 3 * latejoin_larvapoints_required)
-			xeno_hive.stored_larva += min(3, round(num_humans * 0.13)) //Three, unless there are less than 16 marines.
-			return
-		if(latejoin_larvapoints >= 2 * latejoin_larvapoints_required)
-			xeno_hive.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
-			return
+			return //Things are balanced, no burrowed needed
 		if(latejoin_larvapoints >= latejoin_larvapoints_required)
-			xeno_hive.stored_larva++
+			xeno_hive.stored_larva += (latejoin_larvapoints / latejoin_larvapoints_required) //however many burrowed they can afford to buy
 
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
