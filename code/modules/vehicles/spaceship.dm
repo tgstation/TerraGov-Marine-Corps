@@ -179,9 +179,11 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	else
 		return
 	changing_orbit = TRUE
+	engine_shudder()
+
+	//the bits at the end of the trip.
 	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
  	addtimer(CALLBACK(src, .proc/priority_announce, message, title = "Orbit Change"), 290 SECONDS)
-	//shake people on the ship
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
 	
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
@@ -193,5 +195,20 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 	GLOB.orbital_mechanics.current_orbit = current_orbit
 	changing_orbit = FALSE
+	engine_shudder()
 
-//emp_act() not needed to be special
+//whole lotta shaking going on
+/obj/machinery/computer/navigation/proc/engine_shudder()
+	for(var/i in GLOB.alive_living_list) //knock down mobs
+		var/mob/living/M = i
+		if(!is_mainship_level(M.z))
+			continue
+		if(M.buckled)
+			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
+			shake_camera(M, 3, 1)
+		else
+			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
+			shake_camera(M, 10, 1)
+			M.knock_down(3)
+		CHECK_TICK
+
