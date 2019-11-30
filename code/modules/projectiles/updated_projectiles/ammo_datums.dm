@@ -527,14 +527,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 4
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 8
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -544,20 +544,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 4
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 30
+	damage = 35
 	damage_falloff = 4
 	penetration = 0
 

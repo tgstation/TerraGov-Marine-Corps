@@ -43,11 +43,6 @@
 	if(. && drawSound)
 		playsound(src,drawSound, 15, 1)
 
-
-
-
-
-
 /obj/item/storage/large_holster/m37
 	name = "\improper L44 M37A2 scabbard"
 	desc = "A large leather holster allowing the storage of an M37A2 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
@@ -91,6 +86,18 @@
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
+/obj/item/storage/large_holster/t35
+	name = "\improper L44 T-35 scabbard"
+	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	icon_state = "t35_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/pump/t35)
+
+/obj/item/storage/large_holster/t35/full/Initialize()
+	. = ..()
+	icon_state = "t35_holster_full"
+	new /obj/item/weapon/gun/shotgun/pump/t35(src)
+	base_icon = icon_state
 
 /obj/item/storage/large_holster/m39
 	name = "\improper M276 pattern M39 holster rig"
