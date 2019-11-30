@@ -21,7 +21,7 @@
 	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/latejoin_larvapoints		= 0
-	var/latejoin_larvapoints_required = 0
+	var/latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in :198 for some reason
 	var/orphan_hive_timer
 
 
