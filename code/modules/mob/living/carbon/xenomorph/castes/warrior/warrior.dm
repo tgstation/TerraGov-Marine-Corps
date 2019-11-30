@@ -67,7 +67,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .resisted_against)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	L.drop_all_held_items()
 	L.Knockdown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \

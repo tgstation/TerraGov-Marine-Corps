@@ -54,7 +54,7 @@
 		return
 	user.advance_grab_state(victim)
 	if(user.grab_state == GRAB_NECK)
-		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, .resisted_against)
+		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	victim.update_canmove()
 
 

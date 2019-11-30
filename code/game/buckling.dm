@@ -74,7 +74,7 @@
 	buckled_mob.clear_alert("buckled")
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 
-	UnregisterSignal(., COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(buckled_mob, COMSIG_LIVING_DO_RESIST)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_UNBUCKLE, buckled_mob, force)
 	post_unbuckle_mob(.)
 

@@ -435,7 +435,7 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/structure/closet/resisted_against)
+	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, .proc/on_closet_dump)
 	return TRUE
 

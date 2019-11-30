@@ -92,7 +92,7 @@
 		return AIMove(n, direct, L)
 
 	//Check if you are being grabbed and if so attemps to break it
-	if(CHECK_BITFIELD(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST), COMSIG_LIVING_RESIST_SUCCESSFUL))
+	if(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST) & COMSIG_LIVING_RESIST_SUCCESSFUL)
 		return
 
 	if(L.pulledby)

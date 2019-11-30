@@ -62,7 +62,7 @@
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
 	ENABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
-	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /obj/structure/razorwire/resisted_against)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 
 
 /obj/structure/razorwire/resisted_against(datum/source)

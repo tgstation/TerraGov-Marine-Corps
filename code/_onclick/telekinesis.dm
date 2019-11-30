@@ -245,7 +245,7 @@ Redefine as needed.
 	last_life_tick = victim.life_tick
 
 	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), /obj/item/tk_grab/shrike/resisted_against)
+	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), /atom/movable.proc/resisted_against)
 
 	return ..() //Starts processing.
 
