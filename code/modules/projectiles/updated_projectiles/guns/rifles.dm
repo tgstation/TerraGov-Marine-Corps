@@ -421,14 +421,14 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel,/obj/item/attachable/bipod)
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
 	fire_delay = 0.25 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 0.75
-	scatter = 25
+	accuracy_mult = 0.9
+	scatter = 20
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
