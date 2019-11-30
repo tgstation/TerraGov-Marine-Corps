@@ -31,7 +31,6 @@
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
 	restore_position(M)
-	unequip_buckle_inhands(M)
 	if(del_on_unbuckle_all && !LAZYLEN(AM.buckled_mobs))
 		qdel(src)
 
@@ -245,8 +244,6 @@
 	if(!silent)
 		user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>",
 			"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
-	unequip_buckle_inhands(AM)
-	unequip_buckle_inhands(user)
 
 
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override)
@@ -286,6 +283,7 @@
 	. = ..()
 	parent = loc
 	src.rider = rider
+	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/on_parent_unbuckle)
 
 /obj/item/riding_offhand/Destroy()
 	if(rider in parent.buckled_mobs)
@@ -293,6 +291,12 @@
 	parent = null
 	rider = null
 	return ..()
+
+/obj/item/riding_offhand/proc/on_parent_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
+	if(selfdeleting || buckled_mob != rider)
+		return
+	selfdeleting = TRUE
+	qdel(src)
 
 /obj/item/riding_offhand/dropped(mob/user)
 	selfdeleting = TRUE
