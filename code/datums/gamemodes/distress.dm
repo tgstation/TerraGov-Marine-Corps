@@ -63,6 +63,7 @@
 /datum/game_mode/distress/post_setup()
 	. = ..()
 	balance_scales()
+	latejoin_larvapoints *= latejoin_larvapoints_required
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 
@@ -196,7 +197,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larvapoints_required = CONFIG_GET(number/larvapoints_required)
+	latejoin_larvapoints_required = CONFIG_GET(number/distress/larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num

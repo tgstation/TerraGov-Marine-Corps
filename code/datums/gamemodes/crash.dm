@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larvapoints_required = CONFIG_GET(number/larvapoints_required)
+	latejoin_larvapoints_required = CONFIG_GET(number/crash/larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/crash_coefficient) * GLOB.ready_players)), xeno_required_num)
 
 

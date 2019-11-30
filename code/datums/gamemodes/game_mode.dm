@@ -740,7 +740,6 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		return //Things are balanced, no burrowed needed
 	xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
 
-
 /datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
 	return FALSE
 
