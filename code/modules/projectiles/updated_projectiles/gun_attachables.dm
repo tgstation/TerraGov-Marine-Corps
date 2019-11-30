@@ -1356,10 +1356,10 @@ Defined in conflicts.dm of the #defines folder.
 		A.update_button_icon()
 	return TRUE
 
-/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
+/obj/item/attachable/underbarrel_light/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I,/obj/item/tool/screwdriver))
+	if(istype(I,/obj/item/tool/wrench))
 		to_chat(user, "<span class='notice'>You modify the underbarrel flashlight back into a normal flashlight.</span>")
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)

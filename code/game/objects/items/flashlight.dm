@@ -67,7 +67,7 @@
 
 		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
+		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on the railslot on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
 		qdel(src) //Delete da old flashlight
 		
@@ -85,10 +85,9 @@
 		if(loc == user)
 			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 
-		var/obj/item/attachable/underbarrel_light/A = new(loc)
-		user.put_in_hands(A) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
-		to_chat(user, "<span class='notice'>Use a wrench on [A] to change it back.</span>")
+		var/obj/item/attachable/underbarrel_light/modified_light = new(loc)
+		user.put_in_hands(modified_light) //This proc tries right, left, then drops it all-in-one.
+		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on the underbarrel slot on a weapon.<br>Use a wrench on [modified_light] to change it back.</span>")
 		qdel(src) //Delete da old flashlight
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
