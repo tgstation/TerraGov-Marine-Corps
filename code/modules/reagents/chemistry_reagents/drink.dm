@@ -213,7 +213,7 @@
 	L.jitter(2)
 	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5) 
-	return ..() 
+	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
 	L.jitter(5)
