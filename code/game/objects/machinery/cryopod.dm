@@ -211,9 +211,6 @@
 			var/datum/game_mode/distress/D = SSticker.mode
 			var/datum/job/rank = SSjob.GetJob(job)
 			D.latejoin_larvapoints -= rank.larvaworth //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
-			if(D.latejoin_larvapoints < 0)
-				D.latejoin_larvapoints = 0
-			to_chat(world, "[D.latejoin_larvapoints]")
 		if(J.title in GLOB.jobs_police)
 			dept_console = CRYO_SEC
 		else if(J.title in GLOB.jobs_medical)
