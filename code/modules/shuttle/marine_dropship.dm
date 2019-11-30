@@ -97,12 +97,12 @@
 /obj/docking_port/stationary/marine_dropship/hangar/one
 	name = "Theseus Hangar Pad One"
 	id = "alamo"
-	roundstart_template = /datum/map_template/shuttle/dropship/one
+	roundstart_template = /datum/map_template/shuttle/dropship_one
 
 /obj/docking_port/stationary/marine_dropship/hangar/two
 	name = "Theseus Hangar Pad Two"
 	id = "normandy"
-	roundstart_template = /datum/map_template/shuttle/dropship/two
+	roundstart_template = /datum/map_template/shuttle/dropship_two
 
 #define HIJACK_STATE_NORMAL "hijack_state_normal"
 #define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
