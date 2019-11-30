@@ -424,7 +424,7 @@
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"
-	desc = "An automatic revolver chambered in .357. Commonly issued to Colonial Marshals. It has a burst mode."
+	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Colonial Marshals. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex

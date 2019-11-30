@@ -8,6 +8,20 @@
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 	deploy_time_lock = 45 MINUTES
 
+	squads_max_number = 1
+
+	valid_job_types = list(
+		/datum/job/marine/standard = -1,
+		/datum/job/marine/engineer = 8,
+		/datum/job/marine/corpsman = 8,
+		/datum/job/marine/smartgunner = 4,
+		/datum/job/marine/specialist = 4,
+		/datum/job/marine/leader = 1,
+		/datum/job/medical/professor = 1,
+		/datum/job/civilian/synthetic = 1,
+		/datum/job/command/fieldcommander = 1
+	)
+
 	// Round end conditions
 	var/shuttle_landed = FALSE
 	var/planet_nuked = CRASH_NUKE_NONE
@@ -25,59 +39,25 @@
 	var/larva_check_interval = 0
 
 
-/datum/game_mode/crash/New()
-	. = ..()
-	// All marine roles, MD, Synth, and FC
-	valid_job_types = subtypesof(/datum/job/marine) + list(
-		/datum/job/medical/professor,
-		/datum/job/civilian/synthetic,
-		/datum/job/command/fieldcommander
-	)
-
-
-/datum/game_mode/crash/can_start()
+/datum/game_mode/crash/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
 	// Check if enough players have signed up for xeno & queen roles.
-	init_scales()
 	var/ruler = initialize_xeno_leader()
 	var/xenos = initialize_xenomorphs()
 
-
-	if(!ruler && !xenos) // we need at least 1
+	if(!ruler && !xenos && !bypass_checks) // we need at least 1
 		return FALSE
 
-/datum/game_mode/crash/proc/init_scales()
+
+/datum/game_mode/crash/initialize_scales()
+	. = ..()
+	if(!.)
+		return
 	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/crash_coefficient) * GLOB.ready_players)), xeno_required_num)
 
-	var/current_smartgunners = 0
-	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
-	var/current_specialists = 0
-	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
-
-	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
-	SL.total_positions = 1 // Force only one SL.
-
-	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
-	SG.total_positions = maximum_smartgunners
-
-	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
-	SP.total_positions = maximum_specialists
-
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		if(current_specialists >= maximum_specialists)
-			S.max_specialists = 0
-		else
-			S.max_specialists = 1
-			current_specialists++
-		if(current_smartgunners >= maximum_smartgunners)
-			S.max_smartgun = 0
-		else
-			S.max_smartgun = 1
-			current_smartgunners++
 
 /datum/game_mode/crash/pre_setup()
 	. = ..()
@@ -124,24 +104,6 @@
 	shuttle.crashing = TRUE
 	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
-
-
-/datum/game_mode/crash/setup()
-	SSjob.DivideOccupations()
-
-	// For each player that has an assigned squad set it to alpha
-	for(var/i in GLOB.new_player_list)
-		var/mob/new_player/player = i
-		if(player.ready && player.mind?.assigned_squad)
-			player.mind.assigned_squad = SSjob.squads[starting_squad]
-
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-	transfer_characters()	//transfer keys to the new mobs
-
-	return TRUE
 
 
 /datum/game_mode/crash/post_setup()
@@ -339,20 +301,11 @@
 	return HS.spawn_larva(xeno_candidate, mother)
 
 
-/datum/game_mode/crash/AttemptLateSpawn(mob/new_player/NP, rank)
-	// reset their squad to the correct squad for the gamemode.
-	if(rank in GLOB.jobs_marines)
-		NP.mind.assigned_squad = SSjob.squads[starting_squad]
+/datum/game_mode/crash/handle_late_spawn(mob/late_spawner)
+	latejoin_tally++
 
-	return ..()
-
-
-/datum/game_mode/crash/handle_late_spawn()
-	var/datum/game_mode/crash/GM = SSticker.mode
-	GM.latejoin_tally++
-
-	if(GM.latejoin_larva_drop && GM.latejoin_tally >= GM.latejoin_larva_drop)
-		GM.latejoin_tally -= GM.latejoin_larva_drop
+	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
+		latejoin_tally -= latejoin_larva_drop
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 
@@ -434,7 +387,7 @@
 /datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 

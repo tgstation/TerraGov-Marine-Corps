@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "10x27mm caseless"
+	name = "high velocity rifle bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	shrapnel_chance = 0
@@ -527,14 +527,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 4
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 8
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -544,20 +544,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.5
-	penetration = 20
+	penetration = 25
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
-	bonus_projectiles_amount = 4
+	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 30
+	damage = 35
 	damage_falloff = 4
 	penetration = 0
 
@@ -586,7 +586,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
-	name = "shotgun buckshot shell"
+	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_buckshot/spread
@@ -644,7 +644,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
-	name = ".410 buckshot"
+	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
@@ -666,7 +666,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 2
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
-	name = ".410 sabot"
+	name = "light shotgun sabot shell"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	shell_speed = 5
@@ -675,7 +675,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
-	name = ".410 tracker"
+	name = "light shotgun tracker round"
 	icon_state = "shotgun_slug"
 	hud_state = "shotgun_flechette"
 	shell_speed = 4
@@ -802,7 +802,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 
 /datum/ammo/bullet/turret/mini
-	name = "UA-580 10x20mm bullet"
+	name = "small caliber autocannon bullet"
 	damage = 35
 	penetration = 10
 

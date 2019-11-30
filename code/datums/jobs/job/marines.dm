@@ -190,6 +190,7 @@ You are also in charge of communicating with command and letting them know about
 	var/mob/living/carbon/human/H = C
 	if(!H.assigned_squad)
 		return
-	if(H.assigned_squad.squad_leader)
-		H.assigned_squad.demote_leader()
-	H.assigned_squad.promote_leader(H)
+	if(H.assigned_squad.squad_leader != H)
+		if(H.assigned_squad.squad_leader)
+			H.assigned_squad.demote_leader()
+		H.assigned_squad.promote_leader(H)
