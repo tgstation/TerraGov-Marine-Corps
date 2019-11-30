@@ -102,11 +102,11 @@
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))
 			PC.forceMove(src)
-		else
-			clamp_equipped++
+			continue
+		clamp_equipped++
 	if(clamp_equipped != 2)
 		unbuckle_mob(buckling_mob) //can't use the powerloader without both clamps equipped
-		CRASH("[src] buckled [buckling_mob] with clamp_equipped as [clamp_equipped]")
+		stack_trace("[src] buckled [buckling_mob] with clamp_equipped as [clamp_equipped]")
 
 /obj/vehicle/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
@@ -117,7 +117,7 @@
 	buckled_mob.drop_all_held_items() //drop the clamp when unbuckling
 
 
-/obj/vehicle/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
+/obj/vehicle/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = FALSE, silent) //check_loc needs to be FALSE here.
 	if(buckling_mob != user)
 		return FALSE
 	if(!ishuman(buckling_mob))
@@ -165,7 +165,9 @@
 			if(m != user)
 				continue
 			linked_powerloader.unbuckle_mob(user) //drop a clamp, you auto unbuckle from the powerloader.
-	else qdel(src)
+			break
+		return
+	qdel(src)
 
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)

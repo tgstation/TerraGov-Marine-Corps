@@ -5,7 +5,7 @@
 	density = TRUE
 	anchored = TRUE
 	animate_movement = FORWARD_STEPS
-	buckle_flags = CAN_BUCKLE
+	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	resistance_flags = XENO_DAMAGEABLE
 
 	var/on = FALSE
