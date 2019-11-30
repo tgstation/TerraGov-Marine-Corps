@@ -135,8 +135,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 
 	else if (href_list["escape"])
-
-		sleep(1200 SECONDS) //ten minutes
+		do_orbit_checks("escape")
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
 		//end the round, xeno minor.
 
 	updateUsrDialog()
@@ -148,9 +149,13 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return
 
 	if(can_change_orbit(current_orbit, direction))
+		if(direction == "escape")
+			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is preparing to leave orbit.<br><br>Secure all belongings and prepare for engine ignition."
+			priority_announce(message, title = "Retreat")
+			addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
+
 		var/message = "Prepare for orbital change in 10 seconds.<br><br>Moving [direction] the gravity well.<br><br>Secure all belongings and prepare for engine ignition."
 		priority_announce(message, title = "Orbit Change")
-		//shake people on the ship
 		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
@@ -180,6 +185,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return
 	changing_orbit = TRUE
 	engine_shudder()
+
+	if(direction == "escape")
+		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
 
 	//the bits at the end of the trip.
 	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
@@ -212,3 +220,15 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 			M.knock_down(3)
 		CHECK_TICK
 
+/obj/machinery/computer/navigation/proc/retreat()
+
+	if(isdistress(SSticker.mode))
+		var/datum/game_mode/distress/distress_mode = SSticker.mode
+		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
+			//Xenos got onto the ship before it fully got away.
+			return
+
+		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] has left the AO."
+		priority_announce(message, title = "Retreat")
+
+		distress_mode.round_stage = DISTRESS_MARINE_RETREAT

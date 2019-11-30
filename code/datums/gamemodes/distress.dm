@@ -1,5 +1,6 @@
 #define DISTRESS_MARINE_DEPLOYMENT 0
 #define DISTRESS_DROPSHIP_CRASHED 1
+#define DISTRESS_MARINE_RETREAT 2
 
 /datum/game_mode/infestation/distress
 	name = "Distress Signal"
@@ -116,6 +117,12 @@
 		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]")
 		round_finished = MODE_GENERIC_DRAW_NUKE
 		return TRUE
+	
+	if(round_stage == DISTRESS_MARINE_RETREAT)
+		message_admins("Round finished: [MODE_INFESTATION_DRAW_RETREAT]")
+		round_finished = MODE_INFESTATION_DRAW_RETREAT
+		return TRUE
+
 	if(!num_humans)
 		if(!num_xenos)
 			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]")
