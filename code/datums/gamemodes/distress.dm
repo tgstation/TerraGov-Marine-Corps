@@ -531,11 +531,9 @@
 /datum/game_mode/distress/handle_late_spawn(mob/living/late_spawner)
 	var/datum/job/job = SSjob.GetJob(late_spawner.job)
 	latejoin_larvapoints += job.larvaworth
-	to_chat(world, "[latejoin_larvapoints]")
 
 	if(latejoin_larvapoints >= latejoin_larvapoints_required)
 		latejoin_larvapoints -= latejoin_larvapoints_required
-		to_chat(world, "[latejoin_larvapoints]")
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 
