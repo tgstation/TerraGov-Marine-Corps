@@ -33,8 +33,8 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-	var/latejoin_larvapoints		= 0
-	var/latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
 
 	var/larva_check_interval = 0
 
@@ -150,6 +150,9 @@
 		return
 
 	if(world.time > larva_check_interval)
+		balance_scales()
+
+	/*if(world.time > larva_check_interval)
 		larva_check_interval = world.time + 1 MINUTES
 		var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		var/num_xenos = xeno_hive.get_total_xeno_number() - length(xeno_hive.get_ssd_xenos()) + xeno_hive.stored_larva
@@ -165,7 +168,7 @@
 		if(latejoin_larvapoints < 1)
 			return //Things are balanced, no burrowed needed
 		xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
-
+*/
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE

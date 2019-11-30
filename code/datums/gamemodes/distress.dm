@@ -20,8 +20,8 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
-	var/latejoin_larvapoints		= 0
-	var/latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in :198 for some reason
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in :198 for some reason
 	var/orphan_hive_timer
 
 
@@ -62,6 +62,7 @@
 
 /datum/game_mode/distress/post_setup()
 	. = ..()
+	balance_scales()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 
