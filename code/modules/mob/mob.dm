@@ -388,16 +388,6 @@
 			L.language_menu()
 
 
-/mob/MouseDrop(mob/M)
-	..()
-	if(M != usr) return
-	if(usr == src) return
-	if(!Adjacent(usr)) return
-	if(!ishuman(M) && !ismonkey(M)) return
-	if(!ishuman(src) && !ismonkey(src)) return
-	if(M.lying || M.incapacitated())
-		return
-	show_inv(M)
 /**
   * Handle the result of a click drag onto this mob
   *

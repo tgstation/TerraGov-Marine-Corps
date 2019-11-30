@@ -50,7 +50,7 @@
 	if(user.grab_state > GRAB_KILL)
 		return
 	user.changeNext_move(CLICK_CD_GRABBING)
-	if(!do_mob(user, victim, 2 SECONDS, target_display = BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || !user.pulling)
+	if(!do_mob(user, victim, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || !user.pulling)
 		return
 	user.advance_grab_state(victim)
 	if(user.grab_state == GRAB_NECK)
@@ -110,7 +110,7 @@
 		return FALSE
 	if(user.action_busy || !ishuman(user) || attacked != user.pulling)
 		return FALSE
-	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, attacked)) || !user.pulling)
+	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, attacked)) || !user.pulling)
 		return TRUE
 	user.advance_grab_state(attacked)
 	return TRUE
