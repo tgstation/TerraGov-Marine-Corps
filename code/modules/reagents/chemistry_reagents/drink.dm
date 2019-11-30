@@ -211,7 +211,7 @@
 
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
 	L.jitter(2)
-	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil)) 
+	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
 		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5) 
 	return ..() 
 
