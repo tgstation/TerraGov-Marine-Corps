@@ -787,6 +787,89 @@
 
 	return ..()
 
+
+/mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
+	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
+		//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
+		if(user == target && can_piggyback(target))
+			piggyback(target)
+			return
+		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
+		else if(user != target && can_be_firemanned(target))
+			fireman_carry(target)
+			return
+	return ..()
+
+//src is the user that will be carrying, target is the mob to be carried
+/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
+	return (istype(target) && target.stat == CONSCIOUS)
+
+/mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
+	return (ishuman(target) && !target.canmove)
+
+/mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
+	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		to_chat(src, "<span class='warning'>You can't fireman carry [target] while they're standing!</span>")
+		return
+	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
+	"<span class='notice'>You start to lift [target] onto your back...</span>")
+	if(!do_mob(src, target, 5 SECONDS))
+		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
+		return
+	//Second check to make sure they're still valid to be carried
+	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+
+/mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
+	if(!can_piggyback(target))
+		to_chat(target, "<span class='warning'>You can't piggyback ride [src] right now!</span>")
+		return
+	visible_message("<span class='notice'>[target] starts to climb onto [src]...</span>")
+	if(!do_mob(target, src, 1.5 SECONDS))
+		visible_message("<span class='warning'>[target] fails to climb onto [src]!</span>")
+		return
+	if(!can_piggyback(target))
+		return
+	if(target.incapacitated(restrained_flags = RESTRAINED_NECKGRAB) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		target.visible_message("<span class='warning'>[target] can't hang onto [src]!</span>")
+		return
+	buckle_mob(target, TRUE, TRUE, FALSE, 0, 2)
+
+/mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(!force)//humans are only meant to be ridden through piggybacking and special cases
+		return
+	if(!is_type_in_typecache(buckling_mob, can_ride_typecache))
+		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [src]...</span>")
+		return
+	buckle_lying = lying_buckle
+	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
+	if(target_hands_needed)
+		riding_datum.ride_check_rider_restrained = TRUE
+	if(buckled || (buckling_mob in buckled_mobs) || (LAZYLEN(buckled_mobs) >= max_buckled_mobs))
+		return
+	var/equipped_hands_self
+	var/equipped_hands_target
+	if(hands_needed)
+		equipped_hands_self = riding_datum.equip_buckle_inhands(src, hands_needed, buckling_mob)
+	if(target_hands_needed)
+		equipped_hands_target = riding_datum.equip_buckle_inhands(buckling_mob, target_hands_needed)
+
+	if(hands_needed || target_hands_needed)
+		if(hands_needed && !equipped_hands_self)
+			visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
+			return
+		else if(target_hands_needed && !equipped_hands_target)
+			buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+			return
+
+	stop_pulling()
+	riding_datum.handle_vehicle_layer()
+	return ..()
+
+
 ///get_eye_protection()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/get_eye_protection()

@@ -175,7 +175,8 @@
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
-	roller_buckled?.unbuckle()
+	if(roller_buckled)
+		roller_buckled.unbuckle_bodybag()
 	return ..()
 
 

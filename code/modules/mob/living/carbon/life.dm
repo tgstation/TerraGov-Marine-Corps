@@ -195,6 +195,9 @@
 	if(!need_breathe())
 		return
 
+	if(pulledby && pulledby.grab_state >= GRAB_KILL)
+		Losebreath(3)
+
 	if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
 		Losebreath(1, TRUE)
 	else

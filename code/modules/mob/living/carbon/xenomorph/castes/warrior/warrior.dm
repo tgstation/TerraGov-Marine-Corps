@@ -65,9 +65,9 @@
 
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
-	grab_level = GRAB_NECK
+	setGrabState(GRAB_NECK)
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .resisted_against)
 	L.drop_all_held_items()
 	L.Knockdown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
@@ -75,7 +75,8 @@
 	return TRUE
 
 
-/mob/living/carbon/xenomorph/warrior/proc/resisted_against(datum/source, mob/living/victim)
+/mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
+	var/mob/living/victim = source
 	victim.do_resist_grab()
 
 

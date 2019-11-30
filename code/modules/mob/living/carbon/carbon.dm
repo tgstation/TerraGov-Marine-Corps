@@ -222,7 +222,7 @@
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(ismob(G.grabbed_thing))
-			if(grab_level >= GRAB_NECK)
+			if(grab_state >= GRAB_NECK)
 				var/mob/living/M = G.grabbed_thing
 				spin_throw = FALSE //thrown mobs don't spin
 				thrown_thing = M
@@ -235,7 +235,14 @@
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
-
+	else if(istype(I, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/riding_item = I
+		spin_throw = FALSE
+		thrown_thing = riding_item.rider
+		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+		var/turf/end_T = get_turf(target)
+		if(start_T && end_T)
+			log_combat(usr, thrown_thing, "thrown", addition = "from tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)] with the target tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]")
 	else //real item in hand, not a grab
 		thrown_thing = I
 		dropItemToGround(I, TRUE)

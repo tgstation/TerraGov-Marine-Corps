@@ -330,8 +330,8 @@
 		icon_state = icon_opened
 
 
-/obj/structure/closet/resisted_against(datum/source, mob/living/resister)
-	container_resist(resister)
+/obj/structure/closet/resisted_against(datum/source)
+	container_resist(source)
 
 
 /obj/structure/closet/proc/container_resist(mob/living/user)
@@ -435,7 +435,7 @@
 	destination.mob_size_counter += mob_size
 	stop_pulling()
 	smokecloak_off()
-	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/structure/closet/.proc/resisted_against)
+	destination.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /obj/structure/closet/resisted_against)
 	RegisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED, .proc/on_closet_dump)
 	return TRUE
 

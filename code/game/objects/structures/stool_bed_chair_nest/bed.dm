@@ -12,8 +12,8 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	can_buckle = TRUE
-	buckle_lying = TRUE
+	buckle_flags = CAN_BUCKLE
+	buckle_lying = 90
 	throwpass = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 100
@@ -29,30 +29,33 @@
 
 /obj/structure/bed/update_icon()
 	if(base_bed_icon)
-		if(buckled_mob || buckled_bodybag)
+		if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 			icon_state = "[base_bed_icon]_up"
 		else
 			icon_state = "[base_bed_icon]_down"
 
 obj/structure/bed/Destroy()
-	if(buckled_mob || buckled_bodybag)
-		unbuckle()
-	. = ..()
+	if(buckled_bodybag)
+		unbuckle_bodybag()
+	return ..()
 
-/obj/structure/bed/afterbuckle(mob/M)
-	. = ..()
-	if(. && buckled_mob == M)
-		M.pixel_y = buckling_y
-		M.old_y = buckling_y
-		if(base_bed_icon)
-			density = TRUE
-	else
-		M.pixel_y = initial(buckled_mob.pixel_y)
-		M.old_y = initial(buckled_mob.pixel_y)
-		if(base_bed_icon)
-			density = FALSE
 
+/obj/structure/bed/post_buckle_mob(mob/buckling_mob)
+	. = ..()
+	buckling_mob.pixel_y = buckling_y
+	buckling_mob.old_y = buckling_y
+	if(base_bed_icon)
+		density = TRUE
 	update_icon()
+
+/obj/structure/bed/post_unbuckle_mob(mob/buckled_mob)
+	. = ..()
+	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+	buckled_mob.old_y = initial(buckled_mob.pixel_y)
+	if(base_bed_icon)
+		density = FALSE
+	update_icon()
+
 
 //Unsafe proc
 /obj/structure/bed/proc/do_buckle_bodybag(obj/structure/closet/bodybag/B, mob/user)
@@ -71,30 +74,24 @@ obj/structure/bed/Destroy()
 	if(pulledby)
 		B.set_glide_size(pulledby.glide_size)
 
-/obj/structure/bed/unbuckle(mob/user)
-	if(buckled_bodybag)
-		buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
-		buckled_bodybag.roller_buckled = null
-		buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
-		buckled_bodybag.reset_glide_size()
-		buckled_bodybag = null
-		density = FALSE
-		update_icon()
-	else
-		..()
 
-/obj/structure/bed/manual_unbuckle(mob/user)
-	if(buckled_bodybag)
-		unbuckle()
-		return TRUE
-	else
-		. = ..()
+/obj/structure/bed/proc/unbuckle_bodybag(mob/user)
+	if(!buckled_bodybag)
+		return
+	buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
+	buckled_bodybag.roller_buckled = null
+	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
+	buckled_bodybag.reset_glide_size()
+	buckled_bodybag = null
+	density = FALSE
+	update_icon()
+
 
 //Trying to buckle a mob
-/obj/structure/bed/buckle_mob(mob/M, mob/user)
+/obj/structure/bed/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(buckled_bodybag)
-		return
-	..()
+		return FALSE
+	return ..()
 
 
 /obj/structure/bed/Move(NewLoc, direct)
@@ -113,20 +110,20 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/roller/CanPass(atom/movable/mover, turf/target)
 	if(mover == buckled_bodybag)
 		return TRUE
-	. = ..()
+	return ..()
 
 /obj/structure/bed/MouseDrop_T(atom/dropping, mob/user)
-	if(accepts_bodybag && !buckled_bodybag && !buckled_mob && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
+	if(accepts_bodybag && !buckled_bodybag && !LAZYLEN(buckled_mobs) && istype(dropping,/obj/structure/closet/bodybag) && ishuman(user))
 		var/obj/structure/closet/bodybag/B = dropping
 		if(!B.roller_buckled && !B.anchored)
 			do_buckle_bodybag(B, user)
 			return TRUE
 	else
-		. = ..()
+		return ..()
 
 /obj/structure/bed/MouseDrop(atom/over_object)
 	. = ..()
-	if(foldabletype && !buckled_mob && !buckled_bodybag)
+	if(foldabletype && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
 		if(ishuman(over_object))
 			var/mob/living/carbon/human/H = over_object
 			if(H == usr && !H.incapacitated() && Adjacent(H) && in_range(src, over_object))
@@ -176,7 +173,7 @@ obj/structure/bed/Destroy()
 		new buildstacktype(loc, buildstackamount)
 		qdel(src)
 
-	else if(istype(I, /obj/item/grab) && !buckled_mob)
+	else if(istype(I, /obj/item/grab) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
 		var/obj/item/grab/G = I
 		if(!ismob(G.grabbed_thing))
 			return
@@ -214,18 +211,6 @@ obj/structure/bed/Destroy()
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
-
-/obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/roller_holder) && !buckled_bodybag)
-		if(buckled_mob || buckled_bodybag)
-			manual_unbuckle()
-			return
-
-		visible_message("<span class='notice'>[user] collapses [name].</span>")
-		new /obj/item/roller(loc)
-		qdel(src)
 
 
 /obj/item/roller
@@ -326,9 +311,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	radio = new(src)
 
-/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/M)
-	if(buckled_mob || buckled_bodybag)
-		unbuckle()
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/xenomorph/xeno_attacker)
+	if(buckled_bodybag)
+		unbuckle_bodybag()
+	for(var/m in buckled_mobs)
+		user_unbuckle_mob(m, xeno_attacker, TRUE)
 
 /obj/structure/bed/medevac_stretcher/Destroy()
 	QDEL_NULL(radio)
@@ -347,7 +334,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(stretcher_activated)
 		overlays += image("beacon_active_[density ? "up":"down"]")
 
-	if(buckled_mob || buckled_bodybag)
+	if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 		overlays += image("icon_state"="stretcher_box","layer"=LYING_MOB_LAYER + 0.1)
 
 
@@ -363,7 +350,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!ishuman(user))
 		return
 
-	if(user == buckled_mob)
+	if(user in buckled_mobs)
 		to_chat(user, "<span class='warning'>You can't reach the beacon activation button while buckled to [src].</span>")
 		return
 
@@ -386,7 +373,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 			to_chat(user, "<span class='warning'>[src] must be in the open or under a glass roof.</span>")
 			return
 
-		if(buckled_mob || buckled_bodybag)
+		if(LAZYLEN(buckled_mobs) || buckled_bodybag)
 			stretcher_activated = TRUE
 			GLOB.activated_medevac_stretchers += src
 			to_chat(user, "<span class='notice'>You activate [src]'s beacon.</span>")
@@ -413,7 +400,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, "<span class='warning'>[src]'s bluespace engine is still recharging; it will be ready in [round(last_teleport - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(user == buckled_mob)
+	if(user in buckled_mobs)
 		to_chat(user, "<span class='warning'>You can't reach the teleportation activation button while buckled to [src].</span>")
 		return
 
@@ -448,15 +435,14 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		visible_message("<span class='warning'>[src]'s safeties kick in before displacement as it fails to detect a powered, linked, and planted medvac beacon.</span>")
 		return
 	var/mob/living/M
-	if(!buckled_mob && !buckled_bodybag)
+	if(LAZYLEN(buckled_mobs))
+		M = buckled_mobs[1]
+	else if(buckled_bodybag)
+		M = locate(/mob/living) in buckled_bodybag.contents
+	else
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
 		return
-	else if(buckled_mob)
-		M = buckled_mob
-		buckled_mob.loc = get_turf(linked_beacon)
-	else if(buckled_bodybag)
-		M = locate(/mob/living) in buckled_bodybag.contents
 	if(!M) //We need a mob to teleport or no deal
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
@@ -464,12 +450,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
 	if(buckled_bodybag)
-		buckled_bodybag.loc = get_turf(linked_beacon)
-	else if(buckled_mob)
-		buckled_mob.loc = get_turf(linked_beacon)
-
-	unbuckle()
-
+		unbuckle_bodybag()
+		buckled_bodybag.forceMove(get_turf(linked_beacon))
+	else
+		unbuckle_mob(M)
+		M.forceMove(get_turf(linked_beacon))
 
 	//Pretty SFX
 	var/datum/effect_system/spark_spread/spark_system
@@ -500,8 +485,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	else if(istype(I, /obj/item/healthanalyzer)) //Allows us to use the analyzer on the occupant without taking him out.
 		var/mob/living/occupant
-		if(buckled_mob)
-			occupant = buckled_mob
+		if(LAZYLEN(buckled_mobs))
+			occupant = buckled_mobs[1]
 		else if(buckled_bodybag)
 			occupant = locate(/mob/living) in buckled_bodybag.contents
 		var/obj/item/healthanalyzer/J = I
@@ -521,8 +506,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(world.time < last_teleport)
 		details +=("Its bluespace engine is currently recharging. <b>The interface displays: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</b></br>")
 
-	if(buckled_mob)
-		details +=("It contains [buckled_mob].</br>")
+	if(LAZYLEN(buckled_mobs))
+		details +=("It contains [buckled_mobs[1]].</br>")
 	else if(buckled_bodybag)
 		var/mob/living/M = locate(/mob/living) in buckled_bodybag.contents
 		details +=("It contains [M].</br>")
@@ -663,15 +648,3 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(!A || !isarea(A))
 		return FALSE
 	return(A.powered(1))
-
-/obj/structure/bed/roller/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/roller_holder) && !buckled_bodybag)
-		if(buckled_mob || buckled_bodybag)
-			manual_unbuckle()
-			return
-
-		visible_message("<span class='notice'>[user] collapses [name].</span>")
-		new /obj/item/roller(loc)
-		qdel(src)

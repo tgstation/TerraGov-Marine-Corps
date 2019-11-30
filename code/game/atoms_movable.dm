@@ -26,12 +26,22 @@
 	var/verb_yell = "yells"
 	var/speech_span
 
+	var/grab_state = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
+	var/atom/movable/buckled // movable atom we are buckled to
+	var/list/mob/living/buckled_mobs // mobs buckled to this mob
+	var/buckle_flags = NONE
+	var/max_buckled_mobs = 1
+	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying = buckle_lying if != -1
+
 	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
+
+	if(LAZYLEN(buckled_mobs))
+		unbuckle_all_mobs(force = TRUE)
 
 	if(throw_source)
 		throw_source = null
@@ -197,6 +207,8 @@
 	last_move = direct
 	last_move_time = world.time
 	setDir(direct)
+	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
+		return FALSE
 
 
 /atom/movable/Bump(atom/A)
@@ -354,6 +366,8 @@
 	if(!target || !src)
 		return FALSE
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW, target, range, thrower, spin) & COMPONENT_CANCEL_THROW)
+		return
 
 	if(spin)
 		animation_spin(5, 1)
@@ -446,6 +460,17 @@
 		throwing = FALSE
 		thrower = null
 		throw_source = null
+
+
+/atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		if(buckled_mob.Move(NewLoc, direct))
+			continue
+		forceMove(buckled_mob.loc)
+		last_move = buckled_mob.last_move
+		return FALSE
+	return TRUE
 
 
 //called when a mob tries to breathe while inside us.
@@ -706,10 +731,13 @@
 	if(!pulling)
 		return FALSE
 
+	setGrabState(GRAB_PASSIVE)
+
 	pulling.pulledby = null
 	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
 	if(ismob(pulling))
 		var/mob/pulled_mob = pulling
+		pulled_mob.update_canmove() //Mob gets up if it was lyng down in a chokehold.
 		if(pulled_mob.buckled)
 			pulled_mob.buckled.reset_glide_size()
 		else
@@ -775,7 +803,10 @@
 	. = ..()
 	if(!.)
 		return
-	if(buckled_mob && buckled_mob.glide_size != target)
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		if(buckled_mob.glide_size == target)
+			continue
 		buckled_mob.set_glide_size(target)
 
 /obj/structure/bed/set_glide_size(target = 8)
@@ -832,3 +863,14 @@
 				return TRUE
 			return FALSE
 	return ..()
+
+
+/atom/movable/proc/resisted_against(datum/source) //COMSIG_LIVING_DO_RESIST
+	var/mob/resisting_mob = source
+	if(resisting_mob.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	user_unbuckle_mob(resisting_mob, resisting_mob)
+
+
+/atom/movable/proc/setGrabState(newstate)
+	grab_state = newstate

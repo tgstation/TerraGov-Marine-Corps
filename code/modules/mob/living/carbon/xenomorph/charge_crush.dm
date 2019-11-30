@@ -279,7 +279,7 @@
 
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
-			crushed_living.buckled.unbuckle()
+			crushed_living.buckled.unbuckle_mob(crushed_living)
 		animation_flash_color(crushed_living)
 
 		if(precrush > 0)
@@ -392,9 +392,17 @@
 			charge_datum.speed_down(2)
 			return
 
-	if(buckled_mob)
-		unbuckle()
+	for(var/m in buckled_mobs)
+		unbuckle_mob(m)
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
+
+
+/obj/structure/bed/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_bodybag)
+		unbuckle_bodybag()
 
 
 /mob/living/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)

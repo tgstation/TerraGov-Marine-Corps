@@ -5,6 +5,7 @@
 	maxHealth = 20
 	status_flags = CANPUSH
 	gender = PLURAL
+	buckle_flags = NONE
 
 	//Icons
 	var/icon_living = ""

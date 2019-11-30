@@ -328,10 +328,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return
 
 
-/mob/proc/incapacitated(ignore_restrained)
-	return (stat || (!ignore_restrained && restrained()))
-
-
+/mob/proc/incapacitated(ignore_restrained, restrained_flags)
+	return (stat || (!ignore_restrained && restrained(restrained_flags)))
 
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)

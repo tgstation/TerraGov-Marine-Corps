@@ -8,9 +8,6 @@
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-		//effects of being grabbed aggressively by another mob
-		if(pulledby && pulledby.grab_level)
-			handle_grabbed()
 	else
 		SSmobs.stop_processing(src)
 

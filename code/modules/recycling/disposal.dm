@@ -94,7 +94,7 @@
 
 	var/obj/item/grab/G = I
 	if(istype(G)) //Handle grabbed mob
-		if(!ismob(G.grabbed_thing) || user.grab_level < GRAB_AGGRESSIVE)
+		if(!ismob(G.grabbed_thing) || user.grab_state < GRAB_AGGRESSIVE)
 			return
 
 		var/mob/GM = G.grabbed_thing

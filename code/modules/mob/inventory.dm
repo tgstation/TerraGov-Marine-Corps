@@ -60,19 +60,21 @@
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/W)
+/mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W))
 		return TRUE
 	if(put_in_inactive_hand(W))
 		return TRUE
-	else
-		W.forceMove(get_turf(src))
-		W.layer = initial(W.layer)
-		W.plane = initial(W.plane)
-		W.dropped(src)
+	if(del_on_fail)
+		qdel(W)
 		return FALSE
+	W.forceMove(get_turf(src))
+	W.layer = initial(W.layer)
+	W.plane = initial(W.plane)
+	W.dropped(src)
+	return FALSE
 
 
 /mob/proc/drop_item_v()		//this is dumb.

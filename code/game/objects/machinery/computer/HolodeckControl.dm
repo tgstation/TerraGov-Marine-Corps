@@ -28,7 +28,7 @@
 			return
 
 		var/mob/living/L = G.grabbed_thing
-		if(user.grab_level < GRAB_AGGRESSIVE)
+		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
@@ -98,7 +98,7 @@
 			return
 
 		var/mob/living/L = G.grabbed_thing
-		if(user.grab_level < GRAB_AGGRESSIVE)
+		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)

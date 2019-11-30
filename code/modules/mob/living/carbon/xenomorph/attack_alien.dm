@@ -32,6 +32,7 @@
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",

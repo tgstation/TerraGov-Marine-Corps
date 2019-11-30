@@ -102,3 +102,5 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+#define RIDING_OFFSET_ALL "ALL"
