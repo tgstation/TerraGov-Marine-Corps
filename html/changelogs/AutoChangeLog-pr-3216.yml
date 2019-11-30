@@ -1,6 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added \"explosive\" and \"flame\" weapon type codexes and applied to their respective weapons."
-  - tweak: "Changed most of the gun descriptions, even a few names."
-  - tweak: "Changed the recent projectile names."
