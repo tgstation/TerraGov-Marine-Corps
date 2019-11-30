@@ -148,7 +148,10 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return
 
 	if(can_change_orbit(current_orbit, direction))
-		do_change_orbit(current_orbit, direction)
+		var/message = "Prepare for orbital change in 10 seconds.<br><br>Moving [direction] the gravity well.<br><br>Secure all belongings and prepare for engine ignition."
+		priority_announce(message, title = "Orbit Change")
+		//shake people on the ship
+		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
 	if(cooldown)
@@ -176,8 +179,11 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	else
 		return
 	changing_orbit = TRUE
+	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
+ 	addtimer(CALLBACK(src, .proc/priority_announce, message, title = "Orbit Change"), 290 SECONDS)
+	//shake people on the ship
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
-
+	
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
 	if(direction == "UP")
 		current_orbit++
