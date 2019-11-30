@@ -153,8 +153,7 @@
 		larva_check_interval = world.time + 1 MINUTES
 		var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		var/num_xenos = xeno_hive.get_total_xeno_number() - length(xeno_hive.get_ssd_xenos()) + xeno_hive.stored_larva
-		var/total_jobworth = get_total_joblarvaworth()
-		latejoin_larvapoints = (total_jobworth - (num_xenos * latejoin_larvapoints_required)) / latejoin_larvapoints_required
+		latejoin_larvapoints = (get_total_joblarvaworth() - (num_xenos * latejoin_larvapoints_required)) / latejoin_larvapoints_required
 		if(!num_xenos)
 			if(!length(GLOB.xeno_resin_silos))
 				check_finished(TRUE)
