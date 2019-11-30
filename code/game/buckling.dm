@@ -1,9 +1,13 @@
 //Interaction
-/atom/movable/proc/mouse_buckle_handling(mob/living/buckling_mob, mob/living/user)
-	if(user_buckle_mob(buckling_mob, user))
+/atom/movable/proc/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
+	if(isliving(dropping))
+		. = dropping
+	else if(isgrabitem(dropping))
+		var/obj/item/grab/grab_item = dropping
+		if(isliving(grab_item.grabbed_thing))
+			. = grab_item.grabbed_thing
+	if(. && user_buckle_mob(., user))
 		return TRUE
-	return FALSE
-
 
 //procs that handle the actual buckling and unbuckling
 /atom/movable/proc/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
@@ -124,7 +128,7 @@
 		if(buckled_mob == user)
 			buckled_mob.visible_message(
 				"<span class='notice'>[buckled_mob] unbuckled [buckled_mob.p_them()]self from [src].</span>",
-				"<span class='notice'>[user] unbuckles you from [src].</span>",
+				"<span class='notice'>You unbuckle yourself from [src].</span>",
 				"<span class='notice'>You hear metal clanking</span>")
 		else
 			var/by_user = user ? " by [user]" : ""

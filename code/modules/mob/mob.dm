@@ -388,7 +388,6 @@
 			L.language_menu()
 
 
-
 /mob/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
@@ -399,6 +398,21 @@
 	if(M.lying || M.incapacitated())
 		return
 	show_inv(M)
+/**
+  * Handle the result of a click drag onto this mob
+  *
+  * For mobs this just shows the inventory
+  */
+/mob/MouseDrop_T(atom/dropping, atom/user)
+	. = ..()
+	if(.)
+		return
+	if(ismob(dropping) && !isxeno(dropping) && dropping != user)
+		var/mob/dragged = dropping
+		dragged.show_inv(user)
+
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
+	return
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)

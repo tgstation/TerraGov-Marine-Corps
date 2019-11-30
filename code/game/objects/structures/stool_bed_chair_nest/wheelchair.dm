@@ -3,6 +3,7 @@
 	desc = "You sit in this. Either by will or force."
 	icon_state = "wheelchair"
 	anchored = FALSE
+	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //pulling something on wheels is easy
 	var/bloodiness = 0
 	var/move_delay = 6

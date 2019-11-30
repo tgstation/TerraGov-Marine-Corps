@@ -17,16 +17,14 @@
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
 	if(dropping.flags_atom & NOINTERACT)
-		return FALSE
-	return TRUE
+		return TRUE //Already handled
 
 /atom/movable/MouseDrop_T(atom/dropping, mob/user)
 	. = ..()
-	if(!.)
+	if(.)
 		return
-	if(buckle_flags & CAN_BUCKLE && isliving(dropping) && isliving(user))
+	if(buckle_flags & CAN_BUCKLE && isliving(user))
 		return mouse_buckle_handling(dropping, user)
-
 
 /client/MouseDown(atom/object, turf/location, control, params)
 	if(!control)

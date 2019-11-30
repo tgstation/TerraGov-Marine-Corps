@@ -148,6 +148,7 @@
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
+	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)

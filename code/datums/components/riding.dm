@@ -245,13 +245,14 @@
 	if(!silent)
 		user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>",
 			"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
+	unequip_buckle_inhands(AM)
 	unequip_buckle_inhands(user)
 
 
 /datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override)
 	var/amount_equipped = 0
 	for(var/i in 1 to amount_required)
-		var/obj/item/riding_offhand/inhand = new /obj/item/riding_offhand(user, riding_target_override ? riding_target_override : user, parent)
+		var/obj/item/riding_offhand/inhand = new /obj/item/riding_offhand(user, riding_target_override ? riding_target_override : user)
 		if(!user.put_in_hands(inhand, TRUE))
 			break
 		amount_equipped++
@@ -261,11 +262,9 @@
 	return FALSE
 
 /datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)
-	var/atom/movable/AM = parent
 	for(var/obj/item/riding_offhand/O in user.contents)
-		if(O.parent != AM)
-			CRASH("RIDING OFFHAND ON WRONG MOB")
-			continue
+		if(O.parent != user)
+			stack_trace("RIDING OFFHAND ON WRONG MOB")
 		if(O.selfdeleting)
 			continue
 		qdel(O)
@@ -283,9 +282,9 @@
 	var/mob/living/parent
 	var/selfdeleting = FALSE
 
-/obj/item/riding_offhand/Initialize(mapload, rider, parent)
+/obj/item/riding_offhand/Initialize(mapload, rider)
 	. = ..()
-	src.parent = parent
+	parent = loc
 	src.rider = rider
 
 /obj/item/riding_offhand/Destroy()

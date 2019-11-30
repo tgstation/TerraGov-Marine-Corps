@@ -788,22 +788,17 @@
 	return ..()
 
 
-/mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
-	if(pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
-		//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
-		if(user == target && can_piggyback(target))
-			piggyback(target)
-			return
+/mob/living/carbon/human/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
+	. = ..()
+	if(!isliving(.))
+		return
+	if(pulling == . && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS && user != . && can_be_firemanned(.))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		else if(user != target && can_be_firemanned(target))
-			fireman_carry(target)
-			return
-	return ..()
+		fireman_carry(.)
+		return TRUE
+	return FALSE
 
 //src is the user that will be carrying, target is the mob to be carried
-/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/target)
-	return (istype(target) && target.stat == CONSCIOUS)
-
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
 	return (ishuman(target) && !target.canmove)
 
@@ -813,28 +808,13 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	if(!do_mob(src, target, 5 SECONDS))
+	if(!do_mob(src, target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
 	//Second check to make sure they're still valid to be carried
 	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
-
-/mob/living/carbon/human/proc/piggyback(mob/living/carbon/target)
-	if(!can_piggyback(target))
-		to_chat(target, "<span class='warning'>You can't piggyback ride [src] right now!</span>")
-		return
-	visible_message("<span class='notice'>[target] starts to climb onto [src]...</span>")
-	if(!do_mob(target, src, 1.5 SECONDS))
-		visible_message("<span class='warning'>[target] fails to climb onto [src]!</span>")
-		return
-	if(!can_piggyback(target))
-		return
-	if(target.incapacitated(restrained_flags = RESTRAINED_NECKGRAB) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
-		target.visible_message("<span class='warning'>[target] can't hang onto [src]!</span>")
-		return
-	buckle_mob(target, TRUE, TRUE, FALSE, 0, 2)
 
 /mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases

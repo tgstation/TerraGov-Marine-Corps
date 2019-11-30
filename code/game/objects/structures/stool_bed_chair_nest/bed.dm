@@ -12,7 +12,7 @@
 	desc = "A mattress seated on a rectangular metallic frame. This is used to support a lying person in a comfortable manner, notably for regular sleep. Ancient technology, but still useful."
 	icon_state = "bed"
 	icon = 'icons/obj/objects.dmi'
-	buckle_flags = CAN_BUCKLE
+	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	buckle_lying = 90
 	throwpass = TRUE
 	resistance_flags = XENO_DAMAGEABLE
@@ -211,6 +211,7 @@ obj/structure/bed/Destroy()
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "roller_down"
 	anchored = FALSE
+	buckle_flags = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
 	buckling_y = 6
 	foldabletype = /obj/item/roller

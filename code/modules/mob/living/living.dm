@@ -569,14 +569,13 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || buckled?.buckle_lying > 0)
+	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
-		if(!lying)
-			if(buckled?.buckle_lying)
-				lying = buckled.buckle_lying
-			else
-				lying = pick(90, 270)
+		if(buckled && buckled.buckle_lying != -1)
+			lying = buckled.buckle_lying //Might not actually be laying down, like with chairs, but the rest of the logic applies.
+		else if(!lying)
+			lying = pick(90, 270)
 	else if(lying)
 		lying = 0
 
