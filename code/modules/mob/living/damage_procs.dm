@@ -73,7 +73,7 @@
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)
-			var/rad_protection = getarmor(null, "rad")/100
+			var/rad_protection = getarmor(null, "rad") * 0.01
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter

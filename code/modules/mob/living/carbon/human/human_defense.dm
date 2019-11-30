@@ -53,7 +53,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			#ifdef DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
-	return ( round(armorval/max(total, 1)*0.01,0.01) )
+	return round(armorval / max(total, 1), 1)
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
