@@ -640,6 +640,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
+	flags_item_map_variant = NONE
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
