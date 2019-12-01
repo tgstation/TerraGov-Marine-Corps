@@ -3,7 +3,7 @@
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	amount_grown = 0
-	max_grown = 100
+	max_grown = 10
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8

@@ -27,7 +27,7 @@
 	max_health = 280
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/xenomorph/carrier
 
@@ -78,7 +78,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 250
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 17, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
@@ -109,7 +109,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 300
 
 	// *** Defense *** //
 	armor = list("melee" = 38, "bullet" = 19, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
@@ -140,7 +140,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 350
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)

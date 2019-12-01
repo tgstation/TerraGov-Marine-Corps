@@ -24,8 +24,8 @@
 	max_health = 180
 
 	// *** Evolution *** //
-	evolution_threshold = 200
-	upgrade_threshold = 200
+	evolution_threshold = 100
+	upgrade_threshold = 100
 
 	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
@@ -79,7 +79,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 150
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 7, "acid" = 15)
@@ -112,7 +112,7 @@
 	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
@@ -145,7 +145,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 250
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 15, "acid" = 20)
