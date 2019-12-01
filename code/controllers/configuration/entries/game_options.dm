@@ -112,7 +112,7 @@
 	min_val = 1
 
 /datum/config_entry/number/crash_larvapoints_required
-	config_entry_value = 10
+	config_entry_value = 9
 	min_val = 1
 
 /datum/config_entry/number/distress_larvapoints_required
