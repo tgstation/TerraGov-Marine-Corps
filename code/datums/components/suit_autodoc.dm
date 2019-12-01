@@ -23,6 +23,25 @@
 	var/list/tox_chems
 	var/list/pain_chems
 
+	var/static/list/default_burn_chems = list(
+		/datum/reagent/medicine/kelotane,
+		/datum/reagent/medicine/tricordrazine)
+	var/static/list/default_oxy_chems = list(
+		/datum/reagent/medicine/dexalinplus,
+		/datum/reagent/medicine/inaprovaline,
+		/datum/reagent/medicine/tricordrazine)
+	var/static/list/default_brute_chems = list(
+		/datum/reagent/medicine/bicaridine,
+		/datum/reagent/medicine/quickclot,
+		/datum/reagent/medicine/tricordrazine)
+	var/static/list/default_tox_chems = list(
+		/datum/reagent/medicine/dylovene,
+		/datum/reagent/medicine/spaceacillin,
+		/datum/reagent/medicine/tricordrazine)
+	var/static/list/default_pain_chems = list(
+		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/tramadol)
+
 	var/datum/action/suit_autodoc_toggle/toggle_action
 	var/datum/action/suit_autodoc_scan/scan_action
 	var/datum/action/suit_autodoc_configure/configure_action
@@ -37,39 +56,13 @@
 	analyzer = new
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
-	if(islist(burn_chems))
-		src.burn_chems = burn_chems
-	else
-		src.burn_chems = list(
-			/datum/reagent/medicine/kelotane,
-			/datum/reagent/medicine/tricordrazine)
-	if(islist(oxy_chems))
-		src.oxy_chems = oxy_chems
-	else
-		src.oxy_chems = list(
-			/datum/reagent/medicine/dexalinplus,
-			/datum/reagent/medicine/inaprovaline,
-			/datum/reagent/medicine/tricordrazine)
-	if(islist(brute_chems))
-		src.brute_chems = brute_chems
-	else
-		src.brute_chems = list(
-			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/quickclot,
-			/datum/reagent/medicine/tricordrazine)
-	if(islist(tox_chems))
-		src.tox_chems = tox_chems
-	else
-		src.tox_chems = list(
-			/datum/reagent/medicine/dylovene,
-			/datum/reagent/medicine/spaceacillin,
-			/datum/reagent/medicine/tricordrazine)
-	if(islist(pain_chems))
-		src.pain_chems = pain_chems
-	else
-		src.pain_chems = list(
-			/datum/reagent/medicine/oxycodone,
-			/datum/reagent/medicine/tramadol)
+
+	src.burn_chems = burn_chems || default_burn_chems
+	src.oxy_chems = oxy_chems || default_oxy_chems
+	src.brute_chems = brute_chems || default_brute_chems
+	src.tox_chems = tox_chems || default_tox_chems
+	src.pain_chems = pain_chems || default_pain_chems
+	
 	if(!isnull(overdose_threshold_mod))
 		src.overdose_threshold_mod = overdose_threshold_mod
 
