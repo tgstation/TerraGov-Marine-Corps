@@ -100,7 +100,7 @@
 
 	var/b_loss = null
 	var/f_loss = null
-	var/armor = max(0, 1 - getarmor(null, "bomb"))
+	var/armor = max(0, 1 - (getarmor(null, "bomb") * 0.01))
 	switch(severity)
 		if(1)
 			b_loss += rand(160, 200) * armor	//Probably instant death
