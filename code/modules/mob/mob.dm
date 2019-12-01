@@ -415,14 +415,18 @@
 	if(throwing || incapacitated())
 		return FALSE
 
-	AM.add_fingerprint(src, "pull")
-
 	if(pulling)
 		var/pulling_old = pulling
 		stop_pulling()
 		// Are we pulling the same thing twice? Just stop pulling.
 		if(pulling_old == AM)
 			return FALSE
+	else if(l_hand && r_hand)
+		if(!suppress_message)
+			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+		return FALSE
+
+	AM.add_fingerprint(src, "pull")
 
 	changeNext_move(CLICK_CD_GRABBING)
 
