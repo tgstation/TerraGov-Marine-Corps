@@ -188,6 +188,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 	if(direction == "escape")
 		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
+		return
 
 	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
 	addtimer(CALLBACK(src, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
