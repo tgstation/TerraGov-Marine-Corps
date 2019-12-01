@@ -131,7 +131,6 @@
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
 /datum/keybinding/xeno/create_bomb
-	key = "Unbound"
 	name = "create_bomb"
 	full_name = "Boiler: Create Bombard Ammo"
 	description = ""

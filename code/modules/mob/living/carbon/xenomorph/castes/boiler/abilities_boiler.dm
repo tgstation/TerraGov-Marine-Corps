@@ -225,13 +225,11 @@
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		GLOB.round_statistics.boiler_acid_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
-		X.corrosive_ammo--
-		X.xeno_caste.corrosive_ammo--
+		corrosive_ammo--
 	else
 		GLOB.round_statistics.boiler_neuro_smokes++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
-		X.neuro_ammo--
-		X.xeno_caste.neuro_ammo--
+		neuro_ammo--
 
 	X.set_light(corrosive_ammo + neuro_ammo)
 	update_button_icon()
