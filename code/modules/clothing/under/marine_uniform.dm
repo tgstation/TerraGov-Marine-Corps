@@ -310,6 +310,12 @@
 	icon_state = "rdalt"
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/rank/marine_cmo
+	name = "marine chief medical officer jumpsuit"
+	desc = "It's made of a special fiber that provides minor protection against biohazards."
+	icon_state = "marine_cmo"
+	rollable_sleeves = FALSE
+
 
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
