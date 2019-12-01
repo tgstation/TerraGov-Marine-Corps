@@ -37,13 +37,13 @@
 			if(!A.shorted)
 				A.shorted = TRUE
 				A.update_icon()
-			addtimer(CALLBACK(A, /obj/machinery/computer/navigation.proc/reset, wire), 1200)
+			addtimer(CALLBACK(A, /obj/machinery/computer/navigation.proc/reset, wire), 2 MINUTES)
 		if(WIRE_IDSCAN) // Toggle lock.
 			A.authenticated = !A.authenticated //this may not be ideal, human is 1 AI is 2.
 		if(WIRE_AI) // Disable AI control for a while.
 			if(!A.aidisabled)
 				A.aidisabled = TRUE
-			addtimer(CALLBACK(A, /obj/machinery/computer/navigation.proc/reset, wire), 100)
+			addtimer(CALLBACK(A, /obj/machinery/computer/navigation.proc/reset, wire), 10 SECONDS)
 
 
 /datum/wires/navigation/on_cut(wire, mend)

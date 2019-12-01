@@ -189,9 +189,8 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(direction == "escape")
 		addtimer(CALLBACK(src, .proc/retreat), 10 MINUTES)
 
-	//the bits at the end of the trip.
 	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
- 	addtimer(CALLBACK(src, .proc/priority_announce, message, title = "Orbit Change"), 290 SECONDS)
+ 	addtimer(CALLBACK(src, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
 	
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
@@ -232,3 +231,5 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		priority_announce(message, title = "Retreat")
 
 		distress_mode.round_stage = DISTRESS_MARINE_RETREAT
+	//This is the place where you can add checks for if the ship contains a thing.
+	//a macguffin if you will, that changes the victory condition
