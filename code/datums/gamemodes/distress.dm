@@ -21,7 +21,7 @@
 	var/bioscan_ongoing_interval = 20 MINUTES
 
 	latejoin_larvapoints		= 0
-	latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in :198 for some reason
+	latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in initialize_scales() for some reason
 	var/orphan_hive_timer
 
 
@@ -65,8 +65,9 @@
 	balance_scales()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
-/datum/game_mode/distress/proc/balance_scales()
+/datum/game_mode/distress/balance_scales()
 	. = ..()
+	latejoin_larvapoints -= round(latejoin_larvapoints)
 	latejoin_larvapoints *= latejoin_larvapoints_required //restores scaling for handle_late_spawn()
 
 /datum/game_mode/distress/proc/map_announce()
@@ -199,7 +200,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larvapoints_required = CONFIG_GET(number/distress/larvapoints_required)
+	latejoin_larvapoints_required = CONFIG_GET(number/distress_larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
