@@ -118,3 +118,4 @@
 /datum/config_entry/number/distress_larvapoints_required
 	config_entry_value = 8
 	min_val = 1
+
