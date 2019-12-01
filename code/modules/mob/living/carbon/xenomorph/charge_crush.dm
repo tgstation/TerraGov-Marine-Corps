@@ -62,7 +62,7 @@
 			to_chat(owner, "<span class='warning'>We can't charge with that thing on our leg!</span>")
 		return
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_LIVING_DO_MOVE_TURFTOTURF, .proc/update_charging)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
 	RegisterSignal(charger, COMSIG_LIVING_LEGCUFFED, .proc/on_legcuffed)
 	if(verbose)
@@ -73,7 +73,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
-	UnregisterSignal(charger, list(COMSIG_LIVING_DO_MOVE_TURFTOTURF, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
+	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
 	if(verbose)
 		to_chat(charger, "<span class='xenonotice'>We will no longer charge when moving.</span>")
 	valid_steps_taken = 0
@@ -96,23 +96,26 @@
 	charge_off(FALSE)
 
 
-/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, turf/newloc, newdir)
+/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+	if(Forced)
+		return
+
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.throwing)
+	if(charger.throwing || oldloc == charger.loc)
 		return
 
 	if(charger.is_charging == CHARGE_OFF)
-		if(charger.dir != newdir) //It needs to move twice in the same direction, at least, to begin charging.
+		if(charger.dir != direction) //It needs to move twice in the same direction, at least, to begin charging.
 			return
-		charge_dir = newdir
-		if(!check_momentum(newdir))
+		charge_dir = direction
+		if(!check_momentum(direction))
 			charge_dir = null
 			return
 		charger.is_charging = CHARGE_BUILDINGUP
 		handle_momentum()
 		return
 
-	if(!check_momentum(newdir))
+	if(!check_momentum(direction))
 		do_stop_momentum()
 		return
 
