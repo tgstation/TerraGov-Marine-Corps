@@ -63,9 +63,11 @@
 /datum/game_mode/distress/post_setup()
 	. = ..()
 	balance_scales()
-	latejoin_larvapoints *= latejoin_larvapoints_required
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
+/datum/game_mode/distress/proc/balance_scales()
+	. = ..()
+	latejoin_larvapoints *= latejoin_larvapoints_required //restores scaling for handle_late_spawn()
 
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
