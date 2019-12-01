@@ -54,7 +54,18 @@
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
-	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/marine/officer/warden
+	name = "marine officer uniform"
+	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
+	icon_state = "wardentanclothes"
+	item_state = "wardentanclothes"
+
+/obj/item/clothing/under/marine/officer/hos
+	name = "marine officer uniform"
+	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
+	icon_state = "hostanclothes"
+	item_state = "hostanclothes"
 
 /obj/item/clothing/under/marine/officer/warrant
 	name = "Command Master at Arms uniform"
