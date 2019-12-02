@@ -246,7 +246,7 @@
 			"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")
 
 
-/datum/component/riding/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override)
+/datum/component/riding/human/proc/equip_buckle_inhands(mob/living/carbon/human/user, amount_required = 1, riding_target_override)
 	var/amount_equipped = 0
 	for(var/i in 1 to amount_required)
 		var/obj/item/riding_offhand/inhand = new /obj/item/riding_offhand(user, riding_target_override ? riding_target_override : user)
@@ -258,7 +258,7 @@
 	unequip_buckle_inhands(user)
 	return FALSE
 
-/datum/component/riding/proc/unequip_buckle_inhands(mob/living/carbon/user)
+/datum/component/riding/human/proc/unequip_buckle_inhands(mob/living/carbon/user)
 	for(var/obj/item/riding_offhand/O in user.contents)
 		if(O.parent != user)
 			stack_trace("RIDING OFFHAND ON WRONG MOB")
