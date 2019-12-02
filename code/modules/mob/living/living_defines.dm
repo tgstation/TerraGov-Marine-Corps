@@ -66,7 +66,7 @@
 
 	var/list/status_effects //a list of all status effects the mob has
 
-	var/stun_absorption = null //converted to a list of stun absorption sources this mob has when one is added
+	var/list/stun_absorption //lazy list
 
 	//Speech
 	var/stuttering = 0
