@@ -226,62 +226,36 @@
 	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
 
 
-//Centers text by adding spaces to either side of the string.
-/proc/dd_centertext(message, length)
-	var/new_message = message
-	var/size = length(message)
-	var/delta = length - size
-	if(size == length)
-		return new_message
-	if(size > length)
-		return copytext(new_message, 1, length + 1)
-	if(delta == 1)
-		return new_message + " "
-	if(delta % 2)
-		new_message = " " + new_message
-		delta--
-	var/spaces = add_lspace("", delta / 2 - 1)
-	return spaces + new_message + spaces
-
-
-//Limits the length of the text. Note: MAX_MESSAGE_LEN and MAX_NAME_LEN are widely used for this purpose
-/proc/dd_limittext(message, length)
-	var/size = length(message)
-	if(size <= length)
-		return message
-	return copytext(message, 1, length + 1)
-
-
-/proc/stringmerge(text, compare, replace = "*")
+/proc/stringmerge(text,compare,replace = "*")
 //This proc fills in all spaces with the "replace" var (* by default) with whatever
 //is in the other string at the same spot (assuming it is not a replace char).
 //This is used for fingerprints
 	var/newtext = text
-	if(lentext(text) != lentext(compare))
-		return FALSE
-	for(var/i in 1 to lentext(text)-1)
-		var/a = copytext(text, i, i + 1)
-		var/b = copytext(compare, i, i + 1)
+	if(length(text) != length(compare))
+		return 0
+	for(var/i in 1 to length(text))
+		var/a = copytext(text,i,i+1)
+		var/b = copytext(compare,i,i+1)
 //if it isn't both the same letter, or if they are both the replacement character
 //(no way to know what it was supposed to be)
 		if(a != b)
 			if(a == replace) //if A is the replacement char
-				newtext = copytext(newtext, 1, i) + b + copytext(newtext, i + 1)
+				newtext = copytext(newtext,1,i) + b + copytext(newtext, i+1)
 			else if(b == replace) //if B is the replacement char
-				newtext = copytext(newtext, 1, i) + a + copytext(newtext, i + 1)
+				newtext = copytext(newtext,1,i) + a + copytext(newtext, i+1)
 			else //The lists disagree, Uh-oh!
-				return FALSE
+				return 0
 	return newtext
 
 
-/proc/stringpercent(text, character = "*")
+/proc/stringpercent(text,character = "*")
 //This proc returns the number of chars of the string that is the character
 //This is used for detective work to determine fingerprint completion.
 	if(!text || !character)
 		return 0
 	var/count = 0
-	for(var/i in 1 to lentext(text))
-		var/a = copytext(text, i, i + 1)
+	for(var/i in 1 to length(text))
+		var/a = copytext(text,i,i+1)
 		if(a == character)
 			count++
 	return count
@@ -290,8 +264,8 @@
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
 /proc/TextPreview(string, length = 40)
-	if(lentext(string) <= length)
-		if(!lentext(string))
+	if(length(string) <= length)
+		if(!length(string))
 			return "\[...\]"
 		else
 			return string
