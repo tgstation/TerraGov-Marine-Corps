@@ -49,7 +49,8 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
-
+	
+	var/larvaworth = 0
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))

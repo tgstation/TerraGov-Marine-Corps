@@ -33,8 +33,8 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-	var/latejoin_tally		= 0
-	var/latejoin_larva_drop = 0
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
 
 	var/larva_check_interval = 0
 
@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
+	latejoin_larvapoints_required = CONFIG_GET(number/crash_larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/crash_coefficient) * GLOB.ready_players)), xeno_required_num)
 
 
@@ -150,29 +150,7 @@
 		return
 
 	if(world.time > larva_check_interval)
-		larva_check_interval = world.time + 1 MINUTES
-		var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
-		var/num_humans = living_player_list[1]
-		var/num_xenos = living_player_list[2] + xeno_hive.stored_larva
-		if(!num_xenos)
-			if(!length(GLOB.xeno_resin_silos))
-				check_finished(TRUE)
-				return //RIP benos.
-			if(xeno_hive.stored_larva)
-				return //No need for respawns nor to end the game. They can use their burrowed larvas.
-			xeno_hive.stored_larva += max(1, round(num_humans * 0.2))
-			return
-		var/marines_per_xeno = num_humans / num_xenos
-		switch(marines_per_xeno)
-			if(0 to 2)
-				return
-			if(2 to 3)
-				xeno_hive.stored_larva++
-			if(3 to 5)
-				xeno_hive.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
-			else //If there's more than 5 marines per xenos, then xenos gain larvas to fill the gap.
-				xeno_hive.stored_larva += CLAMP(round(num_humans * 0.2), 1, num_humans - num_xenos)
+		balance_scales()
 
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
@@ -299,15 +277,6 @@
 /datum/game_mode/crash/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
-
-
-/datum/game_mode/crash/handle_late_spawn(mob/late_spawner)
-	latejoin_tally++
-
-	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
-		latejoin_tally -= latejoin_larva_drop
-		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HS.stored_larva++
 
 
 /datum/game_mode/crash/mode_new_player_panel(mob/new_player/NP)
