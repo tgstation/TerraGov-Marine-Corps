@@ -1,0 +1,6 @@
+author: "terranaut1"
+delete-after: True
+changes: 
+  - refactor: "Made burrowed larva amount be dependant on a jobs estimated combat potential or support utility rather than bodycount"
+  - balance: "Assigned combat worth/support utility to all common roles"
+  - config: "Larva points required is a config option."
