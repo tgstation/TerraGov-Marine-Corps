@@ -42,7 +42,7 @@
 
 	if(info != initial(info))
 		info = html_encode(info)
-		info = oldreplacetext(info, "\n", "<BR>")
+		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 
 	update_icon()
@@ -261,7 +261,7 @@
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
 
-		t = oldreplacetext(t, "\n", "<BR>")
+		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 		if(id!="end")

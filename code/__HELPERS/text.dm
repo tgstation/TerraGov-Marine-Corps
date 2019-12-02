@@ -173,10 +173,6 @@
 	return findtext(text, prefix, start, end)
 
 
-/proc/oldreplacetext(text, find, replacement)
-	return list2text(text2list(text, find), replacement)
-
-
 //Adds 'u' number of zeros ahead of the text 't'
 /proc/add_zero(t, u)
 	while (length(t) < u)
