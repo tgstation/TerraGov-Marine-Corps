@@ -125,8 +125,6 @@
 
 	L.last_move_intent = world.time + 1 SECONDS
 
-	SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
-
 	if(L.confused)
 		var/newdir = 0
 		if(L.confused > 40)
