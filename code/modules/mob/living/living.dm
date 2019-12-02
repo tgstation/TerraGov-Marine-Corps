@@ -245,18 +245,18 @@
 
 
 /mob/living/resist_grab()
-	if(pulledby.grab_state)
-		if(++grab_resist_level >= pulledby.grab_state)
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			if(pulledby.grab_state >= GRAB_AGGRESSIVE)
-				visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
-			pulledby.stop_pulling()
-			grab_resist_level = 0 //zero it out.
-			return TRUE
-	else
+	if(!pulledby.grab_state)
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
 		return TRUE
+	if(++grab_resist_level < pulledby.grab_state)
+		return FALSE
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
+		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+	pulledby.stop_pulling()
+	grab_resist_level = 0 //zero it out.
+	return TRUE
 
 
 /mob/living/stop_pulling()

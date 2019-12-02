@@ -835,15 +835,14 @@
 	if(target_hands_needed)
 		equipped_hands_target = riding_datum.equip_buckle_inhands(buckling_mob, target_hands_needed)
 
-	if(hands_needed || target_hands_needed)
-		if(hands_needed && !equipped_hands_self)
-			visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
-				"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
-			return
-		else if(target_hands_needed && !equipped_hands_target)
-			buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
-				"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
-			return
+	if(hands_needed && !equipped_hands_self)
+		visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
+			"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
+		return
+	else if(target_hands_needed && !equipped_hands_target)
+		buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
+			"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+		return
 
 	stop_pulling()
 	riding_datum.handle_vehicle_layer()
