@@ -22,11 +22,19 @@
 	var/del_on_unbuckle_all = FALSE
 
 /datum/component/riding/Initialize()
+	. = ..()
 	if(!ismovableatom(parent))
 		return COMPONENT_INCOMPATIBLE
+
+/datum/component/riding/RegisterWithParent()
+	. = ..()
 	RegisterSignal(parent, COMSIG_MOVABLE_BUCKLE, .proc/vehicle_mob_buckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_UNBUCKLE, .proc/vehicle_mob_unbuckle)
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/vehicle_moved)
+
+/datum/component/riding/UnregisterFromParent()
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_BUCKLE, COMSIG_MOVABLE_UNBUCKLE, COMSIG_MOVABLE_MOVED))
+	return ..()
 
 /datum/component/riding/proc/vehicle_mob_unbuckle(datum/source, mob/living/M, force = FALSE)
 	var/atom/movable/AM = parent
@@ -184,9 +192,13 @@
 /datum/component/riding/human
 	del_on_unbuckle_all = TRUE
 
-/datum/component/riding/human/Initialize()
+/datum/component/riding/human/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/on_carrier_unarmed_melee)
+
+/datum/component/riding/human/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_HUMAN_MELEE_UNARMED_ATTACK)
+	return ..()
 
 /datum/component/riding/human/vehicle_mob_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
 	var/mob/living/carbon/human/human_carrier = parent
@@ -213,21 +225,25 @@
 
 /datum/component/riding/human/handle_vehicle_layer()
 	var/atom/movable/AM = parent
-	if(AM.buckled_mobs && AM.buckled_mobs.len)
-		for(var/mob/M in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
-			M.layer = MOB_LAYER
-		if(!AM.buckle_lying)
-			if(AM.dir == SOUTH)
-				AM.layer = ABOVE_MOB_LAYER
-			else
-				AM.layer = OBJ_LAYER
-		else
-			if(AM.dir == NORTH)
-				AM.layer = OBJ_LAYER
-			else
-				AM.layer = ABOVE_MOB_LAYER
-	else
+	if(!LAZYLEN(AM.buckled_mobs))
 		AM.layer = MOB_LAYER
+		return
+
+	for(var/mob/M in AM.buckled_mobs) //ensure proper layering of piggyback and carry, sometimes weird offsets get applied
+		M.layer = MOB_LAYER
+
+	if(AM.buckle_lying)
+		if(AM.dir == NORTH)
+			AM.layer = OBJ_LAYER
+		else
+			AM.layer = ABOVE_MOB_LAYER
+		return
+
+	if(AM.dir == SOUTH)
+		AM.layer = ABOVE_MOB_LAYER
+	else
+		AM.layer = OBJ_LAYER
+
 
 /datum/component/riding/human/get_offsets(pass_index)
 	var/mob/living/carbon/human/H = parent
