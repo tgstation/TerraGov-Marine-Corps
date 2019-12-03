@@ -97,7 +97,6 @@
 	if(user in viewers(src, null))
 		attack_message = "[user] [message_verb] [src][message_hit_area] with [I]!"
 		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I]!"
-		return FALSE
 
 	user.do_attack_animation(src, used_item = src)
 
@@ -134,9 +133,9 @@
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
-		return
+		return FALSE
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
-		return
+		return FALSE
 
 	if(flags_item & NOBLUDGEON)
 		return FALSE
