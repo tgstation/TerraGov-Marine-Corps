@@ -205,7 +205,7 @@
 	var/obj/item/parent_item = parent
 	if(incoming_damage >= parent_item.obj_integrity)
 		. += incoming_damage - parent_item.obj_integrity
-		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and datum.
+		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and thus the component.
 		return
 	if(!silent)
 		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
