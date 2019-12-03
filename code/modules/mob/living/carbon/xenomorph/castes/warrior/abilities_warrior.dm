@@ -119,7 +119,7 @@
 	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
-	plasma_cost = 100
+	plasma_cost = 40
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
@@ -177,7 +177,7 @@
 	action_icon_state = "punch"
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
-	plasma_cost = 90
+	plasma_cost = 30
 	cooldown_timer = 15 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
