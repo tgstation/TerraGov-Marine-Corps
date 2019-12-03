@@ -816,6 +816,12 @@
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
 
+/mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(!force)//humans are only meant to be ridden through piggybacking and special cases
+		return FALSE
+	LoadComponent(/datum/component/riding/human)
+	return ..()
+
 
 ///get_eye_protection()
 ///Returns a number between -1 to 2

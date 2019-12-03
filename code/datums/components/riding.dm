@@ -207,23 +207,22 @@
 	return ..()
 
 /datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
-	if(!force)//humans are only meant to be ridden through piggybacking and special cases
-		return COMPONENT_MOVABLE_BUCKLE_STOPPED
-
 	var/mob/living/carbon/human/human_carrier = parent
 
 	if(!is_type_in_typecache(buckling_mob, human_carrier.can_ride_typecache))
-		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [src]...</span>")
+		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [human_carrier]...</span>")
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 	if(human_carrier.buckled || (buckling_mob in human_carrier.buckled_mobs) || (LAZYLEN(human_carrier.buckled_mobs) >= human_carrier.max_buckled_mobs))
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
-	if(hands_needed && !equip_buckle_inhands(src, hands_needed, buckling_mob))
-		human_carrier.visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
-			"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
+	if(hands_needed && !equip_buckle_inhands(human_carrier, hands_needed, buckling_mob))
+		if(!silent)
+			human_carrier.visible_message("<span class='warning'>[human_carrier] can't get a grip on [buckling_mob] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 	if(target_hands_needed && !equip_buckle_inhands(buckling_mob, target_hands_needed))
-		buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
-			"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+		if(!silent)
+			buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [human_carrier] because their hands are full!</span>",
+				"<span class='warning'>You can't get a grip on [human_carrier] because your hands are full!</span>")
 		return COMPONENT_MOVABLE_BUCKLE_STOPPED
 
 	if(target_hands_needed)
