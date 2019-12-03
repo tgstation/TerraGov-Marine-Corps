@@ -56,9 +56,9 @@
 	var/progress = "" //Naming convention, three different names
 
 	switch(amount_grown)
-		if(0 to 49) //We're still bloody
+		if(0 to 5) //We're still bloody
 			progress = "Bloody "
-		if(100 to INFINITY)
+		if(6 to INFINITY)
 			progress = "Mature "
 
 	name = "\improper [hive.prefix][progress]Larva ([nicknumber])"
