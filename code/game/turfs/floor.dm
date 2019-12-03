@@ -342,11 +342,15 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	//If you gave a valid parameter, it won't get thisf ar.
 	floor_tile = new/obj/item/stack/tile/grass
 
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
+
 	update_icon()
 	levelupdate()
 
 //This proc will make a turf into a wood floor. Fun eh? Insert the wood tile to be used as the argument
-//If no argument is given a new one will be made.
+//If no argument is given a new one will be made. SOMEONE FIX THIS COPYPASTE BULLSHIT!!
 /turf/open/floor/proc/make_wood_floor(obj/item/stack/tile/wood/T = null)
 	broken = 0
 	burnt = 0
@@ -359,6 +363,10 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			return
 	//If you gave a valid parameter, it won't get thisf ar.
 	floor_tile = new/obj/item/stack/tile/wood
+
+	shoefootstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_WOOD
+	mediumxenofootstep = FOOTSTEP_WOOD
 
 	update_icon()
 	levelupdate()
@@ -377,6 +385,10 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			return
 	//If you gave a valid parameter, it won't get thisf ar.
 	floor_tile = new/obj/item/stack/tile/carpet
+
+	shoefootstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET
+	mediumxenofootstep = FOOTSTEP_CARPET
 
 	update_icon()
 	levelupdate()
