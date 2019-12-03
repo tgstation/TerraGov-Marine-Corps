@@ -243,7 +243,9 @@
 	L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
 
 	adjust_stagger(3)
+	add_slowdown(3)
 
+	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
 	UPDATEHEALTH(src)
 
 // ***************************************
