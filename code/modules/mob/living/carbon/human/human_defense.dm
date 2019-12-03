@@ -164,7 +164,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/damage = I.force
 
 	if(user != src)
-		damage = check_shields(COMBAT_MELEE_ATTACK, damage, I.damtype)
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
 			return TRUE
 
