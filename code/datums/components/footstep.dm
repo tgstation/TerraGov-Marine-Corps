@@ -86,3 +86,4 @@
 		GLOB.barefootstep[T.barefootstep][2] * volume,
 		TRUE,
 		GLOB.barefootstep[T.barefootstep][3] + e_range)
+
