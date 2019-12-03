@@ -15,7 +15,7 @@
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, new_cover)
+/datum/component/shield/Initialize(shield_flags, shield_armor, shield_cover)
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -31,10 +31,15 @@
 	
 	setup_callbacks(shield_flags)
 
-	armor = parent_item.armor
+	if(!isnull(shield_armor))
+		armor = shield_armor
+	if(islist(shield_armor))
+		armor = getArmor(arglist(shield_armor))
+	else
+		armor = parent_item.armor
 
-	if(!isnull(new_cover))
-		cover = new_cover
+	if(!isnull(shield_cover))
+		cover = shield_cover
 	if(islist(cover))
 		cover = getArmor(arglist(cover))
 	else
@@ -141,10 +146,10 @@
 		activate_with_user()
 
 /datum/component/shield/proc/activate_with_user()
-	RegisterSignal(affected, COMSIG_SHIELDSCALL_HUMAN_ATTACKEDBY, .proc/on_attack_cb_shields_call)
+	RegisterSignal(affected, COMSIG_LIVING_SHIELDCALL, .proc/on_attack_cb_shields_call)
 
 /datum/component/shield/proc/deactivate_with_user()
-	UnregisterSignal(affected, COMSIG_SHIELDSCALL_HUMAN_ATTACKEDBY)
+	UnregisterSignal(affected, COMSIG_LIVING_SHIELDCALL)
 
 /datum/component/shield/proc/shield_detatch_from_user()
 	if(!affected)
@@ -153,8 +158,7 @@
 	affected = null
 
 /datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
-	var/damage_cover = cover.getRating(dam_type)
-	if(damage_cover <= 0)
+	if(cover.getRating(dam_type) <= 0)
 		return
 	affecting_shields[intercept_damage_cb] = layer
 
@@ -167,19 +171,19 @@
 			incoming_damage *= (100 - armor.getRating(damage_type)) * 0.01
 			return prob(50 - round(incoming_damage / 3))
 		if(COMBAT_MELEE_ATTACK, COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = (incoming_damage * cover.getRating(damage_type)) * 0.01
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
 			absorbing_damage -= hardness.getRating(damage_type)
 			if(absorbing_damage <= 0)
 				if(!silent)
-					to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+					to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
 				return
 			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
 			if(absorbing_damage <= 0)
 				if(!silent)
-					to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+					to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
 				return
 			if(transfer_damage_cb)
 				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
@@ -204,14 +208,16 @@
 		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and datum.
 		return
 	if(!silent)
-		to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
 	parent_item.take_damage(incoming_damage, armour_penetration = 100)
 
 
 //Dune, Halo and energy shields.
 
 /datum/component/shield/overhealth
+	layer = 100
 	cover = list("melee" = 0, "bullet" = 80, "laser" = 100, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 80)
+	slot_flags = SLOT_WEAR_SUIT //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
 	var/max_shield_integrity = 100
 	var/shield_integrity = 100
 	var/recharge_rate = 1 SECONDS
@@ -219,55 +225,64 @@
 	var/recharge_cooldown = 5 SECONDS //after being hit
 	var/next_recharge = 0 //world.time based
 
+
 /datum/component/shield/overhealth/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
-	
+
+
 /datum/component/shield/overhealth/setup_callbacks(shield_flags)
 	intercept_damage_cb = CALLBACK(src, .proc/overhealth_intercept_attack)
 	transfer_damage_cb = CALLBACK(src, .proc/transfer_damage_to_overhealth)
 
+
 /datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)
-	var/obj/item/parent_item = parent
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
 			return FALSE
 		if(COMBAT_MELEE_ATTACK)
 			return incoming_damage //The slow blade penetrates.
 		if(COMBAT_PROJ_ATTACK)
-			var/absorbing_damage = (incoming_damage * cover.getRating(damage_type)) * 0.01
+			var/absorbing_damage = incoming_damage * cover.getRating(damage_type) * 0.01
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
 			absorbing_damage -= hardness.getRating(damage_type)
 			if(absorbing_damage <= 0)
-				if(!silent)
-					to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
-				return
+				return wrap_up_attack(absorbing_damage, ., silent)
 			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
-			if(absorbing_damage <= 0)
-				if(!silent)
-					to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
-				return
-			if(transfer_damage_cb)
-				return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
+			return wrap_up_attack(absorbing_damage, ., silent)
 
-/datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(incoming_damage, return_damage, silent)
-	. = return_damage
+
+/datum/component/shield/overhealth/proc/wrap_up_attack(absorbing_damage, unabsorbed_damage, silent)
+	. = unabsorbed_damage
 	var/obj/item/parent_item = parent
-	if(incoming_damage >= shield_integrity)
-		. += incoming_damage - shield_integrity
-		damage_overhealth(incoming_damage)
-		return
+	if(absorbing_damage <= 0)
+		if(!.)
+			if(!silent)
+				to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] soaks the damage!</span>")
+			return
+	if(transfer_damage_cb)
+		return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
+	else if(!silent)
+		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] softens the damage!</span>")
+
+
+/datum/component/shield/overhealth/proc/transfer_damage_to_overhealth(absorbing_damage, unabsorbed_damage, silent)
+	. = unabsorbed_damage
+	var/obj/item/parent_item = parent
+	if(absorbing_damage >= shield_integrity)
+		. += absorbing_damage - shield_integrity
 	if(!silent)
-		to_chat(world, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
-	damage_overhealth(incoming_damage)
+		to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
+	damage_overhealth(absorbing_damage)
+
 
 /datum/component/shield/overhealth/proc/damage_overhealth(amount)
 	var/datum/effect_system/spark_spread/s = new
-	s.set_up(2, 1, parent)
+	s.set_up(2, 1, get_turf(parent))
 	s.start()
-	shield_integrity -= max(shield_integrity - amount, 0)
+	shield_integrity = max(shield_integrity - amount, 0)
 	if(!shield_integrity)
 		deactivate_with_user()
 		return

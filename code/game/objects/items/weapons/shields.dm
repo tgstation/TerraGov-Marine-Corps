@@ -66,10 +66,3 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 	add_fingerprint(user, "turned [active ? "on" : "off"]")
-
-/obj/item/weapon/shield/energy/test
-	name = "test shield"
-	armor = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80)
-
-/obj/item/weapon/shield/energy/test/set_shield()
-	AddComponent(/datum/component/shield/overhealth)
