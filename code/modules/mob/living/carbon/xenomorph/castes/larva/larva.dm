@@ -3,7 +3,7 @@
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	amount_grown = 0
-	max_grown = 10
+	max_grown = 25
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
@@ -56,9 +56,9 @@
 	var/progress = "" //Naming convention, three different names
 
 	switch(amount_grown)
-		if(0 to 5) //We're still bloody
+		if(0 to 15) //We're still bloody
 			progress = "Bloody "
-		if(6 to INFINITY)
+		if(16 to INFINITY)
 			progress = "Mature "
 
 	name = "\improper [hive.prefix][progress]Larva ([nicknumber])"
@@ -75,7 +75,7 @@
 	generate_name()
 
 	var/bloody = ""
-	if(amount_grown < 50)
+	if(amount_grown < 15)
 		bloody = "Bloody "
 
 	color = hive.color
