@@ -238,7 +238,7 @@
 		var/hit_area = affecting.display_name
 
 		var/mob/living/carbon/human/H = target
-		if((user != target) && H.check_shields(COMBAT_TOUCH_ATTACK, 14, "melee"))
+		if((user != target) && !H.check_shields(COMBAT_TOUCH_ATTACK, 14, "melee"))
 			return
 
 		if (target != user && prob(target.getarmor(target_zone, "melee")))

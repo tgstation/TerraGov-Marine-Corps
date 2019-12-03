@@ -8,7 +8,7 @@
 
 	var/mob/living/carbon/human/H = user
 
-	if(user != src && check_shields(COMBAT_TOUCH_ATTACK, H.melee_damage, "melee"))
+	if(user != src && !check_shields(COMBAT_TOUCH_ATTACK, H.melee_damage, "melee"))
 		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 

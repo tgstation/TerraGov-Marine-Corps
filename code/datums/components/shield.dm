@@ -239,7 +239,7 @@
 /datum/component/shield/overhealth/proc/overhealth_intercept_attack(attack_type, incoming_damage, damage_type, silent)
 	switch(attack_type)
 		if(COMBAT_TOUCH_ATTACK)
-			return FALSE
+			return incoming_damage
 		if(COMBAT_MELEE_ATTACK)
 			return incoming_damage //The slow blade penetrates.
 		if(COMBAT_PROJ_ATTACK)
