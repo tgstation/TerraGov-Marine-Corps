@@ -22,6 +22,9 @@
 /turf/open/floor/plating/ground/dirt
 	name = "dirt"
 	icon_state = "desert"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/dirt/Initialize()
 	. = ..()
@@ -36,6 +39,9 @@
 /turf/open/floor/plating/ground/dirtgrassborder
 	name = "grass"
 	icon_state = "grassdirt_edge"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/dirtgrassborder/corner
 	icon_state = "grassdirt_corner"
@@ -43,6 +49,9 @@
 /turf/open/floor/plating/ground/dirtgrassborder2
 	name = "grass"
 	icon_state = "grassdirt2_edge"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
 	icon_state = "grassdirt_corner2"
@@ -78,6 +87,9 @@
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
 	icon_state = "mars_sand"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/Initialize()
 	. = ..()
