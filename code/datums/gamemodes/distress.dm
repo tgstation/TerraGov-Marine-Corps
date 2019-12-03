@@ -62,6 +62,8 @@
 
 /datum/game_mode/distress/post_setup()
 	. = ..()
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
 	balance_scales()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 

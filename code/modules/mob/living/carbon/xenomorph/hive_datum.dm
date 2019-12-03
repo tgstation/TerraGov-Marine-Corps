@@ -689,6 +689,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		boarder.gib()
 		stored_larva++
 		left_behind++
+	for(var/i in GLOB.xeno_resin_silos)
+		qdel(i)
 	if(left_behind)
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
 

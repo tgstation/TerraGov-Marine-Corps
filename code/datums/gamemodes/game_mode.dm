@@ -728,8 +728,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/num_xenos = xeno_hive.get_total_xeno_number() - length(xeno_hive.get_ssd_xenos()) + xeno_hive.stored_larva
 	latejoin_larvapoints = (get_total_joblarvaworth() - (num_xenos * latejoin_larvapoints_required)) / latejoin_larvapoints_required
-	if(!num_xenos) //Distress ends here
-		if(!length(GLOB.xeno_resin_silos)) //Crash ends here
+	if(!num_xenos)
+		if(!length(GLOB.xeno_resin_silos))
 			check_finished(TRUE)
 			return //RIP benos.
 		if(xeno_hive.stored_larva)
