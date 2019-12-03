@@ -1,5 +1,7 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(tool_attack_chain(user, target))
+	if(preattack(target, user, params))
+		return
+	if(tool_behaviour && tool_attack_chain(user, target))
 		return
 	// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
@@ -7,14 +9,31 @@
 		return
 	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
-
+//Called before any other attack proc.
+/obj/item/proc/preattack(atom/target, mob/user, params)
+	return FALSE
 
 //Checks if the item can work as a tool, calling the appropriate tool behavior on the target
 /obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	if(!tool_behaviour)
-		return FALSE
-
-	return target.tool_act(user, src, tool_behaviour)
+	switch(tool_behaviour)
+		if(TOOL_CROWBAR)
+			return target.crowbar_act(user, src)
+		if(TOOL_MULTITOOL)
+			return target.multitool_act(user, src)
+		if(TOOL_SCREWDRIVER)
+			return target.screwdriver_act(user, src)
+		if(TOOL_WRENCH)
+			return target.wrench_act(user, src)
+		if(TOOL_WIRECUTTER)
+			return target.wirecutter_act(user, src)
+		if(TOOL_WELDER)
+			return target.welder_act(user, src)
+		if(TOOL_WELD_CUTTER)
+			return target.weld_cut_act(user, src)
+		if(TOOL_ANALYZER)
+			return target.analyzer_act(user, src)
+		if(TOOL_FULTON)
+			return target.fulton_act(user, src)
 
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
@@ -72,8 +91,6 @@
 		return TRUE
 	user.changeNext_move(I.attack_speed)
 	return I.attack(src, user)
-
-
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
 /obj/item/proc/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
