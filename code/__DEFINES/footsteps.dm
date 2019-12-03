@@ -116,18 +116,18 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/carpetbarefoot2.ogg',
 		'sound/effects/footstep/carpetbarefoot3.ogg',
 		'sound/effects/footstep/carpetbarefoot4.ogg',
-		'sound/effects/footstep/carpetbarefoot5.ogg'), 75, -2),
+		'sound/effects/footstep/carpetbarefoot5.ogg'), 75, -1),
 	FOOTSTEP_SAND = list(list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
 		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'), 75, 0),
+		'sound/effects/footstep/asteroid5.ogg'), 75, 1),
 	FOOTSTEP_GRASS = list(list(
 		'sound/effects/footstep/grass1.ogg',
 		'sound/effects/footstep/grass2.ogg',
 		'sound/effects/footstep/grass3.ogg',
-		'sound/effects/footstep/grass4.ogg'), 75, 0),
+		'sound/effects/footstep/grass4.ogg'), 75, 1),
 	FOOTSTEP_WATER = list(list(
 		'sound/effects/footstep/water1.ogg',
 		'sound/effects/footstep/water2.ogg',

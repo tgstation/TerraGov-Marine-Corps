@@ -65,6 +65,10 @@
 
 /turf/open/river
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 // Beach
@@ -72,6 +76,9 @@
 /turf/open/beach
 	name = "beach"
 	icon = 'icons/misc/beach.dmi'
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 
 /turf/open/beach/sand
@@ -87,6 +94,10 @@
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water/New()
 	..()
@@ -96,6 +107,10 @@
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water2/New()
 	..()
@@ -105,6 +120,10 @@
 	name = "sea"
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 //Nostromo turfs
@@ -115,6 +134,10 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 //SHUTTLE 'FLOORS'
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
@@ -161,4 +184,3 @@
 
 /turf/open/shuttle/elevator/grating
 	icon_state = "floor_grating"
-

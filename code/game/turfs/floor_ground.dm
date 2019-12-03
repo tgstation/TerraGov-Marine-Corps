@@ -50,6 +50,9 @@
 /turf/open/ground/grass
 	name = "grass"
 	icon_state = "grass1"
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
 
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
