@@ -38,15 +38,12 @@
 	var/turf/open/T = get_turf(parent)
 	if(!istype(T))
 		return
-	world.log << 1
+
 	var/mob/living/LM = parent
 	if(LM.buckled || LM.lying || LM.throwing || LM.is_ventcrawling)
 		return
 
 	steps++
-	world.log << 2
-	if(steps >= 6)
-		steps = 0
 
 	if(steps % 2)
 		return
@@ -78,7 +75,7 @@
 	if(!T)
 		return
 	var/mob/living/carbon/human/H = parent
-	world.log << 4
+
 	if(H.shoes) //are we wearing shoes
 		playsound(T, pick(GLOB.shoefootstep[T.shoefootstep][1]),
 			GLOB.shoefootstep[T.shoefootstep][2] * volume,
@@ -89,4 +86,3 @@
 		GLOB.barefootstep[T.barefootstep][2] * volume,
 		TRUE,
 		GLOB.barefootstep[T.barefootstep][3] + e_range)
-	world.log << 5

@@ -85,7 +85,7 @@
 
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
-
+	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 0.4, 1)
 	return ..()
 
 /mob/living/carbon/monkey/movement_delay()
