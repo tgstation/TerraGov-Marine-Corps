@@ -57,7 +57,9 @@
 		playsound(T, footstep_sounds, volume)
 		return
 	var/turf_footstep
-	switch(footstep_type)
+	if(locate(/obj/effect/alien/weeds) in T)
+		turf_footstep = FOOTSTEP_RESIN
+	else switch(footstep_type)
 		if(FOOTSTEP_XENO_MEDIUM)
 			turf_footstep = T.mediumxenofootstep
 		if(FOOTSTEP_MOB_BAREFOOT)
@@ -66,6 +68,7 @@
 			turf_footstep = T.heavyxenofootstep
 		if(FOOTSTEP_MOB_SHOE)
 			turf_footstep = T.shoefootstep
+
 	if(!turf_footstep)
 		return
 	playsound(T, pick(footstep_sounds[turf_footstep][1]), footstep_sounds[turf_footstep][2] * volume, TRUE, footstep_sounds[turf_footstep][3] + e_range)
@@ -73,6 +76,12 @@
 /datum/component/footstep/proc/play_humanstep()
 	var/turf/open/T = prepare_step()
 	if(!T)
+		return
+	if(locate(/obj/effect/alien/weeds) in T)
+		playsound(T, pick(GLOB.barefootstep[FOOTSTEP_RESIN][1]),
+			GLOB.barefootstep[FOOTSTEP_RESIN][2] * volume,
+			TRUE,
+			GLOB.barefootstep[FOOTSTEP_RESIN][3] + e_range)
 		return
 	var/mob/living/carbon/human/H = parent
 
@@ -86,4 +95,3 @@
 		GLOB.barefootstep[T.barefootstep][2] * volume,
 		TRUE,
 		GLOB.barefootstep[T.barefootstep][3] + e_range)
-

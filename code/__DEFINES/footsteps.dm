@@ -5,6 +5,7 @@
 #define FOOTSTEP_SAND "sand"
 #define FOOTSTEP_GRASS "grass"
 #define FOOTSTEP_WATER "water"
+#define FOOTSTEP_RESIN "resin"
 //barefoot and claw sounds
 #define FOOTSTEP_HARD "hard"
 //misc footstep sounds
@@ -58,6 +59,9 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
+	FOOTSTEP_RESIN = list(list(
+		'sound/effects/alien_resin_move1.ogg',
+		'sound/effects/alien_resin_move2.ogg',), 50, 2),
 ))
 //bare footsteps lists
 GLOBAL_LIST_INIT(barefootstep, list(
@@ -95,6 +99,9 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/water2.ogg',
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
+	FOOTSTEP_RESIN = list(list(
+		'sound/effects/alien_resin_move1.ogg',
+		'sound/effects/alien_resin_move2.ogg',), 70, 2),
 ))
 
 //claw footsteps lists
