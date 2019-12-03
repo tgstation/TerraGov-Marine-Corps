@@ -171,6 +171,7 @@
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
 	#define COMPONENT_NO_ATTACK_OBJ 1
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
+#define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
 
 #define COMSIG_ITEM_MIDDLECLICKON "item_middleclickon"					//from base of mob/MiddleClickOn(): (/atom, /mob)
 #define COMSIG_ITEM_SHIFTCLICKON "item_shiftclickon"					//from base of mob/ShiftClickOn(): (/atom, /mob)
@@ -234,6 +235,7 @@
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
+#define COMSIG_SHIELDSCALL_HUMAN_ATTACKEDBY "shields_call_human_attackedby"
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
 #define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)

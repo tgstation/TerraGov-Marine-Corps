@@ -307,8 +307,8 @@
 				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
-						if(H.check_shields(15, "the pounce")) //Human shield block.
-							Knockdown(60)
+						if(H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+							Knockdown(6 SECONDS)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 

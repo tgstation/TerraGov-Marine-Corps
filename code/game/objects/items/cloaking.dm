@@ -67,7 +67,6 @@
 	name = "cloaking device"
 	desc = "Use this to become invisible to the human eyesocket."
 	icon_state = "shield0"
-	var/active = 0.0
 	flags_atom = CONDUCT
 	item_state = "electronic"
 	throwforce = 10.0

@@ -115,7 +115,7 @@
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
 	var/toggleable = FALSE
-	var/active = TRUE
+	active = TRUE
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))

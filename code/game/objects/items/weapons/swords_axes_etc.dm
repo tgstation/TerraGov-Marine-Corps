@@ -94,37 +94,3 @@
 			return
 	else
 		return ..()
-
-
-
-/*
-* Energy Shield
-*/
-/obj/item/weapon/shield/energy/IsShield()
-	if(active)
-		return 1
-	else
-		return 0
-
-/obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
-	active = !active
-	if (active)
-		force = 10
-		icon_state = "eshield[active]"
-		w_class = WEIGHT_CLASS_BULKY
-		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
-
-	else
-		force = 3
-		icon_state = "eshield[active]"
-		w_class = WEIGHT_CLASS_TINY
-		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand(0)
-		H.update_inv_r_hand()
-
-	return

@@ -243,3 +243,29 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
+
+/mob/living/proc/check_shields(attack_type, damage = 0, damage_type = "melee", silent)
+	. = damage
+	var/list/affecting_shields = list()
+	SEND_SIGNAL(src, COMSIG_SHIELDSCALL_HUMAN_ATTACKEDBY, affecting_shields, "melee")
+	if(length(affecting_shields) > 1)
+		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+	for(var/shield in affecting_shields)
+		var/datum/callback/shield_check = shield
+		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		if(!.)
+			break
+
+/*
+	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
+		var/obj/item/weapon/I = l_hand
+		if(I.IsShield() && (prob(50 - round(damage / 3))))
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [l_hand.name]!</span>", null, null, 5)
+			return 1
+	if(r_hand && istype(r_hand, /obj/item/weapon))
+		var/obj/item/weapon/I = r_hand
+		if(I.IsShield() && (prob(50 - round(damage / 3))))
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [r_hand.name]!</span>", null, null, 5)
+			return 1
+	return 0
+*/

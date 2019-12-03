@@ -725,8 +725,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+	if(!damage)
+		return
 
-	if(check_proj_block(proj, damage * 0.65))
+	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type, TRUE)
+	if(!damage)
 		proj.ammo.on_shield_block(src)
 		bullet_ping(proj)
 		return
@@ -815,23 +818,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_xenos++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
-
-
-/mob/living/proc/check_proj_block(obj/projectile/proj)
-	return FALSE
-
-
-/mob/living/carbon/human/check_proj_block(obj/projectile/proj, damage)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //No, you can't block rockets.
-		return FALSE
-
-	if(!(proj.dir & REVERSE_DIR(dir)))
-		return FALSE
-
-	if(!check_shields(damage * 0.65, proj.name))
-		return FALSE
-
-	return TRUE
 
 
 /mob/living/proc/get_living_armor(armor_type, proj_def_zone, proj_dir)

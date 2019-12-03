@@ -179,11 +179,10 @@
 
 
 //Reactive armor
-//When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
+//Currently does nothing.
 /obj/item/clothing/suit/armor/reactive
 	name = "Reactive Teleport Armor"
 	desc = "Someone seperated our Research Director from his own head!"
-	var/active = 0.0
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
@@ -191,28 +190,6 @@
 	flags_atom = CONDUCT
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
-/obj/item/clothing/suit/armor/reactive/IsShield()
-	if(active)
-		return 1
-	return 0
-
-/obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		to_chat(user, "<span class='notice'>The reactive armor is now active.</span>")
-		src.icon_state = "reactive"
-		src.item_state = "reactive"
-	else
-		to_chat(user, "<span class='notice'>The reactive armor is now inactive.</span>")
-		src.icon_state = "reactiveoff"
-		src.item_state = "reactiveoff"
-	return
-
-/obj/item/clothing/suit/armor/reactive/emp_act(severity)
-	active = 0
-	src.icon_state = "reactiveoff"
-	src.item_state = "reactiveoff"
-	..()
 
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"

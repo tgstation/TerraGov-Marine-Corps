@@ -3,14 +3,14 @@
 	if(.)
 		return
 
-	if((user != src) && check_shields(0, user.name))
-		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
-		return 0
-
 	if(!ishuman(user))
 		return
 
 	var/mob/living/carbon/human/H = user
+
+	if(user != src && check_shields(COMBAT_TOUCH_ATTACK, H.melee_damage, "melee"))
+		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
+		return 0
 
 	H.changeNext_move(7)
 	switch(H.a_intent)

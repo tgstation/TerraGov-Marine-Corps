@@ -8,7 +8,6 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
-	var/active = FALSE
 
 
 /obj/item/fulton_extraction_pack/Initialize()

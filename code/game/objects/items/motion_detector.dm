@@ -38,7 +38,6 @@
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
 	w_class = WEIGHT_CLASS_SMALL
-	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2
 	var/iff_signal = ACCESS_IFF_MARINE

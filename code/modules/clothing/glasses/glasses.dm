@@ -6,7 +6,7 @@
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = FALSE
 	var/toggleable = FALSE
-	var/active = TRUE
+	active = TRUE
 	flags_inventory = COVEREYES
 	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES

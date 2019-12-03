@@ -17,12 +17,12 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
-		X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>", \
+	if(!check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
+		return ..()
+	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
 		"<span class='danger'>Our grab was blocked by [src]'s shield!</span>", null, 5)
-		playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
-		return FALSE
-	return ..()
+	playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, TRUE) //Feedback
+	return FALSE
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
@@ -55,7 +55,7 @@
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
 		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -273,7 +273,7 @@
 			to_chat(X, "<span class='warning'>[src] is dead, why would we want to touch it?</span>")
 		return FALSE
 
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.melee_damage, "melee"))
 		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
