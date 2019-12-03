@@ -6,6 +6,10 @@
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
 	var/has_catwalk = FALSE
+	var/shoefootstep = FOOTSTEP_FLOOR
+	var/barefootstep = FOOTSTEP_HARD
+	var/mediumxenofootstep = FOOTSTEP_HARD
+	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -157,5 +161,4 @@
 
 /turf/open/shuttle/elevator/grating
 	icon_state = "floor_grating"
-
 
