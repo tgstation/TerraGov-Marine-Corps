@@ -816,38 +816,6 @@
 		return
 	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
 
-/mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
-	if(!force)//humans are only meant to be ridden through piggybacking and special cases
-		return
-	if(!is_type_in_typecache(buckling_mob, can_ride_typecache))
-		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [src]...</span>")
-		return
-	buckle_lying = lying_buckle
-	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
-	if(target_hands_needed)
-		riding_datum.ride_check_rider_restrained = TRUE
-	if(buckled || (buckling_mob in buckled_mobs) || (LAZYLEN(buckled_mobs) >= max_buckled_mobs))
-		return
-	var/equipped_hands_self
-	var/equipped_hands_target
-	if(hands_needed)
-		equipped_hands_self = riding_datum.equip_buckle_inhands(src, hands_needed, buckling_mob)
-	if(target_hands_needed)
-		equipped_hands_target = riding_datum.equip_buckle_inhands(buckling_mob, target_hands_needed)
-
-	if(hands_needed && !equipped_hands_self)
-		visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
-			"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
-		return
-	else if(target_hands_needed && !equipped_hands_target)
-		buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
-			"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
-		return
-
-	stop_pulling()
-	riding_datum.handle_vehicle_layer()
-	return ..()
-
 
 ///get_eye_protection()
 ///Returns a number between -1 to 2

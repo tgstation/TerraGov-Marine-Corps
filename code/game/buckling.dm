@@ -28,6 +28,9 @@
 				to_chat(usr, "<span class='warning'>You are unable to buckle [buckling_mob] to [src]!</span>")
 		return FALSE
 
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent) & COMPONENT_MOVABLE_BUCKLE_STOPPED)
+		return FALSE
+
 	if(buckling_mob.pulledby)
 		if(buckle_flags & BUCKLE_PREVENTS_PULL)
 			buckling_mob.pulledby.stop_pulling()
@@ -54,7 +57,6 @@
 	post_buckle_mob(buckling_mob, silent)
 
 	RegisterSignal(buckling_mob, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_BUCKLE, buckling_mob, force)
 	return TRUE
 
 /obj/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)

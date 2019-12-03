@@ -42,7 +42,7 @@
 	if(del_on_unbuckle_all && !LAZYLEN(AM.buckled_mobs))
 		qdel(src)
 
-/datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force = FALSE)
+/datum/component/riding/proc/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
 	handle_vehicle_offsets()
 
 /datum/component/riding/proc/handle_vehicle_layer()
@@ -206,11 +206,36 @@
 	UnregisterSignal(buckled_mob, COMSIG_MOVABLE_PRE_THROW)
 	return ..()
 
-/datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force = FALSE)
-	. = ..()
+/datum/component/riding/human/vehicle_mob_buckle(datum/source, mob/living/buckling_mob, force, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	if(!force)//humans are only meant to be ridden through piggybacking and special cases
+		return COMPONENT_MOVABLE_BUCKLE_STOPPED
+
 	var/mob/living/carbon/human/human_carrier = parent
+
+	if(!is_type_in_typecache(buckling_mob, human_carrier.can_ride_typecache))
+		buckling_mob.visible_message("<span class='warning'>[buckling_mob] really can't seem to mount [src]...</span>")
+		return COMPONENT_MOVABLE_BUCKLE_STOPPED
+	if(human_carrier.buckled || (buckling_mob in human_carrier.buckled_mobs) || (LAZYLEN(human_carrier.buckled_mobs) >= human_carrier.max_buckled_mobs))
+		return COMPONENT_MOVABLE_BUCKLE_STOPPED
+	if(hands_needed && !equip_buckle_inhands(src, hands_needed, buckling_mob))
+		human_carrier.visible_message("<span class='warning'>[src] can't get a grip on [buckling_mob] because their hands are full!</span>",
+			"<span class='warning'>You can't get a grip on [buckling_mob] because your hands are full!</span>")
+		return COMPONENT_MOVABLE_BUCKLE_STOPPED
+	if(target_hands_needed && !equip_buckle_inhands(buckling_mob, target_hands_needed))
+		buckling_mob.visible_message("<span class='warning'>[buckling_mob] can't get a grip on [src] because their hands are full!</span>",
+			"<span class='warning'>You can't get a grip on [src] because your hands are full!</span>")
+		return COMPONENT_MOVABLE_BUCKLE_STOPPED
+
+	if(target_hands_needed)
+		ride_check_rider_restrained = TRUE
+
+	human_carrier.buckle_lying = lying_buckle
+	human_carrier.stop_pulling()
+	handle_vehicle_layer()
+
 	human_carrier.add_movespeed_modifier(MOVESPEED_ID_HUMAN_CARRYING, TRUE, 0, NONE, TRUE, HUMAN_CARRY_SLOWDOWN)
 	RegisterSignal(buckling_mob, COMSIG_MOVABLE_PRE_THROW, .proc/on_passenger_throw)
+	return ..()
 
 
 /datum/component/riding/human/proc/on_carrier_unarmed_melee(datum/source, atom/target)
