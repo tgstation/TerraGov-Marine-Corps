@@ -25,7 +25,7 @@
 	max_health = 210
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 250
 
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
@@ -80,7 +80,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -117,7 +117,7 @@
 	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 300
+	upgrade_threshold = 350
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 15, "acid" = 35)
@@ -147,6 +147,9 @@
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
+
+	// *** Evolution *** //
+	upgrade_threshold = 400
 
 	// *** Health *** //
 	max_health = 280

@@ -31,8 +31,8 @@
 	max_health = 100
 
 	// *** Evolution *** //
-	evolution_threshold = 50
-	upgrade_threshold = 50
+	evolution_threshold = 75
+	upgrade_threshold = 75
 
 	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull)
 
@@ -85,7 +85,7 @@
 	max_health = 120
 
 	// *** Evolution *** //
-	upgrade_threshold = 75
+	upgrade_threshold = 100
 
 	// *** Defense *** //
 	armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
@@ -118,7 +118,7 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	upgrade_threshold = 100
+	upgrade_threshold = 125
 
 	// *** Defense *** //
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)

@@ -25,8 +25,8 @@
 	max_health = 120
 
 	// *** Evolution *** //
-	evolution_threshold = 50
-	upgrade_threshold = 50
+	evolution_threshold = 75
+	upgrade_threshold = 75
 
 	evolves_to = list(/mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)
 
@@ -84,7 +84,7 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	upgrade_threshold = 75
+	upgrade_threshold = 100
 
 	// *** Defense *** //
 	armor = list("melee" = 5, "bullet" = 3, "laser" = 3, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
@@ -115,7 +115,7 @@
 	max_health = 170
 
 	// *** Evolution *** //
-	upgrade_threshold = 100
+	upgrade_threshold = 125
 
 	// *** Defense *** //
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)

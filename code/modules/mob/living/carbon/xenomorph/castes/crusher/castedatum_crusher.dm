@@ -27,7 +27,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 250
 
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
@@ -74,7 +74,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = 300
 
 	// *** Defense *** //
 	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
@@ -102,7 +102,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 300
+	upgrade_threshold = 350
 
 	// *** Defense *** //
 	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
@@ -125,6 +125,9 @@
 	// *** Plasma *** //
 	plasma_max = 400
 	plasma_gain = 30
+
+	// *** Evolution *** //
+	upgrade_threshold = 400
 
 	// *** Health *** //
 	max_health = 350
