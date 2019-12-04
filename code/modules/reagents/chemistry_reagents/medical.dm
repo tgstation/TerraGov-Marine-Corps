@@ -791,7 +791,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustHalLoss(25)
-		L.Stun(20)
+		L.Stun(2 SECONDS)
 	if(prob(20))
 		L.hallucination += 15
 		L.AdjustConfused(60)
