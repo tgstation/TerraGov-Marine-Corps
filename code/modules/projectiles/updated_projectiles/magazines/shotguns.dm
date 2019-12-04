@@ -51,9 +51,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	max_rounds = 20 // Real rifle boxes are usually 20 rounds. This works with the new system, four handfuls.
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 
-
 /obj/item/ammo_magazine/shotgun/mbx900
-	name = ".410 Sabot Ammo Box"
+	name = ".410 sabot ammo box"
 	desc = "A box filled with .410 Sabot rounds."
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
@@ -63,13 +62,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_magazine/shotgun/mbx900/buckshot
-	name = ".410 Buckshot Ammo Box"
+	name = ".410 buckshot ammo box"
 	desc = "A box filled with .410 buckshot rounds."
 	icon_state = "mbx900_buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 
 /obj/item/ammo_magazine/shotgun/mbx900/tracking
-	name = ".410 Tracker Ammo Box"
+	name = ".410 tracker ammo box"
 	desc = "A box filled with .410 tracker rounds."
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
@@ -110,10 +109,8 @@ also doesn't really matter. You can only reload them with handfuls.
 	max_rounds = 10
 
 /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
-	name = "tubular magazine"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 	caliber = ".410"
-	max_rounds = 10
 	current_rounds = 0
 
 /obj/item/ammo_magazine/internal/shotgun/double

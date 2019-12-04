@@ -94,7 +94,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(-4)
 	L.adjustDrowsyness(-2)
-	L.adjust_sleeping(-3)
+	L.AdjustSleeping(-60)
 	L.jitter(5)
 	return ..()
 
@@ -132,7 +132,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/L, metabolism)
 	L.adjustDrowsyness(-7)
-	L.adjust_sleeping(-40)
+	L.AdjustSleeping(-80 SECONDS)
 	L.jitter(5)
 	return ..()
 
@@ -292,7 +292,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
-						H.stun(3)
+						H.Stun(60)
 					E.take_damage(20)
 	return ..()
 
@@ -432,7 +432,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 90 //THE FIST OF THE LAW IS STRONG AND HARD
 
 /datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/L, metabolism)
-	L.stun(2)
+	L.Stun(40)
 	return ..()
 
 /datum/reagent/consumable/ethanol/irish_cream
@@ -736,10 +736,10 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			L.dizzy(5)
 			L.stuttering += 5
 			if(prob(20))
-				L.confused += 3
+				L.AdjustConfused(60)
 		if(101 to INFINITY)
 			L.dizzy(6)
 			L.stuttering += 5
 			if(prob(20))
-				L.confused += 5
+				L.AdjustConfused(10 SECONDS)
 	return ..()

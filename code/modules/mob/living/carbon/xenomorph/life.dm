@@ -53,7 +53,7 @@
 			death()
 		return
 
-	if(knocked_out || sleeping || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -277,16 +277,6 @@
 	med_hud_set_health()
 	update_stat()
 	update_wounds()
-
-/mob/living/carbon/xenomorph/handle_stunned()
-	if(stunned)
-		adjust_stunned(-2)
-	return stunned
-
-/mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-5)
-	return knocked_down
 
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)

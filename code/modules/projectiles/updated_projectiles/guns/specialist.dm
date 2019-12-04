@@ -13,7 +13,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n'Peace Through Superior Firepower'"
+	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
@@ -246,13 +246,13 @@
 		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
-			PMC_sniper.knock_down(5)
+			PMC_sniper.Knockdown(10 SECONDS)
 
 //SVD //Based on the Dragunov sniper rifle.
 
 /obj/item/weapon/gun/rifle/sniper/svd
 	name = "\improper SVD Dragunov-033 sniper rifle"
-	desc = "A sniper variant of the MAR-40 rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
+	desc = "A sniper variant of the AK-47 service rifle, with a new stock, barrel, and scope. It doesn't have the punch of modern sniper rifles, but it's finely crafted in 2133 by someone probably illiterate. Fires 7.62x54mmR rounds."
 	icon_state = "svd"
 	item_state = "svd"
 	max_shells = 10 //codex
@@ -333,7 +333,7 @@
 //Come get some.
 /obj/item/weapon/gun/smartgun
 	name = "\improper M56B smartgun"
-	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left to reload.\nYou may toggle firing restrictions by using a special action."
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."
 	icon_state = "m56"
 	item_state = "m56"
 	max_shells = 100 //codex
@@ -445,7 +445,7 @@
 
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
-	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
+	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way."
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
 	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
 	attachable_allowed = list() //Cannot be upgraded.
@@ -470,12 +470,13 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	wield_delay = 8
+	wield_delay = 0.6 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	var/list/grenades = list()
 	var/max_grenades = 6
 	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -485,7 +486,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 2 SECONDS
+	fire_delay = 2.3 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
@@ -614,6 +615,7 @@
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
 	var/riot_version
+	general_codex_key = "explosive weapons"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1.05 SECONDS
@@ -741,6 +743,7 @@
 	wield_delay = 12
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
@@ -867,7 +870,7 @@
 		if(victim.lying || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue
 		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
-		victim.knock_down(3) //For good measure
+		victim.Knockdown(60) //For good measure
 		victim.emote("pain")
 		victim.throw_at(get_step(backblast_loc, thrown_dir), 1, 2)
 
@@ -899,6 +902,7 @@
 	aim_slowdown = 2.75
 	attachable_allowed = list()
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	general_codex_key = "explosive weapons"
 
 	fire_delay = 0.6 SECONDS
 	burst_delay = 0.4 SECONDS
@@ -910,7 +914,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a double barreled semi-automatic combat shotgun with a twin shot mode, has a 9 round internal magazine. Currently retired by the main TGMC forces for the addition of the SX-16 and later the MBX-900, it is now only used in special operations and smaller divisions across Terra."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	max_shells = 10 //codex

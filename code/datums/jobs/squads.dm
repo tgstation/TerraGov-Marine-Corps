@@ -81,9 +81,11 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 /datum/squad/New()
 	. = ..()
 	var/image/armor = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
-	var/image/armors1 = image('icons/mob/suit_1.dmi',icon_state = "std-armor")
+	var/image/armorsl = image('icons/mob/suit_1.dmi',icon_state = "sql-armor")
 	armor.color = color
-	armors1.color = color
+	armorsl.color = color
+	GLOB.armormarkings[type] = armor
+	GLOB.armormarkings_sl[type] = armorsl
 	var/image/gloves = image('icons/mob/hands.dmi',icon_state = "std-gloves")
 	gloves.color = color
 	GLOB.glovemarkings[type] = gloves
@@ -396,82 +398,82 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 //A generic proc for handling the initial squad role assignment in SSjob
 /proc/handle_initial_squad(mob/M, rank, latejoin = FALSE)
 	var/strict = M.client.prefs.be_special && (M.client.prefs.be_special & BE_SQUAD_STRICT)
-	var/datum/squad/P = SSjob.squads[M.client.prefs.preferred_squad]
-	var/datum/squad/R = SSjob.squads[pick(SSjob.squads)]
+	var/datum/squad/P = SSjob.active_squads[M.client.prefs.preferred_squad]
+	var/datum/squad/R = SSjob.active_squads[pick(SSjob.active_squads)]
 	switch(rank)
 		if(SQUAD_MARINE)
 			return P?.assign_initial(M, rank, latejoin) || R.assign_initial(M, rank, latejoin)
 		if(SQUAD_ENGINEER)
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_CORPSMAN)
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_SMARTGUNNER)
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank, latejoin))
 					continue
 				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_SPECIALIST)
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign_initial(M, rank, latejoin))
 					return TRUE
 		if(SQUAD_LEADER)
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				if(P && P == S && S.assign_initial(M, rank, latejoin))
 					return TRUE
 			if(strict && !latejoin)
 				return FALSE
-			for(var/i in shuffle(SSjob.squads))
-				var/datum/squad/S = SSjob.squads[i]
+			for(var/i in shuffle(SSjob.active_squads))
+				var/datum/squad/S = SSjob.active_squads[i]
 				if(!S.check_entry(rank))
 					continue
 				else if(S.assign_initial(M, rank, latejoin))

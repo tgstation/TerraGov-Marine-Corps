@@ -163,7 +163,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.knock_down(4)
+	L.Knockdown(80)
 
 //Two seats, gunner and driver
 //Must have the skills to do so

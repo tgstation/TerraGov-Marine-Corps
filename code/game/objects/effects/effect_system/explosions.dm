@@ -28,7 +28,7 @@
 			for(var/mob/living/M in viewers(1, location))
 				if (prob (50 * amount))
 					to_chat(M, "<span class='warning'>The explosion knocks you down.</span>")
-					M.knock_down(rand(1,5))
+					M.Knockdown(rand(2 SECONDS,10 SECONDS))
 			return
 		else
 			var/light = -1

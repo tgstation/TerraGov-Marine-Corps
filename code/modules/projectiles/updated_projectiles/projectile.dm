@@ -229,10 +229,15 @@
 	apy += pixel_y
 
 	GLOB.round_statistics.total_projectiles_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired")
+
 	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullets_fired++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullets_fired")
 		if(ammo.bonus_projectiles_amount)
 			GLOB.round_statistics.total_bullets_fired += ammo.bonus_projectiles_amount
+			SSblackbox.record_feedback("tally", "round_statistics", ammo.bonus_projectiles_amount, "total_bullets_fired")
+
 
 	//If we have the the right kind of ammo, we can fire several projectiles at once.
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
@@ -794,6 +799,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_humans++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_humans")
 
 
 /mob/living/carbon/xenomorph/bullet_act(obj/item/projectile/proj)
@@ -807,6 +813,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_xenos++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
 
 
 /mob/living/proc/check_proj_block(obj/item/projectile/proj)
@@ -1018,6 +1025,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 		GLOB.round_statistics.total_bullet_hits_on_marines++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_marines")
 
 
 /mob/living/carbon/xenomorph/bullet_message(obj/item/projectile/proj, feedback_flags)

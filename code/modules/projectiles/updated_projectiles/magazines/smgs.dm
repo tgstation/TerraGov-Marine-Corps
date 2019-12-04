@@ -31,7 +31,7 @@
 //T-19 SMG ammo
 
 /obj/item/ammo_magazine/smg/standard_smg
-	name = "\improper T-19 magazine (10x20mm)"
+	name = "\improper T-19 submachine gun magazine (10x20mm)"
 	desc = "A 10x20mm caseless Submachine Gun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t19"

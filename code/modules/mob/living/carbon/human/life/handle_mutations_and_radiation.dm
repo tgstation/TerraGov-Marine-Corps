@@ -22,7 +22,7 @@
 		if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 			radiation -= 5 * RADIATION_SPEED_COEFFICIENT
 			to_chat(src, "<span class='warning'>You feel weak.</span>")
-			knock_down(3)
+			Knockdown(60)
 			if(!lying)
 				emote("collapse")
 		if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && ishumanbasic(src)) //Apes go bald

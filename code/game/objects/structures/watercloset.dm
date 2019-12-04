@@ -452,9 +452,9 @@
 		var/mob/living/L = user
 
 		flick("baton_active", src)
-		L.stun(10)
+		L.Stun(20 SECONDS)
 		L.stuttering = 10
-		L.knock_down(10)
+		L.Knockdown(20 SECONDS)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	if(I.flags_item & ITEM_ABSTRACT)

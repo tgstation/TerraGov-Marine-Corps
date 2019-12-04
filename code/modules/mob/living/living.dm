@@ -15,12 +15,6 @@
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
-	if(confused)
-		confused = max(0, confused - 1)
-
-	handle_stunned()
-	handle_knocked_down()
-	handle_knocked_out()
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
@@ -29,20 +23,6 @@
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		adjust_stunned(-1)
-		if(!stunned && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return stunned
-
-/mob/living/proc/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-		if(!knocked_down && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return knocked_down
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
@@ -72,11 +52,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-1)
-	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
 	return
@@ -577,7 +552,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
 		if(!lying)
@@ -591,7 +566,7 @@ below 100 is not dizzy
 		else
 			lying = 0
 
-	set_canmove(!(stunned || frozen || laid_down))
+	set_canmove(!(IsStun() || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
@@ -718,11 +693,11 @@ below 100 is not dizzy
 	. = ..()
 	switch(var_name)
 		if("knockdown")
-			set_knocked_down(var_value)
+			SetKnockdown(var_value)
 		if("stun")
-			set_stunned(var_value)
+			SetStun(var_value)
 		if("sleeping")
-			set_sleeping(var_value)
+			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")

@@ -58,11 +58,11 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			knock_down(1)
+			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
+			Knockdown(20)
 		else
-			stun(10)//This should work for now, more is really silly and makes you lay there forever
-			knock_down(10)
+			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
+			Knockdown(20 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -126,7 +126,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	stun(5)
+	Stun(10 SECONDS)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -146,22 +146,24 @@
 	if(src == shaker)
 		return
 
-	if(lying || sleeping)
+	if(IsAdminSleeping())
+		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
+		return
+
+	if(lying || IsSleeping())
 		if(client)
-			adjust_sleeping(-5)
-		if(sleeping == 0)
+			AdjustSleeping(-10 SECONDS)
+		if(!IsSleeping())
 			set_resting(FALSE)
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		if(knocked_out)
-			adjust_knockedout(-3)
-		if(stunned)
-			adjust_stunned(-3)
-		if(knocked_down)
+		AdjustUnconscious(-60)
+		AdjustStun(-60)
+		if(IsKnockdown())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-			adjust_knocked_down(-3)
+		AdjustKnockdown(-60)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -297,11 +299,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(sleeping)
+	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		sleeping = 20 //Short nap
+		SetSleeping(40 SECONDS) //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM)
@@ -317,8 +319,8 @@
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	stun(stun_level)
-	knock_down(weaken_level)
+	Stun(stun_level)
+	Knockdown(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir

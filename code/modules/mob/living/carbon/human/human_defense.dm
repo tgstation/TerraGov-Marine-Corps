@@ -53,7 +53,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			#ifdef DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
-	return ( round(armorval/max(total, 1)*0.01,0.01) )
+	return round(armorval / max(total, 1), 1)
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
@@ -386,11 +386,11 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
 	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
-	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
+	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-	stunned += stun_duration
-	knock_down(stun_duration)
+	Stun(stun_duration)
+	Knockdown(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)
 	if(!ear_deaf)

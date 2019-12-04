@@ -69,7 +69,7 @@
 		var/mob/M = target
 		var/mob/living/L = user
 		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
-			L.knock_down(3)
+			L.Knockdown(60)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [L] to the ground before they could inject you!</span>", null, 5)
@@ -243,7 +243,7 @@
 		if((user != target) && H.check_shields(7, "the [src.name]"))
 			return
 
-		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
+		if (target != user && prob(target.getarmor(target_zone, "melee")))
 			visible_message("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!</span>")
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)

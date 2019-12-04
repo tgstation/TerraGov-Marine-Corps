@@ -187,9 +187,9 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
-		victim.stun(5)
-		victim.knock_down(5)
-		//victim.knock_out(10)
+		victim.Stun(10 SECONDS)
+		victim.Knockdown(10 SECONDS)
+		//victim.Unconscious(10)
 		//victim.drop_held_item()
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
@@ -197,7 +197,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
-				victim.stun(1)
+				victim.Stun(20)
 		victim.blur_eyes(5)
 		return
 	else // Oh dear :D
@@ -208,9 +208,9 @@
 			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
-		victim.stun(5)
-		victim.knock_down(5)
-		//victim.knock_out(10)
+		victim.Stun(10 SECONDS)
+		victim.Knockdown(10 SECONDS)
+		//victim.Unconscious(10)
 		//victim.drop_held_item()
 
 
@@ -239,14 +239,14 @@
 	taste_description = "salt"
 
 /datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
-	L.confused = max(L.confused, 20)
+	L.Confused(40 SECONDS)
 	if(prob(10))
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
 	L.jitter(5) //Turn super salty
 	if(prob(10))
-		L.knock_down(10)
+		L.Knockdown(20 SECONDS)
 	if(prob(10))
 		L.emote(pick("cry","moan","pain"))
 
@@ -307,12 +307,12 @@
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1, TOX)
 	if(prob(15))
-		L.knock_out(5)
+		L.Unconscious(10 SECONDS)
 
 /datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(2, TOX)
 	if(prob(60))
-		L.knock_out(3)
+		L.Unconscious(60)
 	L.setDrowsyness(max(L.drowsyness, 30))
 
 /datum/reagent/consumable/sprinkles

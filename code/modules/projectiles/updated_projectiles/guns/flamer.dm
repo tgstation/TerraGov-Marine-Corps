@@ -16,6 +16,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank
 	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
+	general_codex_key = "flame weapons"
 
 	attachable_allowed = list( //give it some flexibility.
 						/obj/item/attachable/flashlight,
@@ -520,7 +521,7 @@
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
 		var/armor_block = run_armor_check(null, "fire")
 		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
-			UPDATEHEALTH(src)	
+			UPDATEHEALTH(src)
 		return
 	. = ..()
 	if(isxeno(pulledby))
@@ -605,7 +606,7 @@
 	updatehealth()
 
 /mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
-	to_chat(src, "<span class='xenowarning'>Your extra-thick exoskeleton protects you from the flames.</span>")
+	to_chat(src, "<span class='xenowarning'>Our extra-thick exoskeleton protects us from the flames.</span>")
 
 /mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
 	if(stat)
@@ -614,6 +615,6 @@
 	var/datum/action/xeno_action/charge = actions_by_path[/datum/action/xeno_action/activable/charge]
 	if(charge)
 		charge.clear_cooldown() //Reset charge cooldown
-	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>")
+	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")
