@@ -39,7 +39,7 @@
 	taste_description = "hydration"
 
 /datum/reagent/water/on_mob_life(mob/living/L, metabolism)
-	L.reagents.remove_all_type(/datum/reagent, REM, 0, 1) //slowly washes out chems in you
+	L.reagents.remove_all_type(/datum/reagent, REM, FALSE, TRUE) //slowly washes out chems in you
 	if(volume < 4)
 		L.adjustStaminaLoss(-4*REM)
 		L.adjustBruteLoss(-0.1, 0)
