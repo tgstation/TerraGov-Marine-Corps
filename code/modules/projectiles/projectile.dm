@@ -962,7 +962,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.starting_turf, src)) : round(rand(1,359))
+		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
+		if(prob(60))
+			angle += rand(-angle, 360 - angle)
 		I.pixel_x += rand(-6,6)
 		I.pixel_y += rand(-6,6)
 
