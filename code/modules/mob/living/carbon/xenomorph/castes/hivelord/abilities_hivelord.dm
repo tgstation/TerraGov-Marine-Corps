@@ -95,7 +95,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	var/mob/living/carbon/xenomorph/walker = owner
-	if(!isturf(walker.loc) || walker.check_plasma(10, TRUE))
+	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
 		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
 		resinwalk_off(TRUE)
 		return
