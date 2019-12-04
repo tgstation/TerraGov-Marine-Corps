@@ -543,14 +543,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	name = "Peridaxon"
 	description = "Used to repair internal organs. Significant toxic and stun side effects."
 	color = "#C845DC"
-	overdose_threshold = REAGENTS_OVERDOSE/30
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
+	overdose_threshold = REAGENTS_OVERDOSE * 0.034
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.04
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.apply_damage(10*REM, TOX) //50 toxin/unit
-	L.adjustHalLoss(300) //You do not get up while this is in you. At all.
+	L.Stun(2 SECONDS)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -568,7 +568,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
-	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma. More effective in higher dosage, but causes slight pain and slowdown."
+	description = "Bicaridine is a medication used to treat blunt trauma. More effective in higher dosage, but causes slight pain."
 	color = "#E8756C"
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -649,14 +649,14 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	name = "Quick Clot Plus"
 	description = "A chemical designed to completely repair internal bleeding. Significant toxic and shock side effects, do not use in combat."
 	color = "#CC00FF"
-	overdose_threshold = REAGENTS_OVERDOSE/30 //ONE unit.
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25 //Two units
+	overdose_threshold = REAGENTS_OVERDOSE * 0.034
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.04
 	scannable = TRUE 
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //In body for 10 ticks
 
 /datum/reagent/medicine/quickclot_plus/on_mob_life(mob/living/L, metabolism)
 	L.apply_damage(10*REM, TOX) //50 toxin/unit
-	L.adjustHalLoss(300) //You do not get up while this is in you. At all.
+	L.Stun(4 SECONDS)
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
