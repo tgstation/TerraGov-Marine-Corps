@@ -143,7 +143,7 @@
 			use_plasma(5)
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		if(lying || resting) //When laying down we regen 4x the base plasma regen; likewise standing is 1/4th of the base plasma regen
+		if(lying || resting)
 			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 4) // Empty recovery aura will always equal 0
 		else
 			gain_plasma(max((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.25), 1))
