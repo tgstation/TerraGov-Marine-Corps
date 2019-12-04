@@ -211,7 +211,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/resist_grab()
-	if(pulledby.grab_level)
+	if(pulledby.grab_state)
 		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 	pulledby.stop_pulling()
 	. = 1

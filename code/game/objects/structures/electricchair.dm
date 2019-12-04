@@ -34,7 +34,8 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
-	if(buckled_mob)
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
 		buckled_mob.adjustFireLoss(85)
 		to_chat(buckled_mob, "<span class='danger'>You feel a deep shock course through your body!</span>")
 		sleep(1)

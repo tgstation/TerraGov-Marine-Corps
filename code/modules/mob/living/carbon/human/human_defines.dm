@@ -7,6 +7,7 @@
 	health_threshold_crit = -50
 	melee_damage = 5
 	m_intent = MOVE_INTENT_WALK
+	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL|CAN_BUCKLE
 
 	hud_type = /datum/hud/human
 
@@ -117,3 +118,5 @@
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken
+
+	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))

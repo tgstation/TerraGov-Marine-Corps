@@ -24,7 +24,7 @@
 	return
 
 
-/mob/living/incapacitated(ignore_restrained)
+/mob/living/incapacitated(ignore_restrained, restrained_flags)
 	. = ..()
 	if(!.)
 		return (IsStun() || IsKnockdown() || IsUnconscious())

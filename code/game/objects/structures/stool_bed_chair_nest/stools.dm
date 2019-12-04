@@ -3,7 +3,7 @@
 	desc = "Apply butt."
 	icon_state = "stool"
 	anchored = TRUE
-	can_buckle = FALSE
+	buckle_flags = NONE
 	foldabletype = /obj/item/stool
 
 

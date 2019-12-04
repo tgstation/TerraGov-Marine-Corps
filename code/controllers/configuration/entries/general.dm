@@ -356,3 +356,10 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/panic_bunker_message
 	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
+
+
+/datum/config_entry/string/default_view
+	config_entry_value = "15x15"
+
+/datum/config_entry/string/default_view_square
+	config_entry_value = "15x15"

@@ -72,7 +72,7 @@
 			return
 
 		var/mob/living/M = G.grabbed_thing
-		var/state = user.grab_level
+		var/state = user.grab_state
 		user.drop_held_item()
 		switch(state)
 			if(GRAB_PASSIVE)

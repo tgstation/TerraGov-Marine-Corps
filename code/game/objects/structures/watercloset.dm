@@ -71,7 +71,7 @@
 
 		var/mob/living/carbon/C = G.grabbed_thing
 
-		if(user.grab_level <= GRAB_PASSIVE)
+		if(user.grab_state <= GRAB_PASSIVE)
 			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 			return
 
@@ -135,7 +135,7 @@
 			return
 
 		var/mob/living/GM = G.grabbed_thing
-		if(user.grab_level <= GRAB_PASSIVE)
+		if(user.grab_state <= GRAB_PASSIVE)
 			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 			return
 

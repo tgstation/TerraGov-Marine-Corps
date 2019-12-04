@@ -27,7 +27,7 @@ All ShuttleMove procs go here
 			if(isliving(thing))
 				var/mob/living/M = thing
 				if(M.buckled)
-					M.buckled.unbuckle()//unbuckle_mob(M, 1)
+					M.buckled.unbuckle_mob(M, TRUE)
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()

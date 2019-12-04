@@ -84,6 +84,12 @@
 	return ..()
 
 
+/obj/structure/closet/bodybag/is_buckled()
+	if(roller_buckled)
+		return roller_buckled
+	return ..()
+
+
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
 		name = bag_name
@@ -175,7 +181,8 @@
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
-	roller_buckled?.unbuckle()
+	if(roller_buckled)
+		roller_buckled.unbuckle_bodybag()
 	return ..()
 
 

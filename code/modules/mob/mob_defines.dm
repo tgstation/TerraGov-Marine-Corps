@@ -14,7 +14,6 @@
 	var/timeofdeath = 0
 	var/a_intent = INTENT_HELP
 	var/m_intent = MOVE_INTENT_RUN
-	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
 	var/list/observers //The list of people observing this mob.
@@ -43,8 +42,8 @@
 	var/inertia_dir = 0
 	var/move_on_shuttle = TRUE // Can move on the shuttle.
 	var/canmove = TRUE
-	var/lying = FALSE
-	var/lying_prev = FALSE
+	var/lying = 0
+	var/lying_prev = 0
 
 	//Security
 	var/computer_id
@@ -72,7 +71,6 @@
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.
 	var/atom/movable/remote_control //Calls relaymove() to whatever it is
-	var/obj/buckled //Living
 	var/obj/item/l_hand //Living
 	var/obj/item/r_hand //Living
 	var/obj/item/storage/s_active //Carbon
