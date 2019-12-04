@@ -135,7 +135,7 @@
 
 /obj/vehicle/powerloader/setDir(newdir)
 	. = ..()
-	if(buckled_mob?.dir != dir)
+	if(buckled_mob && buckled_mob.dir != dir)
 		buckled_mob.setDir(dir)
 
 /obj/vehicle/powerloader/deconstruct(disassembled)
