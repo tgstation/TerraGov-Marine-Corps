@@ -12,10 +12,10 @@
 
 	valid_job_types = list(
 		/datum/job/marine/standard = -1,
-		/datum/job/marine/engineer = 8,
-		/datum/job/marine/corpsman = 8,
-		/datum/job/marine/smartgunner = 4,
-		/datum/job/marine/specialist = 4,
+		/datum/job/marine/engineer = 4,
+		/datum/job/marine/corpsman = 4,
+		/datum/job/marine/smartgunner = 2,
+		/datum/job/marine/specialist = 2,
 		/datum/job/marine/leader = 1,
 		/datum/job/medical/professor = 1,
 		/datum/job/civilian/synthetic = 1,
