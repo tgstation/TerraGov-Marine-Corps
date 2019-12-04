@@ -43,7 +43,7 @@
 	if(volume < 4)
 		L.adjustStaminaLoss(-4*REM)
 		L.adjustBruteLoss(-0.1)
-		L.adjustFireLoss(-0.1, 0)
+		L.adjustFireLoss(-0.1)
 	if(volume < 30)
 		L.adjustStaminaLoss(-1*REM)
 	return ..()
