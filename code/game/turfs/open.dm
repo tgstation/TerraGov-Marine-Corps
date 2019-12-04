@@ -6,6 +6,10 @@
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
 	var/has_catwalk = FALSE
+	var/shoefootstep = FOOTSTEP_FLOOR
+	var/barefootstep = FOOTSTEP_HARD
+	var/mediumxenofootstep = FOOTSTEP_HARD
+	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -61,6 +65,10 @@
 
 /turf/open/river
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 // Beach
@@ -68,6 +76,9 @@
 /turf/open/beach
 	name = "beach"
 	icon = 'icons/misc/beach.dmi'
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 
 /turf/open/beach/sand
@@ -83,6 +94,10 @@
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water/New()
 	..()
@@ -92,6 +107,10 @@
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water2/New()
 	..()
@@ -101,6 +120,10 @@
 	name = "sea"
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 //Nostromo turfs
@@ -111,6 +134,10 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 //SHUTTLE 'FLOORS'
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
@@ -157,5 +184,3 @@
 
 /turf/open/shuttle/elevator/grating
 	icon_state = "floor_grating"
-
-
