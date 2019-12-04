@@ -42,7 +42,7 @@
 	L.reagents.remove_all_type(/datum/reagent, REM, FALSE, TRUE) //slowly washes out chems in you
 	if(volume < 4)
 		L.adjustStaminaLoss(-4*REM)
-		L.adjustBruteLoss(-0.1, 0)
+		L.adjustBruteLoss(-0.1)
 		L.adjustFireLoss(-0.1, 0)
 	if(volume < 30)
 		L.adjustStaminaLoss(-1*REM)
