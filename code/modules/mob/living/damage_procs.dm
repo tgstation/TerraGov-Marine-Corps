@@ -65,11 +65,11 @@
 		return 0
 	switch(effecttype)
 		if(STUN)
-			stun(effect/(blocked+1))
+			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
 		if(WEAKEN)
-			knock_down(effect/(blocked+1))
+			Knockdown(effect/(blocked+1) * 20)
 		if(PARALYZE)
-			knock_out(effect/(blocked+1))
+			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)

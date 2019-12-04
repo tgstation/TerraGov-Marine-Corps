@@ -144,7 +144,7 @@
 			return
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
-			L.knock_down(5)
+			L.Knockdown(10 SECONDS)
 			visible_message("<span class='warning'>[user] realized they were out of ammo and starting scrounging for some!</span>")
 
 
@@ -162,7 +162,7 @@
 		else if(M.lying && !bullets && isliving(M))
 			var/mob/living/L = M
 			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
-			L.knock_down(5)
+			L.Knockdown(10 SECONDS)
 		return
 
 /obj/item/toy/crossbow_ammo

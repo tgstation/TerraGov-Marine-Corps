@@ -50,28 +50,6 @@
 	return TRUE
 
 
-/mob/living/carbon/human/handle_knocked_down()
-	if(knocked_down) //&& client
-		adjust_knocked_down(-species.knock_down_reduction)
-		if(!knocked_down && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return knocked_down
-
-
-/mob/living/carbon/human/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-species.knock_out_reduction)
-	return knocked_out
-
-
-/mob/living/carbon/human/handle_stunned()
-	if(stunned)
-		adjust_stunned(-species.stun_reduction)
-		if(!stunned && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return stunned
-
-
 /mob/living/carbon/human/proc/set_mobility_aura(new_aura)
 	if(mobility_aura == new_aura)
 		return

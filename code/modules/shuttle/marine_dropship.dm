@@ -29,7 +29,7 @@
 		else
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
-			M.knock_down(3)
+			M.Knockdown(60)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)

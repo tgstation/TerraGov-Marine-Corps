@@ -49,7 +49,7 @@
 				if(!lying)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				knock_down(5)
+				Knockdown(10 SECONDS)
 		if(80 to 119)
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
@@ -57,7 +57,7 @@
 				if(!lying)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				knock_down(5)
+				Knockdown(10 SECONDS)
 		if(120 to 149)
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
@@ -65,10 +65,10 @@
 				if(!lying)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				knock_down(5)
+				Knockdown(10 SECONDS)
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				knock_out(5)
+				Unconscious(10 SECONDS)
 		if(150 to INFINITY)
 			if(shock_stage == 150 && !lying) emote("me", 1, "can no longer stand, collapsing!")
 			blur_eyes(2)
@@ -77,8 +77,8 @@
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				knock_out(5)
-			knock_down(5)
+				Unconscious(10 SECONDS)
+			Knockdown(10 SECONDS)
 
 
 /mob/living/carbon/human/halloss_recovery()
@@ -88,7 +88,7 @@
 	var/rate = BASE_HALLOSS_RECOVERY_RATE
 
 	if(lying || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
-		if(resting || sleeping) //we're deliberately resting, comfortably taking a breather
+		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
 			rate = REST_HALLOSS_RECOVERY_RATE
 		else
 			rate = DOWNED_HALLOSS_RECOVERY_RATE

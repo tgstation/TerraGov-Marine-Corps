@@ -75,14 +75,11 @@
 /mob/living/proc/updateStamina(feedback = TRUE)
 	if(staminaloss < maxHealth * 1.5)
 		return
-	switch(knocked_down)
-		if(0)
-			if(feedback)
-				visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
-					"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-			knock_down(4)
-		if(1 to 3)
-			set_knocked_down(4, FALSE)
+	if(!IsKnockdown())
+		if(feedback)
+			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
+				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
+	Knockdown(80)
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -244,9 +241,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	set_knocked_out(0)
-	set_stunned(0)
-	set_knocked_down(0)
+	remove_all_status_effect()
 	ExtinguishMob()
 	fire_stacks = 0
 

@@ -18,7 +18,7 @@
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
 	var/list/observers //The list of people observing this mob.
-	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/list/speak_emote = list("says") // Verbs used when speaking instead of the default ones.
 	var/zone_selected = BODY_ZONE_CHEST
 	var/bodytemperature = 310.055	//98.7 F

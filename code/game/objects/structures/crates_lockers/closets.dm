@@ -32,7 +32,7 @@
 	var/open_sound = 'sound/machines/click.ogg'
 	var/close_sound = 'sound/machines/click.ogg'
 
-	var/closet_stun_delay = 1
+	var/closet_stun_delay = 2 SECONDS
 
 	anchored = TRUE
 
@@ -469,8 +469,8 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
-	stun(origin.closet_stun_delay)//Action delay when going out of a closet
-	if(!lying && stunned)
+	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
+	if(!lying && IsStun())
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!</span>",
 		"<span class='warning'>You get out of [origin] and get your bearings!</span>")
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)

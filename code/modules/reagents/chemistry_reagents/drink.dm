@@ -21,7 +21,7 @@
 	if(adj_drowsy != 0)
 		L.adjustDrowsyness(adj_drowsy)
 	if(adj_sleepy != 0)
-		L.adjust_sleeping(adj_sleepy)
+		L.AdjustSleeping(adj_sleepy)
 	return ..()
 
 /datum/reagent/consumable/drink/orangejuice
@@ -229,7 +229,7 @@
 	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
-		L.knock_out(5)
+		L.Unconscious(10 SECONDS)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -433,7 +433,7 @@
 	L.adjustFireLoss(-0.5, 0)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
-	L.confused = max(L.confused - 5, 0)
+	L.AdjustConfused(-10 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb
@@ -445,15 +445,15 @@
 
 /datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(50)
-	L.confused += 2
+	L.AdjustConfused(40)
 	L.slurring += 2
 	switch(current_cycle)
 		if(40 to 49)
 			L.adjustDrowsyness(2)
 		if(51 to 200)
-			L.sleeping(3)
+			L.Sleeping(60)
 		if(201 to INFINITY)
-			L.sleeping(3)
+			L.Sleeping(60)
 			L.adjustToxLoss(2)
 	return ..()
 
@@ -470,7 +470,7 @@
 			L.slurring += 2
 			L.jitter(2)
 		if(46 to 65)
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.slurring += 2
 			L.jitter(3)
 		if(66 to 199)
@@ -479,16 +479,16 @@
 				L.vomit()
 			L.jitter(4)
 			if(prob(5))
-				L.sleeping(8)
+				L.Sleeping(16 SECONDS)
 		if(200 to INFINITY)
 			L.set_drugginess(50)
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.slurring += 2
 			L.adjustToxLoss(2)
 			L.jitter(5)
 			if(prob(10))
 				L.vomit()
-			L.sleeping(3)
+			L.Sleeping(60)
 	return ..()
 
 /datum/reagent/consumable/drink/neurotoxin
@@ -500,16 +500,16 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
-	L.knock_down(3)
+	L.Knockdown(60)
 	switch(current_cycle)
 		if(15 to 35)
 			L.stuttering += 2
 		if(36 to 55)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(40)
 		if(56 to 200)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.set_drugginess(30)
 		if(201 to INFINITY)
 			L.set_drugginess(30)
