@@ -9,10 +9,10 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 34
+	melee_damage = 30
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.3
@@ -22,7 +22,7 @@
 	plasma_gain = 8
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 210
 
 	// *** Evolution *** //
 	evolution_threshold = 200
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 32, "bullet" = 32, "laser" = 32, "energy" = 32, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 5, "acid" = 35)
+	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 0, "acid" = 28)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -61,10 +61,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 38
+	melee_damage = 33
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 33
 
 	// *** Speed *** //
 	speed = -0.4
@@ -74,13 +74,13 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 36, "bullet" = 36, "laser" = 36, "energy" = 36, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 7, "acid" = 40)
+	armor = list("melee" = 32, "bullet" = 32, "laser" = 32, "energy" = 32, "bomb" = XENO_BOMB_RESIST_0, "bio" = 32, "rad" = 32, "fire" = 3, "acid" = 32)
 
 	// *** Warrior Abilities *** //
 
@@ -91,10 +91,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 36
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 36
 
 	// *** Speed *** //
 	speed = -0.45
@@ -104,13 +104,13 @@
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 39, "bullet" = 39, "laser" = 39, "energy" = 39, "bomb" = XENO_BOMB_RESIST_2, "bio" = 45, "rad" = 45, "fire" = 10, "acid" = 45)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 5, "acid" = 35)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -122,10 +122,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 42
+	melee_damage = 38
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 38
 
 	// *** Speed *** //
 	speed = -0.5
@@ -135,13 +135,13 @@
 	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 43, "bullet" = 43, "laser" = 43, "energy" = 43, "bomb" = XENO_BOMB_RESIST_2, "bio" = 47, "rad" = 47, "fire" = 12, "acid" = 47)
+	armor = list("melee" = 37, "bullet" = 37, "laser" = 37, "energy" = 37, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 7, "acid" = 37)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
