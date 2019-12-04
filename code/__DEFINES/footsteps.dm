@@ -60,8 +60,8 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
 	FOOTSTEP_RESIN = list(list(
-		'sound/effects/alien_resin_move1.ogg',
-		'sound/effects/alien_resin_move2.ogg',), 50, 2),
+		'sound/effects/footstep/alien_resin_move1.ogg',
+		'sound/effects/footstep/alien_resin_move2.ogg',), 50, 2),
 ))
 //bare footsteps lists
 GLOBAL_LIST_INIT(barefootstep, list(
@@ -100,8 +100,8 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/water3.ogg',
 		'sound/effects/footstep/water4.ogg'), 100, 1),
 	FOOTSTEP_RESIN = list(list(
-		'sound/effects/alien_resin_move1.ogg',
-		'sound/effects/alien_resin_move2.ogg',), 70, 2),
+		'sound/effects/footstep/alien_resin_move1.ogg',
+		'sound/effects/footstep/alien_resin_move2.ogg',), 70, 2),
 ))
 
 //claw footsteps lists
