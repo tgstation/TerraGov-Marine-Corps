@@ -17,7 +17,7 @@
 	. = ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 2 SECONDS
@@ -52,7 +52,7 @@
 	if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
 		return FALSE
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 5 SECONDS
@@ -95,7 +95,7 @@
 
 /obj/item/explosive/plastique/attackby(obj/item/I, mob/user, params)
 	if(ismultitool(I) && armed)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disarm [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to disarm [src].</span>")
 			var/fumbling_time = 3 SECONDS

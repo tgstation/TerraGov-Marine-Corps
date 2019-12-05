@@ -438,9 +438,8 @@
 		last_fired = world.time
 		last_use = world.time
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		if(!do_after(user, 10, TRUE, src))
-			return
+	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
+		return
 	return ..()
 
 /obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)

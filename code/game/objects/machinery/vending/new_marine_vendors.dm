@@ -225,7 +225,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
 						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
-					else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
+					else if(usr.skills.getRating("spec_weapons") != SKILL_SPEC_TRAINED)
 						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[2]

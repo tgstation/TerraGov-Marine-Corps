@@ -636,7 +636,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
-			H.mind.cm_skills = new /datum/skills/early_synthetic
+			H.skills = getSkillsType(/datum/skills/early_synthetic)
 		new_name = preference_source.prefs.synthetic_name
 
 	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.

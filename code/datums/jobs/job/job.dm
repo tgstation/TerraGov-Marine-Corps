@@ -107,8 +107,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	L.faction = faction
 
 	if(skills_type)
-		var/datum/skills/S = new skills_type
-		L.mind.cm_skills = S
+		L.skills = getSkillsType(skills_type)
 
 	if(!ishuman(L))
 		return TRUE

@@ -1,7 +1,6 @@
 /datum/job/marine
 	supervisors = "the acting squad leader"
 	selection_color = "#ffeeee"
-	skills_type = /datum/skills/pfc
 	faction = "Marine"
 	exp_type_department = EXP_TYPE_MARINES
 
