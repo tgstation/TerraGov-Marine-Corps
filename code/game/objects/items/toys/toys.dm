@@ -529,8 +529,6 @@
 /obj/structure/hoop/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
-		if(istype(I, /obj/projectile))
-			return
 		if(prob(50))
 			I.forceMove(loc)
 			for(var/obj/machinery/scoreboard/X in GLOB.machines)
