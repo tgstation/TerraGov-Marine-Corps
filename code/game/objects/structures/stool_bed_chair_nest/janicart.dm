@@ -70,7 +70,7 @@
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
 
 
-/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
+/obj/structure/bed/chair/janicart/bullet_act(obj/projectile/Proj)
 	if(LAZYLEN(buckled_mobs))
 		if(prob(85))
 			return buckled_mobs[1].bullet_act(Proj)

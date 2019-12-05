@@ -30,7 +30,7 @@
 
 	//Ammo will be replaced on New() for things that do not use mags..
 	var/datum/ammo/ammo = null					//How the bullet will behave once it leaves the gun, also used for basic bullet damage and effects, etc.
-	var/obj/item/projectile/in_chamber = null 	//What is currently in the chamber. Most guns will want something in the chamber upon creation.
+	var/obj/projectile/in_chamber = null 	//What is currently in the chamber. Most guns will want something in the chamber upon creation.
 	/*Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
 	on those unique vars. This is done for quicker pathing. Just keep in mind most mags aren't internal, though some are.
 	This is also the default magazine path loaded into a projectile weapon for reverse lookups on New(). Leave this null to do your own thing.*/
@@ -506,7 +506,7 @@ and you're good to go.
 		stack_trace("null ammo while create_bullet(). User: [usr]")
 		chambered = GLOB.ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/item/projectile/P = new /obj/item/projectile(src)
+	var/obj/projectile/P = new /obj/projectile(src)
 	P.generate_bullet(chambered)
 	return P
 
@@ -533,7 +533,7 @@ and you're good to go.
 	return in_chamber //Returns the projectile if it's actually successful.
 
 
-/obj/item/weapon/gun/proc/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
+/obj/item/weapon/gun/proc/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE) //Attachables don't chamber rounds, so we want to delete it right away.
 		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
@@ -541,7 +541,7 @@ and you're good to go.
 		return TRUE
 
 
-/obj/item/weapon/gun/proc/clear_jam(obj/item/projectile/projectile_to_fire, mob/user) //Guns jamming, great.
+/obj/item/weapon/gun/proc/clear_jam(obj/projectile/projectile_to_fire, mob/user) //Guns jamming, great.
 	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
 	delete_bullet(projectile_to_fire, TRUE) //We're going to clear up anything inside if we need to.
 	//If it's a regular bullet, we're just going to keep it chambered.
@@ -590,7 +590,7 @@ and you're good to go.
 			break
 
 		//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
-		var/obj/item/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
+		var/obj/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
 		if(!projectile_to_fire) //If there is nothing to fire, click.
 			click_empty(user)
 			break
@@ -681,7 +681,7 @@ and you're good to go.
 		//Point blanking simulates firing the bullet proper but without actually firing it.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
 			active_attachable.activate_attachment(null, TRUE)//No way.
-		var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
+		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 			return // no ..(), already invoked above
 
@@ -694,9 +694,9 @@ and you're good to go.
 		play_fire_sound(user)
 
 		if(projectile_to_fire.ammo.bonus_projectiles_amount)
-			var/obj/item/projectile/BP
+			var/obj/projectile/BP
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-				BP = new /obj/item/projectile(M.loc)
+				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
@@ -731,7 +731,7 @@ and you're good to go.
 
 	if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
 		active_attachable.activate_attachment(null, TRUE)//We're not firing off a nade into our mouth.
-	var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
+	var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
 		click_empty(user)//If there's no projectile, we can't do much.
@@ -859,14 +859,14 @@ and you're good to go.
 	playsound(user, fire_sound, 60)
 
 
-/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/item/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/proc/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
 	projectile_to_fire.projectile_speed += shell_speed_mod
 
 
-/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/item/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
+/obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1, dual_wield = FALSE)
 	var/gun_accuracy_mult = accuracy_mult_unwielded
 	var/gun_accuracy_mod = 0
 	var/gun_scatter = scatter_unwielded

@@ -676,7 +676,7 @@
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
-	var/obj/item/projectile/newspit = new /obj/item/projectile(current_turf)
+	var/obj/projectile/newspit = new /obj/projectile(current_turf)
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()

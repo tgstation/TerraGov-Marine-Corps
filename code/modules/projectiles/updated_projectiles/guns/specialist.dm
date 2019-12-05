@@ -409,7 +409,7 @@
 
 	return current_mag.current_rounds
 
-/obj/item/weapon/gun/smartgun/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/smartgun/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return 1
@@ -816,7 +816,7 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
+/obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
 	if(refund)
 		current_mag.current_rounds++
@@ -859,7 +859,7 @@
 
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
-/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/item/projectile/projectile_to_fire, atom/target)
+/obj/item/weapon/gun/launcher/rocket/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
 	. = ..()
 	var/turf/blast_source = get_turf(src)
 	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))

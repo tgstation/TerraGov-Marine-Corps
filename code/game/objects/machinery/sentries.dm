@@ -246,7 +246,7 @@
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 	var/obj/item/turret_laptop/laptop = null
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
-	var/obj/item/projectile/in_chamber = null
+	var/obj/projectile/in_chamber = null
 	var/last_alert = 0
 	var/last_damage_alert = 0
 	var/list/obj/alert_list = list()
@@ -853,7 +853,7 @@
 
 
 /obj/machinery/marine_turret/proc/create_bullet()
-	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber = new /obj/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 
 
@@ -912,7 +912,7 @@
 
 
 	if(load_into_chamber())
-		if(istype(in_chamber,/obj/item/projectile))
+		if(istype(in_chamber,/obj/projectile))
 
 			if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 				//Apply scatter

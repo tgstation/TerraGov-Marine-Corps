@@ -38,22 +38,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/flags_ammo_behavior = NONE
 
 
-/datum/ammo/proc/do_at_max_range(obj/item/projectile/proj)
+/datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
 
-/datum/ammo/proc/on_shield_block(mob/M, obj/item/projectile/proj) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
+/datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
 	return
 
-/datum/ammo/proc/on_hit_turf(turf/T, obj/item/projectile/proj) //Special effects when hitting dense turfs.
+/datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj) //Special effects when hitting dense turfs.
 	return
 
-/datum/ammo/proc/on_hit_mob(mob/M, obj/item/projectile/proj) //Special effects when hitting mobs.
+/datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj) //Special effects when hitting mobs.
 	return
 
-/datum/ammo/proc/on_hit_obj(obj/O, obj/item/projectile/proj) //Special effects when hitting objects.
+/datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
 	return
 
-/datum/ammo/proc/knockback(mob/victim, obj/item/projectile/proj, max_range = 2)
+/datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(proj.distance_travelled > max_range || victim.lying) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 		step_away(victim, proj)
 
-/datum/ammo/proc/staggerstun(mob/victim, obj/item/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(!isliving(victim))
@@ -138,7 +138,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	to_chat(victim, "[impact_message]") //Summarize all the bad shit that happened
 
 
-/datum/ammo/proc/airburst(atom/target, obj/item/projectile/proj)
+/datum/ammo/proc/airburst(atom/target, obj/projectile/proj)
 	if(!target || !proj)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in orange(1, target))
@@ -151,9 +151,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		UPDATEHEALTH(victim)
 
 
-/datum/ammo/proc/fire_bonus_projectiles(obj/item/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
+/datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle)
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/item/projectile/new_proj = new /obj/item/projectile(main_proj.loc)
+		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/item/projectile/proj) //Taser proc to stun folks.
+/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
 	if(!isliving(target) || isxeno(target))
 		return //Not on aliens.
 	target.apply_effects(12, 20)
@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -15
 	shrapnel_chance = 45
 
-/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 15
 
 
-/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/projectile/P)
 	if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
 		P.visible_message("<span class='danger'>The [src] chimpers furiously!</span>")
 		new /mob/living/carbon/monkey(P.loc)
@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "revolver_empty"
 	damage = 35
 
-/datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/small
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	accuracy = -15
 
-/datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/revolver/highimpact
@@ -342,7 +342,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 45
 	penetration = 15
 
-/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
 
 /*
@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -10
 	penetration = 20
 
-/datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	penetration = 10
 
-/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 4, knockback = 1)
 
 
@@ -492,7 +492,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 0
 	accuracy = 15
 
-/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
 	if(!M || M == P.firer)
 		return
 	if(ishuman(M))
@@ -511,14 +511,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 5
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/item/projectile/proj)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 	knockback(victim, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/item/projectile/proj)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	airburst(target_obj, proj)
 
-/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/item/projectile/proj)
+/datum/ammo/bullet/shotgun/incendiary/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	airburst(target_turf, proj)
 
 
@@ -562,7 +562,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 0
 
 
-/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
 	knockback(M,P)
 
 /datum/ammo/bullet/shotgun/spread
@@ -639,7 +639,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 20
 
-/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
 
@@ -683,7 +683,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 10
 
-/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/item/projectile/proj)
+/datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	victim.AddComponent(/datum/component/dripping, DRIP_ON_TIME, 40 SECONDS, 2 SECONDS)
 
 /*
@@ -727,7 +727,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 90
 	penetration = 0
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/item/projectile/proj)
+/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
@@ -852,16 +852,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
 
-/datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 
-/datum/ammo/rocket/on_hit_obj(obj/O, obj/item/projectile/P)
+/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 
-/datum/ammo/rocket/on_hit_turf(turf/T, obj/item/projectile/P)
+/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T)
 
-/datum/ammo/rocket/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/rocket/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /datum/ammo/rocket/ap
@@ -953,7 +953,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
 	stun_living(M,P)
 
 
@@ -1048,7 +1048,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 3
 	damage = 45
 
-/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/item/projectile/P)
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
 		return
 
@@ -1115,7 +1115,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 
 
-/datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/projectile/P)
 	drop_resin(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
@@ -1124,18 +1124,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		C.add_slowdown(3) //slow em down
 
 
-/datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
 	drop_resin(T)
 
-/datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/xeno/sticky/on_hit_turf(turf/T,obj/projectile/P)
 	if(!T)
 		T = get_turf(P)
 	drop_resin(T)
 
-/datum/ammo/xeno/sticky/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/xeno/sticky/do_at_max_range(obj/projectile/P)
 	drop_resin(get_turf(P))
 
 /datum/ammo/xeno/sticky/proc/drop_resin(turf/T)
@@ -1160,7 +1160,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "acid"
 	damage = 18
 
-/datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/item/projectile/proj)
+/datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/acid/medium
@@ -1173,7 +1173,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	spit_cost = 75
 	damage = 23
 
-/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
 	if(!T)
 		T = get_turf(P)
@@ -1181,19 +1181,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	M.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
 	var/turf/T = get_turf(O)
 	if(!T)
 		T = get_turf(P)
 	drop_nade(T)
 
 
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
 	if(!T)
 		T = get_turf(P)
 	drop_nade(T)
 
-/datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/xeno/acid/heavy/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /datum/ammo/xeno/acid/drop_nade(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
@@ -1213,17 +1213,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 10
 	max_range = 30
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
-/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
-/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	var/target = (T.density && isturf(P.loc)) ? P.loc : T
 	drop_nade(target, P.firer) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
-/datum/ammo/xeno/boiler_gas/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/xeno/boiler_gas/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
@@ -1251,7 +1251,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_type = BURN
 
-/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/item/projectile/proj)
+/datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/xeno/boiler_gas/corrosive/set_smoke()
@@ -1289,16 +1289,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 5
 	damage = 50
 
-/datum/ammo/flamethrower/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
 	drop_flame(get_turf(P))
 
-/datum/ammo/flamethrower/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/flamethrower/do_at_max_range(obj/projectile/P)
 	drop_flame(get_turf(P))
 
 /datum/ammo/flamethrower/tank_flamer/drop_flame(turf/T)
@@ -1323,16 +1323,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	max_range = 15
 
-/datum/ammo/flare/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/flare/on_hit_mob(mob/M,obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/flare/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/flare/on_hit_obj(obj/O,obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/flare/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/flare/on_hit_turf(turf/T,obj/projectile/P)
 	drop_nade(T)
 
-/datum/ammo/flare/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/flare/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /datum/ammo/flare/drop_nade(turf/T)
@@ -1344,16 +1344,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "\improper toy rocket"
 	damage = 1
 
-	on_hit_mob(mob/M,obj/item/projectile/P)
+	on_hit_mob(mob/M,obj/projectile/P)
 		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
-/datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/projectile/P)
 	return
 
-/datum/ammo/rocket/toy/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_turf(turf/T,obj/projectile/P)
 	return
 
-/datum/ammo/rocket/toy/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/rocket/toy/do_at_max_range(obj/projectile/P)
 	return
 
 /datum/ammo/grenade_container
@@ -1367,16 +1367,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 15
 	max_range = 10
 
-/datum/ammo/grenade_container/on_hit_mob(mob/M,obj/item/projectile/P)
+/datum/ammo/grenade_container/on_hit_mob(mob/M,obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/grenade_container/on_hit_obj(obj/O,obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
 	drop_nade(get_turf(P))
 
-/datum/ammo/grenade_container/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/grenade_container/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /datum/ammo/grenade_container/drop_nade(turf/T)
