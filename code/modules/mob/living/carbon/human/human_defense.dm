@@ -53,7 +53,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			#ifdef DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
-	return ( round(armorval/max(total, 1)*0.01,0.01) )
+	return round(armorval / max(total, 1), 1)
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
@@ -154,6 +154,9 @@ Contains most of the procs that are called when a mob is attacked by something
 
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
+	if(!I.force)
+		return FALSE
+
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
 	if(user == src) // Attacking yourself can't miss
@@ -165,34 +168,42 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 
 	var/datum/limb/affecting = get_limb(target_zone)
-	if (!affecting)
-		return 0
+	if(!affecting)
+		CRASH("[src] called attacked_by [user] with [I] aiming at [def_zone] but found no affecting limb")
 	if(affecting.limb_status & LIMB_DESTROYED)
 		to_chat(user, "What [affecting.display_name]?")
-		return 0
+		return FALSE
 	var/hit_area = affecting.display_name
 
 	if((user != src) && check_shields(I.force, "the [I.name]"))
-		return 0
+		return FALSE
 
-	if(LAZYLEN(I.attack_verb))
-		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
-	else
-		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 
-	var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].")
+	var/armor = run_armor_check(affecting, "melee")
+	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
+	var/armor_verb
+	switch(armor)
+		if(100 to INFINITY)
+			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, 5)
+			user.do_attack_animation(src, used_item = I)
+			return TRUE
+		if(-INFINITY to 25)//Nothing
+		if(25 to 50)
+			armor_verb = " [p_their(TRUE)] armor has softened the hit!"
+		if(50 to 75)
+			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
+		if(75 to 100)
+			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
+	
+	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
+
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if ((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
-		weapon_sharp = 0
-		weapon_edge = 0
+	if((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
 
 	user.do_attack_animation(src, used_item = I)
-
-	if(armor >= 1) //Complete negation
-		return 0
-	if(!I.force)
-		return 0
 
 	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
 	UPDATEHEALTH(src)
@@ -248,7 +259,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
 			I.embed_into(src, affecting)
 
-	return 1
+	return TRUE
+
 
 //this proc handles being hit by a thrown atom
 /mob/living/carbon/human/hitby(atom/movable/AM,speed = 5)
@@ -374,11 +386,11 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
 	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
-	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
+	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-	stunned += stun_duration
-	knock_down(stun_duration)
+	Stun(stun_duration)
+	Knockdown(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)
 	if(!ear_deaf)

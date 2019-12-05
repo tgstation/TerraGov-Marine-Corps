@@ -2,7 +2,8 @@
 	breakouttime = 2 MINUTES
 
 
-/obj/item/restraints/resisted_against(datum/source, mob/living/carbon/perp)
+/obj/item/restraints/resisted_against(datum/source)
+	var/mob/living/carbon/perp = source
 	if(perp.cooldowns[COOLDOWN_RESIST])
 		return FALSE
 

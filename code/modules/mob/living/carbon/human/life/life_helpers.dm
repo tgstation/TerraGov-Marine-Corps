@@ -61,8 +61,7 @@
 		return //Fuck this precision
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
-		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+		adjust_nutrition(-2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		adjust_bodytemperature(recovery_amt)
 
@@ -204,11 +203,6 @@
 	if(..())
 		speech_problem_flag = 1
 	return slurring
-
-/mob/living/carbon/human/handle_stunned()
-	if(..())
-		speech_problem_flag = 1
-	return stunned
 
 /mob/living/carbon/human/handle_stuttering()
 	if(..())

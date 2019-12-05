@@ -21,7 +21,7 @@
 					/obj/item/weapon/gun/rifle/standard_lmg = 15,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
-					/obj/item/weapon/gun/shotgun/pump = 10,
+					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/standard_smg = 30,
@@ -46,7 +46,6 @@
 
 	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
 						/obj/item/ammo_magazine/pistol/ap = 2,
-						/obj/item/ammo_magazine/smg/standard_smg/ap = 1
 						)
 	prices = list()
 
@@ -83,7 +82,6 @@
 					/obj/item/storage/backpack/marine/standard = 15,
 					/obj/item/storage/backpack/marine/satchel = 15,
 					/obj/item/storage/large_holster/machete/full = 10,
-					/obj/item/storage/large_holster/m37 = 10,
 					/obj/item/storage/belt/marine = 15,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/sparepouch = 10,
@@ -93,7 +91,7 @@
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 5,
-					/obj/item/storage/large_holster/m39 = 5,
+					/obj/item/storage/large_holster/t19 = 5,
 					/obj/item/clothing/tie/storage/webbing = 5,
 					/obj/item/clothing/tie/storage/brown_vest = 5,
 					/obj/item/clothing/tie/storage/white_vest/medic = 5,
@@ -122,7 +120,7 @@
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
-					/obj/item/weapon/gun/shotgun/pump = 10,
+					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/rifle/sx16 = 10,
 					/obj/item/explosive/mine = 2,
 					/obj/item/explosive/grenade/frag/m15 = 2,
@@ -185,10 +183,6 @@
 					/obj/item/ammo_magazine/revolver/heavy = 5,
 					/obj/item/ammobox/m39 = 3,
 					/obj/item/ammo_magazine/smg/standard_smg = 15,
-					/obj/item/ammobox/m39ap = 1,
-					/obj/item/ammo_magazine/smg/standard_smg/ap = 5,
-					/obj/item/ammobox/m39ext = 1,
-					/obj/item/ammo_magazine/smg/standard_smg/extended = 5,
 					/obj/item/ammobox = 3,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
@@ -288,7 +282,14 @@
 
 
 /obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
-	. = ..()
+	if(machine_stat & (BROKEN|NOPOWER))
+		return
+
+	if(user.stat || user.restrained() || user.lying)
+		return
+
+	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
+		return
 
 	var/obj/item/I = A
 	if(istype(I, /obj/item/cell/lasgun))
@@ -652,9 +653,9 @@
 						/obj/item/attachable/lasersight = 10,
 						/obj/item/attachable/verticalgrip = 10,
 
-						/obj/item/attachable/stock/smg = 3,
+						/obj/item/attachable/stock/t19stock = 3,
 						/obj/item/attachable/stock/revolver = 3,
-						/obj/item/attachable/stock/shotgun = 3,
+						/obj/item/attachable/stock/t35stock = 3,
 						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/flamer = 3,
@@ -713,7 +714,7 @@
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/gun/m4a3 = 10,
 					/obj/item/storage/belt/gun/m44 = 10,
-					/obj/item/storage/large_holster/m39 = 10,
+					/obj/item/storage/large_holster/t19 = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/pistol = 10,

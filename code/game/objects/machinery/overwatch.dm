@@ -28,17 +28,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
 	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
 	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/squad_console = NO_SQUAD //Is this associated to a specific squad?
 	var/datum/squad/current_squad = null //Squad being currently overseen
-	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
-
-
-/obj/machinery/computer/camera_advanced/overwatch/Initialize()
-	. = ..()
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		squads += S
 
 
 /obj/machinery/computer/camera_advanced/overwatch/main
@@ -48,19 +39,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/alpha
 	name = "Alpha Overwatch Console"
-	squad_console = ALPHA_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/bravo
 	name = "Bravo Overwatch Console"
-	squad_console = BRAVO_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/charlie
 	name = "Charlie Overwatch Console"
-	squad_console = CHARLIE_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
-	squad_console = DELTA_SQUAD
 
 
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
@@ -273,8 +260,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/i in SSjob.squads)
-						var/datum/squad/S = SSjob.squads[i]
+					for(var/i in SSjob.active_squads)
+						var/datum/squad/S = SSjob.active_squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -284,7 +271,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[squad_name]
+					var/datum/squad/selected = SSjob.active_squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -413,7 +400,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/datum/squad/S in squads)
+				for(var/s in SSjob.active_squads)
+					var/datum/squad/S = SSjob.active_squads[s]
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -471,7 +459,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
-	for(var/datum/squad/S in squads)
+	for(var/s in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[s]
 		S.message_squad(txt)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/handle_bombard()
@@ -603,12 +592,12 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
+	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.active_squads
 	if(!choice)
 		return
 	if(S != current_squad)
 		return
-	var/datum/squad/new_squad = SSjob.squads[choice]
+	var/datum/squad/new_squad = SSjob.active_squads[choice]
 
 	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
@@ -1078,10 +1067,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
-	if(!squads || !length(squads))
-		return FALSE
-	var/datum/squad/S
-	for(S in squads)
+	for(var/s in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[s]
 		if(S.id == id)
 			return S
 	return FALSE
@@ -1196,8 +1183,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
-	dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><br>"
-	dat += "<b>[smart_count ? "Squad Smartgunner Deployed":"<font color='red'>No Smartgunner Deployed!</font>"]</b><br>"
+	dat += "<b>Squad Specialists: [spec_count] Deployed | Squad Smartgunners: [smart_count] Deployed</b><br>"
 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"

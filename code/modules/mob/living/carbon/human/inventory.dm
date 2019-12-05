@@ -220,10 +220,10 @@
 	if(. == ITEM_UNEQUIP_UNEQUIPPED)
 		if(I.flags_armor_protection)
 			remove_limb_armor(I)
+		if(I.slowdown)
+			remove_movespeed_modifier(I.type)
 		if(isclothing(I))
 			var/obj/item/clothing/unequipped_clothing = I
-			if(unequipped_clothing.tint)
-				adjust_tinttotal(-unequipped_clothing.tint)
 			if(unequipped_clothing.accuracy_mod)
 				adjust_mob_accuracy(-unequipped_clothing.accuracy_mod)
 
@@ -416,10 +416,10 @@
 
 	if(W.flags_armor_protection)
 		add_limb_armor(W)
+	if(W.slowdown)
+		add_movespeed_modifier(W.type, TRUE, 0, NONE, TRUE, W.slowdown)
 	if(isclothing(W))
 		var/obj/item/clothing/equipped_clothing = W
-		if(equipped_clothing.tint)
-			adjust_tinttotal(equipped_clothing.tint)
 		if(equipped_clothing.accuracy_mod)
 			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 

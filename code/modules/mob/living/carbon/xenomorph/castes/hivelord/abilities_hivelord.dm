@@ -55,23 +55,61 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	var/speed_activated = FALSE
+	var/speed_bonus_active = FALSE
 
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
-	if(X.speed_activated)
+	if(speed_activated)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
-	if(X.speed_activated)
-		to_chat(X, "<span class='warning'>We feel less in tune with the resin.</span>")
-		X.speed_activated = FALSE
+	if(speed_activated)
+		resinwalk_off()
 		return fail_activate()
-
+	resinwalk_on()
 	succeed_activate()
-	X.speed_activated = TRUE
-	to_chat(X, "<span class='notice'>We become one with the resin. We feel the urge to run!</span>")
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	speed_activated = TRUE
+	if(!silent)
+		to_chat(owner, "<span class='notice'>We become one with the resin. We feel the urge to run!</span>")
+	if(locate(/obj/effect/alien/weeds) in walker.loc)
+		speed_bonus_active = TRUE
+		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!silent)
+		to_chat(owner, "<span class='warning'>We feel less in tune with the resin.</span>")
+	if(speed_bonus_active)
+		walker.remove_movespeed_modifier(type)
+		speed_bonus_active = FALSE
+	speed_activated = FALSE
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
+		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
+		resinwalk_off(TRUE)
+		return
+	if(locate(/obj/effect/alien/weeds) in walker.loc)
+		if(!speed_bonus_active)
+			speed_bonus_active = TRUE
+			walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		walker.use_plasma(10)
+		return
+	if(!speed_bonus_active)
+		return
+	speed_bonus_active = FALSE
+	walker.remove_movespeed_modifier(type)
+
 
 // ***************************************
 // *********** Tunnel

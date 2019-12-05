@@ -32,6 +32,7 @@
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
+	SEND_SIGNAL(src, COMSIG_LIVING_MELEE_ALIEN_DISARMED, X)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 	X.visible_message("<span class='warning'>\The [X] shoves [src]!</span>",
@@ -42,7 +43,7 @@
 	. = ..()
 	if(!.)
 		return
-	knock_down(8)
+	Knockdown(16 SECONDS)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
@@ -61,8 +62,8 @@
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	if(!knocked_down && !no_stun && (traumatic_shock > 100))
-		knock_down(1)
+	if(!IsKnockdown() && !no_stun && (traumatic_shock > 100))
+		Knockdown(20)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
@@ -209,7 +210,6 @@
 			#endif
 			var/staggerslow_stacks = 2
 			var/knockout_stacks = 1
-			damage *= X.sneak_bonus //Massive damage on the sneak attack... hope you have armour.
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
@@ -220,7 +220,7 @@
 				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			knock_out(knockout_stacks) //...And we knock
+			Unconscious(knockout_stacks * 20) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 

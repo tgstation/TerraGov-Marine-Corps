@@ -8,7 +8,7 @@
 	Returns
 	The armour percentage which is deducted om the damage.
 */
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee", absorb_text = null, soften_text = null)
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
 	return getarmor(def_zone, attack_flag)
 
 
@@ -21,8 +21,8 @@
 	flash_pain()
 
 	if (stun_amount)
-		stun(stun_amount)
-		knock_down(stun_amount)
+		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
+		Knockdown(stun_amount * 20)
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)
 
@@ -191,7 +191,15 @@
 
 /mob/living/proc/resist_fire(datum/source)
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	knock_down(4, TRUE)
+	Knockdown(80)
+
+	var/turf/T = get_turf(src)
+	if(istype(T, /turf/open/floor/plating/ground/snow))	
+		visible_message("<span class='danger'>[src] rolls in the snow, putting themselves out!</span>", \
+		"<span class='notice'>You extinguish yourself in the snow!</span>", null, 5)
+		ExtinguishMob()
+		return
+
 	visible_message("<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>", \
 	"<span class='notice'>You stop, drop, and roll!</span>", null, 5)
 	if(fire_stacks <= 0)

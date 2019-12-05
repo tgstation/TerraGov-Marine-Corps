@@ -137,7 +137,7 @@
 
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
-	if(!is_wired)
+	if(!is_wired || user.action_busy)
 		return FALSE
 
 	user.visible_message("<span class='notice'>[user] begin removing the barbed wire on [src].</span>",

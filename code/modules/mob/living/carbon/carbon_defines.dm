@@ -1,5 +1,6 @@
 /mob/living/carbon
 	gender = MALE
+	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL
 	var/datum/species/species //Contains icon generation and language information, set during New().
 
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
@@ -32,7 +33,7 @@
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
 	var/losebreath = 0
-	var/nutrition = 400
+	var/nutrition = NUTRITION_WELLFED
 
 	var/obj/item/back //Human/Monkey
 	var/obj/item/tank/internal = null//Human/Monkey
@@ -44,3 +45,5 @@
 
 	var/afk_timer_id
 	var/afk_status = MOB_DISCONNECTED
+
+	var/middle_mouse_toggle = TRUE //This toggles whether special clicks use middle mouse clicking or shift clicking

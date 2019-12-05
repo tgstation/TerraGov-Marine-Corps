@@ -10,7 +10,7 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60)
+	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
 
@@ -181,7 +181,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+	possible_transfer_amounts = list(5,10,20,30,40,120)
 
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -199,7 +199,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
+	possible_transfer_amounts = list(5,10,20,40,80,120,300)
 
 
 /obj/item/reagent_containers/glass/beaker/vial

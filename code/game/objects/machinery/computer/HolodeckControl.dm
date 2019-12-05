@@ -28,12 +28,12 @@
 			return
 
 		var/mob/living/L = G.grabbed_thing
-		if(user.grab_level < GRAB_AGGRESSIVE)
+		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
 		L.forceMove(loc)
-		L.knock_down(5)
+		L.Knockdown(10 SECONDS)
 		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
 
 	else
@@ -98,11 +98,11 @@
 			return
 
 		var/mob/living/L = G.grabbed_thing
-		if(user.grab_level < GRAB_AGGRESSIVE)
+		if(user.grab_state < GRAB_AGGRESSIVE)
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.knock_down(5)
+		L.Knockdown(10 SECONDS)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

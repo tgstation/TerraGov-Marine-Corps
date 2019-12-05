@@ -3,6 +3,7 @@
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	skills_type = /datum/skills/civilian/survivor
 	faction = "Marine"
+	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
 
 
 //Assistant
@@ -218,3 +219,23 @@
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
+
+
+
+// Rambo Survivors
+
+//Generic
+/datum/job/rambosurvivor/generic
+	title = "Survivor"
+	skills_type = /datum/skills/civilian/survivor/master
+	outfit = /datum/outfit/job/survivor/rgeneric
+
+/datum/outfit/job/survivor/rgeneric
+	name = "Survivor"
+	jobtype = /datum/job/rambosurvivor/generic
+
+	w_uniform = /obj/item/clothing/under/color/grey
+	wear_suit = /obj/item/clothing/suit/armor/rugged
+	shoes = /obj/item/clothing/shoes/ruggetboot
+	back = /obj/item/storage/backpack/satchel/rugged
+	gloves = /obj/item/clothing/gloves/ruggedgloves

@@ -15,6 +15,7 @@
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
 	GLOB.round_statistics.total_humans_created++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
 	var/datum/action/skill/toggle_orders/toggle_orders_action = new
 	toggle_orders_action.give_action(src)
@@ -34,6 +35,7 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 
 /mob/living/carbon/human/vv_get_dropdown()
@@ -99,7 +101,7 @@
 
 	var/b_loss = null
 	var/f_loss = null
-	var/armor = max(0, 1 - getarmor(null, "bomb"))
+	var/armor = max(0, 1 - (getarmor(null, "bomb") * 0.01))
 	switch(severity)
 		if(1)
 			b_loss += rand(160, 200) * armor	//Probably instant death
@@ -113,7 +115,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			knock_out(8 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			Unconscious(160 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
@@ -124,7 +126,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			knock_down(4 * armor)
+			Knockdown(80 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -135,7 +137,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			knock_down(2 * armor)
+			Knockdown(40 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR
@@ -786,6 +788,42 @@
 
 	return ..()
 
+
+/mob/living/carbon/human/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
+	. = ..()
+	if(!isliving(.))
+		return
+	if(pulling == . && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS && user != . && can_be_firemanned(.))
+		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
+		fireman_carry(.)
+		return TRUE
+	return FALSE
+
+//src is the user that will be carrying, target is the mob to be carried
+/mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
+	return (ishuman(target) && !target.canmove)
+
+/mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
+	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		to_chat(src, "<span class='warning'>You can't fireman carry [target] while they're standing!</span>")
+		return
+	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
+	"<span class='notice'>You start to lift [target] onto your back...</span>")
+	if(!do_mob(src, target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
+		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
+		return
+	//Second check to make sure they're still valid to be carried
+	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+
+/mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(!force)//humans are only meant to be ridden through piggybacking and special cases
+		return FALSE
+	LoadComponent(/datum/component/riding/human)
+	return ..()
+
+
 ///get_eye_protection()
 ///Returns a number between -1 to 2
 /mob/living/carbon/human/get_eye_protection()
@@ -949,11 +987,13 @@
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
-	
+
 	if(!(species.species_flags & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
 		max_stamina_buffer = species.max_stamina_buffer
 		setStaminaLoss(-max_stamina_buffer)
+
+	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	return TRUE
 
 
@@ -986,8 +1026,11 @@
 			S.turn_off_light(src)
 			light_off++
 	if(guns)
-		for(var/obj/item/weapon/gun/G in contents)
-			G.set_light(0)
+		for(var/obj/item/weapon/gun/lit_gun in contents)
+			if(!isattachmentflashlight(lit_gun.rail))
+				continue
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = lit_gun.rail
+			lit_rail_flashlight.activate_attachment(turn_off = TRUE)
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)

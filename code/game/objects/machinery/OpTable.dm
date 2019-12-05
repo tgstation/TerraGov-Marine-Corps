@@ -12,8 +12,8 @@
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
-	can_buckle = TRUE
-	buckle_lying = TRUE
+	buckle_flags = CAN_BUCKLE
+	buckle_lying = 90
 	var/obj/item/tank/anesthetic/anes_tank
 
 	var/obj/machinery/computer/operating/computer = null
@@ -73,51 +73,60 @@
 		anes_tank = null
 
 
-/obj/machinery/optable/buckle_mob(mob/living/carbon/human/H, mob/living/user)
-	if(!istype(H)) return
-	if(H == user) return
-	if(H != victim)
+/obj/machinery/optable/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = TRUE, silent)
+	if(!ishuman(buckling_mob))
+		return FALSE
+	if(buckling_mob == user)
+		return FALSE
+	if(buckling_mob != victim)
 		to_chat(user, "<span class='warning'>Lay the patient on the table first!</span>")
-		return
+		return FALSE
 	if(!anes_tank)
 		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
-		return
-	H.visible_message("<span class='notice'>[user] begins to connect [H] to the anesthetic system.</span>")
-	if(!do_after(user, 25, FALSE, src, BUSY_ICON_GENERIC))
-		if(H != victim)
+		return FALSE
+	buckling_mob.visible_message("<span class='notice'>[user] begins to connect [buckling_mob] to the anesthetic system.</span>")
+	if(!do_after(user, 2.5 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
+		if(buckling_mob != victim)
 			to_chat(user, "<span class='warning'>The patient must remain on the table!</span>")
-			return
-		to_chat(user, "<span class='notice'>You stop placing the mask on [H]'s face.</span>")
-		return
+			return FALSE
+		to_chat(user, "<span class='notice'>You stop placing the mask on [buckling_mob]'s face.</span>")
+		return FALSE
 	if(!anes_tank)
 		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
-		return
-	if(H.wear_mask && !H.dropItemToGround(H.wear_mask))
+		return FALSE
+	var/mob/living/carbon/human/buckling_human = buckling_mob
+	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
-		return
-	var/obj/item/clothing/mask/breath/medical/B = new()
-	if(!H.equip_if_possible(B, SLOT_WEAR_MASK))
+		return FALSE
+	var/obj/item/clothing/mask/breath/medical/anesthetic_mask = new()
+	if(!buckling_human.equip_if_possible(anesthetic_mask, SLOT_WEAR_MASK))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
-		qdel(B)
-		return
-	H.internal = anes_tank
-	H.visible_message("<span class='notice'>[user] fits the mask over [H]'s face and turns on the anesthetic.</span>'")
-	to_chat(H, "<span class='information'>You begin to feel sleepy.</span>")
-	H.setDir(SOUTH)
-	..()
+		qdel(anesthetic_mask)
+		return FALSE
+	buckling_human.internal = anes_tank
+	buckling_human.visible_message("<span class='notice'>[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.</span>'")
+	to_chat(buckling_human, "<span class='information'>You begin to feel sleepy.</span>")
+	buckling_human.setDir(SOUTH)
+	return ..()
 
-/obj/machinery/optable/unbuckle(mob/living/user)
-	if(!buckled_mob)
-		return
-	if(ishuman(buckled_mob)) // sanity check
-		var/mob/living/carbon/human/H = buckled_mob
-		H.internal = null
-		var/obj/item/M = H.wear_mask
-		H.dropItemToGround(M)
-		qdel(M)
-		H.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [H].</span>")
-		..()
 
+/obj/machinery/optable/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
+	. = ..()
+	if(!.)
+		return
+	if(!silent)
+		buckled_mob.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [buckled_mob].</span>")
+
+
+/obj/machinery/optable/post_unbuckle_mob(mob/living/buckled_mob)
+	if(!ishuman(buckled_mob)) // sanity check
+		return
+	var/mob/living/carbon/human/buckled_human = buckled_mob
+	buckled_human.internal = null
+	var/obj/item/anesthetic_mask = buckled_human.wear_mask
+	buckled_human.dropItemToGround(anesthetic_mask)
+	qdel(anesthetic_mask)
+	return ..()
 
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target)

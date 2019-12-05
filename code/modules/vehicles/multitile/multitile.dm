@@ -227,7 +227,9 @@ Vehicles are placed on the map by a spawner or admin verb
 		A.loc = old_locs[A]
 		if(istype(A, /obj))
 			var/obj/O = A
-			O.buckled_mob?.loc = old_locs[A]
+			for(var/m in O.buckled_mobs)
+				var/mob/buckled_mob = m
+				buckled_mob.forceMove(old_locs[A])
 
 //Forces the root object to move so everything can update relative to it
 /obj/vehicle/multitile/root/proc/move_root(direction)
@@ -265,10 +267,14 @@ Vehicles are placed on the map by a spawner or admin verb
 				var/turf/interim = M.loc
 				A.forceMove(M.loc) //Swap that shit
 				M.forceMove(interim)
-				M.buckled_mob?.loc = M.loc
+				for(var/m in M.buckled_mobs)
+					var/mob/buckled_mob = m
+					buckled_mob.forceMove(M.loc)
 				if(istype(A, /obj))
 					var/obj/O = A
-					O.buckled_mob?.loc = O.loc
+					for(var/m in O.buckled_mobs)
+						var/mob/buckled_mob = m
+						buckled_mob.forceMove(O.loc)
 
 			else if(!A.Move(T))
 				blocked[C] = A //We couldn't move, so remember that and try again next time

@@ -5,6 +5,7 @@
 	maxHealth = 20
 	status_flags = CANPUSH
 	gender = PLURAL
+	buckle_flags = NONE
 
 	//Icons
 	var/icon_living = ""
@@ -58,6 +59,8 @@
 		gender = pick(MALE, FEMALE)
 	if(!real_name)
 		real_name = name
+	if(speed)
+		update_simplemob_varspeed()
 
 
 /mob/living/simple_animal/Destroy()
@@ -151,6 +154,17 @@
 	new /obj/effect/overlay/temp/gib_animation/animal(loc, src, icon_gib)
 
 
+/mob/living/simple_animal/proc/set_varspeed(var_value)
+	speed = var_value
+	update_simplemob_varspeed()
+
+
+/mob/living/simple_animal/proc/update_simplemob_varspeed()
+	if(speed == 0)
+		remove_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE)
+	add_movespeed_modifier(MOVESPEED_ID_SIMPLEMOB_VARSPEED, TRUE, 100, multiplicative_slowdown = speed, override = TRUE)
+
+
 /mob/living/simple_animal/update_transform()
 	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
 	var/changed = FALSE
@@ -216,12 +230,6 @@
 		attack_threshold_check(damage)
 		log_combat(X, src, "attacked")
 	return TRUE
-
-
-/mob/living/simple_animal/movement_delay()
-	. = ..()
-	. += speed
-	. += CONFIG_GET(number/outdated_movedelay/animal_delay)
 
 
 /mob/living/simple_animal/Stat()

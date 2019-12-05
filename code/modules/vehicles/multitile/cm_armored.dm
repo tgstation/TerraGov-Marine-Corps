@@ -342,8 +342,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	if(stat == DEAD) //We don't care about the dead
 		return
 	if(loc == C.loc) // treaded over.
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		var/target_dir = turn(C.dir, 180)
 		temp = get_step(C.loc, target_dir)
 		T = temp
@@ -361,8 +360,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			throw_at(T, 3, 2, C, 0)
 		else
 			throw_at(T, 3, 2, C, 1)
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -391,8 +389,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root

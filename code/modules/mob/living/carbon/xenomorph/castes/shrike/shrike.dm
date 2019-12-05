@@ -11,7 +11,6 @@
 	health = 240
 	maxHealth = 240
 	plasma_stored = 300
-	speed = -0.2
 	pixel_x = -16
 	old_x = -16
 	drag_delay = 3 //pulling a medium dead xeno is hard

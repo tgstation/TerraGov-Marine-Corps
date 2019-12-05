@@ -23,20 +23,15 @@
 
 	var/last_staminaloss_dmg = 0 //world.time
 	var/max_stamina_buffer = 0
-	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
-	var/sleeping = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/knocked_out = 0
-	var/stunned = 0
 	var/frozen = 0
-	var/knocked_down = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0
@@ -69,6 +64,10 @@
 
 	var/tinttotal = TINT_NONE
 
+	var/list/status_effects //a list of all status effects the mob has
+
+	var/list/stun_absorption //lazy list
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
@@ -80,9 +79,6 @@
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
-	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
-
-	var/reagent_move_delay_modifier = 0 //negative values increase movement speed
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 

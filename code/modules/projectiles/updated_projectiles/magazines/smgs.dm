@@ -7,26 +7,37 @@
 //-------------------------------------------------------
 //M39 SMG ammo
 
-/obj/item/ammo_magazine/smg/standard_smg
+/obj/item/ammo_magazine/smg/m39
 	name = "\improper M39 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "m39"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/standard_smg
+	gun_type = /obj/item/weapon/gun/smg/m39
 
-/obj/item/ammo_magazine/smg/standard_smg/ap
+/obj/item/ammo_magazine/smg/m39/ap
 	name = "\improper M39 AP magazine (10x20mm)"
 	icon_state = "m39_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
-/obj/item/ammo_magazine/smg/standard_smg/extended
+/obj/item/ammo_magazine/smg/m39/extended
 	name = "\improper M39 extended magazine (10x20mm)"
 	icon_state = "m39_ext"
 	max_rounds = 90
 	bonus_overlay = "m39_ex"
 
+//-------------------------------------------------------
+//T-19 SMG ammo
+
+/obj/item/ammo_magazine/smg/standard_smg
+	name = "\improper T-19 submachine gun magazine (10x20mm)"
+	desc = "A 10x20mm caseless Submachine Gun magazine."
+	caliber = "10x20mm caseless"
+	icon_state = "t19"
+	max_rounds = 60
+	w_class = WEIGHT_CLASS_SMALL
+	gun_type = /obj/item/weapon/gun/smg/standard_smg
 
 //-------------------------------------------------------
 //M5, a classic SMG used in a lot of action movies.
