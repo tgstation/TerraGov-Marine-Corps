@@ -12,8 +12,8 @@
 	. = locate(SKILLSID)
 	if(!.)
 		. = new /datum/skills(cqc, melee_weapons,\
- firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
- engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+			firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
+			engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 
 /proc/getSkillsType(skills_type = /datum/skills)
 	var/datum/skills/new_skill = skills_type
@@ -67,8 +67,8 @@
 
 
 /datum/skills/New(cqc, melee_weapons,\
- firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
- engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	if(!isnull(cqc))
 		src.cqc = cqc
 	if(!isnull(melee_weapons))
@@ -110,8 +110,8 @@
 	tag = SKILLSIDSRC(src)
 
 /datum/skills/proc/modifyRating(cqc, melee_weapons,\
- firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
- engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	return getSkills(src.cqc+cqc,\
 	src.melee_weapons+melee_weapons,\
 	src.firearms+firearms,\
@@ -133,8 +133,8 @@
 	src.large_vehicle+large_vehicle)
 
 /datum/skills/proc/setRating(cqc, melee_weapons,\
- firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
- engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
+firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, spec_weapons,\
+engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
 	return getSkills((isnull(cqc) ? src.cqc : cqc),\
 		(isnull(melee_weapons) ? src.melee_weapons : melee_weapons),\
 		(isnull(firearms) ? src.firearms : firearms),\
