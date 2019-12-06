@@ -36,7 +36,7 @@ params
 		CRASH("approval_id: [approval_id] is already in use.")
 
 	GLOB.admin_approvals[approval_id] = -1
-	for(var/client/C in GLOB.admins)
+	for(var/client/C in active_admins)
 		var/ref = "[REF(C.holder)];[HrefToken()]"
 		var/admin_specific_options = ""
 		for(var/opt in options)
