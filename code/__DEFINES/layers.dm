@@ -108,6 +108,8 @@
 
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
+#define JUST_BELOW_MOB_LAYER 3.99 //nuke
+
 //#define MOB_LAYER 4
 #define RIVER_OVERLAY_LAYER 4.01
 
