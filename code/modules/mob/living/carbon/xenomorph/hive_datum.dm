@@ -558,6 +558,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	L.visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 	stored_larva++
 	GLOB.round_statistics.total_xenos_created-- // keep stats sane
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(L)
 
 
@@ -681,8 +682,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/left_behind = 0
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/boarder = i
-		var/area/boarder_location = get_area(boarder)
-		if(istype(boarder_location, /area/shuttle/dropship/alamo))
+		if(isalamoarea(get_area(boarder)))
 			continue
 		if(!is_ground_level(boarder.z))
 			continue
@@ -761,7 +761,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // Everything below can have a hivenumber set and these ensure easy hive comparisons can be made
 
-// atom level because of /obj/item/projectile/var/atom/firer
+// atom level because of /obj/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
 	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE

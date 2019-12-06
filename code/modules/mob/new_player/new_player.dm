@@ -490,9 +490,7 @@
 	if(!job)
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		for(var/datum/job/J in SSjob.occupations)
-			if(J && J.current_positions < J.total_positions && J.title != job.title)
-				return FALSE
+		return FALSE
 	if(is_banned_from(ckey, rank))
 		return FALSE
 	if(QDELETED(src))
@@ -502,7 +500,5 @@
 	if(job.required_playtime_remaining(client))
 		return FALSE
 	if(latejoin && !job.special_check_latejoin(client))
-		return FALSE
-	if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
 		return FALSE
 	return TRUE

@@ -8,32 +8,19 @@
 	density = TRUE
 	move_delay = 8
 	max_integrity = 200
+	vehicle_flags = VEHICLE_MUST_TURN
+	move_sounds = list('sound/mecha/powerloader_step.ogg', 'sound/mecha/powerloader_step2.ogg')
+	change_dir_sounds = list('sound/mecha/powerloader_turn.ogg', 'sound/mecha/powerloader_turn2.ogg')
 	var/panel_open = FALSE
 
-/obj/vehicle/powerloader/New()
+
+/obj/vehicle/powerloader/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/apc(src)
-	for(var/i = 1, i <= 2, i++)
+	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)
 		PC.linked_powerloader = src
 
-/obj/vehicle/powerloader/relaymove(mob/user, direction)
-	if(user.incapacitated())
-		return
-	if(direction in GLOB.diagonals)
-		return
-	if(!direction)
-		return
-	if(world.time > last_move_time + move_delay)
-		if(dir != direction)
-			last_move_time = world.time
-			setDir(direction)
-			pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
-			. = TRUE
-		else
-			. = step(src, direction)
-			if(.)
-				pick(playsound(loc, 'sound/mecha/powerloader_step.ogg', 25), playsound(loc, 'sound/mecha/powerloader_step2.ogg', 25))
 
 /obj/vehicle/powerloader/attack_hand(mob/living/user)
 	. = ..()
@@ -57,9 +44,7 @@
 		if(PC.linked_powerloader != src)
 			return
 
-		unbuckle(user) //clicking the powerloader with its own clamp unbuckles the pilot.
-		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
-		return TRUE
+		return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
 	else if(isscrewdriver(I))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
@@ -87,8 +72,8 @@
 		to_chat(user, "There is no power cell in the [src].")
 
 
-/obj/vehicle/powerloader/manual_unbuckle(mob/user)
-	if(!buckled_mob || buckled_mob.buckled != src)
+/obj/vehicle/powerloader/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
+	if(!LAZYLEN(buckled_mobs) || buckled_mob.buckled != src)
 		return FALSE
 	if(user == buckled_mob)
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
@@ -98,46 +83,50 @@
 		"<span class='danger'>[user] tries to move you out of [src]!</span>"
 		)
 	var/olddir = dir
-	var/old_buckled_mob = buckled_mob
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir || buckled_mob != old_buckled_mob)
+	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir)
 		return TRUE //True to intercept the click. No need for further actions after this.
+	silent = TRUE
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 
 
-/obj/vehicle/powerloader/afterbuckle(mob/M)
+/obj/vehicle/powerloader/post_buckle_mob(mob/buckling_mob)
+	. = ..()
+	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
+	icon_state = "powerloader"
+	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
+	if(buckling_mob.mind?.cm_skills)
+		move_delay = max(4, move_delay - buckling_mob.mind.cm_skills.powerloader)
+	var/clamp_equipped = 0
+	for(var/obj/item/powerloader_clamp/PC in contents)
+		if(!buckling_mob.put_in_hands(PC))
+			PC.forceMove(src)
+			continue
+		clamp_equipped++
+	if(clamp_equipped != 2)
+		unbuckle_mob(buckling_mob) //can't use the powerloader without both clamps equipped
+		stack_trace("[src] buckled [buckling_mob] with clamp_equipped as [clamp_equipped]")
+
+/obj/vehicle/powerloader/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	overlays.Cut()
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
-	if(.)
-		icon_state = "powerloader"
-		overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-		if(M.mind && M.mind.cm_skills)
-			move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
-		var/clamp_equipped = 0
-		for(var/obj/item/powerloader_clamp/PC in contents)
-			if(!M.put_in_hands(PC))
-				PC.forceMove(src)
-			else
-				clamp_equipped++
-		if(clamp_equipped != 2)
-			unbuckle(M) //can't use the powerloader without both clamps equipped
-	else
-		move_delay = initial(move_delay)
-		icon_state = "powerloader_open"
-		M.drop_all_held_items() //drop the clamp when unbuckling
+	move_delay = initial(move_delay)
+	icon_state = "powerloader_open"
+	buckled_mob.drop_all_held_items() //drop the clamp when unbuckling
 
-/obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
-	if(M != user)
-		return
-	if(!ishuman(M))
-		return
-	var/mob/living/carbon/human/H = M
-	if(H.r_hand || H.l_hand)
-		to_chat(H, "<span class='warning'>You need your two hands to use [src].</span>")
-		return
-	. = ..()
+
+/obj/vehicle/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = FALSE, silent) //check_loc needs to be FALSE here.
+	if(buckling_mob != user)
+		return FALSE
+	if(!ishuman(buckling_mob))
+		return FALSE
+	var/mob/living/carbon/human/buckling_human = buckling_mob
+	if(buckling_human.r_hand || buckling_human.l_hand)
+		to_chat(buckling_human, "<span class='warning'>You need your two hands to use [src].</span>")
+		return FALSE
+	return ..()
 
 /obj/vehicle/powerloader/verb/enter_powerloader(mob/M)
 	set category = "Object"
@@ -148,7 +137,10 @@
 
 /obj/vehicle/powerloader/setDir(newdir)
 	. = ..()
-	if(buckled_mob?.dir != dir)
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		if(buckled_mob.dir == dir)
+			continue
 		buckled_mob.setDir(dir)
 
 /obj/vehicle/powerloader/deconstruct(disassembled)
@@ -167,16 +159,20 @@
 	var/obj/loaded
 
 /obj/item/powerloader_clamp/dropped(mob/user)
-	if(linked_powerloader)
-		forceMove(linked_powerloader)
-		if(linked_powerloader.buckled_mob && linked_powerloader.buckled_mob == user)
-			linked_powerloader.unbuckle(user) //drop a clamp, you auto unbuckle from the powerloader.
-	else qdel(src)
+	if(!linked_powerloader)
+		qdel(src)
+		return
+	forceMove(linked_powerloader)
+	for(var/m in linked_powerloader.buckled_mobs)
+		if(m != user)
+			continue
+		linked_powerloader.unbuckle_mob(user) //drop a clamp, you auto unbuckle from the powerloader.
+		break
 
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
-	if(victim == linked_powerloader.buckled_mob)
-		unbuckle(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
+	if(victim in linked_powerloader.buckled_mobs)
+		linked_powerloader.unbuckle_mob(victim) //if the pilot clicks themself with the clamp, it unbuckles them.
 		return TRUE
 	if(isxeno(victim) && victim.stat == DEAD && !victim.anchored && user.a_intent == INTENT_HELP)
 		victim.forceMove(linked_powerloader)
@@ -270,8 +266,8 @@
 		icon_state = "loader_clamp"
 
 /obj/item/powerloader_clamp/attack_self(mob/user)
-	if(linked_powerloader)
-		linked_powerloader.unbuckle()
+	if(user in linked_powerloader.buckled_mobs)
+		linked_powerloader.unbuckle_mob(user)
 
 /obj/structure/powerloader_wreckage
 	name = "\improper RPL-Y Cargo Loader wreckage"

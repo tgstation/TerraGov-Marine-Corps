@@ -114,7 +114,7 @@
 		face_atom(target) //Looks better if they keep looking at you when dodging
 
 
-/mob/living/simple_animal/hostile/bullet_act(obj/item/projectile/P)
+/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
@@ -385,7 +385,7 @@
 	var/turf/startloc = get_turf(targets_from)
 	new casingtype(startloc)
 	playsound(src, projectilesound, 100, 1)
-	var/obj/item/projectile/P = new(startloc)
+	var/obj/projectile/P = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
 	P.fire_at(targeted_atom, src)

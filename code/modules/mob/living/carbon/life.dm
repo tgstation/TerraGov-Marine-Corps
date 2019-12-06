@@ -56,7 +56,7 @@
 		death()
 		return
 
-	if(knocked_out || sleeping || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 			disabilities |= DEAF
@@ -77,11 +77,11 @@
 		dizzy(-restingpwr)
 
 	if(drowsyness)
-		drowsyness = max(drowsyness - restingpwr, 0)
+		adjustDrowsyness(-restingpwr)
 		blur_eyes(2)
 		if(prob(5))
-			sleeping(1)
-			knock_out(5)
+			Sleeping(20)
+			Unconscious(10 SECONDS)
 
 	if(jitteriness)
 		do_jitter_animation(jitteriness)
@@ -107,14 +107,14 @@
 	if(staminaloss > -max_stamina_buffer)
 		handle_staminaloss()
 
-	if(sleeping)
+	if(IsSleeping())
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.speech_problem_flag = 1
 		handle_dreams()
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
-				adjust_sleeping(-1)
+				AdjustSleeping(-20)
 		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
 				emote("snore")
@@ -131,13 +131,13 @@
 
 		if(drunkenness >= 41)
 			if(prob(25))
-				confused += 2
+				AdjustConfused(40)
 			if(dizziness < 450) // To avoid giving the player overly dizzy too
 				dizzy(8)
 
 		if(drunkenness >= 51)
 			if(prob(5))
-				confused += 5
+				AdjustConfused(10 SECONDS)
 				vomit()
 			if(dizziness < 600)
 				dizzy(12)
@@ -153,13 +153,13 @@
 			adjustToxLoss(0.2)
 			if(prob(10) && !stat)
 				to_chat(src, "<span class='warning'>Maybe you should lie down for a bit...</span>")
-				drowsyness += 5
+				adjustDrowsyness(5)
 
 		if(drunkenness >= 91)
 			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
-				sleeping(40)
+				Sleeping(80 SECONDS)
 
 		if(drunkenness >=101) //Let's be honest, you should be dead by now
 			adjustToxLoss(4)
@@ -191,20 +191,12 @@
 		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
 	return slowdown
 
-/mob/living/carbon/proc/adjust_slowdown(amount)
-	if(amount > 0)
-		slowdown = max(slowdown, amount) //Slowdown overlaps rather than stacking.
-	else
-		slowdown = max(slowdown + amount,0)
-	return slowdown
-
-/mob/living/carbon/add_slowdown(amount)
-	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
-	return slowdown
-
 /mob/living/carbon/proc/breathe()
 	if(!need_breathe())
 		return
+
+	if(pulledby && pulledby.grab_state >= GRAB_KILL)
+		Losebreath(3)
 
 	if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
 		Losebreath(1, TRUE)

@@ -43,7 +43,7 @@
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
-	var/slow_amt = 8
+	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes

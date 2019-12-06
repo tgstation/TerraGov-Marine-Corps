@@ -54,7 +54,7 @@
 		else
 	return
 
-/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/projectile/Proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
@@ -82,7 +82,7 @@
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
-	text = oldreplacetext(text, "\n", "<BR>")
+	text = replacetext(text, "\n", "<BR>")
 	return text
 
 
@@ -119,7 +119,7 @@
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 			A.state = 4
 			A.icon_state = "4"
-			
+
 		M.decon(src)
 		qdel(src)
 

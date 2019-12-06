@@ -72,6 +72,7 @@
 	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	return succeed_activate()
 
 // Choose Resin
@@ -383,6 +384,7 @@
 	succeed_activate()
 
 	GLOB.round_statistics.larval_growth_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "larval_growth_stings")
 
 	add_cooldown()
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_growthtoxin, XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING)
@@ -674,7 +676,7 @@
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(X.loc, sound_to_play, 25, 1)
 
-	var/obj/item/projectile/newspit = new /obj/item/projectile(current_turf)
+	var/obj/projectile/newspit = new /obj/projectile(current_turf)
 	newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.permutated += X
 	newspit.def_zone = X.get_limbzone_target()
@@ -748,6 +750,7 @@
 	add_cooldown()
 
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
 

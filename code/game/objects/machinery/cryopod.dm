@@ -209,7 +209,8 @@
 		J.current_positions--
 		if((J.title in GLOB.jobs_regular_all) && isdistress(SSticker?.mode))
 			var/datum/game_mode/distress/D = SSticker.mode
-			D.latejoin_tally-- //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
+			var/datum/job/rank = SSjob.GetJob(job)
+			D.latejoin_larvapoints -= rank.larvaworth //Cryoing someone removes a player from the round, blocking further larva spawns until accounted for
 		if(J.title in GLOB.jobs_police)
 			dept_console = CRYO_SEC
 		else if(J.title in GLOB.jobs_medical)

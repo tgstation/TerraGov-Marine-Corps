@@ -68,6 +68,7 @@
 	playsound(loc, arm_sound, 25, 1, 6)
 	if(dangerous)
 		GLOB.round_statistics.grenades_thrown++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "grenades_thrown")
 		updateicon()
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 

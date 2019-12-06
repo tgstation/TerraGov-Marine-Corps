@@ -262,8 +262,7 @@
 	"<span class='notice'>You climb out of [src].</span>")
 	if(!isxenohunter(user) )
 		pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
-	if(user.client)
-		user.client.move_delay += 1
+
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
 	direction &= initialize_directions

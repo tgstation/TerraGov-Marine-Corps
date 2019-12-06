@@ -9,7 +9,7 @@
 /datum/job/marine/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	C.hud_set_squad()
-	C.nutrition = rand(60,250)
+	C.set_nutrition(rand(60, 250))
 	if(!C.mind?.assigned_squad)
 		return
 	var/datum/squad/S = C.mind.assigned_squad
@@ -27,6 +27,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/standard/radio_help_message(mob/M)
@@ -54,6 +55,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/engineer/radio_help_message(mob/M)
@@ -81,6 +83,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/corpsman/radio_help_message(mob/M)
@@ -108,6 +111,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/smartgunner
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/smartgunner/radio_help_message(mob/M)
@@ -136,6 +140,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
+	larvaworth = LARVA_POINTS_STRONG
 
 
 /datum/job/marine/specialist/radio_help_message(mob/M)
@@ -167,6 +172,7 @@ You can serve a variety of roles, so choose carefully."})
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/leader/radio_help_message(mob/M)
@@ -190,6 +196,7 @@ You are also in charge of communicating with command and letting them know about
 	var/mob/living/carbon/human/H = C
 	if(!H.assigned_squad)
 		return
-	if(H.assigned_squad.squad_leader)
-		H.assigned_squad.demote_leader()
-	H.assigned_squad.promote_leader(H)
+	if(H.assigned_squad.squad_leader != H)
+		if(H.assigned_squad.squad_leader)
+			H.assigned_squad.demote_leader()
+		H.assigned_squad.promote_leader(H)

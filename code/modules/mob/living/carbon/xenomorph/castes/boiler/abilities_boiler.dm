@@ -167,14 +167,16 @@
 	X.visible_message("<span class='xenowarning'>\The [X] launches a huge glob of acid hurling into the distance!</span>", \
 	"<span class='xenowarning'>We launch a huge glob of acid hurling into the distance!</span>", null, 5)
 
-	var/obj/item/projectile/P = new /obj/item/projectile(X.loc)
+	var/obj/projectile/P = new /obj/projectile(X.loc)
 	P.generate_bullet(X.ammo)
 	P.fire_at(target, X, null, X.ammo.max_range, X.ammo.shell_speed)
 	playsound(X, 'sound/effects/blobattack.ogg', 25, 1)
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive)
 		GLOB.round_statistics.boiler_acid_smokes++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_acid_smokes")
 	else
 		GLOB.round_statistics.boiler_neuro_smokes++
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 
 	add_cooldown()
 	X.reset_bombard_pointer()

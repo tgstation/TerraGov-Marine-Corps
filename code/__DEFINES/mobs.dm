@@ -11,6 +11,13 @@
 #define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
 
 
+//Nutrition
+
+#define NUTRITION_STARVING 150
+#define NUTRITION_HUNGRY 250
+#define NUTRITION_WELLFED 400
+#define NUTRITION_OVERFED 450
+
 //=================================================
 /*
 	Germs and infections
@@ -119,6 +126,8 @@
 #define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 #define TK_USER			(1<<8)
+#define CANUNCONSCIOUS	(1<<9)
+#define CANCONFUSE		(1<<10)
 
 // =============================
 // hive types
@@ -583,3 +592,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
+
+#define GRAB_PIXEL_SHIFT_PASSIVE 6
+#define GRAB_PIXEL_SHIFT_AGGRESSIVE 12
+#define GRAB_PIXEL_SHIFT_NECK 16
+
+#define HUMAN_CARRY_SLOWDOWN 0.35

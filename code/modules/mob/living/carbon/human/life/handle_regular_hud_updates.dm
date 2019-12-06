@@ -84,13 +84,11 @@
 
 	if(hud_used.nutrition_icon)
 		switch(nutrition)
-			if(450 to INFINITY)
+			if(NUTRITION_OVERFED to INFINITY)
 				hud_used.nutrition_icon.icon_state = "nutrition0"
-			if(350 to 450)
-				hud_used.nutrition_icon.icon_state = "nutrition1"
-			if(250 to 350)
-				hud_used.nutrition_icon.icon_state = "nutrition2"
-			if(150 to 250)
+			if(NUTRITION_HUNGRY to NUTRITION_OVERFED) //Not-hungry.
+				hud_used.nutrition_icon.icon_state = "nutrition1" //Empty icon.
+			if(NUTRITION_STARVING to NUTRITION_HUNGRY)
 				hud_used.nutrition_icon.icon_state = "nutrition3"
 			else
 				hud_used.nutrition_icon.icon_state = "nutrition4"

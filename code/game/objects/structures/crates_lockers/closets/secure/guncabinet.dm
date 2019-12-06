@@ -51,7 +51,6 @@
 	var/list/to_spawn = list(
 		/obj/item/ammo_magazine/shotgun/buckshot = 3,
 		/obj/item/clothing/suit/armor/bulletproof = 4,
-		/obj/item/ammo_magazine/smg/standard_smg/ap = 2,
 		/obj/item/ammo_magazine/pistol/ap = 2,
 	)
 	for(var/typepath in to_spawn)
