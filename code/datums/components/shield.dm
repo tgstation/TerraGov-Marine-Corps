@@ -224,6 +224,7 @@
 	var/integrity_regen = 10 //per recharge_rate
 	var/recharge_cooldown = 5 SECONDS //after being hit
 	var/next_recharge = 0 //world.time based
+	var/shield_overlay = "shield-blue"
 
 
 /datum/component/shield/overhealth/Destroy()
@@ -312,8 +313,9 @@
 	. = ..()
 	if(!shield_integrity)
 		return
+	var/obj/item/clothing/suit/armor/reactive/reactive_armor = parent
 	var/mob/living/carbon/human/affected_human = affected
-	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', "shield-blue", affected.layer + 0.01))
+	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', reactive_armor.shield_overlay, affected.layer + 0.01))
 	affected_human.apply_overlay(OVERHEALTH_SHIELD_LAYER)
 
 /datum/component/shield/overhealth/deactivate_with_user()

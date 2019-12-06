@@ -188,10 +188,14 @@
 	slowdown = 1
 	flags_atom = CONDUCT
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	var/shield_overlay = "shield-blue"
 
 /obj/item/clothing/suit/armor/reactive/Initialize()
 	. = ..()
 	AddComponent(/datum/component/shield/overhealth)
+
+/obj/item/clothing/suit/armor/reactive/red
+	shield_overlay = "shield-red"
 
 /obj/item/clothing/suit/armor/rugged
 	name = "rugged armor"
