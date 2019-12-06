@@ -16,25 +16,28 @@
 	return ..()
 
 /datum/component/largetransparency/RegisterWithParent()
+	 //I mean I could start from a sane point (like the northeastern most) but this is good enough.
 	var/turf/tu = get_turf(parent)
-	var/turf/tu1
-	var/turf/tu2
+	var/turf/tu_east
+	var/turf/tu_west
 	for(var/i in 1 to y_size)
 		tu = get_step(tu, NORTH)
-		tu1 = tu
-		tu2 = tu
+		tu_east = tu
+		tu_west = tu
 		registered_turfs.Add(tu)
 		for(var/r in 1 to extra_x)
-			tu1 = get_step(tu1, EAST)
-			tu2 = get_step(tu2, WEST)
-			registered_turfs.Add(tu1)
-			registered_turfs.Add(tu2)
-	for(var/t in registered_turfs)
-		RegisterSignal(t, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON), .proc/objectEnter)
-		RegisterSignal(t, COMSIG_ATOM_EXITED, .proc/objectLeave)
-		RegisterSignal(t, COMSIG_TURF_CHANGE, .proc/OnTurfChange)
-		for(var/a in t)
-			var/atom/at = a
+			tu_east = get_step(tu_east, EAST)
+			tu_west = get_step(tu_west, WEST)
+			registered_turfs.Add(tu_east)
+			registered_turfs.Add(tu_west)
+	for(var/regist_tu in registered_turfs)
+		if(!regist_tu)
+			continue
+		RegisterSignal(regist_tu, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON), .proc/objectEnter)
+		RegisterSignal(regist_tu, COMSIG_ATOM_EXITED, .proc/objectLeave)
+		RegisterSignal(regist_tu, COMSIG_TURF_CHANGE, .proc/OnTurfChange)
+		for(var/thing in regist_tu)
+			var/atom/at = thing
 			if(!(at.flags_atom & CRITICAL_ATOM))
 				continue
 			amounthidden++
@@ -42,8 +45,8 @@
 		reduceAlpha()
 
 /datum/component/largetransparency/UnregisterFromParent()
-	for(var/t in registered_turfs)
-		UnregisterSignal(t, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON))
+	for(var/regist_tu in registered_turfs)
+		UnregisterSignal(regist_tu, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON))
 	registered_turfs.Cut()
 
 /datum/component/largetransparency/proc/OnMove()
@@ -53,16 +56,16 @@
 	RegisterWithParent()
 
 /datum/component/largetransparency/proc/OnTurfChange()
-	addtimer(CALLBACK(src, .proc/OnMove, 1)) //*pain
+	INVOKE_NEXT_TICK(src, .proc/OnMove) //*pain
 
-/datum/component/largetransparency/proc/objectEnter(atom/source, atom/thing)
+/datum/component/largetransparency/proc/objectEnter(datum/source, atom/thing)
 	if(!(thing.flags_atom & CRITICAL_ATOM))
 		return
 	if(!amounthidden)
 		reduceAlpha()
 	amounthidden++
 
-/datum/component/largetransparency/proc/objectLeave(atom/source, atom/thing)
+/datum/component/largetransparency/proc/objectLeave(datum/source, atom/thing)
 	if(!(thing.flags_atom & CRITICAL_ATOM))
 		return
 	amounthidden = max(0, amounthidden - 1)

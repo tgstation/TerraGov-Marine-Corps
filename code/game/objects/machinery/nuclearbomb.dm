@@ -12,6 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	var/deployable = TRUE
 	var/extended = FALSE
