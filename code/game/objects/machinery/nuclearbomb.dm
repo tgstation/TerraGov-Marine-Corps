@@ -13,7 +13,7 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	layer = JUST_BELOW_MOB_LAYER
+	layer = BELOW_MOB_LAYER
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
