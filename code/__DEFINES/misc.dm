@@ -14,6 +14,9 @@
 #define APPEARANCE_UI						(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
 #define APPEARANCE_UI_TRANSFORM				(RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
+//Just space
+#define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
+
 //dirt type for each turf types.
 #define NO_DIRT				0
 #define DIRT_TYPE_GROUND	1
