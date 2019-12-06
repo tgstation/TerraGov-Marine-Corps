@@ -397,7 +397,7 @@
 	. = ..()
 	if(.)
 		return
-	if(dropping != user && ismob(dropping) !isxeno(user) && !isxeno(dropping))
+	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
 		var/mob/dragged = dropping
 		dragged.show_inv(user)
 
