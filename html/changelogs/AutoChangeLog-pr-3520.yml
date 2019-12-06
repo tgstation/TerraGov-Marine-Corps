@@ -1,5 +1,0 @@
-author: "nemvar"
-delete-after: True
-changes: 
-  - tweak: "Footsteps can now be heard from slightly further away"
-  - soundadd: "Shortened the resin footstep sound"
