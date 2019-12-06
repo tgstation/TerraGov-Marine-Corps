@@ -86,7 +86,7 @@
 	take_damage(tforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 
-/obj/bullet_act(obj/item/projectile/P)
+/obj/bullet_act(obj/projectile/P)
 	if(istype(P.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()

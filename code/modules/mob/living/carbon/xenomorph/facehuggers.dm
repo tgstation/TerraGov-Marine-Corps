@@ -136,7 +136,7 @@
 		return
 	Die()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
+/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/P)
 	..()
 	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.

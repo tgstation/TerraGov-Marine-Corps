@@ -258,7 +258,7 @@
 		icon_state = icon_living
 
 
-/mob/living/simple_animal/parrot/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/projectile/Proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)

@@ -187,7 +187,7 @@
 	rotate_cylinder()
 	return TRUE
 
-/obj/item/weapon/gun/revolver/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+/obj/item/weapon/gun/revolver/delete_bullet(obj/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return TRUE

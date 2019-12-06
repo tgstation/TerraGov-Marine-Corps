@@ -103,7 +103,7 @@
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/item/projectile/Proj)
+/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/Proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.

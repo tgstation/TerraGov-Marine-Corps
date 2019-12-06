@@ -11,7 +11,7 @@
 	///This can be a list OR a soundfile OR null. Determines whatever sound gets played.
 	var/footstep_sounds
 
-/datum/component/footstep/Initialize(footstep_type_ = FOOTSTEP_MOB_BAREFOOT, volume_ = 0.5, e_range_ = 2)
+/datum/component/footstep/Initialize(footstep_type_ = FOOTSTEP_MOB_BAREFOOT, volume_ = 0.5, e_range_ = 3)
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	volume = volume_

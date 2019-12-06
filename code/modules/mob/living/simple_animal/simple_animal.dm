@@ -178,7 +178,7 @@
 		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 
-/mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/bullet_act(obj/projectile/Proj)
 	if(!Proj || Proj.damage <= 0)
 		return FALSE
 
