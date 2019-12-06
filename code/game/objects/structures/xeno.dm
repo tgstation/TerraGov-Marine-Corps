@@ -378,7 +378,7 @@
 	name = "egg"
 	icon_state = "Egg Growing"
 	density = FALSE
-
+	flags_atom = CRITICAL_ATOM
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis

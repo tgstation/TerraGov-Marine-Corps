@@ -465,10 +465,11 @@ Proc for attack log creation, because really why not
 
 	if(light_power && light_range)
 		update_light()
-
-	if(opacity && isturf(loc))
-		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required so components can now if an atom spawned in a thing since that doesn't call entered.
+		if(isturf(loc) && opacity)
+			var/turf/T = loc
+			T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 

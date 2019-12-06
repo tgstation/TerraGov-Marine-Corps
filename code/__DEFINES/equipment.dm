@@ -18,6 +18,7 @@
 #define NODECONSTRUCT			(1<<6)
 #define OVERLAY_QUEUED			(1<<7)
 #define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM			(1<<9)		//Use when this shouldn't be obscured by large icons.
 
 //==========================================================================================
 
