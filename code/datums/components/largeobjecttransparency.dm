@@ -16,7 +16,7 @@
 	return ..()
 
 /datum/component/largetransparency/RegisterWithParent()
-	 //I mean I could start from a sane point (like the northeastern most) but this is good enough.
+	//I mean I could start from a sane point (like the northeastern most) but this is good enough.
 	var/turf/tu = get_turf(parent)
 	var/turf/tu_east
 	var/turf/tu_west
