@@ -343,7 +343,7 @@
 
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
-	var/obj/item/projectile/projectile_to_fire = load_into_chamber(shooter)
+	var/obj/projectile/projectile_to_fire = load_into_chamber(shooter)
 	if(!projectile_to_fire)
 		click_empty(shooter)
 		return NONE

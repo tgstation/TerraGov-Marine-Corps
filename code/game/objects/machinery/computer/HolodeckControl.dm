@@ -119,8 +119,6 @@
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
-			return
 		if(prob(50))
 			I.loc = src.loc
 			for(var/obj/machinery/scoreboard/X in GLOB.machines)
