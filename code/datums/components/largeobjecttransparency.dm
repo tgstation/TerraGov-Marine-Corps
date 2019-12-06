@@ -33,8 +33,9 @@
 		RegisterSignal(t, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_INITIALIZED_ON), .proc/objectEnter)
 		RegisterSignal(t, COMSIG_ATOM_EXITED, .proc/objectLeave)
 		RegisterSignal(t, COMSIG_TURF_CHANGE, .proc/OnTurfChange)
-		for(var/atom/a in t)
-			if(!(a.flags_atom & CRITICAL_ATOM))
+		for(var/a in t)
+			var/atom/at = a
+			if(!(at.flags_atom & CRITICAL_ATOM))
 				continue
 			amounthidden++
 	if(amounthidden)
