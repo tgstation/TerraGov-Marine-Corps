@@ -70,7 +70,7 @@
 
 /datum/component/largetransparency/proc/reduceAlpha()
 	var/atom/par = parent
-	par.alpha = 100
+	par.alpha = 140
 	par.mouse_opacity = 0
 
 /datum/component/largetransparency/proc/restoreAlpha()
