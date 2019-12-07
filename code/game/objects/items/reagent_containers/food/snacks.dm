@@ -2854,11 +2854,6 @@
     cut_overlay(head)
     head.color = C
     add_overlay(head)
- 
-/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-    . = ..()
-    throw_speed = 1
-    throwforce = 0
 
 //med pop
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol
@@ -2866,4 +2861,3 @@
 	desc = "Your reward for behaving so well in the medbay."
 	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5, /datum/reagent/consumable/sugar = 10, /datum/reagent/medicine/tramadol = 5)
 	tastes = list("cough syrup" = 1)
-	
