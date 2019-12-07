@@ -1,13 +1,33 @@
 ///Makes large icons partially see through if high priority atoms are behind them.
 /datum/component/largetransparency
-	var/extra_x //How far this should check for horizontally. This goes in both directions,0 means that only directly above gets checked.
-	var/y_size //How far up this should look.
+	//Can be positive or negative. Determines how far away from parent the first registered turf is.
+	var/x_offset
+	var/y_offset
+	//Has to be positive or 0.
+	var/x_size
+	var/y_size
+	//The alpha values this switches in between.
+	var/initial_alpha
+	var/target_alpha
+	//if this is supposed to prevent clicks if it's transparent.
+	var/toggle_click
 	var/list/registered_turfs
 	var/amounthidden = 0
 
-/datum/component/largetransparency/Initialize(_y_size = 1, _extra_x = 0)
-	extra_x = _extra_x
+/datum/component/largetransparency/Initialize(_x_offset = 0, _y_offset = 1, _x_size = 0, _y_size = 1, _initial_alpha = null, _target_alpha = 140, _toggle_click = TRUE)
+	if(!isatom(parent))
+		return COMPONENT_INCOMPATIBLE
+	x_offset = _x_offset
+	y_offset = _y_offset
+	x_size = _x_size
 	y_size = _y_size
+	if(isnull(_initial_alpha))
+		var/atom/at = parent
+		initial_alpha = at.alpha
+	else
+		initial_alpha = _initial_alpha
+	target_alpha = _target_alpha
+	toggle_click = _toggle_click
 	registered_turfs = list()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/OnMove)
 
@@ -16,20 +36,13 @@
 	return ..()
 
 /datum/component/largetransparency/RegisterWithParent()
-	//I mean I could start from a sane point (like the northeastern most) but this is good enough.
 	var/turf/tu = get_turf(parent)
-	var/turf/tu_east
-	var/turf/tu_west
-	for(var/i in 1 to y_size)
-		tu = get_step(tu, NORTH)
-		tu_east = tu
-		tu_west = tu
-		registered_turfs.Add(tu)
-		for(var/r in 1 to extra_x)
-			tu_east = get_step(tu_east, EAST)
-			tu_west = get_step(tu_west, WEST)
-			registered_turfs.Add(tu_east)
-			registered_turfs.Add(tu_west)
+	if(!tu)
+		return
+	var/turf/lowleft_tu = locate(clamp(tu.x + x_offset, 0, world.maxx), clamp(tu.y + y_offset, 0, world.maxy), tu.z)
+	var/turf/upright_tu = locate(min(lowleft_tu.x + x_size, world.maxx), min(lowleft_tu.y + y_size, world.maxy), tu.z)
+	registered_turfs = block(lowleft_tu, upright_tu) //small problems with z level edges but nothing gamebreaking.
+	//register the signals
 	for(var/regist_tu in registered_turfs)
 		if(!regist_tu)
 			continue
@@ -74,10 +87,12 @@
 
 /datum/component/largetransparency/proc/reduceAlpha()
 	var/atom/par = parent
-	par.alpha = 140
-	par.mouse_opacity = 0
+	par.alpha = target_alpha
+	if(toggle_click)
+		par.mouse_opacity = 0
 
 /datum/component/largetransparency/proc/restoreAlpha()
 	var/atom/par = parent
-	par.alpha = 255
-	par.mouse_opacity = 2
+	par.alpha = initial_alpha
+	if(toggle_click)
+		par.mouse_opacity = 2
