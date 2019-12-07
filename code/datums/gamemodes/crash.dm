@@ -1,7 +1,7 @@
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 3
+	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
@@ -37,18 +37,6 @@
 	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
 
 	var/larva_check_interval = 0
-
-
-/datum/game_mode/crash/can_start(bypass_checks = FALSE)
-	. = ..()
-	if(!.)
-		return
-	// Check if enough players have signed up for xeno & queen roles.
-	var/ruler = initialize_xeno_leader()
-	var/xenos = initialize_xenomorphs()
-
-	if(!ruler && !xenos && !bypass_checks) // we need at least 1
-		return FALSE
 
 
 /datum/game_mode/crash/initialize_scales()
