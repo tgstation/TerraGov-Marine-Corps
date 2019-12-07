@@ -39,7 +39,7 @@
 	var/turf/tu = get_turf(parent)
 	if(!tu)
 		return
-	var/turf/lowleft_tu = locate(clamp(tu.x + x_offset, 0, world.maxx), clamp(tu.y + y_offset, 0, world.maxy), tu.z)
+	var/turf/lowleft_tu = locate(CLAMP(tu.x + x_offset, 0, world.maxx), CLAMP(tu.y + y_offset, 0, world.maxy), tu.z)
 	var/turf/upright_tu = locate(min(lowleft_tu.x + x_size, world.maxx), min(lowleft_tu.y + y_size, world.maxy), tu.z)
 	registered_turfs = block(lowleft_tu, upright_tu) //small problems with z level edges but nothing gamebreaking.
 	//register the signals
