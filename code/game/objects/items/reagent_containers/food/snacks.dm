@@ -2847,7 +2847,7 @@
  
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
  
 /obj/item/reagent_containers/food/snacks/lollipop/proc/change_head_color(C)
 	headcolor = C
