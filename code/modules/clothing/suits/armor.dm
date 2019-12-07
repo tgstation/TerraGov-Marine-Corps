@@ -84,14 +84,14 @@
 	name = "security armor"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
-	item_state = "armor"
+	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
-	item_state = "armor"
+	item_state = "warden_jacket"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/armor/laserproof
@@ -107,7 +107,7 @@
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
-	item_state = "armor"
+	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	armor = list("melee" = 20, "bullet" = 50, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
@@ -172,7 +172,7 @@
 	name = "armor"
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "detective-armor"
-	item_state = "armor"
+	item_state = "detective-armor"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
@@ -218,7 +218,7 @@
 	name = "rugged armor"
 	desc = "A suit of armor used by workers in dangerous environments."
 	icon_state = "swatarmor"
-	item_state = "armor"
+	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = SLOWDOWN_ARMOR_LIGHT 
@@ -280,7 +280,7 @@
 	name = "tactical armor"
 	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
-	item_state = "armor"
+	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 1
@@ -325,7 +325,7 @@
 	name = "emergency response team armor"
 	desc = "A set of armor worn by members of the NanoTrasen Emergency Response Team."
 	icon_state = "ertarmor_cmd"
-	item_state = "armor"
+	item_state = "ertarmor_cmd"
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 
 //Captain
@@ -338,18 +338,21 @@
 	name = "emergency response team security armor"
 	desc = "A set of armor worn by security members of the NanoTrasen Emergency Response Team. Has red highlights."
 	icon_state = "ertarmor_sec"
+	item_state = "ertarmor_sec"
 
 //Engineer
 /obj/item/clothing/suit/armor/vest/ert/engineer
 	name = "emergency response team engineer armor"
 	desc = "A set of armor worn by engineering members of the NanoTrasen Emergency Response Team. Has orange highlights."
 	icon_state = "ertarmor_eng"
+	item_state = "ertarmor_eng"
 
 //Medical
 /obj/item/clothing/suit/armor/vest/ert/medical
 	name = "emergency response team medical armor"
 	desc = "A set of armor worn by medical members of the NanoTrasen Emergency Response Team. Has red and white highlights."
 	icon_state = "ertarmor_med"
+	item_state = "ertarmor_med"
 
 
 

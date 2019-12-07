@@ -189,7 +189,7 @@
 
 /obj/effect/landmark/corpsespawner/prisoner
 	name = "Prisoner"
-	corpseuniform = /obj/item/clothing/under/color/orange
+	corpseuniform = /obj/item/clothing/under/rank/prisoner
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpseid = 1
 	corpseidjob = "Prisoner"
