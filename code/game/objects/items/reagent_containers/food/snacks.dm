@@ -2838,6 +2838,8 @@
  
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
     . = ..()
+    if(!iscabon(user))
+        return
     if(slot == SLOT_WEAR_MASK)
         START_PROCESSING(SSobj, src)
     else
