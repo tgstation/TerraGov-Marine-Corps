@@ -383,7 +383,8 @@ should be alright.
 			if("rail") update_overlays(rail, attachable)
 
 
-/obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
+/obj/item/weapon/gun/update_overlays(obj/item/attachable/A, slot)
+	. = ..()
 	var/image/I = attachable_overlays[slot]
 	overlays -= I
 	qdel(I)

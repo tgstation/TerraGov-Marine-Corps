@@ -100,9 +100,6 @@
 /turf/ex_act(severity)
 	return 0
 
-/turf/proc/update_icon() //Base parent. - Abby
-	return
-
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	// Do not call ..()
