@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Resin silos added to Distress game mode. They are unprotected by fog and get automatically destroyed on xeno shuttle hijack."
