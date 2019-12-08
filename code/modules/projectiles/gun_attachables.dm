@@ -320,7 +320,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 25 //35 for a rifle, comparable to 37 before. 40 with the stock, comparable to 42.
+	melee_mod = 25
 	slot = "muzzle"
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
