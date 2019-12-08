@@ -713,9 +713,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 /datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	. = 0
 
-	for(var/i in GLOB.alive_human_list)
+	for(var/i in GLOB.human_mob_list)
 		var/mob/living/carbon/human/H = i
 		var/datum/job/job = SSjob.GetJob(H.job)
+		if(H.stat == DEAD && !H.is_revivable())
+			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
 		if(H.status_flags & XENO_HOST)
