@@ -100,7 +100,7 @@
 
 	user.do_attack_animation(src, used_item = src)
 
-	var/power = force + round(force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 
 	switch(I.damtype)
 		if(BRUTE)
