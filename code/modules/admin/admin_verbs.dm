@@ -1152,11 +1152,13 @@
 		return
 
 	dat += "<table>"
-
-	for(var/j in SSjob.occupations)
+	if(SSjob.initialized && (!SSticker.HasRoundStarted()))
+		if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
+		else
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
+	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
-		if(!(job.title in GLOB.jobs_regular_all))
-			continue
 		count++
 		var/J_title = html_encode(job.title)
 		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))

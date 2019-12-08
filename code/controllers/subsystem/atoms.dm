@@ -28,24 +28,18 @@ SUBSYSTEM_DEF(atoms)
 
 	LAZYINITLIST(late_loaders)
 
-	var/count
 	var/list/mapload_arg = list(TRUE)
 	if(atoms)
-		count = atoms.len
 		for(var/I in atoms)
 			var/atom/A = I
 			if(!(A.flags_atom & INITIALIZED))
 				InitAtom(I, mapload_arg)
 				CHECK_TICK
 	else
-		count = 0
 		for(var/atom/A in world)
 			if(!(A.flags_atom & INITIALIZED))
 				InitAtom(A, mapload_arg)
-				++count
 				CHECK_TICK
-
-	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 

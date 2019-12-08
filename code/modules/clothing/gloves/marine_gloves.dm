@@ -18,11 +18,11 @@
 	var/flags_marine_gloves = GLOVES_SQUAD_OVERLAY
 	armor = list("melee" = 15, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/gloves/marine/Initialize(mapload, squad, rank)
+/obj/item/clothing/gloves/marine/Initialize(mapload, datum/squad/squad, rank)
 	. = ..()
 	if(squad)
 		var/dat = ""
-		if(rank == SQUAD_ENGINEER)
+		if(rank == /datum/job/terragov/squad/engineer)
 			dat += "insulated "
 			siemens_coefficient = 0
 			desc = "Insulated marine tactical gloves that protect against electrical shocks."

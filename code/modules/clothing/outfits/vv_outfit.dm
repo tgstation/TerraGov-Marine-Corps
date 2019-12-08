@@ -122,12 +122,12 @@
 	var/obj/item/id_slot = H.get_item_by_slot(SLOT_WEAR_ID)
 	if(id_slot)
 		var/obj/item/card/id/card = id_slot
-		var/datum/job/J = SSjob.GetJob(H.job)
+		var/datum/job/J = H.job
 		if(istype(card))
 			card.access = stored_access
 			card.registered_name = H.real_name
 			card.assignment = H.job
-			card.rank = H.job
+			card.rank = H.job.title
 			if(J)
 				card.paygrade = J.paygrade
 			card.update_label()

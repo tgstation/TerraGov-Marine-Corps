@@ -2419,7 +2419,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ahv" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "ahw" = (
@@ -3631,7 +3631,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -3725,7 +3725,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "alt" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -4611,7 +4611,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "anN" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
@@ -5059,7 +5059,7 @@
 /area/bigredv2/outside/marshal_office)
 "aoW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aoX" = (
@@ -7945,7 +7945,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "axI" = (
@@ -8014,7 +8014,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "axT" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/wood,
 /area/bigredv2/caves/lambda_lab)
@@ -10530,7 +10530,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aFn" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aFo" = (
@@ -11967,7 +11967,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJF" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -12996,7 +12996,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMj" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMk" = (
@@ -13049,7 +13049,7 @@
 /turf/open/floor/bluegrid,
 /area/bigredv2/caves/lambda_lab)
 "aMt" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/bluegrid,
 /area/bigredv2/caves/lambda_lab)
@@ -13790,7 +13790,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aPs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
@@ -13894,7 +13894,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "aPM" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "aPN" = (
@@ -16429,7 +16429,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYk" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aYl" = (
@@ -17210,7 +17210,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbh" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbi" = (
@@ -17426,7 +17426,7 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "bcd" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "bce" = (
@@ -17477,7 +17477,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -18048,7 +18048,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "bet" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
@@ -18154,7 +18154,7 @@
 /area/bigredv2/outside/office_complex)
 "beM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "beO" = (
@@ -18801,7 +18801,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "bhk" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -20053,7 +20053,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "blB" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 4
@@ -20156,7 +20156,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bma" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bmb" = (
@@ -20992,7 +20992,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/s)
 "bpe" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpf" = (
@@ -21613,7 +21613,7 @@
 /area/bigredv2/outside/engineering)
 "bqT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqU" = (
@@ -22726,7 +22726,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "bwj" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwo" = (
@@ -23059,7 +23059,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bxP" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -23984,7 +23984,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBs" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBt" = (
@@ -24165,7 +24165,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBZ" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
@@ -25063,7 +25063,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/e)
 "dSQ" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "dWa" = (
@@ -25185,7 +25185,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "fra" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "fus" = (
@@ -25216,7 +25216,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "fMu" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -26324,7 +26324,7 @@
 /area/bigredv2/outside/dorms)
 "txM" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "tDX" = (
@@ -26580,7 +26580,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "xiT" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "xjd" = (

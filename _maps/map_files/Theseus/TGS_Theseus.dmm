@@ -547,7 +547,7 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "abv" = (
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -1229,7 +1229,7 @@
 "adn" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/fieldcommander,
+/obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet,
 /area/mainship/living/numbertwobunks)
 "ado" = (
@@ -2377,7 +2377,7 @@
 "agh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
-/obj/effect/landmark/start/marine/captain,
+/obj/effect/landmark/start/job/captain,
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
@@ -2778,7 +2778,7 @@
 "ahh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/masteratarms,
+/obj/effect/landmark/start/job/masteratarms,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2808,7 +2808,7 @@
 	},
 /area/mainship/hallways/stern_hallway)
 "ahl" = (
-/obj/effect/landmark/start/marine/synthetic,
+/obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -2816,7 +2816,7 @@
 "ahm" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/masteratarms,
+/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/carpet,
 /area/mainship/shipboard/brig)
 "ahn" = (
@@ -3453,7 +3453,7 @@
 "aiN" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
-/obj/effect/landmark/start/marine/corporateliaison,
+/obj/effect/landmark/start/job/corporateliaison,
 /obj/item/toy/farwadoll{
 	pixel_x = 5
 	},
@@ -5532,7 +5532,7 @@
 "amF" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/obj/effect/landmark/start/marine/masteratarms,
+/obj/effect/landmark/start/job/masteratarms,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/mainship/shipboard/brig)
@@ -6539,7 +6539,7 @@
 "api" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hos,
-/obj/effect/landmark/start/marine/commandmasteratarms,
+/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/carpet,
 /area/mainship/shipboard/chief_mp_office)
 "apj" = (
@@ -6995,7 +6995,7 @@
 /area/mainship/engineering/ce_room)
 "aqo" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/chiefshipengineer,
+/obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "orange"
@@ -10672,7 +10672,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "ayB" = (
@@ -11815,7 +11815,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "orangecorner";
 	dir = 1
@@ -14088,7 +14088,7 @@
 /area/mainship/medical/upper_medical)
 "aEV" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/researcher,
+/obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -15568,7 +15568,7 @@
 	},
 /area/mainship/medical/medical_science)
 "aHY" = (
-/obj/effect/landmark/start/marine/researcher,
+/obj/effect/landmark/start/job/researcher,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
@@ -16680,7 +16680,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/cmo,
+/obj/effect/landmark/start/job/cmo,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -17155,7 +17155,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/captain_mess)
 "aLt" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -17421,7 +17421,7 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "aLW" = (
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -17573,7 +17573,7 @@
 	},
 /area/mainship/squads/bravo)
 "aMn" = (
-/obj/effect/landmark/start/marine/pilotofficer,
+/obj/effect/landmark/start/job/pilotofficer,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -19022,7 +19022,7 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "aPc" = (
-/obj/effect/landmark/start/ai_spawn,
+/obj/effect/landmark/start/job/ai,
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
 	},
@@ -20381,13 +20381,13 @@
 /area/mainship/living/bridgebunks)
 "aSC" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSD" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSE" = (
@@ -27922,7 +27922,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bnQ" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -28117,7 +28117,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "boB" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -28203,7 +28203,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "boL" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "boM" = (
@@ -28537,7 +28537,7 @@
 	},
 /area/mainship/squads/req)
 "bpF" = (
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bpG" = (
@@ -28545,7 +28545,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bpH" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bpI" = (
@@ -28601,7 +28601,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bpN" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bpO" = (
@@ -29089,7 +29089,7 @@
 /area/mainship/squads/req)
 "brg" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/marine/requisitionsofficer,
+/obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship{
 	dir = 6;
 	icon_state = "green"
@@ -29233,7 +29233,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "brz" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "brA" = (
@@ -29781,18 +29781,18 @@
 	},
 /area/mainship/squads/req)
 "btc" = (
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "btd" = (
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bte" = (
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -29823,7 +29823,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bti" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
@@ -30184,7 +30184,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "buK" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -30659,7 +30659,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "bwr" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -30679,7 +30679,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bwt" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
@@ -31340,7 +31340,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "byk" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -31803,7 +31803,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bzv" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -32362,7 +32362,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "bAP" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -32385,7 +32385,7 @@
 /area/mainship/living/cryo_cells)
 "bAS" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
@@ -32919,7 +32919,7 @@
 	dir = 4;
 	icon_state = "officechair_white"
 	},
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCw" = (
@@ -33376,7 +33376,7 @@
 	},
 /area/mainship/squads/req)
 "bDI" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
@@ -33398,7 +33398,7 @@
 /area/mainship/living/cryo_cells)
 "bDL" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -33710,7 +33710,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bER" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -33732,7 +33732,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bEU" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -34215,7 +34215,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bGo" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -34969,7 +34969,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bII" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -35363,7 +35363,7 @@
 /area/mainship/living/cryo_cells)
 "bJT" = (
 /obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
@@ -35424,7 +35424,7 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "bKd" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "orange"
 	},
@@ -36405,7 +36405,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
 	icon_state = "green";
 	dir = 2
@@ -36427,7 +36427,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -36941,7 +36941,7 @@
 	},
 /area/mainship/living/cryo_cells)
 "bOb" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -40138,7 +40138,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "bWu" = (
-/obj/effect/landmark/start/marine/pilotofficer,
+/obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/mainship,
 /area/mainship/living/pilotbunks)
 "bWv" = (
@@ -40422,7 +40422,7 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/ex_firing_range)
 "bXn" = (
-/obj/effect/landmark/start/marine/tankcrewman,
+/obj/effect/landmark/start/job/tankcrewman,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "bXq" = (
@@ -40826,7 +40826,7 @@
 /area/mainship/hallways/hangar)
 "bYz" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/marine/pilotofficer,
+/obj/effect/landmark/start/job/pilotofficer,
 /obj/item/bedsheet/brown,
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)

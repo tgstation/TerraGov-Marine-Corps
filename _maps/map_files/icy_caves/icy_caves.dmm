@@ -324,7 +324,7 @@
 	},
 /area/icy_caves/caves/northern)
 "bi" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "bj" = (
@@ -1173,7 +1173,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/west)
 "eE" = (
@@ -1434,7 +1434,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/south)
 "fk" = (
@@ -2585,7 +2585,7 @@
 /area/icy_caves/outpost/garage)
 "iY" = (
 /obj/item/ammo_casing,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/garage)
 "iZ" = (
@@ -2858,7 +2858,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/engineering)
 "jN" = (
@@ -5159,7 +5159,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "qQ" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -5312,7 +5312,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "zl" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "Br" = (
@@ -5324,11 +5324,11 @@
 /area/icy_caves/outpost/research)
 "GZ" = (
 /obj/structure/bed,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "HM" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "Io" = (
@@ -5407,7 +5407,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/OOB)
 "RN" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/east)
 "RU" = (

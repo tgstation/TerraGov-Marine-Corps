@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	active_power_usage = 3000
 
 	var/gives_webbing = FALSE
-	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
+	var/vendor_role //to be compared with job.type to only allow those to use that machine.
 	var/squad_tag = ""
 	var/use_points = FALSE
 	var/lock_flags = SQUAD_LOCK|JOB_LOCK
@@ -121,7 +121,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		if(I.registered_name != H.real_name)
 			return FALSE
 
-		if(lock_flags & JOB_LOCK && vendor_role && I.rank != vendor_role)
+		if(lock_flags & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
 			return FALSE
 
 		if(lock_flags & SQUAD_LOCK && (!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag)))
@@ -224,11 +224,14 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			for(var/i in C)
 				bitf |= i
 			if(bitf)
-				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST)
-					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
+				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == /datum/job/terragov/squad/specialist)
+					if(!isliving(usr))
+						return
+					var/mob/living/user = usr
+					if(!ismarinespecjob(user.job))
 						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
-					else if(usr.skills.getRating("spec_weapons") != SKILL_SPEC_TRAINED)
+					if(usr.skills.getRating("spec_weapons") != SKILL_SPEC_TRAINED)
 						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[2]
@@ -266,23 +269,23 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
-				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad.name, vendor_role)
-				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad.name, vendor_role)
+				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
+				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
-
-			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == SQUAD_SPECIALIST && usr.mind && usr.mind.assigned_role == SQUAD_SPECIALIST && ishuman(usr))
+			if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == /datum/job/terragov/squad/specialist && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
-				var/p_name = L[2]
-				if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
-					p_name = "Scout Set"
-				else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
-					p_name = "Heavy Armor Set"
-				if(p_name)
-					H.specset = p_name
-				H.update_action_buttons()
-				GLOB.available_specialist_sets -= p_name
+				if(ismarinespecjob(H.job))
+					var/p_name = L[2]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
+					else if(findtext(p_name, "Heavy Armor Set")) //Makes sure there can only be one Heavy kit taken despite the two variants.
+						p_name = "Heavy Armor Set"
+					if(p_name)
+						H.specset = p_name
+					H.update_action_buttons()
+					GLOB.available_specialist_sets -= p_name
 
 			if(use_points)
 				I.marine_points -= cost
@@ -294,7 +297,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	name = "GHMME Automated Closet"
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
-	vendor_role = SQUAD_MARINE
+	vendor_role = /datum/job/terragov/squad/standard
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
@@ -386,7 +389,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 /obj/machinery/marine_selector/clothes/engi
 	name = "GHMME Automated Engineer Closet"
 	req_access = list(ACCESS_MARINE_ENGPREP)
-	vendor_role = SQUAD_ENGINEER
+	vendor_role = /datum/job/terragov/squad/engineer
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -441,7 +444,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 /obj/machinery/marine_selector/clothes/medic
 	name = "GHMME Automated Corpsman Closet"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	vendor_role = SQUAD_CORPSMAN
+	vendor_role = /datum/job/terragov/squad/corpsman
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -501,7 +504,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 /obj/machinery/marine_selector/clothes/smartgun
 	name = "GHMME Automated Smartgunner Closet"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
-	vendor_role = SQUAD_SMARTGUNNER
+	vendor_role = /datum/job/terragov/squad/smartgunner
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -551,7 +554,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 /obj/machinery/marine_selector/clothes/specialist
 	name = "GHMME Automated Specialist Closet"
 	req_access = list(ACCESS_MARINE_SPECPREP)
-	vendor_role = SQUAD_SPECIALIST
+	vendor_role = /datum/job/terragov/squad/specialist
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -605,7 +608,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
-	vendor_role = SQUAD_LEADER
+	vendor_role = /datum/job/terragov/squad/leader
 	gives_webbing = FALSE
 
 	listed_products = list(
@@ -666,7 +669,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	icon_state = "synth"
 	icon_vend = "synth-vend"
 	icon_deny = "synth-deny"
-	vendor_role = "Synthetic"
+	vendor_role = /datum/job/terragov/silicon/synthetic
 	lock_flags = JOB_LOCK
 
 	listed_products = list(
@@ -767,7 +770,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	name = "NEXUS Automated Medical Equipment Rack"
 	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
 	icon_state = "medic"
-	vendor_role = SQUAD_CORPSMAN
+	vendor_role = /datum/job/terragov/squad/corpsman
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
@@ -825,7 +828,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
 	icon_state = "engineer"
-	vendor_role = SQUAD_ENGINEER
+	vendor_role = /datum/job/terragov/squad/engineer
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
 	listed_products = list(
@@ -869,7 +872,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	name = "NEXUS Automated Smartgunner Equipment Rack"
 	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
 	icon_state = "smartgunner"
-	vendor_role = SQUAD_SMARTGUNNER
+	vendor_role = /datum/job/terragov/squad/smartgunner
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
@@ -902,7 +905,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Specialist Equipment Rack"
 	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
 	icon_state = "specialist"
-	vendor_role = SQUAD_SPECIALIST
+	vendor_role = /datum/job/terragov/squad/specialist
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	listed_products = list(
@@ -939,7 +942,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
-	vendor_role = SQUAD_LEADER
+	vendor_role = /datum/job/terragov/squad/leader
 	req_access = list(ACCESS_MARINE_LEADER)
 
 	listed_products = list(

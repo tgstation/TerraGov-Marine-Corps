@@ -125,7 +125,7 @@
 	if( istype(src.occupant, /mob/living/carbon/human/) )
 		var/mob/living/carbon/human/H = occupant
 		var/sourcename = src.occupant.real_name
-		var/sourcejob = src.occupant.job
+		var/sourcejob = src.occupant.job?.title
 		var/sourcenutriment = H.nutrition / 15
 		var/sourcetotalreagents = src.occupant.reagents.total_volume
 
