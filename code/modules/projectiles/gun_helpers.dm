@@ -177,7 +177,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	if(!isturf(loc) || !isnull(user?.s_store))
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store))
 		return
 
 	user.equip_to_slot_if_possible(src, SLOT_S_STORE)
