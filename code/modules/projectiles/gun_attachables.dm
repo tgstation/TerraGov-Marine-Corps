@@ -364,7 +364,7 @@ Defined in conflicts.dm of the #defines folder.
 	damage_mod = 0.30
 	delay_mod = 3
 	scatter_mod = 5
-	accuracy_unwielded_mod = -0.30
+	accuracy_unwielded_mod = -0.3
 
 
 /obj/item/attachable/compensator
