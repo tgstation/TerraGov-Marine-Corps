@@ -24,8 +24,8 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	evolution_threshold = 200
-	upgrade_threshold = 200
+	evolution_threshold = 150
+	upgrade_threshold = 100
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -89,7 +89,7 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 7, "laser" = 7, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
@@ -123,7 +123,7 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	armor = list("melee" = 18, "bullet" = 9, "laser" = 9, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
@@ -158,7 +158,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)

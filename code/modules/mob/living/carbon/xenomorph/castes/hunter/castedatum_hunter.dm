@@ -28,8 +28,8 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	evolution_threshold = 200
-	upgrade_threshold = 200
+	evolution_threshold = 150
+	upgrade_threshold = 100
 
 	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
@@ -80,7 +80,7 @@
 	max_health = 175
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 13, "bullet" = 13, "laser" = 13, "energy" = 13, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 5, "acid" = 15)
@@ -111,7 +111,7 @@
 	max_health = 190
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 7, "acid" = 18)
@@ -143,7 +143,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)

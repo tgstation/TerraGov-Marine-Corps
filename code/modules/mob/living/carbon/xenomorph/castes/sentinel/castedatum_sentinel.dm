@@ -25,7 +25,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 100
-	upgrade_threshold = 100
+	upgrade_threshold = 50
 
 	evolves_to = list(/mob/living/carbon/xenomorph/spitter)
 
@@ -76,7 +76,7 @@
 	max_health = 180
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 100
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 5, "acid" = 20)
@@ -108,7 +108,7 @@
 	max_health = 190
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 10, "acid" = 23)
@@ -140,7 +140,7 @@
 	max_health = 195
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
