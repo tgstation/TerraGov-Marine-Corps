@@ -25,7 +25,7 @@
 	max_health = 120
 
 	// *** Evolution *** //
-	evolution_threshold = 100
+	evolution_threshold = 80
 	upgrade_threshold = 50
 
 	evolves_to = list(/mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)

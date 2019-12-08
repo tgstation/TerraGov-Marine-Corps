@@ -131,7 +131,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 3200
+	upgrade_threshold = 1600
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -167,7 +167,7 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 3200
+	upgrade_threshold = 1600
 
 	// *** Defense *** //
 	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)

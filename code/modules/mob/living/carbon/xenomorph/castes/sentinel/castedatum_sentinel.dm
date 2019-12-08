@@ -24,7 +24,7 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	evolution_threshold = 100
+	evolution_threshold = 80
 	upgrade_threshold = 50
 
 	evolves_to = list(/mob/living/carbon/xenomorph/spitter)

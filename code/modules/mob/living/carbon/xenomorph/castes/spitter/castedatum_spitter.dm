@@ -24,7 +24,7 @@
 	max_health = 180
 
 	// *** Evolution *** //
-	evolution_threshold = 150
+	evolution_threshold = 180
 	upgrade_threshold = 100
 
 	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)

@@ -28,7 +28,7 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	evolution_threshold = 150
+	evolution_threshold = 180
 	upgrade_threshold = 100
 
 	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
