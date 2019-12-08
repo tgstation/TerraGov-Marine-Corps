@@ -35,3 +35,7 @@
 #define COMBAT_MELEE_ATTACK "melee_attack"
 #define COMBAT_PROJ_ATTACK "proj_attack"
 #define COMBAT_TOUCH_ATTACK "touch_attack"
+
+#define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
+#define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
+#define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.

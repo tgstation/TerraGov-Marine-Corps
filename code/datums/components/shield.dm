@@ -1,21 +1,16 @@
-#define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
-#define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
-#define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.
-
 /datum/component/shield
 	var/mob/living/affected
 	var/datum/callback/intercept_damage_cb
 	var/datum/callback/transfer_damage_cb
 	var/datum/armor/armor
-	var/datum/armor/cover = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80) //Percentage damage it intercepts.
-	var/datum/armor/hardness //Minimum damage to affect the shield
+	var/datum/armor/cover //Percentage damage it intercepts.
 	var/shield_flags = NONE
 	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
 	var/layer = 50
 	var/active = TRUE
 
 
-/datum/component/shield/Initialize(shield_flags, shield_armor, shield_cover)
+/datum/component/shield/Initialize(shield_flags, shield_armor, shield_cover = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80))
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -38,24 +33,19 @@
 	else
 		armor = parent_item.armor
 
-	if(!isnull(shield_cover))
-		cover = shield_cover
 	if(islist(cover))
 		cover = getArmor(arglist(cover))
+	else if(istype(armor, /datum/armor))
+		cover = armor
 	else
 		cover = getArmor()
-
-	if(islist(hardness))
-		hardness = getArmor(arglist(hardness))
-	else if(!hardness)
-		hardness = getArmor()
+		stack_trace("Invalid type found in cover during /datum/component/shield Initialize()")
 
 
 /datum/component/shield/Destroy()
 	shield_detatch_from_user()
 	armor = null
 	cover = null
-	hardness = null
 	QDEL_NULL(intercept_damage_cb)
 	if(transfer_damage_cb)
 		QDEL_NULL(transfer_damage_cb)
@@ -175,11 +165,6 @@
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage -= hardness.getRating(damage_type)
-			if(absorbing_damage <= 0)
-				if(!silent)
-					to_chat(affected, "<span class='avoidharm'>\The [parent_item.name] [. ? "softens" : "soaks"] the damage!</span>")
-				return
 			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
 			if(absorbing_damage <= 0)
 				if(!silent)
@@ -248,9 +233,6 @@
 			if(!absorbing_damage)
 				return incoming_damage //We are transparent to this kind of damage.
 			. = incoming_damage - absorbing_damage
-			absorbing_damage -= hardness.getRating(damage_type)
-			if(absorbing_damage <= 0)
-				return wrap_up_attack(absorbing_damage, ., silent)
 			absorbing_damage *= (100 - armor.getRating(damage_type)) * 0.01
 			return wrap_up_attack(absorbing_damage, ., silent)
 

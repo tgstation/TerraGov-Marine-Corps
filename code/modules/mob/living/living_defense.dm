@@ -247,7 +247,7 @@
 /mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
 	if(!damage)
 		stack_trace("check_shields called without a damage value")
-		return TRUE
+		return 0
 	. = damage
 	var/list/affecting_shields = list()
 	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
