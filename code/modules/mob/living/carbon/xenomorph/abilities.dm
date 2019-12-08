@@ -158,7 +158,7 @@
 			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
 			return fail_activate()
 
-	var/wait_time = 10 + 30 - max(0,(30*X.health/X.maxHealth)) //Between 1 and 4 seconds, depending on health.
+	var/wait_time = 1 SECONDS + 1 SECONDS - max(0, (1 SECONDS * X.health / X.maxHealth)) //Between 1 and 2 seconds, depending on health.
 
 	if(!do_after(X, wait_time, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
