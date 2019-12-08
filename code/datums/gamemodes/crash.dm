@@ -145,8 +145,9 @@
 	shuttle_landed = TRUE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 30 SECONDS)  // Announce exact information to the xenos.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE, FALSE), 30 SECONDS)  // Announce exact information to the xenos.
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE, FALSE), 5 MINUTES, TIMER_LOOP) // Xeno Regular, 5mins
+	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 2, FALSE, FALSE, TRUE), 10 MINUTES, TIMER_LOOP) // Marine Regular, 10mins, with delta +-2
 
 
 /datum/game_mode/crash/check_finished(force_end)
