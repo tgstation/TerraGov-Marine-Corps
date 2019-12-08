@@ -55,8 +55,7 @@
 /mob/living/carbon/xenomorph/larva/generate_name()
 	var/progress = "" //Naming convention, three different names
 
-	var/grown = (amount_grown / max_grown) * 100
-	switch(grown)
+	switch(amount_grown)
 		if(0 to 49) //We're still bloody
 			progress = "Bloody "
 		if(100 to INFINITY)
@@ -76,8 +75,7 @@
 	generate_name()
 
 	var/bloody = ""
-	var/grown = (amount_grown / max_grown) * 100
-	if(grown < 50)
+	if(amount_grown < 50)
 		bloody = "Bloody "
 
 	color = hive.color
