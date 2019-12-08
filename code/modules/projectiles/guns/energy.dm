@@ -104,7 +104,7 @@
 /obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
 	. = ..()
 	if (.) //Let's check all that other stuff first.
-		if(user?.mind?.cm_skills?.police && user.mind.cm_skills.police < SKILL_POLICE_MP)
+		if(user.skills.getRating("police") < SKILL_POLICE_MP)
 			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 			return FALSE
 

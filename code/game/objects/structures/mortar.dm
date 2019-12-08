@@ -25,10 +25,10 @@
 	. = ..()
 	if(.)
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	if(busy)
@@ -112,10 +112,10 @@
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
-			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -177,10 +177,10 @@
 				firing = FALSE
 
 	else if(iswrench(I))
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to undeploy [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to undeploy [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer"))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -225,10 +225,10 @@
 
 /obj/item/mortar_kit/attack_self(mob/user)
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deploy [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to deploy [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	if(!is_ground_level(user.z))

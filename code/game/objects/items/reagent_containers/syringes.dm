@@ -68,7 +68,7 @@
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
 		var/mob/M = target
 		var/mob/living/L = user
-		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && (M.mind?.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP))
+		if(M != L && M.stat != DEAD && M.a_intent != INTENT_HELP && !M.incapacitated() && M.skills.getRating("cqc") >= SKILL_CQC_MP)
 			L.Knockdown(60)
 			log_combat(M, L, "blocked", addition="using their cqc skill (syringe injection)")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [L] to the ground before they could use \the [src]'!</span>", \
@@ -79,9 +79,7 @@
 		syringestab(target, user)
 		return
 
-	var/injection_time = 30
-	if(user.mind && user.mind.cm_skills)
-		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
+	var/injection_time = max(0.5 SECONDS, 5 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
 	switch(mode)
 		if(SYRINGE_DRAW)
@@ -152,7 +150,7 @@
 						var/mob/living/carbon/human/H = target
 						if(H.wear_suit)
 							if(istype(H.wear_suit,/obj/item/clothing/suit/space))
-								injection_time = 60
+								injection_time = 6 SECONDS
 							else if(!H.can_inject(user, 1))
 								return
 
@@ -162,7 +160,7 @@
 						if(!M.can_inject(user, 1))
 							return
 
-					if(injection_time != 60)
+					if(injection_time != 6 SECONDS)
 						user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>")
 					else
 						user.visible_message("<span class='danger'>[user] begins hunting for an injection port on [target]'s suit!</span>")

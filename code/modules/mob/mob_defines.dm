@@ -26,6 +26,7 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/list/cooldowns = list()
+	var/datum/skills/skills
 
 	//Movement
 	var/list/movespeed_modification // List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm

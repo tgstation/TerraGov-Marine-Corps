@@ -79,9 +79,9 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
+	if(user.skills.getRating("medical") < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
+		var/fduration = max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0)
 		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))

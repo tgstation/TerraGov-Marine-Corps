@@ -956,12 +956,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
-	var/delay = SKILL_TASK_AVERAGE
+	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
 	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
 	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
-
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical) //Higher skill lowers the delay.
-		delay -= 10 + user.mind.cm_skills.medical * 5
 
 	if(target == user) //If self splinting, multiply delay by 4
 		delay *= 4

@@ -20,6 +20,12 @@
 	set_focus(src)
 	prepare_huds()
 	. = ..()
+	if(islist(skills))
+		skills = getSkills(arglist(skills))
+	else if(!skills)
+		skills = getSkills()
+	else if(!istype(skills, /datum/skills))
+		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
@@ -397,7 +403,7 @@
 	. = ..()
 	if(.)
 		return
-	if(ismob(dropping) && !isxeno(dropping) && dropping != user)
+	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
 		var/mob/dragged = dropping
 		dragged.show_inv(user)
 

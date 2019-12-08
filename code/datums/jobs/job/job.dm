@@ -45,7 +45,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/exp_type_department = ""
 
 	var/outfit = null
-	var/skills_type = null
+	var/skills_type = /datum/skills
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
@@ -107,8 +107,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	L.faction = faction
 
 	if(skills_type)
-		var/datum/skills/S = new skills_type
-		L.mind.cm_skills = S
+		L.skills = getSkillsType(skills_type)
 
 	if(!ishuman(L))
 		return TRUE
