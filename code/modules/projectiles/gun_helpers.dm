@@ -173,7 +173,6 @@ should be alright.
 	if(!istype(I, /obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
 		return FALSE
 	addtimer(CALLBACK(src, .proc/harness_return, user), 3, TIMER_UNIQUE)
-	// harness_return(user)
 	return TRUE
 
 
