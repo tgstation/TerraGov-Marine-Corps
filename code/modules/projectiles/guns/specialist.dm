@@ -526,7 +526,7 @@
 		return
 	if(gun_on_cooldown(user))
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
 		return
 	if(get_dist(target,user) <= 2)
 		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
@@ -775,17 +775,17 @@
 	if(gun_on_cooldown(user))
 		return
 
-	var/delay = 3
+	var/delay = 0.3 SECONDS
 	if(has_attachment(/obj/item/attachable/scope/mini))
-		delay += 3
+		delay += 0.3 SECONDS
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		delay += 6
+	if(user.skills.getRating("spec_weapons") < 0)
+		delay += 0.6 SECONDS
 
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, 1)
+	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
 	. = ..()
 
 

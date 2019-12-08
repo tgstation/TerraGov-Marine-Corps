@@ -96,8 +96,7 @@
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-	if(buckling_mob.mind?.cm_skills)
-		move_delay = max(4, move_delay - buckling_mob.mind.cm_skills.powerloader)
+	move_delay = max(4, move_delay - buckling_mob.skills.getRating("powerloader"))
 	var/clamp_equipped = 0
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))

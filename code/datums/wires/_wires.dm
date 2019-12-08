@@ -123,14 +123,14 @@
 /datum/wires/proc/is_dud_color(color)
 	return is_dud(get_wire(color))
 
-
 /datum/wires/proc/cut(wire, mob/user)
-	if(user?.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out the wiring.</span>",
-		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer)
-		if(!do_after(user, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED))
-			return
+	if(user)
+		var/skill = user.skills.getRating("engineer")
+		if(skill < SKILL_ENGINEER_ENGI)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out the wiring.</span>",
+			"<span class='notice'>You fumble around figuring out the wiring.</span>")
+			if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED))
+				return
 
 	if(is_cut(wire))
 		cut_wires -= wire
@@ -157,11 +157,11 @@
 	if(is_cut(wire))
 		return
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	var/skill = user.skills.getRating("engineer")
+	if(skill < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
 		"<span class='notice'>You fumble around figuring out the wiring.</span>")
-		var/fumbling_time = 20 * (SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer)
-		if(!do_after(user, fumbling_time, TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
+		if(!do_after(user, 2 SECONDS * (SKILL_ENGINEER_ENGI - skill), TRUE, holder, BUSY_ICON_UNSKILLED) || is_cut(wire))
 			return
 
 	on_pulse(wire, user)

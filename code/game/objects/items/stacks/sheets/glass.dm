@@ -53,10 +53,10 @@
 	if(!user.dextrous)
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 0
-	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
+	if(ishuman(user) && user.skills.getRating("construction") < SKILL_CONSTRUCTION_PLASTEEL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to build with [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
-		var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("construction")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	var/title = "Sheet-[name]"

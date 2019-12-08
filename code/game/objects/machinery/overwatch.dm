@@ -836,9 +836,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
 		return
 
-	var/delay = activation_time
-	if(user.mind.cm_skills)
-		delay = max(10, delay - 20*user.mind.cm_skills.leadership)
+	var/delay = max(1 SECONDS, activation_time - 2 SECONDS * user.skills.getRating("leadership"))
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -889,9 +887,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
 		return
-	var/delay = activation_time
-	if(H.mind.cm_skills)
-		delay = max(15, delay - 20*H.mind.cm_skills.leadership)
+	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -920,9 +916,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		"You activate [src]")
 
 /obj/item/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = activation_time * 0.5 //Half as long as setting it up.
-	if(H.mind.cm_skills)
-		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
+	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -952,7 +946,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /mob/living/carbon/human/verb/issue_order(which as null|text)
 	set hidden = TRUE
 
-	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
+	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")
 		return
 

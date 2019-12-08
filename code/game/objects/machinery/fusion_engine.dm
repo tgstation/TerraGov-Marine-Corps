@@ -159,10 +159,10 @@
 	if(buildstate == FUSION_ENGINE_HEAVY_DAMAGE)
 		var/obj/item/tool/weldingtool/WT = O
 		if(WT.remove_fuel(1, user))
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
-				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+				var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
@@ -183,10 +183,10 @@
 
 /obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_MEDIUM_DAMAGE && !is_on)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -203,10 +203,10 @@
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -230,10 +230,10 @@
 	if(!fusion_cell)
 		to_chat(user, "<span class='warning'>There is no cell to remove.</span>")
 	else
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='warning'>[user] fumbles around figuring out [src]'s fuel receptacle.</span>",
 			"<span class='warning'>You fumble around figuring out [src]'s fuel receptacle.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
@@ -269,7 +269,7 @@
 			to_chat(user, "<span class='info'>The power gauge reads: [power_gen_percent]%</span>")
 		if(fusion_cell)
 			to_chat(user, "<span class='info'>You can see a fuel cell in the receptacle.</span>")
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MASTER)
+			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_MASTER)
 				switch(fusion_cell.fuel_amount)
 					if(0 to 10)
 						to_chat(user, "<span class='danger'>The fuel cell is critically low.</span>")

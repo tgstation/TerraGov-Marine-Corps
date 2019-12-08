@@ -371,7 +371,7 @@
 						to_chat(usr, "<span class='warning'>Someone's already taken [src]'s information tag.</span>")
 					return
 			//police skill lets you strip multiple items from someone at once.
-			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
+			if(!usr.action_busy || usr.skills.getRating("police") >= SKILL_POLICE_MP)
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
@@ -1179,26 +1179,18 @@
 	regenerate_icons()
 
 
-/mob/living/carbon/human/verb/check_skills()
+/mob/living/carbon/human/verb/show_skills()
 	set category = "IC"
-	set name = "Check Skills"
+	set name = "Show Skills"
 
-	var/dat
-	if(!mind)
-		dat += "You have no mind!"
-	else if(!mind.cm_skills)
-		dat += "You don't have any skills restrictions. Enjoy."
-	else
-		var/datum/skills/S = mind.cm_skills
-		for(var/i = 1 to length(S.values))
-			var/index = S.values[i]
-			var/value = max(S.values[index], 0)
-			dat += "[index]: [value]<br>"
+	var/list/dat = list()
+	var/list/skill_list = skills.getList()
+	for(var/i in skill_list)
+		dat += "[i]: [skill_list[i]]"
 
 	var/datum/browser/popup = new(src, "skills", "<div align='center'>Skills</div>", 300, 600)
-	popup.set_content(dat)
+	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
-
 
 
 /mob/living/carbon/human/proc/set_rank(rank)

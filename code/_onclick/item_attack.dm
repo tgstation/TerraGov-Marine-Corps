@@ -121,10 +121,7 @@
 
 	/////////////////////////
 
-	var/power = force
-
-	if(user.mind && user.mind.cm_skills)
-		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
+	var/power = force + round(force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 
 	if(!ishuman(M))
 		var/showname = "."
