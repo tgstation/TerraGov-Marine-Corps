@@ -37,6 +37,7 @@
 	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
 
 	var/larva_check_interval = 0
+	var/bioscan_interval = INFINITY
 
 
 /datum/game_mode/crash/initialize_scales()
@@ -137,17 +138,21 @@
 	if(round_finished)
 		return
 
+	// Burrowed Larva
 	if(world.time > larva_check_interval)
 		balance_scales()
 
+	// Bioscan alerts
+	if(world.time > bioscan_interval)
+		announce_bioscans(TRUE, 0, FALSE, TRUE, FALSE) // Xeno Regular, 5mins
+		announce_bioscans(TRUE, 2, FALSE, FALSE, TRUE) // Marine Regular, 10mins, with delta +-2
+		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE, FALSE), 30 SECONDS)  // Announce exact information to the xenos.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE, FALSE), 5 MINUTES, TIMER_LOOP) // Xeno Regular, 5mins
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 2, FALSE, FALSE, TRUE), 10 MINUTES, TIMER_LOOP) // Marine Regular, 10mins, with delta +-2
+	bioscan_interval = world.time + 30 SECONDS
 
 
 /datum/game_mode/crash/check_finished(force_end)
