@@ -44,11 +44,11 @@
 	UnregisterFromTurfs()
 
 /datum/component/largetransparency/proc/RegisterWithTurfs()
-	var/turf/tu = get_turf(parent)
-	if(!tu)
+	var/turf/current_tu = get_turf(parent)
+	if(!current_tu)
 		return
-	var/turf/lowleft_tu = locate(CLAMP(tu.x + x_offset, 0, world.maxx), CLAMP(tu.y + y_offset, 0, world.maxy), tu.z)
-	var/turf/upright_tu = locate(min(lowleft_tu.x + x_size, world.maxx), min(lowleft_tu.y + y_size, world.maxy), tu.z)
+	var/turf/lowleft_tu = locate(CLAMP(current_tu.x + x_offset, 0, world.maxx), CLAMP(current_tu.y + y_offset, 0, world.maxy), current_tu.z)
+	var/turf/upright_tu = locate(min(lowleft_tu.x + x_size, world.maxx), min(lowleft_tu.y + y_size, world.maxy), current_tu.z)
 	registered_turfs = block(lowleft_tu, upright_tu) //small problems with z level edges but nothing gamebreaking.
 	//register the signals
 	for(var/regist_tu in registered_turfs)
@@ -58,17 +58,17 @@
 		RegisterSignal(regist_tu, COMSIG_ATOM_EXITED, .proc/objectLeave)
 		RegisterSignal(regist_tu, COMSIG_TURF_CHANGE, .proc/OnTurfChange)
 		for(var/thing in regist_tu)
-			var/atom/at = thing
-			if(!(at.flags_atom & CRITICAL_ATOM))
+			var/atom/check_atom = thing
+			if(!(check_atom.flags_atom & CRITICAL_ATOM))
 				continue
 			amounthidden++
 	if(amounthidden)
 		reduceAlpha()
 
 /datum/component/largetransparency/proc/UnregisterFromTurfs()
-	var/list/li = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON)
+	var/list/signal_list = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON)
 	for(var/regist_tu in registered_turfs)
-		UnregisterSignal(regist_tu, li)
+		UnregisterSignal(regist_tu, signal_list)
 	registered_turfs.Cut()
 
 /datum/component/largetransparency/proc/OnMove()
@@ -80,28 +80,28 @@
 /datum/component/largetransparency/proc/OnTurfChange()
 	addtimer(CALLBACK(src, .proc/OnMove), 0, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
 
-/datum/component/largetransparency/proc/objectEnter(datum/source, atom/thing)
-	if(!(thing.flags_atom & CRITICAL_ATOM))
+/datum/component/largetransparency/proc/objectEnter(datum/source, atom/enterer)
+	if(!(enterer.flags_atom & CRITICAL_ATOM))
 		return
 	if(!amounthidden)
 		reduceAlpha()
 	amounthidden++
 
-/datum/component/largetransparency/proc/objectLeave(datum/source, atom/thing)
-	if(!(thing.flags_atom & CRITICAL_ATOM))
+/datum/component/largetransparency/proc/objectLeave(datum/source, atom/leaver)
+	if(!(leaver.flags_atom & CRITICAL_ATOM))
 		return
 	amounthidden = max(0, amounthidden - 1)
 	if(!amounthidden)
 		restoreAlpha()
 
 /datum/component/largetransparency/proc/reduceAlpha()
-	var/atom/par = parent
-	par.alpha = target_alpha
+	var/atom/par_atom = parent
+	par_atom.alpha = target_alpha
 	if(toggle_click)
-		par.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		par_atom.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /datum/component/largetransparency/proc/restoreAlpha()
-	var/atom/par = parent
-	par.alpha = initial_alpha
+	var/atom/par_atom = parent
+	par_atom.alpha = initial_alpha
 	if(toggle_click)
-		par.mouse_opacity = MOUSE_OPACITY_OPAQUE
+		par_atom.mouse_opacity = MOUSE_OPACITY_OPAQUE
