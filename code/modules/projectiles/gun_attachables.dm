@@ -375,7 +375,6 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "comp_a"
 	pixel_shift_x = 17
 	scatter_mod = -15
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_unwielded_mod = -15
 	recoil_unwielded_mod = -2
