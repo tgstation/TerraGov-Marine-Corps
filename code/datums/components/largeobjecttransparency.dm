@@ -29,13 +29,21 @@
 	target_alpha = _target_alpha
 	toggle_click = _toggle_click
 	registered_turfs = list()
-	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/OnMove)
+
 
 /datum/component/largetransparency/Destroy()
 	registered_turfs.Cut()
 	return ..()
 
 /datum/component/largetransparency/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/OnMove)
+	RegisterWithTurfs()
+
+/datum/component/largetransparency/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_MOVED)
+	UnregisterFromTurfs()
+
+/datum/component/largetransparency/proc/RegisterWithTurfs()
 	var/turf/tu = get_turf(parent)
 	if(!tu)
 		return
@@ -57,19 +65,20 @@
 	if(amounthidden)
 		reduceAlpha()
 
-/datum/component/largetransparency/UnregisterFromParent()
+/datum/component/largetransparency/proc/UnregisterFromTurfs()
+	var/list/li = list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON)
 	for(var/regist_tu in registered_turfs)
-		UnregisterSignal(regist_tu, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_EXITED, COMSIG_TURF_CHANGE, COMSIG_ATOM_INITIALIZED_ON))
+		UnregisterSignal(regist_tu, li)
 	registered_turfs.Cut()
 
 /datum/component/largetransparency/proc/OnMove()
 	amounthidden = 0
 	restoreAlpha()
-	UnregisterFromParent()
-	RegisterWithParent()
+	UnregisterFromTurfs()
+	RegisterWithTurfs()
 
 /datum/component/largetransparency/proc/OnTurfChange()
-	INVOKE_NEXT_TICK(src, .proc/OnMove) //*pain
+	addtimer(CALLBACK(src, .proc/OnMove), 0, TIMER_UNIQUE|TIMER_OVERRIDE) //*pain
 
 /datum/component/largetransparency/proc/objectEnter(datum/source, atom/thing)
 	if(!(thing.flags_atom & CRITICAL_ATOM))
@@ -89,10 +98,10 @@
 	var/atom/par = parent
 	par.alpha = target_alpha
 	if(toggle_click)
-		par.mouse_opacity = 0
+		par.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /datum/component/largetransparency/proc/restoreAlpha()
 	var/atom/par = parent
 	par.alpha = initial_alpha
 	if(toggle_click)
-		par.mouse_opacity = 2
+		par.mouse_opacity = MOUSE_OPACITY_OPAQUE
