@@ -48,11 +48,11 @@
 
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSfastprocess, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
 
 /obj/effect/xenomorph/spray/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
