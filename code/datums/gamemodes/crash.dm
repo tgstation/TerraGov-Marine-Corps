@@ -144,8 +144,7 @@
 
 	// Bioscan alerts
 	if(world.time > bioscan_interval)
-		announce_bioscans(TRUE, 0, FALSE, TRUE, FALSE) // Xeno Regular, 5mins
-		announce_bioscans(TRUE, 2, FALSE, FALSE, TRUE) // Marine Regular, 10mins, with delta +-2
+		announce_bioscans(TRUE, 0, FALSE, TRUE, TRUE)
 		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
