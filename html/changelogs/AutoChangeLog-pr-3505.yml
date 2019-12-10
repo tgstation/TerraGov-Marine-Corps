@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Riot shields now absorb damage until they are destroyed. Component made which allows for new kinds of shields, abstract or concrete."
