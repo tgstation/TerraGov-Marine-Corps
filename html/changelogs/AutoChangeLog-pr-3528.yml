@@ -1,0 +1,4 @@
+author: "nemvar"
+delete-after: True
+changes: 
+  - tweak: "Trees now turn transparent if something is behind them."
