@@ -6,7 +6,10 @@
 INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 
 /mob/living/carbon/human/dummy/Initialize()
-	return // This stops dummies being setup and registered in the human_mob_list
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	flags_atom |= INITIALIZED
+	return INITIALIZE_HINT_NORMAL // This stops dummies being setup and registered in the human_mob_list
 
 /mob/living/carbon/human/dummy/Destroy()
 	in_use = FALSE
