@@ -139,6 +139,8 @@
 
 #define isclothing(A) (istype(A, /obj/item/clothing))
 
+#define issuit(A) (istype(A, /obj/item/clothing/suit))
+
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))

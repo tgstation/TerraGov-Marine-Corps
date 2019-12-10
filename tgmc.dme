@@ -250,6 +250,7 @@
 #include "code\datums\components\orbiter.dm"
 #include "code\datums\components\riding.dm"
 #include "code\datums\components\rotation.dm"
+#include "code\datums\components\shield.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
 #include "code\datums\elements\_element.dm"

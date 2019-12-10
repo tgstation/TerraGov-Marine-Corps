@@ -78,6 +78,8 @@
 	var/toolspeed = 1
 	var/usesound = null
 
+	var/active = FALSE
+
 
 /obj/item/Initialize()
 	. = ..()
@@ -607,9 +609,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTION, user)
 
-/obj/item/proc/IsShield()
-	return FALSE
-
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -934,3 +933,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	interact(user)
+
+/obj/item/proc/toggle_active(new_state)
+	if(!isnull(new_state))
+		if(new_state == active)
+			return
+		new_state = active
+	else
+		active = !active
+	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)

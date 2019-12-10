@@ -12,7 +12,6 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
-	var/active = 0
 	var/det_time = 50
 	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'

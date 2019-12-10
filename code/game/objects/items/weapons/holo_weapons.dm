@@ -13,24 +13,18 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	flags_item = NOBLUDGEON
-	var/active = 0
 	var/sword_color
 
-/obj/item/weapon/holo/esword/IsShield()
-	if(active)
-		return 1
-	return 0
-
-/obj/item/weapon/holo/esword/attack(target as mob, mob/user as mob)
-	..()
 
 /obj/item/weapon/holo/esword/Initialize()
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
+
 
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
-	active = !active
+	toggle_active()
 	if (active)
 		force = 30
 		icon_state = "sword[sword_color]"

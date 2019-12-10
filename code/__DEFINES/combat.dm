@@ -14,6 +14,10 @@
 #define ATTACK_EFFECT_REDSTAB	"redstab"
 #define ATTACK_EFFECT_YELLOWPUNCH	"yellowpunch"
 
+//the define for visible message range in combat
+#define COMBAT_MESSAGE_RANGE 3
+#define DEFAULT_MESSAGE_RANGE 7
+
 //Embedded objects
 #define EMBEDDEED_DEL_ON_HOLDER_DEL	(1<<0)
 #define EMBEDDEED_CAN_BE_YANKED_OUT	(1<<1)
@@ -27,3 +31,11 @@
 #define EMBEDDED_UNSAFE_REMOVAL_DMG_MULTIPLIER	8	//Coefficient of multiplication for the damage the item does when removed without a surgery (this*((embed_limb_damage or embed_body_damage)))
 #define EMBEDDED_FALL_CHANCE					5	//Percentage chance for an embeddedd object fall out of the victim on its own, each process.
 #define EMBEDDED_FALL_DMG_MULTIPLIER			3	//Coefficient of multiplication for the damage the item does when it falls out (this*(embed_limb_damage or embed_body_damage))
+
+#define COMBAT_MELEE_ATTACK "melee_attack"
+#define COMBAT_PROJ_ATTACK "proj_attack"
+#define COMBAT_TOUCH_ATTACK "touch_attack"
+
+#define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
+#define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
+#define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.

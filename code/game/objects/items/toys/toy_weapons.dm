@@ -190,7 +190,6 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	var/active = 0.0
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
