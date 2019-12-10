@@ -217,7 +217,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		else
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
-			M.knock_down(3)
+			M.Knockdown(3)
 		CHECK_TICK
 
 /obj/machinery/computer/navigation/proc/retreat()
