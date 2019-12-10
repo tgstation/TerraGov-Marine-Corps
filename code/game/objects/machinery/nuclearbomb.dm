@@ -12,6 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
 	var/deployable = TRUE
