@@ -320,7 +320,7 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
-	fire_delay = 1 SECONDS
+	fire_delay = 0.7 SECONDS
 	accuracy_mult = 1.05
 	burst_amount = 2
 	burst_delay = 0.5 SECONDS
