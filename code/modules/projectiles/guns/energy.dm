@@ -387,7 +387,7 @@
 	cell_type = /obj/item/cell/lasgun/pulse
 	charge_cost = M43_STANDARD_AMMO_COST
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
 	fire_delay = 8
@@ -414,3 +414,24 @@
 			M.update_inv_l_hand()
 		else if (src == M.r_hand)
 			M.update_inv_r_hand()
+
+//-------------------------------------------------------
+//A practice version of M43, only for the marine hq map.
+
+/obj/item/weapon/gun/energy/lasgun/m43/practice
+	name = "\improper M43-P Sunfury Lasgun MK1"
+	desc = "An accurate, recoilless laser based battle rifle. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines.."
+	force = 15 //Well, it's not complicted compared to the original.
+	ammo = /datum/ammo/energy/lasgun/M43/practice
+	charge_cost = M43_STANDARD_AMMO_COST
+	cell_type = /obj/item/cell/lasgun/M43/practice
+	attachable_allowed = list()
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	damage_falloff_mult = 1
+	fire_delay = 0.33 SECONDS
+	aim_slowdown = 0.35
+
+/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+	return

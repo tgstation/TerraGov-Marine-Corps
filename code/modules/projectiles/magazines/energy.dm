@@ -52,5 +52,13 @@
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
+/obj/item/cell/lasgun/M43/practice
+	name = "\improper M43-P lasgun battery"
+	desc = "A specialized high density battery used to power the M43 Lasgun. It lacks any potential to harm someone, but it has the ability to recharge."
+	gun_type = /obj/item/weapon/gun/energy/lasgun/M43/practice
+	self_recharge = TRUE
+	charge_amount = 25 // 10%, 2 shots
+	charge_delay = 2 SECONDS
+
 /obj/item/cell/lasgun/update_icon()
 	return FALSE

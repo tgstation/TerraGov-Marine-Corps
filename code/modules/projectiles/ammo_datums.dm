@@ -1032,6 +1032,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 100
 
+/datum/ammo/energy/lasgun/M43/practice
+	name = "practice laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 5
+	penetration = 0
+	damage_type = OXY
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
+
 /*
 //================================================
 					Xeno Spits

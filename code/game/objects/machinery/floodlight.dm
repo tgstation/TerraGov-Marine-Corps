@@ -142,3 +142,7 @@
 	icon_state = "flood01"
 	on = TRUE
 	use_power = FALSE
+
+/obj/machinery/floodlight/landing/hq
+	name = "Installation Light"
+	desc = "A powerful light stationed on the base to provide better visibility."
