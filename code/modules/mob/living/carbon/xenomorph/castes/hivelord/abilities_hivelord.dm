@@ -58,6 +58,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
+/datum/action/xeno_action/toggle_speed/Destroy()
+	resinwalk_off(TRUE) // Ensure we remove the movespeed
+	return ..()
+
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(speed_activated)
@@ -94,9 +98,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
-	if(!speed_activated)
-		stack_trace("hivelord triggered resinwalk_on_move but has speed_activated = FALSE")
-
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
 		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
