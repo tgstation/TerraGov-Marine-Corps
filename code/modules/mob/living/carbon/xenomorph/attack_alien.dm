@@ -89,7 +89,7 @@
 				staggerslow_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockdownNoChain(0.5 SECONDS) //...And we knock
+			KnockdownNoChain(1.5 SECONDS) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
