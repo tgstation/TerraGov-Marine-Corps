@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - tweak: "Wires are now placed above pipes, for visibility."
