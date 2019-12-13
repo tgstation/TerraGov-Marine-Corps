@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "xeno rested healing changed from a 1.0 multiplier to 1.1"
