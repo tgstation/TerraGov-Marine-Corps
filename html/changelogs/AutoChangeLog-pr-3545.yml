@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - tweak: "xeno building cooldown changed from 1-4 seconds -> 1-2 seconds (based on health)"
