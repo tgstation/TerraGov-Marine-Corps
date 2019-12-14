@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	. = ..()
 	starting_area = get_area(loc)
 
-/mob/camera/aiEye/remote/fobdrone/setLoc(var/atom/t) //unrestricted movement inside the landing zone
+/mob/camera/aiEye/remote/fobdrone/setLoc(atom/t) //unrestricted movement inside the landing zone
 	var/area/curr_area = get_area(t)
 	if(istype(t, /turf/closed) || locate(/obj/machinery/door/poddoor) in t)
 		return
