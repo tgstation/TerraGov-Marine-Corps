@@ -53,14 +53,14 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/lz
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade = new
 	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
-	var/metal_remaining = 49
+	var/metal_remaining = 0
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade = new
 	var/max_plasteel = 50
-	var/plasteel_remaining = 49
+	var/plasteel_remaining = 0
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring = new //whether or not new barricades will be wired
 	var/do_wiring = FALSE
 	var/datum/action/innate/remote_fob/sentry/sentry = new
-	var/sentry_remaining = 3
+	var/sentry_remaining = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize()
 	. = ..()
