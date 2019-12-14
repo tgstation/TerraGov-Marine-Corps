@@ -29,6 +29,7 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/Destroy()
@@ -81,7 +82,7 @@
 	STOP_PROCESSING(SSmachines, src)
 
 
-/obj/machinery/process()//If you dont use process or power why are you here
+/obj/machinery/process() // If you dont use process or power why are you here
 	return PROCESS_KILL
 
 

@@ -168,16 +168,17 @@
 	return
 
 /obj/machinery/body_scanconsole
-	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/implant/neurostim)
-	var/delete
-	var/temphtml
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
 	density = FALSE
 	anchored = TRUE
-
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 3
+	var/obj/machinery/bodyscanner/connected
+	var/known_implants = list(/obj/item/implant/neurostim)
+	var/delete
+	var/temphtml
 
 /obj/machinery/body_scanconsole/Initialize()
 	. = ..()
