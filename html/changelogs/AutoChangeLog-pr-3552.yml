@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - balance: "hunter stealth attack changed to flat 0.5 seconds, and only applied on disarm."
