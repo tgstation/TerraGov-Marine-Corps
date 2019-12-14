@@ -46,6 +46,9 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
+/// Sent when a marine dropship enters transit level
+#define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
