@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 /mob/camera/aiEye/remote/fobdrone/relaymove(mob/user, direct)
 	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
-	..()
+	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)
 	user.see_invisible = FALSE
@@ -41,15 +41,13 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 /obj/machinery/computer/camera_advanced/remote_fob
 	name = "FOB Construction Drone Control"
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
-//	icon_screen = 
-//	icon_keyboard =
 	icon_state = "syndishuttle"
 	req_access = list(ACCESS_MARINE_REMOTEBUILD)
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null
 	var/drone_creation_allowed = TRUE
-	var/spawn_spot
+	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/lz
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade = new
 	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
@@ -97,20 +95,12 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/port
 	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2"))
 		if("LZ1")
-			port = /obj/docking_port/stationary/marine_dropship/lz1
-			for(port in SSshuttle.stationary)
-				if(istype(get_area(port), /area/shuttle/drop1/lz1))
-					spawn_spot = port
-					break
+			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary	
 		if("LZ2")
-			port = /obj/docking_port/stationary/marine_dropship/lz2
-			for(port in SSshuttle.stationary)
-				if(istype(get_area(port), /area/shuttle/drop2/lz2))
-					spawn_spot = port
-					break
+			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
 		else
 			return
-	. = ..()
+	return ..()
 	
 
 /obj/machinery/computer/camera_advanced/remote_fob/CreateEye()
@@ -120,7 +110,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	return
 
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/stack/W, mob/user, params)
-	if(istype(W, /obj/item/stack/sentryvoucher))
+	if(istype(W, /obj/item/stack/voucher/sentry))
 		var/useamount = W.amount
 		sentry_remaining += useamount
 		W.use(useamount)
@@ -147,7 +137,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		return
 	else
 		to_chat(user, "<span class ='notice'>Invalid material type.</span>")
-	..()
+	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/GrantActions(mob/living/user)
 	if(off_action)
@@ -178,7 +168,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
-	.. ()
+	..()
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	return PROCESS_KILL
@@ -187,7 +177,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	if(!drone_creation_allowed)
 		to_chat(user, "<span class='notice'>Communication with the drone has been disrupted.</span>")
 		user.unset_interaction()
-	. = ..()
+	return ..()
 
 /////////////////////////////// Placement Actions
 
@@ -223,7 +213,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	
 
 /datum/action/innate/remote_fob/metal_cade/Activate()
-	if(..() || !check_spot())
+	. = ..()
+	if(. || !check_spot())
 		return
 
 	if(console.metal_remaining < 4)
@@ -258,7 +249,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	action_icon_state = "plast_cade"
 
 /datum/action/innate/remote_fob/plast_cade/Activate()
-	if(..() || !check_spot())
+	. = ..()
+	if(. || !check_spot())
 		return
 
 	if(console.plasteel_remaining < 5)
@@ -279,8 +271,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/plasteel(buildplace)
 	cade.setDir(fobdrone.dir)
-	cade.closed = 0
-	cade.density = 1
+	cade.closed = FALSE
+	cade.density = TRUE
 	cade.update_icon()
 	cade.update_overlay()
 	if(console.do_wiring)
@@ -297,7 +289,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	action_icon_state = "wire"
 
 /datum/action/innate/remote_fob/toggle_wiring/Activate()
-	if(..())
+	. = ..()
+	if(.)
 		return
 	console.do_wiring = !console.do_wiring
 	to_chat(owner, "<span class='notice'>Will now [console.do_wiring ? "do wiring" : "stop wiring"].</span>")
@@ -307,7 +300,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	action_icon_state = "sentry"
 
 /datum/action/innate/remote_fob/sentry/Activate()
-	if(..() || !check_spot())
+	. = ..()
+	if(. || !check_spot())
 		return
 	var/obj/machinery/marine_turret/turret = /obj/machinery/marine_turret
 	var/turf/buildplace = get_turf(fobdrone)
@@ -328,7 +322,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	turret = new /obj/machinery/marine_turret(buildplace)
 	turret.setDir(fobdrone.dir)
 
-/obj/item/stack/sentryvoucher
+/obj/item/stack/voucher/sentry
 	name = "Sentry gun voucher"
 	desc = "A voucher for a UA 571-C sentry gun, redeemable at the Remote FOB Construction Console. Keep buying them for a chance at Bal Di's golden sentry ticket!"
 	icon = 'icons/Marine/remotefob.dmi'
