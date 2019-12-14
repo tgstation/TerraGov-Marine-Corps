@@ -235,7 +235,7 @@
 	drag_delay = FALSE
 	anchored = FALSE
 	idle_power_usage = 1
-	vend_power_usage = 50
+	active_power_usage = 50
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 

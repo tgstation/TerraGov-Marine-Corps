@@ -15,7 +15,7 @@
 	var/specialfunctions = 1
 	anchored = TRUE
 	var/pressed = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -90,7 +90,7 @@
 		flick("doorctrl-denied",src)
 		return
 
-	use_power(5)
+	use_power(active_power_usage)
 	pressed = TRUE
 	update_icon()
 
@@ -141,7 +141,7 @@
 	if(active)
 		return
 
-	use_power(5)
+	use_power(active_power_usage)
 
 	active = 1
 	icon_state = "launcheract"

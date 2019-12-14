@@ -6,11 +6,12 @@
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "doorctrl"
 	power_channel = ENVIRON
-	var/id = null
-	var/next_activate = 0
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
+	active_power_usage = 5
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 70)
+	var/id = null
+	var/next_activate = 0
 
 
 /obj/machinery/button/indestructible
@@ -49,7 +50,7 @@
 		flick("[initial(icon_state)]-denied", src)
 		return
 
-	use_power(5)
+	use_power(active_power_usage)
 	icon_state = "[initial(icon_state)]1"
 
 	pulsed()
@@ -115,7 +116,7 @@
 	var/id = null
 	var/active = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -127,7 +128,7 @@
 	var/id = null
 	var/active = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -139,7 +140,7 @@
 	var/id = null
 	var/active = 0
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -165,7 +166,7 @@
 	desc = "A button for alerting doctors that you require assistance."
 	var/active = FALSE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	var/obj/item/radio/radio
@@ -189,7 +190,7 @@
 		return
 	if(active)
 		return
-	use_power(5)
+	use_power(active_power_usage)
 	icon_state = "doorctrl1"
 
 	radio.talk_into(src, "<b>[user.name] is requesting medical attention at: [get_area(src)].</b>", RADIO_CHANNEL_MEDICAL)

@@ -78,6 +78,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
+	idle_power_usage = 60
+	active_power_usage = 3000
+
 	var/gives_webbing = FALSE
 	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/squad_tag = ""
@@ -258,6 +261,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 			if(icon_vend)
 				flick(icon_vend, src)
+
+			use_power(active_power_usage)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr

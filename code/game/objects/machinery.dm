@@ -89,7 +89,7 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
 	if(use_power && !machine_stat)
-		use_power(7500/severity)
+		use_power(7500 / severity)
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	return ..()
 
@@ -136,13 +136,13 @@
 			if(machine_current_charge < machine_max_charge && anchored) //here we handle recharging the internal battery of machines
 				var/power_usage = CLAMP(machine_max_charge - machine_current_charge, 0, 500)
 				machine_current_charge += power_usage //recharge internal cell at max rate of 500
-				use_power(power_usage, power_channel, TRUE)
+				use_power(power_usage, power_channel)
 				update_icon()
 			else
-				use_power(idle_power_usage, power_channel, TRUE)
+				use_power(idle_power_usage, power_channel)
 
 		if(ACTIVE_POWER_USE)
-			use_power(active_power_usage, power_channel, TRUE)
+			use_power(active_power_usage, power_channel)
 	return TRUE
 
 
