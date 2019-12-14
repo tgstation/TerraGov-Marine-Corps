@@ -94,7 +94,7 @@
 
 	var/obj/item/grab/G = I
 	if(istype(G)) //Handle grabbed mob
-		if(!ismob(G.grabbed_thing) || user.grab_level < GRAB_AGGRESSIVE)
+		if(!ismob(G.grabbed_thing) || user.grab_state < GRAB_AGGRESSIVE)
 			return
 
 		var/mob/GM = G.grabbed_thing
@@ -149,7 +149,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
-	if(L.stat || L.stunned || L.knocked_down || flushing)
+	if(L.stat || L.IsStun() || L.IsKnockdown() || flushing)
 		return
 	if(L.loc == src)
 		go_out(L)
@@ -164,7 +164,7 @@
 	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
-		L.stun(2)
+		L.Stun(40)
 	if(!user.lying)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
@@ -252,7 +252,7 @@
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))
 				var/mob/living/L = M
-				L.stun(2)
+				L.Stun(40)
 	update()
 
 //Pipe affected by explosion
@@ -388,8 +388,6 @@
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item) && mover.throwing)
 		var/obj/item/I = mover
-		if(istype(I, /obj/item/projectile))
-			return
 		if(prob(75))
 			I.loc = src
 			visible_message("<span class='notice'>[I] lands into [src].</span>")

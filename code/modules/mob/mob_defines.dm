@@ -14,11 +14,10 @@
 	var/timeofdeath = 0
 	var/a_intent = INTENT_HELP
 	var/m_intent = MOVE_INTENT_RUN
-	var/grab_level = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
 	var/in_throw_mode = FALSE
 	var/notransform = FALSE
 	var/list/observers //The list of people observing this mob.
-	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
+	var/status_flags = CANSTUN|CANKNOCKDOWN|CANKNOCKOUT|CANPUSH|CANUNCONSCIOUS	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 	var/list/speak_emote = list("says") // Verbs used when speaking instead of the default ones.
 	var/zone_selected = BODY_ZONE_CHEST
 	var/bodytemperature = 310.055	//98.7 F
@@ -27,6 +26,7 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/list/cooldowns = list()
+	var/datum/skills/skills
 
 	//Movement
 	var/list/movespeed_modification // List of movement speed modifiers applying to this mob. Lazy list, see mob_movespeed.dm
@@ -43,8 +43,8 @@
 	var/inertia_dir = 0
 	var/move_on_shuttle = TRUE // Can move on the shuttle.
 	var/canmove = TRUE
-	var/lying = FALSE
-	var/lying_prev = FALSE
+	var/lying = 0
+	var/lying_prev = 0
 
 	//Security
 	var/computer_id
@@ -72,7 +72,6 @@
 	var/atom/movable/interactee //the thing that the mob is currently interacting with (e.g. a computer, another mob (stripping a mob), manning a hmg)
 	var/obj/control_object //Used by admins to possess objects.
 	var/atom/movable/remote_control //Calls relaymove() to whatever it is
-	var/obj/buckled //Living
 	var/obj/item/l_hand //Living
 	var/obj/item/r_hand //Living
 	var/obj/item/storage/s_active //Carbon

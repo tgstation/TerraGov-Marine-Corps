@@ -224,7 +224,7 @@ Redefine as needed.
 
 
 /obj/item/tk_grab/shrike
-	var/grab_level = TKGRAB_NONLETHAL
+	var/item_grab_state = TKGRAB_NONLETHAL
 	var/last_grab_change = 0 //Time
 	var/last_life_tick = 0
 	var/turf/starting_master_loc
@@ -245,7 +245,7 @@ Redefine as needed.
 	last_life_tick = victim.life_tick
 
 	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), .proc/resisted_against)
+	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), /atom/movable.proc/resisted_against)
 
 	return ..() //Starts processing.
 
@@ -254,7 +254,7 @@ Redefine as needed.
 	if(focus)
 		var/mob/living/carbon/human/victim = focus
 		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
-		victim.set_stunned(0)
+		victim.SetStun(0)
 		victim.grab_resist_level = 0
 		victim.update_canmove()
 		focus = null
@@ -271,7 +271,8 @@ Redefine as needed.
 	return ..() //Stops processing.
 
 
-/obj/item/tk_grab/shrike/resisted_against(datum/source, mob/living/carbon/human/victim)
+/obj/item/tk_grab/shrike/resisted_against(datum/source)
+	var/mob/living/carbon/human/victim = source
 	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
 	if(victim.cooldowns[COOLDOWN_RESIST])
@@ -280,13 +281,13 @@ Redefine as needed.
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 
-	if(grab_level == TKGRAB_LETHAL && master.hive.living_xeno_ruler == master)
+	if(item_grab_state == TKGRAB_LETHAL && master.hive.living_xeno_ruler == master)
 		to_chat(victim, "<span class='warning'>The grip is too strong, you are at its mercy!</span>")
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
 
 	victim.visible_message("<span class='danger'>[victim] resists against the invisible force's grip!</span>")
 
-	if(++victim.grab_resist_level < grab_level)
+	if(++victim.grab_resist_level < item_grab_state)
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
 
 	playsound(victim.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -321,7 +322,7 @@ Redefine as needed.
 	if(victim.life_tick <= last_life_tick) //One per life tick, no more.
 		return FALSE
 
-	switch(grab_level)
+	switch(item_grab_state)
 		if(TKGRAB_NONLETHAL)
 			victim.set_stagger(4)
 		if(TKGRAB_LETHAL)
@@ -340,21 +341,21 @@ Redefine as needed.
 	if(last_grab_change + 3 SECONDS > world.time)
 		return FALSE
 
-	switch(grab_level)
+	switch(item_grab_state)
 		if(TKGRAB_NONLETHAL)
 			if(assailant.action_busy)
 				return FALSE
 			if(!do_mob(assailant, victim, 2 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 				return FALSE
-			grab_level = TKGRAB_LETHAL
-			victim.set_knocked_down(2)
+			item_grab_state = TKGRAB_LETHAL
+			victim.SetKnockdown(40)
 			log_combat(assailant, victim, "psychically strangled", addition="(kill intent)")
 			to_chat(assailant, "<span class='danger'>We tighten our psychic grip on [victim]'s neck!</span>")
 			victim.visible_message("<span class='danger'>The invisible force has tightened its grip on [victim]'s neck!</span>", null, null, 5)
 			assailant.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 			playsound(victim,'sound/effects/blobattack.ogg', 75, 1)
 		if(TKGRAB_LETHAL)
-			grab_level = TKGRAB_NONLETHAL
+			item_grab_state = TKGRAB_NONLETHAL
 			log_combat(assailant, victim, "neck grabbed")
 			to_chat(assailant, "<span class='warning'>We loosen our psychic grip on [victim]'s neck!</span>")
 			victim.visible_message("<span class='warning'>The invisible force has loosened its grip on [victim]'s neck...</span>", null, null, 5)

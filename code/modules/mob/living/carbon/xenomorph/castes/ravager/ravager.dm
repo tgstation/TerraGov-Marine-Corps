@@ -27,5 +27,5 @@
 	var/target_turf = get_step_away(src, H, rand(1, 3)) //This is where we blast our target
 	target_turf =  get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
-	H.knock_down(1)
+	H.Knockdown(1)
 	return

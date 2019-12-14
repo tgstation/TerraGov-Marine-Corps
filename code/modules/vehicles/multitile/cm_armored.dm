@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			continue
 		var/status = !HP.obj_integrity  ? "broken" : "functional"
 		var/span_class = !HP.obj_integrity ? "<span class = 'danger'>" : "<span class = 'notice'>"
-		if((user?.mind?.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
+		if((user.skills.getRating("engineer") >= SKILL_ENGINEER_METAL) || isobserver(user))
 			switch(PERCENT(HP.obj_integrity / HP.max_integrity))
 				if(0.1 to 33)
 					status = "heavily damaged"
@@ -342,8 +342,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	if(stat == DEAD) //We don't care about the dead
 		return
 	if(loc == C.loc) // treaded over.
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		var/target_dir = turn(C.dir, 180)
 		temp = get_step(C.loc, target_dir)
 		T = temp
@@ -361,8 +360,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			throw_at(T, 3, 2, C, 0)
 		else
 			throw_at(T, 3, 2, C, 1)
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		apply_damage(rand(10, 15), BRUTE)
 		visible_message("<span class='danger'>[C] bumps into [src], throwing [p_them()] away!</span>", "<span class='danger'>[C] violently bumps into you!</span>")
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -391,8 +389,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 /mob/living/carbon/xenomorph/larva/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	if(loc == C.loc) // treaded over.
-		if(!knocked_down)
-			knock_down(1)
+		KnockdownNoChain(20)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
 	var/obj/vehicle/multitile/root/cm_armored/CA = C.root
@@ -472,14 +469,14 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 			M.tank_collision(src)
 
 //Can't hit yourself with your own bullet
-/obj/vehicle/multitile/hitbox/cm_armored/projectile_hit(obj/item/projectile/proj)
+/obj/vehicle/multitile/hitbox/cm_armored/projectile_hit(obj/projectile/proj)
 	if(proj.firer == root) //Don't hit our own hitboxes
 		return FALSE
 
 	return ..()
 
 //For the next few, we're just tossing the handling up to the rot object
-/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/item/projectile/P)
+/obj/vehicle/multitile/hitbox/cm_armored/bullet_act(obj/projectile/P)
 	return root.bullet_act(P)
 
 /obj/vehicle/multitile/hitbox/cm_armored/ex_act(severity)
@@ -531,7 +528,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	else
 		log_attack("[src] took [damage] [type] damage from [attacker].")
 
-/obj/vehicle/multitile/root/cm_armored/projectile_hit(obj/item/projectile/proj)
+/obj/vehicle/multitile/root/cm_armored/projectile_hit(obj/projectile/proj)
 	if(proj.firer == src) //Don't hit ourself.
 		return FALSE
 
@@ -637,10 +634,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(obj/item/O, mob/user)
 
 	//Need to the what the hell you're doing
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
-		var/fumbling_time = 50 * (SKILL_ENGINEER_MASTER - user.mind.cm_skills.engineer)
+		var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_MASTER - user.skills.getRating("engineer"))
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -748,10 +745,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Similar to repairing stuff, down to the time delay
 /obj/vehicle/multitile/root/cm_armored/proc/install_hardpoint(obj/item/hardpoint/HP, mob/user)
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [HP] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [HP] on the [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.mind.cm_skills.engineer )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -795,10 +792,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(obj/item/O, mob/user)
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [O] on the [src].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [O] on the [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.mind.cm_skills.engineer )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 

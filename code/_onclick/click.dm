@@ -344,6 +344,10 @@
 
 /atom/proc/CtrlClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL, user)
+
+
+/atom/movable/CtrlClick(mob/user)
+	. = ..()
 	var/mob/living/L = user
 	if(istype(L))
 		L.start_pulling(src)
@@ -357,7 +361,6 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	H.start_pulling(src)
-	H.changeNext_move(CLICK_CD_MELEE)
 
 
 /*

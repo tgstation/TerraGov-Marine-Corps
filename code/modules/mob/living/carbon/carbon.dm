@@ -58,11 +58,11 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
-			knock_down(1)
+			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
+			Knockdown(20)
 		else
-			stun(10)//This should work for now, more is really silly and makes you lay there forever
-			knock_down(10)
+			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
+			Knockdown(20 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -126,7 +126,7 @@
 
 
 /mob/living/carbon/proc/do_vomit()
-	stun(5)
+	Stun(10 SECONDS)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
 	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
 
@@ -146,22 +146,24 @@
 	if(src == shaker)
 		return
 
-	if(lying || sleeping)
+	if(IsAdminSleeping())
+		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
+		return
+
+	if(lying || IsSleeping())
 		if(client)
-			adjust_sleeping(-5)
-		if(sleeping == 0)
+			AdjustSleeping(-10 SECONDS)
+		if(!IsSleeping())
 			set_resting(FALSE)
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
 
-		if(knocked_out)
-			adjust_knockedout(-3)
-		if(stunned)
-			adjust_stunned(-3)
-		if(knocked_down)
+		AdjustUnconscious(-60)
+		AdjustStun(-60)
+		if(IsKnockdown())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-			adjust_knocked_down(-3)
+		AdjustKnockdown(-60)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -220,7 +222,7 @@
 	if (istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(ismob(G.grabbed_thing))
-			if(grab_level >= GRAB_NECK)
+			if(grab_state >= GRAB_NECK)
 				var/mob/living/M = G.grabbed_thing
 				spin_throw = FALSE //thrown mobs don't spin
 				thrown_thing = M
@@ -233,7 +235,14 @@
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
-
+	else if(istype(I, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/riding_item = I
+		spin_throw = FALSE
+		thrown_thing = riding_item.rider
+		var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+		var/turf/end_T = get_turf(target)
+		if(start_T && end_T)
+			log_combat(usr, thrown_thing, "thrown", addition = "from tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)] with the target tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]")
 	else //real item in hand, not a grab
 		thrown_thing = I
 		dropItemToGround(I, TRUE)
@@ -297,11 +306,11 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(sleeping)
+	if(IsSleeping())
 		to_chat(src, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		sleeping = 20 //Short nap
+		SetSleeping(40 SECONDS) //Short nap
 
 
 /mob/living/carbon/Bump(atom/movable/AM)
@@ -317,8 +326,8 @@
 	stop_pulling()
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
-	stun(stun_level)
-	knock_down(weaken_level)
+	Stun(stun_level)
+	Knockdown(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir

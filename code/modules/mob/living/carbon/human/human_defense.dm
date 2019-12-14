@@ -53,7 +53,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			#ifdef DEBUG_HUMAN_EXPLOSIONS
 			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
 			#endif
-	return ( round(armorval/max(total, 1)*0.01,0.01) )
+	return round(armorval / max(total, 1), 1)
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
@@ -110,18 +110,6 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 	return 0
 
-/mob/living/carbon/human/proc/check_shields(damage = 0, attack_text = "the attack")
-	if(l_hand && istype(l_hand, /obj/item/weapon))//Current base is the prob(50-d/3)
-		var/obj/item/weapon/I = l_hand
-		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("<span class='danger'>[src] blocks [attack_text] with the [l_hand.name]!</span>", null, null, 5)
-			return 1
-	if(r_hand && istype(r_hand, /obj/item/weapon))
-		var/obj/item/weapon/I = r_hand
-		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("<span class='danger'>[src] blocks [attack_text] with the [r_hand.name]!</span>", null, null, 5)
-			return 1
-	return 0
 
 /mob/living/carbon/human/emp_act(severity)
 	for(var/obj/O in src)
@@ -152,11 +140,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 		L?.take_damage(1, TRUE)
 
+
 //Returns 1 if the attack hit, 0 if it missed.
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!I.force)
-		return FALSE
-
 	var/target_zone = def_zone? check_zone(def_zone) : get_zone_with_miss_chance(user.zone_selected, src)
 
 	if(user == src) // Attacking yourself can't miss
@@ -175,16 +161,19 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 	var/hit_area = affecting.display_name
 
-	if((user != src) && check_shields(I.force, "the [I.name]"))
-		return FALSE
+	var/damage = I.force
 
+	if(user != src)
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+		if(!damage)
+			return TRUE
 
 	var/armor = run_armor_check(affecting, "melee")
 	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
 	switch(armor)
 		if(100 to INFINITY)
-			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, 5)
+			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, COMBAT_MESSAGE_RANGE)
 			user.do_attack_animation(src, used_item = I)
 			return TRUE
 		if(-INFINITY to 25)//Nothing
@@ -205,11 +194,11 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	user.do_attack_animation(src, used_item = I)
 
-	apply_damage(I.force, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
+	apply_damage(damage, I.damtype, affecting, armor, weapon_sharp, weapon_edge)
 	UPDATEHEALTH(src)
 
 	var/bloody = 0
-	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
+	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(damage * 2 + 25))
 		if(!(affecting.limb_status & LIMB_ROBOT))
 			I.add_mob_blood(src)	//Make the weapon bloody, not the person.
 			if(prob(33))
@@ -226,7 +215,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(I.force) && stat == CONSCIOUS)
+				if(prob(damage) && stat == CONSCIOUS)
 					apply_effect(20, PARALYZE, armor)
 					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
 									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
@@ -243,7 +232,7 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((I.force + 10)) && !incapacitated())
+				if(prob((damage + 10)) && !incapacitated())
 					apply_effect(6, WEAKEN, armor)
 					visible_message("<span class='danger'>[src] has been knocked down!</span>",
 									"<span class='danger'>You have been knocked down!</span>", null, 5)
@@ -253,7 +242,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	//Melee weapon embedded object code.
 	if (I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
-		var/damage = I.force
 		if(damage > 40)
 			damage = 40
 		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
@@ -301,8 +289,10 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		O.throwing = 0		//it hit, so stop moving
 
-		if ((O.thrower != src) && check_shields(throw_damage, "[O]"))
-			return
+		if(O.thrower != src)
+			throw_damage = check_shields(COMBAT_MELEE_ATTACK, throw_damage, "melee")
+			if(!throw_damage)
+				return
 
 		var/datum/limb/affecting = get_limb(zone)
 		var/hit_area = affecting.display_name
@@ -386,11 +376,11 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
 	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
-	var/stun_duration = LERP(0.4, 1, dist_pct) * reduction //Max 1 beside Queen, 0.4 at the edge.
+	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-	stunned += stun_duration
-	knock_down(stun_duration)
+	Stun(stun_duration)
+	Knockdown(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)
 	if(!ear_deaf)

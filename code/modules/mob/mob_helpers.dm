@@ -153,10 +153,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		p++
 	return t
 
-proc/slur(phrase)
+/proc/slur(phrase)
 	phrase = html_decode(phrase)
-	var/leng=lentext(phrase)
-	var/counter=lentext(phrase)
+	var/leng=length(phrase)
+	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
@@ -328,10 +328,8 @@ proc/slur(phrase)
 	return
 
 
-/mob/proc/incapacitated(ignore_restrained)
-	return (stat || (!ignore_restrained && restrained()))
-
-
+/mob/proc/incapacitated(ignore_restrained, restrained_flags)
+	return (stat || (!ignore_restrained && restrained(restrained_flags)))
 
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)

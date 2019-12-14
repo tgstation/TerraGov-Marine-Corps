@@ -47,7 +47,7 @@
 	name = client.prefs.real_name
 	real_name = name
 	gender = client.prefs.gender
-	human_image = get_flat_human_icon(null, SSjob.GetJobType(/datum/job/other/spatial_agent), client.prefs)
+	human_image = get_flat_human_icon(null, SSjob.GetJobType(/datum/job/spatial_agent), client.prefs)
 
 
 /mob/camera/imaginary_friend/proc/Show()

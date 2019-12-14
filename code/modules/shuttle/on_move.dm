@@ -27,7 +27,7 @@ All ShuttleMove procs go here
 			if(isliving(thing))
 				var/mob/living/M = thing
 				if(M.buckled)
-					M.buckled.unbuckle()//unbuckle_mob(M, 1)
+					M.buckled.unbuckle_mob(M, TRUE)
 				if(M.pulledby)
 					M.pulledby.stop_pulling()
 				M.stop_pulling()
@@ -280,7 +280,7 @@ All ShuttleMove procs go here
 
 	var/knockdown = movement_force["KNOCKDOWN"]
 	if(knockdown)
-		knock_down(knockdown)
+		Knockdown(knockdown)
 
 
 /mob/living/simple_animal/hostile/megafauna/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)

@@ -1,7 +1,6 @@
 /datum/job/marine
 	supervisors = "the acting squad leader"
 	selection_color = "#ffeeee"
-	skills_type = /datum/skills/pfc
 	faction = "Marine"
 	exp_type_department = EXP_TYPE_MARINES
 
@@ -27,6 +26,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/standard/radio_help_message(mob/M)
@@ -54,6 +54,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/marine/engineer
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/engineer/radio_help_message(mob/M)
@@ -81,6 +82,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/marine/corpsman
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/corpsman/radio_help_message(mob/M)
@@ -108,6 +110,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	skills_type = /datum/skills/smartgunner
 	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	outfit = /datum/outfit/job/marine/smartgunner
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/smartgunner/radio_help_message(mob/M)
@@ -136,6 +139,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
+	larvaworth = LARVA_POINTS_STRONG
 
 
 /datum/job/marine/specialist/radio_help_message(mob/M)
@@ -167,6 +171,7 @@ You can serve a variety of roles, so choose carefully."})
 	outfit = /datum/outfit/job/marine/leader
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
+	larvaworth = LARVA_POINTS_REGULAR
 
 
 /datum/job/marine/leader/radio_help_message(mob/M)

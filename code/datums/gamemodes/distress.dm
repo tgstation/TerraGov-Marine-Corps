@@ -20,8 +20,8 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
-	var/latejoin_tally		= 0
-	var/latejoin_larva_drop = 0
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in initialize_scales() for some reason
 	var/orphan_hive_timer
 
 
@@ -62,8 +62,15 @@
 
 /datum/game_mode/distress/post_setup()
 	. = ..()
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
+	balance_scales()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
+/datum/game_mode/distress/balance_scales()
+	. = ..()
+	latejoin_larvapoints -= round(latejoin_larvapoints)
+	latejoin_larvapoints *= latejoin_larvapoints_required //restores scaling for handle_late_spawn()
 
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
@@ -195,7 +202,7 @@
 	. = ..()
 	if(!.)
 		return
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
+	latejoin_larvapoints_required = CONFIG_GET(number/distress_larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
@@ -527,11 +534,12 @@
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
-/datum/game_mode/distress/handle_late_spawn(mob/late_spawner)
-	latejoin_tally++
+/datum/game_mode/distress/handle_late_spawn(mob/living/late_spawner)
+	var/datum/job/job = SSjob.GetJob(late_spawner.job)
+	latejoin_larvapoints += job.larvaworth
 
-	if(latejoin_larva_drop && latejoin_tally >= latejoin_larva_drop)
-		latejoin_tally -= latejoin_larva_drop
+	if(latejoin_larvapoints >= latejoin_larvapoints_required)
+		latejoin_larvapoints -= latejoin_larvapoints_required
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 

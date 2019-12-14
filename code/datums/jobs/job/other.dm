@@ -1,9 +1,5 @@
-/datum/job/other
-	skills_type = /datum/skills/pfc
-
-
 //Colonist
-/datum/job/other/colonist
+/datum/job/colonist
 	title = "Colonist"
 	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
@@ -13,7 +9,7 @@
 
 /datum/outfit/job/other/colonist
 	name = "Colonist"
-	jobtype = /datum/job/other/colonist
+	jobtype = /datum/job/colonist
 
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/colonist
@@ -23,7 +19,7 @@
 
 
 //Passenger
-/datum/job/other/passenger
+/datum/job/passenger
 	title = "Passenger"
 	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
@@ -31,7 +27,7 @@
 
 
 //Pizza Deliverer
-/datum/job/other/pizza
+/datum/job/pizza
 	title = "Pizza Deliverer"
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -40,7 +36,7 @@
 
 /datum/outfit/job/other/pizza
 	name = "Pizza Deliverer"
-	jobtype = /datum/job/other/pizza
+	jobtype = /datum/job/pizza
 
 	id = /obj/item/card/id/silver
 	w_uniform = /obj/item/clothing/under/pizza
@@ -54,7 +50,7 @@
 
 
 //Spatial Agent
-/datum/job/other/spatial_agent
+/datum/job/spatial_agent
 	title = "Spatial Agent"
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -64,7 +60,7 @@
 
 /datum/outfit/job/other/spatial_agent
 	name = "Spatial Agent"
-	jobtype = /datum/job/other/spatial_agent
+	jobtype = /datum/job/spatial_agent
 
 	id = /obj/item/card/id/silver
 	w_uniform = /obj/item/clothing/under/rank/centcom_commander/sa

@@ -189,11 +189,11 @@
 				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
 					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
 					return
-				var/time = rand(2, 6)
+				var/time = rand(4 SECONDS, 12 SECONDS)
 				if (prob(75))
-					H.knock_out(time)
+					H.Unconscious(time)
 				else
-					H.stun(time)
+					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
@@ -264,7 +264,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.knock_down(3)
+			M.Knockdown(60)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -301,7 +301,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		if(prob(10))
-			M.stun(rand(1,3))
+			M.Stun(rand(20,60))
 			M.take_limb_damage(3)
 			return
 		else
@@ -323,13 +323,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.stun(rand(2,4))
+			M.Stun(rand(40,80))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.knock_down(2)
+				M.Knockdown(40)
 				return
 			return
 
@@ -371,7 +371,7 @@
 		return
 
 	for(var/obj/item/I in loc)
-		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
+		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit))
 			var/add = 0
 			if(I.w_class == 1.0)
 				add = 1

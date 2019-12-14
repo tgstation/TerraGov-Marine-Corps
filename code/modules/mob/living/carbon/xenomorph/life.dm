@@ -53,7 +53,7 @@
 			death()
 		return
 
-	if(knocked_out || sleeping || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -143,7 +143,10 @@
 			use_plasma(5)
 
 	if(locate(/obj/effect/alien/weeds) in T)
-		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) // Empty recovery aura will always equal 0
+		if(lying || resting)
+			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2) // Empty recovery aura will always equal 0
+		else
+			gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1))
 	else
 		gain_plasma(1)
 
@@ -277,16 +280,6 @@
 	med_hud_set_health()
 	update_stat()
 	update_wounds()
-
-/mob/living/carbon/xenomorph/handle_stunned()
-	if(stunned)
-		adjust_stunned(-2)
-	return stunned
-
-/mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-5)
-	return knocked_down
 
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)

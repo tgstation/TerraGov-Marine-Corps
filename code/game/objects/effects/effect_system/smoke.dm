@@ -78,7 +78,7 @@
 	. = ..()
 	if(CHECK_BITFIELD(smoke_traits, SMOKE_CAMO) && isliving(O))
 		O.effect_smoke(src)
-	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/item/projectile))
+	if(CHECK_BITFIELD(smoke_traits, SMOKE_NERF_BEAM) && istype(O, /obj/projectile))
 		O.effect_smoke(src)
 
 /obj/effect/particle_effect/smoke/Uncrossed(mob/living/M)

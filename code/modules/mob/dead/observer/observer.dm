@@ -896,7 +896,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			A.give_action(src)
 
 
-/mob/dead/observer/incapacitated(ignore_restrained)
+/mob/dead/observer/incapacitated(ignore_restrained, restrained_flags)
 	return FALSE
 
 

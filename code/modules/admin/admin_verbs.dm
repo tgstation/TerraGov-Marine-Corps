@@ -182,18 +182,18 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(L.sleeping > 0)
-		L.sleeping = 0
+	if(L.IsAdminSleeping())
+		L.ToggleAdminSleep()
 	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
 		return
 	else if(!istype(L))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 	else
-		L.sleeping = 9999999
+		L.ToggleAdminSleep()
 
-	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+	log_admin("[key_name(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_panel()
@@ -207,13 +207,10 @@
 	if(!istype(L))
 		return
 
-	if(L.sleeping > 0)
-		L.sleeping = 0
-	else
-		L.sleeping = 9999999
+	L.ToggleAdminSleep()
 
-	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+	log_admin("[key_name(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_area()
@@ -226,12 +223,12 @@
 	switch(alert("Sleep or unsleep everyone?", "Toggle Sleeping Area", "Sleep", "Unsleep", "Cancel"))
 		if("Sleep")
 			for(var/mob/living/L in view())
-				L.sleeping = 9999999
+				L.SetAdminSleep()
 			log_admin("[key_name(usr)] has slept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has slept everyone in view.")
 		if("Unsleep")
 			for(var/mob/living/L in view())
-				L.sleeping = 0
+				L.SetAdminSleep(remove = TRUE)
 			log_admin("[key_name(usr)] has unslept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 

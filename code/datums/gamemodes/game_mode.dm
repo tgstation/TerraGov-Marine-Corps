@@ -28,6 +28,8 @@
 	var/xeno_required_num = 1 // Number of xenos required to start
 	var/xeno_starting_num // Number of xenos given at start
 	var/list/xenomorphs = list()
+	var/latejoin_larvapoints		= 0
+	var/latejoin_larvapoints_required = 0 //logically never 0 in use, overriden by children/config
 
 /datum/game_mode/New()
 	initialize_emergency_calls()
@@ -708,6 +710,35 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	return list(num_humans, num_xenos)
 
+/datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
+	. = 0
+
+	for(var/i in GLOB.alive_human_list)
+		var/mob/living/carbon/human/H = i
+		var/datum/job/job = SSjob.GetJob(H.job)
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			continue
+		if(H.status_flags & XENO_HOST)
+			continue
+		if(!(H.z in z_levels) || isspaceturf(H.loc))
+			continue
+		. += job.larvaworth
+
+/datum/game_mode/proc/balance_scales()
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/num_xenos = xeno_hive.get_total_xeno_number() - length(xeno_hive.get_ssd_xenos()) + xeno_hive.stored_larva
+	latejoin_larvapoints = (get_total_joblarvaworth() - (num_xenos * latejoin_larvapoints_required)) / latejoin_larvapoints_required
+	if(!num_xenos)
+		if(!length(GLOB.xeno_resin_silos))
+			check_finished(TRUE)
+			return //RIP benos.
+		if(xeno_hive.stored_larva)
+			return //No need for respawns nor to end the game. They can use their burrowed larvas.
+		xeno_hive.stored_larva += max(1, round(latejoin_larvapoints)) //At least one
+		return 
+	if(latejoin_larvapoints < 1)
+		return //Things are balanced, no burrowed needed
+	xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
 
 /datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
 	return FALSE
@@ -791,7 +822,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/name_to_check = NP.client.prefs.real_name
 		if(job.job_flags & JOB_FLAG_SPECIALNAME)
 			name_to_check = job.get_special_name(NP.client)
-		if(GLOB.real_names_joined.Find(name_to_check))
+		if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(name_to_check))
 			to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
 			return FALSE
 	if(!SSjob.AssignRole(NP, rank, TRUE))
@@ -822,7 +853,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	qdel(NP)
 
 
-/datum/game_mode/proc/handle_late_spawn(mob/late_spawner)
+/datum/game_mode/proc/handle_late_spawn(mob/living/late_spawner)
 	return
 
 

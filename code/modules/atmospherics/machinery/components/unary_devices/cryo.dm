@@ -60,7 +60,7 @@
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
 		occupant.stat = 1
 		if(occupant.bodytemperature < T0C)
-			occupant.knock_down(10)
+			occupant.Knockdown(20 SECONDS)
 			if(occupant.getOxyLoss())
 				occupant.adjustOxyLoss(-1)
 
@@ -309,7 +309,7 @@
 	else
 		visible_message("<span class='notice'>[usr] climbs into [src].</span>", 3)
 	M.forceMove(src)
-	if(M.health > -100 && (M.health < 0 || M.sleeping))
+	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
 	occupant = M
 //	M.metabslow = 1

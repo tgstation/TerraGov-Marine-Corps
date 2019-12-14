@@ -6,25 +6,36 @@
 	name = "chair"
 	desc = "A rectangular metallic frame sitting on four legs with a back panel. Designed to fit the sitting position, more or less comfortably."
 	icon_state = "chair"
-	buckle_lying = FALSE
+	buckle_lying = 0
 	max_integrity = 100
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/Initialize()
+
+/obj/structure/bed/chair/proc/handle_rotation(direction) //Making this into a seperate proc so office chairs can call it on Move()
+	handle_layer()
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		buckled_mob.setDir(direction)
+
+/obj/structure/bed/chair/proc/handle_layer()
+	if(LAZYLEN(buckled_mobs) && dir == NORTH)
+		layer = FLY_LAYER
+	else
+		layer = OBJ_LAYER
+
+
+/obj/structure/bed/chair/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	handle_rotation()
+	handle_layer()
+
+/obj/structure/bed/chair/post_unbuckle_mob(mob/buckled_mob)
+	. = ..()
+	handle_layer()
 
 /obj/structure/bed/chair/setDir(newdir)
 	. = ..()
-	handle_rotation()
+	handle_rotation(newdir)
 
-/obj/structure/bed/chair/handle_rotation() //Making this into a seperate proc so office chairs can call it on Move()
-	if(src.dir == NORTH)
-		src.layer = FLY_LAYER
-	else
-		src.layer = OBJ_LAYER
-	if(buckled_mob)
-		buckled_mob.setDir(dir)
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
@@ -60,10 +71,10 @@
 			return
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.mind?.cm_skills?.engineer && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to weld down \the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to weld down \the [src].</span>")
-			var/fumbling_time = 50 * (SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer)
+			var/fumbling_time = 5 SECONDS * (SKILL_ENGINEER_METAL - user.skills.getRating("engineer"))
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
 
@@ -137,15 +148,17 @@
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
+	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
-	if(!buckled_mob) return
+	if(!LAZYLEN(buckled_mobs))
+		return
 
 	if(propelled)
-		var/mob/living/occupant = buckled_mob
-		unbuckle()
+		var/mob/living/occupant = buckled_mobs[1]
+		unbuckle_mob(occupant)
 
 		var/def_zone = ran_zone()
 		var/blocked = occupant.run_armor_check(def_zone, "melee")
@@ -206,26 +219,28 @@
 	chairbar = image("icons/obj/objects.dmi", "shuttle_bars")
 	chairbar.layer = ABOVE_MOB_LAYER
 
-/obj/structure/bed/chair/dropship/passenger/afterbuckle()
-	if(buckled_mob)
-		icon_state = "shuttle_chair_buckled"
-		overlays += chairbar
-	else
-		icon_state = "shuttle_chair"
-		overlays -= chairbar
 
-/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/M, mob/user)
+/obj/structure/bed/chair/dropship/passenger/post_buckle_mob(mob/buckling_mob)
+	icon_state = "shuttle_chair_buckled"
+	overlays += chairbar
+
+/obj/structure/bed/chair/dropship/passenger/post_unbuckle_mob(mob/buckled_mob)
+	icon_state = "shuttle_chair"
+	overlays -= chairbar
+
+
+/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
-		return
-	..()
+		return FALSE
+	return ..()
 
 /obj/structure/bed/chair/dropship/passenger/proc/fold_down(break_it = FALSE)
 	if(chair_state == DROPSHIP_CHAIR_UNFOLDED)
 		is_animating = 1
 		flick("shuttle_chair_new_folding", src)
 		is_animating = 0
-		if(buckled_mob)
-			unbuckle()
+		if(LAZYLEN(buckled_mobs))
+			unbuckle_mob(buckled_mobs[1])
 		if(break_it)
 			chair_state = DROPSHIP_CHAIR_BROKEN
 		else
@@ -246,7 +261,7 @@
 /obj/structure/bed/chair/dropship/passenger/rotate()
 	return // no
 
-/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/M, mob/living/user)
+/obj/structure/bed/chair/dropship/passenger/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(chair_state != DROPSHIP_CHAIR_UNFOLDED)
 		return
 	..()

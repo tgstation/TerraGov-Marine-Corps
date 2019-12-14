@@ -85,7 +85,7 @@
 
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
-
+	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_BAREFOOT, 0.4, 1)
 	return ..()
 
 
@@ -184,10 +184,10 @@
 			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					knock_down(5)
+					Knockdown(10 SECONDS)
 					if (stuttering < 5)
 						stuttering = 5
-					stun(5)
+					Stun(10 SECONDS)
 
 					visible_message("<span class='danger'>[src] has been touched with the stun gloves by [H]!</span>", "<span class='warning'> You hear someone fall</span>")
 					return
@@ -207,8 +207,8 @@
 				var/damage = rand(5, 10)
 				if (prob(40))
 					damage = rand(10, 15)
-					if (knocked_out < 5)
-						knock_out(rand(10, 15))
+					if (!IsUnconscious())
+						Unconscious(rand(20 SECONDS, 30 SECONDS))
 						visible_message("<span class='danger'>[H] has knocked out [src]!</span>")
 
 				adjustBruteLoss(damage)
@@ -227,9 +227,9 @@
 				H.start_pulling(src)
 				return 1
 			else
-				if (!( knocked_out ))
+				if (!IsUnconscious())
 					if (prob(25))
-						knock_out(2)
+						Unconscious(40)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						visible_message("<span class='danger'>[H] has pushed down [src]!</span>")
 					else
@@ -297,7 +297,7 @@
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			if (prob(50))
-				knock_out(10)
+				Unconscious(20 SECONDS)
 		else
 	return
 

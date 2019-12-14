@@ -9,7 +9,7 @@
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 10 //How knocked down targets are when flashed.
+	var/strength = 20 SECONDS //How knocked down targets are when flashed.
 	var/base_state = "mflash"
 	anchored = TRUE
 
@@ -79,7 +79,7 @@
 			L.flash_eyes()
 
 
-		L.knock_down(strength)
+		L.Knockdown(strength)
 
 
 /obj/machinery/flasher/emp_act(severity)

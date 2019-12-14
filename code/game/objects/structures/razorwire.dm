@@ -62,10 +62,11 @@
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
 	ENABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
-	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 
 
-/obj/structure/razorwire/resisted_against(datum/source, mob/living/entangled)
+/obj/structure/razorwire/resisted_against(datum/source)
+	var/mob/living/entangled = source
 	if(entangled.cooldowns[COOLDOWN_ENTANGLE])
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You fail to disentangle yourself!</span>")
@@ -123,7 +124,7 @@
 
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
-			if(user.grab_level <= GRAB_AGGRESSIVE)
+			if(user.grab_state <= GRAB_AGGRESSIVE)
 				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 
@@ -136,9 +137,9 @@
 			log_combat(user, M, "spartaed", "", "against \the [src]")
 			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-		else if(user.grab_level >= GRAB_AGGRESSIVE)
+		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.knock_down(5)
+			M.Knockdown(10 SECONDS)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return
@@ -146,9 +147,7 @@
 	else if(iswirecutter(I))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
-		var/delay_disassembly = SKILL_TASK_AVERAGE
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			delay_disassembly -= 5 + user.mind.cm_skills.engineer * 5
+		var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
 
 		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -163,9 +162,7 @@
 		if(!WT.remove_fuel(0, user))
 			return
 
-		var/delay = SKILL_TASK_TOUGH
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			delay -= 10 + user.mind.cm_skills.engineer * 5
+		var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
 		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 		"<span class='notice'>You begin repairing the damage to [src].</span>")
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)

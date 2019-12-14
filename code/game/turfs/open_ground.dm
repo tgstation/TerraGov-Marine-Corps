@@ -28,6 +28,10 @@
 	name = "river"
 	icon_state = "seashallow"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /obj/effect/river_overlay
 	name = "river_overlay"
@@ -111,7 +115,10 @@
 	name = "river"
 	icon_state = "seadeep"
 	can_bloody = FALSE
-
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/ground/riverdeep/Initialize()
 	. = ..()
@@ -126,10 +133,17 @@
 	name = "desert dirt"
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "desert1"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 //River
 /turf/open/ground/desertdam/river
 	icon_state = "shallow_water_clean"
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 //shallow water
 /turf/open/ground/desertdam/river/clean/shallow
@@ -217,6 +231,9 @@
 	icon = 'icons/turf/jungle.dmi'
 	icon_state = "grass1"
 	var/icon_spawn_state = "grass1"
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
 
 
 /turf/open/ground/jungle/Initialize(mapload, ...)
@@ -309,6 +326,10 @@
 	icon_state = "water"
 	icon_spawn_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 /turf/open/ground/jungle/water/Initialize(mapload, ...)
@@ -325,8 +346,8 @@
 	//slip in the murky water if we try to run through it
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
-		L.stun(2)
-		L.knock_down(1)
+		L.Stun(40)
+		L.Knockdown(20)
 
 	//piranhas
 	if(prob(25))

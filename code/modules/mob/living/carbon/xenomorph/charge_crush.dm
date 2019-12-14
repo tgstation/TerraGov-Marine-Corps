@@ -62,7 +62,7 @@
 			to_chat(owner, "<span class='warning'>We can't charge with that thing on our leg!</span>")
 		return
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_LIVING_DO_MOVE_TURFTOTURF, .proc/update_charging)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
 	RegisterSignal(charger, COMSIG_LIVING_LEGCUFFED, .proc/on_legcuffed)
 	if(verbose)
@@ -73,7 +73,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
-	UnregisterSignal(charger, list(COMSIG_LIVING_DO_MOVE_TURFTOTURF, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
+	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
 	if(verbose)
 		to_chat(charger, "<span class='xenonotice'>We will no longer charge when moving.</span>")
 	valid_steps_taken = 0
@@ -96,23 +96,26 @@
 	charge_off(FALSE)
 
 
-/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, turf/newloc, newdir)
+/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+	if(Forced)
+		return
+
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.throwing)
+	if(charger.throwing || oldloc == charger.loc)
 		return
 
 	if(charger.is_charging == CHARGE_OFF)
-		if(charger.dir != newdir) //It needs to move twice in the same direction, at least, to begin charging.
+		if(charger.dir != direction) //It needs to move twice in the same direction, at least, to begin charging.
 			return
-		charge_dir = newdir
-		if(!check_momentum(newdir))
+		charge_dir = direction
+		if(!check_momentum(direction))
 			charge_dir = null
 			return
 		charger.is_charging = CHARGE_BUILDINGUP
 		handle_momentum()
 		return
 
-	if(!check_momentum(newdir))
+	if(!check_momentum(direction))
 		do_stop_momentum()
 		return
 
@@ -276,7 +279,7 @@
 
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
-			crushed_living.buckled.unbuckle()
+			crushed_living.buckled.unbuckle_mob(crushed_living)
 		animation_flash_color(crushed_living)
 
 		if(precrush > 0)
@@ -389,9 +392,17 @@
 			charge_datum.speed_down(2)
 			return
 
-	if(buckled_mob)
-		unbuckle()
+	for(var/m in buckled_mobs)
+		unbuckle_mob(m)
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
+
+
+/obj/structure/bed/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_bodybag)
+		unbuckle_bodybag()
 
 
 /mob/living/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -461,7 +472,7 @@
 	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-	charger.knock_down(1)
+	charger.Knockdown(20)
 	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -501,9 +512,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			knock_down(CHARGE_SPEED(charge_datum) * 4)
+			Knockdown(CHARGE_SPEED(charge_datum) * 80)
 		if(CHARGE_BULL_HEADBUTT)
-			knock_down(CHARGE_SPEED(charge_datum) * 3)
+			Knockdown(CHARGE_SPEED(charge_datum) * 60)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
