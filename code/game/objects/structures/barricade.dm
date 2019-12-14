@@ -122,19 +122,22 @@
 		user.visible_message("<span class='notice'>[user] sets up [I] on [src].</span>",
 		"<span class='notice'>You set up [I] on [src].</span>")
 
-		if(!closed)
-			wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
-		else
-			wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
-
 		B.use(1)
-		overlays += wired_overlay
-		modify_max_integrity(max_integrity + 50)
-		update_icon()
-		can_wire = FALSE
-		is_wired = TRUE
-		climbable = FALSE
+		wire()
+		
 
+/obj/structure/barricade/proc/wire()
+	if(!closed)
+		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
+	else
+		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
+
+	overlays += wired_overlay
+	modify_max_integrity(max_integrity + 50)
+	update_icon()
+	can_wire = FALSE
+	is_wired = TRUE
+	climbable = FALSE
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
 	if(!is_wired || user.action_busy)

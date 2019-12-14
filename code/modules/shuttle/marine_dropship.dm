@@ -140,6 +140,12 @@
 	. = ..()
 	SSshuttle.dropships += src
 
+/obj/docking_port/mobile/marine_dropship/enterTransit()
+	. = ..()
+	if(!.) // it failed in parent
+		return
+	// pull the shuttle from datum/source, and state info from the shuttle itself
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
