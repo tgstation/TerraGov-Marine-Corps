@@ -133,11 +133,11 @@
 		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
 
 	overlays += wired_overlay
-	modify_max_integrity(max_integrity + 50)
-	update_icon()
 	can_wire = FALSE
 	is_wired = TRUE
 	climbable = FALSE
+	modify_max_integrity(max_integrity + 50)
+	update_icon()
 
 /obj/structure/barricade/wirecutter_act(mob/living/user, obj/item/I)
 	if(!is_wired || user.action_busy)

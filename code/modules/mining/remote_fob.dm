@@ -6,27 +6,34 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 /mob/camera/aiEye/remote/fobdrone
 	name = "Remote Construction Drone"
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "drone"
-	var/area/starting_area
 	use_static = FALSE
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
+
+	var/area/starting_area
 	var/turf/spawnloc
 
 /mob/camera/aiEye/remote/fobdrone/Initialize()
 	. = ..()
 	starting_area = get_area(loc)
 
-/mob/camera/aiEye/remote/fobdrone/setLoc(atom/t) //unrestricted movement inside the landing zone
-	var/area/curr_area = get_area(t)
-	if(istype(t, /turf/closed) || locate(/obj/machinery/door/poddoor) in t)
+/mob/camera/aiEye/remote/fobdrone/Destroy()
+	starting_area = null
+	spawnloc = null
+	return ..()
+
+/mob/camera/aiEye/remote/fobdrone/setLoc(atom/target) //unrestricted movement inside the landing zone
+	var/area/curr_area = get_area(target)
+	if(istype(target, /turf/closed) || locate(/obj/machinery/door/poddoor) in target)
 		return
-	if(curr_area == starting_area || is_type_in_typecache(curr_area, GLOB.dropship_lzs))
-		return ..()
+	if(curr_area != starting_area && !is_type_in_typecache(curr_area, GLOB.dropship_lzs))
+		return
+	return ..()
 
 
 /mob/camera/aiEye/remote/fobdrone/relaymove(mob/user, direct)
-	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
+	setDir(direct) //This camera eye is visible as a drone, and needs to keep the dir updated
 	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)
@@ -50,7 +57,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/lz
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade = new
-	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
+	var/max_metal = 100 //mostly to prevent jokers collecting all the metal and dumping it in
 	var/metal_remaining = 0
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade = new
 	var/max_plasteel = 50
@@ -62,6 +69,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize()
 	. = ..()
+	
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
@@ -71,10 +79,10 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 /obj/machinery/computer/camera_advanced/remote_fob/examine(mob/user)
 	. = ..()
 	var/list/details = list()
-	details +=("It has [metal_remaining] sheets of metal remaining.</br>")
-	details +=("It has [plasteel_remaining] sheets of plasteel remaining.</br>")
-	details +=("It has [sentry_remaining] sentries ready for placement.</br>")
-	to_chat(user, "[details.Join(" ")] ")
+	details +="It has [metal_remaining] sheets of metal remaining.</br>"
+	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
+	details +="It has [sentry_remaining] sentries ready for placement.</br>"
+	to_chat(user, details.Join(" "))
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
@@ -92,7 +100,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		to_chat(user, "<span class='notice'>Communication with the drone impossible due to fuel-residue in deployment zone atmosphere.</span>")
 		return
 	spawn_spot = FALSE
-	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2"))
+	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2","Cancel"))
 		if("LZ1")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary	
 		if("LZ2")
@@ -117,7 +125,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
 		return
 	if(istype(W, /obj/item/stack/sheet/metal))
-		if(max_metal >= metal_remaining)
+		if(max_metal <= metal_remaining)
 			to_chat(user, "<span class='notice'>Can't insert any more metal.")
 			return
 		var/useamount = min(W.amount, (max_metal-metal_remaining))
@@ -126,16 +134,14 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
 		return
 	if(istype(W, /obj/item/stack/sheet/plasteel))
-		if(max_plasteel >= plasteel_remaining)
+		if(max_plasteel <= plasteel_remaining)
 			to_chat(user, "<span class='notice'>Can't insert any more plasteel.")
 			return
 		var/useamount = min(W.amount, (max_plasteel-plasteel_remaining))
 		plasteel_remaining += useamount
 		W.use(useamount)
-		to_chat(user, "<span class='notice'>Inserted [useamount] plateel sheets.")
+		to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
 		return
-	else
-		to_chat(user, "<span class ='notice'>Invalid material type.</span>")
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/GrantActions(mob/living/user)
@@ -167,15 +173,15 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
-	..()
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
-	return PROCESS_KILL
+	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
 	if(!drone_creation_allowed)
 		to_chat(user, "<span class='notice'>Communication with the drone has been disrupted.</span>")
 		user.unset_interaction()
+		return
 	return ..()
 
 /////////////////////////////// Placement Actions
@@ -200,6 +206,9 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	if(!is_type_in_typecache(build_area, GLOB.dropship_lzs))
 		to_chat(owner, "<span class='warning'>You can only build within the Landing Zone!</span>")
 		return FALSE
+	if(build_area.density)
+		to_chat(owner, "<span class='warning'>No space to build anything here.")
+		return FALSE
 
 	return TRUE
 
@@ -222,13 +231,16 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 	var/turf/buildplace = get_turf(fobdrone)
 	var/obj/structure/barricade/cade = /obj/structure/barricade
-	if(is_blocked_turf(buildplace))
-		for(var/obj/thing in buildplace)
-			if(istype(thing, cade) && thing.dir != fobdrone.dir)
-				break
-			else
-				to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
-				return
+	for(var/obj/thing in buildplace)
+		if(!thing.density) //not dense, move on
+			continue
+		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+			to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
+			return
+		if(thing.dir != fobdrone.dir)
+			continue
+		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
+		return
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
@@ -258,13 +270,16 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 	var/turf/buildplace = get_turf(fobdrone)
 	var/obj/structure/barricade/cade = /obj/structure/barricade
-	if(is_blocked_turf(buildplace))
-		for(var/obj/thing in buildplace)
-			if(istype(thing, cade) && thing.dir != fobdrone.dir)
-				break
-			else
-				to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
-				return
+	for(var/obj/thing in buildplace)
+		if(!thing.density) //not dense, move on
+			continue
+		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+			to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
+			return
+		if(thing.dir != fobdrone.dir)
+			continue
+		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
+		return
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
@@ -327,3 +342,4 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "sentry_voucher"
 	max_amount = 1
+	w_class = WEIGHT_CLASS_TINY
