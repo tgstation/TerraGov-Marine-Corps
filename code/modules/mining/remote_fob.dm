@@ -92,7 +92,6 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		to_chat(user, "<span class='notice'>Communication with the drone impossible due to fuel-residue in deployment zone atmosphere.</span>")
 		return
 	spawn_spot = FALSE
-	var/port
 	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2"))
 		if("LZ1")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary	
