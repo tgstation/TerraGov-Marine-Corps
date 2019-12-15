@@ -199,6 +199,12 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	fobdrone = C.remote_control
 	console = target
 
+/datum/action/innate/remote_fob/Destroy()
+	C = null
+	fobdrone = null
+	console = null
+	return ..()
+
 /datum/action/innate/remote_fob/proc/check_spot()
 	var/turf/build_target = get_turf(fobdrone)
 	var/turf/build_area = get_area(build_target)
