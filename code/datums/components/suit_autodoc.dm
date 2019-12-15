@@ -231,6 +231,8 @@
 	configure_action.give_action(wearer)
 
 /datum/component/suit_autodoc/proc/remove_actions()
+	if(!wearer)
+		return
 	toggle_action.remove_action(wearer)
 	scan_action.remove_action(wearer)
 	configure_action.remove_action(wearer)
