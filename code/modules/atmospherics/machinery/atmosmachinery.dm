@@ -261,7 +261,7 @@
 	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 	"<span class='notice'>You climb out of [src].</span>")
 	if(!isxenohunter(user) )
-		playsound(src, get_sfx("alien_ventpass"), 35, 1)
+		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
