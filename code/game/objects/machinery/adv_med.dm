@@ -10,9 +10,8 @@
 	density = TRUE
 	anchored = TRUE
 
-	use_power = 1
-	idle_power_usage = 60
-	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+	use_power = ACTIVE_POWER_USE
+	active_power_usage = 16000	//10 kW. It's a big all-body scanner.
 
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
