@@ -136,7 +136,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	. = ..()
 	name = "Mature Runner ([rand(100, 999)])"
 
-/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
 	if(hit_atom == target && target.stat != DEAD)
 		target.Knockdown(3 SECONDS, TRUE, TRUE)
 		target.visible_message("<span class='danger'>[target] flails around wildly.</span>","<span class='xenowarning'>\The [src] pounces at [target]!</span>")
