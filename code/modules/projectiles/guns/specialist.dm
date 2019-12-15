@@ -281,7 +281,7 @@
 	burst_amount = 2
 	accuracy_mult = 0.85
 	scatter = 15
-	recoil = 2
+	recoil = 4
 
 
 
