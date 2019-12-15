@@ -31,10 +31,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		return
 
 	var/halpick = pickweight(GLOB.hallucination_list)
-	to_chat(world, "[halpick]")
 	new halpick(src, FALSE)
 
-	next_hallucination = world.time + rand(1 SECONDS, 6 SECONDS)
+	next_hallucination = world.time + rand(10 SECONDS, 60 SECONDS)
 
 /mob/living/carbon/proc/set_screwyhud(hud_type)
 	hal_screwyhud = hud_type
