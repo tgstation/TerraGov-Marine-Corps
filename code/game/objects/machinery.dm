@@ -29,6 +29,7 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/LateInitialize(mapload)
 	. = ..()
