@@ -29,6 +29,9 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+
+/obj/machinery/LateInitialize(mapload)
+	. = ..()
 	if(use_power >= IDLE_POWER_USE)
 		START_PROCESSING(SSmachines, src)
 
