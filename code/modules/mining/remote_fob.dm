@@ -56,19 +56,23 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/drone_creation_allowed = TRUE
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/lz
-	var/datum/action/innate/remote_fob/metal_cade/metal_cade = new
+	var/datum/action/innate/remote_fob/metal_cade/metal_cade
 	var/max_metal = 100 //mostly to prevent jokers collecting all the metal and dumping it in
 	var/metal_remaining = 0
-	var/datum/action/innate/remote_fob/plast_cade/plast_cade = new
+	var/datum/action/innate/remote_fob/plast_cade/plast_cade
 	var/max_plasteel = 50
 	var/plasteel_remaining = 0
-	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring = new //whether or not new barricades will be wired
+	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
 	var/do_wiring = FALSE
-	var/datum/action/innate/remote_fob/sentry/sentry = new
+	var/datum/action/innate/remote_fob/sentry/sentry
 	var/sentry_remaining = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize()
 	. = ..()
+	metal_cade = new()
+	plast_cade = new()
+	toggle_wiring = new()
+	sentry = new()
 	
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
@@ -90,9 +94,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	eyeobj.name = "Remote Construction Drone"
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
-
-
-/obj/machinery/computer/camera_advanced/remote_fob/attack_hand(mob/living/user)
+	
+/obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
@@ -108,43 +111,45 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		else
 			return
 	return ..()
-	
 
 /obj/machinery/computer/camera_advanced/remote_fob/CreateEye()
-	if(spawn_spot)
-		eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
-		eyeobj.origin = src
+	if(!spawn_spot)
+		return
+	eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
+	eyeobj.origin = src
 	return
 
-/obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/stack/W, mob/user, params)
-	if(istype(W, /obj/item/stack/voucher/sentry))
-		var/useamount = W.amount
-		sentry_remaining += useamount
-		W.use(useamount)
-		to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
-		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
-		return
-	if(istype(W, /obj/item/stack/sheet/metal))
-		if(max_metal <= metal_remaining)
-			to_chat(user, "<span class='notice'>Can't insert any more metal.")
+/obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
+	if(istype(attackingitem, /obj/item/stack))
+		var/obj/item/stack/attackingstack = attackingitem
+		if(istype(attackingstack, /obj/item/stack/voucher/sentry))
+			var/useamount = attackingstack.amount
+			sentry_remaining += useamount
+			attackingstack.use(useamount)
+			to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
+			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
 			return
-		var/useamount = min(W.amount, (max_metal-metal_remaining))
-		metal_remaining += useamount
-		W.use(useamount)
-		to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
-		return
-	if(istype(W, /obj/item/stack/sheet/plasteel))
-		if(max_plasteel <= plasteel_remaining)
-			to_chat(user, "<span class='notice'>Can't insert any more plasteel.")
+		if(istype(attackingstack, /obj/item/stack/sheet/metal))
+			if(max_metal <= metal_remaining)
+				to_chat(user, "<span class='notice'>Can't insert any more metal.")
+				return
+			var/useamount = min(attackingstack.amount, (max_metal-metal_remaining))
+			metal_remaining += useamount
+			attackingstack.use(useamount)
+			to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
 			return
-		var/useamount = min(W.amount, (max_plasteel-plasteel_remaining))
-		plasteel_remaining += useamount
-		W.use(useamount)
-		to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
-		return
+		if(istype(attackingstack, /obj/item/stack/sheet/plasteel))
+			if(max_plasteel <= plasteel_remaining)
+				to_chat(user, "<span class='notice'>Can't insert any more plasteel.")
+				return
+			var/useamount = min(attackingstack.amount, (max_plasteel-plasteel_remaining))
+			plasteel_remaining += useamount
+			attackingstack.use(useamount)
+			to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
+			return
 	return ..()
 
-/obj/machinery/computer/camera_advanced/remote_fob/GrantActions(mob/living/user)
+/obj/machinery/computer/camera_advanced/remote_fob/give_actions(mob/living/user)
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
@@ -188,19 +193,19 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 
 /datum/action/innate/remote_fob //Parent stuff
 	action_icon = 'icons/Marine/remotefob.dmi'
-	var/mob/living/C //the mob using the action
+	var/mob/living/builder //the mob using the action
 	var/mob/camera/aiEye/remote/fobdrone //the drone belonging to the computer
 	var/obj/machinery/computer/camera_advanced/remote_fob/console //the computer itself
 
 /datum/action/innate/remote_fob/Activate()
 	if(!target)
 		return TRUE
-	C = owner
-	fobdrone = C.remote_control
+	builder = owner
+	fobdrone = builder.remote_control
 	console = target
 
 /datum/action/innate/remote_fob/Destroy()
-	C = null
+	builder = null
 	fobdrone = null
 	console = null
 	return ..()
