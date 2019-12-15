@@ -29,7 +29,8 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
-	START_PROCESSING(SSmachines, src)
+	if(use_power >= IDLE_POWER_USE)
+		START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/Destroy()
