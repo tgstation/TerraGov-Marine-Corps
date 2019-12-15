@@ -1,9 +1,3 @@
-//Health hud screws for carbon mobs
-#define SCREWYHUD_NONE 0
-#define SCREWYHUD_CRIT 1
-#define SCREWYHUD_DEAD 2
-#define SCREWYHUD_HEALTHY 3
-
 GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/sounds = 100,
 	/datum/hallucination/chat = 50,
@@ -12,14 +6,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/death = 1,
 	))
 
-/mob/living/carbon
-	// halucination vars
-	var/image/halimage
-	var/image/halbody
-	var/obj/halitem
-	var/hal_screwyhud = SCREWYHUD_NONE
-	var/next_hallucination = 0
-	var/cpr_time = 1 //CPR cooldown.
 
 /mob/living/carbon/proc/handle_hallucinations()
 	if(!hallucination)
