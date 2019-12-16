@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 /mob/camera/aiEye/remote/fobdrone/update_remote_sight(mob/living/user)
 	user.see_invisible = FALSE
-	user.sight = SEE_SELF|SEE_BLACKNESS
+	user.sight = SEE_SELF|SEE_BLACKNESS|SEE_TURFS
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 	user.see_in_dark = 7
 	return TRUE
@@ -280,7 +280,9 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 		console.metal_remaining -=2
 		cade.wire()
-
+		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.</span>")
+		return
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.metal_remaining] metal sheets remaining.</span>")
 
 /datum/action/innate/remote_fob/plast_cade
 	name = "Place Plasteel Barricade"
@@ -323,7 +325,9 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 
 		console.metal_remaining -=2
 		cade.wire()
-		
+		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining.</span>")
+		return
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")		
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
