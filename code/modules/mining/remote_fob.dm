@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 /mob/camera/aiEye/remote/fobdrone/setLoc(atom/target) //unrestricted movement inside the landing zone
 	if(is_type_in_typecache(target, GLOB.blocked_remotebuild_turfs))
 		return
-	for(var/obj/thing in target)
+	for(var/atom/movable/thing in target)
 		if(is_type_in_typecache(thing, GLOB.blocked_remotebuild_objs))
 			return
 	return ..()
