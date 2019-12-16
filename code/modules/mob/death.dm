@@ -36,6 +36,7 @@
 
 
 /mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
 	log_combat(src, src, "[deathmessage]")
 	if(stat == DEAD)

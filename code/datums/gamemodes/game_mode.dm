@@ -65,6 +65,7 @@
 		spawn_map_items()
 
 	setup_blockers()
+	GLOB.balance.Initialize()
 
 	GLOB.landmarks_round_start = shuffle(GLOB.landmarks_round_start)
 	var/obj/effect/landmark/L
