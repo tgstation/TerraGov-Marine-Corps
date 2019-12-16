@@ -1,3 +1,5 @@
+#define HAL_LINES_FILE "hallucinations.json"
+
 GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/sounds = 100,
 	/datum/hallucination/chat = 50,
@@ -179,8 +181,26 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	set waitfor = FALSE
 	..()
 	var/target_name = target.real_name
-	var/speak_messages = list("where is the nuke?", "have you got the [pick("red", "blue", "green")] disk?") // TODO: Expand
-	var/radio_messages = list("who turned the nuke on?", "Have we got the [pick("red", "blue", "green")] disk?", "i got  hugged!", "[target_name] get power online",) // TODO: Expand
+	var/speak_messages = list(
+		"[pick_list_replacements(HAL_LINES_FILE, "suspicion")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "conversation")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "greetings")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "getout")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "weird")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "nuke")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "help")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "escape")]"
+	)
+	var/radio_messages = list( // only a subset, because not everything makes sense over radio
+		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "nuke")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "help")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "escape")]"
+	)
 
 	var/mob/living/carbon/person = null
 	var/datum/language/understood_language = target.get_random_understood_language()
