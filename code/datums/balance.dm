@@ -24,12 +24,13 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	if(!isliving(source))
 		return FALSE
 	var/mob/living/living = source
-	if("Xenomorph")
-		balance_values["xeno"] -= 1
-	if ("Marine")
-		balance_values["marine"] -= 1
-	else
-		balance_values["other"] -= 1
+	switch(living.faction)
+		if("Xenomorph")
+			balance_values["xeno"] -= 1
+		if ("Marine")
+			balance_values["marine"] -= 1
+		else
+			balance_values["other"] -= 1
 
 	record_feedback()
 	
