@@ -1,7 +1,7 @@
 /////////For remote construction of FOB using a computer on the ship during setup phase
 GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/shuttle/drop2/lz2)))
-
-
+GLOBAL_LIST_INIT(blocked_remotebuild_turfs, typecacheof(list(/turf/closed, /turf/open/beach/sea, /turf/open/floor/plating/ground/ice)))
+GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/computer/camera_advanced/remote_fob, /obj/structure/window, /obj/machinery/door/poddoor)))
 /////////////////////////////// Drone Mob
 
 /mob/camera/aiEye/remote/fobdrone
@@ -24,11 +24,11 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	return ..()
 
 /mob/camera/aiEye/remote/fobdrone/setLoc(atom/target) //unrestricted movement inside the landing zone
-	var/area/curr_area = get_area(target)
-	if(istype(target, /turf/closed) || locate(/obj/machinery/door/poddoor) in target)
+	if(is_type_in_typecache(target, GLOB.blocked_remotebuild_turfs))
 		return
-	if(curr_area != starting_area && !is_type_in_typecache(curr_area, GLOB.dropship_lzs))
-		return
+	for(var/obj/thing in target)
+		if(is_type_in_typecache(thing, GLOB.blocked_remotebuild_objs))
+			return
 	return ..()
 
 
@@ -57,7 +57,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
 	var/lz
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade
-	var/max_metal = 100 //mostly to prevent jokers collecting all the metal and dumping it in
+	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
 	var/metal_remaining = 0
 	var/datum/action/innate/remote_fob/plast_cade/plast_cade
 	var/max_plasteel = 50
@@ -66,6 +66,8 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/do_wiring = FALSE
 	var/datum/action/innate/remote_fob/sentry/sentry
 	var/sentry_remaining = 0
+	var/datum/action/innate/remote_fob/eject_metal/eject_metal
+	var/datum/action/innate/remote_fob/eject_plasteel/eject_plasteel
 
 /obj/machinery/computer/camera_advanced/remote_fob/Initialize()
 	. = ..()
@@ -73,7 +75,9 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	plast_cade = new()
 	toggle_wiring = new()
 	sentry = new()
-	
+	eject_metal = new()
+	eject_plasteel = new()
+
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
@@ -95,7 +99,7 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 	
-/obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
+/obj/machinery/computer/camera_advanced/remote_fob/attack_hand(mob/living/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
@@ -105,46 +109,51 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	spawn_spot = FALSE
 	switch(tgalert(user, "Summon Drone in:", "FOB Construction Drone Control", "LZ1","LZ2","Cancel"))
 		if("LZ1")
-			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary	
+			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
+			if(!spawn_spot)
+				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				return	
 		if("LZ2")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
+			if(!spawn_spot)
+				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
+				return
 		else
 			return
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/CreateEye()
 	if(!spawn_spot)
-		return
+		CRASH("CreateEye() called without a spawn_spot designated")
 	eyeobj = new /mob/camera/aiEye/remote/fobdrone(get_turf(spawn_spot))
 	eyeobj.origin = src
-	return
 
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
 	if(istype(attackingitem, /obj/item/stack))
-		var/obj/item/stack/attackingstack = attackingitem
-		if(istype(attackingstack, /obj/item/stack/voucher/sentry))
-			var/useamount = attackingstack.amount
+		var/obj/item/stack/attacking_stack = attackingitem
+		if(istype(attacking_stack, /obj/item/stack/voucher/sentry))
+			var/useamount = attacking_stack.amount
 			sentry_remaining += useamount
-			attackingstack.use(useamount)
+			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
 			return
-		if(istype(attackingstack, /obj/item/stack/sheet/metal))
+		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
 			if(max_metal <= metal_remaining)
 				to_chat(user, "<span class='notice'>Can't insert any more metal.")
 				return
-			var/useamount = min(attackingstack.amount, (max_metal-metal_remaining))
+			var/useamount = min(attacking_stack.amount, (max_metal-metal_remaining))
 			metal_remaining += useamount
-			attackingstack.use(useamount)
+			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
 			return
-		if(istype(attackingstack, /obj/item/stack/sheet/plasteel))
+		if(istype(attacking_stack, /obj/item/stack/sheet/plasteel))
 			if(max_plasteel <= plasteel_remaining)
 				to_chat(user, "<span class='notice'>Can't insert any more plasteel.")
 				return
-			var/useamount = min(attackingstack.amount, (max_plasteel-plasteel_remaining))
+			var/useamount = min(attacking_stack.amount, (max_plasteel-plasteel_remaining))
 			plasteel_remaining += useamount
-			attackingstack.use(useamount)
+			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
 			return
 	return ..()
@@ -174,6 +183,16 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 		sentry.target = src
 		sentry.give_action(user)
 		actions += sentry
+
+	if(eject_metal)
+		eject_metal.target = src
+		eject_metal.give_action(user)
+		actions += eject_metal
+
+	if(eject_plasteel)
+		eject_plasteel.target = src
+		eject_plasteel.give_action(user)
+		actions += eject_plasteel
 
 	eyeobj.invisibility = 0
 
@@ -214,9 +233,6 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	var/turf/build_target = get_turf(fobdrone)
 	var/turf/build_area = get_area(build_target)
 
-	if(!is_type_in_typecache(build_area, GLOB.dropship_lzs))
-		to_chat(owner, "<span class='warning'>You can only build within the Landing Zone!</span>")
-		return FALSE
 	if(build_area.density)
 		to_chat(owner, "<span class='warning'>No space to build anything here.")
 		return FALSE
@@ -346,6 +362,42 @@ GLOBAL_LIST_INIT(dropship_lzs, typecacheof(list(/area/shuttle/drop1/lz1, /area/s
 	console.sentry_remaining -= 1
 	turret = new /obj/machinery/marine_turret(buildplace)
 	turret.setDir(fobdrone.dir)
+
+/datum/action/innate/remote_fob/eject_metal
+	name = "Eject All Metal"
+	action_icon_state = "eject_metal"
+
+/datum/action/innate/remote_fob/eject_metal/Activate()
+	. = ..()
+	if(.)
+		return
+	if(console.metal_remaining <= 0)
+		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
+		return
+	var/obj/item/stack/sheet/metal/stack = /obj/item/stack/sheet/metal
+	var/turf/consolespot = get_turf(console)
+	stack = new /obj/item/stack/sheet/metal(consolespot)
+	stack.amount = console.metal_remaining
+	console.metal_remaining = 0
+	to_chat(owner, "<span class='notice'>Ejected [stack.amount] metal sheets.</span>")
+
+/datum/action/innate/remote_fob/eject_plasteel
+	name = "Eject All Plasteel"
+	action_icon_state = "eject_plast"
+
+/datum/action/innate/remote_fob/eject_plasteel/Activate()
+	. = ..()
+	if(.)
+		return
+	if(console.plasteel_remaining <= 0)
+		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
+		return
+	var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
+	var/turf/consolespot = get_turf(console)
+	stack = new /obj/item/stack/sheet/plasteel(consolespot)
+	stack.amount = console.plasteel_remaining
+	console.plasteel_remaining = 0
+	to_chat(owner, "<span class='notice'>Ejected [stack.amount] plasteel sheets.</span>")
 
 /obj/item/stack/voucher/sentry
 	name = "Sentry gun voucher"

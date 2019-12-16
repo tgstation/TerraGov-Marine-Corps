@@ -10200,10 +10200,8 @@
 /turf/open/ground/river,
 /area/lv624/ground/jungle6)
 "aNa" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
