@@ -190,12 +190,16 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/merc
 	name = "custom built shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	max_shells = 5 //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	attachable_allowed = list(
+	                	/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/reddot,
 						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
@@ -203,7 +207,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 10
 	burst_amount = 2
-	burst_delay = 6
+	burst_delay = 5
 	accuracy_mult = 0.8
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
@@ -588,6 +592,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
@@ -645,6 +650,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 

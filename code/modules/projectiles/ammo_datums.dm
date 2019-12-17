@@ -449,16 +449,32 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "high velocity rifle bullet"
+	name = "marksmens bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
-	damage = 70
+	accurate_range = 30
+	damage = 65
 	scatter = -15
 	penetration = 15
+
+	/datum/ammo/bullet/rifle/standard_dmr/incin
+	name = "incendiary marksmens bullet"
+	hud_state = "hivelo_fire"
+	hud_state_empty = "hivelo_empty"
+	shrapnel_chance = 0
+	damage_falloff = 0
+	damage_type = BURN
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	accurate_range_min = 0
+	accurate_range = 30
+	damage = 35
+	scatter = -15
+	penetration = 15
+
 
 /*
 //================================================
