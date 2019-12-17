@@ -689,6 +689,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		boarder.gib()
 		stored_larva++
 		left_behind++
+	for(var/i in GLOB.xeno_resin_silos)
+		qdel(i)
 	if(left_behind)
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
 
@@ -761,7 +763,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 // Everything below can have a hivenumber set and these ensure easy hive comparisons can be made
 
-// atom level because of /obj/item/projectile/var/atom/firer
+// atom level because of /obj/projectile/var/atom/firer
 /atom/proc/issamexenohive(atom/A)
 	if(!get_xeno_hivenumber() || !A?.get_xeno_hivenumber())
 		return FALSE

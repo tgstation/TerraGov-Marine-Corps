@@ -387,6 +387,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
 	/datum/admins/proc/force_dropship,
+	/datum/admins/proc/open_shuttlepanel,
 	/datum/admins/proc/xeno_panel,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,

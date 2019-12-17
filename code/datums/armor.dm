@@ -7,16 +7,16 @@
 
 /datum/armor
 	datum_flags = DF_USE_TAG
-	var/melee
-	var/bullet
-	var/laser
-	var/energy
-	var/bomb
-	var/bio
-	var/rad
-	var/fire
-	var/acid
-	var/magic
+	var/melee = 0
+	var/bullet = 0
+	var/laser = 0
+	var/energy = 0
+	var/bomb = 0
+	var/bio = 0
+	var/rad = 0
+	var/fire = 0
+	var/acid = 0
+	var/magic = 0
 
 /datum/armor/New(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0, magic = 0)
 	src.melee = melee

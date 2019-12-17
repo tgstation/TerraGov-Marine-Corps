@@ -65,15 +65,15 @@
 		return 0
 	switch(effecttype)
 		if(STUN)
-			stun(effect/(blocked+1))
+			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
 		if(WEAKEN)
-			knock_down(effect/(blocked+1))
+			Knockdown(effect/(blocked+1) * 20)
 		if(PARALYZE)
-			knock_out(effect/(blocked+1))
+			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)
-			var/rad_protection = getarmor(null, "rad")/100
+			var/rad_protection = getarmor(null, "rad") * 0.01
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter

@@ -71,7 +71,7 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
 	else
-		if(istype(mover, /obj/item/projectile))
+		if(istype(mover, /obj/projectile))
 			return prob(90)
 		else
 			return !density

@@ -74,29 +74,32 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/manual_unbuckle(mob/user)
-	if(buckled_mob)
-		if(prob(seed ? min(max(0,100 - seed.potency),100) : 50))
-			if(buckled_mob.buckled == src)
-				if(buckled_mob != user)
-					buckled_mob.visible_message(\
-						"<span class='notice'>[user.name] frees [buckled_mob.name] from [src].</span>",\
-						"<span class='notice'>[user.name] frees you from [src].</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
-				else
-					buckled_mob.visible_message(\
-						"<span class='notice'>[buckled_mob.name] struggles free of [src].</span>",\
-						"<span class='notice'>You untangle [src] from around yourself.</span>",\
-						"<span class='warning'>You hear shredding and ripping.</span>")
-			unbuckle()
-			return 1
-		else
-			var/text = pick("rips","tears","pulls")
-			user.visible_message(\
-				"<span class='notice'>[user.name] [text] at [src].</span>",\
-				"<span class='notice'>You [text] at [src].</span>",\
-				"<span class='warning'>You hear shredding and ripping.</span>")
-	return 0
+/obj/effect/plantsegment/proc/manual_unbuckle(mob/user)
+	if(!LAZYLEN(buckled_mobs))
+		return FALSE
+	if(!prob(seed ? min(max(0,100 - seed.potency),100) : 50))
+		var/text = pick("rips","tears","pulls")
+		user.visible_message(
+			"<span class='notice'>[user.name] [text] at [src].</span>",
+			"<span class='notice'>You [text] at [src].</span>",
+			"<span class='warning'>You hear shredding and ripping.</span>")
+		return FALSE
+	var/mob/living/prisoner = buckled_mobs[1]
+	if(prisoner.buckled != src)
+		CRASH("[user] attempted to free [prisoner] by attacking [src], but it was buckled to [prisoner.buckled].")
+	if(prisoner != user)
+		prisoner.visible_message(
+			"<span class='notice'>[user.name] frees [prisoner.name] from [src].</span>",
+			"<span class='notice'>[user.name] frees you from [src].</span>",
+			"<span class='warning'>You hear shredding and ripping.</span>")
+	else
+		prisoner.visible_message(
+			"<span class='notice'>[prisoner.name] struggles free of [src].</span>",
+			"<span class='notice'>You untangle [src] from around yourself.</span>",
+			"<span class='warning'>You hear shredding and ripping.</span>")
+	unbuckle_mob(prisoner)
+	return TRUE
+
 
 /obj/effect/plantsegment/proc/grow()
 
@@ -116,55 +119,47 @@
 		energy = 2
 
 /obj/effect/plantsegment/proc/entangle_mob()
-
 	if(limited_growth)
 		return
+	if(!prob(seed ? seed.potency : 25))
+		return
+	var/mob/living/carbon/victim = locate() in loc
+	if(!QDELETED(victim) && victim.stat != DEAD && victim.buckled != src) // If mob exists and is not dead or captured.
+		buckle_mob(victim, silent = TRUE)
+		to_chat(victim, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
-	if(prob(seed ? seed.potency : 25))
-
-		if(!buckled_mob)
-			var/mob/living/carbon/V = locate() in src.loc
-			if(V && (V.stat != DEAD) && (V.buckled != src)) // If mob exists and is not dead or captured.
-				V.buckled = src
-				V.glide_modifier_flags |= GLIDE_MOD_BUCKLED
-				V.loc = src.loc
-				V.update_canmove()
-				src.buckled_mob = V
-				RegisterSignal(V, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
-				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
-
-		// FEED ME, SEYMOUR.
-		if(buckled_mob && seed && (buckled_mob.stat != DEAD)) //Don't bother with a dead mob.
-
-			var/mob/living/M = buckled_mob
-			if(!istype(M)) return
-			var/mob/living/carbon/human/H = buckled_mob
+	// FEED ME, SEYMOUR.
+	if(seed)
+		for(var/m in buckled_mobs)
+			victim = m
+			if(victim == DEAD)
+				continue
 
 			// Drink some blood/cause some brute.
 			if(seed.carnivorous == 2)
-				to_chat(buckled_mob, "<span class='danger'>\The [src] pierces your flesh greedily!</span>")
+				to_chat(victim, "<span class='danger'>\The [src] pierces your flesh greedily!</span>")
 
 				var/damage = rand(round(seed.potency/2),seed.potency)
-				if(!istype(H))
-					H.adjustBruteLoss(damage)
+				if(!ishuman(victim))
+					victim.adjustBruteLoss(damage)
 					return
 
-				var/datum/limb/affecting = H.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
+				var/datum/limb/affecting = victim.get_limb(pick("l_foot","r_foot","l_leg","r_leg","l_hand","r_hand","l_arm", "r_arm","head","chest","groin"))
 
 				if(affecting)
-					affecting.take_damage_limb(damage)
+					affecting.take_damage_limb(damage, updating_health = TRUE)
 				else
-					H.adjustBruteLoss(damage)
+					victim.adjustBruteLoss(damage, updating_health = TRUE)
 
-				H.UpdateDamageIcon()
-				H.updatehealth()
+				victim.UpdateDamageIcon()
 
 			// Inject some chems.
-			if(seed.chems && seed.chems.len && istype(H))
-				to_chat(H, "<span class='danger'>You feel something seeping into your skin!</span>")
+			if(length(seed.chems) && ishuman(victim))
+				to_chat(victim, "<span class='danger'>You feel something seeping into your skin!</span>")
 				for(var/rid in seed.chems)
-					var/injecting = min(5,max(1,seed.potency/5))
-					H.reagents.add_reagent(rid,injecting)
+					var/injecting = CLAMP(seed.potency * 0.2, 1, 5)
+					victim.reagents.add_reagent(rid, injecting)
+
 
 /obj/effect/plantsegment/proc/update()
 	if(!seed) return

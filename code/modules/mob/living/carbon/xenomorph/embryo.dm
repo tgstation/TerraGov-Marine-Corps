@@ -105,10 +105,10 @@
 				affected_mob.emote("[pick("sneeze", "cough")]")
 		if(4)
 			if(prob(1))
-				if(affected_mob.knocked_out < 1)
+				if(!affected_mob.IsUnconscious())
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												"<span class='danger'>You start shaking uncontrollably!</span>")
-					affected_mob.knock_out(10)
+					affected_mob.Unconscious(20 SECONDS)
 					affected_mob.jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
@@ -164,7 +164,7 @@
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
-	victim.knock_out(20)
+	victim.Unconscious(40 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)

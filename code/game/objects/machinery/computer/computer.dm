@@ -54,7 +54,7 @@
 		else
 	return
 
-/obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/projectile/Proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
@@ -82,7 +82,7 @@
 
 /obj/machinery/computer/proc/decode(text)
 	// Adds line breaks
-	text = oldreplacetext(text, "\n", "<BR>")
+	text = replacetext(text, "\n", "<BR>")
 	return text
 
 
@@ -90,10 +90,10 @@
 	. = ..()
 
 	if(isscrewdriver(I) && circuit)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MASTER)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -119,7 +119,7 @@
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 			A.state = 4
 			A.icon_state = "4"
-			
+
 		M.decon(src)
 		qdel(src)
 

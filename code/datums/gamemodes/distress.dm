@@ -20,8 +20,8 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 
-	var/latejoin_tally		= 0
-	var/latejoin_larva_drop = 0
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 //in case config doesn't deliver a value in initialize_scales() for some reason
 	var/orphan_hive_timer
 
 
@@ -29,14 +29,13 @@
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
 
 
-/datum/game_mode/distress/can_start()
+/datum/game_mode/distress/can_start(bypass_checks = FALSE)
 	. = ..()
 	if(!.)
 		return
-	initialize_scales()
 	var/found_queen = initialize_xeno_leader()
 	var/found_xenos = initialize_xenomorphs()
-	if(!found_queen && !found_xenos)
+	if(!found_queen && !found_xenos && !bypass_checks)
 		return FALSE
 	initialize_survivor()
 
@@ -63,8 +62,15 @@
 
 /datum/game_mode/distress/post_setup()
 	. = ..()
+	for(var/i in GLOB.xeno_resin_silo_turfs)
+		new /obj/structure/resin/silo(i)
+	balance_scales()
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
+/datum/game_mode/distress/balance_scales()
+	. = ..()
+	latejoin_larvapoints -= round(latejoin_larvapoints)
+	latejoin_larvapoints *= latejoin_larvapoints_required //restores scaling for handle_late_spawn()
 
 /datum/game_mode/distress/proc/map_announce()
 	if(!SSmapping.configs[GROUND_MAP].announce_text)
@@ -192,35 +198,14 @@
 	announce_round_stats()
 
 
-/datum/game_mode/distress/proc/initialize_scales()
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
+/datum/game_mode/distress/initialize_scales()
+	. = ..()
+	if(!.)
+		return
+	latejoin_larvapoints_required = CONFIG_GET(number/distress_larvapoints_required)
 	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
 	surv_starting_num = CLAMP((round(GLOB.ready_players / CONFIG_GET(number/survivor_coefficient))), 0, 8)
 	marine_starting_num = GLOB.ready_players - xeno_starting_num - surv_starting_num
-
-	var/current_smartgunners = 0
-	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
-	var/current_specialists = 0
-	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
-
-	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
-	SG.total_positions = maximum_smartgunners
-
-	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
-	SP.total_positions = maximum_specialists
-
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		if(current_specialists >= maximum_specialists)
-			S.max_specialists = 0
-		else
-			S.max_specialists = 1
-			current_specialists++
-		if(current_smartgunners >= maximum_smartgunners)
-			S.max_smartgun = 0
-		else
-			S.max_smartgun = 1
-			current_smartgunners++
 
 
 /datum/game_mode/distress/proc/initialize_survivor()
@@ -285,7 +270,7 @@
 					/obj/item/attachable/bipod = round(scale * 8),
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
-					/obj/item/attachable/stock/shotgun = round(scale * 4),
+					/obj/item/attachable/stock/t35stock = round(scale * 4),
 					/obj/item/attachable/stock/revolver = round(scale * 4),
 					/obj/item/attachable/stock/smg = round(scale * 4) ,
 					/obj/item/attachable/stock/tactical = round(scale * 3),
@@ -359,7 +344,6 @@
 						/obj/item/storage/backpack/marine/standard = round(scale * 15),
 						/obj/item/storage/backpack/marine/satchel = round(scale * 15),
 						/obj/item/storage/large_holster/machete/full = round(scale * 10),
-						/obj/item/storage/large_holster/m37 = round(scale * 10),
 						/obj/item/storage/belt/marine = round(scale * 15),
 						/obj/item/storage/belt/shotgun = round(scale * 10),
 						/obj/item/storage/belt/grenade = round(scale * 5),
@@ -393,7 +377,7 @@
 						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 20),
 						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 20),
 						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
-						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
+						/obj/item/weapon/gun/shotgun/pump/t35 = round(scale * 10),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 10),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
@@ -436,7 +420,7 @@
 						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 30),
 						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 30),
 						/obj/item/weapon/gun/rifle/standard_dmr = round(scale * 10),
-						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/shotgun/pump/t35 = round(scale * 15),
 						/obj/item/weapon/gun/rifle/sx16 = round(scale * 15),
 						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
@@ -550,12 +534,12 @@
 		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
 
 
-/datum/game_mode/distress/handle_late_spawn()
-	var/datum/game_mode/distress/D = SSticker.mode
-	D.latejoin_tally++
+/datum/game_mode/distress/handle_late_spawn(mob/living/late_spawner)
+	var/datum/job/job = SSjob.GetJob(late_spawner.job)
+	latejoin_larvapoints += job.larvaworth
 
-	if(D.latejoin_larva_drop && D.latejoin_tally >= D.latejoin_larva_drop)
-		D.latejoin_tally -= D.latejoin_larva_drop
+	if(latejoin_larvapoints >= latejoin_larvapoints_required)
+		latejoin_larvapoints -= latejoin_larvapoints_required
 		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		HS.stored_larva++
 

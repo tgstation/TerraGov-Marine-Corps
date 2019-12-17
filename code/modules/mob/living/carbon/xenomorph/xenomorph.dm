@@ -45,6 +45,9 @@
 
 	AddComponent(/datum/component/bump_attack)
 
+	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
+	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
+
 
 /mob/living/carbon/xenomorph/proc/set_datum()
 	if(!caste_base_type)
@@ -181,11 +184,6 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-2)
-	return knocked_out
-
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
 	if(!isliving(AM))
 		return FALSE
@@ -205,7 +203,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.knock_down(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		H.Knockdown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
@@ -213,7 +211,7 @@
 	return TRUE
 
 /mob/living/carbon/xenomorph/resist_grab()
-	if(pulledby.grab_level)
+	if(pulledby.grab_state)
 		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
 	pulledby.stop_pulling()
 	. = 1

@@ -33,7 +33,7 @@
 	if(isliving(pulling) && !isxeno(pulling))
 		var/mob/living/L = pulling
 		grab_resist_level = 0 //zero it out
-		L.set_stunned(0)
+		L.SetStun(0)
 		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
 	..()
 
@@ -65,17 +65,18 @@
 
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
-	grab_level = GRAB_NECK
+	setGrabState(GRAB_NECK)
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
+	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	L.drop_all_held_items()
-	L.knock_down(1)
+	L.Knockdown(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE
 
 
-/mob/living/carbon/xenomorph/warrior/proc/resisted_against(datum/source, mob/living/victim)
+/mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
+	var/mob/living/victim = source
 	victim.do_resist_grab()
 
 

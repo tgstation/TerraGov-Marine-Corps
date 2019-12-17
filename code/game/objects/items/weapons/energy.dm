@@ -1,5 +1,4 @@
 /obj/item/weapon/energy
-	var/active = 0
 	flags_atom = NOBLOODY
 
 /obj/item/weapon/energy/suicide_act(mob/user)
@@ -60,18 +59,16 @@
 	var/base_sword_icon = "sword"
 	var/sword_color
 
-/obj/item/weapon/energy/sword/IsShield()
-	if(active)
-		return 1
-	return 0
 
 /obj/item/weapon/energy/sword/Initialize()
 	. = ..()
 	if(!sword_color)
 		sword_color = pick("red","blue","green","purple")
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
+
 
 /obj/item/weapon/energy/sword/attack_self(mob/living/user as mob)
-	active = !active
+	toggle_active()
 	if (active)
 		force = 30
 		heat = 3500

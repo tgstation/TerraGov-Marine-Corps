@@ -99,7 +99,7 @@
 	set_light(2)
 
 
-/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/item/projectile/Proj)
+/mob/living/simple_animal/hostile/syndicate/melee/bullet_act(obj/projectile/Proj)
 	if(prob(projectile_deflect_chance))
 		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
 		return FALSE

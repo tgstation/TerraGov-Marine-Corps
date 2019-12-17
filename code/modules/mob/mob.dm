@@ -3,6 +3,8 @@
 	GLOB.mob_list -= src
 	GLOB.dead_mob_list -= src
 	GLOB.offered_mob_list -= src
+	for(var/alert in alerts)
+		clear_alert(alert, TRUE)
 	if(length(observers))
 		for(var/i in observers)
 			var/mob/dead/D = i
@@ -18,6 +20,12 @@
 	set_focus(src)
 	prepare_huds()
 	. = ..()
+	if(islist(skills))
+		skills = getSkills(arglist(skills))
+	else if(!skills)
+		skills = getSkills()
+	else if(!istype(skills, /datum/skills))
+		stack_trace("Invalid type [skills.type] found in .skills during /mob Initialize()")
 	update_config_movespeed()
 	update_movespeed(TRUE)
 
@@ -386,27 +394,28 @@
 			L.language_menu()
 
 
-
-/mob/MouseDrop(mob/M)
-	..()
-	if(M != usr) return
-	if(usr == src) return
-	if(!Adjacent(usr)) return
-	if(!ishuman(M) && !ismonkey(M)) return
-	if(!ishuman(src) && !ismonkey(src)) return
-	if(M.lying || M.incapacitated())
+/**
+  * Handle the result of a click drag onto this mob
+  *
+  * For mobs this just shows the inventory
+  */
+/mob/MouseDrop_T(atom/dropping, atom/user)
+	. = ..()
+	if(.)
 		return
-	show_inv(M)
+	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
+		var/mob/dragged = dropping
+		dragged.show_inv(user)
+
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
+	return
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !isturf(AM.loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
-		return FALSE
-
-	if(AM.anchored || AM.throwing)
 		return FALSE
 
 	if(throwing || incapacitated())
@@ -418,53 +427,59 @@
 		// Are we pulling the same thing twice? Just stop pulling.
 		if(pulling_old == AM)
 			return FALSE
+	else if(l_hand && r_hand)
+		if(!suppress_message)
+			to_chat(src, "<span class='warning'>Cannot grab, lacking free hands to do so!</span>")
+		return FALSE
 
-	var/mob/M
-	if(ismob(AM))
-		M = AM
+	AM.add_fingerprint(src, "pull")
 
-	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
-		if(M)
-			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>", null, null, 5)
-		AM.pulledby.stop_pulling()
+	changeNext_move(CLICK_CD_GRABBING)
+
+	if(AM.pulledby)
+		if(!suppress_message)
+			AM.visible_message("<span class='danger'>[src] has pulled [AM] from [AM.pulledby]'s grip.</span>",
+				"<span class='danger'>[src] has pulled you from [AM.pulledby]'s grip.</span>", null, null, src)
+			to_chat(src, "<span class='notice'>You pull [AM] from [AM.pulledby]'s grip!</span>")
+		log_combat(AM, AM.pulledby, "pulled from", src)
+		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
+
+	var/atom/movable/buckle = AM.is_buckled()
+	if(buckle)
+		if(buckle.anchored)
+			return
+		return start_pulling(buckle)
+	
+	AM.set_glide_size(glide_size)
 
 	pulling = AM
 	AM.pulledby = src
 	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
-	if(M?.buckled)
-		if(!M.buckled.anchored)
-			return start_pulling(M.buckled)
-		M.buckled.set_glide_size(glide_size)
-	else
-		pulling.set_glide_size(glide_size)
 
-	var/obj/item/grab/G = new /obj/item/grab()
-	G.grabbed_thing = AM
-	if(!put_in_hands(G)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
-		return
+	var/obj/item/grab/grab_item = new /obj/item/grab()
+	grab_item.grabbed_thing = AM
+	if(!put_in_hands(grab_item)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
+		CRASH("Failed to put grab_item in the hands of [src]")
 
-	changeNext_move(CLICK_CD_RANGE)
-
-	if(M)
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-
-		do_attack_animation(M, ATTACK_EFFECT_GRAB)
-
-		log_combat(src, M, "grabbed")
-
-		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
-
-		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
-			G.icon_state = "!reinforce"
+	if(!suppress_message)
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 
 	if(hud_used?.pull_icon)
 		hud_used.pull_icon.icon_state = "pull"
 
-	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(M)
-		M.inertia_dir = 0
-	
+	if(ismob(AM))
+		var/mob/pulled_mob = AM
+		log_combat(src, pulled_mob, "grabbed")
+		do_attack_animation(pulled_mob, ATTACK_EFFECT_GRAB)
+
+		if(!suppress_message)
+			visible_message("<span class='warning'>[src] has grabbed [pulled_mob] passively!</span>", null, null, 5)
+
+		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
+			grab_item.icon_state = "!reinforce"
+		
+		set_pull_offsets(pulled_mob)
+
 	update_pull_movespeed()
 
 	return AM.pull_response(src) //returns true if the response doesn't break the pull
@@ -473,6 +488,40 @@
 //returns true if the pull isn't severed by the response
 /atom/movable/proc/pull_response(mob/puller)
 	return TRUE
+
+/**
+  * Buckle to another mob
+  *
+  * You can buckle on mobs if you're next to them since most are dense
+  *
+  * Turns you to face the other mob too
+  */
+/mob/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
+	if(buckling_mob.buckled)
+		return FALSE
+	if(buckling_mob.loc != loc && !buckling_mob.forceMove(loc))
+		return FALSE
+	return ..()
+
+///Call back post buckle to a mob to offset your visual height
+/mob/post_buckle_mob(mob/living/M)
+	var/height = M.get_mob_buckling_height(src)
+	M.pixel_y = initial(M.pixel_y) + height
+	if(M.layer < layer)
+		M.layer = layer + 0.1
+///Call back post unbuckle from a mob, (reset your visual height here)
+/mob/post_unbuckle_mob(mob/living/M)
+	M.layer = initial(M.layer)
+	M.pixel_y = initial(M.pixel_y)
+
+///returns the height in pixel the mob should have when buckled to another mob.
+/mob/proc/get_mob_buckling_height(mob/seat)
+	. = 9
+	if(!isliving(seat))
+		return
+	var/mob/living/L = seat
+	if(L.mob_size <= MOB_SIZE_SMALL) //being on top of a small mob doesn't put you very high.
+		return 0
 
 
 /mob/GenerateTag()
@@ -542,7 +591,8 @@
 	if(!.)
 		return
 	stop_pulling()
-	buckled?.unbuckle()
+	if(buckled)
+		buckled.unbuckle_mob(src)
 
 
 /mob/proc/trainteleport(atom/destination)
@@ -557,7 +607,7 @@
 	conga_line += S
 	if(S.buckled)
 		if(S.buckled.anchored)
-			S.buckled.unbuckle() //Unbuckle the first of the line if anchored.
+			S.buckled.unbuckle_mob(S) //Unbuckle the first of the line if anchored.
 		else
 			conga_line += S.buckled
 	while(!end_of_conga)
@@ -582,13 +632,14 @@
 				S = M
 			else
 				end_of_conga = TRUE
-		else //Not a mob.
+		else if(isobj(A)) //Not a mob.
 			var/obj/O = A
-			if(istype(O) && O.buckled_mob) //But can have a mob associated.
-				conga_line += O.buckled_mob
-				if(O.buckled_mob.pulling) //Unlikely, but who knows? A train of wheelchairs?
-					S = O.buckled_mob
+			for(var/m in O.buckled_mobs)
+				conga_line += m
+				var/mob/buckled_mob = m
+				if(!buckled_mob.pulling)
 					continue
+				buckled_mob.stop_pulling() //No support for wheelchair trains yet.
 			var/obj/structure/bed/B = O
 			if(istype(B) && B.buckled_bodybag)
 				conga_line += B.buckled_bodybag
@@ -781,3 +832,11 @@
 		GLOB.real_names_joined -= old_name
 	if(new_name)
 		GLOB.real_names_joined[new_name] = TRUE
+
+/// Updates the grab state of the mob and updates movespeed
+/mob/setGrabState(newstate)
+	. = ..()
+	if(grab_state == GRAB_PASSIVE)
+		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+		return
+	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)

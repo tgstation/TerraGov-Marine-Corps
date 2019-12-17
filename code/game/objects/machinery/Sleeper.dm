@@ -75,7 +75,7 @@
 			dat += text("[]\t-Respiratory Damage %: []</FONT><BR>", (occupant.getOxyLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getOxyLoss())
 			dat += text("[]\t-Toxin Content %: []</FONT><BR>", (occupant.getToxLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getToxLoss())
 			dat += text("[]\t-Burn Severity %: []</FONT><BR>", (occupant.getFireLoss() < 60 ? "<font color='#487553'>" : "<font color='#b54646'>"), occupant.getFireLoss())
-			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.knocked_out, round(occupant.knocked_out / 4))
+			dat += text("<HR>Knocked Out Summary %: [] ([] seconds left!)<BR>", occupant.AmountUnconscious(), round(occupant.AmountUnconscious() * 0.1))
 			for(var/chemical in connected.available_chemicals)
 				dat += "<label style='width:180px; display: inline-block'>[connected.available_chemicals[chemical]] ([round(occupant.reagents.get_reagent_amount(chemical), 0.01)] units)</label> Inject:"
 				for(var/amount in connected.amounts)
@@ -404,7 +404,7 @@
 		to_chat(user, text("[]\t -Toxin Content %: []</font>", (occupant.getToxLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getToxLoss()))
 		to_chat(user, text("[]\t -Burn Severity %: []</font>", (occupant.getFireLoss() < 60 ? "<font color='#487553'> " : "<font color='#b54646'> "), occupant.getFireLoss()))
 		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
-		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
+		to_chat(user, "<span class='notice'>\t [occupant.AmountUnconscious() * 0.1] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)
 			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
 		else
@@ -412,7 +412,6 @@
 	else
 		to_chat(user, "<span class='notice'>There is no one inside!</span>")
 	return
-
 
 /obj/machinery/sleeper/verb/eject()
 	set name = "Eject Sleeper"

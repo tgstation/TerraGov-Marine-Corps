@@ -154,7 +154,7 @@
 		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.knock_down(2)
+		C.Knockdown(40)
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 			var/area/A = get_area(src)
 			if(A)
@@ -378,7 +378,7 @@
 	name = "egg"
 	icon_state = "Egg Growing"
 	density = FALSE
-
+	flags_atom = CRITICAL_ATOM
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis

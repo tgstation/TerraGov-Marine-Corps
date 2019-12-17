@@ -697,15 +697,15 @@
 				return
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 				return
 		if(surgery)
 			surgery = 0
-			if(usr.mind && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
+			if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
 				visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
 				occupant.take_limb_damage(rand(30,50),rand(30,50))
 				log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
@@ -725,10 +725,10 @@
 		to_chat(M, "<span class='notice'>[src] is non-functional!</span>")
 		return
 
-	if(M.mind?.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+	if(M.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -856,10 +856,10 @@
 		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
 		return
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+	if(user.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 

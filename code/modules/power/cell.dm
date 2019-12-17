@@ -124,11 +124,8 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts rigging of power cells.</span>")
 			return
-		var/delay = SKILL_TASK_EASY
-		var/skill
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
-			skill = user.mind.cm_skills.engineer
-			delay -= 5 + skill * 1.25
+		var/skill = user.skills.getRating("engineer")
+		var/delay = SKILL_TASK_EASY - (5 + skill * 1.25)
 
 		if(user.action_busy)
 			return

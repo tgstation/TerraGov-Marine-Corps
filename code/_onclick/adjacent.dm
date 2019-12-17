@@ -149,7 +149,7 @@
 	return FALSE
 
 
-/obj/item/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
+/obj/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
 	var/turf/T = get_turf(loc)
 	if(!T)
 		return FALSE

@@ -36278,7 +36278,7 @@
 /area/prison/storage/highsec/s)
 "bLT" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -38809,7 +38809,7 @@
 /area/prison/laundry)
 "bSp" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -38823,7 +38823,7 @@
 /area/prison/laundry)
 "bSq" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -39664,7 +39664,7 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bUn" = (
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},

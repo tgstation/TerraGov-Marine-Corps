@@ -307,14 +307,14 @@
 				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
 						var/mob/living/carbon/human/H = M
-						if(H.check_shields(15, "the pounce")) //Human shield block.
-							knock_down(3)
+						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+							Knockdown(6 SECONDS)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.knock_down(1)
+					M.Knockdown(20)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -379,7 +379,7 @@
 
 /mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
 	LAZYADD(stomach_contents, prey)
-	prey.knock_down(360)
+	prey.Knockdown(12 MINUTES)
 	prey.adjust_tinttotal(TINT_BLIND)
 	prey.forceMove(src)
 	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
@@ -529,7 +529,7 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	cooldowns[COOLDOWN_ACID] = TRUE
+	cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ACID, null), 2 SECONDS)
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
@@ -543,7 +543,7 @@
 	take_overall_damage(0, damage, armor_block)
 	UPDATEHEALTH(src)
 	emote("scream")
-	knock_down(1)
+	Knockdown(20)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return

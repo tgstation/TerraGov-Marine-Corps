@@ -516,6 +516,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			sleep(delay_vending)
 		else
 			return
+	SSblackbox.record_feedback("tally", "vendored", 1, R.name)
 	if(ispath(R.product_path,/obj/item/weapon/gun))
 		return new R.product_path(get_turf(src),1)
 	else

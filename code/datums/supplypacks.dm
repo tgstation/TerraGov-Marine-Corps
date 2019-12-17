@@ -332,8 +332,8 @@ WEAPONS
 
 /datum/supply_packs/gun/shotguns
 	contains = list(
-					/obj/item/weapon/gun/shotgun/pump,
-					/obj/item/weapon/gun/shotgun/pump,
+					/obj/item/weapon/gun/shotgun/pump/t35,
+					/obj/item/weapon/gun/shotgun/pump/t35,
 					/obj/item/weapon/gun/rifle/sx16,
 					/obj/item/weapon/gun/rifle/sx16,
 					/obj/item/ammo_magazine/shotgun,
@@ -349,7 +349,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/sx16_flechette,
 					/obj/item/ammo_magazine/rifle/sx16_flechette,
 					)
-	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
+	name = "surplus shotguns crate (T-35 x2, T-35 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper shotguns crate"
@@ -1177,10 +1177,10 @@ ATTACHMENTS
 /datum/supply_packs/stock_shotgun
 	name = "shotgun stock attachment crate (x4)"
 	contains = list(
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock
 			)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -1286,7 +1286,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular
-	name = "regular magazines crate (T-18 x5, M4A3 x2, M44 x2, T-19 x2, M37A2 x1)"
+	name = "regular magazines crate (T-18 x5, M4A3 x2, M44 x2, T-19 x2, T-35 x1)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
@@ -1403,7 +1403,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M37A2 ammo crate"
+	containername = "\improper T-35 ammo crate"
 	group = "Ammo"
 
 
@@ -1540,7 +1540,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M37A2 ammo crate"
+	containername = "\improper T-35 ammo crate"
 	group = "Ammo"
 
 
@@ -2283,8 +2283,9 @@ MEDICAL
 /datum/supply_packs/sterile
 	name = "sterile equipment crate"
 	contains = list(
+					/obj/item/clothing/under/rank/medical/blue,
 					/obj/item/clothing/under/rank/medical/green,
-					/obj/item/clothing/under/rank/medical/green,
+					/obj/item/clothing/under/rank/medical/purple,
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves
 					)

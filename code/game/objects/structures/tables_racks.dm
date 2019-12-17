@@ -283,12 +283,12 @@
 
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
-			if(user.grab_level <= GRAB_AGGRESSIVE)
+			if(user.grab_state <= GRAB_AGGRESSIVE)
 				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 
 			if(prob(15))
-				M.knock_down(5)
+				M.Knockdown(10 SECONDS)
 			M.apply_damage(8, BRUTE, "head")
 			UPDATEHEALTH(M)
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
@@ -296,9 +296,9 @@
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 
-		else if(user.grab_level >= GRAB_AGGRESSIVE)
+		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.knock_down(5)
+			M.Knockdown(10 SECONDS)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return

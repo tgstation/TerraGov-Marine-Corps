@@ -3,6 +3,7 @@
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	skills_type = /datum/skills/civilian/survivor
 	faction = "Marine"
+	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
 
 
 //Assistant

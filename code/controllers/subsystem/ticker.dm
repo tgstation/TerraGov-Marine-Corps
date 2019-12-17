@@ -122,8 +122,8 @@ SUBSYSTEM_DEF(ticker)
 	mode = config.pick_mode(GLOB.master_mode)
 
 	CHECK_TICK
-	if(!mode.can_start() && !bypass_checks)
-		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
+	if(!mode.can_start(bypass_checks))
+		to_chat(world, "Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
 		SSjob.ResetOccupations()
 		return FALSE

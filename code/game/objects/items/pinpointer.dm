@@ -12,7 +12,6 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	var/active = FALSE
 	var/atom/movable/target
 	var/list/tracked_list
 	var/mode = PINPOINTER_MODE_DISK

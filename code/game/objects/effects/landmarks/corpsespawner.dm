@@ -104,7 +104,8 @@
 		M.update_burst()
 		//buckle to nest
 		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		victim_nest?.do_buckle(M, silent = TRUE)
+		if(victim_nest)
+			victim_nest.buckle_mob(M, silent = TRUE)
 	qdel(src)
 
 
@@ -188,7 +189,7 @@
 
 /obj/effect/landmark/corpsespawner/prisoner
 	name = "Prisoner"
-	corpseuniform = /obj/item/clothing/under/color/orange
+	corpseuniform = /obj/item/clothing/under/rank/prisoner
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpseid = 1
 	corpseidjob = "Prisoner"

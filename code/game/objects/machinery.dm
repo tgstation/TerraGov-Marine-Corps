@@ -250,7 +250,7 @@
 		"rads" = H.radiation,
 		"cloneloss" = H.getCloneLoss(),
 		"brainloss" = H.getBrainLoss(),
-		"knocked_out" = H.knocked_out,
+		"knocked_out" = H.AmountUnconscious(),
 		"bodytemp" = H.bodytemperature,
 		"inaprovaline_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline),
 		"dexalin_amount" = H.reagents.get_reagent_amount(/datum/reagent/medicine/dexalin),
@@ -289,7 +289,7 @@
 	dat += text("[]\tRadiation Level %: []</font><br>", (occ["rads"] < 10 ?"<font color='#487553'>" : "<font color=#b54646>"), occ["rads"])
 	dat += text("[]\tGenetic Tissue Damage %: []</font><br>", (occ["cloneloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["cloneloss"])
 	dat += text("[]\tApprox. Brain Damage %: []</font><br>", (occ["brainloss"] < 1 ?"<font color=#487553>" : "<font color=#b54646>"), occ["brainloss"])
-	dat += text("Knocked Out Summary %: [] ([] seconds left!)<br>", occ["knocked_out"], round(occ["knocked_out"] / 4))
+	dat += text("Knocked Out Summary %: [] ([] seconds left!)<br>", occ["knocked_out"], round(occ["knocked_out"] * 0.1))
 	dat += text("Body Temperature: [occ["bodytemp"]-T0C]&deg;C ([occ["bodytemp"]*1.8-459.67]&deg;F)<br><HR>")
 
 	dat += text("[]\tBlood Level %: [] ([] units)</FONT><BR>", (occ["blood_amount"] > 448 ?"<font color=#487553>" : "<font color=#b54646>"), occ["blood_amount"]*100 / 560, occ["blood_amount"])
