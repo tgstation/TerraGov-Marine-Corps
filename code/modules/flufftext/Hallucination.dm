@@ -6,14 +6,14 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/battle = 20,
 	/datum/hallucination/xeno_attack = 12,
 	/datum/hallucination/death = 1,
-	))
+))
 
 
 /mob/living/carbon/proc/handle_hallucinations()
 	if(!hallucination)
 		return
 
-	hallucination--
+	hallucination = max(0, hallucination - 2) // Life ticks happen every 2 seconds
 
 	if(world.time < next_hallucination)
 		return

@@ -87,16 +87,9 @@
 		do_jitter_animation(jitteriness)
 		jitter(-restingpwr)
 
-	if(hallucination)
-		if(hallucination >= 20)
-			handle_hallucinations()
+	if(hallucination >= 20) // hallucinations require stacking before triggering
+		handle_hallucinations()
 
-		hallucination = max(hallucination - 3, 0)
-
-	else
-		for(var/atom/a in hallucinations)
-			hallucinations -=a
-			qdel(a)
 
 	if(halloss)
 		halloss_recovery()
