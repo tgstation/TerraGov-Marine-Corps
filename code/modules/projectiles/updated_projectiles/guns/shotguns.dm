@@ -196,9 +196,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc
 	attachable_allowed = list(
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/underbarrel_light,
-						/obj/item/attachable/flashlight)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_SHOTGUN_CHAMBER|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14)
@@ -234,7 +232,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
@@ -275,7 +272,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
@@ -411,7 +407,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/compensator,
@@ -522,7 +517,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/magnetic_harness)
@@ -555,7 +549,6 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
@@ -593,7 +586,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bayonet)
@@ -644,8 +636,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/bayonet)
@@ -696,7 +686,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/underbarrel_light,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,

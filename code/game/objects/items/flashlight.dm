@@ -11,7 +11,6 @@
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
-	var/underbarrel_light_compatible = TRUE //Can this be turned into a underbarrel light ?
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 	var/activation_sound = 'sound/items/flashlight.ogg'
 
@@ -70,26 +69,7 @@
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
 		qdel(src) //Delete da old flashlight
-		
-/obj/item/flashlight/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	
-	if(istype(I, /obj/item/tool/wrench))
-		if(!underbarrel_light_compatible) //No fancy messages, just no
-			return
 
-		if(on)
-			to_chat(user, "<span class='warning'>Turn off [src] first.</span>")
-			return
-
-		if(loc == user)
-			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
-
-		var/obj/item/attachable/underbarrel_light/A = new(loc)
-		user.put_in_hands(A) //This proc tries right, left, then drops it all-in-one.
-		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
-		to_chat(user, "<span class='notice'>Use a wrench on [A] to change it back.</span>")
-		qdel(src) //Delete da old flashlight
 
 /obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	if(on && user.zone_selected == "eyes")
@@ -132,7 +112,6 @@
 	brightness_on = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE
 
 /obj/item/flashlight/drone
 	name = "low-power flashlight"
@@ -142,7 +121,6 @@
 	brightness_on = 2
 	w_class = WEIGHT_CLASS_TINY
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE
 
 //The desk lamps are a bit special
 /obj/item/flashlight/lamp
@@ -154,7 +132,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	on = TRUE
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE
 
 //Menorah!
 /obj/item/flashlight/lamp/menorah
@@ -196,7 +173,6 @@
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE
 	activation_sound = 'sound/items/flare.ogg'
 	var/fuel = 0
 	var/on_damage = 7
@@ -256,7 +232,6 @@
 	brightness_on = 6
 	on = TRUE //Bio-luminesence has one setting, on.
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE
 
 
 /obj/item/flashlight/slime/attack_self(mob/user)
@@ -270,4 +245,3 @@
 	desc = "A mining lantern."
 	brightness_on = 6			// luminosity when on
 	raillight_compatible = FALSE
-	underbarrel_light_compatible = FALSE

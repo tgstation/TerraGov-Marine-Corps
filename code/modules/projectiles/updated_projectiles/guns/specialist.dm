@@ -35,7 +35,6 @@
 	attachable_allowed = list(
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/lasersight,
-						/obj/item/attachable/underbarrel_light,
 						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -270,7 +269,6 @@
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/slavic)
@@ -310,7 +308,6 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
@@ -481,7 +478,6 @@
 	aim_slowdown = 1
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -931,7 +927,6 @@
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/underbarrel_light,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
