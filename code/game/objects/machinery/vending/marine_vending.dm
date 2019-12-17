@@ -37,7 +37,6 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
-					/obj/item/attachable/underbarrel_light = 10,
 					/obj/item/attachable/bayonet = 10,
 					/obj/item/weapon/gun/rifle/sx16 = 10,
 					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
@@ -643,7 +642,6 @@
 						/obj/item/attachable/pulselens = 4,
 
 						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/underbarrel_light = 20,
 						/obj/item/attachable/magnetic_harness = 8,
 						/obj/item/attachable/quickfire = 2,
 						/obj/item/attachable/reddot = 10,

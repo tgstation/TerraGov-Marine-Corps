@@ -1317,56 +1317,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = -0.1
 	accuracy_unwielded_mod = 0.20
 
-/obj/item/attachable/underbarrel_light
-	name = "Underbarrel flashlight"
-	desc = "A simple underbarrel flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
-	icon_state = "flashlight"
-	attach_icon = "flashlight_a"
-	light_mod = 7
-	slot = "under"
-	pixel_shift_y = 17
-	pixel_shift_x = 17
-	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
-	attachment_action_type = /datum/action/item_action/toggle
-	activation_sound = 'sound/items/flashlight.ogg'
 
-/obj/item/attachable/underbarrel_light/activate_attachment(mob/living/user, turn_off)
-	if(turn_off && !(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON))
-		return
-
-	if(ismob(master_gun.loc) && !user)
-		user = master_gun.loc
-
-	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
-		icon_state = "flashlight"
-		attach_icon = "flashlight_a"
-		master_gun.set_light(0)
-	else
-		icon_state = "flashlight-on"
-		attach_icon = "flashlight_a-on"
-		master_gun.set_light(light_mod)
-
-	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
-
-	master_gun.update_attachable(slot)
-
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-	return TRUE
-
-/obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I,/obj/item/tool/screwdriver))
-		to_chat(user, "<span class='notice'>You modify the underbarrel flashlight back into a normal flashlight.</span>")
-		if(loc == user)
-			user.temporarilyRemoveItemFromInventory(src)
-		var/obj/item/flashlight/F = new(user)
-		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		qdel(src) //Delete da old flashlight
-		
 /obj/item/attachable/bipod
 	name = "bipod"
 	desc = "A simple set of telescopic poles to keep a weapon stabilized during firing. \nGreatly increases accuracy and reduces recoil when properly placed, but also increases weapon size."
