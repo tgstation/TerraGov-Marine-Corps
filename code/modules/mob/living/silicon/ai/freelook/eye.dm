@@ -16,6 +16,10 @@
 	var/ai_detector_visible = TRUE
 	var/ai_detector_color = "#FF0000"
 
+/mob/camera/aiEye/hivemind
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+
+
 
 /mob/camera/aiEye/Initialize()
 	. = ..()

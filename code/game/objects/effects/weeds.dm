@@ -132,6 +132,11 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
+	. = ..()
+	GLOB.xenonet.cameras += src
+	GLOB.xenonet.addCamera(src)
+
 /obj/effect/alien/weeds/node/strong
 	name = "strong purple sac"
 	desc = "A weird, pulsating node. This looks pretty tough."
@@ -140,6 +145,8 @@
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
+	GLOB.xenonet.cameras -= src
+	GLOB.xenonet.removeCamera(src)
 	SSweeds_decay.decay_weeds(node_turfs)
 
 
