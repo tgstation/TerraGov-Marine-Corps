@@ -32,6 +32,14 @@
 	layer = ABOVE_FLY_LAYER
 	var/log_amount = 10
 
+/obj/structure/flora/tree/Initialize()
+	. = ..()
+	AddTransparencyComponent()
+
+//Adds the transparency component, exists to be overridden for different args.
+/obj/structure/flora/tree/proc/AddTransparencyComponent()
+	AddComponent(/datum/component/largetransparency)
+
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -131,6 +139,9 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree"
 
+/obj/structure/flora/tree/dead/AddTransparencyComponent()
+	AddComponent(/datum/component/largetransparency, 0, 1, 0, 0)
+
 /obj/structure/flora/tree/dead/Initialize()
 	. = ..()
 	icon_state = "[icon_state][rand(1, 6)]"
@@ -154,10 +165,16 @@
 	pixel_x = -48
 	pixel_y = -20
 
+/obj/structure/flora/tree/jungle/AddTransparencyComponent()
+	AddComponent(/datum/component/largetransparency, -1, 1, 2, 2)
+
 /obj/structure/flora/tree/jungle/small
 	pixel_y = 0
 	pixel_x = -32
 	icon = 'icons/obj/flora/jungletreesmall.dmi'
+
+/obj/structure/flora/tree/jungle/small/AddTransparencyComponent()
+	AddComponent(/datum/component/largetransparency)
 
 /obj/structure/flora/tree/jungle/Initialize()
 	. = ..()

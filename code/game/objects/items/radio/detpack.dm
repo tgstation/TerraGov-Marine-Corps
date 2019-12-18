@@ -76,14 +76,14 @@
 	. = ..()
 
 	if(ismultitool(I) && armed)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 			var/fumbling_time = 30
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
-			if(prob((SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer) * 20))
+			if(prob((SKILL_ENGINEER_METAL - user.skills.getRating("engineer")) * 20))
 				to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
 				timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
@@ -185,8 +185,8 @@
 	if(!.)
 		return FALSE
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_UNSKILLED))
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	return TRUE
@@ -249,11 +249,10 @@
 		to_chat(user, "<span class='warning'>There is already a device attached to [target]</span>.")
 		return FALSE
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",

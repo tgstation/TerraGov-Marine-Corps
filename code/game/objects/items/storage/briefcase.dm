@@ -23,11 +23,11 @@
 			if(istype(P) && P.flags_inventory & BLOCKSHARPOBJ && prob(80))
 				to_chat(M, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
 				return
-		var/time = rand(2, 6)
+		var/time = rand(40, 80)
 		if (prob(75))
-			M.knock_out(time)
+			M.Unconscious(time)
 		else
-			M.stun(time)
+			M.Stun(time)
 		if(M.stat != 2)	M.stat = 1
 		visible_message("span class='danger'>[M] has been knocked unconscious!</span>", null, "<span class='warning'> You hear someone fall.</span>")
 	else

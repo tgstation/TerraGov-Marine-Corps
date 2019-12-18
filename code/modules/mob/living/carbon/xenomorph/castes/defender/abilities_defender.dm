@@ -87,7 +87,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-	H.knock_down(1, 1)
+	H.Knockdown(20)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 // ***************************************
@@ -143,7 +143,7 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 			UPDATEHEALTH(H)
-			H.knock_down(1, 1)
+			H.Knockdown(20)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)

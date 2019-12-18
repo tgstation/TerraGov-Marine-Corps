@@ -8,7 +8,6 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
-	var/active = FALSE
 
 
 /obj/item/fulton_extraction_pack/Initialize()
@@ -163,13 +162,13 @@
 	return ..()
 
 
-/obj/item/fulton_extraction_pack/adminbus/tool_attack_chain(mob/user, atom/target)
-	. = TRUE
+/obj/item/fulton_extraction_pack/adminbus/preattack(mob/user, atom/target)
 	if(!isturf(target.loc) || !ismovableatom(target))
 		return FALSE
 	if(active)
 		to_chat(user, "<span class='warning'>The fulton device is not yet ready to extract again. Wait a moment.</span>")
 		return FALSE
+	. = TRUE
 	if(istype(target, /obj/structure/fulton_extraction_point))
 		if(linked_extraction_point && linked_extraction_point == target)
 			linked_extraction_point = null

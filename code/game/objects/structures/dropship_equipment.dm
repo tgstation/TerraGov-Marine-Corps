@@ -174,7 +174,7 @@
 			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 			if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 				return FALSE
-			if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+			if(ammo_equipped || PC.loaded != SA || !LAZYLEN(PC.linked_powerloader?.buckled_mobs) || PC.linked_powerloader.buckled_mobs[1] != user)
 				return FALSE
 			SA.forceMove(src)
 			PC.loaded = null
@@ -188,7 +188,7 @@
 			playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 			if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 				return FALSE
-			if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+			if(!ammo_equipped || !LAZYLEN(PC.linked_powerloader?.buckled_mobs) || PC.linked_powerloader.buckled_mobs[1] != user)
 				return FALSE
 			playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 			if(!ammo_equipped.ammo_count)
@@ -208,7 +208,7 @@
 			var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 			if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
 				return FALSE
-			if(!PC.linked_powerloader || PC.loaded || PC.linked_powerloader.buckled_mob != user)
+			if(PC.loaded || !LAZYLEN(PC.linked_powerloader?.buckled_mobs) || PC.linked_powerloader.buckled_mobs[1] != user)
 				return FALSE
 			forceMove(PC.linked_powerloader)
 			PC.loaded = src
@@ -811,8 +811,8 @@
 	for(var/obj/structure/bed/medevac_stretcher/MS in GLOB.activated_medevac_stretchers)
 		var/area/AR = get_area(MS)
 		var/evaccee
-		if(MS.buckled_mob)
-			evaccee = MS.buckled_mob.real_name
+		if(LAZYLEN(MS.buckled_mobs))
+			evaccee = MS.buckled_mobs[1].real_name
 		else if(MS.buckled_bodybag)
 			for(var/atom/movable/AM in MS.buckled_bodybag)
 				if(isliving(AM))
@@ -846,7 +846,7 @@
 	if(!is_ground_level(selected_stretcher.z)) //in case the stretcher was on a groundside dropship that flew away during our input()
 		return
 
-	if(!selected_stretcher.buckled_mob && !selected_stretcher.buckled_bodybag)
+	if(!LAZYLEN(selected_stretcher.buckled_mobs) && !selected_stretcher.buckled_bodybag)
 		to_chat(user, "<span class='warning'>This medevac stretcher is empty.</span>")
 		return
 
@@ -904,10 +904,10 @@
 		return
 	if(!ship_base) //not installed
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.pilot < SKILL_PILOT_TRAINED)
+	if(user.skills.getRating("pilot") < SKILL_PILOT_TRAINED)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the medevac system.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the medevac system.</span>")
-		var/fumbling_time = 60 - 20 * user.mind.cm_skills.pilot
+		var/fumbling_time = 6 SECONDS - 2 SECONDS * user.skills.getRating("pilot")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return
 
@@ -968,8 +968,8 @@
 		return
 
 	var/atom/movable/lifted_object
-	if(linked_stretcher.buckled_mob)
-		lifted_object = linked_stretcher.buckled_mob
+	if(LAZYLEN(linked_stretcher.buckled_mobs))
+		lifted_object = linked_stretcher.buckled_mobs[1]
 	else if(linked_stretcher.buckled_bodybag)
 		lifted_object = linked_stretcher.buckled_bodybag
 

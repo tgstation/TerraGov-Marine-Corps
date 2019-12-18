@@ -1,4 +1,4 @@
-#define UPGRADE_COOLDOWN	40
+#define UPGRADE_COOLDOWN 4 SECONDS
 
 /obj/item/grab
 	name = "grab"
@@ -10,13 +10,10 @@
 	plane = ABOVE_HUD_PLANE
 	item_state = "nothing"
 	w_class = WEIGHT_CLASS_HUGE
+	attack_speed = CLICK_CD_GRABBING
+	resistance_flags = RESIST_ALL
 	var/atom/movable/grabbed_thing
-	var/last_upgrade = 0 //used for cooldown between grab upgrades.
 
-
-/obj/item/grab/Initialize()
-	. = ..()
-	last_upgrade = world.time
 
 /obj/item/grab/dropped(mob/user)
 	user.stop_pulling()
@@ -26,9 +23,8 @@
 	grabbed_thing = null
 	if(ismob(loc))
 		var/mob/M = loc
-		M.grab_level = 0
 		M.stop_pulling()
-	. = ..()
+	return ..()
 
 
 /obj/item/grab/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -39,8 +35,8 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 
 
-/obj/item/grab/attack_self(mob/user)
-	if(!ismob(grabbed_thing) || world.time < (last_upgrade + UPGRADE_COOLDOWN))
+/obj/item/grab/attack_self(mob/living/user)
+	if(!ismob(grabbed_thing) || user.action_busy)
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
@@ -51,33 +47,73 @@
 	var/mob/living/victim = grabbed_thing
 	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))
 		return //can't tighten your grip on big mobs and mobs you can't push.
-	last_upgrade = world.time
-	if(user.grab_level <= GRAB_KILL)
-		user.grab_level++
-		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-		switch(user.grab_level)
-			if(GRAB_KILL)
-				icon_state = "disarm/kill1"
-				user.visible_message("<span class='danger'>[user] has tightened [user.p_their()] grip on [victim]'s neck!</span>", null, null, 5)
-				log_combat(user, victim, "strangled", addition="(kill intent)")
-			if(GRAB_NECK)
-				icon_state = "disarm/kill"
-				user.visible_message("<span class='warning'>[user] has reinforced [user.p_their()] grip on [victim] (now neck)!</span>", null, null, 5)
-				log_combat(user, victim, "neck grabbed")
-				ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-				RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, .proc/resisted_against)
-			if(GRAB_AGGRESSIVE)
-				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)
-		victim.update_canmove()
+	if(user.grab_state > GRAB_KILL)
+		return
+	user.changeNext_move(CLICK_CD_GRABBING)
+	if(!do_mob(user, victim, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || !user.pulling)
+		return
+	user.advance_grab_state(victim)
+	if(user.grab_state == GRAB_NECK)
+		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	victim.update_canmove()
 
 
-/obj/item/grab/resisted_against(datum/source, mob/living/victim)
+/mob/living/proc/advance_grab_state(mob/living/victim)
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	setGrabState(grab_state + 1)
+	switch(grab_state)
+		if(GRAB_AGGRESSIVE)
+			log_combat(src, victim, "aggressive grabbed")
+			visible_message("<span class='danger'>[src] grabs [victim] aggressively!</span>",
+				"<span class='danger'>You grab [victim] aggressively!</span>",
+				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
+			to_chat(victim, "<span class='userdanger'>[src] grabs you aggressively!</span>")
+			victim.drop_all_held_items()
+			if(victim.pulling)
+				victim.stop_pulling()
+		if(GRAB_NECK)
+			icon_state = "disarm/kill"
+			log_combat(src, victim, "neck grabbed")
+			visible_message("<span class='danger'>[src] grabs [victim] by the neck!</span>",
+				"<span class='danger'>You grab [victim] by the neck!</span>",
+				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
+			to_chat(victim, "<span class='userdanger'>[src] grabs you by the neck!</span>")
+			victim.drop_all_held_items()
+			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
+			victim.update_canmove()
+			if(!victim.buckled && !victim.density)
+				victim.Move(loc)
+		if(GRAB_KILL)
+			icon_state = "disarm/kill1"
+			log_combat(src, victim, "strangled")
+			visible_message("<span class='danger'>[src] is strangling [victim]!</span>",
+				"<span class='danger'>You're strangling [victim]!</span>",
+				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
+			to_chat(victim, "<span class='userdanger'>[src] is strangling you!</span>")
+			victim.drop_all_held_items()
+			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
+			victim.update_canmove()
+			if(!victim.buckled && !victim.density)
+				victim.Move(loc)
+	set_pull_offsets(victim)
+
+
+/obj/item/grab/resisted_against(datum/source)
+	var/mob/living/victim = source
 	victim.do_resist_grab()
 
 
 /obj/item/grab/attack(mob/living/attacked, mob/living/user, def_zone)
 	if(attacked == user && CHECK_BITFIELD(SEND_SIGNAL(user, COMSIG_GRAB_SELF_ATTACK), COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK))
 		return TRUE
+	if(user.grab_state > GRAB_KILL)
+		return FALSE
+	if(user.action_busy || !ishuman(user) || attacked != user.pulling)
+		return FALSE
+	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, attacked)) || !user.pulling)
+		return TRUE
+	user.advance_grab_state(attacked)
+	return TRUE
 
 
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
@@ -154,6 +190,6 @@
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
-	prey.set_knocked_down(1)
+	prey.SetKnockdown(20)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

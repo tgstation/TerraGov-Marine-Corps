@@ -92,7 +92,7 @@
 		return AIMove(n, direct, L)
 
 	//Check if you are being grabbed and if so attemps to break it
-	if(CHECK_BITFIELD(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST, L), COMSIG_LIVING_RESIST_SUCCESSFUL))
+	if(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST) & COMSIG_LIVING_RESIST_SUCCESSFUL)
 		return
 
 	if(L.pulledby)
@@ -125,15 +125,13 @@
 
 	L.last_move_intent = world.time + 1 SECONDS
 
-	SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
-
-	if(L.confused)
+	if(L.IsConfused())
 		var/newdir = 0
-		if(L.confused > 40)
+		if(L.AmountConfused() > 40)
 			newdir = pick(GLOB.alldirs)
-		else if(prob(L.confused * 1.5))
+		else if(prob(L.AmountConfused() * 1.5))
 			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
-		else if(prob(L.confused * 3))
+		else if(prob(L.AmountConfused() * 3))
 			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
 		if(newdir)
 			direct = newdir

@@ -235,7 +235,7 @@
 	var/safety = FALSE
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
-	var/obj/item/projectile/in_chamber = null
+	var/obj/projectile/in_chamber = null
 	var/locked = 0 //1 means its locked inplace (this will be for sandbag MGs)
 	var/is_bursting = 0.
 	var/icon_full = "M56D" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
@@ -305,7 +305,7 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
 		var/obj/item/ammo_magazine/m56d/M = I
-		if(user.mind?.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
 			if(rounds)
 				to_chat(user, "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>")
 				return
@@ -344,7 +344,7 @@
 
 
 /obj/machinery/m56d_hmg/proc/create_bullet()
-	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber = new /obj/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 
 
@@ -401,7 +401,7 @@
 
 
 	if(load_into_chamber() == 1)
-		if(istype(in_chamber,/obj/item/projectile))
+		if(istype(in_chamber,/obj/projectile))
 			in_chamber.original_target = target
 			in_chamber.setDir(dir)
 			in_chamber.def_zone = pick("chest","chest","chest","head")

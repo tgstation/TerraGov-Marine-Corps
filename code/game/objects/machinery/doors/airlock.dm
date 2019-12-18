@@ -309,16 +309,6 @@
 								"<span class='notice'>You finish repairing the airlock.</span>")
 			update_icon()
 
-
-	else if(isscrewdriver(I))
-		if(no_panel)
-			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
-			return
-
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
-		update_icon()
-
 	else if(iswirecutter(I))
 		return attack_hand(user)
 
@@ -332,11 +322,11 @@
 		return
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -409,6 +399,21 @@
 
 	return TRUE
 
+/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/I)
+	. = ..()
+	if(no_panel)
+		to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
+		return
+
+	machine_stat ^= PANEL_OPEN
+	if(machine_stat & PANEL_OPEN)
+		to_chat(user, "<span class='notice'>You open [src]'s panel.</span>")
+		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1)
+	else
+		to_chat(user, "<span class='notice'>You close [src]'s panel.</span>")
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	update_icon()
+
 
 ///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
 //	if(C)
@@ -447,8 +452,8 @@
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.set_stunned(5)
-			M.set_knocked_down(5)
+			M.Stun(10 SECONDS)
+			M.Knockdown(10 SECONDS)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species

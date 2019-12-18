@@ -1927,18 +1927,18 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					H.job = change
 			if("skills")
 				var/list/skilltypes = subtypesof(/datum/skills)
-				var/list/skills = list()
+				var/list/skillnames = list()
 				for(var/i in skilltypes)
 					var/datum/skills/S = i
-					skills[initial(S.name)] = S
-				var/newskillset = input("Select a skillset.", "Edit Rank") as null|anything in sortList(skills)
-				if(!newskillset || !istype(H) || !H.mind)
+					skillnames[initial(S.name)] = S
+				var/newskillset = input("Select a skillset.", "Edit Rank") as null|anything in sortList(skillnames)
+				if(!newskillset)
 					return
-				var/pickedtype = skills[newskillset]
-				var/datum/skills/S = new pickedtype
-				previous = H.mind.cm_skills.name
-				change = S.name
-				H.mind.cm_skills = S
+				var/pickedtype = skillnames[newskillset]
+				var/datum/skills/S = pickedtype
+				previous = H.skills.name
+				change = initial(S.name)
+				H.skills = getSkillsType(pickedtype)
 			if("commstitle")
 				change = input("Input a comms title - \[Requisitions (Title)\]", "Edit Rank") as null|text
 				if(!change || !istype(H) || !H.mind)
@@ -2104,3 +2104,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
 		message_admins("[ADMIN_TPMONTY(usr)] changed [href_list["xeno"]] of [ADMIN_TPMONTY(X)] from [previous] to [change].")
+	else if(href_list["adminapproval"])
+		var/approval_id = href_list["adminapproval"] // Already text at this point
+		if(GLOB.admin_approvals[approval_id] != -1)
+			to_chat(usr, "<span class='warning'>That approval has already been answered with '[GLOB.admin_approvals[approval_id]]'</span>")
+			return
+		GLOB.admin_approvals[approval_id] = href_list["option"]
+		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")

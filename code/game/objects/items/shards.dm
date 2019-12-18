@@ -85,7 +85,7 @@
 					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
 					if(affecting.limb_status & LIMB_ROBOT)
 						return
-					H.knock_down(3)
+					H.Knockdown(60)
 					if(affecting.take_damage_limb(5))
 						UPDATEHEALTH(H)
 						H.UpdateDamageIcon()

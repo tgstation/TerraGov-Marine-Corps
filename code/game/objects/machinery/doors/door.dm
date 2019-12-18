@@ -72,10 +72,10 @@
 			bumpopen(M)
 		return
 
-	if(istype(AM, /obj))
+	if(isobj(AM))
 		var/obj/O = AM
-		if(O.buckled_mob)
-			Bumped(O.buckled_mob)
+		for(var/m in O.buckled_mobs)
+			Bumped(m)
 
 	if(istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/bot = AM

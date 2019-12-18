@@ -631,7 +631,7 @@
 	if(!wearer)
 		camo_off()
 		return
-	else if(wearer.stat == DEAD)
+	else if(wearer.stat != CONSCIOUS)
 		camo_off(wearer)
 		return
 

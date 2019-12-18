@@ -66,10 +66,11 @@
 		var/obj/item/I = AM
 		if(I.flags_item & ITEM_ABSTRACT)
 			return
-		else if(istype(AM, /obj/item/projectile))
-			var/obj/item/projectile/P = AM
-			if(P.original_target != parent)
-				return
+
+	if(istype(AM, /obj/projectile))
+		var/obj/projectile/P = AM
+		if(P.original_target != parent)
+			return
 
 	if(isobserver(AM))
 		return

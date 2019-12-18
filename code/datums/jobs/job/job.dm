@@ -45,11 +45,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/exp_type_department = ""
 
 	var/outfit = null
-	var/skills_type = null
+	var/skills_type = /datum/skills
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
-
+	
+	var/larvaworth = 0
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))
@@ -106,8 +107,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	L.faction = faction
 
 	if(skills_type)
-		var/datum/skills/S = new skills_type
-		L.mind.cm_skills = S
+		L.skills = getSkillsType(skills_type)
 
 	if(!ishuman(L))
 		return TRUE

@@ -15,12 +15,6 @@
 	if(no_stun)//anti-chainstun flag for alien tackles
 		no_stun = max(0, no_stun - 1) //decrement by 1.
 
-	if(confused)
-		confused = max(0, confused - 1)
-
-	handle_stunned()
-	handle_knocked_down()
-	handle_knocked_out()
 	handle_drugged()
 	handle_stuttering()
 	handle_slurring()
@@ -29,20 +23,6 @@
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0
-
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		adjust_stunned(-1)
-		if(!stunned && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return stunned
-
-/mob/living/proc/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-1)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-		if(!knocked_down && !no_stun) //anti chain stun
-			no_stun = ANTI_CHAINSTUN_TICKS //1 tick reprieve
-	return knocked_down
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
@@ -72,11 +52,6 @@
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)
 		return FALSE
-
-/mob/living/proc/handle_knocked_out()
-	if(knocked_out)
-		adjust_knockedout(-1)
-	return knocked_out
 
 /mob/living/proc/add_slowdown(amount)
 	return
@@ -108,6 +83,8 @@
 			qdel(embedded) //This should remove the object from the list via temporarilyRemoveItemFromInventory() => COMSIG_ITEM_DROPPED.
 		else
 			embedded.unembed_ourself() //This should remove the object from the list directly.
+	if(buckled)
+		buckled.unbuckle_mob(src, force = TRUE)
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
@@ -185,16 +162,28 @@
 
 
 /mob/living/Move(atom/newloc, direct)
-	if(buckled && buckled.loc != newloc) //not updating position
-		if(!buckled.anchored)
-			return buckled.Move(newloc, direct)
-		else
-			return FALSE
+	if(buckled)
+		if(buckled.loc != newloc) //not updating position
+			if(!buckled.anchored)
+				return buckled.Move(newloc, direct)
+			else
+				return FALSE
+	else if(lying)
+		if(direct & EAST)
+			lying = 90
+		else if(direct & WEST)
+			lying = 270
+		update_transform()
+		lying_prev = lying
 
 	. = ..()
 
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
-		pulledby.stop_pulling()
+	if(pulledby)
+		if(moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+			pulledby.stop_pulling()
+		else if(isliving(pulledby))
+			var/mob/living/living_puller = pulledby
+			living_puller.set_pull_offsets(src)
 
 	if(s_active && !(s_active in contents) && !CanReach(s_active))
 		s_active.close(src)
@@ -239,7 +228,8 @@
 	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
 	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
-	visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
+	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
+		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
 
 
@@ -249,38 +239,40 @@
 	if(cooldowns[COOLDOWN_RESIST])
 		return FALSE
 	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
-	visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
+	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
+		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
 
 
 /mob/living/resist_grab()
-	if(pulledby.grab_level)
-		if(++grab_resist_level >= pulledby.grab_level)
-			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
-			pulledby.stop_pulling()
-			grab_resist_level = 0 //zero it out.
-			return TRUE
-	else
+	if(!pulledby.grab_state)
 		grab_resist_level = 0 //zero it out.
 		pulledby.stop_pulling()
 		return TRUE
+	if(++grab_resist_level < pulledby.grab_state)
+		return FALSE
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
+		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
+	pulledby.stop_pulling()
+	grab_resist_level = 0 //zero it out.
+	return TRUE
 
 
 /mob/living/stop_pulling()
 	if(ismob(pulling))
+		reset_pull_offsets(pulling)
 		var/mob/M = pulling
-		grab_level = 0
 		if(M.client)
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away
 			M.client.move_delay = world.time
 		M.update_canmove()
 
-	if(isliving(pulling))
-		var/mob/living/L = pulling
-		L.grab_resist_level = 0 //zero it out
-		DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+		if(isliving(pulling))
+			var/mob/living/L = pulling
+			L.grab_resist_level = 0 //zero it out
+			DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 
 	. = ..()
 
@@ -577,26 +569,21 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
+	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
-		if(!lying)
+		if(buckled && buckled.buckle_lying != -1)
+			lying = buckled.buckle_lying //Might not actually be laying down, like with chairs, but the rest of the logic applies.
+		else if(!lying)
 			lying = pick(90, 270)
-	else
+	else if(lying)
 		lying = 0
-	if(buckled)
-		if(buckled.buckle_lying)
-			if(!lying)
-				lying = 90
-		else
-			lying = 0
 
-	set_canmove(!(stunned || frozen || laid_down))
+	set_canmove(!(IsStun() || frozen || laid_down))
 
 	if(lying)
 		density = FALSE
-		drop_l_hand()
-		drop_r_hand()
+		drop_all_held_items()
 	else
 		density = TRUE
 
@@ -667,7 +654,7 @@ below 100 is not dizzy
 
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(mind?.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED)
+	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
 		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
@@ -689,6 +676,47 @@ below 100 is not dizzy
 				holding = "They are holding \a [r_hand]"
 		holding += "."
 	return "You can also see [src] on the photo[health < (maxHealth * 0.75) ? ", looking a bit hurt" : ""][holding ? ". [holding]" : "."]"
+
+
+/mob/living/proc/set_pull_offsets(mob/living/pulled_mob)
+	if(pulled_mob.buckled)
+		return //don't make them change direction or offset them if they're buckled into something.
+	if(pulled_mob.loc == loc)
+		reset_pull_offsets(pulled_mob)
+		return
+	var/offset = 0
+	switch(grab_state)
+		if(GRAB_PASSIVE)
+			offset = GRAB_PIXEL_SHIFT_PASSIVE
+		if(GRAB_AGGRESSIVE)
+			offset = GRAB_PIXEL_SHIFT_AGGRESSIVE
+		if(GRAB_NECK)
+			offset = GRAB_PIXEL_SHIFT_NECK
+		if(GRAB_KILL)
+			offset = GRAB_PIXEL_SHIFT_NECK
+	pulled_mob.setDir(get_dir(pulled_mob, src))
+	switch(pulled_mob.dir)
+		if(NORTH)
+			animate(pulled_mob, pixel_x = 0, pixel_y = offset, 0.3 SECONDS)
+		if(SOUTH)
+			animate(pulled_mob, pixel_x = 0, pixel_y = -offset, 0.3 SECONDS)
+		if(EAST)
+			if(pulled_mob.lying == 270) //update the dragged dude's direction if we've turned
+				pulled_mob.lying = 90
+				pulled_mob.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
+				pulled_mob.lying_prev = pulled_mob.lying
+			animate(pulled_mob, pixel_x = offset, pixel_y = 0, 0.3 SECONDS)
+		if(WEST)
+			if(pulled_mob.lying == 90)
+				pulled_mob.lying = 270
+				pulled_mob.update_transform()
+				pulled_mob.lying_prev = pulled_mob.lying
+			animate(pulled_mob, pixel_x = -offset, pixel_y = 0, 0.3 SECONDS)
+
+/mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
+	if(!override && pulled_mob.buckled)
+		return
+	animate(pulled_mob, pixel_x = 0, pixel_y = 0, 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
@@ -718,11 +746,11 @@ below 100 is not dizzy
 	. = ..()
 	switch(var_name)
 		if("knockdown")
-			set_knocked_down(var_value)
+			SetKnockdown(var_value)
 		if("stun")
-			set_stunned(var_value)
+			SetStun(var_value)
 		if("sleeping")
-			set_sleeping(var_value)
+			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")

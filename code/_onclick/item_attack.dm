@@ -1,5 +1,7 @@
 /obj/item/proc/melee_attack_chain(mob/user, atom/target, params)
-	if(tool_attack_chain(user, target))
+	if(preattack(target, user, params))
+		return
+	if(tool_behaviour && tool_attack_chain(user, target))
 		return
 	// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 	var/resolved = target.attackby(src, user, params)
@@ -7,14 +9,31 @@
 		return
 	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
-
+//Called before any other attack proc.
+/obj/item/proc/preattack(atom/target, mob/user, params)
+	return FALSE
 
 //Checks if the item can work as a tool, calling the appropriate tool behavior on the target
 /obj/item/proc/tool_attack_chain(mob/user, atom/target)
-	if(!tool_behaviour)
-		return FALSE
-
-	return target.tool_act(user, src, tool_behaviour)
+	switch(tool_behaviour)
+		if(TOOL_CROWBAR)
+			return target.crowbar_act(user, src)
+		if(TOOL_MULTITOOL)
+			return target.multitool_act(user, src)
+		if(TOOL_SCREWDRIVER)
+			return target.screwdriver_act(user, src)
+		if(TOOL_WRENCH)
+			return target.wrench_act(user, src)
+		if(TOOL_WIRECUTTER)
+			return target.wirecutter_act(user, src)
+		if(TOOL_WELDER)
+			return target.welder_act(user, src)
+		if(TOOL_WELD_CUTTER)
+			return target.weld_cut_act(user, src)
+		if(TOOL_ANALYZER)
+			return target.analyzer_act(user, src)
+		if(TOOL_FULTON)
+			return target.fulton_act(user, src)
 
 
 // Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
@@ -54,17 +73,45 @@
 	return O.attacked_by(src, user)
 
 
-/atom/movable/proc/attacked_by()
+/atom/movable/proc/attacked_by(obj/item/I, mob/living/user, def_zone)
 	return FALSE
 
 
-/obj/attacked_by(obj/item/I, mob/living/user)
-	if(!I.force)
-		return FALSE
+/obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
 		"<span class='warning'>You hit [src] with [I]!</span>")
 	log_combat(user, src, "attacked", I)
 	take_damage(I.force, I.damtype, "melee")
+	return TRUE
+
+
+/mob/living/attacked_by(obj/item/I, mob/living/user, def_zone)
+	var/message_verb = "attacked"
+	if(LAZYLEN(I.attack_verb))
+		message_verb = pick(I.attack_verb)
+	var/message_hit_area
+	if(def_zone)
+		message_hit_area = " in the [def_zone]"
+	var/attack_message = "[src] is [message_verb][message_hit_area] with [I]!"
+	var/attack_message_local = "You're [message_verb][message_hit_area] with [I]!"
+	if(user in viewers(src, null))
+		attack_message = "[user] [message_verb] [src][message_hit_area] with [I]!"
+		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I]!"
+
+	user.do_attack_animation(src, used_item = src)
+
+	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
+
+	switch(I.damtype)
+		if(BRUTE)
+			apply_damage(power, BRUTE, user.zone_selected, get_living_armor("melee", user.zone_selected))
+		if(BURN)
+			if(apply_damage(power, BURN, user.zone_selected, get_living_armor("fire", user.zone_selected)))
+				attack_message_local = "[attack_message_local] It burns!"
+
+	visible_message("<span class='danger'>[attack_message]</span>",
+		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
+	UPDATEHEALTH(src)
 	return TRUE
 
 
@@ -86,9 +133,9 @@
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
-		return
+		return FALSE
 	if(SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, src) & COMPONENT_ITEM_NO_ATTACK)
-		return
+		return FALSE
 
 	if(flags_item & NOBLUDGEON)
 		return FALSE
@@ -96,51 +143,23 @@
 	if(M.can_be_operated_on() && do_surgery(M,user,src)) //Checks if mob is lying down on table for surgery
 		return FALSE
 
-	/////////////////////////
+	if(!force)
+		return FALSE
+
+	if(!prob(user.melee_accuracy))
+		user.do_attack_animation(M)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
+		if(user in viewers(COMBAT_MESSAGE_RANGE, M))
+			M.visible_message("<span class='danger'>[user] misses [M] with \the [src]!</span>",
+				"<span class='userdanger'>[user] missed us with \the [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+		else
+			M.visible_message("<span class='avoidharm'>\The [src] misses [M]!</span>",
+				"<span class='avoidharm'>\The [src] narrowly misses you!</span>", null, COMBAT_MESSAGE_RANGE)
+		log_combat(user, M, "attacked", src, "(missed) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+		return FALSE
 
 	log_combat(user, M, "attacked", src, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 
-	/////////////////////////
-
-	var/power = force
-
-	if(user.mind && user.mind.cm_skills)
-		power = round(power * (1 + 0.3*user.mind.cm_skills.melee_weapons)) //30% bonus per melee level
-
-	if(!ishuman(M))
-		var/showname = "."
-		if(user)
-			showname = " by [user]."
-		if(!(user in viewers(M, null)))
-			showname = "."
-
-		var/used_verb = "attacked"
-		if(LAZYLEN(attack_verb))
-			used_verb = pick(attack_verb)
-		user.visible_message("<span class='danger'>[M] has been [used_verb] with [src][showname].</span>",
-			"<span class='danger'>You attack [M] with [src].</span>", null, 5)
-
-		if(!prob(user.melee_accuracy))
-			user.do_attack_animation(M)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
-			user.visible_message("<span class='danger'>[user] misses [M] with \the [src]!</span>", null, null, 5)
-			return FALSE
-
-		user.do_attack_animation(M, used_item = src)
-
-		if(hitsound)
-			playsound(loc, hitsound, 25, TRUE)
-		switch(damtype)
-			if("brute")
-				M.apply_damage(power, BRUTE, user.zone_selected, M.get_living_armor("melee", user.zone_selected))
-			if("fire")
-				if(M.apply_damage(power, BURN, user.zone_selected, M.get_living_armor(damtype, user.zone_selected)))
-					to_chat(M, "<span class='warning'>It burns!</span>")
-		UPDATEHEALTH(M)
-	else
-		var/mob/living/carbon/human/H = M
-		var/hit = H.attacked_by(src, user)
-		if (hit && hitsound)
-			playsound(loc, hitsound, 25, TRUE)
-		return hit
-	return TRUE
+	. = M.attacked_by(src, user)
+	if(. && hitsound)
+		playsound(loc, hitsound, 25, TRUE)

@@ -21,7 +21,7 @@ mob/living/carbon/proc/dream()
 		for(var/i = rand(1,4),i > 0, i--)
 			to_chat(src, "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>")
 			sleep(rand(40,70))
-			if(knocked_out <= 0)
+			if(!IsUnconscious())
 				dreaming = 0
 				return 0
 		dreaming = 0

@@ -110,6 +110,9 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		if(!broken && !burnt)
 			if(!(icon_state in list("grass1", "grass2", "grass3", "grass4")))
 				icon_state = "grass[pick("1", "2", "3", "4")]"
+		shoefootstep = FOOTSTEP_GRASS
+		barefootstep = FOOTSTEP_GRASS
+		mediumxenofootstep = FOOTSTEP_GRASS
 	else if(is_carpet_floor())
 		if(!broken && !burnt)
 			if(icon_state != "carpetsymbol")
@@ -153,11 +156,17 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 							diagonalconnect |= 8
 
 				icon_state = "carpet[connectdir]-[diagonalconnect]"
+		shoefootstep = FOOTSTEP_CARPET
+		barefootstep = FOOTSTEP_CARPET
+		mediumxenofootstep = FOOTSTEP_CARPET
 
 	else if(is_wood_floor())
 		if(!broken && !burnt)
 			if(!(icon_state in GLOB.wood_icons))
 				icon_state = "wood"
+		shoefootstep = FOOTSTEP_WOOD
+		barefootstep = FOOTSTEP_WOOD
+		mediumxenofootstep = FOOTSTEP_WOOD
 
 /turf/open/floor/return_siding_icon_state()
 	..()
@@ -346,7 +355,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	levelupdate()
 
 //This proc will make a turf into a wood floor. Fun eh? Insert the wood tile to be used as the argument
-//If no argument is given a new one will be made.
+//If no argument is given a new one will be made. SOMEONE FIX THIS COPYPASTE BULLSHIT!!
 /turf/open/floor/proc/make_wood_floor(obj/item/stack/tile/wood/T = null)
 	broken = 0
 	burnt = 0
@@ -524,7 +533,6 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			if(wet_overlay)
 				overlays -= wet_overlay
 				wet_overlay = null
-
 
 
 
