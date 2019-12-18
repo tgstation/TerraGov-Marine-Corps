@@ -62,9 +62,7 @@
 	var/list/results = list()
 	var/list/turfs_to_check = list()
 	turfs_to_check += center_turf
-	var/node_size = radius
-	while (node_size > 0)
-		node_size--
+	for(var/i = radius; i > 0; i--)
 		for(var/X in turfs_to_check)
 			var/turf/T = X
 			for(var/direction in directions)
