@@ -596,7 +596,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	aim_speed_mod = 0.6 //Extra slowdown when aiming
+	aim_speed_mod = 0.06 SECONDS //Extra slowdown when aiming
 	wield_delay_mod = 0.4 SECONDS
 	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
