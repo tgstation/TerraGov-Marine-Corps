@@ -334,6 +334,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
+/datum/keybinding/xeno/ravage
+	name = "ravage"
+	full_name = "Ravager: Ravage"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_RAVAGE
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
