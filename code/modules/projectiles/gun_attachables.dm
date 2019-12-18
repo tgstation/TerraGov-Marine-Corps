@@ -575,7 +575,7 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "autoloader_a"
 	accuracy_mod = -0.15
 	scatter_mod = 5
-	delay_mod = -1.25
+	delay_mod = -0.125 SECONDS
 	burst_mod = -1
 	accuracy_unwielded_mod = -0.22
 	scatter_unwielded_mod = 15
