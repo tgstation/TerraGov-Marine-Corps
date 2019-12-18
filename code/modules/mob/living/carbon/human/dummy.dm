@@ -80,3 +80,6 @@ GLOBAL_LIST_EMPTY(dummy_mob_list)
 	INVOKE_ASYNC(src, .proc/update_body)
 	INVOKE_ASYNC(src, .proc/restore_blood)
 	return TRUE
+
+/mob/living/carbon/human/dummy/hud_set_squad()
+	return
