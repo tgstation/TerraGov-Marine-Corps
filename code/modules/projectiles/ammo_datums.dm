@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "marksmen bullet"
+	name = "marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0
@@ -461,7 +461,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 
 	/datum/ammo/bullet/rifle/standard_dmr/incin
-	name = "incendiary marksmen bullet"
+	name = "incendiary marksman bullet"
 	hud_state = "hivelo_fire"
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
