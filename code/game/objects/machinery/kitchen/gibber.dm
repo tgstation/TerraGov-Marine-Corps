@@ -10,9 +10,9 @@
 	var/dirty = 0 // Does it need cleaning?
 	var/gibtime = 40 // Time from starting until meat appears
 	var/mob/living/occupant // Mob who has been put inside
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
-	active_power_usage = 500
+	active_power_usage = 1000
 
 
 /obj/machinery/gibber/Initialize()
@@ -114,7 +114,7 @@
 	if(!src.occupant)
 		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
 		return
-	use_power(1000)
+	use_power(active_power_usage)
 	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
 	src.operating = 1
 	update_icon()

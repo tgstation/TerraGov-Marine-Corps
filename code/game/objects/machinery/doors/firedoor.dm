@@ -21,6 +21,7 @@
 	power_channel = ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5
+	active_power_usage = 360
 
 	var/blocked = FALSE
 	var/lockdown = FALSE // When the door has detected a problem, it locks.
@@ -263,7 +264,7 @@
 		if(machine_stat & (BROKEN|NOPOWER))
 			return //needs power to open unless it was forced
 		else
-			use_power(360)
+			use_power(active_power_usage)
 	latetoggle()
 	return ..()
 

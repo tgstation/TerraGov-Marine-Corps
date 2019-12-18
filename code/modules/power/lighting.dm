@@ -136,7 +136,7 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = FLY_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -658,7 +658,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list

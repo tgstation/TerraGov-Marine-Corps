@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = FALSE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
 
 	var/obj/machinery/atmospherics/components/binary/circulator/circ1

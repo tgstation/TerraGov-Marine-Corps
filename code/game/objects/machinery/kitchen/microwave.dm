@@ -6,9 +6,9 @@
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	active_power_usage = 100
+	active_power_usage = 500
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -273,7 +273,7 @@
 	for (var/i=1 to seconds)
 		if (machine_stat & (NOPOWER|BROKEN))
 			return 0
-		use_power(500)
+		use_power(active_power_usage)
 		sleep(10)
 	return 1
 
