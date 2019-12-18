@@ -636,7 +636,7 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = 0.2 SECONDS
 	accuracy_mod = 0.05
 	accuracy_unwielded_mod = -0.05
-	aim_speed_mod = 0.4
+	aim_speed_mod = 0.04 SECONDS
 	zoom_offset = 5
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
