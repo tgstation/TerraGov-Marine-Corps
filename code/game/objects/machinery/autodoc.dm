@@ -52,7 +52,7 @@
 	var/obj/machinery/autodoc_console/connected
 
 	//It uses power
-	use_power = IDLE_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 120000 // It rebuilds you from nothing...
 
