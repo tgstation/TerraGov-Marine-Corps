@@ -51,8 +51,8 @@
 
 	var/obj/machinery/autodoc_console/connected
 
-	// It uses power
-	use_power = ACTIVE_POWER_USE
+	//It uses power
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 120000 // It rebuilds you from nothing...
 
@@ -907,7 +907,7 @@ obj/machinery/autodoc/Destroy()
 	anchored = TRUE //About time someone fixed this.
 	density = FALSE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	var/obj/item/radio/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack

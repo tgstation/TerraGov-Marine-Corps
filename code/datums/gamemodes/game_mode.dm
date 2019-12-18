@@ -720,6 +720,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	for(var/i in GLOB.human_mob_list)
 		var/mob/living/carbon/human/H = i
 		var/datum/job/job = SSjob.GetJob(H.job)
+		if(!job)
+			continue
 		if(H.stat == DEAD && !H.is_revivable())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
