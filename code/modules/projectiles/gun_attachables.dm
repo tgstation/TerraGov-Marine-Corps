@@ -343,7 +343,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
-	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure.\nHowever, this increase in velocity reduces tumbling, leading to slightly reduced damage."
+	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
 	slot = "muzzle"
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
