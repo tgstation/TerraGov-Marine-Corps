@@ -17,3 +17,6 @@
 	if(owner.action_busy)
 		return
 	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
+
+/datum/action/xeno_action/activable/transfer_plasma/drone	//Made a different one instead of changing the default to prevent balance mistakes
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
