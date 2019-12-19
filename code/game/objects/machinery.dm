@@ -29,12 +29,6 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/LateInitialize(mapload)
-	. = ..()
-	if(use_power >= IDLE_POWER_USE)
-		START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/Destroy()
