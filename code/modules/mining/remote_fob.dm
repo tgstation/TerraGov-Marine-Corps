@@ -96,6 +96,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 	. = ..()
 	user.lighting_alpha = 120
 	eyeobj.name = "Remote Construction Drone"
+	eyeobj.register_facedir_signals(user)
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 	
@@ -199,6 +200,7 @@ GLOBAL_LIST_INIT(blocked_remotebuild_objs, typecacheof(list(/obj/machinery/compu
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
+	eyeobj.unregister_facedir_signals(user)
 	return ..()
 
 /obj/machinery/computer/camera_advanced/remote_fob/check_eye(mob/living/user)
