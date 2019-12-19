@@ -22,8 +22,10 @@
 	if(mob && iscarbon(mob) && atom_to_walk_to)
 		distances_to_maintain[mob] = distance_to_maintain
 		atoms_to_walk_to[mob] = atom_to_walk_to
+	else
+		return ELEMENT_INCOMPATIBLE //Not enough args provided or null args
 
 /datum/element/action_state/move_to_atom/Detach(mob/living/carbon/mob)
 	distances_to_maintain.Remove(mob)
 	atoms_to_walk_to.Remove(mob)
-	..()
+	. = ..()
