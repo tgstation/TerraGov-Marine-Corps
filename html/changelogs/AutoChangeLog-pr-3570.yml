@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "Increased autodocs power consumption, reduced max charge of smes."
