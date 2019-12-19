@@ -297,7 +297,7 @@
 						/obj/item/ammobox/m4a3ext = round(scale * 1),
 						/obj/item/ammo_magazine/pistol/extended = round(scale * 10),
 						/obj/item/ammo_magazine/pistol/incendiary = round(scale * 5),
-						/obj/item/ammo_magazine/rifle/standard_dmr/incendiary = round(scale * 5),
+						/obj/item/ammo_magazine/rifle/standard_dmr/incendiary = round(scale * 15),
 						/obj/item/ammo_magazine/pistol/m1911 = round(scale * 10),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
 						/obj/item/ammo_magazine/revolver/marksman = round(scale * 5),
