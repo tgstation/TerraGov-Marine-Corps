@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - tweak: "how flame graphs are generated, they are now blocked by dense objects"
