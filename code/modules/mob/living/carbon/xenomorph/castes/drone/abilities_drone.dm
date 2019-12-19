@@ -46,7 +46,6 @@
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
 	patient.salve_healing()
-	patient.updatehealth()
 
 	owner.changeNext_move(CLICK_CD_RANGE)
 
