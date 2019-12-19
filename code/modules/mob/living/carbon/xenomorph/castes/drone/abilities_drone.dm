@@ -50,7 +50,7 @@
 
 	owner.changeNext_move(CLICK_CD_RANGE)
 
-	log_combat(owner, patient, "salved")	//Not sure how important this log is but leaving it in
+	log_combat(owner, patient, "acid salved")	//Not sure how important this log is but leaving it in
 
 	succeed_activate()
 	add_cooldown()
