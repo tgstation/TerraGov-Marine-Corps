@@ -831,6 +831,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
+		mind.current.med_hud_set_status()
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
 
