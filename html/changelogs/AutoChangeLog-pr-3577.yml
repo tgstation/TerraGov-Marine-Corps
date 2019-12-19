@@ -1,0 +1,7 @@
+author: "David-Stormwell"
+delete-after: True
+changes: 
+  - rscadd: "Added DMR incendiary ammo and tweaked the DMR's rail attachment offsets"
+  - balance: "Buffed most T Series wield delays"
+  - balance: "More Survivor guns have more raillight additions to slap on"
+  - imageadd: "Incendiary DMR magazine"

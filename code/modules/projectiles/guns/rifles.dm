@@ -122,7 +122,7 @@
     burst_delay = 0.15 SECONDS
     accuracy_mult = 1.15
     scatter = -10
-    wield_delay = 1.0 SECONDS
+    wield_delay = 0.7 SECONDS
     burst_amount = 3
     aim_slowdown = 0.5
     damage_falloff_mult = 0.5
@@ -142,8 +142,8 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
-	aim_slowdown = 0.75
-	wield_delay = 1.0 SECONDS
+	aim_slowdown = 0.05 SECONDS
+	wield_delay = 0.7 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -158,6 +158,7 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
+						/obj/item/attachable/gyro,
 						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
@@ -170,10 +171,10 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 1 SECONDS
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
 	scatter = -15
 	burst_amount = 1
@@ -563,4 +564,3 @@
 
 	fire_delay = 0.7 SECONDS
 	burst_amount = 1
-
