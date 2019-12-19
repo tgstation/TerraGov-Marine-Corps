@@ -2,26 +2,39 @@
 
 /datum/element/action_state/move_to_atom
 	var/list/distances_to_maintain = list() //Distance we want to maintain from atom and send signals once distance has been maintained
-	var/list/atoms_to_walk_to = list()
+	var/list/atoms_to_walk_to = list() //All the targets some mobs gotta move to
+	var/list/stutter_step_prob = list() //The prob() chance of a mob going left or right when distance is maintained with the target
 	var/move_delay //Placeholder variable used to store the current move_delay via movement_delay(), saves cpu from not needing duplicate calls
 
 /datum/element/action_state/move_to_atom/process()
 	for(var/mob/living/carbon/mob in distances_to_maintain)
 		if(get_dist(mob, atoms_to_walk_to[mob]) == distances_to_maintain[mob])
-			SEND_SIGNAL(mob, COMSIG_MOB_TARGET_REACHED)
+			move_delay = mob.cached_multiplicative_slowdown
+			if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown)
+				continue
+			if(prob(stutter_step_prob[mob]))
+				mob.Move(get_turf(pick(LeftAndRightOfDir(get_dir(mob, atoms_to_walk_to[mob])))))
+			if(istype(atoms_to_walk_to[mob], /obj/effect/ai_node))
+				SEND_SIGNAL(mob, FINISHED_NODE_MOVE)
+			if(istype(atoms_to_walk_to[mob], /mob/living))
+				SEND_SIGNAL(mob, COMSIG_AI_DO_ACTION)
 			continue
-		move_delay = mob.cached_multiplicative_slowdown
-		if(world.time <= mob.last_move_time + move_delay)
+		if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown)
 			continue
 		else
 			mob.Move(get_step_to(mob, atoms_to_walk_to[mob], distances_to_maintain[mob]))
 			mob.last_move_time = world.time
 
-/datum/element/action_state/move_to_atom/Attach(mob/living/carbon/mob, atom/atom_to_walk_to, distance_to_maintain = 0)
+//mob: the mob that's getting the action state
+//atom_to_walk_to: target to move to
+//distance to maintain: mob will try to be at this distance away from the atom to walk to
+//stutter_step: a prob() chance to go left or right of the mob's direction towards the target when distance has been maintained
+/datum/element/action_state/move_to_atom/Attach(mob/living/carbon/mob, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
 	. = ..()
 	if(mob && iscarbon(mob) && atom_to_walk_to)
 		distances_to_maintain[mob] = distance_to_maintain
 		atoms_to_walk_to[mob] = atom_to_walk_to
+		stutter_step_prob[mob] = stutter_step
 	else
 		return ELEMENT_INCOMPATIBLE //Not enough args provided or null args
 
