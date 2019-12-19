@@ -65,7 +65,7 @@
 //-------------------------------------------------------
 //T64 DMR
 
-/obj/item/ammo_magazine/rifle/standard_dmr
+    /obj/item/ammo_magazine/rifle/standard_dmr
 	name = "\improper T-64 DMR magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
 	caliber = "10x27mm caseless"
@@ -78,10 +78,10 @@
 	/obj/item/ammo_magazine/rifle/standard_dmr/incendiary
 	name = "\improper T-64 DMR incendiary magazine (10x27mm)"
 	desc = "A 10mm incendiary DMR magazine."
-	caliber = "10x27mm caseless"
+	caliber = "10x27mm incendiary caseless"
 	icon_state = "t64_incin"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incin
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 

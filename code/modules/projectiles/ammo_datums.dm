@@ -460,7 +460,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	scatter = -15
 	penetration = 15
 
-	/datum/ammo/bullet/rifle/standard_dmr/incin
+	/datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
 	hud_state = "hivelo_fire"
 	hud_state_empty = "hivelo_empty"
