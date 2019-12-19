@@ -426,7 +426,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
 		
-	if(!(MG.type == magazine_type))
+	if(MG.type != magazine_type)
 		to_chat(user,"<span class='warning'>That's not the right kind of magazine.</span>")
 		return
 
