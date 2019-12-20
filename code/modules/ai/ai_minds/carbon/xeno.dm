@@ -40,4 +40,6 @@
 
 /datum/ai_mind/carbon/xeno/attack_target()
 	if(world.time < mob_parent.next_move)
-		atom_to_walk_to.attack_alien(mob_parent, force_intent = INTENT_HARM)
+		var/mob/living/carbon/xenomorph/xeno = mob_parent
+		atom_to_walk_to.attack_alien(xeno, force_intent = INTENT_HARM)
+		xeno.changeNext_move(xeno.xeno_caste.attack_delay)
