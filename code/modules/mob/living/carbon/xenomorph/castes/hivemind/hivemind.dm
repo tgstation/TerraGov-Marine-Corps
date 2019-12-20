@@ -46,6 +46,23 @@
 		return FALSE
 	forceMove(NewLoc)
 
+/mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
+	var/track =  "<a href='?src=[REF(src)];hivemind_jump=[REF(X)]'>(F)</a>"
+	show_message("[track] [X.hivemind_start()] <span class='message'>hisses, '[message]'</span>[X.hivemind_end()]", 2)
+
+/mob/living/carbon/xenomorph/hivemind/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+	if(href_list["hivemind_jump"])
+		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
+		if(!istype(xeno))
+			return
+		var/obj/effect/alien/weeds/nearby_weed = locate() in range("3x3", get_turf(xeno))
+		if(!istype(nearby_weed))
+			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
+			return
+		forceMove(get_turf(nearby_weed))
 
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
@@ -54,10 +71,12 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
-	return FALSE
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
+	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/RangedAttack(atom/A, params)
-	return FALSE
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
+	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/add_typing_indicator()
 	return FALSE

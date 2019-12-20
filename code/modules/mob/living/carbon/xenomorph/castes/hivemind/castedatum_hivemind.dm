@@ -17,7 +17,7 @@
 	speed = -2
 
 	// *** Plasma *** //
-	plasma_max = 100 //  75 is the cost of plant_weeds
+	plasma_max = 150 //  75 is the cost of plant_weeds
 	plasma_gain = 15 // This is 1 weed every 10 secs.
 
 	// *** Health *** //
@@ -27,12 +27,12 @@
 	evolution_threshold = 180
 	upgrade_threshold = 100
 
-	deevolves_to = /mob/living/carbon/xenomorph/larva
+	deevolves_to = null
 
 	evolves_to = list()
 
 	// *** Flags *** //
-	caste_flags = NONE
+	caste_flags = CASTE_INNATE_PLASMA_REGEN
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -50,7 +50,6 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/watch_xeno,
 		)
 
 /datum/xeno_caste/hivemind/young
@@ -72,6 +71,11 @@
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/psychic_cure,
+		)
 
 
 /datum/xeno_caste/hivemind/elder
@@ -94,7 +98,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		)
@@ -120,7 +124,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/watch_xeno,
+		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/toggle_pheromones,

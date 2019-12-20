@@ -21,6 +21,16 @@
 
 	A.attack_larva(src)
 
-
 /atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
+	return
+
+
+
+/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
+	if(lying)
+		return FALSE
+
+	A.attack_hivemind(src)
+
+/atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/L)
 	return
