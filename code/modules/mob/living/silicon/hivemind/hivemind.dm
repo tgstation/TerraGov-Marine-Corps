@@ -1,55 +1,20 @@
-/mob/living/silicon/hivemind
+/mob/living/silicon/ai/hivemind
 	name = "hivemind"
 	verb_say = "states"
 	verb_ask = "ponders"
 	verb_exclaim = "declares"
 	verb_yell = "exclaims"
-	icon = 'icons/mob/AI.dmi'
-	icon_state = "ai"
-	anchored = TRUE
-	density = TRUE
-	canmove = FALSE
-	job = "AI"
-	status_flags = CANSTUN|CANKNOCKOUT
-	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
-	hud_type = /datum/hud/ai
-	buckle_flags = NONE
+
+	available_networks = list("xeno")
+	var/default_network = "xeno"
 
 	var/datum/hive_status/hive
 
-	var/default_network = "xeno"
-	var/list/available_networks = list("xeno")
-	var/obj/effect/alien/weeds/node/current
 
-	var/mob/camera/aiEye/eyeobj
-	var/sprint = 10
-	var/cooldown = 0
-	var/acceleration = FALSE
-
-	var/multicam_on = FALSE
-	var/obj/screen/movable/pic_in_pic/ai/master_multicam
-	var/list/multicam_screens = list()
-	var/list/all_eyes = list()
-	var/max_multicams = 6
-
-	var/tracking = FALSE
-	var/last_paper_seen = 0
-	var/last_announcement = 0
-
-	var/icon/holo_icon //Default is assigned when AI is created.
-	var/list/datum/AI_Module/current_modules = list()
-
-	var/level_locked = TRUE
-	var/control_disabled = FALSE
-	var/radiomod = ";"
-	var/list/laws
-
-	var/list/effect/alien/weeds/node/lit_cameras = list()
-
-	var/datum/trackable/track
-
-/mob/living/silicon/hivemind/Initialize(mapload, ...)
+/mob/living/silicon/ai/hivemind/Initialize(mapload, ...)
 	. = ..()
+
+	new /obj/effect/alien/weeds/node/strong(loc)
 
 	track = new(src)
 	builtInCamera = new(src)
@@ -61,13 +26,13 @@
 
 	GLOB.ai_list += src
 
-/mob/living/silicon/hivemind/Destroy()
+/mob/living/silicon/ai/hivemind/Destroy()
 	GLOB.ai_list -= src
 	QDEL_NULL(builtInCamera)
 	QDEL_NULL(track)
 	return ..()
 
-/mob/living/silicon/hivemind/Topic(href, href_list)
+/mob/living/silicon/ai/hivemind/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -98,7 +63,7 @@
 		// ai_actual_track(pick(target))
 
 
-/mob/living/silicon/hivemind/proc/switchCamera(obj/effect/alien/weeds/node/C)
+/mob/living/silicon/ai/hivemind/proc/switchCamera(obj/effect/alien/weeds/node/C)
 	if(QDELETED(C))
 		return FALSE
 
@@ -113,11 +78,11 @@
 	return TRUE
 
 
-/mob/living/silicon/hivemind/proc/camera_visibility(mob/camera/aiEye/moved_eye)
+/mob/living/silicon/ai/hivemind/proc/camera_visibility(mob/camera/aiEye/moved_eye)
 	GLOB.xenonet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
 
 
-/mob/living/silicon/hivemind/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
+/mob/living/silicon/ai/hivemind/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
 	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
 	var/start = "Relayed Speech: "
 	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
@@ -136,7 +101,7 @@
 	show_message(rendered, 2)
 
 
-/mob/living/silicon/hivemind/reset_perspective(atom/A)
+/mob/living/silicon/ai/hivemind/reset_perspective(atom/A)
 	if(istype(A, /obj/effect/alien/weeds/node))
 		current = A
 	if(client)
@@ -162,7 +127,7 @@
 			clear_fullscreen("remote_view", 0)
 
 
-/mob/living/silicon/hivemind/Stat()
+/mob/living/silicon/ai/hivemind/Stat()
 	. = ..()
 
 	if(statpanel("Game"))
@@ -174,7 +139,7 @@
 		stat("System integrity:", "[(health + 100) / 2]%")
 
 
-/mob/living/silicon/hivemind/fully_replace_character_name(oldname, newname)
+/mob/living/silicon/ai/hivemind/fully_replace_character_name(oldname, newname)
 	. = ..()
 
 	if(oldname == newname)
@@ -185,7 +150,7 @@
 
 
 
-/mob/living/silicon/hivemind/can_interact_with(datum/D)
+/mob/living/silicon/ai/hivemind/can_interact_with(datum/D)
 	return FALSE
 	if(!isatom(D))
 		return FALSE
@@ -199,21 +164,21 @@
 
 
 /* Resistances */
-/mob/living/silicon/hivemind/restrained(ignore_checks)
+/mob/living/silicon/ai/hivemind/restrained(ignore_checks)
 	return FALSE
 
 
-/mob/living/silicon/hivemind/incapacitated(ignore_restrained, restrained_flags)
+/mob/living/silicon/ai/hivemind/incapacitated(ignore_restrained, restrained_flags)
 	if(control_disabled)
 		return TRUE
 	return ..()
 
 
-/mob/living/silicon/hivemind/resist()
+/mob/living/silicon/ai/hivemind/resist()
 	return
 
 
-/mob/living/silicon/hivemind/emp_act(severity)
+/mob/living/silicon/ai/hivemind/emp_act(severity)
 	. = ..()
 
 	if(prob(30))

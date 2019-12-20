@@ -43,7 +43,6 @@
 	var/fake_zlevel // for multilevel maps in the same z level
 
 	var/list/cameras
-	var/list/nodes
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
 	var/air_doors_activated = FALSE
 	var/list/ambience = list('sound/ambience/ambigen1.ogg', 'sound/ambience/ambigen3.ogg', 'sound/ambience/ambigen4.ogg', \

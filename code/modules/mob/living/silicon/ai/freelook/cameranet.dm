@@ -1,11 +1,9 @@
 #define CHUNK_SIZE 16 // Only chunk sizes that are to the power of 2. E.g: 2, 4, 8, 16, etc..
 
-GLOBAL_DATUM_INIT(xenonet, /datum/cameranet, new("xeno"))
 GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 /datum/cameranet
 	var/name = "Camera Net" // Name to show for VV and stat()
-	var/netType // Use to determine different networks
 
 	// The cameras on the map, no matter if they work or not. Updated in obj/machinery/camera.dm by New() and Del().
 	var/list/cameras = list()
@@ -25,8 +23,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/image/obscured_transparent
 
 
-/datum/cameranet/New(var/netType = "camera")
-	src.netType = netType
+/datum/cameranet/New()
 	vis_contents_opaque = new /obj/effect/overlay/camera_static()
 	vis_contents_transparent = new /obj/effect/overlay/camera_static/transparent()
 	vis_contents_objects = list(vis_contents_opaque, vis_contents_transparent)
@@ -53,7 +50,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/key = "[x],[y],[z]"
 	. = chunks[key]
 	if(!.)
-		chunks[key] = . = new /datum/camerachunk(x, y, z, name)
+		chunks[key] = . = new /datum/camerachunk(x, y, z)
 
 
 // Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
@@ -124,27 +121,19 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 
 // Removes a camera from a chunk.
-/datum/cameranet/proc/removeCamera(atom/a)
+/datum/cameranet/proc/removeCamera(obj/machinery/camera/c)
 	majorChunkChange(a, 0)
 
 
 // Add a camera to a chunk.
-/datum/cameranet/proc/addCamera(atom/a)
-	if(!istype(a, /obj/machinery/camera))
-		majorChunkChange(a, 1)
-		return
-	var/obj/machinery/camera/cam = a
-	if(cam.can_use())
+/datum/cameranet/proc/addCamera(obj/machinery/camera/c)
+	if(c.can_use())
 		majorChunkChange(cam, 1)
 
 
 // Used for portable cameras. Since they can be in ANY chunk.
-/datum/cameranet/proc/updatePortableCamera(atom/a)
-	if(!istype(a, /obj/machinery/camera))
-		majorChunkChange(a, 1)
-		return
-	var/obj/machinery/camera/cam = a
-	if(cam.can_use())
+/datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
+	if(c.can_use())
 		majorChunkChange(cam, 1)
 
 

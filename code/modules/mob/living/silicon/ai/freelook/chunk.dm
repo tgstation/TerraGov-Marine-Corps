@@ -59,12 +59,12 @@
 /datum/camerachunk/proc/update()
 	var/list/newVisibleTurfs = list()
 
-	for(var/camera in cameras)
-		if(istype(camera, /obj/machinery/camera))
-			var/obj/machinery/camera/c = camera
-			if(!c)
+	for(var/c in cameras)
+		if(istype(c, /obj/machinery/camera))
+			var/obj/machinery/camera/cam = c
+			if(!cam)
 				continue
-			if(!c.can_use())
+			if(!cam.can_use())
 				continue
 
 		var/turf/point = locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)

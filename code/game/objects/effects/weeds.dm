@@ -125,17 +125,16 @@
 	name = "purple sac"
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
-	var/node_range = NODERANGE
 	max_integrity = 60
-
-	var/node_turfs = list() // list of all potential turfs that we can expand to
-
 	ignore_weed_destruction = TRUE
+	var/obj/machinery/camera/xenocam/cam
+	var/node_range = NODERANGE
+	var/node_turfs = list() // list of all potential turfs that we can expand to
 
 /obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
 	. = ..()
-	GLOB.xenonet.cameras += src
-	GLOB.xenonet.addCamera(src)
+	cam = new(loc)
+
 
 /obj/effect/alien/weeds/node/strong
 	name = "strong purple sac"
