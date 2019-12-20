@@ -22,9 +22,9 @@
 		return possiblenodes[2]
 
 //Returns a list of humans via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_humans_near(source, distance)
+/proc/cheap_get_humans_near(atom/source, distance)
 	var/list/listofhuman = list() //All humans in range
-	for(var/human in GLOB.alive_human_list)
-		if(get_dist(source, human) <= distance)
+	for(var/atom/human in GLOB.alive_human_list)
+		if(source.z == human.z && get_dist(source, human) <= distance)
 			listofhuman += human
 	return listofhuman

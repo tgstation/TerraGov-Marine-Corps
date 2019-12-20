@@ -447,8 +447,8 @@
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
 // All signals a ai component can intercept from a action state if they wish to act upon it
-#define COMSIG_FINISHED_NODE_MOVE "finished moving to node" //We finished moving to a node
-#define COMSIG_AI_DO_ACTION "requesting ai mind to determine action" //Tell the component to request an action to be done by the ai mind
+#define COMSIG_CLOSE_TO_NODE "distance maintained with a node" //We're close to a node, this usually means we finished traveling to it
+#define COMSIG_CLOSE_TO_MOB "distance maintained with a mob" //We maintained distance with a mob target, usually this means we're gonna attack it now
 
 /*******Non-Signal Component Related Defines*******/
 

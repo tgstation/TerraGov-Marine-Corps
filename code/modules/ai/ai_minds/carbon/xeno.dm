@@ -1,25 +1,43 @@
 //Generic ai mind, goes around attacking but with the alien attack proc instead of carbon fist
 /datum/ai_mind/carbon/xeno
-	starting_signals = list(COMSIG_XENOMORPH_TAKING_DAMAGE = /datum/component/ai_behavior/proc/do_action,
-							COMSIG_MOB_TARGET_REACHED = /datum/component/ai_behavior/proc/do_action)
 
-
-/datum/ai_mind/carbon/xeno/request_action(mob/living/parent)
-	if(istype(atom_to_walk_to, /mob/living/carbon) &&  parent.next_move < world.time && get_dist(parent, atom_to_walk_to) <= 1)
-		return(list(atom_to_walk_to, /mob/living/attack_alien, list(parent)))
-
-/datum/ai_mind/carbon/xeno/get_new_state(reason_for, mob/living/parent)
-	for(var/mob/living/carbon/human/h in cheap_get_humans_near(h, 7))
+//Returns a list of things we can walk to and attack to death
+/datum/ai_mind/carbon/xeno/get_targets()
+	var/list/return_result = list()
+	for(var/mob/living/carbon/human/h in cheap_get_humans_near(mob_parent, 7))
 		if(h && h.stat != DEAD)
-			atom_to_walk_to = h
+			return_result += h
+	return return_result
+
+/datum/ai_mind/carbon/xeno/get_new_state(reason_for)
+	if(reason_for == REASON_TARGET_KILLED || reason_for == REASON_FINISHED_NODE_MOVE)
+		var/list/potential_targets = get_targets() //Define here as if there's targets we don't need to redundently call the get targets
+		if(length(potential_targets)) //There's alive humans nearby, time to kill
+			atom_to_walk_to = pick(potential_targets)
 			cur_action_state = /datum/element/action_state/move_to_atom
-			return list(cur_action_state, atom_to_walk_to, distance_to_maintain, stutter_step = 25)
+			return list(cur_action_state, atom_to_walk_to, distance_to_maintain, 75)
+		else //No targets, let's just randomly move to nodes
+			return ..()
+	else //We didn't arrive to a node and we didn't recently kill a target, chances are reason_for is null so let parent handle it
+		return ..()
 
-	return ..()
-	/*
-	if(!reason_for || reason_for == COMSIG_FINISHED_NODE_MOVE) //AI mind got initialized or something messed up
-		atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
-		cur_action_state = /datum/element/action_state/move_to_atom
-		return list(cur_action_state, atom_to_walk_to, distance_to_maintain)
-	*/
+/datum/ai_mind/carbon/xeno/get_signals_to_reg()
+	if(istype(atom_to_walk_to, /mob/living/carbon/human))
+		return list(
+				list(mob_parent, COMSIG_CLOSE_TO_MOB, /datum/component/ai_behavior/.proc/mind_attack_target),
+				list(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/component/ai_behavior/.proc/reason_target_killed)
+				)
+	return ..() //Walking to a node
 
+/datum/ai_mind/carbon/xeno/get_signals_to_unreg()
+	if(atom_to_walk_to)
+		if(istype(atom_to_walk_to, /mob/living/carbon/human))
+			return list(
+					list(mob_parent, COMSIG_CLOSE_TO_NODE),
+					list(atom_to_walk_to, COMSIG_MOB_DEATH)
+					)
+	return ..() //Walking to a node
+
+/datum/ai_mind/carbon/xeno/attack_target()
+	if(world.time < mob_parent.next_move)
+		atom_to_walk_to.attack_alien(mob_parent, force_intent = INTENT_HARM)
