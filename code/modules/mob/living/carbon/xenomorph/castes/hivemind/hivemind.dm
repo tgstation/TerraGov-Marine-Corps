@@ -26,6 +26,8 @@
 	hud_type = /datum/hud/hivemind
 	hud_possible = list()
 
+	var/mob/living/carbon/xenomorph/observed_xeno
+
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload, ...)
 	. = ..()
 	new /obj/effect/alien/weeds/node/strong(loc)

@@ -50,7 +50,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/track,
+		/datum/action/xeno_action/watch_xeno,
 		)
 
 /datum/xeno_caste/hivemind/young
@@ -96,7 +96,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/track,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		)
@@ -123,7 +123,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/track,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/toggle_pheromones,
