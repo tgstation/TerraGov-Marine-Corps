@@ -20,7 +20,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
-/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/parent)
+/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
 
 	if(!isnull(node))
@@ -143,7 +143,7 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/parent)
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
@@ -175,12 +175,9 @@
 
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
-/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/xeno)
+/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	if(isnull(parent))
-		stack_trace("/obj/effect/alien/weeds/node/strong/hivemindcore created without a hivemind arg.")
-		return INITIALIZE_HINT_QDEL
-	parent = xeno
+	parent = new(loc)
 
 /obj/effect/alien/weeds/node/strong/hivemindcore/Destroy()
 	if(isnull(parent))

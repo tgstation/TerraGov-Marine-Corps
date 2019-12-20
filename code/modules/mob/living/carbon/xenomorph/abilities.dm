@@ -872,10 +872,13 @@
 	owner.visible_message("<span class='xenowarning'>\The [owner] has created a hivemind!</span>", \
 		"<span class='xenowarning'>We have created a hivemind!</span>")
 
-	var/mob/living/carbon/xenomorph/hivemind/new_mob = new /mob/living/carbon/xenomorph/hivemind(current_turf)
-	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+	var/obj/effect/alien/weeds/node/strong/hivemindcore/core = new /obj/effect/alien/weeds/node/strong/hivemindcore(current_turf)
+	if(!isxenohivemind(core.parent))
+		return FALSE
+	var/mob/living/carbon/xenomorph/hivemind/xeno = core.parent
+	playsound(xeno.loc, 'sound/effects/splat.ogg', 25)
 
-	new_mob.offer_mob()
+	xeno.offer_mob()
 
 	succeed_activate()
 	add_cooldown()
