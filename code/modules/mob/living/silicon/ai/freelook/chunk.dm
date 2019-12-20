@@ -58,7 +58,8 @@
 /datum/camerachunk/proc/update()
 	var/list/newVisibleTurfs = list()
 
-	for(var/obj/machinery/camera/c in cameras)
+	for(var/camera in cameras)
+		var/obj/machinery/camera/c = camera
 		if(!c)
 			continue
 		if(!c.can_use())

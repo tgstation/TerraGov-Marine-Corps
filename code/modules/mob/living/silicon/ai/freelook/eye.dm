@@ -17,8 +17,6 @@
 	var/ai_detector_color = "#FF0000"
 
 
-
-
 /mob/camera/aiEye/Initialize()
 	. = ..()
 	GLOB.aiEyes += src
@@ -95,6 +93,8 @@
 	if(istype(ai.current, /obj/machinery/holopad))
 		var/obj/machinery/holopad/H = ai.current
 		H.move_hologram(ai, T)
+	if(ai.camera_light_on)	
+		ai.light_cameras()
 	if(ai.master_multicam)
 		ai.master_multicam.refresh_view()
 

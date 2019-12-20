@@ -376,12 +376,3 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
-
-/obj/machinery/camera/xenocam
-	name = "xeno node camera"
-	desc = "It's used to monitor weeds?"
-	invisibility = INVISIBILITY_MAXIMUM
-	use_power = NO_POWER_USE
-	idle_power_usage = 0
-	active_power_usage = 0
-	network = list("xeno")
