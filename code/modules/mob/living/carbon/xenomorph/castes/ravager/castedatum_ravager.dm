@@ -19,7 +19,7 @@
 	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 400 //Massively increased plasma storage and ability costs to offset plasma regen from queen/shrike
+	plasma_max = 400
 	plasma_gain = 20
 
 	// *** Health *** //
@@ -135,4 +135,3 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 28, "acid" = 40)
-
