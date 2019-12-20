@@ -127,13 +127,8 @@
 	icon_state = "weednode"
 	max_integrity = 60
 	ignore_weed_destruction = TRUE
-	var/obj/machinery/camera/xenocam/cam
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
-
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
-	. = ..()
-	cam = new(loc)
 
 
 /obj/effect/alien/weeds/node/strong
