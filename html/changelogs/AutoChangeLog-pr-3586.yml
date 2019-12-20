@@ -1,0 +1,4 @@
+author: "factoryman942"
+delete-after: True
+changes: 
+  - bugfix: "you can no longer transmute normal magazines into extended ones with ammo boxes"
