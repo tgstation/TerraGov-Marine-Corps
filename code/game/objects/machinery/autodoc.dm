@@ -52,9 +52,9 @@
 	var/obj/machinery/autodoc_console/connected
 
 	//It uses power
-	use_power = IDLE_POWER_USE
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
-	active_power_usage = 450 //Capable of doing various activities
+	active_power_usage = 120000 // It rebuilds you from nothing...
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
@@ -80,72 +80,77 @@
 		icon_state = "autodoc_open"
 
 /obj/machinery/autodoc/process()
-	if(occupant)
-		if(occupant.stat == DEAD)
-			visible_message("\The [src] speaks: Patient has expired.")
-			surgery = FALSE
-			go_out(AUTODOC_NOTICE_DEATH)
-			return
-		if(surgery)
-			// keep them alive
-			var/updating_health = FALSE
-			occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
-			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
-			if(filtering)
-				var/filtered = 0
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.remove_reagent(x.type, 10) // same as sleeper, may need reducing
-					filtered += 10
-				if(!filtered)
-					filtering = 0
-					visible_message("[src] speaks: Blood filtering complete.")
-				else if(prob(10))
-					visible_message("[src] whirrs and gurgles as the dialysis module operates.")
-					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
-			if(blood_transfer)
-				if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
-					if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
-						connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
-						visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
-					occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
-					if(prob(10))
-						visible_message("[src] whirrs and gurgles as it tranfuses blood.")
-						to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
-				else
-					blood_transfer = 0
-					visible_message("[src] speaks: Blood transfer complete.")
-			if(heal_brute)
-				if(occupant.getexternalBruteLoss() > 0)
-					occupant.heal_limb_damage(3, 0)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and clicks as it stitches flesh together.")
-						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
-				else
-					heal_brute = 0
-					visible_message("[src] speaks: Trauma repair surgery complete.")
-			if(heal_burn)
-				if(occupant.getFireLoss() > 0)
-					occupant.heal_limb_damage(0, 3)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
-						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
-				else
-					heal_burn = 0
-					visible_message("[src] speaks: Skin grafts complete.")
-			if(heal_toxin)
-				if(occupant.getToxLoss() > 0)
-					occupant.adjustToxLoss(-3)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and gurgles as it kelates the occupant.")
-						to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
-				else
-					heal_toxin = 0
-					visible_message("[src] speaks: Chelation complete.")
-			if(updating_health)
-				occupant.updatehealth()
+	if(!occupant)
+		return
+
+	if(occupant.stat == DEAD)
+		visible_message("\The [src] speaks: Patient has expired.")
+		surgery = FALSE
+		go_out(AUTODOC_NOTICE_DEATH)
+		return
+
+	if(!surgery)
+		return
+		
+	// keep them alive
+	var/updating_health = FALSE
+	occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
+	occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
+	if(filtering)
+		var/filtered = 0
+		for(var/datum/reagent/x in occupant.reagents.reagent_list)
+			occupant.reagents.remove_reagent(x.type, 10) // same as sleeper, may need reducing
+			filtered += 10
+		if(!filtered)
+			filtering = 0
+			visible_message("[src] speaks: Blood filtering complete.")
+		else if(prob(10))
+			visible_message("[src] whirrs and gurgles as the dialysis module operates.")
+			to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
+	if(blood_transfer)
+		if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
+			if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
+				connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
+				visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
+			occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
+			if(prob(10))
+				visible_message("[src] whirrs and gurgles as it tranfuses blood.")
+				to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
+		else
+			blood_transfer = 0
+			visible_message("[src] speaks: Blood transfer complete.")
+	if(heal_brute)
+		if(occupant.getexternalBruteLoss() > 0)
+			occupant.heal_limb_damage(3, 0)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and clicks as it stitches flesh together.")
+				to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
+		else
+			heal_brute = 0
+			visible_message("[src] speaks: Trauma repair surgery complete.")
+	if(heal_burn)
+		if(occupant.getFireLoss() > 0)
+			occupant.heal_limb_damage(0, 3)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
+				to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
+		else
+			heal_burn = 0
+			visible_message("[src] speaks: Skin grafts complete.")
+	if(heal_toxin)
+		if(occupant.getToxLoss() > 0)
+			occupant.adjustToxLoss(-3)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and gurgles as it kelates the occupant.")
+				to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
+		else
+			heal_toxin = 0
+			visible_message("[src] speaks: Chelation complete.")
+	if(updating_health)
+		occupant.updatehealth()
 
 
 #define LIMB_SURGERY 1
