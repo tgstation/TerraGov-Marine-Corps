@@ -160,6 +160,9 @@
 
 	var/wait_time = 2 SECONDS - max(0, (1 SECONDS * X.health / X.maxHealth)) //Between 1 and 2 seconds, depending on health.
 
+	if(isxenohivemind(X)) // Hivemind has free build, it should be slower
+		wait_time *= 3
+
 	if(!do_after(X, wait_time, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 
