@@ -192,5 +192,5 @@
 /obj/effect/alien/weeds/node/strong/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
 	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")
-	
+
 #undef NODERANGE

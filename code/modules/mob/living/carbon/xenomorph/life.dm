@@ -142,7 +142,7 @@
 		else
 			use_plasma(5)
 
-	if(locate(/obj/effect/alien/weeds) in T || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		if(lying || resting)
 			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2) // Empty recovery aura will always equal 0
 		else
