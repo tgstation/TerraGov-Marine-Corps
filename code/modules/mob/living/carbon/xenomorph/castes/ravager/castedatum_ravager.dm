@@ -68,7 +68,7 @@
 	speed = -0.9
 
 	// *** Plasma *** //
-	plasma_max = 500 //Enalbes using either both abilities at once or one after another
+	plasma_max = 500 //Enables using either both abilities at once or one after another
 	plasma_gain = 30
 
 	// *** Health *** //
