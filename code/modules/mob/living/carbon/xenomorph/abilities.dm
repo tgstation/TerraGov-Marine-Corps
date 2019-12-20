@@ -875,10 +875,10 @@
 	var/obj/effect/alien/weeds/node/strong/hivemindcore/core = new /obj/effect/alien/weeds/node/strong/hivemindcore(current_turf)
 	if(!isxenohivemind(core.parent))
 		return FALSE
-	var/mob/living/carbon/xenomorph/hivemind/xeno = core.parent
-	playsound(xeno.loc, 'sound/effects/splat.ogg', 25)
+	var/mob/living/carbon/xenomorph/hivemind/xeno_hivemind = core.parent
+	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
 
-	xeno.offer_mob()
+	xeno_hivemind.offer_mob()
 
 	succeed_activate()
 	add_cooldown()
