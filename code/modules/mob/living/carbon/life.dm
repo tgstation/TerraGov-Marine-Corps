@@ -87,19 +87,9 @@
 		do_jitter_animation(jitteriness)
 		jitter(-restingpwr)
 
-	if(hallucination)
-		if(hallucination >= 20)
-			if(prob(3))
-				fake_attack(src)
-			if(!handling_hal)
-				spawn handle_hallucinations()//The not boring kind!
+	if(hallucination >= 20) // hallucinations require stacking before triggering
+		handle_hallucinations()
 
-		hallucination = max(hallucination - 3, 0)
-
-	else
-		for(var/atom/a in hallucinations)
-			hallucinations -=a
-			qdel(a)
 
 	if(halloss)
 		halloss_recovery()
@@ -116,7 +106,7 @@
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
 				AdjustSleeping(-20)
 		if(!isxeno(src))
-			if(prob(2) && health && !hal_crit)
+			if(prob(2) && health && !hallucination)
 				emote("snore")
 
 	if(drunkenness)
