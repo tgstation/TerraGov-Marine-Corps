@@ -30,7 +30,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload, ...)
 	. = ..()
-	new /obj/effect/alien/weeds/node/strong/hivemindcore(loc, src)
+	new /obj/effect/alien/weeds/node/strong/hivemindcore(loc, xeno = src)
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 0)
 	GLOB.hivemind_list += src
 
