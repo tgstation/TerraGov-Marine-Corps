@@ -120,7 +120,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
-		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_AVERAGE * user.skills.getRating("surgery") ) // 20 secs non-trained, 15 amateur, 10 semi-prof
+		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_TOUGH * user.skills.getRating("surgery") ) // 20 secs non-trained, 12 amateur, 4 semi-prof
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	var/datum/limb/affected = M.get_limb(user.zone_selected)
