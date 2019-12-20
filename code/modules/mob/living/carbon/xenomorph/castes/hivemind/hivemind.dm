@@ -30,7 +30,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload, ...)
 	. = ..()
-	new /obj/effect/alien/weeds/node/strong(loc)
+	new /obj/effect/alien/weeds/node/strong/hivemindcore(loc, src)
 	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 0)
 	GLOB.hivemind_list += src
 
@@ -41,7 +41,7 @@
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)
-		var/obj/effect/alien/weeds/nearby = locate() in loc
+		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
 		if(!nearby)
 			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
 		return FALSE

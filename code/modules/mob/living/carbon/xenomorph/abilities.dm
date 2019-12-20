@@ -830,6 +830,42 @@
 	succeed_activate()
 	add_cooldown()
 
+// ***************************************
+// *********** Spawn hivemind
+// ***************************************
+/datum/action/xeno_action/spawn_hivemind
+	name = "Create hivemind"
+	action_icon_state = "lay_egg"
+	plasma_cost = 400
+	cooldown_timer = 300 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+
+
+/datum/action/xeno_action/spawn_hivemind/action_activate()
+	var/turf/current_turf = get_turf(owner)
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+	if(!alien_weeds)
+		to_chat(owner, "<span class='warning'>We can't place a hivemind here. Lay it on some resin.</span>")
+		return FALSE
+
+	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
+		return FALSE
+
+	if(!current_turf.check_alien_construction(owner))
+		return FALSE
+
+	owner.visible_message("<span class='xenowarning'>\The [owner] has laid an egg!</span>", \
+		"<span class='xenowarning'>We have laid an egg!</span>")
+
+	var/mob/living/carbon/xenomorph/hivemind/new_mob = new /mob/living/carbon/xenomorph/hivemind(current_turf)
+	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+
+	new_mob.offer_mob()
+
+	succeed_activate()
+	add_cooldown()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

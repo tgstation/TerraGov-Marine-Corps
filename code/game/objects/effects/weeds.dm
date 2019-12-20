@@ -137,6 +137,7 @@
 	node_range = NODERANGE*2
 	max_integrity = 120
 
+
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)
@@ -146,7 +147,7 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(mapload, mob/living/carbon/xenomorph/X)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
@@ -158,4 +159,33 @@
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
+
+
+// -------------
+// Hivemind core
+/obj/effect/alien/weeds/node/strong/hivemindcore
+	name = "hivemind core"
+	desc = "A very weird, pulsating node. This looks almost alive."
+	max_integrity = 600
+
+	var/mob/living/carbon/xenomorph/hivemind/parent
+
+/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, mob/living/carbon/xenomorph/X)
+	. = ..(mapload, src)
+	parent = X
+
+/obj/effect/alien/weeds/node/strong/hivemindcore/Destroy()
+	parent.playsound_local(parent, get_sfx("alien_help"), 30, 1)
+	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
+	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	parent.ghostize()
+	QDEL_NULL(parent)
+	return ..()
+
+/obj/effect/alien/weeds/node/strong/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
+	"<span class='danger'>You nudge your head against [src].</span>")
+	
+	
+	
 #undef NODERANGE
