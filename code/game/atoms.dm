@@ -26,6 +26,8 @@
 
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
+	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
+
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
@@ -224,7 +226,7 @@ directive is properly returned.
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
-				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_NOVICE) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+				if(user.skills.getRating("medical") >= SKILL_MEDICAL_NOVICE)
 					to_chat(user, "It contains these reagents:")
 					if(reagents.reagent_list.len)
 						for(var/datum/reagent/R in reagents.reagent_list)
@@ -248,6 +250,31 @@ directive is properly returned.
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
 
+
+/// Updates the icon of the atom
+/atom/proc/update_icon()
+	var/signalOut = SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON)
+
+	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_ICON_STATE))
+		update_icon_state()
+
+	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_OVERLAYS))
+		var/list/new_overlays = update_overlays()
+		if(managed_overlays)
+			cut_overlay(managed_overlays)
+			managed_overlays = null
+		if(length(new_overlays))
+			managed_overlays = new_overlays
+			add_overlay(new_overlays)
+
+/// Updates the icon state of the atom
+/atom/proc/update_icon_state()
+
+/// Updates the overlays of the atom
+/atom/proc/update_overlays()
+	SHOULD_CALL_PARENT(TRUE)
+	. = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_OVERLAYS, .)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -465,10 +492,11 @@ Proc for attack log creation, because really why not
 
 	if(light_power && light_range)
 		update_light()
-
-	if(opacity && isturf(loc))
-		var/turf/T = loc
-		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
+		if(isturf(loc) && opacity)
+			var/turf/T = loc
+			T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -522,31 +550,6 @@ Proc for attack log creation, because really why not
 
 /atom/proc/recalculate_storage_space()
 	return //Nothing to see here.
-
-// Tool behavior procedure. Redirects to tool-specific procs by default.
-// You can override it to catch all tool interactions, for use in complex deconstruction procs.
-// Just don't forget to return ..() in the end.
-/atom/proc/tool_act(mob/living/user, obj/item/I, tool_type)
-	switch(tool_type)
-		if(TOOL_CROWBAR)
-			return crowbar_act(user, I)
-		if(TOOL_MULTITOOL)
-			return multitool_act(user, I)
-		if(TOOL_SCREWDRIVER)
-			return screwdriver_act(user, I)
-		if(TOOL_WRENCH)
-			return wrench_act(user, I)
-		if(TOOL_WIRECUTTER)
-			return wirecutter_act(user, I)
-		if(TOOL_WELDER)
-			return welder_act(user, I)
-		if(TOOL_WELD_CUTTER)
-			return weld_cut_act(user, I)
-		if(TOOL_ANALYZER)
-			return analyzer_act(user, I)
-		if(TOOL_FULTON)
-			return fulton_act(user, I)
-
 
 // Tool-specific behavior procs. To be overridden in subtypes.
 /atom/proc/crowbar_act(mob/living/user, obj/item/I)

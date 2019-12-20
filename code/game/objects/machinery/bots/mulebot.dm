@@ -639,8 +639,8 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.stun(8)
-	L.knock_down(5)
+	L.Stun(16 SECONDS)
+	L.Knockdown(10 SECONDS)
 	L.lying = TRUE
 
 

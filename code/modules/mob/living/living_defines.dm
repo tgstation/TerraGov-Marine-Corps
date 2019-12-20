@@ -1,5 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	flags_atom = CRITICAL_ATOM
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -23,20 +24,15 @@
 
 	var/last_staminaloss_dmg = 0 //world.time
 	var/max_stamina_buffer = 0
-	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
-	var/sleeping = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/knocked_out = 0
-	var/stunned = 0
 	var/frozen = 0
-	var/knocked_down = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0
@@ -68,6 +64,10 @@
 	var/metabolism_efficiency = 1 //more or less efficiency to metabolize helpful/harmful reagents and (TODO) regulate body temperature..
 
 	var/tinttotal = TINT_NONE
+
+	var/list/status_effects //a list of all status effects the mob has
+
+	var/list/stun_absorption //lazy list
 
 	//Speech
 	var/stuttering = 0

@@ -24,10 +24,10 @@
 	return
 
 
-/mob/living/incapacitated(ignore_restrained)
+/mob/living/incapacitated(ignore_restrained, restrained_flags)
 	. = ..()
 	if(!.)
-		return (stunned || knocked_down || knocked_out)
+		return (IsStun() || IsKnockdown() || IsUnconscious())
 
 
 /mob/living/restrained(ignore_checks)

@@ -204,11 +204,6 @@
 		speech_problem_flag = 1
 	return slurring
 
-/mob/living/carbon/human/handle_stunned()
-	if(..())
-		speech_problem_flag = 1
-	return stunned
-
 /mob/living/carbon/human/handle_stuttering()
 	if(..())
 		speech_problem_flag = 1

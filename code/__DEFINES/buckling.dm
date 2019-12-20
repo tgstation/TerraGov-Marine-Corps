@@ -1,0 +1,4 @@
+#define CAN_BUCKLE (1<<0)
+#define CAN_BE_BUCKLED (1<<1)
+#define BUCKLE_REQUIRES_RESTRAINTS (1<<2)
+#define BUCKLE_PREVENTS_PULL (1<<3)

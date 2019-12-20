@@ -9,8 +9,9 @@
 	deactive_state = "degoggles_meson"
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
-	vision_flags = SEE_TURFS|SEE_OBJS
-	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	darkness_view = 2
+	vision_flags = SEE_TURFS
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 
 /obj/item/clothing/glasses/meson/prescription

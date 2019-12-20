@@ -43,6 +43,8 @@
 /obj/effect/landmark/corpsespawner/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
+	
 	M.real_name = name
 	M.death(1) //Kills the new mob
 	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
@@ -102,7 +104,8 @@
 		M.update_burst()
 		//buckle to nest
 		var/obj/structure/bed/nest/victim_nest = locate() in get_turf(src)
-		victim_nest?.do_buckle(M, silent = TRUE)
+		if(victim_nest)
+			victim_nest.buckle_mob(M, silent = TRUE)
 	qdel(src)
 
 
@@ -186,7 +189,7 @@
 
 /obj/effect/landmark/corpsespawner/prisoner
 	name = "Prisoner"
-	corpseuniform = /obj/item/clothing/under/color/orange
+	corpseuniform = /obj/item/clothing/under/rank/prisoner
 	corpseshoes = /obj/item/clothing/shoes/orange
 	corpseid = 1
 	corpseidjob = "Prisoner"

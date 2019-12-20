@@ -34,15 +34,17 @@
 /obj/item/clothing/suit
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
-	var/fire_resist = T0C+100
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
-	var/blood_overlay_type = "suit"
-	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
+	var/list/supporting_limbs
+	var/blood_overlay_type = "suit"
+	var/fire_resist = T0C + 100
+	var/shield_state = "shield-blue"
+
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if(ismob(loc))
@@ -115,7 +117,7 @@
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
 	var/toggleable = FALSE
-	var/active = TRUE
+	active = TRUE
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))

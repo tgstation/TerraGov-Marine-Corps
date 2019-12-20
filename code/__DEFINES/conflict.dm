@@ -134,6 +134,12 @@
 #define SMOKE_XENO_NEURO	(1<<11)
 #define SMOKE_CHEM			(1<<12)
 
+
+//Incapacitated
+#define INCAPACITATED_IGNORE_RESTRAINED (1<<0)
+#define INCAPACITATED_IGNORE_GRAB (1<<1)
+
+
 //Restraints
 #define RESTRAINED_XENO_NEST (1<<0)
 #define RESTRAINED_NECKGRAB (1<<1)

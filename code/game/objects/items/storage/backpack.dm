@@ -631,7 +631,7 @@
 	if(!wearer)
 		camo_off()
 		return
-	else if(wearer.stat == DEAD)
+	else if(wearer.stat != CONSCIOUS)
 		camo_off(wearer)
 		return
 
@@ -677,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()

@@ -28,7 +28,7 @@
 	name = "Rugget Boots"
 	desc = "A pair of boots used by workers in dangerous environments."
 	icon_state = "swat"
-	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 

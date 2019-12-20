@@ -7,9 +7,6 @@
 
 	interactee?.check_eye(src)
 
-	// Handle EMP-stun
-	handle_stunned()
-
 
 /mob/living/silicon/ai/update_stat()
 	. = ..()

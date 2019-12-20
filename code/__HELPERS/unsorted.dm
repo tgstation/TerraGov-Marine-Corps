@@ -550,7 +550,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 						corner.density = TRUE
 						corner.anchored = TRUE
 						corner.icon = X.icon
-						corner.icon_state = oldreplacetext(X.icon_state, "_s", "_f")
+						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
 						corner.name = "wall"
 
@@ -569,7 +569,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 						// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
-							X.icon_state = oldreplacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
+							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
@@ -999,7 +999,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 
 /proc/format_text(text)
-	return oldreplacetext(oldreplacetext(text,"\proper ",""),"\improper ","")
+	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
 
 //Reasonably Optimized Bresenham's Line Drawing

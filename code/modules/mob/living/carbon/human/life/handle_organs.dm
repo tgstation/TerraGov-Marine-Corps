@@ -54,8 +54,8 @@
 				leg_tally--			//let it fail even if just foot&leg
 
 	//standing is poor
-	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
+	if(leg_tally <= 0 && !IsUnconscious() && !lying && prob(5))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		emote("collapse")
-		set_knocked_out(10)
+		SetUnconscious(20 SECONDS)

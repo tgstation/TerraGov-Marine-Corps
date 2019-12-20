@@ -217,3 +217,15 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define ITEM_UNEQUIP_FAIL 0
 #define ITEM_UNEQUIP_DROPPED 1
 #define ITEM_UNEQUIP_UNEQUIPPED 2
+
+//suit sensors: sensor_mode defines
+#define SENSOR_OFF 0
+#define SENSOR_LIVING 1
+#define SENSOR_VITALS 2
+#define SENSOR_COORDS 3
+
+//suit sensors: has_sensor defines
+#define BROKEN_SENSORS -1
+#define NO_SENSORS 0
+#define HAS_SENSORS 1
+#define LOCKED_SENSORS 2

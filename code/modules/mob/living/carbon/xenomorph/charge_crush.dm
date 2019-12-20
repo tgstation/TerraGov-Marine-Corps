@@ -62,7 +62,7 @@
 			to_chat(owner, "<span class='warning'>We can't charge with that thing on our leg!</span>")
 		return
 	charge_ability_on = TRUE
-	RegisterSignal(charger, COMSIG_LIVING_DO_MOVE_TURFTOTURF, .proc/update_charging)
+	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
 	RegisterSignal(charger, COMSIG_LIVING_LEGCUFFED, .proc/on_legcuffed)
 	if(verbose)
@@ -73,7 +73,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
-	UnregisterSignal(charger, list(COMSIG_LIVING_DO_MOVE_TURFTOTURF, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
+	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
 	if(verbose)
 		to_chat(charger, "<span class='xenonotice'>We will no longer charge when moving.</span>")
 	valid_steps_taken = 0
@@ -96,23 +96,26 @@
 	charge_off(FALSE)
 
 
-/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, turf/newloc, newdir)
+/datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+	if(Forced)
+		return
+
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.throwing)
+	if(charger.throwing || oldloc == charger.loc)
 		return
 
 	if(charger.is_charging == CHARGE_OFF)
-		if(charger.dir != newdir) //It needs to move twice in the same direction, at least, to begin charging.
+		if(charger.dir != direction) //It needs to move twice in the same direction, at least, to begin charging.
 			return
-		charge_dir = newdir
-		if(!check_momentum(newdir))
+		charge_dir = direction
+		if(!check_momentum(direction))
 			charge_dir = null
 			return
 		charger.is_charging = CHARGE_BUILDINGUP
 		handle_momentum()
 		return
 
-	if(!check_momentum(newdir))
+	if(!check_momentum(direction))
 		do_stop_momentum()
 		return
 
@@ -121,14 +124,14 @@
 
 /datum/action/xeno_action/ready_charge/proc/do_start_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE), .proc/do_crush)
+	RegisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE), .proc/do_crush)
 	charger.is_charging = CHARGE_ON
 	charger.update_icons()
 
 
 /datum/action/xeno_action/ready_charge/proc/do_stop_crushing()
 	var/mob/living/carbon/xenomorph/charger = owner
-	UnregisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE))
+	UnregisterSignal(charger, list(COMSIG_MOVABLE_PREBUMP_TURF, COMSIG_MOVABLE_PREBUMP_MOVABLE, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE))
 	if(valid_steps_taken > 0) //If this is false, then do_stop_momentum() should have it handled already.
 		charger.is_charging = CHARGE_BUILDINGUP
 		charger.update_icons()
@@ -233,6 +236,20 @@
 	else if(valid_steps_taken < steps_for_charge)
 		do_stop_crushing()
 
+#define PRECRUSH_STOPPED -1
+#define PRECRUSH_PLOWED -2
+#define PRECRUSH_ENTANGLED -3
+
+/proc/precrush2signal(precrush)
+	switch(precrush)
+		if(PRECRUSH_STOPPED)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		if(PRECRUSH_PLOWED)
+			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+		if(PRECRUSH_ENTANGLED)
+			return COMPONENT_MOVABLE_PREBUMP_ENTANGLED
+		else
+			return NONE
 
 // Charge is divided into two acts: before and after the crushed thing taking damage, as that can cause it to be deleted.
 /datum/action/xeno_action/ready_charge/proc/do_crush(datum/source, atom/crushed)
@@ -244,12 +261,16 @@
 		do_stop_momentum()
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
-	. = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
-	switch(.)
+	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
+	switch(precrush)
 		if(null)
 			CRASH("[crushed] returned null from do_crush()")
-		if(COMPONENT_MOVABLE_PREBUMP_STOPPED, COMPONENT_MOVABLE_PREBUMP_PLOWED)
-			return //Already handled, no need to continue.
+		if(PRECRUSH_STOPPED)
+			return COMPONENT_MOVABLE_PREBUMP_STOPPED //Already handled, no need to continue.
+		if(PRECRUSH_PLOWED)
+			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+		if(PRECRUSH_ENTANGLED)
+			. = COMPONENT_MOVABLE_PREBUMP_ENTANGLED
 
 	var/preserved_name = crushed.name
 
@@ -258,24 +279,24 @@
 
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
-			crushed_living.buckled.unbuckle()
+			crushed_living.buckled.unbuckle_mob(crushed_living)
 		animation_flash_color(crushed_living)
 
-		if(. > 0)
+		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(., BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
-		return crushed_living.post_crush_act(charger, src)
+		return precrush2signal(crushed_living.post_crush_act(charger, src))
 
 	if(isobj(crushed))
 		var/obj/crushed_obj = crushed
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(.)
+		crushed_obj.take_damage(precrush)
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")
@@ -284,13 +305,13 @@
 			else
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
-		return crushed_obj.post_crush_act(charger, src)
+		return precrush2signal(crushed_obj.post_crush_act(charger, src))
 
 	if(isturf(crushed))
 		var/turf/crushed_turf = crushed
-		switch(.)
+		switch(precrush)
 			if(1 to 3)
-				crushed_turf.ex_act(.)
+				crushed_turf.ex_act(precrush)
 
 		if(QDELETED(crushed_turf))
 			charger.visible_message("<span class='danger'>[charger] plows straight through [preserved_name]!</span>",
@@ -355,7 +376,7 @@
 /obj/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)
 		charge_datum.do_stop_momentum()
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 	if(anchored)
 		if(flags_atom & ON_BORDER)
 			if(dir == REVERSE_DIR(charger.dir))
@@ -371,9 +392,17 @@
 			charge_datum.speed_down(2)
 			return
 
-	if(buckled_mob)
-		unbuckle()
+	for(var/m in buckled_mobs)
+		unbuckle_mob(m)
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
+
+
+/obj/structure/bed/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_bodybag)
+		unbuckle_bodybag()
 
 
 /mob/living/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -391,12 +420,12 @@
 		charge_datum.do_stop_momentum(FALSE)
 		if(!anchored)
 			step(src, charger.dir)
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 
 	throw_at(get_step(loc, (charger.dir & (NORTH|SOUTH) ? pick(EAST, WEST) : pick(NORTH, SOUTH))), 1, 1, charger, (mob_size < charger.mob_size))
 
 	charge_datum.speed_down(1) //Lose one turf worth of speed.
-	return COMPONENT_MOVABLE_PREBUMP_PLOWED
+	return PRECRUSH_PLOWED
 
 
 /turf/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -410,7 +439,7 @@
 // ***************************************
 
 /atom/proc/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
-	return COMPONENT_MOVABLE_PREBUMP_STOPPED //By default, if this happens then movement stops. But not necessarily.
+	return PRECRUSH_STOPPED //By default, if this happens then movement stops. But not necessarily.
 
 
 /obj/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -419,14 +448,14 @@
 		"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
 		if(charger.is_charging > CHARGE_OFF)
 			charge_datum.do_stop_momentum(FALSE)
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 	var/fling_dir = pick(GLOB.cardinals - ((charger.dir & (NORTH|SOUTH)) ? list(NORTH, SOUTH) : list(EAST, WEST))) //Fling them somewhere not behind nor ahead of the charger.
 	var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 1, 3)
 	if(!step(src, fling_dir) && density)
 		charge_datum.do_stop_momentum(FALSE) //Failed to be tossed away and returned, more powerful than ever, to block the charger's path.
 		charger.visible_message("<span class='danger'>[charger] rams into [src] and skids to a halt!</span>",
 			"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 	if(--fling_dist)
 		for(var/i in 1 to fling_dist)
 			if(!step(src, fling_dir))
@@ -434,7 +463,7 @@
 	charger.visible_message("<span class='warning'>[charger] knocks [src] aside.</span>!",
 	"<span class='xenowarning'>We knock [src] aside.</span>") //Canisters, crates etc. go flying.
 	charge_datum.speed_down(2) //Lose two turfs worth of speed.
-	return COMPONENT_MOVABLE_PREBUMP_PLOWED
+	return PRECRUSH_PLOWED
 
 
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -443,12 +472,12 @@
 	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-	charger.knock_down(1)
+	charger.Knockdown(20)
 	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
-	return COMPONENT_MOVABLE_PREBUMP_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
+	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
 
 /obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -456,10 +485,10 @@
 		return ..()
 	TryToSwitchState(charger)
 	if(density)
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 	charger.visible_message("<span class='danger'>[charger] slams [src] open!</span>",
 	"<span class='xenowarning'>We slam [src] open!</span>")
-	return COMPONENT_MOVABLE_PREBUMP_PLOWED
+	return PRECRUSH_PLOWED
 
 
 /obj/machinery/vending/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -467,10 +496,10 @@
 		return ..()
 	tip_over()
 	if(density)
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 	charger.visible_message("<span class='danger'>[charger] slams [src] into the ground!</span>",
 	"<span class='xenowarning'>We slam [src] into the ground!</span>")
-	return COMPONENT_MOVABLE_PREBUMP_PLOWED
+	return PRECRUSH_PLOWED
 
 
 /mob/living/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
@@ -479,19 +508,19 @@
 		"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
 		charge_datum.do_stop_momentum(FALSE)
 		step(src, charger.dir)
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			knock_down(CHARGE_SPEED(charge_datum) * 4)
+			Knockdown(CHARGE_SPEED(charge_datum) * 80)
 		if(CHARGE_BULL_HEADBUTT)
-			knock_down(CHARGE_SPEED(charge_datum) * 3)
+			Knockdown(CHARGE_SPEED(charge_datum) * 60)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
 		charger.visible_message("<span class='danger'>[charger] rams into [src] and skids to a halt!</span>",
 			"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
+		return PRECRUSH_STOPPED
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH, CHARGE_BULL)
@@ -511,7 +540,7 @@
 			charger.visible_message("<span class='danger'>[charger] rams [src]!</span>",
 			"<span class='xenodanger'>We ram [src]!</span>")
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
-			return COMPONENT_MOVABLE_PREBUMP_PLOWED
+			return PRECRUSH_PLOWED
 
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
@@ -542,7 +571,7 @@
 				"<span class='xenowarning'>We ram into [src] and skid to a halt!</span>")
 
 	charge_datum.do_stop_momentum(FALSE)
-	return COMPONENT_MOVABLE_PREBUMP_STOPPED
+	return PRECRUSH_STOPPED
 
 
 /mob/living/proc/emote_gored()
@@ -573,3 +602,7 @@
 #undef CHARGE_MAX_SPEED
 
 #undef STOP_CRUSHER_ON_DEL
+
+#undef PRECRUSH_STOPPED
+#undef PRECRUSH_PLOWED
+#undef PRECRUSH_ENTANGLED

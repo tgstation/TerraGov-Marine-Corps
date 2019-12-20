@@ -118,6 +118,7 @@
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
+	buckle_flags = NONE
 	var/hivenumber = XENO_HIVE_NORMAL
 	job = ROLE_XENOMORPH
 

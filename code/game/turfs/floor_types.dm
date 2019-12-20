@@ -149,6 +149,9 @@
 	name = "floor"
 	icon_state = "wood"
 	floor_tile = new/obj/item/stack/tile/wood
+	shoefootstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_WOOD
+	mediumxenofootstep = FOOTSTEP_WOOD
 
 /turf/open/floor/wood/broken
 	icon_state = "wood-broken"
@@ -232,6 +235,9 @@
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
 
 
 /turf/open/floor/grass/Initialize()
@@ -423,6 +429,9 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
+	shoefootstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET
+	mediumxenofootstep = FOOTSTEP_CARPET
 
 
 /turf/open/floor/carpet/Initialize()

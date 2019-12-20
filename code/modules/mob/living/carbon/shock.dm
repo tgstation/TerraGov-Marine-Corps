@@ -123,7 +123,7 @@
 	var/rate = BASE_HALLOSS_RECOVERY_RATE
 
 	if(lying || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
-		if(resting || sleeping) //we're deliberately resting, comfortably taking a breather
+		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
 			rate = REST_HALLOSS_RECOVERY_RATE
 		else
 			rate = DOWNED_HALLOSS_RECOVERY_RATE
