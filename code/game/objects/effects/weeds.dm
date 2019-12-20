@@ -1,5 +1,7 @@
 #define NODERANGE 2
 
+// =================
+// basic weed type
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird black weeds..."
@@ -9,26 +11,27 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
-	var/parent_node
 	max_integrity = 25
+
+	var/parent_node
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
 
-/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/parent)
 	. = ..()
 
-	parent_node = node
+	if(!isnull(node))
+		parent_node = node
 
 	update_sprite()
 	update_neighbours()
 
-
 /obj/effect/alien/weeds/Destroy()
 
-	if(parent_node)
+	if(parent_node) // Allow the weed to try to regrow
 		SSweeds.add_weed(src)
 
 	for(var/obj/effect/alien/A in loc.contents)
@@ -40,19 +43,16 @@
 	. = ..()
 	update_neighbours(oldloc)
 
-
 /obj/effect/alien/weeds/examine(mob/user)
 	..()
 	var/turf/T = get_turf(src)
 	if(isfloorturf(T))
 		T.ceiling_desc(user)
 
-
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.next_move_slowdown += 1
-
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
@@ -67,7 +67,6 @@
 			var/obj/effect/alien/weeds/W = locate() in T
 			if(W)
 				W.update_sprite()
-
 
 /obj/effect/alien/weeds/proc/update_sprite()
 	var/my_dir = 0
@@ -90,6 +89,8 @@
 		icon_state = "weed_dir[my_dir]"
 
 
+// =================
+// weed wall
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	plane = GAME_PLANE
@@ -102,7 +103,8 @@
 			icon_state = "weedwall[W.junctiontype]"
 
 
-
+// =================
+// windowed weed wall
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
@@ -120,7 +122,8 @@
 		icon_state = "weedframe[WF.junction]"
 
 
-
+// =================
+// weed node - grows other weeds
 /obj/effect/alien/weeds/node
 	name = "purple sac"
 	desc = "A weird, pulsating node."
@@ -129,13 +132,6 @@
 	ignore_weed_destruction = TRUE
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
-
-
-/obj/effect/alien/weeds/node/strong
-	name = "strong purple sac"
-	desc = "A weird, pulsating node. This looks pretty tough."
-	node_range = NODERANGE*2
-	max_integrity = 120
 
 
 /obj/effect/alien/weeds/node/Destroy()
@@ -147,22 +143,31 @@
 	overlays.Cut()
 	overlays += "weednode"
 
-/obj/effect/alien/weeds/node/Initialize(mapload, mob/living/carbon/xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/parent)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
 			break
+	. = ..()
 
 	overlays += "weednode"
-	. = ..(mapload, src)
 
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 
 
-// -------------
-// Hivemind core
+// =================
+// stronger weed node
+/obj/effect/alien/weeds/node/strong
+	name = "strong purple sac"
+	desc = "A weird, pulsating node. This looks pretty tough."
+	node_range = NODERANGE*2
+	max_integrity = 120
+
+
+// =================
+// hivemind core
 /obj/effect/alien/weeds/node/strong/hivemindcore
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
@@ -170,9 +175,12 @@
 
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
-/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, mob/living/carbon/xenomorph/X)
-	. = ..(mapload, src)
-	parent = X
+/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/hivemind/xeno)
+	. = ..()
+	if(isnull(parent))
+		stack_trace("/obj/effect/alien/weeds/node/strong/hivemindcore created without a hivemind arg.")
+		return INITIALIZE_HINT_QDEL
+	parent = xeno
 
 /obj/effect/alien/weeds/node/strong/hivemindcore/Destroy()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, 1)
@@ -185,7 +193,5 @@
 /obj/effect/alien/weeds/node/strong/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
 	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")
-	
-	
 	
 #undef NODERANGE
