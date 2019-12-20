@@ -24,7 +24,7 @@
 	move_on_shuttle = TRUE
 
 	hud_type = /datum/hud/hivemind
-	hud_possible = list()
+	hud_possible = list(PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 
 	var/mob/living/carbon/xenomorph/observed_xeno
 
@@ -41,7 +41,7 @@
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)
-		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
+		var/obj/effect/alien/weeds/nearby = locate() in loc
 		if(!nearby)
 			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
 		return FALSE
