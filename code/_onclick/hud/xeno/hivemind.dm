@@ -6,6 +6,10 @@
 	using.alpha = ui_alpha
 	infodisplay += using
 
+	alien_plasma_display = new /obj/screen/alien/plasmadisplay()
+	alien_plasma_display.alpha = ui_alpha
+	infodisplay += alien_plasma_display
+
 	locate_leader = new /obj/screen/alien/queen_locator()
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader
