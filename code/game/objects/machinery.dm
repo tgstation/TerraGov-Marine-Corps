@@ -29,12 +29,6 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/LateInitialize(mapload)
-	. = ..()
-	if(use_power >= IDLE_POWER_USE)
-		START_PROCESSING(SSmachines, src)
 
 
 /obj/machinery/Destroy()
@@ -239,6 +233,7 @@
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
 	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
+	use_power(active_power_usage)
 	return dat
 
 

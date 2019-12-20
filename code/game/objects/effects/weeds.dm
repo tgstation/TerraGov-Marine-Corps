@@ -156,29 +156,6 @@
 	. = ..(mapload, src)
 
 	// Generate our full graph before adding to SSweeds
-	generate_weed_graph()
+	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
-
-/obj/effect/alien/weeds/node/proc/generate_weed_graph()
-	var/list/turfs_to_check = list()
-	turfs_to_check += get_turf(src)
-	var/node_size = node_range
-	while (node_size > 0)
-		node_size--
-		for(var/X in turfs_to_check)
-			var/turf/T = X
-			for(var/direction in GLOB.alldirs)
-				var/turf/AdjT = get_step(T, direction)
-				if (AdjT == src) // Ignore the node
-					continue
-				if (AdjT in node_turfs) // Ignore existing weeds
-					continue
-				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
-					// Finish here, but add it to expand weeds into
-					node_turfs += AdjT
-					continue
-
-				turfs_to_check += AdjT
-				node_turfs += AdjT
-
 #undef NODERANGE
