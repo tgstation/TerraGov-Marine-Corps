@@ -44,7 +44,7 @@
 	spit_types = list()
 
 	// *** Pheromones *** //
-	aura_strength = 3 //hivemind's aura is not extremely strong, but better than Drones.
+	aura_strength = 2.5 //hivemind's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
