@@ -12,7 +12,7 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
-	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+	active_power_usage = 16000	//16 kW. It's a big all-body scanner - This is used on scan / examine
 
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
