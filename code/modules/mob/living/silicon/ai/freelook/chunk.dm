@@ -5,7 +5,6 @@
 // A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
 // Allows the AI Eye to stream these chunks and know what it can and cannot see.
 /datum/camerachunk
-	var/datum/cameranet/parent
 	var/list/obscuredTurfs = list()
 	var/list/visibleTurfs = list()
 	var/list/cameras = list()
@@ -59,19 +58,17 @@
 /datum/camerachunk/proc/update()
 	var/list/newVisibleTurfs = list()
 
-	for(var/c in cameras)
-		if(istype(c, /obj/machinery/camera))
-			var/obj/machinery/camera/cam = c
-			if(!cam)
-				continue
-			if(!cam.can_use())
-				continue
+	for(var/obj/machinery/camera/c in cameras)
+		if(!c)
+			continue
+		if(!c.can_use())
+			continue
 
 		var/turf/point = locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)
 		if(get_dist(point, c) > CHUNK_SIZE + (CHUNK_SIZE / 2))
 			continue
 
-		for(var/turf/t in get_hear(world.view, get_turf(c)))
+		for(var/turf/t in c.can_see())
 			// Possible optimization: if(turfs[t]) here, rather than &= turfs afterwards.
 			// List associations use a tree or hashmap of some sort (alongside the list itself)
 			//  so are surprisingly fast. (significantly faster than var/thingy/x in list, in testing)
@@ -99,14 +96,13 @@
 
 
 // Create a new camera chunk, since the chunks are made as they are needed.
-/datum/camerachunk/New(x, y, z, parent)
+/datum/camerachunk/New(x, y, z)
 	x &= ~(CHUNK_SIZE - 1)
 	y &= ~(CHUNK_SIZE - 1)
 
 	src.x = x
 	src.y = y
 	src.z = z
-	src.parent = parent
 
 	for(var/obj/machinery/camera/c in urange(CHUNK_SIZE, locate(x + (CHUNK_SIZE / 2), y + (CHUNK_SIZE / 2), z)))
 		if(c.can_use())

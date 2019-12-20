@@ -1,185 +1,22 @@
-/mob/living/silicon/ai/hivemind
+/mob/camera/xeno/hivemind
 	name = "hivemind"
 	verb_say = "states"
 	verb_ask = "ponders"
 	verb_exclaim = "declares"
 	verb_yell = "exclaims"
 
-	available_networks = list("xeno")
-	var/default_network = "xeno"
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
 	var/datum/hive_status/hive
 
 
-/mob/living/silicon/ai/hivemind/Initialize(mapload, ...)
+/mob/camera/xeno/hivemind/Initialize(mapload, ...)
 	. = ..()
 
 	new /obj/effect/alien/weeds/node/strong(loc)
 
-	track = new(src)
-	builtInCamera = new(src)
-	builtInCamera.network = list(default_network)
-
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
-
-	create_eye()
-
-	GLOB.ai_list += src
-
-/mob/living/silicon/ai/hivemind/Destroy()
-	GLOB.ai_list -= src
-	QDEL_NULL(builtInCamera)
-	QDEL_NULL(track)
-	return ..()
-
-/mob/living/silicon/ai/hivemind/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(usr != src || incapacitated())
-		return
-
-	if(href_list["switchcamera"])
-		switchCamera(locate(href_list["switchcamera"]) in GLOB.xenonet.cameras)
-
-	else if(href_list["track"])
-		to_chat(world, "TODO")
-		// var/string = href_list["track"]
-		// trackable_mobs()
-		// var/list/trackeable = list()
-		// trackeable += track.humans + track.others
-		// var/list/target = list()
-		// for(var/I in trackeable)
-		// 	var/mob/M = trackeable[I]
-		// 	if(M.name == string)
-		// 		target += M
-		// if(name == string)
-		// 	target += src
-		// if(!length(target))
-		// 	to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
-		// 	return
-
-		// ai_actual_track(pick(target))
-
-
-/mob/living/silicon/ai/hivemind/proc/switchCamera(obj/effect/alien/weeds/node/C)
-	if(QDELETED(C))
+/mob/camera/xeno/hivemind/Move(NewLoc, Dir = 0)
+	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
+	if(!W)
 		return FALSE
-
-	if(!tracking)
-		cameraFollow = null
-
-	if(QDELETED(eyeobj))
-		to_chat(world, "view core?")
-		return
-
-	eyeobj.setLoc(get_turf(C))
-	return TRUE
-
-
-/mob/living/silicon/ai/hivemind/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.xenonet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
-
-
-/mob/living/silicon/ai/hivemind/proc/relay_speech(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, message_mode)
-	raw_message = lang_treat(speaker, message_language, raw_message, spans, message_mode)
-	var/start = "Relayed Speech: "
-	var/namepart = "[speaker.GetVoice()][speaker.get_alt_name()]"
-	var/hrefpart = "<a href='?src=[REF(src)];track=[html_encode(namepart)]'>"
-	var/jobpart
-
-	if(iscarbon(speaker))
-		var/mob/living/carbon/S = speaker
-		if(S.job)
-			jobpart = "[S.job]"
-	else
-		jobpart = "Unknown"
-
-	var/rendered = "<i><span class='game say'>[start]<span class='name'>[hrefpart][namepart] ([jobpart])</a> </span><span class='message'>[raw_message]</span></span></i>"
-
-	show_message(rendered, 2)
-
-
-/mob/living/silicon/ai/hivemind/reset_perspective(atom/A)
-	if(istype(A, /obj/effect/alien/weeds/node))
-		current = A
-	if(client)
-		if(ismovableatom(A))
-			client.perspective = EYE_PERSPECTIVE
-			client.eye = A
-		else
-			if(isturf(loc))
-				if(eyeobj)
-					client.eye = eyeobj
-					client.perspective = EYE_PERSPECTIVE
-				else
-					client.eye = client.mob
-					client.perspective = MOB_PERSPECTIVE
-			else
-				client.perspective = EYE_PERSPECTIVE
-				client.eye = loc
-		update_sight()
-		if(client.eye != src)
-			var/atom/AT = client.eye
-			AT.get_remote_view_fullscreens(src)
-		else
-			clear_fullscreen("remote_view", 0)
-
-
-/mob/living/silicon/ai/hivemind/Stat()
-	. = ..()
-
-	if(statpanel("Game"))
-
-		if(stat != CONSCIOUS)
-			stat("System status:", "Nonfunctional")
-			return
-
-		stat("System integrity:", "[(health + 100) / 2]%")
-
-
-/mob/living/silicon/ai/hivemind/fully_replace_character_name(oldname, newname)
-	. = ..()
-
-	if(oldname == newname)
-		return
-
-	if(eyeobj)
-		eyeobj.name = "[newname] (AI Eye)"
-
-
-
-/mob/living/silicon/ai/hivemind/can_interact_with(datum/D)
-	return FALSE
-	if(!isatom(D))
-		return FALSE
-
-	var/atom/A = D
-	if(level_locked && A.z != z)
-		return FALSE
-
-	return GLOB.xenonet.checkTurfVis(get_turf(A))
-
-
-
-/* Resistances */
-/mob/living/silicon/ai/hivemind/restrained(ignore_checks)
-	return FALSE
-
-
-/mob/living/silicon/ai/hivemind/incapacitated(ignore_restrained, restrained_flags)
-	if(control_disabled)
-		return TRUE
-	return ..()
-
-
-/mob/living/silicon/ai/hivemind/resist()
-	return
-
-
-/mob/living/silicon/ai/hivemind/emp_act(severity)
-	. = ..()
-
-	if(prob(30))
-		to_chat(world, "view core?")
+	forceMove(NewLoc)

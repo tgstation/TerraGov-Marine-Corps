@@ -144,8 +144,6 @@
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
-	GLOB.xenonet.cameras -= src
-	GLOB.xenonet.removeCamera(src)
 	SSweeds_decay.decay_weeds(node_turfs)
 
 

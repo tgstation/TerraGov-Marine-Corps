@@ -122,19 +122,19 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 
 // Removes a camera from a chunk.
 /datum/cameranet/proc/removeCamera(obj/machinery/camera/c)
-	majorChunkChange(a, 0)
+	majorChunkChange(c, 0)
 
 
 // Add a camera to a chunk.
 /datum/cameranet/proc/addCamera(obj/machinery/camera/c)
 	if(c.can_use())
-		majorChunkChange(cam, 1)
+		majorChunkChange(c, 1)
 
 
 // Used for portable cameras. Since they can be in ANY chunk.
 /datum/cameranet/proc/updatePortableCamera(obj/machinery/camera/c)
 	if(c.can_use())
-		majorChunkChange(cam, 1)
+		majorChunkChange(c, 1)
 
 
 // Never access this proc directly!!!!

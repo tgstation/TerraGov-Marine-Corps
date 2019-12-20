@@ -1239,7 +1239,6 @@
 #include "code\modules\mob\living\silicon\ai\freelook\read_me.dm"
 #include "code\modules\mob\living\silicon\decoy\decoy.dm"
 #include "code\modules\mob\living\silicon\hivemind\hivemind.dm"
-#include "code\modules\mob\living\silicon\hivemind\other.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\friendly\cat.dm"
 #include "code\modules\mob\living\simple_animal\friendly\corgi.dm"
