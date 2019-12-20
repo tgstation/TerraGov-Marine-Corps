@@ -254,6 +254,7 @@
 #include "code\datums\components\shield.dm"
 #include "code\datums\components\squeak.dm"
 #include "code\datums\components\stamina_behavior.dm"
+#include "code\datums\components\suit_autodoc.dm"
 #include "code\datums\elements\_element.dm"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"
