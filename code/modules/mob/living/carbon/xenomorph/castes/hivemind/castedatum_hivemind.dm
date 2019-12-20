@@ -60,7 +60,6 @@
 
 /datum/xeno_caste/hivemind/mature
 	upgrade_name = "Mature"
-	caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
@@ -77,7 +76,6 @@
 
 /datum/xeno_caste/hivemind/elder
 	upgrade_name = "Elder"
-	caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Speed *** //
@@ -103,8 +101,7 @@
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "An extreme construction machine. It seems to be building walls..."
-	ancient_message = "You are the builder of walls. Ensure that the marines are the ones who pay for them."
+	ancient_message = "We are a collective. Strongest there can be. Nothing can stop us, we are one"
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Speed *** //
