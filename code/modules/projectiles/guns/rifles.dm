@@ -177,7 +177,7 @@
 	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
 	scatter = -15
-	burst_amount = 0
+	burst_amount = 1
 
 
 //-------------------------------------------------------
@@ -323,7 +323,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1.05
-	burst_amount = 0
+	burst_amount = 1
 	fire_delay = 0.25 SECONDS
 
 
@@ -425,7 +425,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
 	fire_delay = 0.25 SECONDS
-	burst_amount = 0
+	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 0.9
 	scatter = 20
@@ -563,4 +563,4 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 0.7 SECONDS
-	burst_amount = 0
+	burst_amount = 1
