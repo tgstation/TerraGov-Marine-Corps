@@ -34,3 +34,4 @@
 
 /atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/L)
 	return
+	
