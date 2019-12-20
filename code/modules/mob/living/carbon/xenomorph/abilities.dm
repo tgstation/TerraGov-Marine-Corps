@@ -115,9 +115,18 @@
 	ability_name = "secrete resin"
 	plasma_cost = 75
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+	var/base_wait = 1 SECONDS
+	var/scaling_wait = 1 SECONDS
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
+
+/datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
+	. = base_wait
+	if(!scaling_wait)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	return base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -158,12 +167,7 @@
 			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
 			return fail_activate()
 
-	var/wait_time = 2 SECONDS - max(0, (1 SECONDS * X.health / X.maxHealth)) //Between 1 and 2 seconds, depending on health.
-
-	if(isxenohivemind(X)) // Hivemind has free build, it should be slower
-		wait_time *= 3
-
-	if(!do_after(X, wait_time, TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 
 	blocker = locate() in T
@@ -213,6 +217,11 @@
 	if(new_resin)
 		succeed_activate()
 
+// Slower version of the secret resin
+/datum/action/xeno_action/activable/secrete_resin/slow
+	base_wait = 5 SECONDS
+	scaling_wait = 0
+	
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"

@@ -96,7 +96,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/secrete_resin/slow,
 		)
 
 /datum/xeno_caste/hivemind/ancient
@@ -122,6 +122,6 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/toggle_pheromones,
 		)
