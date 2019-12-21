@@ -17,6 +17,7 @@
 		to_chat(user, "You decide against putting the barricade here.")
 		return
 	var/check_build = TRUE
+	//Copypasta crafting code
 	for(var/obj/thing in get_turf(src))
 		if(!istype(thing, thing_to_deploy))
 			continue
@@ -24,12 +25,31 @@
 			continue
 		check_build = FALSE
 		break
+	if(!isfloorturf(get_turf(src)))
+		to_chat(usr, "<span class='warning'>You can only deploy something on top of a floor!!</span>")
+		return
+	for(var/obj/AM in get_turf(src))
+		if(istype(AM,/obj/structure/grille))
+			continue
+		if(istype(AM,/obj/structure/table))
+			continue
+		if(!AM.density)
+			continue
+		if(AM.flags_atom & ON_BORDER && AM.dir != user.dir)
+			if(istype(AM, /obj/structure/window))
+				var/obj/structure/window/W = AM
+				if(!W.is_full_window())
+					continue
+			else
+				continue
+		check_build = FALSE
+		break
 	if(!check_build)
-		to_chat(user, "<span class='warning'>You can't deploy the barricades on top of another!</span>")
+		to_chat(user, "<span class='warning'>You can't deploy the barricade here!</span>")
 		return
 	var/obj/O = new thing_to_deploy(get_turf(user))
 	O.setDir(user.dir)
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	qdel(src)
 
 /obj/item/quikdeploy_cade/plasteel
