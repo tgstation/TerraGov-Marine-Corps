@@ -49,8 +49,8 @@
 			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
 		return FALSE
 
-	// Don't allow them over the poddoors 
-	var/obj/machinery/door/poddoor/door = locate() in NewLoc
+	// Don't allow them over the timed_late doors 
+	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
 	if(door?.density)
 		return FALSE
 
