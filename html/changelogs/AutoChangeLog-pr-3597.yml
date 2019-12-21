@@ -1,4 +1,0 @@
-author: "ma44"
-delete-after: True
-changes: 
-  - code_imp: "Adds a signal for when a mob gets revived; coders can do fancy things whenever a mob gets revived if they wanted to"
