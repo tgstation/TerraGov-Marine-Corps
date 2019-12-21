@@ -2,6 +2,8 @@
 /obj/item/quikdeploy_cade
 	name = "QuikDeploy Barricade"
 	desc = "This is a QuikDeploy barricade, allows for extremely fast laying of barricades. Usually found in specific vendors and cannot be picked back up."
+	icon = 'icons/obj/items/quikdeploy_cade.dmi'
+	icon_state = "metal"
 	var/obj/thing_to_deploy = /obj/structure/barricade/metal
 	w_class = WEIGHT_CLASS_SMALL //While this is small, normal 50 stacks of metal is NORMAL so this is a bit on the bad space to cade ratio
 
@@ -14,12 +16,16 @@
 	if(!do_after(usr, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		to_chat(user, "You decide against putting the barricade here.")
 		return
-	for(var/obj/thing in loc)
+	var/check_build = TRUE
+	for(var/obj/thing in get_turf(src))
 		if(!istype(thing, thing_to_deploy))
 			continue
 		if(thing.dir != user.dir)
 			continue
-		to_chat(user, "<span class='warning'>You can't build \the [thing_to_deploy.name] on top of another!</span>")
+		check_build = FALSE
+		break
+	if(!check_build)
+		to_chat(user, "<span class='warning'>You can't deploy the barricades on top of another!</span>")
 		return
 	var/obj/O = new thing_to_deploy(get_turf(user))
 	O.setDir(user.dir)
@@ -28,3 +34,4 @@
 
 /obj/item/quikdeploy_cade/plasteel
 	thing_to_deploy = /obj/structure/barricade/plasteel
+	icon_state = "plasteel"
