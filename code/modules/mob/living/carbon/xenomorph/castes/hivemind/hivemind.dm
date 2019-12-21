@@ -37,7 +37,7 @@
 	// Remove some unused xeno things
 	verbs -= /mob/living/proc/lay_down
 
-/mob/living/carbon/xeno/hivemind/Destroy()
+/mob/living/carbon/xenomorph/hivemind/Destroy()
 	GLOB.hivemind_list -= src
 	return ..()
 
