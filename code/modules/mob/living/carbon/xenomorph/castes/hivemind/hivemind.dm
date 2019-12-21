@@ -32,24 +32,33 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload, ...)
 	. = ..()
-	add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 0)
 	GLOB.hivemind_list += src
 
 	// Remove some unused xeno things
 	verbs -= /mob/living/proc/lay_down
 
+/mob/living/carbon/xeno/hivemind/Destroy()
+	GLOB.hivemind_list -= src
+	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	var/obj/machinery/door/poddoor/door = locate() in NewLoc
-	if(door?.density)
-		return FALSE
-
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)
 		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
 		if(!nearby)
 			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
 		return FALSE
+
+	// Don't allow them over the poddoors 
+	var/obj/machinery/door/poddoor/door = locate() in NewLoc
+	if(door?.density)
+		return FALSE
+
+	// Hiveminds are scared of fire.
+	var/obj/flamer_fire/fire_obj = locate() in range("3x3", NewLoc)
+	if(istype(fire_obj))
+		return FALSE
+
 	forceMove(NewLoc)
 
 /mob/living/carbon/xenomorph/hivemind/receive_hivemind_message(mob/living/carbon/xenomorph/X, message)
