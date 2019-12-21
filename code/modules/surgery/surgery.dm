@@ -125,6 +125,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			return
 	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
 	if(!affected)
+		return TRUE
 	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
 		return TRUE
