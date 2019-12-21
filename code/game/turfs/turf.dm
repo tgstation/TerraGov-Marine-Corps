@@ -533,7 +533,7 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 			else
 				has_obstacle = TRUE
 				break
-		if(istype(O, /obj/effect/alien/weeds/node/strong/hivemindcore))
+		if(istype(O, /obj/effect/alien/weeds/node))
 			has_obstacle = TRUE
 			break
 

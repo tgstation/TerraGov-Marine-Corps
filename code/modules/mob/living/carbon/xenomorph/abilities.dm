@@ -878,7 +878,7 @@
 	owner.visible_message("<span class='xenowarning'>\The [owner] has created a hivemind!</span>", \
 		"<span class='xenowarning'>We have created a hivemind!</span>")
 
-	var/obj/effect/alien/weeds/node/strong/hivemindcore/core = new /obj/effect/alien/weeds/node/strong/hivemindcore(current_turf)
+	var/obj/effect/alien/weeds/node/hivemindcore/core = new /obj/effect/alien/weeds/node/hivemindcore(current_turf)
 	if(!isxenohivemind(core.parent))
 		return FALSE
 	var/mob/living/carbon/xenomorph/hivemind/xeno_hivemind = core.parent

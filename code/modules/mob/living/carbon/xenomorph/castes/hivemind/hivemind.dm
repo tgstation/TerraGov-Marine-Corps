@@ -1,13 +1,13 @@
 /mob/living/carbon/xenomorph/hivemind
 	caste_base_type = /mob/living/carbon/xenomorph/hivemind
-	name = "hivemind"
-	real_name = "hivemind"
+	name = "Hivemind"
+	real_name = "Hivemind"
 	desc = "A glorious singular entity."
 
 	icon_state = "hivemind_marker"
 	icon = 'icons/mob/cameramob.dmi'
 
-	status_flags = GODMODE
+	status_flags = GODMODE | UNDETECTABLE
 	density = FALSE
 	throwpass = TRUE
 

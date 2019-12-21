@@ -168,19 +168,19 @@
 
 // =================
 // hivemind core
-/obj/effect/alien/weeds/node/strong/hivemindcore
+/obj/effect/alien/weeds/node/hivemindcore
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
 
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
-/obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/weeds/node/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
 	parent = new(loc)
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
-/obj/effect/alien/weeds/node/strong/hivemindcore/Destroy()
+/obj/effect/alien/weeds/node/hivemindcore/Destroy()
 	set_light(0, 0, null)
 	if(isnull(parent))
 		return ..()
@@ -191,7 +191,7 @@
 	QDEL_NULL(parent)
 	return ..()
 
-/obj/effect/alien/weeds/node/strong/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+/obj/effect/alien/weeds/node/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
 	if(isxenoqueen(X))
 		var/choice = alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", "Yes", "Cancel")
 		if(choice == "Yes")
