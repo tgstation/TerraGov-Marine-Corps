@@ -190,8 +190,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!client.chatOutput)
 		return
 	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
-	if(isnull(new_input) || length(new_input) > UPLOAD_LIMIT)
+	if(isnull(new_input))
 		return
+	new_input = copytext(new_input, 1, MAX_BOOK_MESSAGE_LEN)
 	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
 	client.chatOutput.clientCSS = new_input
 	client.chatOutput.saveClientCSS()
@@ -217,9 +218,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		saveClientCSS("")
 		return
 	var/savefile/F = new(last_savefile)
+	WRITE_LOG(GLOB.rw_file_log, "PRE-READING CSS from [owner]")
 	clientCSS = read_file(F, "CSS")
 
-	if(length(clientCSS) > UPLOAD_LIMIT)
+	if(length(clientCSS) > MAX_BOOK_MESSAGE_LEN)
 		clientCSS = ""
 	clientCSS = sanitize_text(clientCSS, "")
 
