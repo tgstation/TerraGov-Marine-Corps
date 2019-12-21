@@ -7,9 +7,9 @@
 	anchored = TRUE
 	var/broken = 0
 	var/processing = 0
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	active_power_usage = 50
+	active_power_usage = 500
 
 
 
@@ -135,7 +135,7 @@
 			"You turn on [src].", \
 			"You hear a food processor.")
 		playsound(src.loc, 'sound/machines/blender.ogg', 25, 1)
-		use_power(500)
+		use_power(active_power_usage)
 		sleep(P.time)
 		P.process(src.loc, O)
 		src.processing = 0

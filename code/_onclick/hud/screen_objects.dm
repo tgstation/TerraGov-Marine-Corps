@@ -14,10 +14,6 @@
 	return ..()
 
 
-/obj/screen/examine(mob/user)
-	return
-
-
 /obj/screen/proc/component_click(obj/screen/component_button/component, params)
 	return
 

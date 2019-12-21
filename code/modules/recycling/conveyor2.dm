@@ -8,6 +8,8 @@
 	desc = "A conveyor belt."
 	layer = CONVEYOR_LAYER // so they appear under stuff
 	anchored = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 100
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -87,7 +89,6 @@
 		return
 	if(!operating)
 		return
-	use_power(100)
 
 	affecting = loc.contents - src		// moved items will be all in loc
 	INVOKE_NEXT_TICK(src, .proc/propogate)	// slight delay to prevent infinite propagation due to map order

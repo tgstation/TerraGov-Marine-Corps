@@ -3,7 +3,7 @@
 /obj/machinery/bot
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	resistance_flags = XENO_DAMAGEABLE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
