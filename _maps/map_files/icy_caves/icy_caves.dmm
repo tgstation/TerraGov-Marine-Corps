@@ -5272,19 +5272,21 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"sj" = (
-/obj/machinery/door/airlock/colony/research,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"sR" = (
+"rD" = (
+/obj/structure/table,
 /obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+	d2 = 2;
+	icon_state = "0-2"
 	},
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"ua" = (
+"ug" = (
 /obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"uN" = (
+/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "uT" = (
@@ -5299,43 +5301,22 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"yL" = (
+/obj/structure/dispenser,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "zl" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"zr" = (
-/obj/machinery/computer/general_air_control/supermatter_core,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"zy" = (
-/obj/machinery/computer/rdconsole,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Am" = (
-/obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research)
-"BS" = (
-/obj/structure/table,
+"zA" = (
 /obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"CO" = (
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"GZ" = (
-/obj/structure/bed,
-/obj/effect/landmark/start/surv_spawn,
-/turf/open/floor/wood,
-/area/icy_caves/outpost/dorms)
-"Hx" = (
+"Bl" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
@@ -5343,6 +5324,38 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"Bx" = (
+/obj/machinery/door/airlock/colony/research{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/research)
+"BN" = (
+/obj/machinery/computer/general_air_control/supermatter_core,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Cv" = (
+/turf/closed/wall,
+/area/icy_caves/outpost/research)
+"CZ" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Dv" = (
+/obj/machinery/computer/rdservercontrol,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"GZ" = (
+/obj/structure/bed,
+/obj/effect/landmark/start/surv_spawn,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/dorms)
 "HM" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -5355,13 +5368,8 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/outside)
-"JI" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+"Jo" = (
+/obj/machinery/computer/rdconsole,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "JT" = (
@@ -5381,9 +5389,6 @@
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
-"Ny" = (
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/OOB)
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
@@ -5411,18 +5416,6 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/east)
-"Se" = (
-/obj/machinery/computer/rdservercontrol,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Sp" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5436,6 +5429,14 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
+"Um" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "Vj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5444,24 +5445,7 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
-"VU" = (
-/turf/closed/ice_rock/singleEnd{
-	dir = 8
-	},
-/area/icy_caves/outpost/outside)
-"XY" = (
-/turf/closed/wall,
-/area/icy_caves/outpost/research)
-"YA" = (
-/turf/closed/ice_rock/singlePart{
-	dir = 4
-	},
-/area/icy_caves/outpost/outside)
-"ZA" = (
-/obj/structure/dispenser,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"ZL" = (
+"Vl" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -5479,6 +5463,28 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"VU" = (
+/turf/closed/ice_rock/singleEnd{
+	dir = 8
+	},
+/area/icy_caves/outpost/outside)
+"Yq" = (
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"YA" = (
+/turf/closed/ice_rock/singlePart{
+	dir = 4
+	},
+/area/icy_caves/outpost/outside)
+"YQ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Zx" = (
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/OOB)
 
 (1,1,1) = {"
 aa
@@ -9016,9 +9022,9 @@ nB
 nB
 bK
 lm
-Ny
-Ny
-Ny
+Zx
+Zx
+Zx
 pO
 nL
 lQ
@@ -9272,7 +9278,7 @@ cZ
 de
 cZ
 ls
-Ny
+Zx
 dc
 dc
 dc
@@ -9537,13 +9543,13 @@ dc
 dc
 dc
 dc
-Am
-CO
-ua
-CO
-CO
-CO
-Am
+Bx
+Yq
+ug
+Yq
+Yq
+Yq
+Bx
 gw
 gw
 gw
@@ -9795,10 +9801,10 @@ dc
 dc
 fP
 qH
-ZA
-CO
-sR
-CO
+yL
+Yq
+zA
+Yq
 re
 qH
 gw
@@ -10052,11 +10058,11 @@ dc
 de
 cZ
 qH
-XY
-XY
-sj
-XY
-XY
+Cv
+Cv
+uN
+Cv
+Cv
 qH
 gw
 gw
@@ -10310,10 +10316,10 @@ da
 db
 qH
 qZ
-Hx
-Sp
-CO
-zy
+Bl
+Um
+YQ
+Jo
 qH
 gw
 gw
@@ -10566,11 +10572,11 @@ dc
 dz
 fP
 qH
-BS
-ZL
-CO
+rD
+Vl
+Yq
 ra
-zr
+BN
 qH
 gw
 gw
@@ -10825,9 +10831,9 @@ cZ
 qH
 rd
 mK
-ua
-CO
-Se
+ug
+Yq
+Dv
 qH
 gw
 gw
@@ -11082,8 +11088,8 @@ dz
 qH
 ea
 mK
-CO
-CO
+Yq
+Yq
 ea
 qH
 gw
@@ -12109,7 +12115,7 @@ dc
 jf
 qH
 dT
-JI
+CZ
 rc
 re
 ea
