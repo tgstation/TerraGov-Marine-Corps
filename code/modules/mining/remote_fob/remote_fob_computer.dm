@@ -4,7 +4,8 @@
 /obj/machinery/computer/camera_advanced/remote_fob
 	name = "FOB Construction Drone Control"
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
-	icon_state = "syndishuttle"
+	icon = 'icons/Marine/remotefob.dmi'
+	icon_state = "fobpc"
 	req_access = list(ACCESS_MARINE_REMOTEBUILD)
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
@@ -50,6 +51,7 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
+	icon_state = "fobpc-transfer"
 	user.lighting_alpha = 120
 	eyeobj.name = "Remote Construction Drone"
 	eyeobj.register_facedir_signals(user)
@@ -57,6 +59,8 @@
 		eyeobj.setLoc(get_turf(spawn_spot))
 	
 /obj/machinery/computer/camera_advanced/remote_fob/attack_hand(mob/living/user)
+	if(machine_stat & (NOPOWER|BROKEN))
+		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
@@ -94,6 +98,7 @@
 			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Sentry voucher redeemed.</span>")
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
+			flick("fobpc-insert", src)
 			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
 			if(max_metal <= metal_remaining)
@@ -103,6 +108,7 @@
 			metal_remaining += useamount
 			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] metal sheets.")
+			flick("fobpc-insert", src)
 			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/plasteel))
 			if(max_plasteel <= plasteel_remaining)
@@ -112,6 +118,7 @@
 			plasteel_remaining += useamount
 			attacking_stack.use(useamount)
 			to_chat(user, "<span class='notice'>Inserted [useamount] plasteel sheets.")
+			flick("fobpc-insert", src)
 			return
 	return ..()
 
@@ -154,6 +161,7 @@
 	eyeobj.invisibility = 0
 
 /obj/machinery/computer/camera_advanced/remote_fob/remove_eye_control(mob/living/user)
+	icon_state = "fobpc"
 	eyeobj.invisibility = INVISIBILITY_ABSTRACT
 	eyeobj.eye_initialized = FALSE
 	eyeobj.unregister_facedir_signals(user)

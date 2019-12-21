@@ -159,7 +159,7 @@
 
 /datum/action/innate/remote_fob/eject_metal
 	name = "Eject All Metal"
-	action_icon_state = "eject_metal"
+	action_icon_state = "fobpc-eject_m"
 
 /datum/action/innate/remote_fob/eject_metal/Activate()
 	. = ..()
@@ -174,10 +174,11 @@
 	stack.amount = console.metal_remaining
 	console.metal_remaining = 0
 	to_chat(owner, "<span class='notice'>Ejected [stack.amount] metal sheets.</span>")
+	flick("fobpc-eject", console)
 
 /datum/action/innate/remote_fob/eject_plasteel
 	name = "Eject All Plasteel"
-	action_icon_state = "eject_plast"
+	action_icon_state = "fobpc-eject_p"
 
 /datum/action/innate/remote_fob/eject_plasteel/Activate()
 	. = ..()
@@ -186,12 +187,14 @@
 	if(console.plasteel_remaining <= 0)
 		to_chat(owner, "<span class='warning'>Nothing to eject.</span>")
 		return
+	flick("fobpc-eject", console)
 	var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
 	var/turf/consolespot = get_turf(console)
 	stack = new /obj/item/stack/sheet/plasteel(consolespot)
 	stack.amount = console.plasteel_remaining
 	console.plasteel_remaining = 0
 	to_chat(owner, "<span class='notice'>Ejected [stack.amount] plasteel sheets.</span>")
+
 
 /obj/item/stack/voucher/sentry
 	name = "Sentry gun voucher"
