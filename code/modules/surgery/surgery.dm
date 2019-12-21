@@ -127,7 +127,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!affected)
 	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
-		return 1
+		return TRUE
 
 	for(var/i in GLOB.surgery_steps)
 		var/datum/surgery_step/S = i
