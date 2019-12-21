@@ -9,7 +9,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-proc/radial_medical(mob/living/carbon/patient, mob/doctor)
+/proc/radial_medical(mob/living/carbon/patient, mob/doctor)
 	var/mob/living/carbon/human/H = patient
 	var/radial_state = ""
 	var/datum/limb/part = null
