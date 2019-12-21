@@ -8,7 +8,7 @@
 	w_class = WEIGHT_CLASS_SMALL //While this is small, normal 50 stacks of metal is NORMAL so this is a bit on the bad space to cade ratio
 
 /obj/item/quikdeploy_cade/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "This QuikDeploy cade seems to deploy a [thing_to_deploy.name].")
 
 /obj/item/quikdeploy_cade/attack_self(mob/user)
