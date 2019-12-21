@@ -195,7 +195,6 @@
 		if(choice == "Yes")
 			deconstruct(FALSE)
 			return
-			
 
 	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")

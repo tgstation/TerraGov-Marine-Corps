@@ -40,6 +40,10 @@
 
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
+	var/obj/machinery/door/poddoor/door = locate() in NewLoc
+	if(door?.density)
+		return FALSE
+
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)
 		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)

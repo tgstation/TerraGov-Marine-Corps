@@ -49,15 +49,16 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
-/datum/action/xeno_action/plant_weeds/can_use_action(silent, override_flags)
-	. = ..()
-	if(locate(/obj/effect/alien/resin/trap) in get_turf(owner))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
-		return FALSE
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
+
+	if(!T.check_alien_construction(owner, FALSE))
+		return fail_activate()
+
+	if(locate(/obj/effect/alien/resin/trap) in T)
+		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return fail_activate()
 
 	if(!T.is_weedable())
 		to_chat(owner, "<span class='warning'>Bad place for a garden!</span>")
@@ -73,6 +74,7 @@
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
+	add_cooldown()
 	return succeed_activate()
 
 /datum/action/xeno_action/plant_weeds/slow
@@ -218,6 +220,7 @@
 		new_resin = new X.selected_resin(T)
 
 	if(new_resin)
+		add_cooldown()
 		succeed_activate()
 
 // Slower version of the secret resin
