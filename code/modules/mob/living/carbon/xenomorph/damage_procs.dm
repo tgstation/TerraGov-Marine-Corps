@@ -2,9 +2,10 @@
 
 	flash_eyes()
 
-	if(severity < 3 && stomach_contents.len)
-		for(var/mob/M in stomach_contents)
-			M.ex_act(severity + 1)
+	if(severity < 3)
+		for(var/i in stomach_contents)
+			var/mob/living/carbon/prey = i
+			prey.ex_act(severity + 1)
 	var/bomb_armor = armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
@@ -21,13 +22,13 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(75, 85)
 					f_loss = rand(75, 85)
-					knock_down(6)
+					Knockdown(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(80, 90)
 					f_loss = rand(80, 90)
-					knock_down(8)
+					Knockdown(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 				else //Lower than XENO_BOMB_RESIST_1
@@ -44,19 +45,19 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(55, 55)
 					f_loss = rand(55, 55)
-					knock_down(4)
+					Knockdown(80)
 					adjust_stagger(1)
 					add_slowdown(3)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(60, 70)
 					f_loss = rand(60, 70)
-					knock_down(6)
+					Knockdown(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(65, 75)
 					f_loss = rand(65, 75)
-					knock_down(8)
+					Knockdown(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 		if(3)
@@ -69,21 +70,18 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(35, 45)
 					f_loss = rand(35, 45)
-					if(!knocked_down) //so marines can't chainstun with grenades
-						knock_down(2)
+					KnockdownNoChain(40)
 					add_slowdown(1)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(40, 50)
 					f_loss = rand(40, 50)
-					if(!knocked_down)
-						knock_down(3)
+					KnockdownNoChain(60)
 					adjust_stagger(2)
 					add_slowdown(2)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(45, 55)
 					f_loss = rand(45, 55)
-					if(!knocked_down)
-						knock_down(4)
+					KnockdownNoChain(80)
 					adjust_stagger(4)
 					add_slowdown(4)
 
@@ -93,14 +91,15 @@
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(blocked >= 1) //total negation
-		return FALSE
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked)
-		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+	if(hit_percent <= 0) //total negation
+		return 0
+
+	damage *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!damage) //no damage
-		return FALSE
+		return 0
 
 	//We still want to check for blood splash before we get to the damage application.
 	var/chancemod = 0
@@ -127,7 +126,7 @@
 
 	if(updating_health)
 		updatehealth()
-	return TRUE
+	return damage
 
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)

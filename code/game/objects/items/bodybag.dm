@@ -84,6 +84,12 @@
 	return ..()
 
 
+/obj/structure/closet/bodybag/is_buckled()
+	if(roller_buckled)
+		return roller_buckled
+	return ..()
+
+
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
 		name = bag_name
@@ -175,7 +181,8 @@
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
-	roller_buckled?.unbuckle()
+	if(roller_buckled)
+		roller_buckled.unbuckle_bodybag()
 	return ..()
 
 
@@ -192,7 +199,7 @@
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.do_attack_animation(src)
+	xeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	open()
 	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)

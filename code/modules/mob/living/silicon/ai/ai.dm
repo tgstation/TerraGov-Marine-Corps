@@ -10,6 +10,7 @@
 	status_flags = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai
+	buckle_flags = NONE
 
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
@@ -74,7 +75,7 @@
 	return FALSE
 
 
-/mob/living/silicon/ai/incapacitated(ignore_restraints)
+/mob/living/silicon/ai/incapacitated(ignore_restrained, restrained_flags)
 	if(control_disabled)
 		return TRUE
 	return ..()
@@ -230,10 +231,10 @@
 	if(statpanel("Game"))
 
 		if(stat != CONSCIOUS)
-			stat(null, text("Systems nonfunctional"))
+			stat("System status:", "Nonfunctional")
 			return
 
-		stat(null, text("System integrity: [(health + 100) / 2]%"))
+		stat("System integrity:", "[(health + 100) / 2]%")
 
 
 /mob/living/silicon/ai/fully_replace_character_name(oldname, newname)

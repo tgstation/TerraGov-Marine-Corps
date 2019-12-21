@@ -60,19 +60,21 @@
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(obj/item/W)
+/mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W))
 		return TRUE
 	if(put_in_inactive_hand(W))
 		return TRUE
-	else
-		W.forceMove(get_turf(src))
-		W.layer = initial(W.layer)
-		W.plane = initial(W.plane)
-		W.dropped(src)
+	if(del_on_fail)
+		qdel(W)
 		return FALSE
+	W.forceMove(get_turf(src))
+	W.layer = initial(W.layer)
+	W.plane = initial(W.plane)
+	W.dropped(src)
+	return FALSE
 
 
 /mob/proc/drop_item_v()		//this is dumb.
@@ -217,88 +219,96 @@
 		return r_hand
 	return
 
+
 /mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code
-	var/equipped = 0
+	var/equipped = ITEM_NOT_EQUIPPED
 	switch(slot)
 		if(SLOT_BACK)
 			if(!src.back)
 				src.back = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_WEAR_MASK)
 			if(!src.wear_mask)
 				src.wear_mask = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
 				update_handcuffed(W)
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_CARRIED
 		if(SLOT_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_CARRIED
 		if(SLOT_BELT)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_WEAR_ID)
 			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_EARS)
 			if(!wear_ear)
 				wear_ear = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_GLASSES)
 			if(!src.glasses)
 				src.glasses = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_GLOVES)
 			if(!src.gloves)
 				src.gloves = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_HEAD)
 			if(!src.head)
 				src.head = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_SHOES)
 			if(!src.shoes)
 				src.shoes = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_WEAR_SUIT)
 			if(!src.wear_suit)
 				src.wear_suit = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_W_UNIFORM)
 			if(!src.w_uniform)
 				src.w_uniform = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_S_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
-				equipped = 1
+				equipped = ITEM_EQUIPPED_WORN
 		if(SLOT_IN_BACKPACK)
 			if (src.back && istype(src.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)
 					W.loc = B
-					equipped = 1
+					equipped = ITEM_EQUIPPED_CARRIED
 
 	if(equipped)
-		if(W.flags_armor_protection)
-			add_limb_armor(W)
+		if(equipped == ITEM_EQUIPPED_WORN)
+			if(W.flags_armor_protection)
+				add_limb_armor(W)
+			if(W.slowdown)
+				add_movespeed_modifier(W.type, TRUE, 0, NONE, TRUE, W.slowdown)
+			if(isclothing(W))
+				var/obj/item/clothing/equipped_clothing = W
+				if(equipped_clothing.accuracy_mod)
+					adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		if(src.back && W.loc != src.back)

@@ -1,20 +1,19 @@
-As a human, you can do almost anything if you put your mind to it, it just takes time.
-While medics and doctors are best, anyone can use a Defibrillator.
+As a human, you can do almost anything if you put your mind to it; it just takes time.
+While medics and doctors are best at it, anyone can use a defibrillator.
 Anyone can make razor wire with four metal rods and barbed wire from metal sheets.
-Using a multitool on a lasgun batteries will turn it into an improvised explosive with a random timer.
+Using a multitool on a lasgun battery will turn it into an improvised explosive with a random timer.
 In a pinch, you can use lasgun batteries to power APCs and sentry guns.
-Lasgun batteries can be recharged in APCs and power cell rechargers if the generators are on.
-As a marine, if you are not a PFC, then you have a special room in prep with special gear vendors.
-AP bullets are not always better, they do less damage than normal but penetrate more armor.
-Did you know, that pistols are not complete garbage?
+Lasgun batteries can be recharged in APCs and power cell rechargers, if the generators are on.
+As a marine, if you aren't a PFC, then you have a special room in prep with special gear vendors.
+AP bullets aren't always better: they do less damage than normal but penetrate more armor.
+Pistols aren't complete garbage.
 There is no 'best' loadout. Experiment and find what works for you.
 Anything can be a weapon if you put your mind to it.
-You can check your wounds to see if they have been bandaged or salved.
+You can check your wounds to see if they have been bandaged or salved by clicking on yourself while in help intent.
 You can help put other people out if they are on fire.
-Removing weeds means you can move faster.
-Your standard boot knife is great at removing weeds.
-During Self Destruct, green control rods are armed control rods, collect all six!
-Stop, Drop, and Roll, if you are on fire to put yourself out.
+Removing weeds as a marine means you can move faster; your standard boot knife is great for doing this.
+During Self Destruct, green control rods are armed control rods; collect all six!
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
-Requisitions have many supplies to enhance the combat power of marine units. Attachments, ammunition, and other toys, ask their crew what's on store and you may be pleasantly surprised. DISCLAIMER: Extra gear's availability dependent on supply.
-As a Marine or Cargo, don't let garbage crates like SL Armor be ordered. You need those points for other stuff. 
+Requisitions have many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's on store and you may be pleasantly surprised. DISCLAIMER: Extra gear's availability is dependent on supply.
+Cargo points are valuable: Some crates, like SL armour, may be a waste of points which could be better spent on other stuff. 
+As a human, you can climb over waist-high obstacles like sandbags, window frames or tables by SpecialClicking (Default: CTRL) on them or drag-clicking yourself on them.

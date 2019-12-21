@@ -267,6 +267,99 @@
 		winset(src, "mainwindow.split", "splitter=[pct]")
 
 
+/client/verb/fix_chat()
+	set name = "Fix chat"
+	set category = "OOC"
+
+	var/action = alert(src, "Select desired action", "Options", "Troubleshoot Goonchat", "Revert to old chat", "Cancel")
+	switch(action)
+		if("Revert to old chat")
+			winset(src, "output", "is-visible=true;is-disabled=false")
+			winset(src, "browseroutput", "is-visible=false")
+			return
+		if("Cancel")
+			return
+
+	if(!istype(chatOutput))
+		action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Recreate Chat Output data", "Yes", "Cancel")
+		if(action != "Yes")
+			return
+		chatOutput = new /datum/chatOutput(src)
+		chatOutput.start()
+		action = alert(src, "Goon chat reloading, wait a bit and state if it's fixed", "Fixed", "Yes", "No")
+		if(action == "Yes")
+			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum")
+			return
+		chatOutput.load()
+		action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "Loaded", "Yes", "No")
+		if(action == "Yes")
+			log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by re-creating the chatOutput datum and forcing a load()")
+			return
+		action = alert(src, "Reloading failed. Try closing the game, clearing the Internet Explorer and BYOND caches, and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "Close or Switch", "Close", "Switch to old chat")
+		if(action == "Switch to old chat")
+			winset(src, "output", "is-visible=true ; is-disabled=false")
+			winset(src, "browseroutput", "is-visible=false")
+		log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after recreating the chatOutput and forcing a load()")
+		return
+
+	if(chatOutput.loaded)
+		action = alert(src, "ChatOutput seems to be loaded\nForce a reload, wiping the chat log, or just refresh the chat window because it broke/went away?", "Reload or Refresh", "Force Reload", "Refresh", "Cancel")
+		switch(action)
+			if("Force Reload")
+				chatOutput.loaded = FALSE
+				chatOutput.start() //this is likely to fail since it asks , but we should try it anyways so we know.
+				action = alert(src, "Goon chat reloading, wait a bit and state if it's fixed", "Fixed", "Yes", "No")
+				if(action == "Yes")
+					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a start()")
+					return
+				chatOutput.load()
+				action = alert(src, "How about now? (give it a moment (it may also try to load twice))", "Loaded", "Yes", "No")
+				if(action == "Yes")
+					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
+					return
+				action = alert(src, "Reloading failed. Try closing the game, clearing the Internet Explorer and BYOND caches, and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "Close or Switch", "Close", "Switch to old chat")
+				if(action == "Switch to old chat")
+					winset(src, "output", "is-visible=true ; is-disabled=false")
+					winset(src, "browseroutput", "is-visible=false")
+				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a start() and forcing a load()")
+				return
+
+			if("Refresh")
+				chatOutput.showChat()
+				action = alert(src, "Goon chat refreshing, wait a bit and state if it's fixed", "Fixed", "Yes", "No, force a reload")
+				if(action == "Yes")
+					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")
+					return
+				chatOutput.loaded = FALSE
+				chatOutput.load()
+				action = alert(src, "How about now? (give it a moment)", "Loaded", "Yes", "No")
+				if(action == "Yes")
+					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a load()")
+					return
+				action = alert(src, "Reloading failed. Try closing the game, clearing the Internet Explorer and BYOND caches, and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "Close or Switch", "Close", "Switch to old chat")
+				if(action == "Switch to old chat")
+					winset(src, "output", "is-visible=true;is-disabled=false")
+					winset(src, "browseroutput", "is-visible=false")
+				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a show() and forcing a load()")
+		return
+
+	chatOutput.start()
+	action = alert(src, "Manually loading Chat, wait a bit and state if it's fixed", "Fixed", "Yes", "No")
+	if(action == "Yes")
+		log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start()")
+		return
+	chatOutput.load()
+	action = alert(src, "How about now? (give it a moment)", "Loaded", "Yes", "No")
+	if(action == "Yes")
+		log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by manually calling start() and forcing a load()")
+		return
+	action = alert(src, "Reloading failed. Try closing the game, clearing the Internet Explorer and BYOND caches, and reconnecting.\nWe could also disable fancy chat and re-enable oldchat", "Close or Switch", "Close", "Switch to old chat")
+	if(action == "Switch to old chat")
+		winset(src, "output", list2params(list("on-show" = "", "is-disabled" = "false", "is-visible" = "true")))
+		winset(src, "browseroutput", "is-disabled=true;is-visible=false")
+	log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after manually calling start() and forcing a load()")
+
+
 /client/verb/update_ping(time as num)
 	set instant = TRUE
 	set name = ".update_ping"

@@ -17,6 +17,7 @@
 	add_cooldown()
 
 	GLOB.round_statistics.crusher_stomps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
 	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
@@ -30,7 +31,8 @@
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
-			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee") * 0.5) //Only 50% armor applies vs stomp brute damage
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
+			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee"))
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else
@@ -38,10 +40,10 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.knock_down(1)
+			M.Knockdown(20)
 		else
-			M.stun(1) //Otherwise we just get stunned.
-		M.apply_damage(damage, HALLOSS) //Armour ignoring Halloss
+			M.Stun(20) //Otherwise we just get stunned.
+		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
 
@@ -54,7 +56,7 @@
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
 	plasma_cost = 40
-	cooldown_timer = 6 SECONDS
+	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
@@ -124,12 +126,12 @@
 	//Handle the damage
 	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 5
-		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee")) //Armour functions against this.
-		L.apply_damage(damage, HALLOSS) //...But decent armour ignoring Halloss
+		L.take_overall_damage(rand(damage * 0.75,damage * 1.25), 0, L.run_armor_check("chest", "melee"))
+		L.apply_damage(damage, STAMINA) //...But decent armour ignoring Stamina
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		L.knock_down(1, 1)
+		L.Knockdown(20)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)

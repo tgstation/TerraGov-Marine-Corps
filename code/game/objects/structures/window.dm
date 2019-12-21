@@ -123,7 +123,7 @@
 			return
 
 		var/mob/living/M = G.grabbed_thing
-		var/state = user.grab_level
+		var/state = user.grab_state
 		user.drop_held_item()
 		switch(state)
 			if(GRAB_PASSIVE)
@@ -136,14 +136,14 @@
 				M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
 				log_combat(user, M, "bashed", "", "against \the [src]")
 				if(prob(50))
-					M.knock_down(1)
+					M.Knockdown(20)
 				M.apply_damage(10)
 				UPDATEHEALTH(M)
 				take_damage(25)
 			if(GRAB_NECK)
 				M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
 				log_combat(user, M, "crushed", "", "against \the [src]")
-				M.knock_down(5)
+				M.Knockdown(10 SECONDS)
 				M.apply_damage(20)
 				UPDATEHEALTH(M)
 				take_damage(50)

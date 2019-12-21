@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(vote)
 			if(length(winners) > 1)
 				text = "<br><b>Vote Tied Between:</b>"
 				for(var/option in winners)
-					text += "<br>[GLOB.TAB][option]"
+					text += "<br>[FOURSPACES][option]"
 			. = pick(winners)
 			text += "<br><b>Vote Result: [.]</b>"
 		else
@@ -263,7 +263,7 @@ SUBSYSTEM_DEF(vote)
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		if(admin)
-			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
+			. += "[FOURSPACES](<a href='?_src_=vote;vote=toggle_restart'>[avr ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
@@ -273,7 +273,7 @@ SUBSYSTEM_DEF(vote)
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 
 		if(admin)
-			. += "[GLOB.TAB](<a href='?_src_=vote;vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
+			. += "[FOURSPACES](<a href='?_src_=vote;vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
 
 		. += "</li><hr>"
 

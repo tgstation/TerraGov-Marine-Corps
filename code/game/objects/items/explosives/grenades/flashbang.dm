@@ -6,7 +6,7 @@
 
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	..()
@@ -22,7 +22,7 @@
 
 
 	for(var/mob/living/carbon/M in hear(7, T))
-		if(!istype(M,/mob/living/carbon/xenomorph))
+		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
 			bang(T, M)
 
 
@@ -52,19 +52,19 @@
 
 //Flashing everyone
 	if(M.flash_eyes())
-		M.stun(2)
-		M.knock_down(10)
+		M.Stun(40)
+		M.Knockdown(20 SECONDS)
 
 
 
 //Now applying sound
 	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
 		if(ear_safety > 0)
-			M.stun(2)
-			M.knock_down(1)
+			M.Stun(40)
+			M.Knockdown(20)
 		else
-			M.stun(10)
-			M.knock_down(3)
+			M.Stun(20 SECONDS)
+			M.Knockdown(60)
 			if ((prob(14) || (M == src.loc && prob(70))))
 				M.adjust_ear_damage(rand(1, 10))
 			else
@@ -72,11 +72,11 @@
 
 	else if(get_dist(M, T) <= 5)
 		if(!ear_safety)
-			M.stun(8)
+			M.Stun(16 SECONDS)
 			M.adjust_ear_damage(rand(0, 3), 10)
 
 	else if(!ear_safety)
-		M.stun(4)
+		M.Stun(80)
 		M.adjust_ear_damage(rand(0, 1), 5)
 
 //This really should be in mob not every check

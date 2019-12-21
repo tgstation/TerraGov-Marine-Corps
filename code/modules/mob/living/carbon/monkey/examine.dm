@@ -1,5 +1,5 @@
 /mob/living/carbon/monkey/examine(mob/user)
-
+	SHOULD_CALL_PARENT(0)
 	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
 
 	if (src.handcuffed)

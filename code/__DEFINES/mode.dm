@@ -113,5 +113,14 @@
 
 #define XENO_AFK_TIMER			5 MINUTES
 
-#define DEATHTIME_CHECK(M) (((world.time - M.timeofdeath) < GLOB.respawntime) && !check_other_rights(M.client, R_ADMIN, FALSE))
+#define DEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.respawntime)
 #define DEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.respawntime * 0.1] seconds before rejoining the game!</span>")
+
+#define XENODEATHTIME_CHECK(M) ((world.time - M.timeofdeath) < GLOB.xenorespawntime)
+#define XENODEATHTIME_MESSAGE(M) to_chat(M, "<span class='warning'>You have been dead for [(world.time - M.timeofdeath) * 0.1] second\s.</span><br><span class='warning'>You must wait [GLOB.xenorespawntime * 0.1] seconds before rejoining the game as a xenomorph!</span>")
+
+#define COUNT_IGNORE_HUMAN_SSD		(1<<0)
+#define COUNT_IGNORE_XENO_SSD		(1<<1)
+#define COUNT_IGNORE_XENO_SPECIAL_AREA	(1<<2)
+
+#define COUNT_IGNORE_ALIVE_SSD (COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)

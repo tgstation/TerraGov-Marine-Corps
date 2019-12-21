@@ -13,9 +13,14 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
-	tint = TINT_HEAVY
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
+	var/should_tint = TRUE
+
+/obj/item/clothing/mask/gas/Initialize()
+	. = ..()
+	if(should_tint)
+		AddComponent(/datum/component/clothing_tint, TINT_5)
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -23,10 +28,14 @@
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
-	tint = TINT_NONE
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+	should_tint = FALSE
+
+/obj/item/clothing/mask/gas/PMC/damaged
+	name = "damaged M8 pattern armored balaclava"
+	anti_hug = 0
 
 /obj/item/clothing/mask/gas/PMC/upp
 	name = "\improper UPP armored commando balaclava"
@@ -42,7 +51,7 @@
 	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "wolf_mask"
 	anti_hug = 2
-	tint = TINT_NONE
+	should_tint = FALSE
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -58,9 +67,9 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	anti_hug = 1
-	tint = TINT_NONE
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
+	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -89,7 +98,7 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	tint = TINT_NONE
+	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"

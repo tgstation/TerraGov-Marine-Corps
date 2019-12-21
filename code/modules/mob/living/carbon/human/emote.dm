@@ -55,7 +55,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.knock_out(2)
+	user.Unconscious(40)
 
 
 /datum/emote/living/carbon/human/cough
@@ -102,7 +102,7 @@
 	. = ..()
 	if(!.)
 		return
-	user.sleeping += 10
+	user.AdjustSleeping(10)
 
 
 /datum/emote/living/carbon/human/frown

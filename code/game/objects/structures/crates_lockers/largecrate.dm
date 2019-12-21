@@ -144,21 +144,20 @@
 	return ..()
 
 
-/obj/structure/largecrate/random/barrel/attackby(obj/item/I, mob/user, params)
-	. = ..()
+/obj/structure/largecrate/random/barrel/welder_act(mob/living/user, obj/item/tool/weldingtool/welder)
+	if(!welder.isOn())
+		return FALSE
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
+	if(!welder.remove_fuel(1, user))
+		return TRUE
+	user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>",
+		"<span class='notice'>You weld open \the [src].</span>",
+		"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	deconstruct(TRUE)
+	return TRUE
 
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
-			return
-		WT.remove_fuel(1, user)
-		user.visible_message("<span class='notice'>[user] welds \the [src] open.</span>", \
-							"<span class='notice'>You weld open \the [src].</span>", \
-							"<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		deconstruct(TRUE)
-	else
-		return attack_hand(user)
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
@@ -234,18 +233,13 @@
 					/obj/item/weapon/gun/pistol/m4a3 = /obj/item/ammo_magazine/pistol/ap,
 					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/marksman,
 					/obj/item/weapon/gun/revolver/m44 = /obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/extended,
-					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle/ap,
-					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
-					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun/incendiary,
-					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun/beanbag,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/ap,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39/extended,
-					/obj/item/weapon/gun/smg/m39/elite = /obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun,
+					/obj/item/weapon/gun/shotgun/pump/t35 = /obj/item/ammo_magazine/shotgun/incendiary,
+					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
 					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/lmg,
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = /obj/item/ammo_magazine/rifle/standard_assaultrifle,
+					/obj/item/weapon/gun/rifle/standard_lmg = /obj/item/ammo_magazine/standard_lmg,
 					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
 					)
 

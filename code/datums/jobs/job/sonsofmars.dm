@@ -1,7 +1,7 @@
 /datum/job/som
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skills/crafty
 	faction = "Sons of Mars"
 
 

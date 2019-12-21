@@ -1,5 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
-
+	SHOULD_CALL_PARENT(0)
 	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 
@@ -225,13 +225,10 @@
 
 	msg += "<span class='warning'>"
 
-	if(nutrition < 100)
+	if(nutrition < NUTRITION_STARVING)
 		msg += "[t_He] [t_is] severely malnourished.\n"
-	else if(nutrition >= 500)
-		/*if(user.nutrition < 100)
-			msg += "[t_He] [t_is] plump and delicious looking - Like a fat little piggy. A tasty piggy.\n"
-		else*/
-		msg += "[t_He] [t_is] quite chubby.\n"
+	else if(nutrition >= NUTRITION_OVERFED)
+		msg += "[t_He] looks a bit stuffed.\n"
 
 	msg += "</span>"
 
@@ -545,7 +542,7 @@
 		switch(hudtype)
 			if("security")
 				//only MPs can use the security HUD glasses's functionalities
-				if(H.mind && (!H.mind.cm_skills || H.mind.cm_skills.police >= SKILL_POLICE_MP))
+				if(H.skills.getRating("police") >= SKILL_POLICE_MP)
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)

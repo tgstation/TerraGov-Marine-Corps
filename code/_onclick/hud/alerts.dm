@@ -159,6 +159,13 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Handcuffed"
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
 
+/obj/screen/alert/restrained/Click()
+	if(!isliving(usr))
+		return
+	var/mob/living/L = usr
+	return L.do_resist()
+
+
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there

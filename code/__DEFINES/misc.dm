@@ -14,6 +14,9 @@
 #define APPEARANCE_UI						(RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
 #define APPEARANCE_UI_TRANSFORM				(RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
+//Just space
+#define SPACE_ICON_STATE	"[((x + y) ^ ~(x * y) + z) % 25]"
+
 //dirt type for each turf types.
 #define NO_DIRT				0
 #define DIRT_TYPE_GROUND	1
@@ -60,6 +63,7 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define DUMMY_HUMAN_SLOT_ADMIN "admintools"
 #define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"
@@ -98,3 +102,8 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #else
 #define CHECK_NULL_CLIENT(X) X
 #endif
+
+//Misc text define. Does 4 spaces. Used as a makeshift tabulator.
+#define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
+
+#define RIDING_OFFSET_ALL "ALL"

@@ -20,6 +20,7 @@
 	var/max_medics = 1
 	var/candidate_timer
 	var/cooldown_timer
+	var/spawn_type = /mob/living/carbon/human
 
 /datum/game_mode/proc/initialize_emergency_calls()
 	if(length(all_calls)) //It's already been set up.
@@ -114,8 +115,8 @@
 	if(cooldown_timer)
 		deltimer(cooldown_timer)
 		cooldown_timer = null
-	members = list()
-	candidates = list()
+	members.Cut()
+	candidates.Cut()
 	SSticker.mode.waiting_for_candidates = FALSE
 	SSticker.mode.on_distress_cooldown = FALSE
 	message_admins("Distress beacon: [name] has been reset.")
@@ -167,8 +168,8 @@
 	if(length(valid_candidates) < mob_min)
 		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(valid_candidates)]. Minimum required: [mob_min].")
 		SSticker.mode.waiting_for_candidates = FALSE
-		members = list() //Empty the members list.
-		candidates = list()
+		members.Cut() //Empty the members list.
+		candidates.Cut()
 
 		if(announce)
 			priority_announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
@@ -226,9 +227,9 @@
 	if(length(picked_candidates) && mob_min > 0)
 		max_medics = max(round(length(picked_candidates) * 0.25), 1)
 		for(var/i in picked_candidates)
-			var/datum/mind/M = i
-			members += M
-			create_member(M)
+			var/datum/mind/candidate_mind = i
+			members += candidate_mind
+			create_member(candidate_mind)
 	else
 		message_admins("ERROR: No picked candidates, aborting.")
 		shuttle.intoTheSunset() // delete
@@ -242,7 +243,7 @@
 
 	message_admins("Distress beacon: [name] finished spawning.")
 
-	candidates = list() //Blank out the candidates list for next time.
+	candidates.Cut() //Blank out the candidates list for next time.
 
 	cooldown_timer = addtimer(CALLBACK(src, .proc/reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 
@@ -272,8 +273,14 @@
 	if(L)
 		return get_turf(L)
 
-/datum/emergency_call/proc/create_member(datum/mind/M) //Overriden in each distress call file.
-	return
+/datum/emergency_call/proc/create_member(datum/mind/mind_to_assign) //Overriden in each distress call file.
+	SHOULD_CALL_PARENT(TRUE)
+	var/turf/spawn_loc = get_spawn_point()
+
+	if(!istype(spawn_loc))
+		CRASH("[type] failed to find a proper spawn_loc")
+
+	return spawn_type ? new spawn_type(spawn_loc) : spawn_loc
 
 
 /datum/emergency_call/proc/spawn_items() //Allows us to spawn various things around the shuttle.

@@ -1,0 +1,127 @@
+{
+	"suspicion": [
+		"@pick(add_name)i'm watching you...",
+		"@pick(add_name)i know what you're doing",
+		"@pick(add_name)what are you hiding?",
+		"I saw that"
+	],
+
+	"conversation": [
+		"Yes",
+		"Yeah",
+		"Yup",
+		"No",
+		"Nah",
+		"I doubt it",
+		"Uh...",
+		"Why?",
+		"But...",
+		"Hold on",
+		"Hmm",
+		"Yeah, i know",
+		"Weird"
+	],
+
+	"greetings": [
+		"",
+		"Hey, ",
+		"Hi ",
+		"Hello ",
+		"Wait, ",
+		"It's "
+	],
+
+	"getout": [
+		"@pick(add_name)get out",
+		"@pick(add_name)get out!",
+		"@pick(add_name)go away",
+		"@pick(add_name)fuck off",
+		"OUT!",
+		"@pick(add_name)out!"
+	],
+
+	"weird": [
+		"Kchck-Chkck? Kchchck!",
+		"Kchckchk...",
+		"EEEeeeeEEEE",
+		"khhhhh",
+		"#@§*&£",
+		"H**p m*",
+		"H-hhhhh..."
+	],
+
+	"didyouhearthat": [
+		"Did you hear that?",
+		"Did you see that?",
+		"What was that?"
+	],
+
+	"nuke": [
+		"where is the nuke?", 
+		"what disks do we need?",
+		"have you got the red disk?",
+		"have you got the green disk?",
+		"have you got the blue disk?"
+	],
+
+	"add_name": [
+		"%TARGETNAME%, ",
+		"%TARGETNAME% ",
+		""
+	],
+
+	"doubt": [
+		"Why?",
+		"What?",
+		"Wait, what?",
+		"@pick(add_name)wait",
+		"@pick(add_name)hold on",
+		"Uh..."
+	],
+
+	"aggressive": [
+		"@pick(add_name)give me that!",
+		"@pick(add_name)stop it!",
+		"@pick(add_name)i'm going to kill you!",
+		"@pick(add_name)fuck you!"
+	],
+
+	"help": [
+		"HELP",
+		"HELP",
+		"HELP",
+		"HELP",
+		"HELP",
+		"HELP ME",
+		"HELP HIM",
+		"HELP HER",
+		"HELP THEM",
+		"HELP US",
+		"HELP YOURSELF"
+	],
+
+	"escape": [
+		"@pick(add_name)RUN!!",
+		"They're behind me!",
+		"It's here!",
+		"@pick(add_name)follow me!",
+		"@pick(add_name)follow me"
+	],
+
+	"infection_advice": [
+		"@pick(add_name)stay away",
+		"@pick(add_name)don't get close",
+		"@pick(add_name)be careful",
+		"@pick(add_name)help me"
+	],
+
+	"people": [
+		"Synth",
+		"CO",
+		"SL",
+		"PO",
+		"AI",
+		"%TARGETNAME%"
+	]
+
+}

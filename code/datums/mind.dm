@@ -37,9 +37,6 @@
 	var/assigned_squad
 	var/comm_title
 
-	var/datum/skills/cm_skills //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
-								//see skills.dm in #define folder and code/datums/skills.dm for more info
-
 	var/datum/money_account/initial_account
 
 	var/last_death = 0
@@ -70,9 +67,6 @@
 
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
-
-	if(isxeno(new_character))
-		QDEL_NULL(cm_skills)
 
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
@@ -113,12 +107,6 @@
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
-
-
-/mob/living/carbon/human/mind_initialize()
-	. = ..()
-	if(!mind.cm_skills)
-		mind.cm_skills = new /datum/skills/pfc
 
 
 /mob/living/carbon/xenomorph/mind_initialize()

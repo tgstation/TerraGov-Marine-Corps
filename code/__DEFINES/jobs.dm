@@ -23,6 +23,7 @@
 #define JOB_DISPLAY_ORDER_SUQAD_ENGINEER 		22
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE 			23
 
+#define JOB_FLAG_SPECIALNAME (1<<0)
 
 #define CAPTAIN "Captain"
 #define EXECUTIVE_OFFICER "Executive Officer" //Currently disabled.
@@ -96,3 +97,9 @@ GLOBAL_LIST_INIT(jobs_unassigned, list(SQUAD_MARINE))
 
 #define XP_REQ_INTERMEDIATE 60
 #define XP_REQ_EXPERIENCED 180
+
+// how much a job is going to contribute towards burrowed larva. see config for points required to larva. old balance was 1 larva per 3 humans.
+#define LARVA_POINTS_SHIPSIDE 1
+#define LARVA_POINTS_SHIPSIDE_STRONG 2
+#define LARVA_POINTS_REGULAR 3
+#define LARVA_POINTS_STRONG 6

@@ -1,12 +1,26 @@
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 3
+	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
 	deploy_time_lock = 45 MINUTES
+
+	squads_max_number = 1
+
+	valid_job_types = list(
+		/datum/job/marine/standard = -1,
+		/datum/job/marine/engineer = 8,
+		/datum/job/marine/corpsman = 8,
+		/datum/job/marine/smartgunner = 4,
+		/datum/job/marine/specialist = 4,
+		/datum/job/marine/leader = 1,
+		/datum/job/medical/professor = 1,
+		/datum/job/civilian/synthetic = 1,
+		/datum/job/command/fieldcommander = 1
+	)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -19,63 +33,20 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-	var/latejoin_tally		= 0
-	var/latejoin_larva_drop = 0
+	latejoin_larvapoints		= 0
+	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
+
+	var/larva_check_interval = 0
+	var/bioscan_interval = INFINITY
 
 
-/datum/game_mode/crash/New()
-	. = ..()
-	// All marine roles, MD, Synth, and FC
-	valid_job_types = subtypesof(/datum/job/marine) + list(
-		/datum/job/medical/professor,
-		/datum/job/civilian/synthetic,
-		/datum/job/command/fieldcommander
-	)
-
-
-/datum/game_mode/crash/can_start()
+/datum/game_mode/crash/initialize_scales()
 	. = ..()
 	if(!.)
 		return
-	// Check if enough players have signed up for xeno & queen roles.
-	init_scales()
-	var/ruler = initialize_xeno_leader()
-	var/xenos = initialize_xenomorphs()
+	latejoin_larvapoints_required = CONFIG_GET(number/crash_larvapoints_required)
+	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/crash_coefficient) * GLOB.ready_players)), xeno_required_num)
 
-
-	if(!ruler && !xenos) // we need at least 1
-		return FALSE
-
-/datum/game_mode/crash/proc/init_scales()
-	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
-	xeno_starting_num = max(round(GLOB.ready_players / (CONFIG_GET(number/xeno_number) + CONFIG_GET(number/xeno_coefficient) * GLOB.ready_players)), xeno_required_num)
-
-	var/current_smartgunners = 0
-	var/maximum_smartgunners = CLAMP(GLOB.ready_players / CONFIG_GET(number/smartgunner_coefficient), 1, 4)
-	var/current_specialists = 0
-	var/maximum_specialists = CLAMP(GLOB.ready_players / CONFIG_GET(number/specialist_coefficient), 1, 4)
-
-	var/datum/job/SL = SSjob.GetJobType(/datum/job/marine/leader)
-	SL.total_positions = 1 // Force only one SL.
-
-	var/datum/job/SG = SSjob.GetJobType(/datum/job/marine/smartgunner)
-	SG.total_positions = maximum_smartgunners
-
-	var/datum/job/SP = SSjob.GetJobType(/datum/job/marine/specialist)
-	SP.total_positions = maximum_specialists
-
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		if(current_specialists >= maximum_specialists)
-			S.max_specialists = 0
-		else
-			S.max_specialists = 1
-			current_specialists++
-		if(current_smartgunners >= maximum_smartgunners)
-			S.max_smartgun = 0
-		else
-			S.max_smartgun = 1
-			current_smartgunners++
 
 /datum/game_mode/crash/pre_setup()
 	. = ..()
@@ -109,40 +80,19 @@
 
 	// Launch shuttle
 	var/list/valid_docks = list()
-	for(var/obj/docking_port/stationary/D in SSshuttle.stationary)
-		if(!shuttle.check_dock(D, silent=TRUE))
+	for(var/obj/docking_port/stationary/crashmode/potential_crash_site in SSshuttle.stationary)
+		if(!shuttle.check_dock(potential_crash_site, silent = TRUE))
 			continue
-		valid_docks += D
+		valid_docks += potential_crash_site
 
 	if(!length(valid_docks))
-		CRASH("No valid docks found for shuttle!")
+		CRASH("No valid crash sides found!")
 		return
-	var/obj/docking_port/stationary/target = pick(valid_docks)
-	if(!target || !istype(target))
-		CRASH("Unable to get a valid shuttle target!")
-		return
+	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
-	SSshuttle.moveShuttleToDock(shuttle.id, target, TRUE) // FALSE = instant arrival
-	addtimer(CALLBACK(src, .proc/crash_shuttle, target), 10 MINUTES)
-
-
-/datum/game_mode/crash/setup()
-	SSjob.DivideOccupations()
-
-	// For each player that has an assigned squad set it to alpha
-	for(var/i in GLOB.new_player_list)
-		var/mob/new_player/player = i
-		if(player.ready && player.mind?.assigned_squad)
-			player.mind.assigned_squad = SSjob.squads[starting_squad]
-
-	create_characters() //Create player characters
-	collect_minds()
-	reset_squads()
-	equip_characters()
-	transfer_characters()	//transfer keys to the new mobs
-
-	return TRUE
+	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
+	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
 
 
 /datum/game_mode/crash/post_setup()
@@ -177,8 +127,6 @@
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
-	addtimer(CALLBACK(src, .proc/add_larva), 1 MINUTES, TIMER_LOOP)
-
 
 /datum/game_mode/crash/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
@@ -186,74 +134,40 @@
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
 
-/datum/game_mode/crash/proc/add_larva()
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/list/living_player_list = count_humans_and_xenos(count_ssd = TRUE)
-	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2] + HS.stored_larva
-	if(!num_xenos)
-		return respawn_xenos(num_humans)
-	var/marines_per_xeno = num_humans / num_xenos
-	switch(marines_per_xeno)
-		if(0 to 2)
-			return
-		if(2 to 3)
-			HS.stored_larva++
-		if(3 to 5)
-			HS.stored_larva += min(2, round(num_humans * 0.25)) //Two, unless there are less than 8 marines.
-		else //If there's more than 5 marines per xenos, then xenos gain larvas to fill the gap.
-			HS.stored_larva += CLAMP(round(num_humans * 0.2), 1, num_humans - num_xenos)
+/datum/game_mode/crash/process()
+	if(round_finished)
+		return
 
+	// Burrowed Larva
+	if(world.time > larva_check_interval)
+		balance_scales()
 
-/datum/game_mode/crash/proc/respawn_xenos(num_humans)
-	if(!length(GLOB.xeno_resin_silos))
-		return FALSE //RIP benos.
-	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	if(xeno_hive.stored_larva)
-		return TRUE //No need for respawns nor to end the game. They can use their burrowed larvas.
-	var/new_xeno_batch = max(1, round(num_humans * 0.2))
-	for(var/i in new_xeno_batch)
-		var/obj/structure/resin/silo/spawn_point = pick(GLOB.xeno_resin_silos)
-		var/mob/living/carbon/xenomorph/larva/new_xeno = new /mob/living/carbon/xenomorph/larva(spawn_point.loc)
-
-		// Try to find someone for the xeno
-		var/xeno_candidate = get_alien_candidate()
-		if(!xeno_candidate)
-			new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>")
-			continue
-
-		transfer_xeno(xeno_candidate, new_xeno)
-		new_xeno.visible_message("<span class='xenodanger'>A larva suddenly burrows out of the ground!</span>",
-		"<span class='xenodanger'>We burrow out of the ground and awaken from our slumber. For the Hive!</span>")
-
-	return TRUE
-
+	// Bioscan alerts
+	if(world.time > bioscan_interval)
+		announce_bioscans(TRUE, 0, FALSE, TRUE, TRUE)
+		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 30 SECONDS)  // Announce exact information to the xenos.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
+	bioscan_interval = world.time + 30 SECONDS
 
 
-/datum/game_mode/crash/check_finished()
+/datum/game_mode/crash/check_finished(force_end)
 	if(round_finished)
 		return TRUE
 
-	if(!shuttle_landed)
+	if(!shuttle_landed && !force_end)
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos()
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2]
 
-	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE)
-		if(!num_xenos)
-			if(respawn_xenos(num_humans))
-				return FALSE //Xenos keep respawning.
-		else
-			return FALSE
+	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
+		return FALSE
+
+	var/num_xenos = living_player_list[2]
 
 	// Draw, for all other reasons
 	var/victory_options = ((planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE) && (num_humans == 0 && num_xenos == 0)) << 0
@@ -282,8 +196,11 @@
 		if(CRASH_MARINE_MAJOR)
 			message_admins("Round finished: [MODE_CRASH_M_MAJOR]")
 			round_finished = MODE_CRASH_M_MAJOR
+		else
+			if(!force_end)
+				return FALSE
 
-	return FALSE
+	return TRUE
 
 
 /datum/game_mode/crash/declare_completion()
@@ -355,24 +272,6 @@
 	return HS.spawn_larva(xeno_candidate, mother)
 
 
-/datum/game_mode/crash/AttemptLateSpawn(mob/new_player/NP, rank)
-	// reset their squad to the correct squad for the gamemode.
-	if(rank in GLOB.jobs_marines)
-		NP.mind.assigned_squad = SSjob.squads[starting_squad]
-
-	return ..()
-
-
-/datum/game_mode/crash/handle_late_spawn()
-	var/datum/game_mode/crash/GM = SSticker.mode
-	GM.latejoin_tally++
-
-	if(GM.latejoin_larva_drop && GM.latejoin_tally >= GM.latejoin_larva_drop)
-		GM.latejoin_tally -= GM.latejoin_larva_drop
-		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-		HS.stored_larva++
-
-
 /datum/game_mode/crash/mode_new_player_panel(mob/new_player/NP)
 
 	var/output = "<div align='center'>"
@@ -399,7 +298,7 @@
 	return TRUE
 
 /datum/game_mode/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
-	var/list/living_player_list = count_humans_and_xenos()
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
@@ -450,7 +349,7 @@
 /datum/game_mode/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 

@@ -246,7 +246,7 @@
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 	var/obj/item/turret_laptop/laptop = null
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
-	var/obj/item/projectile/in_chamber = null
+	var/obj/projectile/in_chamber = null
 	var/last_alert = 0
 	var/last_damage_alert = 0
 	var/list/obj/alert_list = list()
@@ -664,7 +664,7 @@
 
 	else if(istype(I, magazine_type))
 		var/obj/item/ammo_magazine/M = I
-		if(user.mind?.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
 			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [I] into [src].</span>",
 			"<span class='notice'>You begin fumbling about, swapping a new [I] into [src].</span>")
 			if(user.action_busy)
@@ -853,7 +853,7 @@
 
 
 /obj/machinery/marine_turret/proc/create_bullet()
-	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber = new /obj/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 
 
@@ -912,7 +912,7 @@
 
 
 	if(load_into_chamber())
-		if(istype(in_chamber,/obj/item/projectile))
+		if(istype(in_chamber,/obj/projectile))
 
 			if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 				//Apply scatter
@@ -1046,7 +1046,6 @@
 	cell = H
 	rounds = 50000
 
-
 /obj/machinery/marine_turret/premade/dumb
 	name = "\improper Modified UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
@@ -1059,7 +1058,6 @@
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
 	rounds = 500
-
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/living/user)
 	. = ..()
@@ -1087,6 +1085,15 @@
 		"<span class='notice'>You deactivate [src].</span>")
 		visible_message("<span class='notice'>The [name] powers down and goes silent.</span>")
 		update_icon()
+
+/obj/machinery/marine_turret/premade/dumb/hostile
+	name = "malfunctioning UA 571-C sentry gun"
+	desc = "Oh god oh fuck."
+	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_BURSTFIRE|TURRET_IMMOBILE
+
+/obj/machinery/marine_turret/premade/dumb/hostile/attack_hand(mob/living/user)
+	to_chat(user,"<span class='warning'>\The [src.name] refuses to cooperate!</span>")
+	return FALSE
 
 /obj/item/ammo_magazine/sentry/premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"
@@ -1122,7 +1129,7 @@
 	burst_delay = 15
 	ammo = /datum/ammo/bullet/turret
 
-obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
+/obj/machinery/marine_turret/premade/canterbury/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()
 	if(SSmapping.level_has_any_trait(z, list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		ENABLE_BITFIELD(turret_flags, TURRET_ON)

@@ -54,11 +54,11 @@
 		return
 
 	//Job knowledge requirement
-	if(user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
+	var/skill = user.skills.getRating("medical")
+	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * user.mind.cm_skills.medical) // 3 seconds with medical skill, 5 without
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), TRUE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
 			return
 
 	defib_cooldown = world.time + 2 SECONDS
@@ -69,7 +69,7 @@
 	update_icon()
 
 
-/mob/living/carbon/human/proc/get_ghost()
+/mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
 		return FALSE
 	for(var/g in GLOB.observer_list)
@@ -84,7 +84,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst)
+	if(!heart || heart.is_broken() || !has_brain() || chestburst)
 		return FALSE
 	return TRUE
 
@@ -100,15 +100,15 @@
 	var/defib_heal_amt = damage_threshold
 
 	//job knowledge requirement
-	if(user.mind?.cm_skills)
-		if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - user.mind.cm_skills.medical ) ) // 3 seconds with medical skill, 5 without
-			if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
-				return
-		else
-			defib_heal_amt *= user.mind.cm_skills.medical * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
+	var/skill = user.skills.getRating("medical")
+	if(skill < SKILL_MEDICAL_PRACTICED)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - skill ) ) // 3 seconds with medical skill, 5 without
+		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+			return
+	else
+		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>")
@@ -143,13 +143,13 @@
 		user.visible_message("<span class='warning'>[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR.</span>")
 		return
 
-	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest</span>", \
-	"<span class='notice'>You start setting up the paddles on [H]'s chest</span>")
+	user.visible_message("<span class='notice'>[user] starts setting up the paddles on [H]'s chest.</span>",
+	"<span class='notice'>You start setting up the paddles on [H]'s chest.</span>")
 	playsound(get_turf(src),'sound/items/defib_charge.ogg', 25, 0) //Do NOT vary this tune, it needs to be precisely 7 seconds
 
 	if(!do_mob(user, H, 7 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest</span>",
-		"<span class='warning'>You stop setting up the paddles on [H]'s chest</span>")
+		user.visible_message("<span class='warning'>[user] stops setting up the paddles on [H]'s chest.</span>",
+		"<span class='warning'>You stop setting up the paddles on [H]'s chest.</span>")
 		return
 
 	//Do this now, order doesn't matter
@@ -218,6 +218,7 @@
 	H.apply_effect(10, EYE_BLUR)
 	H.apply_effect(10, PARALYZE)
 	H.update_canmove()
+	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 

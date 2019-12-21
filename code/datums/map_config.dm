@@ -28,6 +28,8 @@
 
 	var/announce_text = ""
 
+	var/squads_max_num = 4
+
 
 /proc/load_map_config(filename, default, delete_after, error_if_missing = TRUE)
 	var/datum/map_config/config = new
@@ -129,6 +131,13 @@
 		space_empty_levels = temp
 	else if (!isnull(temp))
 		log_world("map_config space_empty_levels is not a number!")
+		return
+
+	temp = json["squads"]
+	if(isnum(temp))
+		squads_max_num = temp
+	else if(!isnull(temp))
+		log_world("map_config squads_max_num is not a number!")
 		return
 
 	allow_custom_shuttles = json["allow_custom_shuttles"] != FALSE

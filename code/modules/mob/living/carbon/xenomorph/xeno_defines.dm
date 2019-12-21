@@ -26,7 +26,7 @@
 	var/tacklemin = 1
 	var/tacklemax = 1
 	var/tackle_chance = 100
-	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
+	var/tackle_damage = 20 //How much STAMINA damage a xeno deals when tackling
 
 	// *** Speed *** //
 	var/speed = 1
@@ -118,6 +118,7 @@
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
+	buckle_flags = NONE
 	var/hivenumber = XENO_HIVE_NORMAL
 	job = ROLE_XENOMORPH
 
@@ -136,6 +137,7 @@
 	var/max_grown = 200
 	var/time_of_birth
 
+	var/list/stomach_contents
 	var/devour_timer = 0
 
 	var/evolution_stored = 0 //How much evolution they have stored
@@ -144,11 +146,9 @@
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 
-	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
-
 	var/datum/armor/armor
-	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
-	var/armor_pheromone_bonus = 0 //
+	var/armor_bonus = 0
+	var/armor_pheromone_bonus = 0
 
 	var/fire_resist_modifier = 0
 
@@ -167,8 +167,6 @@
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
-	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
 
 	var/emotedown = 0
@@ -211,9 +209,6 @@
 	var/fortify = 0
 	var/crest_defense = 0
 
-	//Runner vars
-	var/hit_and_run = 0 //If we have a value here, we get bonus damage in proportion to movement.
-
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
@@ -221,9 +216,6 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
-
-	//Hunter vars
-	var/sneak_bonus = 0.00
 
 	//Notification spam controls
 	var/recent_notice = 0

@@ -77,10 +77,10 @@
 	if(CHECK_BITFIELD(affected_mob.restrained_flags, RESTRAINED_XENO_NEST)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster.
 		counter += 1 + max(0, (0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host.
 	else if(stage <= 4)
-		counter++
+		counter += 2 //Free burst time in ~10 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
-		counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
+		counter += 2 //Accelerates larval growth somewhat. You don't want this stuff in your body. Larva hits Stage 5 in exactly 5 minutes (lower if healthy and nested), assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
@@ -105,10 +105,10 @@
 				affected_mob.emote("[pick("sneeze", "cough")]")
 		if(4)
 			if(prob(1))
-				if(affected_mob.knocked_out < 1)
+				if(!affected_mob.IsUnconscious())
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												"<span class='danger'>You start shaking uncontrollably!</span>")
-					affected_mob.knock_out(10)
+					affected_mob.Unconscious(20 SECONDS)
 					affected_mob.jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
@@ -164,7 +164,7 @@
 	victim.chestburst = 1
 	to_chat(src, "<span class='danger'>We start bursting out of [victim]'s chest!</span>")
 
-	victim.knock_out(20)
+	victim.Unconscious(40 SECONDS)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								"<span class='danger'>You feel something ripping up your insides!</span>")
 	victim.jitter(300)
@@ -191,6 +191,7 @@
 		forceMove(get_turf(victim)) //moved to the turf directly so we don't get stuck inside a cryopod or another mob container.
 	playsound(src, pick('sound/voice/alien_chestburst.ogg','sound/voice/alien_chestburst2.ogg'), 25)
 	GLOB.round_statistics.total_larva_burst++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_larva_burst")
 	var/obj/item/alien_embryo/AE = locate() in victim
 
 	if(AE)

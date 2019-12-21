@@ -41,6 +41,8 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 	if(general_entry && general_entry.mechanics_text)
 		armor_strings += general_entry.mechanics_text + "<br>"
 
+	var/mechanics_signal = SEND_SIGNAL(src, COMSIG_CLOTHING_MECHANICS_INFO)
+
 	for(var/armor_type in GLOB.armour_to_descriptive_term)
 		switch(armor.getRating(armor_type))
 			if(0)
@@ -78,6 +80,12 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 				armor_strings += "<br>It will slow the wearer down by a massive amount."
 	if(!slowdown)
 		armor_strings += "<br>It will not slow the wearer down."
+
+	if(mechanics_signal & COMPONENT_CLOTHING_MECHANICS_TINTED)
+		armor_strings += "<br>This will obstruct your vision."
+
+	if(accuracy_mod)
+		armor_strings += "<br>This will alter your shooting accuracy by up to [accuracy_mod]% when worn."
 
 	if(flags_inventory & NOPRESSUREDMAGE)
 		armor_strings += "Wearing this will protect you from the vacuum of space."

@@ -27,35 +27,33 @@
 	integer = FALSE
 	min_val = -1
 
+/datum/config_entry/keyed_list/multiplicative_movespeed
+	key_mode = KEY_MODE_TYPE
+	value_mode = VALUE_MODE_NUM
+	config_entry_value = list(			//DEFAULTS
+	/mob/living/simple_animal = 1
+	)
+
+/datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()
+	. = ..()
+	if(.)
+		update_config_movespeed_type_lookup(TRUE)
+
+/datum/config_entry/keyed_list/multiplicative_movespeed/vv_edit_var(var_name, var_value)
+	. = ..()
+	if(. && (var_name == NAMEOF(src, config_entry_value)))
+		update_config_movespeed_type_lookup(TRUE)
+
 /datum/config_entry/number/movedelay	//Used for modifying movement speed for mobs.
 	abstract_type = /datum/config_entry/number/movedelay
 
 /datum/config_entry/number/movedelay/run_delay
-	config_entry_value = 1
+	config_entry_value = 0
 	integer = FALSE
 
 /datum/config_entry/number/movedelay/walk_delay
-	config_entry_value = 1
+	config_entry_value = 0
 	integer = FALSE
-
-/datum/config_entry/number/outdated_movedelay
-	integer = FALSE
-	var/movedelay_type
-
-/datum/config_entry/number/outdated_movedelay/DeprecationUpdate(value)
-	return "[movedelay_type] [value]"
-
-/datum/config_entry/number/outdated_movedelay/human_delay
-	config_entry_value = 0
-	movedelay_type = /mob/living/carbon/human
-
-/datum/config_entry/number/outdated_movedelay/monkey_delay
-	config_entry_value = 0
-	movedelay_type = /mob/living/carbon/monkey
-
-/datum/config_entry/number/outdated_movedelay/animal_delay
-	config_entry_value = 0
-	movedelay_type = /mob/living/simple_animal
 
 /datum/config_entry/number/organ_health_multiplier
 	config_entry_value = 1
@@ -103,24 +101,21 @@
 	config_entry_value = 0.04
 	min_val = 0.001
 
+/datum/config_entry/number/crash_coefficient
+	integer = FALSE
+	config_entry_value = 0.04
+	min_val = 0.001
+
 /datum/config_entry/number/survivor_coefficient
 	integer = FALSE
 	config_entry_value = 15
 	min_val = 1
 
-/datum/config_entry/number/latejoin_larva_required_num
-	integer = FALSE
-	min_val = 0
-	config_entry_value = 4
+/datum/config_entry/number/crash_larvapoints_required
+	config_entry_value = 9
+	min_val = 1
 
+/datum/config_entry/number/distress_larvapoints_required
+	config_entry_value = 8
+	min_val = 1
 
-/datum/config_entry/number/specialist_coefficient
-	integer = FALSE
-	config_entry_value = 5
-	min_val = 0.001
-
-
-/datum/config_entry/number/smartgunner_coefficient
-	integer = FALSE
-	config_entry_value = 5
-	min_val = 0.001

@@ -78,6 +78,8 @@
 	var/toolspeed = 1
 	var/usesound = null
 
+	var/active = FALSE
+
 
 /obj/item/Initialize()
 	. = ..()
@@ -160,8 +162,6 @@
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
-
-	user.changeNext_move(CLICK_CD_RAPID)
 
 	if(QDELETED(src))
 		return
@@ -255,7 +255,6 @@
 		UPDATEHEALTH(H)
 		qdel(current_acid)
 		current_acid = null
-	user.changeNext_move(CLICK_CD_RAPID)
 	return
 
 
@@ -279,7 +278,12 @@
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(mob/user, slot)
+	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
+	if(flags_equip_slot & slotdefine2slotbit(slot)) // flags_equip_slot is a bitfield
+		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
+	else
+		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
@@ -571,6 +575,10 @@
 			if(flags_item_map_variant & ITEM_ICE_VARIANT)
 				icon_state = "s_[icon_state]"
 				item_state = "s_[item_state]"
+		if(MAP_ARMOR_STYLE_PRISON)
+			if(flags_item_map_variant & ITEM_PRISON_VARIANT)
+				icon_state = "k_[icon_state]"
+				item_state = "k_[item_state]"
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -594,11 +602,12 @@
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
+	toggle_item_state(user)
 	attack_self(user)
 
-
-/obj/item/proc/IsShield()
-	return FALSE
+/obj/item/proc/toggle_item_state(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTION, user)
 
 
 /mob/living/carbon/verb/showoff()
@@ -633,7 +642,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You do not have the dexterity to use \the [zoom_device].</span>")
 		return
 
-	if(!zoom && user.get_total_tint() >= TINT_HEAVY)
+	if(!zoom && user.tinttotal >= TINT_5)
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
@@ -924,3 +933,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return
 
 	interact(user)
+
+/obj/item/proc/toggle_active(new_state)
+	if(!isnull(new_state))
+		if(new_state == active)
+			return
+		new_state = active
+	else
+		active = !active
+	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)

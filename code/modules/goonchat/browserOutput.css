@@ -10,7 +10,7 @@ html, body {
 	color: #99aab5;
 }
 body {
-	background: #2c2f33;
+	background: #2e332b;
     font-family: Verdana, sans-serif;
     font-size: 9pt;
     line-height: 1.2;
@@ -226,10 +226,10 @@ a.popt {text-decoration: none;}
 .colorooc				{color: #3257c6;	font-weight: bold;}
 .looc					{color: #84add6;	font-weight: bold;}
 .hostooc				{color: #323232;	font-weight: bold;}
-.projleadooc			{color: #993299;	font-weight: bold;}
+.projleadooc			{color: #7F44A6;	font-weight: bold;}
 .headcoderooc			{color: #323283;	font-weight: bold;}
-.headminooc				{color: #833232;	font-weight: bold;}
-.headmentorooc			{color: #326632;	font-weight: bold;}
+.headminooc				{color: #9F2524;	font-weight: bold;}
+.headmentorooc			{color: #397339;	font-weight: bold;}
 .adminooc				{color: #c3324a;	font-weight: bold;}
 .trialminooc			{color: #f35a32;	font-weight: bold;}
 .candiminooc			{color: #ff7a4a;	font-weight: bold;}
@@ -238,14 +238,13 @@ a.popt {text-decoration: none;}
 .contributorooc			{color: #3283ff;	font-weight: bold;}
 .otherooc				{color: #835a32;	font-weight: bold;}
 
-
 .msay					{color: #927c66;	font-weight: bold;}
 .adminmsay				{color: #84664a;	font-weight: bold;}
 .headminmsay			{color: #665442;	font-weight: bold;}
 
 .admin					{color: #ff0000;	font-weight: bold;}
 .asay					{color: #ab40dc;	font-weight: bold;}
-.headminasay			{color: #7a3a98;	font-weight: bold;}
+.headminasay			{color: #9751C5;	font-weight: bold;}
 .boldannounce			{color: #c51e1e;	font-weight: bold;}
 
 .staffpmin				{color: #f0134d;	font-weight: bold;}
@@ -260,21 +259,21 @@ a.popt {text-decoration: none;}
 .deadsay				{color: #646695;}
 .radio					{color: #CE9178;}
 .deptradio				{color: #993399;}
-.comradio				{color: #007acc;}
+.comradio				{color: #567192; text-shadow: #474747 1px 3px 2px, 0px 0px 0px #266875;}
 .syndradio				{color: #6D3F40;}
 .centradio				{color: #2b677e;}
 .airadio				{color: #811981;}
 
 .secradio				{color: #A30000;}
 .engradio				{color: #c75f35;}
-.medradio				{color: #397ea5;}
+.medradio				{color: #2D9955;}
 .sciradio				{color: #7c00e6;}
 .supradio				{color: #8b6532;}
 
 .alpharadio				{color: #EA0000;}
 .bravoradio				{color: #C68610;}
 .charlieradio			{color: #AA55AA;}
-.deltaradio				{color: #007FCF;}
+.deltaradio				{color: #3A59D9;}
 
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
@@ -322,7 +321,7 @@ h1.alert, h2.alert		{color: #99aab5;}
 .round_setup			{color: #db0000;		font-family: impact; font-size: 1.25em;}
 .round_header			{color: #db0000; 	display: block; text-align: center; font-family: courier; font-weight: bold; font-size: 2em;}
 .round_body				{color: #6685f5; 	display: block; text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 1.5em;}
-.event_announcement		{color: #600d48; 	font-family: arial-narrow; font-weight: bold; font-size: 1.5em;}
+.event_announcement		{color: #966fd6; 	font-family: arial-narrow; font-size: 1.5em;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 

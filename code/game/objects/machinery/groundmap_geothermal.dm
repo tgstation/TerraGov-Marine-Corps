@@ -132,10 +132,10 @@
 	. = ..()
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 				return
 
@@ -158,10 +158,10 @@
 	else if(iswirecutter(I))
 		if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 				return
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -180,10 +180,10 @@
 	else if(iswrench(I))
 		if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 			return
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
-			var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 				return
 
@@ -344,10 +344,10 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
-			var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 6 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WELD)
 				return FALSE
 
@@ -368,10 +368,10 @@
 		return TRUE
 
 	else if(iswirecutter(I))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+			var/fumbling_time = 6 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || repair_state != FLOODLIGHT_REPAIR_WIRECUTTER)
 				return FALSE
 
@@ -407,7 +407,7 @@
 	if(ishuman(user))
 		if(damaged)
 			to_chat(user, "<span class='warning'>It is damaged.</span>")
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_ENGI)
+			if(user.skills.getRating("engineer") >= SKILL_ENGINEER_ENGI)
 				if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 					to_chat(user, "<span class='info'>You must first open its maintenance hatch.</span>")
 				else

@@ -16,12 +16,20 @@
 
 // recieve a mousedrop
 /atom/proc/MouseDrop_T(atom/dropping, mob/user)
-	if (dropping.flags_atom & NOINTERACT)
-		return
+	if(dropping.flags_atom & NOINTERACT)
+		return TRUE //Already handled
 
+/atom/movable/MouseDrop_T(atom/dropping, mob/user)
+	. = ..()
+	if(.)
+		return
+	if(buckle_flags & CAN_BUCKLE && isliving(user))
+		return mouse_buckle_handling(dropping, user)
 
 /client/MouseDown(atom/object, turf/location, control, params)
 	if(!control)
+		return
+	if(SEND_SIGNAL(mob, COMSIG_MOB_MOUSEDOWN, object, location, control, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDOWN, object, location, control, params)
 	if(mouse_down_icon)
@@ -30,6 +38,8 @@
 
 /client/MouseUp(atom/object, turf/location, control, params)
 	if(!control)
+		return
+	if(SEND_SIGNAL(mob, COMSIG_MOB_MOUSEUP, object, location, control, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
 	if(SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEUP, object, location, control, params) & COMPONENT_CLIENT_MOUSEUP_INTERCEPT)
 		click_intercepted = world.time
@@ -47,3 +57,9 @@
 			middragtime = 0
 			middragatom = null
 	SEND_SIGNAL(src, COMSIG_CLIENT_MOUSEDRAG, src_object, over_object, src_location, over_location, src_control, over_control, params)
+
+/client/MouseDrop(src_object, over_object, src_location, over_location, src_control, over_control, params)
+	if(middragatom == src_object)
+		middragtime = 0
+		middragatom = null
+	return ..()

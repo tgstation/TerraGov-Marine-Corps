@@ -56,10 +56,8 @@
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-					return TRUE
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED && !do_mob(user, M, 1 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+			return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
@@ -105,10 +103,8 @@
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED)
-				if(!do_mob(user, M, 10, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-					return TRUE
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED && !do_mob(user, M, 1 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+			return TRUE
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
@@ -183,12 +179,11 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_brute
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
-				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
-				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-					return
-				heal_amt = heal_brute * 0.5 //non optimal application means less healing
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
+			to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
+			if(!do_mob(user, M, 3 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+				return
+			heal_amt = heal_brute * 0.5 //non optimal application means less healing
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
@@ -240,12 +235,11 @@
 		var/mob/living/carbon/human/H = M
 
 		var/heal_amt = heal_burn
-		if(user.mind && user.mind.cm_skills)
-			if(user.mind.cm_skills.medical < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
-				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
-				if(!do_mob(user, M, 30, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-					return
-				heal_amt = heal_burn * 0.5 //non optimal application means less healing
+		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
+			to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
+			if(!do_mob(user, M, 3 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+				return
+			heal_amt = heal_burn * 0.5 //non optimal application means less healing
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 

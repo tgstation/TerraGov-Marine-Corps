@@ -23,7 +23,7 @@
 	var/changed = 0
 	if(lying != lying_prev && rotate_on_lying)
 		changed++
-		ntransform.TurnTo(lying_prev,lying)
+		ntransform.TurnTo(lying_prev, lying)
 		if(lying == 0) //Lying to standing
 			final_pixel_y = lying ? -6 : initial(pixel_y)
 		else //if(lying != 0)
@@ -39,4 +39,4 @@
 		resize = RESIZE_DEFAULT_SIZE
 
 	if(changed)
-		animate(src, transform = ntransform, time = 2, pixel_y = final_pixel_y, dir = final_dir, easing = EASE_IN|EASE_OUT)
+		animate(src, transform = ntransform, time = (lying_prev == 0 || !lying) ? 0.2 SECONDS : 0, pixel_y = final_pixel_y, dir = final_dir, easing = (EASE_IN|EASE_OUT))

@@ -142,6 +142,7 @@
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
 	GLOB.round_statistics.queen_screech++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
@@ -452,8 +453,8 @@
 	name = "Heal Xenomorph"
 	action_icon_state = "heal_xeno"
 	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 600
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 150
+	cooldown_timer = 16 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
 
 
@@ -486,8 +487,8 @@
 /datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/patient = target
 	add_cooldown()
-	patient.adjustBruteLoss(-50)
-	patient.adjustFireLoss(-50)
+	patient.adjustBruteLoss(-100)
+	patient.adjustFireLoss(-100)
 	succeed_activate()
 	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
 	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
@@ -500,8 +501,8 @@
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
 	mechanics_text = "Give plasma to a target Xenomorph (you must be overwatching them.)"
-	plasma_cost = 600
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 150
+	cooldown_timer = 8 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_GIVE_PLASMA
 
 
@@ -683,5 +684,6 @@
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)

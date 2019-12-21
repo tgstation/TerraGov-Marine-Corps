@@ -48,7 +48,7 @@
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"
-	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
 
 /area/shuttle/escape_pod
 	name = "Escape Pod"
@@ -153,6 +153,11 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
+
+/area/shuttle/canterbury
+	name = "Canterbury"
+	requires_power = TRUE
+	always_unpowered = FALSE
 
 /area/shuttle/canterbury/cic
 	name = "Combat Information Center"

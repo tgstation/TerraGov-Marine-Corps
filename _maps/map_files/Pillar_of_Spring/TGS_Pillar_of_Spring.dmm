@@ -342,6 +342,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"bc" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "sterile"
+	},
+/area/mainship/hallways/hangar)
 "bd" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
@@ -355,9 +364,8 @@
 	},
 /area/mainship/medical/chemistry)
 "bf" = (
-/obj/machinery/door/poddoor/mainship{
-	icon_state = "pdoor1";
-	dir = 1
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -381,6 +389,16 @@
 	icon_state = "cargo_arrow"
 	},
 /area/mainship/hallways/hangar)
+"bj" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"bk" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/command/self_destruct)
 "bm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -547,6 +565,12 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"bR" = (
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/mainship/command/self_destruct)
 "bT" = (
 /obj/machinery/sleeper,
 /turf/open/floor/mainship{
@@ -2823,11 +2847,6 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"js" = (
-/obj/machinery/marine_selector/gear/medic,
-/obj/machinery/marine_selector/gear/medic,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "jt" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship,
@@ -5204,12 +5223,12 @@
 /area/mainship/living/port_emb)
 "pL" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/weapon/gun/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/weapon/combat_knife,
 /obj/item/weapon/combat_knife,
 /turf/open/floor/mainship{
@@ -7565,8 +7584,8 @@
 /area/mainship/command/cic)
 "vI" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/lmg,
-/obj/item/weapon/gun/rifle/lmg,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -8154,12 +8173,12 @@
 /area/mainship/engineering/upper_engineering)
 "wY" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m39,
+/obj/item/weapon/gun/smg/standard_smg,
 /obj/item/weapon/gun/pistol/m4a3,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/pistol,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/standard_smg,
+/obj/item/ammo_magazine/smg/standard_smg,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -9535,11 +9554,14 @@
 /obj/machinery/door/poddoor/mainship{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
 "AD" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -15995,18 +16017,6 @@
 	icon_state = "sterile"
 	},
 /area/mainship/hallways/hangar)
-"No" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "sterile"
-	},
-/area/mainship/hallways/hangar)
 "Np" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -17202,6 +17212,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"RV" = (
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/weapon_room)
 "RW" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -17687,10 +17703,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"VP" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "VW" = (
 /obj/machinery/light{
 	dir = 4
@@ -38286,8 +38298,8 @@ ad
 ad
 ad
 OB
-gR
-gR
+RV
+RV
 OB
 OB
 OB
@@ -47995,7 +48007,7 @@ Go
 Go
 Go
 Go
-Go
+bj
 Go
 Go
 Go
@@ -49796,7 +49808,7 @@ bh
 bh
 bh
 gM
-No
+bc
 az
 eO
 eO
@@ -50294,7 +50306,6 @@ ci
 aN
 Gm
 Sn
-xp
 bh
 bh
 bh
@@ -50304,7 +50315,8 @@ bh
 bh
 bh
 bh
-VP
+bh
+bh
 bh
 bh
 bh
@@ -50809,7 +50821,7 @@ aN
 GH
 RF
 bh
-bh
+xp
 bh
 bh
 bh
@@ -52177,7 +52189,7 @@ lQ
 jb
 xe
 jb
-OF
+bk
 Qe
 OO
 OU
@@ -52434,7 +52446,7 @@ lU
 xl
 xf
 xL
-OF
+bk
 OF
 Mb
 Mb
@@ -53416,7 +53428,7 @@ bq
 aO
 bZ
 qC
-js
+jj
 jG
 jj
 jG
@@ -54997,7 +55009,7 @@ Mb
 Be
 Io
 Be
-OF
+bk
 OF
 OF
 OF
@@ -55005,7 +55017,7 @@ AK
 OF
 OF
 OF
-OF
+bk
 La
 ad
 aa
@@ -55254,7 +55266,7 @@ uB
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -55262,7 +55274,7 @@ SD
 Zw
 Zw
 Zw
-OF
+bk
 aH
 ad
 aa
@@ -55511,7 +55523,7 @@ uC
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -55519,7 +55531,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -55768,7 +55780,7 @@ vD
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -55776,7 +55788,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -56025,7 +56037,7 @@ eo
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -56033,7 +56045,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -56282,7 +56294,7 @@ MG
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -56290,7 +56302,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -56539,7 +56551,7 @@ uG
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -56547,7 +56559,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -56796,7 +56808,7 @@ uG
 tA
 In
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -56804,7 +56816,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -57053,7 +57065,7 @@ uG
 Ij
 Ip
 Iq
-OF
+bk
 Zw
 Zw
 Zw
@@ -57061,7 +57073,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -57310,7 +57322,7 @@ gV
 tA
 vA
 tA
-OF
+bk
 Zw
 Zw
 Zw
@@ -57318,7 +57330,7 @@ Zw
 Zw
 Zw
 Zw
-OF
+bk
 La
 ad
 aa
@@ -57568,13 +57580,13 @@ gT
 gT
 gT
 OF
-OF
+bR
 AC
 AC
 AC
 AC
 AC
-OF
+bR
 OF
 LA
 ad

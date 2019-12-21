@@ -5,6 +5,9 @@
 	icon_state = "body_m_s"
 	hud_possible = list(HEALTH_HUD, STATUS_HUD_SIMPLE, STATUS_HUD, XENO_EMBRYO_HUD, WANTED_HUD, IMPLOYAL_HUD, IMPCHEM_HUD, IMPTRACK_HUD, SPECIALROLE_HUD, SQUAD_HUD, ORDER_HUD, PAIN_HUD)
 	health_threshold_crit = -50
+	melee_damage = 5
+	m_intent = MOVE_INTENT_WALK
+	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL|CAN_BUCKLE
 
 	hud_type = /datum/hud/human
 
@@ -106,8 +109,6 @@
 	var/marksman_new = 0
 	var/aura_recovery_multiplier = 0
 
-	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
-
 	var/datum/squad/assigned_squad //the squad assigned to
 
 	var/cloaking = FALSE
@@ -117,3 +118,5 @@
 	var/damageoverlaytemp = 0
 
 	var/specset //Simple way to track which set has the player taken
+
+	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))

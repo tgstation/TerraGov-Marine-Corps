@@ -15,13 +15,12 @@
 
 
 /datum/emergency_call/deathsquad/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!istype(spawn_loc))
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
 
 	H.name = pick(SSstrings.get_list_from_file("greek_letters"))
 	H.real_name = H.name

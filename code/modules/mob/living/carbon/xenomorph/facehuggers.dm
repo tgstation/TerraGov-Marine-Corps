@@ -16,7 +16,7 @@
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
 	flags_armor_protection = FACE|EYES
-	flags_atom = NONE
+	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = FACEHUGGER_LAYER
@@ -76,7 +76,7 @@
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!issamexenohive(user) && stat != DEAD)
-		user.do_attack_animation(src)
+		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]",
 			"<span class='xenowarning'>We crush \the [src]")
 		Die()
@@ -136,11 +136,11 @@
 		return
 	Die()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/item/projectile/P)
+/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+	if(P.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS)))
+	if(P.damage && !(P.ammo.damage_type in list(OXY, HALLOSS, STAMINA)))
 		Die()
 	P.ammo.on_hit_obj(src,P)
 	return TRUE
@@ -430,7 +430,7 @@
 	if(!sterile && !issynth(user) && !isIPC(user))
 		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
-		user.knock_out(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
+		user.Unconscious(FACEHUGGER_KNOCKOUT * 20) //THIS MIGHT NEED TWEAKS // still might!
 	flags_item |= NODROP
 	attached = TRUE
 	GoIdle(FALSE, TRUE)
@@ -443,6 +443,7 @@
 			var/obj/item/alien_embryo/embryo = new(target)
 			embryo.hivenumber = hivenumber
 			GLOB.round_statistics.now_pregnant++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 			sterile = TRUE
 		Die()
 	else

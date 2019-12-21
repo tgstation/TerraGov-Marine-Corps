@@ -10,16 +10,12 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(issynth(src))
-		nutrition = 350 //synthetics are never hungry
-
-	else
-
+	if(!issynth(src)) //synthetics are never hungry
 		//Nutrition decrease
-		if(nutrition > 0 && stat != 2)
-			nutrition = max (0, nutrition - HUNGER_FACTOR)
+		if(nutrition > 0 && stat != DEAD)
+			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > 450)
+		if(nutrition > NUTRITION_OVERFED)
 			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
@@ -58,8 +54,8 @@
 				leg_tally--			//let it fail even if just foot&leg
 
 	//standing is poor
-	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
+	if(leg_tally <= 0 && !IsUnconscious() && !lying && prob(5))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		emote("collapse")
-		set_knocked_out(10)
+		SetUnconscious(20 SECONDS)

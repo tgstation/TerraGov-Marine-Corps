@@ -111,14 +111,15 @@
 
 
 /datum/limb/proc/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
-	if(blocked >= 1) //Complete negation
-		return 0
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked)
-		if(brute)
-			brute *= CLAMP01(1-blocked) //Percentage reduction
-		if(burn)
-			burn *= CLAMP01(1-blocked) //Percentage reduction
+	if(hit_percent <= 0) //total negation
+		return FALSE
+
+	if(brute)
+		brute *= CLAMP01(hit_percent) //Percentage reduction
+	if(burn)
+		burn *= CLAMP01(hit_percent) //Percentage reduction
 
 	if((brute <= 0) && (burn <= 0))
 		return 0
@@ -636,10 +637,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 //Handles dismemberment
 /datum/limb/proc/droplimb(amputation, delete_limb = 0)
 	if(limb_status & LIMB_DESTROYED)
-		return
+		return FALSE
 	else
 		if(body_part == CHEST)
-			return
+			return FALSE
 
 		if(limb_status & LIMB_ROBOT)
 			limb_status = LIMB_DESTROYED|LIMB_ROBOT
@@ -730,7 +731,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
 		release_restraints()
 
-		if(vital) owner.death()
+		if(vital)
+			owner.death()
+		return TRUE
+
 
 /****************************************************
 			HELPERS
@@ -952,12 +956,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
-	var/delay = SKILL_TASK_AVERAGE
+	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
 	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
 	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
-
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical) //Higher skill lowers the delay.
-		delay -= 10 + user.mind.cm_skills.medical * 5
 
 	if(target == user) //If self splinting, multiply delay by 4
 		delay *= 4
@@ -1144,3 +1145,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/head/reset_limb_surgeries()
 	..()
 	face_surgery_stage = 0
+
+
+/datum/limb/head/droplimb(amputation, delete_limb = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(!(owner.species.species_flags & DETACHABLE_HEAD))
+		owner.set_undefibbable()

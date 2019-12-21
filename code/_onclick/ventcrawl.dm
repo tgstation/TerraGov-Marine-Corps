@@ -40,8 +40,8 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 
 //VENTCRAWLING
-/mob/proc/handle_ventcrawl(atom/A)
-	if(!can_ventcrawl() || !Adjacent(A))
+/mob/living/proc/handle_ventcrawl(atom/A)
+	if(!can_ventcrawl() || !Adjacent(A) || !canmove)
 		return
 	if(stat)
 		to_chat(src, "You must be conscious to do this!")
@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 		if(vent_found_parent && (vent_found_parent.members.len || vent_found_parent.other_atmosmch))
 			visible_message("<span class='notice'>[src] begins climbing into the ventilation system...</span>" ,"<span class='notice'>You begin climbing into the ventilation system...</span>")
 
-			if(!do_after(src, 45, FALSE, vent_found, BUSY_ICON_GENERIC) || !client)
+			if(!do_after(src, 4.5 SECONDS, FALSE, vent_found, BUSY_ICON_GENERIC) || !client || !canmove)
 				return
 
 			if(iscarbon(src) && can_ventcrawl())//It must have atleast been 1 to get this far
@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 
 			visible_message("<span class='notice'>[src] scrambles into the ventilation ducts!</span>","<span class='notice'>You climb into the ventilation ducts.</span>")
 			if(!isxenohunter(src)) //Hunters silently enter/exit vents.
-				pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+				playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 			forceMove(vent_found)
 	else

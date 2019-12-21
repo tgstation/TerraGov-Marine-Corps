@@ -261,9 +261,8 @@
 	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 	"<span class='notice'>You climb out of [src].</span>")
 	if(!isxenohunter(user) )
-		pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
-	if(user.client)
-		user.client.move_delay += 1
+		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
+
 
 /obj/machinery/atmospherics/relaymove(mob/living/user, direction)
 	direction &= initialize_directions

@@ -49,9 +49,7 @@
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
 
-		var/ingestion_time = 30
-		if(user.mind && user.mind.cm_skills)
-			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
+		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
@@ -153,16 +151,6 @@
 	pill_desc = "A tramadol pill. A simple painkiller."
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
 	pill_id = 7
-
-/obj/item/reagent_containers/pill/methylphenidate
-	pill_desc = "A methylphenidate pill. This improves the ability to concentrate."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/methylphenidate = 15)
-	pill_id = 8
-
-/obj/item/reagent_containers/pill/citalopram
-	pill_desc = "A citalopram pill. A mild anti-depressant."
-	list_reagents = list(/datum/reagent/medicine/antidepressant/citalopram = 15)
-	pill_id = 9
 
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."

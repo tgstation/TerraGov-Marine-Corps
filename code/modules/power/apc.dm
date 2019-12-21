@@ -64,7 +64,7 @@
 	var/overload = 1 //Used for the Blackout malf module
 	var/beenhit = 0 //Used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
-	var/update_state = -1
+	var/update_state = NONE
 	var/update_overlay = -1
 	var/global/status_overlays = 0
 	var/updating_icon = 0
@@ -228,17 +228,17 @@
 
 	var/last_update_state = update_state
 	var/last_update_overlay = update_overlay
-	update_state = 0
+	update_state = NONE
 	update_overlay = 0
 
 	if(machine_stat & BROKEN)
 		ENABLE_BITFIELD(update_state, UPSTATE_BROKE)
 	if(machine_stat & MAINT)
 		ENABLE_BITFIELD(update_state, UPSTATE_MAINT)
-	if(opened)
-		if(opened == APC_COVER_OPENED)
+	switch(opened)
+		if(APC_COVER_OPENED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED1)
-		if(opened == APC_COVER_REMOVED)
+		if(APC_COVER_REMOVED)
 			ENABLE_BITFIELD(update_state, UPSTATE_OPENED2)
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(update_state, UPSTATE_WIREEXP)
@@ -248,33 +248,39 @@
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LOCKED)
 		if(operating)
 			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_OPERATING)
-		if(!charging)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING0)
-		else if(charging == APC_CHARGING)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING1)
-		else if(charging == APC_FULLY_CHARGED)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING2)
 
-		if (!equipment)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT0)
-		else if(equipment == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT1)
-		else if(equipment == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT2)
+		switch(charging)
+			if(APC_NOT_CHARGING)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING0)
+			if(APC_CHARGING)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING1)
+			if(APC_FULLY_CHARGED)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CHARGEING2)
 
-		if(!lighting)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING0)
-		else if(lighting == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING1)
-		else if(lighting == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING2)
+		switch(equipment)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_EQUIPMENT2)
 
-		if(!environ)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON0)
-		else if(environ == 1)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON1)
-		else if(environ == 2)
-			ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON2)
+		switch(lighting)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_LIGHTING2)
+
+		switch(environ)
+			if(0)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON0)
+			if(1)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON1)
+			if(2)
+				ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_ENVIRON2)
+
 	if(opened && cell && !CHECK_BITFIELD(update_state, UPSTATE_MAINT) && ((CHECK_BITFIELD(update_state, UPSTATE_OPENED1) && !CHECK_BITFIELD(update_state, UPSTATE_BROKE)) || CHECK_BITFIELD(update_state, UPSTATE_OPENED2)))
 		ENABLE_BITFIELD(update_overlay, APC_UPOVERLAY_CELL_IN)
 
@@ -291,7 +297,7 @@
 	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
@@ -314,10 +320,10 @@
 	. = ..()
 
 	if(istype(I, /obj/item/cell) && opened) //Trying to put a cell inside
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [I] into [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fit [I] into [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -339,10 +345,10 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [I] on [src].</span>",
 			"<span class='notice'>You fumble around figuring out where to swipe [I] on [src].</span>")
-			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -370,10 +376,10 @@
 	else if(iscablecoil(I) && !terminal && opened && has_electronics != APC_ELECTRONICS_SECURED)
 		var/obj/item/stack/cable_coil/C = I
 
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -409,10 +415,10 @@
 		terminal.connect_to_network()
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -430,20 +436,20 @@
 		qdel(I)
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -466,10 +472,10 @@
 		update_icon()
 
 	else if(istype(I, /obj/item/frame/apc) && opened)
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -503,10 +509,10 @@
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the wires first!</span>")
 				return
-			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
 				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
-				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			I.play_tool_sound(src)
@@ -551,10 +557,10 @@
 	. = TRUE
 	if(opened)
 		if(cell)
-			if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 				user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 				"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
@@ -597,10 +603,10 @@
 	if(!opened || has_electronics || terminal)
 		return
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [I].</span>",
 		"<span class='notice'>You fumble around figuring out what to do with [I].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -634,10 +640,10 @@
 		return
 
 	if(opened && cell && !issilicon(user))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
 			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 		user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
@@ -967,19 +973,21 @@
 
 /proc/autoset(val, on)
 
-	if(on == 0) //Turn things off
-		if(val == 2) //If on, return off
-			return 0
-		else if(val == 3) //If auto-on, return auto-off
-			return 1
+	switch(on)
+		if(0) //Turn things off
+			switch(val)
+				if(2) //If on, return off
+					return 0
+				if(3) //If auto-on, return auto-off
+					return 1
 
-	else if(on == 1) //Turn things auto-on
-		if(val == 1) //If auto-off, return auto-on
-			return 3
+		if(1) //Turn things auto-on
+			if(val == 1) //If auto-off, return auto-on
+				return 3
 
-	else if(on == 2) //Turn things auto-off
-		if(val == 3) //If auto-on, return auto-off
-			return 1
+		if(2) //Turn things auto-off
+			if(val == 3) //If auto-on, return auto-off
+				return 1
 	return val
 
 

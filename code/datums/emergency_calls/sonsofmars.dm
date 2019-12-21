@@ -14,14 +14,12 @@
 
 
 /datum/emergency_call/som/create_member(datum/mind/M)
-	var/turf/spawn_loc = get_spawn_point()
-	var/mob/original = M.current
-
-	if(!spawn_loc)
-		stack_trace("Tried to create_member() with no spawn_loc.")
+	. = ..()
+	if(!.)
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
+	var/mob/original = M.current
+	var/mob/living/carbon/human/H = .
 
 	H.name = GLOB.namepool[/datum/namepool/clf].random_name(H)
 	H.real_name = H.name

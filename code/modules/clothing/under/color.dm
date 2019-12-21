@@ -33,8 +33,6 @@
 	desc = "It's standardised prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
 	icon_state = "orange"
 	item_state = "o_suit"
-	has_sensor = 2
-	sensor_mode = 3
 
 /obj/item/clothing/under/color/pink
 	name = "pink jumpsuit"
@@ -66,10 +64,10 @@
 	desc = "lightblue"
 	icon_state = "lightblue"
 
-/obj/item/clothing/under/aqua
-	name = "aqua jumpsuit"
-	desc = "aqua"
-	icon_state = "aqua"
+/obj/item/clothing/under/teal
+	name = "teal jumpsuit"
+	desc = "teal"
+	icon_state = "teal"
 
 /obj/item/clothing/under/purple
 	name = "purple jumpsuit"

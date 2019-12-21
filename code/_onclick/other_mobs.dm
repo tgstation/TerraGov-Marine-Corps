@@ -20,6 +20,41 @@
 	return
 
 
+/atom/proc/attack_hand(mob/living/user)
+	. = FALSE
+	if(QDELETED(src))
+		stack_trace("attack_hand on a qdeleted atom")
+		return TRUE
+	add_fingerprint(user, "attack_hand")
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)
+		return TRUE
+
+/atom/movable/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(buckle_flags & CAN_BUCKLE)
+		switch(LAZYLEN(buckled_mobs))
+			if(0)
+				return
+			if(1)
+				if(user_unbuckle_mob(buckled_mobs[1], user))
+					return TRUE
+			else
+				var/unbuckled = input(user, "Who do you wish to unbuckle?", "Unbuckle Who?") as null|mob in sortNames(buckled_mobs)
+				if(!unbuckled)
+					return
+				if(user_unbuckle_mob(unbuckled, user))
+					return TRUE
+
+/obj/structure/bed/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(buckled_bodybag)
+		unbuckle_bodybag()
+		return TRUE
+
 /*
 	Monkey RestrainedClickOn() was apparently the
 	one and only use of all of the restrained click code

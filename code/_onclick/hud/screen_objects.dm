@@ -14,10 +14,6 @@
 	return ..()
 
 
-/obj/screen/examine(mob/user)
-	return
-
-
 /obj/screen/proc/component_click(obj/screen/component_button/component, params)
 	return
 
@@ -477,6 +473,24 @@
 /obj/screen/healths/robot
 	icon = 'icons/mob/screen/cyborg.dmi'
 	screen_loc = ui_borg_health
+
+
+/obj/screen/stamina_hud
+	icon = 'icons/mob/screen/health.dmi'
+	name = "stamina"
+	icon_state = "staminaloss0"
+	screen_loc = UI_STAMINA
+	mouse_opacity = MOUSE_OPACITY_ICON
+
+/obj/screen/stamina_hud/Click(location, control, params)
+	if(!isliving(usr))
+		return
+	var/mob/living/living_user = usr
+	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina_buffer)
+		to_chat(living_user, "<span class='notice'>Your stamina buffer is <b>[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina_buffer)]%</b> full.</span>")
+		return
+	to_chat(living_user, "<span class='notice'>You have <b>[living_user.getStaminaLoss()]</b> stamina loss.<br></span>")
+
 
 /obj/screen/component_button
 	var/obj/screen/parent

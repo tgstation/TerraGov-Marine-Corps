@@ -9,7 +9,7 @@
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
-/obj/structure/closet/secure_closet/medical1/Initialize()
+/obj/structure/closet/secure_closet/medical1/PopulateContents()
 	. = ..()
 	new /obj/item/storage/box/autoinjectors(src)
 	new /obj/item/storage/box/syringes(src)
@@ -39,7 +39,7 @@
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
-/obj/structure/closet/secure_closet/medical2/Initialize()
+/obj/structure/closet/secure_closet/medical2/PopulateContents()
 	. = ..()
 	new /obj/item/tank/anesthetic(src)
 	new /obj/item/tank/anesthetic(src)
@@ -58,12 +58,14 @@
 	icon_broken = "secure_closed_medical_white"
 	icon_off = "secure_closed_medical_white"
 
-/obj/structure/closet/secure_closet/medical3/Initialize()
+/obj/structure/closet/secure_closet/medical3/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
+	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
+	new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/storage/pouch/medical(src)
 	new /obj/item/storage/pouch/medical(src)
@@ -90,13 +92,15 @@
 	icon_broken = "cmosecurebroken"
 	icon_off = "cmosecureoff"
 
-/obj/structure/closet/secure_closet/CMO/Initialize()
+/obj/structure/closet/secure_closet/CMO/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/radiation(src)
 	new /obj/item/clothing/head/radiation(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/gloves/latex(src)
+	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
+	new /obj/item/clothing/under/rank/medical/purple(src)
 	new /obj/item/clothing/head/surgery/green(src)
 	new /obj/item/clothing/head/cmo(src)
 	new /obj/item/clothing/suit/storage/labcoat(src)
@@ -119,7 +123,7 @@
 	name = "animal control closet"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
-/obj/structure/closet/secure_closet/animal/Initialize()
+/obj/structure/closet/secure_closet/animal/PopulateContents()
 	. = ..()
 	new /obj/item/assembly/signaler(src)
 	new /obj/item/electropack(src)
@@ -139,7 +143,7 @@
 	icon_off = "secure_closed_medical_white"
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
-/obj/structure/closet/secure_closet/chemical/Initialize()
+/obj/structure/closet/secure_closet/chemical/PopulateContents()
 	. = ..()
 	new /obj/item/storage/box/pillbottles(src)
 	new /obj/item/storage/box/pillbottles(src)
