@@ -8,6 +8,8 @@
 	icon = 'icons/mob/cameramob.dmi'
 
 	status_flags = GODMODE
+	density = FALSE
+	throwpass = TRUE
 
 	health = 1000
 	maxHealth = 1000
@@ -77,6 +79,9 @@
 /mob/living/carbon/xenomorph/hivemind/RangedAttack(atom/A, params)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	return ..()
+
+/mob/living/carbon/xenomorph/hivemind/projectile_hit()
+	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/add_typing_indicator()
 	return FALSE
