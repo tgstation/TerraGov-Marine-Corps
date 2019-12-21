@@ -965,7 +965,11 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "dT" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "dU" = (
@@ -5099,6 +5103,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "qL" = (
@@ -5129,6 +5138,11 @@
 /area/icy_caves/outpost/research)
 "qO" = (
 /obj/effect/alien/weeds/node,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "qP" = (
@@ -5197,17 +5211,6 @@
 /area/icy_caves/outpost/research)
 "qW" = (
 /obj/structure/bookcase/manuals/research_and_development,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"qX" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/table,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "qY" = (
@@ -5281,15 +5284,60 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"vG" = (
+/obj/machinery/computer/rdservercontrol,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "zl" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"zz" = (
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Cx" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Ez" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/computer/nuke_disk_generator/blue,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"FA" = (
+/obj/machinery/computer/rdconsole,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"Hk" = (
+/obj/machinery/door/airlock/colony/research{
+	icon_state = "door_closed";
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/research)
 "HM" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -5302,6 +5350,18 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/outside)
+"JJ" = (
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/OOB)
+"JM" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "JT" = (
 /obj/structure/sign/science{
 	dir = 1
@@ -5319,6 +5379,9 @@
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
+"Ni" = (
+/turf/closed/wall,
+/area/icy_caves/outpost/research)
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
@@ -5331,6 +5394,14 @@
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
+"QB" = (
+/obj/machinery/door/airlock/colony/research,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Rb" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "Rh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5346,6 +5417,18 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/east)
+"Sc" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"SH" = (
+/obj/machinery/computer/general_air_control/supermatter_core,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5372,6 +5455,25 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"VW" = (
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"WU" = (
+/obj/structure/dispenser,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"XE" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -8406,14 +8508,14 @@ mj
 mj
 mj
 mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
 mj
 mj
 mj
@@ -8663,18 +8765,18 @@ nB
 nB
 nB
 nB
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
 mj
 mj
 mj
@@ -8914,23 +9016,23 @@ nB
 nB
 bK
 lm
-nC
-ls
-nD
+JJ
+JJ
+JJ
 nL
 nL
 lQ
 nv
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-mj
-nB
-nB
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
+ls
 nB
 nB
 nB
@@ -9170,7 +9272,7 @@ cZ
 de
 cZ
 ls
-mh
+JJ
 dc
 dc
 dc
@@ -9178,13 +9280,13 @@ dc
 nD
 ma
 fP
-nu
-mj
-mj
-mj
-mj
-mj
-mj
+qH
+qH
+qH
+qH
+qH
+qH
+qH
 az
 lm
 nx
@@ -9429,19 +9531,19 @@ db
 dc
 dc
 dc
-dF
 dc
 dc
 dc
-dh
-fP
-nu
-mj
-mj
-mj
-mj
-mj
-mj
+dc
+dc
+dc
+Hk
+zz
+Rb
+zz
+zz
+zz
+Hk
 az
 mh
 mh
@@ -9689,16 +9791,16 @@ dc
 gA
 dC
 dc
-dh
-dh
+dc
+dc
 fP
-nu
-mj
-mj
-mj
-mj
-mj
-mj
+qH
+WU
+zz
+VW
+zz
+re
+qH
 az
 ls
 nD
@@ -9949,13 +10051,13 @@ dc
 dc
 de
 cZ
-nu
-mj
-mj
-mj
-mj
-mj
-nB
+qH
+Ni
+Ni
+QB
+Ni
+Ni
+qH
 bK
 lQ
 ls
@@ -10206,13 +10308,13 @@ dc
 dc
 da
 db
-nu
-mj
-mj
-mj
-mj
-bK
-ls
+qH
+qZ
+Sc
+XE
+zz
+FA
+qH
 ln
 qB
 nD
@@ -10463,13 +10565,13 @@ dc
 dc
 dz
 fP
-nu
-mj
-mj
-mj
-az
-ls
-nz
+qH
+Ez
+Cx
+zz
+ra
+SH
+qH
 ls
 mh
 ls
@@ -10721,11 +10823,11 @@ dc
 gz
 cZ
 qH
-qH
-qH
-qH
-qH
-qH
+rd
+mK
+Rb
+zz
+vG
 qH
 ls
 mh
@@ -10971,17 +11073,17 @@ dc
 dc
 dc
 fe
-ft
-ft
-ee
+cV
+dc
+dc
 dc
 dc
 dz
 qH
 ea
-qX
-qZ
-rd
+mK
+zz
+zz
 ea
 qH
 mh
@@ -11228,12 +11330,12 @@ dc
 dc
 dc
 kZ
-cX
-fu
-gB
+dc
+dc
+cV
 cV
 dc
-dA
+dc
 qH
 qT
 mK
@@ -11486,8 +11588,8 @@ dc
 ed
 kZ
 cX
-ft
-ft
+dc
+dc
 cY
 dc
 dc
@@ -11744,10 +11846,10 @@ dc
 kZ
 fu
 fu
-cY
+dc
 dc
 ed
-hs
+dc
 qH
 qW
 qO
@@ -12003,11 +12105,11 @@ ee
 ef
 ef
 dc
-hs
+dc
 jf
 qH
 dT
-qY
+JM
 rc
 re
 ea
@@ -12772,7 +12874,7 @@ dc
 dc
 gz
 db
-db
+dc
 dc
 fd
 cY
