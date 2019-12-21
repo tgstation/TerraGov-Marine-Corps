@@ -25,7 +25,7 @@
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
-	if(current_version < 40)
+	if(current_version < 39)
 		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 		parent.update_movement_keys()
 		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
