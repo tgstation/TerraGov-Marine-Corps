@@ -163,12 +163,11 @@
 	armor = list("melee" = 55, "bullet" = 55, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 40)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	brightness_on = 8
-	pockets = /obj/item/storage/internal/suit/marine/leader
+	pockets = /obj/item/storage/internal/suit/leader
 
-/obj/item/storage/internal/suit/marine/leader
-	bypass_w_limit = list()
-	storage_slots = null
-	max_storage_space = 15 // Same as satchel
+/obj/item/storage/internal/suit/leader
+	storage_slots = 3
+	max_storage_space = 12
 	max_w_class = 3
 
 /obj/item/clothing/suit/storage/marine/MP
