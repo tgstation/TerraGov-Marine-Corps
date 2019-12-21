@@ -190,6 +190,13 @@
 	return ..()
 
 /obj/effect/alien/weeds/node/strong/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+	if(isxenoqueen(X))
+		var/choice = alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", "Yes", "Cancel")
+		if(choice == "Yes")
+			deconstruct(FALSE)
+			return
+			
+
 	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")
 
