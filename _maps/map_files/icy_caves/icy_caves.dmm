@@ -5272,21 +5272,10 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"rD" = (
-/obj/structure/table,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+"tm" = (
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"ug" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"uN" = (
-/obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "uT" = (
@@ -5301,45 +5290,20 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
-"yL" = (
-/obj/structure/dispenser,
+"wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"zl" = (
-/obj/effect/landmark/start/surv_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
-"zA" = (
+"xc" = (
 /obj/structure/cable/yellow{
+	d1 = 1;
 	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Bl" = (
 /obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Bx" = (
-/obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
-	dir = 1
-	},
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research)
-"BN" = (
-/obj/machinery/computer/general_air_control/supermatter_core,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Cv" = (
-/turf/closed/wall,
-/area/icy_caves/outpost/research)
-"CZ" = (
-/obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
@@ -5347,8 +5311,15 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"Dv" = (
-/obj/machinery/computer/rdservercontrol,
+"zl" = (
+/obj/effect/landmark/start/surv_spawn,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
+"Br" = (
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "GZ" = (
@@ -5368,8 +5339,16 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/outside)
-"Jo" = (
-/obj/machinery/computer/rdconsole,
+"IA" = (
+/obj/machinery/computer/general_air_control/supermatter_core,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Jf" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "JT" = (
@@ -5386,12 +5365,27 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/outside)
+"KE" = (
+/obj/structure/dispenser,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
+"NE" = (
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/OOB)
+"NN" = (
+/obj/machinery/computer/rdconsole,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
+"PB" = (
+/obj/machinery/door/airlock/colony/research,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "PD" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5416,6 +5410,23 @@
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/east)
+"RU" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Sq" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5429,12 +5440,15 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
-"Um" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+"Ud" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"UM" = (
+/turf/closed/wall,
+/area/icy_caves/outpost/research)
+"UN" = (
+/obj/machinery/computer/rdservercontrol,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "Vj" = (
@@ -5445,30 +5459,18 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
-"Vl" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
 "VU" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
-"Yq" = (
+"XH" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "YA" = (
@@ -5476,15 +5478,6 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
-"YQ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Zx" = (
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/OOB)
 
 (1,1,1) = {"
 aa
@@ -9022,9 +9015,9 @@ nB
 nB
 bK
 lm
-Zx
-Zx
-Zx
+NE
+NE
+NE
 pO
 nL
 lQ
@@ -9278,7 +9271,7 @@ cZ
 de
 cZ
 ls
-Zx
+NE
 dc
 dc
 dc
@@ -9543,13 +9536,13 @@ dc
 dc
 dc
 dc
-Bx
-Yq
-ug
-Yq
-Yq
-Yq
-Bx
+qI
+wM
+Ud
+wM
+wM
+wM
+qI
 gw
 gw
 gw
@@ -9801,10 +9794,10 @@ dc
 dc
 fP
 qH
-yL
-Yq
-zA
-Yq
+KE
+wM
+Br
+wM
 re
 qH
 gw
@@ -10058,11 +10051,11 @@ dc
 de
 cZ
 qH
-Cv
-Cv
-uN
-Cv
-Cv
+UM
+UM
+PB
+UM
+UM
 qH
 gw
 gw
@@ -10316,10 +10309,10 @@ da
 db
 qH
 qZ
-Bl
-Um
-YQ
-Jo
+Jf
+Sq
+tm
+NN
 qH
 gw
 gw
@@ -10572,11 +10565,11 @@ dc
 dz
 fP
 qH
-rD
-Vl
-Yq
+XH
+xc
+wM
 ra
-BN
+IA
 qH
 gw
 gw
@@ -10831,9 +10824,9 @@ cZ
 qH
 rd
 mK
-ug
-Yq
-Dv
+Ud
+wM
+UN
 qH
 gw
 gw
@@ -11088,8 +11081,8 @@ dz
 qH
 ea
 mK
-Yq
-Yq
+wM
+wM
 ea
 qH
 gw
@@ -12115,7 +12108,7 @@ dc
 jf
 qH
 dT
-CZ
+RU
 rc
 re
 ea
