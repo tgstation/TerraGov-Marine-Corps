@@ -99,7 +99,7 @@
 	return TRUE
 
 
-/obj/machinery/computer/camera_advanced/attack_hand(mob/living/user)
+/obj/machinery/computer/camera_advanced/interact(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -211,6 +211,7 @@
 	user.see_invisible = SEE_INVISIBLE_LIVING
 	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
 	user.see_in_dark = 2
+	to_chat(world, "remote sight")
 	return TRUE
 
 

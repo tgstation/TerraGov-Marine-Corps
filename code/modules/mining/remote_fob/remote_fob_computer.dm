@@ -58,9 +58,12 @@
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
 	
-/obj/machinery/computer/camera_advanced/remote_fob/attack_hand(mob/living/user)
+/obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
+	if(isAI(user))
+		to_chat(user, "<span class='warning'>#ERROR! Drone terminated AI connection on handshake. Error thrown: 'We don't want machines building machines, but good try.'</span>")
+		return // In order to allow AIs to use this update_sight() needs to be refactored to properly handle living
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
