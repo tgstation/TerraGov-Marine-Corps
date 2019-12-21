@@ -153,6 +153,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 /mob/living/proc/on_revive()
+	SEND_SIGNAL(src, COMSIG_MOB_REVIVE)
 	GLOB.alive_living_list += src
 	GLOB.dead_mob_list -= src
 
