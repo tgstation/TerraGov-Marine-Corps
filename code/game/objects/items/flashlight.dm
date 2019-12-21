@@ -162,6 +162,15 @@
 	if(!usr.stat)
 		attack_self(usr)
 
+/obj/item/flashlight/lamp/attack_alien(mob/living/carbon/xenomorph/X)
+	if(broken)
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
+	playsound(loc, 'sound/effects/metalhit.ogg', 20, TRUE)
+	X.visible_message("<span class='danger'>\The [X] smashes [src]!</span>", \
+	"<span class='danger'>We smash [src]!</span>", null, 5)
+	deconstruct(FALSE)
+
 // FLARES
 
 /obj/item/flashlight/flare
