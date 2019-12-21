@@ -178,8 +178,10 @@
 /obj/effect/alien/weeds/node/strong/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
 	parent = new(loc)
+	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/weeds/node/strong/hivemindcore/Destroy()
+	set_light(0, 0, null)
 	if(isnull(parent))
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
