@@ -1343,7 +1343,6 @@
 #include "code\modules\projectiles\magazines\shotguns.dm"
 #include "code\modules\projectiles\magazines\smgs.dm"
 #include "code\modules\projectiles\magazines\specialist.dm"
-#include "code\modules\radial\radial.dm"
 #include "code\modules\radial\radial_body_select.dm"
 #include "code\modules\reagents\chem_splash.dm"
 #include "code\modules\reagents\Chemistry-Colours.dm"
