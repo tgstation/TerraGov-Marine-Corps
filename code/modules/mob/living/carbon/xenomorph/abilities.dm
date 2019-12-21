@@ -75,6 +75,9 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
 	return succeed_activate()
 
+/datum/action/xeno_action/plant_weeds/slow
+	cooldown_timer = 12 SECONDS
+
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
@@ -219,7 +222,7 @@
 
 // Slower version of the secret resin
 /datum/action/xeno_action/activable/secrete_resin/slow
-	base_wait = 5 SECONDS
+	base_wait = 7.5 SECONDS
 	scaling_wait = 0
 	
 

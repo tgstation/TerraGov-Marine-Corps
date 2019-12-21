@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
-	tier = XENO_TIER_ZERO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivemind" //used to match appropriate wound overlays
 	// *** Melee Attacks *** //
@@ -14,7 +14,7 @@
 	tackle_damage = 0
 
 	// *** Speed *** //
-	speed = -2
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 150 //  75 is the cost of plant_weeds
@@ -24,15 +24,14 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	evolution_threshold = 180
-	upgrade_threshold = 100
+	upgrade_threshold = 300
 
 	deevolves_to = null
 
 	evolves_to = list()
 
 	// *** Flags *** //
-	caste_flags = CASTE_INNATE_PLASMA_REGEN
+	caste_flags = CASTE_INNATE_PLASMA_REGEN | CASTE_FIRE_IMMUNE
 
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
@@ -49,7 +48,7 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/plant_weeds/slow,
 		)
 
 /datum/xeno_caste/hivemind/young
@@ -61,19 +60,16 @@
 	upgrade_name = "Mature"
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Speed *** //
-	speed = -2.5
-
 	// *** Plasma *** //
-	plasma_max = 300 //  75 is the cost of plant_weed
+	plasma_max = 200 //  75 is the cost of plant_weed
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 500
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/activable/psychic_cure,
 		)
 
@@ -82,25 +78,22 @@
 	upgrade_name = "Elder"
 	upgrade = XENO_UPGRADE_TWO
 
-	// *** Speed *** //
-	speed = -3
-
 	// *** Plasma *** //
-	plasma_max = 600 
+	plasma_max = 250 
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 700
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/slow,
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/hivemind/ancient
@@ -108,24 +101,21 @@
 	ancient_message = "We are a collective. Strongest there can be. Nothing can stop us, we are one"
 	upgrade = XENO_UPGRADE_THREE
 
-	// *** Speed *** //
-	speed = -3.5
-
 	// *** Plasma *** //
-	plasma_max = 1000 
+	plasma_max = 300 
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 1000
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/slow,
 		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/activable/secrete_resin/slow,
 		)
