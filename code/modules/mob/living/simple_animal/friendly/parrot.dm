@@ -597,7 +597,7 @@
 	if(islist(speech_buffer))
 		file_data["phrases"] = speech_buffer
 	fdel(json_file)
-	WRITE_FILE(json_file, json_encode(file_data))
+	write_file(json_file, null, json_encode(file_data))
 
 
 /mob/living/simple_animal/parrot/Poly/ghost

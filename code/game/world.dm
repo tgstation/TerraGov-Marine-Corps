@@ -8,7 +8,7 @@ GLOBAL_VAR(restart_counter)
 /world/New()
 	log_world("World loaded at [time_stamp()]!")
 
-	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_telecomms_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
+	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_telecomms_log = GLOB.world_href_log = GLOB.rw_file_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
 
 	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
@@ -87,6 +87,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.rw_file_log = "[GLOB.log_directory]/rw_file.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
@@ -97,6 +98,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
+	start_log(GLOB.rw_file_log)
 	start_log(GLOB.sql_error_log)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)
@@ -219,7 +221,7 @@ GLOBAL_VAR(restart_counter)
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
-	WRITE_FILE(F, the_mode)
+	write_file(F, null, the_mode)
 
 
 /world/proc/update_status()

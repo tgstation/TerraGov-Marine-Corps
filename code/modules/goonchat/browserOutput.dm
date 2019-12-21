@@ -206,7 +206,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 // Save the CSS locally on the client
 /datum/chatOutput/proc/saveClientCSS()
 	var/savefile/F = new()
-	WRITE_FILE(F["CSS"], clientCSS)
+	write_file(F, "CSS", clientCSS)
 	owner.Export(F)
 	qdel(F)
 
@@ -217,7 +217,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		saveClientCSS("")
 		return
 	var/savefile/F = new(last_savefile)
-	READ_FILE(F["CSS"], clientCSS)
+	clientCSS = read_file(F, "CSS")
 
 	if(length(clientCSS) > UPLOAD_LIMIT)
 		clientCSS = ""

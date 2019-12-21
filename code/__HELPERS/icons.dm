@@ -942,7 +942,7 @@ ColorTone(rgb, tone)
 /proc/icon2base64(icon/icon, iconKey = "misc")
 	if(!isicon(icon))
 		return FALSE
-	WRITE_FILE(GLOB.iconCache[iconKey], icon)
+	write_file(GLOB.iconCache[iconKey], null, icon)
 	var/iconData = GLOB.iconCache.ExportText(iconKey)
 	var/list/partial = splittext(iconData, "{")
 	return replacetext(copytext(partial[2], 3, -5), "\n", "")

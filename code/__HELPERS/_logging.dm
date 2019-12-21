@@ -4,10 +4,22 @@
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 #define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
-#define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
+#define WRITE_FILE(file, text) write_file(file, text)
 #define READ_FILE(file, text) DIRECT_INPUT(file, text)
 #define WRITE_LOG(log, text) rustg_log_write(log, text)
 
+/proc/write_file(savefile/file, buffer, text)
+	WRITE_LOG(GLOB.rw_file_log, "WRITING ([usr ? usr : "no usr"]): [file.name] ([buffer]) = [text]")
+	if(buffer)
+		DIRECT_OUTPUT(file[buffer], text)
+	else
+		DIRECT_OUTPUT(file, text)
+	WRITE_LOG(GLOB.rw_file_log, "WRITTEN")
+
+/proc/read_file(savefile/file, buffer)
+	WRITE_LOG(GLOB.rw_file_log, "READING ([usr ? usr : "no usr"]): [file.name] ([buffer])")
+	DIRECT_INPUT(file[buffer], .)
+	WRITE_LOG(GLOB.rw_file_log, "READ: [isnull(.) ? "null" : .]")
 
 //print a warning message to world.log
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")

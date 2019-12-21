@@ -140,7 +140,7 @@
 	//Kinda annoying but as far as i can tell you need to make actual file.
 	var/f = file("data/TempOutfitUpload")
 	fdel(f)
-	WRITE_FILE(f, json)
+	write_file(f, null, json)
 	usr << ftp(f, "[name].json")
 
 
