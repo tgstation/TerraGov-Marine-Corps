@@ -220,9 +220,10 @@ GLOBAL_VAR(restart_counter)
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
+	WRITE_LOG(GLOB.rw_file_log, "WRITING save_mode [the_mode] to [F]")
 	fdel(F)
-	write_file(F, null, the_mode)
-
+	WRITE_FILE(F, the_mode)
+	WRITE_LOG(GLOB.rw_file_log, "WRITTEN")
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.

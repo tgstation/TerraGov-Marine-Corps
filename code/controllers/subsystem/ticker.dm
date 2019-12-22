@@ -266,8 +266,10 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
+	WRITE_LOG(GLOB.rw_file_log, "WRITING save_mode [the_mode] to [F]")
 	fdel(F)
-	write_file(F, null, the_mode)
+	WRITE_FILE(F, the_mode)
+	WRITE_LOG(GLOB.rw_file_log, "WRITTEN")
 
 
 /datum/controller/subsystem/ticker/proc/Reboot(reason, delay)
