@@ -675,7 +675,14 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(client.view != world.view)
 		client.change_view(world.view)
 	else
-		client.change_view(14)
+		client.change_view("29x29")
+
+
+/mob/dead/observer/verb/add_view_range(input as num)
+	set name = "Add View Range"
+	set hidden = TRUE
+	if(input)
+		client.rescale_view(input, 15, 21)
 
 
 /mob/dead/observer/verb/toggle_darkness()

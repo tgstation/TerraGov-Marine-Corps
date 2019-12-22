@@ -694,7 +694,7 @@ Currently only has the tank hardpoints
 	is_activatable = TRUE
 	var/is_active = FALSE
 
-	var/view_buff = 12 //This way you can VV for more or less fun
+	var/view_buff = "25x25" //This way you can VV for more or less fun
 	var/view_tile_offset = 5
 
 	icon_state = "artillery"
@@ -710,7 +710,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	if(is_active)
-		M.client.change_view(7)
+		M.client.change_view(world.view)
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
@@ -741,7 +741,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	is_active = FALSE
-	M.client.change_view(7)
+	M.client.change_view(world.view)
 	M.client.pixel_x = 0
 	M.client.pixel_y = 0
 

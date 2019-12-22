@@ -672,7 +672,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 
 		if(user.client)
-			user.client.change_view(viewsize)
+			user.client.change_view("[1 + 2 * viewsize]x[1 + 2 * viewsize]")
 
 			var/tilesize = 32
 			var/viewoffset = tilesize * tileoffset

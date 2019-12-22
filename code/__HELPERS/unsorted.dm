@@ -802,14 +802,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return (rand(1, value) == value)
 
 
-/proc/view_or_range(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = view(distance,center)
-		if("range")
-			. = range(distance,center)
-
-
 /proc/parse_zone(zone)
 	if(zone == "r_hand")
 		return "right hand"

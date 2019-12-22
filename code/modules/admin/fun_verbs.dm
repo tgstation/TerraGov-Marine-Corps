@@ -10,7 +10,11 @@
 		return
 
 	var/newview = input("Select view range:", "Change View Range", 7) as null|num
-	if(!newview || newview == usr.client.view)
+	if(!newview)
+		return
+
+	newview = "[1 + 2 * newview]x[1 + 2 * newview]"
+	if(newview == usr.client.view)
 		return
 
 	usr.client.change_view(newview)

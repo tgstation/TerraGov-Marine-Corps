@@ -180,21 +180,31 @@
 					//blip_pool[target].icon_state = "detector_blip_fubar"
 
 		var/obj/effect/detector_blip/DB = blip_pool[target]
-		var/c_view = user.client.view
+		var/list/actualview = getviewsize(user.client.view)
+		var/viewX = actualview[1]
+		var/viewY = actualview[2]
 		var/view_x_offset = 0
 		var/view_y_offset = 0
-		if(c_view > 7)
-			if(user.client.pixel_x >= 0) view_x_offset = round(user.client.pixel_x/32)
-			else view_x_offset = CEILING(user.client.pixel_x/32, 1)
-			if(user.client.pixel_y >= 0) view_y_offset = round(user.client.pixel_y/32)
-			else view_y_offset = CEILING(user.client.pixel_y/32, 1)
+		if(viewX > 7 || viewY > 7)
+			if(user.client.pixel_x >= 0)
+				view_x_offset = round(user.client.pixel_x/32)
+			else
+				view_x_offset = CEILING(user.client.pixel_x/32, 1)
+			if(user.client.pixel_y >= 0)
+				view_y_offset = round(user.client.pixel_y/32)
+			else
+				view_y_offset = CEILING(user.client.pixel_y/32, 1)
 
 		var/diff_dir_x = 0
 		var/diff_dir_y = 0
-		if(target.x - user.x > c_view + view_x_offset) diff_dir_x = 4
-		else if(target.x - user.x < -c_view + view_x_offset) diff_dir_x = 8
-		if(target.y - user.y > c_view + view_y_offset) diff_dir_y = 1
-		else if(target.y - user.y < -c_view + view_y_offset) diff_dir_y = 2
+		if(target.x - user.x > viewX + view_x_offset)
+			diff_dir_x = 4
+		else if(target.x - user.x < -viewX + view_x_offset)
+			diff_dir_x = 8
+		if(target.y - user.y > viewY + view_y_offset)
+			diff_dir_y = 1
+		else if(target.y - user.y < -viewY + view_y_offset)
+			diff_dir_y = 2
 		if(diff_dir_x || diff_dir_y)
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)
@@ -219,7 +229,7 @@
 				if(MOTION_DETECTOR_FUBAR)
 					DB.icon_state = "detector_blip_fubar"
 
-		DB.screen_loc = "[CLAMP(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[CLAMP(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
+		DB.screen_loc = "[CLAMP(viewX + 1 - view_x_offset + (target.x - user.x), 1, 2 * viewX + 1)],[CLAMP(viewY + 1 - view_y_offset + (target.y - user.y), 1, 2 * viewY + 1)]"
 		user.client.screen += DB
 		addtimer(CALLBACK(src, .proc/remove_blip, user, DB), 1 SECONDS)
 
