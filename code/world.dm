@@ -2,7 +2,7 @@
 	mob = /mob/new_player
 	turf = /turf/open/space/basic
 	area = /area/space
-	view = "15x15" //Also referenced as 7 in WORLD_VIEW
+	view = "15x15" //Also referenced as 7 in WORLD_VIEW_NUM
 	cache_lifespan = 0	//stops player uploaded stuff from being kept in the rsc past the current session
 	hub = "Exadv1.spacestation13"
 	fps = 20

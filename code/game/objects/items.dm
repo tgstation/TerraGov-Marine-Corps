@@ -662,7 +662,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.unset_interaction()
 
 		if(user.client)
-			user.client.change_view(world.view)
+			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 

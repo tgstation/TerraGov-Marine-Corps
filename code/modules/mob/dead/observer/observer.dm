@@ -672,8 +672,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return
 
-	if(client.view != world.view)
-		client.change_view(world.view)
+	if(client.view != WORLD_VIEW)
+		client.change_view(WORLD_VIEW)
 	else
 		client.change_view("29x29")
 

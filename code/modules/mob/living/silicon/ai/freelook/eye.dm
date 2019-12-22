@@ -63,7 +63,7 @@
 	if(!isturf(loc))
 		return list()
 	var/client/C = GetViewerClient()
-	var/view = C ? getviewsize(C.view) : getviewsize(world.view)
+	var/view = C ? getviewsize(C.view) : getviewsize(WORLD_VIEW)
 	var/turf/lowerleft = locate(max(1, x - (view[1] - 1)/2), max(1, y - (view[2] - 1)/2), z)
 	var/turf/upperright = locate(min(world.maxx, lowerleft.x + (view[1] - 1)), min(world.maxy, lowerleft.y + (view[2] - 1)), lowerleft.z)
 	return block(lowerleft, upperright)

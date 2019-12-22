@@ -28,7 +28,7 @@
 	add_click_catcher()
 
 	if(client)
-		client.change_view(world.view)
+		client.change_view(WORLD_VIEW)
 		client.pixel_x = 0
 		client.pixel_y = 0
 

@@ -710,7 +710,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	if(is_active)
-		M.client.change_view(world.view)
+		M.client.change_view(WORLD_VIEW)
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
@@ -741,7 +741,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	is_active = FALSE
-	M.client.change_view(world.view)
+	M.client.change_view(WORLD_VIEW)
 	M.client.pixel_x = 0
 	M.client.pixel_y = 0
 

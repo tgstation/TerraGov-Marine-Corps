@@ -453,7 +453,7 @@
 	zoom_turf = null
 	if(!client)
 		return
-	client.change_view(world.view)
+	client.change_view(WORLD_VIEW)
 	client.pixel_x = 0
 	client.pixel_y = 0
 
