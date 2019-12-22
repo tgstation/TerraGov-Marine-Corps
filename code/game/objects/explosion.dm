@@ -34,8 +34,8 @@
 			var/turf/M_turf = get_turf(M)
 			if(M_turf && M_turf.z == epicenter.z)
 				var/dist = get_dist(M_turf, epicenter)
-				// If inside the blast radius + world.view - 2
-				if(dist <= round(max_range + world.view - 2, 1))
+				// If inside the blast radius + world view radius - 2
+				if(dist <= round(max_range + WORLD_VIEW - 2, 1))
 					if(devastation_range > 0)
 						M.playsound_local(epicenter, get_sfx("explosion"), 75, 1, frequency, falloff = 5) // get_sfx() is so that everyone gets the same sound
 					else
@@ -51,7 +51,7 @@
 					else
 						M.playsound_local(epicenter, 'sound/effects/explosionsmallfar.ogg', far_volume, 1, frequency, falloff = 5)
 
-	var/close = trange(world.view + round(devastation_range, 1), epicenter)
+	var/close = trange(WORLD_VIEW + round(devastation_range, 1), epicenter)
 	var/sound/S = sound('sound/effects/explosionfar.ogg', channel = open_sound_channel())
 	//To all distanced mobs play a different sound
 	for(var/mob/M in GLOB.mob_list)

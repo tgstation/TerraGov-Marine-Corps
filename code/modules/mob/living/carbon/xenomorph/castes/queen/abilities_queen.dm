@@ -152,9 +152,9 @@
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
-		if(get_dist(L, X) > world.view)
+		if(get_dist(L, X) > WORLD_VIEW)
 			continue
-		L.screech_act(X, world.view, L in nearby_living)
+		L.screech_act(X, WORLD_VIEW, L in nearby_living)
 
 // ***************************************
 // *********** Gut

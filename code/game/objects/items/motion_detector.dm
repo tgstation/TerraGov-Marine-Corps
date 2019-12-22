@@ -198,13 +198,13 @@
 		var/diff_dir_x = 0
 		var/diff_dir_y = 0
 		if(target.x - user.x > viewX + view_x_offset)
-			diff_dir_x = 4
+			diff_dir_x = EAST
 		else if(target.x - user.x < -viewX + view_x_offset)
-			diff_dir_x = 8
+			diff_dir_x = WEST
 		if(target.y - user.y > viewY + view_y_offset)
-			diff_dir_y = 1
+			diff_dir_y = NORTH
 		else if(target.y - user.y < -viewY + view_y_offset)
-			diff_dir_y = 2
+			diff_dir_y = SOUTH
 		if(diff_dir_x || diff_dir_y)
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)

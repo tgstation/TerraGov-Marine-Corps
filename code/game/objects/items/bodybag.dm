@@ -297,7 +297,7 @@
 	if(href_list["scanreport"])
 		if(!hasHUD(usr,"medical"))
 			return
-		if(get_dist(usr, src) > world.view)
+		if(get_dist(usr, src) > WORLD_VIEW)
 			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 			return
 		for(var/datum/data/record/R in GLOB.datacore.medical)

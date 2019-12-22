@@ -626,7 +626,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	if(isliving(proj.firer))
 		var/mob/living/shooter_living = proj.firer
-		if(!can_see(shooter_living, src, world.view))
+		if(!can_see(shooter_living, src, WORLD_VIEW))
 			. -= 15 //Can't see the target (Opaque thing between shooter and target)
 		if(shooter_living.last_move_intent < world.time - 2 SECONDS) //We get a nice accuracy bonus for standing still.
 			. += 15
