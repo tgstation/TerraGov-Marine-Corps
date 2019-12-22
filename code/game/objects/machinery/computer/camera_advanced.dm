@@ -211,7 +211,6 @@
 	user.see_invisible = SEE_INVISIBLE_LIVING
 	user.sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS|SEE_BLACKNESS
 	user.see_in_dark = 2
-	to_chat(world, "remote sight")
 	return TRUE
 
 
