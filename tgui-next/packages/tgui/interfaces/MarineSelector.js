@@ -7,8 +7,11 @@ export const MarineSelector = props => {
   const { state } = props;
   const { config, data } = state;
   const { ref } = config;
+
+  const points = data.show_points ? `: ${data.current_m_points} Points Remaining.` : '';
+
   return (
-    <Section title={"Choose your equipment: "+((!!data.show_points) && data.current_m_points + " Points Remaining.")}>
+    <Section title={`Choose your equipment${points}`}>
       <Section level={2}>
         <Box color="white">white = essential</Box>
         <Box color="orange">orange = recommended</Box>

@@ -194,35 +194,33 @@
 
 				SSticker.mode.distress_cancelled = FALSE
 				just_called = TRUE
+
+				var/list/valid_calls = list("Deny" = "deny", "Random" = "random") // default options
+				for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
+					if(E.probability < 1) //Those that are meant to be admin-only
+						continue
+
+					valid_calls += list(E.name = E)
+
 				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. Humans: [AllMarines], Xenos: [AllXenos].",
-					options = list("send" = "send", "deny" = "deny", "random" = "random"), default_option = "random",
+					options = valid_calls, default_option = "random",
 					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>", 
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
 				cooldown_request = world.time
-				if(admin_response == "send")
-					var/list/valid_calls = list("Random")
-					for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
-						if(E.probability < 1) //Those that are meant to be admin-only
-							continue
-
-						valid_calls.Add(E)
-
-					var/chosen_call = input(usr, "Select a distress to send", "Emergency Response") as null|anything in valid_calls
-
-					if(chosen_call == "Random")
-						SSticker.mode.activate_distress()
-					else
-						SSticker.mode.activate_distress(chosen_call)
-					return TRUE
-				else if(admin_response == "deny")
+				if(admin_response == "deny")
 					SSticker.mode.distress_cancelled = TRUE
 					priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
 					return FALSE
 				else if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
 					return FALSE
 				else
-					SSticker.mode.activate_distress()
+					var/chosen_call = admin_response
+
+					if(chosen_call == "Random")
+						SSticker.mode.activate_distress()
+					else
+						SSticker.mode.activate_distress(chosen_call)
 					return TRUE
 			else
 				state = STATE_DISTRESS
