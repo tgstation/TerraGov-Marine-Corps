@@ -1,0 +1,5 @@
+author: "David-Stormwell"
+delete-after: True
+changes: 
+  - rscadd: "SL armor now has a 8 tile radius of light, and has the same storage as a G8 pouch also buffed to be the same as medium/regular armor"
+  - balance: "PMC SG armor is now the same as B18, if not a little weaker."
