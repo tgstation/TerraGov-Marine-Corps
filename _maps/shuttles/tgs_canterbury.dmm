@@ -36,6 +36,8 @@
 "ag" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
+/obj/item/req_tablet,
+/obj/item/radio/beacon,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
