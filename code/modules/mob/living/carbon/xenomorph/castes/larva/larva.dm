@@ -3,7 +3,7 @@
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	amount_grown = 0
-	max_grown = 100
+	max_grown = 50
 	maxHealth = 35
 	health = 35
 	see_in_dark = 8
@@ -55,7 +55,8 @@
 /mob/living/carbon/xenomorph/larva/generate_name()
 	var/progress = "" //Naming convention, three different names
 
-	switch(amount_grown)
+	var/grown = (amount_grown / max_grown) * 100
+	switch(grown)
 		if(0 to 49) //We're still bloody
 			progress = "Bloody "
 		if(100 to INFINITY)
@@ -75,7 +76,8 @@
 	generate_name()
 
 	var/bloody = ""
-	if(amount_grown < 50)
+	var/grown = (amount_grown / max_grown) * 100
+	if(grown < 50)
 		bloody = "Bloody "
 
 	color = hive.color

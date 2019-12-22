@@ -6,7 +6,7 @@
 
 
 /obj/item/explosive/grenade/flashbang/attack_self(mob/user)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	..()

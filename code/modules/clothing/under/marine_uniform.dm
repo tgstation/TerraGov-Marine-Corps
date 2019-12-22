@@ -54,7 +54,18 @@
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
-	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/marine/officer/warden
+	name = "marine officer uniform"
+	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
+	icon_state = "wardentanclothes"
+	item_state = "wardentanclothes"
+
+/obj/item/clothing/under/marine/officer/hos
+	name = "marine officer uniform"
+	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
+	icon_state = "hostanclothes"
+	item_state = "hostanclothes"
 
 /obj/item/clothing/under/marine/officer/warrant
 	name = "Command Master at Arms uniform"
@@ -297,6 +308,12 @@
 	name = "\improper TGMC Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
+	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/rank/marine_cmo
+	name = "marine chief medical officer jumpsuit"
+	desc = "It's made of a special fiber that provides minor protection against biohazards."
+	icon_state = "marine_cmo"
 	rollable_sleeves = FALSE
 
 

@@ -35,6 +35,7 @@
 /area/icy_caves/caves/crashed_ship)
 "aj" = (
 /obj/effect/decal/cleanable/blood/xeno,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "ak" = (
@@ -366,10 +367,6 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
 /area/lv624/lazarus/console)
-"bo" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/caves/west)
 "bp" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
@@ -5249,10 +5246,6 @@
 /obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"rg" = (
-/obj/structure/sign/science,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research)
 "rh" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark2,
@@ -5308,6 +5301,12 @@
 /turf/closed/ice_rock/singlePart{
 	dir = 9
 	},
+/area/icy_caves/outpost/outside)
+"JT" = (
+/obj/structure/sign/science{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
 "Ka" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -9387,7 +9386,7 @@ mj
 mj
 az
 dy
-bo
+eq
 ri
 eE
 eq
@@ -12012,8 +12011,8 @@ qY
 rc
 re
 ea
-rg
-gv
+qH
+JT
 gw
 gw
 gw
@@ -12209,7 +12208,7 @@ bC
 aJ
 aJ
 aK
-aJ
+by
 cr
 aJ
 cR
@@ -12723,7 +12722,7 @@ cK
 bt
 bA
 aJ
-by
+aJ
 aJ
 aJ
 cR

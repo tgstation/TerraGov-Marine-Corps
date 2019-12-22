@@ -17,12 +17,12 @@
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
-		X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>", \
+	if(check_shields(COMBAT_TOUCH_ATTACK, X.xeno_caste.tackle_damage, "melee"))
+		return ..()
+	X.visible_message("<span class='danger'>\The [X]'s grab is blocked by [src]'s shield!</span>",
 		"<span class='danger'>Our grab was blocked by [src]'s shield!</span>", null, 5)
-		playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, 1) //Feedback
-		return FALSE
-	return ..()
+	playsound(loc, 'sound/weapons/alien_claw_block.ogg', 25, TRUE) //Feedback
+	return FALSE
 
 
 /mob/living/proc/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
@@ -46,6 +46,9 @@
 	Knockdown(16 SECONDS)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
+	var/tackle_pain = X.xeno_caste.tackle_damage
+	if(!tackle_pain)
+		return FALSE
 	if(isnestedhost(src)) //No more memeing nested and infected hosts
 		to_chat(X, "<span class='xenodanger'>We reconsider our mean-spirited bullying of the pregnant, secured host.</span>")
 		return FALSE
@@ -55,7 +58,8 @@
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
+	tackle_pain = check_shields(COMBAT_MELEE_ATTACK, tackle_pain, "melee")
+	if(!tackle_pain)
 		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
 		"<span class='danger'>Our tackle is blocked by [src]'s shield!</span>", null, 5)
@@ -71,7 +75,6 @@
 
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
 
-	var/tackle_pain = X.xeno_caste.tackle_damage
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
 	if(X.stealth_router(HANDLE_STEALTH_CHECK))
@@ -89,6 +92,7 @@
 				staggerslow_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
+			KnockdownNoChain(1.5 SECONDS) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -174,6 +178,14 @@
 		return FALSE
 
 	var/damage = X.xeno_caste.melee_damage
+	if(!damage)
+		return FALSE
+
+	damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+	if(!damage)
+		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>",
+			"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, COMBAT_MESSAGE_RANGE)
+		return FALSE
 
 	var/attack_sound = "alien_claw_flesh"
 	var/attack_message1 = "<span class='danger'>\The [X] slashes [src]!</span>"
@@ -209,7 +221,6 @@
 			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
 			#endif
 			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
@@ -217,10 +228,8 @@
 			else
 				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
 				staggerslow_stacks *= 2
-				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			Unconscious(knockout_stacks * 20) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -271,11 +280,6 @@
 			to_chat(X, "<span class='warning'>We disable whatever annoying lights the dead creature possesses.</span>")
 		else
 			to_chat(X, "<span class='warning'>[src] is dead, why would we want to touch it?</span>")
-		return FALSE
-
-	if(check_shields(0, X.name) && prob(66)) //Bit of a bonus
-		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>", \
-		"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, 5)
 		return FALSE
 
 	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_HUMAN, src)

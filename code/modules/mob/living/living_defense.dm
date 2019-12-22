@@ -243,3 +243,18 @@
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 	return protection
+
+/mob/living/proc/check_shields(attack_type, damage, damage_type = "melee", silent)
+	if(!damage)
+		stack_trace("check_shields called without a damage value")
+		return 0
+	. = damage
+	var/list/affecting_shields = list()
+	SEND_SIGNAL(src, COMSIG_LIVING_SHIELDCALL, affecting_shields, damage_type)
+	if(length(affecting_shields) > 1)
+		sortTim(affecting_shields, /proc/cmp_numeric_dsc, associative = TRUE)
+	for(var/shield in affecting_shields)
+		var/datum/callback/shield_check = shield
+		. = shield_check.Invoke(attack_type, ., damage_type, silent)
+		if(!.)
+			break

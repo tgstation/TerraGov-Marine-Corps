@@ -1,5 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	flags_atom = CRITICAL_ATOM
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -37,7 +38,6 @@
 	var/jitteriness = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE

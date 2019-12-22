@@ -78,6 +78,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
+	idle_power_usage = 60
+	active_power_usage = 3000
+
 	var/gives_webbing = FALSE
 	var/vendor_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/squad_tag = ""
@@ -225,7 +228,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					if(!usr.mind || usr.mind.assigned_role != SQUAD_SPECIALIST)
 						to_chat(usr, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
-					else if(!usr.mind.cm_skills || usr.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
+					else if(usr.skills.getRating("spec_weapons") != SKILL_SPEC_TRAINED)
 						to_chat(usr, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[2]
@@ -258,6 +261,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 			if(icon_vend)
 				flick(icon_vend, src)
+
+			use_power(active_power_usage)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
@@ -667,7 +672,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	listed_products = list(
 		/obj/effect/essentials_set/synth = list(CAT_ESS, "Essential Synthetic Set", 0, "white"),
 		/obj/item/clothing/under/marine = list(CAT_STD, "TGMC marine uniform", 0, "black"),
-		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs", 0, "black"),
+		/obj/item/clothing/under/rank/medical/blue = list(CAT_STD, "Medical scrubs (blue)", 0, "black"),
+		/obj/item/clothing/under/rank/medical/green = list(CAT_STD, "Medical scrubs (green)", 0, "black"),
+		/obj/item/clothing/under/rank/medical/purple = list(CAT_STD, "Medical scrubs (purple)", 0, "black"),
 		/obj/item/clothing/under/marine/officer/engi = list(CAT_STD, "Engineering uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/logistics = list(CAT_STD, "Officer uniform", 0, "black"),
 		/obj/item/clothing/under/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),

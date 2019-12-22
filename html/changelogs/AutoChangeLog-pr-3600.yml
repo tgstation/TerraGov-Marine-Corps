@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - bugfix: "Dropship airlocks get unlocked on shuttle hijack, in case a pilot locked them before transit, not to trap the marines inside."

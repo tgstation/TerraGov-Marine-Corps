@@ -472,7 +472,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/rank/medical/green
+	w_uniform = /obj/item/clothing/under/rank/marine_cmo
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
@@ -636,7 +636,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	if(preference_source?.prefs)
 		H.set_species(preference_source.prefs.synthetic_type)
 		if(preference_source.prefs.synthetic_type == "Early Synthetic")
-			H.mind.cm_skills = new /datum/skills/early_synthetic
+			H.skills = getSkillsType(/datum/skills/early_synthetic)
 		new_name = preference_source.prefs.synthetic_name
 
 	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.

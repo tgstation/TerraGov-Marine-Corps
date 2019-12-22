@@ -1,7 +1,7 @@
 /datum/game_mode/crash
 	name = "Crash"
 	config_tag = "Crash"
-	required_players = 3
+	required_players = 2
 	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
@@ -37,18 +37,7 @@
 	latejoin_larvapoints_required = 9 // to avoid division by zero if config doesn't deliver a value in :58 for some reason
 
 	var/larva_check_interval = 0
-
-
-/datum/game_mode/crash/can_start(bypass_checks = FALSE)
-	. = ..()
-	if(!.)
-		return
-	// Check if enough players have signed up for xeno & queen roles.
-	var/ruler = initialize_xeno_leader()
-	var/xenos = initialize_xenomorphs()
-
-	if(!ruler && !xenos && !bypass_checks) // we need at least 1
-		return FALSE
+	var/bioscan_interval = INFINITY
 
 
 /datum/game_mode/crash/initialize_scales()
@@ -80,6 +69,7 @@
 	GLOB.latejoin_gateway = shuttle.latejoins
 
 	// Create xenos
+	initialize_xenomorphs()
 	var/number_of_xenos = length(xenomorphs)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	for(var/i in xenomorphs)
@@ -149,16 +139,20 @@
 	if(round_finished)
 		return
 
+	// Burrowed Larva
 	if(world.time > larva_check_interval)
 		balance_scales()
 
+	// Bioscan alerts
+	if(world.time > bioscan_interval)
+		announce_bioscans(TRUE, 0, FALSE, TRUE, TRUE)
+		bioscan_interval = world.time + 10 MINUTES
 
 /datum/game_mode/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 30 SECONDS)  // Announce exact information to the xenos.
-	addtimer(CALLBACK(src, .proc/announce_bioscans, TRUE, 0, FALSE, TRUE), 5 MINUTES, TIMER_LOOP)
+	bioscan_interval = world.time + 30 SECONDS
 
 
 /datum/game_mode/crash/check_finished(force_end)

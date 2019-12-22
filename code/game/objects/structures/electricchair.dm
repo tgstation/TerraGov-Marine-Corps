@@ -15,20 +15,21 @@
 	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
 	return
 
+/obj/structure/bed/chair/e_chair/proc/use_power(amount, channel)
+	// special power handling
+	var/area/A = get_area(src)
+	if(!isarea(A) || !A.powered(channel))
+		return FALSE
+	A.use_power(amount, channel)
+	return TRUE
+
 /obj/structure/bed/chair/e_chair/proc/shock()
 	if(last_time + 50 > world.time)
 		return
 	last_time = world.time
 
-	// special power handling
-	var/area/A = get_area(src)
-	if(!isarea(A))
+	if(!use_power(5000, EQUIP))
 		return
-	if(!A.powered(EQUIP))
-		return
-	A.use_power(EQUIP, 5000)
-	var/light = A.power_light
-	A.update_icon()
 
 	flick("echair1", src)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -42,7 +43,4 @@
 		buckled_mob.adjustFireLoss(85)
 		buckled_mob.Stun(20 MINUTES)
 	visible_message("<span class='danger'>The electric chair went off!</span>", "<span class='danger'>You hear a deep sharp shock!</span>")
-
-	A.power_light = light
-	A.update_icon()
 	return

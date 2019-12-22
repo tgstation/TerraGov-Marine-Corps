@@ -3,8 +3,13 @@
 	icon_state = "black"
 	dir = SOUTH
 	baseturfs = /turf/open/space/transit
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED //Different from /tg/
 	flags_atom = NOJAUNT_1 //This line goes out to every wizard that ever managed to escape the den. I'm sorry.
 //	explosion_block = INFINITY
+
+//Overwrite because we dont want people building rods in space.
+/turf/open/space/transit/attackby(obj/item/I, mob/user, params)
+	return
 
 ///turf/open/space/transit/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 //	. = ..()
@@ -33,7 +38,7 @@
 
 /turf/open/space/transit/proc/throw_atom(atom/movable/AM)
 	set waitfor = FALSE
-	if(!AM || istype(AM, /obj/docking_port))
+	if(QDELETED(AM) || istype(AM, /obj/docking_port))
 		return
 	if(AM.loc != src) 	// Multi-tile objects are "in" multiple locs but its loc is it's true placement.
 		return			// Don't move multi tile objects if their origin isnt in transit
@@ -77,8 +82,11 @@
 		throw_atom(AM)
 
 /turf/open/space/transit/update_icon()
-	icon_state = "speedspace_ns_[get_transit_state(src)]"
+	. = ..()
 	transform = turn(matrix(), get_transit_angle(src))
+
+/turf/open/space/transit/update_icon_state()
+	icon_state = "speedspace_ns_[get_transit_state(src)]"
 
 /proc/get_transit_state(turf/T)
 	var/p = 9

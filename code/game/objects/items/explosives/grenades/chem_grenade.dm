@@ -127,7 +127,7 @@
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	display_timer = (stage == CG_READY && !nadeassembly)	//show/hide the timer based on assembly state
 	. = ..()
-	if(user.mind?.cm_skills && user.mind.cm_skills.medical > SKILL_MEDICAL_NOVICE)
+	if(user.skills.getRating("medical") > SKILL_MEDICAL_NOVICE)
 		if(length(beakers))
 			to_chat(user, "<span class='notice'>You scan the grenade and detect the following reagents:</span>")
 			for(var/obj/item/reagent_containers/glass/G in beakers)
@@ -320,7 +320,7 @@
 
 
 /obj/item/explosive/grenade/chem_grenade/teargas/attack_self(mob/user)
-	if(user.mind?.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	return ..()

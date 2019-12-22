@@ -278,9 +278,9 @@
 	for(var/i = 1 to length(S.click_border_start))
 		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
 			continue
-		I = S.contents[i]
-		if(!I)
+		if(length(S.contents) < i)
 			continue
+		I = S.contents[i]
 		I.attack_hand(usr)
 		return
 

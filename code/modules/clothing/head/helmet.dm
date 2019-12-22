@@ -132,7 +132,7 @@
 	name = "tactical helmet"
 	desc = "An armored helmet capable of being fitted with a multitude of attachments."
 	icon_state = "swathelm"
-	item_state = "helmet"
+	item_state = "swathelm"
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	anti_hug = 1

@@ -315,14 +315,13 @@
 						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_SPEC
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 	fire_delay = 0.4 SECONDS
-	burst_amount = 2
-	burst_delay = 0.1 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	scatter = 15
 	recoil = 2
@@ -526,7 +525,7 @@
 		return
 	if(gun_on_cooldown(user))
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
 		return
 	if(get_dist(target,user) <= 2)
 		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
@@ -775,17 +774,17 @@
 	if(gun_on_cooldown(user))
 		return
 
-	var/delay = 3
+	var/delay = 0.3 SECONDS
 	if(has_attachment(/obj/item/attachable/scope/mini))
-		delay += 3
+		delay += 0.3 SECONDS
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
-		delay += 6
+	if(user.skills.getRating("spec_weapons") < 0)
+		delay += 0.6 SECONDS
 
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
 		return
 
-	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, 1)
+	playsound(loc,'sound/weapons/guns/fire/launcher.ogg', 50, TRUE)
 	. = ..()
 
 

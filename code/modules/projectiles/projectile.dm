@@ -725,8 +725,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 
 	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+	if(!damage)
+		return
 
-	if(check_proj_block(proj, damage * 0.65))
+	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
+	if(!damage)
 		proj.ammo.on_shield_block(src)
 		bullet_ping(proj)
 		return
@@ -815,23 +818,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_xenos++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
-
-
-/mob/living/proc/check_proj_block(obj/projectile/proj)
-	return FALSE
-
-
-/mob/living/carbon/human/check_proj_block(obj/projectile/proj, damage)
-	if(proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //No, you can't block rockets.
-		return FALSE
-
-	if(!(proj.dir & REVERSE_DIR(dir)))
-		return FALSE
-
-	if(!check_shields(damage * 0.65, proj.name))
-		return FALSE
-
-	return TRUE
 
 
 /mob/living/proc/get_living_armor(armor_type, proj_def_zone, proj_dir)
@@ -963,7 +949,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
+		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
+		if(prob(60))
+			angle += rand(-angle, 360 - angle)
 		I.pixel_x += rand(-6,6)
 		I.pixel_y += rand(-6,6)
 

@@ -136,11 +136,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
-	if(user.mind)
-		if(user.mind.cm_skills && user.mind.cm_skills.police >= SKILL_POLICE_MP)
-			return TRUE
-		if(allowed(user))
-			return TRUE
+	if(user.skills.getRating("police") >= SKILL_POLICE_MP)
+		return TRUE
+	if(user.mind && allowed(user))
+		return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
 
@@ -164,29 +163,28 @@ should be alright.
 */
 /obj/item/weapon/gun/proc/harness_check(mob/user)
 	if(!ishuman(user))
-		return
+		return FALSE
 	var/mob/living/carbon/human/owner = user
 	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
-		if(!istype(B,/obj/item/belt_harness))
-			return
+		if(!istype(B, /obj/item/belt_harness))
+			return FALSE
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	harness_return(user)
+	if(!istype(I, /obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
+		return FALSE
+	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
 	return TRUE
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	set waitfor = 0
-	sleep(3)
-	if(loc && user)
-		if(isnull(user.s_store) && isturf(loc))
-			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,SLOT_S_STORE)
-			if(user.s_store == src)
-				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
-			user.update_inv_s_store()
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store))
+		return
+
+	user.equip_to_slot_if_possible(src, SLOT_S_STORE)
+	if(user.s_store == src)
+		var/obj/item/I = user.wear_suit
+		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
+	user.update_inv_s_store()
 
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -238,16 +236,14 @@ should be alright.
 			to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
 			return
 		//no tactical reload for the untrained.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.firearms == 0)
+		if(!user.skills.getRating("firearms"))
 			to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
 			return
 		if(istype(src, AM.gun_type))
 			if(current_mag)
 				unload(user,0,1)
 				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
-			var/tac_reload_time = 15
-			if(user.mind && user.mind.cm_skills)
-				tac_reload_time = max(15 - 5*user.mind.cm_skills.firearms, 5)
+			var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
 			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
@@ -346,17 +342,16 @@ should be alright.
 
 	var/final_delay = attachment.attach_delay
 	var/idisplay = BUSY_ICON_GENERIC
-	if(user.mind?.cm_skills?.firearms)
+	if(user.skills.getRating("firearms"))
 		user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
-		if(user.mind.cm_skills.firearms >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
+		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5
 	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
-	//user.visible_message("","<span class='notice'>Attach Delay = [final_delay]. Attachment = [attachment]. Firearm Skill = [user.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
 	if(do_after(user, final_delay, TRUE, src, idisplay))
 		user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 		"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
@@ -383,7 +378,8 @@ should be alright.
 			if("rail") update_overlays(rail, attachable)
 
 
-/obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
+/obj/item/weapon/gun/update_overlays(obj/item/attachable/A, slot)
+	. = ..()
 	var/image/I = attachable_overlays[slot]
 	overlays -= I
 	qdel(I)
@@ -519,17 +515,16 @@ should be alright.
 
 	var/final_delay = A.detach_delay
 	var/idisplay = BUSY_ICON_GENERIC
-	if(usr.mind?.cm_skills?.firearms)
+	if(usr.skills.getRating("firearms"))
 		usr.visible_message("<span class='notice'>[usr] begins stripping [A] from [src].</span>",
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
-		if(usr.mind.cm_skills.firearms > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
+		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5 //Half normal time
 	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
 		final_delay *= 2
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)
 		idisplay = BUSY_ICON_UNSKILLED
-	//usr.visible_message("","<span class='notice'>Detach Delay = [detach_delay]. Attachment = [A]. Firearm Skill = [usr.mind.cm_skills.firearms].</span>", null, 4) //DEBUG
 	if(!do_after(usr,final_delay, TRUE, src, idisplay))
 		return
 

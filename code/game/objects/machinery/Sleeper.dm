@@ -11,7 +11,7 @@
 	density = FALSE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 
 /obj/machinery/sleep_console/process()
@@ -164,7 +164,7 @@
 	var/stasis = FALSE
 	var/obj/machinery/sleep_console/connected
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
