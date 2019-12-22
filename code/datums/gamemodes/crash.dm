@@ -69,6 +69,7 @@
 	GLOB.latejoin_gateway = shuttle.latejoins
 
 	// Create xenos
+	initialize_xenomorphs()
 	var/number_of_xenos = length(xenomorphs)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	for(var/i in xenomorphs)
