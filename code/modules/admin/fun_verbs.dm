@@ -13,7 +13,7 @@
 	if(!newview)
 		return
 
-	newview = "[1 + 2 * newview]x[1 + 2 * newview]"
+	newview = VIEW_NUM_TO_STRING(newview)
 	if(newview == usr.client.view)
 		return
 

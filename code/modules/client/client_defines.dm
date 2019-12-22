@@ -1,7 +1,7 @@
 /client
 	parent_type = /datum // black magic
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
-	view = "15x15"
+	view = WORLD_VIEW
 	var/datum/chatOutput/chatOutput //Goonchat holder
 	var/datum/tooltip/tooltips
 
