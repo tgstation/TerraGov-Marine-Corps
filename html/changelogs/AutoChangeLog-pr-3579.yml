@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - balance: "Ravagers regain the ravage ability. Plasma storage, regen and abilities cost tweaked to account for the interaction of the abilities."
