@@ -130,9 +130,9 @@
 	icon_state = "weednode"
 	max_integrity = 60
 	ignore_weed_destruction = TRUE
+	var/node_icon = "weednode"
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
-
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -141,7 +141,7 @@
 
 /obj/effect/alien/weeds/node/update_icon()
 	overlays.Cut()
-	overlays += "weednode"
+	overlays += node_icon
 
 /obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	for(var/obj/effect/alien/weeds/W in loc)
@@ -150,7 +150,7 @@
 			break
 	. = ..()
 
-	overlays += "weednode"
+	update_icon()
 
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
@@ -172,7 +172,7 @@
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
-
+	node_icon = "weed_hivemind"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
 /obj/effect/alien/weeds/node/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
