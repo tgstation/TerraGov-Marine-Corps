@@ -41,6 +41,27 @@
 	drone_creation_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
+
+/obj/machinery/computer/camera_advanced/remote_fob/Destroy()
+	drone_creation_allowed = null
+	spawn_spot = null
+	lz = null
+	metal_cade = null
+	max_metal = null
+	metal_remaining = null
+	plast_cade = null
+	max_plasteel = null
+	plasteel_remaining = null
+	toggle_wiring = null
+	do_wiring = null
+	sentry = null
+	sentry_remaining = null
+	eject_metal = null
+	eject_plasteel = null
+	
+	return ..()
+
+
 /obj/machinery/computer/camera_advanced/remote_fob/examine(mob/user)
 	. = ..()
 	var/list/details = list()
