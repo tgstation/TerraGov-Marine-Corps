@@ -385,8 +385,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
-	damage = 30
-	penetration = 0
+	damage = 25
+	penetration = 10
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -456,7 +456,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 65
+	damage = 55
 	scatter = -15
 	penetration = 15
 
