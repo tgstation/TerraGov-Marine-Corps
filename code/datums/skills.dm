@@ -110,7 +110,7 @@
 
 /datum/skills/combat_engineer
 	name = "Combat Engineer"
-	engineer = SKILL_ENGINEER_ENGI
+	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
 
@@ -270,7 +270,7 @@
 	name = SQUAD_LEADER
 	cqc = SKILL_CQC_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	engineer = SKILL_ENGINEER_PLASTEEL
+	engineer = SKILL_ENGINEER_ENGI
 	leadership = SKILL_LEAD_TRAINED
 	medical = SKILL_MEDICAL_NOVICE
 	surgery = SKILL_SURGERY_AMATEUR
