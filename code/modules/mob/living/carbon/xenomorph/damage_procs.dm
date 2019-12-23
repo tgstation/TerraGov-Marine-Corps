@@ -178,7 +178,7 @@
 		var/distance = 0 //Distance, decreases splash chance.
 		var/i = 0 //Tally up our victims.
 		
-		if(!(/mob/living/carbon/xenomorph.xeno_caste.caste_flags & CASTE_ACID_BLOOD))
+		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))
 			return
 		else
 			for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
