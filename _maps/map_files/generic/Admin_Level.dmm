@@ -793,12 +793,44 @@
 /obj/effect/ai_node/debug,
 /turf/open/floor/mainship,
 /area/centcom/aitest)
+"cy" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass,
+/area/deathmatch)
+"cz" = (
+/obj/effect/ai_node,
+/turf/open/ground/river,
+/area/deathmatch)
+"cA" = (
+/obj/effect/ai_node,
+/turf/open/shuttle/brig,
+/area/deathmatch)
+"cB" = (
+/obj/structure/closet/cabinet,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/deathmatch)
+"cC" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 4
+	},
+/area/deathmatch)
+"cD" = (
+/obj/structure/lattice,
+/obj/effect/ai_node,
+/turf/open/ground/grass,
+/area/deathmatch)
 "cE" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
 /area/centcom/supply)
+"cF" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/deathmatch)
 "cS" = (
 /obj/structure/closet/walllocker/medical_wall/full{
 	icon_state = "medical_wall";
@@ -2883,10 +2915,6 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
-/area/deathmatch)
-"qw" = (
-/obj/structure/closet/cabinet,
-/turf/open/floor,
 /area/deathmatch)
 "qx" = (
 /turf/open/floor/plating,
@@ -14715,7 +14743,7 @@ pt
 pt
 pt
 pt
-pt
+cy
 qB
 pt
 pS
@@ -14727,7 +14755,7 @@ qe
 qe
 qf
 qe
-qw
+cB
 pS
 qe
 qe
@@ -14737,7 +14765,7 @@ qe
 qM
 pS
 re
-qe
+cF
 qL
 qe
 qe
@@ -16041,7 +16069,7 @@ py
 py
 py
 py
-py
+cC
 py
 py
 py
@@ -16053,7 +16081,7 @@ pz
 pz
 pz
 rt
-pz
+cz
 pz
 pz
 pe
@@ -16063,7 +16091,7 @@ ru
 pz
 pz
 pz
-pz
+cz
 pz
 pz
 pz
@@ -17367,7 +17395,7 @@ pt
 pt
 ps
 pH
-pH
+cA
 pH
 qm
 pH
@@ -17379,7 +17407,7 @@ pC
 ql
 qo
 pt
-qo
+cD
 pn
 pt
 pt
@@ -17389,7 +17417,7 @@ qn
 qm
 pH
 ql
-pH
+cA
 pH
 pH
 pH

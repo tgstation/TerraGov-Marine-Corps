@@ -5,7 +5,6 @@ The ai mind is the main brains and handles proc calls on targets/component's par
 
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to
 /datum/component/ai_behavior
-	var/turf/lastturf //If this is the same as parentmob turf at HandleMovement() then we made no progress in moving, do HandleObstruction from there
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/ai_mind/mind //Calculates the action states to take and the parameters it gets; literally the brain
 
@@ -28,13 +27,28 @@ The ai mind is the main brains and handles proc calls on targets/component's par
 		stack_trace("An AI component was being attached to a parent however there's no nodes nearby; component removed.")
 		return COMPONENT_INCOMPATIBLE
 	//This is here so we only make a mind if there's a node nearby for the parent to go onto
-	mind = new mind_to_make(src)
+	mind = new mind_to_make(src, parent)
 	mind.current_node = temp_node
-	mind.mob_parent = parent
-	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/qdel_self)
+	RegisterSignal(parent, COMSIG_PARENT_PREQDELETED, .proc/clean_up)
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/clean_up)
+	for(var/signal in mind.starting_signals)
+		RegisterSignal(parent, signal[1], signal[2])
 	START_PROCESSING(SSprocessing, src)
 	parent.AddElement(arglist(mind.get_new_state(null))) //Initialize it's first action
 	register_signals()
+
+/datum/component/ai_behavior/process()
+	//We don't do . = ..() as . would be a PROCESS_KILL due to /datum/process()
+	..()
+	//Client detection
+	if(istype(parent, /mob/living/carbon))
+		var/mob/living/carbon/parent2 = parent
+		if(parent2.client)
+			qdel(src)
+			return //No PROCESS_KILL needed here as qdel() will handle that due to clean_up()
+	var/result = mind.do_process()
+	if(result) //If this returns something, then it's a REASON for a new action state to be considered
+		get_new_state(result)
 
 //We did something that called this proc, let's get a new action state going
 //force_override determines if the ai mind should or shouldn't override a action state based on the reasoning
@@ -45,20 +59,15 @@ The ai mind is the main brains and handles proc calls on targets/component's par
 	parent.AddElement(arglist(mind.get_new_state(reason_for, parent)))
 	register_signals()
 
-/datum/component/ai_behavior/proc/qdel_self() //Wrapper for COSMIG_MOB_DEATH signal
+//Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
+/datum/component/ai_behavior/proc/clean_up()
 	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
-	qdel(src)
+	unregister_signals()
+	parent.RemoveElement(mind.cur_action_state)
 
 /datum/component/ai_behavior/Destroy()
-	qdel(mind)
-	if(!QDELETED(src))
-		STOP_PROCESSING(SSprocessing, src)
+	clean_up()
 	..()
-
-/datum/component/ai_behavior/process() //Processes and updates things
-	var/atom/movable/parent2 = parent
-	lastturf = parent2.loc
-	return TRUE
 
 //Requests a list of signals from the AI mind to register
 //get_signals_to_reg() returns a list consisting of lists that consist of a target to reg, a COMSIG and for registering a proc path
@@ -92,3 +101,7 @@ The ai mind is the main brains and handles proc calls on targets/component's par
 		stack_trace("An attack order was given to a mind that is considered for non carbon mobs")
 		return
 	mind2.attack_target()
+
+/datum/component/ai_behavior/proc/deal_with_obstacle()
+	var/datum/ai_mind/carbon/mind2 = mind
+	mind2.deal_with_obstacle()

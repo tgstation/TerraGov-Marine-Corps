@@ -7,19 +7,33 @@
 
 /datum/element/action_state/move_to_atom/process()
 	for(var/mob/living/carbon/mob in distances_to_maintain)
+		if(!mob.canmove || mob.stat == DEAD)
+			continue
 		if(get_dist(mob, atoms_to_walk_to[mob]) == distances_to_maintain[mob])
 			if(istype(atoms_to_walk_to[mob], /obj/effect/ai_node))
 				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_NODE)
 			if(istype(atoms_to_walk_to[mob], /mob/living))
 				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_MOB)
-			if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown)
+			if(istype(atoms_to_walk_to[mob], /obj/machinery))
+				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_MACHINERY)
+			if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown || mob.action_busy)
 				continue
+			if(!(get_dir(mob, atoms_to_walk_to[mob]))) //We're right on top, move out of it
+				if(!step(mob, pick(CARDINAL_ALL_DIRS)))
+					SEND_SIGNAL(mob, COMSIG_OBSTRUCTED_MOVE)
 			if(prob(stutter_step_prob[mob]))
-				mob.Move(get_turf(pick(LeftAndRightOfDir(get_dir(mob, atoms_to_walk_to[mob])))))
+				if(!step(mob, pick(LeftAndRightOfDir(get_dir(mob, atoms_to_walk_to[mob]), diagonal_check = TRUE)))) //Couldn't move, something in the way
+					SEND_SIGNAL(mob, COMSIG_OBSTRUCTED_MOVE)
 			continue
-		if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown)
+		if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown || mob.action_busy)
 			continue
-		mob.Move(get_step_to(mob, atoms_to_walk_to[mob], distances_to_maintain[mob]))
+		if(get_dist(mob, atoms_to_walk_to[mob]) < distances_to_maintain[mob]) //We're to close, back it up
+			if(!step(mob, get_dir(mob, get_step_away(mob, atoms_to_walk_to[mob], distances_to_maintain[mob]))))
+				SEND_SIGNAL(mob, COMSIG_OBSTRUCTED_MOVE)
+			mob.last_move_time = world.time
+			continue
+		if(!step(mob, get_dir(mob, get_step_to(mob, atoms_to_walk_to[mob], distances_to_maintain[mob])))) //Couldn't move, something in the way
+			SEND_SIGNAL(mob, COMSIG_OBSTRUCTED_MOVE)
 		mob.last_move_time = world.time
 
 //mob: the mob that's getting the action state

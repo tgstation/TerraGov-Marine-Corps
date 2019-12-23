@@ -3,11 +3,11 @@
 /obj/effect/ai_node //A effect that has a ai_node datum in it, used by AIs to pathfind over long distances as well as knowing what's happening at it
 	name = "AI Node"
 	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "x6" //Pure white 'X' with black borders
+	icon_state = "6x" //Pure white 'X' with black borders
 	var/datum/ai_node/datumnode = new/datum/ai_node() //Stores things about the AI node
 	var/turf/srcturf //The turf this is on
 	anchored = TRUE //No pulling those nodes yo
-	alpha = 255
+	alpha = 0 //Not visible at all
 
 /obj/effect/ai_node/Initialize() //Add ourselve to the global list of nodes
 	. = ..()
@@ -54,5 +54,6 @@
 
 /obj/effect/ai_node/debug/Initialize()
 	. = ..()
-	alpha = 127
-	color = "#ffffff" //Color coding yo; white is 'unkonwn', green is 'safe' and red is 'danger'
+	icon_state = "x6" //Pure white 'X' with black borders
+	color = "#ffffff"
+	alpha = 255 //Visible for easy var editing and noticing

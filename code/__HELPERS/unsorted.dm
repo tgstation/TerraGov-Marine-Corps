@@ -1267,5 +1267,8 @@ will handle it, but:
 		return list(direct, direct)
 	return list(NSCOMPONENT(direct), EWCOMPONENT(direct))
 
-/proc/LeftAndRightOfDir(direction) //Returns the left and right dir of the input dir, used for AI stutter step while attacking
+/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE) //Returns the left and right dir of the input dir, used for AI stutter step while attacking
+	if(diagonal_check)
+		if(ISDIAGONALDIR(direction))
+			return list(turn(direction, 45), turn(direction, -45))
 	return list(turn(direction, 90), turn(direction, -90))
