@@ -28,6 +28,8 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
+	world.log = file("[GLOB.log_directory]/dd.log") //not all runtimes trigger world/Error, so this is the only way to ensure we can see all of them.
+
 	LoadVerbs(/datum/verbs/menu)
 	load_admins()
 
