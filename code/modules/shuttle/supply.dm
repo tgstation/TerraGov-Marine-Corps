@@ -232,7 +232,12 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 			//Sell Xeno Corpses
 			if (isxeno(AM))
-				AM.supply_export()
+				var/cost = 0
+				for(var/datum/supply_export in GLOB.exports_types)
+					var/datum/supply_export/E = supply_export
+					if(AM.type == E.export_obj)
+						cost = E.cost
+				SSpoints.supply_points += cost
 			qdel(AM)
 
 	if(plat_count)
@@ -609,12 +614,12 @@ GLOBAL_LIST_EMPTY(exports_types)
 		to_chat(user, "There seems to be no beacon attached to this tablet, hit a beacon with a tablet to link to it.")
 	else
 		to_chat(user, "There seems to be a beacon attached to this tablet. Should be good to go for delivery.")
-	return .
 
 /obj/item/req_tablet/afterattack(atom/A, mob/user, proximity)
 	if(istype(A, /obj/item/radio/beacon))
-		to_chat(user, "You link the tablet to the beacon you hit it with, overriding the previous beacon linked if there was one.")
-		linked_beacon = A
+		if(A == linked_beacon)
+			return
+		to_chat(user, "<span class='notice'>You link the tablet to the beacon[linked_beacon ? " overriding the previous one!" : "!" ]</span>")
 		playsound(get_turf(src), 'sound/machines/triple_beep.ogg', 25, TRUE)
 		icon_state = "req_tablet_on"
 
@@ -626,20 +631,21 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/dat
 	if(temp)
 		dat = temp
+	if(!SSshuttle.supply)
+		return
 	else
-		if (SSshuttle.supply)
-			if(!linked_beacon)
-				dat = "<BR><B>WARNING: NO CONNECTIVITY WITH SUPPLY SYSTEM DUE TO LACK OF LINKED BEACON!!</B>"
-			else
-				dat += "<BR><B>Automated Launch Pod Retrieval System: Tablet edition</B>"
-				dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
-				dat += "<BR><HR><A href='?src=\ref[src];order=categories'>Order supply packs (CANNOT BE CANCELED ONCE ORDERED)</A>"
-				dat += "<BR><HR><A href='?src=\ref[src];send=1'>Begin drop pod delivery</A>"
-				dat += "<BR><HR>WARNING: CAN ONLY LAUNCH ITEMS TO BEACON IF THE SURROUNDING TILES OF THE BEACON HAVE A GLASS OR NO CEILING PRESENT!!"
-				dat += "<BR><B>Current approved orders: </B><BR><BR>"
-				for(var/S in SSshuttle.shoppinglist)
-					var/datum/supply_order/SO = S
-					dat += "#[SO.id] - [SO.pack.name]<BR>"
+		if(!linked_beacon)
+			dat = "<BR><B>WARNING: NO CONNECTIVITY WITH SUPPLY SYSTEM. LIKELY CAUSE: LACK OF LINKED BEACON.</B>"
+		else
+			dat += "<BR><B>Automated Launch Pod Retrieval System: Tablet edition</B>"
+			dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
+			dat += "<BR><HR><A href='?src=[REF(src)];order=categories'>Order supply packs (CANNOT BE CANCELED ONCE ORDERED)</A>"
+			dat += "<BR><HR><A href='?src=[REF(src)];send=1'>Begin drop pod delivery</A>"
+			dat += "<BR><HR>WARNING: CAN ONLY LAUNCH ITEMS TO BEACON IF THE SURROUNDING TILES OF THE BEACON HAVE A GLASS OR NO CEILING PRESENT!!"
+			dat += "<BR><B>Current approved orders: </B><BR><BR>"
+			for(var/S in SSshuttle.shoppinglist)
+				var/datum/supply_order/SO = S
+				dat += "#[SO.id] - [SO.pack.name]<BR>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Tablet</div>", 575, 450)
 	popup.set_content(dat)
@@ -668,7 +674,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
 			for(var/supply_type in SSshuttle.supply_packs)
 				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
-				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
+				if(N.hidden || N.contraband || N.group != last_viewed_group)
+					continue	//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
 	if(href_list["send"])
@@ -709,12 +716,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 			O.id = SSshuttle.ordernum
 			O.pack = P
 			SSshuttle.shoppinglist += O
-			P.cost = P.cost * SUPPLY_COST_MULTIPLIER
+			P.cost *= SUPPLY_COST_MULTIPLIER
 			temp = "Thank you for your order.<BR>"
 			temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 		else
 			temp = "Not enough supply points.<BR>"
 			temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
+			updateUsrDialog()
+			return
 
 		SSshuttle.ordernum++
 		temp = "Order request placed and approved. Thank you for your order.<BR>"
