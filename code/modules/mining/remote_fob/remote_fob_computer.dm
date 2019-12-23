@@ -45,18 +45,18 @@
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()
 	spawn_spot = null
 	lz = null
-	QDELL_NULL(metal_cade)
+	QDEL_NULL(metal_cade)
 	max_metal = null
 	metal_remaining = null
-	QDELL_NULL(plast_cade)
+	QDEL_NULL(plast_cade)
 	max_plasteel = null
 	plasteel_remaining = null
-	QDELL_NULL(toggle_wiring)
+	QDEL_NULL(toggle_wiring)
 	do_wiring = null
-	QDELL_NULL(sentry)
+	QDEL_NULL(sentry)
 	sentry_remaining = null
-	QDELL_NULL(eject_metal)
-	QDELL_NULL(eject_plasteel)
+	QDEL_NULL(eject_metal)
+	QDEL_NULL(eject_plasteel)
 	
 	return ..()
 
