@@ -43,21 +43,20 @@
 
 
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()
-	drone_creation_allowed = null
 	spawn_spot = null
 	lz = null
-	metal_cade = null
+	QDELL_NULL(metal_cade)
 	max_metal = null
 	metal_remaining = null
-	plast_cade = null
+	QDELL_NULL(plast_cade)
 	max_plasteel = null
 	plasteel_remaining = null
-	toggle_wiring = null
+	QDELL_NULL(toggle_wiring)
 	do_wiring = null
-	sentry = null
+	QDELL_NULL(sentry)
 	sentry_remaining = null
-	eject_metal = null
-	eject_plasteel = null
+	QDELL_NULL(eject_metal)
+	QDELL_NULL(eject_plasteel)
 	
 	return ..()
 
