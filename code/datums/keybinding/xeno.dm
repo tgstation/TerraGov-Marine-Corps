@@ -184,6 +184,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
 
+/datum/keybinding/xeno/forward_charge
+	name = "forward charge"
+	full_name = "Defender: Forward charge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+
 /datum/keybinding/xeno/tail_sweep
 	name = "tail_sweep"
 	full_name = "Defender: Tail Sweep"
