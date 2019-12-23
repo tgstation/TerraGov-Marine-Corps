@@ -12,7 +12,6 @@
 	jump_action = null
 	var/drone_creation_allowed = TRUE
 	var/obj/docking_port/stationary/marine_dropship/spawn_spot
-	var/lz
 	var/datum/action/innate/remote_fob/metal_cade/metal_cade
 	var/max_metal = 50 //mostly to prevent jokers collecting all the metal and dumping it in
 	var/metal_remaining = 0
@@ -44,17 +43,10 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()
 	spawn_spot = null
-	lz = null
 	QDEL_NULL(metal_cade)
-	max_metal = null
-	metal_remaining = null
 	QDEL_NULL(plast_cade)
-	max_plasteel = null
-	plasteel_remaining = null
 	QDEL_NULL(toggle_wiring)
-	do_wiring = null
 	QDEL_NULL(sentry)
-	sentry_remaining = null
 	QDEL_NULL(eject_metal)
 	QDEL_NULL(eject_plasteel)
 	
