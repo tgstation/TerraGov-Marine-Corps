@@ -85,6 +85,28 @@
 /mob/living/carbon/xenomorph/hivemind/update_move_intent_effects()
 	return FALSE
 
+/mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
+	if(!istype(A, /obj/effect/alien/weeds))
+		return
+
+	forceMove(get_turf(A))
+
+/mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
+	
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/ShiftClickOn(atom/A)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
+	return FALSE
+
 /mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 	return ..()
@@ -96,8 +118,9 @@
 /mob/living/carbon/xenomorph/hivemind/projectile_hit()
 	return FALSE
 
+
+// Typing indicator cleanup
 /mob/living/carbon/xenomorph/hivemind/add_typing_indicator()
 	return FALSE
-	
 /mob/living/carbon/xenomorph/hivemind/remove_typing_indicator()
 	return FALSE
