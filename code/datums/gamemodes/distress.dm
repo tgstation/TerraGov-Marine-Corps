@@ -252,6 +252,7 @@
 					/obj/item/attachable/extended_barrel = round(scale * 10),
 					/obj/item/attachable/heavy_barrel = round(scale * 4),
 					/obj/item/attachable/widelens = round(scale * 4),
+					/obj/item/attachable/heatlens = round(scale * 4),
 					/obj/item/attachable/focuslens = round(scale * 4),
 					/obj/item/attachable/efflens = round(scale * 4),
 					/obj/item/attachable/pulselens = round(scale * 4),
