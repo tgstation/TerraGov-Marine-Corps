@@ -989,6 +989,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 20
 
+/datum/ammo/energy/lasgun/M43/heat
+	name = "microwave heat bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
+	damage = 12 //requires mod with -0.15 multiplier should math out to 40
+	penetration = 0
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser"
