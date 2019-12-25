@@ -993,7 +993,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "microwave heat bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_overcharge"
-	damage = 12 //requires mod with -0.15 multiplier should math out to 40
+	damage = 12 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
 
