@@ -449,7 +449,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "heat"
 	attach_icon = "heat_a"
 	pixel_shift_x = 18
-	pixel_shift_y = 15
+	pixel_shift_y = 16
 	ammo_mod = /datum/ammo/energy/lasgun/M43/heat
 	damage_mod = -0.15
 
