@@ -179,16 +179,16 @@
 		var/splash_chance = 40 //Base chance of getting splashed. Decreases with # of victims.
 		var/distance = 0 //Distance, decreases splash chance.
 		var/i = 0 //Tally up our victims.
-			for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
-				distance = get_dist(src,victim)
+		for(var/mob/living/carbon/human/victim in range(radius,src)) //Loop through all nearby victims, including the tile.
+			distance = get_dist(src,victim)
 
-				splash_chance = 80 - (i * 5)
-				if(victim.loc == loc) 
-					splash_chance += 30 //Same tile? BURN
-				splash_chance += distance * -15
-				i++
-				victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
-				"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
-				if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60)) 
-					victim.emote("scream") //Topkek
-				victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
+			splash_chance = 80 - (i * 5)
+			if(victim.loc == loc) 
+				splash_chance += 30 //Same tile? BURN
+			splash_chance += distance * -15
+			i++
+			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
+			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
+			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60)) 
+				victim.emote("scream") //Topkek
+			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.
