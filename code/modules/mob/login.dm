@@ -40,4 +40,3 @@
 
 	update_movespeed()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
-	to_chat(world, "signal login")
