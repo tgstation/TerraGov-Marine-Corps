@@ -885,6 +885,7 @@
 	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
 
 	xeno_hivemind.offer_mob()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND)
 
 	succeed_activate()
 	add_cooldown()
