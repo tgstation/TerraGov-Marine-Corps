@@ -172,7 +172,7 @@
 	name = "hivemind core"
 	desc = "A very weird, pulsating node. This looks almost alive."
 	max_integrity = 600
-	node_icon = "weed_hivemind"
+	node_icon = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
 /obj/effect/alien/weeds/node/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)

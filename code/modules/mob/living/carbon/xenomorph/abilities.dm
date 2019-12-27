@@ -850,10 +850,10 @@
 // ***************************************
 /datum/action/xeno_action/spawn_hivemind
 	name = "Create hivemind"
-	action_icon_state = "lay_egg"
+	action_icon_state = "lay_hivemind"
 	plasma_cost = 400
 	cooldown_timer = 300 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LAY_EGG
+	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
 
 
 /datum/action/xeno_action/spawn_hivemind/action_activate()
