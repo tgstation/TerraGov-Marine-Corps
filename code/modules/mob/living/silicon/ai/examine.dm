@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/examine(mob/user)
-
+	SHOULD_CALL_PARENT(0)
 	var/msg = "<span class='info'>*---------*<br>"
 	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
 

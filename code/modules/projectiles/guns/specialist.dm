@@ -281,7 +281,7 @@
 	burst_amount = 2
 	accuracy_mult = 0.85
 	scatter = 15
-	recoil = 4
+	recoil = 2
 
 
 
@@ -321,6 +321,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
 	fire_delay = 0.4 SECONDS
+	burst_amount = 1
 	accuracy_mult = 1.05
 	scatter = 15
 	recoil = 2

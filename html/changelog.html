@@ -53,6 +53,60 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">29 December 2019</h2>
+			<h3 class="author">Hughgent updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">defender forward charge can now be keybound</li>
+			</ul>
+
+			<h2 class="date">23 December 2019</h2>
+			<h3 class="author">Kuro-ai updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Some value changes to marine attachments</li>
+			</ul>
+
+			<h2 class="date">22 December 2019</h2>
+			<h3 class="author">David-Stormwell updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">SL armor now has a 8 tile radius of light, and has the same storage as a G8 pouch also buffed to be the same as medium/regular armor</li>
+				<li class="balance">PMC SG armor is now the same as B18, if not a little weaker.</li>
+			</ul>
+			<h3 class="author">Rohesie updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Dropship airlocks get unlocked on shuttle hijack, in case a pilot locked them before transit, not to trap the marines inside.</li>
+			</ul>
+			<h3 class="author">factoryman942 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">People who go DNR now become skulls on medHUD instead of lightning bolts.</li>
+			</ul>
+			<h3 class="author">ma44 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Ravagers regain the ravage ability. Plasma storage, regen and abilities cost tweaked to account for the interaction of the abilities.</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">Increased the benefits of skills when performing surgery.</li>
+				<li class="tweak">size of the blue disk room on icy caves</li>
+				<li class="rscadd">desk lamps can now be broken</li>
+			</ul>
+
+			<h2 class="date">21 December 2019</h2>
+			<h3 class="author">ma44 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Adds a signal for when a mob gets revived; coders can do fancy things whenever a mob gets revived if they wanted to</li>
+			</ul>
+
+			<h2 class="date">20 December 2019</h2>
+			<h3 class="author">factoryman942 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">actually removes the scout rifle's burst</li>
+				<li class="bugfix">you can no longer transmute normal magazines into extended ones with ammo boxes</li>
+			</ul>
+			<h3 class="author">psykzz updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">new hallucinations</li>
+			</ul>
+
 			<h2 class="date">19 December 2019</h2>
 			<h3 class="author">David-Stormwell updated:</h3>
 			<ul class="changes bgimages16">
@@ -621,129 +675,6 @@
 			<h3 class="author">InterroLouis updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">Boots protect more from acid.</li>
-			</ul>
-
-			<h2 class="date">27 October 2019</h2>
-			<h3 class="author">Isy232 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Icy Caves Test Map</li>
-			</ul>
-			<h3 class="author">Kuro & MetroidLover updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Sniper has a helmet now</li>
-				<li class="imageadd">All new sprites for every Specialist</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Darkmode enabled.</li>
-			</ul>
-			<h3 class="author">XSlayer300 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Updated the energy pulse rifle because I didn't have time to merge that carp.</li>
-			</ul>
-			<h3 class="author">spookydonut updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">you can now set traits for maps via json instead of them being hardcoded</li>
-			</ul>
-
-			<h2 class="date">26 October 2019</h2>
-			<h3 class="author">Isy232 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Ravager slash damage decreased by 10 to young maturity.</li>
-				<li class="balance">Ravager slash damage decreased by 15 to all maturity levels past young.</li>
-				<li class="balance">Slowdown from weilded minigun 1 => 1.4</li>
-				<li class="balance">Burst Fire Count to 7</li>
-			</ul>
-			<h3 class="author">MetroidLover updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Racks no longer have insane health</li>
-				<li class="bugfix">fixed the MP5's accuracy values to no longer be more accurate when one-handed firing</li>
-			</ul>
-			<h3 class="author">Spyroshark, Rohesie, and Manezinho updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Xenos can now toggle auto-attacking targets by bumping into them. Sprites by Manezinho.</li>
-				<li class="imageadd">Night vision mode sprites also by Manezinho.</li>
-			</ul>
-			<h3 class="author">ma44 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Xenomorphs will no longer attempt to slash destroyed (delimbed) limbs</li>
-				<li class="balance">Delimbs now occur based on thresholds instead of rng, see below for details</li>
-				<li class="balance">Delimbs occur when the limb has 75 or 100 brute damage occurred to it if it's a hand/foot or arm/leg respectively</li>
-				<li class="balance">When a limb is delimbed, only 25% of it's damage is transferred to it's "parent" (hand to arm to chest for example)</li>
-				<li class="balance">Bone breaks now only occur at 37 and 50 damage for hands/feet and arms/legs respectively</li>
-				<li class="balance">FOR XENOS: This means if you want to kill a marine as fast as possible, you target their chest, otherwise you can target a limb to disable a limb but expect a longer fight due to a decreased damage transfer upon limb dismembering</li>
-			</ul>
-
-			<h2 class="date">24 October 2019</h2>
-			<h3 class="author">XSlayer300 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Made batteries self-rechargable, only the pulse energy rifle's batteries can be recharged.</li>
-				<li class="tweak">Changed the sprites of the laser bolts.</li>
-				<li class="tweak">Changed the lens descriptions, adding more fluff.</li>
-				<li class="rscadd">Added the M19C4 pulse energy rifle, an admin-only deathsquad weapon. Feast your eyes on destruction!</li>
-			</ul>
-			<h3 class="author">nemvar updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">Cryopods now prevent internal wounds from getting worse.</li>
-			</ul>
-
-			<h2 class="date">23 October 2019</h2>
-			<h3 class="author">grinkgo and Kwin_Original updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added a new ship, the TGS Pillar of Spring, for low-mid pop</li>
-			</ul>
-			<h3 class="author">ma44 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Ravager rage and its mechanics are no longer a thing</li>
-				<li class="balance">Ravager has been reverted to old ravager statline alongside a overall health buff</li>
-			</ul>
-
-			<h2 class="date">22 October 2019</h2>
-			<h3 class="author">MetroidLover updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Resin Holes are now slightly easier to see.</li>
-				<li class="bugfix">The basic Marine Helmets are now properly set when facing left</li>
-			</ul>
-			<h3 class="author">Rohesie updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed broken evolution to Queen once the current one dies. There's a 5 minutes cooldown period to get a new one.</li>
-				<li class="tweak">Xenos now know through their Stat panel how long until the hivemind collapses due to the lack of a ruler.</li>
-				<li class="balance">Xenos are now able to gain evolution points even if there's no ruler on Crash game mode.</li>
-				<li class="rscadd">Xenos can switch with their toggle-nightvision hud icon between 4 light intensity levels, from marine-like no-nightvision to fully shadowless, instead of only having two options.</li>
-			</ul>
-			<h3 class="author">ma44 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscdel">Xenomorphs no longer get critical hits</li>
-			</ul>
-
-			<h2 class="date">20 October 2019</h2>
-			<h3 class="author">Guprei updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">The M56B smartgun trades the burst fire assembly for the recoil compensator and the laser sight attachments. Scatter and penetration to its ammo increased. Burst amount increased and fire delay reduced.</li>
-				<li class="balance">The M41A old pulse rifle is re-purposed It. can take a lot more attachments. Scatter increased. Wield delay, wield slowdown, burst delay, and accuracy rebalanced.</li>
-			</ul>
-			<h3 class="author">Isy232 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Nerfs DS turrets.</li>
-			</ul>
-			<h3 class="author">MJP & MetroidLover updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">There is now a crate that you can purchase for two fully stocked non-captain Mateba belts</li>
-				<li class="rscadd">You can now buy Heavy/PW-MX revolver speedloaders and Incinidary pistol mags</li>
-				<li class="tweak">The Captain's Mateba now uses the basic Mateba sprite and vice-versa</li>
-				<li class="balance">All revolver crates now contain 5 more speedloaders</li>
-				<li class="balance">All non-spec related ammo crates now cost ten points less</li>
-			</ul>
-			<h3 class="author">Tupinambis updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Buffs base health regeneration, slightly nerfs regenerative pheromone buff</li>
-				<li class="balance">Frenzy now increased movespeed significantly more than it previously did. Completely removes all Frenzy Damage buffs from the game.</li>
-			</ul>
-
-			<h2 class="date">19 October 2019</h2>
-			<h3 class="author">Spyroshark updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="soundadd">Added "Bomber" from Carmen Miranda's Ghost as a lobby song.</li>
 			</ul>
 		</div>
 
