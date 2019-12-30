@@ -19,3 +19,4 @@
 			. = 30
 		if(XENO_TIER_FOUR)
 			. = 50
+	SSpoints.supply_points += .
