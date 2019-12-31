@@ -2801,7 +2801,7 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 10, /datum/reagent/consumable/sugar = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 15)
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	var/succ_dur = 180
@@ -2823,18 +2823,18 @@
 		if(!reagents.trans_to(C, REAGENTS_METABOLISM))
 			reagents.remove_any(REAGENTS_METABOLISM)
 		return
-reagents.remove_any(REAGENTS_METABOLISM)
+	reagents.remove_any(REAGENTS_METABOLISM)
  
 /obj/item/reagent_containers/food/snacks/lollipop/process()
-	if(iscarbon(loc))
+	if(!iscarbon(loc))
 		return
-		if(succ_dur < 1)
-			qdel(src)
-			return
-		succ_dur--
-		if((reagents?.total_volume) && (next_succ <= world.time))
-			handle_reagents()
-			next_succ = world.time + succ_int
+	if(succ_dur < 1)
+		qdel(src)
+		return
+	succ_dur--
+	if((reagents?.total_volume) && (next_succ <= world.time))
+		handle_reagents()
+		next_succ = world.time + succ_int
  
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
 	. = ..()
@@ -2859,5 +2859,5 @@ reagents.remove_any(REAGENTS_METABOLISM)
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol
 	name = "Tram-pop"
 	desc = "Your reward for behaving so well in the medbay."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/iron = 5, /datum/reagent/consumable/sugar = 10, /datum/reagent/medicine/tramadol = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 15, /datum/reagent/medicine/tramadol = 5)
 	tastes = list("cough syrup" = 1)
