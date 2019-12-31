@@ -446,6 +446,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/structure/table/mainship,
+/obj/item/facepaint/black,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -1510,6 +1511,10 @@
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury)
+"RS" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 
 (1,1,1) = {"
 aa
@@ -1701,7 +1706,7 @@ ag
 al
 as
 ab
-aD
+RS
 bP
 aD
 aD
