@@ -201,4 +201,19 @@
 	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
 	"<span class='danger'>You nudge your head against [src].</span>")
 
+/obj/effect/alien/weeds/node/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+	if(isnull(parent))
+		return
+	if(prob(60))
+		return	
+	var/percent = round((max_integrity / obj_integrity) * 100)
+	switch(percent)
+		if(-INFINITY to 25)		
+			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
+		if(26 to 75)		
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
+		if(76 to INFINITY)		
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")
+
 #undef NODERANGE
