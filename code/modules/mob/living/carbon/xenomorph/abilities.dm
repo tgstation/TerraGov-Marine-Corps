@@ -225,7 +225,8 @@
 
 // Slower version of the secret resin
 /datum/action/xeno_action/activable/secrete_resin/slow
-	base_wait = 7.5 SECONDS
+	cooldown_timer = 5 SECONDS
+	base_wait = 2.5 SECONDS
 	scaling_wait = 0
 	
 
