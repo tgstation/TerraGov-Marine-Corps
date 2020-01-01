@@ -221,7 +221,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate and a pre-attached grenade launcher."
+	desc = "The Nanotrasen MK221 Shotgun, a quick-firing semi-automatic shotgun."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
