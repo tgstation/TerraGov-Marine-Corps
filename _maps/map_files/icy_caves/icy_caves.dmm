@@ -4606,10 +4606,6 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/refinery)
-"ps" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/icefloor,
-/area/icy_caves/outpost/LZ1)
 "pt" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
@@ -5272,6 +5268,10 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"sf" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5311,10 +5311,28 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"yE" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice/thin/intersection,
+/area/icy_caves/caves/south)
 "zl" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"zn" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/dorms)
+"zV" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "Br" = (
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -5322,6 +5340,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"Fa" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/surv_spawn,
@@ -5382,6 +5404,10 @@
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
+"Ou" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice_rock/single,
+/area/icy_caves/caves/west)
 "PB" = (
 /obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/dark2,
@@ -5406,6 +5432,12 @@
 "Ry" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/OOB)
+"RJ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice/thin/junction{
+	dir = 1
+	},
+/area/icy_caves/caves/south)
 "RN" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/dark2,
@@ -5464,6 +5496,13 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"Xf" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/refinery)
 "XH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -9058,7 +9097,7 @@ la
 la
 la
 la
-ps
+fE
 la
 la
 la
@@ -12394,7 +12433,7 @@ aU
 aU
 aU
 gw
-go
+Xf
 jV
 jU
 jU
@@ -13118,7 +13157,7 @@ eb
 hs
 dc
 dc
-dc
+Fa
 dc
 dc
 dc
@@ -15976,7 +16015,7 @@ gv
 mO
 bP
 bP
-bP
+zV
 bP
 bP
 bP
@@ -18530,7 +18569,7 @@ eg
 dD
 dD
 ef
-ef
+Ou
 ef
 gv
 gw
@@ -21387,7 +21426,7 @@ aU
 mL
 aU
 gw
-mT
+zn
 mY
 nb
 nd
@@ -25720,7 +25759,7 @@ dm
 dm
 fz
 iK
-iK
+yE
 dl
 dM
 dM
@@ -28512,7 +28551,7 @@ dm
 dm
 ej
 fz
-gL
+RJ
 ha
 gJ
 dL
@@ -28787,7 +28826,7 @@ dm
 dm
 fC
 iK
-iK
+yE
 dj
 gZ
 hV
@@ -33950,7 +33989,7 @@ ds
 ds
 ds
 jp
-ds
+sf
 ds
 ds
 ds

@@ -4104,6 +4104,27 @@
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
+"Lj" = (
+/obj/effect/alien/weeds/node/strong,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
+"Oq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/plating_catwalk,
+/area/desert/interior/shipping/south)
+"Wc" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	icon_state = "pdoor1";
+	dir = 1
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall,
+/area/desert/interior/shipping/north)
+"Wd" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
 
 (1,1,1) = {"
 au
@@ -18893,7 +18914,7 @@ aU
 bA
 bA
 bA
-bK
+Lj
 bA
 bA
 bA
@@ -21995,7 +22016,7 @@ bS
 kX
 bA
 bA
-bA
+Wd
 bA
 aC
 aC
@@ -32011,7 +32032,7 @@ ll
 ll
 ll
 ll
-li
+Oq
 la
 ly
 lD
@@ -33504,7 +33525,7 @@ bA
 bA
 jF
 kY
-aO
+Wc
 bI
 fa
 fa
