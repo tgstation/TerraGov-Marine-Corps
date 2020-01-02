@@ -306,6 +306,18 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
+	if(!check_distance(target, silent))
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	switch(dist)
 		if(-1)
@@ -320,13 +332,7 @@
 			if(!silent)
 				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
 			return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
-		return FALSE
+	return TRUE
 
 
 /datum/action/xeno_action/activable/psychic_cure/use_ability(atom/target)
