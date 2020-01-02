@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - tweak: "Shotgun Ammo Hud updates upon pump_action"
