@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	var/busy = 0
 	var/hacked = 0
 	var/disabled = 0

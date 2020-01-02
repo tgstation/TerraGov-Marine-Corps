@@ -173,6 +173,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/get_ammo_type()
+	if(in_chamber)
+		return list(in_chamber.ammo.hud_state, in_chamber.ammo.hud_state_empty)
 	if(!ammo)
 		return list("unknown", "unknown")
 	else
@@ -190,6 +192,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/merc
 	name = "custom built shotgun"
 	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it."
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "cshotgun"
 	item_state = "cshotgun"
 	max_shells = 5 //codex
@@ -203,7 +206,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	fire_delay = 10
 	burst_amount = 2
-	burst_delay = 6
+	burst_delay = 0.5 SECONDS
 	accuracy_mult = 0.8
 	accuracy_mult_unwielded = 0.5
 	scatter = 20
@@ -221,7 +224,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate and a pre-attached grenade launcher."
+	desc = "The Nanotrasen MK221 Shotgun, a quick-firing semi-automatic shotgun."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -472,6 +475,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 	return TRUE
 
@@ -588,6 +593,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
@@ -645,6 +651,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 
@@ -707,8 +714,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
-		/obj/item/attachable/verticalgrip
-	)
+		/obj/item/attachable/verticalgrip)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item_map_variant = NONE

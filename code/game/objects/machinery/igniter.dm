@@ -9,7 +9,7 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
-	active_power_usage = 4
+	active_power_usage = 50
 
 /obj/machinery/igniter/attack_ai(mob/user)
 	return attack_hand(user)
@@ -20,7 +20,7 @@
 	if(.)
 		return
 
-	use_power(50)
+	use_power(active_power_usage)
 	on = !on
 	icon_state = "igniter[on]"
 
@@ -43,6 +43,9 @@
 	desc = "A wall-mounted ignition device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "migniter"
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 4
+	active_power_usage = 1000
 	var/id = null
 	var/disable = 0
 	var/last_spark = 0
@@ -90,7 +93,7 @@
 	s.set_up(2, 1, src)
 	s.start()
 	src.last_spark = world.time
-	use_power(1000)
+	use_power(active_power_usage)
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
@@ -117,7 +120,7 @@
 	if(active)
 		return
 
-	use_power(5)
+	use_power(active_power_usage)
 
 	active = 1
 	icon_state = "launcheract"
@@ -128,7 +131,7 @@
 
 	for(var/obj/machinery/igniter/M in GLOB.machines)
 		if(M.id == src.id)
-			use_power(50)
+			use_power(active_power_usage)
 			M.on = !( M.on )
 			M.icon_state = text("igniter[]", M.on)
 

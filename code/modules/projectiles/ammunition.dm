@@ -425,6 +425,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
+		
+	if(MG.type != magazine_type)
+		to_chat(user,"<span class='warning'>That's not the right kind of magazine.</span>")
+		return
 
 	if(MG.current_rounds != MG.max_rounds)
 		to_chat(user, "<span class='warning'>The magazine is not full!</span>")

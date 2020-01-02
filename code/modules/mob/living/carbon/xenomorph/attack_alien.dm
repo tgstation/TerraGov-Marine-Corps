@@ -92,6 +92,7 @@
 				staggerslow_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
+			KnockdownNoChain(1.5 SECONDS) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 
@@ -220,7 +221,6 @@
 			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
 			#endif
 			var/staggerslow_stacks = 2
-			var/knockout_stacks = 1
 			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 			//...And we knock them out
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
@@ -228,10 +228,8 @@
 			else
 				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
 				staggerslow_stacks *= 2
-				knockout_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			Unconscious(knockout_stacks * 20) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 

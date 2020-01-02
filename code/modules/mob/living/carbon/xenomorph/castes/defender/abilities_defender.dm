@@ -167,6 +167,8 @@
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)

@@ -282,12 +282,11 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
-	accuracy_mod = 0.15
+	accuracy_mod = 0.1
 	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
-	accuracy_unwielded_mod = -0.05
-	recoil_unwielded_mod = -2
+	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
 
@@ -321,12 +320,12 @@ Defined in conflicts.dm of the #defines folder.
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	melee_mod = 20 //35 for a rifle, comparable to 37 before. 40 with the stock, comparable to 42.
+	melee_mod = 25
 	slot = "muzzle"
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
 	accuracy_mod = -0.05
-	accuracy_unwielded_mod = -0.05
+	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 
 /obj/item/attachable/bayonet/attackby(obj/item/I, mob/user)
@@ -344,14 +343,13 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
-	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure.\nHowever, this increase in velocity reduces tumbling, leading to slightly reduced damage."
+	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
 	slot = "muzzle"
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
-	attach_shell_speed_mod = -1
-	accuracy_mod = 0.20
-	accuracy_unwielded_mod = 0.15
-	damage_mod = -0.05
+	attach_shell_speed_mod = 1
+	accuracy_mod = 0.15
+	accuracy_unwielded_mod = 0.1
 	scatter_mod = -5
 	size_mod = 1
 
@@ -362,12 +360,11 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	attach_shell_speed_mod = 1
 	accuracy_mod = -0.30
 	damage_mod = 0.30
 	delay_mod = 3
 	scatter_mod = 5
-	accuracy_unwielded_mod = -0.40
+	accuracy_unwielded_mod = -0.3
 
 
 /obj/item/attachable/compensator
@@ -377,11 +374,10 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "comp"
 	attach_icon = "comp_a"
 	pixel_shift_x = 17
-	scatter_mod = -20
-	damage_mod = -0.05
-	recoil_mod = -3
-	scatter_unwielded_mod = -20
-	recoil_unwielded_mod = -3
+	scatter_mod = -15
+	recoil_mod = -2
+	scatter_unwielded_mod = -15
+	recoil_unwielded_mod = -2
 
 
 /obj/item/attachable/slavicbarrel
@@ -503,9 +499,8 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
 	slot = "rail"
-	accuracy_mod = 0.20
-	accuracy_unwielded_mod = 0.15
-	movement_acc_penalty_mod = -0.1
+	accuracy_mod = 0.15
+	accuracy_unwielded_mod = 0.1
 
 
 /obj/item/attachable/m16sight
@@ -524,7 +519,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
-	light_mod = 7
+	light_mod = 8
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -578,12 +573,12 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "rail"
 	icon_state = "autoloader"
 	attach_icon = "autoloader_a"
-	accuracy_mod = -0.20
+	accuracy_mod = -0.15
 	scatter_mod = 5
-	delay_mod = -1
+	delay_mod = -0.125 SECONDS
 	burst_mod = -1
-	accuracy_unwielded_mod = -0.30
-	scatter_unwielded_mod = 20
+	accuracy_unwielded_mod = -0.22
+	scatter_unwielded_mod = 15
 
 
 /obj/item/attachable/magnetic_harness
@@ -601,12 +596,12 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	aim_speed_mod = 1 //Extra slowdown when aiming
-	wield_delay_mod = 0.6 SECONDS
+	aim_speed_mod = 0.06 SECONDS //Extra slowdown when aiming
+	wield_delay_mod = 0.4 SECONDS
+	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
 	scope_zoom_mod = TRUE
-	movement_acc_penalty_mod = 0.25
 	accuracy_unwielded_mod = -0.05
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
@@ -638,12 +633,14 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "miniscope_a"
 	desc = "A small rail mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	slot = "rail"
-	wield_delay_mod = 0.4 SECONDS
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.05
+	accuracy_unwielded_mod = -0.05
+	aim_speed_mod = 0.04 SECONDS
 	zoom_offset = 5
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
-	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "M4RA rail scope"
@@ -686,21 +683,20 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M37 wooden stock"
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
+	wield_delay_mod = 0.3 SECONDS
 	icon_state = "stock"
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
+	accuracy_mod = 0.1
+	recoil_mod = -2
+	scatter_mod = -15
 
 /obj/item/attachable/stock/tactical
 	name = "\improper MK221 tactical stock"
 	desc = "A sturdy polymer stock for the MK221 shotgun. Supplied in limited numbers and moderately encumbering, it provides an ergonomic surface to ease perceived recoil and usability."
 	icon_state = "tactical_stock"
-	accuracy_mod = 0.05
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
+	wield_delay_mod = 0.2 SECONDS
+	accuracy_mod = 0.1
+	recoil_mod = -2
+	scatter_mod = -15
 
 /obj/item/attachable/stock/scout
 	name = "\improper ZX-76 tactical stock"
@@ -917,16 +913,15 @@ Defined in conflicts.dm of the #defines folder.
 	name = "T-19 Submachine Gun stock"
 	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
+	wield_delay_mod = 0.3 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
+	accuracy_mod = 0.1
+	recoil_mod = -2
+	scatter_mod = -10
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
@@ -1271,15 +1266,14 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
-	wield_delay_mod = 0.4 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
-	accuracy_mod = 0.05
+	accuracy_mod = 0.1
 	recoil_mod = -2
-	scatter_mod = -5
+	scatter_mod = -10
 	burst_scatter_mod = -1
-	movement_acc_penalty_mod = 0.1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 5
 
@@ -1289,14 +1283,12 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
-	wield_delay_mod = -0.4 SECONDS
+	wield_delay_mod = -0.3 SECONDS
 	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
-	recoil_mod = -2
-	accuracy_mod = 0.05
-	scatter_mod = -5
-	accuracy_unwielded_mod = -0.05
+	recoil_mod = -1
+	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 5
 
 
@@ -1307,13 +1299,11 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
 	slot = "under"
-	burst_scatter_mod = -1
-	scatter_mod = -10
+	scatter_mod = -5
 	recoil_mod = -2
 	movement_acc_penalty_mod = -0.5
-	scatter_unwielded_mod = -20
-	accuracy_unwielded_mod = 0.05
-	recoil_unwielded_mod = -2
+	scatter_unwielded_mod = -10
+	recoil_unwielded_mod = -1
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
@@ -1323,9 +1313,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	pixel_shift_x = 17
 	pixel_shift_y = 17
-	accuracy_mod = 0.15
-	movement_acc_penalty_mod = -0.1
-	accuracy_unwielded_mod = 0.20
+	accuracy_mod = 0.1
+	accuracy_unwielded_mod = 0.15
 
 
 /obj/item/attachable/bipod
@@ -1334,7 +1323,6 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "bipod"
 	attach_icon = "bipod_a"
 	slot = "under"
-	wield_delay_mod = 0.6 SECONDS
 	size_mod = 2
 	melee_mod = -10
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION

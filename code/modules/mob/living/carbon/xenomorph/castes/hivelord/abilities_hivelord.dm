@@ -58,6 +58,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	var/speed_activated = FALSE
 	var/speed_bonus_active = FALSE
 
+/datum/action/xeno_action/toggle_speed/remove_action()
+	resinwalk_off(TRUE) // Ensure we remove the movespeed
+	return ..()
+
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(speed_activated)

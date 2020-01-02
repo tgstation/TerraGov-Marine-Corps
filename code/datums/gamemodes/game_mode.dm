@@ -339,7 +339,7 @@
 				new /obj/item/map/FOP_map(T)
 
 
-/datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE)
+/datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
 	var/list/xenoLocationsP = list()
 	var/list/xenoLocationsS = list()
 	var/list/hostLocationsP = list()
@@ -412,6 +412,10 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
+
+	if(send_fax)
+		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
+		send_fax(null, null, "Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", fax_message, FALSE)
 
 	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
 
@@ -713,9 +717,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 /datum/game_mode/proc/get_total_joblarvaworth(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	. = 0
 
-	for(var/i in GLOB.alive_human_list)
+	for(var/i in GLOB.human_mob_list)
 		var/mob/living/carbon/human/H = i
 		var/datum/job/job = SSjob.GetJob(H.job)
+		if(!job)
+			continue
+		if(H.stat == DEAD && !H.is_revivable())
+			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
 		if(H.status_flags & XENO_HOST)
@@ -734,11 +742,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			return //RIP benos.
 		if(xeno_hive.stored_larva)
 			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_hive.stored_larva += max(1, round(latejoin_larvapoints)) //At least one
+		xeno_hive.stored_larva += max(1, round(latejoin_larvapoints,1)) //At least one, rounded to nearest integer if more
 		return 
-	if(latejoin_larvapoints < 1)
+	if(round(latejoin_larvapoints,1) < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_hive.stored_larva += round(latejoin_larvapoints) //however many burrowed they can afford to buy, floored
+	xeno_hive.stored_larva += round(latejoin_larvapoints,1) //however many burrowed they can afford to buy, rounded to nearest integer
 
 /datum/game_mode/proc/is_xeno_in_forbidden_zone(mob/living/carbon/xenomorph/xeno)
 	return FALSE

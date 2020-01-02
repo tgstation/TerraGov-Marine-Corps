@@ -224,6 +224,7 @@
 /obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
 	if(hijack_state != HIJACK_STATE_NORMAL)
 		return
+	unlock_all()
 	switch(mode)
 		if(SHUTTLE_IDLE)
 			set_hijack_state(HIJACK_STATE_CALLED_DOWN)
