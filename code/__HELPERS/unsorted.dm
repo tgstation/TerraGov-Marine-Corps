@@ -1260,14 +1260,8 @@ will handle it, but:
 
 	return pois
 
-//Converts input direction to a list of either two same directions if the input is cardinal
-//Otherwise will return the two directions that make up the diagonal
-/proc/DiagonalToCardinal(direct)
-	if(direct in GLOB.cardinals)
-		return list(direct, direct)
-	return list(NSCOMPONENT(direct), EWCOMPONENT(direct))
-
-/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE) //Returns the left and right dir of the input dir, used for AI stutter step while attacking
+//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
 	if(diagonal_check)
 		if(ISDIAGONALDIR(direction))
 			return list(turn(direction, 45), turn(direction, -45))

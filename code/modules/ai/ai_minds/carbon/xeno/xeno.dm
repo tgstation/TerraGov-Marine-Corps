@@ -18,6 +18,7 @@
 	return return_result
 
 /datum/ai_mind/carbon/xeno/do_process()
+	mob_parent.a_intent = INTENT_HARM //Killing time
 	if(istype(atom_to_walk_to, /obj/effect/ai_node) && length(get_targets()))
 		return REASON_TARGET_SPOTTED
 	if(istype(atom_to_walk_to, /mob/living/carbon/human) || istype(atom_to_walk_to, /obj/machinery/marine_turret))
@@ -101,8 +102,7 @@
 	if(get_dist(atom_to_walk_to, mob_parent) <= attack_range && world.time > mob_parent.next_move)
 		var/mob/living/carbon/xenomorph/xeno = mob_parent
 		if(istype(atom_to_walk_to, /mob))
-			var/mob/target = atom_to_walk_to //Typed for parameter
-			target.attack_alien(xeno, force_intent = INTENT_HARM)
+			atom_to_walk_to.attack_alien(xeno)
 		else if(istype(atom_to_walk_to, /obj/machinery))
 			var/obj/machinery/thing = atom_to_walk_to
 			if(!(thing.resistance_flags & XENO_DAMAGEABLE))
