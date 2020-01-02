@@ -8,7 +8,6 @@
 		var/obj/effect/ai_node/node = i
 		if(get_dir(src, node) == dir)
 			return node
-	return //There were adjacent nodes but none in the direction we wanted to go to
 
 //The equivalent of get_step_towards but now for nodes; will NOT intelligently pathfind based on node weights or anything else
 //Returns nothing if a suitable node in a direction isn't found, otherwise returns a node
