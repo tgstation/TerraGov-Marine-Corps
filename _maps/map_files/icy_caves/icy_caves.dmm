@@ -5268,10 +5268,10 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"sf" = (
+"rt" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
+/area/icy_caves/caves/west)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5311,19 +5311,22 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"yE" = (
+"yl" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/ice/thin/intersection,
-/area/icy_caves/caves/south)
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/dorms)
 "zl" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"zn" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/dorms)
-"zV" = (
+"Br" = (
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"Bs" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -5333,17 +5336,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
-"Br" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
-"Fa" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/surv_spawn,
@@ -5391,9 +5383,17 @@
 /obj/structure/dispenser,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"LI" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice_rock/single,
+/area/icy_caves/caves/west)
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
+"Nf" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "NE" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/OOB)
@@ -5404,10 +5404,6 @@
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
-"Ou" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/ice_rock/single,
-/area/icy_caves/caves/west)
 "PB" = (
 /obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/dark2,
@@ -5421,6 +5417,13 @@
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
+"QK" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/refinery)
 "Rh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5432,12 +5435,6 @@
 "Ry" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/OOB)
-"RJ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/ice/thin/junction{
-	dir = 1
-	},
-/area/icy_caves/caves/south)
 "RN" = (
 /obj/effect/landmark/start/surv_spawn,
 /turf/open/floor/tile/dark2,
@@ -5459,6 +5456,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"ST" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice/thin/intersection,
+/area/icy_caves/caves/south)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5476,6 +5477,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"Uk" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/ice/thin/junction{
+	dir = 1
+	},
+/area/icy_caves/caves/south)
 "UM" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/research)
@@ -5496,13 +5503,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
-"Xf" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/refinery)
 "XH" = (
 /obj/structure/table,
 /obj/structure/cable/yellow{
@@ -12433,7 +12433,7 @@ aU
 aU
 aU
 gw
-Xf
+QK
 jV
 jU
 jU
@@ -13157,7 +13157,7 @@ eb
 hs
 dc
 dc
-Fa
+rt
 dc
 dc
 dc
@@ -16015,7 +16015,7 @@ gv
 mO
 bP
 bP
-zV
+Bs
 bP
 bP
 bP
@@ -18569,7 +18569,7 @@ eg
 dD
 dD
 ef
-Ou
+LI
 ef
 gv
 gw
@@ -21426,7 +21426,7 @@ aU
 mL
 aU
 gw
-zn
+yl
 mY
 nb
 nd
@@ -25759,7 +25759,7 @@ dm
 dm
 fz
 iK
-yE
+ST
 dl
 dM
 dM
@@ -28551,7 +28551,7 @@ dm
 dm
 ej
 fz
-RJ
+Uk
 ha
 gJ
 dL
@@ -28826,7 +28826,7 @@ dm
 dm
 fC
 iK
-yE
+ST
 dj
 gZ
 hV
@@ -33989,7 +33989,7 @@ ds
 ds
 ds
 jp
-sf
+Nf
 ds
 ds
 ds
