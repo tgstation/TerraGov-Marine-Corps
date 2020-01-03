@@ -130,5 +130,4 @@
 	max_health = 350
 
 	// *** Defense *** //
-	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
-
+	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
