@@ -146,3 +146,15 @@
 /obj/machinery/floodlight/landing/hq
 	name = "Installation Light"
 	desc = "A powerful light stationed on the base to provide better visibility."
+
+/obj/machinery/floodlight/landing/Initialize(mapload, ...)
+	. = ..()
+	set_light(10)
+
+/obj/machinery/floodlight/landing/testroom
+	name = "Installation Light"
+	desc = "A powerful light stationed on the base to provide better visibility."
+
+/obj/machinery/floodlight/landing/testroom/Initialize(mapload, ...)
+	. = ..()
+	set_light(25)
