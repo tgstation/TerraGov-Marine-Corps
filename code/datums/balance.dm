@@ -26,11 +26,11 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	var/mob/living/living = source
 	switch(living.faction)
 		if("Xenomorph")
-			balance_values["xeno"] -= 1
+			balance_values["xeno"]--
 		if ("Marine")
-			balance_values["marine"] -= 1
+			balance_values["marine"]--
 		else
-			balance_values["other"] -= 1
+			balance_values["other"]--
 
 	record_feedback()
 	
@@ -42,11 +42,11 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	var/mob/living/living = source
 	switch(living.faction)
 		if("Xenomorph")
-			balance_values["xeno"] -= 1
+			balance_values["xeno"]--
 		if ("Marine")
-			balance_values["marine"] -= 1
+			balance_values["marine"]--
 		else
-			balance_values["other"] -= 1
+			balance_values["other"]--
 
 	record_feedback()
 
