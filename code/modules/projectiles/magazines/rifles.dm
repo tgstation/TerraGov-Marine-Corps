@@ -54,7 +54,7 @@
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle
 	name = "\improper T-12 Assault Rifle magazine (10x24mm)"
-	desc = "A 10mm Carbine magazine."
+	desc = "A 10mm Assault Rifle magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t12"
 	w_class = WEIGHT_CLASS_NORMAL
