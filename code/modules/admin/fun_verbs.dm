@@ -5,12 +5,16 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view != world.view)
-		usr.client.change_view(world.view)
+	if(usr.client.view != WORLD_VIEW)
+		usr.client.change_view(WORLD_VIEW)
 		return
 
 	var/newview = input("Select view range:", "Change View Range", 7) as null|num
-	if(!newview || newview == usr.client.view)
+	if(!newview)
+		return
+
+	newview = VIEW_NUM_TO_STRING(newview)
+	if(newview == usr.client.view)
 		return
 
 	usr.client.change_view(newview)

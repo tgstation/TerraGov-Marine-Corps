@@ -778,7 +778,7 @@
 			CRASH("Invalid hyperspace sound phase: [phase]")
 	for(var/A in areas)
 		for(var/obj/machinery/door/E in A)	//dumb, I know, but playing it on the engines doesn't do it justice
-			playsound(E, s, 100, FALSE, max(width, height) - world.view)
+			playsound(E, s, 100, FALSE, max(width, height) - WORLD_VIEW_NUM)
 */
 // Losing all initial engines should get you 2
 // Adding another set of engines at 0.5 time

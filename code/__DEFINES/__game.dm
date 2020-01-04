@@ -104,3 +104,7 @@
 #define CINEMATIC_NUKE_FAKE 8
 #define CINEMATIC_NUKE_NO_CORE 9
 #define CINEMATIC_NUKE_FAR 10
+
+#define WORLD_VIEW "15x15"
+#define WORLD_VIEW_NUM 7
+#define VIEW_NUM_TO_STRING(v) "[1 + 2 * v]x[1 + 2 * v]"
