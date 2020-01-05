@@ -601,9 +601,9 @@ GLOBAL_LIST_EMPTY(exports_types)
 	name = "requisition tablet"
 	desc = "A handheld tablet that allows the average user to remote order supply packages. When this is linked to a beacon, it will deliver the goods VIA launch pods. \
 			The pods will drop in a 5x5 square around the beacon and will not injure or explode, it will teleport away shortly after dropping off the contents."
-	var/obj/item/radio/beacon/linked_beacon
 	icon = 'icons/obj/items/req_tablet.dmi'
 	icon_state = "req_tablet_off"
+	var/obj/item/radio/beacon/linked_beacon
 	var/podType = /obj/structure/closet/supplypod/centcompod //No explosion, fast landing and teleports itself out of the landing destination
 	var/temp //TGUI things
 	var/last_viewed_group = "categories"
