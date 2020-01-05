@@ -146,7 +146,7 @@
 			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 				return
-			if(alert("Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!", "Observe", "Yes", "No") == "Yes")
+			if(alert("Are you sure you wish to observe?\nYou will have to wait at least 30 or 2 minutes before being able to respawn as a marine or alien, respectively!", "Observe", "Yes", "No") == "Yes")
 				if(!client)
 					return TRUE
 				var/mob/dead/observer/observer = new()
