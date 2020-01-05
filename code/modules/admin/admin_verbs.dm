@@ -1057,7 +1057,8 @@
 					ticket.Tier(TRUE)
 					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [sender].</font>")
 					message_admins("IRC interaction by: [irc_tagged]")
-					return "Ticket #[ticket.id] successfully tiered"
+					var/ticket_type = (ticket.tier == TICKET_ADMIN) ? "an admin" : "a mentor"
+					return "Ticket #[ticket.id] successfully tiered as [ticket_type] ticket"
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
