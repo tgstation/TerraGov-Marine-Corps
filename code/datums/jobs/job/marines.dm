@@ -45,6 +45,121 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/outfit/job/marine/standard/equipped
+	name = "Squad Marine (Equipped)"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/harness
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	l_store = /obj/item/storage/pouch/firstaid/full
+
+/datum/outfit/job/marine/standard/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m4a3, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/marine/standard/equipped/ar
+	name = "Squad Marine (E. - T12)"
+
+	belt = /obj/item/storage/belt/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine
+	head = /obj/item/clothing/head/helmet/marine
+	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle
+	r_store = /obj/item/storage/pouch/flare/full
+
+/datum/outfit/job/marine/standard/equipped/ar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+
+/datum/outfit/job/marine/standard/equipped/car
+	name = "Squad Marine (E. - T18 with shotgun)"
+
+	belt = /obj/item/storage/belt/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/M3LB
+	head = /obj/item/clothing/head/helmet/marine
+	suit_store = /obj/item/weapon/gun/rifle/standard_carbine
+	r_store = /obj/item/storage/pouch/shotgun
+	back = /obj/item/weapon/gun/shotgun/pump
+
+/datum/outfit/job/marine/standard/equipped/car/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+
+/datum/outfit/job/marine/standard/equipped/lmg
+	name = "Squad Marine (E. - T42)"
+
+	belt = /obj/item/storage/belt/gun/m4a3/full
+	wear_suit = /obj/item/clothing/suit/storage/marine/M3HB
+	head = /obj/item/clothing/head/helmet/marine/heavy
+	suit_store = /obj/item/weapon/gun/rifle/standard_lmg
+	r_store = /obj/item/storage/pouch/explosive/full
+
+/datum/outfit/job/marine/standard/equipped/lmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/attachable/bipod, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/marine/standard/equipped/dmr
+	name = "Squad Marine (E. - T64)"
+
+	belt = /obj/item/storage/belt/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/M3HB
+	head = /obj/item/clothing/head/helmet/marine/heavy
+	suit_store = /obj/item/weapon/gun/rifle/standard_lmg
+	r_store = /obj/item/storage/pouch/explosive/full
+
+/datum/outfit/job/marine/standard/equipped/lmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/attachable/bipod, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 //Squad Engineer
 /datum/job/terragov/squad/engineer

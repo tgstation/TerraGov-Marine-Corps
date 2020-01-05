@@ -587,3 +587,146 @@
 	qdel(src)
 
 
+////////////////// portable marine kits ///////////////////////////:
+
+
+/obj/item/storage/box/squadmarine
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "armor_case"
+	w_class = WEIGHT_CLASS_HUGE
+	slowdown = 1
+	can_hold = list()
+	foldable = null
+
+/obj/item/storage/box/squadmarine/rifleman
+	name = "\improper Rifleman equipment crate"
+	desc = "A large case containing the T-12 assault rifle, medium armor and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 17
+
+/obj/item/storage/box/squadmarine/rifleman/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/storage/belt/marine(src)
+	new /obj/item/storage/pouch/flare/full(src)
+	new /obj/item/weapon/gun/rifle/standard_carbine(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/attachable/attached_gun/grenade(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/pointman
+	name = "\improper Pointman equipment crate"
+	desc = "A large case containing the T-18 carbine, T-35 shotgun, light armor and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 18
+
+
+/obj/item/storage/box/squadmarine/pointman/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M3LB(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/storage/belt/marine(src)
+	new /obj/item/storage/pouch/shotgun(src)
+	new /obj/item/weapon/gun/rifle/standard_carbine(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/autorifleman
+	name = "\improper Automatic Rifleman equipment crate"
+	desc = "A large case containing the T-42 light machine gun, M4A3 pistol, heavy armor and helmet as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 12
+
+/obj/item/storage/box/squadmarine/autorifleman/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M3HB(src)
+	new /obj/item/clothing/head/helmet/marine/heavy(src)
+	new /obj/item/weapon/gun/rifle/standard_lmg(src)
+	new /obj/item/storage/belt/gun/m4a3/full(src)
+	new /obj/item/storage/pouch/explosive/full(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/attachable/bipod(src)
+	new /obj/item/attachable/magnetic_harness(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/ammo_magazine/standard_lmg(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/marksman
+	name = "\improper Designated Marksman equipment crate"
+	desc = "A large case containing the T-64 designated marksman rifle, M43 lasgun, integrated storage armor as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 19
+
+/obj/item/storage/box/squadmarine/marksman/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M3IS(src)
+	new /obj/item/clothing/head/helmet/marine/standard(src)
+	new /obj/item/weapon/gun/energy/lasgun/M43(src)
+	new /obj/item/belt_harness/marine(src)
+	new /obj/item/storage/pouch/flare/full(src)
+	new /obj/item/weapon/gun/rifle/standard_dmr(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/attachable/scope(src)
+	new /obj/item/attachable/extended_barrel(src)
+	new /obj/item/attachable/lasersight(src)
+	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/cell/lasgun/M43(src)
+	new /obj/item/cell/lasgun/M43(src)
+	new /obj/item/cell/lasgun/M43(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/breacher
+	name = "\improper Breacher equipment crate"
+	desc = "A large case containing the T-19 submachinegun, light armor, heavy helmet as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 12
+
+/obj/item/storage/box/squadmarine/breacher/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/clothing/suit/storage/marine/M3LB(src)
+	new /obj/item/clothing/head/helmet/marine/heavy(src)
+	new /obj/item/weapon/gun/rifle/standard_smg(src)
+	new /obj/item/storage/belt/marine(src)
+	new /obj/item/storage/pouch/explosive/(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/attachable/magnetic_harness(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)

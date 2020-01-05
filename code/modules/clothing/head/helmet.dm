@@ -283,7 +283,6 @@
 /obj/item/clothing/head/helmet/marine/standard
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
-
 /obj/item/clothing/head/helmet/marine/tech
 	name = "\improper M10 technician helmet"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
