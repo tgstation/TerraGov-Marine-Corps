@@ -145,6 +145,14 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/marine/skirt
+	name = "\improper TGMC uniform skirt"
+	desc = "A limited-issue, marine uniform skirt. It lacks protection of other uniforms due to its lack of military purpose or use."
+	icon_state = "m_skirt"
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	rollable_sleeves = FALSE
+
+
 //=========================//RESPONDERS\\================================
 
 

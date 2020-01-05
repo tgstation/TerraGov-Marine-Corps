@@ -730,6 +730,8 @@
 					/obj/item/clothing/tie/holster = 5
 					)
 
+	contraband =   list(/obj/item/clothing/under/marine/skirt = 2)
+
 	prices = list()
 
 /obj/machinery/vending/dress_supply
@@ -745,6 +747,9 @@
 					/obj/item/clothing/head/white_dress = 50,
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50,
+
+	contraband =   list(/obj/item/clothing/under/marine/skirt = 10)
+
 					)
 
 /obj/machinery/vending/uniform_supply/Initialize()
