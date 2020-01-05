@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Removed acid blood damage from standing near xenos that take damage."
