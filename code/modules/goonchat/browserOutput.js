@@ -55,7 +55,7 @@ var opts = {
 	'preventFocus': false, //Prevents switching focus to the game window
 
 	//Client Connection Data
-	'clientDataLimit': 5,
+	'clientDataLimit': 5, //Should match MAX_COOKIE_LENGTH in browserOutput.dm
 	'clientData': [],
 
 	//Admin music volume update
@@ -480,7 +480,7 @@ function handleClientData(ckey, ip, compid) {
 			}
 		}
 
-		if (opts.clientData.length >= opts.clientDataLimit) {
+		while (opts.clientData.length >= opts.clientDataLimit) {
 			opts.clientData.shift();
 		}
 	} else {
