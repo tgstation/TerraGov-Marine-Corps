@@ -5,7 +5,6 @@
 	votable = FALSE
 	var/operation_start_timer
 
-
 /datum/game_mode/offduty/announce()
 	to_chat(world, "<b>The current game mode is - Off-Duty!</b>")
 	to_chat(world, "<b>Just have fun and role-play! Don't do harm to your fellow comrades!</b>")
@@ -46,7 +45,6 @@
 /datum/game_mode/offduty/proc/start_round_end()
 	check_finished(TRUE)
 	var/datum/game_mode/offduty/check_finished/round_end_stage = 1
-
 
 /datum/game_mode/offduty/proc/get_operation_start_countdown()
 	if(!operation_start_timer)
