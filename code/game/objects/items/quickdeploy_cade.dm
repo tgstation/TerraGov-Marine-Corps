@@ -26,7 +26,7 @@
 	if(isnull(thing_to_deploy)) //Spaghetti or wrong type spawned
 		to_chat(user, "<span class='warning'>This thing doesn't actually really do anything! Complain to whoever gave you this")
 		return FALSE
-	return FALSE
+	return TRUE
 
 /obj/item/quikdeploy/cade
 	thing_to_deploy = /obj/structure/barricade/metal
@@ -34,6 +34,9 @@
 	delay = 3 SECONDS
 
 /obj/item/quikdeploy/cade/can_place(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
