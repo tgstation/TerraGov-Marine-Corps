@@ -33,8 +33,6 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_MARINE_RO			26
 #define ACCESS_MARINE_TANK			27
 
-#define ACCESS_MARINE_ECHO 			28
-
 //Surface access levels
 #define ACCESS_CIVILIAN_PUBLIC 		100
 #define ACCESS_CIVILIAN_LOGISTICS 	101

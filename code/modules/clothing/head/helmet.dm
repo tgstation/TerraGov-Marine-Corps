@@ -304,16 +304,6 @@
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_1)
 
-/obj/item/clothing/head/helmet/marine/commando
-	name = "\improper M10C pattern marine helmet"
-	desc = "A standard M10C Pattern Helmet. This is a upgraded version of the standard M10 helmet, offering even more protection and face cover without the comrpemise of accuracy and visibility."
-	icon_state = "k_heavyhelmet"
-	armor = list("melee" = 90, "bullet" = 120, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
-	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
-	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
-	resistance_flags = UNACIDABLE
-	flags_marine_helmet = NONE
-
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."

@@ -160,8 +160,6 @@
 			return "Charlie Squad"
 		if(ACCESS_MARINE_DELTA)
 			return "Delta Squad"
-		if(ACCESS_MARINE_ECHO)
-			return "Echo Task Force"
 		if(ACCESS_MARINE_CARGO)
 			return "Requisitions"
 		if(ACCESS_MARINE_DROPSHIP)
