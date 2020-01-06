@@ -37,6 +37,11 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!isturf(user.loc))
+		return FALSE
+	var/turf/placement_loc = user.loc
+	if(placement_loc.density)
+		return FALSE
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
