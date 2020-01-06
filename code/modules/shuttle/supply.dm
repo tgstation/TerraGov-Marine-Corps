@@ -635,16 +635,16 @@ GLOBAL_LIST_EMPTY(exports_types)
 		return
 	if(!linked_beacon)
 		dat = "<BR><B>WARNING: NO CONNECTIVITY WITH SUPPLY SYSTEM. LIKELY CAUSE: LACK OF LINKED BEACON.</B>"
-	else
-		dat += "<BR><B>Automated Launch Pod Retrieval System: Tablet edition</B>"
-		dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
-		dat += "<BR><HR><A href='?src=[REF(src)];order=categories'>Order supply packs (CANNOT BE CANCELED ONCE ORDERED)</A>"
-		dat += "<BR><HR><A href='?src=[REF(src)];send=1'>Begin drop pod delivery</A>"
-		dat += "<BR><HR>WARNING: CAN ONLY LAUNCH ITEMS TO BEACON IF THE SURROUNDING TILES OF THE BEACON HAVE A GLASS OR NO CEILING PRESENT!!"
-		dat += "<BR><B>Current approved orders: </B><BR><BR>"
-		for(var/S in SSshuttle.shoppinglist)
-			var/datum/supply_order/SO = S
-			dat += "#[SO.id] - [SO.pack.name]<BR>"
+		return
+	dat += "<BR><B>Automated Launch Pod Retrieval System: Tablet edition</B>"
+	dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
+	dat += "<BR><HR><A href='?src=[REF(src)];order=categories'>Order supply packs (CANNOT BE CANCELED ONCE ORDERED)</A>"
+	dat += "<BR><HR><A href='?src=[REF(src)];send=1'>Begin drop pod delivery</A>"
+	dat += "<BR><HR>WARNING: CAN ONLY LAUNCH ITEMS TO BEACON IF THE SURROUNDING TILES OF THE BEACON HAVE A GLASS OR NO CEILING PRESENT!!"
+	dat += "<BR><B>Current approved orders: </B><BR><BR>"
+	for(var/S in SSshuttle.shoppinglist)
+		var/datum/supply_order/SO = S
+		dat += "#[SO.id] - [SO.pack.name]<BR>"
 
 	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Tablet</div>", 575, 450)
 	popup.set_content(dat)
