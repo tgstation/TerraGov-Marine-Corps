@@ -72,6 +72,14 @@
 	usable = TRUE
 	radio_freq = FREQ_DELTA
 
+/datum/squad/echo
+	name = "Echo"
+	id = ECHO_SQUAD
+	color = "#42EF78"
+	access = list(ALL_ANTAGONIST_ACCESS)
+	usable = TRUE
+	radio_freq = FREQ_ECHO
+
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)

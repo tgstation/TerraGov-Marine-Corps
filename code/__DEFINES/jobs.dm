@@ -41,6 +41,8 @@
 #define SHIP_TECH "Ship Technician"
 #define MEDICAL_OFFICER "Medical Officer"
 #define MEDICAL_RESEARCHER "Medical Researcher"
+#define TF_LEADER "ECHO Task Force Team Leader"
+#define TF_MEMBER "ECHO Task Force Member"
 #define SQUAD_LEADER "Squad Leader"
 #define SQUAD_SPECIALIST "Squad Specialist"
 #define SQUAD_SMARTGUNNER "Squad Smartgunner"
@@ -93,6 +95,7 @@ GLOBAL_LIST_INIT(jobs_unassigned, list(SQUAD_MARINE))
 #define CRYO_BRAVO		"Bravo Squad"
 #define CRYO_CHARLIE	"Charlie Squad"
 #define CRYO_DELTA		"Delta Squad"
+#define CRYO_ECHO		"Echo Squad"
 
 
 #define XP_REQ_INTERMEDIATE 60

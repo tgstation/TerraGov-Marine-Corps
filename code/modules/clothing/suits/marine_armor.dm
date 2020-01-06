@@ -299,6 +299,15 @@
 	name = "\improper M3 pattern marksman armor"
 	icon_state = "marine_sniperm"
 
+/obj/item/clothing/suit/storage/marine/M3echo
+	name = "\improper M3-CB pattern marine armor"
+	desc = "A specially-armored Marine M3 Commando Build Pattern Chestplate. Lesser encumbrance, but with very high protection."
+	icon_state = "k_scout_armor"
+	armor = list("melee" = 70, "bullet" = 75, "laser" = 60, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	brightness_on = 8
+	flags_item_map_variant = NONE
+
 //=============================//PMCS\\==================================
 
 /obj/item/clothing/suit/storage/marine/veteran

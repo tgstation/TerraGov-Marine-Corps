@@ -542,6 +542,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BRAVO_SQUAD 2
 #define CHARLIE_SQUAD 3
 #define DELTA_SQUAD 4
+#define ECHO_SQUAD 5
 
 
 #define TYPING_INDICATOR_LIFETIME 3 SECONDS	//Grace period after which typing indicator disappears regardless of text in chatbar.
