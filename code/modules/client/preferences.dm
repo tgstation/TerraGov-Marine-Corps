@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/message
 		switch(alternate_option)
 			if(BE_OVERFLOW)
-				message = "Be [SSjob.overflow_role] if preferences unavailable"
+				message = "Be [ispath(SSjob.overflow_role) ? initial(SSjob.overflow_role.title) : SSjob.overflow_role.title] if preferences unavailable"
 			if(GET_RANDOM_JOB)
 				message = "Get random job if preferences unavailable"
 			if(RETURN_TO_LOBBY)

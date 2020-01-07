@@ -20,12 +20,12 @@ SUBSYSTEM_DEF(job)
 	var/list/occupations_reroll //Jobs scaled up during job assignments.
 	var/initial_players_assigned = 0 	//Used for checking against population caps.
 
-	var/datum/job/overflow_role = SQUAD_MARINE
+	var/datum/job/overflow_role = /datum/job/terragov/squad/standard
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
-	if(!length(occupations))
-		SetupOccupations()
+	SetupOccupations()
+	overflow_role = GetJobType(overflow_role)
 	return ..()
 
 
@@ -71,13 +71,13 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
 	if(!length(occupations))
-		SetupOccupations()
+		CRASH("GetJob called with no occupations")
 	return name_occupations[rank]
 
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)
 	if(!length(occupations))
-		SetupOccupations()
+		CRASH("GetJobType called with no occupations")
 	return type_occupations[jobtype]
 
 
@@ -220,7 +220,7 @@ SUBSYSTEM_DEF(job)
 		return
 	switch(player.client.prefs.alternate_option)
 		if(BE_OVERFLOW)
-			if(!AssignRole(player, GetJob(overflow_role)))
+			if(!AssignRole(player, overflow_role))
 				RejectPlayer(player)
 			return
 		if(GET_RANDOM_JOB)
