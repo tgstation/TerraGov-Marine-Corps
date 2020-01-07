@@ -10201,6 +10201,8 @@
 /area/lv624/ground/jungle6)
 "aNa" = (
 /obj/machinery/door/airlock/mainship/engineering{
+	density = 0;
+	icon_state = "door_open";
 	name = "\improper Robotics Dome";
 	req_access_txt = "0";
 	req_one_access_txt = "0"
@@ -19875,6 +19877,12 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"bHr" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "bHX" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -31793,7 +31801,7 @@ avd
 avd
 axb
 eXq
-aES
+bHr
 aES
 aES
 aFD
