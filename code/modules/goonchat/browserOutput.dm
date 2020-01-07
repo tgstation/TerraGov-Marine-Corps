@@ -5,9 +5,16 @@ For the main html chat area
 //Precaching a bunch of shit
 GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
 
+//Should match the value set in the browser js
+#define MAX_COOKIE_LENGTH 5
+
 //On client, created on login
 /datum/chatOutput
 	var/client/owner	 //client ref
+	// How many times client data has been checked
+	var/total_checks = 0
+	// When to next clear the client data checks counter
+	var/next_time_to_clear = 0
 	var/loaded       = FALSE // Has the client loaded the browser output area?
 	var/list/messageQueue //If they haven't loaded chat, this is where messages will go until they do
 	var/cookieSent   = FALSE // Has the client sent a cookie for analysis
@@ -154,6 +161,18 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Called by client, sent data to investigate (cookie history so far)
 /datum/chatOutput/proc/analyzeClientData(cookie)
+	//Spam check
+	if(world.time  >  next_time_to_clear)
+		next_time_to_clear = world.time + (3 SECONDS)
+		total_checks = 0
+
+	total_checks += 1
+
+	if(total_checks > SPAM_TRIGGER_AUTOMUTE)
+		message_admins("[key_name(owner)] kicked for goonchat topic spam")
+		qdel(owner)
+		return
+
 	if(!cookie)
 		return
 
@@ -162,13 +181,24 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if(length(connData) && connData["connData"])
 			connectionHistory = connData["connData"]
 			var/list/found = new()
+
+			if(connectionHistory.len > MAX_COOKIE_LENGTH)
+				message_admins("[key_name(src.owner)] was kicked for an invalid ban cookie)")
+				qdel(owner)
+				return
+
+
 			for(var/i in connectionHistory.len to 1 step -1)
+				if(QDELETED(owner))
+					//he got cleaned up before we were done
+					return
 				var/list/row = connectionHistory[i]
 				if(!row || length(row) < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return
 				if(world.IsBanned(row["ckey"], row["compid"], row["ip"]))
 					found = row
 					break
+				CHECK_TICK
 
 			if(length(found))
 				log_admin_private("[key_name(owner)] has a cookie from a banned account (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
@@ -298,3 +328,5 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 /datum/chatOutput/proc/swaptodarkmode()
 	owner.force_dark_theme()
+
+#undef MAX_COOKIE_LENGTH

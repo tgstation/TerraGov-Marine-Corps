@@ -455,6 +455,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -601,3 +602,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GRAB_PIXEL_SHIFT_NECK 16
 
 #define HUMAN_CARRY_SLOWDOWN 0.35
+
+
+// =============================
+// Hallucinations - health hud screws for carbon mobs
+#define SCREWYHUD_NONE 0
+#define SCREWYHUD_CRIT 1
+#define SCREWYHUD_DEAD 2
+#define SCREWYHUD_HEALTHY 3

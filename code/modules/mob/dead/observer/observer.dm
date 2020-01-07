@@ -672,10 +672,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return
 
-	if(client.view != world.view)
-		client.change_view(world.view)
+	if(client.view != WORLD_VIEW)
+		client.change_view(WORLD_VIEW)
 	else
-		client.change_view(14)
+		client.change_view("29x29")
+
+
+/mob/dead/observer/verb/add_view_range(input as num)
+	set name = "Add View Range"
+	set hidden = TRUE
+	if(input)
+		client.rescale_view(input, 15, 21)
 
 
 /mob/dead/observer/verb/toggle_darkness()
@@ -831,6 +838,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
+		mind.current.med_hud_set_status()
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
 

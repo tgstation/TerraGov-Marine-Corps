@@ -786,7 +786,7 @@
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
-	for(var/mob/living/possible_target in view(world.view, X))
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
 		if(possible_target == X || !possible_target.client || isxeno(possible_target))
 			continue
 		target_list += possible_target

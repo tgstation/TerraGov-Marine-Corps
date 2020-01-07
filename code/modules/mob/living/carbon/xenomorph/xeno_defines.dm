@@ -121,6 +121,7 @@
 	buckle_flags = NONE
 	var/hivenumber = XENO_HIVE_NORMAL
 	job = ROLE_XENOMORPH
+	faction = "Xeno"
 
 	var/datum/hive_status/hive
 

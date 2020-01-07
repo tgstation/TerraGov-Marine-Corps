@@ -424,9 +424,6 @@
 /client/proc/setDir(newdir)
 	dir = newdir
 
-/client/proc/get_offset()
-	return max(abs(pixel_x / 32), abs(pixel_y / 32))
-
 
 /client/proc/show_character_previews(mutable_appearance/MA)
 	var/pos = 0
@@ -592,6 +589,15 @@
 				CRASH("Key check regex failed for [ckey]")
 
 
+/client/proc/rescale_view(change, min, max)
+	var/viewscale = getviewsize(view)
+	var/x = viewscale[1]
+	var/y = viewscale[2]
+	x = CLAMP(x + change, min, max)
+	y = CLAMP(y + change, min,max)
+	change_view("[x]x[y]")
+
+
 /client/proc/update_movement_keys()
 	if(!prefs?.key_bindings)
 		return
@@ -612,7 +618,8 @@
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
 		CRASH("change_view called without argument.")
-
+	if(isnum(new_size))
+		CRASH("change_view called with a number argument. Use the string format instead.")
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
@@ -672,6 +679,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(mute)
 		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
+			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, FALSE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
 		return TRUE
 

@@ -25,9 +25,6 @@ endmap
 map prison_station_fop
 endmap
 
-map port_hamburg
-endmap
-
 map tyson_station
 endmap
 

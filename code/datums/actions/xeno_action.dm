@@ -186,13 +186,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.vis_contents -= selected_frame
+	remove_selected_frame()
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.vis_contents += selected_frame
+	add_selected_frame()
 	X.selected_ability = src
 	on_activation()
 

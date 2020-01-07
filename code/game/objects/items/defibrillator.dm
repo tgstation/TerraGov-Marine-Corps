@@ -71,14 +71,14 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return FALSE
+		return
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
 		if(ghost.mind.current != src)
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return FALSE
+	return
 
 
 /mob/living/carbon/human/proc/is_revivable()
