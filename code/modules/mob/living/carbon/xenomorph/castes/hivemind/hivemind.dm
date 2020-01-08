@@ -11,6 +11,8 @@
 	density = FALSE
 	throwpass = TRUE
 
+	a_intent = INTENT_HELP
+
 	health = 1000
 	maxHealth = 1000
 	plasma_stored = 5
@@ -108,13 +110,9 @@
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
-	a_intent = INTENT_HELP //Forces help intent for all interactions.
-	return ..()
+/mob/living/carbon/xenomorph/hivemind/a_intent_change(new_intent)
+	return FALSE //Unable to change intent, forced help intent
 
-/mob/living/carbon/xenomorph/hivemind/RangedAttack(atom/A, params)
-	a_intent = INTENT_HELP //Forces help intent for all interactions.
-	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/projectile_hit()
 	return FALSE

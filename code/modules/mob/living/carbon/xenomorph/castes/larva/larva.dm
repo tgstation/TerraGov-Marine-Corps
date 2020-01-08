@@ -2,6 +2,9 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
+	
+	a_intent = INTENT_HELP //Forces help intent for all interactions.
+
 	amount_grown = 0
 	max_grown = 50
 	maxHealth = 35
@@ -21,9 +24,8 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A)
-	a_intent = INTENT_HELP //Forces help intent for all interactions.
-	. = ..()
+/mob/living/carbon/xenomorph/larva/a_intent_change(new_intent)
+	return
 
 /mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	return
