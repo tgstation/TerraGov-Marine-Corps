@@ -678,3 +678,9 @@
 
 /mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
+
+/mob/living/carbon/xenomorph/proc/setup_verbs()
+	verbs += /mob/living/proc/lay_down
+
+/mob/living/carbon/xenomorph/hivemind/setup_verbs()
+	return

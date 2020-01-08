@@ -32,5 +32,5 @@
 
 	A.attack_hivemind(src)
 
-/atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/L)
+/atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/attacker)
 	return

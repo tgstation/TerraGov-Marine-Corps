@@ -207,8 +207,8 @@
 		return
 	if(prob(60))
 		return	
-	var/percent = round((max_integrity / obj_integrity) * 100)
-	switch(percent)
+	var/health_percent = round((max_integrity / obj_integrity) * 100)
+	switch(health_percent)
 		if(-INFINITY to 25)		
 			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
 		if(26 to 75)		

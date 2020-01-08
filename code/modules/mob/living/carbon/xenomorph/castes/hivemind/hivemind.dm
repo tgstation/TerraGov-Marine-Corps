@@ -7,7 +7,7 @@
 	icon_state = "hivemind_marker"
 	icon = 'icons/mob/cameramob.dmi'
 
-	status_flags = GODMODE | UNDETECTABLE
+	status_flags = GODMODE | INCORPOREAL
 	density = FALSE
 	throwpass = TRUE
 
@@ -46,12 +46,13 @@
 	if(!W)
 		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
 		if(!nearby)
+			// If we run out of weeds just teleport to some random weeds.
 			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
 		return FALSE
 
 	// Don't allow them over the timed_late doors 
 	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
-	if(door?.density)
+	if(door?.CanPass(src, NewLoc))
 		return FALSE
 
 	// Hiveminds are scared of fire.
@@ -118,9 +119,73 @@
 /mob/living/carbon/xenomorph/hivemind/projectile_hit()
 	return FALSE
 
-
 // Typing indicator cleanup
 /mob/living/carbon/xenomorph/hivemind/add_typing_indicator()
 	return FALSE
 /mob/living/carbon/xenomorph/hivemind/remove_typing_indicator()
+	return FALSE
+
+// Should solve SSD resting
+/mob/living/carbon/xenomorph/hivemind/set_resting(rest, silent)
+	return
+
+// More generic removals - Stolen from silicons
+/mob/living/carbon/xenomorph/hivemind/drop_held_item()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/drop_all_held_items()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/get_held_item()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/get_inactive_held_item()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/get_active_held_item()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/put_in_l_hand(obj/item/I)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/put_in_r_hand(obj/item/I)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/stripPanelEquip(obj/item/I, mob/M, slot)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/stripPanelUnequip(obj/item/I, mob/M, slot)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/contents_explosion(severity, target)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/stun_effect_act(stun_amount, agony_amount, def_zone)
+	return
+
+/mob/living/carbon/xenomorph/hivemind/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/adjustToxLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/setToxLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/adjustCloneLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/setCloneLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/adjustBrainLoss(amount)
+	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/setBrainLoss(amount)
 	return FALSE
