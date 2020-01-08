@@ -24,6 +24,8 @@
 	. = ..()
 
 	if(!isnull(node))
+		if(!istype(node))
+			CRASH("Weed craeted with non-weed node. Type: [node.type]")
 		parent_node = node
 
 	update_sprite()

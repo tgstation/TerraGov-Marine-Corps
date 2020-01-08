@@ -70,7 +70,7 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>We regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
+	new /obj/effect/alien/weeds/node(owner.loc)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
