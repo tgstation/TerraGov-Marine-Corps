@@ -350,7 +350,7 @@
 /datum/game_mode/proc/observe_respawn_message()
 	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
 
-/datum/game_mode/distress/observe_respawn_message()
+/datum/game_mode/infestation/observe_respawn_message()
 	return "\nYou will have to wait at least [GLOB.respawntime * 0.1] or [GLOB.xenorespawntime * 0.1] seconds before being able to respawn as a marine or alien, respectively!"
 
 /mob/new_player/proc/LateChoices()
