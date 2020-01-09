@@ -1,0 +1,4 @@
+author: "ma44"
+delete-after: True
+changes: 
+  - rscadd: "Adds in QuikDeploy barricades, items that allow for quickly constructing barricades via the power of unfolding, pray to your local god and hope you get some."
