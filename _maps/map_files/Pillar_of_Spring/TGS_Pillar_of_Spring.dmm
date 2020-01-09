@@ -2520,6 +2520,13 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
+"iy" = (
+/obj/structure/bed/chair/comfy/black{
+	icon_state = "comfychair";
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iz" = (
 /obj/structure/closet/secure_closet/guncabinet/incendiary,
 /turf/open/floor/mainship{
@@ -7931,6 +7938,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
+"wC" = (
+/obj/machinery/computer/camera_advanced/remote_fob,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "wD" = (
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
@@ -48001,8 +48012,8 @@ az
 oW
 aA
 Gl
-Go
-Go
+wC
+iy
 Go
 Go
 Go

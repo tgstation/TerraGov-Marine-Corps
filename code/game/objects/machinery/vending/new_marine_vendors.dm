@@ -348,6 +348,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/efflens = list(CAT_ATT, "M43 Efficient lens", 0,"black"),
 		/obj/item/attachable/focuslens = list(CAT_ATT, "M43 Focus lens", 0,"black"),
 		/obj/item/attachable/widelens = list(CAT_ATT, "M43 Wide lens", 0,"black"),
+		/obj/item/attachable/heatlens = list(CAT_ATT, "M43 Heat lens", 0,"black"),
 		/obj/item/attachable/pulselens = list(CAT_ATT, "M43 pulse lens", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
@@ -846,6 +847,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/multitool = list(CAT_ENGSUP, "Multitool", 1, "black"),
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
+		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA-580 point defense sentry voucher", 26, "black"),
 
 		/obj/item/ammo_magazine/pistol/ap = list(CAT_SPEAMM, "AP M4A3 magazine", 3, "black"),
 		/obj/item/ammo_magazine/pistol/extended = list(CAT_SPEAMM, "Extended M4A3 magazine", 3, "black"),

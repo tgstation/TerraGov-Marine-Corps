@@ -50,6 +50,10 @@
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
 
+
+/// Sent when a marine dropship enters transit level
+#define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals

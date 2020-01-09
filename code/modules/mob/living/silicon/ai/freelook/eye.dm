@@ -207,3 +207,12 @@
 	alpha = 100
 	layer = ABOVE_ALL_MOB_LAYER
 	plane = GAME_PLANE
+
+/mob/camera/aiEye/proc/register_facedir_signals(mob/user)
+	RegisterSignal(user, COMSIG_KB_MOB_FACENORTH_DOWN, .verb/northface)
+	RegisterSignal(user, COMSIG_KB_MOB_FACEEAST_DOWN, .verb/eastface)
+	RegisterSignal(user, COMSIG_KB_MOB_FACESOUTH_DOWN, .verb/southface)
+	RegisterSignal(user, COMSIG_KB_MOB_FACEWEST_DOWN, .verb/westface)
+
+/mob/camera/aiEye/proc/unregister_facedir_signals(mob/user)
+	UnregisterSignal(user, list(COMSIG_KB_MOB_FACENORTH_DOWN, COMSIG_KB_MOB_FACEEAST_DOWN, COMSIG_KB_MOB_FACESOUTH_DOWN, COMSIG_KB_MOB_FACEWEST_DOWN))

@@ -442,6 +442,17 @@ Defined in conflicts.dm of the #defines folder.
 	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
 	damage_mod = -0.15
 
+/obj/item/attachable/heatlens
+	name = "M43 heat lens"
+	desc = "Changes the intensity and freqency of the laser. This makes your target be set on fire at a large reduction of upfront damage."
+	slot = "muzzle"
+	icon_state = "heat"
+	attach_icon = "heat_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 16
+	ammo_mod = /datum/ammo/energy/lasgun/M43/heat
+	damage_mod = -0.15
+
 /obj/item/attachable/efflens
 	name = "M43 efficient lens"
 	desc = "Makes the lens smaller and lighter to use, allowing the lasgun to use its energy much more efficiently. \nDecreases energy output of the lasgun."
