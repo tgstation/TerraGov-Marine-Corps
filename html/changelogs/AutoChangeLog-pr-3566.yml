@@ -1,5 +1,0 @@
-author: "terranaut1"
-delete-after: True
-changes: 
-  - rscadd: "added remote fob construction"
-  - rscadd: "added sentry vouchers for this purpose to engi prep vendor"
