@@ -60,7 +60,7 @@
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
+			to_chat(owner, "<span class='warning'>We can't do this while crawling or lying down!</span>")
 		return FALSE
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)

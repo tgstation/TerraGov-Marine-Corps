@@ -64,7 +64,10 @@
 
 
 /mob/living/carbon/monkey/Initialize()
+	verbs += /mob/living/proc/rest
 	verbs += /mob/living/proc/lay_down
+	verbs += /mob/living/proc/crawl
+	verbs += /mob/living/proc/stand
 	create_reagents(1000)
 
 	if(greaterform_type)
@@ -184,10 +187,9 @@
 			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					Knockdown(10 SECONDS)
 					if (stuttering < 5)
 						stuttering = 5
-					Stun(10 SECONDS)
+					Paralyze(6 SECONDS)
 
 					visible_message("<span class='danger'>[src] has been touched with the stun gloves by [H]!</span>", "<span class='warning'> You hear someone fall</span>")
 					return

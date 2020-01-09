@@ -168,7 +168,7 @@
 		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
 		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, null, 4)
-	C.set_resting(TRUE)
+	C.set_resting(RESTING)
 	C.forceMove(loc)
 
 	if(ishuman(C))

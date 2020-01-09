@@ -68,10 +68,7 @@
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(mob/living/carbon/monkey/user)
-	if(isxeno(user))
-		attack_alien(user)
-	else
-		attack_hand(user)
+	attack_hand(user)
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)

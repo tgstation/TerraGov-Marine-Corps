@@ -124,7 +124,7 @@
 		qdel(src)
 
 	else if(isxeno(user))
-		return attack_alien(user)
+		return user.UnarmedAttack(src)
 
 	else
 		return attack_hand(user)

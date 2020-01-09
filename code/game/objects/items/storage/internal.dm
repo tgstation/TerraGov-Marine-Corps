@@ -27,8 +27,8 @@
 //Doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
-
-		if(user.lying) //Can't use your inventory when lying
+		var/mob/living/carbon/carbon_user = user
+		if(carbon_user.hand_block_flags)
 			return
 
 		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
@@ -80,10 +80,10 @@
 //Items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //Returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
+/obj/item/storage/internal/proc/handle_attack_hand(mob/living/user)
 
-	if(user.lying)
-		return 0
+	if(user.hand_block_flags)
+		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

@@ -129,13 +129,13 @@
 	var/datum/limb/groin/G = new(C, H)
 	H.limbs += G
 	H.limbs += new/datum/limb/head(C, H)
-	var/datum/limb/l_arm/LA = new(C, H)
+	var/datum/limb/appendage/arms/l_arm/LA = new(C, H)
 	H.limbs += LA
-	var/datum/limb/r_arm/RA = new(C, H)
+	var/datum/limb/appendage/arms/r_arm/RA = new(C, H)
 	H.limbs += RA
-	var/datum/limb/l_leg/LL = new(G, H)
+	var/datum/limb/appendage/legs/l_leg/LL = new(G, H)
 	H.limbs += LL
-	var/datum/limb/r_leg/RL = new(G, H)
+	var/datum/limb/appendage/legs/r_leg/RL = new(G, H)
 	H.limbs += RL
 	H.limbs +=  new/datum/limb/l_hand(LA, H)
 	H.limbs +=  new/datum/limb/r_hand(RA, H)

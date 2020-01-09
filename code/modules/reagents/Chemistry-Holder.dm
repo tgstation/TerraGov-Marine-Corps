@@ -274,7 +274,6 @@
 		addiction_tick++
 	if(L && need_mob_update)
 		L.updatehealth()
-		L.update_canmove()
 	update_total()
 
 /datum/reagents/proc/conditional_update_move(atom/A, Running = 0)

@@ -53,19 +53,22 @@
 		return
 
 	if(health <= get_death_threshold())
+		if(gib_chance && prob(gib_chance + 0.5 * (get_death_threshold() - health)))
+			gib()
+			return
 		death()
 		return
 
-	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
-		if(stat != UNCONSCIOUS)
-			blind_eyes(1)
-			disabilities |= DEAF
-		stat = UNCONSCIOUS
-	else if(stat == UNCONSCIOUS)
-		stat = CONSCIOUS
-		adjust_blindness(-1)
-		disabilities &= ~DEAF
-	update_canmove()
+	if(knockout_flags || health < get_hardcrit_threshold())
+		if(stat == UNCONSCIOUS)
+			return
+		set_stat(UNCONSCIOUS)
+	else
+		if(health < get_softcrit_threshold())
+			set_stat(SOFT_CRIT)
+		else
+			set_stat(CONSCIOUS)
+
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()
@@ -188,7 +191,7 @@
 	if(pulledby && pulledby.grab_state >= GRAB_KILL)
 		Losebreath(3)
 
-	if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
+	if(health < get_softcrit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
 		Losebreath(1, TRUE)
 	else
 		adjust_Losebreath(-1, TRUE)
@@ -234,7 +237,7 @@
 	if(!air_info || suiciding)
 		if(suiciding)
 			adjustOxyLoss(2, TRUE)
-		else if(health > get_crit_threshold())
+		else if(health > get_softcrit_threshold())
 			adjustOxyLoss(CARBON_MAX_OXYLOSS, TRUE)
 		else
 			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)

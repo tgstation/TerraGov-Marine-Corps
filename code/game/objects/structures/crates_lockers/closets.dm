@@ -188,7 +188,7 @@
 			"<span class='danger'>We smash \the [src]!</span>", null, 5)
 		SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
-		return attack_paw(M)
+		return attack_hand(M)
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
@@ -312,13 +312,14 @@
 	set category = "Object"
 	set name = "Toggle Open"
 
-	if(!usr.canmove || usr.stat || usr.restrained())
-		return
-
-	if(ishuman(usr))
-		src.toggle(usr)
-	else
+	if(!ishuman(usr))
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
+		return
+	var/mob/living/carbon/human/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained())
+		return
+	toggle(user)
+
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

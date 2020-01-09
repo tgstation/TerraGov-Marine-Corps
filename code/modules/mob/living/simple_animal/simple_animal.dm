@@ -94,7 +94,7 @@
 		if(health <= 0)
 			death()
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 	med_hud_set_status()
 
 
@@ -103,7 +103,7 @@
 	icon = initial(icon)
 	icon_state = icon_living
 	density = initial(density)
-	set_resting(FALSE)
+	set_resting(STANDING, forced = TRUE)
 
 
 /mob/living/simple_animal/blind_eyes()
@@ -310,7 +310,7 @@
 /mob/living/simple_animal/proc/handle_automated_movement()
 	set waitfor = FALSE
 	if(!stop_automated_movement && wander)
-		if(isturf(loc) && canmove)
+		if(isturf(loc) && !immobile_flags)
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				if(!(stop_automated_movement_when_pulled && pulledby))

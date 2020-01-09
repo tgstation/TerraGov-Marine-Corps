@@ -178,25 +178,28 @@
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
 
-	verb/toggle()
-		set name = "Toggle Coat Buttons"
-		set category = "Object"
-		set src in usr
+/obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+	if(!isliving(usr))
+		return
+	var/mob/living/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained())
+		return
 
-		switch(icon_state)
-			if("ia_jacket_open")
-				src.icon_state = "ia_jacket"
-				to_chat(usr, "You button up the jacket.")
-			if("ia_jacket")
-				src.icon_state = "ia_jacket_open"
-				to_chat(usr, "You unbutton the jacket.")
-			else
-				to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how retarded you are.")
-				return
-		update_clothing_icon()	//so our overlays update
+	switch(icon_state)
+		if("ia_jacket_open")
+			icon_state = "ia_jacket"
+			to_chat(user, "You button up the jacket.")
+		if("ia_jacket")
+			icon_state = "ia_jacket_open"
+			to_chat(user, "You unbutton the jacket.")
+		else
+			to_chat(user, "You attempt to button-up the velcro on your [src], before promptly realising how retarded you are.")
+			return
+	update_clothing_icon()	//so our overlays update
 
 //Medical
 /obj/item/clothing/suit/storage/fr_jacket
@@ -209,22 +212,25 @@
 	/obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/radio, /obj/item/tank/emergency_oxygen)
 	flags_armor_protection = CHEST|ARMS
 
-	verb/toggle()
-		set name = "Toggle Jacket Buttons"
-		set category = "Object"
-		set src in usr
+/obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
+	set name = "Toggle Jacket Buttons"
+	set category = "Object"
+	set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+	if(!isliving(usr))
+		return
+	var/mob/living/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained())
+		return
 
-		switch(icon_state)
-			if("fr_jacket_open")
-				src.icon_state = "fr_jacket"
-				to_chat(usr, "You button up the jacket.")
-			if("fr_jacket")
-				src.icon_state = "fr_jacket_open"
-				to_chat(usr, "You unbutton the jacket.")
-		update_clothing_icon()	//so our overlays update
+	switch(icon_state)
+		if("fr_jacket_open")
+			icon_state = "fr_jacket"
+			to_chat(user, "You button up the jacket.")
+		if("fr_jacket")
+			icon_state = "fr_jacket_open"
+			to_chat(user, "You unbutton the jacket.")
+	update_clothing_icon()	//so our overlays update
 
 //Mime
 /obj/item/clothing/suit/suspenders

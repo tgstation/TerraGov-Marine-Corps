@@ -50,8 +50,11 @@
 //-------------------------------------------
 
 
-/obj/vehicle/train/MouseDrop_T(atom/movable/C, mob/user as mob)
-	if(user.buckled || user.stat || user.restrained() || !Adjacent(user) || !user.Adjacent(C) || !istype(C) || (user == C && !user.canmove))
+/obj/vehicle/train/MouseDrop_T(atom/movable/C, mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/human_user = user
+	if(human_user.buckled || human_user.incapacitated() || human_user.restrained() || !Adjacent(human_user) || !human_user.Adjacent(C) || !istype(C) || (human_user == C && human_user.immobile_flags))
 		return
 	if(istype(C,/obj/vehicle/train))
 		latch(C, user)
@@ -66,11 +69,11 @@
 
 	if(!ishuman(usr))
 		return
-
-	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
+	var/mob/living/carbon/human/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained() || !Adjacent(user))
 		return
 
-	unattach(usr)
+	unattach(user)
 
 
 //-------------------------------------------

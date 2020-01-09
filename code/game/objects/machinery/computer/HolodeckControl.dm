@@ -33,7 +33,7 @@
 			return
 
 		L.forceMove(loc)
-		L.Knockdown(10 SECONDS)
+		L.Knockdown(4 SECONDS)
 		user.visible_message("<span class='danger'>[user] puts [L] on the table.</span>")
 
 	else
@@ -67,12 +67,6 @@
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = WEIGHT_CLASS_BULKY //Stops people from hiding it in their bags/pockets
 
-	//Can be picked up by aliens if the fun_allowed config is enabled.
-/obj/item/toy/beach_ball/holoball/attack_paw(mob/living/carbon/monkey/user)
-	if(!isxeno(user))
-		return FALSE
-	attack_alien(user)
-
 /obj/item/toy/beach_ball/holoball/attack_alien(mob/living/carbon/xenomorph/user)
 	if(!CONFIG_GET(flag/fun_allowed))
 		return FALSE
@@ -102,7 +96,6 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.Knockdown(10 SECONDS)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

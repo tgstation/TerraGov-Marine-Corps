@@ -58,9 +58,8 @@
 			go_out(TRUE)
 			return
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
-		occupant.stat = 1
+		occupant.set_stat(UNCONSCIOUS)
 		if(occupant.bodytemperature < T0C)
-			occupant.Knockdown(20 SECONDS)
 			if(occupant.getOxyLoss())
 				occupant.adjustOxyLoss(-1)
 
@@ -368,6 +367,9 @@
 			if(CONSCIOUS)
 				data["occupant"]["stat"] = "Conscious"
 				data["occupant"]["statstate"] = "good"
+			if(SOFT_CRIT)
+				data["occupant"]["stat"] = "Conscious"
+				data["occupant"]["statstate"] = "average"
 			if(UNCONSCIOUS)
 				data["occupant"]["stat"] = "Unconscious"
 				data["occupant"]["statstate"] = "average"

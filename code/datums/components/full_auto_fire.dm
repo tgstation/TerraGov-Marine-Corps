@@ -284,7 +284,19 @@
 		if(8 to INFINITY) //Can technically only go as far as 127 right now.
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
-	shooter.face_atom(target)
+	if(!shooter.lying)
+		shooter.face_atom(target)
+	else
+		if(shooter.lying > 180)
+			if(get_dir(shooter, target) & NORTH)
+				shooter.setDir(EAST)
+			else
+				shooter.setDir(WEST)
+		else
+			if(get_dir(shooter, target) & NORTH)
+				shooter.setDir(WEST)
+			else
+				shooter.setDir(EAST)
 	if(SEND_SIGNAL(parent, COMSIG_AUTOFIRE_SHOT, target, shooter, mouse_parameters, ++shots_fired) & COMPONENT_AUTOFIRE_SHOT_SUCCESS)
 		return TRUE
 	stop_autofiring()
@@ -362,7 +374,7 @@
 	simulate_recoil(0 , shooter)
 	play_fire_sound(shooter)
 	var/firing_angle = get_angle_with_scatter(shooter, target, get_scatter(projectile_to_fire.scatter, shooter), projectile_to_fire.p_x, projectile_to_fire.p_y)
-	muzzle_flash(firing_angle, shooter)
+	muzzle_flash(shooter.lying ? (firing_angle - shooter.lying < 0 ? firing_angle - shooter.lying + 360 : firing_angle - shooter.lying) : firing_angle, shooter)
 	projectile_to_fire.fire_at(target, shooter, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 	last_fired = world.time
 	if(!reload_into_chamber(shooter))

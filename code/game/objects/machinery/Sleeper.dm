@@ -428,7 +428,7 @@
 	set name = "Remove Beaker"
 	set category = "Object"
 	set src in oview(1)
-	if(usr.stat != 0)
+	if(usr.stat != CONSCIOUS)
 		return
 	if(beaker)
 		filtering = FALSE

@@ -47,7 +47,6 @@
 	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/create_boiler_bomb,

@@ -311,13 +311,13 @@
 					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
-							Knockdown(6 SECONDS)
+							Wormed(6 SECONDS)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.Knockdown(20)
+					M.Wormed(4 SECONDS)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -349,15 +349,13 @@
 
 /mob/living/carbon/xenomorph/proc/reset_movement()
 	set_frozen(FALSE)
-	update_canmove()
 
 /mob/living/carbon/xenomorph/proc/stop_movement()
 	set_frozen(TRUE)
-	update_canmove()
 
 /mob/living/carbon/xenomorph/set_frozen(freeze = TRUE)
 	if(fortify && !freeze)
-		return FALSE
+		return
 	return ..()
 
 //Bleuugh
@@ -382,7 +380,9 @@
 
 /mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
 	LAZYADD(stomach_contents, prey)
-	prey.Knockdown(12 MINUTES)
+	prey.add_lying_flags(LYING_DEVOURED)
+	prey.add_immobile_flags(IMMOBILE_DEVOURED)
+	prey.add_hand_block_flags(HANDBLOCK_DEVOURED)
 	prey.adjust_tinttotal(TINT_BLIND)
 	prey.forceMove(src)
 	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
@@ -391,6 +391,9 @@
 /mob/living/carbon/xenomorph/proc/do_regurgitate(mob/living/carbon/prey)
 	LAZYREMOVE(stomach_contents, prey)
 	prey.forceMove(get_turf(src))
+	prey.remove_lying_flags(LYING_DEVOURED)
+	prey.remove_immobile_flags(IMMOBILE_DEVOURED)
+	prey.remove_hand_block_flags(HANDBLOCK_DEVOURED)
 	prey.adjust_tinttotal(-TINT_BLIND)
 	SEND_SIGNAL(prey, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, src)
 
@@ -423,7 +426,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
-	if(stat || resting)
+	if(lying_flags)
 		if(is_zoomed)
 			is_zoomed = 0
 			zoom_out()
@@ -546,7 +549,7 @@
 	take_overall_damage(0, damage, armor_block)
 	UPDATEHEALTH(src)
 	emote("scream")
-	Knockdown(20)
+	Wormed(2 SECONDS)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return
@@ -680,7 +683,10 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
+	verbs += /mob/living/proc/rest
 	verbs += /mob/living/proc/lay_down
+	verbs += /mob/living/proc/crawl
+	verbs += /mob/living/proc/stand
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return

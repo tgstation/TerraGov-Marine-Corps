@@ -38,7 +38,6 @@
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,

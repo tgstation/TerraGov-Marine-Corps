@@ -46,7 +46,6 @@
 	fortify_armor = 52
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,

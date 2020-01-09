@@ -54,7 +54,7 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.Confused(40 SECONDS)
+	L.Confused(4 SECONDS)
 	L.apply_damage(2*REM, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
@@ -302,14 +302,14 @@
 	L.setBrainLoss(0)
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
-	L.SetStun(0, FALSE)
-	L.SetUnconscious(0, FALSE)
-	L.SetKnockdown(0, FALSE)
+	L.SetStun(0)
+	L.SetUnconscious(0)
+	L.SetKnockdown(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
-	L.SetConfused(0, FALSE)
-	L.SetSleeping(0, FALSE)
+	L.SetConfused(0)
+	L.SetSleeping(0)
 	L.jitteriness = 0
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -614,7 +614,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 			if(4 to 20)
 				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
 			if(21 to 50)
-				L.Knockdown(amount * 2)
+				L.Paralyze(amount * 2)
 				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
 				L.Unconscious(amount * 2)

@@ -412,7 +412,7 @@
 
 
 /mob/living/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	if(QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if(pull_block_flags || QDELETED(AM) || QDELETED(usr) || src == AM || !isturf(loc) || !Adjacent(AM))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return FALSE
 
 	if(!AM.can_be_pulled(src))
@@ -479,6 +479,10 @@
 			grab_item.icon_state = "!reinforce"
 		
 		set_pull_offsets(pulled_mob)
+		if(isliving(pulled_mob))
+			var/mob/living/pulled_living = pulled_mob
+			if(pulled_living.stat == SOFT_CRIT)
+				pulled_living.add_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
 
 	update_pull_movespeed()
 
@@ -533,8 +537,6 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)
-		return FALSE
 	if(stat == DEAD)
 		return FALSE
 	if(anchored)
@@ -545,9 +547,10 @@
 		return FALSE
 	return TRUE
 
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
-	return
+/mob/living/canface()
+	if(immobile_flags)
+		return FALSE
+	return ..()
 
 
 /mob/proc/facedir(ndir)
@@ -836,7 +839,15 @@
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
+	if(isnull(.))
+		return
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 		return
 	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/proc/set_stat(new_stat)
+	if(new_stat == stat)
+		return
+	. = stat //old stat
+	stat = new_stat

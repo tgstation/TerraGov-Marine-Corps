@@ -156,7 +156,7 @@
 	set src in oview(1)
 
 	if(istype(usr, /mob/living/carbon/xenomorph)) //Sneaky xenos turning off the lights
-		attack_alien(usr)
+		usr.UnarmedAttack(src)
 		return
 
 	if(!usr.stat)

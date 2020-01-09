@@ -184,7 +184,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/head_protection = H.head
-			if (H.stat < 2 && H.health < 50 && prob(90))
+			if (H.stat < DEAD && H.health < 50 && prob(90))
 				// ******* Check
 				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
 					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
@@ -194,7 +194,8 @@
 					H.Unconscious(time)
 				else
 					H.Stun(time)
-				if(H.stat != 2)	H.stat = 1
+				if(H.stat != CONSCIOUS)
+					H.set_stat(UNCONSCIOUS)
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
 			else
@@ -263,11 +264,7 @@
 
 		log_combat(user, M, "attacked", src)
 
-		if(prob(15))
-			M.Knockdown(60)
-			M.take_limb_damage(3)
-		else
-			M.take_limb_damage(5)
+		M.take_limb_damage(5)
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
 			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
@@ -323,15 +320,11 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.Stun(rand(40,80))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
-			if(prob(30))
-				M.Knockdown(40)
-				return
-			return
+
 
 /obj/item/tool/kitchen/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 

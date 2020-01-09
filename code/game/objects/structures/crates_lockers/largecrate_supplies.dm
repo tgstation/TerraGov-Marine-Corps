@@ -77,7 +77,7 @@
 				)
 /*NEW SUPPLY CRATES*/
 //Lotsocrates for lotsosupplies for events, meaning less setup time.
-//Wooden crates and not metal ones so we don't have a ton of metal crates laying around
+//Wooden crates and not metal ones so we don't have a ton of metal crates lying around
 //SHOULD contain everything needed for events. Should.
 
 /obj/structure/largecrate/supply

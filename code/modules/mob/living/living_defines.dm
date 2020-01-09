@@ -9,7 +9,8 @@
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
 	var/health_threshold_dead = -100
-	var/health_threshold_crit = 0
+	var/health_threshold_hardcrit = 0
+	var/health_threshold_softcrit = 0
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
 	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
@@ -41,6 +42,12 @@
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE
+	var/knockout_flags = NONE //Things that render someone unconscious.
+	var/immobile_flags = NONE //Things that prevent movement.
+	var/lying_flags = NONE //Things that prevent standing or staying up.
+	var/hand_block_flags = NONE //Things that prevent manipulating things with the hands (using or picking up items, accesing the storage).
+	var/pull_block_flags = NONE //Things that prevent pulling.
+	var/ui_block_flags = NONE //Things that prevent ui interaction.
 
 	var/now_pushing
 
@@ -72,7 +79,7 @@
 	var/stuttering = 0
 	var/slurring = 0
 
-	var/resting = FALSE
+	var/resting = STANDING
 
 	var/list/icon/pipes_shown = list()
 	var/is_ventcrawling

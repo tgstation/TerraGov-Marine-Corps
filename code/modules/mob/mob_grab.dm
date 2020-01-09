@@ -55,7 +55,6 @@
 	user.advance_grab_state(victim)
 	if(user.grab_state == GRAB_NECK)
 		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	victim.update_canmove()
 
 
 /mob/living/proc/advance_grab_state(mob/living/victim)
@@ -79,8 +78,7 @@
 				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
 			to_chat(victim, "<span class='userdanger'>[src] grabs you by the neck!</span>")
 			victim.drop_all_held_items()
-			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-			victim.update_canmove()
+			victim.add_restrained_flags(RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 		if(GRAB_KILL)
@@ -91,8 +89,7 @@
 				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
 			to_chat(victim, "<span class='userdanger'>[src] is strangling you!</span>")
 			victim.drop_all_held_items()
-			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-			victim.update_canmove()
+			victim.add_restrained_flags(RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 	set_pull_offsets(victim)

@@ -1,6 +1,6 @@
 /mob/living/carbon/xenomorph/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
-		return FALSE
+	if(hand_block_flags)
+		return
 
 	if(xeno_caste)
 		changeNext_move(xeno_caste.attack_delay)
@@ -16,9 +16,8 @@
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
-		return FALSE
-
+	if(hand_block_flags)
+		return
 	A.attack_larva(src)
 
 /atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
@@ -27,7 +26,7 @@
 
 
 /mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(hand_block_flags)
 		return FALSE
 
 	A.attack_hivemind(src)

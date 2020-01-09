@@ -170,10 +170,12 @@
 			else if(L.stat)
 				if(L.suiciding)
 					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (<b>Suicide</b>)<br>"
-				else if(L.stat == UNCONSCIOUS)
-					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (Dying)<br>"
-				else if(L.stat == DEAD)
-					msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (Dead)<br>"
+				else
+					switch(L.stat)
+						if(SOFT_CRIT, UNCONSCIOUS)
+							msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (Dying)<br>"
+						if(DEAD)
+							msg += "<b>[ADMIN_TPMONTY(L)]</b> the [L.job.title] (Dead)<br>"
 
 	for(var/mob/dead/observer/D in GLOB.dead_mob_list)
 		if(!isliving(D.mind?.current))

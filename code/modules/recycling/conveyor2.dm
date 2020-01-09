@@ -122,7 +122,7 @@
 	. = ..()
 	if(.)
 		return
-	if ((!( user.canmove ) || user.restrained() || !( user.pulling )))
+	if ((user.incapacitated() || user.restrained() || !( user.pulling )))
 		return
 	if (user.pulling.anchored)
 		return

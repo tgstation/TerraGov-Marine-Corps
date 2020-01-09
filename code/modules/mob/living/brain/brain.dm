@@ -5,6 +5,7 @@
 	var/alert = null
 	icon = 'icons/obj/items/organs.dmi'
 	icon_state = "brain1"
+	immobile_flags = IMMOBILE_INNATE
 
 /mob/living/brain/Initialize()
 	. = ..()
@@ -18,8 +19,3 @@
 			death()
 		ghostize()
 	return ..()
-
-
-/mob/living/brain/update_canmove()
-	set_canmove(FALSE)
-	return canmove

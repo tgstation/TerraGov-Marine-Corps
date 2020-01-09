@@ -183,7 +183,7 @@
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		ENABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+		user.add_restrained_flags(RESTRAINED_STRAIGHTJACKET)
 		user.stop_pulling() //Can't pull if restrained.
 		if(user.handcuffed) //Keep the cuffs on.
 			user.drop_all_held_items()
@@ -193,7 +193,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
-	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
+	user.remove_restrained_flags(RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 
 
@@ -210,8 +210,11 @@
 	set category = "Object"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.restrained())
-		return 0
+	if(!isliving(usr))
+		return
+	var/mob/living/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained())
+		return
 
 	if(src.icon_state == "suitjacket_blue_open")
 		src.icon_state = "suitjacket_blue"

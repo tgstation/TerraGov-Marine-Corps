@@ -5,7 +5,7 @@
 	icon_state = "ai"
 	anchored = TRUE
 	density = TRUE
-	canmove = FALSE
+	immobile_flags = IMMOBILE_INNATE
 	status_flags = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai

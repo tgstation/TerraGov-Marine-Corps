@@ -30,12 +30,14 @@
 
 /mob/living/proc/adjustOxyLoss(amount)
 	if(status_flags & GODMODE)
-		return FALSE	//godmode
+		return	//godmode
+	. = oxyloss
 	oxyloss = CLAMP(oxyloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
-		return FALSE	//godmode
+		return	//godmode
+	. = oxyloss
 	oxyloss = amount
 
 
@@ -75,11 +77,11 @@
 /mob/living/proc/updateStamina(feedback = TRUE)
 	if(staminaloss < maxHealth * 1.5)
 		return
-	if(!IsKnockdown())
+	if(!IsParalyzed())
 		if(feedback)
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
 				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Knockdown(80)
+	Paralyze(8 SECONDS)
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -237,11 +239,16 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		embedded.unembed_ourself()
 
 	// shut down various types of badness
-	setStaminaLoss(0)
-	setToxLoss(0)
-	setOxyLoss(0)
-	setCloneLoss(0)
-	setBrainLoss(0)
+	if(staminaloss)
+		setStaminaLoss(0)
+	if(toxloss)
+		setToxLoss(0)
+	if(oxyloss)
+		setOxyLoss(0)
+	if(cloneloss)
+		setCloneLoss(0)
+	if(brainloss)
+		setBrainLoss(0)
 	remove_all_status_effect()
 	ExtinguishMob()
 	fire_stacks = 0
@@ -252,7 +259,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	disabilities = 0
 
 	// fix blindness and deafness
-	set_drugginess(0)
+	if(druggy)
+		set_drugginess(0)
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
@@ -276,7 +284,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 	updatehealth()
 
 	// make the icons look correct
@@ -293,9 +301,12 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 /mob/living/carbon/revive()
 	set_nutrition(400)
-	setHalLoss(0)
-	setTraumatic_Shock(0)
-	setShock_Stage(0)
+	if(halloss)
+		setHalLoss(0)
+	if(traumatic_shock)
+		setTraumatic_Shock(0)
+	if(shock_stage)
+		setShock_Stage(0)
 	drunkenness = 0
 	disabilities = 0
 

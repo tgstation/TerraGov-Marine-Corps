@@ -132,7 +132,10 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!isturf(loc) || usr.stat || usr.restrained())
+	if(!isturf(loc) || !isliving(usr))
+		return
+	var/mob/living/user = usr
+	if(user.hand_block_flags)
 		return
 
 	var/turf/T = loc
@@ -593,18 +596,22 @@
 	set category = "Object"
 	set name = "Pick up"
 
-	if(usr.incapacitated() || !Adjacent(usr))
+	if(!isliving(usr))
+		return
+	var/mob/living/user = usr
+
+	if(user.hand_block_flags || !Adjacent(user))
 		return
 
-	if(usr.get_active_held_item())
+	if(user.get_active_held_item())
 		return
 
-	usr.UnarmedAttack(src)
+	user.UnarmedAttack(src)
 
 
 //This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in actions.dmi
 //The default action is attack_self().
-//Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
+//Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
 	toggle_item_state(user)
 	attack_self(user)

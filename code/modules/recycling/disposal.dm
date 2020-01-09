@@ -161,7 +161,6 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
 		L.Stun(40)
@@ -246,7 +245,6 @@
 		AM.pipe_eject(0)
 		if(isliving(AM))
 			var/mob/M = AM
-			M.update_canmove() //Force the delay to go in action immediately
 			if(!M.lying)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")

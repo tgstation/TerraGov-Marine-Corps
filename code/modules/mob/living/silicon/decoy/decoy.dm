@@ -13,7 +13,7 @@
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
 	anchored = TRUE
-	canmove = FALSE
+	immobile_flags = IMMOBILE_INNATE
 	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
@@ -30,7 +30,7 @@
 /mob/living/silicon/decoy/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 	else
 		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 

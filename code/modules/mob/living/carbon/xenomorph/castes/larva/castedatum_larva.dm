@@ -22,7 +22,7 @@
 
 	// *** Health *** //
 	max_health = 35
-	crit_health = -25
+	caste_health_threshold_dead = -25
 
 	// *** Evolution *** //
 	evolves_to = list(/mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender)
@@ -35,7 +35,6 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,
 		)
 

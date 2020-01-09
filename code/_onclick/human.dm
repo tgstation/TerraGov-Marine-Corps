@@ -40,8 +40,8 @@
 
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	if(lying) //No attacks while laying down
-		return FALSE
+	if(hand_block_flags)
+		return
 
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
 

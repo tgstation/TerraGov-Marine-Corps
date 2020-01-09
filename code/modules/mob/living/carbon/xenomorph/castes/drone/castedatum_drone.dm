@@ -23,6 +23,7 @@
 
 	// *** Health *** //
 	max_health = 120
+	caste_health_threshold_hardcrit = -50
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -31,7 +32,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/shrike, /mob/living/carbon/xenomorph/carrier, /mob/living/carbon/xenomorph/hivelord)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CRAWL
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -44,7 +45,6 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,

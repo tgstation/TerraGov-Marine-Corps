@@ -72,6 +72,8 @@
 	it functions and re-insert it above.
 */
 /mob/living/silicon/ai/UnarmedAttack(atom/A)
+	if(hand_block_flags)
+		return
 	A.attack_ai(src)
 /mob/living/silicon/ai/RangedAttack(atom/A)
 	A.attack_ai(src)

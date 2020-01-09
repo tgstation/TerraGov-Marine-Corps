@@ -39,7 +39,6 @@
 
 	// *** Crusher Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,

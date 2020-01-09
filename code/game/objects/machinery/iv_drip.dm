@@ -40,7 +40,7 @@
 
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
-		if(H.stat || get_dist(H, src) > 1 || is_blind(H) || H.lying)
+		if(H.incapacitated() || get_dist(H, src) > 1 || is_blind(H) || H.lying_flags)
 			return
 
 		if(attached)

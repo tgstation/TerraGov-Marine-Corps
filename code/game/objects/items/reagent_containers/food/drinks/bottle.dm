@@ -62,7 +62,7 @@
 		else
 			user.visible_message("<span class='danger'>[user] has hit [user.p_them()]self with the bottle of [name] on the head!</span>")
 		if(armor_duration)
-			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
+			target.Wormed(min(armor_duration, 4 SECONDS))
 
 	else
 		if(target != user)

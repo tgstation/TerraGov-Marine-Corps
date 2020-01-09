@@ -42,7 +42,6 @@
 	var/old_y = 0
 	var/inertia_dir = 0
 	var/move_on_shuttle = TRUE // Can move on the shuttle.
-	var/canmove = TRUE
 	var/lying = 0
 	var/lying_prev = 0
 

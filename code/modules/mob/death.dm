@@ -45,9 +45,7 @@
 	if(!gibbed)
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
 
-	stat = DEAD
-
-	update_canmove()
+	set_stat(DEAD)
 
 	if(client)
 		client.change_view(WORLD_VIEW) //just so we never get stuck with a large view somehow

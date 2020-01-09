@@ -14,6 +14,8 @@
 	Monkeys
 */
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
+	if(hand_block_flags)
+		return
 	A.attack_paw(src)
 
 /atom/proc/attack_paw(mob/living/carbon/monkey/user)
@@ -24,6 +26,8 @@
 	. = FALSE
 	if(QDELETED(src))
 		stack_trace("attack_hand on a qdeleted atom")
+		return TRUE
+	if(user.hand_block_flags)
 		return TRUE
 	add_fingerprint(user, "attack_hand")
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND, user) & COMPONENT_NO_ATTACK_HAND)

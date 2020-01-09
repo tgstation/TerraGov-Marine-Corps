@@ -28,7 +28,7 @@
 		return
 	message = capitalize(message)
 	user.log_talk(message, LOG_SAY, "(megaphone)")
-	if ((src.loc == user && usr.stat == 0))
+	if ((loc == user && usr.stat == CONSCIOUS))
 		user.send_speech("<FONT size=4>[message]</FONT>", message_language = user.get_default_language())
 
 		spamcheck = TRUE

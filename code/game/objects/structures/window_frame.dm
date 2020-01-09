@@ -102,9 +102,9 @@
 		user.visible_message("<span class='notice'>[user] starts pulling [M] onto [src].</span>",
 		"<span class='notice'>You start pulling [M] onto [src]!</span>")
 		var/oldloc = loc
-		if(!do_mob(user, M, 20, BUSY_ICON_GENERIC) || loc != oldloc)
+		if(!do_mob(user, M, 2 SECONDS, BUSY_ICON_GENERIC) || loc != oldloc)
 			return
-		M.Knockdown(40)
+		M.Knockdown(4 SECONDS)
 		user.visible_message("<span class='warning'>[user] pulls [M] onto [src].</span>",
 		"<span class='notice'>You pull [M] onto [src].</span>")
 		M.forceMove(loc)

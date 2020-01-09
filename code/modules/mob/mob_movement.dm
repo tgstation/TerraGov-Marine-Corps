@@ -109,7 +109,7 @@
 	if(L.buckled)
 		return L.buckled.relaymove(L, direct)
 
-	if(!L.canmove)
+	if(L.immobile_flags)
 		return
 
 	if(isobj(L.loc) || ismob(L.loc))//Inside an object, tell it we moved
@@ -339,6 +339,8 @@
 
 
 /mob/proc/toggle_move_intent(new_intent)
+	if(lying && new_intent != MOVE_INTENT_WALK)
+		return FALSE
 	if(!isnull(new_intent))
 		if(new_intent == m_intent)
 			return FALSE

@@ -38,10 +38,10 @@
 	var/opened = 0 //Has it been opened before?
 	var/list/content_watchers = list() //list of mobs currently seeing the storage's contents
 
-/obj/item/storage/MouseDrop(obj/over_object as obj)
+/obj/item/storage/MouseDrop(obj/over_object)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
-
-		if(usr.lying)
+		var/mob/living/carbon/user = usr
+		if(user.hand_block_flags)
 			return
 
 		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank

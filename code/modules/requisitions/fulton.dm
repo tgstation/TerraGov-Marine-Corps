@@ -67,7 +67,6 @@
 	if(isliving(spirited_away))
 		var/mob/living/kidnapped = spirited_away
 		kidnapped.set_frozen(TRUE)
-		kidnapped.update_canmove()
 	spirited_away.moveToNullspace()
 	baloon.icon_state = initial(baloon.icon_state)
 	holder_obj.vis_contents += baloon

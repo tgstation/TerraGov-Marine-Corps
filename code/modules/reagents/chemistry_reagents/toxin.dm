@@ -59,7 +59,7 @@
 	taste_multi = 0.9
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(10, IRRADIATE)
+	L.radiation += 10
 	return ..()
 
 /datum/reagent/toxin/phoron
@@ -132,15 +132,20 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
 	L.status_flags |= FAKEDEATH
+	L.add_immobile_flags(IMMOBILE_FAKEDDEATH)
+	L.add_lying_flags(LYING_FAKEDDEATH)
+	L.add_hand_block_flags(HANDBLOCK_FAKEDDEATH)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
-	L.adjustOxyLoss(0.5*REM)
-	L.Knockdown(20 SECONDS)
+	L.adjustOxyLoss(0.5 * REM)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
 	L.status_flags &= ~FAKEDEATH
+	L.remove_immobile_flags(IMMOBILE_FAKEDDEATH)
+	L.remove_lying_flags(LYING_FAKEDDEATH)
+	L.remove_hand_block_flags(HANDBLOCK_FAKEDDEATH)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker
@@ -299,11 +304,6 @@
 		if(C.losebreath > 10)
 			C.set_Losebreath(10)
 	L.adjustOxyLoss(2)
-	switch(current_cycle)
-		if(7 to 15)
-			L.Knockdown(10 SECONDS)
-		if(16 to INFINITY)
-			L.Unconscious(10 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/potassium_chlorophoride
@@ -321,7 +321,7 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		if(16 to INFINITY)
 			L.Unconscious(10 SECONDS)
 	return ..()
@@ -460,16 +460,20 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/halloss_damage = volume * 2 * REM
 	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
-	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
-		L.adjust_drugginess(1.1)
-		L.stuttering = max(L.stuttering, 1)
-	if(volume > 15) //3rd level neurotoxin effects: eye blur
-		L.blur_eyes(5)
-	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjust_ear_damage(0, 1)
-		L.blind_eyes(5)
-	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.Knockdown(20)
+	switch(volume)
+		if(5 to 15) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
+			L.adjust_drugginess(1.1)
+			L.stuttering = max(L.stuttering, 1)
+		if(15 to 20) //3rd level neurotoxin effects: eye blur
+			L.stuttering = max(L.stuttering, 1)
+			L.blur_eyes(5)
+		if(20 to 25) //4th level neurotoxin effects: blindness, deafness
+			L.stuttering = max(L.stuttering, 1)
+			L.adjust_ear_damage(0, 1)
+			L.blind_eyes(5)
+		if(25 to INFINITY) //5th level neurotoxin effects: paralysis
+			L.stuttering = max(L.stuttering, 1)
+			L.Paralyze(2 SECONDS)
 	return ..()
 
 

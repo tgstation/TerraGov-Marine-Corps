@@ -129,12 +129,12 @@ Vehicles are placed on the map by a spawner or admin verb
 	return
 
 /obj/vehicle/multitile/root/proc/handle_player_entrance(mob/living/M)
-	if(M.resting || M.buckled || M.incapacitated())
+	if(M.lying_flags || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(mob/living/M)
-	if(M.resting || M.buckled || M.incapacitated())
+	if(M.lying_flags || M.buckled || M.incapacitated())
 		return FALSE
 	return TRUE
 

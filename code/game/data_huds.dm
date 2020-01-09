@@ -245,31 +245,48 @@
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)
-			if(!client) //Nobody home.
+			if(!client && key && !isaghost(src)) //Nobody home.
 				simple_status_hud.icon_state = "hud_uncon_afk"
 				status_hud.icon_state = "hud_uncon_afk"
 				return TRUE
-			if(IsUnconscious()) //Should hopefully get out of it soon.
+			if(health <= get_hardcrit_threshold()) //Dying.
 				simple_status_hud.icon_state = "hud_uncon_ko"
 				status_hud.icon_state = "hud_uncon_ko"
 				return TRUE
 			status_hud.icon_state = "hud_uncon_sleep" //Regular sleep, else.
 			simple_status_hud.icon_state = "hud_uncon_sleep"
 			return TRUE
-		if(CONSCIOUS)
-			if(!key) //Nobody home. Shouldn't affect aghosting.
+		if(SOFT_CRIT)
+			if(!client && key && !isaghost(src)) //Nobody home.
 				simple_status_hud.icon_state = "hud_uncon_afk"
 				status_hud.icon_state = "hud_uncon_afk"
 				return TRUE
-			if(IsKnockdown()) //I've fallen and I can't get up.
+			if(immobile_flags) //Effectively paralyzed.
 				simple_status_hud.icon_state = "hud_con_kd"
 				status_hud.icon_state = "hud_con_kd"
 				return TRUE
-			if(IsStun())
+			else
 				simple_status_hud.icon_state = "hud_con_stun"
 				status_hud.icon_state = "hud_con_stun"
 				return TRUE
-			if(stagger || slowdown)
+		if(CONSCIOUS)
+			if(!client && key && !isaghost(src)) //Nobody home.
+				simple_status_hud.icon_state = "hud_uncon_afk"
+				status_hud.icon_state = "hud_uncon_afk"
+				return TRUE
+			if(hand_block_flags)
+				if(immobile_flags) //Helpless.
+					simple_status_hud.icon_state = "hud_con_kd"
+					status_hud.icon_state = "hud_con_kd"
+					return TRUE
+				simple_status_hud.icon_state = "hud_con_stun"
+				status_hud.icon_state = "hud_con_stun"
+				return TRUE
+			if(immobile_flags & ~(IMMOBILE_INNATE|IMMOBILE_BUCKLED|IMMOBILE_LIMBLESS|IMMOBILE_XENOLYING|IMMOBILE_RESTING))
+				simple_status_hud.icon_state = "hud_con_stun"
+				status_hud.icon_state = "hud_con_stun"
+				return TRUE
+			if((lying_flags & ~(LYING_BUCKLED|LYING_LEGLESS)) || stagger || slowdown)
 				simple_status_hud.icon_state = "hud_con_stagger"
 				status_hud.icon_state = "hud_con_stagger"
 				return TRUE

@@ -58,6 +58,8 @@
 			switch(L.stat)
 				if(CONSCIOUS)
 					status = "Alive"
+				if(SOFT_CRIT)
+					status = "Soft-crit"
 				if(UNCONSCIOUS)
 					status = "Unconscious"
 				if(DEAD)

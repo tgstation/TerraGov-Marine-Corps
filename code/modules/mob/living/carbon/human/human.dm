@@ -1,5 +1,8 @@
 /mob/living/carbon/human/Initialize()
+	verbs += /mob/living/proc/rest
 	verbs += /mob/living/proc/lay_down
+	verbs += /mob/living/proc/crawl
+	verbs += /mob/living/proc/stand
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 	blood_type = b_type
 
@@ -114,7 +117,7 @@
 
 			adjust_stagger(12 * armor)
 			add_slowdown(round(12 * armor,0.1))
-			Unconscious(160 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			Paralyze(160 * armor)
 
 		if(2)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
@@ -125,7 +128,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			Knockdown(80 * armor)
+			Paralyze(80 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -800,7 +803,7 @@
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
-	return (ishuman(target) && !target.canmove)
+	return (ishuman(target) && target.immobile_flags)
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))

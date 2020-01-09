@@ -78,7 +78,7 @@
 	. = ..()
 	if(.)
 		return
-	if(user.incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
+	if(user.incapacitated() || !Adjacent(user) || user.hand_block_flags || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
@@ -131,9 +131,9 @@
 		user.forceMove(get_turf(down))
 
 
-/obj/structure/ladder/check_eye(mob/user)
+/obj/structure/ladder/check_eye(mob/living/user)
 	//Are we capable of looking?
-	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.hand_block_flags || !user.client)
 		user.unset_interaction()
 
 	//Are ladder cameras ok?

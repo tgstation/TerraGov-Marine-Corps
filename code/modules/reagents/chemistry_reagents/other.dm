@@ -325,7 +325,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(2*REM/L.metabolism_efficiency, IRRADIATE)
+	L.radiation += 2 * REM / L.metabolism_efficiency
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -391,7 +391,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency, IRRADIATE)
+	L.radiation += 1 / L.metabolism_efficiency
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)
@@ -511,7 +511,7 @@
 
 /datum/reagent/cryptobiolin/on_mob_life(mob/living/L, metabolism)
 	L.dizzy(2)
-	L.Confused(40 SECONDS)
+	L.Confused(4 SECONDS)
 	return ..()
 
 /datum/reagent/cryptobiolin/overdose_process(mob/living/L, metabolism)

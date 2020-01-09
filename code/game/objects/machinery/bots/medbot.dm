@@ -229,7 +229,7 @@
 			src.speak(message)
 
 		for (var/mob/living/carbon/C in view(7,src)) //Time to find a patient!
-			if ((C.stat == 2) || !ishuman(C))
+			if ((C.stat == DEAD) || !ishuman(C))
 				continue
 
 			if ((C == src.oldpatient) && (world.time < src.last_found + 100))
@@ -290,7 +290,7 @@
 
 /obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C as mob)
 	//Time to see if they need medical help!
-	if(C.stat == 2)
+	if(C.stat == DEAD)
 		return 0 //welp too late for them!
 
 	if(C.suiciding)
@@ -335,7 +335,7 @@
 		src.last_found = world.time
 		return
 
-	if(C.stat == 2)
+	if(C.stat == DEAD)
 		var/death_message = pick("No! NO!","Live, damnit! LIVE!","I...I've never lost a patient before. Not today, I mean.")
 		src.speak(death_message)
 		src.oldpatient = src.patient

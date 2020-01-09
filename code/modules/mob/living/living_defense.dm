@@ -16,21 +16,6 @@
 /mob/living/proc/getarmor(def_zone, type)
 	return 0
 
-//Handles the effects of "stun" weapons
-/mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
-	flash_pain()
-
-	if (stun_amount)
-		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
-		Knockdown(stun_amount * 20)
-		apply_effect(STUTTER, stun_amount)
-		apply_effect(EYE_BLUR, stun_amount)
-
-	if(agony_amount)
-		apply_damage(agony_amount, HALLOSS, def_zone)
-		apply_effect(STUTTER, agony_amount/10)
-		apply_effect(EYE_BLUR, agony_amount/10)
-
 
 /mob/living/proc/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0)
 	return 0 //only carbon liveforms have this proc
@@ -191,7 +176,7 @@
 
 /mob/living/proc/resist_fire(datum/source)
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
-	Knockdown(80)
+	Paralyze(6 SECONDS)
 
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open/floor/plating/ground/snow))	

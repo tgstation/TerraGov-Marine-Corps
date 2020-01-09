@@ -244,7 +244,8 @@ Redefine as needed.
 	starting_victim_loc = get_turf(victim)
 	last_life_tick = victim.life_tick
 
-	ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+	victim.add_restrained_flags(RESTRAINED_PSYCHICGRAB)
+	victim.add_immobile_flags(IMMOBILE_RESTRAINED_PSYCHICGRABBED)
 	RegisterSignal(victim, list(COMSIG_LIVING_DO_RESIST, COMSIG_LIVING_DO_MOVE_RESIST), /atom/movable.proc/resisted_against)
 
 	return ..() //Starts processing.
@@ -253,10 +254,10 @@ Redefine as needed.
 /obj/item/tk_grab/shrike/Destroy()
 	if(focus)
 		var/mob/living/carbon/human/victim = focus
-		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
+		victim.remove_restrained_flags(RESTRAINED_PSYCHICGRAB)
+		victim.remove_immobile_flags(IMMOBILE_RESTRAINED_PSYCHICGRABBED)
 		victim.SetStun(0)
 		victim.grab_resist_level = 0
-		victim.update_canmove()
 		focus = null
 
 	if(master_action && master_action.psychic_hold == src)

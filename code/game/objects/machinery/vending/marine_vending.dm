@@ -269,11 +269,13 @@
 	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
 
-/obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
+/obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/living/user)
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(!isliving(user))
+		return
+	if(user.hand_block_flags || user.incapacitated() || user.restrained())
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)

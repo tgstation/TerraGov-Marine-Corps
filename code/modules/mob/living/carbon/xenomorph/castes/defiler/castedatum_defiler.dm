@@ -41,7 +41,6 @@
 	neuro_claws_amount = 5
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,

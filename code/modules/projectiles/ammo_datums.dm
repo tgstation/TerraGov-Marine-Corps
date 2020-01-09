@@ -32,7 +32,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectiles_type 					// Type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
 	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
-	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/flags_ammo_behavior = NONE
@@ -47,7 +46,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj) //Special effects when hitting dense turfs.
 	return
 
-/datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj) //Special effects when hitting mobs.
+/datum/ammo/proc/on_hit_mob(mob/living/victim, obj/projectile/proj) //Special effects when hitting mobs.
 	return
 
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
@@ -65,15 +64,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 				var/mob/living/carbon/xenomorph/target = victim
 				if(target.mob_size == MOB_SIZE_BIG)
 					return //Big xenos are not affected.
-				target.apply_effects(0, 1) //Smaller ones just get shaken.
+				target.Wormed(1 SECONDS) //Smaller ones just get shaken.
 				to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 			else
 				var/mob/living/target = victim
-				target.apply_effects(1, 2) //Humans get stunned a bit.
+				target.Paralyze(2 SECONDS) //Humans get stunned a bit.
 				to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 		step_away(victim, proj)
 
-/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, paralyze = 0, stagger = 0, slowdown = 0, knockback = 0, shake = TRUE, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(!isliving(victim))
@@ -91,7 +90,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
 			slowdown *= 0.5
 			stagger *= 0.5
-			stun = 0
+			paralyze = 0
 	if(shake)
 		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))
@@ -102,8 +101,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	//Check for and apply hard CC.
 	if((victim.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (victim.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(victim) && hard_size_threshold > 0))
 		var/mob/living/living_victim = victim
-		if(!living_victim.IsStun() && !living_victim.IsKnockdown()) //Prevent chain stunning.
-			living_victim.apply_effects(stun,weaken)
+		if(paralyze)
+			living_victim.ParalyzeNoChain(paralyze)
 		if(knockback)
 			if(isxeno(victim))
 				impact_message += "<span class='xenodanger'>The blast knocks you off your feet!</span>"
@@ -169,13 +168,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
-	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
-	if(!isliving(target) || isxeno(target))
-		return //Not on aliens.
-	target.apply_effects(12, 20)
-
-
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
 		return
@@ -231,7 +223,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	debilitate = list(0,0,0,0,5,3,30,0)
+	damage = 25
+	damage_type = STAMINA
+
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
+	if(iscarbon(victim))
+		var/mob/living/carbon/carbon_victim = victim
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
+
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
@@ -271,7 +270,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_special"
-	debilitate = list(0,0,0,0,0,0,0,2)
 	accuracy = 15
 	damage = 32
 	penetration = 10
@@ -284,7 +282,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "monkey_empty"
 	ping = null //no bounce off.
 	damage_type = BURN
-	debilitate = list(4,4,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	shell_speed = 2
 	damage = 15
@@ -345,7 +342,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 15
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, paralyze = 0.5 SECONDS, stagger = 2, slowdown = 2, knockback = 1)
 
 /*
 //================================================
@@ -433,7 +430,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
+	staggerstun(M, P, max_range = 40, paralyze = 0.1 SECONDS, stagger = 1, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
 	name = "A19 high velocity smart bullet"
@@ -490,7 +487,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 10
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 4, knockback = 1)
+	staggerstun(M, P, paralyze = 1 SECONDS, stagger = 2, slowdown = 4, knockback = 1)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -502,14 +499,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 0
 	accuracy = 15
 
-/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
-	if(!M || M == P.firer)
+/datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	if(victim == proj.firer)
 		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species?.count_human) //no effect on synths
-			H.apply_effects(6,8)
-		shake_camera(H, 2, 1)
+	if(ishuman(victim))
+		var/mob/living/carbon/human/human_victim = victim
+		if(human_victim.species.count_human) //no effect on synths
+			human_victim.Knockdown(4 SECONDS)
+		shake_camera(human_victim, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
@@ -810,8 +807,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "irradiated smartgun bullet"
 	hud_state = "smartgun_radioactive"
 	iff_signal = ACCESS_IFF_PMC
-	debilitate = list(0,0,0,3,0,0,0,1)
 	shrapnel_chance = 75
+
+/datum/ammo/bullet/smartgun/dirty/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.radiation += 3 //Needs a refactor.
+
 
 /datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -993,8 +993,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
-	stun_living(M,P)
+/datum/ammo/energy/taser/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.Knockdown(6 SECONDS)
 
 
 /datum/ammo/energy/lasgun
@@ -1273,7 +1273,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
-	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
@@ -1281,8 +1280,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 10
 	max_range = 30
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(P), P.firer)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+	victim.Paralyze(4 SECONDS)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
@@ -1312,12 +1312,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
-	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
 	damage_type = BURN
+
+/datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.Wormed(1 SECONDS)
+
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)

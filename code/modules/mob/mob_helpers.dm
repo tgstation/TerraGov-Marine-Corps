@@ -328,7 +328,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
-/mob/proc/has_legs()
+/mob/proc/get_num_legs()
+	return 2
+
+/mob/proc/get_num_arms()
 	return 2
 
 /mob/proc/get_eye_protection()

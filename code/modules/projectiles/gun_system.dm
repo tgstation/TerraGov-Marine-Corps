@@ -623,7 +623,7 @@ and you're good to go.
 
 		if(!QDELETED(user))
 			play_fire_sound(user)
-			muzzle_flash(firing_angle, user)
+			muzzle_flash(user.lying ? (firing_angle - user.lying < 0 ? firing_angle - user.lying + 360 : firing_angle - user.lying) : firing_angle, user)
 			simulate_recoil(recoil_comp, user)
 
 
@@ -746,12 +746,9 @@ and you're good to go.
 		return
 
 	switch(projectile_to_fire.ammo.damage_type)
-		if(HALLOSS)
+		if(HALLOSS, STAMINA)
 			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_effect(110, AGONY)
-		if(STAMINA)
-			to_chat(user, "<span class = 'notice'>Ow...</span>")
-			user.apply_damage(200, STAMINA)
+			user.apply_damage(200, projectile_to_fire.ammo.damage_type)
 		else
 			user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 			user.apply_damage(100, OXY)

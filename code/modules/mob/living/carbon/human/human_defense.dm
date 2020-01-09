@@ -2,36 +2,6 @@
 Contains most of the procs that are called when a mob is attacked by something
 */
 
-//#define DEBUG_HUMAN_EXPLOSIONS
-
-/mob/living/carbon/human/stun_effect_act(stun_amount, agony_amount, def_zone)
-	var/datum/limb/affected = get_limb(check_zone(def_zone))
-	var/siemens_coeff = get_siemens_coefficient_organ(affected)
-	stun_amount *= siemens_coeff
-	agony_amount *= siemens_coeff
-
-	switch (def_zone)
-		if("head")
-			agony_amount *= 1.50
-		if("l_hand", "r_hand")
-			var/c_hand
-			if (def_zone == "l_hand")
-				c_hand = l_hand
-			else
-				c_hand = r_hand
-
-			if(c_hand && (stun_amount || agony_amount > 10))
-
-				dropItemToGround(c_hand)
-				if (affected.limb_status & LIMB_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
-				else
-					var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-					emote("me", 1, "[(species && species.species_flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [affected.display_name]!")
-
-	return ..()
-
-
 /mob/living/carbon/human/getarmor(def_zone, type)
 	var/armorval = 0
 	var/total = 0
@@ -216,9 +186,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
 				if(prob(damage) && stat == CONSCIOUS)
-					apply_effect(20, PARALYZE, armor)
-					visible_message("<span class='danger'>[src] has been knocked unconscious!</span>",
-									"<span class='danger'>You have been knocked unconscious!</span>", null, 5)
+					Wormed(8 SECONDS)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>",
+									"<span class='danger'>You have been knocked down!</span>", null, 5)
 
 				if(bloody)//Apply blood
 					if(wear_mask)
@@ -233,7 +203,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((damage + 10)) && !incapacitated())
-					apply_effect(6, WEAKEN, armor)
+					Wormed(4 SECONDS)
 					visible_message("<span class='danger'>[src] has been knocked down!</span>",
 									"<span class='danger'>You have been knocked down!</span>", null, 5)
 
@@ -379,8 +349,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-	Stun(stun_duration)
-	Knockdown(stun_duration)
+	Paralyze(stun_duration)
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)
 	if(!ear_deaf)

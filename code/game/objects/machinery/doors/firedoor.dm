@@ -160,7 +160,7 @@
 	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
 	if(answer == "No")
 		return
-	if(user.incapacitated() || (!user.canmove && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
+	if(user.incapacitated() || (user.immobile_flags && !isAI(user)) || (get_dist(src, user) > 1  && !isAI(user)))
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
 		return
 	if(density && (machine_stat & (BROKEN|NOPOWER))) //can still close without power

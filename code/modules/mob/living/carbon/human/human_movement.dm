@@ -75,3 +75,68 @@
 /mob/living/carbon/human/Moved(atom/oldloc, direction)
 	Process_Cloaking_Router(src)
 	return ..()
+
+/mob/living/carbon/human/handle_movement_dir(direct)
+	if(!lying)
+		setDir(direct)
+		return
+	if(buckled)
+		return
+	if(immobile_flags)
+		switch(direct)
+			if(EAST)
+				set_lying(90)
+			if(WEST)
+				set_lying(270)
+		if(pulledby)
+			setDir(SOUTH)
+		else
+			setDir(NORTH)
+		return
+	switch(direct) //Crawling.
+		if(NORTH)
+			if(lying > 180)
+				setDir(EAST)
+			else
+				setDir(WEST)
+		if(SOUTH)
+			if(lying > 180)
+				setDir(WEST)
+			else
+				setDir(EAST)
+		if(EAST)
+			set_lying(90)
+			setDir(EAST)
+		if(WEST)
+			set_lying(270)
+			setDir(WEST)
+
+/*
+	switch(lying)
+		if(90) //Laying down, facing west.
+			if(buckled)
+				return
+			if(lying_flags) //Can't stand on its own, face up.
+				setDir(NORTH)
+				switch(direct)
+					if(NORTH)
+					if(SOUTH)
+					if(EAST)
+					if(WEST)
+			else //Else, crawl, facing down.
+
+		if(270) //Laying down, facing east.
+			if(buckled)
+				return
+			if(lying_flags)
+			else
+		else //Standing or on a weird position, just set the direction normally.
+			setDir(direct)
+
+
+	else if(lying)
+		if(direct & EAST)
+			set_lying(90)
+		else if(direct & WEST)
+			set_lying(270)
+*/

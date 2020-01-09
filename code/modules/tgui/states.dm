@@ -64,6 +64,13 @@
 		return UI_UPDATE
 	return UI_INTERACTIVE
 
+/mob/living/shared_ui_interaction(src_object)
+	. = ..()
+	if(. <= UI_DISABLED)
+		return
+	if(ui_block_flags)
+		return UI_DISABLED
+
 /**
   * public
   *

@@ -1,19 +1,6 @@
 // ***************************************
 // *********** Universal abilities
 // ***************************************
-// Resting
-/datum/action/xeno_action/xeno_resting
-	name = "Rest"
-	action_icon_state = "resting"
-	mechanics_text = "Rest on weeds to regenerate health and plasma."
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/xeno_resting/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!istype(X))
-		return
-	X.lay_down()
-	return succeed_activate()
 
 // Regurgitate
 /datum/action/xeno_action/regurgitate

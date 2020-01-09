@@ -34,6 +34,9 @@
 #define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
+/// Trait signals
+#define COMPONENT_ADD_TRAIT (1<<0)
+#define COMPONENT_REMOVE_TRAIT (1<<1)
 
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -213,18 +216,23 @@
 #define COMSIG_LIVING_DO_MOVE_RESIST "living_do_move_resist"			//from the base of /client/Move()
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
 #define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
-#define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
+#define COMSIG_LIVING_IMMOBILE_ON "living_immobile_on"	//from base of /mob/living/add_immobile_flags(): (flags_to_add)
+#define COMSIG_LIVING_IMMOBILE_OFF "living_immobile_off"	//from base of /mob/living/remove_immobile_flags(): (flags_to_remove)
+#define COMSIG_LIVING_LYING_DOWN "living_lying_down"	//from base of /mob/living/set_lying(): (new_lying)
+#define COMSIG_LIVING_STANDING_UP "living_standing_up"	//from base of /mob/living/set_lying(): (new_lying)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
 #define COMSIG_LIVING_SHIELDCALL "living_shieldcall"
 
 //ALL OF THESE DO NOT TAKE INTO ACCOUNT WHETHER AMOUNT IS 0 OR LOWER AND ARE SENT REGARDLESS!
-#define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"		//from base of mob/living/Knockdown() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"			//from base of mob/living/Paralyze() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"		//from base of mob/living/Immobilize() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious"	//from base of mob/living/Unconscious() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"			//from base of mob/living/Sleeping() (amount, update, ignore)
-#define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
+#define COMSIG_LIVING_STATUS_STUN "living_stun"					//from base of mob/living/Stun() (amount, ignore)
+#define COMSIG_LIVING_STATUS_KNOCKDOWN "living_knockdown"		//from base of mob/living/Knockdown() (amount, ignore)
+#define COMSIG_LIVING_STATUS_PARALYZE "living_paralyze"			//from base of mob/living/Paralyze() (amount, ignore)
+#define COMSIG_LIVING_STATUS_DISABLEHANDS "living_disablehands"	//from base of mob/living/DisableHands() (amount, ignore)
+#define COMSIG_LIVING_STATUS_WORMED "living_wormed"				//from base of mob/living/Wormed() (amount, ignore)
+#define COMSIG_LIVING_STATUS_IMMOBILIZE "living_immobilize"		//from base of mob/living/Immobilize() (amount, ignore)
+#define COMSIG_LIVING_STATUS_UNCONSCIOUS "living_unconscious"	//from base of mob/living/Unconscious() (amount, ignore)
+#define COMSIG_LIVING_STATUS_SLEEP "living_sleeping"			//from base of mob/living/Sleeping() (amount, ignore)
+#define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, ignore)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
 //mob/living/carbon signals

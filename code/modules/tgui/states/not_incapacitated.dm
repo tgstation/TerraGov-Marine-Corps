@@ -22,12 +22,11 @@ GLOBAL_DATUM_INIT(not_incapacitated_turf_state, /datum/ui_state/not_incapacitate
 	turf_check = no_turfs
 
 /datum/ui_state/not_incapacitated_state/can_use_topic(src_object, mob/user)
-	if(user.stat)
+	if(!isliving(user) || user.stat == DEAD)
 		return UI_CLOSE
 	if(user.incapacitated() || (turf_check && !isturf(user.loc)))
 		return UI_DISABLED
-	if(isliving(user))
-		var/mob/living/L = user
-		if(L.resting || L.lying)
-			return UI_DISABLED
+	var/mob/living/living_user = user
+	if(living_user.knockout_flags || living_user.ui_block_flags)
+		return UI_DISABLED
 	return UI_INTERACTIVE

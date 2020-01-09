@@ -58,11 +58,9 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
-			Knockdown(20)
+			Paralyze(2 SECONDS)
 		else
-			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
-			Knockdown(20 SECONDS)
+			Paralyze(4 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -140,7 +138,7 @@
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/shaker)
-	if(health < get_crit_threshold())
+	if(health < get_softcrit_threshold())
 		return
 
 	if(src == shaker)
@@ -150,20 +148,30 @@
 		to_chat(shaker, "<span class='highdanger'>This player has been admin slept, do not interfere with them.</span>")
 		return
 
-	if(lying || IsSleeping())
-		if(client)
-			AdjustSleeping(-10 SECONDS)
-		if(!IsSleeping())
-			set_resting(FALSE)
+	if(lying)
+		if(lying_flags)
+			if(client)
+				if(knockout_flags & KNOCKOUT_STATUSEFFECT_UNCONSCIOUS)
+					AdjustUnconscious(-1 SECONDS)
+				if(knockout_flags & KNOCKOUT_STATUSEFFECT_SLEEEPING)
+					AdjustSleeping(-1 SECONDS)
+				if(lying_flags & LYING_STATUSEFFECT_KNOCKEDDOWN)
+					AdjustKnockdown(-1 SECONDS)
+				if(lying_flags & LYING_STATUSEFFECT_PARALYZED)
+					AdjustParalyzed(-1 SECONDS)
+				if(lying_flags & LYING_STATUSEFFECT_WORMED)
+					AdjustWormed(-1 SECONDS)
+				if(staminaloss)
+					adjustStaminaLoss(-20, FALSE)
+				if(halloss)
+					adjustHalLoss(-10)
+		else
+			if(!resting)
+				set_resting(STANDING, forced = TRUE)
+			else
+				get_up(TRUE)
 		shaker.visible_message("<span class='notice'>[shaker] shakes [src] trying to get [p_them()] up!",
 			"<span class='notice'>You shake [src] trying to get [p_them()] up!", null, 4)
-
-		AdjustUnconscious(-60)
-		AdjustStun(-60)
-		if(IsKnockdown())
-			if(staminaloss)
-				adjustStaminaLoss(-20, FALSE)
-		AdjustKnockdown(-60)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -481,3 +489,14 @@
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
 	else
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
+
+/mob/living/carbon/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == UNCONSCIOUS)
+		blind_eyes(1)
+		disabilities |= DEAF
+	else if(. == UNCONSCIOUS)
+		adjust_blindness(-1)
+		disabilities &= ~DEAF

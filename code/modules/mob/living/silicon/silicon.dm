@@ -90,14 +90,6 @@
 	return ..()
 
 
-/mob/living/silicon/stun_effect_act(stun_amount, agony_amount, def_zone)
-	return
-
-
-/mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
-	return FALSE
-
-
 /mob/living/silicon/adjustToxLoss(amount)
 	return FALSE
 

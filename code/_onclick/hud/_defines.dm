@@ -38,11 +38,14 @@
 #define ui_monkey_back "WEST+5:14,1:5"	//monkey
 
 //Lower right, persistant menu
-#define ui_dropbutton "EAST-4:22,1:5"
+#define ui_resist_pull "EAST-1:28,SOUTH+2:7"
 #define ui_drop_throw "EAST-1:28,SOUTH+1:7"
 #define ui_acti "EAST-3:24,SOUTH:5"
 #define ui_above_movement "EAST-2:26,SOUTH+1:7"
 #define ui_above_intent "EAST-3:24, SOUTH+1:7"
+#define ui_rest "EAST-2:26,SOUTH+1:7"
+#define ui_crawl "EAST-2:10,SOUTH+1:7"
+#define ui_stand "EAST-3:24,SOUTH+1:7"
 #define ui_movi "EAST-2:26,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,1:5" //alternative intent switcher for when the interface is hidden (F12)

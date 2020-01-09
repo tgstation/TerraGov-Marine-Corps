@@ -2,7 +2,6 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	stat = DEAD
 	density = FALSE
-	canmove = FALSE
 	anchored = TRUE
 	var/datum/job/assigned_role
 	var/datum/squad/assigned_squad

@@ -98,9 +98,42 @@
 
 	using = new /obj/screen/resist()
 	using.icon = 'icons/mob/screen/alien.dmi'
-	using.screen_loc = ui_above_movement
+	using.screen_loc = ui_above_intent
 	using.alpha = ui_alpha
 	hotkeybuttons += using
+
+	pull_icon = new /obj/screen/pull()
+	pull_icon.icon = 'icons/mob/screen/alien.dmi'
+	pull_icon.screen_loc = ui_above_intent
+	pull_icon.alpha = ui_alpha
+	pull_icon.update_icon(owner)
+	hotkeybuttons += pull_icon
+
+	stand_icon = new /obj/screen/stand()
+	stand_icon.icon = 'icons/mob/screen/alien.dmi'
+	stand_icon.screen_loc = ui_above_movement
+	stand_icon.alpha = ui_alpha
+	stand_icon.update_icon(owner)
+	hotkeybuttons += stand_icon
+
+	crawl_icon = new /obj/screen/crawl()
+	crawl_icon.icon = 'icons/mob/screen/alien.dmi'
+	crawl_icon.screen_loc = ui_above_movement
+	crawl_icon.alpha = ui_alpha
+	crawl_icon.update_icon(owner)
+	hotkeybuttons += crawl_icon
+
+	rest_icon = new /obj/screen/rest()
+	rest_icon.icon = 'icons/mob/screen/alien.dmi'
+	rest_icon.screen_loc = ui_above_movement
+	rest_icon.alpha = ui_alpha
+	rest_icon.update_icon(owner)
+	hotkeybuttons += rest_icon
+
+	toggle_resting_icon = new /obj/screen/toggle_resting()
+	toggle_resting_icon.alpha = ui_alpha
+	toggle_resting_icon.update_icon(owner)
+	hotkeybuttons += toggle_resting_icon
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = 'icons/mob/screen/alien.dmi'
@@ -122,13 +155,6 @@
 	locate_leader = new /obj/screen/alien/queen_locator()
 	locate_leader.alpha = ui_alpha
 	infodisplay += locate_leader
-
-	pull_icon = new /obj/screen/pull()
-	pull_icon.icon = 'icons/mob/screen/alien.dmi'
-	pull_icon.screen_loc = ui_above_movement
-	pull_icon.alpha = ui_alpha
-	pull_icon.update_icon(owner)
-	hotkeybuttons += pull_icon
 
 	zone_sel = new /obj/screen/zone_sel/alien()
 	zone_sel.update_icon(owner)

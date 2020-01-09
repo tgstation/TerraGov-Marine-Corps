@@ -1,3 +1,8 @@
+//slowdown when in softcrit. Note that crawling slowdown will also apply at the same time!
+#define SOFTCRIT_ADD_SLOWDOWN 2
+//slowdown when crawling
+#define CRAWLING_ADD_SLOWDOWN 4
+
 //attack visual effects
 #define ATTACK_EFFECT_PUNCH		"punch"
 #define ATTACK_EFFECT_KICK		"kick"
@@ -39,3 +44,5 @@
 #define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
 #define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
 #define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.
+
+#define BASE_HIT_CHANCE 50

@@ -157,7 +157,7 @@
 
 	for(var/m in buckled_mobs)
 		var/mob/living/passenger = m
-		passenger.apply_effects(5, 5)
+		passenger.Paralyze(5 SECONDS)
 		unbuckle_mob(m)
 
 	new /obj/effect/spawner/gibspawner/robot(loc)

@@ -215,7 +215,7 @@
 		distance = 1
 	if(stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
-		if((stat == DEAD || health < get_crit_threshold()) && distance <= 3)
+		if((stat == DEAD || health < get_hardcrit_threshold()) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
 			if(undefibbable && distance <= 1)
 				msg += "<span class='deadsay'>[t_He] [t_has] gone cold.</span>\n"

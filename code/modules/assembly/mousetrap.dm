@@ -39,11 +39,11 @@
 			if("feet")
 				if(!H.shoes)
 					affecting = H.get_limb(pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG))
-					H.Knockdown(60)
+					H.Knockdown(4 SECONDS)
 			if(BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 				if(!H.gloves)
 					affecting = H.get_limb(type)
-					H.Stun(60)
+					H.DisableHands(4 SECONDS)
 		affecting?.take_damage_limb(1, 0)
 	else if(ismouse(target))
 		var/mob/living/simple_animal/mouse/M = target

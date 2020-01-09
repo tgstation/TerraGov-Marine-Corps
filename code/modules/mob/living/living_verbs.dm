@@ -8,41 +8,63 @@
 	do_resist()
 
 
-/mob/living/proc/lay_down()
-	set name = "Rest"
+/mob/living/proc/stand()
+	set name = "Stand"
 	set category = "IC"
 
-	if(incapacitated(TRUE))
-		return
+	do_stand()
 
-	if(!resting)
-		if(is_ventcrawling)
-			return FALSE
-		set_resting(TRUE, FALSE)
-	else if(action_busy)
-		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
+/mob/living/proc/do_stand()
+	if(resting == STANDING)
 		return
-	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
-		get_up()
+	set_resting(STANDING, silent = FALSE)
 
-/mob/living/proc/get_up()
-	if(!incapacitated(TRUE))
-		set_resting(FALSE, FALSE)
+
+/mob/living/proc/crawl()
+	set name = "Crawl"
+	set category = "IC"
+
+	do_crawl()
+
+/mob/living/proc/do_crawl()
+	if(resting == CRAWLING)
+		return
+	set_resting(CRAWLING, silent = FALSE)
+
+/mob/living/carbon/xenomorph/do_crawl()
+	if(!(xeno_caste.caste_flags & CASTE_CAN_CRAWL))
+		to_chat(src, "<span class='warning'>This caste is unable to crawl.</span>")
+		if(resting == CRAWLING)
+			set_resting(STANDING, silent = FALSE)
+		return
+	return ..()
+
+
+/mob/living/proc/lay_down()
+	set name = "Lay Down"
+	set category = "IC"
+	if(resting == RESTING)
+		return
+	set_resting(RESTING, silent = FALSE)
+
+
+/mob/living/proc/rest()
+	set name = "Rest"
+	set category = "IC"
+	do_rest()
+
+/mob/living/proc/do_rest()
+	if(resting != STANDING)
+		set_resting(STANDING, silent = FALSE)
 	else
-		to_chat(src, "<span class='notice'>You fail to get up.</span>")
+		set_resting(RESTING, silent = FALSE)
 
-/mob/living/proc/set_resting(rest, silent = TRUE)
-	if(!silent)
-		if(rest)
-			to_chat(src, "<span class='notice'>You are now resting.</span>")
-		else
-			to_chat(src, "<span class='notice'>You get up.</span>")
-	resting = rest
-	update_resting()
+/mob/living/carbon/human/do_rest()
+	if(resting != STANDING)
+		set_resting(STANDING, silent = FALSE)
+	else
+		set_resting(CRAWLING, silent = FALSE)
 
-/mob/living/proc/update_resting()
-	hud_used?.rest_icon?.update_icon(src)
-	update_canmove()
 
 /mob/living/verb/ghost()
 	set category = "OOC"
@@ -55,7 +77,7 @@
 	if(alert(src, "Are you sure you want to ghost?\n(You are alive. If you ghost, you won't be able to return to your body. You can't change your mind so choose wisely!)", "Ghost", "Yes", "No") != "Yes")
 		return
 
-	set_resting(TRUE)
+	set_resting(RESTING)
 	log_game("[key_name(usr)] has ghosted.")
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	var/mob/dead/observer/ghost = ghostize(FALSE)

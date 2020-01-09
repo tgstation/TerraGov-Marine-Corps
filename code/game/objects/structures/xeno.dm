@@ -154,7 +154,7 @@
 		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
-		C.Knockdown(40)
+		C.Paralyze(4 SECONDS)
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 			var/area/A = get_area(src)
 			if(A)
@@ -629,7 +629,7 @@ TUNNEL
 /obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
-	attack_alien(user)
+	user.UnarmedAttack(src)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!istype(M) || M.stat || M.lying)

@@ -47,7 +47,7 @@
 	var/list/atom/movable/uncross_scheduled = list() // List of border movable atoms to check for when exiting a turf.
 
 	var/damage = 0
-	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
+	var/accuracy = 35 //Ammo accuracy addition to BASE_HIT_CHANCE
 
 	var/damage_falloff = 0 //how many damage point the projectile loses per tiles travelled
 
@@ -561,7 +561,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
 	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
+	. -= (BASE_HIT_CHANCE + proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
 	return prob(.)
@@ -599,49 +599,61 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(lying && src != proj.original_target)
-		return FALSE
+	if(stat == DEAD && lying && src != proj.original_target)
+		return FALSE //Corpses shouldn't bother much.
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
+
+	. += BASE_HIT_CHANCE
+
+	var/aimed_accuracy = proj.accuracy
+	var/malus_accuracy = 0
+
 	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
+	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[BASE_HIT_CHANCE]; aimed accuracy: [aimed_accuracy]; malus_accuracy = [malus_accuracy]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b></span>")
 	#endif
 
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
-			. += 25
+			aimed_accuracy += 25
 		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range before point blank
-			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
+			malus_accuracy += (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
 	else
-		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
+		malus_accuracy += (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
 
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
-	#endif
-
-	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat != CONSCIOUS)
-		. += 15 //Bonus hit against unconscious people.
+	if(lying && src != proj.original_target)
+		. -= 20 //Things taking cover are harder to kill in general, willingly or unwillingly.
 
 	if(isliving(proj.firer))
 		var/mob/living/shooter_living = proj.firer
-		if(!can_see(shooter_living, src, WORLD_VIEW_NUM))
-			. -= 15 //Can't see the target (Opaque thing between shooter and target)
 		if(shooter_living.last_move_intent < world.time - 2 SECONDS) //We get a nice accuracy bonus for standing still.
-			. += 15
+			aimed_accuracy += 15
 		else if(shooter_living.m_intent == MOVE_INTENT_WALK) //We get a decent accuracy bonus for walking
-			. += 10
+			aimed_accuracy += 10
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = shooter_living
-			. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
+			malus_accuracy += round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.stagger)
-				. -= 30 //Being staggered fucks your aim.
+				malus_accuracy += 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
-				. += shooter_human.marksman_aura * 3
-				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
+				aimed_accuracy += shooter_human.marksman_aura * 3
+				aimed_accuracy += proj.distance_travelled * shooter_human.marksman_aura * 0.35
+		if(shooter_living.client && in_view_range(shooter_living, src))
+			if(faction == shooter_living.faction && src != proj.original_target)
+				. += min(malus_accuracy - aimed_accuracy, aimed_accuracy - malus_accuracy) //We don't want to friendly-fire.
+			else
+				. += aimed_accuracy - malus_accuracy
+		else
+			aimed_accuracy -= 15 //Can't see the target (Opaque thing between shooter and target)
+			. += aimed_accuracy - malus_accuracy
+	else
+		. += aimed_accuracy - malus_accuracy
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
+
+	#if DEBUG_HIT_CHANCE
+	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b> (aimed accuracy: [aimed_accuracy] | malus_accuracy = [malus_accuracy];)</span>")
+	#endif
 
 	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE
@@ -733,10 +745,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		proj.ammo.on_shield_block(src)
 		bullet_ping(proj)
 		return
-
-	if(proj.ammo.debilitate && ( damage || (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
-		apply_bullet_effects(proj)
-		. = TRUE
 
 	if(!damage)
 		return
@@ -853,20 +861,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return . + (armor.getRating(armor_type) * 0.75)
 	if(proj_dir == dir) //-75% if being shot directly in the back.
 		return . - (armor.getRating(armor_type) * 0.75)
-
-
-/mob/living/proc/apply_bullet_effects(obj/projectile/proj)
-	apply_effects(arglist(proj.ammo.debilitate))
-
-
-/mob/living/carbon/human/apply_bullet_effects(obj/projectile/proj)
-	if(issynth(src))
-		return
-	return ..()
-
-
-/mob/living/carbon/xenomorph/apply_bullet_effects(obj/projectile/proj)
-	return
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)

@@ -52,19 +52,16 @@
 
 //Flashing everyone
 	if(M.flash_eyes())
-		M.Stun(40)
-		M.Knockdown(20 SECONDS)
+		M.Paralyze(4 SECONDS)
 
 
 
 //Now applying sound
 	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
 		if(ear_safety > 0)
-			M.Stun(40)
-			M.Knockdown(20)
+			M.Paralyze(4 SECONDS)
 		else
-			M.Stun(20 SECONDS)
-			M.Knockdown(60)
+			M.Paralyze(8 SECONDS)
 			if ((prob(14) || (M == src.loc && prob(70))))
 				M.adjust_ear_damage(rand(1, 10))
 			else
@@ -72,11 +69,11 @@
 
 	else if(get_dist(M, T) <= 5)
 		if(!ear_safety)
-			M.Stun(16 SECONDS)
+			M.Paralyze(8 SECONDS)
 			M.adjust_ear_damage(rand(0, 3), 10)
 
 	else if(!ear_safety)
-		M.Stun(80)
+		M.Paralyze(4 SECONDS)
 		M.adjust_ear_damage(rand(0, 1), 5)
 
 //This really should be in mob not every check

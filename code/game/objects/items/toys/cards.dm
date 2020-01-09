@@ -47,12 +47,12 @@
 	set desc = "Draw a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
-
 	if(!ishuman(usr))
 		return
-
 	var/mob/living/carbon/human/user = usr
+
+	if(user.hand_block_flags || !Adjacent(user))
+		return
 
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
@@ -132,7 +132,16 @@
 	user.visible_message("\The [user] shuffles [src].")
 
 /obj/item/toy/deck/MouseDrop(atom/over)
-	if(!usr || !over) return
+	if(!usr || !over)
+		return
+	
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+
+	if(user.hand_block_flags)
+		return
+
 	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
 
 	if(!ishuman(over) || !(over in viewers(3))) return

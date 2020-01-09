@@ -38,7 +38,9 @@
 
 	// *** Health *** //
 	var/max_health = 100
-	var/crit_health = -100 // What negative healthy they die in.
+	var/caste_health_threshold_dead = -100
+	var/caste_health_threshold_hardcrit = 0
+	var/caste_health_threshold_softcrit = 0
 
 	var/hardcore = FALSE //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 
@@ -122,6 +124,9 @@
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	buckle_flags = NONE
 	faction = "Xeno"
+	initial_language_holder = /datum/language_holder/xeno
+	gib_chance = 5
+
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
@@ -146,7 +151,6 @@
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
-	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 
 	var/datum/armor/armor
 	var/armor_bonus = 0
@@ -184,8 +188,6 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
-
-	initial_language_holder = /datum/language_holder/xeno
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups

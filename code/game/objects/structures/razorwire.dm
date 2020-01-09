@@ -61,7 +61,7 @@
 	M.set_frozen(TRUE)
 	entangled_list += M //Add the entangled person to the trapped list.
 	M.entangled_by = src
-	ENABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
+	M.add_restrained_flags(RESTRAINED_RAZORWIRE)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 
 
@@ -84,11 +84,10 @@
 	M.entangled_by = null
 	M.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	M.set_frozen(FALSE)
-	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(M)
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
-	DISABLE_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE)
+	M.remove_restrained_flags(RESTRAINED_RAZORWIRE)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
 	return TRUE
 
@@ -104,7 +103,6 @@
 	for(var/i in entangled_list)
 		var/mob/living/L = i
 		L.set_frozen(FALSE)
-		L.update_canmove()
 		if(L.entangled_by == src)
 			L.entangled_by = null
 			L.cooldowns[COOLDOWN_ENTANGLE] = FALSE
@@ -139,7 +137,7 @@
 
 		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.Knockdown(10 SECONDS)
+			M.Paralyze(2 SECONDS)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return

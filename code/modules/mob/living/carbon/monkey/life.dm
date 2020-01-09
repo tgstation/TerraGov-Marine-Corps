@@ -16,7 +16,7 @@
 
 	if(!client && stat == CONSCIOUS)
 
-		if(prob(33) && canmove && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
+		if(prob(33) && !immobile_flags && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
 
 			step(src, pick(GLOB.cardinals))
 
@@ -38,7 +38,7 @@
 
 		if (radiation > 100)
 			radiation = 100
-			Knockdown(20 SECONDS)
+			Paralyze(2 SECONDS)
 			if(!lying)
 				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
@@ -54,7 +54,7 @@
 				adjustToxLoss(1)
 				if(prob(5))
 					radiation -= 5
-					Knockdown(60)
+					Paralyze(4 SECONDS)
 					if(!lying)
 						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")

@@ -7,7 +7,7 @@
 
 	update_sight()
 
-	if(stat == UNCONSCIOUS && health <= get_crit_threshold())
+	if(stat == UNCONSCIOUS && health <= get_softcrit_threshold())
 		var/severity = 0
 		switch(health)
 			if(-20 to -10)
@@ -184,7 +184,7 @@
 			hud_used.healths.icon_state = "health7"
 			return
 	
-	if(health < get_crit_threshold())
+	if(health < get_softcrit_threshold())
 		hud_used.healths.icon_state = "health6"
 		return
 

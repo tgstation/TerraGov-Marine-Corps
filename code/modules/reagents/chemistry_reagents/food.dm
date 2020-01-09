@@ -134,7 +134,7 @@
 			if(prob(5))
 				to_chat(L, discomfort_message)
 		if(agony_start to INFINITY)
-			L.apply_effect(agony_amount, AGONY)
+			L.apply_damage(agony_amount, HALLOSS)
 			if(prob(5))
 				L.emote(pick("dry heaves!", "coughs!", "splutters!"))
 				to_chat(L, discomfort_message)
@@ -187,10 +187,7 @@
 			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
-		victim.Stun(10 SECONDS)
-		victim.Knockdown(10 SECONDS)
-		//victim.Unconscious(10)
-		//victim.drop_held_item()
+		victim.Paralyze(10 SECONDS)
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
 		if(show_message)
@@ -208,10 +205,7 @@
 			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
-		victim.Stun(10 SECONDS)
-		victim.Knockdown(10 SECONDS)
-		//victim.Unconscious(10)
-		//victim.drop_held_item()
+		victim.Paralyze(10 SECONDS)
 
 
 /datum/reagent/consumable/frostoil
@@ -239,14 +233,14 @@
 	taste_description = "salt"
 
 /datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/L, metabolism)
-	L.Confused(40 SECONDS)
+	L.Confused(4 SECONDS)
 	if(prob(10))
 		L.emote(pick("sigh","grumble","frown"))
 
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
 	L.jitter(5) //Turn super salty
 	if(prob(10))
-		L.Knockdown(20 SECONDS)
+		L.Wormed(2 SECONDS)
 	if(prob(10))
 		L.emote(pick("cry","moan","pain"))
 

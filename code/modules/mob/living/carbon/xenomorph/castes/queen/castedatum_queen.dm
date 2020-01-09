@@ -48,7 +48,6 @@
 	queen_leader_limit = 1 //Amount of leaders allowed
 
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,

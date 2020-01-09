@@ -315,7 +315,7 @@
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget()
 	in_melee = TRUE
-	return target.attack_animal(src)
+	return UnarmedAttack(target)
 
 
 /mob/living/simple_animal/hostile/proc/Aggro()
@@ -418,13 +418,13 @@
 		return
 	if(T.Adjacent(targets_from))
 		if(CanSmashTurfs(T))
-			T.attack_animal(src)
+			UnarmedAttack(T)
 			return
 	for(var/obj/O in T.contents)
 		if(!O.Adjacent(targets_from))
 			continue
 		if((ismachinery(O) || isstructure(O)) && O.density && wall_smash)
-			O.attack_animal(src)
+			UnarmedAttack(O)
 			return
 
 /mob/living/simple_animal/hostile/proc/DestroyPathToTarget()
@@ -451,10 +451,9 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 
 /mob/living/simple_animal/hostile/proc/EscapeConfinement()
 	if(buckled)
-		buckled.attack_animal(src)
+		UnarmedAttack(buckled)
 	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
-		var/atom/A = targets_from.loc
-		A.attack_animal(src)//Bang on it till we get out
+		UnarmedAttack(targets_from.loc) //Bang on it till we get out
 
 
 /mob/living/simple_animal/hostile/proc/FindHidden()
@@ -462,7 +461,7 @@ mob/living/simple_animal/hostile/proc/DestroySurroundings() // for use with mega
 		var/atom/A = target.loc
 		Goto(A,move_to_delay,minimum_distance)
 		if(A.Adjacent(targets_from))
-			A.attack_animal(src)
+			UnarmedAttack(A)
 		return 1
 
 

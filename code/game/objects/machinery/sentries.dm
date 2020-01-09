@@ -511,7 +511,7 @@
 		operator = null
 		DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 
-/obj/machinery/marine_turret/check_eye(mob/user)
+/obj/machinery/marine_turret/check_eye(mob/living/user)
 	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 

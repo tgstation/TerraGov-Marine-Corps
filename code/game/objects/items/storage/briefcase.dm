@@ -16,7 +16,7 @@
 
 	log_combat(user, M, "attack", src)
 
-	if (M.stat < 2 && M.health < 50 && prob(90))
+	if (M.stat < DEAD && M.health < 50 && prob(90))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/P = H.head
@@ -28,8 +28,9 @@
 			M.Unconscious(time)
 		else
 			M.Stun(time)
-		if(M.stat != 2)	M.stat = 1
-		visible_message("span class='danger'>[M] has been knocked unconscious!</span>", null, "<span class='warning'> You hear someone fall.</span>")
+		if(M.stat != CONSCIOUS)
+			M.set_stat(UNCONSCIOUS)
+			visible_message("span class='danger'>[M] has been knocked unconscious!</span>", null, "<span class='warning'> You hear someone fall.</span>")
 	else
 		to_chat(M, text("<span class='warning'> [] tried to knock you unconcious!</span>",user))
 		M.adjust_blurriness(3)

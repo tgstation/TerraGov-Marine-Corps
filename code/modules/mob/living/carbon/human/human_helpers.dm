@@ -207,12 +207,42 @@
 	return TRUE
 
 
-/mob/living/carbon/human/has_legs()
+/mob/living/carbon/human/get_num_legs()
 	. = 0
-	if(has_limb(FOOT_RIGHT) && has_limb(LEG_RIGHT))
+	var/left_leg = 0
+	var/right_leg = 0
+	for(var/l in limbs)
+		var/datum/limb/limb_datum = l
+		if(limb_datum.limb_status & LIMB_DESTROYED)
+			continue
+		switch(limb_datum.body_part)
+			if(FOOT_RIGHT, LEG_RIGHT)
+				right_leg++
+			if(FOOT_LEFT, LEG_LEFT)
+				left_leg++
+	if(left_leg == 2)
 		.++
-	if(has_limb(FOOT_LEFT) && has_limb(LEG_LEFT))
+	if(right_leg == 2)
 		.++
+
+/mob/living/carbon/human/get_num_arms()
+	. = 0
+	var/left_arm = 0
+	var/right_arm = 0
+	for(var/l in limbs)
+		var/datum/limb/limb_datum = l
+		if(limb_datum.limb_status & LIMB_DESTROYED)
+			continue
+		switch(limb_datum.body_part)
+			if(HAND_RIGHT, ARM_RIGHT)
+				right_arm++
+			if(HAND_LEFT, ARM_LEFT)
+				left_arm++
+	if(left_arm == 2)
+		.++
+	if(right_arm == 2)
+		.++
+
 
 /mob/living/carbon/human/get_permeability_protection()
 	var/list/prot = list("hands"=0, "chest"=0, "groin"=0, "legs"=0, "feet"=0, "arms"=0, "head"=0)

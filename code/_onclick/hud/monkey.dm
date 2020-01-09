@@ -117,12 +117,26 @@
 	pull_icon.update_icon(owner)
 	hotkeybuttons += pull_icon
 
+	stand_icon = new /obj/screen/stand()
+	stand_icon.icon = ui_style
+	stand_icon.color = ui_color
+	stand_icon.alpha = ui_alpha
+	stand_icon.update_icon(owner)
+	hotkeybuttons += stand_icon
+
+	crawl_icon = new /obj/screen/crawl()
+	crawl_icon.icon = ui_style
+	crawl_icon.color = ui_color
+	crawl_icon.alpha = ui_alpha
+	crawl_icon.update_icon(owner)
+	hotkeybuttons += crawl_icon
+
 	rest_icon = new /obj/screen/rest()
 	rest_icon.icon = ui_style
 	rest_icon.color = ui_color
 	rest_icon.alpha = ui_alpha
 	rest_icon.update_icon(owner)
-	static_inventory += rest_icon
+	hotkeybuttons += rest_icon
 
 	zone_sel = new /obj/screen/zone_sel()
 	zone_sel.icon = ui_style

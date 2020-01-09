@@ -79,8 +79,9 @@
 
 //mob/var/stat things
 #define CONSCIOUS	0
-#define UNCONSCIOUS	1
-#define DEAD		2
+#define SOFT_CRIT	1
+#define UNCONSCIOUS	2
+#define DEAD		3
 
 #define check_tod(H) ((!H.undefibbable && world.time <= H.timeofdeath + CONFIG_GET(number/revive_grace_period)))
 
@@ -455,7 +456,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
-#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_ACID_BLOOD			(1<<14) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_CAN_CRAWL				(1<<15)
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -622,3 +624,11 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_CRIT 1
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
+
+//do_mob() flags
+#define DOMOB_IGNORELOCCHANGE (1<<0)
+#define DOMOB_IGNOREHAND (1<<1)
+
+#define STANDING 0
+#define CRAWLING 1
+#define RESTING 2

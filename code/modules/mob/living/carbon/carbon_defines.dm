@@ -51,3 +51,5 @@
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0
+	
+	var/gib_chance = 0 // % Chance of exploding on death, incremented by how total damage taken if not initially zero.

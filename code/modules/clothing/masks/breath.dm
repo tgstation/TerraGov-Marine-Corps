@@ -15,26 +15,28 @@
 
 	var/hanging = 0
 
-	verb/toggle()
-		set category = "Object"
-		set name = "Adjust mask"
-		set src in usr
+/obj/item/clothing/mask/breath/verb/toggle()
+	set category = "Object"
+	set name = "Adjust mask"
+	set src in usr
+	if(!isliving(usr))
+		return
+	var/mob/living/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained())
+		return
+	hanging = !hanging
+	if(hanging)
+		gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
+		flags_inventory &= ~(COVERMOUTH|ALLOWINTERNALS)
+		icon_state = "breathdown"
+		to_chat(user, "Your mask is now hanging on your neck.")
+	else
+		gas_transfer_coefficient = 0.1
+		flags_inventory |= (COVERMOUTH|ALLOWINTERNALS)
+		icon_state = "breath"
+		to_chat(user, "You pull the mask up to cover your face.")
+		update_clothing_icon()
 
-		if(usr.canmove && !usr.stat && !usr.restrained())
-			if(!src.hanging)
-				src.hanging = !src.hanging
-				gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
-				flags_inventory &= ~(COVERMOUTH|ALLOWINTERNALS)
-				icon_state = "breathdown"
-				to_chat(usr, "Your mask is now hanging on your neck.")
-
-			else
-				src.hanging = !src.hanging
-				gas_transfer_coefficient = 0.10
-				flags_inventory |= COVERMOUTH|ALLOWINTERNALS
-				icon_state = "breath"
-				to_chat(usr, "You pull the mask up to cover your face.")
-			update_clothing_icon()
 
 /obj/item/clothing/mask/breath/medical
 	desc = "A close-fitting sterile mask that can be connected to an air supply."

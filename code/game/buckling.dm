@@ -50,9 +50,15 @@
 
 	buckling_mob.glide_modifier_flags |= GLIDE_MOD_BUCKLED
 	buckling_mob.buckled = src
-	buckling_mob.setDir(dir)
+	buckling_mob.add_immobile_flags(IMMOBILE_BUCKLED)
 	LAZYADD(buckled_mobs, buckling_mob)
-	buckling_mob.update_canmove()
+	if(buckle_lying != -1)
+		buckling_mob.set_lying(buckle_lying)
+		if(buckle_lying > 0)
+			buckling_mob.setDir(SOUTH)
+			buckling_mob.add_lying_flags(LYING_BUCKLED)
+		else
+			buckling_mob.setDir(dir)
 	buckling_mob.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
@@ -76,7 +82,13 @@
 	buckled_mob.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_mob.reset_glide_size()
 	buckled_mob.anchored = initial(buckled_mob.anchored)
-	buckled_mob.update_canmove()
+	buckled_mob.remove_immobile_flags(IMMOBILE_BUCKLED)
+	buckled_mob.remove_lying_flags(LYING_BUCKLED)
+	if(buckled_mob.lying)
+		if(!buckled_mob.lying_flags && buckled_mob.resting == STANDING)
+			buckled_mob.get_up(TRUE)
+	else if(buckled_mob.lying_flags || buckled_mob.resting != STANDING)
+		buckled_mob.set_lying_down()
 	buckled_mob.clear_alert("buckled")
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 

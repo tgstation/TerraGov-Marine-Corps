@@ -71,6 +71,7 @@
 /mob/living/Initialize()
 	. = ..()
 	update_move_intent_effects()
+	register_init_signals()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
@@ -92,7 +93,17 @@
 	job = null
 	return ..()
 
+/mob/living/proc/register_init_signals()
+	RegisterSignal(src, SIGNAL_TRAIT(TRAIT_STASIS), .proc/on_stasis_change)
 
+
+/mob/living/proc/on_stasis_change(datum/source, change_flag)
+	if(change_flag == COMPONENT_ADD_TRAIT)
+		add_immobile_flags(IMMOBILE_TRAIT_STASIS)
+		add_hand_block_flags(HANDBLOCK_TRAIT_STASIS)
+	else
+		remove_immobile_flags(IMMOBILE_TRAIT_STASIS)
+		remove_hand_block_flags(HANDBLOCK_TRAIT_STASIS)
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -159,7 +170,7 @@
 
 
 /mob/living/proc/InCritical()
-	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
+	return (health <= get_softcrit_threshold() && (stat == SOFT_CRIT || stat == UNCONSCIOUS))
 
 
 /mob/living/Move(atom/newloc, direct)
@@ -169,13 +180,6 @@
 				return buckled.Move(newloc, direct)
 			else
 				return FALSE
-	else if(lying)
-		if(direct & EAST)
-			lying = 90
-		else if(direct & WEST)
-			lying = 270
-		update_transform()
-		lying_prev = lying
 
 	. = ..()
 
@@ -268,12 +272,11 @@
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away
 			M.client.move_delay = world.time
-		M.update_canmove()
 
 		if(isliving(pulling))
 			var/mob/living/L = pulling
 			L.grab_resist_level = 0 //zero it out
-			DISABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+			remove_restrained_flags(L.restrained_flags)
 
 	. = ..()
 
@@ -401,10 +404,8 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 	set_frozen(TRUE) //can't move while being thrown
-	update_canmove()
 	. = ..()
 	set_frozen(FALSE)
-	update_canmove()
 
 
 /mob/living/proc/offer_mob()
@@ -568,46 +569,144 @@ below 100 is not dizzy
 	return TRUE
 
 
-/mob/living/update_canmove()
-
-	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
-
-	if(laid_down)
-		if(buckled && buckled.buckle_lying != -1)
-			lying = buckled.buckle_lying //Might not actually be laying down, like with chairs, but the rest of the logic applies.
-		else if(!lying)
-			lying = pick(90, 270)
-	else if(lying)
-		lying = 0
-
-	set_canmove(!(IsStun() || frozen || laid_down))
-
-	if(lying)
-		density = FALSE
-		drop_all_held_items()
-	else
-		density = TRUE
-
-	if(lying_prev != lying)
-		update_transform()
-		lying_prev = lying
-
-	if(lying)
-		if(layer == initial(layer)) //to avoid things like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-
-	return canmove
+/mob/living/proc/update_leg_movespeed()
+	. = get_num_legs()
+	switch(.)
+		if(0)
+			add_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, TRUE, 0, NONE, TRUE, 6)
+		if(1)
+			add_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, TRUE, 0, NONE, TRUE, 3)
+		else
+			remove_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS)
 
 
-/mob/living/proc/set_canmove(newcanmove)
-	if(canmove == newcanmove)
+/mob/living/proc/add_restrained_flags(flags_to_add)
+	if(flags_to_add == (restrained_flags & flags_to_add))
 		return
-	canmove = newcanmove
-	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
+	. = restrained_flags
+	restrained_flags |= flags_to_add
+	if(!. && restrained_flags)
+		add_hand_block_flags(HANDBLOCK_RESTRAINED)
 
+/mob/living/proc/remove_restrained_flags(flags_to_remove)
+	if(!(restrained_flags & flags_to_remove))
+		return
+	. = restrained_flags
+	restrained_flags &= ~flags_to_remove
+	if(. && !restrained_flags)
+		remove_hand_block_flags(HANDBLOCK_RESTRAINED)
+
+
+/mob/living/proc/add_knockout_flags(flags_to_add)
+	if(flags_to_add == (knockout_flags & flags_to_add))
+		return //Nothing new to add.
+	. = knockout_flags
+	knockout_flags |= flags_to_add
+	if(!. && knockout_flags)
+		add_immobile_flags(IMMOBILE_KNOCKOUT)
+		add_lying_flags(LYING_KNOCKOUT)
+		add_hand_block_flags(HANDBLOCK_KNOCKOUT)
+		if(stat < UNCONSCIOUS)
+			set_stat(UNCONSCIOUS)
+
+/mob/living/proc/remove_knockout_flags(flags_to_remove)
+	if(!(knockout_flags & flags_to_remove))
+		return //Nothing old to remove.
+	. = knockout_flags
+	knockout_flags &= ~flags_to_remove
+	if(. && !knockout_flags)
+		remove_immobile_flags(IMMOBILE_KNOCKOUT)
+		remove_lying_flags(LYING_KNOCKOUT)
+		remove_hand_block_flags(HANDBLOCK_KNOCKOUT)
+		if(stat < DEAD)
+			update_stat()
+
+
+/mob/living/proc/add_immobile_flags(flags_to_add)
+	if(flags_to_add == (immobile_flags & flags_to_add))
+		return //Nothing new to add.
+	. = immobile_flags
+	immobile_flags |= flags_to_add
+	if(!. && immobile_flags)
+		SEND_SIGNAL(src, COMSIG_LIVING_IMMOBILE_ON)
+
+/mob/living/proc/remove_immobile_flags(flags_to_remove)
+	if(!(immobile_flags & flags_to_remove))
+		return //Nothing old to remove.
+	. = immobile_flags
+	immobile_flags &= ~flags_to_remove
+	if(. && !immobile_flags)
+		SEND_SIGNAL(src, COMSIG_LIVING_IMMOBILE_OFF)
+
+
+/mob/living/proc/add_lying_flags(flags_to_add)
+	if(flags_to_add == (lying_flags & flags_to_add))
+		return
+	. = lying_flags
+	lying_flags |= flags_to_add
+	if(!. && lying_flags)
+		if(!lying) //force them on the ground
+			set_lying_down()
+
+/mob/living/proc/remove_lying_flags(flags_to_remove)
+	if(!(lying_flags & flags_to_remove))
+		return
+	. = lying_flags
+	lying_flags &= ~flags_to_remove
+	if(. && !lying_flags)
+		if(resting == STANDING)
+			get_up()
+
+
+/mob/living/proc/add_hand_block_flags(flags_to_add)
+	if(flags_to_add == (hand_block_flags & flags_to_add))
+		return
+	. = hand_block_flags
+	hand_block_flags |= flags_to_add
+	if(!. && hand_block_flags)
+		drop_all_held_items()
+		add_pull_block_flags(PULLBLOCK_HANDBLOCK)
+		add_ui_block_flags(UI_HANDBLOCK)
+
+/mob/living/proc/remove_hand_block_flags(flags_to_remove)
+	if(!(hand_block_flags & flags_to_remove))
+		return
+	. = hand_block_flags
+	hand_block_flags &= ~flags_to_remove
+	if(. && !hand_block_flags)
+		remove_pull_block_flags(PULLBLOCK_HANDBLOCK)
+		remove_ui_block_flags(UI_HANDBLOCK)
+
+
+/mob/living/proc/add_pull_block_flags(flags_to_add)
+	if(flags_to_add == (pull_block_flags & flags_to_add))
+		return
+	. = pull_block_flags
+	pull_block_flags |= flags_to_add
+	if(!. && pull_block_flags)
+		if(pulling)
+			stop_pulling()
+
+/mob/living/proc/remove_pull_block_flags(flags_to_remove)
+	if(!(pull_block_flags & flags_to_remove))
+		return
+	. = pull_block_flags
+	pull_block_flags &= ~flags_to_remove
+
+
+/mob/living/proc/add_ui_block_flags(flags_to_add)
+	if(flags_to_add == (ui_block_flags & flags_to_add))
+		return
+	. = ui_block_flags
+	ui_block_flags |= flags_to_add
+	if(!. && ui_block_flags)
+		unset_machine()
+
+/mob/living/proc/remove_ui_block_flags(flags_to_remove)
+	if(!(ui_block_flags & flags_to_remove))
+		return
+	. = ui_block_flags
+	ui_block_flags &= ~flags_to_remove
 
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
@@ -695,23 +794,16 @@ below 100 is not dizzy
 			offset = GRAB_PIXEL_SHIFT_NECK
 		if(GRAB_KILL)
 			offset = GRAB_PIXEL_SHIFT_NECK
-	pulled_mob.setDir(get_dir(pulled_mob, src))
+	if(!pulled_mob.lying) //Handling this in handle_movement_dir()
+		pulled_mob.setDir(get_dir(pulled_mob, src))
 	switch(pulled_mob.dir)
 		if(NORTH)
 			animate(pulled_mob, pixel_x = 0, pixel_y = offset, 0.3 SECONDS)
 		if(SOUTH)
 			animate(pulled_mob, pixel_x = 0, pixel_y = -offset, 0.3 SECONDS)
 		if(EAST)
-			if(pulled_mob.lying == 270) //update the dragged dude's direction if we've turned
-				pulled_mob.lying = 90
-				pulled_mob.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
-				pulled_mob.lying_prev = pulled_mob.lying
 			animate(pulled_mob, pixel_x = offset, pixel_y = 0, 0.3 SECONDS)
 		if(WEST)
-			if(pulled_mob.lying == 90)
-				pulled_mob.lying = 270
-				pulled_mob.update_transform()
-				pulled_mob.lying_prev = pulled_mob.lying
 			animate(pulled_mob, pixel_x = -offset, pixel_y = 0, 0.3 SECONDS)
 
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
@@ -766,3 +858,172 @@ below 100 is not dizzy
 
 /mob/living/can_interact_with(datum/D)
 	return D.Adjacent(src)
+
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(stat)
+		if(UNCONSCIOUS, DEAD)
+			add_immobile_flags(IMMOBILE_STAT_UNCONSCIOUS)
+			add_lying_flags(LYING_STAT_NOTCONSCIOUS)
+			add_hand_block_flags(HANDBLOCK_STAT_NOTCONSCIOUS)
+		if(SOFT_CRIT)
+			remove_immobile_flags(IMMOBILE_STAT_UNCONSCIOUS)
+			add_lying_flags(LYING_STAT_NOTCONSCIOUS)
+			add_hand_block_flags(HANDBLOCK_STAT_NOTCONSCIOUS)
+			if(pulledby)
+				add_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
+			add_movespeed_modifier(MOVESPEED_ID_LIVING_SOFTCRIT, TRUE, 0, NONE, TRUE, SOFTCRIT_ADD_SLOWDOWN)
+		if(CONSCIOUS)
+			remove_immobile_flags(IMMOBILE_STAT_UNCONSCIOUS)
+			remove_lying_flags(LYING_STAT_NOTCONSCIOUS)
+			remove_hand_block_flags(HANDBLOCK_STAT_NOTCONSCIOUS)
+	switch(.)
+		if(SOFT_CRIT)
+			if(pulledby)
+				remove_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
+			remove_movespeed_modifier(MOVESPEED_ID_LIVING_SOFTCRIT)
+
+/mob/living/setGrabState(newstate)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(grab_state)
+		if(GRAB_PASSIVE)
+			remove_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
+			remove_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
+		if(GRAB_AGGRESSIVE)
+			remove_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
+			remove_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
+		if(GRAB_NECK, GRAB_KILL)
+			add_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
+			add_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
+
+
+/mob/living/proc/set_resting(rest, silent = TRUE, forced = FALSE)
+	if(resting == rest)
+		return
+	. = resting
+	resting = rest
+	if(. == RESTING)
+		remove_immobile_flags(IMMOBILE_RESTING)
+		remove_hand_block_flags(HANDBLOCK_RESTING)
+	switch(resting)
+		if(STANDING)
+			if(lying_flags)
+				if(!silent)
+					to_chat(src, "<span class='notice'>You will stand up as soon as you are able to.</span>")
+			else
+				if(!silent)
+					to_chat(src, "<span class='notice'>You stand up.</span>")
+				get_up(forced)
+		if(CRAWLING)
+			if(lying)
+				if(!silent)
+					to_chat(src, "<span class='notice'>You are now crawling.</span>")
+			else if(buckled)
+				if(!silent)
+					to_chat(src, "<span class='notice'>You will go prone as soon as you are able to.</span>")
+			else
+				if(!silent)
+					to_chat(src, "<span class='notice'>You go prone.</span>")
+				set_lying_down()
+		if(RESTING)
+			add_immobile_flags(IMMOBILE_RESTING)
+			add_hand_block_flags(HANDBLOCK_RESTING)
+			if(lying)
+				if(!silent)
+					to_chat(src, "<span class='notice'>You are now resting.</span>")
+			else if(buckled)
+				if(!silent)
+					to_chat(src, "<span class='notice'>You will lay down as soon as you are able to.</span>")
+			else
+				if(!silent)
+					to_chat(src, "<span class='notice'>You lay down.</span>")
+				set_lying_down()
+	update_resting()
+
+
+/mob/living/proc/update_resting()
+	if(hud_used)
+		if(hud_used.stand_icon)
+			hud_used.stand_icon.update_icon(src)
+		if(hud_used.crawl_icon)
+			hud_used.crawl_icon.update_icon(src)
+		if(hud_used.rest_icon)
+			hud_used.rest_icon.update_icon(src)
+
+/mob/living/carbon/human/update_resting()
+	. = ..()
+	if(knockout_flags || !lying || buckled)
+		return
+	switch(resting)
+		if(CRAWLING)
+			if(immobile_flags)
+				return
+			if(!(dir & (EAST|WEST)))
+				setDir(pick(EAST, WEST))
+		if(RESTING)
+			if(!(dir & (NORTH|SOUTH)))
+				setDir(pick(NORTH, SOUTH))
+
+/mob/living/carbon/xenomorph/update_resting()
+	. = ..()
+	if(hud_used?.toggle_resting_icon)
+		hud_used.toggle_resting_icon.update_icon(src)
+	update_icon_state()
+
+
+/mob/living/proc/get_up(forced)
+	set waitfor = FALSE
+	if(!forced)
+		var/datum/callback/rest_checks = CALLBACK(src, .proc/rest_checks_callback)
+		if(!do_mob(src, src, 2 SECONDS, ignore_flags = (DOMOB_IGNORELOCCHANGE|DOMOB_IGNOREHAND), extra_checks = rest_checks))
+			return
+		if(resting != STANDING || !lying || lying_flags)
+			return
+	set_lying(0)
+
+/mob/living/proc/rest_checks_callback()
+	if(resting != STANDING || !lying || lying_flags)
+		return FALSE
+	return TRUE
+
+/mob/living/proc/set_lying_down(new_lying)
+	if(!new_lying)
+		set_lying(pick(90, 270))
+	else
+		set_lying(new_lying)
+
+/mob/living/proc/set_lying(new_lying)
+	if(new_lying == lying)
+		return
+	. = lying
+	lying = new_lying
+	if(lying != lying_prev)
+		update_transform()
+		lying_prev = lying
+	if(lying)
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+		if(!.)
+			SEND_SIGNAL(src, COMSIG_LIVING_LYING_DOWN, new_lying)
+			density = FALSE
+			add_pull_block_flags(PULLBLOCK_LYING)
+			add_ui_block_flags(UI_LYING)
+			add_movespeed_modifier(MOVESPEED_ID_LIVING_CRAWLING, TRUE, 0, NONE, TRUE, CRAWLING_ADD_SLOWDOWN)
+			if(immobile_flags)
+				setDir(pick(NORTH, SOUTH)) //Helpless.
+			else if(dir & (NORTH|SOUTH))
+				setDir(pick(EAST, WEST))
+	else
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+		if(.)
+			SEND_SIGNAL(src, COMSIG_LIVING_STANDING_UP)
+			density = initial(density)
+			remove_pull_block_flags(PULLBLOCK_LYING)
+			remove_ui_block_flags(UI_LYING)
+			remove_movespeed_modifier(MOVESPEED_ID_LIVING_CRAWLING)

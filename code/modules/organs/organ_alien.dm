@@ -169,7 +169,7 @@
 	var/datum/mind/backup
 
 /datum/internal_organ/stack/process()
-	if(owner && owner.stat != 2 && !is_broken())
+	if(owner && owner.stat != DEAD && !is_broken())
 		backup_time = world.time
 		if(owner.mind) backup = owner.mind
 

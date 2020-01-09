@@ -19,10 +19,26 @@ Contains most of the procs that are called when a xeno is attacked by something
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 
-/mob/living/carbon/xenomorph/Stun(amount, updating, ignore_canstun)
-	amount *= 0.5 // half length
+/mob/living/carbon/xenomorph/Stun(amount, ignore_canstun) //TO DO: make this a mob modifier
+	amount *= 0.2
 	return ..()
 
-/mob/living/carbon/xenomorph/Knockdown(amount, updating, ignore_canstun)
+/mob/living/carbon/xenomorph/Knockdown(amount, ignore_canstun)
 	amount *= 0.2 // replaces the old knock_down -5
+	return ..()
+
+/mob/living/carbon/xenomorph/Immobilize(amount, ignore_canstun)
+	amount *= 0.2
+	return ..()
+
+/mob/living/carbon/xenomorph/Paralyze(amount, ignore_canstun)
+	amount *= 0.2
+	return ..()
+
+/mob/living/carbon/xenomorph/DisableHands(amount, ignore_canstun)
+	amount *= 0.2
+	return ..()
+
+/mob/living/carbon/xenomorph/Wormed(amount, ignore_canstun)
+	amount *= 0.2
 	return ..()

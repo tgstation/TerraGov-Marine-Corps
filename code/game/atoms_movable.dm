@@ -76,7 +76,7 @@
 
 	if(!direct)
 		direct = get_dir(src, newloc)
-	setDir(direct)
+	handle_movement_dir(direct)
 
 	if(!loc.Exit(src, newloc))
 		return
@@ -178,7 +178,7 @@
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
 				if(!.)
-					setDir(first_step_dir)
+					handle_movement_dir(first_step_dir)
 			moving_diagonally = 0
 			return
 
@@ -206,7 +206,7 @@
 
 	last_move = direct
 	last_move_time = world.time
-	setDir(direct)
+	handle_movement_dir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
 		return FALSE
 
@@ -717,7 +717,11 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")		
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+		if(isliving(M))
+			var/mob/living/pulled_living = M
+			if(pulled_living.stat == SOFT_CRIT)
+				pulled_living.add_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE
@@ -733,11 +737,14 @@
 	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
 	if(ismob(pulling))
 		var/mob/pulled_mob = pulling
-		pulled_mob.update_canmove() //Mob gets up if it was lyng down in a chokehold.
 		if(pulled_mob.buckled)
 			pulled_mob.buckled.reset_glide_size()
 		else
 			pulled_mob.reset_glide_size()
+		if(isliving(pulled_mob))
+			var/mob/living/pulled_living = pulled_mob
+			if(pulled_living.stat == SOFT_CRIT)
+				pulled_living.remove_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
 	else
 		pulling.reset_glide_size()
 	pulling = null
@@ -875,4 +882,11 @@
 
 
 /atom/movable/proc/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	. = grab_state
 	grab_state = newstate
+
+
+/atom/movable/proc/handle_movement_dir(direct)
+	setDir(direct)

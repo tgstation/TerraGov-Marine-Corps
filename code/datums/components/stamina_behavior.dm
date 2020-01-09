@@ -25,14 +25,15 @@
 		return
 	stamina_state = STAMINA_STATE_ACTIVE
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_move_run)
-	RegisterSignal(parent, COMSIG_LIVING_SET_CANMOVE, .proc/on_canmove_change)
+	RegisterSignal(parent, COMSIG_LIVING_IMMOBILE_ON, .proc/on_immobilization)
+	RegisterSignal(parent, COMSIG_LIVING_LYING_DOWN, .proc/on_lying_down)
 
 
 /datum/component/stamina_behavior/proc/stamina_idle()
 	if(stamina_state == STAMINA_STATE_IDLE)
 		return
 	stamina_state = STAMINA_STATE_IDLE
-	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_SET_CANMOVE))
+	UnregisterSignal(parent, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_IMMOBILE_ON, COMSIG_LIVING_LYING_DOWN))
 
 
 /datum/component/stamina_behavior/proc/on_move_run(datum/source, atom/oldloc, direction, Forced)
@@ -46,8 +47,15 @@
 		stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
 
 
-/datum/component/stamina_behavior/proc/on_canmove_change(datum/source, canmove)
+/datum/component/stamina_behavior/proc/on_lying_down(datum/source, new_lying)
 	var/mob/living/stamina_holder = parent
-	if(canmove || stamina_holder.m_intent == MOVE_INTENT_WALK)
+	if(stamina_holder.m_intent == MOVE_INTENT_WALK)
+		return
+	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)
+
+
+/datum/component/stamina_behavior/proc/on_immobilization(datum/source)
+	var/mob/living/stamina_holder = parent
+	if(stamina_holder.m_intent == MOVE_INTENT_WALK)
 		return
 	stamina_holder.toggle_move_intent(MOVE_INTENT_WALK)

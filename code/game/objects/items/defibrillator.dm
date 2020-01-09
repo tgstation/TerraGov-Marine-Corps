@@ -209,15 +209,13 @@
 	user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 	H.on_revive()
 	H.timeofdeath = 0
-	H.stat = UNCONSCIOUS
+	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.regenerate_icons()
 	H.reload_fullscreens()
-	H.update_canmove()
 	H.flash_eyes()
-	H.apply_effect(10, EYE_BLUR)
-	H.apply_effect(10, PARALYZE)
-	H.update_canmove()
+	H.blur_eyes(10)
+	H.Unconscious(10 SECONDS)
 	H.handle_regular_hud_updates()
 	H.updatehealth() //One more time, so it doesn't show the target as dead on HUDs
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")

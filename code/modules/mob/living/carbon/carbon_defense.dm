@@ -1,3 +1,24 @@
+/mob/living/adjustOxyLoss(amount)
+	. = ..()
+	if(isnull(.))
+		return
+	if(oxyloss > CARBON_KO_OXYLOSS)
+		if(. <= CARBON_KO_OXYLOSS)
+			add_knockout_flags(KNOCKOUT_OXYLOSS)
+	else if(. > CARBON_KO_OXYLOSS)
+		remove_knockout_flags(KNOCKOUT_OXYLOSS)
+
+/mob/living/setOxyLoss(amount)
+	. = ..()
+	if(isnull(.))
+		return
+	if(oxyloss > CARBON_KO_OXYLOSS)
+		if(. <= CARBON_KO_OXYLOSS)
+			add_knockout_flags(KNOCKOUT_OXYLOSS)
+	else if(. > CARBON_KO_OXYLOSS)
+		remove_knockout_flags(KNOCKOUT_OXYLOSS)
+
+
 /mob/living/carbon/proc/has_smoke_protection()
 	if(stat == DEAD) //they don't breath
 		return TRUE

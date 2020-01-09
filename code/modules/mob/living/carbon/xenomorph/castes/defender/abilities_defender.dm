@@ -87,7 +87,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-	H.Knockdown(20)
+	H.Wormed(2 SECONDS)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 // ***************************************
@@ -143,7 +143,7 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 			UPDATEHEALTH(H)
-			H.Knockdown(20)
+			H.Wormed(2 SECONDS)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -311,5 +311,4 @@
 	set_frozen(on)
 	anchored = on
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
-	update_canmove()
 	update_icons()

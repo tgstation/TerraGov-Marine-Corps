@@ -35,7 +35,10 @@
 	var/obj/screen/zone_sel
 	var/obj/screen/pull_icon
 	var/obj/screen/throw_icon
+	var/obj/screen/stand_icon
+	var/obj/screen/crawl_icon
 	var/obj/screen/rest_icon
+	var/obj/screen/toggle_resting_icon
 	var/obj/screen/oxygen_icon
 	var/obj/screen/pressure_icon
 	var/obj/screen/toxin_icon

@@ -22,6 +22,7 @@
 
 	// *** Health *** //
 	max_health = 150
+	caste_health_threshold_hardcrit = -50
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -30,7 +31,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/spitter)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_CRAWL
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 0, "acid" = 15)
@@ -41,7 +42,6 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/xeno_spit,

@@ -67,6 +67,9 @@
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
+	health_threshold_dead = xeno_caste.caste_health_threshold_dead
+	health_threshold_hardcrit = xeno_caste.caste_health_threshold_hardcrit
+	health_threshold_softcrit = xeno_caste.caste_health_threshold_softcrit
 	setXenoCasteSpeed(xeno_caste.speed)
 	armor = getArmor(arglist(xeno_caste.armor))
 
@@ -195,7 +198,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
-	if(!isliving(AM))
+	if(pull_block_flags || !isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
 	if(L.buckled)
@@ -213,7 +216,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Knockdown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+		H.Wormed(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
@@ -309,3 +312,27 @@
 	if(!. || can_reenter_corpse)
 		return
 	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
+
+/mob/living/carbon/xenomorph/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(stat)
+		if(UNCONSCIOUS)
+			see_in_dark = 5
+		if(DEAD, SOFT_CRIT, CONSCIOUS)
+			if(. == UNCONSCIOUS)
+				see_in_dark = 8
+
+/mob/living/carbon/xenomorph/set_lying(new_lying)
+	. = ..()
+	if(isnull(.))
+		return
+	if(lying)
+		if(!.)
+			if(!(xeno_caste.caste_flags & CASTE_CAN_CRAWL))
+				add_hand_block_flags(HANDBLOCK_XENOLYING)
+				add_immobile_flags(IMMOBILE_XENOLYING)
+	else if(.)
+		remove_hand_block_flags(HANDBLOCK_XENOLYING)
+		remove_immobile_flags(IMMOBILE_XENOLYING)

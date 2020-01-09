@@ -82,7 +82,7 @@
 	if(incapacitated(TRUE))
 		return
 
-	face_atom(A)
+	mob_face_atom(A)
 
 	if(next_move > world.time)
 		return
@@ -143,6 +143,33 @@
 			if(A.Adjacent(src))
 				A.attack_hand(src)
 			RangedAttack(A, params)
+
+
+/mob/proc/mob_face_atom(atom/A)
+	face_atom(A)
+
+/mob/living/carbon/human/mob_face_atom(atom/A)
+	if(!lying)
+		face_atom(A)
+		return
+
+	if(!immobile_flags)
+		if(lying > 180)
+			if(get_dir(src, A) & NORTH)
+				setDir(EAST)
+			else
+				setDir(WEST)
+		else
+			if(get_dir(src, A) & NORTH)
+				setDir(WEST)
+			else
+				setDir(EAST)
+		return
+
+	if(get_dir(src, A) & NORTH)
+		setDir(NORTH)
+	else
+		setDir(SOUTH)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
@@ -251,6 +278,10 @@
 	if(ismob(A))
 		changeNext_move(CLICK_CD_MELEE)
 
+/mob/living/UnarmedAttack(atom/A, proximity_flag)
+	if(hand_block_flags)
+		return
+	return ..()
 
 /*
 	Ranged unarmed attack:

@@ -154,6 +154,8 @@
 				return FALSE
 
 			switch(user.stat)
+				if(SOFT_CRIT)
+					to_chat(user, "<span class='warning'>You cannot [key] while in a critical condition!</span>")
 				if(UNCONSCIOUS)
 					to_chat(user, "<span class='notice'>You cannot [key] while unconscious.</span>")
 				if(DEAD)

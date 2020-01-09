@@ -4,64 +4,153 @@
 	tick_interval = 0
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
-	var/needs_update_stat = FALSE
 
-/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration, updating_canmove)
+/datum/status_effect/incapacitating/on_creation(mob/living/new_owner, set_duration)
 	if(isnum(set_duration))
 		duration = set_duration
-	. = ..()
-	if(.)
-		if(updating_canmove)
-			//owner.update_mobility() pending mobility state port
-			owner.update_canmove()
-			if(needs_update_stat || issilicon(owner))
-				owner.update_stat()
+	return ..()
 
-/datum/status_effect/incapacitating/on_remove()
-	//owner.update_mobility() pending mobility state port
-	owner.update_canmove()
-	if(needs_update_stat || issilicon(owner)) //silicons need stat updates in addition to normal canmove updates
-		owner.update_stat()
 
 //STUN
 /datum/status_effect/incapacitating/stun
 	id = "stun"
 
+/datum/status_effect/incapacitating/stun/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_immobile_flags(IMMOBILE_STATUSEFFECT_STUN)
+	owner.add_hand_block_flags(HANDBLOCK_STATUSEFFECT_STUN)
+
+/datum/status_effect/incapacitating/stun/on_remove()
+	owner.remove_immobile_flags(IMMOBILE_STATUSEFFECT_STUN)
+	owner.remove_hand_block_flags(HANDBLOCK_STATUSEFFECT_STUN)
+	return ..()
+
+
 //KNOCKDOWN
 /datum/status_effect/incapacitating/knockdown
 	id = "knockdown"
+
+/datum/status_effect/incapacitating/knockdown/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_lying_flags(LYING_STATUSEFFECT_KNOCKEDDOWN)
+
+/datum/status_effect/incapacitating/knockdown/on_remove()
+	owner.remove_lying_flags(LYING_STATUSEFFECT_KNOCKEDDOWN)
+	return ..()
+
 
 //IMMOBILIZED
 /datum/status_effect/incapacitating/immobilized
 	id = "immobilized"
 
+/datum/status_effect/incapacitating/immobilized/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_immobile_flags(IMMOBILE_STATUSEFFECT_IMMOBILIZED)
+	owner.add_pull_block_flags(PULLBLOCK_STATUSEFFECT_IMMOBILIZED)
+	owner.add_ui_block_flags(UI_STATUSEFFECT_IMMOBILIZED)
+
+/datum/status_effect/incapacitating/immobilized/on_remove()
+	owner.remove_immobile_flags(IMMOBILE_STATUSEFFECT_IMMOBILIZED)
+	owner.remove_pull_block_flags(PULLBLOCK_STATUSEFFECT_IMMOBILIZED)
+	owner.remove_ui_block_flags(UI_STATUSEFFECT_IMMOBILIZED)
+	return ..()
+
+
+//PARALYZED
 /datum/status_effect/incapacitating/paralyzed
 	id = "paralyzed"
+
+/datum/status_effect/incapacitating/paralyzed/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_hand_block_flags(HANDBLOCK_STATUSEFFECT_PARALYZED)
+	owner.add_immobile_flags(IMMOBILE_STATUSEFFECT_PARALYZED)
+	owner.add_lying_flags(LYING_STATUSEFFECT_PARALYZED)
+
+/datum/status_effect/incapacitating/paralyzed/on_remove()
+	owner.remove_hand_block_flags(HANDBLOCK_STATUSEFFECT_PARALYZED)
+	owner.remove_immobile_flags(IMMOBILE_STATUSEFFECT_PARALYZED)
+	owner.remove_lying_flags(LYING_STATUSEFFECT_PARALYZED)
+	return ..()
+
+
+//DISABLEHANDS
+/datum/status_effect/incapacitating/disablehands
+	id = "disablehands"
+
+/datum/status_effect/incapacitating/disablehands/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_hand_block_flags(HANDBLOCK_STATUSEFFECT_DISABLEHANDS)
+
+/datum/status_effect/incapacitating/disablehands/on_remove()
+	owner.remove_hand_block_flags(HANDBLOCK_STATUSEFFECT_DISABLEHANDS)
+	return ..()
+
+
+//WORMED
+/datum/status_effect/incapacitating/wormed
+	id = "wormed"
+
+/datum/status_effect/incapacitating/wormed/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_hand_block_flags(HANDBLOCK_STATUSEFFECT_WORMED)
+	owner.add_lying_flags(LYING_STATUSEFFECT_WORMED)
+
+/datum/status_effect/incapacitating/wormed/on_remove()
+	owner.remove_hand_block_flags(HANDBLOCK_STATUSEFFECT_WORMED)
+	owner.remove_lying_flags(LYING_STATUSEFFECT_WORMED)
+	return ..()
+
 
 //UNCONSCIOUS
 /datum/status_effect/incapacitating/unconscious
 	id = "unconscious"
-	needs_update_stat = TRUE
+
+/datum/status_effect/incapacitating/unconscious/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_knockout_flags(KNOCKOUT_STATUSEFFECT_UNCONSCIOUS)
+
+/datum/status_effect/incapacitating/unconscious/on_remove()
+	owner.remove_knockout_flags(KNOCKOUT_STATUSEFFECT_UNCONSCIOUS)
+	return ..()
 
 /datum/status_effect/incapacitating/unconscious/tick()
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
 
+
 //SLEEPING
 /datum/status_effect/incapacitating/sleeping
 	id = "sleeping"
 	alert_type = /obj/screen/alert/status_effect/asleep
-	needs_update_stat = TRUE
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
-/datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner, updating_canmove)
+/datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner)
 	. = ..()
 	if(.)
 		if(iscarbon(owner)) //to avoid repeated istypes
 			carbon_owner = owner
 		if(ishuman(owner))
 			human_owner = owner
+	owner.add_knockout_flags(KNOCKOUT_STATUSEFFECT_SLEEEPING)
+
+/datum/status_effect/incapacitating/sleeping/on_remove()
+	owner.remove_knockout_flags(KNOCKOUT_STATUSEFFECT_SLEEEPING)
+	return ..()
 
 /datum/status_effect/incapacitating/sleeping/Destroy()
 	carbon_owner = null
@@ -91,7 +180,7 @@
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
-		if(prob(10) && owner.health > owner.health_threshold_crit)
+		if(prob(10) && owner.stat > owner.health_threshold_hardcrit)
 			owner.emote("snore")
 
 /obj/screen/alert/status_effect/asleep
@@ -103,8 +192,17 @@
 /datum/status_effect/incapacitating/adminsleep
 	id = "adminsleep"
 	alert_type = /obj/screen/alert/status_effect/adminsleep
-	needs_update_stat = TRUE
 	duration = -1
+
+/datum/status_effect/incapacitating/adminsleep/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_knockout_flags(KNOCKOUT_STATUSEFFECT_ADMINSLEEP)
+
+/datum/status_effect/incapacitating/adminsleep/on_remove()
+	owner.remove_knockout_flags(KNOCKOUT_STATUSEFFECT_ADMINSLEEP)
+	return ..()
 
 /obj/screen/alert/status_effect/adminsleep
 	name = "Admin Slept"

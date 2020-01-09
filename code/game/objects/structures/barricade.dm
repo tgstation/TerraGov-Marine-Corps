@@ -88,8 +88,6 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/attack_animal(mob/user as mob)
-	return attack_alien(user)
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/M)
 	if(is_wired)

@@ -6,9 +6,10 @@
 		setShock_Stage(0)
 		return //Godmode or some other pain reducers. //Analgesic avoids all traumatic shock temporarily
 
+	. = shock_stage
 	switch(traumatic_shock)
 		if(200 to INFINITY)
-			setShock_Stage(max(shock_stage + 5, 150)) //Indescribable pain. At this point, you will immediately be knocked down, with shock stage set to 150.
+			setShock_Stage(CLAMP(shock_stage + 5, maxHealth, maxHealth * 2)) //Indescribable pain. At this point, you will immediately be knocked down, with shock stage set to maxHealth.
 
 		if(150 to 200)
 			adjustShock_Stage(2) //If their shock exceeds 150, add more to their shock stage, regardless of health.
@@ -17,13 +18,14 @@
 			adjustShock_Stage(1) //If their shock exceeds 100, add more to their shock stage, regardless of health.
 
 		if(75 to 100)
-			setShock_Stage(min(shock_stage - 1, 120)) //No greater than 120
+			setShock_Stage(CLAMP(shock_stage - 1, 0, 120)) //No greater than 120
 
 		if(50 to 75)
-			setShock_Stage(min(shock_stage - 2, 80))
+			setShock_Stage(CLAMP(shock_stage - 2, 0, 80))
 
 		if(-INFINITY to 50)
-			setShock_Stage(min(shock_stage - 5, 60)) //When we have almost no pain remaining. No greater than 60, reduced by 10 each time.
+			if(shock_stage)
+				setShock_Stage(CLAMP(shock_stage - 5, 0, 60)) //When we have almost no pain remaining. No greater than 60, reduced by 10 each time.
 
 	//This just adds up effects together at each step, with a few small exceptions. Preferable to copy and paste rather than have a billion if statements.
 	switch(shock_stage)
@@ -56,8 +58,10 @@
 			if(prob(7))
 				if(!lying)
 					emote("me", 1, " is having trouble standing.")
+					Knockdown(10 SECONDS)
+				else
+					Wormed(10 SECONDS)
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				Knockdown(10 SECONDS)
 		if(120 to 149)
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
@@ -65,20 +69,24 @@
 				if(!lying)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				Knockdown(10 SECONDS)
-			if(prob(2))
-				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				Unconscious(10 SECONDS)
+				Wormed(10 SECONDS)
+			else if(prob(2))
+				to_chat(src, "<span class='danger'>[pick("Your lose control over your body", "You feel like you could die any moment now", "Your muscles stop responding")]!</span>")
+				Paralyze(10 SECONDS)
 		if(150 to INFINITY)
 			if(shock_stage == 150 && !lying) emote("me", 1, "can no longer stand, collapsing!")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
+				Paralyze(10 SECONDS)
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
-				Unconscious(10 SECONDS)
-			Knockdown(10 SECONDS)
+				Unconscious(6 SECONDS)
+			if(. < 150)
+				add_lying_flags(LYING_PAINSHOCK)
+	if(. >= 150 && shock_stage < 150)
+		remove_lying_flags(LYING_PAINSHOCK)
 
 
 /mob/living/carbon/human/halloss_recovery()

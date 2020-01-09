@@ -22,13 +22,13 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(75, 85)
 					f_loss = rand(75, 85)
-					Knockdown(12 SECONDS)
+					Wormed(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(80, 90)
 					f_loss = rand(80, 90)
-					Knockdown(16 SECONDS)
+					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 				else //Lower than XENO_BOMB_RESIST_1
@@ -45,19 +45,19 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(55, 55)
 					f_loss = rand(55, 55)
-					Knockdown(80)
+					Knockdown(8 SECONDS)
 					adjust_stagger(1)
 					add_slowdown(3)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(60, 70)
 					f_loss = rand(60, 70)
-					Knockdown(12 SECONDS)
+					Wormed(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(65, 75)
 					f_loss = rand(65, 75)
-					Knockdown(16 SECONDS)
+					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 		if(3)
@@ -135,7 +135,7 @@
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - health_threshold_dead)
 
 	if(updating_health)
 		updatehealth()
@@ -147,7 +147,7 @@
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	fireloss = CLAMP(fireloss + amount, 0, maxHealth - health_threshold_dead)
 
 	if(updating_health)
 		updatehealth()

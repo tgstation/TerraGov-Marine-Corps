@@ -122,7 +122,7 @@
 
 /obj/structure/bed/nest/post_buckle_mob(mob/living/buckling_mob)
 	. = ..()
-	ENABLE_BITFIELD(buckling_mob.restrained_flags, RESTRAINED_XENO_NEST)
+	buckling_mob.add_restrained_flags(RESTRAINED_XENO_NEST)
 	buckling_mob.pulledby?.stop_pulling()
 
 /obj/structure/bed/nest/post_unbuckle_mob(mob/living/buckled_mob)
@@ -130,7 +130,7 @@
 	resisting_time = 0 //Reset it to keep track on if someone is actively resisting.
 	if(QDELETED(buckled_mob))
 		return
-	DISABLE_BITFIELD(buckled_mob.restrained_flags, RESTRAINED_XENO_NEST)
+	buckled_mob.remove_restrained_flags(RESTRAINED_XENO_NEST)
 
 
 /obj/structure/bed/nest/update_icon()

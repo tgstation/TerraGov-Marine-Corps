@@ -141,6 +141,12 @@
 	if(istype(O))
 		O.obj_flags |= IN_USE
 
+/mob/living/set_machine(obj/O)
+	if(ui_block_flags)
+		return
+	return ..()
+
+
 /obj/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if("anchored")

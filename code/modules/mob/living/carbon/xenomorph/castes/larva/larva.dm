@@ -86,14 +86,11 @@
 
 	if(stat == DEAD)
 		icon_state = "[bloody][base_icon_state] Dead"
-	else if(handcuffed || legcuffed)
-		icon_state = "[bloody][base_icon_state] Cuff"
-
 	else if(lying)
-		if((resting || IsSleeping()) && (!IsKnockdown() && !IsUnconscious() && health > 0))
-			icon_state = "[bloody][base_icon_state] Sleeping"
-		else
+		if(lying_flags)
 			icon_state = "[bloody][base_icon_state] Stunned"
+		else
+			icon_state = "[bloody][base_icon_state] Sleeping"
 	else
 		icon_state = "[bloody][base_icon_state]"
 

@@ -38,7 +38,7 @@
 	..()
 
 /mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
-	if(!check_state() || agility || !isliving(AM))
+	if(pull_block_flags || !check_state() || agility || !isliving(AM))
 		return FALSE
 
 	var/mob/living/L = AM
@@ -66,10 +66,10 @@
 	GLOB.round_statistics.warrior_grabs++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
 	setGrabState(GRAB_NECK)
-	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
+	L.add_restrained_flags(RESTRAINED_NECKGRAB)
 	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	L.drop_all_held_items()
-	L.Knockdown(1)
+	if(!L.lying)
+		L.set_lying_down() //Force them to the ground.
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE

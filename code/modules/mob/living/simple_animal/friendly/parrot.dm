@@ -292,7 +292,7 @@
 
 
 /mob/living/simple_animal/parrot/handle_automated_movement()
-	if(!isturf(loc) || !canmove || buckled)
+	if(!isturf(loc) || immobile_flags || buckled)
 		return
 
 	if(client && stat == CONSCIOUS && parrot_state != icon_living)
@@ -461,7 +461,7 @@
 			return
 
 		attacktext = pick("claws at", "chomps")
-		L.attack_animal(src)
+		UnarmedAttack(L)
 
 	else
 		walk(src,0)

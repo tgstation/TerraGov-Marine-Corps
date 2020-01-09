@@ -84,19 +84,20 @@
 	set src in oview(1) // One square distance
 	set category = "Object"
 	set name = "Reset Lock"
-	if(!usr.canmove || usr.stat || usr.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+	if(!ishuman(usr))
 		return
-	if(ishuman(usr))
-		if (src.locked || !src.registered_name)
-			to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
-		else if (src.broken)
-			to_chat(usr, "<span class='warning'>It appears to be broken.</span>")
-		else
-			if (src.opened)
-				if(!src.close())
-					return
-			src.locked = 1
-			src.icon_state = src.icon_locked
-			src.registered_name = null
-			src.desc = "It's a secure locker for personnel. The first card swiped gains control."
-	return
+	var/mob/living/carbon/human/user = usr
+	if(user.immobile_flags || user.incapacitated() || user.restrained()) // Don't use it if you're not able to! Checks for stuns, ghost and restrain
+		return
+	if(locked || !registered_name)
+		to_chat(user, "<span class='warning'>You need to unlock it first.</span>")
+		return
+	if(broken)
+		to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+		return
+	if(opened && !close())
+		return
+	locked = TRUE
+	icon_state = icon_locked
+	registered_name = null
+	desc = "It's a secure locker for personnel. The first card swiped gains control."

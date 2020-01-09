@@ -27,10 +27,9 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= get_crit_threshold())
+			if(health >= get_softcrit_threshold())
 				help_shake_act(H)
 				return 1
-//			if(H.health < -75)	return 0
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
 				to_chat(H, "<span class='boldnotice'>Remove your mask!</span>")
@@ -45,7 +44,7 @@
 			H.visible_message("<span class='danger'>[H] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-				if(health > get_death_threshold() && health < get_crit_threshold())
+				if(health > get_death_threshold() && health < get_softcrit_threshold())
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
@@ -92,7 +91,7 @@
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
 			if(damage >= 5 && prob(50))
 				visible_message("<span class='danger'>[H] has weakened [src]!</span>", null, null, 5)
-				apply_effect(3, WEAKEN, armor_block)
+				Wormed(2 SECONDS)
 
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)
@@ -103,8 +102,6 @@
 			log_combat(user, src, "disarmed")
 
 			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
-
-			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 
 			//Accidental gun discharge
 			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
@@ -132,7 +129,7 @@
 			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
+				Paralyze(3 SECONDS)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message("<span class='danger'>[H] has pushed [src]!</span>", null, null, 5)
 				return

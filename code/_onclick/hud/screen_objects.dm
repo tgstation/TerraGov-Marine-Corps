@@ -255,29 +255,94 @@
 /obj/screen/mov_intent/alien
 	icon = 'icons/mob/screen/alien.dmi'
 
+
+/obj/screen/stand
+	name = "stand"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "stand_on"
+	screen_loc = ui_stand
+
+/obj/screen/stand/Click()
+	if(!isliving(usr))
+		return
+	var/mob/living/L = usr
+	L.stand()
+
+/obj/screen/stand/update_icon(mob/user)
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	icon_state = "stand_[living_user.resting == STANDING ? "on" : "off"]"
+
+
+/obj/screen/crawl
+	name = "crawl"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "crawl_off"
+	screen_loc = ui_crawl
+
+/obj/screen/crawl/Click()
+	if(!isliving(usr))
+		return
+	var/mob/living/living_user = usr
+	living_user.crawl()
+
+/obj/screen/crawl/update_icon(mob/user)
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	icon_state = "crawl_[living_user.resting == CRAWLING ? "on" : "off"]"
+
+
 /obj/screen/rest
 	name = "rest"
 	icon = 'icons/mob/screen/midnight.dmi'
-	icon_state = "act_rest"
-	screen_loc = ui_above_movement
+	icon_state = "rest_off"
+	screen_loc = ui_rest
 
 /obj/screen/rest/Click()
 	if(!isliving(usr))
 		return
-	var/mob/living/L = usr
-	L.lay_down()
+	var/mob/living/living_user = usr
+	living_user.lay_down()
 
-/obj/screen/rest/update_icon(mob/mymob)
-	if(!isliving(mymob))
+/obj/screen/rest/update_icon(mob/user)
+	if(!isliving(user))
 		return
-	var/mob/living/L = mymob
-	icon_state = "act_rest[L.resting ? "0" : ""]"
+	var/mob/living/living_user = user
+	icon_state = "rest_[living_user.resting == RESTING ? "on" : "off"]"
+
+
+/obj/screen/toggle_resting
+	name = "toggle resting"
+	icon = 'icons/mob/screen/alien.dmi'
+	icon_state = "stance_toggle_stand"
+	screen_loc = ui_above_movement
+
+/obj/screen/toggle_resting/Click()
+	if(!isliving(usr))
+		return
+	var/mob/living/living_user = usr
+	living_user.rest()
+
+/obj/screen/toggle_resting/update_icon(mob/user)
+	if(!isliving(user))
+		return
+	var/mob/living/living_user = user
+	switch(living_user.resting)
+		if(STANDING)
+			icon_state = "stance_toggle_stand"
+		if(CRAWLING)
+			icon_state = "stance_toggle_crawl"
+		if(RESTING)
+			icon_state = "stance_toggle_rest"
+
 
 /obj/screen/pull
 	name = "stop pulling"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "pull0"
-	screen_loc = ui_above_movement
+	screen_loc = ui_resist_pull
 
 
 /obj/screen/pull/Click()
@@ -299,7 +364,7 @@
 	name = "resist"
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "act_resist"
-	screen_loc = ui_above_intent
+	screen_loc = ui_resist_pull
 
 
 /obj/screen/resist/Click()

@@ -1011,7 +1011,41 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = GROIN
 	vital = 1
 
-/datum/limb/l_arm
+
+/datum/limb/appendage/droplimb(amputation, delete_limb)
+	. = ..()
+	if(!.)
+		return
+	if(owner.get_num_legs())
+		if(owner.get_num_arms())
+			return
+		owner.add_hand_block_flags(HANDBLOCK_ARMLESS)
+		return
+	owner.add_lying_flags(LYING_LEGLESS)
+	if(owner.get_num_arms())
+		return
+	owner.add_hand_block_flags(HANDBLOCK_ARMLESS)
+	owner.add_immobile_flags(IMMOBILE_LIMBLESS)
+
+/datum/limb/appendage/robotize()
+	. = ..()
+	owner.remove_immobile_flags(IMMOBILE_LIMBLESS)
+
+/datum/limb/appendage/rejuvenate()
+	. = ..()
+	owner.remove_immobile_flags(IMMOBILE_LIMBLESS)
+
+
+/datum/limb/appendage/arms/robotize()
+	. = ..()
+	owner.remove_hand_block_flags(HANDBLOCK_ARMLESS)
+
+/datum/limb/appendage/arms/rejuvenate()
+	. = ..()
+	owner.remove_hand_block_flags(HANDBLOCK_ARMLESS)
+
+
+/datum/limb/appendage/arms/l_arm
 	name = "l_arm"
 	display_name = "left arm"
 	icon_name = "l_arm"
@@ -1023,7 +1057,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.l_hand, "left hand")
 
-/datum/limb/l_leg
+
+/datum/limb/appendage/legs/droplimb(amputation, delete_limb)
+	. = ..()
+	if(!.)
+		return
+	owner.update_leg_movespeed()
+
+/datum/limb/appendage/legs/robotize()
+	. = ..()
+	owner.remove_lying_flags(LYING_LEGLESS)
+	owner.update_leg_movespeed()
+
+/datum/limb/appendage/legs/rejuvenate()
+	. = ..()
+	owner.remove_lying_flags(LYING_LEGLESS)
+	owner.update_leg_movespeed()
+
+
+/datum/limb/appendage/legs/l_leg
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
@@ -1032,7 +1084,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = LEG_LEFT
 	icon_position = LEFT
 
-/datum/limb/r_arm
+/datum/limb/appendage/arms/r_arm
 	name = "r_arm"
 	display_name = "right arm"
 	icon_name = "r_arm"
@@ -1044,7 +1096,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.r_hand, "right hand")
 
-/datum/limb/r_leg
+/datum/limb/appendage/legs/r_leg
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
