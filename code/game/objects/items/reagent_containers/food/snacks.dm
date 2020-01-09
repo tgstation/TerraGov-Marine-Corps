@@ -2836,7 +2836,7 @@
 		qdel(src)
 		return
 	succ_dur--
-	if((reagents?.total_volume) && (next_succ <= world.time))
+	if((reagents.total_volume) && (next_succ <= world.time))
 		handle_reagents()
 		next_succ = world.time + succ_int
  
