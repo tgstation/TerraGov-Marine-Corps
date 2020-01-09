@@ -111,7 +111,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/a_intent_change(new_intent)
-	return FALSE //Unable to change intent, forced help intent
+	return //Unable to change intent, forced help intent
 
 /mob/living/carbon/xenomorph/hivemind/projectile_hit()
 	return FALSE
