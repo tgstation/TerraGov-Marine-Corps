@@ -149,7 +149,7 @@
 
 /obj/machinery/floodlight/landing/testroom
 	name = "Ambience Light"
-	desc = "A powerful light placed cleverly on the base to provide better visibility."
+	desc = "A powerful light placed concealed on the base to provide better visibility."
 	density = 0
 	alpha = 0
 
