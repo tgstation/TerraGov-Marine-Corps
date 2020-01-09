@@ -24,7 +24,7 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/larva/a_intent_change(new_intent)
+/mob/living/carbon/xenomorph/larva/a_intent_change()
 	return
 
 /mob/living/carbon/xenomorph/larva/start_pulling(atom/movable/AM, suppress_message = FALSE)
