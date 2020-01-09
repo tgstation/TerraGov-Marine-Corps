@@ -440,6 +440,7 @@
 #include "code\game\objects\items\pipe_painter.dm"
 #include "code\game\objects\items\portable_vendor.dm"
 #include "code\game\objects\items\power_cells.dm"
+#include "code\game\objects\items\quickdeploy_cade.dm"
 #include "code\game\objects\items\rcd.dm"
 #include "code\game\objects\items\restraints.dm"
 #include "code\game\objects\items\rpd.dm"
