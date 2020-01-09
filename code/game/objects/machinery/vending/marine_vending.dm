@@ -636,6 +636,7 @@
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/suppressor = 8,
 						/obj/item/attachable/widelens = 4,
+						/obj/item/attachable/heatlens = 4,
 						/obj/item/attachable/focuslens = 4,
 						/obj/item/attachable/efflens = 4,
 						/obj/item/attachable/pulselens = 4,

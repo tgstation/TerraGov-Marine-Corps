@@ -167,6 +167,7 @@
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/focuslens,
 						/obj/item/attachable/widelens,
+						/obj/item/attachable/heatlens,
 						/obj/item/attachable/efflens,
 						/obj/item/attachable/pulselens)
 
