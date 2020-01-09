@@ -148,8 +148,10 @@
 	set_light(10)
 
 /obj/machinery/floodlight/landing/testroom
-	name = "Installation Light"
-	desc = "A powerful light stationed on the base to provide better visibility."
+	name = "Ambience Light"
+	desc = "A powerful light placed cleverly on the base to provide better visibility."
+	density = 0
+	alpha = 0
 
 /obj/machinery/floodlight/landing/testroom/Initialize(mapload, ...)
 	. = ..()

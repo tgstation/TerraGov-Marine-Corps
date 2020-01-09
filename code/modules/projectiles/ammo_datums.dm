@@ -25,7 +25,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/scatter  					= 0 		// How much the ammo scatters when burst fired, added to gun scatter, along with other mods
 	var/damage 						= 0 		// This is the base damage of the bullet as it is fired
 	var/damage_falloff 				= 1 		// How much damage the bullet loses per turf traveled
-	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE, STAMINA are the only things that should be in here
+	var/damage_type 				= BRUTE 	// BRUTE, BURN, TOX, OXY, CLONE are the only things that should be in here
 	var/penetration					= 0 		// How much armor it ignores before calculations take place
 	var/shrapnel_chance 			= 0 		// The % chance it will imbed in a human
 	var/shell_speed 				= 2 		// How fast the projectile moves
