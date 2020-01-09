@@ -110,7 +110,7 @@
 /mob/living/carbon/xenomorph/hivemind/AltClickOn(atom/A)
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/a_intent_change(new_intent)
+/mob/living/carbon/xenomorph/hivemind/a_intent_change()
 	return //Unable to change intent, forced help intent
 
 /mob/living/carbon/xenomorph/hivemind/projectile_hit()
