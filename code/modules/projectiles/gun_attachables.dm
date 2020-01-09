@@ -433,7 +433,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/widelens
 	name = "M43 wide lens"
-	desc = "Splits the lens into three, allowing the lasgun to use a deadly close range blast on overcharge akin to a traditional pellet based shotgun shell."
+	desc = "Splits the lens into three, allowing the lasgun to use a deadly close-range blast on overcharge akin to a traditional pellet based shotgun shot."
 	slot = "muzzle"
 	icon_state = "wide"
 	attach_icon = "wide_a"
