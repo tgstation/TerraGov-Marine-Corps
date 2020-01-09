@@ -2827,7 +2827,11 @@
  
 /obj/item/reagent_containers/food/snacks/lollipop/process()
 	if(!iscarbon(loc))
-		return
+		stack_trace("lollipop processing outside of a carbon loc")
+		return PROCESS_KILL
+	if(!reagents)
+		stack_trace("lollipop processing without a reagents datum")
+		return PROCESS_KILL
 	if(succ_dur < 1)
 		qdel(src)
 		return
