@@ -1,0 +1,8 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "New Crash landing spots in Desert, Big Red, LV624, and Icy Caves."
+  - rscadd: "Replaced firearm crates in Big Red's Eta Lab with regular crates."
+  - rscdel: "Removed the firearm crates in Big Red's Eta Lab."
+  - tweak: "Moved the nuke in Big Red to Lambda lab."
+  - tweak: "Moved the disk generator in Eta Lab closer to the APC."
