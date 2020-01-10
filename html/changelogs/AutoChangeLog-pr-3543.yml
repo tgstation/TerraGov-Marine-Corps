@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Most roles moved to the jobs system. You can select LOW-MED-HIGH preferences on roles such as Squad Marine, Survivor or Xenomorph now."
