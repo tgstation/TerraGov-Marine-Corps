@@ -535,7 +535,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ace" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "acf" = (
@@ -3202,7 +3202,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "alN" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "alP" = (
@@ -3487,7 +3487,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "amM" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -5999,7 +5999,7 @@
 	},
 /area/lv624/lazarus/hydroponics)
 "awQ" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -7753,7 +7753,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "aDm" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "aDn" = (
@@ -8620,7 +8620,7 @@
 /area/lv624/lazarus/fitness)
 "aHo" = (
 /obj/item/toy/inflatable_duck,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/ground/river,
 /area/lv624/lazarus/fitness)
 "aHp" = (
@@ -9338,7 +9338,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "aKb" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -10217,7 +10217,7 @@
 	},
 /area/lv624/lazarus/robotics)
 "aNc" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -10919,7 +10919,7 @@
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aPy" = (
@@ -11163,7 +11163,7 @@
 /obj/structure/bed/chair/comfy/lime{
 	dir = 1
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -11799,7 +11799,7 @@
 	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -12365,7 +12365,7 @@
 	},
 /area/lv624/ground/jungle4)
 "aTX" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle4)
 "aTY" = (
@@ -12438,7 +12438,7 @@
 	icon_state = "coffin_open";
 	opened = 1
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -14470,7 +14470,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baE" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "baF" = (
@@ -15369,7 +15369,7 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdC" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -18774,7 +18774,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -19479,7 +19479,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
 "bqT" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bqU" = (

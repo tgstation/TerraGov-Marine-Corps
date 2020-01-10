@@ -200,7 +200,6 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_id)
 		wear_id = null
-		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -299,7 +298,6 @@
 		if(SLOT_WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
-			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
 		if(SLOT_EARS)

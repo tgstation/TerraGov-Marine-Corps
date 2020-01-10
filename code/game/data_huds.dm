@@ -415,9 +415,6 @@
 	return
 
 
-#define SQUAD_HUD_SUPPORTED_SQUAD_JOBS SQUAD_LEADER, SQUAD_ENGINEER, SQUAD_SPECIALIST, SQUAD_CORPSMAN, SQUAD_SMARTGUNNER, SQUAD_MARINE
-#define SQUAD_HUD_SUPPORTED_OTHER_JOBS CAPTAIN, EXECUTIVE_OFFICER, FIELD_COMMANDER, STAFF_OFFICER, PILOT_OFFICER, CHIEF_SHIP_ENGINEER, CORPORATE_LIAISON, CHIEF_MEDICAL_OFFICER, REQUISITIONS_OFFICER, COMMAND_MASTER_AT_ARMS, TANK_CREWMAN, MEDICAL_OFFICER, SHIP_TECH, SYNTHETIC, MASTER_AT_ARMS, MEDICAL_RESEARCHER
-
 /mob/living/carbon/human/hud_set_squad()
 	var/image/holder = hud_list[SQUAD_HUD]
 	holder.icon_state = ""
@@ -425,30 +422,24 @@
 
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
-		var/rank = job
+		var/rank = job.title
 		if(assigned_squad.squad_leader == src)
 			rank = SQUAD_LEADER
-		switch(rank)
-			if(SQUAD_HUD_SUPPORTED_SQUAD_JOBS)
-				var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
-				IMG.color = squad_color
-				holder.overlays += IMG
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [rank]")
+		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
+			var/image/IMG = image('icons/mob/hud.dmi', src, "hudmarine")
+			IMG.color = squad_color
+			holder.overlays += IMG
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudmarine [rank]")
 		var/fireteam = wear_id?.assigned_fireteam
 		if(fireteam)
 			var/image/IMG2 = image('icons/mob/hud.dmi', src, "hudmarinesquadft[fireteam]")
 			IMG2.color = squad_color
 			holder.overlays += IMG2
 
-	else
-		switch(job)
-			if(SQUAD_HUD_SUPPORTED_OTHER_JOBS)
-				holder.icon_state = "hudmarine [job]"
+	else if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
+		holder.icon_state = "hudmarine [job.title]"
 
 	hud_list[SQUAD_HUD] = holder
-
-#undef SQUAD_HUD_SUPPORTED_SQUAD_JOBS
-#undef SQUAD_HUD_SUPPORTED_OTHER_JOBS
 
 
 /datum/atom_hud/order

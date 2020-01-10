@@ -102,7 +102,11 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != CAPTAIN)
+			if(!isliving(usr))
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
+				return
+			var/mob/living/user = usr
+			if(!ismarinecaptainjob(user.job))
 				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 

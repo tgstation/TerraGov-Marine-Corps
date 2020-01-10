@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
@@ -89,7 +89,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!ishuman(VT.source))
 			return
 		var/mob/living/carbon/human/H = VT.source
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
@@ -245,19 +245,12 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
 
-	// The mob's job identity
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
-		if(!istype(J))
-			job = ""
-		else if(H.mind)
-			job = H.mind.comm_title
+	if(isliving(M))
+		var/mob/living/living_speaker = M
+		if(living_speaker.job)
+			job = living_speaker.job.comm_title
 		else
-			job = J.comm_title
-	else if(isAI(M))  // AI
-		job = "AI"
+			job = ""
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
 

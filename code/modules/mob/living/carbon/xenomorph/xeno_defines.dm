@@ -3,6 +3,7 @@
 	var/display_name = ""
 	var/upgrade_name = "Young"
 	var/caste_desc = null
+	var/job_type = /datum/job/xenomorph
 
 	var/caste_type_path = null
 
@@ -119,9 +120,8 @@
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	buckle_flags = NONE
-	var/hivenumber = XENO_HIVE_NORMAL
-	job = ROLE_XENOMORPH
 	faction = "Xeno"
+	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
 

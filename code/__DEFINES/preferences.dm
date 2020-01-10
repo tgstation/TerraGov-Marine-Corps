@@ -16,8 +16,8 @@
 #define MAX_GEAR_COST 5 //Custom loadout point limit.
 
 #define BE_ALIEN				(1<<0)
-#define BE_QUEEN				(1<<1)
-#define BE_SURVIVOR				(1<<2)
+#define BE_QUEEN				(1<<1) //Unused
+#define BE_SURVIVOR				(1<<2) //Unused
 #define BE_DEATHMATCH			(1<<3)
 #define BE_SQUAD_STRICT 		(1<<4)
 #define BE_ALIEN_UNREVIVABLE 	(1<<5)
@@ -118,10 +118,8 @@
 	)
 
 #define BE_SPECIAL_FLAGS list(\
-	"Xenomorph" = BE_ALIEN,\
+	"Latejoin Xenomorph" = BE_ALIEN,\
 	"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,\
-	"Xeno Queen" = BE_QUEEN,\
-	"Survivor" = BE_SURVIVOR,\
 	"End of Round Deathmatch" = BE_DEATHMATCH,\
 	"Prefer Squad over Role" = BE_SQUAD_STRICT\
 	)

@@ -16,7 +16,6 @@
 	drag_delay = 3 //pulling a medium dead xeno is hard
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
-	job = ROLE_XENO_QUEEN
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,

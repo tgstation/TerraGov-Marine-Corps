@@ -274,7 +274,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
@@ -301,9 +301,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
 					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+				if(stored_larva)
+					stat("Burrowed larva:", stored_larva)
 				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-				if(normal_hive.stored_larva)
-					stat("Burrowed larva:", normal_hive.stored_larva)
 				if(LAZYLEN(normal_hive.ssd_xenos))
 					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
 
@@ -505,9 +507,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			name += " as ([H.real_name])"
 		if(issynth(H))
 			name += " - Synth"
-		else if(issurvivor(H))
+		else if(issurvivorjob(H.job))
 			name += " - Survivor"
-		else if(H.faction != "Marine")
+		else if(H.faction != "TerraGov")
 			name += " - [H.faction]"
 		if((H.client && H.client.is_afk()) || (!H.client && (H.key || H.ckey)))
 			if(isaghost(H))
