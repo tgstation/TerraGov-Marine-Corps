@@ -21,7 +21,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/working      = TRUE
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
 	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
-	var/clientCSS = "" // This is a string var that stores client CSS.
 
 /datum/chatOutput/New(client/C)
 	owner = C
