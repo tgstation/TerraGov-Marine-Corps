@@ -446,10 +446,8 @@
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 
-// All signals a ai component can intercept from a action state if they wish to act upon it
-#define COMSIG_CLOSE_TO_NODE "distance maintained with a node" //We're close to a node, this usually means we finished traveling to it
-#define COMSIG_CLOSE_TO_MOB "distance maintained with a mob" //We maintained distance with a mob target, usually this means we're gonna attack it now
-#define COMSIG_CLOSE_TO_MACHINERY "distance maintained with some machinery" //Close to a machinery, particularly for ai xeno attacking marine turrets
+// Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
+#define COMSIG_STATE_MAINTAINED_DISTANCE "action state maintained dist with target"
 #define COMSIG_OBSTRUCTED_MOVE "unable to step towards thing" //Tried to step in a direction and there was a obstruction
 
 /*******Non-Signal Component Related Defines*******/

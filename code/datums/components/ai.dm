@@ -1,6 +1,22 @@
 /*
-A component that is basically just a holder and facilitator for action state assignment alongside signal registration
-The ai mind is the main brains and handles proc calls on targets/component's parent
+AI BEHAVIOR COMPONENT
+The main purpose of the component is to mainly assign the mob to the proper action state with the proper parameters
+The parameters are determined by requesting them from the ai mind attached to the component
+The ai mind is it's own thing to allow for easy overriding of behaviors, going into more specific routines rather than a very generic one component
+
+AI components are initialized with a param to determine what mind to make
+For mobs to start with an ai component, here's an example of it being done with a drone
+
+
+/mob/living/carbon/xenomorph/drone/ai //A drone that walks around, slashes and uses its weeding abilities
+
+/mob/living/carbon/xenomorph/drone/ai/Initialize()
+	. = ..()
+	AddComponent(/datum/component/ai_behavior, /datum/ai_mind/carbon/xeno/drone)
+
+Any usage of the code above should preferability go into the code/modules/ai/presets holder and in the proper folder
+
+Code interaction restrictions: The component cannot determine what decisions the mob it's attached to makes, it can only request them from the ai mind
 */
 
 //The most basic of AI; can pathfind to a turf and path around objects in it's path if needed to

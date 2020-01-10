@@ -1,3 +1,5 @@
+//A example runner xeno that uses it's pounce ability
+
 /datum/ai_mind/carbon/xeno/runner
 	var/datum/action/xeno_action/activable/pounce/pounce = new
 

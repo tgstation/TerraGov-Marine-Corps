@@ -1,6 +1,4 @@
-//A datum that stores information about this node, the actual effect nodes have these
-
-//Different names for the weights being utilized and accounted for
+//A datum that stores information about this node, the actual effect nodes have these created and referenced
 
 /datum/ai_node
 	var/obj/effect/ai_node/parentnode //The effect node this is attached to

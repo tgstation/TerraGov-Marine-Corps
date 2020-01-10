@@ -1,8 +1,9 @@
-/mob/living/carbon/xenomorph/praetorian/ai
+//A drone that walks around, slashes and uses its weeding abilities
+/mob/living/carbon/xenomorph/drone/ai
 
-/mob/living/carbon/xenomorph/praetorian/ai/Initialize()
+/mob/living/carbon/xenomorph/drone/ai/Initialize()
 	. = ..()
-	AddComponent(/datum/component/ai_behavior, /datum/ai_mind/carbon/xeno/praetorian)
+	AddComponent(/datum/component/ai_behavior, /datum/ai_mind/carbon/xeno/drone)
 	a_intent = INTENT_HARM
 	current_aura = pick("recovery", "frenzy", "warding")
 	//Cheat codes

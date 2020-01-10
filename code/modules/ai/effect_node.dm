@@ -1,4 +1,5 @@
-//The actual node; really only to hold the ai_node datum that stores all the information
+//The node with a physical presence on the map; mainly exists as a actual object to be able to be highlighted easily for easy debugging and viewing purposes
+//It also holds the datum ai_node, containing getter procs and handle info like weights
 
 /obj/effect/ai_node //A effect that has a ai_node datum in it, used by AIs to pathfind over long distances as well as knowing what's happening at it
 	name = "AI Node"

@@ -1,7 +1,10 @@
-//A mind that houses a personality and attitudes
-//Influences decisions based on node weights and later on, ability activations (xenomorphs and humans)
+//A mind that determines things to be done
+//Decisions can be influenced by node weights, surrounding objects in the world and whatever else is happening toit
 //This part handles all the proc calls on things like the parent being provided and atom being walked to
-//This allow gives the component signals to register and the proc to be called on the component
+//This allow gives the ai component signals to register and the proc to be called on the component (which will usually be redirected to the mind)
+
+//Code interaction restrictions: AI mind can only interact with the ai comp whenever the ai comp requests signals
+//It can never interact with the action state as it's a element
 
 /datum/ai_mind
 	//While the below variables could be stored on the component, it's stored here instead as we use them for calculating the parameters
@@ -40,7 +43,7 @@
 /datum/ai_mind/proc/get_signals_to_reg()
 	if(istype(atom_to_walk_to, /obj/effect/ai_node)) //We're walking to a node, register a signal for getting a new state after reaching it
 		return list(
-				list(mob_parent, COMSIG_CLOSE_TO_NODE, /datum/component/ai_behavior/.proc/reason_finished_node_move)
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_behavior/.proc/reason_finished_node_move)
 					)
 
 //Returns a list of signals to unregister related to the current action state/atom walking to
@@ -48,5 +51,5 @@
 	if(atom_to_walk_to) //We're walking to a node, remove that signal related to it
 		if(istype(atom_to_walk_to, /obj/effect/ai_node))
 			return list(
-					list(mob_parent, COMSIG_CLOSE_TO_NODE)
+					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 					)

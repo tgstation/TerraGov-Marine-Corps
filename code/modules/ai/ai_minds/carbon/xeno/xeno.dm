@@ -1,6 +1,7 @@
-//Generic ai mind, goes around attacking but with the alien attack proc instead of carbon fist
+//Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
+
 /datum/ai_mind/carbon/xeno
-	sidestep_prob = 100
+	sidestep_prob = 100 //Kill everything
 
 //Returns a list of things we can walk to and attack to death
 /datum/ai_mind/carbon/xeno/get_targets()
@@ -22,7 +23,7 @@
 	if(istype(atom_to_walk_to, /obj/effect/ai_node) && length(get_targets()))
 		return REASON_TARGET_SPOTTED
 	if(istype(atom_to_walk_to, /mob/living/carbon/human) || istype(atom_to_walk_to, /obj/machinery/marine_turret))
-		return REASON_REFRESH_TARGET //We'll repick our targets once we're in combat
+		return REASON_REFRESH_TARGET //We'll repick our targets as there could be more better targets to attack
 
 /datum/ai_mind/carbon/xeno/deal_with_obstacle()
 	if(world.time > mob_parent.next_move)
@@ -70,13 +71,13 @@
 /datum/ai_mind/carbon/xeno/get_signals_to_reg()
 	if(istype(atom_to_walk_to, /mob/living/carbon/human))
 		return list(
-				list(mob_parent, COMSIG_CLOSE_TO_MOB, /datum/component/ai_behavior/.proc/mind_attack_target),
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_behavior/.proc/mind_attack_target),
 				list(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/component/ai_behavior/.proc/reason_target_killed)
 				)
 
-	if(istype(atom_to_walk_to, /obj/machinery))
+	if(istype(atom_to_walk_to, /obj/machinery)) //Machine targets are usually destroyed rather than having a static health pool til dead (but not qdel) like humans are
 		return list(
-				list(mob_parent, COMSIG_CLOSE_TO_MACHINERY, /datum/component/ai_behavior/.proc/mind_attack_target),
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_behavior/.proc/mind_attack_target),
 				list(atom_to_walk_to, COMSIG_PARENT_QDELETING, /datum/component/ai_behavior/.proc/reason_target_killed)
 				)
 
@@ -87,13 +88,13 @@
 
 		if(istype(atom_to_walk_to, /mob/living/carbon/human))
 			return list(
-					list(mob_parent, COMSIG_CLOSE_TO_MOB),
+					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE),
 					list(atom_to_walk_to, COMSIG_MOB_DEATH)
 					)
 
 		if(istype(atom_to_walk_to, /obj/machinery))
 			return list(
-					list(mob_parent, COMSIG_CLOSE_TO_MACHINERY),
+					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE),
 					list(atom_to_walk_to, COMSIG_PARENT_QDELETING)
 					)
 	return ..() //Walking to a node

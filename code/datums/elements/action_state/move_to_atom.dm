@@ -10,12 +10,7 @@
 		if(!mob.canmove || mob.stat == DEAD)
 			continue
 		if(get_dist(mob, atoms_to_walk_to[mob]) == distances_to_maintain[mob])
-			if(istype(atoms_to_walk_to[mob], /obj/effect/ai_node))
-				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_NODE)
-			if(istype(atoms_to_walk_to[mob], /mob/living))
-				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_MOB)
-			if(istype(atoms_to_walk_to[mob], /obj/machinery))
-				SEND_SIGNAL(mob, COMSIG_CLOSE_TO_MACHINERY)
+			SEND_SIGNAL(mob, COMSIG_STATE_MAINTAINED_DISTANCE)
 			if(world.time <= mob.last_move_time + mob.cached_multiplicative_slowdown || mob.action_busy)
 				continue
 			if(!(get_dir(mob, atoms_to_walk_to[mob]))) //We're right on top, move out of it
