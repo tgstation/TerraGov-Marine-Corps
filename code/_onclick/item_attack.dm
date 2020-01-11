@@ -98,7 +98,7 @@
 		attack_message = "[user] [message_verb] [src][message_hit_area] with [I]!"
 		attack_message_local = "[user] [message_verb] you[message_hit_area] with [I]!"
 
-	user.do_attack_animation(src, used_item = src)
+	user.do_attack_animation(src, used_item = I)
 
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 
