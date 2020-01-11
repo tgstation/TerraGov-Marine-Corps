@@ -59,7 +59,7 @@
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_ATOMS			6
 #define INIT_ORDER_MACHINES			5
-#define INIT_ORDER_NODES			3
+#define INIT_ORDER_AI_NODES			3
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
