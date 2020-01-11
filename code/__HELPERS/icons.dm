@@ -1051,13 +1051,12 @@ ColorTone(rgb, tone)
 	var/static/list/humanoid_icon_cache = list()
 	if(!icon_id || !humanoid_icon_cache[icon_id])
 		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
-
-		prefs?.copy_to(body,TRUE,FALSE)
-
-		J?.equip(body, TRUE, FALSE, outfit_override = outfit_override)
-
-		if(outfit_override)
-			body.equipOutfit(outfit_override,visualsOnly = TRUE)
+		if(prefs)
+			prefs.copy_to(body,TRUE,FALSE)
+		if(J)
+			J.equip_dummy(body, outfit_override = outfit_override)
+		else if(outfit_override)
+			body.equipOutfit(outfit_override, visualsOnly = TRUE)
 
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")

@@ -1,4 +1,4 @@
-/mob/verb/pray(msg as text)
+/mob/living/verb/pray(msg as text)
 	set category = "IC"
 	set name = "Pray"
 
@@ -17,7 +17,7 @@
 	var/mentor_msg = msg
 	var/liaison = FALSE
 
-	if(mind?.assigned_role && mind.assigned_role == CORPORATE_LIAISON)
+	if(iscorporateliaisonjob(job))
 		liaison = TRUE
 
 	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"

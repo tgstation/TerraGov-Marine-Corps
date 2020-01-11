@@ -267,7 +267,7 @@
 /turf/open/floor,
 /area/storage/testroom)
 "aW" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aX" = (
@@ -1579,7 +1579,7 @@
 	},
 /area/desert/interior/main_building)
 "eP" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "eQ" = (

@@ -15,7 +15,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	interaction_flags = INTERACT_OBJ_NANO
 
-	var/req_role = "" //to be compared with assigned_role to only allow those to use that machine.
+	var/req_role //to be compared with job.type to only allow those to use that machine.
 	var/points = 40
 	var/max_points = 50
 	var/use_points = TRUE
@@ -51,8 +51,10 @@
 		if(I.registered_name != user.real_name)
 			return FALSE
 
-		if(req_role && I.rank != req_role)
-			return FALSE
+		if(req_role)
+			var/mob/living/living_user = user
+			if(!istype(living_user.job, req_role))
+				return FALSE
 
 	return TRUE
 
@@ -199,7 +201,7 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Nanotrasen logo stamped on its side."
 
 	req_access_txt = "200"
-	req_role = CORPORATE_LIAISON
+	req_role = /datum/job/terragov/civilian/liaison
 	listed_products = list(
 							list("INCENTIVES", 0, null, null, null),
 							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which regulates nociception and sensory function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus malfunction with gradually increasing frequency. Personal use not recommended."),

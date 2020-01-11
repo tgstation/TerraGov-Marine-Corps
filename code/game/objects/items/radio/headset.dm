@@ -373,29 +373,21 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	freerange = TRUE
 
 
-/obj/item/radio/headset/mainship/marine/Initialize(mapload, squad, rank)
+/obj/item/radio/headset/mainship/marine/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
-		icon_state = "headset_marine_[lowertext(squad)]"
-		var/dat = "marine [lowertext(squad)]"
-		switch(squad)
-			if("Alpha")
-				frequency = FREQ_ALPHA
-			if("Bravo")
-				frequency = FREQ_BRAVO
-			if("Charlie")
-				frequency = FREQ_CHARLIE
-			if("Delta")
-				frequency = FREQ_DELTA
+		icon_state = "headset_marine_[lowertext(squad.name)]"
+		var/dat = "marine [lowertext(squad.name)]"
+		frequency = squad.radio_freq
 		switch(rank)
-			if(SQUAD_LEADER)
+			if(/datum/job/terragov/squad/leader)
 				dat += " leader"
 				keyslot2 = /obj/item/encryptionkey/squadlead
 				use_command = TRUE
 				command = TRUE
-			if(SQUAD_ENGINEER)
+			if(/datum/job/terragov/squad/engineer)
 				dat += " engineer"
 				keyslot2 = /obj/item/encryptionkey/engi
-			if(SQUAD_CORPSMAN)
+			if(/datum/job/terragov/squad/corpsman)
 				dat += " corpsman"
 				keyslot2 = /obj/item/encryptionkey/med
 		name = dat + " radio headset"

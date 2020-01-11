@@ -25,6 +25,5 @@
 	print_backstory(H)
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/colonist)
-	SSjob.AssignRole(H, J.title)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a colonist. You... wait for further orders!</span>")

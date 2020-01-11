@@ -47,7 +47,7 @@
 "ai" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
-/obj/effect/landmark/start/marine/fieldcommander,
+/obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "aj" = (
@@ -143,7 +143,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "av" = (
@@ -480,7 +480,7 @@
 	},
 /area/whiskey_outpost)
 "bp" = (
-/obj/effect/landmark/start/marine/synthetic,
+/obj/effect/landmark/start/job/synthetic,
 /turf/open/floor,
 /area/whiskey_outpost)
 "bq" = (
@@ -507,7 +507,7 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "bu" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -620,7 +620,7 @@
 /area/whiskey_outpost)
 "bH" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -636,7 +636,7 @@
 	icon_state = "sandbag_0";
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "bK" = (
@@ -858,7 +858,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1059,14 +1059,14 @@
 /area/whiskey_outpost/outside/north)
 "cM" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 9
 	},
 /area/whiskey_outpost)
 "cN" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -1078,7 +1078,7 @@
 /area/whiskey_outpost)
 "cP" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
@@ -1108,7 +1108,7 @@
 	},
 /area/whiskey_outpost)
 "cV" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1124,7 +1124,7 @@
 /area/whiskey_outpost/outside/north)
 "cY" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 5
 	},
@@ -1186,7 +1186,7 @@
 /area/whiskey_outpost)
 "dh" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -1864,7 +1864,7 @@
 /area/whiskey_outpost/outside/north)
 "fa" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "fb" = (
@@ -1974,7 +1974,7 @@
 /area/whiskey_outpost/outside/west)
 "fi" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "fj" = (
@@ -3285,7 +3285,7 @@
 /area/whiskey_outpost)
 "jN" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "jO" = (
@@ -3425,7 +3425,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "kj" = (
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor,
 /area/whiskey_outpost)
 "kk" = (
@@ -3609,7 +3609,7 @@
 /area/whiskey_outpost/outside/west)
 "kS" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
@@ -3634,14 +3634,14 @@
 /area/whiskey_outpost/outside/south)
 "kW" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 10
 	},
 /area/whiskey_outpost)
 "kX" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -3690,7 +3690,7 @@
 /area/whiskey_outpost/outside/south)
 "lh" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
@@ -3778,7 +3778,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lA" = (
@@ -3804,7 +3804,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lF" = (
@@ -3823,14 +3823,14 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lI" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lJ" = (
@@ -3864,13 +3864,13 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "lP" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
 /area/whiskey_outpost)
 "lQ" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lR" = (
@@ -3878,7 +3878,7 @@
 	icon_state = "metal_0";
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
@@ -3887,7 +3887,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "lT" = (
@@ -3898,14 +3898,14 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "lV" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "lW" = (
@@ -3921,14 +3921,14 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "lY" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "lZ" = (
@@ -3949,7 +3949,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "mc" = (
@@ -3981,14 +3981,14 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "mh" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -4004,7 +4004,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "mj" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "mk" = (
@@ -4025,11 +4025,11 @@
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost/outside/south)
 "mn" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/space)
 "mo" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -4041,14 +4041,14 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
 /area/whiskey_outpost/outside/north)
 "mr" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "ms" = (
@@ -4058,14 +4058,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "mt" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "mu" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
 "mv" = (
@@ -4075,23 +4075,23 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "mx" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "my" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "mz" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -4107,30 +4107,30 @@
 /area/whiskey_outpost/outside/east)
 "mC" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "mD" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "mE" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "mF" = (
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin3"
 	},
 /area/whiskey_outpost/outside/east)
 "mG" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
@@ -4138,39 +4138,39 @@
 /area/whiskey_outpost)
 "mH" = (
 /obj/item/roller,
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor{
 	icon_state = "cafeteria";
 	dir = 2
 	},
 /area/whiskey_outpost)
 "mI" = (
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "mJ" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "mK" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/east)
 "mL" = (
 /obj/item/stack/medical/bruise_pack,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "mM" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "mN" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "mO" = (
@@ -4197,26 +4197,26 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "mT" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "mU" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "mV" = (
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "mW" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
 "mX" = (
@@ -4241,14 +4241,14 @@
 /area/whiskey_outpost/outside/south)
 "nb" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
 /area/whiskey_outpost/outside/west)
 "nc" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -4257,7 +4257,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "ne" = (
@@ -5165,7 +5165,7 @@
 /area/whiskey_outpost)
 "pz" = (
 /obj/structure/barricade/metal,
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "pA" = (
@@ -5261,7 +5261,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "pN" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "pO" = (
@@ -5585,7 +5585,7 @@
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qJ" = (
@@ -5732,7 +5732,7 @@
 	},
 /area/whiskey_outpost)
 "qZ" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -5781,14 +5781,14 @@
 /area/whiskey_outpost)
 "rg" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rh" = (
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -5930,7 +5930,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "sm" = (

@@ -185,7 +185,7 @@ SUBSYSTEM_DEF(blackbox)
 
 	var/sqlname = sanitizeSQL(L.real_name)
 	var/sqlkey = sanitizeSQL(L.ckey)
-	var/sqljob = sanitizeSQL(L.mind.assigned_role)
+	var/sqljob = sanitizeSQL(L.job ? L.job.title : "Unassigned")
 	var/sqlspecial = sanitizeSQL("unused")
 	var/sqlpod = sanitizeSQL(get_area_name(L, TRUE))
 	var/laname = sanitizeSQL("unused")

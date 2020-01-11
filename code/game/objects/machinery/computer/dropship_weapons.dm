@@ -98,10 +98,10 @@
 			var/mob/living/L = usr
 			if(!istype(L))
 				return
-			if(!istype(SSjob.GetJob(L.mind.assigned_role), /datum/job/command/pilot)) //everyone can fire dropship weapons while fumbling.
+			if(!L.skills.getRating("pilot")) //everyone can fire dropship weapons while fumbling.
 				L.visible_message("<span class='notice'>[L] fumbles around figuring out how to use the automated targeting system.</span>",
 				"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
-				var/fumbling_time = 10 SECONDS - 2 SECONDS * L.skills.getRating("pilot")
+				var/fumbling_time = 10 SECONDS
 				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
 			for(var/X in GLOB.active_laser_targets)

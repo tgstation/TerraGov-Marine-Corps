@@ -38,7 +38,7 @@
 		CHECK_TICK
 
 	if(isdistress(SSticker.mode))
-		var/datum/game_mode/distress/distress_mode = SSticker.mode
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
 		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
@@ -1030,7 +1030,7 @@
 
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
 		return
-	var/datum/game_mode/crash/C = SSticker.mode
+	var/datum/game_mode/infestation/crash/C = SSticker.mode
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return

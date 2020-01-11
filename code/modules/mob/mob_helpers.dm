@@ -21,11 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
-		return TRUE
-	return issilicon(src) || isIPC(src)
-
 /mob/proc/is_ready()
 	return client && !!mind
 
