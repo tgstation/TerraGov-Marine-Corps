@@ -298,4 +298,3 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "commissar_cap"
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
-	
