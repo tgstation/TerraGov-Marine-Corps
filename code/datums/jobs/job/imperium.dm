@@ -171,21 +171,13 @@
 	gloves = /obj/item/clothing/gloves/marine/commissar
 	head = /obj/item/clothing/head/commissar
 	l_store = /obj/item/storage/pouch/medkit
-	r_store = /obj/item/storage/pouch/magazine/pistol/large
+	r_store = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/commissar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/mateba, SLOT_IN_R_POUCH)
-
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
