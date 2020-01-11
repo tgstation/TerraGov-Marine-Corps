@@ -42,6 +42,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(src)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 	output +="<hr>"
+	output += "<center><p>Current character: <b>[client ? client.prefs.real_name : "Unknown User"]</b></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
