@@ -569,15 +569,32 @@
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 
-
-/obj/item/storage/belt/gun/m44
-	name = "\improper M276 pattern M44 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the M44 magnum revolver, along with three pouches for speedloaders."
-	icon_state = "m44_holster"
-	item_state = "m44_holster"
+/obj/item/storage/belt/gun/stand
+	name = "\improper M276 pattern M4A3 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
-		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol
+		)
+
+/obj/item/storage/belt/gun/pistol/standard_pistol
+	name = "\improper T457 pattern TP-14 holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-14 Pistol."
+	icon_state = "tp14_holster"
+	item_state = "tp14_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/pistol/standard_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol
+		)
+
+/obj/item/storage/belt/gun/revolver/standard_revolver
+	name = "\improper T457 pattern TP-44 holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-44 Revolver."
+	icon_state = "tp44_holster"
+	item_state = "tp44_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/revolver/standard_revolver,
+		/obj/item/ammo_magazine/revolver/standard_revolver
 		)
 
 /obj/item/storage/belt/gun/m44/full/Initialize()

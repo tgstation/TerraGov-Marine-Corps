@@ -815,6 +815,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 	movement_acc_penalty_mod = 0.1
 
+/obj/item/attachable/stock/tx15
+	name = "TX-15 Stock"
+	desc = "The standard stock for the TX-15. Cannot be removed."
+	icon_state = "tx15stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 /obj/item/attachable/stock/vp70
 	name = "88 Mod 4 stock and holster"
 	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
