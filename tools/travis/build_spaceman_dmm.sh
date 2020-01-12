@@ -4,7 +4,7 @@ set -euo pipefail
 source dependencies.sh
 
 cd ~
-if ![ -d SpacemanDMM ]
+if [[ ! -d SpacemanDMM ]]
 then
 	git clone -b tgmccitarget --depth 1 https://github.com/spookydonut/SpacemanDMM.git
 fi
