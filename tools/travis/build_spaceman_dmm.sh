@@ -6,7 +6,7 @@ source dependencies.sh
 cd ~
 if ![ -d SpacemanDMM ]
 then
-	git clone --depth 1 https://github.com/SpaceManiac/SpacemanDMM.git
+	git clone -b tgmccitarget --depth 1 https://github.com/spookydonut/SpacemanDMM.git
 fi
 cd SpacemanDMM
 git pull
