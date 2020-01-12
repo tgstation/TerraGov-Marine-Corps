@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(nodes)
 	name = "Nodes"
-	init_order = INIT_ORDER_NODES
+	init_order = INIT_ORDER_AI_NODES
 	flags = SS_NO_FIRE //For now
 
 /datum/controller/subsystem/nodes/Initialize()
