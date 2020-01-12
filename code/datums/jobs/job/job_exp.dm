@@ -39,7 +39,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /proc/job_is_xp_locked(datum/job/job)
-	if(!CONFIG_GET(flag/use_exp_restrictions_command) && job.job_flags & JOB_FLAG_ISCOMMAND)
+	if(!CONFIG_GET(flag/use_exp_restrictions_command) && (job.job_flags & JOB_FLAG_ISCOMMAND))
 		return FALSE
 	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(job.job_flags & JOB_FLAG_ISCOMMAND))
 		return FALSE
