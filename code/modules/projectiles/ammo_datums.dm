@@ -659,8 +659,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 4
-	accuracy_var_low = 7
-	accuracy_var_high = 7
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.25
@@ -669,8 +667,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/tx15_flechette/spread
 	name = "additional flechette"
 	icon_state = "flechette"
-	accuracy_var_low = 7
-	accuracy_var_high = 7
 	max_range = 15
 	damage = 20
 	damage_falloff = 0.25
