@@ -246,7 +246,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 							list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and angled grip."),
 							list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and angled grip."),
 							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip. Contains a heavy helmet."),
-							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 assault rifle. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/corpsman
@@ -254,8 +254,8 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = SQUAD_CORPSMAN
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip. Contains a heavy helmet."),
-							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 assault rifle. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip."),
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and angled grip.")
 							)
 
 /obj/item/portable_vendor/marine/process()
