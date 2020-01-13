@@ -30,14 +30,12 @@
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 
-	var/mob/living/carbon/xenomorph/observed_xeno
+	var/obj/effect/alien/weeds/node/hivemindcore/core
 
-/mob/living/carbon/xenomorph/hivemind/Initialize(mapload, ...)
+/mob/living/carbon/xenomorph/hivemind/Initialize(mapload, obj/effect/alien/weeds/node/hivemindcore/hmcore)
 	. = ..()
 	GLOB.hivemind_list += src
-
-	// Remove some unused xeno things
-	verbs -= /mob/living/proc/lay_down
+	core = hmcore
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	GLOB.hivemind_list -= src
@@ -49,7 +47,7 @@
 		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
 		if(!nearby)
 			// If we run out of weeds just teleport to some random weeds.
-			forceMove(get_turf(locate(/obj/effect/alien/weeds)))
+			forceMove(get_turf(core))
 		return FALSE
 
 	// Don't allow them over the timed_late doors 
