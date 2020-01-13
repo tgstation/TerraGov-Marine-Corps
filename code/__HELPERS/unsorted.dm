@@ -1213,10 +1213,6 @@ will handle it, but:
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
 
-
-/proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
-	SEND_GLOBAL_SIGNAL(signal)
-
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
 /proc/avoid_assoc_duplicate_keys(input_key, list/used_key_list)

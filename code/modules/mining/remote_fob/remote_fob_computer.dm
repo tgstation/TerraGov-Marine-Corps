@@ -34,11 +34,11 @@
 	eject_metal = new()
 	eject_plasteel = new()
 
-	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
+	RegisterGlobalSignal(COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	drone_creation_allowed = FALSE
-	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
+	UnregisterGlobalSignal(COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()

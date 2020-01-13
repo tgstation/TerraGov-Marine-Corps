@@ -1,34 +1,6 @@
-/// Used to trigger signals and call procs registered for that signal
-/// The datum hosting the signal is automaticaly added as the first argument
-/// Returns a bitfield gathered from all registered procs
-/// Arguments given here are packaged in a list and given to _SendSignal
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
-
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
-
-/// Return this from `/datum/component/Initialize` or `datum/component/OnTransfer` to have the component be deleted if it's applied to an incorrect type.
-/// `parent` must not be modified if this is to be returned.
-/// This will be noted in the runtime logs
-#define COMPONENT_INCOMPATIBLE 1
-/// Returned in PostTransfer to prevent transfer, similar to `COMPONENT_INCOMPATIBLE`
-#define COMPONENT_NOTRANSFER 2
-
-/// Return value to cancel attaching
-#define ELEMENT_INCOMPATIBLE 1
-
-/// /datum/element flags
-#define ELEMENT_DETACH		(1 << 0)
-
 //shorthand
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
-// How multiple components of the exact same type are handled in the same datum
-
-#define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
-#define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
-#define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
 
 // All signals. Format:
 // When the signal is called: (signal arguments)
@@ -57,14 +29,8 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-/// when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_ADDED "component_added"
-/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"
 /// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
 #define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 

@@ -109,9 +109,9 @@
 
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	RegisterGlobalSignal(COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterGlobalSignal(COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
+	RegisterGlobalSignal(COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
