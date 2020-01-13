@@ -20,7 +20,7 @@
 		msg = noscript(msg)
 
 	if(!msg)
-		return	
+		return
 
 	msg = emoji_parse(msg)
 	
