@@ -601,25 +601,19 @@
 /obj/item/storage/box/squadmarine/rifleman
 	name = "\improper Rifleman equipment crate"
 	desc = "A large case containing the T-12 assault rifle, medium armor and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 17
+	storage_slots = 11
 
 /obj/item/storage/box/squadmarine/rifleman/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/standard(src)
-	new /obj/item/storage/belt/marine(src)
+	new /obj/item/storage/belt/marine/t12(src)
 	new /obj/item/storage/pouch/flare/full(src)
-	new /obj/item/weapon/gun/rifle/standard_carbine(src)
+	new /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/attachable/attached_gun/grenade(src)
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
-	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
@@ -629,25 +623,21 @@
 /obj/item/storage/box/squadmarine/pointman
 	name = "\improper Pointman equipment crate"
 	desc = "A large case containing the T-18 carbine, T-35 shotgun, light armor and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 18
+	storage_slots = 13
 
 
 /obj/item/storage/box/squadmarine/pointman/Initialize(mapload, ...)
 	. = ..()
+	new /obj/item/weapon/gun/shotgun/pump/t35/pointman(src)
 	new /obj/item/clothing/suit/storage/marine/M3LB(src)
 	new /obj/item/clothing/head/helmet/marine/standard(src)
-	new /obj/item/storage/belt/marine(src)
+	new /obj/item/storage/belt/marine/t18(src)
 	new /obj/item/storage/pouch/shotgun(src)
-	new /obj/item/weapon/gun/rifle/standard_carbine(src)
+	new /obj/item/weapon/gun/rifle/standard_carbine/pointman(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
-	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
-	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
-	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
-	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
@@ -662,7 +652,7 @@
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3HB(src)
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
-	new /obj/item/weapon/gun/rifle/standard_lmg(src)
+	new /obj/item/weapon/gun/rifle/standard_lmg/autorifleman(src)
 	new /obj/item/storage/belt/gun/m4a3/full(src)
 	new /obj/item/storage/pouch/explosive/full(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
@@ -677,21 +667,18 @@
 /obj/item/storage/box/squadmarine/marksman
 	name = "\improper Designated Marksman equipment crate"
 	desc = "A large case containing the T-64 designated marksman rifle, M43 lasgun, integrated storage armor as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 19
+	storage_slots = 18
 
 /obj/item/storage/box/squadmarine/marksman/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3IS(src)
 	new /obj/item/clothing/head/helmet/marine/standard(src)
-	new /obj/item/weapon/gun/energy/lasgun/M43(src)
+	new /obj/item/weapon/gun/energy/lasgun/M43/marksman(src)
 	new /obj/item/belt_harness/marine(src)
 	new /obj/item/storage/pouch/flare/full(src)
-	new /obj/item/weapon/gun/rifle/standard_dmr(src)
+	new /obj/item/weapon/gun/rifle/standard_dmr/marksman(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
-	new /obj/item/attachable/scope(src)
-	new /obj/item/attachable/extended_barrel(src)
-	new /obj/item/attachable/lasersight(src)
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
 	new /obj/item/ammo_magazine/rifle/standard_dmr(src)
@@ -706,27 +693,134 @@
 /obj/item/storage/box/squadmarine/breacher
 	name = "\improper Breacher equipment crate"
 	desc = "A large case containing the T-19 submachinegun, light armor, heavy helmet as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	storage_slots = 12
+	storage_slots = 11
 
 /obj/item/storage/box/squadmarine/breacher/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/M3LB(src)
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
-	new /obj/item/weapon/gun/rifle/standard_smg(src)
-	new /obj/item/storage/belt/marine(src)
-	new /obj/item/storage/pouch/explosive/(src)
+	new /obj/item/weapon/gun/smg/standard_smg/breacher(src)
+	new /obj/item/storage/belt/marine/t19(src)
+	new /obj/item/storage/pouch/explosive/detpack(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
-	new /obj/item/attachable/magnetic_harness(src)
+	new /obj/item/storage/large_holster/machete/full(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/engineert12
+	name = "\improper T-12 equipment crate"
+	desc = "A large case containing the T-12 assault rifle and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 13
+
+/obj/item/storage/box/squadmarine/engineert12/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer(src)
+	new /obj/item/clothing/head/helmet/marine/tech(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/cell/high(src)
+	new /obj/item/cell/high(src)
+
+/obj/item/storage/box/squadmarine/engineert18
+	name = "\improper T-18 equipment crate"
+	desc = "A large case containing the T-18 carbine and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 13
+
+/obj/item/storage/box/squadmarine/engineert18/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/rifle/standard_carbine/engineer(src)
+	new /obj/item/clothing/head/helmet/marine/tech(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/cell/high(src)
+	new /obj/item/cell/high(src)
+
+/obj/item/storage/box/squadmarine/engineert19
+	name = "\improper T-19 equipment crate"
+	desc = "A large case containing the T-19 submachinegun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 15
+
+/obj/item/storage/box/squadmarine/engineert19/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
+	new /obj/item/clothing/head/helmet/marine/heavy(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/detpack(src)
-	new /obj/item/assembly/signaler(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/cell/high(src)
+	new /obj/item/cell/high(src)
+
+/obj/item/storage/box/squadmarine/engineert35
+	name = "\improper T-35 equipment crate"
+	desc = "A large case containing the T-35 shotgun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 11
+
+/obj/item/storage/box/squadmarine/engineert35/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/shotgun/pump/t35/nonstandard(src)
+	new /obj/item/clothing/head/helmet/marine/heavy(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+	new /obj/item/tool/shovel/etool(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/cell/high(src)
+	new /obj/item/cell/high(src)
+
+/obj/item/storage/box/squadmarine/corpsmant19
+	name = "\improper T-19 equipment crate"
+	desc = "A large case containing the T-19 submachinegun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 8
+
+/obj/item/storage/box/squadmarine/corpsmant19/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/clothing/mask/rebreather/scarf(src)
+
+/obj/item/storage/box/squadmarine/corpsman35
+	name = "\improper T-35 equipment crate"
+	desc = "A large case containing the T-35 shotgun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	storage_slots = 4
+
+/obj/item/storage/box/squadmarine/corpsman35/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/weapon/gun/shotgun/pump/t35/nonstandard(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)

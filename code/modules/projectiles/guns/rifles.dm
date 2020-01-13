@@ -88,6 +88,12 @@
     aim_slowdown = 0.30
     damage_falloff_mult = 0.9
 
+/obj/item/weapon/gun/rifle/standard_carbine/pointman
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
+
+/obj/item/weapon/gun/rifle/standard_carbine/engineer
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t18barrel, /obj/item/attachable/angledgrip)
+
 //-------------------------------------------------------
 //T-12 Assault Rifle
 
@@ -140,6 +146,11 @@
     aim_slowdown = 0.5
     damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
+
+/obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
 
 //-------------------------------------------------------
 //T-37 DMR
@@ -191,6 +202,10 @@
 	accuracy_mult = 1.25
 	scatter = -15
 	burst_amount = 1
+
+/obj/item/weapon/gun/rifle/standard_dmr/marksman
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope, /obj/item/attachable/lasersight, /obj/item/attachable/extended_barrel)
+
 
 
 //-------------------------------------------------------
@@ -556,6 +571,9 @@
 	accuracy_mult = 1
 	scatter = 25
 	scatter_unwielded = 80
+
+/obj/item/weapon/gun/rifle/standard_lmg/autorifleman
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/bipod, /obj/item/attachable/t42barrel, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle

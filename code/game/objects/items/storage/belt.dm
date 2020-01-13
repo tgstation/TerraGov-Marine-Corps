@@ -277,6 +277,30 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
+/obj/item/storage/belt/marine/t18/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+
+/obj/item/storage/belt/marine/t12/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+
+/obj/item/storage/belt/marine/t19/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."

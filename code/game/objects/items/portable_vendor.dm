@@ -214,25 +214,48 @@
 
 // A marine version of the portable vendor, points are not regenerated.
 /obj/item/portable_vendor/marine
-	name = "\improper TerraGov Squad Marine Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person."
+	name = "\improper TerraGov Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person."
+	icon_state = "marinepack"
+	req_access_txt = "9"
 	points = 1
 	max_points = 1
 
-	req_access_txt = "9"
+/obj/item/portable_vendor/marine/squadmarine
+	name = "\improper TerraGov Squad Marine Storage Backpack"
 	req_role = SQUAD_MARINE
 	listed_products = list(
 							list("MARINE KITS", 0, null, null, null),
-							list("Rifleman Kit (T-12 assault rifle, medium armor)", 1, /obj/item/storage/box/squadmarine/rifleman, "white", "Rifleman kit containing a T-12 assault rifle and magazines, two HE grenades, a flare pouch and medium armor. \
+							list("Rifleman Kit (T-12 assault rifle, medium armor)", 1, /obj/item/storage/box/squadmarine/rifleman, "white", "Rifleman kit containing a T-12 assault rifle and magazines, two HE grenades, a flare pouch and medium armor. \n\
 An all-round kit that does not specialize in anything, but shooting enemy combatants at any range. Has two grenades for flushing cover. Comes with a webbing for additional ammo."),
-							list("Pointman Kit (T-18 carbine, T-35 shotgun, light armor)", 1, /obj/item/storage/box/squadmarine/pointman, "white", "Pointman kit containing a T-18 carbine and magazines, a T-35 shotgun with buckshot shells as a backup, two HE grenades, a shotgun shell pouch and light armor. \
+							list("Pointman Kit (T-18 carbine, T-35 shotgun, light armor)", 1, /obj/item/storage/box/squadmarine/pointman, "white", "Pointman kit containing a T-18 carbine and magazines, a T-35 shotgun with buckshot shells as a backup, two HE grenades, a shotgun shell pouch and light armor. \n\
 A kit meant for rushing into the frontlines, using the carbine for swift target aquisition at medium ranges and a shotgun which is devastating a short ranges. Comes with a webbing for additional ammo."),
-							list("Automatic Rifleman Kit (T-42 light machinegun, heavy armor)", 1, /obj/item/storage/box/squadmarine/autorifleman, "white", "Rifleman kit containing a T-42 light machinegun, its attachments and magazines, a M4A3 sidearm with magazines, an explosive pouch and heavy armor and helmet. \
-A heavy kit containing a light machinegun, usful in surpressing fire against enemy combatants."),
-							list("Designated Marksman Kit (T-64 designated marksman rifle, M43 lasgun, IS armor)", 1, /obj/item/storage/box/squadmarine/marksman, "white", "Marksman kit containing a T-64 DMR, its attachments and magazines, a M43 lasgun a backup, a flare pouch and integrated storage armor. \
+							list("Automatic Rifleman Kit (T-42 light machinegun, heavy armor)", 1, /obj/item/storage/box/squadmarine/autorifleman, "white", "Rifleman kit containing a T-42 light machinegun, its attachments and magazines, a M4A3 sidearm with magazines, an explosive pouch and heavy armor and helmet. \n\
+A heavy kit containing a light machinegun, usful in surpressing fire against enemy combatants. Remove the pistol and magazines inside the satchel to compliment LMG magazines and full holster."),
+							list("Designated Marksman Kit (T-64 DMR, M43 lasgun, IS armor)", 1, /obj/item/storage/box/squadmarine/marksman, "white", "Marksman kit containing a T-64 DMR, its attachments and magazines, a M43 lasgun as a backup, a flare pouch and integrated storage armor. \n\
 A marksman kit containing two rifles for area denial and overwatch. It also contains a lasgun for fierce engagements."),
-							list("De Void of Soul", 1, /obj/item/clothing/under/liaison_suit/galaxy_blue, "white", "The latest in ultrafashion. for those with a cool demeanor."),
-							list("Pulsar Gonne", 1, /obj/item/clothing/under/liaison_suit/galaxy_red, "white", "The latest in ultrafashion. for those with a fiery temper.")
+							list("Breacher Kit (T-19 submachinegun, light armor, heavy helmet)", 1, /obj/item/storage/box/squadmarine/breacher, "white", "Breacher kit containing a T-19 SMG, its attachment and magazines, a machete as a backup, an explosive pouch, heavy helmet and light armor. \n\
+A breacher kit with the least firepower, has a high capacity SMG and a machete for self-defense. But can get through walls no problem.")
+							)
+
+/obj/item/portable_vendor/marine/squadmarine/engineer
+	name = "\improper TerraGov Squad Engineer Storage Backpack"
+	req_role = SQUAD_ENGINEER
+	listed_products = list(
+							list("MARINE WEAPONS", 0, null, null, null),
+							list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and angled grip."),
+							list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and angled grip."),
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip. Contains a heavy helmet."),
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 assault rifle. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
+							)
+
+/obj/item/portable_vendor/marine/squadmarine/corpsman
+	name = "\improper TerraGov Squad Corpsman Storage Backpack"
+	req_role = SQUAD_CORPSMAN
+	listed_products = list(
+							list("MARINE WEAPONS", 0, null, null, null),
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip. Contains a heavy helmet."),
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 assault rifle. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
 							)
 
 /obj/item/portable_vendor/marine/process()

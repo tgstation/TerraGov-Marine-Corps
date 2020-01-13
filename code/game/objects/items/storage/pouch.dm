@@ -308,6 +308,13 @@
 	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/detpack/Initialize()
+	. = ..()
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
+
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/frag/upp
 	fill_number = 4
@@ -347,6 +354,12 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+
+/obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -410,6 +423,10 @@
 
 /obj/item/storage/pouch/medkit/full
 	fill_type = /obj/item/storage/firstaid/regular
+	fill_number = 1
+
+/obj/item/storage/pouch/medkit/equippedcorpsman
+	fill_type = /obj/item/storage/firstaid/adv
 	fill_number = 1
 
 /obj/item/storage/pouch/document
@@ -535,6 +552,12 @@
 	new /obj/item/stack/sandbags_empty/half (src)
 	new /obj/item/stack/barbed_wire/small_stack (src)
 	new /obj/item/tool/shovel/etool (src)
+
+/obj/item/storage/pouch/construction/equippedengineer/Initialize()
+	. = ..()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
 /obj/item/storage/pouch/tools
 	name = "tools pouch"

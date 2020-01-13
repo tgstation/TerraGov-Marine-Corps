@@ -54,6 +54,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	shoes = /obj/item/clothing/shoes/marine
 	gloves =/obj/item/clothing/gloves/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
+	r_hand = /obj/item/portable_vendor/marine/squadmarine
 
 /datum/outfit/job/marine/standard/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -67,98 +68,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-/datum/outfit/job/marine/standard/equipped/ar
-	name = "Squad Marine (E. - T12)"
-
-	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine
-	head = /obj/item/clothing/head/helmet/marine
-	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle
-	r_store = /obj/item/storage/pouch/flare/full
-
-/datum/outfit/job/marine/standard/equipped/ar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-
-/datum/outfit/job/marine/standard/equipped/car
-	name = "Squad Marine (E. - T18 with shotgun)"
-
-	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3LB
-	head = /obj/item/clothing/head/helmet/marine
-	suit_store = /obj/item/weapon/gun/rifle/standard_carbine
-	r_store = /obj/item/storage/pouch/shotgun
-	back = /obj/item/weapon/gun/shotgun/pump
-
-/datum/outfit/job/marine/standard/equipped/car/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
-
-/datum/outfit/job/marine/standard/equipped/lmg
-	name = "Squad Marine (E. - T42)"
-
-	belt = /obj/item/storage/belt/gun/m4a3/full
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3HB
-	head = /obj/item/clothing/head/helmet/marine/heavy
-	suit_store = /obj/item/weapon/gun/rifle/standard_lmg
-	r_store = /obj/item/storage/pouch/explosive/full
-
-/datum/outfit/job/marine/standard/equipped/lmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/attachable/bipod, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-
-/datum/outfit/job/marine/standard/equipped/dmr
-	name = "Squad Marine (E. - T64)"
-
-	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/marine/M3HB
-	head = /obj/item/clothing/head/helmet/marine/heavy
-	suit_store = /obj/item/weapon/gun/rifle/standard_lmg
-	r_store = /obj/item/storage/pouch/explosive/full
-
-/datum/outfit/job/marine/standard/equipped/lmg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/attachable/bipod, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/attachable/magnetic_harness, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 //Squad Engineer
@@ -188,6 +97,34 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/outfit/job/marine/engineer/equipped
+	name = "Squad Engineer (Equipped)"
+
+	belt = /obj/item/storage/belt/utility/full
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine/engineer
+	wear_suit = /obj/item/clothing/suit/storage/marine
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	l_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/storage/pouch/construction/equippedengineer
+	r_hand = /obj/item/portable_vendor/marine/squadmarine/engineer
+	l_hand = /obj/item/encryptionkey/engi
+	back = /obj/item/storage/backpack/marine/engineerpack
+
+/datum/outfit/job/marine/engineer/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m4a3, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/lightreplacer, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/general, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -203,8 +140,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
 
-
-/datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
+/datum/job/marine/corpsman/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
@@ -217,6 +153,43 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/corpsman
 
+/datum/outfit/job/marine/corpsman/equipped
+	name = "Squad Corpsman (Equipped)"
+
+	belt = /obj/item/storage/belt/combatLifesaver
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine/corpsman
+	wear_suit = /obj/item/clothing/suit/storage/marine
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/helmet/marine/corpsman
+	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
+	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
+	r_hand = /obj/item/portable_vendor/marine/squadmarine/corpsman
+	l_hand = /obj/item/encryptionkey/med
+
+/datum/outfit/job/marine/corpsman/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/kelotane , SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/medevac_beacon, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/bruise_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner

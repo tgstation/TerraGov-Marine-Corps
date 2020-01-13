@@ -185,6 +185,12 @@
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
 	starting_attachment_types = list()
 
+//marksman variant
+/obj/item/weapon/gun/energy/lasgun/M43/marksman
+	cell_type = /obj/item/cell/lasgun/M43/highcap
+
+	starting_attachment_types = list(/obj/item/attachable/angledgrip, /obj/item/attachable/scope/mini, /obj/item/attachable/stock/lasgun)
+
 /obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
 	return toggle_chargemode(user)
 
