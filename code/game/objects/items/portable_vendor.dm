@@ -243,10 +243,10 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = SQUAD_ENGINEER
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and angled grip."),
-							list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and angled grip."),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip. Contains a heavy helmet."),
-							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and angled grip. Contains a heavy helmet.")
+							list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and a angled grip."),
+							list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and a angled grip."),
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and a vertical grip. Contains a heavy helmet."),
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip. Contains a heavy helmet.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/corpsman
@@ -254,8 +254,31 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = SQUAD_CORPSMAN
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and vertical grip."),
-							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and angled grip.")
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and a vertical grip."),
+							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip.")
+							)
+
+/obj/item/portable_vendor/marine/squadmarine/smartgunner
+	name = "\improper TerraGov Squad Smartgunner Storage Backpack"
+	req_role = SQUAD_SMARTGUNNER
+	listed_products = list(
+							list("MARINE WEAPONS", 0, null, null, null),
+							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 SMG. Comes with a red dot sight and a gyroscopic stabilizer."),
+							list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol. Comes with a laser sight and a quick fire adaper.")
+							)
+
+/obj/item/portable_vendor/marine/squadmarine/specialist
+	name = "\improper TerraGov Squad Specialist Storage Backpack"
+	req_role = SQUAD_SPECIALIST
+	listed_products = list(
+							list("SPECIALIST KITS", 0, null, null, null),
+							list("Demolitionist (RPG, T-19 SMG)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
+							list("Sniper (M42A Scoped Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/sniper, "white", "A kit specializing in long-ranged dispatch."),
+							list("Scout (M4RA Battle Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/scout, "white", "A kit specializing in area scouting."),
+							list("Tracker (MBX900 Lever-Action Shotgun, M1911 Pistol)", 1, /obj/item/storage/box/squadmarine/tracker, "white", "A kit specializing in chasing enemy targets."),
+							list("Pyrotechician (M240T Incinerator, T-19 SMG)", 1, /obj/item/storage/box/squadmarine/pyro, "white", "A kit specializing in firey area denial."),
+							list("Heavy Grenadier (M92 Grenade Launcher)", 1, /obj/item/storage/box/squadmarine/heavy_grenadier, "white", "A kit specializing in explosive area denial."),
+							list("Heavy Minigunner (MIC-A7 Minigun, M4A3 Pistol)", 1, /obj/item/storage/box/squadmarine/heavy_gunner, "white", "A kit specializing in direct assault and tanking.")
 							)
 
 /obj/item/portable_vendor/marine/process()

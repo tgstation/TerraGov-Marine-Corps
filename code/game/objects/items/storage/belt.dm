@@ -301,6 +301,22 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
+/obj/item/storage/belt/marine/m42a/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper(src)
+
+/obj/item/storage/belt/marine/m4ra/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."

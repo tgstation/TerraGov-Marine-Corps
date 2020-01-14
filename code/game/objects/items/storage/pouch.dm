@@ -190,7 +190,13 @@
 		/obj/item/weapon/gun/smg/standard_machinepistol)
 	draw_mode = 1
 
+/obj/item/storage/pouch/pistol/vp70/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(src)
 
+/obj/item/storage/pouch/pistol/m4a3/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/m4a3(src)
 
 //// MAGAZINE POUCHES /////
 
@@ -210,12 +216,22 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/cell/lasgun)
 
+/obj/item/storage/pouch/magazine/smgfull
+	fill_type = /obj/item/ammo_magazine/smg/standard_smg
+	fill_number = 2
+
 /obj/item/storage/pouch/magazine/large
 	name = "large magazine pouch"
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
+/obj/item/storage/pouch/magazine/large/m4rafull
+	fill_type = /obj/item/ammo_magazine/rifle/m4ra
+	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/t19full
+	fill_type = /obj/item/ammo_magazine/smg/standard_smg
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"

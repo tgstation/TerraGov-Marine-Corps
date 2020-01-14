@@ -59,9 +59,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 /datum/outfit/job/marine/standard/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m4a3, SLOT_IN_BACKPACK)
@@ -115,9 +112,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/outfit/job/marine/engineer/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m4a3, SLOT_IN_BACKPACK)
@@ -165,6 +159,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	head = /obj/item/clothing/head/helmet/marine/corpsman
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
 	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
+	glasses = /obj/item/clothing/glasses/hud/health
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/corpsman
 	l_hand = /obj/item/encryptionkey/med
 
@@ -217,6 +212,25 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/outfit/job/marine/smartgunner/equipped
+	name = "Squad Smartgunner (Equipped)"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/helmet/marine
+	l_store = /obj/item/storage/pouch/firstaid/full
+	suit_store = /obj/item/weapon/gun/smartgun
+	r_hand = /obj/item/portable_vendor/marine/squadmarine/smartgunner
+	back = /obj/item/smartgun_powerpack
+
+/datum/outfit/job/marine/smartgunner/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar , SLOT_IN_HEAD)
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -252,6 +266,15 @@ You can serve a variety of roles, so choose carefully."})
 	back = /obj/item/storage/backpack/marine/satchel
 	head = /obj/item/clothing/head/helmet/specrag
 
+/datum/outfit/job/marine/specialist/equipped
+	name = "Squad Specialist (Equipped)"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	l_store = /obj/item/storage/pouch/firstaid/full
+	r_hand = /obj/item/portable_vendor/marine/squadmarine/specialist
 
 //Squad Leader
 /datum/job/terragov/squad/leader
@@ -284,6 +307,41 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/outfit/job/marine/leader/equipped
+	name = "Squad Leader (Equipped)"
+
+	ears = /obj/item/radio/headset/mainship/marine
+	w_uniform = /obj/item/clothing/under/marine
+	wear_suit = /obj/item/clothing/suit/storage/marine/leader
+	shoes = /obj/item/clothing/shoes/marine
+	gloves =/obj/item/clothing/gloves/marine
+	head = /obj/item/clothing/head/helmet/marine/leader
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+	l_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
+	r_hand = /obj/item/storage/box/squadmarine/squadleader
+	l_hand = /obj/item/encryptionkey/squadlead
+	belt = /obj/item/storage/belt/marine/t12
+
+/datum/outfit/job/marine/leader/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/squad_beacon, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/squad_beacon/bomb, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/motiondetector, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/whistle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)

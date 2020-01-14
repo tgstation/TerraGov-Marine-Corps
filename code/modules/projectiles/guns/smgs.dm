@@ -119,6 +119,9 @@
 	aim_slowdown = 0.25
 	burst_amount = 0
 
+/obj/item/weapon/gun/smg/standard_smg/smartgunner
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/gyro)
+
 //-------------------------------------------------------
 //M39 SMG
 
