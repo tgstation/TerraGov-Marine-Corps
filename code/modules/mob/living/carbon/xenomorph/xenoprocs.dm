@@ -305,7 +305,7 @@
 		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
 				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
-					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
+					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 							Knockdown(6 SECONDS)
