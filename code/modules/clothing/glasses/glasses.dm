@@ -274,7 +274,7 @@
 
 /obj/item/clothing/glasses/sunglasses/sa/Initialize()
 	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_NONE
+	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
