@@ -22,8 +22,3 @@ endmap
 
 map pillar_of_spring
 endmap
-
-map risingstar
-	voteweight 0
-	maxplayers 5
-endmap

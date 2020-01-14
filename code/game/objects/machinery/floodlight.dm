@@ -18,6 +18,7 @@
 	. = ..()
 	cell = new /obj/item/cell(src)
 
+
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 /*
@@ -66,6 +67,7 @@
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 
 	updateicon()
+
 
 /obj/machinery/floodlight/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -121,6 +123,7 @@
 	on = 1
 	use_power = 0
 
+
 /obj/machinery/floodlight/landing/Initialize(mapload, ...)
 	. = ..()
 	set_light(5)
@@ -132,6 +135,7 @@
 
 /obj/machinery/floodlight/landing/attackby()
 	return
+
 
 /obj/machinery/floodlight/outpost
 	name = "Outpost Light"
