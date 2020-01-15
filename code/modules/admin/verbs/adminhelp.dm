@@ -893,7 +893,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
-/proc/ircadminwho()
+/proc/tgsadminwho()
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	var/list/afkmins = adm["afk"]
