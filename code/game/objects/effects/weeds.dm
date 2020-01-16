@@ -183,7 +183,6 @@
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/weeds/node/hivemindcore/Destroy()
-	set_light(0, 0, null)
 	if(isnull(parent))
 		return ..()
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
