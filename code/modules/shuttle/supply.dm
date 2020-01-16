@@ -615,13 +615,15 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else
 		to_chat(user, "There seems to be a beacon attached to this tablet. Should be good to go for delivery.")
 
-/obj/item/req_tablet/afterattack(atom/A, mob/user, proximity)
+/obj/item/req_tablet/preattack(atom/A, mob/user, proximity)
 	if(istype(A, /obj/item/radio/beacon))
 		if(A == linked_beacon)
 			return
 		to_chat(user, "<span class='notice'>You link the tablet to the beacon[linked_beacon ? " overriding the previous one!" : "!" ]</span>")
 		playsound(get_turf(src), 'sound/machines/triple_beep.ogg', 25, TRUE)
 		icon_state = "req_tablet_on"
+		. = TRUE
+	return ..()
 
 //Begin the requisitions copypasta
 /obj/item/req_tablet/interact(mob/user)
@@ -689,10 +691,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 				return
 			turfs_to_land_on += T
 
-		for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
+		for(var/order in SSshuttle.shoppinglist)
 			if(!length(turfs_to_land_on))
 				break
 			var/turf/picked_turf = pick(turfs_to_land_on)
+			var/datum/supply_order/SO = order
 			new /obj/effect/DPtarget(picked_turf, podType, SO.pack)
 			turfs_to_land_on -= picked_turf
 			SSshuttle.shoppinglist -= SO
