@@ -163,29 +163,28 @@ should be alright.
 */
 /obj/item/weapon/gun/proc/harness_check(mob/user)
 	if(!ishuman(user))
-		return
+		return FALSE
 	var/mob/living/carbon/human/owner = user
 	if(!has_attachment(/obj/item/attachable/magnetic_harness) && !istype(src,/obj/item/weapon/gun/smartgun))
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
-		if(!istype(B,/obj/item/belt_harness))
-			return
+		if(!istype(B, /obj/item/belt_harness))
+			return FALSE
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I,/obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
-		return
-	harness_return(user)
+	if(!istype(I, /obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
+		return FALSE
+	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
 	return TRUE
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	set waitfor = 0
-	sleep(3)
-	if(loc && user)
-		if(isnull(user.s_store) && isturf(loc))
-			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,SLOT_S_STORE)
-			if(user.s_store == src)
-				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
-			user.update_inv_s_store()
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store))
+		return
+
+	user.equip_to_slot_if_possible(src, SLOT_S_STORE)
+	if(user.s_store == src)
+		var/obj/item/I = user.wear_suit
+		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
+	user.update_inv_s_store()
 
 
 /obj/item/weapon/gun/attack_self(mob/user)

@@ -165,6 +165,33 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
+/datum/species/human/random_name(gender)
+	. = ..()
+	if(CONFIG_GET(flag/humans_need_surnames))
+		. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+
+/datum/species/proc/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
+
+/datum/species/human/prefs_name(datum/preferences/prefs)
+	. = ..()
+	if(CONFIG_GET(flag/humans_need_surnames))
+		var/firstspace = findtext(., " ")
+		if(!firstspace || firstspace == length(.))
+			. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+
+/datum/species/synthetic/prefs_name(datum/preferences/prefs)
+	. = prefs.synthetic_name
+	if(!. || . == "Undefined") //In case they don't have a name set.
+		switch(prefs.gender)
+			if(MALE)
+				. = "David"
+			if(FEMALE)
+				. = "Anna"
+			else
+				. = "Jeri"
+		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return

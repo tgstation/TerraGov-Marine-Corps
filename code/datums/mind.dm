@@ -33,25 +33,15 @@
 
 	var/memory
 
-	var/assigned_role
-	var/assigned_squad
-	var/comm_title
-
 	var/datum/money_account/initial_account
 
 	var/last_death = 0
 
 	var/bypass_ff = FALSE
-	var/late_joiner = FALSE
 
 
 /datum/mind/New(key)
 	src.key = key
-
-
-/datum/mind/Destroy()
-	SSticker.minds -= src
-	return ..()
 
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
@@ -103,27 +93,6 @@
 		mind.key = key
 	else
 		mind = new /datum/mind(key)
-		SSticker.minds += mind
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
-
-
-/mob/living/carbon/xenomorph/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Xenomorph"
-
-
-/mob/living/silicon/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Silicon"
-
-
-/mob/living/silicon/ai/mind_initialize()
-	. = ..()
-	mind.assigned_role = "AI"
-
-
-/mob/living/simple_animal/mind_initialize()
-	. = ..()
-	mind.assigned_role = "Animal"

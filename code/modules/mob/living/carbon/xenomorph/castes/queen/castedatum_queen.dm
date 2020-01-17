@@ -3,6 +3,7 @@
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	job_type = /datum/job/xenomorph/queen
 
 	tier = XENO_TIER_FOUR
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -25,7 +26,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
@@ -95,7 +96,7 @@
 	max_health = 225
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
@@ -131,7 +132,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 3200
+	upgrade_threshold = 1600
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -167,7 +168,7 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 3200
+	upgrade_threshold = 1600
 
 	// *** Defense *** //
 	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)

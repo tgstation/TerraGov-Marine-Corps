@@ -52,7 +52,6 @@
 	med_hud_set_health()
 	med_hud_set_status()
 	sec_hud_set_security_status()
-	hud_set_squad()
 	hud_set_order()
 	//and display them
 	add_to_all_mob_huds()
@@ -515,7 +514,7 @@
 						var/newfireteam = input(usr, "Assign this marine to a fireteam.", "Fire Team Assignment") as null|anything in list("None", "Fire Team 1", "Fire Team 2", "Fire Team 3")
 						if(H.incapacitated() || get_dist(H, src) > 7 || !hasHUD(H,"squadleader")) return
 						ID = get_idcard()
-						if(ID && ID.rank in GLOB.jobs_marines)//still a marine with an ID
+						if(ID && (ID.rank in GLOB.jobs_marines))//still a marine with an ID
 							if(assigned_squad == H.assigned_squad) //still same squad
 								switch(newfireteam)
 									if("None") ID.assigned_fireteam = 0
@@ -1193,23 +1192,6 @@
 	popup.open(FALSE)
 
 
-/mob/living/carbon/human/proc/set_rank(rank)
-	if(!rank)
-		return FALSE
-
-	if(!mind)
-		job = rank
-		return FALSE
-
-	var/datum/job/J = SSjob.GetJob(rank)
-	if(!J)
-		return FALSE
-
-	J.assign(src)
-
-	return TRUE
-
-
 /mob/living/carbon/human/proc/set_equipment(equipment)
 	if(!equipment)
 		return FALSE
@@ -1236,16 +1218,8 @@
 	return TRUE
 
 
-/mob/living/carbon/human/take_over(mob/M)
-	. = ..()
-
-	var/datum/job/J = SSjob.GetJob(job)
-	J?.assign(src)
-	change_squad(assigned_squad?.name)
-
-
 /mob/living/carbon/human/proc/change_squad(squad)
-	if(!squad || !(job in GLOB.jobs_marines))
+	if(!squad || !ismarinejob(job))
 		return FALSE
 
 	var/datum/squad/S = SSjob.squads[squad]
@@ -1275,7 +1249,7 @@
 		C.registered_name = real_name
 		C.update_label()
 
-	if(!GLOB.datacore.manifest_update(oldname, newname, job))
+	if(job && !GLOB.datacore.manifest_update(oldname, newname, job.title))
 		GLOB.datacore.manifest_inject(src)
 
 	return TRUE

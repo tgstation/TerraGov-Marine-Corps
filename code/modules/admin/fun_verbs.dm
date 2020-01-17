@@ -5,12 +5,16 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(usr.client.view != world.view)
-		usr.client.change_view(world.view)
+	if(usr.client.view != WORLD_VIEW)
+		usr.client.change_view(WORLD_VIEW)
 		return
 
 	var/newview = input("Select view range:", "Change View Range", 7) as null|num
-	if(!newview || newview == usr.client.view)
+	if(!newview)
+		return
+
+	newview = VIEW_NUM_TO_STRING(newview)
+	if(newview == usr.client.view)
 		return
 
 	usr.client.change_view(newview)
@@ -614,17 +618,17 @@
 
 	if(!H.mind)
 		dat += "No mind! <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=createmind;mob=[REF(H)]'>Create</a><br>"
-		dat += "Take-over job: [H.job ? H.job : "None"] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
-		if(H.job in GLOB.jobs_marines)
+		dat += "Take-over job: [H.job ? H.job.title : "None"] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a><br>"
+		if(ismarinejob(H.job))
 			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	else
-		dat += "Job: [H.mind.assigned_role] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a> "
+		dat += "Job: [H.job ? H.job.title : "Unassigned"] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;mob=[REF(H)]'>Edit</a> "
 		dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;doequip=1;mob=[REF(H)]'>Edit and Equip</a> "
 		dat += "<a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=rank;doset=1;mob=[REF(H)]'>Edit and Set</a><br>"
 		dat += "<br>"
 		dat += "Skillset: [H.skills.name] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=skills;mob=[REF(H)]'>Edit</a><br>"
-		dat += "Comms title: [H.mind.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
-		if(H.mind.assigned_role in GLOB.jobs_marines)
+		dat += "Comms title: [H.comm_title] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=commstitle;mob=[REF(H)]'>Edit</a><br>"
+		if(ismarinejob(H.job))
 			dat += "Squad: [H.assigned_squad] <a href='?src=[REF(usr.client.holder)];[HrefToken()];rank=squad;mob=[REF(H)]'>Edit</a><br>"
 	if(istype(C))
 		dat += "<br>"

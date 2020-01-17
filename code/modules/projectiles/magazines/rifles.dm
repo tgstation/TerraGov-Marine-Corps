@@ -54,7 +54,7 @@
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle
 	name = "\improper T-12 Assault Rifle magazine (10x24mm)"
-	desc = "A 10mm Carbine magazine."
+	desc = "A 10mm Assault Rifle magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t12"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -72,7 +72,17 @@
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
-	max_rounds = 10
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
+
+/obj/item/ammo_magazine/rifle/standard_dmr/incendiary
+	name = "\improper T-64 DMR incendiary magazine (10x27mm)"
+	desc = "A 10mm incendiary DMR magazine."
+	caliber = "10x27mm incendiary caseless"
+	icon_state = "t64_incin"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
+	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------

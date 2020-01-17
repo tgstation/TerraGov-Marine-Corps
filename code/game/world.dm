@@ -1,4 +1,6 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
+#define MAX_TOPIC_LEN 100
+#define TOPIC_BANNED 1
 
 
 GLOBAL_VAR(restart_counter)
@@ -117,9 +119,32 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	var/static/list/bannedsourceaddrs = list()
+
+	var/static/list/lasttimeaddr = list()
+	var/static/list/topic_handlers = TopicHandlers()
+
+	//LEAVE THIS COOLDOWN HANDLING IN PLACE, OR SO HELP ME I WILL MAKE YOU SUFFER
+	if (bannedsourceaddrs[addr])
+		return
+
+	if(length(T) >= MAX_TOPIC_LEN)
+		log_admin_private("[addr] banned from topic calls for a round for too long status message")
+		bannedsourceaddrs[addr] = TOPIC_BANNED
+		return
+
+	if(lasttimeaddr[addr])
+		var/lasttime = lasttimeaddr[addr]
+		if(world.time < (lasttime + 2 SECONDS))
+			log_admin_private("[addr] banned from topic calls for a round for too frequent messages")
+			bannedsourceaddrs[addr] = TOPIC_BANNED
+			return
+
+	lasttimeaddr[addr] = world.time
+
+
 	TGS_TOPIC	//redirect to server tools if necessary
 
-	var/static/list/topic_handlers = TopicHandlers()
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -286,3 +311,6 @@ GLOBAL_VAR(restart_counter)
 	fps = new_value
 
 	SStimer?.reset_buckets()
+
+#undef MAX_TOPIC_LEN
+#undef TOPIC_BANNED

@@ -1078,7 +1078,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -6144,7 +6144,7 @@
 /turf/open/floor,
 /area/hydroponics/garden)
 "auy" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/hydroponics/garden)
@@ -7694,7 +7694,7 @@
 /turf/open/floor,
 /area/security/brig)
 "azs" = (
-/obj/effect/landmark/start/ai_spawn,
+/obj/effect/landmark/start/job/ai,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -8836,7 +8836,7 @@
 /turf/open/floor,
 /area/crew_quarters/locker)
 "aCS" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigred/ground/cargo)
 "aCT" = (
@@ -9051,7 +9051,7 @@
 /turf/open/floor,
 /area/crew_quarters/toilet)
 "aDx" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aDy" = (
@@ -9346,7 +9346,7 @@
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "aEy" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/crew_quarters/locker)
 "aEz" = (
@@ -12015,7 +12015,7 @@
 /turf/closed/wall/tyson,
 /area/lv624/lazarus/hop)
 "aNw" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aNx" = (
@@ -15118,7 +15118,7 @@
 /area/crew_quarters/theatre)
 "aXp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/quartermaster/office)
 "aXq" = (
@@ -15365,7 +15365,7 @@
 	},
 /area/crew_quarters/kitchen)
 "aXR" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreen"
@@ -15499,7 +15499,7 @@
 /turf/open/floor/grass,
 /area/hydroponics)
 "aYn" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "aYo" = (
@@ -15542,7 +15542,7 @@
 /turf/open/floor,
 /area/tyson_station/mine_depot)
 "aYx" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor{
 	icon_state = "red"
 	},
@@ -15566,7 +15566,7 @@
 /turf/open/floor,
 /area/tyson_station/mine_depot)
 "aYA" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "aYB" = (
@@ -15919,7 +15919,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZC" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /obj/structure/cable{
 	icon_state = "4-8";
 	d1 = 4;
@@ -16136,7 +16136,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
 "baa" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/medical/morgue)
 "bac" = (
@@ -16242,7 +16242,7 @@
 /turf/open/floor/tile/bar,
 /area/medical/reception)
 "baj" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/medical/biostorage)
 "bak" = (
@@ -16525,7 +16525,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "baS" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
 "baT" = (
@@ -16535,7 +16535,7 @@
 /turf/open/floor,
 /area/space)
 "baU" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/hallway/primary/aft)
 "baV" = (
@@ -16670,7 +16670,7 @@
 /area/bigred/ground/cargo)
 "bbj" = (
 /obj/structure/bed/chair/comfy,
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
 	d1 = 1;

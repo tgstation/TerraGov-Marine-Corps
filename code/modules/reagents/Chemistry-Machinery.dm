@@ -4,8 +4,9 @@
 	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "dispenser"
-	use_power = 0
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
+	active_power_usage = 250
 	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	layer = BELOW_OBJ_LAYER //So beakers reliably appear above it
 	interaction_flags = INTERACT_MACHINE_NANO
@@ -57,7 +58,7 @@
 			return
 		var/usedpower = cell?.give(recharge_amount)
 		if(usedpower)
-			use_power(250*recharge_amount)
+			use_power(active_power_usage * recharge_amount)
 		recharge_counter = 0
 		return
 	recharge_counter++
@@ -171,7 +172,7 @@
 			if(!is_operational() || recording_recipe)
 				return
 			var/amount = text2num(params["amount"])
-			if(beaker && amount in beaker.possible_transfer_amounts)
+			if(beaker && (amount in beaker.possible_transfer_amounts))
 				beaker.reagents.remove_all(amount)
 				work_animation()
 				. = TRUE
@@ -305,7 +306,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 20
 	layer = BELOW_OBJ_LAYER //So bottles/pills reliably appear above it
 	var/obj/item/reagent_containers/beaker = null
@@ -701,7 +702,7 @@
 	layer = ABOVE_TABLE_LAYER
 	density = FALSE
 	anchored = FALSE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	var/inuse = 0

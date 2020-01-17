@@ -58,9 +58,18 @@
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //Job/role helpers
-#define issurvivor(H) (H?.mind?.assigned_role == "Survivor")
-#define ismarine(H) (H?.faction == "Marine" && (H?.mind?.assigned_role in GLOB.jobs_marines))
-#define ispmc(H) (H?.faction == "PMC")
+#define ismarinefaction(H) (H.faction == "TerraGov")
+#define ispolicejob(J) (istype(J, /datum/job/terragov/police))
+#define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
+#define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
+#define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
+#define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
+#define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
+#define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))
+#define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
+#define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))
+#define issurvivorjob(J) (istype(J, /datum/job/survivor))
+#define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -192,8 +201,8 @@
 
 
 //Gamemode
-#define isdistress(O) (istype(O, /datum/game_mode/distress))
-#define iscrashgamemode(O) (istype(O, /datum/game_mode/crash))
+#define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))
+#define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 

@@ -171,9 +171,6 @@
 			to_chat(src, "<span class='warning'>Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!</span>")
 			return
 
-		if(mind)
-			mind.assigned_role = ROLE_XENO_QUEEN
-
 		switch(hivenumber) // because it causes issues otherwise
 			if(XENO_HIVE_CORRUPTED)
 				new_caste_type = /mob/living/carbon/xenomorph/queen/Corrupted
@@ -198,9 +195,6 @@
 		if(isxenoresearcharea(get_area(src)))
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
 			return
-
-		if(mind)
-			mind.assigned_role = ROLE_XENO_QUEEN
 
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])

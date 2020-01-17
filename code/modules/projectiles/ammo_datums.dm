@@ -385,8 +385,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
-	damage = 30
-	penetration = 0
+	damage = 25
+	penetration = 10
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -449,16 +449,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "high velocity rifle bullet"
+	name = "marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
-	damage = 70
+	accurate_range = 30
+	damage = 55
 	scatter = -15
 	penetration = 15
+
+/datum/ammo/bullet/rifle/standard_dmr/incendiary
+	name = "incendiary marksman bullet"
+	hud_state = "hivelo_fire"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 35
+
 
 /*
 //================================================
@@ -976,15 +984,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_sniper"
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 20
 
+/datum/ammo/energy/lasgun/M43/heat
+	name = "microwave heat bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_heat"
+	damage = 12 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 0
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10

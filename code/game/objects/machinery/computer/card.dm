@@ -57,7 +57,7 @@
 
 	var/obj/item/card/id/C = I
 
-	if(!scan && ACCESS_MARINE_LOGISTICS in C.access)
+	if(!scan && (ACCESS_MARINE_LOGISTICS in C.access))
 		if(!user.drop_held_item())
 			return
 

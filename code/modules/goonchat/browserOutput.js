@@ -55,7 +55,7 @@ var opts = {
 	'preventFocus': false, //Prevents switching focus to the game window
 
 	//Client Connection Data
-	'clientDataLimit': 5,
+	'clientDataLimit': 5, //Should match MAX_COOKIE_LENGTH in browserOutput.dm
 	'clientData': [],
 
 	//Admin music volume update
@@ -480,7 +480,7 @@ function handleClientData(ckey, ip, compid) {
 			}
 		}
 
-		if (opts.clientData.length >= opts.clientDataLimit) {
+		while (opts.clientData.length >= opts.clientDataLimit) {
 			opts.clientData.shift();
 		}
 	} else {
@@ -539,13 +539,6 @@ function ehjaxCallback(data) {
 			var firebugEl = document.createElement('script');
 			firebugEl.src = 'https://getfirebug.com/firebug-lite-debug.js';
 			document.body.appendChild(firebugEl);
-		} else if (data.clientCSS) {
-			var css = data.clientCSS.replace(/\;/g, "").replace(/\|{2}/g, ";");
-			var $clientCSS = $('style#client-css');
-			if (!$clientCSS) {
-				return;
-			}
-			$clientCSS.text(css);
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);

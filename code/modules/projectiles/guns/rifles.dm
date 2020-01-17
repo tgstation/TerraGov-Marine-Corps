@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/rifle/standard_carbine
     name = "\improper T-18 carbine"
-    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to conserve ammunition. Uses 10x24mm caseless ammunition."
+    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
     fire_sound = "sound/weapons/guns/fire/t18.ogg"
@@ -118,11 +118,11 @@
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t12barrel)
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
 
-    fire_delay = 0.33 SECONDS
+    fire_delay = 0.2 SECONDS
     burst_delay = 0.15 SECONDS
     accuracy_mult = 1.15
     scatter = -10
-    wield_delay = 1.0 SECONDS
+    wield_delay = 0.7 SECONDS
     burst_amount = 3
     aim_slowdown = 0.5
     damage_falloff_mult = 0.5
@@ -142,8 +142,8 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
-	aim_slowdown = 0.75
-	wield_delay = 1.0 SECONDS
+	aim_slowdown = 0.05 SECONDS
+	wield_delay = 0.7 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -158,6 +158,7 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
+						/obj/item/attachable/gyro,
 						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
@@ -170,13 +171,13 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
+	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 1 SECONDS
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.25
 	scatter = -15
-	burst_amount = 0
+	burst_amount = 1
 
 
 //-------------------------------------------------------
@@ -184,7 +185,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "The standard issue rifle of the TerraGov Marine Corps, carried by a few coporate mercenaries. However, due to its availability and resources, the M41A1 is a very rare sight on TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries. However, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -322,7 +323,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1.05
-	burst_amount = 0
+	burst_amount = 1
 	fire_delay = 0.25 SECONDS
 
 
@@ -346,7 +347,7 @@
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper FN M16A4 assault rifle"
-	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire; retains relevance among mercenaries and militias thanks to its high customizability."
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire and retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -423,8 +424,8 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
-	fire_delay = 0.25 SECONDS
-	burst_amount = 0
+	fire_delay = 0.2 SECONDS
+	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 0.9
 	scatter = 20
@@ -562,5 +563,4 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 0.7 SECONDS
-	burst_amount = 0
-
+	burst_amount = 1

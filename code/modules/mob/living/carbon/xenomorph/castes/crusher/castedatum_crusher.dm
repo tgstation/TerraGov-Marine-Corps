@@ -27,7 +27,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 80, "bullet" = 40, "laser" = 40, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
+	armor = list("melee" = 70, "bullet" = 35, "laser" = 35, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
 
 	// *** Crusher Abilities *** //
 	actions = list(
@@ -74,10 +74,10 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
+	armor = list("melee" = 80, "bullet" = 40, "laser" = 40, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -102,10 +102,10 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 95, "bullet" = 47, "laser" = 47, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
+	armor = list("melee" = 85, "bullet" = 43, "laser" = 43, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -130,5 +130,4 @@
 	max_health = 350
 
 	// *** Defense *** //
-	armor = list("melee" = 100, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
-
+	armor = list("melee" = 90, "bullet" = 45, "laser" = 45, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)

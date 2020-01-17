@@ -388,11 +388,9 @@
 			to_chat(L, "<span class='notice'>It must have some kind of ID lock...</span>")
 			return FALSE
 
-	if(req_role && L.mind)
-		var/datum/mind/M = L.mind
-		if(req_role && M.assigned_role && M.assigned_role != req_role)
-			to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
-			return FALSE
+	if(req_role && (!L.job || L.job.title != req_role))
+		to_chat(L, "<span class='notice'>It must have some kind of special lock...</span>")
+		return FALSE
 
 	return TRUE
 

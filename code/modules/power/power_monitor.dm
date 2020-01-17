@@ -10,7 +10,7 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
 

@@ -83,8 +83,8 @@
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
-		var/datum/hive_status/normal/HN = hive
-		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
@@ -305,7 +305,7 @@
 		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
 				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
-					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
+					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 							Knockdown(6 SECONDS)
@@ -432,7 +432,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
-	client.change_view(viewsize)
+	client.change_view(VIEW_NUM_TO_STRING(viewsize))
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
 		if(NORTH)
@@ -453,7 +453,7 @@
 	zoom_turf = null
 	if(!client)
 		return
-	client.change_view(world.view)
+	client.change_view(WORLD_VIEW)
 	client.pixel_x = 0
 	client.pixel_y = 0
 
@@ -529,7 +529,7 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	cooldowns[COOLDOWN_ACID] = TRUE
+	cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ACID, null), 2 SECONDS)
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)

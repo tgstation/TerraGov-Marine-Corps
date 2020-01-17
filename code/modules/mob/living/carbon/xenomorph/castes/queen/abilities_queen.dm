@@ -147,14 +147,14 @@
 	//stop_momentum(charge_dir) //Screech kills a charge
 
 	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(world.view, X))
+	for(var/mob/living/L in hearers(WORLD_VIEW, X))
 		nearby_living.Add(L)
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
-		if(get_dist(L, X) > world.view)
+		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
-		L.screech_act(X, world.view, L in nearby_living)
+		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
 // ***************************************
 // *********** Gut

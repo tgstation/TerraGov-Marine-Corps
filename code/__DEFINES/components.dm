@@ -1,34 +1,6 @@
-/// Used to trigger signals and call procs registered for that signal
-/// The datum hosting the signal is automaticaly added as the first argument
-/// Returns a bitfield gathered from all registered procs
-/// Arguments given here are packaged in a list and given to _SendSignal
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )
-
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
-
-/// Return this from `/datum/component/Initialize` or `datum/component/OnTransfer` to have the component be deleted if it's applied to an incorrect type.
-/// `parent` must not be modified if this is to be returned.
-/// This will be noted in the runtime logs
-#define COMPONENT_INCOMPATIBLE 1
-/// Returned in PostTransfer to prevent transfer, similar to `COMPONENT_INCOMPATIBLE`
-#define COMPONENT_NOTRANSFER 2
-
-/// Return value to cancel attaching
-#define ELEMENT_INCOMPATIBLE 1
-
-/// /datum/element flags
-#define ELEMENT_DETACH		(1 << 0)
-
 //shorthand
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
-// How multiple components of the exact same type are handled in the same datum
-
-#define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
-#define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
-#define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
 
 // All signals. Format:
 // When the signal is called: (signal arguments)
@@ -46,17 +18,19 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
+#define COMSIG_GLOB_MOB_LOGIN "!mob_login"
+#define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
+#define COMSIG_GLOB_MOB_DEATH "!mob_death"
+
+
+/// Sent when a marine dropship enters transit level
+#define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
+
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-/// when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_ADDED "component_added"
-/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"
 /// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
 #define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
-/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 
@@ -205,6 +179,7 @@
 
 // /mob signals
 #define COMSIG_MOB_DEATH "mob_death"							//from base of mob/death(): (gibbed)
+#define COMSIG_MOB_REVIVE "mob_revive"							//from base of mob/on_revive(): ()
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
@@ -220,6 +195,7 @@
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
@@ -398,6 +374,7 @@
 
 #define COMSIG_XENOABILITY_HEADBUTT "xenoability_headbutt"
 #define COMSIG_XENOABILITY_TAIL_SWEEP "xenoability_tail_sweep"
+#define COMSIG_XENOABILITY_FORWARD_CHARGE "xenoability_forward_charge"
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"
 #define COMSIG_XENOABILITY_FORTIFY "xenoability_fortify"
 
