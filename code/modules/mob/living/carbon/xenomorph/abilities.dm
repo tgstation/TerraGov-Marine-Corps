@@ -886,7 +886,9 @@
 	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
 
 	xeno_hivemind.offer_mob()
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND)
+	var/datum/game_mode/gm = SSticker.mode
+	if(gm && (gm.flags_round_type & MODE_FOG_ACTIVATED))
+		gm.remove_fog()
 
 	succeed_activate()
 	add_cooldown()

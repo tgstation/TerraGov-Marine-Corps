@@ -34,12 +34,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload, obj/effect/alien/weeds/node/hivemindcore/hmcore)
 	. = ..()
-	GLOB.hivemind_list += src
 	core = hmcore
-
-/mob/living/carbon/xenomorph/hivemind/Destroy()
-	GLOB.hivemind_list -= src
-	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
