@@ -35,17 +35,17 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/leader)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are the leader of the elite UPP commando unit.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/medic)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are the medic of the elite UPP commando unit.</span>")
 		medics++
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/leader)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a member of the elite UPP commando unit.</span>")

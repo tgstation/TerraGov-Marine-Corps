@@ -251,7 +251,7 @@
 	if(!M.client)
 		return FALSE  //Not connected
 
-	if(M.mind && M.mind in candidates)
+	if(M.mind && (M.mind in candidates))
 		return FALSE  //Already there.
 
 	if(M.stat != DEAD)

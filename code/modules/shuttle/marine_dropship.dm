@@ -38,7 +38,7 @@
 		CHECK_TICK
 
 	if(isdistress(SSticker.mode))
-		var/datum/game_mode/distress/distress_mode = SSticker.mode
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
 		distress_mode.round_stage = DISTRESS_DROPSHIP_CRASHED
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
@@ -140,6 +140,12 @@
 	. = ..()
 	SSshuttle.dropships += src
 
+/obj/docking_port/mobile/marine_dropship/enterTransit()
+	. = ..()
+	if(!.) // it failed in parent
+		return
+	// pull the shuttle from datum/source, and state info from the shuttle itself
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")
@@ -1024,7 +1030,7 @@
 
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
 		return
-	var/datum/game_mode/crash/C = SSticker.mode
+	var/datum/game_mode/infestation/crash/C = SSticker.mode
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return

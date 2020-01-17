@@ -422,7 +422,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/focuslens
 	name = "M43 focused lens"
-	desc = "Directs the beam into one specialized lens, allowing the lasgun to use the deadly focused bolts on overcharge, making it more like a high damaged sniper.."
+	desc = "Directs the beam into one specialized lens, allowing the lasgun to use the deadly focused bolts on overcharge, making it more like a high damage sniper."
 	slot = "muzzle"
 	icon_state = "focus"
 	attach_icon = "focus_a"
@@ -433,13 +433,24 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/widelens
 	name = "M43 wide lens"
-	desc = "Splits the lens into three, allowing the lasgun to use the deadly wide range blast on overcharge akin to a traditional ballistic shotgun."
+	desc = "Splits the lens into three, allowing the lasgun to use a deadly close-range blast on overcharge akin to a traditional pellet based shotgun shot."
 	slot = "muzzle"
 	icon_state = "wide"
 	attach_icon = "wide_a"
 	pixel_shift_x = 18
 	pixel_shift_y = 15
 	ammo_mod = /datum/ammo/energy/lasgun/M43/blast
+	damage_mod = -0.15
+
+/obj/item/attachable/heatlens
+	name = "M43 heat lens"
+	desc = "Changes the intensity and frequency of the laser. This makes your target be set on fire at a cost of upfront damage and penetration."
+	slot = "muzzle"
+	icon_state = "heat"
+	attach_icon = "heat_a"
+	pixel_shift_x = 18
+	pixel_shift_y = 16
+	ammo_mod = /datum/ammo/energy/lasgun/M43/heat
 	damage_mod = -0.15
 
 /obj/item/attachable/efflens

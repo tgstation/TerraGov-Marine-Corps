@@ -33,20 +33,17 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/leader)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are the Freelancer mercenary assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece to make sure they earn their payment!</notice>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/medic)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		medics++
 		to_chat(H, "<span class='notice'>You are a Freelancer mercenary medic assigned to this group to respond to the TGMC distress signal sent nearby. Do not let your teammates fall in battle!</notice>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)
-	SSjob.AssignRole(H, J.title)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a Freelancer mercenary assigned to this group to respond to the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice>")

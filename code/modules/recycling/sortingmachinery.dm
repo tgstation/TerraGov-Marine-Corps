@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		return
 
 	Topic(href, href_list)
-		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
+		if(href_list["nextTag"] && (href_list["nextTag"] in GLOB.tagger_locations))
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
 

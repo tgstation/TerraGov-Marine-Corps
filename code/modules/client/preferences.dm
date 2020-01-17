@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 
 	dat += "<center>"
-	dat += "<a href='?_src_=prefs;preference=jobmenu'>Set Marine Role Preferences</a><br>"
+	dat += "<a href='?_src_=prefs;preference=jobmenu'>Set Role Preferences</a><br>"
 	dat += "<a href='?_src_=prefs;preference=keybindings_menu'>Keybindings</a>"
 	dat += "</center>"
 
@@ -252,9 +252,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if("Xeno Queen")
 				ban_check_name = ROLE_XENO_QUEEN
-
-			if("Survivor")
-				ban_check_name = ROLE_SURVIVOR
 
 		if(is_banned_from(user.ckey, ban_check_name))
 			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
@@ -358,12 +355,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/width = widthPerColumn
 
 	var/HTML = "<center>"
-	if(!length(SSjob.occupations))
+	if(!length(SSjob.joinable_occupations))
 		HTML += "The job subsystem hasn't initialized yet, please try again later."
 		HTML += "<center><a href='?_src_=prefs;preference=jobclose'>Done</a></center><br>" // Easier to press up here.
 
 	else
-		HTML += "<b>Choose marine role preferences.</b><br>"
+		HTML += "<b>Choose role preferences.</b><br>"
 		HTML += "<div align='center'>Left-click to raise the preference, right-click to lower it.<br></div>"
 		HTML += "<center><a href='?_src_=prefs;preference=jobclose'>Done</a></center><br>" // Easier to press up here.
 		HTML += "<script type='text/javascript'>function setJobPrefRedirect(level, job) { window.location.href='?_src_=prefs;preference=jobselect;level=' + level + ';job=' + encodeURIComponent(job); return false; }</script>"
@@ -373,12 +370,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 		var/datum/job/lastJob
-		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
-		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(!(job.title in GLOB.jobs_regular_all))
-				continue
-
+		for(var/j in SSjob.joinable_occupations)
+			var/datum/job/job = j
 			index += 1
 			if(index >= limit || (job.title in splitJobs))
 				width += widthPerColumn
@@ -404,7 +398,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if((rank in GLOB.jobs_command) || rank == "AI")//Bold head jobs
+			if(job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
 				HTML += "<b><span class='dark'>[rank]</span></b>"
 			else
 				HTML += "<span class='dark'>[rank]</span>"
@@ -435,14 +429,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			HTML += "<a class='white' href='?_src_=prefs;preference=jobselect;level=[prefUpperLevel];job=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
-			if(rank == SSjob.overflow_role) //Overflow is special
-				if(job_preferences[overflow.title] == JOBS_PRIORITY_LOW)
-					HTML += "<font color=green>Yes</font>"
-				else
-					HTML += "<font color=red>No</font>"
-				HTML += "</a></td></tr>"
-				continue
-
 			HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font>"
 			HTML += "</a></td></tr>"
 
@@ -455,7 +441,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/message
 		switch(alternate_option)
 			if(BE_OVERFLOW)
-				message = "Be [SSjob.overflow_role] if preferences unavailable"
+				message = "Be [ispath(SSjob.overflow_role) ? initial(SSjob.overflow_role.title) : SSjob.overflow_role.title] if preferences unavailable"
 			if(GET_RANDOM_JOB)
 				message = "Get random job if preferences unavailable"
 			if(RETURN_TO_LOBBY)
@@ -1075,7 +1061,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 /datum/preferences/proc/UpdateJobPreference(mob/user, role, desiredLvl)
-	if(!SSjob || !length(SSjob.occupations))
+	if(!length(SSjob?.joinable_occupations))
 		return
 
 	var/datum/job/job = SSjob.GetJob(role)
@@ -1084,12 +1070,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)
 		return
-
-	if(role == SSjob.overflow_role)
-		if(job_preferences[job.title] == JOBS_PRIORITY_LOW)
-			desiredLvl = JOBS_PRIORITY_NEVER
-		else
-			desiredLvl = JOBS_PRIORITY_LOW
 
 	SetJobPreferenceLevel(job, desiredLvl)
 	SetChoices(user)

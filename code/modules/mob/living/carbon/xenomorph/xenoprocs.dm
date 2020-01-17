@@ -86,8 +86,8 @@
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
-		var/datum/hive_status/normal/HN = hive
-		dat += "<b>Burrowed Larva: [HN.stored_larva] Sisters<BR>"
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
@@ -308,7 +308,7 @@
 		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
 				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
-					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
+					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 							Knockdown(6 SECONDS)

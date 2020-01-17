@@ -337,8 +337,6 @@ What a mess.*/
 				if ("Change Rank")
 					if (active1)
 						active1.fields["rank"] = href_list["rank"]
-						if(href_list["rank"] in SSjob.name_occupations)
-							active1.fields["real_rank"] = href_list["real_rank"]
 
 				if ("Delete Record (ALL) Execute")
 					if (active1)

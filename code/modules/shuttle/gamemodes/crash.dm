@@ -74,7 +74,7 @@
 
 	var/list/spawnpoints = list()
 	var/list/latejoins = list()
-	var/list/marine_spawns_by_job = list()
+	var/list/spawns_by_job = list()
 
 /obj/docking_port/mobile/crashmode/register()
 	. = ..()
