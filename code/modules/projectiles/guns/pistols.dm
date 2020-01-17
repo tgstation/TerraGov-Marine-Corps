@@ -46,6 +46,28 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
+//TP-14 PISTOL
+
+/obj/item/weapon/gun/pistol/standard_pistol
+	name = "\improper TP-14 pistol"
+	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14 round magazines."
+	icon_state = "tp14"
+	item_state = "tp14"
+	caliber = "9x19mm Parabellum" //codex
+	max_shells = 14 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+
+	fire_delay = 0.125 SECONDS
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.85
+	scatter = -5
+	scatter_unwielded = 10
+
+//-------------------------------------------------------
 //M4A3 PISTOL
 
 /obj/item/weapon/gun/pistol/m4a3
