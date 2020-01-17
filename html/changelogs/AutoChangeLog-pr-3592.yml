@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "the xeno hivemind. The mind is a mob spawned by the queen. It starts off weak with low plasma and only able to spawn weeds. Over time it can heal, place structures and give pheros."
