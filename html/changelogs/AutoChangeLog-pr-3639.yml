@@ -1,0 +1,8 @@
+author: "Kuro-ai"
+delete-after: True
+changes: 
+  - rscadd: "Reworked pistol/revolver/auto shotgun/pump shotgun"
+  - tweak: "tweaked a few type paths"
+  - balance: "balance changes on the 4 guns"
+  - soundadd: "added a new sound for pistol shots and pump shotgun shots"
+  - imageadd: "added new sprites for the 4 guns"
