@@ -167,7 +167,7 @@
 	products = list(
 					/obj/item/ammo_magazine/pistol/standard_pistol = 25,
 					/obj/item/ammo_magazine/pistol/m1911 = 10,
-					/obj/item/ammo_magazine/revolver = 20,
+					/obj/item/ammo_magazine/revolver/standard_revolver = 20,
 					/obj/item/ammobox/standard_smg = 3,
 					/obj/item/ammo_magazine/smg/standard_smg = 15,
 					/obj/item/ammobox = 3,
