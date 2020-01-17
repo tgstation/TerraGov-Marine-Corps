@@ -67,6 +67,8 @@
 			var/turf/T = X
 			for(var/direction in directions)
 				var/turf/AdjT = get_step(T, direction)
+				if(!AdjT)
+					continue
 				if (AdjT in results) // Ignore existing turfs
 					continue
 				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
