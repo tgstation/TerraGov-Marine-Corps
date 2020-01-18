@@ -49,7 +49,7 @@
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x24mm caseless" //codex
-    max_shells = 24 //codex
+    max_shells = 32 //codex
    	force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
@@ -73,12 +73,12 @@
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
 
-    fire_delay = 0.4 SECONDS
+    fire_delay = 0.25 SECONDS
     burst_delay = 0.10 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
-    aim_slowdown = 0.35
+    aim_slowdown = 0.30
     damage_falloff_mult = 0.9
 
 //-------------------------------------------------------
@@ -124,7 +124,7 @@
     scatter = -10
     wield_delay = 0.7 SECONDS
     burst_amount = 3
-    aim_slowdown = 0.5
+    aim_slowdown = 0.4
     damage_falloff_mult = 0.5
 
 
@@ -401,8 +401,7 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	slowdown = 0.25
-	aim_slowdown = 0.2
+	aim_slowdown = 0.6
 	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
