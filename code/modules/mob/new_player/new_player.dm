@@ -143,7 +143,7 @@
 			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 				return
-			if(alert("Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!", "Observe", "Yes", "No") == "Yes")
+			if(alert("Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", "Yes", "No") == "Yes")
 				if(!client)
 					return TRUE
 				var/mob/dead/observer/observer = new()
@@ -324,6 +324,11 @@
 					return
 				to_chat(src, "<span class='notice'>Vote successful.</span>")
 
+/datum/game_mode/proc/observe_respawn_message()
+	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
+
+/datum/game_mode/infestation/observe_respawn_message()
+	return "\nYou will have to wait at least [GLOB.respawntime * 0.1] or [GLOB.xenorespawntime * 0.1] seconds before being able to respawn as a marine or alien, respectively!"
 
 /mob/new_player/proc/LateChoices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
