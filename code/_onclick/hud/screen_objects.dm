@@ -6,7 +6,12 @@
 	resistance_flags = RESIST_ALL
 	appearance_flags = APPEARANCE_UI
 	var/obj/master //A reference to the object in the slot. Grabs or items, generally.
-	var/datum/hud/hud // A reference to the owner HUD, if any.
+	var/datum/hud/hud // A reference to the owner HUD, if any./obj/screen
+
+	//Map popups
+	var/assigned_map
+	var/list/screen_info = list()//x,x pix, y, y pix || x,y
+	var/del_on_map_removal = TRUE//this could probably be changed to be a proc, for conditional removal. for now, this works.
 
 /obj/screen/Destroy()
 	master = null

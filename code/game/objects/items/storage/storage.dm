@@ -511,6 +511,7 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
+	PopulateContents()
 	if(length(can_hold))
 		can_hold = typecacheof(can_hold)
 	else if(length(cant_hold))
@@ -710,3 +711,5 @@
 		return ..() //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]
 	drawn_item.attack_hand(user)
+
+/obj/item/storage/proc/PopulateContents()
