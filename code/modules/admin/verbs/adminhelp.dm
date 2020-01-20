@@ -277,12 +277,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	else
 		MessageNoRecipient(msg)
 
-		//send it to irc if nobody is on and tell us how many were on
+		//send it to TGS if nobody is on and tell us how many were on
 		var/ticket_type = (tier == TICKET_ADMIN) ? "Admin" : "Mentor"
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "[ticket_type] Ticket #[id]: [sanitizediscord(name)]")
+		var/admin_number_present = send2tgs_adminless_only(initiator_ckey, "[ticket_type] Ticket #[id]: [sanitizediscord(name)]")
 		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
-			to_chat(C, "<span class='notice'>No active admins are online.</span>")
+			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent through TGS to admins who are available. This may use IRC or Discord.</span>")
 			heard_by_no_admins = TRUE
 
 	GLOB.ahelp_tickets.active_tickets += src
@@ -298,7 +298,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/AddInteraction(formatted_message)
 	if(heard_by_no_admins && usr && usr.ckey != initiator_ckey)
 		heard_by_no_admins = FALSE
-		send2irc(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
+		send2tgs(initiator_ckey, "Ticket #[id]: Answered by [key_name(usr)]")
 	_interactions += "[stationTimestamp()]: [formatted_message]"
 
 //Removes the ahelp verb and returns it after 2 minutes
@@ -358,7 +358,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 //message from the initiator without a target, all admins will see this
-//won't bug irc
+//won't bug irc/discord
 /datum/admin_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "[REF(src)]"
 
@@ -868,7 +868,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			.["present"] += X
 
 
-/proc/send2irc_adminless_only(source, msg, requiredflags = R_BAN)
+/proc/send2tgs_adminless_only(source, msg, requiredflags = R_BAN)
 	var/list/adm = get_admin_counts(requiredflags)
 	var/list/activemins = adm["present"]
 	. = length(activemins)
@@ -882,10 +882,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			final = "[msg] - No admins online"
 		else
 			final = "[msg] - No available admins - Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
-		send2irc(source, final)
+		send2tgs(source, final)
 
 
-/proc/send2irc(msg, msg2)
+/proc/send2tgs(msg, msg2)
 	world.TgsTargetedChatBroadcast("[msg] | [msg2]", TRUE)
 
 
@@ -893,7 +893,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	world.TgsTargetedChatBroadcast(msg, FALSE)
 
 
-/proc/ircadminwho()
+/proc/tgsadminwho()
 	var/list/adm = get_admin_counts()
 	var/list/activemins = adm["present"]
 	var/list/afkmins = adm["afk"]
@@ -906,7 +906,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	return "Present admins: ([english_list(activemins)]) | Stealth: ([english_list(stealthmins)]) | AFK: ([english_list(afkmins)]) | Mentors: ([english_list(powerlessmins)]) | Total: [length(allmins)]"
 
 
-/proc/keywords_lookup(msg, irc)
+/proc/keywords_lookup(msg, external)
 	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
 	var/list/adminhelp_ignored_words = list("unknown", "the", "a", "an", "of", "monkey", "alien", "as", "i")
 
@@ -966,7 +966,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							msg += "[original_word]<font size='1'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
 							continue
 		msg += "[original_word] "
-	if(irc)
+	if(external)
 		if(founds == "")
 			return "Search Failed"
 		else
