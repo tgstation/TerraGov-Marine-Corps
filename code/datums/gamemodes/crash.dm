@@ -53,7 +53,6 @@
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
-		return FALSE
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("canterbury_loadingdock")
@@ -76,7 +75,6 @@
 
 	if(!length(valid_docks))
 		CRASH("No valid crash sides found!")
-		return
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE

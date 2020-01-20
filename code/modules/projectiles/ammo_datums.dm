@@ -1103,7 +1103,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
 
