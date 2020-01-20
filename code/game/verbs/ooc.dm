@@ -22,6 +22,8 @@
 	if(!msg)
 		return
 
+	msg = emoji_parse(msg)
+	
 	if(!(prefs.toggles_chat & CHAT_OOC))
 		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
