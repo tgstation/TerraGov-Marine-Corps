@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(dbcore)
 		failed_connections = 0
 
 	if(failed_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to connect for 5 seconds.
-		failed_connection_timeout = world.time + 50
+		failed_connection_timeout = world.time + 5 SECONDS
 		return FALSE
 
 	if(!CONFIG_GET(flag/sql_enabled))
