@@ -297,7 +297,7 @@
 		if(length_char(string) > length)
 			return "[copytext_char(string, 1, 37)]..."
 		if(!length(string))
-				return "\[...\]"
+			return "\[...\]"
 		return string
 	if(!length(string))
 		return "\[...\]"
