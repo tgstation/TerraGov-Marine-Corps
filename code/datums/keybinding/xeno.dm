@@ -376,6 +376,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
+/datum/keybinding/xeno/lay_hivemind
+	name = "lay_hivemind"
+	full_name = "Lay Hivemind"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
+
 /datum/keybinding/xeno/psychic_choke
 	name = "psychic_choke"
 	full_name = "Psychic Choke (Unused)"

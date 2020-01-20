@@ -13,8 +13,8 @@
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/weapon/gun/pistol/m4a3 = 25,
-					/obj/item/weapon/gun/revolver/m44 = 15,
+					/obj/item/weapon/gun/pistol/standard_pistol = 25,
+					/obj/item/weapon/gun/revolver/standard_revolver = 15,
 					/obj/item/weapon/gun/smg/standard_smg = 20,
 					/obj/item/weapon/gun/rifle/standard_carbine = 25,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
@@ -22,8 +22,8 @@
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
-					/obj/item/ammo_magazine/pistol = 30,
-					/obj/item/ammo_magazine/revolver = 25,
+					/obj/item/ammo_magazine/pistol/standard_pistol = 30,
+					/obj/item/ammo_magazine/revolver/standard_revolver = 25,
 					/obj/item/ammo_magazine/smg/standard_smg = 30,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 25,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 25,
@@ -38,15 +38,10 @@
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
 					/obj/item/attachable/bayonet = 10,
-					/obj/item/weapon/gun/rifle/sx16 = 10,
-					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
-					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
-					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
+					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
+					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
+					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					)
-
-	contraband =   list(/obj/item/ammo_magazine/revolver/marksman = 2,
-						/obj/item/ammo_magazine/pistol/ap = 2,
-						)
 	prices = list()
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
@@ -89,8 +84,8 @@
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
 					/obj/item/storage/belt/grenade = 5,
-					/obj/item/storage/belt/gun/m4a3 = 10,
-					/obj/item/storage/belt/gun/m44 = 5,
+					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
+					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
 					/obj/item/storage/large_holster/t19 = 5,
 					/obj/item/clothing/tie/storage/webbing = 5,
 					/obj/item/clothing/tie/storage/brown_vest = 5,
@@ -112,16 +107,16 @@
 					/obj/item/storage/pouch/magazine/pistol = 10,
 					/obj/item/storage/pouch/magazine/pistol/large = 5,
 					/obj/item/storage/pouch/shotgun = 10,
-					/obj/item/weapon/gun/pistol/m4a3 = 20,
+					/obj/item/weapon/gun/pistol/standard_pistol = 20,
 					/obj/item/weapon/gun/pistol/m1911 = 5,
-					/obj/item/weapon/gun/revolver/m44 = 15,
+					/obj/item/weapon/gun/revolver/standard_revolver = 15,
 					/obj/item/weapon/gun/smg/standard_smg = 15,
 					/obj/item/weapon/gun/rifle/standard_carbine = 20,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
-					/obj/item/weapon/gun/rifle/sx16 = 10,
+					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/explosive/mine = 2,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
@@ -170,18 +165,10 @@
 	icon_deny = "marinerequisitions"
 	wrenchable = FALSE
 	products = list(
-					/obj/item/ammobox/m4a3 = 3,
-					/obj/item/ammo_magazine/pistol = 20,
-					/obj/item/ammobox/m4a3ext = 1,
-					/obj/item/ammo_magazine/pistol/extended = 10,
-					/obj/item/ammobox/m4a3ap = 1,
-					/obj/item/ammo_magazine/pistol/ap = 5,
-					/obj/item/ammo_magazine/pistol/incendiary = 5,
+					/obj/item/ammo_magazine/pistol/standard_pistol = 25,
 					/obj/item/ammo_magazine/pistol/m1911 = 10,
-					/obj/item/ammo_magazine/revolver = 20,
-					/obj/item/ammo_magazine/revolver/marksman = 5,
-					/obj/item/ammo_magazine/revolver/heavy = 5,
-					/obj/item/ammobox/m39 = 3,
+					/obj/item/ammo_magazine/revolver/standard_revolver = 20,
+					/obj/item/ammobox/standard_smg = 3,
 					/obj/item/ammo_magazine/smg/standard_smg = 15,
 					/obj/item/ammobox = 3,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
@@ -195,9 +182,8 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
-					/obj/item/ammo_magazine/rifle/sx16_buckshot = 25,
-					/obj/item/ammo_magazine/rifle/sx16_slug = 25,
-					/obj/item/ammo_magazine/rifle/sx16_flechette = 25,
+					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
+					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					/obj/item/smartgun_powerpack = 2
 					)
 
@@ -713,8 +699,8 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
-					/obj/item/storage/belt/gun/m4a3 = 10,
-					/obj/item/storage/belt/gun/m44 = 10,
+					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
+					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/storage/large_holster/t19 = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,

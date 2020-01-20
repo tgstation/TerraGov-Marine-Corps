@@ -10,6 +10,7 @@
 // These are signals which can be listened to by any component on any parent
 // start global signals with "!", this used to be necessary but now it's just a formatting choice
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE "!open_timed_shutters_late"
+#define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
@@ -399,6 +400,7 @@
 #define COMSIG_XENOABILITY_DEEVOLVE "xenoability_deevolve"
 #define COMSIG_XENOABILITY_QUEEN_LARVAL_GROWTH "xenoability_queen_larval_growth"
 
+#define COMSIG_XENOABILITY_LAY_HIVEMIND "xenoability_lay_hivemind"
 #define COMSIG_XENOABILITY_LAY_EGG "xenoability_lay_egg"
 #define COMSIG_XENOABILITY_CALL_OF_THE_BURROWED "xenoability_call_of_the_burrowed"
 #define COMSIG_XENOABILITY_PSYCHIC_FLING "xenoability_psychic_fling"

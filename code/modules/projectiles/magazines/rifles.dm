@@ -46,7 +46,7 @@
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 24
+	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 //-------------------------------------------------------
@@ -198,3 +198,23 @@
 	default_ammo = /datum/ammo/bullet/shotgun/sx16_slug
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/sx16
+
+//TX-16 AUTOMATIC SHOTGUN
+
+/obj/item/ammo_magazine/rifle/tx15_flechette
+	name = "\improper TX-15 flechette magazine (16 gauge)"
+	desc = "A magazine of 16 gauge flechette rounds, for the TX-15."
+	caliber = "16 gauge"
+	icon_state = "tx15_flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
+
+/obj/item/ammo_magazine/rifle/tx15_slug
+	name = "\improper TX-15 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the TX-15."
+	caliber = "16 gauge"
+	icon_state = "tx15_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun

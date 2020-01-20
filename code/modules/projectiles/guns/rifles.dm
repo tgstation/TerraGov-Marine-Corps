@@ -49,7 +49,7 @@
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x24mm caseless" //codex
-    max_shells = 24 //codex
+    max_shells = 32 //codex
    	force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
@@ -73,12 +73,12 @@
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
     attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
 
-    fire_delay = 0.4 SECONDS
+    fire_delay = 0.25 SECONDS
     burst_delay = 0.10 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
-    aim_slowdown = 0.35
+    aim_slowdown = 0.30
     damage_falloff_mult = 0.9
 
 //-------------------------------------------------------
@@ -124,7 +124,7 @@
     scatter = -10
     wield_delay = 0.7 SECONDS
     burst_amount = 3
-    aim_slowdown = 0.5
+    aim_slowdown = 0.4
     damage_falloff_mult = 0.5
 
 
@@ -401,8 +401,7 @@
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	slowdown = 0.25
-	aim_slowdown = 0.2
+	aim_slowdown = 0.6
 	wield_delay = 1.4 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -563,4 +562,42 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 0.7 SECONDS
+	burst_amount = 1
+
+//-------------------------------------------------------
+//TX-16 AUTOMATIC SHOTGUN
+
+/obj/item/weapon/gun/rifle/standard_autoshotgun
+	name = "\improper TX-15 automatic shotgun"
+	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12 round magazines."
+	icon_state = "tx15"
+	item_state = "tx15"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = "16 gauge" //codex
+	max_shells = 12 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/stock/tx15,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel
+						)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/tx15)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 13)
+	gun_skill_category = GUN_SKILL_SHOTGUNS
+
+	fire_delay = 1.1 SECONDS
 	burst_amount = 1

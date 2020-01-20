@@ -116,6 +116,8 @@
 
 /mob/living/carbon/xenomorph/med_hud_set_health()
 	var/image/holder = hud_list[HEALTH_HUD_XENO]
+	if(!holder)
+		return
 	if(stat == DEAD)
 		holder.icon_state = "xenohealth0"
 		return
@@ -323,6 +325,8 @@
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
 		return
 	var/image/holder = hud_list[PLASMA_HUD]
+	if(!holder)
+		return
 	if(stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
@@ -332,6 +336,8 @@
 
 /mob/living/carbon/xenomorph/proc/hud_set_pheromone()
 	var/image/holder = hud_list[PHEROMONE_HUD]
+	if(!holder)
+		return
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
 	if(stat != DEAD)

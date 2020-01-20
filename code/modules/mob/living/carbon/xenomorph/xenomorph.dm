@@ -5,7 +5,7 @@
 //This is so they can be easily transferred between them without copypasta
 
 /mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
-	verbs += /mob/living/proc/lay_down
+	setup_verbs()
 	. = ..()
 
 	set_datum()
