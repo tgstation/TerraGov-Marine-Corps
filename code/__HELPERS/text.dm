@@ -293,13 +293,17 @@
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
 /proc/TextPreview(string, length = 40)
-	if(length(string) <= length)
+	if(length_char(string) > length(string))
+		if(length_char(string) > length)
+			return "[copytext_char(string, 1, 37)]..."
 		if(!length(string))
-			return "\[...\]"
-		else
-			return string
-	else
+				return "\[...\]"
+		return string
+	if(!length(string))
+		return "\[...\]"
+	if(length(string) > length)
 		return "[copytext(string, 1, 37)]..."
+	return string
 
 
 //Used for applying byonds text macros to strings that are loaded at runtime
