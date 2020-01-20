@@ -42,7 +42,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		thealert.override_alerts = override
 		if(override)
 			thealert.timeout = null
-	thealert.mob_viewer = src
+	thealert.owner = src
 
 	if(new_master)
 		var/old_layer = new_master.layer
@@ -97,7 +97,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/severity = 0
 	var/alerttooltipstyle = ""
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
-	var/mob/mob_viewer //the mob viewing this alert
+	var/mob/owner //Alert owner
 
 
 /obj/screen/alert/fire
@@ -107,7 +107,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 /obj/screen/alert/fire/Click()
 	var/mob/living/L = usr
-	if(!istype(L))
+	if(!istype(L) || usr != owner)
 		return
 	L.resist()
 
@@ -123,7 +123,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 /obj/screen/alert/notify_action/Click()
 	var/mob/dead/observer/G = usr
-	if(!istype(G))
+	if(!istype(G) || usr != owner)
 		return
 	if(!G.client)
 		return
@@ -160,7 +160,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	desc = "You're handcuffed and can't act. If anyone drags you, you won't be able to move. Click the alert to free yourself."
 
 /obj/screen/alert/restrained/Click()
-	if(!isliving(usr))
+	if(!isliving(usr) || usr != owner)
 		return
 	var/mob/living/L = usr
 	return L.do_resist()
@@ -169,14 +169,17 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 // PRIVATE = only edit, use, or override these if you're editing the system as a whole
 
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
-/datum/hud/proc/reorganize_alerts()
+/datum/hud/proc/reorganize_alerts(mob/viewmob)
+	var/mob/screenmob = viewmob || mymob
+	if(!screenmob.client)
+		return
 	var/list/alerts = mymob.alerts
 	if(!length(alerts))
 		return FALSE
 	if(!hud_shown)
 		for(var/category in alerts)
 			var/obj/screen/alert/alert = alerts[category]
-			mymob.client.screen -= alert
+			screenmob.client.screen -= alert
 		return TRUE
 	var/c = 0
 	for(var/category in alerts)
@@ -196,7 +199,10 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 			else
 				. = ""
 		alert.screen_loc = .
-		mymob.client.screen |= alert
+		screenmob.client.screen |= alert
+	if(!viewmob)
+		for(var/obs in mymob.observers)
+			reorganize_alerts(obs)
 	return TRUE
 
 /obj/screen/alert/Click(location, control, params)
@@ -213,4 +219,4 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	. = ..()
 	// nulling the obj references.
 	master = null
-	mob_viewer = null
+	owner = null
