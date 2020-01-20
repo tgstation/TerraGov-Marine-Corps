@@ -185,6 +185,8 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isainode(A) (istype(A, /obj/effect/ai_node))
+
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

@@ -6,15 +6,17 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "6x" //Pure white 'X' with black borders
 	var/datum/ai_node/datumnode = new/datum/ai_node() //Stores things about the AI node
-	var/turf/srcturf //The turf this is on
 	anchored = TRUE //No pulling those nodes yo
-	alpha = 0 //Not visible at all
+	invisibility = INVISIBILITY_OBSERVER //Not visible at all
 
 /obj/effect/ai_node/Initialize() //Add ourselve to the global list of nodes
 	. = ..()
-	srcturf = loc
 	datumnode.parentnode = src
 	GLOB.allnodes += src
+
+/obj/effect_ai_node/Destroy()
+	GLOB.allnodes -= src
+	. = ..()
 
 //Current weights are nothing, wait for more ai updates
 //Parameter call example
@@ -22,39 +24,38 @@
 //This means that the proc will pick out the *best* node
 
 /obj/effect/ai_node/proc/GetBestAdjNode(list/weight_modifiers)
-	if(weight_modifiers)
-		var/obj/effect/ai_node/node_to_return = datumnode.adjacent_nodes[1]
-		var/current_best_node = 0
-		var/current_score = 0
-		for(var/obj/effect/ai_node/node in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
-			for(var/i = 1 to length(weight_modifiers))
-				current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
-
-			if(current_score >= current_best_node)
-				current_best_node = current_score
-				node_to_return = node
-			current_score = 0
-
-		if(node_to_return)
-			return node_to_return
-
-	else //No weight modifier, return a adjacent random node
+	//No weight modifier, return a adjacent random node
+	if(!weight_modifiers)
 		return pick(shuffle(datumnode.adjacent_nodes))
+
+	var/obj/effect/ai_node/node_to_return = datumnode.adjacent_nodes[1]
+	var/current_best_node = 0
+	for(var/n in shuffle(datumnode.adjacent_nodes)) //We keep a score for the nodes and see which one is best
+		var/obj/effect/ai_node/node = n
+		var/current_score = 0
+		for(var/i in 1 to length(weight_modifiers))
+			current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
+
+		if(current_score >= current_best_node)
+			current_best_node = current_score
+			node_to_return = node
+		current_score = 0
+
+	if(node_to_return)
+		return node_to_return
 
 /obj/effect/ai_node/proc/MakeAdjacents()
 	datumnode.adjacent_nodes = list()
 	for(var/obj/effect/ai_node/node in GLOB.allnodes)
-		if(node && (node != src) && (get_dist(src, node) < 16) && (get_dir(src, node) in CARDINAL_DIRS))
-			datumnode.adjacent_nodes += node
-
-/obj/effect/ai_node/proc/add_to_notable_nodes(weight) //For later:tm:
-
-/obj/effect/ai_node/proc/remove_from_notable_nodes(weight)
+		if(node == src)
+			continue
+		if(!get_dist(src, node) < 16)
+			continue
+		if(!ISDIAGONALDIR(get_dir(src, node)))
+			continue
+		datumnode.adjacent_nodes += node
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
-
-/obj/effect/ai_node/debug/Initialize()
-	. = ..()
 	icon_state = "x6" //Pure white 'X' with black borders
 	color = "#ffffff"
-	alpha = 255 //Visible for easy var editing and noticing
+	invisibility = 0 //Visible for easy var editing and noticing

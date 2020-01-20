@@ -7,9 +7,9 @@
 
 //If we wanted to see if it's not set to 0
 /datum/ai_node/proc/weight_not_null(name)
-	if(name in weights && !weights[name])
-		return TRUE
-	return FALSE
+	if(weights[name] == 0)
+		return FALSE
+	return TRUE
 
 /datum/ai_node/proc/get_weight(name)
 	return weights[name]
