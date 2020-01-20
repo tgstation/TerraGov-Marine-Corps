@@ -611,7 +611,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/item/req_tablet/examine(mob/user)
 	. = ..()
 	if(!linked_beacon)
-		to_chat(user, "There seems to be no beacon attached to this tablet, hit a beacon with a tablet to link to it.")
+		to_chat(user, "There seems to be no beacon attached, use the tablet on a beacon to link to it.")
 	else
 		to_chat(user, "There seems to be a beacon attached to this tablet. Should be good to go for delivery.")
 
