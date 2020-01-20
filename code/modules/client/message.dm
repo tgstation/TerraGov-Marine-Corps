@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(clientmessages)
 	ckey = ckey(ckey)
 	if(!ckey || !message)
 		return
- 	var/list/L = GLOB.clientmessages[ckey] 
+	var/list/L = GLOB.clientmessages[ckey]
 	if(!L)
 		GLOB.clientmessages[ckey] = L = list()
 	L += message
