@@ -106,6 +106,8 @@ Administrative related.
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
+/datum/config_entry/flag/usewhitelist
+
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
 /datum/config_entry/flag/use_exp_tracking
@@ -335,6 +337,9 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/extreme_popcap_message
 	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
+
+
+/datum/config_entry/flag/byond_member_bypass_popcap
 
 
 /datum/config_entry/flag/panic_bunker

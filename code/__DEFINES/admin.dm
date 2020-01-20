@@ -93,6 +93,9 @@
 /// Shown on top of policy verb window
 #define POLICY_VERB_HEADER "policy_verb_header"
 
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
 #define EXTERNALREPLYCOUNT 2
 #define IRC_STATUS_THROTTLE 5
 
