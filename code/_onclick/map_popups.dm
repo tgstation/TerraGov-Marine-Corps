@@ -1,4 +1,4 @@
-/client/proc/clear_map(var/map_to_clear)//not really needed most of the time, as the client's screen list gets reset on relog. any of the buttons are going to get caught by garbage collection anyway. they're effectively qdel'd.
+/client/proc/clear_map(map_to_clear)//not really needed most of the time, as the client's screen list gets reset on relog. any of the buttons are going to get caught by garbage collection anyway. they're effectively qdel'd.
 	if(!map_to_clear|| !(map_to_clear in screen_maps))
 		return FALSE
 	for(var/obj/screen/x in screen_maps[map_to_clear])
@@ -11,7 +11,7 @@
 	for(var/x in screen_maps)
 		clear_map(x)
 
-/client/proc/close_popup(var/popup)
+/client/proc/close_popup(popup)
 	winshow(src,popup,0)
 	handle_popup_close(popup)
 
@@ -19,7 +19,7 @@
 	set hidden = TRUE
 	clear_map("[window_id]_map")
 
-/client/proc/create_popup(var/name, var/ratiox = 100, var/ratioy=100) //ratio is how many pixels by how many pixels. keep it simple
+/client/proc/create_popup(name, ratiox = 100, ratioy = 100) //ratio is how many pixels by how many pixels. keep it simple
 	winclone(src,"popupwindow",name)
 	var/list/winparams = new
 	winparams["size"] = "[ratiox]x[ratioy]"
@@ -40,7 +40,7 @@
 
 	return "[name]_map"
 
-/client/proc/setup_popup(var/popup_name,var/width = 9,var/height = 9,var/tilesize = 2,var/bgicon) //create the popup, and get it ready for generic use by giving it a background. width/height are multiplied by 64 by degfault.
+/client/proc/setup_popup(popup_name, width = 9, height = 9, tilesize = 2, bgicon) //create the popup, and get it ready for generic use by giving it a background. width/height are multiplied by 64 by degfault.
 	if(!popup_name)
 		return
 	clear_map("[popup_name]_map")
@@ -64,7 +64,7 @@
 
 	return newmap
 
-/client/proc/add_objs_to_map(var/list/to_add)
+/client/proc/add_objs_to_map(list/to_add)
 	if(!screen_maps)
 		screen_maps = list()
 	if(!to_add.len) return
