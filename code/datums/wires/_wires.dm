@@ -117,7 +117,7 @@
 
 
 /datum/wires/proc/is_dud(wire)
-	return dd_hasprefix(wire, WIRE_DUD_PREFIX)
+	return findtext(wire, WIRE_DUD_PREFIX, 1, length(WIRE_DUD_PREFIX) + 1)
 
 
 /datum/wires/proc/is_dud_color(color)

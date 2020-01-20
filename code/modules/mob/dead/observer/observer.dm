@@ -294,13 +294,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(status_value <= 0)
 				stat("Respawn timer:", "<b>READY</b>")
 			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
 				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
 				if(status_value <= 0)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
-					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)

@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 /datum/squad/proc/format_message(message, mob/living/carbon/human/sender)
 	var/nametext = ""
-	var/text = copytext(sanitize(message), 1, MAX_MESSAGE_LEN)
+	var/text = copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)
 	if(ishuman(sender))
 		var/obj/item/card/id/ID = sender.get_idcard()
 		nametext = "[ID?.rank] [sender.name] transmits: "

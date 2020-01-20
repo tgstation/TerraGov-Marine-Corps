@@ -168,7 +168,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	else
 		assignment = "Unassigned"
 
-	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
+	var/id = add_leading("[num2hex(rand(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh*
 
 	var/image = get_id_photo(H, H.client, show_directions)
 	var/datum/picture/pf = new

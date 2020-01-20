@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances! We now have [length(X.tunnels) * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
 
-	var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
+	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
 	newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
 

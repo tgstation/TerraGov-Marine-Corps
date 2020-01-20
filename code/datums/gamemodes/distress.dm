@@ -490,7 +490,7 @@
 		return
 	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
 /datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)

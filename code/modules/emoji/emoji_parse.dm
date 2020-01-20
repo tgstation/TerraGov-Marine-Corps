@@ -10,14 +10,14 @@
 		parsed += copytext(text, pos, search)
 		if(search)
 			pos = search
-			search = findtext(text, ":", pos+1)
+			search = findtext(text, ":", pos + length(text[pos]))
 			if(search)
-				emoji = lowertext(copytext(text, pos+1, search))
+				emoji = lowertext(copytext(text, pos + length(text[pos]), search))
 				var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/goonchat)
 				var/tag = sheet.icon_tag("emoji-[emoji]")
 				if(tag)
 					parsed += tag
-					pos = search + 1
+					pos = search + length(text[pos])
 				else
 					parsed += copytext(text, pos, search)
 					pos = search

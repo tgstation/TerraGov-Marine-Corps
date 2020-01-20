@@ -64,7 +64,7 @@
 	if(M.client.holder.fakekey)
 		M.client.holder.fakekey = null
 	else
-		var/new_key = ckeyEx(input("Enter your desired display name.", "Stealth Mode", M.client.key) as text|null)
+		var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Stealth Mode", M.client.key, 26))
 		if(!new_key)
 			return
 		if(length(new_key) >= 26)
@@ -397,7 +397,7 @@
 				path = root
 				continue
 		path += choice
-		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+		if(copytext_char(path, -1) != "/")		//didn't choose a directory, no need to iterate again
 			break
 	var/extensions
 	for(var/i in valid_extensions)
@@ -501,7 +501,7 @@
 	if(!check_rights(R_ASAY))
 		return
 
-	msg = noscript(msg)
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return
@@ -531,10 +531,7 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
-		msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	else
-		msg = noscript(msg)
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return
@@ -580,7 +577,7 @@
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -794,7 +791,7 @@
 
 	var/client/C
 	if(istext(whom))
-		if(cmptext(copytext(whom,1,2),"@"))
+		if(whom[1] == "@")
 			whom = find_stealth_key(whom)
 		C = GLOB.directory[whom]
 	else if(istype(whom, /client))
@@ -848,7 +845,7 @@
 	var/client/recipient
 	var/external = FALSE
 	if(istext(whom))
-		if(cmptext(copytext(whom, 1, 2),"@"))
+		if(whom[1] == "@")
 			whom = find_stealth_key(whom)
 		if(whom == "IRCKEY")
 			external = TRUE
@@ -909,7 +906,7 @@
 
 	//clean the message if it's not sent by a high-rank admin
 	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || external)//no sending html to the poor bots
-		msg = trim(sanitize(copytext(msg, 1, MAX_MESSAGE_LEN)))
+		msg = trim(sanitize(msg), MAX_MESSAGE_LEN)
 		if(!msg)
 			return
 
@@ -1102,7 +1099,7 @@
 	if(!stealthkey)
 		stealthkey = GenTgsStealthKey()
 
-	msg = sanitize(copytext(msg, 1, MAX_MESSAGE_LEN))
+	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return "Error: No message"
 
