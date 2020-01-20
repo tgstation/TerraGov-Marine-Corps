@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
-	C.update_movement_keys()
+	C.update_movement_keys(src)
 
 
 /datum/preferences/can_interact(mob/user)

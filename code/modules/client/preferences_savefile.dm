@@ -27,7 +27,7 @@
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
 		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-		parent.update_movement_keys()
+		parent.update_movement_keys(src)
 		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
 
 //handles converting savefiles to new formats
