@@ -10,10 +10,6 @@
 	var/keybind_signal
 	var/cooldown_id
 
-	//Boiler
-	var/corrosive_ammo = 0
-	var/neuro_ammo = 0
-
 /datum/action/xeno_action/New(Target)
 	. = ..()
 	if(plasma_cost)
