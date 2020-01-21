@@ -6,7 +6,8 @@
 	var/list/stutter_step_prob = list() //The prob() chance of a mob going left or right when distance is maintained with the target
 
 /datum/element/action_state/move_to_atom/process()
-	for(var/mob_to_process in distances_to_maintain)
+	for(var/mob in distances_to_maintain)
+		var/mob/mob_to_process = mob
 		if(!mob_to_process.canmove || mob_to_process.stat == DEAD)
 			continue
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
@@ -28,7 +29,7 @@
 			mob_to_process.last_move_time = world.time
 			continue
 		if(!step(mob_to_process, get_dir(mob_to_process, get_step_to(mob_to_process, atoms_to_walk_to[mob_to_process], distances_to_maintain[mob_to_process])))) //Couldn't move, something in the way
-			SEND_SIGNAL(mob, COMSIG_OBSTRUCTED_MOVE)
+			SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
 		mob_to_process.last_move_time = world.time
 
 //mob: the mob that's getting the action state
@@ -38,8 +39,10 @@
 /datum/element/action_state/move_to_atom/Attach(mob/mob, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
 	. = ..()
 	if(QDELETED(mob))
-
-	if(!ismob(mob) || !atom_to_walk_to)
+		return ELEMENT_INCOMPATIBLE
+	if(!ismob(mob))
+		return ELEMENT_INCOMPATIBLE
+	if(!atom_to_walk_to)
 		return ELEMENT_INCOMPATIBLE
 	distances_to_maintain[mob] = distance_to_maintain
 	atoms_to_walk_to[mob] = atom_to_walk_to
@@ -49,4 +52,4 @@
 	distances_to_maintain.Remove(mob)
 	atoms_to_walk_to.Remove(mob)
 	stutter_step_prob.Remove(mob)
-	. = ..()
+	return ..()

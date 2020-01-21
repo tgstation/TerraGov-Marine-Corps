@@ -185,8 +185,6 @@
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
-#define isainode(A) (istype(A, /obj/effect/ai_node))
-
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 
@@ -202,6 +200,7 @@
 
 #define iseffect(O) (istype(O, /obj/effect))
 
+#define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))

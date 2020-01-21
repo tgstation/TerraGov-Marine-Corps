@@ -1,7 +1,7 @@
 
 
 /*
-AI BEHAVIOR COMPONENT
+AI CONTROLLER COMPONENT
 The main purpose of the component is to mainly assign the mob to the proper action state with the proper parameters
 The parameters are determined by requesting them from the ai mind attached to the component
 The ai mind is it's own thing to allow for easy overriding of behaviors, going into more specific routines rather than a very generic one component
@@ -26,7 +26,7 @@ Code interaction restrictions: The component cannot determine what decisions the
 	var/move_delay = 0 //The next world.time we can do a move at
 	var/datum/ai_behavior/ai_behavior //Calculates the action states to take and the parameters it gets; literally the brain
 
-/datum/component/ai_controller/Initialize(behavior_type = /datum/ai_behavior)
+/datum/component/ai_controller/Initialize(behavior_type)
 	. = ..()
 	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or action_busy
 		stack_trace("AI component was initialized on a parent that isn't compatible with the ai component. Parent type: [parent.type]")
@@ -34,8 +34,6 @@ Code interaction restrictions: The component cannot determine what decisions the
 	if(isnull(behavior_type))
 		stack_trace("AI component was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
-	if(!istype(behavior_type, /datum/ai_behavior)) //Someone gave a mind to apply but it actually isn't a mind
-		stack_trace("A ai behavior typepath given to a ai component isn't actually a type of the ai behaviors; component removed. AI behavior type parameter: [behavior_type]")
 	var/atom/movable/movable_parent = parent
 	var/node_to_spawn_at //Temp storage holder for the node we will want to spawn at
 	for(var/obj/effect/ai_node/node in range(7))
@@ -59,8 +57,8 @@ Code interaction restrictions: The component cannot determine what decisions the
 /datum/component/ai_controller/process()
 	//We don't do . = ..() as . would be a PROCESS_KILL due to /datum/process()
 	..()
-	var/atom/parent2 = parent
-	if(parent2.client)
+	var/mob/controlled_mob = parent
+	if(controlled_mob.client)
 		qdel(src)
 		return //No PROCESS_KILL needed here as qdel() will handle that due to clean_up()
 	var/result = ai_behavior.do_process()
@@ -80,7 +78,7 @@ Code interaction restrictions: The component cannot determine what decisions the
 /datum/component/ai_controller/proc/clean_up()
 	STOP_PROCESSING(SSprocessing, src) //We do this here and in Destroy() as otherwise we can't remove said src if it's qdel below
 	unregister_signals()
-	parent.RemoveElement(mind.cur_action_state)
+	parent.RemoveElement(ai_behavior.cur_action_state)
 
 /datum/component/ai_controller/Destroy()
 	clean_up()
@@ -112,13 +110,15 @@ Code interaction restrictions: The component cannot determine what decisions the
 /datum/component/ai_controller/proc/reason_target_killed()
 	get_new_state(REASON_TARGET_KILLED)
 
+//Carbon behavior type procs
+
 /datum/component/ai_controller/proc/mind_attack_target()
-	var/datum/ai_behavior/carbon/ai_behavior2 = ai_behavior
-	if(!istype(ai_behavior2))
+	var/datum/ai_behavior/carbon/carbon_behavior = ai_behavior
+	if(!istype(carbon_behavior))
 		stack_trace("An attack order was given to a mind that is considered for non carbon mobs")
 		return
-	ai_behavior.attack_target()
+	carbon_behavior.attack_target()
 
 /datum/component/ai_controller/proc/deal_with_obstacle()
-	var/datum/ai_mind/carbon/ai_behavior2 = ai_behavior
-	ai_behavior2.deal_with_obstacle()
+	var/datum/ai_behavior/carbon/carbon_behavior = ai_behavior
+	carbon_behavior.deal_with_obstacle()

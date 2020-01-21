@@ -6,7 +6,7 @@
 
 	for(var/i in datumnode.adjacent_nodes)
 		var/obj/effect/ai_node/node = i
-		if(!get_dir(src, node) == dir)
+		if(get_dir(src, node) != dir)
 			continue
 		return node
 
@@ -19,11 +19,13 @@
     return startnode.GetNodeInDirInAdj(get_dir(startnode, destination))
 
 //Returns a list of humans via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_humans_near(atom/source, distance)
+/proc/cheap_get_humans_near(atom/movable/source, distance)
 	var/list/listofhuman = list() //All humans in range
 	for(var/human in GLOB.alive_human_list)
-		var/atom/humun_atom = human
-		if(!source.z == humun_atom.z || !get_dist(source, humun_atom) <= distance)
+		var/mob/living/carbon/human/nearby_human = human
+		if(source.z != nearby_human.z)
 			continue
-		listofhuman += human
+		if(!(get_dist(source, nearby_human) <= distance))
+			continue
+		listofhuman += nearby_human
 	return listofhuman

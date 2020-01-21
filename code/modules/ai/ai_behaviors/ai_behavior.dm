@@ -29,13 +29,13 @@
 //Parent is for say checking on the overall status of the mob and evalulating action states off of that alongside parameter generation
 //This will also deregister any signals related to the old action state
 /datum/ai_behavior/proc/get_new_state(reason_for)
-	if(!reason_for || reason_for == REASON_FINISHED_NODE_MOVE || reason_for == REASON_TARGET_KILLED) //If reason_for is null then the ai mind was just initialized
+	if(!reason_for || reason_for == REASON_FINISHED_NODE_MOVE || reason_for == REASON_TARGET_KILLED)
 		if(isainode(atom_to_walk_to))
 			current_node = atom_to_walk_to
 		atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
 		cur_action_state = /datum/element/action_state/move_to_atom
 		return list(cur_action_state, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-	stack_trace("An ai mind didn't give parameters back for a new action state, VERY BAD!! Mind type: [src.type], Reasoning: [isnull(reason_for) ? "null reason for new state!" : [reason_for]]")
+	stack_trace("An ai mind didn't give parameters back for a new action state, VERY BAD!! Mind type: [src.type], Reasoning: [reason_for]")
 
 //This is called by the component every process, this doesn't have a process() defined as the component will decide based off of the return value of this if it should apply a particular action state
 /datum/ai_behavior/proc/do_process()
@@ -45,7 +45,7 @@
 /datum/ai_behavior/proc/get_signals_to_reg()
 	if(isainode(atom_to_walk_to)) //We're walking to a node, register a signal for getting a new state after reaching it
 		return list(
-				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_behavior/.proc/reason_finished_node_move)
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_controller/.proc/reason_finished_node_move)
 					)
 
 //Returns a list of signals to unregister related to the current action state/atom walking to
