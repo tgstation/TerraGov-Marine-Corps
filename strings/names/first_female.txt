@@ -9,6 +9,7 @@ Abbie
 Abby
 Abigail
 Abril
+Acelina
 Ada
 Adak
 Adaline
@@ -31,6 +32,7 @@ Adriana
 Adriane
 Adrianna
 Adrienne
+Aelina
 Africa
 Agatha
 Agathe
@@ -78,6 +80,7 @@ Alberta
 Albertine
 Albina
 Aldis
+Aldith
 Alejandra
 Alejandrina
 Aleksandra
@@ -150,6 +153,8 @@ Amehlo
 Amelia
 Amelie
 Amelija
+Amelina
+Amicia
 Amina
 Aminata
 Amira
@@ -168,6 +173,7 @@ Ana Paula
 Anahera
 Anahi
 Anahit
+Anais
 Analucia
 Ananya
 Anastasia
@@ -260,6 +266,7 @@ Aroha
 Arpi
 Arry
 Arta
+Artemisia
 Aru
 Aruzhan
 Arwa
@@ -286,6 +293,7 @@ Ataahua
 Atarah
 Athaliah
 Atheer
+Athelina
 Athena
 Atuku
 Aubree
@@ -295,6 +303,8 @@ Audra
 Audrey
 Audrie
 Audrina
+Audry
+Augusta
 Aura
 Aurelia
 Aurora
@@ -305,6 +315,7 @@ Avalona
 Averill
 Avery
 Avigail
+Avina
 Avneet
 Awa
 Awet
@@ -344,6 +355,7 @@ Barbar
 Barbara
 Barbare
 Barbarella
+Barbetta
 Barbie
 Barbora
 Barby
@@ -433,6 +445,7 @@ Bonny
 Bozena
 Brandi
 Brandy
+Brangwine
 Branwyn
 Breah
 Breana
@@ -464,6 +477,7 @@ Brynn
 Buffy
 Caddie
 Cadence
+Caesaria
 Cai
 Caitlin
 Caitlyn
@@ -520,6 +534,8 @@ Cat
 Catalina
 Catarina
 Cate
+Catelin
+Cateline
 Caterina
 Cath
 Catharine
@@ -540,6 +556,7 @@ Cecile
 Cecilia
 Cecily
 Celeste
+Celestria
 Celia
 Celien
 Celina
@@ -602,6 +619,7 @@ Christy
 Chrystal
 Chuck
 Ciara
+Cicily
 Cilla
 Cille
 Cindy
@@ -614,6 +632,7 @@ Claire
 Clara
 Clare
 Claribel
+Clarice
 Claris
 Clarissa
 Claudia
@@ -671,6 +690,7 @@ Dalal
 Dalila
 Dalya
 Damaris
+Dameta
 Damini
 Dan
 Dana
@@ -757,6 +777,7 @@ Dimitra
 Dina
 Dinah
 Dione
+Dionisia
 Dionna
 Disai
 Discovery
@@ -789,6 +810,7 @@ Dorthy
 Dot
 Dottie
 Dotty
+Douglas
 Dragica
 Dristi
 Drucilla
@@ -807,6 +829,7 @@ Ebony
 Ecrin
 Edel
 Eden
+Edeva
 Edie
 Edith
 Edna
@@ -815,6 +838,7 @@ Edye
 Edyta
 Eevi
 Effie
+Eglenti
 Ehtel
 Eileen
 Eilene
@@ -871,6 +895,7 @@ Elsey
 Elsie
 Elvira
 Elwanda
+Elysande
 Em
 Ema
 Emelda
@@ -939,10 +964,12 @@ Eun-Seo
 Eunice
 Eustolia
 Eva
+Evaine
 Evangeline
 Eve
 Eveleen
 Evelina
+Evelune
 Evelyn
 Evi
 Evia
@@ -1005,6 +1032,7 @@ Flora
 Florence
 Florencia
 Florentina
+Floria
 Floriane
 Florrie
 Flossie
@@ -1040,6 +1068,7 @@ Fridgerd
 Fridlin
 Frieda
 Frony
+Fujiko
 Fulcina
 Fullara
 Fumiko
@@ -1093,6 +1122,7 @@ Ginger
 Ginny
 Giorgia
 Giovanna
+Gisela
 Giselle
 Gita
 Gitta
@@ -1107,8 +1137,10 @@ Gogo
 Googoosh
 Gordana
 Grace
+Gracia
 Gracie
 Graciela
+Gratia
 Graziana
 Greta
 Gretchen
@@ -1120,10 +1152,13 @@ Gritty
 Grusha
 Guadalupe
 Gudrun
+Guinevere
 Gunay
+Gundred
 Gunel
 Gunes
 Gwen
+Gwendolen
 Gwendolyn
 Gyrd
 Ha
@@ -1189,6 +1224,8 @@ Hekla
 Helen
 Helena
 Helene
+Helewisa
+Helewise
 Hellen
 Hellveig
 Helmi
@@ -1246,6 +1283,7 @@ Iglin
 Ihita
 Ilana
 Ileana
+Iley
 Ilkin
 Illa
 Imani
@@ -1260,6 +1298,8 @@ Ines
 Inessa
 Inez
 Inga
+Ingerid
+Ingerith
 Ingis
 Ingrid
 Inkar
@@ -1284,6 +1324,7 @@ Isabelle
 Isadora
 Isadore
 Iselle
+Isemay
 Ishtar
 Isidora
 Isil
@@ -1291,6 +1332,7 @@ Isis
 Iskra
 Isla
 Islande
+Isolda
 Issy
 Itzalle
 Itzel
@@ -1299,6 +1341,7 @@ Ivaana
 Ivalu
 Ivana
 Ivelisse
+Ivette
 Ivey
 Ivy
 Ixone
@@ -1452,6 +1495,7 @@ Jova
 Jovan
 Jovana
 Joy
+Joya
 Joyce
 Joycelyn
 Joye
@@ -1724,6 +1768,7 @@ Latoya
 Latoyia
 Latrina
 Latrisha
+Laudine
 Laura
 Laurel
 Lauren
@@ -1733,6 +1778,7 @@ Laurie
 Laurissa
 Lauryn
 Lavelle
+Lavena
 Laverne
 Lavina
 Lavonda
@@ -1749,6 +1795,7 @@ Leeann
 Leeanna
 Leen
 Leena
+Legarda
 Leia
 Leigh
 Leila
@@ -1776,6 +1823,7 @@ Leslie
 Lesly
 Lessie
 Leta
+Letia
 Leticia
 Letitia
 Lettice
@@ -1827,6 +1875,7 @@ Lindsie
 Lindy
 Ling
 Linnea
+Linota
 Lior
 Lisa
 Lisbet
@@ -1881,6 +1930,7 @@ Lovella
 Lovelle
 Lovely
 Lovetta
+Lovota
 Loyce
 Lu
 Luanne
@@ -1905,6 +1955,7 @@ Lula
 Lulu
 Lulwa
 Luna
+Lunete
 Lupita
 Lurline
 Lusia
@@ -2097,7 +2148,9 @@ Masika
 Masilda
 Mat
 Mathe
+Mathild
 Mathilda
+Mathilde
 Matilda
 Matilde
 Matryona
@@ -2105,6 +2158,7 @@ Matryosha
 Mattie
 Matty
 Maud
+Maude
 Maudie
 Maudlin
 Maura
@@ -2185,6 +2239,8 @@ Mildred
 Milena
 Miley
 Milica
+Milicent
+Milisant
 Millicent
 Millie
 Milly
@@ -2209,6 +2265,8 @@ Miral
 Miranda
 Mireille
 Miriam
+Miriel
+Mirielda
 Mirlande
 Mirta
 Misaki
@@ -2297,6 +2355,7 @@ Natalya
 Natasha
 Natashia
 Nathalie
+Natsue
 Natsuki
 Nattie
 Natty
@@ -2327,6 +2386,7 @@ Nerissa
 Nesma
 Nesreen
 Nessa
+Nesta
 Net
 Netta
 Nettie
@@ -2343,6 +2403,7 @@ Nibby
 Nichole
 Nickie
 Nickole
+Nicola
 Nicole
 Nicoletta
 Nicolette
@@ -2404,6 +2465,7 @@ Nyla
 Oakley
 Ocie
 Oda
+Odelina
 Odessa
 Odette
 Odval
@@ -2414,6 +2476,7 @@ Oleana
 Olesya
 Olga
 Olinda
+Oliva
 Olive
 Olivia
 Ollie
@@ -2429,6 +2492,7 @@ Oppila
 Ora
 Oralie
 Orbei
+Orella
 Orenda
 Oria
 Orlene
@@ -2492,6 +2556,7 @@ Peregrine
 Perla
 Petra
 Petrina
+Petronilla
 Peyton
 Phajee
 Phan
@@ -2609,7 +2674,9 @@ Rhea Mae
 Rhetta
 Rhonda
 Richelle
+Richolda
 Ricki
+Ricolda
 Rihaab
 Rihanna
 Rika
@@ -2628,6 +2695,7 @@ Ritsuko
 River
 Riya
 Ro
+Roana
 Robbie
 Roberta
 Robin
@@ -2656,6 +2724,7 @@ Rosalind
 Rosalinda
 Rosalva
 Rosalyn
+Rosamund
 Rosana
 Rosanna
 Rosario
@@ -2694,6 +2763,7 @@ Saanvi
 Saar
 Sabella
 Sabik
+Sabina
 Sabine
 Sabrina
 Sachie
@@ -2756,6 +2826,7 @@ Sayuri
 Scarlet
 Scarlett
 Scout
+Sela
 Selena
 Selima
 Selin
@@ -2857,6 +2928,7 @@ Sia
 Sibella
 Sienna
 Sierra
+Sigga
 Signe
 Signy
 Sigrid
@@ -2909,6 +2981,7 @@ Sook
 Soon Bok
 Sophia
 Sophie
+Sophronia
 Sophy
 Soraya
 Sovbika
@@ -2960,7 +3033,9 @@ Suzie
 Suzy
 Sveta
 Svetlana
+Swanhild
 Sybell
+Sybil
 Syd
 Sydney
 Sylvia
@@ -3022,6 +3097,7 @@ Tempie
 Temulun
 Tennille
 Teodora
+Tephania
 Teresa
 Teresia
 Teresita
@@ -3039,6 +3115,7 @@ Thaili
 Thalia
 Thando
 Thandolwethu
+Theda
 Thelma
 Theodora
 Theresa
@@ -3046,6 +3123,7 @@ Therese
 Thi
 Thirza
 Thomasena
+Thora
 Thorhalla
 Thu
 Thula
@@ -3156,6 +3234,7 @@ Vassia
 Vedi
 Vella
 Velma
+Venetia
 Venita
 Venla
 Vera
@@ -3201,6 +3280,7 @@ Virgy
 Viv
 Vivian
 Viviana
+Viviane
 Vivyan
 Vixen
 Vladlena
@@ -3294,6 +3374,8 @@ Yoshe
 Yoshiko
 Youko
 Ysabel
+Ysmeina
+Ysmeine
 Yue Wan
 Yue Ying
 Yuina
