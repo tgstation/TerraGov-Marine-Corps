@@ -79,9 +79,21 @@ Index explination
 
 /*
 Above but unregisters the signals
+Index explaination
+1: target to unregister the signal
+2: COMSIG to unregister
+*/
+
+/datum/component/ai_controller/proc/unregister_comp_signals()
+	for(var/signal in ai_behavior.get_comp_signals_to_unreg())
+		UnregisterSignal(signal[1], signal[2])
+
+/*
+We did something that called this proc, let's get a new action state going
+force_override determines if the ai mind should or shouldn't override a action state based on the reasoning
 Example: if it was damaged while attacking something it wouldn't care unless it was injured
+*/
 /datum/component/ai_controller/proc/get_new_state(reason_for, force_override = TRUE)
-	unregister_signals()
 	unregister_comp_signals()
 	ai_behavior.unregister_state_signals(src)
 	parent.RemoveElement(ai_behavior.cur_action_state)
