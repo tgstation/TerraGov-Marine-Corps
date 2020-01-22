@@ -15,7 +15,6 @@
 	var/obj/effect/ai_node/current_node //Current node to use for calculating action states: this is the mob's node
 	var/datum/element/action_state/cur_action_state //Current TYPE of the action state we're using; used for calculating next action state
 	var/mob/mob_parent //Ref to the parent associated with this mind
-	var/starting_signals = list() //All signals to be registered on parent mob upon being made
 
 /datum/ai_behavior/New(loc, parent_to_assign)
 	..()
@@ -29,29 +28,35 @@
 //Parent is for say checking on the overall status of the mob and evalulating action states off of that alongside parameter generation
 //This will also deregister any signals related to the old action state
 /datum/ai_behavior/proc/get_new_state(reason_for)
-	if(!reason_for || reason_for == REASON_FINISHED_NODE_MOVE || reason_for == REASON_TARGET_KILLED)
+	if(!reason_for || reason_for == REASON_FINISHED_NODE_MOVE)
 		if(isainode(atom_to_walk_to))
 			current_node = atom_to_walk_to
 		atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
 		cur_action_state = /datum/element/action_state/move_to_atom
 		return list(cur_action_state, atom_to_walk_to, distance_to_maintain, sidestep_prob)
-	stack_trace("An ai mind didn't give parameters back for a new action state, VERY BAD!! Mind type: [src.type], Reasoning: [reason_for]")
 
 //This is called by the component every process, this doesn't have a process() defined as the component will decide based off of the return value of this if it should apply a particular action state
 /datum/ai_behavior/proc/do_process()
 	return
 
-//Gets the signals needed to register for the current action state
-/datum/ai_behavior/proc/get_signals_to_reg()
+//While this does register signals related to the action state based on surroundings, sometimes it will also assign signals on say the thing being moved to
+/datum/ai_behavior/proc/register_state_signals(/datum/component/ai_controller/register_requester)
+
+/datum/ai_behavior/proc/unregister_state_signals(datum/component/ai_controller/unregisterer)
+
+//A bunch of signals that need to be registered when the ai behavior initialized by a ai controller
+/datum/ai_behavior/proc/register_starting_signals(datum/component/ai_controller/registerer)
+
+//Returns a list of signals that the component should register on itself
+/datum/ai_behavior/proc/get_comp_signals_to_reg()
 	if(isainode(atom_to_walk_to)) //We're walking to a node, register a signal for getting a new state after reaching it
 		return list(
-				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_controller/.proc/reason_finished_node_move)
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_controller.proc/reason_finished_node_move)
 					)
 
-//Returns a list of signals to unregister related to the current action state/atom walking to
-/datum/ai_behavior/proc/get_signals_to_unreg()
-	if(atom_to_walk_to) //We're walking to a node, remove that signal related to it
-		if(isainode(atom_to_walk_to))
-			return list(
-					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+//Above but signals to unregister
+/datum/ai_behavior/proc/get_comp_signals_to_unreg()
+	if(isainode(atom_to_walk_to)) //We're walking to a node, remove that signal related to it
+		return list(
+				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 					)

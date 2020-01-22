@@ -10,10 +10,13 @@
 		var/mob/mob_to_process = mob
 		if(!mob_to_process.canmove || mob_to_process.stat == DEAD)
 			continue
+
+		//Okay it can actually physically move, but has it moved too recently?
+		if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.action_busy)
+			continue
+
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) == distances_to_maintain[mob_to_process])
 			SEND_SIGNAL(mob_to_process, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.action_busy)
-				continue
 			if(!(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process]))) //We're right on top, move out of it
 				if(!step(mob_to_process, pick(CARDINAL_ALL_DIRS)))
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
@@ -21,8 +24,7 @@
 				if(!step(mob_to_process, pick(LeftAndRightOfDir(get_dir(mob_to_process, atoms_to_walk_to[mob_to_process]), diagonal_check = TRUE)))) //Couldn't move, something in the way
 					SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
 			continue
-		if(world.time <= mob_to_process.last_move_time + mob_to_process.cached_multiplicative_slowdown || mob_to_process.action_busy)
-			continue
+
 		if(get_dist(mob_to_process, atoms_to_walk_to[mob_to_process]) < distances_to_maintain[mob_to_process]) //We're too close, back it up
 			if(!step(mob_to_process, get_dir(mob, get_step_away(mob_to_process, atoms_to_walk_to[mob_to_process], distances_to_maintain[mob_to_process]))))
 				SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)

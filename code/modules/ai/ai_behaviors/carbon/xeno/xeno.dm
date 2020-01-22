@@ -83,59 +83,70 @@
 	xeno.changeNext_move(xeno.xeno_caste.attack_delay)
 
 /datum/ai_behavior/carbon/xeno/get_new_state(reason_for)
-	switch(reason_for) //Lets look for targets when we're recently done doing an action, gotta find enemies to kill
-		if(REASON_FINISHED_NODE_MOVE, REASON_TARGET_KILLED, REASON_TARGET_SPOTTED, REASON_REFRESH_TARGET)
-			var/list/potential_targets = get_targets() //Define here as if there's targets we don't need to redundently call the get targets
-			if(!length(potential_targets))
-				//No targets, let's just randomly move to nodes
-				reason_for = REASON_FINISHED_NODE_MOVE
-				return ..()
-			//There's targets nearby, kill the closest thing
-			var/closest_dist = 999
-			var/atom/favorable_target
-			for(var/a in potential_targets)
-				var/atom/target = a
-				if(!(get_dist(mob_parent, target) <= closest_dist))
-					continue
-				closest_dist = get_dist(mob_parent, target)
-				favorable_target = target
-			if(!favorable_target)
-				reason_for = REASON_FINISHED_NODE_MOVE
-				return ..()
-			atom_to_walk_to = favorable_target
-			cur_action_state = /datum/element/action_state/move_to_atom
-			return list(cur_action_state, atom_to_walk_to, distance_to_maintain, sidestep_prob)
+		//We need a new state, but first let's see if there's any targets nearby needed to kill
+	var/list/potential_targets = get_targets() //Define here as if there's targets we don't need to redundently call the get targets
+	if(!length(potential_targets))
+		//No targets, let's just randomly move to nodes
+		reason_for = REASON_FINISHED_NODE_MOVE
+		return ..()
+	//There's targets nearby, kill the closest thing
+	var/closest_dist = 999
+	var/atom/favorable_target
+	for(var/a in potential_targets)
+		var/atom/target = a
+		if(!(get_dist(mob_parent, target) <= closest_dist))
+			continue
+		closest_dist = get_dist(mob_parent, target)
+		favorable_target = target
+	if(!favorable_target) //Just in case:tm:
+		reason_for = REASON_FINISHED_NODE_MOVE
+		return ..()
+	atom_to_walk_to = favorable_target
+	cur_action_state = /datum/element/action_state/move_to_atom
+	return list(cur_action_state, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 
-	//If we get here reason_for is null or some other odd reason, let parent handle that
 	return ..()
 
-/datum/ai_behavior/carbon/xeno/get_signals_to_reg()
+/datum/ai_behavior/carbon/xeno/get_comp_signals_to_reg()
 	if(istype(atom_to_walk_to, /mob/living/carbon/human))
 		return list(
-				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_controller/.proc/mind_attack_target),
-				list(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/component/ai_controller/.proc/reason_target_killed)
-				)
+				list(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/component/ai_controller.proc/reason_target_killed)
+					)
 
-	if(istype(atom_to_walk_to, /obj/machinery)) //Machine targets are usually destroyed rather than having a static health pool til dead (but not qdel) like humans are
+	if(istype(atom_to_walk_to, /obj/machinery))
 		return list(
-				list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, /datum/component/ai_controller/.proc/mind_attack_target),
-				list(atom_to_walk_to, COMSIG_PARENT_QDELETING, /datum/component/ai_controller/.proc/reason_target_killed)
+				list(atom_to_walk_to, COMSIG_PARENT_QDELETING, /datum/component/ai_controller.proc/reason_target_killed)
+					)
+
+	return ..() //Walking to a node
+
+/datum/ai_behavior/carbon/xeno/get_comp_signals_to_unreg()
+	if(istype(atom_to_walk_to, /mob/living/carbon/human))
+		return list(
+				list(atom_to_walk_to, COMSIG_MOB_DEATH)
+					)
+
+	if(istype(atom_to_walk_to, /obj/machinery))
+		return list(
+				list(atom_to_walk_to, COMSIG_PARENT_QDELETING)
 				)
 
 	return ..() //Walking to a node
 
-/datum/ai_behavior/carbon/xeno/get_signals_to_unreg()
-	if(atom_to_walk_to)
+/datum/ai_behavior/carbon/xeno/register_state_signals(datum/component/ai_controller/registerer)
+	if(istype(atom_to_walk_to, /mob/living/carbon/human))
+		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
 
-		if(istype(atom_to_walk_to, /mob/living/carbon/human))
-			return list(
-					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE),
-					list(atom_to_walk_to, COMSIG_MOB_DEATH)
-					)
+	if(istype(atom_to_walk_to, /obj/machinery)) //Machine targets are usually destroyed rather than having a static health pool til dead (but not qdel) like humans are
+		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
 
-		if(istype(atom_to_walk_to, /obj/machinery))
-			return list(
-					list(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE),
-					list(atom_to_walk_to, COMSIG_PARENT_QDELETING)
-					)
+	return ..() //Walking to a node
+
+/datum/ai_behavior/carbon/xeno/unregister_state_signals(datum/component/ai_controller/unregisterer)
+	if(istype(atom_to_walk_to, /mob/living/carbon/human))
+		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+
+	if(istype(atom_to_walk_to, /obj/machinery))
+		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+
 	return ..() //Walking to a node

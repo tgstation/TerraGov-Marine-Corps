@@ -2,8 +2,9 @@
 
 /datum/ai_behavior/carbon
 	var/attack_range = 1 //How far away we gotta be before considering an attack
-	starting_signals = list(list(COMSIG_OBSTRUCTED_MOVE, .proc/deal_with_obstacle)
-							)
+
+/datum/ai_behavior/carbon/register_starting_signals(datum/component/ai_controller/registerer)
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, .proc/deal_with_obstacle)
 
 //Returns a list of things we preferably want to attack
 /datum/ai_behavior/carbon/proc/get_targets()

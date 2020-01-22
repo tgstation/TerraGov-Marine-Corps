@@ -1,3 +1,7 @@
+//Various macros
+#define GET_WEIGHT(NODE, NAME) NODE.weights[NAME]
+#define WEIGHT_NOT_ZERO(NODE, NAME) weights[NAME] != 0
+
 //Returns a node that is in the direction of this node; must be in the src's adjacent node list
 /obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
 
