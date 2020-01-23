@@ -220,6 +220,7 @@
 	hud_version = display_hud_version
 	persistent_inventory_update(screenmob)
 	mymob.update_action_buttons(TRUE)
+	reorganize_alerts(screenmob)
 	mymob.reload_fullscreens()
 
 	// ensure observers get an accurate and up-to-date view
