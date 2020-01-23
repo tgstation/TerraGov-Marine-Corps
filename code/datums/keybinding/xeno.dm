@@ -130,6 +130,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/create_bomb
+	name = "create_bomb"
+	full_name = "Boiler: Create Bombard Ammo"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
+
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"

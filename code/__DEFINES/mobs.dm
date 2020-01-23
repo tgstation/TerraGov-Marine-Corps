@@ -516,7 +516,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
 //Boiler defines
-#define BOILER_LUMINOSITY					3
+#define BOILER_LUMINOSITY					0
 
 //Hivelord defines
 

@@ -76,6 +76,7 @@
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 
 	// *** Boiler Abilities *** //
+	var/max_ammo = 0
 	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0

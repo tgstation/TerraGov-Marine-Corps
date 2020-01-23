@@ -41,14 +41,16 @@
 	spit_delay = 4 SECONDS
 
 	// *** Boiler Abilities *** //
+	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
+		/datum/action/xeno_action/create_boiler_bomb,
 		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
 		/datum/action/xeno_action/toggle_bomb,
@@ -91,9 +93,10 @@
 	spit_delay = 3 SECONDS
 
 	// *** Boiler Abilities *** //
+	max_ammo = 5
 	bomb_strength = 1.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -126,9 +129,10 @@
 	spit_delay = 2 SECONDS
 
 	// *** Boiler Abilities *** //
+	max_ammo = 6
 	bomb_strength = 2
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
@@ -159,6 +163,7 @@
 	spit_delay = 1 SECONDS
 
 	// *** Boiler Abilities *** //
+	max_ammo = 7
 	bomb_strength = 2.5
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 30 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
