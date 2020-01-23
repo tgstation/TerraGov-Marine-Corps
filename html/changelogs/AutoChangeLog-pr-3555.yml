@@ -1,0 +1,7 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Added the TGB - \"Rising Star\", an ultra lowpop map designed for RP, original map from Kwin and co. for ball. Only meant for Extended."
+  - bugfix: "Fixed rooms from the original map, added new rooms to compliment it."
+  - rscadd: "Added a practice laser rifle for the said map, only deals stamina damage."
+  - admin: "Since \"Rising Star\" is meant for the off-duty gamemode, and it cannot be finished because I'm a noob to coding, it's best to switch the gamemode to Extended until some admin finishes the round manually."
