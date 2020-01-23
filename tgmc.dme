@@ -91,6 +91,7 @@
 #include "code\__HELPERS\announce.dm"
 #include "code\__HELPERS\astar.dm"
 #include "code\__HELPERS\cmp.dm"
+#include "code\__HELPERS\config.dm"
 #include "code\__HELPERS\files.dm"
 #include "code\__HELPERS\game.dm"
 #include "code\__HELPERS\global_lists.dm"

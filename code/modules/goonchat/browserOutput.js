@@ -44,8 +44,8 @@ var opts = {
 	'highlightColor': '#FFFF00', //The color of the highlighted message
 
 	//Ping display
-	'lastPinged': 0, //Timestamp of the last response from the server.
-	'pingedLimit': 35000,
+	'lastPang': 0, //Timestamp of the last response from the server.
+	'pangLimit': 35000,
 	'noResponse': false, //Tracks the state of the previous ping request
 	'noResponseCount': 0, //How many failed pings?
 
@@ -65,11 +65,12 @@ var opts = {
 	'musicStartAt': 0, //The position the music starts playing
 	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
 
-	'defaultMusicVolume': 10,
+	'defaultMusicVolume': 25,
 
 	'messageCombining': true,
 
 };
+var replaceRegexes = {};
 
 function clamp(val, min, max) {
 	return Math.max(min, Math.min(val, max))
@@ -170,6 +171,15 @@ function byondDecode(message) {
 	return message;
 }
 
+function replaceRegex() {
+	var selectedRegex = replaceRegexes[$(this).attr('replaceRegex')];
+	if (selectedRegex) {
+		var replacedText = $(this).html().replace(selectedRegex[0], selectedRegex[1]);
+		$(this).html(replacedText);
+	}
+	$(this).removeAttr('replaceRegex');
+}
+
 //Actually turns the highlight term match into appropriate html
 function addHighlightMarkup(match) {
 	var extra = '';
@@ -249,7 +259,7 @@ function output(message, flag) {
 	}
 
 	if (flag !== 'internal')
-		opts.lastPinged = Date.now();
+		opts.lastPang = Date.now();
 
 	message = byondDecode(message).trim();
 
@@ -363,6 +373,7 @@ function output(message, flag) {
 				badge = $('<span/>', {'class': 'r', 'text': 2});
 			}
 			lastmessages.html(message);
+			lastmessages.find('[replaceRegex]').each(replaceRegex);
 			lastmessages.append(badge);
 			badge.animate({
 				"font-size": "0.9em"
@@ -384,6 +395,8 @@ function output(message, flag) {
 			entry.className += ' hidden';
 			entry.setAttribute('data-filter', filteredOut);
 		}
+
+		$(entry).find('[replaceRegex]').each(replaceRegex);
 
 		$last_message = trimmed_message;
 		$messages[0].appendChild(entry);
@@ -479,7 +492,7 @@ function handleClientData(ckey, ip, compid) {
 				return; //Record already exists
 			}
 		}
-
+		//Lets make sure we obey our limit (can connect from server with higher limit)
 		while (opts.clientData.length >= opts.clientDataLimit) {
 			opts.clientData.shift();
 		}
@@ -495,15 +508,13 @@ function handleClientData(ckey, ip, compid) {
 //Server calls this on ehjax response
 //Or, y'know, whenever really
 function ehjaxCallback(data) {
-	opts.lastPinged = Date.now();
-	if (data == 'ping') {
+	opts.lastPang = Date.now();
+	if (data == 'softPang') {
 		return;
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
-	} else if (data == 'shutdown') {
-		internalOutput('<div class="connectionClosed internal">The connection has been closed because the server is shutting down. See you next time!</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
 	} else {
@@ -530,15 +541,6 @@ function ehjaxCallback(data) {
 				handleClientData(data.clientData.ckey, data.clientData.ip, data.clientData.compid);
 			}
 			sendVolumeUpdate();
-		} else if (data.firebug) {
-			if (data.trigger) {
-				internalOutput('<span class="internal boldnshit">Loading firebug console, triggered by '+data.trigger+'...</span>', 'internal');
-			} else {
-				internalOutput('<span class="internal boldnshit">Loading firebug console...</span>', 'internal');
-			}
-			var firebugEl = document.createElement('script');
-			firebugEl.src = 'https://getfirebug.com/firebug-lite-debug.js';
-			document.body.appendChild(firebugEl);
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);
@@ -568,6 +570,16 @@ function ehjaxCallback(data) {
 				$('#adminMusic').prop('src', adminMusic);
 				$('#adminMusic').trigger("play");
 			}
+		} else if (data.syncRegex) {
+			for (var i in data.syncRegex) {
+
+				var regexData = data.syncRegex[i];
+				var regexName = regexData[0];
+				var regexFlags = regexData[1];
+				var regexReplaced = regexData[2];
+
+				replaceRegexes[i] = [new RegExp(regexName, regexFlags), regexReplaced];
+			}
 		}
 	}
 }
@@ -595,6 +607,27 @@ function sendVolumeUpdate() {
 	opts.volumeUpdating = false;
 	if(opts.updatedVolume) {
 		runByond('?_src_=chat&proc=setMusicVolume&param[volume]='+opts.updatedVolume);
+	}
+}
+
+function adminMusicEndCheck(event) {
+	if (opts.musicEndAt) {
+		if ($('#adminMusic').prop('currentTime') >= opts.musicEndAt) {
+			$('#adminMusic').off(event);
+			$('#adminMusic').trigger('pause');
+			$('#adminMusic').prop('src', '');
+		}
+	} else {
+		$('#adminMusic').off(event);
+	}
+}
+
+function adminMusicLoadedData(event) {
+	if (opts.musicStartAt && ($('#adminMusic').prop('duration') === Infinity || (opts.musicStartAt <= $('#adminMusic').prop('duration'))) ) {
+		$('#adminMusic').prop('currentTime', opts.musicStartAt);
+	}
+	if (opts.musicEndAt) {
+		$('#adminMusic').on('timeupdate', adminMusicEndCheck);
 	}
 }
 
@@ -637,25 +670,6 @@ function handleToggleClick($sub, $toggle) {
 		opts.selectedSubLoop = startSubLoop();
 	}
 }
-function adminMusicEndCheck(event) {
-	if (opts.musicEndAt) {
-		if ($('#adminMusic').prop('currentTime') >= opts.musicEndAt) {
-			$('#adminMusic').off(event);
-			$('#adminMusic').trigger('pause');
-			$('#adminMusic').prop('src', '');
-		}
-	} else {
-		$('#adminMusic').off(event);
-	}
-}
-function adminMusicLoadedData(event) {
-	if (opts.musicStartAt && ($('#adminMusic').prop('duration') === Infinity || (opts.musicStartAt <= $('#adminMusic').prop('duration'))) ) {
-		$('#adminMusic').prop('currentTime', opts.musicStartAt);
-	}
-	if (opts.musicEndAt) {
-		$('#adminMusic').on('timeupdate', adminMusicEndCheck);
-	}
-}
 
 /*****************************************
 *
@@ -676,7 +690,7 @@ $(function() {
 
 	//Hey look it's a controller loop!
 	setInterval(function() {
-		if (opts.lastPinged + opts.pingedLimit < Date.now() && !opts.restarting) { //Every pingLimit
+		if (opts.lastPang + opts.pangLimit < Date.now() && !opts.restarting) { //Every pingLimit
 				if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
 					opts.noResponse = true;
 					opts.noResponseCount++;

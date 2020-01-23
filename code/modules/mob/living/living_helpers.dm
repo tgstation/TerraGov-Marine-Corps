@@ -36,3 +36,9 @@
 	if(ignore_checks)
 		DISABLE_BITFIELD(flags_to_check, ignore_checks)
 	return (. || CHECK_BITFIELD(restrained_flags, flags_to_check))
+
+
+/mob/living/get_policy_keywords()
+	. = ..()
+	if(job)
+		. += job.title
