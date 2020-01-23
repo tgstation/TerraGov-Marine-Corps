@@ -906,6 +906,18 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
+/obj/item/attachable/stock/lasgun/practice
+	name = "\improper M43-P Sunfury lasgun stock"
+	desc = "The standard stock for the M43-P Sunfury lasgun, seems the stock is made out of plastic."
+	slot = "stock"
+	wield_delay_mod = null
+	melee_mod = 0
+	icon_state = "laserstock"
+	attach_icon = "laserstock"
+	pixel_shift_x = 41
+	pixel_shift_y = 10
+	flags_attach_features = NONE
+
 /obj/item/attachable/stock/dmr
 	name = "T-64 Stock"
 	desc = "A standard DMR Stock."

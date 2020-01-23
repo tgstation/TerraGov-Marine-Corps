@@ -414,3 +414,22 @@
 			M.update_inv_l_hand()
 		else if (src == M.r_hand)
 			M.update_inv_r_hand()
+
+//-------------------------------------------------------
+//A practice version of M43, only for the marine hq map.
+
+/obj/item/weapon/gun/energy/lasgun/M43/practice
+	name = "\improper M43-P Sunfury Lasgun MK1"
+	desc = "An accurate, recoilless laser based battle rifle. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
+	force = 8 //Well, it's not complicted compared to the original.
+	ammo = /datum/ammo/energy/lasgun/M43/practice
+	cell_type = /obj/item/cell/lasgun/M43/practice
+	attachable_allowed = list()
+	starting_attachment_types = list(/obj/item/attachable/stock/lasgun/practice)
+
+	damage_falloff_mult = 1
+	fire_delay = 0.33 SECONDS
+	aim_slowdown = 0.35
+
+/obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
+	return
