@@ -1,0 +1,5 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - tweak: "The boiler now runs on an ammo system for it's bombard ability."
+  - tweak: "The boiler now glows according to the number of stored globs."
