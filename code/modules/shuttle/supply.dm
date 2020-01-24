@@ -611,7 +611,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/item/req_tablet/examine(mob/user)
 	. = ..()
 	if(!linked_beacon)
-		to_chat(user, "There seems to be no beacon attached, use the tablet on a beacon to link to it.")
+		to_chat(user, "<span class='warning'><B>There seems to be no beacon attached, use the tablet on a beacon to link to it!<B></span>")
 	else
 		to_chat(user, "There seems to be a beacon attached to this tablet. Should be good to go for delivery.")
 
@@ -619,6 +619,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if(istype(A, /obj/item/radio/beacon))
 		if(A == linked_beacon)
 			return
+		linked_beacon = A
 		to_chat(user, "<span class='notice'>You link the tablet to the beacon[linked_beacon ? " overriding the previous one!" : "!" ]</span>")
 		playsound(get_turf(src), 'sound/machines/triple_beep.ogg', 25, TRUE)
 		icon_state = "req_tablet_on"
@@ -633,8 +634,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/dat
 	if(temp)
 		dat = temp
-	if(!SSshuttle.supply)
-		return
 	if(!linked_beacon)
 		dat = "<BR><B>WARNING: NO CONNECTIVITY WITH SUPPLY SYSTEM. LIKELY CAUSE: LACK OF LINKED BEACON.</B>"
 		return
