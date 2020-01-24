@@ -131,8 +131,8 @@
 	taste_description = "death"
 
 /datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
-	return ..()
 	L.status_flags |= FAKEDEATH
+	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
