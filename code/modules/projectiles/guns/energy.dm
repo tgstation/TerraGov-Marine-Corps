@@ -274,26 +274,22 @@
 
 //Ammo/Charge functions
 /obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
-	if(!cell || cell.charge <= 0)
-		icon_state = base_gun_icon + "_0"
-		if(flags_item & WIELDED)
-			item_state = "m43_0_w"
-		else
-			item_state = "m43_0"
-	else
-		var/remaining = CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
-		icon_state = "[base_gun_icon]_[remaining]"
-		item_state = "m43_[remaining][flags_item & WIELDED ? "_w" : ""]"
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	icon_state = "[base_gun_icon]_[cell_charge]"
+	update_mag_overlay(user)
+	update_item_state(user)
 
-	if(cell)
-		update_mag_overlay()
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/M = user
-		if(src == M.l_hand)
-			M.update_inv_l_hand()
-		else if (src == M.r_hand)
-			M.update_inv_r_hand()
+/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
+	. = item_state
+	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
+	item_state = "[base_gun_icon]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
+	if(. != item_state && ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(src == human_user.l_hand)
+			human_user.update_inv_l_hand()
+		else if (src == human_user.r_hand)
+			human_user.update_inv_r_hand()
 
 
 /obj/item/weapon/gun/energy/lasgun/reload(mob/user, obj/item/cell/lasgun/new_cell)
@@ -395,25 +391,6 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.95
 	scatter_unwielded = 25
-
-/obj/item/weapon/gun/energy/lasgun/pulse/update_icon(mob/user)
-	if(!cell || cell.charge <= 0)
-		icon_state = base_gun_icon + "_0"
-		if(flags_item & WIELDED)
-			item_state = "m19c4_0_w"
-		else
-			item_state = "m19c4_0"
-	else
-		var/remaining = CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
-		icon_state = "[base_gun_icon]_[remaining]"
-		item_state = "m19c4_[remaining][flags_item & WIELDED ? "_w" : ""]"
-
-	if(ishuman(user))
-		var/mob/living/carbon/human/M = user
-		if(src == M.l_hand)
-			M.update_inv_l_hand()
-		else if (src == M.r_hand)
-			M.update_inv_r_hand()
 
 //-------------------------------------------------------
 //A practice version of M43, only for the marine hq map.
