@@ -72,7 +72,7 @@
 /proc/sanitize_hexcolor(color, desired_format = 3, include_crunch = FALSE, default = "#000000")
 	var/crunch = include_crunch ? "#" : ""
 	if(!istext(color))
-		color = ""
+		return default
 
 	var/start = 1 + (text2ascii(color, 1) == 35)
 	var/len = length(color)
