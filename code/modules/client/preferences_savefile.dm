@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	40
+#define SAVEFILE_VERSION_MAX	39
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -95,9 +95,6 @@
 	if(savefile_version < 38)
 		WRITE_FILE(S["menuoptions"], list())
 
-	if(savefile_version < 39)
-		WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
-
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
 
@@ -146,7 +143,6 @@
 
 	READ_FILE(S["toggles_chat"], toggles_chat)
 	READ_FILE(S["toggles_sound"], toggles_sound)
-	READ_FILE(S["toggles_gameplay"], toggles_gameplay)
 	READ_FILE(S["show_typing"], show_typing)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
@@ -176,7 +172,6 @@
 
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
 	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
-	toggles_gameplay= sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -220,7 +215,6 @@
 
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
 	toggles_sound	= sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
-	toggles_gameplay= sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	show_typing		= sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud 		= sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing	= sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -244,7 +238,6 @@
 
 	WRITE_FILE(S["toggles_chat"], toggles_chat)
 	WRITE_FILE(S["toggles_sound"], toggles_sound)
-	WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
 	WRITE_FILE(S["show_typing"], show_typing)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
