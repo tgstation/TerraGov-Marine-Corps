@@ -1,5 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - rscadd: "Radial menu for medical bandages."
-  - rscadd: "Preference for players to turn Radial menu on and off. Doctors may prefer off."
