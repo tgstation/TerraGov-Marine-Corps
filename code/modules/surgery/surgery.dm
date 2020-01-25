@@ -123,12 +123,12 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( 6 SECONDS * user.skills.getRating("surgery") ) // 20 secs non-trained, 14 amateur, 8 trained, 2 prof
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
-	var/datum/limb/affected = M.get_limb(user.zone_selected)
+	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
 	if(!affected)
-		return 0
+		return TRUE
 	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
-		return 1
+		return TRUE
 
 	for(var/i in GLOB.surgery_steps)
 		var/datum/surgery_step/S = i
