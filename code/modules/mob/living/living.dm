@@ -276,7 +276,7 @@
 		if(isliving(pulling))
 			var/mob/living/L = pulling
 			L.grab_resist_level = 0 //zero it out
-			remove_restrained_flags(L.restrained_flags)
+			L.remove_restrained_flags(RESTRAINED_NECKGRAB)
 
 	. = ..()
 
