@@ -101,12 +101,7 @@
 
 /obj/structure/razorwire/Destroy()
 	for(var/i in entangled_list)
-		var/mob/living/L = i
-		L.set_frozen(FALSE)
-		if(L.entangled_by == src)
-			L.entangled_by = null
-			L.cooldowns[COOLDOWN_ENTANGLE] = FALSE
-	entangled_list.Cut()
+		razorwire_untangle(i)
 	return ..()
 
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
