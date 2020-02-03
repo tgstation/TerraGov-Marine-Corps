@@ -2,12 +2,13 @@
 
 /datum/ai_behavior/carbon/xeno/runner
 	var/datum/action/xeno_action/activable/pounce/pounce
+	sidestep_prob = 25 //smh marines gotta git gud
 
 /datum/ai_behavior/carbon/xeno/runner/New()
 	..()
 	pounce = mob_parent.actions_by_path[/datum/action/xeno_action/activable/pounce]
 
-/datum/ai_behavior/carbon/xeno/runner/do_process()
+/datum/ai_behavior/carbon/xeno/runner/process()
 	if(!iscarbon(atom_to_walk_to))
 		return ..()
 	if(get_dist(atom_to_walk_to, mob_parent) > 6)

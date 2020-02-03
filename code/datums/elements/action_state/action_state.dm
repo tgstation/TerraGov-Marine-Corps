@@ -4,8 +4,8 @@
 
 /datum/element/action_state/New()
 	. = ..()
-	START_PROCESSING(SSactionstate, src)
+	START_PROCESSING(SSpathfinding, src)
 
 /datum/element/action_state/Destroy()
-	STOP_PROCESSING(SSactionstate, src)
+	STOP_PROCESSING(SSpathfinding, src)
 	return ..()

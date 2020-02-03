@@ -1,11 +1,20 @@
-//Moves to an atom, sends signals if a distance is maintained
+//Moves to an atom, sends signals if a distance is maintained with the atom being walked to
 
-/datum/element/action_state/move_to_atom
+/datum/element/pathfinder
+	element_flags = ELEMENT_DETACH //Detach on attached's QDEL
 	var/list/distances_to_maintain = list() //Distance we want to maintain from atom and send signals once distance has been maintained
 	var/list/atoms_to_walk_to = list() //All the targets some mobs gotta move to
 	var/list/stutter_step_prob = list() //The prob() chance of a mob going left or right when distance is maintained with the target
 
-/datum/element/action_state/move_to_atom/process()
+/datum/element/pathfinder/New()
+	. = ..()
+	START_PROCESSING(SSpathfinding, src)
+
+/datum/element/pathfinder/Destroy()
+	STOP_PROCESSING(SSpathfinding, src)
+	return ..()
+
+/datum/element/pathfinder/process()
 	for(var/mob in distances_to_maintain)
 		var/mob/mob_to_process = mob
 		if(!mob_to_process.canmove || mob_to_process.stat == DEAD)
@@ -34,11 +43,13 @@
 			SEND_SIGNAL(mob_to_process, COMSIG_OBSTRUCTED_MOVE)
 		mob_to_process.last_move_time = world.time
 
-//mob: the mob that's getting the action state
-//atom_to_walk_to: target to move to
-//distance to maintain: mob will try to be at this distance away from the atom to walk to
-//stutter_step: a prob() chance to go left or right of the mob's direction towards the target when distance has been maintained
-/datum/element/action_state/move_to_atom/Attach(mob/mob, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
+/*
+mob: the mob that's getting the action state
+atom_to_walk_to: target to move to
+distance to maintain: mob will try to be at this distance away from the atom to walk to
+stutter_step: a prob() chance to go left or right of the mob's direction towards the target when distance has been maintained
+*/
+/datum/element/pathfinder/Attach(mob/mob, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)
 	. = ..()
 	if(QDELETED(mob))
 		return ELEMENT_INCOMPATIBLE
@@ -50,7 +61,7 @@
 	atoms_to_walk_to[mob] = atom_to_walk_to
 	stutter_step_prob[mob] = stutter_step
 
-/datum/element/action_state/move_to_atom/Detach(mob/mob)
+/datum/element/pathfinder/Detach(mob/mob)
 	distances_to_maintain.Remove(mob)
 	atoms_to_walk_to.Remove(mob)
 	stutter_step_prob.Remove(mob)
