@@ -36,7 +36,7 @@
 		if(MOVING_TO_NODE)
 			if(length(get_targets()))
 				change_state(REASON_TARGET_SPOTTED)
-		if(MOVING_TO_TARGET)
+		if(MOVING_TO_ATOM)
 			change_state(REASON_REFRESH_TARGET) //We'll repick our targets as there could be more better targets to attack
 	return ..()
 
@@ -107,15 +107,16 @@
 
 			cleanup_current_action()
 			atom_to_walk_to = favorable_target
-			cur_action = MOVING_TO_TARGET
-			AddElement(/datum/element/pathfinder(atom_to_walk_to, distance_to_maintain, sidestep_prob))
+			cur_action = MOVING_TO_ATOM
+			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 			register_action_signals(cur_action)
+
 
 	return ..() //Random node moving
 
 /datum/ai_behavior/carbon/xeno/register_action_signals(action_type)
 	switch(action_type)
-		if(MOVING_TO_TARGET)
+		if(MOVING_TO_ATOM)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
 			if(ishuman(atom_to_walk_to))
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, .proc/reason_target_killed)
@@ -128,7 +129,7 @@
 
 /datum/ai_behavior/carbon/xeno/unregister_action_signals(action_type)
 	switch(action_type)
-		if(MOVING_TO_TARGET)
+		if(MOVING_TO_ATOM)
 			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
 			if(ishuman(atom_to_walk_to))
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)

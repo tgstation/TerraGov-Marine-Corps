@@ -6,4 +6,4 @@
 
 //DEFINES for AI behavior to utilize to show off what it's currently doing
 #define MOVING_TO_NODE "moving to a node" //Move to a node
-#define MOVING_TO_TARGET "moving to a target" //We want to move to this thing and probably hit it; can be just about anything like a mob or machinery
+#define MOVING_TO_ATOM "moving to an atom" //We want to move to this thing and probably hit it; can be just about anything like a mob or machinery

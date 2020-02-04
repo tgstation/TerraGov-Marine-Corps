@@ -1,6 +1,5 @@
 //Various macros
 #define GET_WEIGHT(NODE, NAME) NODE.weights[NAME]
-#define WEIGHT_NOT_ZERO(NODE, NAME) weights[NAME] != 0
 
 //Returns a node that is in the direction of this node; must be in the src's adjacent node list
 /obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
@@ -24,12 +23,12 @@
 
 //Returns a list of humans via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_humans_near(atom/movable/source, distance)
-	var/list/listofhuman = list() //All humans in range
+	. = list()
 	for(var/human in GLOB.alive_human_list)
 		var/mob/living/carbon/human/nearby_human = human
 		if(source.z != nearby_human.z)
 			continue
-		if(!(get_dist(source, nearby_human) <= distance))
+		if(get_dist(source, nearby_human) > distance)
 			continue
-		listofhuman += nearby_human
-	return listofhuman
+		. += nearby_human
+	return .

@@ -34,7 +34,7 @@
 		var/obj/effect/ai_node/node = n
 		var/current_score = 0
 		for(var/i in 1 to length(weight_modifiers))
-			current_score += (node.datumnode.get_weight(i) * weight_modifiers[i])
+			current_score += GET_WEIGHT(datumnode, i)
 
 		if(current_score >= current_best_node)
 			current_best_node = current_score

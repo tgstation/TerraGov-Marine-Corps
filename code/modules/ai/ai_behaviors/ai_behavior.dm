@@ -6,8 +6,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 */
 
 /datum/ai_behavior
-	//While the below variables could be stored on the component, it's stored here instead as we use them for calculating the parameters
-	//and what action states to give to the component so it can then apply it on the parent/mob
+
 	var/atom/atom_to_walk_to //An atom for the overall AI to walk to; this is a cache
 	var/distance_to_maintain = 1 //Default distance to maintain from a target while in combat usually
 	var/sidestep_prob = 0 //Prob chance of sidestepping (left or right) when distance maintained with target
@@ -27,7 +26,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 //Register any signals we want when this is called and setup some starting actions
 /datum/ai_behavior/proc/late_initialize()
 	atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
-	AddElement(/datum/element/pathfinder(atom_to_walk_to, distance_to_maintain, sidestep_prob))
+	mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	cur_action = MOVING_TO_NODE
 	register_action_signals(cur_action)
 
@@ -45,9 +44,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	switch(reasoning_for)
 		if(REASON_FINISHED_NODE_MOVE)
 			cleanup_current_action()
-			current_node = atom_to_walk_to
+			if(isainode(atom_to_walk_to)) //Cases where the atom we're walking to can be a mob to kill or turfs
+				current_node = atom_to_walk_to
 			atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
-			AddElement(/datum/element/pathfinder(atom_to_walk_to, distance_to_maintain, sidestep_prob))
+			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 			cur_action = MOVING_TO_NODE
 			register_action_signals(cur_action)
 

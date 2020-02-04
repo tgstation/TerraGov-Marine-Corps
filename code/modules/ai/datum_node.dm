@@ -5,15 +5,6 @@
 	var/list/adjacent_nodes = list() // list of adjacent landmark nodes
 	var/list/weights = list(ENEMY_PRESENCE = 0, DANGER_SCALE = 0) //List of weights for the overall things happening at this node
 
-//If we wanted to see if it's not set to 0
-/datum/ai_node/proc/weight_not_null(name)
-	if(weights[name] == 0)
-		return FALSE
-	return TRUE
-
-/datum/ai_node/proc/get_weight(name)
-	return weights[name]
-
 /datum/ai_node/proc/increment_weight(name, amount)
 	weights[name] = max(0, weights[name] + amount)
 
