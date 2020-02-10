@@ -10,8 +10,8 @@
 /datum/ai_behavior/carbon/xeno/drone/process()
 	if(!plantweeds.can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	for(var/obj/effect/alien/weeds/node/node in mob_parent.loc) //NODE SPAMMMM
-		//There's already a node nearby (but not directly on location) don't plant anything
+	if(locate(/obj/effect/alien/weeds/node in mob_parent.loc)) //NODE SPAMMMM
+		//There's already a node on this loc don't plant anything
 		return ..()
 	plantweeds.action_activate()
 	return ..()

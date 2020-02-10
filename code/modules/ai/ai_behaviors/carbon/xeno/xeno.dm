@@ -41,7 +41,7 @@
 	return ..()
 
 /datum/ai_behavior/carbon/xeno/deal_with_obstacle()
-	if(!world.time > mob_parent.next_move)
+	if(world.time < mob_parent.next_move)
 		return
 
 	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle

@@ -25,7 +25,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 //Register any signals we want when this is called and setup some starting actions
 /datum/ai_behavior/proc/late_initialize()
-	atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
+	atom_to_walk_to = pick(current_node.adjacent_nodes)
 	mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 	cur_action = MOVING_TO_NODE
 	register_action_signals(cur_action)
@@ -46,7 +46,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 			cleanup_current_action()
 			if(isainode(atom_to_walk_to)) //Cases where the atom we're walking to can be a mob to kill or turfs
 				current_node = atom_to_walk_to
-			atom_to_walk_to = pick(current_node.datumnode.adjacent_nodes)
+			atom_to_walk_to = pick(current_node.adjacent_nodes)
 			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
 			cur_action = MOVING_TO_NODE
 			register_action_signals(cur_action)
