@@ -3,6 +3,6 @@
 
 /mob/living/carbon/xenomorph/drone/ai/Initialize()
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/drone)
+	AddElement(/datum/element/ai_behavior/carbon/xeno, 1, 50)
 	a_intent = INTENT_HARM
-	current_aura = pick("recovery", "frenzy", "warding")
+	current_aura = pick("recovery", "warding", "frenzy")

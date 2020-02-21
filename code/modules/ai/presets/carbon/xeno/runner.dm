@@ -3,5 +3,5 @@
 
 /mob/living/carbon/xenomorph/runner/ai/Initialize()
 	. = ..()
-	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/carbon/xeno/runner)
+	AddElement(/datum/element/ai_behavior/carbon/xeno, 1, 75)
 	a_intent = INTENT_HARM
