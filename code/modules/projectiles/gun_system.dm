@@ -164,12 +164,18 @@
 
 	return ..()
 
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/update_icon(mob/user)
 	if(!current_mag || current_mag.current_rounds <= 0)
 		icon_state = base_gun_icon + "_e"
 	else
 		icon_state = base_gun_icon
-	update_mag_overlay()
+	update_item_state(user)
+	update_mag_overlay(user)
+
+
+/obj/item/weapon/gun/update_item_state(mob/user)
+	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+
 
 /obj/item/weapon/gun/examine(mob/user)
 	. = ..()

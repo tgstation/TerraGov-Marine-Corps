@@ -407,6 +407,9 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SOUND_AMBIENCE" = SOUND_AMBIENCE,
 		"SOUND_LOBBY" = SOUND_LOBBY
 		),
+	"toggles_gameplay" = list(
+		"RADIAL_MEDICAL" = RADIAL_MEDICAL
+		),
 	"toggles_chat" = list(
 		"CHAT_OOC" = CHAT_OOC,
 		"CHAT_DEAD" = CHAT_DEAD,

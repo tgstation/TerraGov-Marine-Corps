@@ -1064,6 +1064,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 100
 
+/datum/ammo/energy/lasgun/M43/practice
+	name = "practice laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 45
+	penetration = 0
+	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
+
+/datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+		return
+
+	if(isnestedhost(C))
+		return
+
+		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+
+	return ..()
+
 /*
 //================================================
 					Xeno Spits
@@ -1103,7 +1123,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
 

@@ -112,6 +112,10 @@
 	return ..()
 
 
+/obj/item/proc/update_item_state(mob/user)
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+
+
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
 //BRUTELOSS = 1

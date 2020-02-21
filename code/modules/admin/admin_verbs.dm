@@ -846,12 +846,12 @@
 		return
 
 	var/client/recipient
-	var/irc = FALSE
+	var/external = FALSE
 	if(istext(whom))
 		if(cmptext(copytext(whom, 1, 2),"@"))
 			whom = find_stealth_key(whom)
 		if(whom == "IRCKEY")
-			irc = TRUE
+			external = TRUE
 		else
 			recipient = GLOB.directory[whom]
 
@@ -860,8 +860,8 @@
 
 
 
-	if(irc)
-		if(!ircreplyamount)	//to prevent people from spamming irc
+	if(external)
+		if(!externalreplyamount)	//to prevent people from spamming irc/discord
 			return
 
 		if(!msg)
@@ -871,7 +871,7 @@
 			return
 
 		if(holder)
-			to_chat(src, "<span class='danger'>Use the admin IRC channel.</span>")
+			to_chat(src, "<span class='danger'>Error: Use the admin IRC/Discord channel.</span>")
 			return
 
 	else
@@ -896,7 +896,7 @@
 				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
 				return
 
-			if(!recipient && !irc)
+			if(!recipient && !external)
 				if(holder)
 					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
 					to_chat(src, "<span class='notice'>[msg]</span><br>")
@@ -908,7 +908,7 @@
 		return
 
 	//clean the message if it's not sent by a high-rank admin
-	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || irc)//no sending html to the poor bots
+	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || external)//no sending html to the poor bots
 		msg = trim(sanitize(copytext(msg, 1, MAX_MESSAGE_LEN)))
 		if(!msg)
 			return
@@ -917,11 +917,11 @@
 
 	var/keywordparsedmsg = keywords_lookup(msg)
 
-	if(irc)
+	if(external)
 		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
-		ircreplyamount--
-		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
+		externalreplyamount--
+		send2tgs("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
@@ -981,11 +981,11 @@
 				to_chat(src, "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>")
 				return
 
-	if(irc)
-		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
+	if(external)
+		log_admin_private("PM: [key_name(src)]->External: [rawmsg]")
 		for(var/client/X in GLOB.admins)
 			if(check_other_rights(X, R_ADMINTICKET, FALSE))
-				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;IRC:</B> [keywordparsedmsg]</span>")
+				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;External:</B> [keywordparsedmsg]</span>")
 	else
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//Admins PMs go to admins, mentor PMs go to mentors and admins
@@ -1016,13 +1016,13 @@
 						to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 
 
-/proc/IrcPm(target, msg, sender)
+/proc/TgsPm(target, msg, sender)
 	target = ckey(target)
 	var/client/C = GLOB.directory[target]
 
 	var/datum/admin_help/ticket = C ? C.current_ticket : GLOB.ahelp_tickets.CKey2ActiveTicket(target)
 	var/compliant_msg = trim(lowertext(msg))
-	var/irc_tagged = "[sender](IRC)"
+	var/tgs_tagged = "[sender](TGS/External)"
 	var/list/splits = splittext(compliant_msg, " ")
 	if(length(splits) && splits[1] == "ticket")
 		if(length(splits) < 2)
@@ -1031,32 +1031,32 @@
 			if("close")
 				if(ticket)
 					ticket.Close(FALSE, TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
 					ticket.Resolve(FALSE, TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
 					ticket.ICIssue(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
 					ticket.Reject(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
 			if("tier")
 				if(ticket)
 					ticket.Tier(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [sender].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [sender].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					var/ticket_type = (ticket.tier == TICKET_ADMIN) ? "an admin" : "a mentor"
 					return "Ticket #[ticket.id] successfully tiered as [ticket_type] ticket"
 			if("reopen")
@@ -1073,8 +1073,8 @@
 				if(AH.initiator_ckey != target)
 					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
 				AH.Reopen(TRUE)
-				AH.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-				message_admins("IRC interaction by: [irc_tagged]")
+				AH.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+				message_admins("External interaction by: [tgs_tagged]")
 				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
@@ -1100,25 +1100,25 @@
 		return "Error: No client"
 
 	if(!stealthkey)
-		stealthkey = GenIrcStealthKey()
+		stealthkey = GenTgsStealthKey()
 
 	msg = sanitize(copytext(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return "Error: No message"
 
-	log_admin_private("IRC PM: [irc_tagged] -> [key_name(C)] : [msg]")
-	message_admins("IRC PM: [irc_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
+	log_admin_private("External PM: [tgs_tagged] -> [key_name(C)] : [msg]")
+	message_admins("External PM: [tgs_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
-	C.ircreplyamount = IRCREPLYCOUNT
+	C.externalreplyamount = EXTERNALREPLYCOUNT
 
 	return "Message Successful"
 

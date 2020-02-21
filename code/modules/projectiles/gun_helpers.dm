@@ -396,7 +396,7 @@ should be alright.
 		attachable_overlays[slot] = null
 
 
-/obj/item/weapon/gun/proc/update_mag_overlay()
+/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
 	var/image/I = attachable_overlays["mag"]
 	overlays -= I
 	qdel(I)

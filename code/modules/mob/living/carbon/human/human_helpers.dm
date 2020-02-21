@@ -236,3 +236,8 @@
 
 mob/living/carbon/human/get_standard_bodytemperature()
 	return species.body_temperature
+
+/mob/living/carbon/human/get_policy_keywords()
+	. = ..()
+	if(species.name)
+		. += species.name
