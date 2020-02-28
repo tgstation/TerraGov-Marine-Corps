@@ -38,30 +38,23 @@ Controls the mob and determines whats it wants to do
 
 	distance_to_maintains[target] = distance_to_maintain
 	sidestep_probs[target] = sidestep_prob
-	attached_to_mobs[target] = target
 
 	RegisterSignal(target, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
 	change_state(movable_target, REASON_FINISHED_NODE_MOVE) //Let's get moving to a adjacent node
 
 /datum/element/ai_behavior/Detach(datum/target, force)
 	. = ..()
-	clean_up(target)
+	unregister_action_signals(target, cur_actions[target])
 
-//Remove the pathfinding element from self
-/datum/element/ai_behavior/proc/clean_up(datum/source)
-	attached_to_mobs[source].RemoveElement(/datum/element/pathfinder)
-	unregister_action_signals(source, cur_actions[source])
-	atoms_to_walk_to -= source
-	distance_to_maintains -= source
-	sidestep_probs -= source
-	current_nodes -= source
-	cur_actions -= source
-	attached_to_mobs -= source
-	UnregisterSignal(source, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH))
+//Apart of the detaching process, removes signals and unassigns pathfinding
+/datum/element/ai_behavior/proc/clean_up(the_mob)
+	unregister_action_signals(the_mob, cur_actions[the_mob])
+	attached_to_mobs[the_mob].RemoveElement(/datum/element/pathfinder)
 
 //We finished moving to a node, let's pick a random nearby one to travel to
 /datum/element/ai_behavior/proc/finished_node_move(mob)
-	change_state(mob, REASON_FINISHED_NODE_MOVE)
+	to_chat(world, mob)
+	change_state(attached_to_mobs[mob], REASON_FINISHED_NODE_MOVE)
 
 //Cleans up signals related to the action and element(s)
 /datum/element/ai_behavior/proc/cleanup_current_action(mob)
@@ -80,6 +73,10 @@ Controls the mob and determines whats it wants to do
 			cur_actions[mob] = MOVING_TO_NODE
 			register_action_signals(mob, cur_actions[mob])
 
+//Generic process(), this is used for mainly looking at the world around the AI and determining if a new action must be considered and executed
+/datum/element/ai_behavior/process()
+	return
+
 /*
 Registering and unregistering signals related to a particular cur_action
 These are parameter based so the ai behavior can choose to (un)register the signals it wants to rather than based off of cur_action
@@ -88,9 +85,9 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/element/ai_behavior/proc/register_action_signals(mob, action_type)
 	switch(action_type)
 		if(MOVING_TO_NODE)
-			RegisterSignal(mob, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move, mob, override = TRUE)
+			RegisterSignal(attached_to_mobs[mob], COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
 
 /datum/element/ai_behavior/proc/unregister_action_signals(mob, action_type)
 	switch(action_type)
 		if(MOVING_TO_NODE)
-			UnregisterSignal(mob, COMSIG_STATE_MAINTAINED_DISTANCE)
+			UnregisterSignal(attached_to_mobs[mob], COMSIG_STATE_MAINTAINED_DISTANCE)
