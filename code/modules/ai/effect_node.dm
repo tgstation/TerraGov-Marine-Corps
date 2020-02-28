@@ -10,6 +10,9 @@
 	var/list/adjacent_nodes = list() // list of adjacent landmark nodes
 	var/list/weights = list(ENEMY_PRESENCE = 0, DANGER_SCALE = 0) //List of weights for the overall things happening at this node
 
+/obj/effect/ai_node/LateInitialize()
+	MakeAdjacents()
+
 /obj/effect/ai_node/proc/increment_weight(name, amount)
 	weights[name] = max(0, weights[name] + amount)
 
@@ -22,6 +25,10 @@
 
 /obj/effect/ai_node/Destroy()
 	GLOB.allnodes -= src
+	//Remove our reference to self from nearby adjacent node's adjacent nodes
+	for(var/nodes in adjacent_nodes)
+		var/obj/effect/ai_node/node = nodes
+		node.adjacent_nodes -= src
 	. = ..()
 
 //Returns a node that is in the direction of this node; must be in the src's adjacent node list
@@ -74,6 +81,11 @@ This means that the proc will pick out the *best* node
 		if(ISDIAGONALDIR(get_dir(src, node)))
 			continue
 		adjacent_nodes += node
+
+	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
+	if(!length(adjacent_nodes))
+		message_admins("[ADMIN_VERBOSEJMP(src.loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in otherwise report this.")
+		stack_trace("An ai node was initialized but no considered-adjacent nodes were nearby; this can be because of a mapping/admin spawning issue.")
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
