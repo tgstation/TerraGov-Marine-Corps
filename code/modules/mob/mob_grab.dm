@@ -116,7 +116,7 @@
 	switch(newstate)
 		if(GRAB_NECK, GRAB_KILL)
 			if(grabber.grab_state < GRAB_NECK)
-				RegisterSignal(grabbed_thing, COMSIG_LIVING_DO_RESIST, /obj/item/grab/resisted_against)
+				RegisterSignal(grabbed_thing, COMSIG_LIVING_DO_RESIST, /obj/item/grab/proc.resisted_against)
 		else
 			if(grabber.grab_state >= GRAB_NECK)
 				UnregisterSignal(grabbed_thing, COMSIG_LIVING_DO_RESIST)
