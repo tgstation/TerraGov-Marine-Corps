@@ -24,8 +24,6 @@
 	var/savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	var/tacklemin = 1
-	var/tacklemax = 1
 	var/tackle_chance = 100
 	var/tackle_damage = 20 //How much STAMINA damage a xeno deals when tackling
 

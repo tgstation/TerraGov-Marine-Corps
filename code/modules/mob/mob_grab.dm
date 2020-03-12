@@ -13,17 +13,35 @@
 	attack_speed = CLICK_CD_GRABBING
 	resistance_flags = RESIST_ALL
 	var/atom/movable/grabbed_thing
+	var/mob/living/grabber
+
+
+/obj/item/grab/Initialize(mapload, atom/movable/grabbed_thing)
+	. = ..()
+	grabber = loc
+	if(!isliving(grabber))
+		stack_trace("grab item created not on a living grabber")
+		qdel(src)
+		return
+	if(!grabber.put_in_hands(src, TRUE))
+		stack_trace("Failed to put grab_item in the hands of [grabber]")
+		qdel(src)
+		return
+	src.grabbed_thing = grabbed_thing
+	RegisterSignal(grabber, COMSIG_MOVABLE_SET_GRAB_STATE, .proc/on_set_grab_state)
+
+
+
+/obj/item/grab/Destroy()
+	grabbed_thing = null
+	if(grabber)
+		grabber.stop_pulling()
+		grabber = null
+	return ..()
 
 
 /obj/item/grab/dropped(mob/user)
 	user.stop_pulling()
-	. = ..()
-
-/obj/item/grab/Destroy()
-	grabbed_thing = null
-	if(ismob(loc))
-		var/mob/M = loc
-		M.stop_pulling()
 	return ..()
 
 
@@ -50,14 +68,13 @@
 	if(user.grab_state > GRAB_KILL)
 		return
 	user.changeNext_move(CLICK_CD_GRABBING)
-	if(!do_mob(user, victim, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || !user.pulling)
+	if(!do_mob(user, victim, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || user.pulling != victim)
 		return
-	user.advance_grab_state(victim)
-	if(user.grab_state == GRAB_NECK)
-		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
+	user.advance_grab_state()
 
 
-/mob/living/proc/advance_grab_state(mob/living/victim)
+/mob/living/proc/advance_grab_state()
+	var/mob/living/victim = pulling
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	setGrabState(grab_state + 1)
 	switch(grab_state)
@@ -95,8 +112,18 @@
 	set_pull_offsets(victim)
 
 
+/obj/item/grab/proc/on_set_grab_state(datum/source, newstate)
+	switch(newstate)
+		if(GRAB_NECK, GRAB_KILL)
+			if(grabber.grab_state < GRAB_NECK)
+				RegisterSignal(grabbed_thing, COMSIG_LIVING_DO_RESIST, /obj/item/grab/resisted_against)
+		else
+			if(grabber.grab_state >= GRAB_NECK)
+				UnregisterSignal(grabbed_thing, COMSIG_LIVING_DO_RESIST)
+
+
 /obj/item/grab/resisted_against(datum/source)
-	var/mob/living/victim = source
+	var/mob/living/victim = grabbed_thing
 	victim.do_resist_grab()
 
 
@@ -109,7 +136,7 @@
 		return FALSE
 	if(!do_mob(user, attacked, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, attacked)) || !user.pulling)
 		return TRUE
-	user.advance_grab_state(attacked)
+	user.advance_grab_state()
 	return TRUE
 
 

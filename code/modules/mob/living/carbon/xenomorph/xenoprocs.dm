@@ -282,9 +282,20 @@
 /mob/living/carbon/xenomorph/throw_impact(atom/hit_atom, speed)
 	set waitfor = 0
 
-	if(!xeno_caste.charge_type || stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
-		..() //Do the parent instead.
-		return FALSE
+	if(stat || (!throwing && usedPounce)) //No charge type, unconscious or dead, or not throwing but used pounce.
+		return ..() //Do the parent instead.
+
+	if(!xeno_caste.charge_type)
+		if(!ishuman(hit_atom) || xeno_can_neckgrab(hit_atom) != COMPONENT_WARRIOR_CAN_NECKGRAB)
+			return ..()
+		var/mob/living/carbon/human/hit_human = hit_atom
+		if(!hit_human.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+			Wormed(6 SECONDS)
+			throwing = FALSE
+			return FALSE
+		throwing = FALSE
+		start_pulling(hit_human)
+		return TRUE
 
 	if(isobj(hit_atom)) //Deal with smacking into dense objects. This overwrites normal throw code.
 		var/obj/O = hit_atom

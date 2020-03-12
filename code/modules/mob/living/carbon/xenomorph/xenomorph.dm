@@ -197,38 +197,67 @@
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = TRUE)
-	if(pull_block_flags || !isliving(AM))
+/mob/living/carbon/xenomorph/start_pulling(atom/movable/AM, suppress_message = FALSE)
+	if(pull_block_flags || !isliving(AM) || !check_state())
 		return FALSE
-	var/mob/living/L = AM
-	if(L.buckled)
+
+	var/mob/living/living_target = AM
+
+	if(living_target.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
-	if(ishuman(L))
-		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+
+	//Whether it has the lunge ability and thus treats grab like a warrior.
+	var/warrior_grab = xeno_can_neckgrab(living_target)
+
+	switch(warrior_grab)
+		if(COMPONENT_WARRIOR_NECKGRAB_COOLDOWN)
+			return FALSE //Can't warrior-grab on cooldown.
+		if(COMPONENT_WARRIOR_CAN_NECKGRAB)
+			suppress_message = TRUE
+			swap_hand() //To grab with the offhand, little QoL to be able to start slashing or disarming right away.
+
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
-	return ..()
+
+	if(ishuman(living_target))
+		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+
+	. = ..()
+
+	if(warrior_grab == COMPONENT_WARRIOR_CAN_NECKGRAB)
+		swap_hand()
+		if(.) //successful pull
+			neck_grab()
+
+
+/mob/living/carbon/xenomorph/proc/xeno_can_neckgrab(mob/living/target)
+	return SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, target)
+
 
 /mob/living/carbon/xenomorph/stop_pulling()
-	if(pulling && ishuman(pulling))
+	if(ishuman(pulling))
 		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 
-/mob/living/carbon/xenomorph/pull_response(mob/puller)
-	var/mob/living/carbon/human/H = puller
-	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Wormed(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
-		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
-		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
-		H.stop_pulling()
+
+/mob/living/carbon/xenomorph/pull_response(mob/living/puller)
+	if(stat == CONSCIOUS && !isxeno(puller)) // If the Xeno is conscious, fight back against a grab/pull
+		puller.Wormed(2 SECONDS)
+		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, TRUE)
+		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
+		puller.stop_pulling()
 		return FALSE
 	return TRUE
 
-/mob/living/carbon/xenomorph/resist_grab()
-	if(pulledby.grab_state)
-		visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>", null, null, 5)
-	pulledby.stop_pulling()
-	. = 1
 
+/mob/living/carbon/xenomorph/proc/neck_grab()
+	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
+	GLOB.round_statistics.warrior_grabs++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
+	setGrabState(GRAB_NECK)
+	var/mob/living/victim = pulling
+	visible_message("<span class='xenowarning'>\The [src] grabs [victim] by the throat!</span>",
+		"<span class='xenowarning'>We grab [victim] by the throat!</span>")
+	return TRUE
 
 
 /mob/living/carbon/xenomorph/prepare_huds()

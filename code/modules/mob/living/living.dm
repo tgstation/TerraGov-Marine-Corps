@@ -224,7 +224,7 @@
 
 
 /mob/proc/resist_grab()
-	return //returning 1 means we successfully broke free
+	return //returning TRUE means we successfully broke free
 
 
 /mob/living/proc/do_resist_grab()
@@ -886,20 +886,21 @@ below 100 is not dizzy
 				remove_immobile_flags(IMMOBILE_STAT_SOFTCRITPULLED)
 			remove_movespeed_modifier(MOVESPEED_ID_LIVING_SOFTCRIT)
 
-/mob/living/setGrabState(newstate)
+/mob/living/on_grab_state_change(newstate, oldstate)
 	. = ..()
-	if(isnull(.))
+	if(.)
 		return
-	switch(grab_state)
-		if(GRAB_PASSIVE)
-			remove_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
-			remove_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
-		if(GRAB_AGGRESSIVE)
-			remove_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
-			remove_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
+	switch(newstate)
+		if(GRAB_PASSIVE, GRAB_AGGRESSIVE)
+			if(oldstate > GRAB_AGGRESSIVE)
+				remove_lying_flags(LYING_GRABSTATE_GRAB_NECK)
+				remove_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
+				remove_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
 		if(GRAB_NECK, GRAB_KILL)
-			add_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
-			add_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
+			if(oldstate < GRAB_NECK)
+				add_lying_flags(LYING_GRABSTATE_GRAB_NECK)
+				add_immobile_flags(IMMOBILE_GRABSTATE_GRAB_NECK)
+				add_hand_block_flags(HANDBLOCK_GRABSTATE_GRAB_NECK)
 
 
 /mob/living/proc/set_resting(rest, silent = TRUE, forced = FALSE)

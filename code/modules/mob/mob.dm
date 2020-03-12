@@ -456,10 +456,7 @@
 	AM.pulledby = src
 	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
 
-	var/obj/item/grab/grab_item = new /obj/item/grab()
-	grab_item.grabbed_thing = AM
-	if(!put_in_hands(grab_item)) //placing the grab in hand failed, grab is dropped, deleted, and we stop pulling automatically.
-		CRASH("Failed to put grab_item in the hands of [src]")
+	var/obj/item/grab/grab_item = new /obj/item/grab(src, AM)
 
 	if(!suppress_message)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
@@ -841,6 +838,8 @@
 	. = ..()
 	if(isnull(.))
 		return
+	if(QDELETED(pulling))
+		stack_trace("setGrabState called with null or qdeleted pulling")
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 		return

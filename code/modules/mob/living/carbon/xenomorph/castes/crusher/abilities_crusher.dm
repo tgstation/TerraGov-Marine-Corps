@@ -40,9 +40,9 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.Paralyze(2 SECONDS)
+			M.Paralyze(1 SECONDS)
 		else
-			M.Stun(2 SECONDS) //Otherwise we just get stunned.
+			M.Stun(1 SECONDS) //Otherwise we just get stunned.
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
@@ -131,7 +131,7 @@
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		L.Wormed(2 SECONDS)
+		L.Wormed(1 SECONDS)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)

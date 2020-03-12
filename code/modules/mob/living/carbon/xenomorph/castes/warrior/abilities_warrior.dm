@@ -45,27 +45,31 @@
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	var/mob/living/lunge_target
 
-/datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
-	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
-		return COMSIG_WARRIOR_CANT_NECKGRAB
 
-/datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
-	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
-		use_ability(A)
-		return COMSIG_WARRIOR_USED_LUNGE
+/datum/action/xeno_action/activable/lunge/Destroy()
+	lunge_target = null
+	return ..()
+
+
+/datum/action/xeno_action/activable/lunge/proc/can_neck_grab(mob/living/carbon/xenomorph/owner, mob/living/target)
+	if(owner.selected_ability != src || !ishuman(target) || target.stat == DEAD)
+		return NONE //Might want to attempt a normal grab if so.
+	if(!can_use_ability(target))
+		return COMPONENT_WARRIOR_NECKGRAB_COOLDOWN
+	return COMPONENT_WARRIOR_CAN_NECKGRAB
+
 
 /datum/action/xeno_action/activable/lunge/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(owner, COMSIG_WARRIOR_USED_GRAB, .proc/add_cooldown)
-	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/neck_grab)
-	RegisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM, .proc/lunge)
+	RegisterSignal(owner, COMSIG_WARRIOR_NECKGRAB, .proc/can_neck_grab)
 
 
 /datum/action/xeno_action/activable/lunge/remove_action(mob/living/L)
 	UnregisterSignal(owner, COMSIG_WARRIOR_USED_GRAB)
 	UnregisterSignal(owner, COMSIG_WARRIOR_NECKGRAB)
-	UnregisterSignal(owner, COMSIG_WARRIOR_CTRL_CLICK_ATOM)
 	return ..()
 
 
@@ -75,41 +79,39 @@
 		return FALSE
 	if(!A)
 		return FALSE
-	if(!ishuman(A))
-		return FALSE
-	var/flags_to_check = use_state_flags|override_flags
-	var/mob/living/carbon/human/H = A
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
-		return FALSE
+
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>We get ready to lunge again.</span>")
 	return ..()
 
+
 /datum/action/xeno_action/activable/lunge/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/lunge_user = owner
 
 	GLOB.round_statistics.warrior_lunges++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
-	X.visible_message("<span class='xenowarning'>\The [X] lunges towards [A]!</span>", \
+	lunge_user.visible_message("<span class='xenowarning'>\The [lunge_user] lunges towards [A]!</span>", \
 	"<span class='xenowarning'>We lunge at [A]!</span>")
 
-	succeed_activate()
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
-
-	if (X.Adjacent(A))
-		X.swap_hand()
-		X.start_pulling(A, TRUE)
-		X.swap_hand()
-
-	add_cooldown()
+	lunge_target = A
+	RegisterSignal(lunge_user, COMSIG_MOVABLE_THROW_END, .proc/lunge_end)
+	lunge_user.throw_at(get_step_towards(A, lunge_user), 6, 2, lunge_user)
 	return TRUE
 
-/mob/living/carbon/xenomorph/warrior/CtrlClickOn(atom/A)
-	if(SEND_SIGNAL(src, COMSIG_WARRIOR_CTRL_CLICK_ATOM, A) & COMSIG_WARRIOR_USED_LUNGE)
-		return
-	return ..()
+
+/datum/action/xeno_action/activable/lunge/proc/lunge_end(datum/source)
+	if(lunge_target)
+		var/mob/living/carbon/xenomorph/lunge_user = owner
+		UnregisterSignal(lunge_user, COMSIG_MOVABLE_THROW_END)
+		//Let's check if this hasn't been handled already, such as by throw_impact
+		if(!QDELETED(lunge_target) && !lunge_user.pulling && lunge_user.Adjacent(lunge_target) && can_neck_grab(lunge_user, lunge_target) == COMPONENT_WARRIOR_CAN_NECKGRAB)
+			lunge_user.start_pulling(lunge_target)
+		lunge_target = null
+	succeed_activate()
+	add_cooldown()
+
 
 // ***************************************
 // *********** Fling

@@ -66,7 +66,7 @@
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	if(!IsParalyzed() && !no_stun && (traumatic_shock > 100))
+	if(!IsParalyzed() && !no_stun && (lying || traumatic_shock > 100))
 		Paralyze(2 SECONDS)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)

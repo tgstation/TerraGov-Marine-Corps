@@ -461,6 +461,8 @@
 		thrower = null
 		throw_source = null
 
+	SEND_SIGNAL(src, COMSIG_MOVABLE_THROW_END)
+
 
 /atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
 	for(var/m in buckled_mobs)
@@ -884,8 +886,14 @@
 /atom/movable/proc/setGrabState(newstate)
 	if(newstate == grab_state)
 		return
+	SEND_SIGNAL(src, COMSIG_MOVABLE_SET_GRAB_STATE, newstate)
 	. = grab_state
 	grab_state = newstate
+	pulling.on_grab_state_change(grab_state, .)
+
+
+/atom/movable/proc/on_grab_state_change(atom/movable/puller, oldstate)
+	return
 
 
 /atom/movable/proc/handle_movement_dir(direct)

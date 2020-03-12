@@ -512,9 +512,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Wormed(CHARGE_SPEED(charge_datum) * 80)
+			Wormed(CHARGE_SPEED(charge_datum) * 4 SECONDS)
 		if(CHARGE_BULL_HEADBUTT)
-			Wormed(CHARGE_SPEED(charge_datum) * 60)
+			Wormed(CHARGE_SPEED(charge_datum) * 3 SECONDS)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

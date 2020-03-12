@@ -29,58 +29,8 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/warrior/stop_pulling()
-	if(isliving(pulling) && !isxeno(pulling))
-		var/mob/living/L = pulling
-		grab_resist_level = 0 //zero it out
-		L.SetStun(0)
-		UnregisterSignal(L, COMSIG_LIVING_DO_RESIST)
-	..()
 
-/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, lunge, suppress_message = TRUE)
-	if(pull_block_flags || !check_state() || agility || !isliving(AM))
+/mob/living/carbon/xenomorph/warrior/start_pulling(atom/movable/AM, suppress_message = FALSE)
+	if(agility)
 		return FALSE
-
-	var/mob/living/L = AM
-
-	if(isxeno(L))
-		return ..()
-
-	if(lunge && ..(L, suppress_message))
-		return neck_grab(L)
-
-	if(SEND_SIGNAL(src, COMSIG_WARRIOR_NECKGRAB, L) & COMSIG_WARRIOR_CANT_NECKGRAB)
-		return FALSE
-
-	. = ..(L, suppress_message)
-
-	if(.) //successful pull
-		neck_grab(L)
-
-	SEND_SIGNAL(src, COMSIG_WARRIOR_USED_GRAB)
-
-
-/mob/living/carbon/xenomorph/warrior/proc/neck_grab(mob/living/L)
-	use_plasma(10)
-
-	GLOB.round_statistics.warrior_grabs++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_grabs")
-	setGrabState(GRAB_NECK)
-	L.add_restrained_flags(RESTRAINED_NECKGRAB)
-	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	if(!L.lying)
-		L.set_lying_down() //Force them to the ground.
-	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
-	"<span class='xenowarning'>We grab [L] by the throat!</span>")
-	return TRUE
-
-
-/mob/living/carbon/xenomorph/warrior/resisted_against(datum/source)
-	var/mob/living/victim = source
-	victim.do_resist_grab()
-
-
-/mob/living/carbon/xenomorph/warrior/hitby(atom/movable/AM, speed = 5)
-	if(ishuman(AM))
-		return
-	..()
+	return ..()

@@ -188,6 +188,7 @@
 #define LYING_PAINSHOCK (1<<7)
 #define LYING_DEVOURED (1<<8)
 #define LYING_KNOCKOUT (1<<9)
+#define LYING_GRABSTATE_GRAB_NECK (1<<10)
 
 
 //Hand block sources

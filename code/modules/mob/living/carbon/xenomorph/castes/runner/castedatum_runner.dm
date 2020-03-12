@@ -45,7 +45,7 @@
 
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
-	pounce_delay = 3.5 SECONDS
+	pounce_delay = 6.5 SECONDS
 
 	// *** Abilities *** ///
 	actions = list(
@@ -91,7 +91,7 @@
 	armor = list("melee" = 3, "bullet" = 3, "laser" = 3, "energy" = 3, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.5 SECONDS
+	pounce_delay = 6.5 SECONDS
 
 /datum/xeno_caste/runner/elder
 	upgrade_name = "Elder"
@@ -124,7 +124,7 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.0 SECONDS
+	pounce_delay = 6.0 SECONDS
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
@@ -158,5 +158,4 @@
 	armor = list("melee" = 7, "bullet" = 7, "laser" = 7, "energy" = 7, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.0 SECONDS
-
+	pounce_delay = 6.0 SECONDS
