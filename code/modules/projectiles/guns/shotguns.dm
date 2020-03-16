@@ -173,6 +173,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/get_ammo_type()
+	if(in_chamber)
+		return list(in_chamber.ammo.hud_state, in_chamber.ammo.hud_state_empty)
 	if(!ammo)
 		return list("unknown", "unknown")
 	else
@@ -222,7 +224,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate and a pre-attached grenade launcher."
+	desc = "The Nanotrasen MK221 Shotgun, a quick-firing semi-automatic shotgun."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -473,6 +475,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 	return TRUE
 
@@ -728,7 +732,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t35"
 	item_state = "t35"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -745,7 +749,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/t35stock)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
 
 	flags_item_map_variant = NONE
 

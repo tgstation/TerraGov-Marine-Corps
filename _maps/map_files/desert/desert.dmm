@@ -267,7 +267,7 @@
 /turf/open/floor,
 /area/storage/testroom)
 "aW" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aX" = (
@@ -1579,7 +1579,7 @@
 	},
 /area/desert/interior/main_building)
 "eP" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "eQ" = (
@@ -4096,6 +4096,14 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
+"zQ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	icon_state = "pdoor1";
+	dir = 1
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall/r_wall,
+/area/desert/interior/shipping/north)
 "Bv" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
@@ -4104,6 +4112,19 @@
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
+"EQ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
+"EV" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/plating_catwalk,
+/area/desert/interior/shipping/south)
+"OJ" = (
+/obj/effect/alien/weeds/node/strong,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
 
 (1,1,1) = {"
 au
@@ -18893,7 +18914,7 @@ aU
 bA
 bA
 bA
-bK
+OJ
 bA
 bA
 bA
@@ -21995,7 +22016,7 @@ bS
 kX
 bA
 bA
-bA
+EQ
 bA
 aC
 aC
@@ -32011,7 +32032,7 @@ ll
 ll
 ll
 ll
-li
+EV
 la
 ly
 lD
@@ -33504,7 +33525,7 @@ bA
 bA
 jF
 kY
-aO
+zQ
 bI
 fa
 fa

@@ -19,7 +19,7 @@
 			to_follow = S.eyeobj
 		else
 			to_follow = V.source
-	else if(client && get_dist(to_follow, src) <= client.view)
+	else if(client && (to_follow in range(client.view)))
 		raw_message = "<b>[raw_message]</b>"
 	var/link = FOLLOW_LINK(src, to_follow)
 	// Recompose the message, because it's scrambled by default

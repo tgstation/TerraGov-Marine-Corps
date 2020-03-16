@@ -90,7 +90,10 @@
 ///Maximum keys allowed per keybind
 #define MAX_KEYS_PER_KEYBIND 3
 
-#define IRCREPLYCOUNT 2
+/// Shown on top of policy verb window
+#define POLICY_VERB_HEADER "policy_verb_header"
+
+#define EXTERNALREPLYCOUNT 2
 #define IRC_STATUS_THROTTLE 5
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"

@@ -615,7 +615,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
-/proc/GenIrcStealthKey()
+/proc/GenTgsStealthKey()
 	var/num = (rand(0,1000))
 	var/i = 0
 	while(i == 0)

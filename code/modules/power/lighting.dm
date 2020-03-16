@@ -367,7 +367,7 @@
 			s.set_up(3, 1, src)
 			s.start()
 			if(prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7, 1))
+				electrocute_mob(user, get_area(src), src, rand(7, 10) * 0.1)
 
 
 // returns whether this light has power

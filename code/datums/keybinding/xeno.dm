@@ -130,6 +130,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/create_bomb
+	name = "create_bomb"
+	full_name = "Boiler: Create Bombard Ammo"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
+
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
@@ -375,6 +381,12 @@
 	full_name = "Warrior: Punch"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+
+/datum/keybinding/xeno/lay_hivemind
+	name = "lay_hivemind"
+	full_name = "Lay Hivemind"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
 
 /datum/keybinding/xeno/psychic_choke
 	name = "psychic_choke"

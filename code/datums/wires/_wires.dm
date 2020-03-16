@@ -18,7 +18,6 @@
 	. = ..()
 	if(!istype(holder, holder_type))
 		CRASH("Wire holder is not of the expected type! holder: [holder.type], holder_type: [holder_type]")
-		return
 
 	src.holder = holder
 	if(randomize)

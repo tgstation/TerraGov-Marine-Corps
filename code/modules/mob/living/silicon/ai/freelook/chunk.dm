@@ -1,4 +1,4 @@
-#define UPDATE_BUFFER 25 // 2.5 seconds
+#define UPDATE_BUFFER 2.5 SECONDS
 
 // CAMERA CHUNK
 //
@@ -60,10 +60,8 @@
 
 	for(var/camera in cameras)
 		var/obj/machinery/camera/c = camera
-
 		if(!c)
 			continue
-
 		if(!c.can_use())
 			continue
 

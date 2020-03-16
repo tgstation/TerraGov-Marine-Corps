@@ -432,6 +432,13 @@
 	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
 	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 95, "fire" = 95, "acid" = 95)
 
+/obj/item/clothing/suit/storage/marine/imperial/commissar
+	name = "\improper commissar coat"
+	desc = "A armored coat worn by commissars of the Imperial Army."
+	icon_state = "commissar_coat"
+	item_state = "commissar_coat"
+	armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
+
 //===========================//U.P.P\\================================
 
 /obj/item/clothing/suit/storage/faction

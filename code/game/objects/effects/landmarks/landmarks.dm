@@ -60,15 +60,6 @@
 	GLOB.newplayer_start += src
 
 
-/obj/effect/landmark/start/ai_spawn
-	icon_state = "AI"
-
-
-/obj/effect/landmark/start/ai_spawn/Initialize(mapload)
-	. = ..()
-	GLOB.ai_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
 /obj/effect/landmark/start/latejoin
 	icon_state = "latejoin"
 
@@ -121,18 +112,6 @@
 /obj/effect/landmark/deathmatch/Initialize()
 	. = ..()
 	GLOB.deathmatch += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/xeno_spawn
-
-/obj/effect/landmark/start/xeno_spawn/Initialize()
-	. = ..()
-	GLOB.xeno_spawn += loc
-	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/start/surv_spawn/Initialize()
-	. = ..()
-	GLOB.surv_spawn += loc
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/monkey_spawn

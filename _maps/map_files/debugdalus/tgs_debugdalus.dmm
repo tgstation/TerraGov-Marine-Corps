@@ -480,7 +480,7 @@
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "abh" = (
-/obj/effect/landmark/start/marine/chiefshipengineer,
+/obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -552,7 +552,7 @@
 	dir = 4;
 	icon_state = "officechair_white"
 	},
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -1704,7 +1704,7 @@
 	},
 /area/mainship/hull/lower_hull)
 "adU" = (
-/obj/effect/landmark/start/marine/tankcrewman,
+/obj/effect/landmark/start/job/tankcrewman,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -1840,7 +1840,7 @@
 	},
 /area/mainship/squads/req)
 "aei" = (
-/obj/effect/landmark/start/marine/squadspecialist,
+/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2157,7 +2157,7 @@
 	},
 /area/mainship/squads/req)
 "aeU" = (
-/obj/effect/landmark/start/marine/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2244,7 +2244,7 @@
 	},
 /area/mainship/hallways/hangar)
 "aff" = (
-/obj/effect/landmark/start/marine/staffofficer,
+/obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2614,7 +2614,7 @@
 	},
 /area/mainship/squads/req)
 "afZ" = (
-/obj/effect/landmark/start/marine/squadengineer,
+/obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2795,7 +2795,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "agu" = (
-/obj/effect/landmark/start/marine/masteratarms,
+/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2833,7 +2833,7 @@
 	},
 /area/mainship/command/cic)
 "agy" = (
-/obj/effect/landmark/start/marine/captain,
+/obj/effect/landmark/start/job/captain,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2872,7 +2872,7 @@
 	},
 /area/mainship/squads/req)
 "agE" = (
-/obj/effect/landmark/start/marine/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2965,7 +2965,7 @@
 	},
 /area/mainship/hallways/hangar)
 "agO" = (
-/obj/effect/landmark/start/marine/pilotofficer,
+/obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2989,13 +2989,13 @@
 	},
 /area/mainship/command/cic)
 "agS" = (
-/obj/effect/landmark/start/marine/fieldcommander,
+/obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
 /area/mainship/command/cic)
 "agT" = (
-/obj/effect/landmark/start/marine/researcher,
+/obj/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3076,7 +3076,7 @@
 /area/mainship/squads/req)
 "ahc" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/marine/requisitionsofficer,
+/obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3177,7 +3177,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "ahp" = (
-/obj/effect/landmark/start/marine/commandmasteratarms,
+/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3211,13 +3211,13 @@
 	},
 /area/mainship/command/cic)
 "aht" = (
-/obj/effect/landmark/start/marine/synthetic,
+/obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
 /area/mainship/command/cic)
 "ahu" = (
-/obj/effect/landmark/start/marine/medicalofficer,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3270,7 +3270,7 @@
 	},
 /area/mainship/medical/operating_room_three)
 "ahA" = (
-/obj/effect/landmark/start/marine/squadcorpsman,
+/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -3442,7 +3442,7 @@
 	},
 /area/mainship/squads/req)
 "ahV" = (
-/obj/effect/landmark/start/marine/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -4826,7 +4826,7 @@
 	},
 /area/mainship/squads/delta)
 "alk" = (
-/obj/effect/landmark/start/marine/shiptech,
+/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},

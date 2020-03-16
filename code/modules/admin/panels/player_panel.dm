@@ -214,7 +214,8 @@
 			if(iscarbon(M)) //Carbon stuff
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					M_job = H.job
+					if(H.job)
+						M_job = H.job.title
 				else if(ismonkey(M))
 					M_job = "Monkey"
 				else if(isxeno(M))
@@ -394,9 +395,8 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		body += "<b>Mob Faction:</b> [L.faction]<br>"
-
-	if(M.mind?.assigned_role)
-		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+		if(L.job)
+			body += "<b>Mob Role:</b> [L.job.title]<br>"
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 

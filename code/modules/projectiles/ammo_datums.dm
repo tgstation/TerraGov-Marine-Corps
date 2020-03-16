@@ -220,7 +220,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol bullet"
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
-	damage = 25
+	damage = 20
+	penetration = 5
 	accurate_range = 5
 
 /datum/ammo/bullet/pistol/tiny
@@ -304,7 +305,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "revolver bullet"
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
-	damage = 35
+	damage = 40
+	penetration = 10
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -385,8 +387,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
-	damage = 30
-	penetration = 0
+	damage = 25
+	penetration = 10
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -456,7 +458,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 65
+	damage = 55
 	scatter = -15
 	penetration = 15
 
@@ -650,6 +652,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
+/datum/ammo/bullet/shotgun/tx15_flechette
+	name = "shotgun flechette shell"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 4
+	max_range = 15
+	damage = 20
+	damage_falloff = 0.25
+	penetration = 15
+
+/datum/ammo/bullet/shotgun/tx15_flechette/spread
+	name = "additional flechette"
+	icon_state = "flechette"
+	max_range = 15
+	damage = 20
+	damage_falloff = 0.25
+	penetration = 15
+
+/datum/ammo/bullet/shotgun/tx15_slug
+	name = "shotgun slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 3
+	max_range = 15
+	damage = 50
+	penetration = 30
+
+/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
@@ -984,15 +1016,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_sniper"
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 20
 
+/datum/ammo/energy/lasgun/M43/heat
+	name = "microwave heat bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_heat"
+	damage = 12 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 0
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10
@@ -1023,6 +1063,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 85 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
+
+/datum/ammo/energy/lasgun/M43/practice
+	name = "practice laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 45
+	penetration = 0
+	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
+
+/datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+		return
+
+	if(isnestedhost(C))
+		return
+
+		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+
+	return ..()
 
 /*
 //================================================
@@ -1063,7 +1123,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
 

@@ -49,15 +49,16 @@
 	mechanics_text = "Plant a weed node (purple sac) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_DROP_WEEDS
 
-/datum/action/xeno_action/plant_weeds/can_use_action(silent, override_flags)
-	. = ..()
-	if(locate(/obj/effect/alien/resin/trap) in get_turf(owner))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
-		return FALSE
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/turf/T = get_turf(owner)
+
+	if(!T.check_alien_construction(owner, FALSE))
+		return fail_activate()
+
+	if(locate(/obj/effect/alien/resin/trap) in T)
+		to_chat(owner, "<span class='warning'>There is a resin trap in the way!</span>")
+		return fail_activate()
 
 	if(!T.is_weedable())
 		to_chat(owner, "<span class='warning'>Bad place for a garden!</span>")
@@ -69,11 +70,15 @@
 
 	owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a pulsating node and plants it on the ground!</span>", \
 		"<span class='xenonotice'>We regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
-	new /obj/effect/alien/weeds/node (owner.loc, src, owner)
+	new /obj/effect/alien/weeds/node(owner.loc)
 	playsound(owner.loc, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
+	add_cooldown()
 	return succeed_activate()
+
+/datum/action/xeno_action/plant_weeds/slow
+	cooldown_timer = 12 SECONDS
 
 // Choose Resin
 /datum/action/xeno_action/choose_resin
@@ -115,9 +120,18 @@
 	ability_name = "secrete resin"
 	plasma_cost = 75
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
+	var/base_wait = 1 SECONDS
+	var/scaling_wait = 1 SECONDS
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
+
+/datum/action/xeno_action/activable/secrete_resin/proc/get_wait()
+	. = base_wait
+	if(!scaling_wait)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	return base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))
 
 /datum/action/xeno_action/activable/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -158,9 +172,7 @@
 			to_chat(X, "<span class='warning'>Resin doors need a wall or resin door next to them to stand up.</span>")
 			return fail_activate()
 
-	var/wait_time = 2 SECONDS - max(0, (1 SECONDS * X.health / X.maxHealth)) //Between 1 and 2 seconds, depending on health.
-
-	if(!do_after(X, wait_time, TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, get_wait(), TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 
 	blocker = locate() in T
@@ -208,8 +220,15 @@
 		new_resin = new X.selected_resin(T)
 
 	if(new_resin)
+		add_cooldown()
 		succeed_activate()
 
+// Slower version of the secret resin
+/datum/action/xeno_action/activable/secrete_resin/slow
+	cooldown_timer = 5 SECONDS
+	base_wait = 2.5 SECONDS
+	scaling_wait = 0
+	
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -767,7 +786,7 @@
 /datum/action/xeno_action/psychic_whisper/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	var/list/target_list = list()
-	for(var/mob/living/possible_target in view(world.view, X))
+	for(var/mob/living/possible_target in view(WORLD_VIEW, X))
 		if(possible_target == X || !possible_target.client || isxeno(possible_target))
 			continue
 		target_list += possible_target
@@ -823,6 +842,53 @@
 
 	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
 	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
+
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
+// *********** Spawn hivemind
+// ***************************************
+/datum/action/xeno_action/spawn_hivemind
+	name = "Create hivemind"
+	action_icon_state = "lay_hivemind"
+	plasma_cost = 400
+	cooldown_timer = 300 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
+
+
+/datum/action/xeno_action/spawn_hivemind/action_activate()
+	var/mob/living/carbon/xenomorph/queen/xeno = owner
+	var/turf/current_turf = get_turf(owner)
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
+	if(!alien_weeds)
+		to_chat(owner, "<span class='warning'>We can't place a hivemind here. Lay it on some resin.</span>")
+		return FALSE
+
+	if(length(xeno.hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+		to_chat(owner, "<span class='warning'>We already have a hivemind active.</span>")
+		return FALSE
+
+	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
+		return FALSE
+
+	if(!current_turf.check_alien_construction(owner))
+		return FALSE
+
+	owner.visible_message("<span class='xenowarning'>\The [owner] has created a hivemind!</span>", \
+		"<span class='xenowarning'>We have created a hivemind!</span>")
+
+	var/obj/effect/alien/weeds/node/hivemindcore/core = new /obj/effect/alien/weeds/node/hivemindcore(current_turf)
+	if(!isxenohivemind(core.parent))
+		return FALSE
+	var/mob/living/carbon/xenomorph/hivemind/xeno_hivemind = core.parent
+	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
+
+	xeno_hivemind.offer_mob()
+	var/datum/game_mode/gm = SSticker.mode
+	if(gm && (gm.flags_round_type & MODE_FOG_ACTIVATED))
+		gm.remove_fog()
 
 	succeed_activate()
 	add_cooldown()

@@ -3,6 +3,7 @@
 	var/display_name = ""
 	var/upgrade_name = "Young"
 	var/caste_desc = null
+	var/job_type = /datum/job/xenomorph
 
 	var/caste_type_path = null
 
@@ -75,6 +76,7 @@
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 
 	// *** Boiler Abilities *** //
+	var/max_ammo = 0
 	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0
@@ -117,10 +119,10 @@
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 	buckle_flags = NONE
+	faction = "Xeno"
 	var/hivenumber = XENO_HIVE_NORMAL
-	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 

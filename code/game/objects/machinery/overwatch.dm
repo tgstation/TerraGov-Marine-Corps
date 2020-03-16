@@ -539,7 +539,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
-	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == SQUAD_LEADER ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.promote_leader(H)
 
@@ -581,10 +581,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
 	if(!transfer_marine)
 		return
+
+	if(!transfer_marine.job)
+		CRASH("[transfer_marine] selected for transfer without a job.")
+
 	if(S != current_squad)
 		return //don't change overwatched squad, idiot.
 
-	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
 		return
 
@@ -599,7 +603,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		return
 	var/datum/squad/new_squad = SSjob.active_squads[choice]
 
-	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
 		return
 
@@ -612,27 +616,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is already in [new_squad]!</span>")
 		return
 
-
-	var/no_place = FALSE
-	switch(transfer_marine.mind.assigned_role)
-		if(SQUAD_LEADER)
-			if(new_squad.num_leaders == new_squad.max_leaders)
-				no_place = TRUE
-		if(SQUAD_SPECIALIST)
-			if(new_squad.num_specialists == new_squad.max_specialists)
-				no_place = TRUE
-		if(SQUAD_ENGINEER)
-			if(new_squad.num_engineers >= new_squad.max_engineers)
-				no_place = TRUE
-		if(SQUAD_CORPSMAN)
-			if(new_squad.num_medics >= new_squad.max_medics)
-				no_place = TRUE
-		if(SQUAD_SMARTGUNNER)
-			if(new_squad.num_smartgun == new_squad.max_smartgun)
-				no_place = TRUE
-
-	if(no_place)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.mind.assigned_role].</span>")
+	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
+		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].</span>")
 		return
 
 	old_squad.remove_from_squad(transfer_marine)
@@ -1116,17 +1101,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				if(is_mainship_level(M_turf?.z))
 					continue
 
-		if(H.mind?.assigned_role)
-			role = H.mind.assigned_role
-		else if(H.job)
-			role = H.job
+		if(H.job)
+			role = H.job.title
 		else if(istype(H.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
 			role = ID.rank
 		if(current_squad.squad_leader)
 			if(H == current_squad.squad_leader)
 				dist = "<b>N/A</b>"
-				if(H.mind && H.mind.assigned_role != SQUAD_LEADER)
+				if(!ismarineleaderjob(H.job))
 					act_sl = " (acting SL)"
 			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"

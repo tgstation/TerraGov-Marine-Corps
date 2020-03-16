@@ -218,6 +218,10 @@
 	fill_type = /obj/item/ammo_magazine/revolver/mateba
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/pistol/large/mateba
+	fill_type = /obj/item/ammo_magazine/revolver/mateba
+	fill_number = 6
+
 /obj/item/storage/pouch/magazine/pistol/vp70
 	fill_type = /obj/item/ammo_magazine/pistol/vp70
 	fill_number = 3

@@ -290,3 +290,11 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+
+/obj/item/clothing/head/commissar
+	name = "\improper commissar cap"
+	desc = "A cap worn by commissars of the Imperial Army. This one seems to radiate authority."
+	sprite_sheet_id = 1
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	icon_state = "commissar_cap"
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)

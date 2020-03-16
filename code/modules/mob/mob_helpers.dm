@@ -21,11 +21,6 @@ proc/hasorgans(A)
 /mob/proc/can_use_hands()
 	return
 
-/mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
-		return TRUE
-	return issilicon(src) || isIPC(src)
-
 /mob/proc/is_ready()
 	return client && !!mind
 
@@ -433,3 +428,12 @@ mob/proc/get_standard_bodytemperature()
 		if(!O.client)
 			continue
 		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
+
+/**
+  * Get the list of keywords for policy config
+  *
+  * This gets the type, mind assigned roles and antag datums as a list, these are later used
+  * to send the user relevant headadmin policy config
+  */
+/mob/proc/get_policy_keywords()
+	. = list("[type]")

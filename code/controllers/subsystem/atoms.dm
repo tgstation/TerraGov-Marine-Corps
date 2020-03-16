@@ -29,6 +29,7 @@ SUBSYSTEM_DEF(atoms)
 	LAZYINITLIST(late_loaders)
 
 	var/count
+
 	var/list/mapload_arg = list(TRUE)
 	if(atoms)
 		count = atoms.len

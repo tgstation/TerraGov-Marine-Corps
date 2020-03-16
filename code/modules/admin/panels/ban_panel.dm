@@ -141,7 +141,8 @@
 /datum/admins/proc/banpanel(player_key, player_ip, player_cid, role, duration = 1440, applies_to_admins, reason, edit_id, page, admin_key)
 	if(!check_rights(R_BAN))
 		return
-
+	if(!SSjob?.initialized)
+		return
 	var/panel_height = 620
 	if(edit_id)
 		panel_height = 240
@@ -258,49 +259,32 @@
 			while(query_get_banned_roles.NextRow())
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
-		var/break_counter = 0
-		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden'>Command</label><div class='content'>"
-		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
-		//for simplicity this also includes the captain even though it doesn't do anything
-		for(var/job in GLOB.jobs_officers)
-			if(break_counter > 0 && (break_counter % 3 == 0))
-				output += "<br>"
-			output += {"<label class='inputlabel checkbox'>[job]
-						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'>
-						<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
-			"}
-			break_counter++
-		output += "</div></div>"
-		//standard departments all have identical handling
-		var/list/job_lists = list("Police" = GLOB.jobs_police,
-							"Engineering" = GLOB.jobs_engineering,
-							"Medical" = GLOB.jobs_medical,
-							"Requisitions" = GLOB.jobs_requisitions,
-							"Marines" = GLOB.jobs_marines)
-		for(var/department in job_lists)
+		for(var/department in SSjob.joinable_occupations_by_category)
 			//the first element is the department head so they need the same javascript call as above
+			var/datum/job/job = SSjob.joinable_occupations_by_category[department][1]
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			output += {"<label class='inputlabel checkbox'>[job_lists[department][1]]
-						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'>
-						<div class='inputbox[(job_lists[department][1] in banned_from) ? " banned" : ""]'></div></label>
+			output += {"<label class='inputlabel checkbox'>[job.title]
+						<input type='checkbox' id='[job.title]_dep' name='[job.title]' class='[department]' value='1'>
+						<div class='inputbox[(job.title in banned_from) ? " banned" : ""]'></div></label>
 			"}
-			break_counter = 1
-			for(var/job in job_lists[department] - job_lists[department][1]) //skip the first element since it's already been done
+			var/break_counter = 1
+			for(var/j in (SSjob.joinable_occupations_by_category[department] - SSjob.joinable_occupations_by_category[department][1])) //skip the first element since it's already been done
+				job = j
 				if(break_counter % 3 == 0)
 					output += "<br>"
-				output += {"<label class='inputlabel checkbox'>[job]
-							<input type='checkbox' name='[job]' class='[department]' value='1'>
-							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
+				output += {"<label class='inputlabel checkbox'>[job.title]
+							<input type='checkbox' name='[job.title]' class='[department]' value='1'>
+							<div class='inputbox[(job.title in banned_from) ? " banned" : ""]'></div></label>
 				"}
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
 		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC"))
 		for(var/department in headless_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			break_counter = 0
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
+			var/break_counter = 0
 			for(var/job in headless_job_lists[department])
-				if(break_counter > 0 && (break_counter % 3 == 0))
+				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
 				output += {"<label class='inputlabel checkbox'>[job]
 							<input type='checkbox' name='[job]' class='[department]' value='1'>
@@ -308,10 +292,10 @@
 				"}
 				break_counter++
 			output += "</div></div>"
-		var/list/long_job_lists = list("Role Positions" = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN, ROLE_SURVIVOR, ROLE_ERT))
+		var/list/long_job_lists = list("Role Positions" = list(ROLE_ERT))
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			break_counter = 0
+			var/break_counter = 0
 			for(var/job in long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
@@ -543,7 +527,7 @@
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
-		send2irc("BAN ALERT", "[kn] [msg] | Reason: [reason]")
+		send2tgs("BAN ALERT", "[kn] [msg] | Reason: [reason]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
@@ -794,7 +778,7 @@
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
 	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
 	if(changes["Applies to admins"])
-		send2irc("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
+		send2tgs("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
 	var/client/C = GLOB.directory[old_key]
 	if(C)
 		build_ban_cache(C)

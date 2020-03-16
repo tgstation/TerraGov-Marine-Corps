@@ -237,10 +237,10 @@
 			return FALSE
 		else if(user.client && !(get_turf(target) in get_hear(user.client.view, user)))
 			return FALSE
-		else if(!(get_turf(target) in get_hear(world.view, user)))
+		else if(!(get_turf(target) in get_hear(WORLD_VIEW, user)))
 			return FALSE
 	else					//user is an atom
-		if(!(get_turf(target) in view(world.view, user)))
+		if(!(get_turf(target) in view(WORLD_VIEW, user)))
 			return FALSE
 	return TRUE
 
@@ -284,7 +284,7 @@
 	var/list/dead_spotted = list()
 	var/ai_user = isAI(user)
 	var/list/seen
-	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(world.view)
+	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
 	var/viewr = max(viewlist[1], viewlist[2]) + max(size_x, size_y)
 	var/viewc = user.client? user.client.eye : target
 	seen = get_hear(viewr, viewc)

@@ -424,9 +424,6 @@
 /client/proc/setDir(newdir)
 	dir = newdir
 
-/client/proc/get_offset()
-	return max(abs(pixel_x / 32), abs(pixel_y / 32))
-
 
 /client/proc/show_character_previews(mutable_appearance/MA)
 	var/pos = 0
@@ -592,12 +589,22 @@
 				CRASH("Key check regex failed for [ckey]")
 
 
-/client/proc/update_movement_keys()
-	if(!prefs?.key_bindings)
+/client/proc/rescale_view(change, min, max)
+	var/viewscale = getviewsize(view)
+	var/x = viewscale[1]
+	var/y = viewscale[2]
+	x = CLAMP(x + change, min, max)
+	y = CLAMP(y + change, min,max)
+	change_view("[x]x[y]")
+
+
+/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
 		return
 	movement_keys = list()
-	for(var/key in prefs.key_bindings)
-		for(var/kb_name in prefs.key_bindings[key])
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
 			switch(kb_name)
 				if("North")
 					movement_keys[key] = NORTH
@@ -612,7 +619,8 @@
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
 		CRASH("change_view called without argument.")
-
+	if(isnum(new_size))
+		CRASH("change_view called with a number argument. Use the string format instead.")
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
