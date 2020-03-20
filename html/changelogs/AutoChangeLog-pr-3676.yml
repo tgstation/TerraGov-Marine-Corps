@@ -1,5 +1,0 @@
-author: "MerryweatherLost"
-delete-after: True
-changes: 
-  - rscadd: "The new target"
-  - rscdel: "The old target"
