@@ -149,27 +149,13 @@
 	face_atom(A)
 
 /mob/living/carbon/human/mob_face_atom(atom/A)
-	if(!lying)
-		face_atom(A)
-		return
-
-	if(!immobile_flags)
-		if(lying > 180)
-			if(get_dir(src, A) & NORTH)
-				setDir(EAST)
-			else
-				setDir(WEST)
+	if(lying && immobile_flags)
+		if(get_dir(src, A) & NORTH)
+			setDir(NORTH)
 		else
-			if(get_dir(src, A) & NORTH)
-				setDir(WEST)
-			else
-				setDir(EAST)
+			setDir(SOUTH)
 		return
-
-	if(get_dir(src, A) & NORTH)
-		setDir(NORTH)
-	else
-		setDir(SOUTH)
+	face_atom(A)
 
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
