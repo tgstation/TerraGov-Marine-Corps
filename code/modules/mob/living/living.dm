@@ -794,17 +794,20 @@ below 100 is not dizzy
 			offset = GRAB_PIXEL_SHIFT_NECK
 		if(GRAB_KILL)
 			offset = GRAB_PIXEL_SHIFT_NECK
+	var/x_offset = 0
+	var/y_offset = 0
+	var/pulled_to_puller_dir = get_dir(pulled_mob, src)
+	if(pulled_to_puller_dir & EAST)
+		x_offset = offset
+	else if(pulled_to_puller_dir & WEST)
+		x_offset = -offset
+	if(pulled_to_puller_dir & NORTH)
+		y_offset = offset
+	else if(pulled_to_puller_dir & SOUTH)
+		y_offset = -offset
+	animate(pulled_mob, pixel_x = x_offset, pixel_y = y_offset, 0.3 SECONDS)
 	if(!pulled_mob.lying) //Handling this in handle_movement_dir()
-		pulled_mob.setDir(get_dir(pulled_mob, src))
-	switch(pulled_mob.dir)
-		if(NORTH)
-			animate(pulled_mob, pixel_x = 0, pixel_y = offset, 0.3 SECONDS)
-		if(SOUTH)
-			animate(pulled_mob, pixel_x = 0, pixel_y = -offset, 0.3 SECONDS)
-		if(EAST)
-			animate(pulled_mob, pixel_x = offset, pixel_y = 0, 0.3 SECONDS)
-		if(WEST)
-			animate(pulled_mob, pixel_x = -offset, pixel_y = 0, 0.3 SECONDS)
+		pulled_mob.setDir(pulled_to_puller_dir)
 
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
