@@ -1,7 +1,7 @@
 //slowdown when in softcrit. Note that crawling slowdown will also apply at the same time!
 #define SOFTCRIT_ADD_SLOWDOWN 2
 //slowdown when crawling
-#define CRAWLING_ADD_SLOWDOWN 4
+#define CRAWLING_ADD_SLOWDOWN 5
 
 //attack visual effects
 #define ATTACK_EFFECT_PUNCH		"punch"

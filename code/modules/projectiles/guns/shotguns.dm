@@ -458,6 +458,9 @@ can cause issues with ammo types getting mixed up during the burst.
 			pump_fail_notice(user)
 		return TRUE
 
+	if(!(flags_gun_features & GUN_PRONE_WIELDY) && user.lying && (user.action_busy || !do_after(user, 0.5 SECONDS, target = user)))
+		return TRUE
+
 	if(in_chamber) //eject the chambered round
 		in_chamber = null
 		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
@@ -588,6 +591,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
 	gun_skill_category = GUN_SKILL_RIFLES
 	type_of_casings = "cartridge"
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_PRONE_WIELDY
 	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
