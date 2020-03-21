@@ -537,24 +537,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	bonus_projectiles_amount = 7
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
 	damage = 20
-	damage_falloff = 0.5
-	penetration = 25
+	damage_falloff = 0.1
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
 	icon_state = "flechette"
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
 	damage = 20
-	damage_falloff = 0.5
-	penetration = 25
+	damage_falloff = 0.1
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
