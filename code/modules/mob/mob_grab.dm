@@ -141,6 +141,8 @@
 
 
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
+	if(action_busy)
+		return NONE
 	var/mob/living/carbon/prey = pulling
 	if(!istype(prey) || isxeno(prey) || issynth(prey))
 		to_chat(src, "<span class='warning'>That wouldn't taste very good.</span>")
@@ -161,11 +163,15 @@
 	visible_message("<span class='danger'>[src] starts to devour [prey]!</span>", \
 	"<span class='danger'>You start to devour [prey]!</span>", null, 5)
 
-	//extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)
+	//A do_after on a signal will cause it to return null regardless of the value of . so it has to be called async to get a proper return.
+	. = COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	INVOKE_ASYNC(src, .proc/do_devour_grabbed, prey)
 
+
+/mob/living/carbon/xenomorph/proc/do_devour_grabbed(mob/living/carbon/prey)
 	if(!do_after(src, 5 SECONDS, FALSE, prey, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_devour_grabbed, prey)))
 		to_chat(src, "<span class='warning'>You stop devouring \the [prey]. \He probably tasted gross anyways.</span>")
-		return NONE
+		return
 
 	visible_message("<span class='warning'>[src] devours [prey]!</span>", \
 	"<span class='warning'>You devour [prey]!</span>", null, 5)
@@ -184,8 +190,6 @@
 	//Then, we place the mob where it ought to be
 
 	do_devour(prey)
-
-	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 
 
 /mob/living/carbon/xenomorph/proc/can_devour_grabbed(mob/living/carbon/prey)
