@@ -295,10 +295,10 @@
 
 	if(mind)
 		mind.transfer_to(new_xeno)
-		new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc)
 	else
 		new_xeno.key = key
-		new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc)
+
+new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc) //after evolving, runs the post evolve stuff for hiveminds and special cases
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
