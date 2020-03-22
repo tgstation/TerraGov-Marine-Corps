@@ -257,6 +257,10 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
 			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+			to_chat(src, "<span class='warning'>There cannot be two manfiestations of the hiveminds will at once..</span>")
+			return
 	else if(!forced_caste_type) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
