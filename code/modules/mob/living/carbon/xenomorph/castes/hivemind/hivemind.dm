@@ -45,7 +45,7 @@
 			forceMove(get_turf(core))
 		return FALSE
 
-	// Don't allow them over the timed_late doors 
+	// Don't allow them over the timed_late doors
 	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
 	if(door?.CanPass(src, NewLoc))
 		return FALSE
@@ -69,7 +69,7 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		var/obj/effect/alien/weeds/nearby_weed = locate() in range("3x3", get_turf(xeno))
+		var/obj/effect/alien/weeds/nearby_weed = locate() in range("6x6", get_turf(xeno)) //increased
 		if(!istype(nearby_weed))
 			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
 			return
@@ -88,7 +88,7 @@
 	forceMove(get_turf(A))
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
-	
+
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)

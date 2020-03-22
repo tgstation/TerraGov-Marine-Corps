@@ -179,7 +179,7 @@
 
 /obj/effect/alien/weeds/node/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	parent = new(loc)
+	//parent = new(loc) //deprecated due to changes
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/weeds/node/hivemindcore/Destroy()
@@ -207,14 +207,14 @@
 	if(isnull(parent))
 		return
 	if(prob(60))
-		return	
+		return
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
-		if(-INFINITY to 25)		
+		if(-INFINITY to 25)
 			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
-		if(26 to 75)		
+		if(26 to 75)
 			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
-		if(76 to INFINITY)		
+		if(76 to INFINITY)
 			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")
 
 #undef NODERANGE

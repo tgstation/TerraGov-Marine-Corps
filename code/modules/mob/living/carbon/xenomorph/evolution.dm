@@ -196,6 +196,15 @@
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
 			return
 
+	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+			to_chat(src, "<span class='warning'>There cannot be two manfiestations of the hiveminds will at once..</span>")
+			return
+
+		if(isxenoresearcharea(get_area(src)))
+			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
+			return
+
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
@@ -280,8 +289,17 @@
 
 	if(mind)
 		mind.transfer_to(new_xeno)
+		if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //THERE ARE BETTER METHODS OF DOING THIS, THIS WAS JUST THE FASTEST AND LESS STRESSFUL WAY
+			var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
+			var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(new_xeno.loc)
+			newcore.parent = newmind
+			newmind.core = newcore
 	else
 		new_xeno.key = key
+		if(new_caste_type == /mob/living/carbon/xenomorph/hivemind)
+			var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
+			var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(new_xeno.loc)
+			newmind.core = newcore
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
