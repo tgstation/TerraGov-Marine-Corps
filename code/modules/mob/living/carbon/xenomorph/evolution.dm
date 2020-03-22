@@ -57,12 +57,6 @@
 
 	do_evolve(castetype, castepick)
 
-/mob/living/carbon/xenomorph/proc/snowflake_post_evolve()
-	var/mob/living/carbon/xenomorph/hivemind/newmind = src
-	var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(src.loc)
-	newcore.parent = src
-	newmind.core = newcore
-		
 /mob/living/carbon/xenomorph/proc/do_evolve(forced_caste_type, forced_caste_name)
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
@@ -203,7 +197,7 @@
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once..</span>")
+			to_chat(src, "<span class='warning'>There cannot be two manfiestations of the hiveminds will at once..</span>")
 			return
 
 		if(isxenoresearcharea(get_area(src)))
@@ -296,8 +290,6 @@
 		mind.transfer_to(new_xeno)
 	else
 		new_xeno.key = key
-
-	new_xeno.snowflake_post_evolve() //after evolving, runs the post evolve stuff for hiveminds and special cases
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
