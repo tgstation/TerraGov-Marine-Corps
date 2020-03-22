@@ -18,6 +18,12 @@
 /mob/living/carbon/xenomorph/shrike/hivemind_end()
 	return "</span>"
 
+/mob/living/carbon/xenomorph/hivemind/hivemind_start()
+	return "<span class='game say hivemind xenoshrike'><span class='name'>[name]</span>"
+
+/mob/living/carbon/xenomorph/hivemind/hivemind_end()
+	return "</span>"
+
 
 /mob/living/carbon/xenomorph/proc/render_hivemind_message(message)
 	return message
