@@ -57,7 +57,7 @@
 
 	do_evolve(castetype, castepick)
 
-/mob/living/carbon/xenomorph/proc/do_evolve_post(var/new_caste_type, var/new_xeno, var/loc)
+/mob/living/carbon/xenomorph/proc/snowflake_post_evolve(var/new_caste_type, var/new_xeno, var/loc)
 	if(new_caste_type == /mob/living/carbon/xenomorph/hivemind)
 		var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
 		var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(loc)
@@ -298,7 +298,7 @@
 	else
 		new_xeno.key = key
 
-new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc) //after evolving, runs the post evolve stuff for hiveminds and special cases
+new_xeno.snowflake_post_evolve(new_caste_type,new_xeno,new_xeno.loc) //after evolving, runs the post evolve stuff for hiveminds and special cases
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
