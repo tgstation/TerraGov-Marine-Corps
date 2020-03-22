@@ -197,7 +197,7 @@
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, "<span class='warning'>There cannot be two manfiestations of the hivemind's will at once..</span>")
+			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once..</span>")
 			return
 
 		if(isxenoresearcharea(get_area(src)))
