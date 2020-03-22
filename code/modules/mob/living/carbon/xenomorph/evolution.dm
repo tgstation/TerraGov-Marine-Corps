@@ -57,6 +57,12 @@
 
 	do_evolve(castetype, castepick)
 
+/mob/living/carbon/xenomorph/proc/do_evolve_post(var/new_caste_type, var/new_xeno, var/loc)
+	if(new_caste_type == /mob/living/carbon/xenomorph/hivemind)
+		var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
+		var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(loc)
+		newcore.parent = newmind
+		newmind.core = newcore
 
 /mob/living/carbon/xenomorph/proc/do_evolve(forced_caste_type, forced_caste_name)
 	if(is_ventcrawling)
@@ -198,7 +204,7 @@
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once..</span>")
+			to_chat(src, "<span class='warning'>There cannot be two manfiestations of the hiveminds will at once..</span>")
 			return
 
 		if(isxenoresearcharea(get_area(src)))
@@ -289,18 +295,10 @@
 
 	if(mind)
 		mind.transfer_to(new_xeno)
-		if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //THERE ARE BETTER METHODS OF DOING THIS, THIS WAS JUST THE FASTEST AND LESS STRESSFUL WAY
-			var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
-			var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(new_xeno.loc)
-			newcore.parent = newmind
-			newmind.core = newcore
+		new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc)
 	else
 		new_xeno.key = key
-		if(new_caste_type == /mob/living/carbon/xenomorph/hivemind)
-			var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
-			var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(new_xeno.loc)
-			newcore.parent = newmind
-			newmind.core = newcore
+		new_xeno.do_evolve_post(new_caste_type,new_xeno,new_xeno.loc)
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
 	new_xeno.nicknumber = nicknumber
