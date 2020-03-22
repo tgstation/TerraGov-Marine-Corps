@@ -228,7 +228,7 @@
 	cooldown_timer = 5 SECONDS
 	base_wait = 2.5 SECONDS
 	scaling_wait = 0
-	
+
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -849,6 +849,7 @@
 // ***************************************
 // *********** Spawn hivemind
 // ***************************************
+/*
 /datum/action/xeno_action/spawn_hivemind
 	name = "Create hivemind"
 	action_icon_state = "lay_hivemind"
@@ -892,7 +893,7 @@
 
 	succeed_activate()
 	add_cooldown()
-
+*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
