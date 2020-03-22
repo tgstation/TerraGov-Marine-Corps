@@ -299,6 +299,7 @@
 		if(new_caste_type == /mob/living/carbon/xenomorph/hivemind)
 			var/mob/living/carbon/xenomorph/hivemind/newmind = new_xeno
 			var/obj/effect/alien/weeds/node/hivemindcore/newcore = new /obj/effect/alien/weeds/node/hivemindcore(new_xeno.loc)
+			newcore.parent = newmind
 			newmind.core = newcore
 
 	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
