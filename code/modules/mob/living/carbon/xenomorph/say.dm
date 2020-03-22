@@ -19,7 +19,7 @@
 	return "</span>"
 
 /mob/living/carbon/xenomorph/hivemind/hivemind_start()
-	return "<span class='game say hivemind xenoshrike'><span class='name'>[name]</span>"
+	return "<span class='game say hivemind xenoshrike'>The Hivemind"
 
 /mob/living/carbon/xenomorph/hivemind/hivemind_end()
 	return "</span>"
