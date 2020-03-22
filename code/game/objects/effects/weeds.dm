@@ -179,7 +179,6 @@
 
 /obj/effect/alien/weeds/node/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	//parent = new(loc) //deprecated due to changes
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/weeds/node/hivemindcore/Destroy()
