@@ -70,7 +70,7 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		var/obj/effect/alien/weeds/nearby_weed = locate() in range("6x6", get_turf(xeno)) //increased
+		var/obj/effect/alien/weeds/nearby_weed = locate() in range("3x3", get_turf(xeno))
 		if(!istype(nearby_weed))
 			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
 			return
