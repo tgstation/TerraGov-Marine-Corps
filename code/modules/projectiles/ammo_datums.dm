@@ -543,7 +543,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 8
 	max_range = 15
 	damage = 60
-	damage_falloff = 0.1
+	damage_falloff = 0.5
 	penetration = 30
 
 /datum/ammo/bullet/shotgun/flechette_spread
@@ -553,8 +553,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 8
 	max_range = 15
 	damage = 50
-	damage_falloff = 0.1
-	penetration = 30
+	damage_falloff = 1
+	penetration = 25
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
