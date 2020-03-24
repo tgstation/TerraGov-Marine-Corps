@@ -34,8 +34,10 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
-	new /obj/effect/alien/weeds/node/strong(loc)
-	core = new /obj/effect/alien/hivemindcore(loc, src)
+	var/mob/living/carbon/xenomorph/hivemind/newmind = src
+	var/obj/effect/alien/hivemindcore/newcore = new /obj/effect/alien/hivemindcore(loc)
+	newcore.parent = src
+	newmind.core = newcore
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
@@ -193,7 +195,6 @@
 
 /obj/effect/alien/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
-	parent = src
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
 /obj/effect/alien/hivemindcore/Destroy()
