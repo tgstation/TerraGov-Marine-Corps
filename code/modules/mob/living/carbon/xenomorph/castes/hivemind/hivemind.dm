@@ -22,7 +22,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
-	invisibility = INVISIBILITY_ABSTRACT
+	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
 	see_in_dark = 8
 	move_on_shuttle = TRUE
@@ -34,7 +34,6 @@
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
 	. = ..()
-	var/mob/living/carbon/xenomorph/hivemind/newmind = src
 	var/obj/effect/alien/hivemindcore/newcore = new /obj/effect/alien/hivemindcore(loc)
 	newcore.parent = src
 	newmind.core = newcore
