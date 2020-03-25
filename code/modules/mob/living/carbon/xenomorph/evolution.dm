@@ -203,6 +203,12 @@
 		if(isxenoresearcharea(get_area(src)))
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
 			return
+			
+		var/turf/T = get_turf(src)
+
+		if(!T.check_alien_construction(src))
+			return			
+		
 
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
