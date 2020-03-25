@@ -36,7 +36,7 @@
 	. = ..()
 	var/obj/effect/alien/hivemindcore/newcore = new /obj/effect/alien/hivemindcore(loc)
 	newcore.parent = src
-	newmind.core = newcore
+	src.core = newcore
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
