@@ -45,7 +45,10 @@
 		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/activable/emit_neurogas,
 		)
-
+		
+	// *** Pheromones *** //
+	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+	aura_allowed = list("frenzy", "warding", "recovery")
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
 
@@ -78,6 +81,9 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 27, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
+	
+	// *** Pheromones *** //
+	aura_strength = 2 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 
 /datum/xeno_caste/defiler/elder
 	upgrade_name = "Elder"
@@ -107,6 +113,9 @@
 	// *** Defense *** //
 	armor = list("melee" = 38, "bullet" = 29, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
 
+		// *** Pheromones *** //
+	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+	
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
@@ -133,4 +142,8 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 30, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	armor = list("melee" = 40, "bullet" = 31, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	
+	// *** Pheromones *** //
+	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+
