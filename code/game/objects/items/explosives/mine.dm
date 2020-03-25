@@ -108,7 +108,7 @@
 	if(!armed || triggered)
 		return
 
-	if(issilicon(L))
+	if((L.status_flag & INCORPERAL))
 		return
 
 	if(ishuman(L))
