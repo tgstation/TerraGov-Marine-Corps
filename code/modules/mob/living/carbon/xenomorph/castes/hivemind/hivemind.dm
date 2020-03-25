@@ -193,7 +193,7 @@
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
 
-/obj/effect/alien/hivemindcore/Initialize(mapload, obj/effect/alien/weeds/node/node)
+/obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
 
