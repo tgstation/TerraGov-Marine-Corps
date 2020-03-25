@@ -43,7 +43,7 @@
 		for(var/ckey in GLOB.preferences_datums)
 			var/datum/preferences/D = GLOB.preferences_datums[ckey]
 			if(D == src)
-				var/delpath = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/"
+				var/delpath = "data/player_saves/[ckey[1]]/[ckey]/"
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
@@ -106,7 +106,7 @@
 	ckey = ckey(ckey)
 	if(!ckey)
 		return
-	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
+	path = "data/player_saves/[ckey[1]]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
 		muted << NONE

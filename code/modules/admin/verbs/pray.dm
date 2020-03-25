@@ -2,7 +2,7 @@
 	set category = "IC"
 	set name = "Pray"
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -39,7 +39,7 @@
 
 
 /proc/tgmc_message(text, mob/sender)
-	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
+	text = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
