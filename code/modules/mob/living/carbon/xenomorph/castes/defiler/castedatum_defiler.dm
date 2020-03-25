@@ -49,6 +49,7 @@
 	// *** Pheromones *** //
 	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 	aura_allowed = list("frenzy", "warding", "recovery")
+
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
 
