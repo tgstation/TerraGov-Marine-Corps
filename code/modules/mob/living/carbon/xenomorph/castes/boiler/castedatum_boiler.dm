@@ -165,5 +165,5 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 7
 	bomb_strength = 1.3
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	acid_delay = 9 SECONDS
 	bomb_delay = 20 SECONDS
