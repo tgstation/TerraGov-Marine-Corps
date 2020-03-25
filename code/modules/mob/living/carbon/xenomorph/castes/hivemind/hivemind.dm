@@ -33,10 +33,9 @@
 	var/obj/effect/alien/hivemindcore/core
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
-	. = ..()
-	var/obj/effect/alien/hivemindcore/newcore = new /obj/effect/alien/hivemindcore(loc)
-	newcore.parent = src
-	src.core = newcore
+    . = ..()
+    core = new(loc)
+    core.parent = src
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
