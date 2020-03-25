@@ -65,7 +65,8 @@
 		H.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(H.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
-			H.emote("pain")
+			if(!(H.species_flags & NO_PAIN))
+				H.emote("pain")
 			H.next_move_slowdown += slow_amt
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
