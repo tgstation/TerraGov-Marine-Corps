@@ -634,6 +634,7 @@
 						/obj/item/attachable/quickfire = 2,
 						/obj/item/attachable/reddot = 10,
 						/obj/item/attachable/scope = 1,
+						/obj/item/attachable/scope/mini = 1,
 
 						/obj/item/attachable/angledgrip = 10,
 						/obj/item/attachable/bipod = 4,
