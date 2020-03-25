@@ -1,6 +1,6 @@
 /datum/xeno_caste/hivemind
-	caste_name = "hivemind"
-	display_name = "hivemind"
+	caste_name = "Hivemind"
+	display_name = "Hivemind"
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
