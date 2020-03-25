@@ -93,7 +93,7 @@
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
 	
-var/list/actions
+	var/list/actions
 		
 /mob/living/carbon/xenomorph
 	name = "Drone"
