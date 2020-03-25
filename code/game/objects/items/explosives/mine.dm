@@ -109,8 +109,6 @@
 		return
 	if((L.status_flags & INCORPOREAL))
 		return
-	if(issilicon(L))
-		return
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.get_target_lock(iff_signal))
