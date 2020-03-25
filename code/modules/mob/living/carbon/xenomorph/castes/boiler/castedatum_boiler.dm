@@ -42,9 +42,9 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
-	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.1 per upgrade
+	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 25 SECONDS //25 seconds per glob at every level but ancient, which has 20.
+	bomb_delay = 25 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -95,8 +95,8 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 5
 	bomb_strength = 1.1
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 25 SECONDS //25 seconds per glob at every level but ancient.
+	acid_delay = 9 SECONDS
+	bomb_delay = 25 SECONDS
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -131,7 +131,7 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 6
 	bomb_strength = 1.2
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	acid_delay = 9 SECONDS
 	bomb_delay = 25 SECONDS
 
 /datum/xeno_caste/boiler/ancient
@@ -166,4 +166,4 @@
 	max_ammo = 7
 	bomb_strength = 1.3
 	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 20 SECONDS //25 seconds per glob at Young, 20 at ancient
+	bomb_delay = 20 SECONDS
