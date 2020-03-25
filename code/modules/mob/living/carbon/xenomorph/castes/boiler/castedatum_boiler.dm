@@ -43,7 +43,7 @@
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	acid_delay = 9 SECONDS
 	bomb_delay = 25 SECONDS
 
 	actions = list(
