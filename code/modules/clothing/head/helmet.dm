@@ -190,7 +190,7 @@
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
+	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 	var/list/allowed_helmet_items = list(
 						/obj/item/tool/lighter/random = "helmet_lighter_",
@@ -297,8 +297,12 @@
 	desc = "A standard M10H Pattern Helmet. This is a upgraded version of the standard M10 helmet, offering more protection and face cover in expense of accuracy and visibility."
 	icon_state = "heavyhelmet"
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 60, "energy" = 40, "bomb" = 60, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 55)
-	accuracy_mod = -20
+	accuracy_mod = -10
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
+
+/obj/item/clothing/head/helmet/marine/heavy/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_1)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
