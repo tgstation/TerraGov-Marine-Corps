@@ -15,12 +15,6 @@
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
-	var/should_tint = TRUE
-
-/obj/item/clothing/mask/gas/Initialize()
-	. = ..()
-	if(should_tint)
-		AddComponent(/datum/component/clothing_tint, TINT_5)
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -31,7 +25,6 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/PMC/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -51,7 +44,6 @@
 	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "wolf_mask"
 	anti_hug = 2
-	should_tint = FALSE
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -69,7 +61,6 @@
 	anti_hug = 1
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -98,7 +89,6 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
