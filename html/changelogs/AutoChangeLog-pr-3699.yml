@@ -1,6 +1,0 @@
-author: "Kuro-ai"
-delete-after: True
-changes: 
-  - balance: "heavy helmet now has no tint but decreases accuracy by 20%,gasmask has no tint but doesn't filter xeno gasses"
-  - bugfix: "fixed an annoying white pixel on the shotgun mob sprite"
-  - imageadd: "added new fatigue and new armor/helmet sprites"
