@@ -38,7 +38,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/heavy) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
 

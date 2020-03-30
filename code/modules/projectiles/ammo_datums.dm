@@ -1233,7 +1233,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 20
+	damage = 25
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
