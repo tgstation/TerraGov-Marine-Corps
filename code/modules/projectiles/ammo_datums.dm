@@ -937,7 +937,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accurate_range = 15
 	damage = 200
-	penetration = 200
+	penetration = 75
 	max_range = 20
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
