@@ -297,12 +297,8 @@
 	desc = "A standard M10H Pattern Helmet. This is a upgraded version of the standard M10 helmet, offering more protection and face cover in expense of accuracy and visibility."
 	icon_state = "heavyhelmet"
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 60, "energy" = 40, "bomb" = 60, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 55)
-	accuracy_mod = -10
+	accuracy_mod = -15
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
-
-/obj/item/clothing/head/helmet/marine/heavy/Initialize()
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_1)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
