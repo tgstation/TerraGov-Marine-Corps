@@ -757,6 +757,7 @@
 
 	fire_delay = 1 SECONDS
 	recoil = 3
+	scatter = -100
 
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
@@ -774,9 +775,9 @@
 	if(gun_on_cooldown(user))
 		return
 
-	var/delay = 0.3 SECONDS
+	var/delay = 0.1 SECONDS
 	if(has_attachment(/obj/item/attachable/scope/mini))
-		delay += 0.3 SECONDS
+		delay += 0.2 SECONDS
 
 	if(user.skills.getRating("spec_weapons") < 0)
 		delay += 0.6 SECONDS
