@@ -1244,3 +1244,7 @@ will handle it, but:
 		pois[name] = M
 
 	return pois
+
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))

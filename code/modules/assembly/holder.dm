@@ -15,8 +15,8 @@
 
 /obj/item/assembly_holder/Initialize()
 	. = ..()
-	AddComponent(
-		/datum/component/simple_rotation,
+	AddComponent(\
+		/datum/component/simple_rotation,\
 		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS)
 
 
