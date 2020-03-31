@@ -6,7 +6,7 @@
 	action_icon_state = "stomp"
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-	plasma_cost = 200
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_STOMP
@@ -55,7 +55,7 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 200
+	plasma_cost = 100
 	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
