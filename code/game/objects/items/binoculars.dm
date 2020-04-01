@@ -177,7 +177,7 @@
 			laser = LT
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
-				if(!do_after(user, 50, TRUE, laser, BUSY_ICON_GENERIC))
+				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					break
 		if(1)
