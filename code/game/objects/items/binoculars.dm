@@ -118,9 +118,9 @@
 			mode = 0
 		switch(mode)
 			if(0)
-				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
-			if(1)
 				to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
+			if(1)
+				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
 			if(2)
 				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
 		
@@ -171,15 +171,6 @@
 	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	switch(mode)
-		if(1)
-			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
-			coord = LT
-			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
-			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			while(coord)
-				if(!do_after(user, 50, TRUE, coord, BUSY_ICON_GENERIC))
-					QDEL_NULL(coord)
-					break
 		if(0)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
 			var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
@@ -188,6 +179,15 @@
 			while(laser)
 				if(!do_after(user, 50, TRUE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
+					break
+		if(1)
+			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
+			coord = LT
+			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			while(coord)
+				if(!do_after(user, 50, TRUE, coord, BUSY_ICON_GENERIC))
+					QDEL_NULL(coord)
 					break
 		if(2)
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
