@@ -19,6 +19,8 @@
 
 		if(S.surgery_open_stage == 0)
 			if (S && (S.limb_status & LIMB_ROBOT))
+				if(user.action_busy || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+					return
 				if(S.get_damage())
 					S.heal_limb_damage(15, 15, robo_repair = TRUE, updating_health = TRUE)
 					use(1)
