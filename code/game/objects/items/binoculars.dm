@@ -191,12 +191,21 @@
 					break
 		if(2)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 60 SECONDS) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!targ_area)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
 			else
-				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,usr)
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
+				var/obj/effect/overlay/temp/laser_target/RT = new (TU, laz_name, S)
+				laser = RT
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				while(laser)
+					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,usr)
+					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+						QDEL_NULL(laser)
+						break
+				
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
