@@ -14,8 +14,6 @@
 		return 0
 
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
-		if(issynth(M) && M == user)
-			return
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
