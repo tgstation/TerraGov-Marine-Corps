@@ -100,12 +100,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /atom/movable/proc/say_mod(input, message_mode, datum/language/language)
-	var/ending = copytext(input, length(input))
-	if(copytext(input, length(input) - 1) == "!!")
+	var/ending = copytext_char(input, -1)
+	if(copytext_char(input, -2) == "!!")
 		return verb_yell
 	else if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
-		return L.get_spoken_verb(copytext(input, length(input)))
+		return L.get_spoken_verb(copytext_char(input, length(input)))
 	else if(ending == "?")
 		return verb_ask
 	else if(ending == "!")
@@ -118,7 +118,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!input)
 		input = "..."
 
-	if(copytext(input, length(input) - 1) == "!!")
+	if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
 
 	var/spanned = attach_spans(input, spans)
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/returntext = GLOB.reverseradiochannels["[freq]"]
 	if(returntext)
 		return returntext
-	return "[copytext("[freq]", 1, 4)].[copytext("[freq]", 4, 5)]"
+	return "[copytext_char("[freq]", 1, 4)].[copytext_char("[freq]", 4, 5)]"
 
 
 /proc/attach_spans(input, list/spans)
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /proc/say_test(text)
-	var/ending = copytext(text, length(text))
+	var/ending = copytext_char(text, -1)
 	if (ending == "?")
 		return "1"
 	else if (ending == "!")

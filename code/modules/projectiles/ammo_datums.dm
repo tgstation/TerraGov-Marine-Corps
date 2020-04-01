@@ -537,23 +537,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
-	damage = 20
+	damage = 75
 	damage_falloff = 0.5
-	penetration = 25
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
 	icon_state = "flechette"
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
-	damage = 20
-	damage_falloff = 0.5
+	damage = 30
+	damage_falloff = 1
 	penetration = 25
 
 /datum/ammo/bullet/shotgun/buckshot
@@ -886,8 +886,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
-	damage = 50
-	penetration = 80
+	damage = 200
+	penetration = 100
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
@@ -910,7 +910,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 275
+	damage = 375
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
@@ -936,7 +936,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 150
+	damage = 200
+	penetration = 75
 	max_range = 20
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
@@ -1080,7 +1081,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
 
@@ -1233,13 +1234,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 20
+	damage = 30
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	damage = 23
+	damage = 25
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -1313,11 +1314,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
 	damage_type = BURN
+	penetration = 40
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)

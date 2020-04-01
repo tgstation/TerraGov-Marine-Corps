@@ -322,7 +322,7 @@ GLOBAL_PROTECT(admin_verbs_mentor)
 /world/proc/AVban()
 	return list(
 	/datum/admins/proc/ban_panel,
-	/datum/admins/proc/sticky_ban_panel,
+	/datum/admins/proc/stickybanpanel,
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/note_panel
 	)

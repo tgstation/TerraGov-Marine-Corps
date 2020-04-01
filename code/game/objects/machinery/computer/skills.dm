@@ -290,13 +290,13 @@ What a mess.*/
 						active1.fields["name"] = t1
 				if("id")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input id:", "Secure. records", active1.fields["id"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["id"] = t1
 				if("fingerprint")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["fingerprint"] = t1
@@ -325,7 +325,7 @@ What a mess.*/
 						alert(usr, "You do not have the required rank to do this!")
 				if("species")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please enter race:", "General records", active1.fields["species"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["species"] = t1

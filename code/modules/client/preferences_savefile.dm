@@ -43,7 +43,7 @@
 		for(var/ckey in GLOB.preferences_datums)
 			var/datum/preferences/D = GLOB.preferences_datums[ckey]
 			if(D == src)
-				var/delpath = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/"
+				var/delpath = "data/player_saves/[ckey[1]]/[ckey]/"
 				if(delpath && fexists(delpath))
 					fdel(delpath)
 				break
@@ -106,7 +106,7 @@
 	ckey = ckey(ckey)
 	if(!ckey)
 		return
-	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
+	path = "data/player_saves/[ckey[1]]/[ckey]/[filename]"
 
 	if(savefile_version < 21)
 		muted << NONE
@@ -167,11 +167,11 @@
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
+	ooccolor		= sanitize_hexcolor(ooccolor, 6, TRUE, initial(ooccolor))
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
 	ui_style		= sanitize_inlist(ui_style, UI_STYLES, initial(ui_style))
-	ui_style_color	= sanitize_hexcolor(ui_style_color, initial(ui_style_color))
+	ui_style_color	= sanitize_hexcolor(ui_style_color, 6, TRUE, initial(ui_style_color))
 	ui_style_alpha	= sanitize_integer(ui_style_alpha, 0, 255, initial(ui_style_alpha))
 
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))
@@ -212,10 +212,10 @@
 
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
+	ooccolor		= sanitize_hexcolor(ooccolor, 6, TRUE, initial(ooccolor))
 
 	ui_style		= sanitize_inlist(ui_style, UI_STYLES, initial(ui_style))
-	ui_style_color	= sanitize_hexcolor(ui_style_color, initial(ui_style_color))
+	ui_style_color	= sanitize_hexcolor(ui_style_color, 6, TRUE, initial(ui_style_color))
 	ui_style_alpha	= sanitize_integer(ui_style_alpha, 0, 255, initial(ui_style_alpha))
 
 	toggles_chat	= sanitize_integer(toggles_chat, NONE, MAX_BITFLAG, initial(toggles_chat))

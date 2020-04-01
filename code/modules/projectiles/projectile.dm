@@ -831,30 +831,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/xenomorph/get_living_armor(armor_type, proj_def_zone, proj_dir)
 	. = armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus
 
-	if(is_charging >= CHARGE_ON)
-		. += round(get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
-
-
-/mob/living/carbon/xenomorph/queen/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = ..()
-	if(!.)
-		return
-	if(proj_dir & REVERSE_DIR(dir)) //+50% armor if the bullets come from the direction we are facing.
-		return . + (armor.getRating(armor_type) * 0.5)
-	if(proj_dir == dir) //-50% if being shot directly in the back.
-		return . - (armor.getRating(armor_type) * 0.5)
-
-
-/mob/living/carbon/xenomorph/crusher/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = ..()
-	if(!.)
-		return
-	if(proj_dir & REVERSE_DIR(dir)) //+75% armor if the bullets come from the direction we are facing.
-		return . + (armor.getRating(armor_type) * 0.75)
-	if(proj_dir == dir) //-75% if being shot directly in the back.
-		return . - (armor.getRating(armor_type) * 0.75)
-
-
 /mob/living/proc/apply_bullet_effects(obj/projectile/proj)
 	apply_effects(arglist(proj.ammo.debilitate))
 

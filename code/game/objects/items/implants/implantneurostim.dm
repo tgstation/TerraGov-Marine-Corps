@@ -63,7 +63,7 @@
 
 
 /obj/item/implant/neurostim/implanted(mob/source, mob/user)
-	var/p = sanitize(input(user, "Choose activation phrase:"))
+	var/p = stripped_input(user, "Choose activation phrase:")
 	if(!p)
 		return 0
 	phrase = p
