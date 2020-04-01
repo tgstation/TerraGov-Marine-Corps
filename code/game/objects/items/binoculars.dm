@@ -191,7 +191,7 @@
 					break
 		if(2)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 60 SECONDS) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!targ_area)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
