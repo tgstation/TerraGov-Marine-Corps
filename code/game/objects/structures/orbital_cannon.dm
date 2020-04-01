@@ -540,5 +540,5 @@
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
-	rail_gun_ammo.ammo_count -= rail_gun_ammo.ammo_used_per_firing
+	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
 	cannon_busy = FALSE
