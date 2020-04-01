@@ -15,7 +15,7 @@
 	if(!message)
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	emote("me", EMOTE_VISIBLE, message, TRUE)
 
@@ -70,17 +70,18 @@
 
 
 /mob/proc/get_message_mode(message)
-	var/key = copytext(message, 1, 2)
+	var/key = message[1]
 	if(key == "#")
 		return MODE_WHISPER
 	else if(key == ";")
 		return MODE_HEADSET
-	else if(length(message) > 2 && (key in GLOB.department_radio_prefixes))
-		var/key_symbol = lowertext(copytext(message, 2, 3))
+	else if((length(message) > (length(key) + 1)) && (key in GLOB.department_radio_prefixes))
+		var/key_symbol = lowertext(message[length(key) + 1])
 		return GLOB.department_radio_keys[key_symbol]
 
 
+///Check if this message is an emote
 /mob/proc/check_emote(message)
-	if(copytext(message, 1, 2) == "*")
-		emote(copytext(message, 2), intentional = TRUE)
+	if(message[1] == "*")
+		emote(copytext(message, length(message[1]) + 1), intentional = TRUE)
 		return TRUE

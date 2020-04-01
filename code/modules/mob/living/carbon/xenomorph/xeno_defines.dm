@@ -92,12 +92,9 @@
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
-
-	// *** Defiler Abilities *** //
-	var/neuro_claws_amount
-
+	
 	var/list/actions
-
+		
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"

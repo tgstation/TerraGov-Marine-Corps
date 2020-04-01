@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return TRUE
 
 		if("synth_name")
-			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name") as text|null
+			var/newname = stripped_input(user, "Choose your Synthetic's name:", "Synthetic Name")
 			newname = reject_bad_name(newname)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
@@ -607,7 +607,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			synthetic_type = new_synth_type
 
 		if("xeno_name")
-			var/newname = input(user, "Choose your Xenomorph name:", "Xenomorph Name") as text|null
+			var/newname = stripped_input(user, "Choose your Xenomorph name:", "Xenomorph Name")
 			if(newname == "")
 				xeno_name = "Undefined"
 			else
@@ -618,7 +618,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				xeno_name = newname
 
 		if("ai_name")
-			var/newname = input(user, "Choose your AI name:", "AI Name") as text|null
+			var/newname = stripped_input(user, "Choose your AI name:", "AI Name")
 			if(newname == "")
 				ai_name = "ARES v3.2"
 			else
@@ -629,7 +629,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ai_name = newname
 
 		if("name_real")
-			var/newname = input(user, "Choose your character's name:", "Character Name") as text|null
+			var/newname = stripped_input(user, "Choose your character's name:", "Character Name")
 			newname = reject_bad_name(newname)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
@@ -883,43 +883,36 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return
 
 		if("med_record")
-			var/medmsg = input(user, "Set your medical notes here.", "Medical Records", sanitize(med_record)) as null|message
+			var/medmsg = stripped_input(user, "Set your medical notes here.", "Medical Records", sanitize(med_record))
 			if(!medmsg)
 				return
-			medmsg = copytext(sanitize(medmsg), 1, MAX_PAPER_MESSAGE_LEN)
 
 			med_record = medmsg
 			SetRecords(user)
 			return
 
 		if("sec_record")
-			var/secmsg = input(user,"Set your security notes here.", "Security Records", sanitize(sec_record)) as null|message
+			var/secmsg = stripped_input(user,"Set your security notes here.", "Security Records", sanitize(sec_record))
 			if(!secmsg)
 				return
-
-			secmsg = copytext(sanitize(secmsg), 1, MAX_PAPER_MESSAGE_LEN)
 
 			sec_record = secmsg
 			SetRecords(user)
 			return
 
 		if("gen_record")
-			var/genmsg = input(user, "Set your employment notes here.", "Employment Records", sanitize(gen_record)) as null|message
+			var/genmsg = stripped_input(user, "Set your employment notes here.", "Employment Records", sanitize(gen_record))
 			if(!genmsg)
 				return
-
-			genmsg = copytext(sanitize(genmsg), 1, MAX_PAPER_MESSAGE_LEN)
 
 			gen_record = genmsg
 			SetRecords(user)
 			return
 
 		if("exploit_record")
-			var/exploit = input(user, "Enter information that others may want to use against you.", "Exploit Record", sanitize(exploit_record)) as null|message
+			var/exploit = stripped_input(user, "Enter information that others may want to use against you.", "Exploit Record", sanitize(exploit_record))
 			if(!exploit)
 				return
-
-			exploit = copytext(sanitize(exploit), 1, MAX_PAPER_MESSAGE_LEN)
 
 			exploit_record = exploit
 			SetRecords(user)
@@ -929,10 +922,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			user << browse(null, "window=records")
 
 		if("flavor_text")
-			var/msg = input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text)) as null|message
+			var/msg = stripped_input(user, "Give a physical description of your character.", "Flavor Text", sanitize(flavor_text))
 			if(!msg)
 				return
-			msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 			flavor_text = msg
 
 		if("windowflashing")

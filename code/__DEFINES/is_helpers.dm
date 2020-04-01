@@ -208,8 +208,8 @@
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
 // Admin
-#define isaghost(mob) ( copytext(mob.key, 1, 2) == "@" )
-#define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext(living.ckey, 2)] && living.get_ghost())
+#define isaghost(mob) ( mob.key && mob.key[1] == "@" )
+#define isclientedaghost(living) (isaghost(living) && GLOB.directory[copytext_char(living.ckey, 2)] && living.get_ghost())
 
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

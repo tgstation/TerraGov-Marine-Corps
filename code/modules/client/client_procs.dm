@@ -200,6 +200,10 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+	if(length(GLOB.stickybanadminexemptions))
+		GLOB.stickybanadminexemptions -= ckey
+		if (!length(GLOB.stickybanadminexemptions))
+			restore_stickybans()
 
 	if(SSinput.initialized)
 		set_macros()
@@ -294,7 +298,7 @@
 			winset(src, "[child]", "[entries[child]]")
 			if(!ispath(child, /datum/verbs/menu))
 				var/procpath/verbpath = child
-				if(copytext(verbpath.name, 1, 2) != "@")
+				if(verbpath.name[1] != "@")
 					new child(src)
 
 	for(var/thing in prefs.menuoptions)

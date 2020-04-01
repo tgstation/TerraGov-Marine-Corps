@@ -24,7 +24,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 230
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -42,9 +42,9 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
-	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
+	acid_delay = 9 SECONDS
+	bomb_delay = 25 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -81,7 +81,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -94,9 +94,9 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 5
-	bomb_strength = 1.5
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_strength = 1.1
+	acid_delay = 9 SECONDS
+	bomb_delay = 25 SECONDS
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -117,7 +117,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -130,9 +130,9 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 6
-	bomb_strength = 2
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_strength = 1.2
+	acid_delay = 9 SECONDS
+	bomb_delay = 25 SECONDS
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
@@ -154,7 +154,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 300
 
 	// *** Defense *** //
 	armor = list("melee" = 37, "bullet" = 37, "laser" = 37, "energy" = 37, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
@@ -164,6 +164,6 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 7
-	bomb_strength = 2.5
-	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
-	bomb_delay = 10 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+	bomb_strength = 1.3
+	acid_delay = 9 SECONDS
+	bomb_delay = 20 SECONDS

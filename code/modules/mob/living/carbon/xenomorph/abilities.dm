@@ -702,8 +702,6 @@
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	X.add_slowdown(2)
-
 	add_cooldown()
 
 	return succeed_activate()
@@ -802,7 +800,7 @@
 	if(!X.check_state())
 		return
 
-	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
+	var/msg = stripped_input("Message:", "Psychic Whisper")
 	if(!msg)
 		return
 

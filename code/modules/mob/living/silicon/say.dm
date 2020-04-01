@@ -46,9 +46,8 @@
 	return 0
 
 
-/mob/living/silicon/get_message_mode(message)
-	. = ..()
-	if(..() == MODE_HEADSET)
-		return MODE_ROBOT
-	else
-		return .
+/mob/living/silicon/ai/get_message_mode(message)
+	var/static/regex/holopad_finder = regex(@"[:.#][hH]")
+	if(holopad_finder.Find(message, 1, 1))
+		return MODE_HOLOPAD
+	return ..()
