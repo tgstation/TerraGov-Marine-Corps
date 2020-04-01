@@ -186,7 +186,7 @@
 			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(coord)
-				if(!do_after(user, 50, TRUE, coord, BUSY_ICON_GENERIC))
+				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
 					QDEL_NULL(coord)
 					break
 		if(2)
