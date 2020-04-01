@@ -12,7 +12,7 @@
 
 
 /mob/living/carbon/proc/need_breathe()
-	if(reagents.has_reagent(/datum/reagent/toxin/lexorin) || HAS_TRAIT(src, TRAIT_STASIS))
+	if(reagents.has_reagent(/datum/reagent/toxin/lexorin) || HAS_TRAIT(src, TRAIT_STASIS) || isnestedhost(src))
 		return FALSE
 	return TRUE
 
