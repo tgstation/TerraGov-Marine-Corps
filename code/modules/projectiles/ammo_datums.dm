@@ -886,8 +886,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
-	damage = 50
-	penetration = 80
+	damage = 200
+	penetration = 100
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
@@ -910,7 +910,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 275
+	damage = 375
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
 	explosion(T, -1, -1, 2, 5)
@@ -936,7 +936,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 150
+	damage = 200
+	penetration = 75
 	max_range = 20
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
