@@ -453,7 +453,7 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/pain_damage = volume * REM
 	L.apply_damage(pain_damage, AGONY) //1st level neurotoxin effects: pain
-	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, kept to let you know you're stung.
+	if(volume > 5) //2nd level neurotoxin effects: drug overlay, stuttering, kept to let you know you're stung.
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
 	switch(current_cycle)
@@ -495,4 +495,3 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
-
