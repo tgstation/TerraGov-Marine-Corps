@@ -216,12 +216,14 @@
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 					/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
+					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/healthanalyzer = 1,
 					/obj/item/stack/medical/splint = 1)
-	contraband = list(/obj/item/reagent_containers/syringe/dylovene = 2,
-						/obj/item/reagent_containers/syringe/antiviral = 2)
+	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
+						/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
+						/obj/item/reagent_containers/hypospray/autoinjector/synaptizine/expired = 0)
 
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
