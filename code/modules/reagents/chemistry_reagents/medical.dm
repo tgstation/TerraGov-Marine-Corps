@@ -377,7 +377,7 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 			L.adjustStaminaLoss(20*REM)
 	return ..()
 
-datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(2*REM, TOX)
 
 /datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
