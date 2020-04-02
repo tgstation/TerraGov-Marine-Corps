@@ -135,7 +135,7 @@
 				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
 		
 		update_icon()
-		playsound(usr, 'sound/items/binoculars.ogg', 15, 1)
+		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -235,7 +235,7 @@
 					log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(TU)].")
 					message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(TU)].")
 
-				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,usr)
+				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,user)
 
 				
 
