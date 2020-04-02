@@ -185,12 +185,14 @@
 					/obj/item/reagent_containers/glass/bottle/dexalin = 4,
 					/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 					/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+					/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+					/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
 					/obj/item/storage/pill_bottle/peridaxon = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 5,
 					/obj/item/stack/medical/advanced/ointment = 5,
 					/obj/item/stack/medical/ointment = 10,
 					/obj/item/stack/medical/bruise_pack = 10,
-					/obj/item/stack/medical/splint = 5
+					/obj/item/stack/medical/splint = 5,
 					)
 
 	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
@@ -223,7 +225,7 @@
 					/obj/item/stack/medical/splint = 1)
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
 						/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
-						/obj/item/reagent_containers/hypospray/autoinjector/synaptizine/expired = 0)
+						/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0)
 
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
