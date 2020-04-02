@@ -114,7 +114,7 @@
 
 	if(!zoom)
 		mode += 1
-		if(mode >= 3)
+		if(mode >= 4)
 			mode = 0
 		switch(mode)
 			if(0)
@@ -123,6 +123,8 @@
 				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
 			if(2)
 				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
+			if(3)
+				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
 		
 		update_icon()
 		playsound(usr, 'sound/items/binoculars.ogg', 15, 1)
@@ -205,6 +207,28 @@
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
+		if(3)
+			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
+			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
+			else if(!targ_area)
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
+			else
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
+				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)
+				laser = OB
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				to_chat(user, "<span class='notice'>RELEASE TO FIRE ORBITAL CANNON.</span>")
+				while(laser)
+					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+						QDEL_NULL(laser)
+						break
+				if(targ_area)
+					log_attack("[key_name(usr)] fired an orbital bombardment in [AREACOORD(TU)].")
+					message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(TU)].")
+
+				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,usr)
+
 				
 
 /obj/item/binoculars/tactical/scout
