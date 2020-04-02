@@ -786,7 +786,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 		/obj/item/storage/firstaid/regular = list(CAT_MEDSUP, "Firstaid kit", 2, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 4, "orange"),
-		/item/storage/pouch/autoinjector/advanced/full = list(CAT_MEDSUP, "Advanced Medical Injectors", 15, "orange"),
+		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_MEDSUP, "Advanced Medical Injectors", 15, "orange"),
 		/obj/item/storage/pill_bottle/alkysine = list(CAT_MEDSUP, "Alkysine pills", 4, "black"),
 		/obj/item/storage/pill_bottle/imidazoline = list(CAT_MEDSUP, "Imidazoline pills", 4, "black"),
 		/obj/item/storage/pill_bottle/tricordrazine = list(CAT_MEDSUP, "Tricordrazine pills", 10, "orange"),
