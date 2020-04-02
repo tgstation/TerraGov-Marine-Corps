@@ -125,6 +125,7 @@
 	L.set_drugginess(10)
 	L.apply_damage(2*REM, TOX)
 	L.jitter(3)
+	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
@@ -577,16 +578,6 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(30*REM, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
-
-
-
-
-
-
-
-
-
-
 
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
