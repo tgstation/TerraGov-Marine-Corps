@@ -188,8 +188,8 @@
 	name = "Dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
 	color = "#F8C57C"
-	overdose_threshold = REAGENTS_OVERDOSE/2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
+	overdose_threshold = REAGENTS_OVERDOSE*0.66
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
 	purge_rate = 2
@@ -288,12 +288,13 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/xeno_neurotoxin)
+	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 2)
 	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
@@ -606,7 +607,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	name = "Meralyne"
 	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
 	color = "#E6666C"
-	overdose_threshold = REAGENTS_OVERDOSE*0.5
+	overdose_threshold = REAGENTS_OVERDOSE*0.66
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
