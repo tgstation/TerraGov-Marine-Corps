@@ -92,6 +92,25 @@
 		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
 
 
+/datum/limb/proc/handle_antibioticsT2()
+	var/antibioticsT2 = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
+
+	if (!germ_level || antibioticsT2 < MIN_ANTIBIOTICS)
+		return
+
+	if (germ_level < 10)
+		germ_level = 0	//cure instantly
+	else if (germ_level < INFECTION_LEVEL_ONE)
+		germ_level -= 1
+	else if (germ_level < INFECTION_LEVEL_TWO)
+		germ_level -= 1	//at germ_level == 500, this should cure the infection in three minutes
+	else
+		germ_level -= 10 //at germ_level == 1000, this will cure the infection in one minute
+
+
+
+
+
 /****************************************************
 			DAMAGE PROCS
 ****************************************************/
@@ -475,7 +494,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 //LEVEL III
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25)	//overdosing is necessary to stop severe infections
+	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25 && antibioticsT2 <5)	//overdosing is necessary to stop severe infections, or a doc-only chem
 		if (!(limb_status & LIMB_NECROTIZED))
 			limb_status |= LIMB_NECROTIZED
 			to_chat(owner, "<span class='notice'>You can't feel your [display_name] anymore...</span>")
