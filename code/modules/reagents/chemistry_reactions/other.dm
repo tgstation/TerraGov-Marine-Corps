@@ -48,7 +48,7 @@
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
 	name = "Toxin"
-	results = list(/datum/reagent/toxin = 11)
+	results = list(/datum/reagent/toxin = 3)
 	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 10)
 
 /datum/chemical_reaction/sdtoxin
