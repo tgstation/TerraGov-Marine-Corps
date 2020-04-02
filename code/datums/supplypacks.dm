@@ -2041,10 +2041,10 @@ MEDICAL
 
 datum/supply_packs/advanced_medical
 	contains = list(
-					/obj/item/storage/pouch/autoinjector/advanced,
-					/obj/item/storage/pouch/autoinjector/advanced,
-					/obj/item/storage/pouch/autoinjector/advanced,
-					/obj/item/storage/pouch/autoinjector/advanced,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
 					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 					/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
