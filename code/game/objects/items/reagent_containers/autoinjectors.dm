@@ -51,7 +51,7 @@
 						/datum/reagent/medicine/tramadol = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
-	name = "combat autoinjector"
+	name = "Advanced combat autoinjector"
 	desc = "An autoinjector loaded with 3 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
 	amount_per_transfer_from_this = 5
@@ -161,13 +161,13 @@
 						/datum/reagent/medicine/arithrazine = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
-	name = "Synaptizine autoinjector"
+	name = "Expired synaptizine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
 						/datum/reagent/toxin = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
-	name = "oxycodone autoinjector"
+	name = "Neuraline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of neuraline, an extremely powerful stimulant. !DO NOT USE MORE THAN ONCE AT A TIME!"
 	amount_per_transfer_from_this = 4
 	volume = 12
@@ -175,7 +175,7 @@
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
-	name = "hyperzine autoinjector"
+	name = "Peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing severe toxic damage. !DO NOT USE MORE THAN ONCE AT A TIME!"
 	amount_per_transfer_from_this = 1
 	volume = 3
