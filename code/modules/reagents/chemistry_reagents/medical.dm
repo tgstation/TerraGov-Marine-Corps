@@ -170,7 +170,7 @@
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 2 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
@@ -198,7 +198,7 @@
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 4 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 15)
