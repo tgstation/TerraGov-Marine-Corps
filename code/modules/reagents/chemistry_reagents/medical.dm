@@ -380,7 +380,7 @@ datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(2*REM, TOX)
 
-datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 2*REM, 2*REM)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
