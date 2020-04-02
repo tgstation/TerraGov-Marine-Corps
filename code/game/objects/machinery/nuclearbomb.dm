@@ -68,6 +68,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
+	timeleft = initial(timeleft)
 	return ..()
 
 
