@@ -256,6 +256,7 @@
 	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
 	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
 	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
+	QDEL_NULL(laser)
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
