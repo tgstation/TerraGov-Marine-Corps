@@ -406,7 +406,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.AdjustKnockdown(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-60*REM)
-	L.adjustToxLoss(10*REM)
+	L.adjustToxLoss(5*REM)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
