@@ -34,7 +34,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	rollable_sleeves = FALSE
 
-
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
 	icon_state = "marine_tanker"
@@ -47,7 +46,6 @@
 	icon_state = "MP_jumpsuit"
 	rollable_sleeves = FALSE
 
-
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
@@ -59,7 +57,6 @@
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "wardentanclothes"
 	item_state = "wardentanclothes"
-
 
 /obj/item/clothing/under/marine/officer/hos
 	name = "marine officer uniform"
