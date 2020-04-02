@@ -919,6 +919,28 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
 
+/datum/reagent/medicine/polyhexanide
+	name = "Polyhexanide"
+	description = "A sterilizing agent designed for internal use. Powerful, but dangerous."
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	scannable = TRUE
+
+/datum/reagent/medicine/polyhexanide/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 9)
+			L.adjustToxLoss(2*REM)
+			L.adjustDrowsyness(5)
+		if(10 to 50)
+			L.adjustToxLoss(3*REM)
+			L.Sleeping(10 SECONDS)
+		if(51 to INFINITY)
+			L.adjustToxLoss((current_cycle/5-35)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
+	return ..()
+
+/datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(4*REM, TOX)
+
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
 	description = "A powerful oxidizer that reacts with ethanol."
