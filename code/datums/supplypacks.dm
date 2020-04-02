@@ -2039,6 +2039,23 @@ CLOTHING
 MEDICAL
 *******************************************************************************/
 
+datum/supply_packs/advanced_medical
+	contains = list(
+					/obj/item/storage/pouch/autoinjector/advanced,
+					/obj/item/storage/pouch/autoinjector/advanced,
+					/obj/item/storage/pouch/autoinjector/advanced,
+					/obj/item/storage/pouch/autoinjector/advanced,
+					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+					/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+					/obj/item/stack/nanopaste
+					)
+	name = "Advanced medical supplies"
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate
+	containername = "\improper medical crate"
+	group = "Medical"
+
 
 /datum/supply_packs/medical
 	name = "medical crate"
