@@ -15,6 +15,10 @@
 /obj/item/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
 
+#define MODE_CAS 0
+#define MODE_RANGE_FINDER 1
+#define MODE_RAILGUN 2
+#define MODE_ORBITAL 3
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
@@ -34,13 +38,13 @@
 /obj/item/binoculars/tactical/examine()
 	..()
 	switch(mode)
-		if(0)
+		if(MODE_CAS)
 			to_chat(usr, "<span class='notice'>They are currently set to CAS marking mode.</span>")
-		if(1)
+		if(MODE_RANGE_FINDER)
 			to_chat(usr, "<span class='notice'>They are currently set to range finding mode.</span>")
-		if(2)
+		if(MODE_RAILGUN)
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
-		if(3)
+		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
 	
 /obj/item/binoculars/tactical/Destroy()
@@ -122,16 +126,16 @@
 
 	if(!zoom)
 		mode += 1
-		if(mode >= 4)
-			mode = 0
+		if(mode > MODE_ORBITAL)
+			mode = MODE_CAS
 		switch(mode)
-			if(0)
+			if(MODE_CAS)
 				to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
-			if(1)
+			if(MODE_RANGE_FINDER)
 				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
-			if(2)
+			if(MODE_RAILGUN)
 				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
-			if(3)
+			if(MODE_ORBITAL)
 				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
 		
 		update_icon()
@@ -181,7 +185,7 @@
 	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	switch(mode)
-		if(0)
+		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
 			var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
 			laser = LT
@@ -190,7 +194,7 @@
 				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					break
-		if(1)
+		if(MODE_RANGE_FINDER)
 			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
 			coord = LT
 			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
@@ -199,7 +203,7 @@
 				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
 					QDEL_NULL(coord)
 					break
-		if(2)
+		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
@@ -215,7 +219,7 @@
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
-		if(3)
+		if(MODE_ORBITAL)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>Orbital bombardment not yet available!</span>")
