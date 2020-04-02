@@ -231,12 +231,12 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
-				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
 				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)
 				laser = OB
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
-				to_chat(user, "<span class='notice'>RELEASE TO FIRE ORBITAL CANNON.</span>")
-
+				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+                	return
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
 				// Wait for that ALT click to fire
 				current_turf = TU
 				ob_fired = FALSE // Reset the fired state
