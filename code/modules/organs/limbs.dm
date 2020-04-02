@@ -435,6 +435,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/handle_germ_effects()
 	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+	var/antibioticsT2 = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 //LEVEL 0
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE && prob(60))	//this could be an else clause, but it looks cleaner this way
 		germ_level--	//since germ_level increases at a rate of 1 per second with dirty wounds, prob(60) should give us about 5 minutes before level one.
@@ -494,7 +495,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 //LEVEL III
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25 && antibioticsT2 <5)	//overdosing is necessary to stop severe infections, or a doc-only chem
+	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25 && antibioticsT2 <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
 		if (!(limb_status & LIMB_NECROTIZED))
 			limb_status |= LIMB_NECROTIZED
 			to_chat(owner, "<span class='notice'>You can't feel your [display_name] anymore...</span>")
