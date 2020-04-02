@@ -563,7 +563,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
-	L.apply_damages(20*REM, TOX)
+	L.adjustToxLoss(20*REM)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
