@@ -258,7 +258,9 @@
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
 				else
-					upgrade_stored = min(upgrade_stored + 1, xeno_caste.upgrade_threshold)
+					// Upgrade is increased based on marine to xeno population taking larva_stored as a modifier.
+					var/upgrade_points = 1 + (FLOOR(hive_status.larva_stored / 2))
+					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -267,8 +269,12 @@
 		return
 	if(!hive.check_ruler())
 		return
-	evolution_stored++
-	if(evolution_stored == xeno_caste.evolution_threshold - 1)
+
+	// Evolution is increased based on marine to xeno population taking larva_stored as a modifier.
+	var/evolution_points = 1 + (FLOOR(hive_status.larva_stored / 2))
+	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+
+	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
