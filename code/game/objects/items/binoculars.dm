@@ -29,7 +29,9 @@
 	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
-	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
+	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
+	var/ob_fired = FALSE // If the user has fired the OB
+	var/turf/current_turf // The target turf
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -59,11 +61,15 @@
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if(!pa.Find("ctrl"))
-		return FALSE
-	acquire_target(object, user)
-	return TRUE
+	if(pa.Find("ctrl") && !pa.Find("shift"))	
+		acquire_target(object, user)
+		return TRUE
 
+	if(pa.Find("ctrl") && pa.Find("shift"))
+		try_fire_ob(object, user)
+		return TRUE
+
+	return FALSE
 
 /obj/item/binoculars/tactical/dropped(mob/user)
 	. = ..()
@@ -154,7 +160,6 @@
 
 	if(!user.mind)
 		return
-
 	var/datum/squad/S = user.assigned_squad
 
 	var/laz_name = ""
@@ -231,15 +236,26 @@
 				laser = OB
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				to_chat(user, "<span class='notice'>RELEASE TO FIRE ORBITAL CANNON.</span>")
-				while(laser)
+
+				// Wait for that ALT click to fire
+				current_turf = TU
+				ob_fired = FALSE // Reset the fired state
+				while(laser && !ob_fired)
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
-				if(targ_area)
-					log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(TU)].")
-					message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(TU)].")
+				current_turf = null
 
-				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,user)
+/obj/item/binoculars/tactical/proc/try_fire_ob(atom/A, mob/living/carbon/human/user)
+	if(mode != MODE_ORBITAL)
+		return
+	if(A != laser || !current_turf)
+		return // Gotta click on a laser target
+	ob_fired = TRUE
+	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(get_turf(laser), user)
+	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
+	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
+	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
