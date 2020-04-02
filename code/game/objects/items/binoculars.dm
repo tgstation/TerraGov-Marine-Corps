@@ -255,3 +255,8 @@
 	desc = "A pair of binoculars designed to find coordinates."
 	changable = 0
 	mode = 1
+
+#undef MODE_CAS
+#undef MODE_RANGE_FINDER
+#undef MODE_RAILGUN
+#undef MODE_ORBITAL
