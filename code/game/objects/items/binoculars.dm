@@ -24,7 +24,7 @@
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
-	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun.
+	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
 	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
 
 /obj/item/binoculars/tactical/Initialize()
@@ -33,8 +33,16 @@
 
 /obj/item/binoculars/tactical/examine()
 	..()
-	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
-
+	switch(mode)
+		if(0)
+			to_chat(usr, "<span class='notice'>They are currently set to CAS marking mode.</span>")
+		if(1)
+			to_chat(usr, "<span class='notice'>They are currently set to range finding mode.</span>")
+		if(2)
+			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
+		if(3)
+			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
+	
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		qdel(laser)
@@ -194,25 +202,25 @@
 		if(2)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!targ_area)
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
 				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
 				var/obj/effect/overlay/temp/laser_target/RT = new (TU, laz_name, S)
 				laser = RT
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				while(laser)
-					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,usr)
+					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(3)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>Orbital bombardment not yet available!</span>")
 			else if(!targ_area)
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>No target detected!</span>")
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
 				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
 				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)
@@ -224,8 +232,8 @@
 						QDEL_NULL(laser)
 						break
 				if(targ_area)
-					log_attack("[key_name(usr)] fired an orbital bombardment in [AREACOORD(TU)].")
-					message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(TU)].")
+					log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(TU)].")
+					message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(TU)].")
 
 				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,usr)
 
