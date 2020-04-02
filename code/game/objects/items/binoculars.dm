@@ -225,7 +225,7 @@
 						break
 				if(targ_area)
 					log_attack("[key_name(usr)] fired an orbital bombardment in [AREACOORD(TU)].")
-					message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(TU)].")
+					message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(TU)].")
 
 				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,usr)
 
