@@ -43,18 +43,16 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
-	desc = "An autoinjector loaded with 3 doses of healing and painkilling chemicals. Intended for use in active combat."
+	desc = "An autoinjector loaded with a dose of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
-	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 5,
 						/datum/reagent/medicine/kelotane = 5,
 						/datum/reagent/medicine/tramadol = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
 	name = "Advanced combat autoinjector"
-	desc = "An autoinjector loaded with 3 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	desc = "An autoinjector loaded with a dose of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
-	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/meralyne = 5,
 						/datum/reagent/medicine/dermaline = 5,
 						/datum/reagent/medicine/oxycodone = 5)
