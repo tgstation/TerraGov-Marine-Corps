@@ -11,7 +11,6 @@
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 	rollable_sleeves = TRUE
 	has_sensor = 2
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
@@ -20,14 +19,12 @@
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/sniper
@@ -50,6 +47,7 @@
 	icon_state = "MP_jumpsuit"
 	rollable_sleeves = FALSE
 
+
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
@@ -61,6 +59,7 @@
 	desc = "A kevlar-weaved, hazmat-tested, EMF-augmented, yet extra-soft and extra-light officer uniform. You suspect it's not as extra-fancy as advertised."
 	icon_state = "wardentanclothes"
 	item_state = "wardentanclothes"
+
 
 /obj/item/clothing/under/marine/officer/hos
 	name = "marine officer uniform"
