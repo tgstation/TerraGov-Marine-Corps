@@ -258,8 +258,10 @@
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
 				else
-					// Upgrade is increased based on marine to xeno population taking larva_stored as a modifier.
-					var/upgrade_points = 1 + (FLOOR(hive_status.larva_stored / 2))
+					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+					var/upgrade_points = 1 + (FLOOR(stored_larva / 2, 1))
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
@@ -270,8 +272,10 @@
 	if(!hive.check_ruler())
 		return
 
-	// Evolution is increased based on marine to xeno population taking larva_stored as a modifier.
-	var/evolution_points = 1 + (FLOOR(hive_status.larva_stored / 2))
+	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/evolution_points = 1 + (FLOOR(stored_larva / 2, 1))
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
