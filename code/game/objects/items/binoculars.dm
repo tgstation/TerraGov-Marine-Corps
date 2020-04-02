@@ -241,8 +241,6 @@
 
 				GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(TU,user)
 
-				
-
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
 	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Ctrl+Click to target something."
@@ -254,7 +252,7 @@
 	name = "range-finder"
 	desc = "A pair of binoculars designed to find coordinates."
 	changable = 0
-	mode = 1
+	mode = MODE_RANGE_FINDER
 
 #undef MODE_CAS
 #undef MODE_RANGE_FINDER
