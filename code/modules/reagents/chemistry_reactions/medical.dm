@@ -62,6 +62,11 @@
 	results = list(/datum/reagent/medicine/spaceacillin = 2)
 	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/inaprovaline = 1)
 
+/datum/chemical_reaction/polyhexanide
+	name = "Polyhexanide"
+	results = list(/datum/reagent/medicine/polyhexanide = 3)
+	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/sterilizine = 1)
+
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
 	results = list(/datum/reagent/medicine/imidazoline = 2)
