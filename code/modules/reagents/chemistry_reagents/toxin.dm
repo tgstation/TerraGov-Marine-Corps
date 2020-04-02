@@ -24,13 +24,6 @@
 	toxpwr = 1
 	taste_description = "alchemy" //just anti-pwr-game stuff, no sci-fi or anything
 
-/datum/reagent/toxin/pttoxin
-	name = "Toxin"
-	description = "A toxic chemical."
-	custom_metabolism = REAGENTS_METABOLISM * 5
-	toxpwr = 1
-	taste_description = "alchemy"
-
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
 	description = "A toxic chemical."
@@ -447,10 +440,10 @@
 
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 6
+	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -458,28 +451,24 @@
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
-	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
-	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
+	var/pain_damage = volume * REM
+	L.apply_damage(pain_damage, AGONY) //1st level neurotoxin effects: pain
+	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, kept to let you know you're stung.
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
-	if(volume > 15) //3rd level neurotoxin effects: eye blur
-		L.blur_eyes(5)
-	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjust_ear_damage(0, 1)
-		L.blind_eyes(5)
-	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.Knockdown(20)
+	switch(current_cycle)
+		if(20 to INFINITY)
+			L.adjustStaminaLoss((current_cycle/2 - 10)*REM)
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
+	L.adjustOxyLoss(2) //Overdose starts applying more oxy damage
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2) //Can't breathe; for punishing the bullies
+	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
@@ -497,6 +486,7 @@
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.jitter(1) //So unga know to get treated
 	return ..()
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
