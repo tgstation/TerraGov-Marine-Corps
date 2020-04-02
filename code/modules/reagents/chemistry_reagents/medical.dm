@@ -360,7 +360,7 @@
 	purge_list = list(/datum/reagent/toxin/mindbreaker)
 	purge_rate = 5
 
-datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
 	L.AdjustUnconscious(-20)
