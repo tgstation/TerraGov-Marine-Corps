@@ -13,7 +13,7 @@
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
