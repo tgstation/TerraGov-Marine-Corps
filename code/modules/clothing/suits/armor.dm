@@ -208,7 +208,15 @@
 	siemens_coefficient = 0.7
 
 
-
+/obj/item/clothing/suit/armor/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
+	var/obj/item/weapon/gun/holstered = null
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
 
 
 //All of the armor below is mostly unused

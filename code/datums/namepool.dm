@@ -35,3 +35,8 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	firstname_male_pool = "names/moth_first"
 	firstname_female_pool = "names/moth_first"
 	lastname_pool = "names/moth_last"
+
+/datum/namepool/sectoid
+	firstname_male_pool = "names/sectoid_first"
+	firstname_female_pool = "names/sectoid_first"
+	lastname_pool = "names/sectoid_last"
