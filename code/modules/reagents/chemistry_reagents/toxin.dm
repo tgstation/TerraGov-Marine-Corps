@@ -443,7 +443,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -457,8 +457,8 @@
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
 	switch(current_cycle)
-		if(20 to INFINITY)
-			L.adjustStaminaLoss((current_cycle/2 - 10)*REM)
+		if(10 to INFINITY)
+			L.adjustStaminaLoss((current_cycle/2 - 5)*REM)
 	return ..()
 
 
@@ -475,16 +475,21 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
+	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
+	purge_rate = 10
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
+	var/target_temp = L.get_standard_bodytemperature()
 	if(L.getBruteLoss() || L.getFireLoss())
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
+	if(L.bodytemperature > target_temp) 
+		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
 	return ..()
