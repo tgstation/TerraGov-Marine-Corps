@@ -20,6 +20,8 @@ GLOBAL_VAR(restart_counter)
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
+	load_admins()
+
 	SetupExternalRSC()
 
 	populate_seed_list()
@@ -33,7 +35,8 @@ GLOBAL_VAR(restart_counter)
 	SetupLogs()
 
 	LoadVerbs(/datum/verbs/menu)
-	load_admins()
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))

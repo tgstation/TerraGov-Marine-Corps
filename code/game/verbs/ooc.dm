@@ -14,10 +14,7 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -122,10 +119,7 @@
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	if(!admin)
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return

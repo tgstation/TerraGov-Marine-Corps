@@ -37,7 +37,7 @@ if grep -P '(?(?=^ {1,2}.)(^ {1,2}[^*\/\s])|(^ +\S))' code/**/*.dm; then
     echo "space indentation detected"
     st=1
 fi;
-if grep -P '^\t+ ' code/**/*.dm; then
+if grep -P '^\t+ [^ *]' code/**/*.dm; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;

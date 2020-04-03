@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(evacuation)
 	switch(evac_status)
 		if(EVACUATION_STATUS_INITIATING)
 			var/eta = EVACUATION_ESTIMATE_DEPARTURE
-			. = "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
+			. = "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 		if(EVACUATION_STATUS_IN_PROGRESS)
 			. = "NOW"
 

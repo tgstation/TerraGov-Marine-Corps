@@ -62,7 +62,7 @@
 
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
-	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/sleep_up)
+	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/sleep_up)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
 
 	if(usercli)
@@ -79,7 +79,7 @@
 
 	autofire_off()
 
-	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_EQUIPPED))
+	UnregisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_ITEM_EQUIPPED))
 
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 

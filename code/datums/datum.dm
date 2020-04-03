@@ -7,6 +7,26 @@
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
 	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
 
+	/**
+	  * Components attached to this datum
+	  *
+	  * Lazy associated list in the structure of `type:component/list of components`
+	  */
+	var/list/datum_components
+	/**
+	  * Any datum registered to receive signals from this datum is in this list
+	  *
+	  * Lazy associated list in the structure of `signal:registree/list of registrees`
+	  */
+	var/list/comp_lookup
+	/// Lazy associated list in the structure of `signals:proctype` that are run when the datum receives that signal
+	var/list/list/datum/callback/signal_procs
+	/**
+	  * Is this datum capable of sending signals?
+	  *
+	  * Set to true when a signal has been registered
+	  */
+	var/signal_enabled = FALSE
 
 #ifdef TESTING
 	var/running_find_references
@@ -34,7 +54,7 @@
 			continue
 		qdel(timer)
 
-	return ..() || QDEL_HINT_QUEUE
+	return QDEL_HINT_QUEUE
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 /datum/proc/save_vars()

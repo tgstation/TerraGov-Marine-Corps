@@ -25,9 +25,9 @@
 	var/valid_steps_taken = 0
 	var/crush_sound = "punch"
 	var/speed_per_step = 0.15
-	var/steps_for_charge = 5
+	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
-	var/crush_living_damage = 40
+	var/crush_living_damage = 30
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 
 
