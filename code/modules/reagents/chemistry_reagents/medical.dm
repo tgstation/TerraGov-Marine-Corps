@@ -94,9 +94,9 @@
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/L)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
-	if(volume > 15)
+	if(volume > 20)
 		L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
-		L.apply_damage(REM, TOX)
+		L.apply_damage(REM*0.5, TOX)
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
@@ -121,19 +121,18 @@
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 3)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	L.set_drugginess(10)
 	L.apply_damage(2*REM, TOX)
 	L.jitter(3)
+
+/datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(6*REM, TOX)
+	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(6*REM, TRUE)
-
-
-/datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(6*REM, TOX)
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -192,7 +191,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
-	purge_rate = 2
+	purge_rate = 0.2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
@@ -611,7 +610,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
-	purge_rate = 2
+	purge_rate = 0.2
 	
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
