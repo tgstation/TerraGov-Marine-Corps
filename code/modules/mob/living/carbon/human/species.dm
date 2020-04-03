@@ -590,7 +590,7 @@
 	total_health = 150 //more health than regular humans
 
 	brute_mod = 0.75
-	burn_mod = 1.1
+	burn_mod = 0.90 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -642,8 +642,8 @@
 	slowdown = 1.3 //Slower than later synths
 	total_health = 200 //But more durable
 	insulated = 1
-	brute_mod = 0.75
-	burn_mod = 1.1
+	brute_mod = 0.60 //but more durable
+	burn_mod = 0.90 //previous comment
 
 	cold_level_1 = -1
 	cold_level_2 = -1
