@@ -152,17 +152,19 @@
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "Synaptizine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use synaptizine mix."
-	amount_per_transfer_from_this = 2
-	volume = 6
+	amount_per_transfer_from_this = 3
+	volume = 9
 	icon_state = "autoinjector-1"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
-						/datum/reagent/medicine/arithrazine = 3)
+						/datum/reagent/medicine/arithrazine = 6)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
 	name = "Expired synaptizine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
+	amount_per_transfer_from_this = 2
+	volume = 6
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
-						/datum/reagent/toxin = 3)
+						/datum/reagent/medicine/arithrazine = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "Neuraline autoinjector"
