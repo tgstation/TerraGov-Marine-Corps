@@ -107,6 +107,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
+
+	if(species.species_flags & NO_DAMAGE_OVERLAY)
+		return
+
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 

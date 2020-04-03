@@ -218,3 +218,15 @@
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
+
+//-------------------------------------------------------
+//Sectoid Rifle
+
+/obj/item/ammo_magazine/rifle/alien_rifle
+	name = "\improper Alien Rifle plasma magazine"
+	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
+	caliber = "alien alloy"
+	icon_state = "alien_rifle"
+	default_ammo = /datum/ammo/energy/plasma
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/alien_rifle

@@ -1,0 +1,37 @@
+/datum/job/sectoid
+	access = ALL_ANTAGONIST_ACCESS
+	minimal_access = ALL_ANTAGONIST_ACCESS
+	skills_type = /datum/skills/crafty
+	faction = "Sectoids"
+
+
+//Sectoid Grunt
+/datum/job/sectoid/grunt
+	title = "Sectoid Grunt"
+	outfit = /datum/outfit/job/sectoid/grunt
+
+
+/datum/outfit/job/sectoid/grunt
+	name = "Sectoid Grunt"
+	jobtype = /datum/job/sectoid/grunt
+
+	id = /obj/item/card/id
+	belt = /obj/item/storage/belt/marine/sectoid
+	head = /obj/item/clothing/head/helmet/sectoid
+	w_uniform = /obj/item/clothing/under/sectoid
+	shoes = /obj/item/clothing/shoes/sectoid
+	wear_suit = /obj/item/clothing/suit/armor/sectoid
+	gloves = /obj/item/clothing/gloves/sectoid
+	r_store = /obj/item/stack/medical/bruise_pack/alien
+	l_store = /obj/item/explosive/grenade/frag/alien
+	back = /obj/item/weapon/gun/rifle/alien_rifle
+
+
+/datum/outfit/job/sectoid/grunt/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alien_rifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alien_rifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alien_rifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/alien_rifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BELT)
