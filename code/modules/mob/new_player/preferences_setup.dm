@@ -156,9 +156,9 @@
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
 	if(random_name)
-		new_name = character.species.random_name(gender)
+		var/new_name = character.species.random_name(gender)
 	else
-		new_name = character.species.prefs_name(src)
+		var/new_name = character.species.prefs_name(src)
 
 	if(!good_eyesight)
 		ENABLE_BITFIELD(character.disabilities, NEARSIGHTED)
