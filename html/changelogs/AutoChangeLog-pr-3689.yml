@@ -1,0 +1,5 @@
+author: "Toxici11i"
+delete-after: True
+changes: 
+  - tweak: "synth and old synth now have 0.9* the normal burn damage."
+  - tweak: "old synths now have extra brute armor to accompany the slowdown and extra HP compared to new synths"
