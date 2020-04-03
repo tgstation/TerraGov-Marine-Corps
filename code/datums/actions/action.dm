@@ -88,7 +88,7 @@
 		M.client.screen += button
 	M.update_action_buttons()
 	M.actions_by_path[type] = src
-	SEND_SIGNAL(M, ACTION_GIVEN, src)
+	SEND_SIGNAL(M, ACTION_GIVEN)
 
 /datum/action/proc/remove_action(mob/M)
 	if(M.client)
@@ -97,7 +97,7 @@
 	M.actions -= src
 	M.update_action_buttons()
 	owner = null
-	SEND_SIGNAL(M, ACTION_REMOVED, src)
+	SEND_SIGNAL(M, ACTION_REMOVED)
 
 //Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()

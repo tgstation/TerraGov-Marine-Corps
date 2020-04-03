@@ -122,7 +122,7 @@
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, .proc/reason_target_killed)
 				return
 			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_QDELETING, .proc/reason_target_killed)
+				RegisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED, .proc/reason_target_killed)
 				return
 
 	return ..()
@@ -135,7 +135,7 @@
 				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
 				return
 			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_QDELETING)
+				UnregisterSignal(atom_to_walk_to, COMSIG_PARENT_PREQDELETED)
 				return
 
 	return ..()
