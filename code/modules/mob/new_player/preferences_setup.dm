@@ -156,14 +156,14 @@
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
 	if(random_name)
-		real_name = character.species.random_name(gender)
+		new_name = character.species.random_name(gender)
 	else
-		real_name = character.species.prefs_name(src)
+		new_name = character.species.prefs_name(src)
 
 	if(!good_eyesight)
 		ENABLE_BITFIELD(character.disabilities, NEARSIGHTED)
 
-	character.real_name = real_name
+	character.real_name = new_name
 	character.name = character.real_name
 
 	character.flavor_text = flavor_text
