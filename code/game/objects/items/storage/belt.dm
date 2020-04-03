@@ -296,6 +296,24 @@
 	icon_state = "som_belt"
 	item_state = "som_belt"
 
+/obj/item/storage/belt/marine/sectoid
+	name = "\improper strange ammo belt"
+	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
+	icon_state = "swatbelt"
+	item_state = "swatbelt"
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/explosive/grenade,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/tool/crowbar
+		)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"

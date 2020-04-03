@@ -601,3 +601,42 @@
 
 	fire_delay = 1.1 SECONDS
 	burst_amount = 1
+
+//-------------------------------------------------------
+//Sectoid Rifle
+
+/obj/item/weapon/gun/rifle/alien_rifle
+	name = "\improper alien rifle"
+	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
+	icon_state = "alien_rifle"
+	item_state = "alien_rifle"
+	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	max_shells = 20//codex stuff
+	ammo = /datum/ammo/energy/plasma
+	muzzleflash_iconstate = "muzzle_flash_pulse"
+	current_mag = /obj/item/ammo_magazine/rifle/alien_rifle
+	wield_delay = 0.4 SECONDS
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 0.3 SECONDS
+	burst_amount = 3
+	accuracy_mult = 2
+	accuracy_mult_unwielded = 0.8
+
+//only sectoids can fire it
+/obj/item/weapon/gun/rifle/alien_rifle/Fire(atom/target, mob/living/user, params, reflex)
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.species?.species_flags & IS_PSYCHIC)
+			. = ..()
+		else
+			to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+			return
+	return
