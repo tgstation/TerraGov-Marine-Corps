@@ -910,10 +910,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 375
+	damage = 325
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
-	explosion(T, -1, -1, 2, 5)
+	explosion(T, -1, -1, -1, 1)
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
