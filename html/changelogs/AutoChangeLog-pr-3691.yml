@@ -1,7 +1,0 @@
-author: "Toxici11i"
-delete-after: True
-changes: 
-  - tweak: "removed spooky synth skills (super specialist skills that not even DS had)"
-  - tweak: "gives synths a boost to CQC and meele respectively"
-  - tweak: "gives synths pistol training, but untrained firearm training for everything else"
-  - bugfix: "now factors in melee skill for damaging objects and humans."

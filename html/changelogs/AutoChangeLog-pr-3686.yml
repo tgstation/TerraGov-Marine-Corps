@@ -1,8 +1,0 @@
-author: "Toxici11i"
-delete-after: True
-changes: 
-  - rscdel: "removed hivemind cores automatically spawning a hivemind (to prevent queens from spawning another)"
-  - rscadd: "the ability for drones to evolve into hiveminds"
-  - rscdel: "queens and shrikes being able to manually spawn them"
-  - tweak: "hiveminds now have loudvoice"
-  - tweak: "hiveminds no longer display their name in xeno hivemind, instead are just 'The hivemind'"
