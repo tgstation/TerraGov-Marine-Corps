@@ -60,7 +60,6 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/spawn_hivemind,
 		/datum/action/xeno_action/toggle_pheromones
 		)
 

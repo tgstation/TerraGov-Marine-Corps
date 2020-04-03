@@ -19,10 +19,10 @@
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_ZERO
 
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
-	invisibility = INVISIBILITY_OBSERVER
+	invisibility = INVISIBILITY_MAXIMUM
 	sight = SEE_MOBS|SEE_TURFS|SEE_OBJS
 	see_in_dark = 8
 	move_on_shuttle = TRUE
@@ -30,11 +30,12 @@
 	hud_type = /datum/hud/hivemind
 	hud_possible = list(PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
 
-	var/obj/effect/alien/weeds/node/hivemindcore/core
+	var/obj/effect/alien/hivemindcore/core
 
-/mob/living/carbon/xenomorph/hivemind/Initialize(mapload, obj/effect/alien/weeds/node/hivemindcore/hmcore)
-	. = ..()
-	core = hmcore
+/mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
+    . = ..()
+    core = new(loc)
+    core.parent = src
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
@@ -45,7 +46,7 @@
 			forceMove(get_turf(core))
 		return FALSE
 
-	// Don't allow them over the timed_late doors 
+	// Don't allow them over the timed_late doors
 	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
 	if(door?.CanPass(src, NewLoc))
 		return FALSE
@@ -88,7 +89,7 @@
 	forceMove(get_turf(A))
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
-	
+
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlShiftClickOn(atom/A)
@@ -179,3 +180,54 @@
 
 /mob/living/carbon/xenomorph/hivemind/setBrainLoss(amount)
 	return FALSE
+
+// =================
+// hivemind core
+/obj/effect/alien/hivemindcore
+	name = "hivemind core"
+	desc = "A very weird, pulsating node. This looks almost alive."
+	max_integrity = 600
+	icon = 'icons/Xeno/weeds.dmi'
+	icon_state = "weed_hivemind4"
+	var/mob/living/carbon/xenomorph/hivemind/parent
+
+/obj/effect/alien/hivemindcore/Initialize(mapload)
+	. = ..()
+	set_light(7, 5, LIGHT_COLOR_PURPLE)
+
+/obj/effect/alien/hivemindcore/Destroy()
+	if(isnull(parent))
+		return ..()
+	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
+	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
+	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	parent.ghostize()
+	QDEL_NULL(parent)
+	return ..()
+
+//hivemind cores
+
+/obj/effect/alien/hivemindcore/attack_alien(mob/living/carbon/xenomorph/X)
+	if(isxenoqueen(X))
+		var/choice = alert(X, "Are you sure you want to destroy the hivemind?", "Destroy hivemind", "Yes", "Cancel")
+		if(choice == "Yes")
+			deconstruct(FALSE)
+			return
+
+	X.visible_message("<span class='danger'>[X] nudges its head against [src].</span>", \
+	"<span class='danger'>You nudge your head against [src].</span>")
+
+/obj/effect/alien/hivemindcore/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
+	. = ..()
+	if(isnull(parent))
+		return
+	if(prob(60))
+		return
+	var/health_percent = round((max_integrity / obj_integrity) * 100)
+	switch(health_percent)
+		if(-INFINITY to 25)
+			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
+		if(26 to 75)
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
+		if(76 to INFINITY)
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")

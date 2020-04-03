@@ -228,7 +228,7 @@
 	cooldown_timer = 5 SECONDS
 	base_wait = 2.5 SECONDS
 	scaling_wait = 0
-	
+
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -840,53 +840,6 @@
 
 	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
 	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
-
-	succeed_activate()
-	add_cooldown()
-
-// ***************************************
-// *********** Spawn hivemind
-// ***************************************
-/datum/action/xeno_action/spawn_hivemind
-	name = "Create hivemind"
-	action_icon_state = "lay_hivemind"
-	plasma_cost = 400
-	cooldown_timer = 300 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
-
-
-/datum/action/xeno_action/spawn_hivemind/action_activate()
-	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	var/turf/current_turf = get_turf(owner)
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, "<span class='warning'>We can't place a hivemind here. Lay it on some resin.</span>")
-		return FALSE
-
-	if(length(xeno.hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-		to_chat(owner, "<span class='warning'>We already have a hivemind active.</span>")
-		return FALSE
-
-	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
-
-	if(!current_turf.check_alien_construction(owner))
-		return FALSE
-
-	owner.visible_message("<span class='xenowarning'>\The [owner] has created a hivemind!</span>", \
-		"<span class='xenowarning'>We have created a hivemind!</span>")
-
-	var/obj/effect/alien/weeds/node/hivemindcore/core = new /obj/effect/alien/weeds/node/hivemindcore(current_turf)
-	if(!isxenohivemind(core.parent))
-		return FALSE
-	var/mob/living/carbon/xenomorph/hivemind/xeno_hivemind = core.parent
-	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
-
-	xeno_hivemind.offer_mob()
-	var/datum/game_mode/gm = SSticker.mode
-	if(gm && (gm.flags_round_type & MODE_FOG_ACTIVATED))
-		gm.remove_fog()
 
 	succeed_activate()
 	add_cooldown()
