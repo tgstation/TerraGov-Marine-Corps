@@ -294,7 +294,7 @@
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
-	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic efffect."
+	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 
