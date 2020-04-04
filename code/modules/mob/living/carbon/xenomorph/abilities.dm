@@ -77,6 +77,19 @@
 	add_cooldown()
 	return succeed_activate()
 
+//AI stuff
+/datum/action/xeno_action/plant_weeds/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/plant_weeds/ai_should_use(target)
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
+		//There's already a node on this loc don't plant anything
+		return ..()
+	action_activate()
+	return TRUE
+
 /datum/action/xeno_action/plant_weeds/slow
 	cooldown_timer = 12 SECONDS
 

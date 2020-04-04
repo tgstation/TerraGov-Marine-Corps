@@ -200,6 +200,7 @@
 
 #define iseffect(O) (istype(O, /obj/effect))
 
+#define isainode(O) (istype(O, /obj/effect/ai_node))
 
 //Gamemode
 #define isdistress(O) (istype(O, /datum/game_mode/infestation/distress))

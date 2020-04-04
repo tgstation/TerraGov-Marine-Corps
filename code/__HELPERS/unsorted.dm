@@ -1245,6 +1245,13 @@ will handle it, but:
 
 	return pois
 
+//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
+	if(diagonal_check)
+		if(ISDIAGONALDIR(direction))
+			return list(turn(direction, 45), turn(direction, -45))
+	return list(turn(direction, 90), turn(direction, -90))
+
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
