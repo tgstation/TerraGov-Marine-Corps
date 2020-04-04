@@ -347,23 +347,6 @@
 		C.disabilities = 0
 	return ..()
 
-/datum/reagant/medicine/roulettium
-	name = "Roulettium"
-	description = "The pure, concentrated essence of unga. Unsafe to ingest in any quantity."
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	taste_description = "poor life choices"
-	custom_metabolism = REAGENTS_METABOLISM * 0.25 //0.1u
-
-/datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
-	L.adjustToxLoss(-20 * REM)
-	L.heal_limb_damage(0, 20 * REM)
-	L.heal_limb_damage(20*REM, 0)
-	L.adjustStaminaLoss(-20*REM)
-	L.AdjustStun(-100)
-	if(prob(5))
-		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
-
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
 	description = "Synaptizine is used to treat various diseases."
@@ -1013,3 +996,25 @@
 	if(prob(20)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
+
+
+
+/datum/reagant/medicine/roulettium
+	name = "Roulettium"
+	description = "The pure, concentrated essence of unga. Unsafe to ingest in any quantity."
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	taste_description = "poor life choices"
+	custom_metabolism = REAGENTS_METABOLISM * 0.25 //0.1u
+
+/datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.adjustToxLoss(-20 * REM)
+	L.heal_limb_damage(0, 20 * REM)
+	L.heal_limb_damage(20*REM, 0)
+	L.adjustStaminaLoss(-20*REM)
+	L.AdjustStun(-100)
+	if(prob(5))
+		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
+
+
+
