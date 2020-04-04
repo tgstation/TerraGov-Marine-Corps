@@ -235,6 +235,7 @@
 				laser = OB
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
 					return
 				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
 				// Wait for that ALT click to fire
