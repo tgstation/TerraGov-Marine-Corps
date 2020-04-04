@@ -21,7 +21,7 @@
 	var/atom/target = parent
 
 	target.orbiters = src
-	if(ismovable(target))
+	if(ismovableatom(target))
 		tracker = new(target, CALLBACK(src, .proc/move_react))
 
 /datum/component/orbiter/UnregisterFromParent()
