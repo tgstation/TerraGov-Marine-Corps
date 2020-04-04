@@ -294,9 +294,6 @@
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/shotgunbox/buckshot = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/shotgunbox/flechette = round(scale * 3),
-						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
-						/obj/item/ammo_magazine/rifle/tx15_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
@@ -411,8 +408,6 @@
 						/obj/item/ammo_magazine/standard_lmg = round(scale * 30),
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
-						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/tx15_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
 						/obj/item/cell/lasgun/M43 = round(scale * 25),
 

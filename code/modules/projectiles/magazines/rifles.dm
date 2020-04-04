@@ -145,7 +145,7 @@
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
- 
+
 /obj/item/ammo_magazine/m41ae2_hpr
     name = "\improper M41AE2 ammo box (10x24mm)"
     desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
@@ -181,14 +181,6 @@
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/sx16
 
-/obj/item/ammo_magazine/rifle/sx16_flechette
-	name = "\improper SX-16 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the SX-16."
-	caliber = "16 gauge"
-	icon_state = "sx16_flechette"
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_flechette
-	max_rounds = 15
-	gun_type = /obj/item/weapon/gun/rifle/sx16
 
 /obj/item/ammo_magazine/rifle/sx16_slug
 	name = "\improper SX-16 slug magazine (16 gauge)"
@@ -200,15 +192,6 @@
 	gun_type = /obj/item/weapon/gun/rifle/sx16
 
 //TX-16 AUTOMATIC SHOTGUN
-
-/obj/item/ammo_magazine/rifle/tx15_flechette
-	name = "\improper TX-15 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the TX-15."
-	caliber = "16 gauge"
-	icon_state = "tx15_flechette"
-	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
-	max_rounds = 12
-	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
 
 /obj/item/ammo_magazine/rifle/tx15_slug
 	name = "\improper TX-15 slug magazine (16 gauge)"

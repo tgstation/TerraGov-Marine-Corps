@@ -546,7 +546,7 @@
 
 /obj/item/weapon/gun/rifle/sx16
 	name = "\improper SX-16 automatic shotgun"
-	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues."
+	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot or slugs. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues."
 	icon_state = "sx16"
 	item_state = "sx16"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'

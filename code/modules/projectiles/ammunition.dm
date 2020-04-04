@@ -425,7 +425,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-		
+
 	if(MG.type != magazine_type)
 		to_chat(user,"<span class='warning'>That's not the right kind of magazine.</span>")
 		return
@@ -627,11 +627,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "Buckshot Ammo Box"
 	icon_state = "ammoboxbuckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
-
-/obj/item/shotgunbox/flechette
-	name = "Flechette Ammo Box"
-	icon_state = "ammoboxflechette"
-	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 
 /obj/item/ammobox/m4a3

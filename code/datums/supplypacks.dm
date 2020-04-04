@@ -340,16 +340,11 @@ WEAPONS
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/buckshot,
-					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette,
 					/obj/item/ammo_magazine/rifle/tx15_slug,
 					/obj/item/ammo_magazine/rifle/tx15_slug,
 					/obj/item/ammo_magazine/rifle/tx15_slug,
-					/obj/item/ammo_magazine/rifle/tx15_flechette,
-					/obj/item/ammo_magazine/rifle/tx15_flechette,
-					/obj/item/ammo_magazine/rifle/tx15_flechette,
 					)
-	name = "surplus shotguns crate (T-35 x2, T-35 ammo x2 each, TX-15 x2, TX Flechette and slugs x3 each)"
+	name = "surplus shotguns crate (T-35 x2, T-35 ammo x2 each, TX-15 x2, TX Buckshot and slugs x3 each)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper shotguns crate"
@@ -429,7 +424,6 @@ WEAPONS
 					/obj/item/weapon/gun/shotgun/combat,
 					/obj/item/ammo_magazine/shotgun/,
 					/obj/item/ammo_magazine/shotgun/buckshot,
-					/obj/item/ammo_magazine/shotgun/flechette
 					)
 	name = "MK221 tactical shotgun crate"
 	cost = RO_PRICE_PRICY
@@ -1235,16 +1229,6 @@ AMMO
 	containername = "\improper Buckshot ammo box crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammoboxflechette
-	name = "Flechette Ammo Box Crate"
-	contains = list(
-					/obj/item/shotgunbox/flechette
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper Flechette ammo box crate"
-	group = "Ammo"
-
 /datum/supply_packs/ammo_regular
 	name = "regular magazines crate (T-18 x5, TP-14 x2, TP-44 x2, T-19 x2, T-35 x1)"
 	contains = list(
@@ -1388,20 +1372,6 @@ AMMO
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Mateba speed loader crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_flechette_shotgun
-	name = "flechette shotgun shells crate (x5)"
-	contains = list(
-					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/shotgun/flechette
-					)
-	cost = RO_PRICE_NEAR_FREE
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper T-35 ammo crate"
 	group = "Ammo"
 
 

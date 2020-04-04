@@ -32,10 +32,8 @@
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/ammo_magazine/shotgun/flechette = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
-					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					/obj/item/weapon/combat_knife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
@@ -182,10 +180,7 @@
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/shotgunbox/flechette = 3,
-					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
-					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					/obj/item/smartgun_powerpack = 2
 					)
 

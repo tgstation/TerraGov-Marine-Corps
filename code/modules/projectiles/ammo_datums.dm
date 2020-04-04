@@ -532,30 +532,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	airburst(target_turf, proj)
 
 
-/datum/ammo/bullet/shotgun/flechette
-	name = "shotgun flechette shell"
-	icon_state = "flechette"
-	hud_state = "shotgun_flechette"
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 2
-	bonus_projectiles_scatter = 3
-	accuracy_var_low = 8
-	accuracy_var_high = 8
-	max_range = 15
-	damage = 75
-	damage_falloff = 0.5
-	penetration = 30
-
-/datum/ammo/bullet/shotgun/flechette_spread
-	name = "additional flechette"
-	icon_state = "flechette"
-	accuracy_var_low = 8
-	accuracy_var_high = 8
-	max_range = 15
-	damage = 30
-	damage_falloff = 1
-	penetration = 25
-
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
@@ -617,30 +593,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 25
 	damage_falloff = 4
 
-/datum/ammo/bullet/shotgun/sx16_flechette
-	name = "shotgun flechette shell"
-	icon_state = "flechette"
-	hud_state = "shotgun_flechette"
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/sx16_flechette/spread
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
-	max_range = 15
-	damage = 15
-	damage_falloff = 0.5
-	penetration = 15
-
-/datum/ammo/bullet/shotgun/sx16_flechette/spread
-	name = "additional flechette"
-	icon_state = "flechette"
-	accuracy_var_low = 7
-	accuracy_var_high = 7
-	max_range = 15
-	damage = 15
-	damage_falloff = 0.5
-	penetration = 15
-
 /datum/ammo/bullet/shotgun/sx16_slug
 	name = "shotgun slug"
 	hud_state = "shotgun_slug"
@@ -652,25 +604,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
-/datum/ammo/bullet/shotgun/tx15_flechette
-	name = "shotgun flechette shell"
-	icon_state = "flechette"
-	hud_state = "shotgun_flechette"
-	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
-	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 4
-	max_range = 15
-	damage = 20
-	damage_falloff = 0.25
-	penetration = 15
-
-/datum/ammo/bullet/shotgun/tx15_flechette/spread
-	name = "additional flechette"
-	icon_state = "flechette"
-	max_range = 15
-	damage = 20
-	damage_falloff = 0.25
-	penetration = 15
 
 /datum/ammo/bullet/shotgun/tx15_slug
 	name = "shotgun slug"

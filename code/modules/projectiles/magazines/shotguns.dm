@@ -29,11 +29,6 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
-/obj/item/ammo_magazine/shotgun/flechette
-	name = "box of flechette shells"
-	desc = "A box filled with flechette shotgun shells. 12 Gauge."
-	icon_state = "flechette"
-	default_ammo = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/ammo_magazine/shotgun/beanbag
 	name = "box of beanbag slugs"
