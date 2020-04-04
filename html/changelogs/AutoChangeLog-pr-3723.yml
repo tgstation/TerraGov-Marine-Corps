@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - tweak: "Nuke must be anchored for the timer to be active, disabling the nuke resets the timer"
