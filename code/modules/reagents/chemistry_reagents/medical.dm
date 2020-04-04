@@ -1008,8 +1008,7 @@
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
 	L.adjustToxLoss(-20 * REM)
-	L.heal_limb_damage(0, 20 * REM)
-	L.heal_limb_damage(20*REM, 0)
+	L.heal_limb_damage(20*REM, 20 * REM)
 	L.adjustStaminaLoss(-20*REM)
 	L.AdjustStun(-100)
 	if(prob(5))
