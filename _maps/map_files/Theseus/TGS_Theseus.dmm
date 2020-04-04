@@ -878,6 +878,10 @@
 	dir = 9
 	},
 /area/mainship/living/officer_rnr)
+"acq" = (
+/obj/machinery/computer/camera_advanced/remote_fob,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "acr" = (
 /obj/structure/table/mainship,
 /obj/structure/cable{
@@ -67428,7 +67432,7 @@ bbQ
 bbQ
 bbQ
 bbQ
-bbQ
+acq
 bdY
 beU
 bdY
