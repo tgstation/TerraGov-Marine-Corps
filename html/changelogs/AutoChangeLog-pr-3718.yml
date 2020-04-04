@@ -1,0 +1,7 @@
+author: "KwinOriginal"
+delete-after: True
+changes: 
+  - rscadd: "Added uniform surplus vendor in Canterbury Cryo"
+  - rscadd: "Added weapon vendor in Canterbury main area"
+  - rscdel: "Removed uniform surplus vendor in Canterbury main area"
+  - rscdel: "Removed one GHMME closet from Canterbury Cryo"
