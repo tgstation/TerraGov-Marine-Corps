@@ -998,13 +998,12 @@
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
 
 
-
-/datum/reagant/medicine/roulettium
+/datum/reagent/medicine/roulettium
 	name = "Roulettium"
-	description = "The pure, concentrated essence of unga. Unsafe to ingest in any quantity."
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	taste_description = "poor life choices"
-	custom_metabolism = REAGENTS_METABOLISM * 0.25 //0.1u
+	description = "The concentrated essence of unga. Unsafe to ingest in any quantity"
+	color = "#19C832"
+	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	taste_description = "Poor life choices"
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
