@@ -1,0 +1,6 @@
+author: "Kuro-ai"
+delete-after: True
+changes: 
+  - rscadd: "added prison variant clothes"
+  - tweak: "gas mask and heavy helmet don't have tint anymore/armor sprites changes"
+  - balance: "heavy helmet accuracy debuff from 10% to 15%"
