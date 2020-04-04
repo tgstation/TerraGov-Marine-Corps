@@ -399,6 +399,13 @@
 	QDEL_LIST(egg_triggers)
 	return ..()
 
+/obj/effect/alien/egg/proc/transfer_to_hive(new_hivenumber)
+	if(hivenumber == new_hivenumber)
+		return
+	hivenumber = new_hivenumber
+	if(hugger)
+		hugger.hivenumber = new_hivenumber
+
 /obj/effect/alien/egg/proc/Grow()
 	if(status == EGG_GROWING)
 		update_status(EGG_GROWN)
