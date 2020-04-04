@@ -19,6 +19,7 @@
 	belt = /obj/item/storage/belt/marine/sectoid
 	head = /obj/item/clothing/head/helmet/sectoid
 	w_uniform = /obj/item/clothing/under/sectoid
+	glasses = /obj/item/clothing/glasses/night/sectoid
 	shoes = /obj/item/clothing/shoes/sectoid
 	wear_suit = /obj/item/clothing/suit/armor/sectoid
 	gloves = /obj/item/clothing/gloves/sectoid
