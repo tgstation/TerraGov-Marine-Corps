@@ -51,10 +51,10 @@
 	
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
-		qdel(laser)
+		QDEL_NULL(laser)
 		laser = null
 	if(coord)
-		qdel(coord)
+		QDEL_NULL(coord)
 		coord = null
 	. = ..()
 
@@ -105,9 +105,9 @@
 	if(zoom)
 		return
 	if(laser)
-		qdel(laser)
+		QDEL_NULL(laser)
 	if(coord)
-		qdel(coord)
+		QDEL_NULL(coord)
 
 
 /obj/item/binoculars/tactical/update_icon()
