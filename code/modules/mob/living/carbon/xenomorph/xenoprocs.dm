@@ -684,3 +684,14 @@
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return
+
+/mob/living/carbon/xenomorph/proc/adjust_sunder(adjustment)
+	sunder = CLAMP(sunder + adjustment, 0, sunder_max)
+
+/mob/living/carbon/xenomorph/proc/set_sunder(new_sunder)
+	sunder = CLAMP(new_sunder, 0, sunder_max)
+
+/mob/living/carbon/xenomorph/proc/get_sunder()
+	return (sunder * -0.01) + 1
+
+

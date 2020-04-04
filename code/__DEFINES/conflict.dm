@@ -51,6 +51,7 @@
 #define AMMO_IGNORE_ARMOR		(1<<10)
 #define AMMO_IGNORE_RESIST		(1<<11)
 #define AMMO_BALLISTIC			(1<<12)
+#define AMMO_SUNDERING			(1<<13)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

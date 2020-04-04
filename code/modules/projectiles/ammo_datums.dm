@@ -35,6 +35,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
+	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	var/flags_ammo_behavior = NONE
 
 
@@ -455,12 +456,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0
-	flags_ammo_behavior = AMMO_BALLISTIC
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
 	damage = 55
 	scatter = -15
 	penetration = 15
+	sundering = 5
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
