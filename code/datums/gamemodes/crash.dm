@@ -136,6 +136,7 @@
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
+	shuttle.crashing = FALSE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
 	bioscan_interval = world.time + 30 SECONDS
