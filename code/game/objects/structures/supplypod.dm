@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	if(effectMissile)
 		opened = TRUE
 		qdel(src)
-
+		return
 	if(style == STYLE_SEETHROUGH)
 		open(src)
 	else

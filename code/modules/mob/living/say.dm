@@ -48,10 +48,21 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
 
+	var/ic_blocked = FALSE
+	if(client && !forced && CHAT_FILTER_CHECK(message))
+		//The filter doesn't act on the sanitized message, but the raw message.
+		ic_blocked = TRUE
+
 	if(sanitize)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	if(!message)
+		return
+
+	if(ic_blocked)
+		//The filter warning message shows the sanitized message though.
+		to_chat(src, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 
 	var/datum/saymode/saymode = get_saymode(message, talk_key)
@@ -60,11 +71,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/in_critical = InCritical()
 
 	if(one_character_prefix[message_mode])
-		message = copytext(message, 2)
+		message = copytext_char(message, 2)
 	else if(message_mode || saymode)
-		message = copytext(message, 3)
-	if(findtext(message, " ", 1, 2))
-		message = copytext(message, 2)
+		message = copytext_char(message, 3)
+	message = trim_left(message)
 
 	if(stat == DEAD)
 		say_dead(original_message)
@@ -86,11 +96,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		// No, you cannot speak in xenocommon just because you know the key
 		if(can_speak_in_language(message_language))
 			language = message_language
-		message = copytext(message, 3)
+		message = copytext_char(message, 3)
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
-		if(findtext(message, " ", 1, 2))
-			message = copytext(message, 2)
+		message = trim_left(message)
 
 	if(!language)
 		language = get_default_language()
@@ -219,14 +228,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 
 /mob/living/proc/get_key(message)
-	var/key = copytext(message, 1, 2)
+	var/key = message[1]
 	if(key in GLOB.department_radio_prefixes)
-		return lowertext(copytext(message, 2, 3))
-
+		return lowertext(message[1 + length(key)])
 
 /mob/living/proc/get_message_language(message)
-	if(copytext(message, 1, 2) == ",")
-		var/key = copytext(message, 2, 3)
+	if(message[1] == ",")
+		var/key = message[1 + length(message[1])]
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
 			if(initial(LD.key) == key)

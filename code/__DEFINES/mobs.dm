@@ -128,6 +128,7 @@
 #define TK_USER			(1<<8)
 #define CANUNCONSCIOUS	(1<<9)
 #define CANCONFUSE		(1<<10)
+#define INCORPOREAL 	(1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
 
 // =============================
 // hive types
@@ -451,8 +452,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
-#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -513,7 +516,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
 //Boiler defines
-#define BOILER_LUMINOSITY					3
+#define BOILER_LUMINOSITY					0
 
 //Hivelord defines
 
@@ -562,6 +565,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
+GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD, 
+										BODY_ZONE_CHEST, 
+										BODY_ZONE_PRECISE_GROIN, 
+										BODY_ZONE_L_ARM,
+										BODY_ZONE_PRECISE_L_HAND, 
+										BODY_ZONE_R_ARM, 
+										BODY_ZONE_PRECISE_R_HAND, 
+										BODY_ZONE_L_LEG, 
+										BODY_ZONE_PRECISE_L_FOOT, 
+										BODY_ZONE_R_LEG, 
+										BODY_ZONE_PRECISE_R_FOOT
+										))
 
 //Hostile simple animals
 #define AI_ON		1

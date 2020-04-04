@@ -45,7 +45,6 @@
 		return
 	if(!squeak_sound)
 		CRASH("Squeak component attempted to play invalid sound.")
-		return
 
 	if(islist(squeak_sound))
 		playsound(parent, sound(pick(squeak_sound)), volume)

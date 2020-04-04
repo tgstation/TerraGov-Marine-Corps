@@ -272,6 +272,10 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
 
+/obj/item/clothing/glasses/sunglasses/sa/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_NONE)
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."

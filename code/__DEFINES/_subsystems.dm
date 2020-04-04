@@ -58,7 +58,8 @@
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
 #define INIT_ORDER_ATOMS			6
-#define INIT_ORDER_MACHINES			4
+#define INIT_ORDER_MACHINES			5
+#define INIT_ORDER_AI_NODES			3
 #define INIT_ORDER_TIMER			1
 #define INIT_ORDER_DEFAULT			0
 #define INIT_ORDER_AIR				-1
@@ -73,6 +74,7 @@
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
+#define FIRE_PRIORITY_ACTION_STATES 5
 #define FIRE_PRIORITY_PING			10
 #define FIRE_PRIORITY_IDLE_NPC		10
 #define FIRE_PRIORITY_SERVER_MAINT	10

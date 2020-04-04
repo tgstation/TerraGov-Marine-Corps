@@ -56,7 +56,7 @@
 
 				var/mob/living/carbon/human/H = C.loc
 
-				if(issurvivor(H) && is_ground_level(H.loc.z))
+				if(issurvivorjob(H.job) && is_ground_level(H.loc.z))
 					continue // survivors
 
 				if(H.w_uniform != C)

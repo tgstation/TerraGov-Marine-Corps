@@ -161,6 +161,14 @@
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/marine/commissar
+	name = "\improper commissar uniform"
+	desc = "A commissars noble uniform."
+	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	icon_state = "commissar_uniform"
+	item_state = "commissar_uniform"
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."

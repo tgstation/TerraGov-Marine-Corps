@@ -47,7 +47,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		take_damage(rand(0.2, 2))
+		take_damage(rand(2, 20) * 0.1)
 
 /*
 * Resin

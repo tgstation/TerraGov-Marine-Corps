@@ -115,9 +115,9 @@
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
 	icon_state = "10"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 7, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 7)
 	slowdown = 0
 	flags_atom = NONE
 
@@ -431,6 +431,13 @@
 	//icon_state
 	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
 	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 95, "fire" = 95, "acid" = 95)
+
+/obj/item/clothing/suit/storage/marine/imperial/commissar
+	name = "\improper commissar coat"
+	desc = "A armored coat worn by commissars of the Imperial Army."
+	icon_state = "commissar_coat"
+	item_state = "commissar_coat"
+	armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 
 //===========================//U.P.P\\================================
 

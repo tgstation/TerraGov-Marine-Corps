@@ -732,7 +732,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t35"
 	item_state = "t35"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -749,7 +749,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/t35stock)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
 
 	flags_item_map_variant = NONE
 

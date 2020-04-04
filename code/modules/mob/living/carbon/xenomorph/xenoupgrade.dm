@@ -87,6 +87,15 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hivemind/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/hivemind/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/hivemind/ancient
+	upgrade = XENO_UPGRADE_THREE
+
 /mob/living/carbon/xenomorph/praetorian/mature
 	upgrade = XENO_UPGRADE_ONE
 

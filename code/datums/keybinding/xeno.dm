@@ -130,6 +130,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/create_bomb
+	name = "create_bomb"
+	full_name = "Boiler: Create Bombard Ammo"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
+
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
@@ -207,12 +213,6 @@
 	full_name = "Defender: Fortify"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
-
-/datum/keybinding/xeno/neuroclaws
-	name = "neuroclaws"
-	full_name = "Defiler: Toggle Neuroclaws"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
 
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"

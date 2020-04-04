@@ -16,7 +16,9 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/datum/effect_system/smoke_spread/xeno/smoke
-
+	//Boiler ammo
+	var/corrosive_ammo = 0
+	var/neuro_ammo = 0
 
 // ***************************************
 // *********** Init

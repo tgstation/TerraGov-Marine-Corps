@@ -89,6 +89,7 @@
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
 	STOP_PROCESSING(SSmobs, src)
+	job = null
 	return ..()
 
 
@@ -408,7 +409,7 @@
 
 /mob/living/proc/offer_mob()
 	GLOB.offered_mob_list += src
-	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts("<span class='boldnotice'>A mob is being offered! Name: [name][job ? " Job: [job.title]" : ""] </span>", enter_link = "claim=[REF(src)]", source = src, action = NOTIFY_ORBIT)
 
 //used in datum/reagents/reaction() proc
 /mob/living/proc/get_permeability_protection()
@@ -549,7 +550,7 @@ below 100 is not dizzy
 			GLOB.offered_mob_list -= src
 			return FALSE
 
-		if(job && is_banned_from(M.ckey, job))
+		if(job && is_banned_from(M.ckey, job.title))
 			to_chat(M, "<span class='warning'>You are jobbanned from that role.</span>")
 			return FALSE
 

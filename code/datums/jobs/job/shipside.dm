@@ -1,18 +1,19 @@
-/datum/job/command
+/datum/job/terragov/command
+	job_category = JOB_CAT_COMMAND
 	selection_color = "#ddddff"
 	supervisors = "the acting captain"
-	faction = "Marine"
-	total_positions = 1
 	exp_type_department = EXP_TYPE_COMMAND
 
 
 //Captain
-/datum/job/command/captain
+/datum/job/terragov/command/captain
 	title = CAPTAIN
+	req_admin_notify = TRUE
 	paygrade = "O6"
 	comm_title = "CPT"
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
+	total_positions = 1
 	skills_type = /datum/skills/captain
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -20,10 +21,14 @@
 	outfit = /datum/outfit/job/command/captain
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/command/captain/announce(mob/living/announced_mob)
+	. = ..()
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [announced_mob.real_name] on deck!"))
 
-/datum/job/command/captain/radio_help_message(mob/M)
+/datum/job/terragov/command/captain/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As the captain of the [SSmapping.configs[SHIP_MAP].map_name] you are held by higher standard and are expected to act competently.
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
@@ -35,7 +40,7 @@ Godspeed, captain! And remember, you are not above the law."})
 
 /datum/outfit/job/command/captain
 	name = CAPTAIN
-	jobtype = /datum/job/command/captain
+	jobtype = /datum/job/terragov/command/captain
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/gun/mateba/captain/full
@@ -50,10 +55,12 @@ Godspeed, captain! And remember, you are not above the law."})
 
 
 //Field Commander
-/datum/job/command/fieldcommander
+/datum/job/terragov/command/fieldcommander
 	title = FIELD_COMMANDER
+	req_admin_notify = TRUE
 	paygrade = "MO4"
 	comm_title = "FCDR"
+	total_positions = 1
 	skills_type = /datum/skills/FO
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
@@ -61,14 +68,15 @@ Godspeed, captain! And remember, you are not above the law."})
 	outfit = /datum/outfit/job/command/fieldcommander
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_REGULAR
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
-/datum/job/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
+/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
 	SSdirection.set_leader("marine-sl", L)
 
 
-/datum/job/command/fieldcommander/radio_help_message(mob/M)
+/datum/job/terragov/command/fieldcommander/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are charged with overseeing the operation on the ground, and are the highest-ranked deployed marine.
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
@@ -78,7 +86,7 @@ Make the TGMC proud!"})
 
 /datum/outfit/job/command/fieldcommander
 	name = FIELD_COMMANDER
-	jobtype = /datum/job/command/fieldcommander
+	jobtype = /datum/job/terragov/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag
 	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
@@ -95,7 +103,7 @@ Make the TGMC proud!"})
 
 
 //Staff Officer
-/datum/job/command/staffofficer
+/datum/job/terragov/command/staffofficer
 	title = STAFF_OFFICER
 	paygrade = "O4"
 	comm_title = "SO"
@@ -107,10 +115,11 @@ Make the TGMC proud!"})
 	outfit = /datum/outfit/job/command/staffofficer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/command/staffofficer/radio_help_message(mob/M)
+/datum/job/terragov/command/staffofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
@@ -118,7 +127,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
-	jobtype = /datum/job/command/staffofficer
+	jobtype = /datum/job/terragov/command/staffofficer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/officer
@@ -132,7 +141,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 
 //Pilot Officer
-/datum/job/command/pilot
+/datum/job/terragov/command/pilot
 	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
@@ -142,10 +151,11 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
-	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/command/pilot/radio_help_message(mob/M)
+/datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to fly, protect, and maintain the ship's dropship.
 While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
@@ -154,7 +164,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 /datum/outfit/job/command/pilot
 	name = PILOT_OFFICER
-	jobtype = /datum/job/command/pilot
+	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
@@ -170,7 +180,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 
 //Tank Crewmen
-/datum/job/command/tank_crew
+/datum/job/terragov/command/tank_crew
 	title = TANK_CREWMAN
 	paygrade = "E7"
 	comm_title = "TC"
@@ -182,10 +192,11 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	outfit = /datum/outfit/job/command/tank_crew
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_REGULAR
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/command/tank_crew/radio_help_message(mob/M)
+/datum/job/terragov/command/tank_crew/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
 Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
@@ -195,7 +206,7 @@ You could use MTs help to repair and replace hardpoints."})
 
 /datum/outfit/job/command/tank_crew
 	name = TANK_CREWMAN
-	jobtype = /datum/job/command/tank_crew
+	jobtype = /datum/job/terragov/command/tank_crew
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m4a3/vp70
@@ -209,30 +220,29 @@ You could use MTs help to repair and replace hardpoints."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/police
+/datum/job/terragov/police
+	job_category = JOB_CAT_POLICE
 	selection_color = "#ffdddd"
 	supervisors = "the acting captain"
-	faction = "Marine"
-	total_positions = 1
 	exp_type_department = EXP_TYPE_POLICE
 
 
 //Military Police
-/datum/job/police/officer
+/datum/job/terragov/police/officer
 	title = MASTER_AT_ARMS
 	paygrade = "PO"
 	comm_title = "MA"
 	total_positions = 5
-	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/MP
 	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
 	outfit = /datum/outfit/job/police/officer
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/police/officer/radio_help_message(mob/M)
+/datum/job/terragov/police/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -243,7 +253,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 /datum/outfit/job/police/officer
 	name = MASTER_AT_ARMS
-	jobtype = /datum/job/police/officer
+	jobtype = /datum/job/terragov/police/officer
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/security/MP/full
@@ -259,11 +269,12 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 //Command Master at Arms
-/datum/job/police/chief
+/datum/job/terragov/police/chief
 	title = COMMAND_MASTER_AT_ARMS
 	paygrade = "O2"
 	comm_title = "CMA"
 	selection_color = "#ffaaaa"
+	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
 	skills_type = /datum/skills/CMP
@@ -271,10 +282,11 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	outfit = /datum/outfit/job/police/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/police/chief/radio_help_message(mob/M)
+/datum/job/terragov/police/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
 Failure to do so may result in a job ban.
@@ -285,7 +297,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 /datum/outfit/job/police/chief
 	name = COMMAND_MASTER_AT_ARMS
-	jobtype = /datum/job/police/chief
+	jobtype = /datum/job/terragov/police/chief
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/security/MP/full
@@ -301,19 +313,20 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 
 
 
-/datum/job/engineering
+/datum/job/terragov/engineering
+	job_category = JOB_CAT_ENGINEERING
+	selection_color = "#fff5cc"
 	supervisors = "the acting captain"
-	total_positions = 1
-	faction = "Marine"
 	exp_type_department = EXP_TYPE_ENGINEERING
 
 
 //Chief Ship Engineer
-/datum/job/engineering/chief
+/datum/job/terragov/engineering/chief
 	title = CHIEF_SHIP_ENGINEER
 	paygrade = "O2"
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
+	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
@@ -321,10 +334,11 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 	outfit = /datum/outfit/job/engineering/chief
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/engineering/chief/radio_help_message(mob/M)
+/datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to maintain the ship's engine and keep everything running.
 If you have no idea how to set up the engine, or it's your first time, adminhelp so that a mentor can assist you.
@@ -333,7 +347,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 /datum/outfit/job/engineering/chief
 	name = CHIEF_SHIP_ENGINEER
-	jobtype = /datum/job/engineering/chief
+	jobtype = /datum/job/terragov/engineering/chief
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
@@ -350,22 +364,22 @@ You are also next in the chain of command, should the bridge crew fall in the li
 
 
 //Ship Engineer
-/datum/job/engineering/tech
+/datum/job/terragov/engineering/tech
 	title = SHIP_TECH
 	comm_title = "ST"
 	paygrade = "PO"
 	total_positions = 5
 	supervisors = "the chief ship engineer and the requisitions officer"
-	selection_color = "#fff5cc"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
 	skills_type = /datum/skills/ST
 	display_order = JOB_DISPLAY_ORDER_SHIP_TECH
 	outfit = /datum/outfit/job/engineering/tech
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/engineering/tech/radio_help_message(mob/M)
+/datum/job/terragov/engineering/tech/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to make sure the ship is operational, you should firstly focus on manning the
 requisitions line and later on to be ready to send supplies for marines who are groundside."})
@@ -373,7 +387,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 
 /datum/outfit/job/engineering/tech
 	name = SHIP_TECH
-	jobtype = /datum/job/engineering/tech
+	jobtype = /datum/job/terragov/engineering/tech
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/utility/full
@@ -389,19 +403,21 @@ requisitions line and later on to be ready to send supplies for marines who are 
 
 
 
-/datum/job/requisitions
+/datum/job/terragov/requisitions
+	job_category = JOB_CAT_REQUISITIONS
+	selection_color = "#BAAFD9"
 	supervisors = "the acting captain"
-	total_positions = 1
-	faction = "Marine"
 	exp_type_department = EXP_TYPE_REQUISITIONS
 
 
 //Requisitions Officer
-/datum/job/requisitions/officer
+/datum/job/terragov/requisitions/officer
 	title = REQUISITIONS_OFFICER
+	req_admin_notify = TRUE
 	paygrade = "CPO"
 	comm_title = "RO"
 	selection_color = "#9990B2"
+	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/RO
@@ -409,10 +425,11 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	outfit = /datum/outfit/job/requisitions/officer
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/requisitions/officer/radio_help_message(mob/M)
+/datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
 Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off.
@@ -422,7 +439,7 @@ A happy ship is a well-functioning ship."})
 
 /datum/outfit/job/requisitions/officer
 	name = REQUISITIONS_OFFICER
-	jobtype = /datum/job/requisitions/officer
+	jobtype = /datum/job/terragov/requisitions/officer
 
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/gun/m44/full
@@ -436,13 +453,15 @@ A happy ship is a well-functioning ship."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/medical
-	faction = "Marine"
+/datum/job/terragov/medical
+	job_category = JOB_CAT_MEDICAL
+	selection_color = "#BBFFBB"
 	exp_type_department = EXP_TYPE_MEDICAL
 
 
-/datum/job/medical/professor
+/datum/job/terragov/medical/professor
 	title = CHIEF_MEDICAL_OFFICER
+	req_admin_notify = TRUE
 	comm_title = "CMO"
 	paygrade = "O3"
 	total_positions = 1
@@ -455,10 +474,11 @@ A happy ship is a well-functioning ship."})
 	outfit = /datum/outfit/job/medical/professor
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/medical/professor/radio_help_message(mob/M)
+/datum/job/terragov/medical/professor/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are the chief medical officer aboard the [SSmapping.configs[SHIP_MAP].map_name], navy officer and supervisor to the medical department.
 You have final authority over the medical department, medications, and treatments.
@@ -467,7 +487,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
-	jobtype = /datum/job/medical/professor
+	jobtype = /datum/job/terragov/medical/professor
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
@@ -486,21 +506,21 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 
 //Medical Officer
-/datum/job/medical/medicalofficer
+/datum/job/terragov/medical/medicalofficer
 	title = MEDICAL_OFFICER
 	comm_title = "MO"
 	paygrade = "O1"
 	total_positions = 6
 	supervisors = "the chief medical officer"
-	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_DOCTOR
 	outfit = /datum/outfit/job/medical/medicalofficer
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
-/datum/job/medical/medicalofficer/radio_help_message(mob/M)
+/datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
@@ -509,7 +529,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/outfit/job/medical/medicalofficer
 	name = MEDICAL_OFFICER
-	jobtype = /datum/job/medical/medicalofficer
+	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
@@ -526,22 +546,22 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 
 //Researcher
-/datum/job/medical/researcher
+/datum/job/terragov/medical/researcher
 	title = MEDICAL_RESEARCHER
 	comm_title = "Rsr"
 	paygrade = "CD"
 	total_positions = 2
 	supervisors = "the NT corporate office"
-	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDIAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/medical/researcher/radio_help_message(mob/M)
+/datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, and are not subject to the military chain of command.
 You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
@@ -551,7 +571,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
-	jobtype = /datum/job/medical/researcher
+	jobtype = /datum/job/terragov/medical/researcher
 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
@@ -568,27 +588,28 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/civilian
-	total_positions = 1
-	faction = "Marine"
+/datum/job/terragov/civilian
+	job_category = JOB_CAT_CIVILIAN
+	selection_color = "#ffeedd"
 
 
 //Liaison
-/datum/job/civilian/liaison
+/datum/job/terragov/civilian/liaison
 	title = CORPORATE_LIAISON
 	paygrade = "NT"
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
-	selection_color = "#ffeedd"
+	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/civilian/liaison/radio_help_message(mob/M)
+/datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
@@ -598,7 +619,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/outfit/job/civilian/liaison
 	name = CORPORATE_LIAISON
-	jobtype = /datum/job/civilian/liaison
+	jobtype = /datum/job/terragov/civilian/liaison
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/mainship/mcom
@@ -607,12 +628,18 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	back = /obj/item/storage/backpack/marine/satchel
 
 
+/datum/job/terragov/silicon
+	job_category = JOB_CAT_SILICON
+	selection_color = "#aaee55"
+
+
 //Synthetic
-/datum/job/civilian/synthetic
+/datum/job/terragov/silicon/synthetic
 	title = SYNTHETIC
+	req_admin_notify = TRUE
 	comm_title = "Syn"
 	supervisors = "the acting captain"
-	selection_color = "#aaee55"
+	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
@@ -620,35 +647,24 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	outfit = /datum/outfit/job/civilian/synthetic
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_SPECIALNAME
-	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
+	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/civilian/synthetic/get_special_name(client/preference_source)
+/datum/job/terragov/silicon/synthetic/get_special_name(client/preference_source)
 	return preference_source.prefs.synthetic_name
 
+/datum/job/terragov/silicon/synthetic/return_spawn_type(datum/preferences/prefs)
+	if(prefs && prefs.synthetic_type == "Early Synthetic")
+		return /mob/living/carbon/human/species/synthetic/old
+	return /mob/living/carbon/human/species/synthetic
 
-/datum/job/civilian/synthetic/assign(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
-	if(!H)
-		return FALSE
-
-	var/new_name
-	if(preference_source?.prefs)
-		H.set_species(preference_source.prefs.synthetic_type)
-		if(preference_source.prefs.synthetic_type == "Early Synthetic")
-			H.skills = getSkillsType(/datum/skills/early_synthetic)
-		new_name = preference_source.prefs.synthetic_name
-
-	if(!new_name || new_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
-		new_name = "David"
-		to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
-
-	H.fully_replace_character_name(H.name, new_name)
-
+/datum/job/terragov/silicon/synthetic/return_skills_type(datum/preferences/prefs)
+	if(prefs && prefs.synthetic_type == "Early Synthetic")
+		return /datum/skills/early_synthetic
 	return ..()
 
-
-/datum/job/civilian/synthetic/radio_help_message(mob/M)
+/datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your primary job is to support and assist all TGMC Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
@@ -657,7 +673,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 /datum/outfit/job/civilian/synthetic
 	name = SYNTHETIC
-	jobtype = /datum/job/civilian/synthetic
+	jobtype = /datum/job/terragov/silicon/synthetic
 
 	id = /obj/item/card/id/gold
 	belt = /obj/item/storage/belt/utility/full
@@ -670,9 +686,11 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/ai
-	title = "AI"
-	faction = "Marine"
+/datum/job/terragov/silicon/ai
+	title = SILICON_AI
+	job_category = JOB_CAT_SILICON
+	req_admin_notify = TRUE
+	comm_title = "AI"
 	total_positions = 1
 	selection_color = "#92c255"
 	supervisors = "your laws"
@@ -680,46 +698,27 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
 	display_order = JOB_DISPLAY_ORDER_AI
-	job_flags = JOB_FLAG_SPECIALNAME
-	larvaworth = LARVA_POINTS_SHIPSIDE
+	job_flags = JOB_FLAG_SPECIALNAME|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
-/datum/job/ai/get_special_name(client/preference_source)
+/datum/job/terragov/silicon/ai/get_special_name(client/preference_source)
 	return preference_source.prefs.ai_name
 
 
-/datum/job/ai/equip(mob/living/carbon/human/H, visualsOnly, announce, latejoin, datum/outfit/outfit_override, client/preference_source)
-	if(!length(GLOB.ai_spawn))
-		CRASH("attempted to spawn an AI with no landmark set")
-
-	if(!H.mind) //Could be a dummy.
-		return
-
-	var/mob/living/silicon/ai/AI = new(pick(GLOB.ai_spawn))
-	H.mind.transfer_to(AI, TRUE)
-	if(preference_source?.prefs)
-		AI.fully_replace_character_name(AI.name, preference_source.prefs.ai_name)
-	qdel(H)
+/datum/job/terragov/silicon/ai/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/silicon/ai
 
 
-/datum/job/ai/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
+/datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)
 	. = ..()
-
-	if(!isAI(L) || !latejoin)
-		return
-
-	var/mob/living/silicon/ai/AI = L
-	announce(AI)
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[announced_mob] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(announced_mob)]."))
 
 
-/datum/job/ai/override_latejoin_spawn()
-	return TRUE
-
-
-/datum/job/ai/announce(mob/living/silicon/ai/AI)
-	. = ..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[AI] has been downloaded to an empty bluespace-networked AI core at [AREACOORD(AI)]."))
-
-
-/datum/job/ai/config_check()
+/datum/job/terragov/silicon/ai/config_check()
 	return CONFIG_GET(flag/allow_ai)
+
+// Silicons only need a very basic preview since there is no customization for them.
+/datum/job/terragov/silicon/ai/handle_special_preview(client/parent)
+	parent.show_character_previews(image('icons/mob/ai.dmi', icon_state = "ai", dir = SOUTH))
+	return TRUE

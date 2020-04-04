@@ -73,7 +73,7 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_CAPTAIN in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if((ACCESS_MARINE_CAPTAIN in I.access) || (ACCESS_MARINE_BRIDGE in I.access)) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
@@ -102,7 +102,11 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != CAPTAIN)
+			if(!isliving(usr))
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
+				return
+			var/mob/living/user = usr
+			if(!ismarinecaptainjob(user.job))
 				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 
@@ -269,10 +273,10 @@
 					post_status(href_list["statdisp"])
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(trim(copytext(sanitize(input("Line 1", "Enter Message Text", stat_msg1) as text|null), 1, 40)), 40)
+			stat_msg1 = reject_bad_text(input("Line 1", "Enter Message Text", stat_msg1) as text|null, 40)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(trim(copytext(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null), 1, 40)), 40)
+			stat_msg2 = reject_bad_text(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40)
 
 		if("messageTGMC")
 			if(authenticated == 2)

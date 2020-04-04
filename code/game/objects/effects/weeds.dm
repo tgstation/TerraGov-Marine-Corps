@@ -1,5 +1,7 @@
 #define NODERANGE 2
 
+// =================
+// basic weed type
 /obj/effect/alien/weeds
 	name = "weeds"
 	desc = "Weird black weeds..."
@@ -9,8 +11,9 @@
 	density = FALSE
 	layer = TURF_LAYER
 	plane = FLOOR_PLANE
-	var/parent_node
 	max_integrity = 25
+
+	var/parent_node
 
 /obj/effect/alien/weeds/deconstruct(disassembled = TRUE)
 	GLOB.round_statistics.weeds_destroyed++
@@ -20,15 +23,17 @@
 /obj/effect/alien/weeds/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	. = ..()
 
-	parent_node = node
+	if(!isnull(node))
+		if(!istype(node))
+			CRASH("Weed craeted with non-weed node. Type: [node.type]")
+		parent_node = node
 
 	update_sprite()
 	update_neighbours()
 
-
 /obj/effect/alien/weeds/Destroy()
 
-	if(parent_node)
+	if(parent_node) // Allow the weed to try to regrow
 		SSweeds.add_weed(src)
 
 	for(var/obj/effect/alien/A in loc.contents)
@@ -40,19 +45,16 @@
 	. = ..()
 	update_neighbours(oldloc)
 
-
 /obj/effect/alien/weeds/examine(mob/user)
 	..()
 	var/turf/T = get_turf(src)
 	if(isfloorturf(T))
 		T.ceiling_desc(user)
 
-
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.next_move_slowdown += 1
-
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)
@@ -67,7 +69,6 @@
 			var/obj/effect/alien/weeds/W = locate() in T
 			if(W)
 				W.update_sprite()
-
 
 /obj/effect/alien/weeds/proc/update_sprite()
 	var/my_dir = 0
@@ -90,6 +91,8 @@
 		icon_state = "weed_dir[my_dir]"
 
 
+// =================
+// weed wall
 /obj/effect/alien/weeds/weedwall
 	layer = RESIN_STRUCTURE_LAYER
 	plane = GAME_PLANE
@@ -102,7 +105,8 @@
 			icon_state = "weedwall[W.junctiontype]"
 
 
-
+// =================
+// windowed weed wall
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
@@ -120,23 +124,17 @@
 		icon_state = "weedframe[WF.junction]"
 
 
-
+// =================
+// weed node - grows other weeds
 /obj/effect/alien/weeds/node
 	name = "purple sac"
 	desc = "A weird, pulsating node."
 	icon_state = "weednode"
-	var/node_range = NODERANGE
 	max_integrity = 60
-
-	var/node_turfs = list() // list of all potential turfs that we can expand to
-
 	ignore_weed_destruction = TRUE
-
-/obj/effect/alien/weeds/node/strong
-	name = "strong purple sac"
-	desc = "A weird, pulsating node. This looks pretty tough."
-	node_range = NODERANGE*2
-	max_integrity = 120
+	var/node_icon = "weednode"
+	var/node_range = NODERANGE
+	var/node_turfs = list() // list of all potential turfs that we can expand to
 
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
@@ -145,18 +143,28 @@
 
 /obj/effect/alien/weeds/node/update_icon()
 	overlays.Cut()
-	overlays += "weednode"
+	overlays += node_icon
 
-/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node, mob/living/carbon/xenomorph/X)
+/obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
 			break
+	. = ..()
 
-	overlays += "weednode"
-	. = ..(mapload, src)
+	update_icon()
 
 	// Generate our full graph before adding to SSweeds
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
+
+
+// =================
+// stronger weed node
+/obj/effect/alien/weeds/node/strong
+	name = "strong purple sac"
+	desc = "A weird, pulsating node. This looks pretty tough."
+	node_range = NODERANGE*2
+	max_integrity = 120
+
 #undef NODERANGE

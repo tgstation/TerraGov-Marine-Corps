@@ -6,7 +6,7 @@
 	action_icon_state = "stomp"
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-	plasma_cost = 80
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_STOMP
@@ -55,7 +55,7 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 40
+	plasma_cost = 100
 	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
@@ -131,7 +131,6 @@
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		L.Knockdown(20)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
