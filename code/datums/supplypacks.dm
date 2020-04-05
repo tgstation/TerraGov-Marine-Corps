@@ -575,7 +575,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hsdp
-	name = "M40 HSDP white phosphorous grenade box crate (x25)"
+	name = "M40 HSDP white phosphorous grenade box crate (x15)"
 	contains = list(
 					/obj/item/storage/box/nade_box/phos
 					)

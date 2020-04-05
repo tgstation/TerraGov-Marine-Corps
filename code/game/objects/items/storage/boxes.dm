@@ -369,8 +369,11 @@
 
 /obj/item/storage/box/nade_box/phos
 	name = "\improper M40 HPDP grenade box"
-	desc = "A secure box holding 25 M40 HPDP white phosphorous grenades. You know what to do."
+	desc = "A secure box holding 15 M40 HPDP white phosphorous grenades. War crimes for the entire platoon!"
 	icon_state = "nade_phos"
+	storage_slots = 15
+	max_storage_space = 30
+	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 
 //ITEMS-----------------------------------//
