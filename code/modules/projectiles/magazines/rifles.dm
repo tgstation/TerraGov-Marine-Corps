@@ -145,7 +145,7 @@
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
- 
+
 /obj/item/ammo_magazine/m41ae2_hpr
     name = "\improper M41AE2 ammo box (10x24mm)"
     desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
@@ -222,11 +222,11 @@
 //-------------------------------------------------------
 //Sectoid Rifle
 
-/obj/item/ammo_magazine/rifle/alien_rifle
+/obj/item/ammo_magazine/rifle/sectoid_rifle
 	name = "\improper Alien Rifle plasma magazine"
 	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
 	caliber = "alien alloy"
 	icon_state = "alien_rifle"
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
-	gun_type = /obj/item/weapon/gun/rifle/alien_rifle
+	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
