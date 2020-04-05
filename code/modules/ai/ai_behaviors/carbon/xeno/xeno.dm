@@ -17,11 +17,14 @@
 		return_result += h
 	var/mob/living/carbon/xenomorph/xeno_parent = mob_parent
 	for(var/x in cheap_get_xenos_near(mob_parent, 8))
-		if(!xeno_parent.issamexenohive(x)) //Xenomorphs not in our hive will be attacked as well!
-			var/mob/nearby_xeno = x
-			if(nearby_xeno.stat == DEAD)
-				continue
-			return_result += x
+		if(xeno_parent.issamexenohive(x)) //Xenomorphs not in our hive will be attacked as well!
+			continue
+		var/mob/nearby_xeno = x
+		if(nearby_xeno.stat == DEAD)
+			continue
+		if((nearby_xeno.status_flags && GODMODE) || (nearby_xeno.status_flags && GODMODE)) //No attacking the hivemind!
+			continue
+		return_result += x
 	for(var/turret in GLOB.marine_turrets)
 		var/atom/atom_turret = turret
 		if(QDELETED(atom_turret))
