@@ -259,8 +259,10 @@
 /turf/open/floor,
 /area/whiskey_outpost)
 "aJ" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aK" = (
 /obj/machinery/light{
@@ -2729,12 +2731,12 @@
 	},
 /area/whiskey_outpost/outside/west)
 "hS" = (
-/obj/structure/rack,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
-/obj/item/ammobox/standard_smg,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
+/obj/effect/landmark{
+	icon_state = "x";
+	name = "whiskey_outpost_xeno_4"
+	},
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
 "hT" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass,
@@ -2843,18 +2845,22 @@
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
 "ip" = (
-/obj/structure/bed/chair,
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 4
+/obj/effect/landmark{
+	icon_state = "x";
+	name = "whiskey_outpost_xeno_3"
 	},
-/area/whiskey_outpost)
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
 "iq" = (
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/east)
 "ir" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/whiskey_outpost/outside/north)
+/obj/effect/landmark{
+	icon_state = "x";
+	name = "whiskey_outpost_xeno_1"
+	},
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
 "is" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -3568,11 +3574,9 @@
 /turf/open/floor/plating/dmg2,
 /area/whiskey_outpost/outside/east)
 "kM" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
-	},
-/area/whiskey_outpost/outside/north)
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "kN" = (
 /obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/tile/dark,
@@ -3604,11 +3608,12 @@
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
 "kS" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder{
+/obj/structure/bed/chair,
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
-/area/whiskey_outpost/outside/east)
+/area/whiskey_outpost)
 "kT" = (
 /obj/machinery/m56d_hmg/mg_turret,
 /turf/open/floor/plating/warning{
@@ -3622,11 +3627,11 @@
 	},
 /area/whiskey_outpost/outside/east)
 "kV" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 8
+/turf/open/ground/jungle{
+	bushes_spawn = 0;
+	icon_state = "grass_impenetrable"
 	},
-/area/whiskey_outpost/outside/east)
+/area/whiskey_outpost/outside/south)
 "kW" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/squadmarine,
@@ -3730,9 +3735,12 @@
 	},
 /area/whiskey_outpost/outside/south)
 "lq" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
+/obj/structure/grille/fence/east_west,
+/turf/open/ground/jungle{
+	bushes_spawn = 0;
+	icon_state = "grass_impenetrable"
+	},
+/area/whiskey_outpost/outside/south)
 "lr" = (
 /obj/structure/sign/prop1,
 /turf/closed/wall,
@@ -3986,30 +3994,35 @@
 	},
 /area/whiskey_outpost/outside/north)
 "mi" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
+/obj/effect/landmark{
+	icon_state = "x";
+	name = "whiskey_outpost_xeno_2"
+	},
+/turf/open/ground/jungle{
+	bushes_spawn = 0;
+	icon_state = "grass_impenetrable"
+	},
 /area/whiskey_outpost/outside/south)
 "mj" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "mk" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
+/obj/effect/landmark{
+	icon_state = "x";
+	name = "whiskey_outpost_xeno_1"
 	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/ground/jungle{
+	bushes_spawn = 0;
+	icon_state = "grass_impenetrable"
+	},
 /area/whiskey_outpost/outside/south)
 "ml" = (
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost/outside/south)
 "mm" = (
-/obj/effect/ai_node,
-/turf/open/ground/grass/beach{
-	dir = 2
-	},
+/obj/machinery/door/poddoor/four_tile_hor,
+/turf/closed/wall/r_wall,
 /area/whiskey_outpost/outside/south)
 "mn" = (
 /obj/effect/landmark/start/job/squadmarine,
@@ -4312,12 +4325,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "nn" = (
-/obj/structure/grille/fence/east_west,
-/turf/open/ground/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
-/area/whiskey_outpost/outside/south)
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/whiskey_outpost/outside/north)
 "no" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -4537,10 +4546,11 @@
 	},
 /area/whiskey_outpost/outside/south)
 "nY" = (
-/turf/open/ground/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
+/obj/machinery/m56d_hmg/mg_turret,
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
 	},
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "nZ" = (
 /turf/closed/shuttle/dropship3/transparent{
@@ -5728,9 +5738,11 @@
 	},
 /area/whiskey_outpost)
 "ra" = (
-/obj/effect/ai_node,
+/obj/structure/rack,
+/obj/item/ammobox/m39,
+/obj/item/ammobox/m39,
 /turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/north)
+/area/whiskey_outpost)
 "rb" = (
 /obj/structure/rack,
 /obj/item/smartgun_powerpack,
@@ -5891,40 +5903,6 @@
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"rw" = (
-/obj/effect/decal/cleanable/blood/writing,
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/ai_node,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
-"rx" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/warning{
-	dir = 6
-	},
-/area/whiskey_outpost)
-"ry" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"rz" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/whiskey_outpost)
 "rA" = (
 /obj/structure/platform_decoration{
 	icon_state = "platform_deco";
@@ -5948,31 +5926,6 @@
 	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
-"rD" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/whiskey_outpost)
-"rE" = (
-/obj/machinery/light,
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"rF" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/latejoin_cryo,
-/obj/effect/ai_node,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "blue"
-	},
-/area/whiskey_outpost)
-"rG" = (
-/obj/effect/ai_node,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "rH" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -5980,59 +5933,6 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"rI" = (
-/obj/effect/ai_node,
-/turf/open/ground/river,
-/area/whiskey_outpost/outside/north)
-"rJ" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/landmark/start/job/squadmarine,
-/obj/effect/ai_node,
-/turf/open/floor/tile/whiteyellow/full,
-/area/whiskey_outpost)
-"rK" = (
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 1
-	},
-/obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
-	},
-/obj/structure/platform_decoration{
-	icon_state = "platform_deco";
-	dir = 5
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"rL" = (
-/obj/effect/ai_node,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/east)
-"rM" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"rP" = (
-/obj/effect/ai_node,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
-"rQ" = (
-/obj/structure/lattice,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1
-	},
-/area/whiskey_outpost/outside/south)
-"rR" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/ai_node,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
 "sm" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass,
@@ -9115,7 +9015,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 gD
@@ -9268,7 +9168,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 gD
@@ -9281,12 +9181,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -9434,12 +9334,12 @@ lN
 lN
 lN
 lN
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -9587,12 +9487,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -9667,7 +9567,6 @@ bW
 bW
 cy
 bW
-lq
 bW
 bW
 bW
@@ -9675,7 +9574,8 @@ bW
 bW
 bW
 bW
-lq
+bW
+bW
 fT
 do
 hl
@@ -9689,7 +9589,7 @@ hw
 hw
 hw
 hw
-rG
+hw
 hw
 iN
 iW
@@ -9703,7 +9603,7 @@ hw
 hw
 hw
 hw
-rG
+hw
 hw
 hw
 hw
@@ -9717,7 +9617,7 @@ hw
 hw
 lf
 lf
-mm
+ld
 kA
 kA
 lk
@@ -9731,7 +9631,6 @@ lT
 lf
 lf
 gx
-rP
 lf
 lf
 lf
@@ -9741,11 +9640,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-rP
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -9893,12 +9793,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -10046,12 +9946,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -10186,7 +10086,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 gx
@@ -10199,12 +10099,12 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+ir
+mk
+mk
+mk
+mk
+ir
 lf
 kz
 hI
@@ -10401,10 +10301,6 @@ gI
 gT
 ms
 no
-aJ
-gT
-ms
-no
 gI
 gT
 ms
@@ -10415,7 +10311,11 @@ ms
 no
 gI
 gT
-aJ
+ms
+no
+gI
+gT
+no
 no
 bR
 pD
@@ -10802,7 +10702,7 @@ kz
 gD
 gD
 gD
-rP
+lf
 lf
 lf
 lf
@@ -10816,7 +10716,7 @@ lf
 lf
 lf
 lf
-rP
+lf
 lf
 kz
 hI
@@ -11339,7 +11239,7 @@ qF
 pD
 rB
 so
-ir
+nn
 do
 aS
 bW
@@ -11797,7 +11697,7 @@ gF
 qE
 pD
 nk
-lq
+bW
 bW
 bW
 bW
@@ -11809,7 +11709,7 @@ bW
 bW
 bW
 cw
-lq
+bW
 bW
 of
 gC
@@ -12237,7 +12137,7 @@ bR
 mc
 nf
 nx
-aJ
+qb
 mc
 nf
 nx
@@ -12251,7 +12151,7 @@ nf
 nx
 qb
 bR
-aJ
+bR
 nx
 bR
 pD
@@ -12944,7 +12844,7 @@ lf
 lf
 lf
 lf
-rP
+lf
 lf
 lf
 gD
@@ -12958,7 +12858,7 @@ kz
 kz
 kz
 lf
-rP
+lf
 kz
 kz
 hI
@@ -13542,7 +13442,7 @@ kz
 kz
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -13628,12 +13528,12 @@ bR
 bR
 bR
 bR
-aJ
 bR
 bR
 bR
 bR
-aJ
+bR
+bR
 bR
 bR
 bR
@@ -13695,7 +13595,7 @@ kz
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -13848,7 +13748,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -14001,7 +13901,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -14154,7 +14054,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -14176,14 +14076,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14307,7 +14207,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -14329,14 +14229,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14460,7 +14360,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -14482,14 +14382,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14535,7 +14435,7 @@ be
 bR
 qj
 ac
-hS
+ra
 bR
 bR
 bR
@@ -14613,7 +14513,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -14635,14 +14535,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14766,7 +14666,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -14788,14 +14688,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14919,7 +14819,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -14941,14 +14841,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -14993,7 +14893,6 @@ hI
 ak
 ak
 aC
-aJ
 bR
 bR
 bR
@@ -15002,21 +14901,22 @@ bR
 bR
 bR
 bR
-aJ
+bR
+bR
 bR
 cY
-ip
+kS
 lh
 bR
 bR
 bR
-aJ
+bR
 bR
 bR
 bT
 el
 lV
-rJ
+lU
 mb
 lU
 lU
@@ -15030,7 +14930,7 @@ of
 gC
 dG
 dG
-rx
+dM
 oD
 cx
 hq
@@ -15044,7 +14944,7 @@ hy
 hk
 hk
 hw
-rG
+hw
 mz
 hw
 bm
@@ -15058,7 +14958,7 @@ hw
 hw
 hw
 hw
-rG
+hw
 hw
 hw
 hw
@@ -15072,7 +14972,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -15086,7 +14986,7 @@ lf
 lf
 lf
 lZ
-rw
+gy
 lN
 lN
 lN
@@ -15094,14 +14994,14 @@ lN
 lN
 lN
 lN
-lf
-lf
-lf
-lf
-lf
-lf
-rP
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 mv
@@ -15225,7 +15125,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -15247,14 +15147,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 hI
 hI
@@ -15378,7 +15278,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -15400,14 +15300,14 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+mi
+mi
+mi
+mi
+mi
+mi
+mi
+mi
 kz
 kz
 hI
@@ -15531,7 +15431,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -15684,7 +15584,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -15837,7 +15737,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -16296,7 +16196,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -16449,7 +16349,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -16602,7 +16502,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -16928,6 +16828,8 @@ lf
 lf
 lf
 gx
+lf
+lf
 fO
 lf
 ml
@@ -16935,8 +16837,6 @@ ml
 ml
 ml
 ml
-lf
-lf
 lf
 lf
 ml
@@ -17086,7 +16986,7 @@ lf
 lf
 lf
 lf
-lf
+mm
 lf
 lf
 lf
@@ -17134,7 +17034,7 @@ hI
 hI
 ac
 ac
-rz
+aJ
 az
 aZ
 ac
@@ -17144,7 +17044,7 @@ bk
 bS
 bk
 bk
-rD
+bk
 bk
 cS
 bR
@@ -17158,7 +17058,7 @@ bR
 bR
 lI
 bR
-aJ
+bR
 bR
 bR
 bR
@@ -17172,7 +17072,7 @@ bW
 bW
 bW
 bW
-lq
+bW
 gv
 gv
 gv
@@ -17200,7 +17100,7 @@ jC
 jM
 jX
 gF
-rL
+iB
 iB
 iB
 iB
@@ -17214,7 +17114,7 @@ lf
 lf
 lf
 lf
-rP
+lf
 lf
 lf
 lf
@@ -17228,7 +17128,7 @@ lf
 lf
 lf
 lf
-rP
+lf
 lf
 lf
 lf
@@ -17239,10 +17139,10 @@ lf
 lf
 lf
 lf
+ml
 lf
 lf
 lf
-rP
 lf
 lf
 lf
@@ -17392,7 +17292,7 @@ lf
 lf
 lf
 lf
-lf
+ml
 lf
 lf
 lf
@@ -17545,7 +17445,7 @@ lf
 lf
 fO
 lf
-lf
+ml
 lf
 lf
 lf
@@ -17695,13 +17595,13 @@ lf
 gx
 lf
 lf
-ml
-ml
-ml
-ml
-ml
 lf
 lf
+ml
+ml
+ml
+ml
+ml
 lf
 lf
 lf
@@ -18438,7 +18338,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -18591,7 +18491,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -18744,7 +18644,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -18897,7 +18797,7 @@ lf
 sw
 lf
 lf
-nY
+kV
 lf
 lf
 hd
@@ -19050,7 +18950,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -19072,13 +18972,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19203,7 +19103,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -19225,13 +19125,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19286,12 +19186,12 @@ eB
 bd
 bK
 bR
-rE
+aR
 bd
 jF
 jz
 ka
-rF
+jz
 kQ
 bd
 bK
@@ -19300,7 +19200,7 @@ bR
 bR
 bR
 cm
-rK
+dw
 pp
 ce
 dN
@@ -19314,7 +19214,7 @@ bW
 nw
 ns
 ns
-ry
+ns
 ns
 pi
 cx
@@ -19328,7 +19228,7 @@ hg
 hg
 im
 iD
-kS
+iD
 iB
 iB
 it
@@ -19342,7 +19242,6 @@ iB
 iB
 iB
 iB
-rL
 iB
 iB
 iB
@@ -19351,13 +19250,7 @@ iB
 iB
 iB
 iB
-lf
-lf
-lf
-lf
-lf
-rP
-lf
+iB
 lf
 lf
 lf
@@ -19370,7 +19263,14 @@ lf
 lf
 lf
 lf
-rP
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 gx
 lf
 lf
@@ -19378,13 +19278,13 @@ lf
 lf
 lf
 lf
-rP
-lf
-lf
-lf
-lf
-lf
-rP
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19509,7 +19409,7 @@ lf
 lf
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -19531,13 +19431,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19662,7 +19562,7 @@ lf
 lf
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -19684,13 +19584,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19837,13 +19737,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -19990,13 +19890,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+ip
+ip
+ip
+ip
+ip
+ip
+ip
 lf
 kz
 hI
@@ -20121,7 +20021,7 @@ kz
 kz
 lf
 lf
-nn
+lq
 lf
 lf
 lf
@@ -20274,7 +20174,7 @@ kz
 kz
 lf
 lf
-nY
+kV
 lf
 lf
 lf
@@ -20362,7 +20262,7 @@ gF
 gF
 rv
 pB
-aJ
+bR
 bR
 bR
 pK
@@ -20374,7 +20274,7 @@ bW
 bW
 bW
 bW
-rM
+cw
 bW
 bW
 bW
@@ -20427,7 +20327,7 @@ kz
 kz
 kz
 lf
-nY
+kV
 lf
 lf
 lf
@@ -20593,8 +20493,8 @@ lf
 lf
 lf
 lf
-lf
-lf
+kz
+kz
 gD
 kz
 kz
@@ -20747,7 +20647,7 @@ lf
 lf
 lf
 lf
-lf
+kz
 gD
 kz
 kz
@@ -20900,7 +20800,7 @@ lf
 lf
 lf
 lf
-lf
+kz
 gD
 kz
 kz
@@ -21053,7 +20953,7 @@ lf
 lf
 lf
 lf
-lf
+kz
 gD
 kz
 kz
@@ -21206,7 +21106,7 @@ lf
 lf
 lf
 lf
-lf
+kz
 gD
 kz
 kz
@@ -21359,7 +21259,7 @@ kz
 lf
 lf
 lf
-lf
+kz
 gD
 kz
 kz
@@ -21512,7 +21412,7 @@ gD
 gx
 gx
 gD
-rR
+gD
 gD
 kz
 kz
@@ -21520,7 +21420,7 @@ kz
 kz
 kz
 kz
-rP
+lf
 lf
 lf
 kz
@@ -21665,7 +21565,7 @@ gD
 lf
 lf
 lf
-lf
+kz
 kz
 kz
 kz
@@ -22351,7 +22251,7 @@ cx
 cx
 cx
 cx
-rI
+cx
 cx
 cx
 cx
@@ -22363,7 +22263,7 @@ cx
 ei
 bW
 fs
-ra
+fs
 fs
 bW
 bW
@@ -22374,7 +22274,7 @@ gu
 gu
 gu
 gu
-kM
+gu
 gY
 gY
 gY
@@ -22388,7 +22288,7 @@ gY
 gY
 gY
 gY
-kV
+gY
 gY
 gY
 gY
@@ -22402,7 +22302,7 @@ hg
 hg
 hg
 ko
-mi
+kM
 hg
 mT
 gm
@@ -22416,7 +22316,7 @@ kn
 kn
 kn
 ll
-rP
+lf
 sw
 lf
 lf
@@ -23044,13 +22944,13 @@ lf
 lf
 md
 lN
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23197,13 +23097,13 @@ lN
 lN
 lN
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23350,13 +23250,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23503,13 +23403,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23626,7 +23526,7 @@ mF
 aa
 aa
 mJ
-mk
+nY
 hg
 hg
 hg
@@ -23640,7 +23540,7 @@ mY
 nO
 mY
 nr
-rQ
+og
 ok
 lf
 lf
@@ -23654,15 +23554,15 @@ gx
 lf
 lf
 lf
-rP
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-rP
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23809,13 +23709,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
@@ -23962,13 +23862,13 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+hS
+hS
+hS
+hS
+hS
+hS
+hS
 lf
 lf
 lf
