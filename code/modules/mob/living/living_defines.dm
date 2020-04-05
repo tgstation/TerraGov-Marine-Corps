@@ -1,5 +1,6 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
+	flags_atom = CRITICAL_ATOM
 	var/see_override = 0 //0 for no override, sets see_invisible = see_override in silicon & carbon life process via update_sight()
 
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
@@ -23,26 +24,20 @@
 
 	var/last_staminaloss_dmg = 0 //world.time
 	var/max_stamina_buffer = 0
-	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
 	var/druggy = 0
-	var/sleeping = 0
 
 	var/eye_blind = 0
 	var/eye_blurry = 0
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/knocked_out = 0
-	var/stunned = 0
 	var/frozen = 0
-	var/knocked_down = 0
 
 	var/dizziness = 0
 	var/jitteriness = 0
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
-	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 	var/disabilities = NONE
 
 	var/restrained_flags = NONE
@@ -69,6 +64,10 @@
 
 	var/tinttotal = TINT_NONE
 
+	var/list/status_effects //a list of all status effects the mob has
+
+	var/list/stun_absorption //lazy list
+
 	//Speech
 	var/stuttering = 0
 	var/slurring = 0
@@ -80,9 +79,6 @@
 
 	var/pull_speed = 0 //How much slower or faster this mob drags as a base
 
-	var/do_bump_delay = FALSE	// Flag to tell us to delay movement because of being bumped
-
-	var/reagent_move_delay_modifier = 0 //negative values increase movement speed
 	var/reagent_shock_modifier = 0 //negative values reduce shock/pain
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
@@ -99,8 +95,9 @@
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
 
-	var/job
+	var/datum/job/job
 	var/faction = "Neutral"
+	var/comm_title = ""
 
 	var/blood_volume = 0 //how much blood the mob has
 	var/heart_multi = 1 //Multiplier.

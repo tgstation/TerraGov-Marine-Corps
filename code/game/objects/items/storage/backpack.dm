@@ -187,6 +187,11 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/rugged
+	name = "satchel"
+	desc = "A rugged satchel for workers of all types."
+	icon_state = "satchel-norm"
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
@@ -626,7 +631,7 @@
 	if(!wearer)
 		camo_off()
 		return
-	else if(wearer.stat == DEAD)
+	else if(wearer.stat != CONSCIOUS)
 		camo_off(wearer)
 		return
 
@@ -672,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -732,6 +738,7 @@
 	name = "\improper TGMC Pyrotechnician fueltank"
 	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
+	worn_accessible = TRUE
 	max_fuel = 500
 
 

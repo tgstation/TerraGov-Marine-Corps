@@ -1,6 +1,7 @@
 /client
 	parent_type = /datum // black magic
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
+	view = WORLD_VIEW
 	var/datum/chatOutput/chatOutput //Goonchat holder
 	var/datum/tooltip/tooltips
 
@@ -11,7 +12,7 @@
 	var/last_message_time = 0 //The world.time when last message was sent.
 	var/total_message_count = 0 //The total amount of messages sent per a time period.
 	var/total_message_weight = 0 //The total weight of the messages sent per a time period.
-	var/ircreplyamount = 0
+	var/externalreplyamount = 0 //Internal counter for clients sending external (IRC/Discord) relay messages via ahelp to prevent spamming. Set to a number every time an admin reply is sent, decremented for every client send.
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
 
 	//Preferences related
@@ -67,3 +68,17 @@
 	//Codex
 	var/codex_on_cooldown = FALSE
 	var/const/max_codex_entries_shown = 10
+
+	///Amount of keydowns in the last keysend checking interval
+	var/client_keysend_amount = 0
+	///World tick time where client_keysend_amount will reset
+	var/next_keysend_reset = 0
+	///World tick time where keysend_tripped will reset back to false
+	var/next_keysend_trip_reset = 0
+	///When set to true, user will be autokicked if they trip the keysends in a second limit again
+	var/keysend_tripped = FALSE
+	///custom movement keys for this client
+	var/list/movement_keys = list()
+
+	//assoc list with all the active maps - when a screen obj is added to a map, it's put in here as well. "mapname" = list(screen objs in map)
+	var/list/screen_maps

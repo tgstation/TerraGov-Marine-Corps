@@ -315,16 +315,16 @@ WEAPONS
 
 /datum/supply_packs/gun/pistols
 	contains = list(
-					/obj/item/weapon/gun/pistol/m4a3,
-					/obj/item/weapon/gun/pistol/m4a3,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/weapon/gun/revolver/m44,
-					/obj/item/weapon/gun/revolver/m44,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver
+					/obj/item/weapon/gun/pistol/standard_pistol,
+					/obj/item/weapon/gun/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/weapon/gun/revolver/standard_revolver,
+					/obj/item/weapon/gun/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver
 					)
-	name = "surplus sidearms crate (M4A3 x2, M44 x2, ammo x2 each)"
+	name = "surplus sidearms crate (TP-14 x2, TP-44 x2, ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper sidearms crate"
@@ -332,24 +332,24 @@ WEAPONS
 
 /datum/supply_packs/gun/shotguns
 	contains = list(
-					/obj/item/weapon/gun/shotgun/pump,
-					/obj/item/weapon/gun/shotgun/pump,
-					/obj/item/weapon/gun/rifle/sx16,
-					/obj/item/weapon/gun/rifle/sx16,
+					/obj/item/weapon/gun/shotgun/pump/t35,
+					/obj/item/weapon/gun/shotgun/pump/t35,
+					/obj/item/weapon/gun/rifle/standard_autoshotgun,
+					/obj/item/weapon/gun/rifle/standard_autoshotgun,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/flechette,
 					/obj/item/ammo_magazine/shotgun/flechette,
-					/obj/item/ammo_magazine/rifle/sx16_buckshot,
-					/obj/item/ammo_magazine/rifle/sx16_buckshot,
-					/obj/item/ammo_magazine/rifle/sx16_buckshot,
-					/obj/item/ammo_magazine/rifle/sx16_flechette,
-					/obj/item/ammo_magazine/rifle/sx16_flechette,
-					/obj/item/ammo_magazine/rifle/sx16_flechette,
+					/obj/item/ammo_magazine/rifle/tx15_slug,
+					/obj/item/ammo_magazine/rifle/tx15_slug,
+					/obj/item/ammo_magazine/rifle/tx15_slug,
+					/obj/item/ammo_magazine/rifle/tx15_flechette,
+					/obj/item/ammo_magazine/rifle/tx15_flechette,
+					/obj/item/ammo_magazine/rifle/tx15_flechette,
 					)
-	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
+	name = "surplus shotguns crate (T-35 x2, T-35 ammo x2 each, TX-15 x2, TX Flechette and slugs x3 each)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper shotguns crate"
@@ -361,10 +361,8 @@ WEAPONS
 					/obj/item/weapon/gun/smg/standard_smg,
 					/obj/item/ammo_magazine/smg/standard_smg,
 					/obj/item/ammo_magazine/smg/standard_smg,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap
 					)
-	name = "surplus SMG crate (M39 x2, M39 ammo x2 AP, 2x Standard)"
+	name = "surplus SMG crate (T-19 x2, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper SMGs crate"
@@ -450,30 +448,30 @@ WEAPONS
 
 /datum/supply_packs/gun_holster
 	contains = list(
-					/obj/item/storage/large_holster/m39,
-					/obj/item/storage/large_holster/m39
+					/obj/item/storage/large_holster/t19,
+					/obj/item/storage/large_holster/t19
 					)
-	name = "M39 holster crate (x2)"
+	name = "T-19 holster crate (x2)"
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate
 	containername = "\improper holster crate"
 	group = "Weapons"
 
-/datum/supply_packs/gun_holster/m44
-	name = "M44 holster crate (x2)"
+/datum/supply_packs/gun_holster/revolver/standard_revolver
+	name = "TP-44 holster crate (x2)"
 	cost = RO_PRICE_NEAR_FREE
 	contains = list(
-					/obj/item/storage/belt/gun/m44,
-					/obj/item/storage/belt/gun/m44
+					/obj/item/storage/belt/gun/revolver/standard_revolver,
+					/obj/item/storage/belt/gun/revolver/standard_revolver
 					)
 	group = "Weapons"
 
-/datum/supply_packs/gun_holster/m4a3
-	name = "M4A3 holster crate (x2)"
+/datum/supply_packs/gun_holster/pistol/standard_pistol
+	name = "TP-14 holster crate (x2)"
 	cost = RO_PRICE_NEAR_FREE
 	contains = list(
-					/obj/item/storage/belt/gun/m4a3,
-					/obj/item/storage/belt/gun/m4a3
+					/obj/item/storage/belt/gun/pistol/standard_pistol,
+					/obj/item/storage/belt/gun/pistol/standard_pistol
 					)
 	group = "Weapons"
 
@@ -1179,10 +1177,10 @@ ATTACHMENTS
 /datum/supply_packs/stock_shotgun
 	name = "shotgun stock attachment crate (x4)"
 	contains = list(
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun,
-			/obj/item/attachable/stock/shotgun
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock,
+			/obj/item/attachable/stock/t35stock
 			)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -1217,66 +1215,6 @@ ATTACHMENTS
 /*******************************************************************************
 AMMO
 *******************************************************************************/
-/datum/supply_packs/ammoboxm39
-	name = "M39 Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m39
-					)
-	cost = RO_PRICE_NEAR_FREE
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxm39ap
-	name = "M39 AP Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m39ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 AP ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxm39ext
-	name = "M39 Ext Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m39ext
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 Ext ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxm4a3
-	name = "M4A3 Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m4a3
-					)
-	cost = RO_PRICE_NEAR_FREE
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxm4a3ap
-	name = "M4A3 AP Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m4a3ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 AP ammo box crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammoboxm4a3ext
-	name = "M4A3 Ext Ammo Box Crate"
-	contains = list(
-					/obj/item/ammobox/m4a3ext
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 Ext ammo box crate"
-	group = "Ammo"
-
 /datum/supply_packs/ammoboxslug
 	name = "Slug Ammo Box Crate"
 	contains = list(
@@ -1308,19 +1246,19 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular
-	name = "regular magazines crate (T-18 x5, M4A3 x2, M44 x2, M39 x2, M37A2 x1)"
+	name = "regular magazines crate (T-18 x5, TP-14 x2, TP-44 x2, T-19 x2, T-35 x1)"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
 					/obj/item/ammo_magazine/smg/standard_smg,
 					/obj/item/ammo_magazine/smg/standard_smg,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot
 					)
@@ -1346,52 +1284,52 @@ AMMO
 	containername = "\improper T-18 regular ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_regular_m4a3
-	name = "regular M4A3 magazines crate (x10)"
+/datum/supply_packs/ammo_regular_tp14
+	name = "regular TP-14 magazines crate (x10)"
 	contains = list(
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol,
-					/obj/item/ammo_magazine/pistol
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol,
+					/obj/item/ammo_magazine/pistol/standard_pistol
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 regular ammo crate"
+	containername = "\improper TP-14 regular ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_regular_m44
-	name = "regular M44 magazines crate (x15)"
+/datum/supply_packs/ammo_regular_tp44
+	name = "regular TP-44 magazines crate (x15)"
 	contains = list(
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver,
-					/obj/item/ammo_magazine/revolver
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver,
+					/obj/item/ammo_magazine/revolver/standard_revolver
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M44 regular ammo crate"
+	containername = "\improper TP-44 regular ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_regular_m39
-	name = "regular M39 magazines crate (x10)"
+/datum/supply_packs/ammo_regular_t19
+	name = "regular T-19 magazines crate (x10)"
 	contains = list(
 					/obj/item/ammo_magazine/smg/standard_smg,
 					/obj/item/ammo_magazine/smg/standard_smg,
@@ -1406,7 +1344,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 regular ammo crate"
+	containername = "\improper T-19 regular ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular_shotgun
@@ -1425,101 +1363,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M37A2 ammo crate"
-	group = "Ammo"
-
-
-
-/datum/supply_packs/ammo_extended
-	name = "extended magazines crate (M4A3 x2, M39 x2)"
-	contains = list(
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper extended ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_extended_m4a3
-	name = "extended M4A3 magazines crate (x8)"
-	contains = list(
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended,
-					/obj/item/ammo_magazine/pistol/extended
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 extended ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_extended_m39
-	name = "extended M39 magazines crate (x6)"
-	contains = list(
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/extended
-					)
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 extended ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_ap
-	name = "armor piercing magazines crate (M4A3 x2, M39 x2)"
-	contains = list(
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper armor piercing ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_ap_m4a3
-	name = "armor piercing M4A3 magazines crate (x8)"
-	contains = list(
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap,
-					/obj/item/ammo_magazine/pistol/ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 armor piercing ammo crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_incin_m4a3
-	name = "Incendiary M4A3 magazines crate (x8)"
-	contains = list(
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary,
-					/obj/item/ammo_magazine/pistol/incendiary
-					)
-	cost = RO_PRICE_NORMAL
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M4A3 incendiary ammo crate"
+	containername = "\improper T-35 ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_mateba
@@ -1546,45 +1390,6 @@ AMMO
 	containername = "\improper Mateba speed loader crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_heavy_m44
-	name = "Heavy M44 magazines crate (x15)"
-	contains = list(
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy,
-					/obj/item/ammo_magazine/revolver/heavy
-					)
-	cost = RO_PRICE_NORMAL
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M44 PW-MX speed loader crate"
-	group = "Ammo"
-
-/datum/supply_packs/ammo_ap_m39
-	name = "armor piercing M39 magazines crate (x6)"
-	contains = list(
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
-					/obj/item/ammo_magazine/smg/standard_smg/ap
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 armor piercing ammo crate"
-	group = "Ammo"
-
 /datum/supply_packs/ammo_flechette_shotgun
 	name = "flechette shotgun shells crate (x5)"
 	contains = list(
@@ -1596,7 +1401,7 @@ AMMO
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M37A2 ammo crate"
+	containername = "\improper T-35 ammo crate"
 	group = "Ammo"
 
 
@@ -1765,13 +1570,13 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_box_smg
-	name = "large M39 ammo box crate (x400 rounds)"
+	name = "large T-19 ammo box crate (x400 rounds)"
 	contains = list(
 					/obj/item/big_ammo_box/smg
 					)
 	cost = RO_PRICE_NEAR_FREE
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper M39 ammo crate"
+	containername = "\improper T-19 ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_black_market
@@ -1819,8 +1624,6 @@ AMMO
 					/obj/item/ammo_magazine/pistol/incendiary,
 					/obj/item/ammo_magazine/pistol/m1911,
 					/obj/item/ammo_magazine/smg/standard_smg,
-					/obj/item/ammo_magazine/smg/standard_smg/extended,
-					/obj/item/ammo_magazine/smg/standard_smg/ap,
 					/obj/item/ammo_magazine/revolver,
 					/obj/item/ammo_magazine/revolver/marksman,
 					/obj/item/ammo_magazine/revolver/heavy,
@@ -2145,9 +1948,9 @@ CLOTHING
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
 					/obj/item/clothing/tie/storage/webbing,
-					/obj/item/storage/belt/gun/m4a3,
-					/obj/item/storage/belt/gun/m44,
-					/obj/item/storage/large_holster/m39
+					/obj/item/storage/belt/gun/pistol/standard_pistol,
+					/obj/item/storage/belt/gun/revolver/standard_revolver,
+					/obj/item/storage/large_holster/t19
 					)
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate
@@ -2341,8 +2144,9 @@ MEDICAL
 /datum/supply_packs/sterile
 	name = "sterile equipment crate"
 	contains = list(
+					/obj/item/clothing/under/rank/medical/blue,
 					/obj/item/clothing/under/rank/medical/green,
-					/obj/item/clothing/under/rank/medical/green,
+					/obj/item/clothing/under/rank/medical/purple,
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves
 					)

@@ -7,7 +7,6 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
-	speed = -0.2
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_ONE
@@ -57,5 +56,5 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.knock_down(2)
+	H.Knockdown(40)
 	return

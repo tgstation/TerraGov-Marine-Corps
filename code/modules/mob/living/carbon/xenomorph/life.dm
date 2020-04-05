@@ -1,5 +1,5 @@
 #define DEBUG_XENO_LIFE	0
-#define XENO_RESTING_HEAL 1
+#define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
@@ -53,7 +53,7 @@
 			death()
 		return
 
-	if(knocked_out || sleeping || health < get_crit_threshold())
+	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
 		stat = UNCONSCIOUS
@@ -80,12 +80,6 @@
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()
 	. = ..()
-	if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-		if(last_move_intent < world.time - HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY || !stealth)
-			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly when stationary or unstealthed
-
-		if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-			to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
 /mob/living/carbon/xenomorph/handle_fire()
@@ -148,8 +142,11 @@
 		else
 			use_plasma(5)
 
-	if(locate(/obj/effect/alien/weeds) in T)
-		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) // Empty recovery aura will always equal 0
+	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+		if(lying || resting)
+			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2) // Empty recovery aura will always equal 0
+		else
+			gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1))
 	else
 		gain_plasma(1)
 
@@ -218,7 +215,7 @@
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-		frenzy_aura = frenzy_new
+		set_frenzy_aura(frenzy_new)
 		warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
@@ -284,16 +281,6 @@
 	update_stat()
 	update_wounds()
 
-/mob/living/carbon/xenomorph/handle_stunned()
-	if(stunned)
-		adjust_stunned(-2)
-	return stunned
-
-/mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-5)
-	return knocked_down
-
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
 		#if DEBUG_XENO_LIFE
@@ -305,15 +292,16 @@
 		#endif
 	return slowdown
 
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return 0
-	slowdown = adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
-	return slowdown
-
-
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
+
+/mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
+	if(frenzy_aura == new_aura)
+		return
+	frenzy_aura = new_aura
+	if(frenzy_aura)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
+		return
+	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

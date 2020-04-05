@@ -42,7 +42,7 @@
 
 	if(info != initial(info))
 		info = html_encode(info)
-		info = oldreplacetext(info, "\n", "<BR>")
+		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
 
 	update_icon()
@@ -75,7 +75,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
+	var/n_name = stripped_input(usr, "What would you like to label the paper?", "Paper Labelling")
 	if((loc == usr && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "paper")]"
 	return
@@ -122,22 +122,20 @@
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
-	var/spam_protection = 100
-	while(locid < 15) // I know this can cause infinite loops and fuck up the whole server, but the if(istart==0) should be safe as fuck
+	while(locid < 15)	//hey whoever decided a while(1) was a good idea here, i hate you
 		var/istart = 0
-		spam_protection--
-		if(spam_protection <= 0)
-			return
-
 		if(links)
 			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
 		else
 			istart = findtext(info, "<span class=\"paper_field\">", laststart)
 
-		if(istart==0)
-			return // No field found with matching id
+		if(istart == 0)
+			return	//No field found with matching id
 
-		laststart = istart+1
+		if(links)
+			laststart = istart + length(info_links[istart])
+		else
+			laststart = istart + length(info[istart])
 		locid++
 		if(locid == id)
 			var/iend = 1
@@ -261,7 +259,7 @@
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
 
-		t = oldreplacetext(t, "\n", "<BR>")
+		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 		if(id!="end")

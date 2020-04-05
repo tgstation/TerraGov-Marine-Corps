@@ -74,7 +74,6 @@
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
-	var/active = 0
 	w_class = WEIGHT_CLASS_TINY
 	force = 8
 	sharp = 0

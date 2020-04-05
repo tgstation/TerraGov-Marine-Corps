@@ -322,7 +322,7 @@ GLOBAL_PROTECT(admin_verbs_mentor)
 /world/proc/AVban()
 	return list(
 	/datum/admins/proc/ban_panel,
-	/datum/admins/proc/sticky_ban_panel,
+	/datum/admins/proc/stickybanpanel,
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/note_panel
 	)
@@ -387,6 +387,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/outfit_manager,
 	/datum/admins/proc/offer,
 	/datum/admins/proc/force_dropship,
+	/datum/admins/proc/open_shuttlepanel,
 	/datum/admins/proc/xeno_panel,
 	/datum/admins/proc/view_faxes,
 	/datum/admins/proc/possess,
@@ -454,7 +455,8 @@ GLOBAL_PROTECT(admin_verbs_sound)
 
 /world/proc/AVspawn()
 	return list(
-	/datum/admins/proc/spawn_atom
+	/datum/admins/proc/spawn_atom,
+	/client/proc/get_togglebuildmode
 	)
 GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 GLOBAL_PROTECT(admin_verbs_spawn)
@@ -613,7 +615,7 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
 
 
-/proc/GenIrcStealthKey()
+/proc/GenTgsStealthKey()
 	var/num = (rand(0,1000))
 	var/i = 0
 	while(i == 0)

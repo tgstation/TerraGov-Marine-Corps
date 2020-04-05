@@ -132,10 +132,6 @@
 	if(!user.mind)
 		return
 
-	var/acquisition_time = target_acquisition_delay
-	if(user.mind.cm_skills)
-		acquisition_time = max(15, acquisition_time - 25*user.mind.cm_skills.leadership)
-
 	var/datum/squad/S = user.assigned_squad
 
 	var/laz_name = ""
@@ -163,7 +159,7 @@
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, acquisition_time, TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	if(mode)
 		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)

@@ -139,15 +139,15 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, location)
 	s.start()
-	for(var/mob/living/carbon/M in viewers(world.view, location))
+	for(var/mob/living/carbon/M in viewers(WORLD_VIEW, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
 				if(M.flash_eyes())
-					M.knock_down(15)
+					M.Knockdown(30 SECONDS)
 
 			if(4 to 5)
 				if(M.flash_eyes())
-					M.stun(5)
+					M.Stun(10 SECONDS)
 
 
 /datum/chemical_reaction/napalm

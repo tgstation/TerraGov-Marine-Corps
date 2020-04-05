@@ -6,7 +6,7 @@
 	action_icon_state = "stomp"
 	mechanics_text = "Knocks all adjacent targets away and down."
 	ability_name = "stomp"
-	plasma_cost = 80
+	plasma_cost = 100
 	cooldown_timer = 20 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_STOMP
@@ -17,19 +17,21 @@
 	add_cooldown()
 
 	GLOB.round_statistics.crusher_stomps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
 	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
 	"<span class='xenodanger'>We smash into the ground!</span>")
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(2,X.loc))
+	for(var/mob/living/M in range(0,X.loc))
 		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
 		var/damage = (rand(CRUSHER_STOMP_LOWER_DMG, CRUSHER_STOMP_UPPER_DMG) * CRUSHER_STOMP_UPGRADE_BONUS(X)) / max(1,distance + 1)
 		if(distance == 0) //If we're on top of our victim, give him the full impact
 			GLOB.round_statistics.crusher_stomp_victims++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee"))
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
@@ -38,9 +40,9 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.knock_down(1)
+			M.Knockdown(20)
 		else
-			M.stun(1) //Otherwise we just get stunned.
+			M.Stun(20) //Otherwise we just get stunned.
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
@@ -53,7 +55,7 @@
 	action_icon_state = "cresttoss"
 	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
 	ability_name = "crest toss"
-	plasma_cost = 40
+	plasma_cost = 100
 	cooldown_timer = 18 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 
@@ -129,7 +131,6 @@
 		UPDATEHEALTH(L)
 		shake_camera(L, 2, 2)
 		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
-		L.knock_down(1, 1)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)

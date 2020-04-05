@@ -246,7 +246,7 @@
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 	var/obj/item/turret_laptop/laptop = null
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
-	var/obj/item/projectile/in_chamber = null
+	var/obj/projectile/in_chamber = null
 	var/last_alert = 0
 	var/last_damage_alert = 0
 	var/list/obj/alert_list = list()
@@ -299,6 +299,7 @@
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
+	GLOB.marine_turrets += src
 
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
@@ -310,6 +311,7 @@
 	target = null
 	alert_list = list()
 	stop_processing()
+	GLOB.marine_turrets -= src
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/living/user)
@@ -664,7 +666,7 @@
 
 	else if(istype(I, magazine_type))
 		var/obj/item/ammo_magazine/M = I
-		if(user.mind?.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
+		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
 			user.visible_message("<span class='notice'>[user] begins fumbling about, swapping a new [I] into [src].</span>",
 			"<span class='notice'>You begin fumbling about, swapping a new [I] into [src].</span>")
 			if(user.action_busy)
@@ -853,7 +855,7 @@
 
 
 /obj/machinery/marine_turret/proc/create_bullet()
-	in_chamber = new /obj/item/projectile(src) //New bullet!
+	in_chamber = new /obj/projectile(src) //New bullet!
 	in_chamber.generate_bullet(ammo)
 
 
@@ -912,7 +914,7 @@
 
 
 	if(load_into_chamber())
-		if(istype(in_chamber,/obj/item/projectile))
+		if(istype(in_chamber,/obj/projectile))
 
 			if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 				//Apply scatter
@@ -980,7 +982,7 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD) //No dead or robots.
+		if(M.stat == DEAD || (M.status_flags & INCORPOREAL)) //No dead, robots, or incorporeal.
 			continue
 		if(CHECK_BITFIELD(turret_flags, TURRET_SAFETY) && !isxeno(M)) //When safeties are on, Xenos only.
 			continue

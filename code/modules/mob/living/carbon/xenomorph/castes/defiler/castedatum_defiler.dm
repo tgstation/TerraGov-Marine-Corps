@@ -11,7 +11,7 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -24,10 +24,10 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/xenomorph/carrier
 
@@ -35,10 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 15, "laser" = 15, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
-
-	// *** Defiler Abilities *** //
-	neuro_claws_amount = 5
+	armor = list("melee" = 30, "bullet" = 25, "laser" = 15, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -47,8 +44,11 @@
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/activable/emit_neurogas,
-		/datum/action/xeno_action/neuroclaws
 		)
+		
+	// *** Pheromones *** //
+	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
@@ -62,7 +62,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 33
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -75,16 +75,16 @@
 	plasma_gain = 17
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 17, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 35, "acid" = 35)
-
-	// *** Defiler Abilities *** //
-	neuro_claws_amount = 6
+	armor = list("melee" = 35, "bullet" = 27, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
+	
+	// *** Pheromones *** //
+	aura_strength = 2 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 
 /datum/xeno_caste/defiler/elder
 	upgrade_name = "Elder"
@@ -109,14 +109,14 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 38, "bullet" = 19, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 38, "acid" = 38)
+	armor = list("melee" = 38, "bullet" = 29, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
 
-	// *** Defiler Abilities *** //
-	neuro_claws_amount = 7
-
+		// *** Pheromones *** //
+	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
+	
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
@@ -140,11 +140,11 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 40, "acid" = 40)
-
-	// *** Defiler Abilities *** //
-	neuro_claws_amount = 8
+	armor = list("melee" = 40, "bullet" = 31, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	
+	// *** Pheromones *** //
+	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 

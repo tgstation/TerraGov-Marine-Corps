@@ -28,17 +28,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/busy = FALSE //The overwatch computer is busy launching an OB/SB, lock controls
 	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
 	var/z_hidden = 0 //which z level is ignored when showing marines.
-	var/squad_console = NO_SQUAD //Is this associated to a specific squad?
 	var/datum/squad/current_squad = null //Squad being currently overseen
-	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
-
-
-/obj/machinery/computer/camera_advanced/overwatch/Initialize()
-	. = ..()
-	for(var/i in SSjob.squads)
-		var/datum/squad/S = SSjob.squads[i]
-		squads += S
 
 
 /obj/machinery/computer/camera_advanced/overwatch/main
@@ -48,19 +39,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 /obj/machinery/computer/camera_advanced/overwatch/alpha
 	name = "Alpha Overwatch Console"
-	squad_console = ALPHA_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/bravo
 	name = "Bravo Overwatch Console"
-	squad_console = BRAVO_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/charlie
 	name = "Charlie Overwatch Console"
-	squad_console = CHARLIE_SQUAD
 
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
-	squad_console = DELTA_SQUAD
 
 
 /obj/machinery/computer/camera_advanced/overwatch/attackby(obj/item/I, mob/user, params)
@@ -273,8 +260,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 				else
 					var/list/squad_choices = list()
-					for(var/i in SSjob.squads)
-						var/datum/squad/S = SSjob.squads[i]
+					for(var/i in SSjob.active_squads)
+						var/datum/squad/S = SSjob.active_squads[i]
 						if(!S.overwatch_officer)
 							squad_choices += S.name
 
@@ -284,7 +271,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>[icon2html(src, usr)] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = SSjob.squads[squad_name]
+					var/datum/squad/selected = SSjob.active_squads[squad_name]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -413,7 +400,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		dat += "----------------------<br>"
 		switch(state)
 			if(OW_MAIN)
-				for(var/datum/squad/S in squads)
+				for(var/s in SSjob.active_squads)
+					var/datum/squad/S = SSjob.active_squads[s]
 					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
 					if(S.squad_leader)
 						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
@@ -471,7 +459,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
-	for(var/datum/squad/S in squads)
+	for(var/s in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[s]
 		S.message_squad(txt)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/handle_bombard()
@@ -550,7 +539,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		current_squad.message_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("<span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
-	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == SQUAD_LEADER ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
+	to_chat(H, "[icon2html(src, H)] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[ismarineleaderjob(H.job) ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>")
 	to_chat(usr, "[icon2html(src, usr)] [H.real_name] is [current_squad]'s new leader!")
 	current_squad.promote_leader(H)
 
@@ -592,10 +581,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	var/mob/living/carbon/human/transfer_marine = input(usr, "Choose marine to transfer") as null|anything in current_squad.get_all_members()
 	if(!transfer_marine)
 		return
+
+	if(!transfer_marine.job)
+		CRASH("[transfer_marine] selected for transfer without a job.")
+
 	if(S != current_squad)
 		return //don't change overwatched squad, idiot.
 
-	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD) //gibbed, decapitated, dead
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
 		return
 
@@ -603,14 +596,14 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [transfer_marine] isn't wearing an ID.</span>")
 		return
 
-	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.squads
+	var/choice = input(usr, "Choose the marine's new squad") as null|anything in SSjob.active_squads
 	if(!choice)
 		return
 	if(S != current_squad)
 		return
-	var/datum/squad/new_squad = SSjob.squads[choice]
+	var/datum/squad/new_squad = SSjob.active_squads[choice]
 
-	if(!istype(transfer_marine) || !transfer_marine.mind || transfer_marine.stat == DEAD)
+	if(!istype(transfer_marine) || transfer_marine.stat == DEAD)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is KIA.</span>")
 		return
 
@@ -623,27 +616,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>[transfer_marine] is already in [new_squad]!</span>")
 		return
 
-
-	var/no_place = FALSE
-	switch(transfer_marine.mind.assigned_role)
-		if(SQUAD_LEADER)
-			if(new_squad.num_leaders == new_squad.max_leaders)
-				no_place = TRUE
-		if(SQUAD_SPECIALIST)
-			if(new_squad.num_specialists == new_squad.max_specialists)
-				no_place = TRUE
-		if(SQUAD_ENGINEER)
-			if(new_squad.num_engineers >= new_squad.max_engineers)
-				no_place = TRUE
-		if(SQUAD_CORPSMAN)
-			if(new_squad.num_medics >= new_squad.max_medics)
-				no_place = TRUE
-		if(SQUAD_SMARTGUNNER)
-			if(new_squad.num_smartgun == new_squad.max_smartgun)
-				no_place = TRUE
-
-	if(no_place)
-		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.mind.assigned_role].</span>")
+	if(ismarineleaderjob(transfer_marine.job) && new_squad.current_positions[/datum/job/terragov/squad/leader] >= SQUAD_MAX_POSITIONS(transfer_marine.job.total_positions))
+		to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Transfer aborted. [new_squad] can't have another [transfer_marine.job.title].</span>")
 		return
 
 	old_squad.remove_from_squad(transfer_marine)
@@ -847,9 +821,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		to_chat(user, "<span class='warning'>You have to be outside or under a glass ceiling to activate this.</span>")
 		return
 
-	var/delay = activation_time
-	if(user.mind.cm_skills)
-		delay = max(10, delay - 20*user.mind.cm_skills.leadership)
+	var/delay = max(1 SECONDS, activation_time - 2 SECONDS * user.skills.getRating("leadership"))
 
 	user.visible_message("<span class='notice'>[user] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
@@ -900,9 +872,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
 		return
-	var/delay = activation_time
-	if(H.mind.cm_skills)
-		delay = max(15, delay - 20*H.mind.cm_skills.leadership)
+	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -931,9 +901,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		"You activate [src]")
 
 /obj/item/squad_beacon/bomb/proc/deactivate(mob/living/carbon/human/H)
-	var/delay = activation_time * 0.5 //Half as long as setting it up.
-	if(H.mind.cm_skills)
-		delay = max(10, delay - 20 * H.mind.cm_skills.leadership)
+	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
 	if(do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
@@ -963,7 +931,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /mob/living/carbon/human/verb/issue_order(which as null|text)
 	set hidden = TRUE
 
-	if(!mind.cm_skills || (mind.cm_skills && mind.cm_skills.leadership < SKILL_LEAD_TRAINED))
+	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
 		to_chat(src, "<span class='warning'>You are not competent enough in leadership to issue an order.</span>")
 		return
 
@@ -1078,10 +1046,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
-	if(!squads || !length(squads))
-		return FALSE
-	var/datum/squad/S
-	for(S in squads)
+	for(var/s in SSjob.active_squads)
+		var/datum/squad/S = SSjob.active_squads[s]
 		if(S.id == id)
 			return S
 	return FALSE
@@ -1135,17 +1101,15 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				if(is_mainship_level(M_turf?.z))
 					continue
 
-		if(H.mind?.assigned_role)
-			role = H.mind.assigned_role
-		else if(H.job)
-			role = H.job
+		if(H.job)
+			role = H.job.title
 		else if(istype(H.wear_id, /obj/item/card/id))
 			var/obj/item/card/id/ID = H.wear_id //we use their ID to get their role.
 			role = ID.rank
 		if(current_squad.squad_leader)
 			if(H == current_squad.squad_leader)
 				dist = "<b>N/A</b>"
-				if(H.mind && H.mind.assigned_role != SQUAD_LEADER)
+				if(!ismarineleaderjob(H.job))
 					act_sl = " (acting SL)"
 			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
@@ -1196,8 +1160,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
-	dat += "<b>[spec_count ? "Squad Specialist Deployed":"<font color='red'>No Specialist Deployed!</font>"]</b><br>"
-	dat += "<b>[smart_count ? "Squad Smartgunner Deployed":"<font color='red'>No Smartgunner Deployed!</font>"]</b><br>"
+	dat += "<b>Squad Specialists: [spec_count] Deployed | Squad Smartgunners: [smart_count] Deployed</b><br>"
 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"

@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	else if(istype(I, /obj/item/tool/pen))
 		switch(alert("What would you like to alter?", "Label", "Title", "Description", "Cancel"))
 			if("Title")
-				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_NAME_LEN))
+				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				else
 					nameset = TRUE
 			if("Description")
-				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_MESSAGE_LEN))
+				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	else if(istype(I, /obj/item/tool/pen))
 		switch(alert("What would you like to alter?", "Label", "Title", "Description", "Cancel"))
 			if("Title")
-				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_NAME_LEN))
+				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 				else
 					nameset = TRUE
 			if("Description")
-				var/str = trim(copytext(sanitize(input(user, "Label text?", "Set label", "")), 1, MAX_MESSAGE_LEN))
+				var/str = stripped_input(user, "Label text?", "Set label", max_length = MAX_NAME_LEN)
 				if(!str)
 					to_chat(user, "<span class='warning'>Invalid text.</span>")
 					return
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 		return
 
 	Topic(href, href_list)
-		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
+		if(href_list["nextTag"] && (href_list["nextTag"] in GLOB.tagger_locations))
 			src.currTag = href_list["nextTag"]
 		openwindow(usr)
 
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 	return
 
 /obj/machinery/disposal/deliveryChute/Bumped(atom/movable/AM) //Go straight into the chute
-	if(istype(AM, /obj/item/projectile) || istype(AM, /obj/effect))
+	if(istype(AM, /obj/projectile) || istype(AM, /obj/effect))
 		return
 	switch(dir)
 		if(NORTH)

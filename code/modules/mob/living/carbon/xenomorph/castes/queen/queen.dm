@@ -13,14 +13,12 @@
 	amount_grown = 0
 	max_grown = 10
 	plasma_stored = 300
-	speed = 0.6
 	pixel_x = -16
 	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
-	job = ROLE_XENO_QUEEN
 
 	var/breathing_counter = 0
 	var/queen_ability_cooldown = 0

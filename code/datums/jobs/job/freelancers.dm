@@ -1,7 +1,7 @@
 /datum/job/freelancer
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
-	skills_type = /datum/skills/pfc/crafty
+	skills_type = /datum/skills/crafty
 	faction = "Freelancers"
 
 

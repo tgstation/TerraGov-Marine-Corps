@@ -13,7 +13,8 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-
+	glide_size = 8
+	var/glide_modifier_flags = NONE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
@@ -25,12 +26,22 @@
 	var/verb_yell = "yells"
 	var/speech_span
 
+	var/grab_state = GRAB_PASSIVE //if we're pulling a mob, tells us how aggressive our grab is.
+	var/atom/movable/buckled // movable atom we are buckled to
+	var/list/mob/living/buckled_mobs // mobs buckled to this mob
+	var/buckle_flags = NONE
+	var/max_buckled_mobs = 1
+	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying = buckle_lying if != -1
+
 	var/datum/component/orbiter/orbiting
 
 //===========================================================================
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
+
+	if(LAZYLEN(buckled_mobs))
+		unbuckle_all_mobs(force = TRUE)
 
 	if(throw_source)
 		throw_source = null
@@ -58,7 +69,7 @@
 // Here's where we rewrite how byond handles movement except slightly different
 // To be removed on step_ conversion
 // All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct=0)
+/atom/movable/Move(atom/newloc, direct = 0, glide_size_override)
 	. = FALSE
 	if(!newloc || newloc == loc)
 		return
@@ -102,7 +113,7 @@
 //
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct)
+/atom/movable/Move(atom/newloc, direct, glide_size_override)
 	var/atom/movable/pullee = pulling
 	var/turf/T = loc
 	if(!moving_from_pull)
@@ -110,6 +121,12 @@
 	if(!loc || !newloc)
 		return FALSE
 	var/atom/oldloc = loc
+
+	//Early override for some cases like diagonal movement
+	var/old_glide_size
+	if(!isnull(glide_size_override) && glide_size_override != glide_size && !glide_modifier_flags)
+		old_glide_size = glide_size
+		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
 		if(!(direct & (direct - 1))) //Cardinal move
@@ -184,9 +201,14 @@
 				pulling.moving_from_pull = null
 			check_pulling()
 
+	if(!isnull(old_glide_size))
+		set_glide_size(old_glide_size)
+
 	last_move = direct
 	last_move_time = world.time
 	setDir(direct)
+	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
+		return FALSE
 
 
 /atom/movable/Bump(atom/A)
@@ -230,6 +252,9 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
+		var/datum/light_source/L = thing
+		L.source_atom.update_light()
 	return TRUE
 
 
@@ -341,6 +366,8 @@
 	if(!target || !src)
 		return FALSE
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_THROW, target, range, thrower, spin) & COMPONENT_CANCEL_THROW)
+		return
 
 	if(spin)
 		animation_spin(5, 1)
@@ -435,6 +462,17 @@
 		throw_source = null
 
 
+/atom/movable/proc/handle_buckled_mob_movement(NewLoc, direct)
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		if(buckled_mob.Move(NewLoc, direct))
+			continue
+		forceMove(buckled_mob.loc)
+		last_move = buckled_mob.last_move
+		return FALSE
+	return TRUE
+
+
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
@@ -453,10 +491,6 @@
 			return TRUE //Blocked; we can't proceed further.
 
 	return FALSE
-
-
-/atom/movable/proc/update_icon()
-	return
 
 
 /atom/movable/proc/do_attack_animation(atom/A, visual_effect_icon, obj/item/used_item, no_effect)
@@ -672,11 +706,20 @@
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 	pulling = AM
 	AM.pulledby = src
+	AM.glide_modifier_flags |= GLIDE_MOD_PULLED
 	if(ismob(AM))
 		var/mob/M = AM
+		if(M.buckled)
+			if(!M.buckled.anchored)
+				return start_pulling(M.buckled)
+			M.buckled.set_glide_size(glide_size)
+		else
+			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")		
+	else
+		pulling.set_glide_size(glide_size)
 	return TRUE
 
 
@@ -684,9 +727,35 @@
 	if(!pulling)
 		return FALSE
 
+	setGrabState(GRAB_PASSIVE)
+
 	pulling.pulledby = null
+	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
+	if(ismob(pulling))
+		var/mob/pulled_mob = pulling
+		pulled_mob.update_canmove() //Mob gets up if it was lyng down in a chokehold.
+		if(pulled_mob.buckled)
+			pulled_mob.buckled.reset_glide_size()
+		else
+			pulled_mob.reset_glide_size()
+	else
+		pulling.reset_glide_size()
 	pulling = null
 
+	return TRUE
+
+
+/atom/movable/proc/Move_Pulled(turf/target)
+	if(!pulling)
+		return FALSE
+	if(pulling.anchored || !pulling.Adjacent(src))
+		stop_pulling()
+		return FALSE
+	var/move_dir = get_dir(pulling.loc, target)
+	var/turf/destination_turf = get_step(pulling.loc, move_dir)
+	if(!Adjacent(destination_turf) || (destination_turf == loc && pulling.density))
+		return FALSE
+	pulling.Move(destination_turf, move_dir)
 	return TRUE
 
 
@@ -714,7 +783,57 @@
 		return FALSE
 	if(anchored || throwing)
 		return FALSE
+	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
+		return FALSE
 	return TRUE
+
+
+/atom/movable/proc/is_buckled()
+	return buckled
+
+
+/atom/movable/proc/set_glide_size(target = 8)
+	if(glide_size == target)
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, target)
+	glide_size = target
+	if(pulling && pulling.glide_size != target)
+		pulling.set_glide_size(target)
+	return TRUE
+
+/obj/set_glide_size(target = 8)
+	. = ..()
+	if(!.)
+		return
+	for(var/m in buckled_mobs)
+		var/mob/living/buckled_mob = m
+		if(buckled_mob.glide_size == target)
+			continue
+		buckled_mob.set_glide_size(target)
+
+/obj/structure/bed/set_glide_size(target = 8)
+	. = ..()
+	if(!.)
+		return
+	if(buckled_bodybag && buckled_bodybag.glide_size != target)
+		buckled_bodybag.set_glide_size(target)
+	glide_size = target
+
+
+/atom/movable/proc/reset_glide_size()
+	if(glide_modifier_flags)
+		return
+	set_glide_size(initial(glide_size))
+
+/obj/vehicle/reset_glide_size()
+	if(glide_modifier_flags)
+		return
+	set_glide_size(DELAY_TO_GLIDE_SIZE_STATIC(move_delay))
+
+/mob/reset_glide_size()
+	if(glide_modifier_flags)
+		return
+	set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 
 /atom/movable/vv_edit_var(var_name, var_value)
@@ -746,3 +865,14 @@
 				return TRUE
 			return FALSE
 	return ..()
+
+
+/atom/movable/proc/resisted_against(datum/source) //COMSIG_LIVING_DO_RESIST
+	var/mob/resisting_mob = source
+	if(resisting_mob.restrained(RESTRAINED_XENO_NEST))
+		return FALSE
+	user_unbuckle_mob(resisting_mob, resisting_mob)
+
+
+/atom/movable/proc/setGrabState(newstate)
+	grab_state = newstate

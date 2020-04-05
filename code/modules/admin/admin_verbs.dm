@@ -64,7 +64,7 @@
 	if(M.client.holder.fakekey)
 		M.client.holder.fakekey = null
 	else
-		var/new_key = ckeyEx(input("Enter your desired display name.", "Stealth Mode", M.client.key) as text|null)
+		var/new_key = ckeyEx(stripped_input(usr, "Enter your desired display name.", "Stealth Mode", M.client.key, 26))
 		if(!new_key)
 			return
 		if(length(new_key) >= 26)
@@ -182,18 +182,18 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(L.sleeping > 0)
-		L.sleeping = 0
+	if(L.IsAdminSleeping())
+		L.ToggleAdminSleep()
 	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
 		return
 	else if(!istype(L))
 		to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
 		return
 	else
-		L.sleeping = 9999999
+		L.ToggleAdminSleep()
 
-	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+	log_admin("[key_name(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_panel()
@@ -207,13 +207,10 @@
 	if(!istype(L))
 		return
 
-	if(L.sleeping > 0)
-		L.sleeping = 0
-	else
-		L.sleeping = 9999999
+	L.ToggleAdminSleep()
 
-	log_admin("[key_name(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [key_name(L)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has [L.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
+	log_admin("[key_name(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [key_name(L)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [L.IsAdminSleeping() ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(L)].")
 
 
 /datum/admins/proc/toggle_sleep_area()
@@ -226,12 +223,12 @@
 	switch(alert("Sleep or unsleep everyone?", "Toggle Sleeping Area", "Sleep", "Unsleep", "Cancel"))
 		if("Sleep")
 			for(var/mob/living/L in view())
-				L.sleeping = 9999999
+				L.SetAdminSleep()
 			log_admin("[key_name(usr)] has slept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has slept everyone in view.")
 		if("Unsleep")
 			for(var/mob/living/L in view())
-				L.sleeping = 0
+				L.SetAdminSleep(remove = TRUE)
 			log_admin("[key_name(usr)] has unslept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
@@ -400,7 +397,7 @@
 				path = root
 				continue
 		path += choice
-		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+		if(copytext_char(path, -1) != "/")		//didn't choose a directory, no need to iterate again
 			break
 	var/extensions
 	for(var/i in valid_extensions)
@@ -504,7 +501,7 @@
 	if(!check_rights(R_ASAY))
 		return
 
-	msg = noscript(msg)
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return
@@ -534,10 +531,7 @@
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
-		msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	else
-		msg = noscript(msg)
+	msg = emoji_parse(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 
 	if(!msg)
 		return
@@ -583,7 +577,7 @@
 	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
-	msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -797,7 +791,7 @@
 
 	var/client/C
 	if(istext(whom))
-		if(cmptext(copytext(whom,1,2),"@"))
+		if(whom[1] == "@")
 			whom = find_stealth_key(whom)
 		C = GLOB.directory[whom]
 	else if(istype(whom, /client))
@@ -849,12 +843,12 @@
 		return
 
 	var/client/recipient
-	var/irc = FALSE
+	var/external = FALSE
 	if(istext(whom))
-		if(cmptext(copytext(whom, 1, 2),"@"))
+		if(whom[1] == "@")
 			whom = find_stealth_key(whom)
 		if(whom == "IRCKEY")
-			irc = TRUE
+			external = TRUE
 		else
 			recipient = GLOB.directory[whom]
 
@@ -863,8 +857,8 @@
 
 
 
-	if(irc)
-		if(!ircreplyamount)	//to prevent people from spamming irc
+	if(external)
+		if(!externalreplyamount)	//to prevent people from spamming irc/discord
 			return
 
 		if(!msg)
@@ -874,7 +868,7 @@
 			return
 
 		if(holder)
-			to_chat(src, "<span class='danger'>Use the admin IRC channel.</span>")
+			to_chat(src, "<span class='danger'>Error: Use the admin IRC/Discord channel.</span>")
 			return
 
 	else
@@ -899,7 +893,7 @@
 				to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
 				return
 
-			if(!recipient && !irc)
+			if(!recipient && !external)
 				if(holder)
 					to_chat(src, "<br><span class='boldnotice'>Client not found. Here's your message, copy-paste it if needed:</span>")
 					to_chat(src, "<span class='notice'>[msg]</span><br>")
@@ -911,8 +905,8 @@
 		return
 
 	//clean the message if it's not sent by a high-rank admin
-	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || irc)//no sending html to the poor bots
-		msg = trim(sanitize(copytext(msg, 1, MAX_MESSAGE_LEN)))
+	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || external)//no sending html to the poor bots
+		msg = trim(sanitize(msg), MAX_MESSAGE_LEN)
 		if(!msg)
 			return
 
@@ -920,11 +914,11 @@
 
 	var/keywordparsedmsg = keywords_lookup(msg)
 
-	if(irc)
+	if(external)
 		to_chat(src, "<span class='notice'>PM to-<b>Staff</b>: <span class='linkify'>[rawmsg]</span></font>")
-		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>IRC</i>: [keywordparsedmsg]</font>")
-		ircreplyamount--
-		send2irc("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
+		var/datum/admin_help/AH = admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, TRUE, TRUE)] to <i>External</i>: [keywordparsedmsg]</font>")
+		externalreplyamount--
+		send2tgs("[AH ? "#[AH.id] " : ""]Reply: [ckey]", sanitizediscord(rawmsg))
 	else
 		if(check_other_rights(recipient, R_ADMINTICKET, FALSE) || is_mentor(recipient))
 			if(check_rights(R_ADMINTICKET, FALSE) || is_mentor(src)) //Both are staff
@@ -984,11 +978,11 @@
 				to_chat(src, "<span class='warning'>Error: Non-staff to non-staff communication is disabled.</span>")
 				return
 
-	if(irc)
-		log_admin_private("PM: [key_name(src)]->IRC: [rawmsg]")
+	if(external)
+		log_admin_private("PM: [key_name(src)]->External: [rawmsg]")
 		for(var/client/X in GLOB.admins)
 			if(check_other_rights(X, R_ADMINTICKET, FALSE))
-				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;IRC:</B> [keywordparsedmsg]</span>")
+				to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;External:</B> [keywordparsedmsg]</span>")
 	else
 		log_admin_private("PM: [key_name(src)]->[key_name(recipient)]: [rawmsg]")
 		//Admins PMs go to admins, mentor PMs go to mentors and admins
@@ -1019,13 +1013,13 @@
 						to_chat(X, "<span class='notice'><B>PM: [key_name(src, X, FALSE)]-&gt;[key_name(recipient, X, FALSE)]:</B> [keywordparsedmsg]</span>")
 
 
-/proc/IrcPm(target, msg, sender)
+/proc/TgsPm(target, msg, sender)
 	target = ckey(target)
 	var/client/C = GLOB.directory[target]
 
 	var/datum/admin_help/ticket = C ? C.current_ticket : GLOB.ahelp_tickets.CKey2ActiveTicket(target)
 	var/compliant_msg = trim(lowertext(msg))
-	var/irc_tagged = "[sender](IRC)"
+	var/tgs_tagged = "[sender](TGS/External)"
 	var/list/splits = splittext(compliant_msg, " ")
 	if(length(splits) && splits[1] == "ticket")
 		if(length(splits) < 2)
@@ -1034,33 +1028,34 @@
 			if("close")
 				if(ticket)
 					ticket.Close(FALSE, TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully closed"
 			if("resolve")
 				if(ticket)
 					ticket.Resolve(FALSE, TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully resolved"
 			if("icissue")
 				if(ticket)
 					ticket.ICIssue(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully marked as IC issue"
 			if("reject")
 				if(ticket)
 					ticket.Reject(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
 					return "Ticket #[ticket.id] successfully rejected"
 			if("tier")
 				if(ticket)
 					ticket.Tier(TRUE)
-					ticket.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [sender].</font>")
-					message_admins("IRC interaction by: [irc_tagged]")
-					return "Ticket #[ticket.id] successfully tiered"
+					ticket.AddInteraction("<font color='#ff8c8c'>External interaction by: [sender].</font>")
+					message_admins("External interaction by: [tgs_tagged]")
+					var/ticket_type = (ticket.tier == TICKET_ADMIN) ? "an admin" : "a mentor"
+					return "Ticket #[ticket.id] successfully tiered as [ticket_type] ticket"
 			if("reopen")
 				if(ticket)
 					return "Error: [target] already has ticket #[ticket.id] open"
@@ -1075,8 +1070,8 @@
 				if(AH.initiator_ckey != target)
 					return "Error: Ticket #[id] belongs to [AH.initiator_ckey]"
 				AH.Reopen(TRUE)
-				AH.AddInteraction("<font color='#ff8c8c'>IRC interaction by: [irc_tagged].</font>")
-				message_admins("IRC interaction by: [irc_tagged]")
+				AH.AddInteraction("<font color='#ff8c8c'>External interaction by: [tgs_tagged].</font>")
+				message_admins("External interaction by: [tgs_tagged]")
 				return "Ticket #[id] successfully reopened"
 			if("list")
 				var/list/tickets = GLOB.ahelp_tickets.TicketsByCKey(target)
@@ -1102,25 +1097,25 @@
 		return "Error: No client"
 
 	if(!stealthkey)
-		stealthkey = GenIrcStealthKey()
+		stealthkey = GenTgsStealthKey()
 
-	msg = sanitize(copytext(msg, 1, MAX_MESSAGE_LEN))
+	msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 	if(!msg)
 		return "Error: No message"
 
-	log_admin_private("IRC PM: [irc_tagged] -> [key_name(C)] : [msg]")
-	message_admins("IRC PM: [irc_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
+	log_admin_private("External PM: [tgs_tagged] -> [key_name(C)] : [msg]")
+	message_admins("External PM: [tgs_tagged] -> [key_name_admin(C, FALSE, FALSE)] : [msg]")
 
 	to_chat(C, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C, "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C, "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
 
-	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [irc_tagged]: [msg]</font>")
+	admin_ticket_log(C, "<font color='#a7f2ef'>PM From [tgs_tagged]: [msg]</font>")
 
 	//always play non-admin recipients the adminhelp sound
 	SEND_SOUND(C, sound('sound/effects/adminhelp.ogg', channel = CHANNEL_ADMIN))
 
-	C.ircreplyamount = IRCREPLYCOUNT
+	C.externalreplyamount = EXTERNALREPLYCOUNT
 
 	return "Message Successful"
 
@@ -1154,11 +1149,13 @@
 		return
 
 	dat += "<table>"
-
-	for(var/j in SSjob.occupations)
+	if(SSjob.initialized && (!SSticker.HasRoundStarted()))
+		if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
+		else
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
+	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
-		if(!(job.title in GLOB.jobs_regular_all))
-			continue
 		count++
 		var/J_title = html_encode(job.title)
 		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
@@ -1213,3 +1210,11 @@
 	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
 	browser.set_content(dat)
 	browser.open(FALSE)
+
+
+/client/proc/get_togglebuildmode()
+	set name = "Toggle Build Mode"
+	set category = "Fun"
+	if(!check_rights(R_SPAWN))
+		return
+	togglebuildmode(mob)

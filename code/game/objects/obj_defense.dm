@@ -62,6 +62,8 @@
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	. = ..() //contents explosion
+	if(QDELETED(src))
+		return
 	if(target == src)
 		take_damage(INFINITY, BRUTE, "bomb", 0)
 		return
@@ -86,7 +88,7 @@
 	take_damage(tforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 
-/obj/bullet_act(obj/item/projectile/P)
+/obj/bullet_act(obj/projectile/P)
 	if(istype(P.ammo, /datum/ammo/xeno) && !(resistance_flags & XENO_DAMAGEABLE))
 		return
 	. = ..()

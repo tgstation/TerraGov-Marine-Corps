@@ -278,9 +278,9 @@
 	for(var/i = 1 to length(S.click_border_start))
 		if(S.click_border_start[i] > click_x || click_x > S.click_border_end[i])
 			continue
-		I = S.contents[i]
-		if(!I)
+		if(length(S.contents) < i)
 			continue
+		I = S.contents[i]
 		I.attack_hand(usr)
 		return
 
@@ -511,6 +511,7 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
+	PopulateContents()
 	if(length(can_hold))
 		can_hold = typecacheof(can_hold)
 	else if(length(cant_hold))
@@ -710,3 +711,5 @@
 		return ..() //User is already holding something.
 	var/obj/item/drawn_item = contents[length(contents)]
 	drawn_item.attack_hand(user)
+
+/obj/item/storage/proc/PopulateContents()

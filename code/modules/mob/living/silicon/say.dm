@@ -3,7 +3,7 @@
 	var/desig = "Silicon"
 	if(issilicon(src))
 		var/mob/living/silicon/S = src
-		desig = trim_left(S.job)
+		desig = trim_left(S.job.title)
 	var/message_a = say_quote(message)
 	var/rendered = "Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span>"
 	for(var/mob/M in GLOB.player_list)
@@ -46,9 +46,8 @@
 	return 0
 
 
-/mob/living/silicon/get_message_mode(message)
-	. = ..()
-	if(..() == MODE_HEADSET)
-		return MODE_ROBOT
-	else
-		return .
+/mob/living/silicon/ai/get_message_mode(message)
+	var/static/regex/holopad_finder = regex(@"[:.#][hH]")
+	if(holopad_finder.Find(message, 1, 1))
+		return MODE_HOLOPAD
+	return ..()

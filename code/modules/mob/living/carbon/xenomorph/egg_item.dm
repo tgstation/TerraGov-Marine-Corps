@@ -5,7 +5,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "egg_item"
 	w_class = WEIGHT_CLASS_GIGANTIC
-	flags_atom = NONE
+	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
 	throw_range = 1
 	layer = MOB_LAYER
@@ -52,7 +52,7 @@
 		if (!istype(O,/obj/machinery/light/small))
 			return
 	var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
-	newegg.hivenumber = hivenumber
+	newegg.transfer_to_hive(hivenumber)
 	playsound(T, 'sound/effects/alien_egg_move.ogg', 15, TRUE)
 	qdel(src)
 
@@ -76,7 +76,7 @@
 	if(locate(/obj/effect/alien/weeds) in T)
 		user.use_plasma(30)
 		var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
-		newegg.hivenumber = hivenumber
+		newegg.transfer_to_hive(hivenumber)
 		playsound(T, 'sound/effects/splat.ogg', 15, 1)
 		qdel(src)
 

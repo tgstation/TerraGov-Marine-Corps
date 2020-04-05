@@ -9,7 +9,7 @@
 	icon_off = "capsecureoff"
 
 
-/obj/structure/closet/secure_closet/captains/Initialize()
+/obj/structure/closet/secure_closet/captains/PopulateContents()
 	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/captain(src)
@@ -41,7 +41,7 @@
 	icon_off = "hopsecureoff"
 
 
-/obj/structure/closet/secure_closet/hop/Initialize()
+/obj/structure/closet/secure_closet/hop/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/suit/armor/vest(src)
@@ -62,7 +62,7 @@
 	icon_off = "hopsecureoff"
 
 
-/obj/structure/closet/secure_closet/hop2/Initialize()
+/obj/structure/closet/secure_closet/hop2/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/under/rank/head_of_personnel(src)
 	new /obj/item/clothing/under/dress/dress_hop(src)
@@ -89,7 +89,7 @@
 	icon_broken = "hossecurebroken"
 	icon_off = "hossecureoff"
 
-/obj/structure/closet/secure_closet/hos/Initialize()
+/obj/structure/closet/secure_closet/hos/PopulateContents()
 	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
@@ -125,7 +125,7 @@
 	icon_off = "wardensecureoff"
 
 
-/obj/structure/closet/secure_closet/warden/Initialize()
+/obj/structure/closet/secure_closet/warden/PopulateContents()
 	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
@@ -133,7 +133,7 @@
 		new /obj/item/storage/backpack/satchel/sec(src)
 	new /obj/item/clothing/suit/armor/vest/security(src)
 	new /obj/item/clothing/under/rank/warden(src)
-	new /obj/item/clothing/under/rank/warden/corp(src)
+	new /obj/item/clothing/under/rank/warden/white(src)
 	new /obj/item/clothing/suit/armor/vest/warden(src)
 	new /obj/item/clothing/head/helmet/warden(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud(src)
@@ -158,7 +158,7 @@
 	icon_off = "secure_closed_warrant"
 
 
-/obj/structure/closet/secure_closet/marshal/Initialize()
+/obj/structure/closet/secure_closet/marshal/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/suit/storage/CMB(src)
 	new /obj/item/clothing/under/CM_uniform(src)
@@ -178,7 +178,7 @@
 	icon_off = "secure_closed_police"
 
 
-/obj/structure/closet/secure_closet/security/Initialize()
+/obj/structure/closet/secure_closet/security/PopulateContents()
 	. = ..()
 	if(prob(50))
 		new /obj/item/storage/backpack/security(src)
@@ -200,23 +200,23 @@
 	new /obj/item/clothing/under/rank/security/corp(src)
 
 
-/obj/structure/closet/secure_closet/security/cargo/Initialize()
+/obj/structure/closet/secure_closet/security/cargo/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/tie/armband/cargo(src)
 
 
-/obj/structure/closet/secure_closet/security/engine/Initialize()
+/obj/structure/closet/secure_closet/security/engine/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/tie/armband/engine(src)
 	new /obj/item/encryptionkey/engi(src)
 
 
-/obj/structure/closet/secure_closet/security/science/Initialize()
+/obj/structure/closet/secure_closet/security/science/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/tie/armband/science(src)
 
 
-/obj/structure/closet/secure_closet/security/med/Initialize()
+/obj/structure/closet/secure_closet/security/med/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/tie/armband/medgreen(src)
 	new /obj/item/encryptionkey/med(src)
@@ -248,11 +248,10 @@
 	icon_off = "cabinetdetective_broken"
 
 
-/obj/structure/closet/secure_closet/detective/Initialize()
+/obj/structure/closet/secure_closet/detective/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/under/det(src)
-	new /obj/item/clothing/under/det/black(src)
-	new /obj/item/clothing/under/det/slob(src)
+	new /obj/item/clothing/under/rank/det(src)
+	new /obj/item/clothing/under/rank/det/grey(src)
 	new /obj/item/clothing/suit/storage/det_suit(src)
 	new /obj/item/clothing/suit/storage/det_suit/black(src)
 	new /obj/item/clothing/suit/storage/forensics/blue(src)
@@ -286,7 +285,7 @@
 	req_access = list(ACCESS_MARINE_CAPTAIN)
 
 
-/obj/structure/closet/secure_closet/injection/Initialize()
+/obj/structure/closet/secure_closet/injection/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
 	new /obj/item/reagent_containers/syringe/ld50_syringe/choral(src)
@@ -310,9 +309,9 @@
 	id = "Cell 2"
 
 
-/obj/structure/closet/secure_closet/brig/Initialize()
+/obj/structure/closet/secure_closet/brig/PopulateContents()
 	. = ..()
-	new /obj/item/clothing/under/color/orange(src)
+	new /obj/item/clothing/under/rank/prisoner(src)
 	new /obj/item/clothing/shoes/orange(src)
 	new /obj/item/radio/headset(src)
 	GLOB.brig_closets += src
@@ -326,7 +325,7 @@
 	req_access = list(ACCESS_MARINE_BRIG)
 
 
-/obj/structure/closet/secure_closet/courtroom/Initialize()
+/obj/structure/closet/secure_closet/courtroom/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/shoes/brown(src)
 	new /obj/item/paper/Court (src)

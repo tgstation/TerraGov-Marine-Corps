@@ -58,6 +58,8 @@
 	else
 		mob.control_object.forceMove(get_step(mob.control_object, direct))
 
+#define MOVEMENT_DELAY_BUFFER 0.75
+#define MOVEMENT_DELAY_BUFFER_DELTA 1.25
 
 /client/Move(n, direct)
 	if(world.time < move_delay) //do not move anything ahead of this check please
@@ -65,31 +67,23 @@
 	else
 		next_move_dir_add = 0
 		next_move_dir_sub = 0
-
+	var/old_move_delay = move_delay
+	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob?.loc)
 		return FALSE
-
 	if(!n || !direct)
 		return FALSE
-
 	if(mob.notransform)
 		return FALSE	//This is sota the goto stop mobs from moving var
-
 	if(mob.control_object)
 		return Move_object(direct)
-
 	if(!isliving(mob))
 		return mob.Move(n, direct)
-
 	if(mob.stat == DEAD)
 		mob.ghostize()
 		return FALSE
 
 	var/mob/living/L = mob  //Already checked for isliving earlier
-
-	var/double_delay = FALSE
-	if(ISDIAGONALDIR(direct))
-		double_delay = TRUE
 
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
 		return L.remote_control.relaymove(L, direct)
@@ -98,7 +92,7 @@
 		return AIMove(n, direct, L)
 
 	//Check if you are being grabbed and if so attemps to break it
-	if(CHECK_BITFIELD(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST, L), COMSIG_LIVING_RESIST_SUCCESSFUL))
+	if(SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_RESIST) & COMSIG_LIVING_RESIST_SUCCESSFUL)
 		return
 
 	if(L.pulledby)
@@ -122,30 +116,35 @@
 		var/atom/O = L.loc
 		return O.relaymove(L, direct)
 
-	if(isturf(L.loc))
-		if(double_delay && L.cadecheck()) //Hacky
-			direct = get_cardinal_dir(n, L.loc)
-			direct = DIRFLIP(direct)
-			n = get_step(L.loc, direct)
+	var/add_delay = mob.cached_multiplicative_slowdown + mob.next_move_slowdown
+	mob.next_move_slowdown = 0
+	if(old_move_delay + (add_delay * MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+		move_delay = old_move_delay
+	else
+		move_delay = world.time
 
-		L.last_move_intent = world.time + 1 SECONDS
+	L.last_move_intent = world.time + 1 SECONDS
 
-		SEND_SIGNAL(L, COMSIG_LIVING_DO_MOVE_TURFTOTURF, n, direct)
+	if(L.IsConfused())
+		var/newdir = 0
+		if(L.AmountConfused() > 40)
+			newdir = pick(GLOB.alldirs)
+		else if(prob(L.AmountConfused() * 1.5))
+			newdir = angle2dir(dir2angle(direct) + pick(90, -90))
+		else if(prob(L.AmountConfused() * 3))
+			newdir = angle2dir(dir2angle(direct) + pick(45, -45))
+		if(newdir)
+			direct = newdir
+			n = get_step(L, direct)
 
-		move_delay = L.movement_delay(direct)
-		//We are now going to move
-		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
+	. = ..()
 
-		if(L.confused)
-			step(L, pick(GLOB.cardinals))
-		else
-			. = ..()
+	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
+		add_delay *= 2
+	move_delay += add_delay
 
-		if(double_delay)
-			move_delay = world.time + (move_delay * SQRTWO)
-		else
-			move_delay = world.time + move_delay
-
+#undef MOVEMENT_DELAY_BUFFER
+#undef MOVEMENT_DELAY_BUFFER_DELTA
 
 ///Process_Spacemove
 ///Called by /client/Move()
@@ -340,7 +339,7 @@
 
 
 /mob/proc/toggle_move_intent(new_intent)
-	if(new_intent)
+	if(!isnull(new_intent))
 		if(new_intent == m_intent)
 			return FALSE
 		m_intent = new_intent

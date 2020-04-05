@@ -111,7 +111,7 @@
 /obj/item/weapon/gun/shotgun/pump/get_mechanics_info()
 	. = ..()
 	if(gun_skill_category == GUN_SKILL_RIFLES)
-		. += "<br><br>To work the bolt press spacebar.<br>"
+		. += "<br><br>To work the weapon press spacebar.<br>"
 	else
 		. += "<br><br>To pump it press spacebar.<br>"
 
@@ -129,19 +129,49 @@
 /datum/codex_entry/energy_weapons
 	display_name = "energy weapons"
 	mechanics_text = "This weapon is an energy weapon; they run on battery charge rather than traditional ammunition. You can recharge \
-		an energy weapon by placing it in a wall-mounted or table-mounted charger, such as those found in Security or around the \
-		place. Additionally, most energy weapons can go straight through windows and hit whatever is on the other side, and are \
-		hitscan, making them accurate and useful against distant targets. \
+		an energy weapon by placing it in a wall-mounted or table-mounted charger such as those found in Medical or around the \
+		place. In addition, energy weapons, if compatible, can be recharged via energy-fed battery cells acting as magazines, \
+		which can also be recharged at chargers. Most energy weapons' projectiles can go straight through windows and hit whatever \
+		is on the other side, and have very fast projectiles, making them accurate and useful against distant targets. \
 		<br>"
-	lore_text = "OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR OPERATOR."
+	lore_text = "\"OPERATOR\", the tagline and marketing tactic of energy weapons (usually lasguns) in the 25th century, \
+		especially made popular with the rise of the xenomorph threat in 2414. Energy weapons are usually famed by private security firms \
+		thanks to their ability to disable human targets easily and even on the military thanks to their ability to recharge using \
+		traditional chargers and their capability to switch their lens, allowing more flexibility, something that a ballistic weapon \
+		aren't capable of."
 
 /datum/codex_entry/ballistic_weapons
 	display_name = "ballistic weapons"
 	mechanics_text = "This weapon is a ballistic weapon; it fires solid shots using a magazine or loaded rounds of ammunition. You can \
-		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a magazine, or in the case of \
+		unload it by holding it and clicking it with an empty hand, and reload it by clicking it with a magazine, speedloader and loose rounds, or in the case of \
 		shotguns or some rifles, by opening the breech and clicking it with individual rounds. \
 		<br>"
 	lore_text = "Ballistic weapons are still used even now due to the relative expense of decent laser \
 		weapons, difficulties in maintaining them, and the sheer stopping and wounding power of solid slugs or \
 		composite shot. Using a ballistic weapon on a spacebound habitat is usually considered a serious undertaking, \
 		as a missed shot or careless use of automatic fire could rip open the hull or injure bystanders with ease."
+
+/datum/codex_entry/flame_weapons
+	display_name = "flame weapons"
+	mechanics_text = "This is a flame weapon; it unleashes a stream of fire using a incinerator tank. You can \
+		refill liquid fuel by either using specialized fueltank backpacks made for the weapon or other fueltanks \
+		used by welders, although they're not as effective. Unlike energy or ballistic weapons, flame weapons can \
+		pierce through entities, people or not. Depending on the flame type, the flames' longevity, range and spray \
+		shape varies from type to type. \
+		<br>"
+	lore_text = "Traditional flamethrowers were developed in the 1st century and saw frequent use in the 20th century \
+		in the first two world wars on Terra. Thanks to their questionable purpose of burning people alive, rebel \
+		armies, militia groups and terrorist organizations make use of the weapon for centuries to come. It wasn't issued \
+		to inventory for the TerraGov Marine Corps along with lasguns until 2414, due to the xenomorph threat and its vulnerability to intense heat."
+
+/datum/codex_entry/explosive_weapons
+	display_name = "explosive weapons"
+	mechanics_text = "This is an explosive weapon; it fires a projectile capable of detonating once it reaches its target. You can \
+		reload it by clicking the weapon with either rockets or grenades, depending on its type. Explosive \
+		weapons are usually unwieldly to use during combat situations and they usually cause massive collateral damage \
+		if misused. \
+		<br>"
+	lore_text = "Handheld explosive weapons still remain a use in situations where an anti-armor or anti-air weapon is needed on the field. \
+		Since the advent of space ships and shuttles, explosive weapons in conventional forces had its payloads reduced \
+		in conjuction with stronger hulls, to avoid breaches and to avoid accidental equipment loss or even casualties. \
+		It should be noted that the user will need to be aware and at the ready before discharging them."

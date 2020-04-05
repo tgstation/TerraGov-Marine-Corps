@@ -24,15 +24,18 @@
 
 
 /obj/item/proc/wield(mob/user)
-	if(!(flags_item & TWOHANDED))
-		return
+	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
+		return FALSE
 
-	if(flags_item & WIELDED)
-		return
-
-	if(user.get_inactive_held_item())
-		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
-		return
+	var/obj/item/offhand = user.get_inactive_held_item()
+	if(offhand)
+		if(offhand == user.r_hand)
+			user.drop_r_hand()
+		else if(offhand == user.l_hand)
+			user.drop_l_hand()
+		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
+			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+			return FALSE
 
 	if(ishuman(user))
 		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
@@ -40,11 +43,11 @@
 		var/datum/limb/hand = wielder.get_limb(check_hand)
 		if(!istype(hand) || !hand.is_usable())
 			to_chat(user, "<span class='warning'>Your other hand can't hold [src]!</span>")
-			return
+			return FALSE
 
-	ENABLE_BITFIELD(flags_item, WIELDED)
+	toggle_wielded(user, TRUE)
 	name = "[name] (Wielded)"
-	item_state = "[icon_state]_w"
+	update_item_state(user)
 	place_offhand(user, name)
 	return TRUE
 
@@ -53,9 +56,9 @@
 	if(!CHECK_MULTIPLE_BITFIELDS(flags_item, TWOHANDED|WIELDED))
 		return FALSE
 
-	DISABLE_BITFIELD(flags_item, WIELDED)
+	toggle_wielded(user, FALSE)
 	name = initial(name)
-	item_state = initial(item_state)
+	update_item_state(user)
 	remove_offhand(user)
 	return TRUE
 
@@ -65,7 +68,6 @@
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
-	offhand.flags_item |= WIELDED
 	user.put_in_inactive_hand(offhand)
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
@@ -78,6 +80,16 @@
 		qdel(offhand)
 	user.update_inv_l_hand()
 	user.update_inv_r_hand()
+
+
+/obj/item/proc/toggle_wielded(user, new_value)
+	switch(new_value)
+		if(null)
+			flags_item ^= WIELDED
+		if(FALSE)
+			flags_item &= ~WIELDED
+		if(TRUE)
+			flags_item |= WIELDED
 
 
 /obj/item/weapon/twohanded/wield(mob/user)
@@ -202,8 +214,21 @@
 	edge = 1
 
 
-/obj/item/weapon/twohanded/dualsaber/IsShield()
-	return CHECK_BITFIELD(flags_item, WIELDED)
+/obj/item/weapon/twohanded/dualsaber/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield, SHIELD_TOGGLE|SHIELD_PURE_BLOCKING)
+
+/obj/item/weapon/twohanded/dualsaber/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_active(TRUE)
+
+/obj/item/weapon/twohanded/dualsaber/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_active(FALSE)
 
 
 /obj/item/weapon/twohanded/spear

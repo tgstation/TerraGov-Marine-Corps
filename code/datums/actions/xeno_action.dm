@@ -100,7 +100,7 @@
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We don't have enough plasma to do this!</span>")
+			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE
 
 	return TRUE
@@ -186,13 +186,13 @@
 
 /datum/action/xeno_action/activable/proc/deselect()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.vis_contents -= selected_frame
+	remove_selected_frame()
 	X.selected_ability = null
 	on_deactivation()
 
 /datum/action/xeno_action/activable/proc/select()
 	var/mob/living/carbon/xenomorph/X = owner
-	button.vis_contents += selected_frame
+	add_selected_frame()
 	X.selected_ability = src
 	on_activation()
 

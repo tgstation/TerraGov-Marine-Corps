@@ -471,7 +471,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
 		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'code/modules/goonchat/font-awesome.css',
+		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
 		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
 	)
@@ -482,6 +482,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 
 /datum/asset/spritesheet/goonchat/register()
+	InsertAll("emoji", 'icons/misc/emoji.dmi')
+
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
 	// catch languages which are pulling icons from another file
@@ -523,46 +525,3 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"ntlogo.png"	= 'html/images/ntlogo.png',
 		"tgmclogo.png"	= 'html/images/tgmclogo.png'
 	)
-
-
-/datum/asset/nanoui
-	var/list/common = list()
-
-	var/list/common_dirs = list(
-		"nano/css/",
-		"nano/images/",
-		"nano/js/"
-	)
-	var/list/uncommon_dirs = list(
-		"nano/templates/"
-	)
-
-
-/datum/asset/nanoui/register()
-	// Crawl the directories to find files.
-	for(var/path in common_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
-				continue
-			if(!fexists(path + filename))
-				continue
-			common[filename] = fcopy_rsc(path + filename)
-			register_asset(filename, common[filename])
-
-	for(var/path in uncommon_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) == "/") // Ignore directories.
-				continue
-			if(!fexists(path + filename))
-				continue
-			register_asset(filename, fcopy_rsc(path + filename))
-
-
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon, FALSE)
-	send_asset_list(client, common, TRUE)

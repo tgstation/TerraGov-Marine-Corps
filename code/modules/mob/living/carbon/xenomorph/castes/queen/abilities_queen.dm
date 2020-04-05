@@ -17,7 +17,7 @@
 	if(cooldowns[COOLDOWN_ORDER])
 		return
 	plasma_stored -= 50
-	var/txt = copytext(sanitize(input("Set the hive's orders to what? Leave blank to clear it.", "Hive Orders","")), 1, MAX_MESSAGE_LEN)
+	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
 
 	if(txt)
 		xeno_message("<B>The Queen has given a new order. Check Status panel for details.</B>",3,hivenumber)
@@ -142,18 +142,19 @@
 	playsound(X.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	X.visible_message("<span class='xenohighdanger'>\The [X] emits an ear-splitting guttural roar!</span>")
 	GLOB.round_statistics.queen_screech++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 	X.create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
 	var/list/nearby_living = list()
-	for(var/mob/living/L in hearers(world.view, X))
+	for(var/mob/living/L in hearers(WORLD_VIEW, X))
 		nearby_living.Add(L)
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
-		if(get_dist(L, X) > world.view)
+		if(get_dist(L, X) > WORLD_VIEW_NUM)
 			continue
-		L.screech_act(X, world.view, L in nearby_living)
+		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
 // ***************************************
 // *********** Gut
@@ -683,5 +684,6 @@
 	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
 	X.use_plasma(600)

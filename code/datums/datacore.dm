@@ -44,7 +44,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	for(var/datum/data/record/t in GLOB.datacore.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
-		var/real_rank = t.fields["real_rank"]
 		var/squad_name = t.fields["squad"]
 
 		if(ooc)
@@ -58,23 +57,23 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			isactive[name] = t.fields["p_stat"]
 
 		var/department = 0
-		if(real_rank in GLOB.jobs_command)
+		if(GLOB.jobs_command[rank])
 			heads[name] = rank
 			department = 1
-		if(real_rank in GLOB.jobs_police)
+		if(rank in GLOB.jobs_police)
 			police[name] = rank
 			department = 1
-		if(real_rank in GLOB.jobs_engineering)
+		if(rank in GLOB.jobs_engineering)
 			eng[name] = rank
 			department = 1
-		if(real_rank in GLOB.jobs_medical)
+		if(rank in GLOB.jobs_medical)
 			med[name] = rank
 			department = 1
-		if(real_rank in GLOB.jobs_marines)
+		if(rank in GLOB.jobs_marines)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (real_rank in GLOB.jobs_regular_all))
+		if(!department && !(name in heads) && (rank in GLOB.jobs_regular_all))
 			misc[name] = rank
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
@@ -112,8 +111,8 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			even = !even
 
 	dat += "</table>"
-	dat = oldreplacetext(dat, "\n", "") // so it can be placed on paper correctly
-	dat = oldreplacetext(dat, "\t", "")
+	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
+	dat = replacetext(dat, "\t", "")
 
 	return dat
 
@@ -124,7 +123,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	security = list()
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
-		if(!H.client)
+		if(!H.job || !(H.job.job_flags & JOB_FLAG_ADDTOMANIFEST))
 			continue
 		manifest_inject(H)
 		CHECK_TICK
@@ -138,14 +137,13 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			if(X.fields["name"] != oldname)
 				continue
 			X.fields["name"] = newname
-			X.fields["real_rank"] = rank
 			X.fields["rank"] = rank
 			found = TRUE
 
 	return found
 
 
-/datum/datacore/proc/manifest_modify(name, assignment, rank)
+/datum/datacore/proc/manifest_modify(name, assignment)
 	var/datum/data/record/foundrecord
 
 	for(var/datum/data/record/t in GLOB.datacore.general)
@@ -156,7 +154,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
-		foundrecord.fields["real_rank"] = rank
 
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
@@ -166,14 +163,12 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		return
 
 	var/assignment
-	if(H.mind.assigned_role)
-		assignment = H.mind.assigned_role
-	else if(H.job)
-		assignment = H.job
+	if(H.job)
+		assignment = H.job.title
 	else
 		assignment = "Unassigned"
 
-	var/id = add_zero(num2hex(rand(1, 1.6777215E7)), 6)	//this was the best they could come up with? A large random number? *sigh*
+	var/id = add_leading("[num2hex(rand(1, 1.6777215E7))]", 6, "0")	//this was the best they could come up with? A large random number? *sigh*
 
 	var/image = get_id_photo(H, H.client, show_directions)
 	var/datum/picture/pf = new
@@ -190,7 +185,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/datum/data/record/G = new()
 	G.fields["id"]			= id
 	G.fields["name"]		= H.real_name
-	G.fields["real_rank"]	= H.mind.assigned_role
 	G.fields["rank"]		= assignment
 	G.fields["squad"]		= H.assigned_squad ? H.assigned_squad.name : null
 	G.fields["age"]			= H.age
@@ -251,7 +245,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 
 
 /proc/get_id_photo(mob/living/carbon/human/H, client/C, show_directions = list(SOUTH))
-	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
+	var/datum/job/J = H.job
 	var/datum/preferences/P
 	if(!C)
 		C = H.client

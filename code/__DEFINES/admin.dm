@@ -79,17 +79,27 @@
 #define SPAM_TRIGGER_WEIGHT_WARNING 2.5 //The weight required per the time period before the spam-prevention will warn you
 #define SPAM_TRIGGER_WEIGHT_AUTOMUTE 4 //The weight required per the time period before the spam-prevention will automute you
 
-#define IRCREPLYCOUNT 2
+///Max length of a keypress command before it's considered to be a forged packet/bogus command
+#define MAX_KEYPRESS_COMMANDLENGTH 16
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+///Max amount of keypress messages per second over two seconds before client is autokicked
+#define MAX_KEYPRESS_AUTOKICK 50
+///Length of held key rolling buffer
+#define HELD_KEY_BUFFER_LENGTH 15
+///Maximum keys allowed per keybind
+#define MAX_KEYS_PER_KEYBIND 3
+
+/// Shown on top of policy verb window
+#define POLICY_VERB_HEADER "policy_verb_header"
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+#define EXTERNALREPLYCOUNT 2
 #define IRC_STATUS_THROTTLE 5
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
-
-
-//How many new ckey matches before we revert the stickyban to it's roundstart state
-//These are exclusive, so once it goes over one of these numbers, it reverts the ban
-#define STICKYBAN_MAX_MATCHES 20
-#define STICKYBAN_MAX_EXISTING_USER_MATCHES 5 //ie, users who were connected before the ban triggered
-#define STICKYBAN_MAX_ADMIN_MATCHES 2
 
 
 #define MAX_ADMINBANS_PER_ADMIN 1

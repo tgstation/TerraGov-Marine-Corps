@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(new_player_list)			//all /mob/new_player
+GLOBAL_LIST_EMPTY(ready_players)			//all /mob/new_player that are (ready == TRUE)
 GLOBAL_LIST_EMPTY(observer_list)			//all /mob/dead/observer
 GLOBAL_LIST_EMPTY(xeno_mob_list)			//all /mob/living/carbon/xenomorph
 GLOBAL_LIST_EMPTY(alive_xeno_list)			//as above except stat != DEAD
@@ -32,6 +33,8 @@ GLOBAL_LIST_INIT(simple_animals, list(list(),list(),list(),list())) // One for e
 GLOBAL_LIST_EMPTY(living_cameras)
 GLOBAL_LIST_EMPTY(aiEyes)
 
+GLOBAL_LIST_EMPTY(mob_config_movespeed_type_lookup)
+
 GLOBAL_LIST_EMPTY(real_names_joined)
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
@@ -45,3 +48,21 @@ GLOBAL_LIST_INIT(xeno_types_tier_two, list(/mob/living/carbon/xenomorph/hunter, 
 GLOBAL_LIST_INIT(xeno_types_tier_three, list(/mob/living/carbon/xenomorph/ravager, /mob/living/carbon/xenomorph/praetorian, /mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/Defiler, /mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/shrike))
 
 GLOBAL_LIST_EMPTY(hive_datums) // init by makeDatumRefLists()
+
+/proc/update_config_movespeed_type_lookup(update_mobs = TRUE)
+	var/list/mob_types = list()
+	var/list/entry_value = CONFIG_GET(keyed_list/multiplicative_movespeed)
+	for(var/path in entry_value)
+		var/value = entry_value[path]
+		if(!value)
+			continue
+		for(var/subpath in typesof(path))
+			mob_types[subpath] = value
+	GLOB.mob_config_movespeed_type_lookup = mob_types
+	if(update_mobs)
+		update_mob_config_movespeeds()
+
+/proc/update_mob_config_movespeeds()
+	for(var/i in GLOB.mob_list)
+		var/mob/M = i
+		M.update_config_movespeed()

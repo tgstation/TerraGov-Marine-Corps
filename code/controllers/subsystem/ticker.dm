@@ -18,8 +18,6 @@ SUBSYSTEM_DEF(ticker)
 
 	var/login_music							//Music played in pregame lobby
 
-	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
-
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
 
@@ -122,8 +120,8 @@ SUBSYSTEM_DEF(ticker)
 	mode = config.pick_mode(GLOB.master_mode)
 
 	CHECK_TICK
-	if(!mode.can_start() && !bypass_checks)
-		to_chat(world, "<b>Unable to start [mode.name].</b> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
+	if(!mode.can_start(bypass_checks))
+		to_chat(world, "Reverting to pre-game lobby.")
 		QDEL_NULL(mode)
 		SSjob.ResetOccupations()
 		return FALSE
@@ -221,8 +219,6 @@ SUBSYSTEM_DEF(ticker)
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music
-
-	minds = SSticker.minds
 
 	delay_end = SSticker.delay_end
 

@@ -741,14 +741,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 ****************************************************/
 
 /datum/limb/proc/release_restraints()
-	if (owner.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if (owner.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
 		owner.dropItemToGround(owner.handcuffed)
 
-	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if (owner.legcuffed && (body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")
@@ -956,12 +956,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
 		return FALSE
 
-	var/delay = SKILL_TASK_AVERAGE
+	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)
 	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
 	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
-
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical) //Higher skill lowers the delay.
-		delay -= 10 + user.mind.cm_skills.medical * 5
 
 	if(target == user) //If self splinting, multiply delay by 4
 		delay *= 4

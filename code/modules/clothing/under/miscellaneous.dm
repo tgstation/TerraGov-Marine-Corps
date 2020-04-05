@@ -37,6 +37,14 @@
 	item_state = "b_suit"
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/rank/prisoner
+	name = "prison jumpsuit"
+	desc = "It's standardised Nanotrasen prisoner-wear. Its suit sensors are stuck in the \"Fully On\" position."
+	icon_state = "prisoner"
+	item_state = "prisoner"
+	has_sensor = LOCKED_SENSORS
+	sensor_mode = SENSOR_COORDS
+
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
 	desc = "It makes you look HONKable!"

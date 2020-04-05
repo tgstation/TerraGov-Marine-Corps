@@ -1,6 +1,12 @@
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
+#define LIMITER_SIZE	5
+#define CURRENT_SECOND	1
+#define SECOND_COUNT	2
+#define CURRENT_MINUTE	3
+#define MINUTE_COUNT	4
+#define ADMINSWARNED_AT	5
 	/*
 	When somebody clicks a link in game, this Topic is called first.
 	It does the stuff in this proc and  then is redirected to the Topic() proc for the src=[0xWhatever]
@@ -38,15 +44,15 @@
 	if(mtl && !check_rights(R_ADMIN, FALSE))
 		var/minute = round(world.time, 600)
 		if(!topiclimiter)
-			topiclimiter = new(5)
-		if(minute != topiclimiter[3])
-			topiclimiter[3] = minute
-			topiclimiter[4] = 0
-		topiclimiter[4] += 1
-		if(topiclimiter[4] > mtl)
+			topiclimiter = new(LIMITER_SIZE)
+		if(minute != topiclimiter[CURRENT_MINUTE])
+			topiclimiter[CURRENT_MINUTE] = minute
+			topiclimiter[MINUTE_COUNT] = 0
+		topiclimiter[MINUTE_COUNT] += 1
+		if (topiclimiter[MINUTE_COUNT] > mtl)
 			var/msg = "Your previous action was ignored because you've done too many in a minute."
-			if(minute != topiclimiter[5]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
-				topiclimiter[5] = minute
+			if(minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				topiclimiter[ADMINSWARNED_AT] = minute
 				log_admin_private("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 				message_admins("[ADMIN_LOOKUP(src)] has hit the per-minute topic limit of [mtl] topic calls.")
 			to_chat(src, "<span class='danger'>[msg]</span>")
@@ -56,12 +62,12 @@
 	if(stl && !check_rights(R_ADMIN, FALSE))
 		var/second = round(world.time, 10)
 		if(!topiclimiter)
-			topiclimiter = new(5)
-		if(second != topiclimiter[1])
-			topiclimiter[1] = second
-			topiclimiter[2] = 0
-		topiclimiter[2] += 1
-		if(topiclimiter[2] > stl)
+			topiclimiter = new(LIMITER_SIZE)
+		if(second != topiclimiter[CURRENT_SECOND])
+			topiclimiter[CURRENT_SECOND] = second
+			topiclimiter[SECOND_COUNT] = 0
+		topiclimiter[SECOND_COUNT] += 1
+		if(topiclimiter[SECOND_COUNT] > stl)
 			to_chat(src, "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>")
 			return
 
@@ -194,9 +200,14 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+	if(length(GLOB.stickybanadminexemptions))
+		GLOB.stickybanadminexemptions -= ckey
+		if (!length(GLOB.stickybanadminexemptions))
+			restore_stickybans()
 
 	if(SSinput.initialized)
 		set_macros()
+		update_movement_keys()
 
 	chatOutput.start() // Starts the chat
 
@@ -287,7 +298,7 @@
 			winset(src, "[child]", "[entries[child]]")
 			if(!ispath(child, /datum/verbs/menu))
 				var/procpath/verbpath = child
-				if(copytext(verbpath.name, 1, 2) != "@")
+				if(verbpath.name[1] != "@")
 					new child(src)
 
 	for(var/thing in prefs.menuoptions)
@@ -333,7 +344,63 @@
 	. = ..() //Even though we're going to be hard deleted there are still some things that want to know the destroy is happening
 	return QDEL_HINT_HARDDEL_NOW
 
+/client/Click(atom/object, atom/location, control, params)
+	if(!control)
+		return
+	if(click_intercepted)
+		if(click_intercepted >= world.time)
+			click_intercepted = 0 //Reset and return. Next click should work, but not this one.
+			return
+		click_intercepted = 0 //Just reset. Let's not keep re-checking forever.
+	var/ab = FALSE
+	var/list/L = params2list(params)
 
+	var/dragged = L["drag"]
+	if(dragged && !L[dragged])
+		return
+
+	if(object && object == middragatom && L["left"])
+		ab = max(0, 5 SECONDS - (world.time - middragtime) * 0.1)
+
+	var/mcl = CONFIG_GET(number/minute_click_limit)
+	if(mcl && !check_rights(R_ADMIN, FALSE))
+		var/minute = round(world.time, 600)
+		if(!clicklimiter)
+			clicklimiter = new(LIMITER_SIZE)
+		if(minute != clicklimiter[CURRENT_MINUTE])
+			clicklimiter[CURRENT_MINUTE] = minute
+			clicklimiter[MINUTE_COUNT] = 0
+		clicklimiter[MINUTE_COUNT] += 1+(ab)
+		if(clicklimiter[MINUTE_COUNT] > mcl)
+			var/msg = "Your previous click was ignored because you've done too many in a minute."
+			if(minute != clicklimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				clicklimiter[ADMINSWARNED_AT] = minute
+				log_admin_private("[key_name(src)] has hit the per-minute click limit of [mcl].")
+				message_admins("[ADMIN_TPMONTY(mob)] has hit the per-minute click limit of [mcl].")
+				if(ab)
+					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
+					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
+			to_chat(src, "<span class='danger'>[msg]</span>")
+			return
+
+	var/scl = CONFIG_GET(number/second_click_limit)
+	if(scl && !check_rights(R_ADMIN, FALSE))
+		var/second = round(world.time, 10)
+		if(!clicklimiter)
+			clicklimiter = new(LIMITER_SIZE)
+		if(second != clicklimiter[CURRENT_SECOND])
+			clicklimiter[CURRENT_SECOND] = second
+			clicklimiter[SECOND_COUNT] = 0
+		clicklimiter[SECOND_COUNT] += 1+(!!ab)
+		if(clicklimiter[SECOND_COUNT] > scl)
+			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
+			return
+
+//Hijack for FC.
+	if(prefs.focus_chat)
+		winset(src, null, "input.focus=true")
+
+	return ..()
 
 //checks if a client is afk
 //3000 frames = 5 minutes
@@ -360,9 +427,6 @@
 //Like for /atoms, but clients are their own snowflake FUCK
 /client/proc/setDir(newdir)
 	dir = newdir
-
-/client/proc/get_offset()
-	return max(abs(pixel_x / 32), abs(pixel_y / 32))
 
 
 /client/proc/show_character_previews(mutable_appearance/MA)
@@ -529,10 +593,38 @@
 				CRASH("Key check regex failed for [ckey]")
 
 
+/client/proc/rescale_view(change, min, max)
+	var/viewscale = getviewsize(view)
+	var/x = viewscale[1]
+	var/y = viewscale[2]
+	x = CLAMP(x + change, min, max)
+	y = CLAMP(y + change, min,max)
+	change_view("[x]x[y]")
+
+
+/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
+
+
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
 		CRASH("change_view called without argument.")
-
+	if(isnum(new_size))
+		CRASH("change_view called with a number argument. Use the string format instead.")
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
@@ -592,6 +684,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 	if(mute)
 		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
 			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
+			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, FALSE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
 		return TRUE
 

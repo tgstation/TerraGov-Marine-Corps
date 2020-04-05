@@ -14,14 +14,13 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
 
+	msg = emoji_parse(msg)
+	
 	if(!(prefs.toggles_chat & CHAT_OOC))
 		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
@@ -120,10 +119,7 @@
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	if(!admin)
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -265,6 +261,30 @@
 
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
+
+
+/client/verb/policy()
+	set name = "Show Policy"
+	set desc = "Show special server rules related to your current character."
+	set category = "OOC"
+
+	//Collect keywords
+	var/list/keywords = mob.get_policy_keywords()
+	var/header = get_policy(POLICY_VERB_HEADER)
+	var/list/policytext = list(header,"<hr>")
+	var/anything = FALSE
+	for(var/keyword in keywords)
+		var/p = get_policy(keyword)
+		if(p)
+			policytext += p
+			policytext += "<hr>"
+			anything = TRUE
+	if(!anything)
+		policytext += "No related rules found."
+
+	var/datum/browser/popup = new(usr, "policy")
+	popup.set_content(policytext.Join(""))
+	popup.open(FALSE)
 
 
 /client/verb/fix_chat()

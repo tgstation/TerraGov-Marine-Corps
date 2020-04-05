@@ -6,7 +6,7 @@
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"
-	icon_state = "ba_suit"
+	icon_state = "barman"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
@@ -35,9 +35,14 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/chef
-	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
+	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs."
 	name = "chef's uniform"
 	icon_state = "chef"
+
+/obj/item/clothing/under/rank/chef/altchef
+	name = "red cook's suit"
+	desc = "A flashier chef's suit, if a bit more impractical."
+	icon_state = "altchef"
 
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
@@ -105,6 +110,7 @@
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "Purple Suit"
 	icon_state = "lawyer_purp"
+	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"

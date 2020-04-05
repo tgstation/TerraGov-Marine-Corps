@@ -6,6 +6,10 @@
 	var/slayer = 0 //snow layer
 	var/wet = 0 //whether the turf is wet (only used by floors).
 	var/has_catwalk = FALSE
+	var/shoefootstep = FOOTSTEP_FLOOR
+	var/barefootstep = FOOTSTEP_HARD
+	var/mediumxenofootstep = FOOTSTEP_HARD
+	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
 
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
@@ -61,6 +65,10 @@
 
 /turf/open/river
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 // Beach
@@ -68,6 +76,9 @@
 /turf/open/beach
 	name = "beach"
 	icon = 'icons/misc/beach.dmi'
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 
 /turf/open/beach/sand
@@ -83,15 +94,66 @@
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
 
+/obj/effect/beach_overlay
+	name = "beach_overlay"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	layer = RIVER_OVERLAY_LAYER
+	plane = FLOOR_PLANE
+
+/turf/open/beach/water/Entered(atom/movable/AM)
+	. = ..()
+	if(has_catwalk)
+		return
+	if(iscarbon(AM))
+		var/mob/living/carbon/C = AM
+		var/beachwater_slowdown = 1.75
+
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = AM
+			cleanup(H)
+
+		else if(isxeno(C))
+			if(!isxenoboiler(C))
+				beachwater_slowdown = 1.3
+			else
+				beachwater_slowdown = -0.5
+
+		if(C.on_fire)
+			C.ExtinguishMob()
+
+		C.next_move_slowdown += beachwater_slowdown
+
+
+/turf/open/beach/water/proc/cleanup(mob/living/carbon/human/H)
+	if(H.back?.clean_blood())
+		H.update_inv_back()
+	if(H.wear_suit?.clean_blood())
+		H.update_inv_wear_suit()
+	if(H.w_uniform?.clean_blood())
+		H.update_inv_w_uniform()
+	if(H.gloves?.clean_blood())
+		H.update_inv_gloves()
+	if(H.shoes?.clean_blood())
+		H.update_inv_shoes()
+	H.clean_blood()
+
 /turf/open/beach/water2
 	name = "water"
 	icon_state = "water"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 /turf/open/beach/water2/New()
 	..()
@@ -101,6 +163,10 @@
 	name = "sea"
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 
 //Nostromo turfs
@@ -111,6 +177,10 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "seadeep"
 	can_bloody = FALSE
+	shoefootstep = FOOTSTEP_WATER
+	barefootstep = FOOTSTEP_WATER
+	mediumxenofootstep = FOOTSTEP_WATER
+	heavyxenofootstep = FOOTSTEP_WATER
 
 //SHUTTLE 'FLOORS'
 //not a child of turf/open/floor because shuttle floors are magic and don't behave like real floors.
@@ -127,7 +197,7 @@
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
-	return TRUE
+	return ..()
 
 
 /turf/open/shuttle/dropship
@@ -157,5 +227,3 @@
 
 /turf/open/shuttle/elevator/grating
 	icon_state = "floor_grating"
-
-

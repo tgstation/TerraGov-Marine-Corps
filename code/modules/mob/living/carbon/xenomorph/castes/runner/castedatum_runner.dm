@@ -21,7 +21,7 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -1.6
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -31,8 +31,8 @@
 	max_health = 100
 
 	// *** Evolution *** //
-	evolution_threshold = 100
-	upgrade_threshold = 100
+	evolution_threshold = 80
+	upgrade_threshold = 50
 
 	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull)
 
@@ -40,11 +40,11 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
 	charge_type = 1 //Pounce - Runner
-	pounce_delay = 3.5 SECONDS
+	pounce_delay = 6.0 SECONDS
 
 	// *** Abilities *** ///
 	actions = list(
@@ -75,23 +75,23 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -1.7
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 120
+	max_health = 125
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 100
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.5 SECONDS
+	pounce_delay = 6.0 SECONDS
 
 /datum/xeno_caste/runner/elder
 	upgrade_name = "Elder"
@@ -108,7 +108,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.8
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -118,13 +118,13 @@
 	max_health = 150
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.0 SECONDS
+	pounce_delay = 6.0 SECONDS
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
@@ -142,21 +142,21 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.8
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 160
+	max_health = 175
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 3.0 SECONDS
+	pounce_delay = 6.0 SECONDS
 

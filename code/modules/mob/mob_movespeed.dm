@@ -76,6 +76,17 @@ Key procs
 /mob/proc/has_movespeed_modifier(id)
 	return LAZYACCESS(movespeed_modification, id)
 
+///Set or update the global movespeed config on a mob
+/mob/proc/update_config_movespeed()
+	add_movespeed_modifier(MOVESPEED_ID_CONFIG_SPEEDMOD, FALSE, 100, override = TRUE, multiplicative_slowdown = get_config_multiplicative_speed())
+
+///Get the global config movespeed of a mob by type
+/mob/proc/get_config_multiplicative_speed()
+	if(!islist(GLOB.mob_config_movespeed_type_lookup) || !GLOB.mob_config_movespeed_type_lookup[type])
+		return 0
+	else
+		return GLOB.mob_config_movespeed_type_lookup[type]
+
 //Returns the id's movespeed modifier if any.
 /mob/proc/get_movespeed_modifier(id)
 	var/list/data = movespeed_modification[id]
@@ -102,6 +113,11 @@ Key procs
 				continue
 		. += amt
 	cached_multiplicative_slowdown = .
+
+	if(!updating_glide_size)
+		return
+
+	reset_glide_size()
 
 ///Get the move speed modifiers list of the mob
 /mob/proc/get_movespeed_modifiers()

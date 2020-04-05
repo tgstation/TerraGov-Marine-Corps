@@ -50,9 +50,9 @@
 		qdel(src)
 
 /obj/item/frame/table/attack_self(mob/user)
-
-
-
+	if(locate(/obj/structure/table) in get_turf(user))
+		to_chat(user, "<span class='warning'>There is another table built in here already.</span>")
+		return
 	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
 		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
 		return

@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(dbcore)
 	wait = 1 MINUTES
 	init_order = INIT_ORDER_DBCORE
 	var/const/FAILED_DB_CONNECTION_CUTOFF = 5
+	var/failed_connection_timeout = 0
 
 	var/schema_mismatch = 0
 	var/db_minor = 0
@@ -42,6 +43,7 @@ SUBSYSTEM_DEF(dbcore)
 	connectOperation = SSdbcore.connectOperation
 
 /datum/controller/subsystem/dbcore/Shutdown()
+	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_round_shutdown = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shutdown_datetime = Now(), WHERE id = [GLOB.round_id]")
 		query_round_shutdown.Execute()
@@ -63,7 +65,11 @@ SUBSYSTEM_DEF(dbcore)
 	if(IsConnected())
 		return TRUE
 
-	if(failed_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to connect anymore.
+	if(failed_connection_timeout <= world.time) //it's been more than 5 seconds since we failed to connect, reset the counter
+		failed_connections = 0
+
+	if(failed_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to connect for 5 seconds.
+		failed_connection_timeout = world.time + 5 SECONDS
 		return FALSE
 
 	if(!CONFIG_GET(flag/sql_enabled))
@@ -187,6 +193,27 @@ SUBSYSTEM_DEF(dbcore)
 		message_admins("ERROR: Advanced admin proccall has lead to a sql query: [sql_query]. Query has been blocked.")
 		return FALSE
 	return new /datum/DBQuery(sql_query, connection)
+
+/datum/controller/subsystem/dbcore/proc/QuerySelect(list/querys, warn = FALSE, qdel = FALSE)
+	if (!islist(querys))
+		if (!istype(querys, /datum/DBQuery))
+			CRASH("Invalid query passed to QuerySelect: [querys]")
+		querys = list(querys)
+
+	for (var/thing in querys)
+		var/datum/DBQuery/query = thing
+		if (warn)
+			INVOKE_ASYNC(query, /datum/DBQuery.proc/warn_execute)
+		else
+			INVOKE_ASYNC(query, /datum/DBQuery.proc/Execute)
+
+	for (var/thing in querys)
+		var/datum/DBQuery/query = thing
+		UNTIL(!query.in_progress)
+		if (qdel)
+			qdel(query)
+
+
 
 /*
 Takes a list of rows (each row being an associated list of column => value) and inserts them via a single mass query.
@@ -313,29 +340,24 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	if(!async)
 		start_time = REALTIMEOFDAY
 	Close()
-	query = connection.BeginQuery(sql)
-	if(!async)
-		timed_out = !query.WaitForCompletion()
-	else
-		in_progress = TRUE
-		UNTIL(query.IsComplete())
-		in_progress = FALSE
+	timed_out = run_query(async)
+	if(query.GetErrorCode() == 2006) //2006 is the return code for "MySQL server has gone away" time-out error, meaning the connection has been lost to the server (if it's still alive)
+		log_sql("Database connection detected down. Attempting to re-establish.")
+		message_admins("Database connection detected down. Attempting to re-establish.")
+		SSdbcore.Disconnect()
+		if(SSdbcore.Connect()) //connection was restablished, reattempt the query
+			log_sql("Connection restablished")
+			message_admins("Database connection re-established.")
+			timed_out = run_query(async)
+		else
+			log_sql("Database connection failed: " + SSdbcore.ErrorMsg())
+			message_admins("Database connection re-established.")
 	skip_next_is_complete = TRUE
 	var/error = QDELETED(query) ? "Query object deleted!" : query.GetError()
 	last_error = error
 	. = !error
 	if(!. && log_error)
 		log_sql("[error] | Query used: [sql]")
-		if(query.GetErrorCode() == 2006)
-			SSdbcore.Disconnect()
-			log_sql("Database connection detected down. Attempting to re-establish.")
-			message_admins("Database connection detected down. Attempting to re-establish.")
-			if(!SSdbcore.Connect())
-				log_sql("Database connection failed: " + SSdbcore.ErrorMsg())
-				message_admins("Database connection failed: " + SSdbcore.ErrorMsg())
-			else
-				log_sql("Database connection re-established.")
-				message_admins("Database connection re-established.")
 	if(!async && timed_out)
 		log_sql("Query execution started at [start_time]")
 		log_sql("Query execution ended at [REALTIMEOFDAY]")
@@ -343,6 +365,14 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 		log_sql("Query used: [sql]")
 		slow_query_check()
 
+/datum/DBQuery/proc/run_query(async)
+	query = connection.BeginQuery(sql)
+	if(!async)
+		. = !query.WaitForCompletion()
+	else
+		in_progress = TRUE
+		UNTIL(query.IsComplete())
+		in_progress = FALSE
 
 /datum/DBQuery/proc/slow_query_check()
 	message_admins("A database query timed out. Did the server just hang? (UNIMPLEMENTED)")

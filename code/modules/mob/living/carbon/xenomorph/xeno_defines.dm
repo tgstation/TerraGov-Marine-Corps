@@ -3,6 +3,7 @@
 	var/display_name = ""
 	var/upgrade_name = "Young"
 	var/caste_desc = null
+	var/job_type = /datum/job/xenomorph
 
 	var/caste_type_path = null
 
@@ -75,6 +76,7 @@
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 
 	// *** Boiler Abilities *** //
+	var/max_ammo = 0
 	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0
@@ -90,12 +92,9 @@
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
-
-	// *** Defiler Abilities *** //
-	var/neuro_claws_amount
-
+	
 	var/list/actions
-
+		
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -117,9 +116,10 @@
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	buckle_flags = NONE
+	faction = "Xeno"
 	var/hivenumber = XENO_HIVE_NORMAL
-	job = ROLE_XENOMORPH
 
 	var/datum/hive_status/hive
 
@@ -145,8 +145,6 @@
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 
-	var/middle_mouse_toggle = TRUE //This toggles whether selected ability uses middle mouse clicking or shift clicking
-
 	var/datum/armor/armor
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
@@ -168,8 +166,6 @@
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
-	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
 
 	var/emotedown = 0
@@ -219,9 +215,6 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
-
-	//Hunter vars
-	var/sneak_bonus = 0.00
 
 	//Notification spam controls
 	var/recent_notice = 0

@@ -73,7 +73,7 @@
 			var/mob/M = usr
 			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
-				if(ACCESS_MARINE_CAPTAIN in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
+				if((ACCESS_MARINE_CAPTAIN in I.access) || (ACCESS_MARINE_BRIDGE in I.access)) //Let heads change the alert level.
 					switch(tmp_alertlevel)
 						if(-INFINITY to SEC_LEVEL_GREEN)
 							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
@@ -102,7 +102,11 @@
 				cooldown_message = world.time
 
 		if("award")
-			if(!usr.mind || usr.mind.assigned_role != CAPTAIN)
+			if(!isliving(usr))
+				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
+				return
+			var/mob/living/user = usr
+			if(!ismarinecaptainjob(user.job))
 				to_chat(usr, "<span class='warning'>Only the Captain can award medals.</span>")
 				return
 
@@ -192,26 +196,36 @@
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
-				var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
-				for(var/i in GLOB.admins)
-					var/client/C = i
-					if(check_other_rights(C, R_ADMIN, FALSE))
-						SEND_SOUND(C, S)
-						to_chat(C, "<span class='notice'><b><font color='purple'>DISTRESS:</font> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. Humans: [AllMarines], Xenos: [AllXenos]. (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(C.holder)];[HrefToken(TRUE)];deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];reply=[REF(usr)]'>REPLY</a>).</b></span>")
-				to_chat(usr, "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
-
 				SSticker.mode.distress_cancelled = FALSE
 				just_called = TRUE
-				spawn(1 MINUTES)
-					just_called = FALSE
-					cooldown_request = world.time
-					if(SSticker.mode.distress_cancelled || SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
-						return FALSE
-					else
+
+				var/list/valid_calls = list("Deny" = "deny", "Random" = "random") // default options
+				for(var/datum/emergency_call/E in SSticker.mode.all_calls) //Loop through all potential candidates
+					if(E.probability < 1) //Those that are meant to be admin-only
+						continue
+
+					valid_calls += list(E.name = E)
+
+				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. Humans: [AllMarines], Xenos: [AllXenos].",
+					options = valid_calls, default_option = "random",
+					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>", 
+					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
+				just_called = FALSE
+				cooldown_request = world.time
+				if(admin_response == "deny")
+					SSticker.mode.distress_cancelled = TRUE
+					priority_announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
+					return FALSE
+				else if(SSticker.mode.on_distress_cooldown || SSticker.mode.waiting_for_candidates)
+					return FALSE
+				else
+					var/chosen_call = admin_response
+
+					if(chosen_call == "Random")
 						SSticker.mode.activate_distress()
-						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
-						message_admins("A distress beacon requested by [ADMIN_TPMONTY(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
-						return TRUE
+					else
+						SSticker.mode.activate_distress(chosen_call)
+					return TRUE
 			else
 				state = STATE_DISTRESS
 
@@ -259,10 +273,10 @@
 					post_status(href_list["statdisp"])
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(trim(copytext(sanitize(input("Line 1", "Enter Message Text", stat_msg1) as text|null), 1, 40)), 40)
+			stat_msg1 = reject_bad_text(input("Line 1", "Enter Message Text", stat_msg1) as text|null, 40)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(trim(copytext(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null), 1, 40)), 40)
+			stat_msg2 = reject_bad_text(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40)
 
 		if("messageTGMC")
 			if(authenticated == 2)

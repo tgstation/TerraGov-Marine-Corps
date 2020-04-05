@@ -27,7 +27,7 @@
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
@@ -66,7 +66,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/fieldcommander,
+/obj/effect/landmark/start/job/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
@@ -88,7 +88,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/fieldcommander,
+/obj/effect/landmark/start/job/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "am" = (
@@ -284,7 +284,7 @@
 /area/shuttle/canterbury)
 "aB" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aC" = (
@@ -378,7 +378,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aM" = (
@@ -387,11 +387,13 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/vending/marine/cargo_guns{
+	req_one_access = null
+	},
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -446,6 +448,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/structure/table/mainship,
+/obj/item/facepaint/black,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
@@ -463,7 +466,7 @@
 	},
 /area/shuttle/canterbury)
 "aV" = (
-/obj/machinery/marine_selector/clothes/specialist/alpha,
+/obj/machinery/marine_selector/clothes/specialist,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -481,7 +484,7 @@
 	},
 /area/shuttle/canterbury)
 "aY" = (
-/obj/machinery/marine_selector/clothes/engi/alpha,
+/obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -554,7 +557,7 @@
 	},
 /area/shuttle/canterbury)
 "be" = (
-/obj/effect/landmark/start/marine/crash/squadspecialist,
+/obj/effect/landmark/start/job/crash/squadspecialist,
 /obj/structure/window/reinforced/toughened,
 /turf/open/floor/mainship{
 	dir = 1;
@@ -576,13 +579,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/synthetic,
+/obj/effect/landmark/start/job/crash/synthetic,
 /turf/open/floor/mainship{
 	icon_state = "orangefull"
 	},
 /area/shuttle/canterbury)
 "bh" = (
-/obj/effect/landmark/start/marine/crash/squadengineer,
+/obj/effect/landmark/start/job/crash/squadengineer,
 /obj/structure/window/reinforced/toughened,
 /turf/open/floor/mainship{
 	dir = 1;
@@ -624,7 +627,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/squadspecialist,
+/obj/effect/landmark/start/job/crash/squadspecialist,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "red"
@@ -663,7 +666,7 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/crash/squadengineer,
+/obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "red"
@@ -674,13 +677,13 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/machinery/marine_selector/clothes/leader/alpha,
+/obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury)
 "bs" = (
-/obj/effect/landmark/start/marine/crash/squadsmartgunner,
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/structure/window/reinforced/toughened{
 	icon_state = "rwindow";
 	dir = 1
@@ -695,7 +698,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/squadsmartgunner,
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship{
 	icon_state = "red"
 	},
@@ -706,13 +709,13 @@
 	icon_state = "rwindow";
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/crash/squadcorpsman,
+/obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship{
 	icon_state = "red"
 	},
 /area/shuttle/canterbury)
 "bv" = (
-/obj/effect/landmark/start/marine/crash/squadcorpsman,
+/obj/effect/landmark/start/job/crash/squadcorpsman,
 /obj/structure/window/reinforced/toughened{
 	icon_state = "rwindow";
 	dir = 1
@@ -743,7 +746,7 @@
 "by" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed,
-/obj/effect/landmark/start/marine/crash/medicalofficer,
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
@@ -794,7 +797,7 @@
 	},
 /area/shuttle/canterbury)
 "bC" = (
-/obj/machinery/marine_selector/clothes/smartgun/alpha,
+/obj/machinery/marine_selector/clothes/smartgun,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -812,7 +815,7 @@
 	},
 /area/shuttle/canterbury)
 "bF" = (
-/obj/machinery/marine_selector/clothes/medic/alpha,
+/obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -901,7 +904,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
-/obj/machinery/marine_selector/clothes/alpha,
+/obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship{
 	icon_state = "redfull"
 	},
@@ -949,14 +952,14 @@
 	icon_state = "shuttle_chair";
 	dir = 4
 	},
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bW" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bX" = (
@@ -986,7 +989,7 @@
 	},
 /area/shuttle/canterbury/medical)
 "ca" = (
-/obj/effect/landmark/start/marine/crash/cmo,
+/obj/effect/landmark/start/job/crash/cmo,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -1257,7 +1260,7 @@
 	},
 /area/shuttle/canterbury)
 "cz" = (
-/obj/effect/landmark/start/marine/crash/squadmarine,
+/obj/effect/landmark/start/job/crash/squadmarine,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
 	dir = 4;
@@ -1303,16 +1306,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cE" = (
-/obj/effect/landmark/start/marine/crash/squadleader,
+/obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cF" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/marine/crash/squadcorpsman,
+/obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cG" = (
-/obj/machinery/door/airlock/mainship/marine/alpha{
+/obj/machinery/door/airlock/mainship/marine{
 	icon_state = "door_closed";
 	dir = 8;
 	req_access = list();
@@ -1389,12 +1392,12 @@
 /area/shuttle/canterbury)
 "cP" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/marine/crash/squadengineer,
+/obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cQ" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/marine/crash/squadsmartgunner,
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cR" = (
@@ -1402,7 +1405,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/squadcorpsman,
+/obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cS" = (
@@ -1410,7 +1413,7 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/squadengineer,
+/obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cT" = (
@@ -1419,7 +1422,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/marine/crash/squadspecialist,
+/obj/effect/landmark/start/job/crash/squadspecialist,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cU" = (
@@ -1427,12 +1430,12 @@
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/landmark/start/marine/crash/squadspecialist,
+/obj/effect/landmark/start/job/crash/squadspecialist,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cV" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/marine/crash/medicalofficer,
+/obj/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cW" = (
@@ -1509,6 +1512,16 @@
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
+/area/shuttle/canterbury)
+"db" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship{
+	icon_state = "redfull"
+	},
+/area/shuttle/canterbury)
+"RS" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 
 (1,1,1) = {"
@@ -1701,7 +1714,7 @@ ag
 al
 as
 ab
-aD
+RS
 bP
 aD
 aD
@@ -1828,7 +1841,7 @@ bF
 an
 cO
 bQ
-bQ
+db
 cA
 an
 cn
