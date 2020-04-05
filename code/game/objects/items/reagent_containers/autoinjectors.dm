@@ -163,6 +163,7 @@
 	desc = "An auto-injector said to be loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
 	amount_per_transfer_from_this = 2
 	volume = 6
+	icon_state = "autoinjector-1"
 	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
 						/datum/reagent/medicine/arithrazine = 3)
 
@@ -182,5 +183,11 @@
 	icon_state = "autoinjector-8" 
 	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3)
 
-
+/obj/item/reagent_containers/hypospray/autoinjector/roulettium
+	name = "Roulettium autoinjector"
+	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
+	amount_per_transfer_from_this = 1
+	volume = 1
+	icon_state = "autoinjector-6"
+	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
 
