@@ -665,7 +665,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/datum/wound/W
 			if(max_damage < 50)
 				W = new/datum/wound/lost_limb/small(max_damage * 0.25)
-			else 				
+			else
 				W = new/datum/wound/lost_limb(max_damage * 0.25)
 
 			parent.wounds += W
@@ -1106,6 +1106,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
+
+/datum/limb/head/New()
+	..()
+	max_damage = owner.species.total_health
 
 /*
 /datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
