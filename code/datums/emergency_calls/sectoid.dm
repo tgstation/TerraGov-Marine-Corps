@@ -7,7 +7,7 @@
 
 /datum/emergency_call/sectoid/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a sectoid, a mass-cloned alien soldier and psionics expert.")
-	to_chat(H, "<B>You were sent to scout this sector of space for resources, and to eliminate any locals. Just now, you recived a distress signal from a primitive spacecraft.</B>")
+	to_chat(H, "<B>You were sent to eliminate the local humans and to scout this sector of space for an abundance of resources. A distress signal from a primitive spacecraft has been picked up by our scanners.</B>")
 	to_chat(H, "<B>Your mission is simple: Destroy all humans, and any other race that poses a threat.</b>")
 
 
