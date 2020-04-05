@@ -42,6 +42,21 @@
 		return
 	spraying_xeno.remove_movespeed_modifier(type)
 
+/datum/action/xeno_action/activable/spray_acid/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/spray_acid/ai_should_use(target)
+	if(owner.action_busy) //Chances are we're already spraying acid, don't override it
+		return
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 2)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	use_ability(target)
+	return TRUE
+
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))
 
 /datum/action/xeno_action/activable/spray_acid/cone/proc/do_acid_spray_cone(turf/T, range)

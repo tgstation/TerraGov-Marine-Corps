@@ -156,6 +156,19 @@
 		X.use_plasma(plasma_cost)
 	add_cooldown()
 
+/datum/action/xeno_action/activable/tail_sweep/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	use_ability(target)
+	return TRUE
+
 // ***************************************
 // *********** Forward Charge
 // ***************************************

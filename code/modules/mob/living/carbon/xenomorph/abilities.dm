@@ -250,6 +250,14 @@
 	plasma_cost = 0
 	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
 
+/datum/action/xeno_action/toggle_pheromones/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/toggle_pheromones/ai_should_use(target)
+	if(PheromonesOpen)
+		return ..()
+	action_activate()
+
 /datum/action/xeno_action/toggle_pheromones/can_use_action()
 	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
 
@@ -272,6 +280,17 @@
 	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
 	var/aura_type = null //String for aura to emit
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+
+/datum/action/xeno_action/pheromones/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/pheromones/ai_should_use(target)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.current_aura)
+		return ..()
+	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
+		return ..()
+	action_activate()
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
 	var/mob/living/carbon/xenomorph/X = owner
@@ -719,6 +738,18 @@
 
 	return succeed_activate()
 
+/datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 6)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	use_ability(target)
+	return TRUE
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"
