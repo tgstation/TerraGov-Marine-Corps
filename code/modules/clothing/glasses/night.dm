@@ -63,7 +63,7 @@
 
 /obj/item/clothing/glasses/night/sectoid
 	name = "alien lens"
-	desc = "A thin, black coating meant to be worn over an alien's eyes."
+	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
 	icon_state = "alien_lens"
 	item_state = "alien_lens"
 	darkness_view = 7
