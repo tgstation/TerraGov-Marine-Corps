@@ -578,23 +578,19 @@
 		)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
-	name = "\improper T457 pattern TP-14 holster rig"
+	name = "\improper T457 pattern pistol holster rig"
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-14 Pistol."
 	icon_state = "tp14_holster"
 	item_state = "tp14_holster"
-	can_hold = list(
-		/obj/item/weapon/gun/pistol/standard_pistol,
-		/obj/item/ammo_magazine/pistol/standard_pistol
-		)
 
 /obj/item/storage/belt/gun/revolver/standard_revolver
-	name = "\improper T457 pattern TP-44 holster rig"
+	name = "\improper T457 pattern revolver holster rig"
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-44 Revolver."
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/ammo_magazine/revolver/standard_revolver
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver
 		)
 
 /obj/item/storage/belt/gun/m44
