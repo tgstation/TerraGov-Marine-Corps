@@ -154,6 +154,8 @@
 	if(!on_fire)
 		return FALSE
 	on_fire = FALSE
+	adjust_bodytemperature(bodytemperature - 80, 80)
+	//bodytemperature += 10
 	fire_stacks = 0
 	update_fire()
 	UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
