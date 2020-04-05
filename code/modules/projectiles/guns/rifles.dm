@@ -605,7 +605,7 @@
 //-------------------------------------------------------
 //Sectoid Rifle
 
-/obj/item/weapon/gun/rifle/alien_rifle
+/obj/item/weapon/gun/rifle/sectoid_rifle
 	name = "\improper alien rifle"
 	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
 	icon_state = "alien_rifle"
@@ -617,7 +617,7 @@
 	max_shells = 20//codex stuff
 	ammo = /datum/ammo/energy/plasma
 	muzzleflash_iconstate = "muzzle_flash_pulse"
-	current_mag = /obj/item/ammo_magazine/rifle/alien_rifle
+	current_mag = /obj/item/ammo_magazine/rifle/sectoid_rifle
 	wield_delay = 0.4 SECONDS
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_LOAD_INTO_CHAMBER
@@ -630,11 +630,11 @@
 	accuracy_mult_unwielded = 0.8
 
 //only sectoids can fire it
-/obj/item/weapon/gun/rifle/alien_rifle/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/rifle/sectoid_rifle/Fire(atom/target, mob/living/user, params, reflex)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species?.species_flags & IS_PSYCHIC)
+		if(H.species?.species_flags & IS_SECTOID_ALIEN)
 			. = ..()
 		else
 			to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
