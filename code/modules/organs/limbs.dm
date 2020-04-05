@@ -207,7 +207,7 @@
 			owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
-	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet) && !(owner.species.species_flags & IS_SYNTHETIC) ) //Early return if the body part is a head but target is wearing a helmet and is not a synth
+	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet)) //Early return if the body part is a head but target is wearing a helmet
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
@@ -1106,10 +1106,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
-
-/datum/limb/head/New()
-	..()
-	max_damage = owner.species.total_health
 
 /*
 /datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
