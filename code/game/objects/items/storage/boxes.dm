@@ -367,6 +367,11 @@
 	icon_state = "nade_impact"
 	spawn_type = /obj/item/explosive/grenade/impact
 
+/obj/item/storage/box/nade_box/phos
+	name = "\improper M40 HPDP grenade box"
+	desc = "A secure box holding 25 M40 HPDP white phosphorous grenades. You know what to do."
+	icon_state = "nade_phos"
+	spawn_type = /obj/item/explosive/grenade/phosphorus
 
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
