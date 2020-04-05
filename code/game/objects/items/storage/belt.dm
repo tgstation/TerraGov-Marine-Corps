@@ -579,7 +579,7 @@
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-14 Pistol."
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
 	item_state = "tp14_holster"
 
