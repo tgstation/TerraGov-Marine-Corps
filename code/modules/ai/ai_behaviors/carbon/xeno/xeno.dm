@@ -16,8 +16,11 @@
 			continue
 		return_result += h
 	var/mob/living/carbon/xenomorph/xeno_parent = mob_parent
-	for(var/x in GLOB.alive_xeno_list)
-		if(!xeno_parent.issamexenohive(x)) //Xenomorphs not in our hive will attack as well!
+	for(var/x in cheap_get_xenos_near(mob_parent, 8))
+		if(!xeno_parent.issamexenohive(x)) //Xenomorphs not in our hive will be attacked as well!
+			var/mob/nearby_xeno = x
+			if(nearby_xeno.stat == DEAD)
+				continue
 			return_result += x
 	for(var/turret in GLOB.marine_turrets)
 		var/atom/atom_turret = turret
@@ -31,7 +34,6 @@
 	return return_result
 
 /datum/ai_behavior/carbon/xeno/process()
-
 	switch(cur_action)
 		if(MOVING_TO_NODE)
 			if(length(get_targets()))
@@ -46,7 +48,7 @@
 
 	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle
 	for(var/obj/structure/obstacle in things_nearby)
-		if(!(obstacle.resistance_flags & XENO_DAMAGEABLE))
+		if(obstacle.resistance_flags && XENO_DAMAGEABLE)
 			var/mob/living/carbon/xenomorph/xeno = mob_parent
 			obstacle.attack_alien(xeno)
 			mob_parent.face_atom(obstacle)
@@ -61,7 +63,7 @@
 			continue
 		if(lock.welded) //It's welded, can't force that open
 			continue
-		lock.open()
+		lock.open(TRUE)
 		return //Don't try going on window frames after opening up airlocks dammit
 
 	//Teleport onto those window frames, we also can't attempt to attack said window frames so this isn't in the obstacles loop
