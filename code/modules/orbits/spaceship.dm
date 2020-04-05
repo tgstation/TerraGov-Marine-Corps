@@ -223,7 +223,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 /obj/machinery/computer/navigation/proc/retreat()
 
 	if(isdistress(SSticker.mode))
-		var/datum/game_mode/distress/distress_mode = SSticker.mode
+		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
 		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
 			//Xenos got onto the ship before it fully got away.
 			return
