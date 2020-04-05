@@ -52,10 +52,8 @@
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-		laser = null
 	if(coord)
 		QDEL_NULL(coord)
-		coord = null
 	. = ..()
 
 
