@@ -470,6 +470,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 35
+	sundering = 0 // incen doens't have sundering
 
 
 /*
@@ -486,10 +487,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
 	hud_state = "shotgun_slug"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
 	damage = 50
 	penetration = 10
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 4, knockback = 1)
@@ -825,12 +828,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "autocannon bullet"
 	icon_state 	= "redbullet" //Red bullets to indicate friendly fire restriction
 	iff_signal = ACCESS_IFF_MARINE
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	accurate_range = 10
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
 	penetration = 10
+	sundering = 2
 	damage_falloff = 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
@@ -842,11 +846,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 30
 	penetration = 30
 	accurate_range = 3
+	sundering = 0
+
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
 	damage = 35
 	penetration = 10
+	sundering = 0
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
