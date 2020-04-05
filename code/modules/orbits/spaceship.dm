@@ -102,7 +102,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(.)
 		return
 
-	if("login")
+	if(href_list["login"])
 		if(isAI(usr))
 			authenticated = 2
 			updateUsrDialog()
@@ -121,7 +121,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
-	if("logout")
+	if(href_list["logout"])
 		authenticated = 0
 
 	if (href_list["UP"])
