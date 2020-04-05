@@ -4,6 +4,7 @@
 	speech_verb = "flutters"
 	ask_verb = "clicks"
 	exclaim_verb = "buzzes"
+	sing_verb = "hums"
 	key = "m"
 	space_chance = 45
 	syllables = list("bz", "ba", "mah", "fa", "ki", "nr")
