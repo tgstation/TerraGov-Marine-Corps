@@ -1,0 +1,21 @@
+Hello!
+
+You're about to enter the wild world of data analysis.
+
+To start with you'll need a copy of Python 3.7.4 installed on your computer.
+Make sure to 'install to PATH'!
+
+https://www.python.org/
+
+second. you should double click to run 'requirements-install.bat' which will use pip installer to install pandas which is a useful data library for python.
+
+third. it's time to read 'How to Generate the JSON file.txt' to gather information from your codebase.
+
+fourth. open CSV_Generator.py using your desired code editor (or even notepad.exe) and change the variables at the bottom to gather what information you desire.
+
+fifth. and here's the tricky part. Perform data analysis using the .csv files created. (or even use the JSON file directly)
+
+sixth. Use your new found knowledge for good/evil/balance/powergaming/fun/to win an argument/to laugh/to cry/to make a PR and balance whatever injustice you see in the data. The world is your oyster!
+
+Best of luck
+-Hughgent
