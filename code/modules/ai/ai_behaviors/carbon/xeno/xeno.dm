@@ -51,7 +51,7 @@
 
 	var/list/things_nearby = range(mob_parent, 1) //Rather than doing multiple range() checks we can just archive it here for just this deal_with_obstacle
 	for(var/obj/structure/obstacle in things_nearby)
-		if(obstacle.resistance_flags && XENO_DAMAGEABLE)
+		if(obstacle.resistance_flags & XENO_DAMAGEABLE)
 			var/mob/living/carbon/xenomorph/xeno = mob_parent
 			obstacle.attack_alien(xeno)
 			mob_parent.face_atom(obstacle)
