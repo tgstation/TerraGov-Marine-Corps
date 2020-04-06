@@ -167,6 +167,12 @@
 /obj/structure/largecrate,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
+"aA" = (
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 4
+	},
+/area/lv624/lazarus/medbay)
 "aB" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -373,10 +379,6 @@
 "bh" = (
 /turf/closed/mineral,
 /area/lv624/ground/caves/central2)
-"bi" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating,
-/area/maintenance/apmaint)
 "bj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -673,7 +675,8 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "cp" = (
-/obj/machinery/door/airlock/colony,
+/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
 "cq" = (
@@ -682,10 +685,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
-"cr" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground,
-/area/lv624/ground/compound/n)
 "cs" = (
 /turf/open/ground,
 /area/lv624/ground/compound/n)
@@ -694,7 +693,7 @@
 /turf/open/ground,
 /area/space)
 "cu" = (
-/obj/machinery/door/airlock/engineering,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "cv" = (
@@ -769,10 +768,6 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
-"cJ" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/n)
 "cK" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light,
@@ -823,6 +818,9 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "cT" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
 "cU" = (
@@ -900,6 +898,9 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
 	},
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
@@ -1207,13 +1208,20 @@
 /turf/closed/wall,
 /area/medical/medbay2)
 "dY" = (
-/obj/machinery/door/airlock/glass,
-/turf/open/floor/plating,
+/obj/machinery/door/airlock/mainship/medical{
+	icon_state = "door_closed";
+	dir = 2
+	},
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "dZ" = (
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/caves/central1)
 "ea" = (
+/obj/structure/fence,
 /turf/closed/gm/dense,
 /area/lv624/ground/caves/central1)
 "ec" = (
@@ -1242,12 +1250,18 @@
 	pixel_x = -5;
 	pixel_y = -5
 	},
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "eg" = (
 /obj/machinery/robotic_fabricator,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "eh" = (
 /obj/machinery/light{
@@ -1255,13 +1269,19 @@
 	},
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ei" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ej" = (
 /obj/structure/table,
@@ -1275,7 +1295,10 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor/tile/blue/whitebluefull,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ek" = (
 /obj/structure/table,
@@ -1284,7 +1307,10 @@
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/retractor,
 /obj/item/tool/surgery/surgicaldrill,
-/turf/open/floor/tile/blue/whitebluefull,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 10
+	},
 /area/medical/medbay2)
 "el" = (
 /turf/open/ground/grass/grass2,
@@ -1333,17 +1359,26 @@
 "ew" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/bodybag/cryobag,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ex" = (
 /obj/structure/closet/bodybag/cryobag,
 /obj/structure/closet/bodybag/cryobag,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ey" = (
 /obj/structure/closet/bodybag/cryobag,
 /obj/effect/landmark/corpsespawner/miner/rig,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "ez" = (
 /obj/item/alien_embryo,
@@ -1353,7 +1388,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "eA" = (
 /obj/structure/table,
@@ -1364,7 +1402,10 @@
 /obj/item/storage/syringe_case/burn,
 /obj/item/tool/surgery/bonegel,
 /obj/item/tool/surgery/hemostat,
-/turf/open/floor/tile/blue/whitebluefull,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "eB" = (
 /obj/structure/fence,
@@ -1378,14 +1419,17 @@
 /obj/structure/morgue{
 	dir = 8
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 8
+	},
 /area/medical/medbay2)
 "eE" = (
 /obj/item/defibrillator,
 /obj/structure/table,
 /turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+	icon_state = "whitegreen";
+	dir = 8
 	},
 /area/medical/medbay2)
 "eF" = (
@@ -1395,8 +1439,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+	icon_state = "whitegreen";
+	dir = 8
 	},
 /area/medical/medbay2)
 "eG" = (
@@ -1407,10 +1451,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eH" = (
 /obj/machinery/optable,
@@ -1420,14 +1461,14 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/tile/bar,
+/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eI" = (
 /obj/machinery/iv_drip,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/tile/bar,
+/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "eJ" = (
 /obj/machinery/optable,
@@ -1498,7 +1539,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 10
+	},
 /area/medical/medbay2)
 "eW" = (
 /obj/machinery/computer/crew,
@@ -1529,7 +1573,10 @@
 /obj/structure/table,
 /obj/item/flashlight/lamp,
 /obj/item/reagent_containers/spray,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/medical/medbay2)
 "eZ" = (
 /obj/structure/table,
@@ -1542,7 +1589,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/tile/green/whitegreenfull,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 6
+	},
 /area/medical/medbay2)
 "fa" = (
 /obj/structure/cable/yellow{
@@ -1625,7 +1675,7 @@
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/east_compound)
 "fm" = (
-/obj/machinery/door/airlock/multi_tile/medical,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreen"
@@ -1643,6 +1693,10 @@
 /obj/machinery/colony_floodlight,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
+"fp" = (
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/vapor_processing/south_compound)
 "fq" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable/yellow{
@@ -1891,8 +1945,9 @@
 /area/lv624/lazarus/engineering)
 "ga" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 9
 	},
 /area/lv624/lazarus/medbay)
 "gb" = (
@@ -1903,58 +1958,85 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 9
+	},
 /area/lv624/lazarus/medbay)
 "gc" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gd" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "ge" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gf" = (
 /obj/machinery/sleeper,
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gg" = (
 /obj/machinery/sleep_console,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gh" = (
 /obj/structure/closet/bodybag,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gi" = (
 /obj/machinery/sleeper,
 /obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gj" = (
 /obj/machinery/sleep_console,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "gk" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/open/floor{
-	dir = 2;
+	dir = 1;
 	icon_state = "whitegreen"
 	},
 /area/lv624/lazarus/medbay)
 "gl" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor{
-	dir = 2;
+	dir = 1;
 	icon_state = "whitegreen"
 	},
 /area/lv624/lazarus/medbay)
@@ -1964,15 +2046,15 @@
 	dir = 1
 	},
 /turf/open/floor{
-	dir = 2;
+	dir = 1;
 	icon_state = "whitegreen"
 	},
 /area/lv624/lazarus/medbay)
 "gn" = (
 /obj/structure/closet/secure_closet/medical_doctor,
 /turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+	icon_state = "whitegreen";
+	dir = 10
 	},
 /area/lv624/lazarus/medbay)
 "go" = (
@@ -2278,17 +2360,15 @@
 /area/lv624/lazarus/engineering)
 "ha" = (
 /obj/machinery/biogenerator,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 8
 	},
 /area/lv624/lazarus/medbay)
 "hb" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -2379,13 +2459,17 @@
 "hs" = (
 /obj/machinery/bodyscanner,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/white,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 10
+	},
 /area/lv624/lazarus/medbay)
 "ht" = (
 /obj/machinery/body_scanconsole,
 /obj/machinery/light,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 6
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
 	},
 /area/lv624/lazarus/medbay)
 "hu" = (
@@ -2407,19 +2491,31 @@
 /area/lv624/lazarus/medbay)
 "hw" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "hx" = (
 /obj/machinery/vending/medical,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "hy" = (
 /obj/machinery/chem_master,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "hz" = (
 /obj/machinery/computer/pandemic,
-/turf/open/floor/tile/bar,
+/turf/open/floor{
+	dir = 2;
+	icon_state = "whitegreen"
+	},
 /area/lv624/lazarus/medbay)
 "hA" = (
 /obj/structure/closet/secure_closet/chemical,
@@ -2438,8 +2534,8 @@
 "hC" = (
 /obj/structure/closet/secure_closet/medical1,
 /turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+	icon_state = "whitegreen";
+	dir = 6
 	},
 /area/lv624/lazarus/medbay)
 "hD" = (
@@ -2466,7 +2562,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hI" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "whitegreen"
@@ -2529,7 +2625,7 @@
 /turf/open/floor/prison/whitepurple,
 /area/lv624/lazarus/engineering)
 "hT" = (
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/lv624/lazarus/security)
 "hU" = (
 /obj/structure/filingcabinet,
@@ -2662,11 +2758,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/ground,
 /area/lv624/ground/compound/n)
-"ip" = (
-/obj/machinery/door/airlock/glass,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating,
-/area/medical/medbay2)
 "iq" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable/yellow{
@@ -2771,23 +2862,17 @@
 	name = "Colonist Ben Harris"
 	},
 /turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+	icon_state = "whitegreen";
+	dir = 4
 	},
 /area/medical/medbay2)
 "iG" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "iH" = (
 /obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/tile/white,
 /area/medical/medbay2)
 "iI" = (
 /obj/structure/cable/yellow{
@@ -2823,7 +2908,7 @@
 /turf/open/ground,
 /area/lv624/lazarus/quart)
 "iM" = (
-/obj/machinery/door/airlock/silver,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "iN" = (
@@ -3035,7 +3120,7 @@
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
 "jm" = (
-/obj/machinery/door/airlock/multi_tile/security,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor{
 	icon_state = "red"
 	},
@@ -3217,6 +3302,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/fence,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
 "jM" = (
@@ -3595,7 +3681,9 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/canteen)
 "kH" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Canteen"
+	},
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "kI" = (
@@ -3613,7 +3701,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "kJ" = (
-/obj/machinery/door/airlock/glass_command,
+/obj/machinery/door/airlock/mainship/secure,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteblue"
@@ -3633,7 +3721,7 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "kN" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
 "kO" = (
@@ -3769,10 +3857,6 @@
 "lm" = (
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/se)
-"ln" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground,
-/area/lv624/ground/compound/sw)
 "lo" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/communications,
@@ -3832,10 +3916,7 @@
 /area/vapor_processing/cargo2)
 "ly" = (
 /obj/effect/landmark/corpsespawner/clown,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
-	},
+/turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
 "lA" = (
 /obj/structure/closet/emcloset,
@@ -4090,8 +4171,9 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
 "mv" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 4
 	},
 /area/storage/tools)
 "mw" = (
@@ -4111,7 +4193,9 @@
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
 "mz" = (
-/obj/machinery/door/airlock/multi_tile/research,
+/obj/machinery/door/airlock/multi_tile/mainship/research{
+	name = "\improper Research and Development"
+	},
 /turf/open/floor,
 /area/lv624/lazarus/robotics)
 "mA" = (
@@ -4143,9 +4227,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mF" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/research,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mG" = (
@@ -4297,14 +4379,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/substation)
-"nf" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4;
-	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
-	},
-/turf/open/floor,
-/area/storage/tools)
 "ng" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -4603,18 +4677,9 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "nO" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/lv624/lazarus/research)
-"nP" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 4
 	},
 /area/lv624/lazarus/research)
 "nQ" = (
@@ -4730,10 +4795,11 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "oj" = (
+/obj/effect/decal/warning_stripes,
 /turf/closed/wall/r_wall,
 /area/maintenance/substation)
 "ok" = (
-/obj/machinery/door/airlock/multi_tile/research,
+/obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "ol" = (
@@ -4856,7 +4922,7 @@
 /obj/effect/decal/warning_stripes{
 	pixel_y = 30
 	},
-/turf/open/floor/tile/dark,
+/turf/open/floor,
 /area/maintenance/substation)
 "oz" = (
 /obj/machinery/recharger,
@@ -4897,11 +4963,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor,
 /area/maintenance/substation)
-"oH" = (
-/obj/machinery/door/airlock/glass_engineering,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "oJ" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light{
@@ -4946,7 +5007,10 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oP" = (
-/obj/machinery/door/airlock/colony,
+/obj/machinery/door/airlock/mainship/generic{
+	icon_state = "door_closed";
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "oQ" = (
@@ -5232,10 +5296,6 @@
 "pK" = (
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
-"pL" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "pN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -5694,14 +5754,6 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/vapor_processing/south_compound)
-"rg" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4;
-	id = "secure_blast";
-	name = "\improper Secure Armory Blast Door"
-	},
-/turf/open/floor,
-/area/lv624/lazarus/research)
 "rh" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
@@ -5713,16 +5765,7 @@
 	},
 /area/lv624/lazarus/research)
 "ri" = (
-/obj/structure/window/framed/colony,
-/turf/open/floor/plating,
-/area/lv624/lazarus/security)
-"rj" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/window/framed/colony,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
 "rk" = (
@@ -5735,7 +5778,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
 "rm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5763,7 +5806,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/grass,
+/turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
 "rp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5955,22 +5998,6 @@
 	icon_state = "whiteyellowcorner"
 	},
 /area/vapor_processing/cargo3)
-"rK" = (
-/obj/structure/largecrate/supply/supplies,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
-	},
-/area/vapor_processing/cargo3)
-"rL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/grass,
-/area/lv624/ground/compound/c)
 "rM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6232,7 +6259,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/closet/secure_closet/captain,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6256,7 +6282,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Koso"
 	},
-/turf/open/ground,
+/turf/open/floor/prison/rampbottom,
 /area/lv624/ground/compound/sw)
 "sv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6407,22 +6433,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall,
 /area/storage/tools)
-"sN" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/storage/tools)
 "sO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor,
 /area/storage/tools)
 "sP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -6437,27 +6453,25 @@
 /turf/open/floor,
 /area/storage/tools)
 "sR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/closed/wall,
-/area/storage/tools)
-"sS" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/storage/tools)
-"sT" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
+/turf/closed/wall,
+/area/storage/tools)
+"sS" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/turf/open/floor,
+/area/storage/tools)
+"sT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor,
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 8
+	},
 /area/storage/tools)
 "sU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6610,24 +6624,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/lv624/lazarus/research)
-"tt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/lv624/lazarus/research)
-"tu" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor,
 /area/lv624/lazarus/research)
 "tv" = (
 /turf/open/floor/plating/dmg3,
@@ -6649,7 +6646,7 @@
 /turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/research)
 "tA" = (
-/turf/open/floor/plating/dmg3,
+/turf/closed/wall,
 /area/lv624/ground/compound/se)
 "tB" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -6674,13 +6671,6 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg3,
-/area/lv624/lazarus/research)
-"tG" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor,
 /area/lv624/lazarus/research)
 "tH" = (
 /obj/effect/decal/cleanable/blood,
@@ -6794,7 +6784,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor,
+/turf/open/floor/prison/marked,
 /area/maintenance/substation)
 "ub" = (
 /obj/structure/closet/firecloset,
@@ -6802,7 +6792,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor,
+/turf/open/floor/prison/marked,
 /area/maintenance/substation)
 "uc" = (
 /obj/structure/bed,
@@ -6912,12 +6902,6 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
-"ut" = (
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/lv624/lazarus/research)
 "uu" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
@@ -6934,7 +6918,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/grass,
+/turf/closed/wall,
 /area/lv624/ground/compound/se)
 "ux" = (
 /obj/effect/decal/cleanable/blood,
@@ -7019,14 +7003,51 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
+"uZ" = (
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 8
+	},
+/area/lv624/lazarus/medbay)
 "vB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"vG" = (
+/turf/open/floor/marking,
+/area/lv624/ground/compound/sw)
 "vJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"vU" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/c)
+"vW" = (
+/turf/open/floor/prison,
+/area/lv624/lazarus/research)
+"wc" = (
+/obj/machinery/door/airlock/mainship/generic{
+	icon_state = "door_closed";
+	dir = 2
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"wd" = (
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 8
+	},
+/area/storage/tools)
 "wi" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7046,9 +7067,57 @@
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"xr" = (
+/obj/structure/fence,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"xt" = (
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 4
+	},
+/area/medical/medbay2)
+"xC" = (
+/obj/machinery/door/airlock/mainship/engineering/engine{
+	name = "\improper Engineering Bay"
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"yu" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/closed/wall,
+/area/lv624/lazarus/security)
+"yX" = (
+/obj/structure/fence,
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/se)
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
+"zB" = (
+/obj/machinery/button/door/open_only/landing_zone,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/marking/warning{
+	dir = 5
+	},
+/area/shuttle/drop2/lz2)
+"zV" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor{
+	dir = 4;
+	icon_state = "whiteblue"
+	},
+/area/lv624/lazarus/comms)
+"Ad" = (
+/obj/structure/window/framed/colony,
+/turf/open/space/basic,
+/area/lv624/lazarus/canteen)
 "Av" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin,
@@ -7064,18 +7133,31 @@
 "AG" = (
 /turf/closed/wall/indestructible/mineral,
 /area/vapor_processing/east_compound)
-"AS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
-/area/storage/tools)
+"AK" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/marking,
+/area/vapor_processing/cargo_maint_s)
 "AT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"BH" = (
+/obj/machinery/door/airlock/mainship/secure,
+/turf/open/space/basic,
+/area/lv624/lazarus/comms)
+"BO" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/vapor_processing/cargo_maint_s)
 "Ca" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -7088,10 +7170,49 @@
 	},
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
+"CP" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
 "CU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/membrane,
 /area/space)
+"CY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/ground,
+/area/lv624/ground/compound/n)
+"Dd" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 4;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/turf/open/space/basic,
+/area/storage/tools)
+"Df" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Canteen"
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/canteen)
+"Dn" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/ground,
+/area/lv624/ground/compound/c)
+"Du" = (
+/obj/structure/fence,
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/n)
 "En" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7105,14 +7226,45 @@
 	},
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
+"EP" = (
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"Ff" = (
+/turf/open/floor/prison/rampbottom,
+/area/lv624/ground/compound/sw)
+"Fl" = (
+/obj/structure/fence,
+/turf/closed/gm/dense,
+/area/vapor_processing/west_compound)
+"Fx" = (
+/obj/structure/fence,
+/turf/open/floor/grass,
+/area/vapor_processing/west_compound)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
+"Gj" = (
+/obj/machinery/door/airlock/mainship/engineering/engine{
+	dir = 1;
+	icon_state = "door_closed";
+	name = "\improper Engineering Bay"
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
 "Gn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central2)
+"Gq" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/fence,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
 "GV" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7121,9 +7273,31 @@
 	},
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
+"Hs" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"Hx" = (
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
+"HJ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"HM" = (
+/turf/closed/wall,
+/area/lv624/ground/compound/n)
 "Ic" = (
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
+"Ik" = (
+/turf/closed/wall/r_wall,
+/area/lv624/ground/compound/sw)
 "It" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -7141,18 +7315,40 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 4
 	},
 /area/storage/tools)
 "Jt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin,
 /area/vapor_processing/caves/se)
+"Jw" = (
+/turf/closed/wall,
+/area/lv624/ground/compound/sw)
 "Jy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
+"Kh" = (
+/turf/open/floor/prison,
+/area/storage/tools)
+"KA" = (
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "KH" = (
 /turf/open/ground,
 /area/lv624/lazarus/quartstorage)
@@ -7160,6 +7356,29 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/east1)
+"LI" = (
+/obj/machinery/door/airlock/mainship/engineering/engine{
+	dir = 1;
+	icon_state = "door_closed";
+	name = "\improper Engineering Bay"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"LJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/storage/tools)
+"Ma" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall,
+/area/maintenance/apmaint)
 "Ml" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -7169,6 +7388,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/lv624/ground/compound/se)
+"No" = (
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/vapor_processing/west_compound)
 "NA" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -7177,6 +7400,14 @@
 	},
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
+"NT" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 4;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/research)
 "Oh" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -7190,15 +7421,80 @@
 	},
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
+"Ot" = (
+/turf/open/floor/marking,
+/area/vapor_processing/cargo_maint_s)
 "OF" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/vapor_processing/east_compound)
+"OO" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"OW" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"Pi" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/closed/wall,
+/area/vapor_processing/cargo_maint_s)
+"PH" = (
+/obj/machinery/door/airlock/mainship/generic{
+	icon_state = "door_closed";
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"PJ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/wall,
+/area/lv624/lazarus/hydroponics)
+"PU" = (
+/obj/item/defibrillator,
+/obj/structure/table,
+/turf/open/floor{
+	icon_state = "whitegreen";
+	dir = 10
+	},
+/area/medical/medbay2)
+"PW" = (
+/obj/structure/fence,
+/turf/closed/gm/dense,
+/area/vapor_processing/south_compound)
+"Qp" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall,
+/area/vapor_processing/cargo_maint_s)
 "Qv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/central1)
+"QI" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/space/basic,
+/area/lv624/lazarus/security)
+"QY" = (
+/obj/machinery/door/poddoor/mainship{
+	name = "\improper Secure Armory Blast Door";
+	icon_state = "pdoor1";
+	dir = 2;
+	id = "secure_blast"
+	},
+/turf/open/floor,
+/area/storage/tools)
+"RJ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "Sa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7207,20 +7503,140 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"Ud" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+"Sn" = (
 /turf/open/floor{
-	icon_state = "floorscorched2"
+	icon_state = "whitegreen";
+	dir = 6
 	},
+/area/medical/medbay2)
+"SN" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/wall,
+/area/maintenance/apmaint)
+"SS" = (
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
+"Tb" = (
+/obj/structure/fence,
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/c)
+"Tu" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/obj/machinery/door/airlock/mainship/generic{
+	icon_state = "door_closed";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
+"TU" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "\improper Airlock";
+	req_access_txt = "0"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"Uw" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 4;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/turf/open/space/basic,
 /area/lv624/lazarus/research)
 "UJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"UN" = (
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 8
+	},
+/area/maintenance/substation)
+"Vb" = (
+/obj/structure/fence,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
+"Vn" = (
+/turf/open/floor/prison/rampbottom{
+	icon_state = "rampbottom";
+	dir = 8
+	},
+/area/lv624/lazarus/research)
+"Wa" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 4;
+	id = "secure_blast";
+	name = "\improper Secure Armory Blast Door"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/storage/tools)
+"Xc" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/fence,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
+"Xf" = (
+/obj/structure/fence,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"Xn" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating,
+/area/maintenance/apmaint)
+"Xo" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "\improper Airlock";
+	req_access_txt = "0"
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/vapor_processing/cargo_maint_s)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/west1)
+"YY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/ground,
+/area/lv624/lazarus/quart)
+"YZ" = (
+/obj/effect/decal/warning_stripes,
+/turf/closed/wall,
+/area/maintenance/substation)
+"ZE" = (
+/obj/machinery/door/poddoor/mainship{
+	name = "\improper Secure Armory Blast Door";
+	icon_state = "pdoor1";
+	dir = 2;
+	id = "secure_blast"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/research)
 
 (1,1,1) = {"
 aa
@@ -7356,12 +7772,12 @@ ad
 ad
 ad
 ad
-ad
+RJ
 ae
 ae
 ae
 ae
-ah
+HM
 aa
 aa
 aa
@@ -7392,7 +7808,7 @@ ki
 lt
 lt
 lt
-lt
+Qp
 mc
 mc
 mc
@@ -7420,10 +7836,10 @@ mc
 mc
 mc
 mc
-mc
-mc
-mc
-mc
+pK
+pK
+pK
+pK
 aa
 "}
 (3,1,1) = {"
@@ -7458,14 +7874,14 @@ az
 ad
 ad
 ad
-ad
+RJ
 cZ
 cH
 ba
 cZ
-cJ
-ah
-ah
+cs
+cs
+Hx
 aa
 aa
 aa
@@ -7487,14 +7903,14 @@ hT
 hT
 hT
 ri
-hT
+QI
 ki
 ki
 ki
 lt
 lA
 lI
-lt
+Qp
 mc
 mc
 me
@@ -7522,10 +7938,10 @@ mc
 mc
 mc
 mr
-mc
-mc
-mc
-mc
+pK
+pN
+pW
+qe
 aa
 "}
 (4,1,1) = {"
@@ -7560,14 +7976,14 @@ az
 ad
 ad
 ad
-ad
+RJ
 ba
 ba
 ba
 ba
-cJ
-ah
-ah
+cs
+cs
+Hx
 ah
 aa
 aa
@@ -7589,14 +8005,14 @@ hT
 jD
 jU
 kj
-hT
+QI
 ki
 ki
 ki
 lt
 qF
 lJ
-lt
+Qp
 mc
 mc
 mc
@@ -7624,10 +8040,10 @@ me
 mc
 mc
 mc
-mc
-mc
-mc
-mc
+pK
+pO
+pX
+qf
 aa
 "}
 (5,1,1) = {"
@@ -7667,9 +8083,9 @@ ae
 ae
 ae
 ae
-ah
-ah
-ah
+cs
+cs
+Hx
 ah
 aa
 aa
@@ -7693,12 +8109,12 @@ jV
 kk
 hT
 hT
-ki
-ki
+Ik
+Ik
 lt
 lB
 lv
-lt
+Qp
 mc
 mc
 mr
@@ -7726,10 +8142,10 @@ me
 mc
 me
 me
-me
-me
-me
-mc
+pK
+pP
+pY
+qg
 aa
 "}
 (6,1,1) = {"
@@ -7769,9 +8185,9 @@ da
 dm
 dC
 ae
-ah
-ah
-ah
+cs
+cs
+Hx
 ah
 ah
 aa
@@ -7795,12 +8211,12 @@ jW
 kl
 kA
 hT
-kQ
-kQ
+Ff
+vG
 lt
 lv
 lK
-lt
+Qp
 mc
 mc
 me
@@ -7828,10 +8244,10 @@ cc
 cf
 ch
 bT
-mc
-mc
-mc
-mc
+pK
+pQ
+pZ
+qh
 aa
 "}
 (7,1,1) = {"
@@ -7871,9 +8287,9 @@ db
 dn
 dD
 ae
-ah
-ah
-ah
+cs
+cs
+Hx
 ah
 ah
 ah
@@ -7897,12 +8313,12 @@ it
 it
 it
 kN
-kQ
-ln
-lu
-lv
-lv
-lu
+Ff
+vG
+AK
+Ot
+Ot
+CP
 mc
 me
 mc
@@ -7930,10 +8346,10 @@ bZ
 cd
 bZ
 cy
-mc
-mc
-mc
-mc
+pK
+pR
+qa
+qi
 aa
 "}
 (8,1,1) = {"
@@ -7973,9 +8389,9 @@ dc
 do
 dE
 ae
-ah
-ah
-ah
+cs
+cs
+Hx
 ah
 ah
 ah
@@ -7999,12 +8415,12 @@ jX
 jW
 it
 kO
-kQ
-ln
-lv
-lv
-lv
-lv
+Ff
+vG
+Ot
+Ot
+Ot
+HJ
 sL
 mc
 mc
@@ -8032,10 +8448,10 @@ bZ
 bZ
 bZ
 cz
-pK
-pK
-pK
-pK
+mc
+pS
+mc
+mc
 aa
 "}
 (9,1,1) = {"
@@ -8075,9 +8491,9 @@ dd
 dp
 dF
 ae
-ah
-ah
-ah
+cs
+cs
+Hx
 ah
 ah
 ah
@@ -8102,11 +8518,11 @@ qy
 kB
 hT
 su
-kQ
+vG
 lt
 lv
-lL
-lt
+lK
+Qp
 md
 mc
 mc
@@ -8134,10 +8550,10 @@ bZ
 bZ
 bZ
 cA
-pK
-pN
-pW
-qe
+mc
+pS
+mc
+mc
 aa
 "}
 (10,1,1) = {"
@@ -8177,8 +8593,8 @@ de
 dq
 dG
 ae
-ah
-ah
+cs
+cs
 dX
 dX
 dX
@@ -8190,8 +8606,8 @@ em
 em
 em
 eK
-eK
-eK
+Fx
+Fx
 hT
 hT
 hT
@@ -8199,16 +8615,16 @@ hT
 hT
 hT
 hT
+yu
+ri
 hT
-rj
 hT
-hT
-ki
-ki
+Ik
+Ik
 lt
 lv
-lv
-lt
+lL
+Qp
 mc
 mc
 mB
@@ -8236,10 +8652,10 @@ bZ
 bZ
 bZ
 cB
-pK
-pO
-pX
-qf
+mc
+pS
+mc
+mc
 aa
 "}
 (11,1,1) = {"
@@ -8274,13 +8690,13 @@ aX
 ad
 ad
 cO
-ad
+RJ
 df
 dr
 dH
 ae
-ah
-ah
+cs
+cs
 dX
 ec
 iv
@@ -8292,7 +8708,7 @@ eK
 eK
 eK
 eK
-em
+Fl
 eK
 eK
 eK
@@ -8300,17 +8716,17 @@ eK
 eK
 eK
 eK
-el
+No
 el
 ko
 el
-ki
+kP
 ki
 ki
 lt
 lv
 lv
-lt
+Qp
 mc
 mc
 mC
@@ -8338,10 +8754,10 @@ bZ
 bZ
 bZ
 cy
-pK
-pP
-pY
-qg
+mc
+pS
+mc
+mc
 aa
 "}
 (12,1,1) = {"
@@ -8377,24 +8793,24 @@ ad
 ad
 ad
 cU
-ae
+SN
 ds
 dI
 ae
-dQ
-ah
+CY
+cs
 dX
 ed
 ev
-ee
+xt
 iF
-ee
+Sn
 dX
 eK
 eK
 eK
 eK
-em
+Fl
 em
 em
 eK
@@ -8412,7 +8828,7 @@ ki
 lt
 lC
 lv
-lt
+Qp
 mc
 mc
 mD
@@ -8440,10 +8856,10 @@ bZ
 bZ
 bZ
 cz
-pK
-pQ
-pZ
-qh
+mc
+pS
+mc
+mc
 aa
 "}
 (13,1,1) = {"
@@ -8479,15 +8895,15 @@ ad
 cO
 ad
 ad
-cp
+wc
 ba
 dJ
-cp
-cr
+PH
+cs
 cs
 dY
+ev
 ee
-ee
 dX
 dX
 dX
@@ -8496,7 +8912,7 @@ eK
 eK
 eK
 eK
-eK
+Fx
 eK
 eK
 eK
@@ -8514,7 +8930,7 @@ ki
 lt
 lv
 lv
-lt
+Qp
 mc
 mc
 mc
@@ -8542,10 +8958,10 @@ bZ
 bZ
 bZ
 cA
-pK
-pR
-qa
-qi
+mc
+pS
+mc
+mc
 aa
 "}
 (14,1,1) = {"
@@ -8581,18 +8997,18 @@ ad
 ad
 ad
 ad
-cp
+wc
 ba
 dJ
-cp
-cr
+PH
+cs
 io
-ip
-ee
-ee
+dY
+ev
+ev
 eF
 eE
-eE
+PU
 dX
 eK
 fC
@@ -8600,23 +9016,23 @@ fC
 fC
 fC
 fC
-eK
-em
-eK
-eK
+Fx
+Fl
+Fx
+Fx
 iB
 iB
 iB
 ka
 kr
 kD
-iB
+Ad
 ki
 ki
 lt
 sH
 lv
-lt
+Qp
 mc
 mr
 mc
@@ -8683,17 +9099,17 @@ ad
 ad
 ad
 ad
-cp
+wc
 ba
 dJ
-cp
-cr
+PH
+cs
 cs
 dY
-ee
-ee
-ee
-ee
+ev
+ev
+ev
+ev
 eX
 dX
 fC
@@ -8718,7 +9134,7 @@ ki
 lt
 lC
 lv
-lt
+Qp
 me
 mc
 mc
@@ -8785,7 +9201,7 @@ ad
 ad
 ad
 cU
-ae
+SN
 dt
 dJ
 ae
@@ -8796,11 +9212,11 @@ ef
 ew
 eG
 iG
-ee
+ev
 fm
-fD
-fD
-fD
+uZ
+uZ
+EP
 ly
 ht
 fC
@@ -8820,7 +9236,7 @@ ki
 lt
 lD
 lv
-lt
+Qp
 md
 ms
 ms
@@ -8887,7 +9303,7 @@ ad
 ad
 cO
 ad
-ae
+SN
 du
 dJ
 ae
@@ -8897,13 +9313,13 @@ dX
 eg
 ex
 eH
-ee
+ev
 iH
-ee
-fD
-fD
-fD
-fD
+xt
+aA
+aA
+aA
+EP
 lR
 fC
 eK
@@ -8922,7 +9338,7 @@ ki
 lt
 lE
 lv
-lt
+Qp
 mc
 mc
 mc
@@ -8953,7 +9369,7 @@ cA
 mc
 pS
 mc
-mc
+KA
 aa
 "}
 (18,1,1) = {"
@@ -8989,7 +9405,7 @@ ad
 ad
 ad
 ad
-ae
+SN
 dv
 dK
 ae
@@ -8999,20 +9415,20 @@ dX
 eh
 ex
 eI
-ee
+ev
 hL
 dX
 fE
 fS
 fS
 hb
-lR
+OO
 hI
 eo
 eo
 eo
 eo
-iB
+Df
 jq
 sa
 jr
@@ -9024,7 +9440,7 @@ ki
 lt
 lt
 lt
-lt
+Qp
 mc
 me
 mc
@@ -9091,7 +9507,7 @@ az
 ad
 ad
 ad
-ae
+SN
 aC
 dL
 ae
@@ -9108,13 +9524,13 @@ fF
 fC
 gb
 hc
+EP
 fD
-fC
-eK
-eK
-em
 eo
-iM
+eo
+eo
+eo
+jr
 jr
 jr
 jJ
@@ -9126,7 +9542,7 @@ kP
 lt
 lF
 lv
-lt
+Qp
 mc
 mc
 mc
@@ -9193,7 +9609,7 @@ ad
 cP
 ad
 ad
-ae
+SN
 ae
 dM
 ae
@@ -9212,9 +9628,9 @@ gc
 hd
 fD
 fC
-eK
-em
-eK
+Fx
+Fl
+Fx
 iB
 iB
 js
@@ -9228,7 +9644,7 @@ kQ
 lt
 qS
 lL
-lt
+Qp
 mc
 mc
 mc
@@ -9295,7 +9711,7 @@ ad
 ad
 ad
 ad
-ae
+SN
 aC
 dL
 ae
@@ -9326,11 +9742,11 @@ iO
 kH
 kQ
 kQ
-ln
+kQ
 lu
 lv
 lv
-lu
+CP
 mc
 mc
 me
@@ -9366,7 +9782,7 @@ aa
 "}
 (22,1,1) = {"
 aa
-ad
+zB
 ad
 aN
 ad
@@ -9397,12 +9813,12 @@ ad
 ad
 ad
 ad
-ae
+SN
 ba
 dJ
 ae
-ah
-ah
+Hx
+Hx
 dX
 dX
 dX
@@ -9428,11 +9844,11 @@ iO
 jr
 sq
 kQ
-ln
+kQ
 lv
 lv
 lv
-lv
+HJ
 mc
 mc
 mc
@@ -9468,38 +9884,38 @@ aa
 "}
 (23,1,1) = {"
 aa
-ae
-ae
-ae
-ae
-ba
-bj
-ae
-ae
-ae
-ae
-ae
-bs
-bs
-bs
-bs
-bs
-bs
-bs
-bs
+Ma
+Ma
+Ma
+Ma
+Xn
+TU
+Ma
+Ma
+Ma
+Ma
+Ma
+PJ
+PJ
+PJ
+PJ
+PJ
+PJ
+PJ
+PJ
 cp
 cp
 cp
-ae
-ae
-ba
-bj
-ae
-ae
-ae
-ae
-ae
-ae
+Ma
+Ma
+Xn
+TU
+Ma
+Ma
+Ma
+Ma
+Ma
+SN
 dw
 dJ
 ae
@@ -9515,7 +9931,7 @@ eK
 fF
 fC
 gf
-fD
+EP
 hu
 fC
 eK
@@ -9534,38 +9950,38 @@ kQ
 lt
 qT
 lL
-lt
-lt
-lt
-lv
-lK
-lt
-lt
-lt
-lt
-lt
-lt
-lt
-lt
-lt
-lt
-lv
-lK
-lt
-ou
-lt
-lt
-lt
-lt
-oP
-oP
-oP
-lt
-lt
-lv
-lK
-lt
-lt
+Qp
+Pi
+Pi
+Hs
+Xo
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Hs
+Xo
+Pi
+BO
+Pi
+Pi
+Pi
+Pi
+Tu
+Tu
+Tu
+Pi
+Pi
+Hs
+Xo
+Pi
+Pi
 aa
 "}
 (24,1,1) = {"
@@ -9574,8 +9990,8 @@ ae
 aC
 fv
 ba
-bi
-bi
+ba
+ba
 ba
 ba
 ba
@@ -9617,7 +10033,7 @@ fo
 fF
 fC
 gg
-fD
+EP
 hv
 fC
 eK
@@ -9719,7 +10135,7 @@ fa
 fH
 fC
 gh
-fD
+EP
 hw
 fC
 eK
@@ -9793,9 +10209,9 @@ bu
 bu
 bO
 bs
-cp
-cp
-cp
+OW
+OW
+OW
 ae
 ae
 ba
@@ -9809,7 +10225,7 @@ ae
 ba
 bj
 ae
-ah
+Hx
 bm
 bm
 el
@@ -9821,7 +10237,7 @@ eK
 fF
 qC
 gi
-fD
+EP
 hx
 qC
 eK
@@ -9895,23 +10311,23 @@ bA
 bL
 bP
 bs
-cr
-cr
-cr
-ah
-cI
-cJ
-cJ
-cI
-ah
-ah
-ah
-ah
-ah
-cr
-cr
 cs
+cs
+cs
+Hx
+cI
 ah
+ah
+cI
+Hx
+ah
+ah
+Hx
+cs
+cs
+cs
+cs
+Hx
 bk
 ah
 el
@@ -9923,7 +10339,7 @@ eK
 fF
 qC
 gj
-fD
+EP
 hy
 qC
 eK
@@ -9945,8 +10361,8 @@ ki
 kY
 ki
 mu
-ln
-ln
+kQ
+kQ
 mu
 ki
 ki
@@ -9957,21 +10373,21 @@ kY
 ki
 ki
 kP
-ln
-ln
+kQ
+kQ
 kP
 kS
 kY
 ki
 kX
 ki
-ln
-ln
-ln
+kQ
+kQ
+kQ
 ki
 pE
-pL
-pL
+ki
+ki
 pE
 ki
 aa
@@ -10000,32 +10416,32 @@ jH
 cs
 cs
 cs
-ah
+Hx
 ah
 bk
 ah
 ah
-ah
-bm
-bm
-ah
+Hx
+Hx
+Hx
+Hx
 cs
 cs
 cs
 cs
-ah
-ah
-ah
-el
-el
-em
-em
-eK
-eK
+Hx
+Hx
+Hx
+No
+No
+Fl
+Fl
+Fx
+Fx
 fF
 fC
 gk
-fD
+EP
 hz
 fC
 eK
@@ -10102,14 +10518,14 @@ jL
 cs
 cs
 cs
-ah
-ah
-ah
-bm
-bm
-bm
-bm
-ah
+cs
+cs
+cs
+cs
+cs
+cs
+cs
+cs
 cs
 cs
 cs
@@ -10123,16 +10539,16 @@ eo
 eo
 eo
 eo
-eK
+Fx
 fF
 fC
 gl
-lR
+OO
 hA
 fC
 eK
-em
-eK
+Fl
+Fx
 iB
 pp
 pp
@@ -10204,16 +10620,16 @@ jL
 cs
 cs
 cs
-ah
-ah
-ah
-bm
-ah
-ah
-ah
+Hx
+Hx
+Hx
+Du
+Hx
 cs
 cs
-ah
+cs
+cs
+cs
 cs
 cs
 cs
@@ -10225,15 +10641,15 @@ eo
 eo
 eo
 eo
-em
+Fl
 fF
 fC
 gm
-fD
+EP
 hB
 fC
 eK
-eK
+Fx
 eo
 eo
 eo
@@ -10251,8 +10667,8 @@ ki
 ki
 ki
 lH
-lQ
-lQ
+wd
+wd
 lH
 ki
 ki
@@ -10263,8 +10679,8 @@ ki
 ki
 ki
 nd
-nx
-nx
+UN
+UN
 nd
 kS
 ki
@@ -10306,36 +10722,36 @@ jL
 cs
 cs
 cs
+Hx
 ah
 ah
 ah
-ah
-ah
-ah
-ah
-cs
-ah
-ah
+Hx
 cs
 cs
 cs
+cs
+cs
+cs
+cs
+cs
 ah
 ah
-ah
+Hx
 el
-el
-el
+No
+No
 eo
 eo
-em
+Fl
 fI
 fC
 gn
-fD
+aA
 hC
 fC
 eK
-em
+Fl
 eo
 eo
 iV
@@ -10406,16 +10822,16 @@ ah
 bQ
 jM
 cu
+bQ
 cu
-cu
 bQ
 bQ
 bQ
 bQ
-ah
-ah
+Hx
 cs
-ah
+cs
+cs
 cV
 cV
 cV
@@ -10426,22 +10842,22 @@ cV
 cV
 ep
 et
-et
+eB
+eu
+eu
+eB
+Gq
+fC
+fC
+fC
+fC
+fC
+eC
+eB
 eu
 eu
 et
-fg
-fC
-fC
-fC
-fC
-fC
-ep
-et
-eu
-eu
-et
-ep
+fk
 iX
 iX
 rk
@@ -10449,7 +10865,7 @@ eo
 rn
 iX
 iX
-ki
+Jw
 ki
 ki
 lU
@@ -10514,10 +10930,10 @@ cF
 bS
 cK
 bQ
-ah
+cs
 cN
 cs
-ah
+cs
 cV
 dg
 dx
@@ -10528,7 +10944,7 @@ qz
 cV
 eq
 eq
-ep
+eC
 eu
 eu
 et
@@ -10542,7 +10958,7 @@ et
 et
 eu
 eu
-ep
+fk
 iX
 jN
 ke
@@ -10552,7 +10968,7 @@ kU
 jx
 lo
 iX
-ki
+Jw
 lH
 lV
 lQ
@@ -10630,11 +11046,11 @@ dz
 cV
 ep
 eq
-eq
+Tb
 eu
 eu
-ep
-fg
+eu
+Dn
 ep
 ep
 ep
@@ -10732,12 +11148,12 @@ dU
 cV
 er
 ep
-eq
+Tb
 eu
 eu
 eu
-fg
-ep
+Dn
+eu
 ep
 ep
 ep
@@ -10834,26 +11250,26 @@ dz
 cV
 ep
 ep
-ep
-et
-et
-et
-fJ
-ep
-et
-et
-ep
-hJ
-et
-et
-et
+eC
+eB
+eB
+eB
+vU
+eC
+eB
+eB
+eC
+eB
+eB
+eB
+eB
 eu
-ep
+fk
 iX
 jO
 kf
 iX
-kJ
+zV
 kU
 lb
 sy
@@ -10922,10 +11338,10 @@ cG
 cC
 cC
 cL
-cM
-cM
-cM
-cM
+Xc
+Xc
+Xc
+Xc
 cY
 dj
 dz
@@ -10945,13 +11361,13 @@ ep
 ep
 ep
 et
-et
+hJ
 et
 ep
-er
+eC
 eu
 et
-ep
+fk
 iX
 iX
 rl
@@ -10978,7 +11394,7 @@ oi
 qK
 nd
 nd
-nd
+YZ
 oj
 oy
 nx
@@ -11056,9 +11472,9 @@ et
 ep
 iX
 iX
-ep
+et
 eu
-fg
+fJ
 iX
 sz
 le
@@ -11120,7 +11536,7 @@ bf
 bQ
 bQ
 cu
-cu
+bQ
 cu
 bQ
 bQ
@@ -11159,7 +11575,7 @@ iX
 jP
 kg
 iX
-kJ
+zV
 kU
 lc
 sA
@@ -11374,7 +11790,7 @@ le
 lH
 ng
 sR
-lH
+sR
 ng
 lH
 le
@@ -11385,8 +11801,8 @@ lg
 lg
 nh
 rh
-mo
-mo
+NT
+NT
 rh
 mo
 le
@@ -11465,7 +11881,7 @@ iX
 jR
 kh
 iX
-iX
+BH
 iX
 ld
 lr
@@ -11576,10 +11992,10 @@ le
 lf
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -11588,10 +12004,10 @@ lg
 lg
 le
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 le
 lf
@@ -11678,10 +12094,10 @@ lf
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -11690,10 +12106,10 @@ lg
 lg
 le
 nh
-nO
-nO
-nO
-ut
+mw
+mw
+mw
+tZ
 mo
 le
 le
@@ -11780,10 +12196,10 @@ lf
 lf
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -11792,10 +12208,10 @@ lg
 lg
 le
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 le
 le
@@ -11882,10 +12298,10 @@ lf
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 lg
@@ -11894,10 +12310,10 @@ lg
 le
 le
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 le
 le
@@ -11965,7 +12381,7 @@ iL
 iL
 iL
 iL
-iL
+YY
 iL
 iL
 iL
@@ -11984,10 +12400,10 @@ lf
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -11996,10 +12412,10 @@ lg
 le
 le
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 le
 lh
@@ -12086,10 +12502,10 @@ le
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -12098,10 +12514,10 @@ lg
 lg
 le
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12188,10 +12604,10 @@ sv
 sv
 sv
 sM
-sN
+sP
 sS
-AS
-sN
+sK
+sP
 sM
 sv
 ti
@@ -12201,8 +12617,8 @@ ti
 sv
 tp
 ts
-Ud
-Ud
+sZ
+sZ
 ts
 tC
 tY
@@ -12291,8 +12707,8 @@ lS
 le
 lH
 sO
-Jh
-mv
+sQ
+lQ
 sO
 lH
 le
@@ -12302,10 +12718,10 @@ le
 lg
 le
 nh
-tt
-nO
-nO
-tt
+sY
+mw
+mw
+sY
 mo
 lh
 lh
@@ -12392,10 +12808,10 @@ le
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 lf
@@ -12404,10 +12820,10 @@ le
 lg
 lg
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12494,10 +12910,10 @@ le
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 lg
@@ -12506,10 +12922,10 @@ lg
 lg
 lg
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12596,10 +13012,10 @@ lg
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 lg
@@ -12608,10 +13024,10 @@ lg
 le
 lf
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12698,10 +13114,10 @@ lg
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 lg
@@ -12710,10 +13126,10 @@ le
 le
 le
 nh
-ut
-nO
-nO
-nO
+tZ
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12785,10 +13201,10 @@ hO
 hZ
 im
 im
-rK
+rH
 im
-im
-im
+jB
+jB
 hO
 ep
 ep
@@ -12800,10 +13216,10 @@ lg
 le
 le
 lH
-mv
-Jh
-mv
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 lf
 lg
@@ -12812,10 +13228,10 @@ le
 lg
 lg
 nh
-nO
-nO
-nO
-nO
+mw
+mw
+mw
+mw
 mo
 lh
 lh
@@ -12882,42 +13298,42 @@ fO
 fO
 fj
 fj
-ep
+eC
 hO
-hZ
-im
-im
-rH
-im
-jB
-jB
 hO
-ep
-ep
-et
-lg
-lg
-lf
-lg
-lg
-le
+il
+hO
+rp
+hO
+hO
+hO
+hO
+eC
+eC
+eB
+fp
+fp
+PW
+fp
+fp
+Vb
 lH
-mv
+lH
 Jh
 mv
-mv
 lH
-lg
-lg
-le
-lg
-lg
-le
-nh
+lH
+fp
+fp
+fp
+fp
+fp
+fp
+mo
+mo
 nO
 nO
-nO
-nO
+mo
 mo
 lh
 lh
@@ -12982,45 +13398,45 @@ eu
 eu
 eu
 eu
-ep
-ep
-ep
-hO
-hO
-il
-hO
-rp
-hO
-hO
-hO
-hO
-ep
-ep
-et
-lg
-lg
-lf
-le
-lg
-lg
-lH
-mv
-Jh
-mv
-mv
-lH
-lg
-lg
-lg
-lg
-le
-le
-nh
-nO
-nO
-nO
-nO
-mo
+eu
+eu
+eu
+eu
+eu
+eu
+eu
+rm
+eu
+eu
+eu
+eu
+eu
+eu
+eu
+lh
+lh
+lh
+lh
+lh
+lh
+QY
+Kh
+LJ
+Kh
+Kh
+QY
+lh
+lh
+lh
+lh
+lh
+lh
+ZE
+vW
+vW
+vW
+vW
+ZE
 lh
 lh
 lh
@@ -13105,24 +13521,24 @@ lh
 lh
 lh
 lh
-nf
-mv
-sT
-nf
-mv
-nf
+QY
+Kh
+LJ
+Kh
+Kh
+QY
 lh
 lh
 lh
 lh
 lh
 lh
-rg
-nO
-rg
-rg
-nO
-rg
+ZE
+vW
+vW
+vW
+vW
+ZE
 lh
 lh
 lh
@@ -13207,24 +13623,24 @@ lh
 lh
 lh
 lh
-nf
-mv
-sT
-nf
-mv
-nf
+QY
+Kh
+LJ
+Kh
+Kh
+QY
 lh
 lh
 lh
 lh
 lh
 lh
-rg
-tu
-rg
-rg
-nO
-rg
+ZE
+vW
+vW
+vW
+vW
+ZE
 lh
 lh
 lh
@@ -13288,45 +13704,45 @@ fk
 eu
 eu
 eu
+eC
+eC
+eC
+eC
+eC
+eC
 eu
-eu
-eu
-eu
-lY
-eu
-eu
-rm
-eu
-eu
-eu
-eu
-eu
-eu
-eu
-lh
-lh
-lh
-lh
-lh
-lh
-nf
-mv
+eC
+eC
+eC
+eC
+eC
+eC
+eC
+eC
+Vb
+Vb
+Vb
+Vb
+Vb
+Vb
+lH
+wd
 sT
-nf
-mv
-nf
-lh
-lh
-lh
-lh
-lh
-lh
-rg
-nO
-rg
-rg
-tu
-rg
+wd
+wd
+lH
+fp
+fp
+fp
+fp
+fp
+fp
+mo
+Vn
+Vn
+Vn
+Vn
+mo
 lh
 lh
 lh
@@ -13390,14 +13806,14 @@ eB
 eu
 eu
 eu
-eq
+eC
 ep
 ep
 ep
 ep
-ep
+eC
 eu
-rL
+eC
 ep
 ep
 et
@@ -13412,10 +13828,10 @@ le
 le
 le
 lH
-mv
-sR
-lH
-mv
+lQ
+sQ
+lQ
+lQ
 lH
 le
 le
@@ -13424,10 +13840,10 @@ re
 oZ
 ns
 nE
-nP
-mQ
-mQ
-nP
+mE
+mE
+mE
+mE
 mQ
 ns
 ns
@@ -13492,13 +13908,13 @@ eC
 eu
 lY
 eu
-et
+eC
 hn
 ep
 ep
 ep
 fY
-fZ
+xC
 rM
 er
 ep
@@ -13515,8 +13931,8 @@ le
 le
 lH
 ng
-sR
-lH
+Wa
+Dd
 ng
 lH
 lg
@@ -13527,8 +13943,8 @@ le
 le
 nh
 rh
-mo
-mo
+Uw
+Uw
 rh
 mo
 le
@@ -13594,7 +14010,7 @@ eC
 eu
 eu
 eu
-et
+eC
 et
 et
 ep
@@ -13639,10 +14055,10 @@ lg
 lg
 le
 le
-le
+Vb
 lh
 lh
-lg
+fp
 lg
 lg
 aa
@@ -13696,13 +14112,13 @@ bD
 eu
 eu
 eu
-eq
+eC
 et
 et
 ep
 ep
 fY
-fZ
+xC
 rM
 et
 et
@@ -13741,10 +14157,10 @@ le
 le
 lg
 lg
-le
+Vb
 lh
 lh
-lg
+fp
 lg
 lg
 aa
@@ -13798,7 +14214,7 @@ bD
 eu
 eu
 eu
-ep
+eC
 ep
 et
 ep
@@ -13839,14 +14255,14 @@ mo
 mw
 tZ
 mo
-le
-le
-le
-le
-lg
+Vb
+Vb
+Vb
+Vb
+fp
 lh
 lh
-lg
+fp
 lg
 lg
 aa
@@ -13900,7 +14316,7 @@ eu
 eu
 eu
 eu
-ep
+eC
 fY
 ep
 fY
@@ -13948,7 +14364,7 @@ lh
 lh
 lh
 lh
-lg
+fp
 lg
 lg
 aa
@@ -14050,8 +14466,8 @@ lh
 lh
 lh
 lh
+fp
 nb
-lg
 lg
 lg
 aa
@@ -14104,9 +14520,9 @@ eO
 fy
 eO
 eO
-fZ
+Gj
 gZ
-fZ
+Gj
 gZ
 gZ
 ry
@@ -14114,9 +14530,9 @@ iy
 rM
 jb
 gZ
-fZ
+Gj
 gZ
-fZ
+Gj
 eO
 eO
 li
@@ -14139,20 +14555,20 @@ mw
 mw
 qI
 mo
-tG
+mF
 mo
 mo
 oz
 mw
 mo
-le
-le
-le
-le
-lg
+Vb
+Vb
+Vb
+Vb
+fp
 lh
 lh
-lg
+fp
 lg
 qd
 lg
@@ -14251,10 +14667,10 @@ le
 le
 le
 lg
-lg
+fp
 lh
 lh
-lg
+fp
 lg
 lg
 lg
@@ -14353,10 +14769,10 @@ ll
 ll
 ll
 li
-li
+xr
 lj
 lj
-ll
+SS
 ll
 ll
 aa
@@ -14455,10 +14871,10 @@ ll
 ll
 li
 li
-li
+xr
 lj
 lj
-ll
+SS
 ll
 aa
 aa
@@ -14518,7 +14934,7 @@ eM
 eN
 fY
 fY
-gZ
+xC
 rM
 je
 eN
@@ -14557,10 +14973,10 @@ ll
 li
 lm
 lm
-lm
+yX
 lj
 lj
-ll
+SS
 ll
 aa
 aa
@@ -14659,10 +15075,10 @@ lm
 lm
 lm
 li
-ll
+SS
 lj
 lj
-ll
+SS
 ll
 aa
 aa
@@ -14761,10 +15177,10 @@ li
 li
 li
 ll
-ll
+SS
 lj
 lj
-ll
+SS
 ll
 aa
 un
@@ -14848,9 +15264,9 @@ fY
 fY
 fY
 fY
-nm
-ll
-li
+Xf
+SS
+xr
 nJ
 uu
 tK
@@ -14866,7 +15282,7 @@ uu
 nJ
 lj
 lj
-li
+xr
 ll
 aa
 un
@@ -14968,7 +15384,7 @@ ul
 nJ
 lj
 lj
-li
+xr
 ll
 aa
 un
@@ -15070,7 +15486,7 @@ tX
 nJ
 lj
 lj
-li
+xr
 ll
 aa
 aa
@@ -15137,7 +15553,7 @@ rt
 sj
 sl
 sl
-Ja
+Gj
 st
 st
 st
@@ -15172,7 +15588,7 @@ nJ
 nJ
 lj
 lj
-li
+xr
 ll
 aa
 aa
@@ -15225,7 +15641,7 @@ eO
 hW
 eO
 eO
-fZ
+Gj
 gZ
 gZ
 pk
@@ -15239,7 +15655,7 @@ iK
 sk
 iK
 iK
-kL
+LI
 wi
 wi
 wi
@@ -15274,7 +15690,7 @@ pr
 nJ
 lj
 lj
-li
+xr
 ll
 aa
 aa
@@ -15376,7 +15792,7 @@ ps
 nJ
 lj
 lj
-li
+xr
 ll
 li
 aa
@@ -15460,9 +15876,9 @@ fZ
 fZ
 fY
 fY
-li
-ll
-ll
+xr
+SS
+SS
 nJ
 nJ
 nJ
@@ -15478,7 +15894,7 @@ nJ
 nJ
 lj
 lj
-li
+xr
 ll
 li
 aa
@@ -15556,7 +15972,7 @@ li
 ll
 ll
 li
-li
+xr
 lj
 ur
 lj
@@ -15580,7 +15996,7 @@ ll
 lj
 lj
 lj
-li
+xr
 ll
 li
 aa
@@ -15658,7 +16074,7 @@ li
 mp
 ll
 ll
-li
+xr
 lj
 lj
 lj
@@ -15682,7 +16098,7 @@ lj
 lj
 lj
 lj
-ll
+SS
 ll
 li
 aa
@@ -15760,8 +16176,8 @@ lm
 lm
 li
 ll
-ll
-ll
+SS
+SS
 ur
 lj
 lj
@@ -15783,8 +16199,8 @@ lj
 lj
 lj
 lj
-ll
-ll
+SS
+SS
 ll
 aa
 aa
@@ -15863,29 +16279,29 @@ lm
 lm
 ll
 lm
-ll
-ll
-ll
-li
-li
-li
-mp
-li
-li
-li
-ll
-li
-ll
-ll
-li
-li
-ll
-pd
-ll
-ll
-ll
-ll
-ll
+SS
+SS
+SS
+xr
+xr
+xr
+xr
+xr
+xr
+xr
+SS
+xr
+SS
+SS
+xr
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 ll
 ll
 aa
@@ -15946,7 +16362,7 @@ eN
 eN
 fY
 fY
-oH
+xC
 fY
 fY
 eN
@@ -15971,7 +16387,7 @@ ll
 ll
 ll
 li
-li
+mp
 lm
 lm
 ll
@@ -15982,7 +16398,7 @@ ll
 ll
 ll
 ll
-ll
+pd
 ll
 ll
 ll
