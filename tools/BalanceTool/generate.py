@@ -58,5 +58,5 @@ ______  ___   _       ___   _   _ _____  _____   _____ _____  _____ _
         print("Invalid type path, not found.\n")
 
     print(f"Generating CSV for {type_path}")
-    generate_csv(data, '/obj/item/clothing/suit', 'output.csv')
+    generate_csv(data, type_path, 'output.csv')
     os.remove(temp_path)
