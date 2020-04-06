@@ -22,7 +22,7 @@
 		var/mob/nearby_xeno = x
 		if(nearby_xeno.stat == DEAD)
 			continue
-		if((nearby_xeno.status_flags && GODMODE) || (nearby_xeno.status_flags && GODMODE)) //No attacking the hivemind!
+		if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & GODMODE)) //No attacking the hivemind!
 			continue
 		return_result += x
 	for(var/turret in GLOB.marine_turrets)
