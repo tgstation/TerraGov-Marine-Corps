@@ -31,4 +31,3 @@
 		if(get_dist(source, nearby_xeno) > distance)
 			continue
 		. += nearby_xeno
-	return .
