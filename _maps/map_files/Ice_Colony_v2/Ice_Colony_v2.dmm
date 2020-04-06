@@ -8119,8 +8119,8 @@
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/ammo_magazine/shotgun/beanbag,
-/obj/item/ammo_magazine/shotgun/slug,
-/obj/item/ammo_magazine/shotgun/slug,
+/obj/item/ammo_magazine/shotgun/,
+/obj/item/ammo_magazine/shotgun/,
 /obj/item/weapon/gun/shotgun/pump/cmb{
 	pixel_x = 2;
 	pixel_y = 27
