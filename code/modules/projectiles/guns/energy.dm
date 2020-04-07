@@ -419,6 +419,7 @@
 	var/fire_delay = 0
 	var/fire_sound = null
 	var/message_to_user = ""
+	var/icon_state = "tx73"
 
 /datum/lasgun/base/standard
 	charge_cost = 10
@@ -426,6 +427,7 @@
 	fire_delay = 3
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to standard fire."
+	icon_state = "lasrifle_standard"
 
 /datum/lasgun/base/overcharge
 	charge_cost = 20
@@ -433,6 +435,7 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to overcharge."
+	icon_state = "lasrifle_overcharge"
 
 /datum/lasgun/base/heat
 	charge_cost = 20
@@ -440,6 +443,7 @@
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to wave heat."
+	icon_state = "lasrifle_heat"
 
 /datum/lasgun/base/wide
 	charge_cost = 20
@@ -447,6 +451,7 @@
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to wide."
+	icon_state = "lasrifle_wide"
 
 /datum/lasgun/base/pulse
 	charge_cost = 10
@@ -455,6 +460,7 @@
 	fire_delay = 2.5
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to pulse."
+	icon_state = "lasrifle_pulse"
 
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
@@ -470,7 +476,10 @@
 	ammo = GLOB.ammo_list[initial(overcharge_datums[overcharge_position].ammo)]
 	fire_delay = initial(overcharge_datums[overcharge_position].fire_delay)
 	fire_sound = initial(overcharge_datums[overcharge_position].fire_sound)
+	icon_state = initial(overcharge_datums[overcharge_position].icon_state)
+	update_icon()
 	to_chat(user, initial(overcharge_datums[overcharge_position].message_to_user))
+
 
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
