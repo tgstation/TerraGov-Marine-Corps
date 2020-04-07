@@ -77,7 +77,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 80, "bullet" = 50, "laser" = 50, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
+	armor = list("melee" = 80, "bullet" = 47, "laser" = 50, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -105,7 +105,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 85, "bullet" = 55, "laser" = 55, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
+	armor = list("melee" = 85, "bullet" = 51, "laser" = 55, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -130,4 +130,4 @@
 	max_health = 350
 
 	// *** Defense *** //
-	armor = list("melee" = 90, "bullet" = 60, "laser" = 60, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
+	armor = list("melee" = 90, "bullet" = 56, "laser" = 60, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
