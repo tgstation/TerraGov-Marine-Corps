@@ -287,7 +287,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/coffee)
 	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -405,6 +405,7 @@
 	L.AdjustKnockdown(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-60*REM)
+	L.heal_limb_damage(10*REM, 10 * REM)
 	L.adjustToxLoss(5*REM)
 	return ..()
 
@@ -930,7 +931,7 @@
 			L.adjustToxLoss(2*REM)
 			L.adjustDrowsyness(5)
 		if(10 to 50)
-			L.adjustToxLoss(3*REM)
+			L.adjustToxLoss(2.5*REM)
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
 			L.adjustToxLoss((current_cycle/5-35)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
@@ -1007,9 +1008,9 @@
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
-	L.adjustToxLoss(-20 * REM)
-	L.heal_limb_damage(20*REM, 20 * REM)
-	L.adjustStaminaLoss(-20*REM)
+	L.adjustToxLoss(-60 * REM)
+	L.heal_limb_damage(60*REM, 60 * REM)
+	L.adjustStaminaLoss(-60*REM)
 	L.AdjustStun(-100)
 	if(prob(5))
 		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
