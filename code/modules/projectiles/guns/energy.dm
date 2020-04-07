@@ -394,7 +394,7 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope/mini)
-		overcharge_position = 1
+	overcharge_position = 1
 	overcharge_datums = list(
 						/datum/lasgun/base/standard,
 						/datum/lasgun/base/overcharge,
