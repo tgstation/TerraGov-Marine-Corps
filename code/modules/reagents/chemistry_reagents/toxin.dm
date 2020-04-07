@@ -458,7 +458,7 @@
 		L.stuttering = max(L.stuttering, 1)
 	switch(current_cycle)
 		if(10 to INFINITY)
-			L.adjustStaminaLoss((current_cycle/2 - 5)*REM)
+			L.adjustStaminaLoss((current_cycle/1.5 - 5)*REM)
 	return ..()
 
 
