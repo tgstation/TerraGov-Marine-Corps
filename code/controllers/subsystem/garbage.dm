@@ -98,7 +98,7 @@ SUBSYSTEM_DEF(garbage)
 					state = SS_RUNNING
 				break
 
-
+	
 
 
 /datum/controller/subsystem/garbage/proc/HandleQueue(level = GC_QUEUE_CHECK)
@@ -158,6 +158,7 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
+				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -265,7 +266,7 @@ SUBSYSTEM_DEF(garbage)
 		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force) // Let the (remaining) components know about the result of Destroy
+		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++
@@ -322,6 +323,12 @@ SUBSYSTEM_DEF(garbage)
 
 #ifdef TESTING
 
+/datum/verb/find_refs(atom/referenced as mob|obj in world)
+	set category = "Debug"
+	set name = "Find References"
+
+	referenced.find_references(FALSE)
+
 /datum/proc/find_references(skip_alert)
 	running_find_references = type
 	if(usr && usr.client)
@@ -366,6 +373,20 @@ SUBSYSTEM_DEF(garbage)
 	//restart the garbage collector
 	SSgarbage.can_fire = 1
 	SSgarbage.next_fire = world.time + world.tick_lag
+
+/datum/verb/qdel_then_find_references(atom/deleting as mob|obj in world)
+	set category = "Debug"
+	set name = "qdel() then Find References"
+
+	qdel(deleting, TRUE)		//Force.
+	if(!running_find_references)
+		find_references(TRUE)
+
+/datum/verb/qdel_then_if_fail_find_references(atom/deleting as mob|obj in world)
+	set category = "Debug"
+	set name = "qdel() then Find References if GC failure"
+
+	qdel_and_find_ref_if_fail(deleting, TRUE)
 
 /datum/proc/DoSearchVar(X, Xname, recursive_limit = 64)
 	if(usr && usr.client && !usr.client.running_find_references)
