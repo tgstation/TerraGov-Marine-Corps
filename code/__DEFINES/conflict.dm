@@ -119,6 +119,10 @@
 #define M43_OVERCHARGE_AMMO_COST		80
 #define M43_OVERCHARGE_FIRE_DELAY		10
 
+#define TX73_STANDARD_AMMO_COST			20
+#define TX73_OVERCHARGE_AMMO_COST		80
+#define TX73_OVERCHARGE_FIRE_DELAY		10
+
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)
 #define SMOKE_GASP			(1<<1)

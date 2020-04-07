@@ -1005,7 +1005,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "laser"
 	shell_speed = 4
 	accurate_range = 15
-	damage = 25
+	damage = 30
 	penetration = 10
 	max_range = 30
 	accuracy_var_low = 3
@@ -1020,13 +1020,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "laser_sniper"
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
-	penetration = 20
+	penetration = 30
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_heat"
-	damage = 12 //requires mod with -0.15 multiplier should math out to 10
+	damage = 20 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
 
@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "heavylaser"
 	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
-	bonus_projectiles_amount = 2
+	bonus_projectiles_amount = 3
 	bonus_projectiles_scatter = 10
 	accuracy_var_low = 9
 	accuracy_var_high = 9
