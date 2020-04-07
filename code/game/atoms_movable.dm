@@ -48,8 +48,7 @@
 
 	. = ..()
 
-	if(!QDELETED(loc)) //If they are being deleted they should handle their contents on their own.
-		loc.handle_atom_del(src)
+	loc?.handle_atom_del(src)
 
 	for(var/i in contents)
 		var/atom/movable/AM = i

@@ -572,8 +572,10 @@
 	closer.master = src
 
 /obj/item/storage/Destroy()
-	for(var/atom/movable/I in contents)
-		qdel(I)
+	for(var/am in contents)
+		var/atom/movable/content = am
+		remove_from_storage(content)
+		qdel(content)
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
