@@ -12,8 +12,8 @@
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/M42A
-	name = "\improper M42A scoped rifle"
-	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
+	name = "\improper T-26 scoped rifle"
+	desc = "“The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.”  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
@@ -288,13 +288,13 @@
 //M4RA marksman rifle
 
 /obj/item/weapon/gun/rifle/m4ra
-	name = "\improper M4RA battle rifle"
-	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
+	name = "\improper T-45 battle rifle"
+	desc ="The T-45 is a light full-powered rifle, thus designating it as a Battle Rifle, it is mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. Takes specialized "A19" 10x28mm rounds."
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	caliber = "10x24mm caseless" //codex
+	caliber = "10x28mm caseless" //codex
 	fire_sound = 'sound/weapons/guns/fire/m4ra.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
@@ -331,8 +331,8 @@
 
 //Come get some.
 /obj/item/weapon/gun/smartgun
-	name = "\improper M56B smartgun"
-	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."
+	name = "\improper T-90A smartgun"
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. This one has TGMC markings, thus designating it a T-90A. It is essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."1
 	icon_state = "m56"
 	item_state = "m56"
 	max_shells = 100 //codex
@@ -458,7 +458,7 @@
 //GRENADE LAUNCHER
 
 /obj/item/weapon/gun/launcher/m92
-	name = "\improper M92 grenade launcher"
+	name = "\improper T-26 grenade launcher"
 	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
 	item_state = "m92"
@@ -592,7 +592,7 @@
 
 
 /obj/item/weapon/gun/launcher/m81
-	name = "\improper M81 grenade launcher"
+	name = "\improper T-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
@@ -727,8 +727,8 @@
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper M5 RPG"
-	desc = "The M5 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
+	name = "\improper T-152 Rocket Launcher"
+	desc = "The T-152 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 RPG is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
