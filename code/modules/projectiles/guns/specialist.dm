@@ -332,7 +332,7 @@
 //Come get some.
 /obj/item/weapon/gun/smartgun
 	name = "\improper T-90A smartgun"
-	desc = "The actual firearm in the 4-piece M56B Smartgun System. This one has TGMC markings, thus designating it a T-90A. It is essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."1
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. This one has TGMC markings, thus designating it a T-90A. It is essentially a heavy, mobile machinegun.\nReloading is a cumbersome process requiring a powerpack. Click the powerpack icon in the top left or use special action to reload."
 	icon_state = "m56"
 	item_state = "m56"
 	max_shells = 100 //codex
