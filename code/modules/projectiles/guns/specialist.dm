@@ -289,7 +289,7 @@
 
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper T-45 battle rifle"
-	desc ="The T-45 is a light full-powered rifle, thus designating it as a Battle Rifle, it is mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. Takes specialized "A19" 10x28mm rounds."
+	desc ="The T-45 is a light full-powered rifle, thus designating it as a Battle Rifle, it is mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. Takes specialized 'A19' 10x28mm rounds."
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
