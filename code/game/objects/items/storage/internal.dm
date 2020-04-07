@@ -10,6 +10,10 @@
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 
+/obj/item/storage/internal/Destroy()
+	master_item = null
+	return ..()
+
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
 
