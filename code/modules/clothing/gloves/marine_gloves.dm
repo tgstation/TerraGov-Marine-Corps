@@ -18,11 +18,11 @@
 	var/flags_marine_gloves = GLOVES_SQUAD_OVERLAY
 	armor = list("melee" = 15, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/gloves/marine/Initialize(mapload, squad, rank)
+/obj/item/clothing/gloves/marine/Initialize(mapload, datum/squad/squad, rank)
 	. = ..()
 	if(squad)
 		var/dat = ""
-		if(rank == SQUAD_ENGINEER)
+		if(rank == /datum/job/terragov/squad/engineer)
 			dat += "insulated "
 			siemens_coefficient = 0
 			desc = "Insulated marine tactical gloves that protect against electrical shocks."
@@ -97,3 +97,10 @@
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+
+/obj/item/clothing/gloves/marine/commissar
+	name = "\improper commissar gloves"
+	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
+	icon_state = "gloves_commissar"
+	item_state = "gloves_commissar"
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)

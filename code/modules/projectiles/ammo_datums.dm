@@ -220,7 +220,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "pistol bullet"
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
-	damage = 25
+	damage = 20
+	penetration = 5
 	accurate_range = 5
 
 /datum/ammo/bullet/pistol/tiny
@@ -304,7 +305,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "revolver bullet"
 	hud_state = "revolver"
 	hud_state_empty = "revolver_empty"
-	damage = 35
+	damage = 40
+	penetration = 10
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
@@ -385,8 +387,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	accurate_range = 15
-	damage = 30
-	penetration = 0
+	damage = 25
+	penetration = 10
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -449,16 +451,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 
 /datum/ammo/bullet/rifle/standard_dmr
-	name = "high velocity rifle bullet"
+	name = "marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
 	accurate_range_min = 0
-	damage = 70
+	accurate_range = 30
+	damage = 55
 	scatter = -15
 	penetration = 15
+
+/datum/ammo/bullet/rifle/standard_dmr/incendiary
+	name = "incendiary marksman bullet"
+	hud_state = "hivelo_fire"
+	hud_state_empty = "hivelo_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 35
+
 
 /*
 //================================================
@@ -527,23 +537,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "flechette"
 	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
-	bonus_projectiles_amount = 5
-	bonus_projectiles_scatter = 8
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
-	damage = 20
+	damage = 75
 	damage_falloff = 0.5
-	penetration = 25
+	penetration = 30
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
 	icon_state = "flechette"
-	accuracy_var_low = 7
-	accuracy_var_high = 7
+	accuracy_var_low = 8
+	accuracy_var_high = 8
 	max_range = 15
-	damage = 20
-	damage_falloff = 0.5
+	damage = 30
+	damage_falloff = 1
 	penetration = 25
 
 /datum/ammo/bullet/shotgun/buckshot
@@ -642,6 +652,36 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
 
+/datum/ammo/bullet/shotgun/tx15_flechette
+	name = "shotgun flechette shell"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 4
+	max_range = 15
+	damage = 20
+	damage_falloff = 0.25
+	penetration = 15
+
+/datum/ammo/bullet/shotgun/tx15_flechette/spread
+	name = "additional flechette"
+	icon_state = "flechette"
+	max_range = 15
+	damage = 20
+	damage_falloff = 0.25
+	penetration = 15
+
+/datum/ammo/bullet/shotgun/tx15_slug
+	name = "shotgun slug"
+	hud_state = "shotgun_slug"
+	shell_speed = 3
+	max_range = 15
+	damage = 50
+	penetration = 30
+
+/datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, slowdown = 1, knockback = 1)
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
@@ -846,8 +886,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
-	damage = 50
-	penetration = 80
+	damage = 200
+	penetration = 100
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, -1, 3, 5, 5)
@@ -870,10 +910,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	accurate_range = 15
 	penetration = 150
-	damage = 275
+	damage = 325
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
-	explosion(T, -1, -1, 2, 5)
+	explosion(T, -1, -1, -1, 1)
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -896,7 +936,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 150
+	damage = 200
+	penetration = 75
 	max_range = 20
 
 /datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
@@ -976,15 +1017,23 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_sniper"
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 20
 
+/datum/ammo/energy/lasgun/M43/heat
+	name = "microwave heat bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_heat"
+	damage = 12 //requires mod with -0.15 multiplier should math out to 10
+	penetration = 0
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY
+
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
 	icon_state = "heavylaser"
-	hud_state = "laser_overcharge"
+	hud_state = "laser_spread"
 	bonus_projectiles_type = /datum/ammo/energy/lasgun/M43/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10
@@ -1015,6 +1064,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 85 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
+
+/datum/ammo/energy/lasgun/M43/practice
+	name = "practice laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 45
+	penetration = 0
+	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
+
+/datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
+	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
+		return
+
+	if(isnestedhost(C))
+		return
+
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+
+	return ..()
 
 /*
 //================================================
@@ -1055,7 +1124,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(isnestedhost(C))
 		return
 
-		staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
+	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
 
@@ -1165,13 +1234,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 20
+	damage = 30
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 8
 	spit_cost = 75
-	damage = 23
+	damage = 25
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -1245,11 +1314,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
 	damage_type = BURN
+	penetration = 40
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)

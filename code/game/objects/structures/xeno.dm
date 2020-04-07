@@ -47,7 +47,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		take_damage(rand(0.2, 2))
+		take_damage(rand(2, 20) * 0.1)
 
 /*
 * Resin
@@ -398,6 +398,13 @@
 /obj/effect/alien/egg/Destroy()
 	QDEL_LIST(egg_triggers)
 	return ..()
+
+/obj/effect/alien/egg/proc/transfer_to_hive(new_hivenumber)
+	if(hivenumber == new_hivenumber)
+		return
+	hivenumber = new_hivenumber
+	if(hugger)
+		hugger.hivenumber = new_hivenumber
 
 /obj/effect/alien/egg/proc/Grow()
 	if(status == EGG_GROWING)

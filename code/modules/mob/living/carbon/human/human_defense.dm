@@ -161,8 +161,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return FALSE
 	var/hit_area = affecting.display_name
 
-	var/damage = I.force
-
+	var/damage = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	if(user != src)
 		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
 		if(!damage)
@@ -366,8 +365,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 
-/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = world.view, within_sight = TRUE)
-	shake_camera(src, 3 SECONDS, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
+/mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
 	var/dist_pct = get_dist(src, Q) / screech_range
 
 	// Intensity is reduced by a 30% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
@@ -384,6 +382,5 @@ Contains most of the procs that are called when a mob is attacked by something
 	apply_damage(halloss_damage, HALLOSS)
 	UPDATEHEALTH(src)
 	if(!ear_deaf)
-		adjust_ear_damage(deaf = stun_duration * 20)  //Deafens them temporarily
+		adjust_ear_damage(deaf = stun_duration)  //Deafens them temporarily
 	//Perception distorting effects of the psychic scream
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, src, stun_duration * 1 SECONDS, 0.75), 31)

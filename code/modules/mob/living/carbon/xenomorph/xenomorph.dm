@@ -5,7 +5,7 @@
 //This is so they can be easily transferred between them without copypasta
 
 /mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
-	verbs += /mob/living/proc/lay_down
+	setup_verbs()
 	. = ..()
 
 	set_datum()
@@ -40,6 +40,9 @@
 	update_spits()
 
 	update_action_button_icons()
+
+	if(!job) //It might be setup on spawn.
+		setup_job()
 
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 
@@ -138,6 +141,13 @@
 			return XENO_UPGRADE_ONE
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/proc/setup_job()
+	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
+	if(!xeno_job)
+		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
+	apply_assigned_role_to_spawn(xeno_job)
+
 
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()

@@ -5,16 +5,22 @@ For the main html chat area
 //Precaching a bunch of shit
 GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
 
+//Should match the value set in the browser js
+#define MAX_COOKIE_LENGTH 5
+
 //On client, created on login
 /datum/chatOutput
 	var/client/owner	 //client ref
+	// How many times client data has been checked
+	var/total_checks = 0
+	// When to next clear the client data checks counter
+	var/next_time_to_clear = 0
 	var/loaded       = FALSE // Has the client loaded the browser output area?
 	var/list/messageQueue //If they haven't loaded chat, this is where messages will go until they do
 	var/cookieSent   = FALSE // Has the client sent a cookie for analysis
 	var/working      = TRUE
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
 	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
-	var/clientCSS = "" // This is a string var that stores client CSS.
 
 /datum/chatOutput/New(client/C)
 	owner = C
@@ -63,8 +69,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	// Arguments are in the form "param[paramname]=thing"
 	var/list/params = list()
 	for(var/key in href_list)
-		if(length(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
-			var/param_name = copytext(key, 7, -1)
+		if(length_char(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
+			var/param_name = copytext_char(key, 7, -1)
 			var/item       = href_list[key]
 
 			params[param_name] = item
@@ -111,7 +117,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	messageQueue = null
 	sendClientData()
-	loadClientCSS()
+
+	syncRegex()
 
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
@@ -119,6 +126,26 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 /datum/chatOutput/proc/showChat()
 	winset(owner, "output", "is-visible=false")
 	winset(owner, "browseroutput", "is-disabled=false;is-visible=true")
+
+/proc/syncChatRegexes()
+	for (var/user in GLOB.clients)
+		var/client/C = user
+		var/datum/chatOutput/Cchat = C.chatOutput
+		if (Cchat?.working && Cchat.loaded)
+			Cchat.syncRegex()
+
+/datum/chatOutput/proc/syncRegex()
+	var/list/regexes = list()
+
+	if (config.ic_filter_regex)
+		regexes["show_filtered_ic_chat"] = list(
+			config.ic_filter_regex.name,
+			"ig",
+			"<span class='boldwarning'>$1</span>"
+		)
+
+	if (regexes.len)
+		ehjax_send(data = list("syncRegex" = regexes))
 
 /datum/chatOutput/proc/ehjax_send(client/C = owner, window = "browseroutput", data)
 	if(islist(data))
@@ -154,6 +181,18 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Called by client, sent data to investigate (cookie history so far)
 /datum/chatOutput/proc/analyzeClientData(cookie)
+	//Spam check
+	if(world.time  >  next_time_to_clear)
+		next_time_to_clear = world.time + (3 SECONDS)
+		total_checks = 0
+
+	total_checks += 1
+
+	if(total_checks > SPAM_TRIGGER_AUTOMUTE)
+		message_admins("[key_name(owner)] kicked for goonchat topic spam")
+		qdel(owner)
+		return
+
 	if(!cookie)
 		return
 
@@ -162,13 +201,24 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		if(length(connData) && connData["connData"])
 			connectionHistory = connData["connData"]
 			var/list/found = new()
+
+			if(connectionHistory.len > MAX_COOKIE_LENGTH)
+				message_admins("[key_name(src.owner)] was kicked for an invalid ban cookie)")
+				qdel(owner)
+				return
+
+
 			for(var/i in connectionHistory.len to 1 step -1)
+				if(QDELETED(owner))
+					//he got cleaned up before we were done
+					return
 				var/list/row = connectionHistory[i]
 				if(!row || length(row) < 3 || (!row["ckey"] || !row["compid"] || !row["ip"])) //Passed malformed history object
 					return
 				if(world.IsBanned(row["ckey"], row["compid"], row["ip"]))
 					found = row
 					break
+				CHECK_TICK
 
 			if(length(found))
 				log_admin_private("[key_name(owner)] has a cookie from a banned account (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
@@ -180,50 +230,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 //Called by js client on js error
 /datum/chatOutput/proc/debug(error)
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
-
-
-
-/mob/verb/update_client_css()
-	set category = "Preferences"
-	set name = "Update Custom CSS"
-
-	if(!client.chatOutput)
-		return
-	var/new_input = input(usr, "Enter custom CSS", "Client CSS", client.chatOutput.clientCSS) as message|null
-	if(isnull(new_input) || length(new_input) > UPLOAD_LIMIT)
-		return
-	to_chat(src, "<span class='notice'>Updating custom CSS.</span>")
-	client.chatOutput.clientCSS = new_input
-	client.chatOutput.saveClientCSS()
-	client.chatOutput.syncClientCSS()
-
-// Load the CSS into the user browser
-/datum/chatOutput/proc/syncClientCSS()
-	var/css_data = _replacetext(clientCSS, ";", "||") // ; is a reserved key so lets just replace it and replace it back in js
-	var/list/ajax_data = list("clientCSS" = css_data)
-	ehjax_send(data = ajax_data)
-
-// Save the CSS locally on the client
-/datum/chatOutput/proc/saveClientCSS()
-	var/savefile/F = new()
-	WRITE_FILE(F["CSS"], clientCSS)
-	owner.Export(F)
-	qdel(F)
-
-// Load the CSS from the local client
-/datum/chatOutput/proc/loadClientCSS()
-	var/last_savefile = owner.Import()
-	if(!last_savefile)
-		saveClientCSS("")
-		return
-	var/savefile/F = new(last_savefile)
-	READ_FILE(F["CSS"], clientCSS)
-
-	if(length(clientCSS) > UPLOAD_LIMIT)
-		clientCSS = ""
-	clientCSS = sanitize_text(clientCSS, "")
-
-	syncClientCSS(clientCSS)
 
 
 //Global chat procs
@@ -298,3 +304,5 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 /datum/chatOutput/proc/swaptodarkmode()
 	owner.force_dark_theme()
+
+#undef MAX_COOKIE_LENGTH

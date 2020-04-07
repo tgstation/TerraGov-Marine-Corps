@@ -1,4 +1,6 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
+#define MAX_TOPIC_LEN 100
+#define TOPIC_BANNED 1
 
 
 GLOBAL_VAR(restart_counter)
@@ -6,6 +8,8 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
+	enable_debugger()
+
 	log_world("World loaded at [time_stamp()]!")
 
 	GLOB.config_error_log = GLOB.world_qdel_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_telecomms_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
@@ -15,6 +19,8 @@ GLOBAL_VAR(restart_counter)
 	GLOB.revdata = new
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
+
+	load_admins()
 
 	SetupExternalRSC()
 
@@ -29,7 +35,8 @@ GLOBAL_VAR(restart_counter)
 	SetupLogs()
 
 	LoadVerbs(/datum/verbs/menu)
-	load_admins()
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -117,9 +124,32 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	var/static/list/bannedsourceaddrs = list()
+
+	var/static/list/lasttimeaddr = list()
+	var/static/list/topic_handlers = TopicHandlers()
+
+	//LEAVE THIS COOLDOWN HANDLING IN PLACE, OR SO HELP ME I WILL MAKE YOU SUFFER
+	if (bannedsourceaddrs[addr])
+		return
+
+	if(length(T) >= MAX_TOPIC_LEN)
+		log_admin_private("[addr] banned from topic calls for a round for too long status message")
+		bannedsourceaddrs[addr] = TOPIC_BANNED
+		return
+
+	if(lasttimeaddr[addr])
+		var/lasttime = lasttimeaddr[addr]
+		if(world.time < (lasttime + 2 SECONDS))
+			log_admin_private("[addr] banned from topic calls for a round for too frequent messages")
+			bannedsourceaddrs[addr] = TOPIC_BANNED
+			return
+
+	lasttimeaddr[addr] = world.time
+
+
 	TGS_TOPIC	//redirect to server tools if necessary
 
-	var/static/list/topic_handlers = TopicHandlers()
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -286,3 +316,6 @@ GLOBAL_VAR(restart_counter)
 	fps = new_value
 
 	SStimer?.reset_buckets()
+
+#undef MAX_TOPIC_LEN
+#undef TOPIC_BANNED

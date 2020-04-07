@@ -6,14 +6,27 @@ fieldset.latejoin {
 }
 
 .job {
-  display: block;
-  width: 213px;
+	display: block;
+	width: 200px;
+	margin: 0 auto;
 }
 
 .command {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .nopositions {
-  font-style: italic;
+	font-style: italic;
+}
+
+.latejoin-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.latejoin-container > fieldset {
+	flex-shrink: 0;
+	flex-grow: 1;
 }

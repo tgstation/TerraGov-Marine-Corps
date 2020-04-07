@@ -28,7 +28,7 @@
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -101,10 +101,6 @@
 	armor = list("melee" = 65, "bullet" = 70, "laser" = 60, "energy" = 30, "bomb" = 60, "bio" = 50, "rad" = 20, "fire" = 50, "acid" = 50)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
-/obj/item/clothing/suit/storage/marine/M3HB/Initialize()
-	icon_state = pick("1","5")
-	. = ..()
-
 /obj/item/clothing/suit/storage/marine/M3LB
 	name = "\improper M3-LB pattern marine armor"
 	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
@@ -115,9 +111,9 @@
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
 	icon_state = "10"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 7, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 7)
 	slowdown = 0
 	flags_atom = NONE
 
@@ -160,8 +156,15 @@
 	name = "\improper B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
 	icon_state = "7"
-	armor = list("melee" = 50, "bullet" = 55, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 35)
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 40)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
+	brightness_on = 8
+	pockets = /obj/item/storage/internal/suit/leader
+
+/obj/item/storage/internal/suit/leader
+	storage_slots = 3
+	max_storage_space = 12
+	max_w_class = 3
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper N2 pattern MA armor"
@@ -238,297 +241,12 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	var/mob/living/carbon/human/wearer = null
-	var/B18_burn_cooldown = null
-	var/B18_oxy_cooldown = null
-	var/B18_brute_cooldown = null
-	var/B18_tox_cooldown = null
-	var/B18_pain_cooldown = null
-	var/B18_automed_on = TRUE
-	var/B18_automed_damage = 50
-	var/B18_automed_pain = 70
-	var/obj/item/healthanalyzer/integrated/B18_analyzer = null
 	supporting_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
-	B18_analyzer = new /obj/item/healthanalyzer/integrated
-
-/obj/item/clothing/suit/storage/marine/specialist/examine(mob/user)
-	. = ..()
-	if(user != wearer) //Only the wearer can see these details.
-		return
-	var/list/details = list()
-	if(B18_burn_cooldown)
-		details +=("Its burn treatment injector is currently refilling. It will resupply in [(B18_burn_cooldown - world.time) * 0.1] seconds.</br>")
-
-	if(B18_brute_cooldown)
-		details +=("Its trauma treatment injector is currently refilling. It will resupply in [(B18_brute_cooldown - world.time) * 0.1] seconds.</br>")
-
-	if(B18_oxy_cooldown)
-		details +=("Its oxygenating injector is currently refilling. It will resupply in [(B18_oxy_cooldown - world.time) * 0.1] seconds.</br>")
-
-	if(B18_tox_cooldown)
-		details +=("Its anti-toxin injector is currently refilling. It will resupply in [(B18_tox_cooldown - world.time) * 0.1] seconds.</br>")
-
-	if(B18_pain_cooldown)
-		details +=("Its painkiller injector is currently refilling. It will resupply in [(B18_pain_cooldown - world.time) * 0.1] seconds.</br>")
-
-	to_chat(user, "<span class='danger'>[details.Join(" ")]</span>")
-
-/obj/item/clothing/suit/storage/marine/specialist/Destroy()
-	b18automed_turn_off(wearer, TRUE)
-	wearer = null
-	qdel(B18_analyzer)
-	. = ..()
-
-/obj/item/clothing/suit/storage/marine/specialist/dropped(mob/user)
-	. = ..()
-	b18automed_turn_off(wearer, TRUE)
-	wearer = null
-
-/obj/item/clothing/suit/storage/marine/specialist/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_WEAR_SUIT)
-		wearer = user
-		b18automed_turn_on(user)
-
-/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_off(mob/living/carbon/human/user, silent = FALSE)
-	B18_automed_on = FALSE
-	STOP_PROCESSING(SSobj, src)
-	if(!silent)
-		to_chat(user, "<span class='warning'>[src] lets out a beep as its automedical suite deactivates.</span>")
-		playsound(src,'sound/machines/click.ogg', 15, 0, 1)
-
-/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_on(mob/living/carbon/human/user, silent = FALSE)
-	B18_automed_on = TRUE
-	START_PROCESSING(SSobj, src)
-	if(!silent)
-		to_chat(user, "<span class='notice'>[src] lets out a hum as its automedical suite activates.</span>")
-		playsound(src,'sound/voice/b18_activate.ogg', 15, 0, 1)
-
-/obj/item/clothing/suit/storage/marine/specialist/process()
-	if(!B18_automed_on)
-		STOP_PROCESSING(SSobj, src)
-		return
-	if(!wearer)
-		STOP_PROCESSING(SSobj, src)
-		return
-
-	var/list/details = list()
-	var/dose_administered = null
-
-	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/kelotane) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(kelotane)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/kelotane,kelotane)
-		if(tricordrazine)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
-		if(kelotane || tricordrazine) //Only report if we actually administer something
-			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
-			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
-			handle_chem_cooldown(B18_BURN_CODE)
-			dose_administered = TRUE
-
-	if(wearer.getBruteLoss() > B18_automed_damage && !B18_brute_cooldown)
-		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
-		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(quickclot)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/quickclot,quickclot)
-		if(bicaridine)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/bicaridine,bicaridine)
-		if(tricordrazine)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
-		if(quickclot || bicaridine || tricordrazine) //Only report if we actually administer something
-			details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage:[bicaridine ? " Bicaridine: [bicaridine]U |" : ""][quickclot ? " Quickclot: [quickclot]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
-			B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
-			handle_chem_cooldown(B18_BRUTE_CODE)
-			playsound(src,'sound/voice/b18_brute.ogg', 15, 0, 1)
-			dose_administered = TRUE
-
-	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
-		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dexalinplus) + 0.5),0,REAGENTS_OVERDOSE * 0.5 * B18_CHEM_MOD)
-		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline) + 0.5),0,REAGENTS_OVERDOSE * 2 * B18_CHEM_MOD)
-		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(dexalinplus)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/dexalinplus,dexalinplus)
-		if(inaprovaline)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/inaprovaline,inaprovaline)
-		if(tricordrazine)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
-		if(dexalinplus || inaprovaline || tricordrazine) //Only report if we actually administer something
-			details +=("Low blood oxygen detected. Reoxygenating preparation administered. <b>Dosage:[dexalinplus ? " Dexalin Plus: [dexalinplus]U |" : ""][inaprovaline ? " Inaprovaline: [inaprovaline]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
-			B18_oxy_cooldown = world.time + B18_CHEM_COOLDOWN
-			handle_chem_cooldown(B18_OXY_CODE)
-			dose_administered = TRUE
-
-	if(wearer.getToxLoss() > B18_automed_damage && !B18_tox_cooldown)
-		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/dylovene) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(dylovene)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/dylovene,dylovene)
-		if(spaceacillin)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/spaceacillin,spaceacillin)
-		if(tricordrazine)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/tricordrazine,tricordrazine)
-		if(dylovene || spaceacillin || tricordrazine) //Only report if we actually administer something
-			details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage:[dylovene ? " Dylovene: [dylovene]U |" : ""][spaceacillin ? " Spaceacillin: [spaceacillin]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
-			B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
-			playsound(src,pick('sound/voice/b18_antitoxin.ogg','sound/voice/b18_antitoxin2.ogg'), 15, 0, 1)
-			handle_chem_cooldown(B18_TOX_CODE)
-			dose_administered = TRUE
-
-	if(wearer.traumatic_shock > B18_automed_pain && !B18_pain_cooldown)
-		var/oxycodone = CLAMP(REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/oxycodone) + 0.5),0,REAGENTS_OVERDOSE * 0.66 * B18_CHEM_MOD)
-		var/tramadol = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount(/datum/reagent/medicine/tramadol) + 0.5),0,REAGENTS_OVERDOSE * B18_CHEM_MOD)
-		if(oxycodone)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/oxycodone,oxycodone)
-		if(tramadol)
-			wearer.reagents.add_reagent(/datum/reagent/medicine/tramadol,tramadol)
-		if(oxycodone || tramadol) //Only report if we actually administer something
-			details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage:[oxycodone ? " Oxycodone: [oxycodone]U |" : ""][tramadol ? " Tramadol: [tramadol]U" : ""]</b></br>")
-			B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
-			handle_chem_cooldown(B18_PAIN_CODE)
-			playsound(src,'sound/voice/b18_pain_suppress.ogg', 15, 0, 1)
-			dose_administered = TRUE
-
-	if(dose_administered)
-		playsound(src,'sound/items/hypospray.ogg', 25, 0, 1)
-		details +=("Estimated [B18_CHEM_COOLDOWN/600] minute replenishment time for each dosage.")
-		to_chat(wearer, "<span class='notice'>[icon2html(src, wearer)] beeps:</br> [details.Join(" ")]</span>")
-
-/obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE, silent = FALSE)
-	if(code)
-		spawn(B18_CHEM_COOLDOWN)
-			switch(code)
-				if(B18_BRUTE_CODE)
-					if(B18_brute_cooldown)
-						B18_brute_cooldown = null
-				if(B18_BURN_CODE)
-					if(B18_burn_cooldown)
-						B18_burn_cooldown = null
-				if(B18_OXY_CODE)
-					if(B18_oxy_cooldown)
-						B18_oxy_cooldown = null
-				if(B18_TOX_CODE)
-					if(B18_tox_cooldown)
-						B18_tox_cooldown = null
-				if(B18_PAIN_CODE)
-					if(B18_pain_cooldown)
-						B18_pain_cooldown = null
-			if(!silent)
-				to_chat(wearer, "<span class='notice'>[src] beeps: [code == B18_BRUTE_CODE ? "Trauma treatment" : code == B18_BURN_CODE ? "Burn treatment" : code == B18_OXY_CODE ? "Oxygenation treatment" : code == B18_TOX_CODE ? "Toxicity treatment" : "Painkiller"] reservoir replenished.</span>")
-			playsound(src,'sound/effects/refill.ogg', 25, 0, 1)
-
-/obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_toggle()
-	set name = "Toggle B18 Automedic"
-	set category = "B18 Armor"
-	set src in usr
-
-	if(usr.incapacitated() || usr != wearer )
-		return 0
-
-	if(B18_automed_on)
-		b18automed_turn_off(usr)
-	else
-		b18automed_turn_on(usr)
-
-
-/obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_scan()
-	set name = "B18 Automedic User Scan"
-	set category = "B18 Armor"
-	set src in usr
-
-	if(usr.incapacitated() || usr != wearer )
-		return 0
-
-	B18_analyzer.attack(usr, usr, TRUE)
-
-/obj/item/clothing/suit/storage/marine/specialist/verb/configure_automedic()
-	set name = "Configure B18 Automedic"
-	set category = "B18 Armor"
-	set src in usr
-
-	if(!can_interact(usr))
-		return FALSE
-
-	interact(usr)
-
-
-/obj/item/clothing/suit/storage/marine/specialist/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-
-	var/dat = {"
-	<A href='?src=\ref[src];B18_automed_on=1'>Turn Automed System: [B18_automed_on ? "Off" : "On"]</A><BR>
-	<BR>
-	<B>Integrated Health Analyzer:</B><BR>
-	<A href='byond://?src=\ref[src];B18_analyzer=1'>Scan Wearer</A><BR>
-	<A href='byond://?src=\ref[src];B18_toggle_mode=1'>Turn Scanner HUD Mode: [B18_analyzer.hud_mode ? "Off" : "On"]</A><BR>
-	<BR>
-	<B>Damage Trigger Threshold (Max 150, Min 50):</B><BR>
-	<A href='byond://?src=\ref[src];B18_automed_damage=-50'>-50</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=-10'>-10</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=-5'>-5</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=-1'>-1</A> [B18_automed_damage]
-	<A href='byond://?src=\ref[src];B18_automed_damage=1'>+1</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=5'>+5</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=10'>+10</A>
-	<A href='byond://?src=\ref[src];B18_automed_damage=50'>+50</A><BR>
-	<BR>
-	<B>Pain Trigger Threshold (Max 150, Min 50):</B><BR>
-	<A href='byond://?src=\ref[src];B18_automed_pain=-50'>-50</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=-10'>-10</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=-5'>-5</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=-1'>-1</A> [B18_automed_pain]
-	<A href='byond://?src=\ref[src];B18_automed_pain=1'>+1</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=5'>+5</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=10'>+10</A>
-	<A href='byond://?src=\ref[src];B18_automed_pain=50'>+50</A><BR>"}
-
-	var/datum/browser/popup = new(user, "b18")
-	popup.set_content(dat)
-	popup.open()
-
-
-//Interface for the B18
-/obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["B18_automed_on"])
-		if(B18_automed_on)
-			b18automed_turn_off(usr)
-		else
-			b18automed_turn_on(usr)
-
-	else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
-		B18_analyzer.attack(usr, usr, TRUE)
-
-	else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
-		B18_analyzer.hud_mode = !B18_analyzer.hud_mode
-		switch (B18_analyzer.hud_mode)
-			if(TRUE)
-				to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
-			if(FALSE)
-				to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
-
-	else if(href_list["B18_automed_damage"])
-		B18_automed_damage += text2num(href_list["B18_automed_damage"])
-		B18_automed_damage = round(B18_automed_damage)
-		B18_automed_damage = CLAMP(B18_automed_damage,B18_DAMAGE_MIN,B18_DAMAGE_MAX)
-	else if(href_list["B18_automed_pain"])
-		B18_automed_pain += text2num(href_list["B18_automed_pain"])
-		B18_automed_pain = round(B18_automed_pain)
-		B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
-
-	updateUsrDialog()
+	AddComponent(/datum/component/suit_autodoc)
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -623,7 +341,7 @@
 	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
 	icon_state = "heavy_armor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
-	armor = list("melee" = 85, "bullet" = 85, "laser" = 55, "energy" = 65, "bomb" = 70, "bio" = 20, "rad" = 20, "fire" = 65, "acid" = 65)
+	armor = list("melee" = 70, "bullet" = 75, "laser" = 60, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
 	name = "\improper PMC commando armor"
@@ -709,6 +427,13 @@
 	//icon_state
 	slowdown = SLOWDOWN_ARMOR_LIGHT // beefed up space marine inside an armor that boosts speed
 	armor = list("melee" = 95, "bullet" = 95, "laser" = 95, "energy" = 95, "bomb" = 95, "bio" = 95, "rad" = 95, "fire" = 95, "acid" = 95)
+
+/obj/item/clothing/suit/storage/marine/imperial/commissar
+	name = "\improper commissar coat"
+	desc = "A armored coat worn by commissars of the Imperial Army."
+	icon_state = "commissar_coat"
+	item_state = "commissar_coat"
+	armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 
 //===========================//U.P.P\\================================
 

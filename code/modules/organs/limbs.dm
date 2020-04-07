@@ -207,7 +207,7 @@
 			owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
-	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet) && !(owner.species.species_flags & IS_SYNTHETIC) ) //Early return if the body part is a head but target is wearing a helmet and is not a synth
+	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet)) //Early return if the body part is a head but target is wearing a helmet
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
@@ -665,7 +665,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/datum/wound/W
 			if(max_damage < 50)
 				W = new/datum/wound/lost_limb/small(max_damage * 0.25)
-			else 				
+			else
 				W = new/datum/wound/lost_limb(max_damage * 0.25)
 
 			parent.wounds += W
@@ -741,14 +741,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 ****************************************************/
 
 /datum/limb/proc/release_restraints()
-	if (owner.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if (owner.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
 		owner.dropItemToGround(owner.handcuffed)
 
-	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if (owner.legcuffed && (body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT)))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")

@@ -81,7 +81,7 @@
 			switch(power_gen_percent) //Flavor text!
 				if(10)
 					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to whirr as it powers up.</span>")
-					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.25
+					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 				if(50)
 					visible_message("[icon2html(src, viewers(src))] <span class='notice'><b>[src]</b> begins to hum loudly as it reaches half capacity.</span>")
 					fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5

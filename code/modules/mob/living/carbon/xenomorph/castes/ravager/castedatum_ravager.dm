@@ -19,8 +19,8 @@
 	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 10
+	plasma_max = 400
+	plasma_gain = 20
 
 	// *** Health *** //
 	max_health = 225
@@ -44,6 +44,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage
 		)
 
 /datum/xeno_caste/ravager/young
@@ -67,8 +68,8 @@
 	speed = -0.9
 
 	// *** Plasma *** //
-	plasma_max = 175
-	plasma_gain = 13
+	plasma_max = 500 //Enables using either both abilities at once or one after another
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 265
@@ -95,8 +96,8 @@
 	speed = -0.97
 
 	// *** Plasma *** //
-	plasma_max = 190
-	plasma_gain = 14
+	plasma_max = 550
+	plasma_gain = 35
 
 	// *** Health *** //
 	max_health = 290
@@ -123,8 +124,8 @@
 	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 15
+	plasma_max = 600
+	plasma_gain = 40
 
 	// *** Health *** //
 	max_health = 300
@@ -134,4 +135,3 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 28, "acid" = 40)
-

@@ -1,4 +1,4 @@
-/atom/movable/proc/line_of_sight(atom/target, view_dist = world.view)
+/atom/movable/proc/line_of_sight(atom/target, view_dist = WORLD_VIEW_NUM)
 	if(QDELETED(target))
 		return FALSE
 

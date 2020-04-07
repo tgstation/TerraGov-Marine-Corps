@@ -255,7 +255,6 @@
 	if(occupant)
 		to_chat(M, "<span class='warning'>The cryogenic pod is already in use. You will need to find another.</span>")
 		return FALSE
-		return
 	M.forceMove(src)
 	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M

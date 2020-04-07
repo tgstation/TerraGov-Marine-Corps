@@ -107,10 +107,8 @@
 	. = ..()
 	if(!armed || triggered)
 		return
-
-	if(issilicon(L))
+	if((L.status_flags & INCORPOREAL))
 		return
-
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.get_target_lock(iff_signal))

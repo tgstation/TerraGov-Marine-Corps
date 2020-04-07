@@ -105,7 +105,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
 
@@ -114,7 +114,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
@@ -761,7 +761,7 @@
 
 
 /mob/Moved(atom/oldloc, direction)
-	if(client && (client.view != world.view || client.pixel_x || client.pixel_y))
+	if(client && (client.view != WORLD_VIEW || client.pixel_x || client.pixel_y))
 		for(var/obj/item/item in contents)
 			if(item.zoom)
 				item.zoom(src)

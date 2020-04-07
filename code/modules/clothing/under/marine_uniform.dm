@@ -13,20 +13,18 @@
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/sniper
@@ -35,7 +33,6 @@
 	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	rollable_sleeves = FALSE
-
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"
@@ -160,6 +157,14 @@
 
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/marine/commissar
+	name = "\improper commissar uniform"
+	desc = "A commissars noble uniform."
+	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
+	icon_state = "commissar_uniform"
+	item_state = "commissar_uniform"
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"

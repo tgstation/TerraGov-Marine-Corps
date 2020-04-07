@@ -126,19 +126,24 @@
 			previewJob = SSjob.GetJob(job)
 			highest_pref = job_preferences[job]
 
-	if(previewJob)
-		// Silicons only need a very basic preview since there is no customization for them.
-		if(istype(previewJob, /datum/job/ai))
-			parent.show_character_previews(image('icons/mob/ai.dmi', icon_state = "ai", dir = SOUTH))
-			return
+	if(!previewJob)
+		var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
+		copy_to(mannequin)
+		COMPILE_OVERLAYS(mannequin)
+		parent.show_character_previews(new /mutable_appearance(mannequin))
+		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
+		return
+
+	if(previewJob.handle_special_preview(parent))
+		return
 
 	// Set up the dummy for its photoshoot
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	copy_to(mannequin)
 
 	if(previewJob)
-		mannequin.job = previewJob.title
-		previewJob.equip(mannequin, TRUE, preference_source = parent)
+		mannequin.job = previewJob
+		previewJob.equip_dummy(mannequin, preference_source = parent)
 
 	COMPILE_OVERLAYS(mannequin)
 	parent.show_character_previews(new /mutable_appearance(mannequin))
@@ -150,21 +155,16 @@
 
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = FALSE)
+	var/new_name
 	if(random_name)
-		var/datum/species/S = GLOB.all_species[species]
-		real_name = S.random_name(gender)
-
-
-	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace || firstspace == name_length)
-			real_name += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+		new_name = character.species.random_name(gender)
+	else
+		new_name = character.species.prefs_name(src)
 
 	if(!good_eyesight)
 		ENABLE_BITFIELD(character.disabilities, NEARSIGHTED)
 
-	character.real_name = real_name
+	character.real_name = new_name
 	character.name = character.real_name
 
 	character.flavor_text = flavor_text
