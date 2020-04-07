@@ -507,7 +507,7 @@
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
-			if(overcharge && cell.charge < M43_OVERCHARGE_AMMO_COST && cell.charge >= M43_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
+			if(overcharge && cell.charge < TX73_OVERCHARGE_AMMO_COST && cell.charge >= TX73_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				toggle_chargemode(user)
 				return
 			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
