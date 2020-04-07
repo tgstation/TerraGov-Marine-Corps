@@ -150,5 +150,5 @@
 	armor = list("melee" = 37, "bullet" = 37, "laser" = 32, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 25
-	fortify_armor = 50
+	crest_defense_armor = 40
+	fortify_armor = 70
