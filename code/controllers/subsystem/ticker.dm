@@ -43,13 +43,12 @@ SUBSYSTEM_DEF(ticker)
 	load_mode()
 
 	login_music = pick(
-		'sound/music/SpaceHero.ogg',
-		'sound/music/ManOfWar.ogg',
-		'sound/music/PraiseTheLord.ogg',
-		'sound/music/BloodUponTheRisers.ogg',
-		'sound/music/DawsonChristian.ogg',
-		'sound/music/Bomber.ogg',
-	)
+		list("https://youtu.be/fNdMC6_eUGk",100,0,180), //Space Hero
+		list("https://youtu.be/KflMk8O18LI",100,0,180), //Man of War
+		list("https://youtu.be/uV9s1a6AZT0",100,0,180), //Praise the lord and pass the ammunition
+		list("https://youtu.be/vzrYgDnewSI",100,0,180), //Blood upon the risers
+		list("https://youtu.be/w0cbkOm9p1k",100,0,180), //Dawson's Christian
+		list("https://youtu.be/OlkH687M4YM",100,0,180)) //Bomber
 
 	return ..()
 
