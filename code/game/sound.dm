@@ -109,7 +109,7 @@
 	if(!SSticker?.login_music)
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
-		chatOutput.sendMusic(SSticker.login_music[1],SSticker.login_music[2],SSticker.login_music[3],SSticker.login_music[4])
+		chatOutput.sendMusic(SSticker.login_music[1],list(SSticker.login_music[2],SSticker.login_music[3],SSticker.login_music[4]))
 		//SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
 /proc/playsound_z(z, soundin, _volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
