@@ -194,7 +194,7 @@
 	Knockdown(80)
 
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/open/floor/plating/ground/snow))	
+	if(istype(T, /turf/open/floor/plating/ground/snow))
 		visible_message("<span class='danger'>[src] rolls in the snow, putting themselves out!</span>", \
 		"<span class='notice'>You extinguish yourself in the snow!</span>", null, 5)
 		ExtinguishMob()
@@ -235,7 +235,8 @@
 /mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(5 * protection)
+		adjustFireLoss(15 * protection)
+		to_chat(src, "<span class='danger'>It feels as if you've been dumped into an open fire!</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		if(prob(25 * protection))
 			to_chat(src, "<span class='danger'>Your skin feels like it is melting away!</span>")

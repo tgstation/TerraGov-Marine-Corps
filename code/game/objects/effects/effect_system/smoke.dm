@@ -226,7 +226,7 @@
 	alpha = 145
 	opacity = FALSE
 	color = "#DBCBB9"
-	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
