@@ -214,9 +214,18 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
-	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	allowed = list()//how would you put a gun onto a field of energy?
+
+/obj/item/clothing/suit/armor/sectoid/shield
+	name = "powerful psionic field"
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+
+/obj/item/clothing/suit/armor/sectoid/shield/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield/overhealth)
 
 
 //All of the armor below is mostly unused

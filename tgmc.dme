@@ -1053,6 +1053,7 @@
 #include "code\modules\language\narsian.dm"
 #include "code\modules\language\piratespeak.dm"
 #include "code\modules\language\russian.dm"
+#include "code\modules\language\sectoid.dm"
 #include "code\modules\language\skrell.dm"
 #include "code\modules\language\slime.dm"
 #include "code\modules\language\tajaran.dm"
