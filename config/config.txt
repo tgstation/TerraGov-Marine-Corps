@@ -90,4 +90,4 @@ LIMBS_CAN_BREAK
 
 # Topic filtering whitelist
 # Addressed listed below are except from any incoming topic filering
-TOPIC_FILTERING_WHITELIST 127.0.0.1
+# TOPIC_FILTERING_WHITELIST 127.0.0.1

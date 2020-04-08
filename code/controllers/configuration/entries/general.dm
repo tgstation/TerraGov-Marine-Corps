@@ -370,7 +370,7 @@ The default value assumes youtube-dl is in your system PATH
 	config_entry_value = "15x15"
 
 /*
- This maintains a list of ip addresses that are able to bypass topic filtering.
+This maintains a list of ip addresses that are able to bypass topic filtering.
 */
 /datum/config_entry/keyed_list/topic_filtering_whitelist
 	key_mode = KEY_MODE_TEXT
