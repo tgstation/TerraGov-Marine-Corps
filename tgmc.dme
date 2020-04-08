@@ -356,6 +356,7 @@
 #include "code\game\area\mainship.dm"
 #include "code\game\area\port_hamburg.dm"
 #include "code\game\area\prison.dm"
+#include "code\game\area\research_outpost.dm"
 #include "code\game\area\sulaco.dm"
 #include "code\game\area\tyson_station.dm"
 #include "code\game\area\vaporprocessing.dm"

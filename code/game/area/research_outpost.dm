@@ -11,12 +11,12 @@
 
 // LZ Areas
 
-area/outpost/lz1
+/area/outpost/lz1
 	name = "Landing Zone 1"
 	ceiling = CEILING_NONE
 	icon_state="red"
 
-area/outpost/lz2
+/area/outpost/lz2
 	name = "Landing Zone 2"
 	ceiling = CEILING_NONE
 	icon_state="red"
@@ -25,17 +25,17 @@ area/outpost/lz2
 
 // Cargo Areas
 
-area/outpost/cargo
+/area/outpost/cargo
 	name = "Cargo Bay"
 	icon_state="orange"
 	ceiling = CEILING_METAL
 
-area/outpost/cargo/office
+/area/outpost/cargo/office
 	name = "Cargo Office"
 	icon_state="orange"
 	ceiling = CEILING_METAL
 
-area/outpost/cargo/security
+/area/outpost/cargo/security
 	name = "Cargo Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_METAL
@@ -44,107 +44,107 @@ area/outpost/cargo/security
 
 // Cave Areas, cave.
 
-area/outpost/caves
+/area/outpost/caves
 	name = "Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/central
+/area/outpost/caves/central
 	name = "Central Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/north
+/area/outpost/caves/north
 	name = "Northern Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/north_east
+/area/outpost/caves/north_east
 	// Note: This is where the hive is
 	name = "North Eastern Caves"
 	icon_state="cave"
 	ceiling = CEILING_UNDERGROUND
 
-area/outpost/caves/east
+/area/outpost/caves/east
 	name = "Eastern Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/south_east
+/area/outpost/caves/south_east
 	name = "South Eastern Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/south
+/area/outpost/caves/south
 	name = "Southern Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/south_west
+/area/outpost/caves/south_west
 	name = "South Western Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/west
+/area/outpost/caves/west
 	name = "Western Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
-area/outpost/caves/north_west
+/area/outpost/caves/north_west
 	name = "North Western Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
 
 
 
-// Yard Areas, there are a lot of these because there are a lot of open areas.
+// Yard Areas, there are a lot of these because there are a lot of open /areas.
 
-area/outpost/yard
+/area/outpost/yard
 	name = "Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/central
+/area/outpost/yard/central
 	name = "Central Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/north
+/area/outpost/yard/north
 	name = "Northern Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/north_east
+/area/outpost/yard/north_east
 	name = "North Eastern Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/east
+/area/outpost/yard/east
 	name = "Eastern Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/south_east
+/area/outpost/yard/south_east
 	name = "South Eastern Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/south
+/area/outpost/yard/south
 	name = "Southern Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/south_west
+/area/outpost/yard/south_west
 	name = "South West Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/west
+/area/outpost/yard/west
 	name = "Western Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
 
-area/outpost/yard/north_west
+/area/outpost/yard/north_west
 	name = "North Western Yard"
 	icon_state="thunder"
 	ceiling = CEILING_NONE
@@ -153,12 +153,12 @@ area/outpost/yard/north_west
 
 // Arrivals Areas, where you arrive
 
-area/outpost/arrivals
+/area/outpost/arrivals
 	name = "Arrivals"
 	icon_state="entry"
 	ceiling = CEILING_METAL
 
-area/outpost/arrivals/security
+/area/outpost/arrivals/security
 	name = "Arrivals Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_METAL
@@ -167,42 +167,42 @@ area/outpost/arrivals/security
 
 // Hallway Areas, a few of these, somewhat annoying as the south hallway branches out more than the others.
 
-area/outpost/hallway
+/area/outpost/hallway
 	name = "Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/northern
+/area/outpost/hallway/northern
 	name = "Northern Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/central
+/area/outpost/hallway/central
 	name = "Central Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/west
+/area/outpost/hallway/west
 	name = "Western Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/south_cent
+/area/outpost/hallway/south_cent
 	name = "South Central Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/south_east
+/area/outpost/hallway/south_east
 	name = "South Eastern Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/south_west
+/area/outpost/hallway/south_west
 	name = "South Western Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
 
-area/outpost/hallway/east
+/area/outpost/hallway/east
 	name = "South Western Hallway"
 	icon_state="green"
 	ceiling = CEILING_METAL
@@ -211,36 +211,36 @@ area/outpost/hallway/east
 
 // Medbay
 
-area/outpost/medbay
+/area/outpost/medbay
 	name="Medbay"
 	icon_state="blue"
 	ceiling = CEILING_METAL
 
-area/outpost/medbay/security
+/area/outpost/medbay/security
 	name="Medbay Security Outpost"
 	icon_state="blue"
 	ceiling = CEILING_METAL
 
-area/outpost/medbay/storage
+/area/outpost/medbay/storage
 	name="Medbay Storage"
 	icon_state="blue"
 	ceiling = CEILING_METAL
 
-area/outpost/medbay/surgery
+/area/outpost/medbay/surgery
 	name="Surgery"
 	icon_state="blue"
 	ceiling = CEILING_METAL
 
-area/outpost/medbay/chemistry
+/area/outpost/medbay/chemistry
 	name="Chemistry"
 	icon_state="blue"
 	ceiling = CEILING_METAL
 
 
 
-// Dorms, it feels like a waste of space to put in a comment for a single area.
+// Dorms, it feels like a waste of space to put in a comment for a single /area.
 
-area/outpost/dormitories
+/area/outpost/dormitories
 	name = "Dormitiories"
 	icon_state="Sleep"
 	ceiling = CEILING_METAL
@@ -249,22 +249,22 @@ area/outpost/dormitories
 
 // Brig
 
-area/outpost/brig
+/area/outpost/brig
 	name = "Brig"
 	icon_state="brig"
 	ceiling = CEILING_METAL
 
-area/outpost/brig/gear_room
+/area/outpost/brig/gear_room
 	name = "Brig Gear Room"
 	icon_state="brig"
 	ceiling = CEILING_METAL
 
-area/outpost/brig/wardens_office
+/area/outpost/brig/wardens_office
 	name = "Brig Gear Room"
 	icon_state="brig"
 	ceiling = CEILING_METAL
 
-area/outpost/brig/armoury
+/area/outpost/brig/armoury
 	name = "Armoury"
 	icon_state="brig"
 	ceiling = CEILING_METAL
@@ -273,33 +273,33 @@ area/outpost/brig/armoury
 
 // Science, man turns himself into a pickle, this is somehow a funny joke and you should laugh.
 
-area/outpost/science
+/area/outpost/science
 	name = "Science Department"
 	icon_state="purple"
 	ceiling = CEILING_METAL
 
-area/outpost/science/research
+/area/outpost/science/research
 	name = "Research and Development"
 	icon_state="purple"
 	ceiling = CEILING_METAL
 
-area/outpost/science/security
+/area/outpost/science/security
 	name = "Science Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_METAL
 
-area/outpost/science/hydponics
+/area/outpost/science/hydponics
 	// LOCAL DEGENERATE BOTANIST STOLE THE CHEM DISPENSER AGAIN
 	name = "Plant Sciences"
 	icon_state="purple"
 	ceiling = CEILING_METAL
 
-area/outpost/science/rd_office
+/area/outpost/science/rd_office
 	name = "Research Directors Office"
 	icon_state="purple"
 	ceiling = CEILING_METAL
 
-area/outpost/science/xenobiology
+/area/outpost/science/xenobiology
 	/*
 	One day there was a lonely, overworked scientist.
 	The company he worked for did not care at all about their employees.
@@ -322,22 +322,22 @@ area/outpost/science/xenobiology
 
 // Engineering
 
-area/outpost/engineering/hallway
+/area/outpost/engineering/hallway
 	name = "Engineering Hallway"
 	icon_state="engine"
 	ceiling = CEILING_METAL
 
-area/outpost/engineering
+/area/outpost/engineering
 	name = "Engineering Hallway"
 	icon_state="engine"
 	ceiling = CEILING_METAL
 
-area/outpost/engineering/security
+/area/outpost/engineering/security
 	name = "Engineering Security Outpost"
 	icon_state="engine"
 	ceiling = CEILING_METAL
 
-area/outpost/engineering/engine
+/area/outpost/engineering/engine
 	name = "Engine Room"
 	icon_state="engine"
 	ceiling = CEILING_UNDERGROUND
