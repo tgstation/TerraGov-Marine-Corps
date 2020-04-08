@@ -133,19 +133,22 @@ GLOBAL_VAR(restart_counter)
 	if (bannedsourceaddrs[addr])
 		return
 
-	if(length(T) >= MAX_TOPIC_LEN)
-		log_admin_private("[addr] banned from topic calls for a round for too long status message")
-		bannedsourceaddrs[addr] = TOPIC_BANNED
-		return
-
-	if(lasttimeaddr[addr])
-		var/lasttime = lasttimeaddr[addr]
-		if(world.time < (lasttime + 2 SECONDS))
-			log_admin_private("[addr] banned from topic calls for a round for too frequent messages")
+	var/list/filtering_whitelist = CONFIG_GET(keyed_list/topic_filtering_whitelist)
+	var/host = splittext_char(addr, ":")
+	if(!filtering_whitelist[host[1]]) // We only ever check the host, not the port (if provided)
+		if(length(T) >= MAX_TOPIC_LEN)
+			log_admin_private("[addr] banned from topic calls for a round for too long status message")
 			bannedsourceaddrs[addr] = TOPIC_BANNED
 			return
 
-	lasttimeaddr[addr] = world.time
+		if(lasttimeaddr[addr])
+			var/lasttime = lasttimeaddr[addr]
+			if(world.time < lasttime)
+				log_admin_private("[addr] banned from topic calls for a round for too frequent messages")
+				bannedsourceaddrs[addr] = TOPIC_BANNED
+				return
+
+		lasttimeaddr[addr] = world.time + 2 SECONDS
 
 
 	TGS_TOPIC	//redirect to server tools if necessary

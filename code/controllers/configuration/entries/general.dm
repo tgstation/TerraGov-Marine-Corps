@@ -368,3 +368,11 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/default_view_square
 	config_entry_value = "15x15"
+
+/*
+ This maintains a list of ip addresses that are able to bypass topic filtering.
+*/
+/datum/config_entry/keyed_list/topic_filtering_whitelist
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+	protection = CONFIG_ENTRY_LOCKED
