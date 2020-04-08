@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Phosphorus grenades. Can be ordered in req."
