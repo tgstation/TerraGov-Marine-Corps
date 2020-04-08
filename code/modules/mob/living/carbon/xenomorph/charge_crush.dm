@@ -512,7 +512,7 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Knockdown(CHARGE_SPEED(charge_datum) * 80)
+			Knockdown(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
 			Knockdown(CHARGE_SPEED(charge_datum) * 60)
 
