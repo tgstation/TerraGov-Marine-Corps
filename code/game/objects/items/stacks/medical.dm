@@ -141,7 +141,7 @@
 	heal_burn = 7
 
 
-/obj/item/stack/medical/bruise_pack/alien
+/obj/item/stack/medical/bruise_pack/sectoid
 	name = "\improper healing resin pack"
 	singular_name = "healing resin pack"
 	desc = "A strange tool filled with a sticky, alien resin. It seems it is meant for covering wounds."
