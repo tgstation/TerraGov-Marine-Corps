@@ -58,7 +58,7 @@
 	shoes = /obj/item/clothing/shoes/sectoid
 	wear_suit = /obj/item/clothing/suit/armor/sectoid/shield
 	gloves = /obj/item/clothing/gloves/sectoid
-	r_store = /obj/item/stack/medical/bruise_pack/alien
+	r_store = /obj/item/stack/medical/bruise_pack/sectoid
 	l_store = /obj/item/explosive/grenade/frag/sectoid
 	back = /obj/item/weapon/gun/rifle/sectoid_rifle
 
