@@ -849,10 +849,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
 	name = "machinegun bullet"
-	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed. Had to remove IFF so you have to watch out.
+	icon_state 	= "bullet" // Keeping it bog standard with the turret but allows it to be changed.
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 	accurate_range = 15
-	damage = 50
-	penetration = 60 //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
+	damage = 75
+	penetration = 75 //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
 	accuracy = 15
 	barricade_clear_distance = 2
 
