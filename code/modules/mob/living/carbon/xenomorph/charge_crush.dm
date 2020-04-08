@@ -27,7 +27,7 @@
 	var/speed_per_step = 0.15
 	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
-	var/crush_living_damage = 30
+	var/crush_living_damage = 10
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 
 
@@ -512,7 +512,7 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Knockdown(CHARGE_SPEED(charge_datum) * 80)
+			Knockdown(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
 			Knockdown(CHARGE_SPEED(charge_datum) * 60)
 
