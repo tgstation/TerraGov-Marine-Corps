@@ -128,7 +128,7 @@ GLOBAL_VAR(restart_counter)
 
 	var/static/list/lasttimeaddr = list()
 	var/static/list/topic_handlers = TopicHandlers()
-
+	/*
 	//LEAVE THIS COOLDOWN HANDLING IN PLACE, OR SO HELP ME I WILL MAKE YOU SUFFER
 	if (bannedsourceaddrs[addr])
 		return
@@ -146,7 +146,7 @@ GLOBAL_VAR(restart_counter)
 			return
 
 	lasttimeaddr[addr] = world.time
-
+	*/
 
 	TGS_TOPIC	//redirect to server tools if necessary
 
