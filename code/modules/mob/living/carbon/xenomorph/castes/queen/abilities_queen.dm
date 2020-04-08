@@ -162,11 +162,10 @@
 /datum/action/xeno_action/activable/screech/ai_should_use(target)
 	if(!iscarbon(target))
 		return ..()
-	if(get_dist(target, owner) > 2)
+	if(get_dist(target, owner) > 4)
 		return ..()
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	use_ability(target)
 	return TRUE
 
 

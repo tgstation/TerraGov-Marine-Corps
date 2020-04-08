@@ -19,7 +19,7 @@
 	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!can_use_ability(A, TRUE))
+	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 
 	GLOB.round_statistics.praetorian_acid_sprays++
@@ -50,11 +50,10 @@
 		return
 	if(!iscarbon(target))
 		return ..()
-	if(get_dist(target, owner) > 2)
+	if(get_dist(target, owner) > 3)
 		return ..()
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	use_ability(target)
 	return TRUE
 
 GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj/vehicle/multitile/root/cm_armored, /obj/structure/razorwire)))

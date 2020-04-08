@@ -87,7 +87,6 @@
 	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
 		//There's already a node on this loc don't plant anything
 		return ..()
-	action_activate()
 	return TRUE
 
 /datum/action/xeno_action/plant_weeds/slow
@@ -256,7 +255,7 @@
 /datum/action/xeno_action/toggle_pheromones/ai_should_use(target)
 	if(PheromonesOpen)
 		return ..()
-	action_activate()
+	return TRUE
 
 /datum/action/xeno_action/toggle_pheromones/can_use_action()
 	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
@@ -290,7 +289,7 @@
 		return ..()
 	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
 		return ..()
-	action_activate()
+	return TRUE
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
 	var/mob/living/carbon/xenomorph/X = owner
@@ -748,8 +747,8 @@
 		return ..()
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	use_ability(target)
 	return TRUE
+
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"
