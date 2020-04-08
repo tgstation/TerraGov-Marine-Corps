@@ -13,7 +13,7 @@
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	flags_atom = ON_BORDER
-	resistance_flags = UNACIDABLE
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/platform/Initialize()
 	. = ..()
