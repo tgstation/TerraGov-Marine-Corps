@@ -16,3 +16,5 @@ tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
 .vscode/*
 dreamchecker*
+
+tools/BalanceTool/raw.json
