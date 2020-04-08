@@ -1,0 +1,4 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - bugfix: "The pistol rig now properly holds pistols other than the TP-14"
