@@ -236,9 +236,9 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
-			if(!SSticker.mode.CanLateSpawn(src, job_datum))
+			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
-			SSticker.mode.LateSpawn(src, job_datum)
+			SSticker.mode.LateSpawn(src)
 
 
 	if(href_list["showpoll"])
