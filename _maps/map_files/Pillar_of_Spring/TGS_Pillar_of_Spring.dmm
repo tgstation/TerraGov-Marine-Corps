@@ -391,6 +391,10 @@
 /area/mainship/hallways/hangar)
 "bj" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bk" = (
@@ -2920,6 +2924,10 @@
 "iy" = (
 /obj/structure/bed/chair/comfy/black{
 	icon_state = "comfychair";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -8275,6 +8283,10 @@
 /area/mainship/hallways/starboard_umbilical)
 "wC" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wD" = (
