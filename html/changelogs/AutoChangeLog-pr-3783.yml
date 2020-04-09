@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "AI xenos will now gib on death, this should help with lategame lag on WO"
