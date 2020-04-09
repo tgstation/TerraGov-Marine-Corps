@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "new ammo type of sundering, currently added to the standard dmr ammo."
