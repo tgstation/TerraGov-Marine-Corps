@@ -21,9 +21,6 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = GLOB.namepool[/datum/namepool/clf].random_name(H)
-	H.real_name = H.name
-
 	M.transfer_to(H, TRUE)
 
 	if(original)
