@@ -514,11 +514,11 @@
 "jT" = (/obj/machinery/marine_selector/clothes/medic,/turf/open/floor/mainship{dir = 10; icon_state = "emerald"},/area/whiskey_outpost)
 "jU" = (/obj/structure/barricade/sandbags{pixel_z = -7},/obj/structure/barricade/sandbags{icon_state = "sandbag_0"; dir = 4},/turf/open/floor/plating/warning,/area/whiskey_outpost/outside/west)
 "jV" = (/obj/structure/table,/obj/item/storage/belt/combatLifesaver,/obj/item/storage/firstaid/regular,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
-"jW" = (/obj/item/storage/box/explosive_mines,/turf/open/floor/plating/platebot,/area/whiskey_outpost)
+"jW" = (/obj/machinery/vending/tool,/turf/open/floor/plating,/area/whiskey_outpost/outside/west)
 "jX" = (/obj/item/storage/box/explosive_mines,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jY" = (/obj/item/storage/box/sentry,/obj/item/flashlight,/obj/item/flashlight,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jZ" = (/obj/machinery/vending/nanomed{dir = 8},/obj/item/storage/box/sentry,/obj/item/flashlight,/obj/item/flashlight,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
-"ka" = (/obj/item/storage/box/sentry,/turf/open/floor/plating/platebot,/area/whiskey_outpost)
+"ka" = (/obj/item/storage/box/explosive_mines,/turf/open/floor/plating/platebot,/area/whiskey_outpost/outside/west)
 "kb" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "65"},/area/whiskey_outpost/outside/east)
 "kc" = (/obj/item/storage/box/sentry,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
 "kd" = (/obj/item/storage/box/m94,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
@@ -529,6 +529,7 @@
 "ki" = (/obj/structure/largecrate/supply/weapons/flamers,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "kj" = (/obj/effect/landmark/start/job/shiptech,/turf/open/floor,/area/whiskey_outpost)
 "kk" = (/obj/structure/closet/secure_closet/guncabinet/mp_armory,/turf/open/floor/tile/dark,/area/whiskey_outpost)
+"kl" = (/obj/machinery/vending/MarineMed,/turf/open/floor/mainship{icon_state = "dark_sterile"},/area/whiskey_outpost)
 "km" = (/turf/open/ground/jungle,/turf/closed/shuttle{density = 0; dir = 4; icon_state = "re_corner"},/area/whiskey_outpost)
 "kn" = (/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/south)
 "ko" = (/obj/structure/barricade/metal,/turf/open/floor/plating/warning{dir = 2},/area/whiskey_outpost/outside/south)
@@ -540,6 +541,7 @@
 "ku" = (/turf/open/shuttle/dropship{icon_state = "rasputin3"},/area/whiskey_outpost/outside/east)
 "kv" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "68"},/area/whiskey_outpost/outside/east)
 "kw" = (/obj/structure/barricade/metal,/turf/open/floor/plating,/area/whiskey_outpost/outside/east)
+"kx" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/plating/warning{dir = 8},/area/whiskey_outpost/outside/west)
 "ky" = (/obj/structure/sign/greencross{icon_state = "lifestar"; pixel_y = 32},/turf/open/ground/jungle,/area/whiskey_outpost/outside/west)
 "kz" = (/turf/closed/mineral,/area/whiskey_outpost/outside/south)
 "kA" = (/turf/open/ground/river,/area/whiskey_outpost/outside/south)
@@ -550,6 +552,8 @@
 "kF" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "63"},/area/whiskey_outpost/outside/east)
 "kG" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "51"},/area/whiskey_outpost/outside/east)
 "kH" = (/turf/open/ground/coast{icon_state = "beachcorner"; dir = 2},/area/whiskey_outpost/outside/east)
+"kI" = (/obj/structure/largecrate/supply/weapons/standard_smg,/turf/open/floor/plating,/area/whiskey_outpost/outside/west)
+"kJ" = (/obj/structure/largecrate/supply/ammo/standard_smg,/turf/open/floor/plating,/area/whiskey_outpost)
 "kK" = (/turf/open/ground/jungle,/turf/closed/shuttle{density = 0; dir = 4; icon_state = "re_corner"},/area/whiskey_outpost/outside/west)
 "kL" = (/turf/open/space,/turf/open/floor/plating/dmg2,/area/whiskey_outpost/outside/east)
 "kM" = (/obj/structure/flora/ausbushes/sparsegrass,/obj/effect/ai_node,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/south)
@@ -1102,11 +1106,11 @@ mvmvmvmvmvmvmvmvmvmvmvhIhBixixixixixixixixixixixixixixixixixixhBhBhBhBhBhBhBhBhB
 mvmvmvmvmvmvmvmvmvmvmvhIhBhwhwhwhwekhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwbmhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhchchchchchchchchciBiBiBiBiBemiBiBiBiBiBiBiBhchchchchchcgUgUhHgUgUoZgYgZgZgZhajijkjlkrksksaaktjmjnjohchchIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvhIhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhqhqhqhqgUgUgUjuiBiBhchchchciBiBstiBiBiBiBiBiBiBiBhchchchchchcgWgUiOhPhPhPoNgYgZgZgZhajpjsjvkujmkvjlkujmjAjGhghchchchchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvhIhBhwhwhwhwgmjIjIgngngngngnjIjIgQgQjIjIjIhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhqevbdbdbdbdbdbdbdjxiBiBhchchciBiBiBiBiBiBiBiBiBiBiBiBhchchciBiDhhhbhthghghgpkhggZgZgZhgjPjQjlaajvkCaaaajvjRkbhghghghghghchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvhIhIhBhwhwgmgQjIhVirhwhwhwhwhwjwgRjzipjzhVhUjIhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhqhqbdjVWjjCbZFgjDjEbdiBiBiBiBiBiBiBiBiBiBhciBiBiBiBiBiBiBiBiBiBiDhhgUhthghghgiehghghghghghgkDkEkujvkFaaaaiYhghghghghgiekchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvhIhBhBjIjIbdjWkagFkehwhwhwhwhwjwhShVhVhVhVipjIhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwikhqhsSmgFjLmGjMjLmHjOSmiBiBiBiBiBiBiBiBiBiBhciBiBiBiBiBiBiBiBiBiBhchcgUhthgihhghghghghghghghgaaaaaahghgaahgkEhghghghghghgkchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvhIhBjIhUhVgFgFgFgFbqhwhwhwhwhwjwhVjBhVhVhVhAjIhwhwikhqhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiwixixbdgFgFgFjXjXjYjZbdiBiBiBiBiBiBiBiBiBiBhcemiBiBiBiBiBhchchchchcgUgUhthghghghghghgkdhgeQhghghgaahghghghgjvkGhgiJhghghghghchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvhIhIhBhwhwgmgQjIjWirhwhwhwhwhwjwgRkagRjzhVhUjIhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhqhqbdjVWjjCbZFgjDjEbdiBiBiBiBiBiBiBiBiBiBhciBiBiBiBiBiBiBiBiBiBiDhhgUhthghghgiehghghghghghgkDkEkujvkFaaaaiYhghghghghgiekchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvhIhBhBjIjIbdklbNgFkehwhwhwhwhwjwhShVhVhVhVipjIhBhBhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwikhqhsSmgFjLmGjMjLmHjOSmiBiBiBiBiBiBiBiBiBiBhciBiBiBiBiBiBiBiBiBiBhchcgUhthgihhghghghghghghghgaaaaaahghgaahgkEhghghghghghgkchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvhIhBjIhUhVgFgFgFgFbqhwhwhwhwhwjwhVjBkIhVhVhAjIhwhwikhqhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiwixixbdgFgFgFjXjXjYjZbdiBiBiBiBiBiBiBiBiBiBhcemiBiBiBiBiBhchchchchcgUgUhthghghghghghgkdhgeQhghghgaahghghghgjvkGhgiJhghghghghchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvhIhBjIiphVgFgFkfkgbqhwhwhwhwhwjwhVhVhVgQjIjIkKhwhwikhqhqhqhqhqhRhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwbmhwhwhwhwhwhwhwhwhwhwjFbdbdbdgFmtbdbdkmiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchcgUhHhthgknkokokokofFknknknknknknknknhghgaaihhgkwkwhgihhchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvhIhBjIhAhVgFmtgFgFbqhwhwhwAmhwjwhVhShVgQhwhwhwhwhwikhshqhqhrhqhRhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwAmcQhwhwhwhwhwhwhwmyhwhwhwkyzmmWiBiBiBiBiBiBiBiBiBiBiBiBzmiBiBiBiBiBiBhchchchckzkAkAkAkBknknknknkMknknknknknknfFaofFkneQeQhghghghgkHhEhEhchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvhIhBjIhAhVgFmtgFkJbqhwhwhwAmhwkxhVhShVgQhwhwhwhwhwikhshqhqhrhqhRhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwAmcQhwhwhwhwhwhwhwmyhwhwhwkyzmmWiBiBiBiBiBiBiBiBiBiBiBiBzmiBiBiBiBiBiBhchchchckzkAkAkAkBknknknknkMknknknknknknfFaofFkneQeQhghghghgkHhEhEhchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvhIhBhBjIjIjHjJjHbdkhgCgCgCgCgCjIjKjSjUhwhwhwhwhwhwikhqhqhqhqhqhRhwhwhwhwhwhwhwhwhwhwhwsuhwhwhwhwhwhwhwhwhwbmhwhwhwhwhwhwbmhwiBiBiBiBiBmWiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchchcgUhbgUhthghghghghgeQeQhghghghghghghghghgaaaahghgkHiAgUgUhchIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvhIhIhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwmyhwhwhwiBiBiBesiBiBiBiBiBsviBiBiBiBiBiBiBiBiBiBiBhchchchchcgUgUgUhteQeQeQeQhghghgeQhghghghghghghgaaaaaahghghhgUhchchchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvhIhBhBhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhBhBhBhBhBhBhBhBhBhBhBhBhBhwhwhwhwhwhwbmhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwhwiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBiBhchchchcgUgUgUhDhEhEhEkPapeQhghgiheQhghghghgaakLkuaakHhEiAgUhchIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
