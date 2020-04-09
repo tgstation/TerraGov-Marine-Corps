@@ -116,7 +116,7 @@
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
 	faction = "Xeno"
 	var/hivenumber = XENO_HIVE_NORMAL

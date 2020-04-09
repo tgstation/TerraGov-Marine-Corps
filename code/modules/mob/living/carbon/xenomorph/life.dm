@@ -12,8 +12,6 @@
 
 	..()
 
-	adjust_sunder(sunder_recover * -1) 
-
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
@@ -31,6 +29,7 @@
 		update_evolving()
 		handle_aura_emiter()
 
+	adjust_sunder(sunder_recover * -1) 
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()

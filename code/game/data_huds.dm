@@ -318,8 +318,32 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 
+/mob/living/proc/hud_set_sunder()
+	return
+
+/mob/living/carbon/xenomorph/hud_set_sunder()
+	var/image/holder = hud_list[ARMOR_SUNDER_HUD]
+	if(!holder)
+		return
+
+	switch(sunder)
+		if(-INFINITY to 0)
+			holder.icon_state = "sundering100"
+		if(0 to 25)
+			holder.icon_state = "sundering75"
+		if(26 to 50)
+			holder.icon_state = "sundering50"
+		if(51 to 75)
+			holder.icon_state = "sundering25"
+		if(100 to INFINITY)
+			holder.icon_state = "sundering0"
+		else
+			holder.icon_state = "sundering0"
+	to_chat(world, "[src]::finished -- [sunder]")
+	hud_list[ARMOR_SUNDER_HUD] = holder
+	
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
