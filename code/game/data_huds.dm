@@ -341,8 +341,6 @@
 			holder.icon_state = "sundering0"
 		else
 			holder.icon_state = "sundering0"
-	to_chat(world, "[src]::finished -- [sunder]")
-	hud_list[ARMOR_SUNDER_HUD] = holder
 	
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
