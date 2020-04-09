@@ -15,4 +15,8 @@
 	sight |= SEE_TURFS
 
 	new_player_panel()
-	client?.playtitlemusic()
+	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
+	if(ytdl)
+		client?.playtitlemusic()
+	else
+		client?.playtitlemusiclegacy()
