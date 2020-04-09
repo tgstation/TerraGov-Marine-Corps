@@ -10,13 +10,13 @@
 "aj" = (/obj/structure/bed,/obj/item/bedsheet/red,/obj/effect/landmark/start/latejoin_gateway,/turf/open/floor/mainship{dir = 9; icon_state = "red"},/area/whiskey_outpost)
 "ak" = (/turf/closed/mineral,/area/whiskey_outpost)
 "al" = (/obj/machinery/door/airlock/mainship/command/FCDRquarters{dir = 1},/turf/open/floor/wood,/area/whiskey_outpost)
-"am" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/largecrate/supply/supplies/plasteel,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"an" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"am" = (/obj/structure/table,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/turf/open/floor{icon_state = "yellow"; dir = 5},/area/space)
+"an" = (/obj/machinery/light{dir = 4},/obj/machinery/vending/marine,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "ao" = (/turf/closed/wall/r_wall,/area/space)
-"ap" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/whiskey_outpost)
+"ap" = (/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/table,/obj/item/storage/toolbox/mechanical,/obj/item/tool/extinguisher/mini,/turf/open/floor{icon_state = "yellow"; dir = 2},/area/whiskey_outpost)
 "aq" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/floor/plating/asteroidfloor,/area/space)
-"ar" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/door/airlock/mainship/engineering,/turf/open/floor,/area/space)
-"as" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor,/area/space)
+"ar" = (/obj/structure/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/open/floor/plating/asteroidfloor,/area/space)
+"as" = (/obj/effect/landmark/start/job/synthetic,/turf/open/floor,/area/whiskey_outpost)
 "at" = (/obj/machinery/computer/camera_advanced/overwatch,/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "au" = (/obj/structure/bed/chair/office/light{dir = 8},/obj/effect/landmark/start/job/staffofficer,/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "av" = (/obj/structure/filingcabinet,/turf/open/floor/tile/dark,/area/whiskey_outpost)
@@ -25,20 +25,20 @@
 "ay" = (/obj/structure/table,/obj/item/storage/box/nt_mre,/obj/item/flashlight,/obj/item/binoculars,/obj/item/binoculars,/obj/item/binoculars,/obj/item/binoculars,/obj/structure/paper_bin,/obj/item/folder/blue,/obj/item/tool/pen,/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "az" = (/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "aA" = (/obj/structure/bed,/obj/machinery/light{dir = 1},/obj/item/bedsheet/red,/obj/effect/landmark/start/latejoin,/turf/open/floor/mainship{dir = 1; icon_state = "red"},/area/whiskey_outpost)
-"aB" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/table,/obj/item/storage/toolbox/mechanical,/obj/item/tool/extinguisher/mini,/turf/open/floor{dir = 4; icon_state = "yellow"},/area/whiskey_outpost)
+"aB" = (/obj/effect/landmark/start/job/synthetic,/turf/open/floor,/area/space)
 "aC" = (/obj/machinery/telecomms/relay/preset/telecomms,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/open/floor/plating/asteroidwarning{dir = 6},/area/whiskey_outpost)
 "aD" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"aE" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/power/apc{icon_state = "apc0"; dir = 4},/turf/open/floor,/area/whiskey_outpost)
+"aE" = (/obj/structure/table,/obj/item/storage/toolbox/electrical,/obj/item/storage/toolbox/electrical,/turf/open/floor,/area/whiskey_outpost)
 "aF" = (/turf/open/ground/coast{icon_state = "beachcorner"; dir = 1},/area/whiskey_outpost/outside/north)
 "aG" = (/turf/open/floor,/area/whiskey_outpost)
-"aH" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor{dir = 4; icon_state = "yellow"},/area/space)
-"aI" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor,/area/space)
+"aH" = (/obj/machinery/door/airlock/mainship/engineering,/obj/structure/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/open/floor,/area/space)
+"aI" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor{icon_state = "yellow"; dir = 1},/area/space)
 "aJ" = (/obj/machinery/light{dir = 1},/obj/effect/ai_node,/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "aK" = (/obj/machinery/light{dir = 8},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "aL" = (/obj/structure/rack,/obj/item/big_ammo_box/smg,/obj/item/big_ammo_box/smg,/obj/machinery/light{dir = 1},/obj/item/big_ammo_box/smg,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"aM" = (/obj/machinery/light{dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"aN" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor,/area/whiskey_outpost)
-"aO" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/open/floor{dir = 8; icon_state = "yellow"},/area/whiskey_outpost)
+"aM" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor{icon_state = "yellow"; dir = 9},/area/space)
+"aN" = (/obj/machinery/power/apc/hyper,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/open/floor{icon_state = "yellow"; dir = 1},/area/space)
+"aO" = (/obj/machinery/light{dir = 1},/turf/open/floor{icon_state = "yellow"; dir = 1},/area/space)
 "aP" = (/obj/machinery/light{dir = 8},/obj/structure/largecrate/supply/weapons/hpr,/turf/open/floor/plating/asteroidwarning{dir = 4},/area/whiskey_outpost)
 "aQ" = (/obj/structure/barricade/sandbags{pixel_z = -7},/obj/machinery/marine_turret/premade,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "aR" = (/obj/machinery/light,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -65,7 +65,7 @@
 "bm" = (/obj/item/lightstick/red/anchored,/turf/open/ground/jungle,/area/whiskey_outpost/outside/west)
 "bn" = (/obj/machinery/vending/medical,/turf/open/floor/mainship{icon_state = "sterile_green"},/area/whiskey_outpost)
 "bo" = (/turf/open/floor/plating/warning{dir = 8},/area/whiskey_outpost)
-"bp" = (/obj/effect/landmark/start/job/synthetic,/turf/open/floor,/area/whiskey_outpost)
+"bp" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "bq" = (/turf/open/floor/plating/warning{dir = 4},/area/whiskey_outpost)
 "br" = (/obj/structure/bed,/obj/item/bedsheet/medical,/obj/machinery/light{dir = 8},/turf/open/floor/mainship{icon_state = "dark_sterile"},/area/whiskey_outpost)
 "bs" = (/obj/structure/barricade/metal,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -174,10 +174,10 @@
 "dr" = (/turf/open/floor/plating/asteroidwarning{dir = 2},/area/whiskey_outpost)
 "ds" = (/obj/structure/barricade/metal{icon_state = "metal_0"; dir = 4},/obj/structure/barricade/metal{icon_state = "metal_0"; dir = 1},/turf/open/floor/plating/asteroidwarning{dir = 5},/area/whiskey_outpost)
 "dt" = (/obj/machinery/light{dir = 1},/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"du" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"du" = (/obj/structure/largecrate/random/barrel/white,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dv" = (/obj/structure/bed/roller,/obj/machinery/light{dir = 1},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dw" = (/obj/structure/platform{icon_state = "platform"; dir = 1},/obj/structure/platform{icon_state = "platform"; dir = 8},/obj/structure/platform_decoration{icon_state = "platform_deco"; dir = 5},/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
-"dx" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"dx" = (/obj/machinery/light{dir = 4},/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dy" = (/obj/machinery/landinglight/ds1/delaytwo,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dz" = (/obj/machinery/landinglight/ds1/delayone,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "dA" = (/obj/machinery/landinglight/ds1,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -212,7 +212,7 @@
 "ed" = (/obj/machinery/door/airlock/multi_tile/mainship/generic{name = "\improper Canteen"},/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "ee" = (/obj/machinery/marine_selector/clothes/medic,/turf/open/floor/mainship{dir = 10; icon_state = "red"},/area/whiskey_outpost)
 "ef" = (/obj/structure/barricade/sandbags{pixel_z = -7},/obj/structure/barricade/sandbags{icon_state = "sandbag_0"; dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 6},/area/whiskey_outpost)
-"eg" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/airlock/mainship/engineering{dir = 2; name = "\improper Engineering Workshop"},/turf/open/floor,/area/whiskey_outpost)
+"eg" = (/obj/effect/landmark/start/job/squadmarine,/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "eh" = (/obj/machinery/door/airlock/mainship/engineering{dir = 2; name = "\improper Engineering Workshop"},/turf/open/floor,/area/whiskey_outpost)
 "ei" = (/turf/open/ground/coast{dir = 1},/area/whiskey_outpost/outside/north)
 "ej" = (/turf/open/ground/coast/corner{dir = 4},/area/whiskey_outpost/outside/north)
@@ -223,7 +223,7 @@
 "eo" = (/obj/machinery/light{dir = 4},/obj/machinery/floodlight{anchored = 0; density = 1},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "ep" = (/obj/machinery/vending/tool,/turf/open/floor,/area/whiskey_outpost)
 "eq" = (/obj/machinery/vending/engivend,/turf/open/floor{dir = 4; icon_state = "yellow"},/area/whiskey_outpost)
-"er" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor,/area/whiskey_outpost)
+"er" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 8},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/open/floor,/area/whiskey_outpost)
 "es" = (/obj/item/lightstick/red/anchored,/turf/open/ground/jungle,/area/whiskey_outpost/outside/east)
 "et" = (/obj/machinery/vending/engineering,/turf/open/floor,/area/whiskey_outpost)
 "eu" = (/turf/open/ground/coast{dir = 8},/area/whiskey_outpost/outside/north)
@@ -253,7 +253,6 @@
 "eS" = (/obj/machinery/vending/shared_vending/marine_engi,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship{dir = 8; icon_state = "red"},/area/whiskey_outpost)
 "eT" = (/obj/machinery/vending/marineFood,/turf/open/floor/tile/whiteyellow/full,/area/whiskey_outpost)
 "eU" = (/obj/structure/closet/crate,/obj/item/storage/box/lights,/obj/item/storage/box/lights,/obj/item/storage/box/lights/tubes,/obj/item/storage/box/lights/tubes,/obj/item/storage/box/lights/tubes,/turf/open/floor/marking/bot,/area/whiskey_outpost)
-"eV" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/table,/obj/item/storage/toolbox/electrical,/obj/item/storage/toolbox/electrical,/turf/open/floor,/area/whiskey_outpost)
 "eW" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/obj/item/storage/toolbox/mechanical,/obj/item/clothing/glasses/welding,/obj/item/clothing/glasses/welding,/obj/item/clothing/glasses/welding,/obj/item/clothing/glasses/welding,/obj/item/clothing/glasses/welding,/turf/open/floor,/area/whiskey_outpost)
 "eX" = (/obj/structure/closet/crate,/obj/item/stack/sheet/glass{amount = 30},/obj/item/stack/sheet/glass{amount = 30},/turf/open/floor/marking/bot,/area/whiskey_outpost)
 "eY" = (/turf/open/ground/coast/corner{dir = 8},/area/whiskey_outpost/outside/north)
@@ -271,11 +270,11 @@
 "fk" = (/obj/structure/table,/obj/item/storage/fancy/cigarettes/kpack,/turf/open/floor/tile/whiteyellow/full,/area/whiskey_outpost)
 "fl" = (/obj/machinery/vending/dinnerware,/turf/open/floor/tile/whiteyellow/full,/area/whiskey_outpost)
 "fm" = (/obj/machinery/light{dir = 4},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"fn" = (/obj/machinery/power/geothermal,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/open/floor,/area/whiskey_outpost)
-"fo" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor{dir = 4; icon_state = "yellow"},/area/whiskey_outpost)
-"fp" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor,/area/whiskey_outpost)
-"fq" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor{dir = 8; icon_state = "yellow"},/area/whiskey_outpost)
-"fr" = (/obj/machinery/power/geothermal,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/open/floor,/area/whiskey_outpost)
+"fn" = (/obj/machinery/power/smes/buildable,/obj/structure/cable,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor{dir = 8; icon_state = "yellow"},/area/whiskey_outpost)
+"fo" = (/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor,/area/whiskey_outpost)
+"fp" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/floor,/area/whiskey_outpost)
+"fq" = (/turf/open/floor/marking/bot,/area/whiskey_outpost)
+"fr" = (/obj/machinery/power/geothermal,/obj/structure/cable/yellow{icon_state = "0-8"; d1 = 2; d2 = 4},/turf/open/floor{dir = 4; icon_state = "yellow"},/area/whiskey_outpost)
 "fs" = (/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost/outside/north)
 "ft" = (/turf/open/floor/plating/warning{dir = 9},/area/whiskey_outpost/outside/north)
 "fu" = (/turf/open/floor/plating/warning{dir = 1},/area/whiskey_outpost/outside/north)
@@ -383,12 +382,10 @@
 "hs" = (/obj/structure/jungle/plantbot1/alien,/turf/open/ground/river,/area/whiskey_outpost/outside/west)
 "ht" = (/turf/open/ground/coast{dir = 8},/area/whiskey_outpost/outside/east)
 "hu" = (/obj/effect/decal/warning_stripes/thick{icon_state = "thick"; dir = 9},/obj/structure/largecrate/supply/explosives/mortar_incend,/turf/open/floor/plating,/area/whiskey_outpost)
-"hv" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "hw" = (/turf/open/ground/jungle,/area/whiskey_outpost/outside/west)
 "hx" = (/turf/open/floor/plating/ground/dirtgrassborder/corner{dir = 8},/area/whiskey_outpost/outside/west)
 "hy" = (/turf/open/floor/plating/ground/dirtgrassborder{dir = 1},/area/whiskey_outpost/outside/west)
 "hz" = (/turf/open/floor/plating/ground/dirtgrassborder2/corner{dir = 8},/area/whiskey_outpost/outside/west)
-"hA" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/largecrate/mule,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "hB" = (/turf/closed/mineral,/area/whiskey_outpost/outside/west)
 "hC" = (/obj/structure/flora/ausbushes/reedbush,/turf/open/ground/river,/area/whiskey_outpost/outside/west)
 "hD" = (/turf/open/ground/coast/corner2{dir = 1},/area/whiskey_outpost/outside/east)
@@ -408,7 +405,6 @@
 "hR" = (/turf/open/ground/grass/beach{dir = 8},/area/whiskey_outpost/outside/west)
 "hS" = (/obj/structure/largecrate/supply/supplies/metal,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "hT" = (/obj/structure/flora/ausbushes/leafybush,/turf/open/ground/grass,/area/whiskey_outpost/outside/west)
-"hU" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/largecrate/random/barrel/white,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "hV" = (/obj/structure/largecrate/random/barrel/white,/obj/effect/decal/warning_stripes/thick{icon_state = "thick"; dir = 5},/turf/open/floor/plating,/area/whiskey_outpost)
 "hW" = (/turf/open/floor/plating/asteroidwarning{dir = 8},/area/whiskey_outpost/outside/west)
 "hX" = (/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost/outside/west)
@@ -497,7 +493,7 @@
 "jC" = (/obj/machinery/marine_selector/clothes,/obj/structure/window/reinforced{dir = 4},/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jD" = (/obj/machinery/light{dir = 1},/obj/machinery/marine_selector/clothes,/obj/structure/window/reinforced{dir = 4},/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jE" = (/obj/structure/table,/obj/item/storage/firstaid/o2,/obj/item/storage/firstaid/regular,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
-"jF" = (/obj/machinery/light{dir = 1},/obj/machinery/power/smes/buildable,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/open/floor{dir = 8; icon_state = "yellow"},/area/space)
+"jF" = (/obj/machinery/power/smes/buildable,/obj/structure/cable,/turf/open/floor{icon_state = "yellow"; dir = 10},/area/whiskey_outpost)
 "jG" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "70"},/area/whiskey_outpost/outside/east)
 "jH" = (/turf/open/ground/jungle,/turf/closed/shuttle{density = 0; dir = 8; icon_state = "re_corner"},/area/whiskey_outpost/outside/west)
 "jI" = (/turf/closed/wall,/area/whiskey_outpost/outside/west)
@@ -518,7 +514,7 @@
 "jX" = (/obj/item/storage/box/explosive_mines,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jY" = (/obj/item/storage/box/sentry,/obj/item/flashlight,/obj/item/flashlight,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
 "jZ" = (/obj/machinery/vending/nanomed{dir = 8},/obj/item/storage/box/sentry,/obj/item/flashlight,/obj/item/flashlight,/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
-"ka" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"ka" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/open/floor,/area/whiskey_outpost)
 "kb" = (/turf/closed/shuttle/dropship3/transparent{icon_state = "65"},/area/whiskey_outpost/outside/east)
 "kc" = (/obj/item/storage/box/sentry,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
 "kd" = (/obj/item/storage/box/m94,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/east)
@@ -529,6 +525,7 @@
 "ki" = (/obj/structure/largecrate/supply/weapons/flamers,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "kj" = (/obj/effect/landmark/start/job/shiptech,/turf/open/floor,/area/whiskey_outpost)
 "kk" = (/obj/structure/closet/secure_closet/guncabinet/mp_armory,/turf/open/floor/tile/dark,/area/whiskey_outpost)
+"kl" = (/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/open/floor,/area/whiskey_outpost)
 "km" = (/turf/open/ground/jungle,/turf/closed/shuttle{density = 0; dir = 4; icon_state = "re_corner"},/area/whiskey_outpost)
 "kn" = (/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/south)
 "ko" = (/obj/structure/barricade/metal,/turf/open/floor/plating/warning{dir = 2},/area/whiskey_outpost/outside/south)
@@ -559,6 +556,7 @@
 "kN" = (/obj/structure/closet/secure_closet/staff_officer,/turf/open/floor/tile/dark,/area/whiskey_outpost)
 "kO" = (/obj/machinery/light{dir = 8},/obj/machinery/marine_selector/gear/medic,/turf/open/floor/mainship{dir = 8; icon_state = "emerald"},/area/whiskey_outpost)
 "kP" = (/turf/open/ground/coast/corner{dir = 1},/area/whiskey_outpost/outside/east)
+"kQ" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 8},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/open/floor{icon_state = "yellow"; dir = 2},/area/whiskey_outpost)
 "kR" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/platebot,/area/whiskey_outpost/outside/west)
 "kS" = (/obj/structure/bed/chair,/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/asteroidwarning{dir = 4},/area/whiskey_outpost)
 "kT" = (/obj/machinery/m56d_hmg/mg_turret,/turf/open/floor/plating/warning{dir = 2},/area/whiskey_outpost/outside/west)
@@ -593,7 +591,6 @@
 "lw" = (/obj/structure/flora/ausbushes/reedbush,/turf/open/ground/river,/area/whiskey_outpost/outside/south)
 "lx" = (/obj/item/weapon/gun/rifle/m41a1,/turf/open/ground/river,/area/whiskey_outpost/outside/south)
 "ly" = (/obj/structure/flora/ausbushes/stalkybush,/turf/open/ground/river,/area/whiskey_outpost/outside/south)
-"lz" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/landmark/start/job/squadmarine,/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "lA" = (/obj/structure/flora/ausbushes/leafybush,/turf/open/ground/jungle,/area/whiskey_outpost/outside/south)
 "lB" = (/obj/effect/spawner/gibspawner/human,/turf/open/ground/river,/area/whiskey_outpost/outside/south)
 "lC" = (/obj/effect/spawner/gibspawner/human,/turf/open/floor,/area/whiskey_outpost/outside/south)
@@ -627,7 +624,9 @@
 "me" = (/obj/effect/decal/cleanable/blood/writing{icon_state = "tracks"; dir = 10},/turf/open/ground/jungle,/area/whiskey_outpost/outside/south)
 "mf" = (/obj/item/lightstick/red/anchored,/obj/effect/decal/cleanable/blood/writing,/turf/open/ground/jungle,/area/whiskey_outpost/outside/south)
 "mg" = (/obj/structure/bed/chair{dir = 4},/obj/effect/landmark/start/job/squadspecialist,/turf/open/floor/tile/whiteyellow/full,/area/whiskey_outpost)
+"mi" = (/obj/structure/cable/yellow{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/open/floor{icon_state = "yellow"; dir = 2},/area/whiskey_outpost)
 "mj" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
+"mk" = (/obj/machinery/power/geothermal,/obj/structure/cable/yellow{icon_state = "0-8"; d1 = 2; d2 = 4},/turf/open/floor{icon_state = "yellow"; dir = 6},/area/whiskey_outpost)
 "ml" = (/turf/closed/wall/r_wall,/area/whiskey_outpost/outside/south)
 "mn" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/asteroidfloor,/area/space)
 "mo" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/asteroidwarning{dir = 2},/area/whiskey_outpost)
@@ -862,7 +861,6 @@
 "ro" = (/obj/structure/largecrate/supply/weapons/hpr,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "rp" = (/obj/structure/platform_decoration{icon_state = "platform_deco"; dir = 10},/obj/structure/platform{icon_state = "platform"; dir = 8},/obj/structure/platform,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
 "rq" = (/obj/structure/flora/ausbushes/sparsegrass,/obj/structure/platform,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
-"rr" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 4},/obj/machinery/vending/marine,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "rs" = (/obj/structure/platform{icon_state = "platform"; dir = 4},/turf/open/ground/grass,/area/whiskey_outpost/outside/north)
 "rt" = (/obj/structure/barricade/metal{dir = 8},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "ru" = (/obj/structure/platform{icon_state = "platform"; dir = 1},/obj/structure/platform_decoration{icon_state = "platform_deco"; dir = 9},/obj/structure/platform{icon_state = "platform"; dir = 4},/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
@@ -901,7 +899,6 @@
 "vO" = (/obj/structure/window/framed/colony/reinforced,/turf/open/floor/plating,/area/whiskey_outpost)
 "we" = (/obj/structure/barricade/sandbags{pixel_z = -7},/obj/structure/largecrate/supply/explosives/mines,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "wf" = (/obj/structure/largecrate/supply/ammo/standard_smg,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"wC" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "xx" = (/obj/structure/bed,/obj/machinery/light{dir = 1},/obj/item/bedsheet/blue,/obj/effect/landmark/start/latejoin_cryo,/turf/open/floor/mainship{dir = 1; icon_state = "blue"},/area/whiskey_outpost)
 "xD" = (/obj/structure/largecrate/guns,/turf/open/ground/jungle,/area/whiskey_outpost/outside/west)
 "xF" = (/obj/effect/landmark/start/job/squadengineer,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -941,7 +938,6 @@
 "Ik" = (/obj/machinery/light{dir = 1},/obj/structure/largecrate/supply/explosives/mines,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "In" = (/obj/machinery/light{dir = 4},/turf/open/floor/plating/asteroidwarning{dir = 6},/area/whiskey_outpost)
 "IC" = (/obj/structure/window/reinforced{dir = 4},/turf/open/floor/mainship{icon_state = "red"},/area/whiskey_outpost)
-"IR" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/largecrate/supply/supplies/metal,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "Jo" = (/obj/structure/platform{icon_state = "platform"; dir = 8},/obj/effect/ai_node,/turf/open/floor/plating/ground/dirt,/area/whiskey_outpost/outside/north)
 "Jz" = (/obj/structure/barricade/sandbags{pixel_z = -7},/obj/structure/barricade/sandbags{icon_state = "sandbag_0"; dir = 4},/obj/effect/ai_node,/turf/open/floor/plating/warning{dir = 6},/area/whiskey_outpost)
 "JH" = (/obj/effect/landmark/start/job/squadspecialist,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -958,7 +954,6 @@
 "MO" = (/obj/structure/window/framed/colony/reinforced,/turf/open/floor/plating,/area/whiskey_outpost/outside/west)
 "Nf" = (/obj/effect/ai_node,/turf/open/floor/plating,/area/whiskey_outpost)
 "NA" = (/obj/machinery/marine_selector/gear/smartgun,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship{dir = 4; icon_state = "blue"},/area/whiskey_outpost)
-"NC" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/marine_selector/clothes,/obj/structure/window/reinforced,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "Op" = (/obj/machinery/vending/marine_medic,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship{dir = 8; icon_state = "emerald"},/area/whiskey_outpost)
 "Ov" = (/turf/open/floor/plating/asteroidwarning{dir = 5},/area/whiskey_outpost)
 "OG" = (/obj/machinery/vending/marine,/turf/open/floor/tile/dark,/area/whiskey_outpost)
@@ -969,7 +964,6 @@
 "PT" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/mainship,/area/whiskey_outpost)
 "Qg" = (/obj/effect/landmark/lv624/fog_blocker,/obj/effect/ai_node,/turf/open/ground/jungle,/area/whiskey_outpost/outside/south)
 "QG" = (/obj/machinery/marine_selector/clothes/smartgun,/obj/structure/window/reinforced,/turf/open/floor/mainship{dir = 4; icon_state = "blue"},/area/whiskey_outpost)
-"Rg" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/light{dir = 4},/obj/structure/bed/roller,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "Rn" = (/obj/machinery/vending/shared_vending/marine_engi,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/mainship{dir = 8; icon_state = "emerald"},/area/whiskey_outpost)
 "Rw" = (/obj/structure/bed,/obj/item/bedsheet/blue,/obj/effect/landmark/start/latejoin_gateway,/turf/open/floor/mainship{dir = 5; icon_state = "blue"},/area/whiskey_outpost)
 "RP" = (/obj/machinery/vending/marine,/obj/structure/window/reinforced{dir = 8},/turf/open/floor{icon_state = "cafeteria"; dir = 2},/area/whiskey_outpost)
@@ -977,7 +971,6 @@
 "Sf" = (/obj/effect/ai_node,/turf/open/ground/jungle,/area/whiskey_outpost/outside/west)
 "Ss" = (/obj/effect/ai_node,/turf/open/floor/plating/asteroidwarning{dir = 8},/area/whiskey_outpost/outside/east)
 "SF" = (/obj/machinery/vending/marine,/obj/structure/window/reinforced,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
-"Th" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/vending/uniform_supply,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "Tx" = (/obj/effect/ai_node,/turf/open/ground/grass/beach{dir = 2},/area/whiskey_outpost/outside/south)
 "Tz" = (/obj/machinery/vending/marine,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
 "TW" = (/obj/machinery/light{dir = 4},/obj/structure/largecrate/lisa,/turf/open/floor/plating/asteroidfloor,/area/whiskey_outpost)
@@ -1005,40 +998,40 @@ mvmvmvmvmvmvmvmvmvmvmvmvmvhIhIhIaSaSdmdmdmdmdmdmdmdmbtdmdmdmdmdmdmdmdmdmgVfXfXfT
 mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmsodmdmcndmgVfXfTbWcWcxeuaSaShIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSdmdmdmdmdmdmdmdmdmcAcBcBcBcBcBcBcBcBcBcBcBcBcBcBcLnwcWcxeuaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSdmdmdmdmdmdmdmdmdmrsdcdqdqdqdqdqdqdqdqdqdqdqdqdqdsnscWcxeuaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSdmdmdmdmdmdmdmdmrsqObRdydzdAdOdydzdAdOdydzdAbRbXnsgpeiaXaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvhIhIhIhIhIhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSdmdmdmdmdmdmdmdmrsqObRdydzdAdOdydzdAdOdydzdAbRbXnsgpeiaXaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvjWmvaBmvmvmvmvmvmvmvmvmvmvmvmvmvmvhIhIhIhIhIhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSaSdmdmdmdmdmdmdmrsqOgIgFgFgFgFgFgFgFgFgFgFgFbRbXnsbWbWbWhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvhIhIhIhIhIhIhIhImvhIScScScScScScScSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIhIhIaSaSaSaSdmdmdmdmdmdmdmdmrsqOgIgFgFgFgFgFgFgFgFgFgFgFbRbXnsbWbWbWhImvmvmvmvmvmvmvmvmvhIhIhIhIhIhIhIhIhIhIhIhImvmvmvmvhIacacacacacachImvhIbdbdbdbdbdbdbdbdhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSaSdmdmdmdmdmgJdmdmdmrsrhgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWhImvhIhIhIhIhIhIhIhIhIaoaoaoaoaoaoaoaoaoaohImvmvmvmvhIacadaeafagachIhIhIbdajaAbYcfchdbbdenhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSdmdmdmdmdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnfbXnscKbWbWhImvhIacacacacacacacacacmpmpaqarasaHaIjFjWhIhIhIhIhIhIacahaeaeaiacacacacbdeBfRciclfReOvObRhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmdmrsqOnogFgFgFgFgFgFgFgFgFgFgFnxbXnsbWbWbWhImvhIackiqrrmaLrnbeqyacbRbRdfacaGeIaGeJaGacacacacacacacacalacacackkkpacbdeSWmciclsAfjbdfZhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmpfdmdmdmdmdmdmdmdmdmrsqOutgFgFgFgFgFgFgFgFgFgFgFutbXnsbWbWbWhImvhIacwfbRbRbRbRbRbRacbRamkaacaGeIaGeJaGacatauavckacaxcRazPyazazazUHacbdgabIciclzFgnbdhShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmsorsqOgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWhImvhIacrorlcHqibRqjqGacaCaDaMacaEaBaNaObpacatauazazaJazazazazazacacacacbdynPTciclsAEdbdaKhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnfbXnsbWcwbWhImvhIacacacacacbRacacacutbRdfacacacacacacacatauazazazazcTazazOGacaPbRbabdzMWmciclzFgSbdbRhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIhIhIhIaSaSdmdmdmdmdmdmqcdmdmdmdmcAqdqOnoqegFgFgFgFgFgFgFgFgFqfnxbXnsbWbWbWhImvhIakakacrcrbbRrerkacVQOvdfacaUaWbhaWbiacatauazaYaZaybckNkNgOacbBbRbbbdcdbIciclsAMsbdbRScSchIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSaSaSaSdmdmdmdmdmdmdmdmdmdmdmrsqgqRgIqegFgFgFgFgFgFgFgFgFqfqbbXnsbWbWbWhImvhIakakacbRbRbRbRfmacSFCQdfacbjbkbkbkbvacacacblacacacacacacacaccUbRgPbdeeICeCfJzkrWbdbRhuhVSchIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrsqUqZgTqegFgFgFgFqpgFgFgFgFqfmcbXnscybWbWhImvhIakakaccocqbRbRbRqxbRbRdfacbwbkcVbkbybduJbkbkaVbnbTqzqAqBqCacgQbRgRbdbdvOLNbRvObdbdbRpHDEScSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrsqsqRmsqegFgFgFgFgFgFgFgFgFqfnfbXnsbWbWbWhIhIhIakakacbRrdbRbRbRacbRbRIRacbLbMgqbMgsbdbrbFbkbkbkbVqDbkbkcracbRbRbRETctbRbRbRbRctbRbRpQpVScSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSdmdmdmdmdmdmdmrAqtqOnoqegFgFgFgFgFgFgFgFgFqfxMbXnsbWbWbWaSaSaSLaLdacqhrfrgCsyhacbRttrracbdbQbdgKbdbzbNbFbkbkbkbTqXqYbkrjacbRutbRbRbRbRbRutbRbRbJbRpWpXipSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSqudmaSaSaSaSaSaSaSaSdmdmdmdmdmdmrsqOgIgFgFgFgFgFgFgFgFgFgFgFqbbXnsbWbWbWbWngyMGmInacqkacbEacacacbRGmNCacbDbkcabkcbgwbkbkbkuKbSacacbTqaacacbRbRbRbRaRxMbRbRbRaRbRbRpPpSirSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSaSaSdmdmqvdmdmsorsqOgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWbWngrtbRbRcZsydabgbsbsbsbRbRhvaccDbkbkbkbkbkbkbubkbkbkbTcvcVbkcsacDDbRbRbdbdbdbdbdbdbdbdbRpTpUpZakSchIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSaSaSdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnflRnsbWbWbWcKngrHbRbRqlqmqnbRbRbRbRbRbRThacbObPbubkcVbkbkbkbkbubkbTbAbkbkcgacDUOvbRbdeEDbJSPoxxRwbdbRbRbRbRaTakakakakakakakakakakaSaSaSaSaSaSaSaSaSaSaSaSaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmaSaSaSaSaSdmdmdmdmdmdmrsqOnogFgFgFgFgFgFgFgFgFgFgFnxbXnsbWbWbWbWngrtbRbRbRbRbRbRmjbRbRutbRhAaccjbkbkbkbkbkbubkbkbkEYbTcEbkbkcFactTCQbRvOMGfRggXvfRHqvObRbRcINfdDgGlWjwjzakakakakakakaSaSaSaScxcxcxcxcxcxcxcxaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmaSaSaSaSaSdmdmdmdmdmdmrsrhgIgFgFgFgFgFgFgFgFgFgFgFqbbXrpofrqofofqKrtbRbRxMbRbRbRbRbRbRbRbRhUacbObPbkbUbUbkbkcGgwbkbkcpbkbkbkcCacbRbRbRbdRnWmggghsANAbdbRbRcIgFgFgFgFgFpwLdLaakakakakaSaSaScxcxcxcxcxcJcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSaSaSdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOgTgFgFgFgFgFgFgFgFgFgFgFbRbRdqdqdqdqdqdqbRbRbRbRcMcNcPcOcPcPcYbRRgacacacacddacgLcSacacgLcSacddacacacacaKbRfmbdZRbIggghzFQGbdaKxFcIpygFgFgFpypwGmCQbRbRfZakaSaScxcxcXcxcxcxcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOutgFgFgFgFgFgFgFgFgFgFgFutbRbRbRbRbRbRbRbRutbRbRdhfafibRfajNkSbRdfdtzlpMLldtaQbRbRdgdgbRbRaQdvWrpMLldvbRbRbRbdeRPTggghsAKlbdbRbRcIgFgFrvgFgFpwbRbRbRbHcmakaSaScxcxcxcxcxcxcxcxdlcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOnogFgFgFgFqwqwqwgFgFgFgFnxbRpDpDpDpDpDpDbRbRbRbRkWkXkXdrkXkXlhbRduananananananananwClzanananananananandxttDUbdOpWmggghzFHObdbRbRpApBpBpBpBpBpCbRbRbXdwnkpmbWcWcxcxcxcxcxcJcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmaSaSaSaSaSaSaSaSdmdmdmdmdmrsqObRqEqFqHqIqEqFqHqJqEqFqHbRbXpbnknknknkrurtbRbRqWbRgAgrgrgrnFbRqWbRbRbRawawlEbRbRbRbRccawbRbRbRawlHawbRdfGmtTbdkObIggghsAPPbdbRbRbRutbRbRbRbRbRbRbRbXnsbWdidjtlcxcxdlcxcxcxcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmaSaSaSaSaSaSdmdmdmdmsmdmdmrsqLpDpDpDpDpDpDpDpDpDpDpDpDpDqMnsbWbWbWbWngrtbRbRbRbRiucZbfdaivbRbRbRawawbRbRbRawlIbRbRbRbRbRbRawawbRbRbRdfbRTWbdjTBRgkglxQBObdaKbRbRbRbRbRxFbRbRbRbsjBnsbWcWcxcxcxcxcxcxcxcxcxcxcxaSaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrArBrBrBrBrBrBrBrBrCnknknknknknknlbWbWcKbWnjdCbRbROXbRiubonybqivbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRdfbRwebdbdvOfQfRvObdbdbRbRbRbRbRbRbRbRbRbXptoDpidjsVcxcxcxcxcxcxcxcxcJcxcxaShIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIhIhIaSaSaSaSdmdmdmdmdmdmdmdmrsqOgIgFgFgFgFgFgFgFgFgFgFgFbRbXnsbWbWbWhImvmvmvmvmvmvmvmvmvhIhIhIhIhIhIhIhIhIhIhIhIhImvmvmvhIacacacacacachImvhIbdbdbdbdbdbdbdbdhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSaSdmdmdmdmdmgJdmdmdmrsrhgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWhImvhIhIhIhIhIhIhIhIhIaoaoaoaoaoaoaoaoaoaoaohImvmvmvhIacadaeafagachIhIhIbdajaAbYcfchdbbdenhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSaSaSdmdmdmdmdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnfbXnscKbWbWhImvhIacacacacacacacacacmpaqaraHaMaIaNaOamaohIhIhIhIhIacahaeaeaiacacacacbdeBfRciclfReOvObRhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmdmrsqOnogFgFgFgFgFgFgFgFgFgFgFnxbXnsbWbWbWhImvhIackiqrrmaLrnbeqyacbRdfbRacfnerfofpfracacacacacacacacalacacackkkpacbdeSWmciclsAfjbdfZhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmpfdmdmdmdmdmdmdmdmdmrsqOutgFgFgFgFgFgFgFgFgFgFgFutbXnsbWbWbWhImvhIacwfbRbRbRbRbRbRacfZdfbRacfnerkaklfracatauavckacaxcRazPyazazazUHacbdgabIciclzFgnbdhShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmsorsqOgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWhImvhIacrorlcHqibRqjqGacaCaDfmacjFkQapmimkacatauazazaJazazazazazacacacacbdynPTciclsAEdbdaKhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnfbXnsbWcwbWhImvhIacacacacacbRacacacutbRbRacacacacacacacatauazazazazcTazazOGacaPbRbabdzMWmciclzFgSbdbRhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIhIhIhIaSaSdmdmdmdmdmdmqcdmdmdmdmcAqdqOnoqegFgFgFgFgFgFgFgFgFqfnxbXnsbWbWbWhImvhIakakacrcrbbRrerkacVQOvbRacaUaWbhaWbiacatauazaYaZaybckNkNgOacbBbRbbbdcdbIciclsAMsbdbRScSchIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSaSaSaSdmdmdmdmdmdmdmdmdmdmdmrsqgqRgIqegFgFgFgFgFgFgFgFgFqfqbbXnsbWbWbWhImvhIakakacbRbRbRbRfmacSFCQbRacbjbkbkbkbvacacacblacacacacacacacaccUbRgPbdeeICeCfJzkrWbdbRhuhVSchIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrsqUqZgTqegFgFgFgFqpgFgFgFgFqfmcbXnscybWbWhImvhIakakaccocqbRbRbRqxbRbRbRacbwbkcVbkbybduJbkbkaVbnbTqzqAqBqCacgQbRgRbdbdvOLNbRvObdbdbRpHDEScSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrsqsqRmsqegFgFgFgFgFgFgFgFgFqfnfbXnsbWbWbWhIhIhIakakacbRrdbRbRbRacbRbRhSacbLbMgqbMgsbdbrbFbkbkbkbVqDbkbkcracbRbRbRETctbRbRbRbRctbRbRpQpVScSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSdmdmdmdmdmdmdmrAqtqOnoqegFgFgFgFgFgFgFgFgFqfxMbXnsbWbWbWaSaSaSLaLdacqhrfrgCsyhacbRttanacbdbQbdgKbdbzbNbFbkbkbkbTqXqYbkrjacbRutbRbRbRbRbRutbRbRbJbRpWpXipSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSqudmaSaSaSaSaSaSaSaSdmdmdmdmdmdmrsqOgIgFgFgFgFgFgFgFgFgFgFgFqbbXnsbWbWbWbWngyMGmInacqkacbEacacacbRGmtTacbDbkcabkcbgwbkbkbkuKbSacacbTqaacacbRbRbRbRaRxMbRbRbRaRbRbRpPpSirSchImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSaSaSdmdmqvdmdmsorsqOgTgFgFgFgFgFgFgFgFgFgFgFmcbXnsbWbWbWbWngrtbRbRcZsydabgbsbsbsbRbRbpaccDbkbkbkbkbkbkbubkbkbkbTcvcVbkcsacDDbRbRbdbdbdbdbdbdbdbdbRpTpUpZakSchIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmaSaSaSaSaSaSaSaSdmdmdmdmdmdmrsqOmsgFgFgFgFgFgFgFgFgFgFgFnflRnsbWbWbWcKngrHbRbRqlqmqnbRbRbRbRbRbRETacbObPbubkcVbkbkbkbkbubkbTbAbkbkcgacDUOvbRbdeEDbJSPoxxRwbdbRbRbRbRaTakakakakakakakakakakaSaSaSaSaSaSaSaSaSaSaSaSaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmaSaSaSaSaSdmdmdmdmdmdmrsqOnogFgFgFgFgFgFgFgFgFgFgFnxbXnsbWbWbWbWngrtbRbRbRbRbRbRmjbRbRutbRibaccjbkbkbkbkbkbubkbkbkEYbTcEbkbkcFactTCQbRvOMGfRggXvfRHqvObRbRcINfdDgGlWjwjzakakakakakakaSaSaSaScxcxcxcxcxcxcxcxaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmaSaSaSaSaSdmdmdmdmdmdmrsrhgIgFgFgFgFgFgFgFgFgFgFgFqbbXrpofrqofofqKrtbRbRxMbRbRbRbRbRbRbRbRduacbObPbkbUbUbkbkcGgwbkbkcpbkbkbkcCacbRbRbRbdRnWmggghsANAbdbRbRcIgFgFgFgFgFpwLdLaakakakakaSaSaScxcxcxcxcxcJcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSaSaSdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOgTgFgFgFgFgFgFgFgFgFgFgFbRbRdqdqdqdqdqdqbRbRbRbRcMcNcPcOcPcPcYbRdxacacacacddacgLcSacacgLcSacddacacacacaKbRfmbdZRbIggghzFQGbdaKxFcIpygFgFgFpypwGmCQbRbRfZakaSaScxcxcXcxcxcxcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOutgFgFgFgFgFgFgFgFgFgFgFutbRbRbRbRbRbRbRbRutbRbRdhfafibRfajNkSbRbRdtzlpMLldtaQbRbRdgdgbRbRaQdvWrpMLldvbRbRbRbdeRPTggghsAKlbdbRbRcIgFgFrvgFgFpwbRbRbRbHcmakaSaScxcxcxcxcxcxcxcxdlcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmaSaSaSaSaSaSaSaSaSdmdmrsqOnogFgFgFgFqwqwqwgFgFgFgFnxbRpDpDpDpDpDpDbRbRbRbRkWkXkXdrkXkXlhbRbRbRbRbRbRbRbRbRbRdgegbRbRbRbRbRbRbRbRbRttDUbdOpWmggghzFHObdbRbRpApBpBpBpBpBpCbRbRbXdwnkpmbWcWcxcxcxcxcxcJcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmaSaSaSaSaSaSaSaSdmdmdmdmdmrsqObRqEqFqHqIqEqFqHqJqEqFqHbRbXpbnknknknkrurtbRbRqWbRgAgrgrgrnFbRqWbRbRbRawawlEbRbRbRbRccawbRbRbRawlHawbRbRGmtTbdkObIggghsAPPbdbRbRbRutbRbRbRbRbRbRbRbXnsbWdidjtlcxcxdlcxcxcxcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmaSaSaSaSaSaSdmdmdmdmsmdmdmrsqLpDpDpDpDpDpDpDpDpDpDpDpDpDqMnsbWbWbWbWngrtbRbRbRbRiucZbfdaivbRbRbRawawbRbRbRawlIbRbRbRbRbRbRawawbRbRbRbRbRTWbdjTBRgkglxQBObdaKbRbRbRbRbRxFbRbRbRbsjBnsbWcWcxcxcxcxcxcxcxcxcxcxcxaSaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmdmrArBrBrBrBrBrBrBrBrCnknknknknknknlbWbWcKbWnjdCbRbROXbRiubonybqivbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRwebdbdvOfQfRvObdbdbRbRbRbRbRbRbRbRbRbXptoDpidjsVcxcxcxcxcxcxcxcxcJcxcxaShIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvhIaSdmdPdQdQdQdQdRdndmsnaSaSdmdmdmdmdmdmdmdmdmdmdmdmsodobWYObWbWbWbWbWbWbWbWbWbWdJutbRbRbRpnnzpqnzpoutbRbRmjbRxMbRbRbRxFbRbRmjbRutbRbRbRbRbRbRJHutbRbRvMbRbRbRbRctbRpzpDpJpKpLpDpMpNpMcupEcxcxcxcxcxcxcxcXcxcxcxcxcxcxcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdQdUdUdUdVdQdmdmdmaSaSdmdmdmdmdmdmdmspdmdmdmdmnngdbWbWbWbWbWbWbWbWbWbWbWneeybRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRaRbRbRbRbRbRxFbRbRbRdfbRbRbRbRbRbRbRbRbRbXdwnknlbWnjnmdTpOefpbpFcxcxcxcxcxcxcxcxdlcxcxcxcxcXcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdQdWdUdUdXdQdmdmaSaSaSaSaSaSdmdmdmdmdmdmdmdmdmdobWbWbWbWbWbWbWbWbWbWbWbWngqObRbRaRbRbRbRbRbRbRbRbRfvibbRbRbRJHbRbRfmbdaKbRbRbRbRbRbRaRgidfxFgjaRlQbRbRmjbRbRbXnsbWbWbWbWnjnknknkpmcWcxcxcxcxcJcxcxcxcxcxcxcxcxcxdZaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmeadQdUdQdQebdmdmaSaSaSaSaSaSaSaSdmdmdmaSaSaSaSaSbWbWbWbWbWbWbWbWecbWbWneqPqObRbdbdbTbTbdedbxbdbTbTbdbdbRawlHbRbRbRbRbKbRbRbRbRawawbdbdbdegehbdbdbdbRbRbRbRbRlRnsbWbWbWbWbWecbWdidjdkcxdlcxcxcxcxcxcxcxdZeieieieiejaShIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdndmdmaSaSaSaSaSaSaSaSaSaSaSaSaSaSaSaSbWbWbWbWcwbWbWbWbWbWbWbWngqQqRfmbdvrelelelelelbCeleleTbdDDbRbRbRawlIawbRbRawlIbRbReobdepeqeraGbGetbdaKbRbRbRbRbXnsbWbWcKbWbWbWbWcWcxcxcxcxcxcxcxcXcxcxcxeubWbWbWbWbWaSaSaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmaSaSaSaSaSaSewdjdjdjdjdjdjdjdjexbWbWbWbWbWbWbWbWbWbWbWbWngqUqZbRbTelellSfclUellSeDlVeFvOeGbRbRbRbRbRbRbRlQbRbRbRbRbRvOeHeIerkjeJeKvObRbRcmotcmcunsbWbWbWbWbWbWbWcWcxcxcxcxcxcxcxcxcxcxcxeubWsqbWbWbWbWbWaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmaSaSaSaSaSbWcWcxcxcxcxcxcxcxcxeubWbWbWbWbWcybWbWbWbWbWbWngdTqRbRbTzTellSePlXellSBklUflvOeGbRbRJHbRawawbRawawutbRbRbRvOeUeIeVeWeJeXvObRbXDsplnknknlbWbWbWbWbWbWnenAnBnBnBnBnEoveieieieieiejcKbWcybWbWbWbWbWaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmaSaSaSaSaSbWeYeZcxdlcxcxcxcxcJeubWbWbWbWbWbWbWbWbWbWbWbWnjnmqObRbdVLellYeAlVellSfwmbfdbdETbRawawbRbRbRbRbRbRbRawawbRvOfeeIeVffeJfgvObRbXppnwbWbWbWbWbWbWbWbWbWbWdpdpdpdpdpdpbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
-mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmaSaSaSaSaSbWbWcWcxcxcxcxcXcxcxeubWbWbWbWbWcKbWbWbWbWcwbWbWngrhbRbTelellSfblUelmgfklUfYbTeGbRbRbRbRbRxMbRbROXbRbRbRfmbdfnfofpapfqfrbdbRdHcensbWbWbWbWbWbWfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsftfufufufuicididjtbWaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdQdUdUdUdVdQdmdmdmaSaSdmdmdmdmdmdmdmspdmdmdmdmnngdbWbWbWbWbWbWbWbWbWbWbWneeybRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRaRbRbRbRbRbRxFbRbRbRbRbRbRbRbRbRbRbRbRbRbXdwnknlbWnjnmdTpOefpbpFcxcxcxcxcxcxcxcxdlcxcxcxcxcXcxaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdQdWdUdUdXdQdmdmaSaSaSaSaSaSdmdmdmdmdmdmdmdmdmdobWbWbWbWbWbWbWbWbWbWbWbWngqObRbRaRbRbRbRbRbRbRbRbRfvibbRbRbRJHbRbRfmbdaKbRbRbRbRbRbRaRgibRxFgjaRlQbRbRmjbRbRbXnsbWbWbWbWnjnknknkpmcWcxcxcxcxcJcxcxcxcxcxcxcxcxcxdZaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmeadQdUdQdQebdmdmaSaSaSaSaSaSaSaSdmdmdmaSaSaSaSaSbWbWbWbWbWbWbWbWecbWbWneqPqObRbdbdbTbTbdedbxbdbTbTbdbdbRawlHbRbRbRbRbKbRbRbRbRawawbdbdbdehehbdbdbdbRbRbRbRbRlRnsbWbWbWbWbWecbWdidjdkcxdlcxcxcxcxcxcxcxdZeieieieiejaShIhIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdndmdmaSaSaSaSaSaSaSaSaSaSaSaSaSaSaSaSbWbWbWbWcwbWbWbWbWbWbWbWngqQqRfmbdvrelelelelelbCeleleTbdDDbRbRbRawlIawbRbRawlIbRbReobdepeqaGaGbGetbdaKbRbRbRbRbXnsbWbWcKbWbWbWbWcWcxcxcxcxcxcxcxcXcxcxcxeubWbWbWbWbWaSaSaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmaSaSaSaSaSaSewdjdjdjdjdjdjdjdjexbWbWbWbWbWbWbWbWbWbWbWbWngqUqZbRbTelellSfclUellSeDlVeFvOeGbRbRbRbRbRbRbRlQbRbRbRbRbRvOeHeIaskjeJeKvObRbRcmotcmcunsbWbWbWbWbWbWbWcWcxcxcxcxcxcxcxcxcxcxcxeubWsqbWbWbWbWbWaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmdmaSaSaSaSaSbWcWcxcxcxcxcxcxcxcxeubWbWbWbWbWcybWbWbWbWbWbWngdTqRbRbTzTellSePlXellSBklUflvOeGbRbRJHbRawawbRawawutbRbRbRvOeUeIaEeWeJeXvObRbXDsplnknknlbWbWbWbWbWbWnenAnBnBnBnBnEoveieieieieiejcKbWcybWbWbWbWbWaShIhImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmaSaSaSaSaSbWeYeZcxdlcxcxcxcxcJeubWbWbWbWbWbWbWbWbWbWbWbWnjnmqObRbdVLellYeAlVellSfwmbfdbdETbRawawbRbRbRbRbRbRbRawawbRvOfeeIaEffeJfgvObRbXppnwbWbWbWbWbWbWbWbWbWbWdpdpdpdpdpdpbWbWbWbWbWbWbWbWbWbWbWbWbWbWbWaSaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
+mvmvmvmvmvmvmvmvhIaSaSdmdmdmdmdmdmdmaSaSaSaSaSbWbWcWcxcxcxcxcXcxcxeubWbWbWbWbWcKbWbWbWbWcwbWbWngrhbRbTelellSfblUelmgfklUfYbTeGbRbRbRbRbRxMbRbROXbRbRbRfmbdfqeIaGaGeJfqbdbRdHcensbWbWbWbWbWbWfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsftfufufufuicididjtbWaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvhIhIaSdmdmdmdmdmdmdmaSaSaSaSbWbWbWcWcxcxcJcxcxcxcxeubWbWbWbWbWbWbWbWbWbWbWbWbWngqObRbTWkellSfKlUellSgblUfxbTeGbRbRbRbRbRbRbRbRbRbRbRxMbRbdbdvOvOvOvObdbdbRlPdNnsbWbWbWbWbWvzfsfsfsfsfsfsfsfsfsfsfsfsvBfsfsfsfyfzfAfBfCigiXjejybWaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmdmaSaSaSaSbWcybWpanGnBnBnBnBnBnBnHnwbWbWbWbWbWbWbWbWbWbWbWbWngqOfmbdbdbdbTbTbTbdbTbTbTbdbdaKbRawlIlIbRbRawawlIlIbRbRbRjjjqeGeGeGeGIkbRbRdHcznsbWbWbWbWbWbWfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfyfEfEfCvdfCfCfCqobWaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
 mvmvmvmvmvmvmvmvmvhIaSdmdmdmdmdmdmaSaSaSaSbWbWbWbWbWdpdpdpdpdpdpdpdpbWbWbWcwbWbWbWbWbWcKbWbWbWngqObRTzpMxYbRbRjrjrbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRbRmjbRbRbRbRbRbRbRbRbRbRlRpbnlbWbWbWbWbWbWbWbWbWcydedededededebWbWbWfsfsfsfyfEfEfCDnfGfHfIfDbWaShImvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmv
