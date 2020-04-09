@@ -1,0 +1,6 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Added many more names to the namelists, including the Deathsquad ERT."
+  - tweak: "Combined PMC and SoM/Freelancer (and CLF) names into the main namelist, as a result, PMC and SoM/Freelancers now use the main namelist. This does not apply to UPP."
+  - tweak: "Rearranged names as well as removal of duplicate names."

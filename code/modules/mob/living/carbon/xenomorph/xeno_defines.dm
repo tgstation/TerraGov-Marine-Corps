@@ -148,6 +148,9 @@
 	var/datum/armor/armor
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
+	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
+	var/sunder_max = 100
+	var/sunder_recover = 0.1 // amount of sunder recovered per tick
 
 	var/fire_resist_modifier = 0
 
