@@ -129,7 +129,7 @@
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
-	L.Knockdown(20 SECONDS)
+	L.Paralyze(20 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
@@ -294,7 +294,7 @@
 	L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		if(16 to INFINITY)
 			L.Unconscious(10 SECONDS)
 	return ..()
@@ -314,7 +314,7 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		if(16 to INFINITY)
 			L.Unconscious(10 SECONDS)
 	return ..()

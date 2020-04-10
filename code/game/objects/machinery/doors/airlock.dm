@@ -456,7 +456,7 @@
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 			M.Stun(10 SECONDS)
-			M.Knockdown(10 SECONDS)
+			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species

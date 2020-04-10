@@ -157,7 +157,7 @@
 		M.adjust_blurriness(force/7)
 		if(prob(20))
 			M.Unconscious(force/6 *20)
-			M.Knockdown(force/15 *20)
+			M.Paralyze(force/15 *20)
 		M.drop_held_item()
 
 /obj/item/corncob

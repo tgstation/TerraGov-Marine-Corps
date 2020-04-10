@@ -264,7 +264,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Knockdown(60)
+			M.Paralyze(60)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -329,7 +329,7 @@
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Knockdown(40)
+				M.Paralyze(40)
 				return
 			return
 
