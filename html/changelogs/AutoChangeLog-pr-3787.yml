@@ -1,0 +1,4 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - bugfix: "Ship Techs should now be able to properly access most maintenance airlocks on the Pillar"
