@@ -369,8 +369,10 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
+					/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
+					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
@@ -382,16 +384,17 @@
 					/obj/item/storage/pill_bottle/peridaxon = 2,
 					/obj/item/storage/pill_bottle/quickclot = 2,
 					/obj/item/storage/pill_bottle/hypervene = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 6,
+					/obj/item/stack/medical/advanced/bruise_pack = 8,
 					/obj/item/stack/medical/bruise_pack = 8,
-					/obj/item/stack/medical/advanced/ointment = 6,
+					/obj/item/stack/medical/advanced/ointment = 8,
 					/obj/item/stack/medical/ointment = 8,
-					/obj/item/stack/medical/splint = 2,
+					/obj/item/stack/medical/splint = 4,
 					/obj/item/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3)
+					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3,
+					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired =3)
 
 
 
