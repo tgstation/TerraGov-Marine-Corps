@@ -75,7 +75,7 @@ LOG_MANIFEST
 
 
 ## Only enable this if you have youtube-dl installed!
-# INVOKE_YOUTUBEDL youtube-dl
+INVOKE_YOUTUBEDL youtube-dl
 
 ## Gameplay options
 
@@ -91,3 +91,19 @@ LIMBS_CAN_BREAK
 # Topic filtering whitelist
 # Addressed listed below are except from any incoming topic filering
 # TOPIC_FILTERING_WHITELIST 127.0.0.1
+
+#Here are the lobby music configs. 
+#link startSecond endSecond
+
+#Space Hero
+LOBBY_MUSIC https://youtu.be/fNdMC6_eUGk 1 180
+#Man of War
+LOBBY_MUSIC https://youtu.be/KflMk8O18LI 1 180
+#Praise the lord and pass the ammunition
+LOBBY_MUSIC https://youtu.be/uV9s1a6AZT0 1 180
+#Blood upon the risers
+LOBBY_MUSIC https://youtu.be/vzrYgDnewSI 1 180
+#Dawson's Christian
+LOBBY_MUSIC https://youtu.be/w34fSnJNP-4 1 180
+#Bomber
+LOBBY_MUSIC https://youtu.be/OlkH687M4YM 1 180

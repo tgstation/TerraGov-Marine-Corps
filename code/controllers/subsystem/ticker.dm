@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/datum/game_mode/mode = null
 
-	var/login_music							//Music played in pregame lobby
+	var/list/login_music							//Music played in pregame lobby
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
@@ -41,14 +41,10 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
-
-	login_music = pick(
-		list("https://youtu.be/fNdMC6_eUGk",1,180), //Space Hero
-		list("https://youtu.be/KflMk8O18LI",1,180), //Man of War
-		list("https://youtu.be/uV9s1a6AZT0",1,180), //Praise the lord and pass the ammunition
-		list("https://youtu.be/vzrYgDnewSI",1,180), //Blood upon the risers
-		list("https://youtu.be/w0cbkOm9p1k",1,180), //Dawson's Christian
-		list("https://youtu.be/OlkH687M4YM",1,180)) //Bomber
+	
+	var/song = CONFIG_GET(keyed_list/lobby_music)
+	var/parts = pick(song)
+	login_music = splittext(parts, " ")
 
 	return ..()
 

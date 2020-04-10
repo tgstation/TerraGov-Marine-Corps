@@ -113,6 +113,9 @@
 		if(!ytdl)
 			playtitlemusiclegacy()
 			return
+		to_chat(world, SSticker.login_music[1])
+		to_chat(world, SSticker.login_music[2])
+		to_chat(world, SSticker.login_music[3])
 		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
 		var/stdout = output[SHELLEO_STDOUT]
 		
@@ -122,8 +125,8 @@
 		web_sound_url = data["url"]
 
 		var/list/music_extra_data = list()
-		music_extra_data["start"] = SSticker.login_music[2]
-		music_extra_data["end"] = SSticker.login_music[3]
+		music_extra_data["start"] = text2num(SSticker.login_music[2])
+		music_extra_data["end"] = text2num(SSticker.login_music[3])
 		
 		chatOutput.sendMusic(web_sound_url,music_extra_data)
 

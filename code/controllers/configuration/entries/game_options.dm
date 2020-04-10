@@ -98,3 +98,7 @@
 /datum/config_entry/number/distress_larvapoints_required
 	config_entry_value = 8
 	min_val = 1
+
+/datum/config_entry/keyed_list/lobby_music
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_TEXT
