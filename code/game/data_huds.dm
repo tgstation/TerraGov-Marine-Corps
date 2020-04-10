@@ -339,8 +339,6 @@
 			holder.icon_state = "sundering75"
 		if(96 to INFINITY)
 			holder.icon_state = "sundering100"
-		else
-			holder.icon_state = "sundering0"
 	
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
