@@ -110,7 +110,7 @@
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
 		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
-		if(!ytdl & !SSticker.login_music)
+		if(!ytdl || !SSticker.login_music)
 			play_title_music_legacy()
 			return
 
