@@ -70,7 +70,7 @@
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
-		qdel(pockets)
+		QDEL_NULL(pockets)
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
