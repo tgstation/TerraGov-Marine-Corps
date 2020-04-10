@@ -4998,7 +4998,6 @@
 /obj/structure/barricade/plasteel{
 	icon_state = "plasteel_closed_0";
 	dir = 4;
-	step_y = 0
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
@@ -5628,7 +5627,6 @@
 /obj/structure/barricade/plasteel{
 	icon_state = "plasteel_closed_0";
 	dir = 1;
-	step_y = 0
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost)
@@ -6875,7 +6873,6 @@
 /obj/structure/barricade/plasteel{
 	icon_state = "plasteel_closed_0";
 	dir = 1;
-	step_y = 0
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -7434,7 +7431,6 @@
 /obj/structure/barricade/plasteel{
 	icon_state = "plasteel_closed_0";
 	dir = 1;
-	step_y = 0
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
