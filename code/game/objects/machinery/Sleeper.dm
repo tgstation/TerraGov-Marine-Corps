@@ -471,7 +471,7 @@
 
 /obj/machinery/sleeper/MouseDrop_T(mob/M, mob/user)
 	if(!isliving(M) || !ishuman(user))
-		return 
+		return
 	move_inside_wrapper(M, user)
 
 /obj/machinery/sleeper/verb/move_inside()
