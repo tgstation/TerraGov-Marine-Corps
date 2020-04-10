@@ -1,0 +1,4 @@
+author: "grinkgo"
+delete-after: True
+changes: 
+  - bugfix: "Anyone with engineering access should be able to use the FOB construction drone now."
