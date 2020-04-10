@@ -101,8 +101,9 @@
 		if(!bcell)
 			return
 
+		bcell.loc = get_turf(src)
 		bcell.update_icon()
-		bcell.forceMove(loc)
+		bcell = null
 		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 		status = 0
 
