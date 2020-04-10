@@ -28,17 +28,17 @@
 /area/outpost/cargo
 	name = "Cargo Bay"
 	icon_state="orange"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/cargo/office
 	name = "Cargo Office"
 	icon_state="orange"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/cargo/security
 	name = "Cargo Security Outpost"
 	icon_state="brig"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 
 
@@ -156,12 +156,12 @@
 /area/outpost/arrivals
 	name = "Arrivals"
 	icon_state="entry"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/arrivals/security
 	name = "Arrivals Security Outpost"
 	icon_state="brig"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 
 
@@ -170,42 +170,42 @@
 /area/outpost/hallway
 	name = "Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/northern
 	name = "Northern Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/central
 	name = "Central Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/west
 	name = "Western Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/south_cent
 	name = "South Central Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/south_east
 	name = "South Eastern Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/south_west
 	name = "South Western Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/hallway/east
 	name = "South Western Hallway"
 	icon_state="green"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 
 
@@ -214,27 +214,27 @@
 /area/outpost/medbay
 	name="Medbay"
 	icon_state="blue"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/medbay/security
 	name="Medbay Security Outpost"
 	icon_state="blue"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/medbay/storage
 	name="Medbay Storage"
 	icon_state="blue"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/medbay/surgery
 	name="Surgery"
 	icon_state="blue"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/medbay/chemistry
 	name="Chemistry"
 	icon_state="blue"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 
 
@@ -243,7 +243,7 @@
 /area/outpost/dormitories
 	name = "Dormitiories"
 	icon_state="Sleep"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 
 
@@ -325,17 +325,17 @@
 /area/outpost/engineering/hallway
 	name = "Engineering Hallway"
 	icon_state="engine"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/engineering
 	name = "Engineering Hallway"
 	icon_state="engine"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/engineering/security
 	name = "Engineering Security Outpost"
 	icon_state="engine"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 
 /area/outpost/engineering/engine
 	name = "Engine Room"
