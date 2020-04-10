@@ -104,9 +104,6 @@
     if (polyhexanide >= MIN_ANTIBIOTICS)
         germ_level -= spaceacillin_curve[infection_level]
 
-    // Sort out any overflows
-    if germ_level < 0 
-        germ_level = 0
 
 
 
