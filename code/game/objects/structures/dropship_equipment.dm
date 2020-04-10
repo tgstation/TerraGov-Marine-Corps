@@ -785,38 +785,11 @@
 	if(!deployed_table)
 		return
 	if(ship_base)
+		deployed_table.layer = 3.03
 		deployed_table.loc = loc
 		icon_state = "table2-idle"
 	else
-		deployed_table.loc = src
-		icon_state = "table2-idle"
-
-/obj/structure/dropship_equipment/operatingtable
-	name = "Operating Table"
-	desc = "Used for advanced medical procedures. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
-	equip_category = DROPSHIP_CREW_WEAPON
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "table2-idle"
-	point_cost = 300
-	var/obj/machinery/optable/deployed_table
-
-/obj/structure/dropship_equipment/operatingtable/Initialize()
-	. = ..()
-	if(!deployed_table)
-		deployed_table = new(src)
-
-/obj/structure/dropship_equipment/operatingtable/examine(mob/user)
-	. = ..()
-	if(!deployed_table)
-		to_chat(user, "Its table is broken.")
-
-/obj/structure/dropship_equipment/operatingtable/update_equipment()
-	if(!deployed_table)
-		return
-	if(ship_base)
-		deployed_table.loc = loc
-		icon_state = "table2-idle"
-	else
+		deployed_table.layer = 3.03
 		deployed_table.loc = src
 		icon_state = "table2-idle"
 
