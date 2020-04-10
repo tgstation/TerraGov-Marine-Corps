@@ -37,6 +37,7 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	lastname_pool = "names/moth_last"
 
 /datum/namepool/sectoid
-	firstname_male_pool = "names/sectoid_first"
-	firstname_female_pool = "names/sectoid_first"
 	lastname_pool = "names/sectoid_last"
+
+/datum/namepool/sectoid/get_random_name()
+	return "Sectoid [pick(SSstrings.get_list_from_file(lastname_pool))]"
