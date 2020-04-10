@@ -573,7 +573,6 @@
 
 /obj/item/storage/Destroy()
 	for(var/atom/movable/I in contents)
-		remove_from_storage(I)
 		qdel(I)
 	for(var/mob/M in content_watchers)
 		hide_from(M)
