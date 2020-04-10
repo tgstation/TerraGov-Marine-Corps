@@ -21,7 +21,7 @@
 		else
 			to_follow = V.source
 
-	else if(client && get_dist(src, to_follow) < CEILING(view_size[1] / 2, 1))
+	else if(client && in_view_range(src, to_follow))
 		raw_message = "<b>[raw_message]</b>"
 
 	var/link = FOLLOW_LINK(src, to_follow)
