@@ -102,7 +102,7 @@
         germ_level -= spaceacillin_curve[infection_level]
 
     if (polyhexanide >= MIN_ANTIBIOTICS)
-        germ_level -= spaceacillin_curve[infection_level]
+        germ_level -= polyhexanide_curve[infection_level]
 
 
 
@@ -443,7 +443,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//need to make sure we raise temperature fast enough to get around environmental cooling preventing us from reaching fever_temperature
 		owner.adjust_bodytemperature((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 		if(prob(round(germ_level/10)))
-			if (antibiotics < MIN_ANTIBIOTICS)
+			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
 
 			if (prob(15))	//adjust this to tweak how fast people take toxin damage from infections
@@ -460,7 +460,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 					target_organ = I
 
 		if(prob(round(germ_level/10)))
-			if (antibiotics < MIN_ANTIBIOTICS)
+			if (spaceacillin < MIN_ANTIBIOTICS)
 				germ_level++
 		if (prob(1) && (germ_level <= INFECTION_LEVEL_THREE))
 			to_chat(owner, "<span class='notice'>Your infected wound itches and badly hurts!</span>")
