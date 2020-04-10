@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "The stunbaton no longer acts like a battery based magnet railgun"

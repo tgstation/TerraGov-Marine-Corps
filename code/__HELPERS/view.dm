@@ -16,4 +16,6 @@
 	var/list/view_range = getviewsize(user.client.view)
 	var/turf/source = get_turf(user)
 	var/turf/target = get_turf(A)
-	return ISINRANGE(target.x, source.x - view_range[1], source.x + view_range[1]) && ISINRANGE(target.y, source.y - view_range[1], source.y + view_range[1])
+	var/view_x = CEILING(view_range[1]* 0.5, 1)
+	var/view_y = CEILING(view_range[2]* 0.5, 1)
+	return ISINRANGE(target.x, source.x - view_x, source.x + view_x) && ISINRANGE(target.y, source.y - view_y, source.y + view_y)
