@@ -1,6 +1,6 @@
 {
     "map_name": "Moundsska City",
     "map_path": "map_files/Moundsska_City",
-    "map_file": "moundsska_city.dmm",
+    "map_file": "Moundsska_City.dmm",
     "announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to Moundsska City, one of Terra Gov's megacities. Through use of bluespace drive tech, the ###SHIPNAME### has jumped within range of the colony. TGMC, gear up and get ready to respond!"
 }
