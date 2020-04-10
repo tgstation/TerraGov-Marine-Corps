@@ -10,6 +10,7 @@
 
 
 /datum/component/spawner/Initialize(_mob_types, _spawn_time, _spawn_text, _max_mobs, _squad_spawn, _faction)
+	. = ..()
 	if(_spawn_time)
 		spawn_time=_spawn_time
 	if(_mob_types)
@@ -25,13 +26,16 @@
 
 	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/stop_spawning)
 	START_PROCESSING(SSprocessing, src)
+	to_chat(world, "poststartprocess")
 
 /datum/component/spawner/process()
+	to_chat(world, "process")
 	try_spawn_mob()
 
 
 /datum/component/spawner/proc/stop_spawning(force)
 	STOP_PROCESSING(SSprocessing, src)
+	to_chat(world, "stopped processing")
 	spawned_mobs = null
 
 /datum/component/spawner/proc/try_spawn_mob()
@@ -41,6 +45,7 @@
 	if(spawn_delay > world.time)
 		return 0
 	spawn_delay = world.time + spawn_time
+	to_chat(world, "spawndelay is [spawn_delay]")
 	if(squad_spawn == FALSE)
 		var/chosen_mob_type = pick(mob_types)
 		var/mob/living/L = new chosen_mob_type(P.loc)
