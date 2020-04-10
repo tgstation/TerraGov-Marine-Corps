@@ -328,17 +328,17 @@
 	if(!holder)
 		return
 
-	switch(sunder)
+	switch(round(sunder, 1))
 		if(-INFINITY to 0)
-			holder.icon_state = "sundering100"
-		if(0 to 25)
-			holder.icon_state = "sundering75"
-		if(26 to 50)
-			holder.icon_state = "sundering50"
-		if(51 to 75)
-			holder.icon_state = "sundering25"
-		if(100 to INFINITY)
 			holder.icon_state = "sundering0"
+		if(1 to 35)
+			holder.icon_state = "sundering25"
+		if(36 to 65)
+			holder.icon_state = "sundering50"
+		if(66 to 95)
+			holder.icon_state = "sundering75"
+		if(96 to INFINITY)
+			holder.icon_state = "sundering100"
 		else
 			holder.icon_state = "sundering0"
 	
