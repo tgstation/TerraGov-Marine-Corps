@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Buckshot is now red and slugs are now green"
