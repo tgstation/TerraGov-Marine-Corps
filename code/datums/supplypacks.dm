@@ -574,6 +574,16 @@ WEAPONS
 	containername = "\improper Fragmentation M15 grenade crate (WARNING)"
 	group = "Weapons"
 
+/datum/supply_packs/explosives_hsdp
+	name = "M40 HSDP white phosphorous grenade box crate (x15)"
+	contains = list(
+					/obj/item/storage/box/nade_box/phos
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper explosive HSDP grenade crate (WARNING)"
+	group = "Weapons"
+
 /datum/supply_packs/plastique
 	name = "plastic explosives crate (x5)"
 	contains = list(

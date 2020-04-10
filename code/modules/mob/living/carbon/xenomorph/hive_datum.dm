@@ -258,6 +258,8 @@
 	if(queen_chosen_lead || (src in hive.xeno_leader_list))
 		hive.remove_leader(src)
 
+	SSdirection.stop_tracking(hive.hivenumber, src)
+
 	hive = null
 	hivenumber = XENO_HIVE_NONE // failsafe value
 

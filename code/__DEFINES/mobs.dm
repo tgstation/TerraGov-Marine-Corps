@@ -502,7 +502,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
+#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
