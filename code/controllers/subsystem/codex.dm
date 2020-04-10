@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(codex)
 	if(!initialized)
 		return
 	var/searching = "\ref[entry]"
-	if(istype(entry, /atom))
+	if(isatom(entry))
 		var/atom/entity = entry
 		if(entity.get_specific_codex_entry())
 			entry_cache[searching] = entity.get_specific_codex_entry()
@@ -116,4 +116,3 @@ SUBSYSTEM_DEF(codex)
 		if(entry && showing_mob.can_use_codex())
 			present_codex_entry(showing_mob, entry)
 			return TRUE
-
