@@ -1033,7 +1033,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return FALSE
 
 /mob/living/proc/get_sunder()
-	return FALSE
+	return 0
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK
