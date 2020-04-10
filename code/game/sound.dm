@@ -105,13 +105,13 @@
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
 
-/client/proc/playtitlemusic()
+/client/proc/play_title_music()
 	if(!SSticker?.login_music)
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
 		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 		if(!ytdl)
-			playtitlemusiclegacy()
+			play_title_music_legacy()
 			return
 		to_chat(world, SSticker.login_music[1])
 		to_chat(world, SSticker.login_music[2])
@@ -130,7 +130,7 @@
 		
 		chatOutput.sendMusic(web_sound_url,music_extra_data)
 
-/client/proc/playtitlemusiclegacy(vol = 85)
+/client/proc/play_title_music_legacy(vol = 85)
 	if(!SSticker?.login_music)
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
