@@ -136,7 +136,7 @@
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "A devestating piece of alien artillery."
+	caste_desc = "A devastating piece of alien artillery."
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
