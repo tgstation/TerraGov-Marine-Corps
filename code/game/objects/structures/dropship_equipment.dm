@@ -780,6 +780,10 @@
 	. = ..()
 	if(!deployed_table)
 		to_chat(user, "Its table is broken.")
+		
+/obj/structure/dropship_equipment/operatingtable/Destroy()
+	if(!deployed_table) 
+		QDEL_NULL
 
 /obj/structure/dropship_equipment/operatingtable/update_equipment()
 	if(!deployed_table)
