@@ -400,22 +400,24 @@
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
 
 
-	if(load_into_chamber() == 1)
-		if(istype(in_chamber,/obj/projectile))
-			in_chamber.original_target = target
-			in_chamber.setDir(dir)
-			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			if(!QDELETED(target))
-				var/angle = round(Get_Angle(src,target))
-				muzzle_flash(angle)
-			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
-			in_chamber = null
-			rounds--
-			if(!rounds)
-				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
-				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
-				update_icon() //final safeguard.
+	if(!load_into_chamber())
+		return
+
+	var/obj/projectile/proj_to_fire = in_chamber
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
+	proj_to_fire.original_target = target
+	proj_to_fire.setDir(dir)
+	proj_to_fire.def_zone = pick("chest","chest","chest","head")
+	playsound(loc, 'sound/weapons/guns/fire/hmg.ogg', 75, TRUE)
+	if(!QDELETED(target))
+		var/angle = round(Get_Angle(src,target))
+		muzzle_flash(angle)
+	proj_to_fire.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
+	rounds--
+	if(!rounds)
+		visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
+		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, TRUE)
+		update_icon() //final safeguard.
 
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.

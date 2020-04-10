@@ -928,7 +928,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
 
 			if("init_dest")
-				if(!SSevacuation.enable_self_destruct())
+				if(!SSevacuation.enable_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
 					return
 

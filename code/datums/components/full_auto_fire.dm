@@ -344,6 +344,7 @@
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
 	var/obj/projectile/projectile_to_fire = load_into_chamber(shooter)
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire)
 		click_empty(shooter)
 		return NONE
