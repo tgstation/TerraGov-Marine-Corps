@@ -134,7 +134,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	var/list/filtering_whitelist = CONFIG_GET(keyed_list/topic_filtering_whitelist)
-	var/host = splittext_char(addr, ":")
+	var/host = splittext(addr, ":")
 	if(!filtering_whitelist[host[1]]) // We only ever check the host, not the port (if provided)
 		if(length(T) >= MAX_TOPIC_LEN)
 			log_admin_private("[addr] banned from topic calls for a round for too long status message")
