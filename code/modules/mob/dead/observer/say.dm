@@ -12,6 +12,7 @@
 /mob/dead/observer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	var/atom/movable/to_follow = speaker
+	var/list/view_size = getviewsize(client.view)
 	if(radio_freq)
 		var/atom/movable/virtualspeaker/V = speaker
 		if(isAI(V.source))
@@ -19,8 +20,10 @@
 			to_follow = S.eyeobj
 		else
 			to_follow = V.source
-	else if(client && (to_follow in range(client.view)))
+
+	else if(client && get_dist(src, to_follow) < CEILING(view_size[1] / 2, 1))
 		raw_message = "<b>[raw_message]</b>"
+
 	var/link = FOLLOW_LINK(src, to_follow)
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
