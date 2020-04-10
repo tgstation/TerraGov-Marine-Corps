@@ -295,6 +295,9 @@
 				anchored = FALSE
 				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 				return
+			if(istype(get_area(loc), /area/shuttle))
+				to_chat(usr, "<span class='warning'>This doesn't look like a good spot to anchor the nuke.</span>")
+				return
 
 			anchored = !anchored
 			if(anchored)
