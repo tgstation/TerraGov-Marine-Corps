@@ -42,9 +42,10 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
 	
-	var/song = CONFIG_GET(keyed_list/lobby_music)
-	var/parts = pick(song)
-	login_music = splittext(parts, " ")
+	var/all_music = CONFIG_GET(keyed_list/lobby_music)
+	var/key = pick(all_music)
+	var/music_options = splittext(all_music[key], " ")
+	login_music = list(music_options[1], music_options[2], music_options[3])
 
 	return ..()
 
