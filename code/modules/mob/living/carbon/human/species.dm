@@ -467,7 +467,7 @@
 	name_plural = "Sectoids"
 	icobase = 'icons/mob/human_races/r_sectoid.dmi'
 	deform = 'icons/mob/human_races/r_sectoid.dmi'
-	default_language_holder = /datum/language_holder/moth
+	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
 	show_paygrade = TRUE

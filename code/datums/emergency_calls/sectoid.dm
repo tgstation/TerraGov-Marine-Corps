@@ -24,9 +24,6 @@
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)
 
-	H.remove_all_languages()
-	H.grant_language(/datum/language/sectoid)
-
 	if(original)
 		qdel(original)
 
