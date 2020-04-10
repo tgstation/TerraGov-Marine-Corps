@@ -110,12 +110,10 @@
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
 		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
-		if(!ytdl)
+		if(!ytdl & !SSticker.login_music)
 			play_title_music_legacy()
 			return
-		to_chat(world, SSticker.login_music[1])
-		to_chat(world, SSticker.login_music[2])
-		to_chat(world, SSticker.login_music[3])
+
 		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
 		var/stdout = output[SHELLEO_STDOUT]
 		

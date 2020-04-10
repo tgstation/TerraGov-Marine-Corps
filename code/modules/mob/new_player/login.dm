@@ -15,9 +15,6 @@
 	sight |= SEE_TURFS
 
 	new_player_panel()
-	var/all_music = CONFIG_GET(keyed_list/lobby_music)
-	if(all_music)
-		client?.play_title_music()
-	else
-		client?.play_title_music_legacy()
+	client?.play_title_music()
+
 
