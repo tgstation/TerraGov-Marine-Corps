@@ -29,7 +29,7 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	adjust_sunder(sunder_recover * -1) 
+	adjust_sunder(xeno_caste.sunder_recover * -1) 
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
