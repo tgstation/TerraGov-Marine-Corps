@@ -77,36 +77,36 @@
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+    var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+    var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 
-	if (!germ_level || antibiotics < MIN_ANTIBIOTICS)
-		return
+    var/spaceacillin_curve = list(0,4,3,2)
+    var/polyhexanide_curve = list(0,1,1,10)
 
-	if (germ_level < 10)
-		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_ONE)
-		germ_level -= 4
-	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 3	//at germ_level == 500, this should cure the infection in a minute
-	else
-		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
+    if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
+        return
 
+    var/infection_level = 0
+    switch(germ_level)
+        if(-INFINITY to 10)
+            germ_level = 0
+            return // cure instantly
+        if(11 to INFECTION_LEVEL_ONE)
+            infection_level = 1
+        if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
+            infection_level = 2
+        if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+            infection_level = 3
 
-/datum/limb/proc/handle_antibioticsT2()
-	var/antibioticsT2 = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
+    if (spaceacillin >= MIN_ANTIBIOTICS)
+        germ_level -= spaceacillin_curve[infection_level]
 
-	if (!germ_level || antibioticsT2 < MIN_ANTIBIOTICS)
-		return
+    if (polyhexanide >= MIN_ANTIBIOTICS)
+        germ_level -= spaceacillin_curve[infection_level]
 
-	if (germ_level < 10)
-		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_ONE)
-		germ_level -= 1
-	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 1	//at germ_level == 500, this should cure the infection in three minutes
-	else
-		germ_level -= 10 //at germ_level == 1000, this will cure the infection in one minute
-
+    // Sort out any overflows
+    if germ_level < 0 
+        germ_level = 0
 
 
 
@@ -375,7 +375,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(owner.life_tick % wound_update_accuracy == 0)
 		update_wounds()
 
-	//Bone fracurtes
+	//Bone fractures
 	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(limb_status & LIMB_ROBOT))
 		fracture()
 	if(!(limb_status & LIMB_BROKEN))
@@ -434,8 +434,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			germ_level++
 
 /datum/limb/proc/handle_germ_effects()
-	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-	var/antibioticsT2 = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
+	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+	var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 //LEVEL 0
 	if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE && prob(60))	//this could be an else clause, but it looks cleaner this way
 		germ_level--	//since germ_level increases at a rate of 1 per second with dirty wounds, prob(60) should give us about 5 minutes before level one.
@@ -454,7 +454,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if (prob(1) && (germ_level <= INFECTION_LEVEL_TWO))
 				to_chat(owner, "<span class='notice'>You have a slight fever...</span>")
 //LEVEL II
-	if(germ_level >= INFECTION_LEVEL_TWO && antibiotics < 3)
+	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
 		//spread the infection to internal organs
 		var/datum/internal_organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
 		for (var/datum/internal_organ/I in internal_organs)
@@ -495,7 +495,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if (parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30))
 					parent.germ_level++
 //LEVEL III
-	if(germ_level >= INFECTION_LEVEL_THREE && antibiotics < 25 && antibioticsT2 <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
+	if(germ_level >= INFECTION_LEVEL_THREE && spaceacillin < 25 && polyhexanide <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
 		if (!(limb_status & LIMB_NECROTIZED))
 			limb_status |= LIMB_NECROTIZED
 			to_chat(owner, "<span class='notice'>You can't feel your [display_name] anymore...</span>")
