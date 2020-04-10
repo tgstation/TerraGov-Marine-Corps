@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/datum/game_mode/mode = null
 
-	var/list/login_music							//Music played in pregame lobby
+	var/list/login_music = null						//Music played in pregame lobby
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
