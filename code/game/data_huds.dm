@@ -12,21 +12,24 @@
 
 
 /mob/living/carbon/human/add_to_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(istype(hud, /datum/atom_hud/xeno)) //this one is xeno only
+	for(var/h in GLOB.huds)
+		if(istype(h, /datum/atom_hud/xeno)) //this one is xeno only
 			continue
+		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
 
 
 /mob/living/carbon/monkey/add_to_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
+	for(var/h in GLOB.huds)
+		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
 
 
 /mob/living/carbon/xenomorph/add_to_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno))
+	for(var/h in GLOB.huds)
+		if(!istype(h, /datum/atom_hud/xeno))
 			continue
+		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
 
 
@@ -35,21 +38,24 @@
 
 
 /mob/living/carbon/human/remove_from_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(istype(hud, /datum/atom_hud/xeno))
+	for(var/h in GLOB.huds)
+		if(istype(h, /datum/atom_hud/xeno))
 			continue
+		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
 
 
 /mob/living/carbon/monkey/remove_from_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
+	for(var/h in GLOB.huds)
+		var/datum/atom_hud/hud = h
 		hud.add_to_hud(src)
 
 
 /mob/living/carbon/xenomorph/remove_from_all_mob_huds()
-	for(var/datum/atom_hud/hud in GLOB.huds)
-		if(!istype(hud, /datum/atom_hud/xeno))
+	for(var/h in GLOB.huds)
+		if(!istype(h, /datum/atom_hud/xeno))
 			continue
+		var/datum/atom_hud/hud = h
 		hud.remove_from_hud(src)
 
 

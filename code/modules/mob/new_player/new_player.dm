@@ -463,8 +463,7 @@
 /mob/new_player/proc/transfer_character()
 	. = new_character
 	if(.)
-		new_character.key = key		//Manually transfer the key to log them in
-		new_character = null
+		mind.transfer_to(new_character, TRUE) //Manually transfer the key to log them in
 		qdel(src)
 
 

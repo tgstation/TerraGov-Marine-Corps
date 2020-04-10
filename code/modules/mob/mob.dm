@@ -11,6 +11,14 @@
 			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
+	if(mind)
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy()")
+		mind = null
+	if(hud_used)
+		QDEL_NULL(hud_used)
+	for(var/a in actions)
+		var/datum/action/action_to_remove = a
+		action_to_remove.remove_action(src)
 	return ..()
 
 /mob/Initialize()
