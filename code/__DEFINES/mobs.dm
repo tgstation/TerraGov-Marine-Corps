@@ -622,3 +622,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define SCREWYHUD_CRIT 1
 #define SCREWYHUD_DEAD 2
 #define SCREWYHUD_HEALTHY 3
+
+//do_mob() flags
+#define IGNORE_LOC_CHANGE (1<<0)
+#define IGNORE_HAND (1<<1)
