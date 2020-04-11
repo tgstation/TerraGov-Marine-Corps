@@ -782,8 +782,7 @@
 		to_chat(user, "Its table is broken.")
 		
 /obj/structure/dropship_equipment/operatingtable/Destroy()
-	if(!deployed_table) 
-		QDEL_NULL
+	QDEL_NULL(deployed_table)
 
 /obj/structure/dropship_equipment/operatingtable/update_equipment()
 	if(!deployed_table)
