@@ -27,18 +27,9 @@
 	. = ..()
 	set_light(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
-	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/xenomorph/boiler/update_stat()
-	. = ..()
-	if(stat == CONSCIOUS)
-		see_in_dark = 20
 
 // ***************************************
 // *********** Gibbing behaviour

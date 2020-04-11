@@ -481,3 +481,14 @@
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
 	else
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
+
+/mob/living/carbon/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == UNCONSCIOUS)
+		blind_eyes(1)
+		disabilities |= DEAF
+	else if(. == UNCONSCIOUS)
+		adjust_blindness(-1)
+		disabilities &= ~DEAF

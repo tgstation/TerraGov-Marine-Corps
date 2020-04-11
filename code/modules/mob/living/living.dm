@@ -66,6 +66,7 @@
 	update_stat()
 
 /mob/living/update_stat()
+	. = ..()
 	update_cloak()
 
 /mob/living/Initialize()

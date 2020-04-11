@@ -16,7 +16,16 @@
 	create_reagents(1000)
 	gender = NEUTER
 
-	GLOB.alive_xeno_list += src
+	switch(stat)
+		if(CONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.conscious_see_in_dark
+		if(UNCONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
@@ -309,3 +318,14 @@
 	if(!. || can_reenter_corpse)
 		return
 	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
+
+/mob/living/carbon/xenomorph/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(stat)
+		if(UNCONSCIOUS)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD, CONSCIOUS)
+			if(. == UNCONSCIOUS)
+				see_in_dark = xeno_caste.conscious_see_in_dark
