@@ -157,7 +157,7 @@
 	max_health = 275
 
 	// *** Defense *** //
-	armor = list("melee" = 42, "bullet" = 42", "laser" = 42, "energy" = 42, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
+	armor = list("melee" = 42, "bullet" = 42, "laser" = 42, "energy" = 42, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
