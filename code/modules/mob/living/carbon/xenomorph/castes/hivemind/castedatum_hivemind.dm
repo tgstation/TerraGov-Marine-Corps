@@ -68,12 +68,6 @@
 	// *** Evolution *** //
 	upgrade_threshold = 500
 
-	// *** Abilities *** //
-	actions = list(
-		/datum/action/xeno_action/plant_weeds/slow,
-		/datum/action/xeno_action/toggle_pheromones,
-		)
-
 
 /datum/xeno_caste/hivemind/elder
 	upgrade_name = "Elder"
@@ -88,12 +82,6 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = 700
-
-	// *** Abilities *** //
-	actions = list(
-		/datum/action/xeno_action/plant_weeds/slow,
-		/datum/action/xeno_action/toggle_pheromones,
-		)
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
@@ -110,8 +98,4 @@
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
-	// *** Abilities *** //
-	actions = list(
-		/datum/action/xeno_action/plant_weeds/slow
-		/datum/action/xeno_action/toggle_pheromones,
-		)
+
