@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 23
 	penetration = 0
 	accuracy = -10
-	sundering = 0
+	sundering = 0.5
 
 /*
 //================================================
@@ -408,6 +408,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "rifle_ap"
 	damage = 20
 	penetration = 30
+	sundering = 3
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -428,23 +429,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	scatter = -15
 	penetration = 30
-	sundering = 2.5
+	sundering = 3
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	damage = 40
 	accuracy = 10
 	penetration = 20
+	sundering = 2
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
-	flags_ammo_behavior = AMMO_BALLISTIC
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
 	accuracy = -10
 	penetration = 20
+	sundering = 3
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
@@ -453,9 +456,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity smart bullet"
 	hud_state = "hivelo_iff"
 	iff_signal = ACCESS_IFF_MARINE
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	damage = 30
 	penetration = 30
+	sundering = 3
 
 /datum/ammo/bullet/rifle/ak47
 	name = "heavy rifle bullet"
@@ -1076,16 +1080,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 20
-	sundering = 7
+	sundering = 10
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_heat"
 	damage = 12 //requires mod with -0.15 multiplier should math out to 10
-	penetration = 0
+	penetration = 100 // It's a laser that burns the skin! The fire stacks go threw anyway. 
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
-	sundering = 1.5
+	sundering = 3
 
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
@@ -1122,7 +1126,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 85 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
-	sundering = 90
+	sundering = 100
 
 /datum/ammo/energy/lasgun/M43/practice
 	name = "practice laser bolt"
