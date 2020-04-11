@@ -24,7 +24,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 240
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -96,7 +96,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -109,7 +109,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -118,7 +118,7 @@
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = XENO_BOMB_RESIST_2, "bio" = 28, "rad" = 28, "fire" = 9, "acid" = 28)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 33
+	crest_defense_armor = 30
 	fortify_armor = 68
 
 /datum/xeno_caste/defender/ancient
@@ -128,27 +128,27 @@
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 37
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 37, "bullet" = 37, "laser" = 32, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
 
 	// *** Defender Abilities *** //
-	crest_defense_armor = 25
+	crest_defense_armor = 30
 	fortify_armor = 50
