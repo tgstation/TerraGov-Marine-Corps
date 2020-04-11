@@ -282,4 +282,10 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 							)
 
 /obj/item/portable_vendor/marine/process()
-	points = min(max_points, points+0)
+	STOP_PROCESSING(SSobj, src)
+	return FALSE
+
+/obj/item/portable_vendor/marine/do_vend()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	qdel(src)
