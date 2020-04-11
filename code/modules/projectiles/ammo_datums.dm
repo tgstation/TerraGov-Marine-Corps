@@ -1299,7 +1299,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(4 SECONDS)
+	victim.Paralyze(2.1 SECONDS)
+	victim.blur_eyes(11)
+	victim.adjustDrowsyness(12)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
