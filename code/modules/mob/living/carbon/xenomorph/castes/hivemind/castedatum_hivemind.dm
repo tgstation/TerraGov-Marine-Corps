@@ -43,12 +43,13 @@
 	spit_types = list()
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //hivemind's aura is not extremely strong, but better than Drones.
+	aura_strength = 3.5 //hivemind's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/hivemind/young
@@ -70,6 +71,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 
