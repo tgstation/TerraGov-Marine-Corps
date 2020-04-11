@@ -1,8 +1,7 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
 		/obj/item/disk/nuclear,
-		/obj/item/radio/beacon,
-		/obj/item/stack/sheet/mineral/phoron
+		/obj/item/radio/beacon
 	)))
 
 GLOBAL_LIST_EMPTY(exports_types)
@@ -202,6 +201,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		setupExports()
 
 	var/plat_count = 0
+	var/phor_count = 0
 
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
@@ -225,11 +225,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 							find_slip = 0
 						continue
 
-					// Sell platinum
-					if(istype(A, /obj/item/stack/sheet/mineral/platinum))
-						var/obj/item/stack/sheet/mineral/platinum/P = A
-						plat_count += P.get_amount()
-
 			//Sell Xeno Corpses
 			if (isxeno(AM))
 				var/cost = 0
@@ -238,12 +233,21 @@ GLOBAL_LIST_EMPTY(exports_types)
 					if(AM.type == E.export_obj)
 						cost = E.cost
 				SSpoints.supply_points += cost
-
+			// Sell platinum
+			if(istype(AM, /obj/item/stack/sheet/mineral/platinum))
+				var/obj/item/stack/sheet/mineral/platinum/P = AM
+				plat_count += P.get_amount()
+			
+			if(istype(AM, /obj/item/stack/sheet/mineral/phoron))
+				var/obj/item/stack/sheet/mineral/phoron/P = AM
+				phor_count += P.get_amount()
 
 			qdel(AM)
 
 	if(plat_count)
 		SSpoints.supply_points += plat_count * POINTS_PER_PLATINUM
+	if(phor_count)
+		SSpoints.supply_points += phor_count * POINTS_PER_PHORON
 
 /obj/machinery/computer/supplycomp
 	name = "ASRS console"
