@@ -35,7 +35,7 @@
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
 	overdose_threshold = REAGENTS_OVERDOSE*2
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable/drink, /datum/reagant/consumable/ethanol)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
 	purge_rate = 1
 	taste_description = "water"
 
