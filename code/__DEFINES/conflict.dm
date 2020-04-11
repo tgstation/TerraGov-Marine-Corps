@@ -49,7 +49,7 @@
 #define AMMO_SKIPS_ALIENS 		(1<<8)
 #define AMMO_IS_SILENCED 		(1<<9) //Unused right now.
 #define AMMO_IGNORE_ARMOR		(1<<10)
-#define AMMO_IGNORE_RESIST		(1<<11)
+#define AMMO_IGNORE_RESIST		(1<<11) //Unused.
 #define AMMO_BALLISTIC			(1<<12)
 #define AMMO_SUNDERING			(1<<13)
 

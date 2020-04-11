@@ -505,7 +505,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "beanbag slug"
 	icon_state = "beanbag"
 	hud_state = "shotgun_beanbag"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
+	flags_ammo_behavior = AMMO_BALLISTIC
 	max_range = 15
 	shrapnel_chance = 0
 	accuracy = 15
@@ -1006,7 +1006,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
 	damage_type = OXY
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
+	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
 
@@ -1088,7 +1088,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 45
 	penetration = 0
 	damage_type = STAMINA
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
+	flags_ammo_behavior = AMMO_ENERGY
 
 /datum/ammo/energy/lasgun/M43/practice/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	if(!istype(C) || C.stat == DEAD || C.issamexenohive(P.firer) )
@@ -1290,7 +1290,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
-	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
 	armor_type = "bio"
