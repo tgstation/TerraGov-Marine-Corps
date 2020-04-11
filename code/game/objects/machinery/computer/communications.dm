@@ -221,7 +221,7 @@
 				else
 					var/chosen_call = admin_response
 
-					if(chosen_call == "Random")
+					if(chosen_call == "random")
 						SSticker.mode.activate_distress()
 					else
 						SSticker.mode.activate_distress(chosen_call)
