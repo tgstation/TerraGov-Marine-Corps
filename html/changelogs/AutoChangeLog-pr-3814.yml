@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "power generator can no longer be destroyed"
