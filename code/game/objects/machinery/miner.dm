@@ -4,8 +4,8 @@
 #define MINER_DESTROYED	3
 
 /obj/machinery/miner
-	name = "\improper Nanotransen phoron Mining Well"
-	desc = "Top-of-the-line Nanotransen research drill, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	name = "\improper Nanotrasen phoron Mining Well"
+	desc = "Top-of-the-line Nanotrasen research drill, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
 	icon_state = "mining_drill_active"
@@ -22,8 +22,8 @@
 	icon_state = "mining_drill_error"
 
 /obj/machinery/miner/damaged/platinum
-	name = "\improper Nanotransen platinum Mining Well"
-	desc = "A Nanotransen platinum drill. Produces even more valuable materials than it's phoron counterpart"		
+	name = "\improper Nanotrasen platinum Mining Well"
+	desc = "A Nanotrasen platinum drill. Produces even more valuable materials than it's phoron counterpart"		
 	mineral_produced = /obj/item/stack/sheet/mineral/platinum
 
 /obj/machinery/miner/Initialize()
