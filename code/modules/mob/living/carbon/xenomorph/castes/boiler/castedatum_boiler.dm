@@ -17,7 +17,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = 0.3
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -68,13 +68,13 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 28
 
 	// *** Tackle *** //
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = 0.2
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -104,13 +104,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -141,13 +141,13 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 36
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
