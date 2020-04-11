@@ -777,9 +777,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			IgniteMob()
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
-	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING && isxeno(src))
-		var/mob/living/carbon/xenomorph/xeno = src
-		xeno.adjust_sunder(proj.ammo.sundering)
+	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
+		adjust_sunder(proj.ammo.sundering)
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -1026,6 +1025,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	visible_message("<span class='danger'>[onlooker_feedback]</span>",
 	"<span class='xenodanger'>[victim_feedback]", null, 4)
 
+// Sundering procs
+/mob/living/proc/adjust_sunder(adjustment)
+	return 0
+
+/mob/living/proc/set_sunder(new_sunder)
+	return FALSE
+
+/mob/living/proc/get_sunder()
+	return 0
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

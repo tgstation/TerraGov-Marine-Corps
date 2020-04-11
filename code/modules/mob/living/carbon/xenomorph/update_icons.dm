@@ -33,6 +33,7 @@
 
 	hud_set_plasma()
 	med_hud_set_health()
+	hud_set_sunder()
 
 /mob/living/carbon/xenomorph/regenerate_icons()
 	..()

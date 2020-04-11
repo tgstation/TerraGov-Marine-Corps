@@ -59,6 +59,10 @@
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
+	// *** Sunder *** //
+	var/sunder_recover = 3 // How much sunder is recovered per tick
+	var/sunder_max = 100 // What is the max amount of sunder that can be applied to a xeno (100 = 100%)
+
 	// *** Ranged Attack *** //
 	var/spit_delay = 6 SECONDS //Delay timer for spitting
 	var/list/spit_types //list of datum projectile types the xeno can use.
@@ -116,7 +120,7 @@
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
 	faction = "Xeno"
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -149,8 +153,6 @@
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
-	var/sunder_max = 100
-	var/sunder_recover = 0.1 // amount of sunder recovered per tick
 
 	var/fire_resist_modifier = 0
 
