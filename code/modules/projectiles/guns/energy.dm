@@ -416,7 +416,7 @@
 	name = "\improper TX-78 Sunfury Lasgun MK1"
 	desc = "An multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
 	force = 20 //Large and hefty! Includes stock bonus.
-	icon = 'icons/obj/items/lasrifle.dmi'
+	icon = 'icons/Marine/lasrifle.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
