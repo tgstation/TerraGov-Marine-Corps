@@ -36,7 +36,7 @@
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
-	var/isAI = GetComponent(/datum/component/ai_behavior)
+	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)
 		gib()
 
