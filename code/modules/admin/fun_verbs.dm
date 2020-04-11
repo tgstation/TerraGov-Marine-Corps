@@ -575,11 +575,12 @@
 			var/flame_range = input("Flame range (in tiles):", "Drop Bomb") as null|num
 			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range) || isnull(flame_range))
 				return
-			devastation_range = CLAMP(devastation_range, -1, 10000)
-			heavy_impact_range = CLAMP(heavy_impact_range, -1, 10000)
-			light_impact_range = CLAMP(light_impact_range, -1, 10000)
-			flash_range = CLAMP(flash_range, -1, 10000)
-			flame_range = CLAMP(flame_range, -1, 10000)
+			var/world_max = max(world.maxy, world.maxy)
+			devastation_range = CLAMP(devastation_range, -1, world_max)
+			heavy_impact_range = CLAMP(heavy_impact_range, -1, world_max)
+			light_impact_range = CLAMP(light_impact_range, -1, world_max)
+			flash_range = CLAMP(flash_range, -1, world_max)
+			flame_range = CLAMP(flame_range, -1, world_max)
 			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, FALSE, flame_range)
 		else
 			return
