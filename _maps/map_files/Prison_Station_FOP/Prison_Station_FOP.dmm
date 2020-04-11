@@ -1320,8 +1320,8 @@
 /area/prison/research/secret/testing)
 "age" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -1823,8 +1823,8 @@
 /area/prison/research/secret/containment)
 "ahA" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -3238,8 +3238,8 @@
 /area/prison/research/secret)
 "akQ" = (
 /turf/open/floor/prison/darkpurple/corner{
-	icon_state = "darkpurplecorners2";
-	dir = 8
+	dir = 8;
+	icon_state = "darkpurplecorners2"
 	},
 /area/prison/research/secret)
 "akR" = (
@@ -3358,8 +3358,8 @@
 /area/prison/cellblock/maxsec/north)
 "alc" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	icon_regular_floor = "chapel";
@@ -4747,8 +4747,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aoI" = (
@@ -5405,8 +5405,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aqn" = (
@@ -5417,8 +5417,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aqo" = (
@@ -5515,8 +5515,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/red{
 	dir = 8
@@ -7727,8 +7727,8 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "avK" = (
@@ -8366,8 +8366,8 @@
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "axq" = (
@@ -8600,14 +8600,14 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "axY" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8856,8 +8856,8 @@
 /area/prison/chapel)
 "ayH" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	dir = 5;
@@ -8867,8 +8867,8 @@
 /area/prison/chapel)
 "ayI" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	dir = 1;
@@ -8896,8 +8896,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "ayL" = (
@@ -8947,12 +8947,12 @@
 /area/prison/residential/north)
 "ayS" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "ayT" = (
@@ -9064,8 +9064,8 @@
 /area/prison/medbay)
 "azf" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -9131,8 +9131,8 @@
 /area/prison/maintenance/residential/access/north)
 "azo" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /obj/machinery/light,
 /turf/open/floor{
@@ -9240,8 +9240,8 @@
 /area/prison/chapel)
 "azB" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	icon_regular_floor = "chapel";
@@ -9264,8 +9264,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "azD" = (
@@ -9280,16 +9280,16 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "azF" = (
 /obj/structure/bed/chair,
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "azG" = (
@@ -9364,8 +9364,8 @@
 /area/prison/chapel)
 "azO" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9380,8 +9380,8 @@
 /area/prison/chapel)
 "azP" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9481,8 +9481,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aAd" = (
@@ -9692,8 +9692,8 @@
 "aAK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aAL" = (
@@ -9743,8 +9743,8 @@
 "aAR" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aAS" = (
@@ -9975,8 +9975,8 @@
 /area/prison/chapel)
 "aBn" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	dir = 8;
@@ -10307,22 +10307,22 @@
 "aBT" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aBU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aBV" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aBW" = (
@@ -10357,8 +10357,8 @@
 "aCa" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aCb" = (
@@ -10400,8 +10400,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aCf" = (
@@ -10480,8 +10480,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/central)
 "aCs" = (
@@ -10545,16 +10545,16 @@
 "aCA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aCB" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aCC" = (
@@ -10569,8 +10569,8 @@
 	dir = 5
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -10582,8 +10582,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aCG" = (
@@ -10597,14 +10597,14 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aCH" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aCI" = (
@@ -10915,8 +10915,8 @@
 "aDr" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aDs" = (
@@ -11080,8 +11080,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aDJ" = (
@@ -11097,8 +11097,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aDK" = (
@@ -11124,8 +11124,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aDM" = (
@@ -11247,8 +11247,8 @@
 "aEd" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aEe" = (
@@ -11257,8 +11257,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aEf" = (
@@ -11272,8 +11272,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aEh" = (
@@ -11598,8 +11598,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aFk" = (
@@ -11694,8 +11694,8 @@
 /area/prison/hallway/entrance)
 "aFz" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aFA" = (
@@ -11708,8 +11708,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aFB" = (
@@ -11717,15 +11717,15 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aFC" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aFD" = (
@@ -11733,8 +11733,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aFE" = (
@@ -11754,8 +11754,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aFF" = (
@@ -11769,8 +11769,8 @@
 "aFG" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aFH" = (
@@ -11882,8 +11882,8 @@
 /area/prison/residential/north)
 "aGa" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/security/checkpoint/maxsec)
 "aGb" = (
@@ -12100,8 +12100,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/security/checkpoint/maxsec)
 "aGz" = (
@@ -12150,8 +12150,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGD" = (
@@ -12199,8 +12199,8 @@
 /area/prison/medbay)
 "aGI" = (
 /obj/structure/bed/chair/office/light{
-	icon_state = "officechair_white";
-	dir = 4
+	dir = 4;
+	icon_state = "officechair_white"
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
@@ -12230,8 +12230,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGM" = (
@@ -12248,8 +12248,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGN" = (
@@ -12273,8 +12273,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGO" = (
@@ -12291,8 +12291,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGP" = (
@@ -12311,8 +12311,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aGQ" = (
@@ -12334,8 +12334,8 @@
 	icon_state = "pipe-y"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aGR" = (
@@ -12559,22 +12559,22 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aHp" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aHq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aHr" = (
@@ -12582,22 +12582,22 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aHs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aHt" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aHu" = (
@@ -12690,8 +12690,8 @@
 /area/prison/chapel)
 "aHH" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 8
+	dir = 8;
+	icon_state = "wooden_chair"
 	},
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor{
@@ -12819,8 +12819,8 @@
 "aHZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aIa" = (
@@ -12830,8 +12830,8 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aIb" = (
@@ -12844,14 +12844,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/medbay/foyer)
 "aIc" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aId" = (
@@ -12982,8 +12982,8 @@
 "aIv" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aIw" = (
@@ -13016,8 +13016,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aIz" = (
@@ -13032,8 +13032,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aIB" = (
@@ -13080,8 +13080,8 @@
 "aIH" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aII" = (
@@ -13153,8 +13153,8 @@
 /area/prison/chapel)
 "aIR" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair"
 	},
 /turf/open/floor{
 	dir = 8;
@@ -13174,8 +13174,8 @@
 	name = "Chapel"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/chapel)
 "aIT" = (
@@ -13186,8 +13186,8 @@
 /area/prison/security/checkpoint/maxsec)
 "aIU" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -13264,8 +13264,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aJe" = (
@@ -13273,8 +13273,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/medbay/foyer)
 "aJg" = (
@@ -13552,8 +13552,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aJC" = (
@@ -13596,8 +13596,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aJH" = (
@@ -13608,15 +13608,15 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aJI" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aJJ" = (
@@ -13719,8 +13719,8 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aJX" = (
@@ -13755,8 +13755,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aKa" = (
@@ -13882,8 +13882,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aKn" = (
@@ -14012,8 +14012,8 @@
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aKE" = (
@@ -14071,8 +14071,8 @@
 /area/prison/security/checkpoint/highsec/n)
 "aKN" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aKO" = (
@@ -14084,14 +14084,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aKP" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aKQ" = (
@@ -14099,15 +14099,15 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aKR" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aKS" = (
@@ -14120,8 +14120,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aKT" = (
@@ -14134,8 +14134,8 @@
 /area/prison/hallway/central)
 "aKW" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14274,8 +14274,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLm" = (
@@ -14294,8 +14294,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLn" = (
@@ -14334,8 +14334,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLr" = (
@@ -14356,8 +14356,8 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLs" = (
@@ -14376,8 +14376,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLt" = (
@@ -14396,15 +14396,15 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLw" = (
@@ -14426,8 +14426,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLy" = (
@@ -14445,8 +14445,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLz" = (
@@ -14465,8 +14465,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLA" = (
@@ -14496,8 +14496,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aLC" = (
@@ -14704,8 +14704,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMe" = (
@@ -14724,8 +14724,8 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMf" = (
@@ -14763,8 +14763,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMh" = (
@@ -14781,16 +14781,16 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMk" = (
@@ -14814,8 +14814,8 @@
 	icon_state = "pipe-j2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aMl" = (
@@ -14986,8 +14986,8 @@
 "aMM" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aMN" = (
@@ -14996,8 +14996,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aMO" = (
@@ -15199,16 +15199,16 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aNu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aNv" = (
@@ -15224,8 +15224,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aNw" = (
@@ -15271,8 +15271,8 @@
 /area/prison/hallway/staff)
 "aNC" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -15342,8 +15342,8 @@
 "aNP" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aNQ" = (
@@ -15414,8 +15414,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aOc" = (
@@ -15432,8 +15432,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aOd" = (
@@ -15475,8 +15475,8 @@
 "aOj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aOk" = (
@@ -15484,14 +15484,14 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/cleaning)
 "aOl" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/cleaning)
 "aOm" = (
@@ -15501,8 +15501,8 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aOo" = (
@@ -16107,8 +16107,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aPu" = (
@@ -16127,8 +16127,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aPv" = (
@@ -16141,8 +16141,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aPw" = (
@@ -16261,8 +16261,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aPM" = (
@@ -16281,8 +16281,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/cleaning)
 "aPN" = (
@@ -16319,8 +16319,8 @@
 	icon_state = "pipe-y"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aPP" = (
@@ -16336,8 +16336,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aPQ" = (
@@ -16801,8 +16801,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aQZ" = (
@@ -16846,8 +16846,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aRg" = (
@@ -16860,15 +16860,15 @@
 "aRh" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aRi" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aRj" = (
@@ -17234,8 +17234,8 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aSk" = (
@@ -17289,14 +17289,14 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aSr" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/cleaning)
 "aSs" = (
@@ -17455,8 +17455,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "aSR" = (
@@ -17589,8 +17589,8 @@
 "aTk" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
@@ -17702,8 +17702,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aTE" = (
@@ -17801,8 +17801,8 @@
 "aTR" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "aTS" = (
@@ -18214,8 +18214,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aUE" = (
@@ -18448,16 +18448,16 @@
 /area/prison/hallway/central)
 "aVa" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aVb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aVc" = (
@@ -18465,8 +18465,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aVd" = (
@@ -18475,8 +18475,8 @@
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aVe" = (
@@ -18555,8 +18555,8 @@
 "aVq" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/security/checkpoint/maxsec)
 "aVr" = (
@@ -18584,8 +18584,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aVt" = (
@@ -18765,8 +18765,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aVS" = (
@@ -18775,8 +18775,8 @@
 "aVT" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aVU" = (
@@ -18816,8 +18816,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aVY" = (
@@ -18844,8 +18844,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aWb" = (
@@ -19027,8 +19027,8 @@
 /area/prison/residential/central)
 "aWv" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/central)
 "aWw" = (
@@ -19124,8 +19124,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aWH" = (
@@ -19146,8 +19146,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aWK" = (
@@ -19199,8 +19199,8 @@
 /area/prison/cellblock/lowsec/nw)
 "aWR" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aWS" = (
@@ -19265,8 +19265,8 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aXa" = (
@@ -19275,8 +19275,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aXb" = (
@@ -19294,29 +19294,29 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "aXd" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aXe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aXf" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aXg" = (
@@ -19443,8 +19443,8 @@
 "aXw" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "aXx" = (
@@ -19475,8 +19475,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/central)
 "aXC" = (
@@ -19489,8 +19489,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/central)
 "aXE" = (
@@ -19515,8 +19515,8 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "aXI" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -19594,8 +19594,8 @@
 "aXY" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aXZ" = (
@@ -19726,8 +19726,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aYu" = (
@@ -19735,8 +19735,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aYv" = (
@@ -19745,8 +19745,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aYw" = (
@@ -19853,8 +19853,8 @@
 "aYG" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aYH" = (
@@ -19942,8 +19942,8 @@
 /obj/effect/decal/cleanable/blood,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aYW" = (
@@ -20047,8 +20047,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "aZo" = (
@@ -20107,8 +20107,8 @@
 "aZv" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "aZw" = (
@@ -20116,8 +20116,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "aZx" = (
@@ -20445,8 +20445,8 @@
 	icon_state = "pipe-y"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bai" = (
@@ -20494,8 +20494,8 @@
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bar" = (
@@ -20730,8 +20730,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "baV" = (
@@ -20940,8 +20940,8 @@
 	name = "Staff Hallway"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/staff)
 "bbB" = (
@@ -20964,8 +20964,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/staff)
 "bbC" = (
@@ -21217,8 +21217,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bcr" = (
@@ -21348,8 +21348,8 @@
 	name = "Yard"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bcM" = (
@@ -21522,8 +21522,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "bdj" = (
@@ -21531,8 +21531,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bdk" = (
@@ -21601,8 +21601,8 @@
 "bdt" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bdu" = (
@@ -21629,8 +21629,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bdx" = (
@@ -21687,8 +21687,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bdF" = (
@@ -21824,8 +21824,8 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bdT" = (
@@ -21850,8 +21850,8 @@
 	dir = 6
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bdV" = (
@@ -21884,8 +21884,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bdY" = (
@@ -21896,8 +21896,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bdZ" = (
@@ -21933,8 +21933,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "bec" = (
@@ -21943,8 +21943,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bed" = (
@@ -21952,8 +21952,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bee" = (
@@ -21965,8 +21965,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "beg" = (
@@ -21976,8 +21976,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "beh" = (
@@ -21986,15 +21986,15 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bei" = (
 /obj/structure/rack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bej" = (
@@ -22003,8 +22003,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bek" = (
@@ -22146,8 +22146,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "beB" = (
@@ -22163,8 +22163,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "beC" = (
@@ -22172,8 +22172,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "beD" = (
@@ -22515,8 +22515,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bfu" = (
@@ -22524,8 +22524,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bfv" = (
@@ -22534,8 +22534,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bfw" = (
@@ -22551,8 +22551,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bfz" = (
@@ -22561,8 +22561,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bfA" = (
@@ -22576,8 +22576,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bfC" = (
@@ -22590,8 +22590,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bfE" = (
@@ -22602,8 +22602,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bfF" = (
@@ -22768,8 +22768,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/plate,
 /area/prison/hallway/entrance)
@@ -22924,8 +22924,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bgn" = (
@@ -23075,8 +23075,8 @@
 /area/prison/cellblock/vip)
 "bgH" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -23168,8 +23168,8 @@
 /area/prison/cellblock/lowsec/nw)
 "bgQ" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bgR" = (
@@ -23177,8 +23177,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bgS" = (
@@ -23203,8 +23203,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bgV" = (
@@ -23213,8 +23213,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bgW" = (
@@ -23222,8 +23222,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bgX" = (
@@ -23384,8 +23384,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bhs" = (
@@ -23609,8 +23609,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bhP" = (
@@ -23629,8 +23629,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "bhQ" = (
@@ -23706,8 +23706,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bic" = (
@@ -23717,8 +23717,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bid" = (
@@ -23726,8 +23726,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bif" = (
@@ -23751,8 +23751,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "big" = (
@@ -23792,8 +23792,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bii" = (
@@ -23815,8 +23815,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bij" = (
@@ -23836,8 +23836,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bik" = (
@@ -23860,8 +23860,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bil" = (
@@ -23876,8 +23876,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bim" = (
@@ -23916,8 +23916,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bio" = (
@@ -24162,8 +24162,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "biI" = (
@@ -24215,8 +24215,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "biO" = (
@@ -24338,8 +24338,8 @@
 "bjf" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjg" = (
@@ -24347,8 +24347,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bji" = (
@@ -24356,23 +24356,23 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bjk" = (
 /obj/item/ammo_casing,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjl" = (
@@ -24380,16 +24380,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjm" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjn" = (
@@ -24397,8 +24397,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bjo" = (
@@ -24433,8 +24433,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bjs" = (
@@ -24449,8 +24449,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bjt" = (
@@ -24468,8 +24468,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/prison/canteen)
@@ -24481,8 +24481,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjv" = (
@@ -24549,8 +24549,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bjC" = (
@@ -24623,8 +24623,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bjM" = (
@@ -24636,8 +24636,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bjN" = (
@@ -24697,8 +24697,8 @@
 "bjU" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bjV" = (
@@ -24711,8 +24711,8 @@
 "bjW" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bjX" = (
@@ -24854,8 +24854,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bkn" = (
@@ -24903,15 +24903,15 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bku" = (
 /obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bkv" = (
@@ -24952,8 +24952,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bkC" = (
@@ -24964,8 +24964,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "bkD" = (
@@ -25051,8 +25051,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bkN" = (
@@ -25074,8 +25074,8 @@
 "bkQ" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/residential/central)
 "bkR" = (
@@ -25092,8 +25092,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/residential/central)
 "bkS" = (
@@ -25186,8 +25186,8 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bla" = (
@@ -25277,30 +25277,30 @@
 	name = "Yard"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "blj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "blk" = (
 /obj/item/frame/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bll" = (
 /obj/item/ammo_casing,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "blo" = (
@@ -25310,8 +25310,8 @@
 	name = "Yard"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "blp" = (
@@ -25322,8 +25322,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "blq" = (
@@ -25350,8 +25350,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "blu" = (
@@ -25408,8 +25408,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "blA" = (
@@ -25534,8 +25534,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/green{
 	dir = 8
@@ -25793,23 +25793,23 @@
 /obj/structure/table/reinforced,
 /obj/item/ammo_casing,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bmB" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bmC" = (
 /obj/item/ammo_casing,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bmD" = (
@@ -25941,8 +25941,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bmT" = (
@@ -26132,8 +26132,8 @@
 "bny" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bnz" = (
@@ -26141,8 +26141,8 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bnB" = (
@@ -26150,8 +26150,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bnC" = (
@@ -26173,15 +26173,15 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bnE" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bnF" = (
@@ -26225,8 +26225,8 @@
 /area/prison/cellblock/mediumsec/south)
 "bnM" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bnN" = (
@@ -26241,8 +26241,8 @@
 /area/prison/hangar/main)
 "bnO" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hangar/main)
 "bnQ" = (
@@ -26295,8 +26295,8 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bnV" = (
@@ -26698,8 +26698,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bov" = (
@@ -26719,8 +26719,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bow" = (
@@ -26766,8 +26766,8 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "boz" = (
@@ -26778,8 +26778,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "boA" = (
@@ -26790,8 +26790,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "boB" = (
@@ -26841,8 +26841,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "boG" = (
@@ -26854,8 +26854,8 @@
 	},
 /obj/structure/mineral_door/resin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "boH" = (
@@ -26899,8 +26899,8 @@
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "boM" = (
@@ -26931,8 +26931,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "boQ" = (
@@ -26943,8 +26943,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "boR" = (
@@ -26977,8 +26977,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "boU" = (
@@ -27024,8 +27024,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bpc" = (
@@ -27211,15 +27211,15 @@
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bpH" = (
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bpI" = (
@@ -27261,15 +27261,15 @@
 /area/prison/canteen)
 "bpN" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bpO" = (
@@ -27293,8 +27293,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bpQ" = (
@@ -27307,8 +27307,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bpR" = (
@@ -27326,8 +27326,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bpT" = (
@@ -27518,8 +27518,8 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "bqr" = (
@@ -27537,8 +27537,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bqu" = (
@@ -27662,8 +27662,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bqP" = (
@@ -27803,8 +27803,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "brd" = (
@@ -27852,15 +27852,15 @@
 	},
 /obj/structure/disposalpipe/junction,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bri" = (
 /obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "brj" = (
@@ -27880,8 +27880,8 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "brk" = (
@@ -27913,8 +27913,8 @@
 /obj/structure/table/reinforced,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/canteen)
 "brp" = (
@@ -27954,8 +27954,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bru" = (
@@ -28116,8 +28116,8 @@
 "brS" = (
 /obj/item/ammo_casing,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "brT" = (
@@ -28406,8 +28406,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bsI" = (
@@ -28417,8 +28417,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bsK" = (
@@ -28463,8 +28463,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "bsQ" = (
@@ -28473,8 +28473,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/canteen)
 "bsR" = (
@@ -28801,8 +28801,8 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "btL" = (
@@ -28896,21 +28896,21 @@
 "btZ" = (
 /obj/structure/bed,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bua" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bub" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "buc" = (
@@ -28935,8 +28935,8 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bug" = (
@@ -28947,37 +28947,37 @@
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bui" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "buj" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/milk,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "buk" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bul" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bum" = (
@@ -28985,8 +28985,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bun" = (
@@ -29004,8 +29004,8 @@
 	dir = 6
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bup" = (
@@ -29013,8 +29013,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "buq" = (
@@ -29023,8 +29023,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bur" = (
@@ -29096,8 +29096,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "buA" = (
@@ -29177,8 +29177,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "buK" = (
@@ -29194,8 +29194,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "buL" = (
@@ -29236,8 +29236,8 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "buO" = (
@@ -29282,8 +29282,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "buT" = (
@@ -29318,8 +29318,8 @@
 /obj/structure/bed,
 /obj/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "buY" = (
@@ -29343,14 +29343,14 @@
 "bva" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bvb" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bvc" = (
@@ -29360,8 +29360,8 @@
 /area/prison/hallway/central)
 "bvd" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bve" = (
@@ -29371,15 +29371,15 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bvf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bvg" = (
@@ -29442,8 +29442,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/visitation)
 "bvp" = (
@@ -29633,8 +29633,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
@@ -29665,8 +29665,8 @@
 	name = "Yard"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "bvU" = (
@@ -29689,24 +29689,24 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bvW" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/packaged_burrito,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bvY" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bwa" = (
@@ -29719,8 +29719,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bwc" = (
@@ -29728,8 +29728,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bwd" = (
@@ -29742,8 +29742,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bwe" = (
@@ -29793,8 +29793,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bwi" = (
@@ -29805,8 +29805,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bwj" = (
@@ -30005,8 +30005,8 @@
 "bwQ" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bwS" = (
@@ -30015,8 +30015,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bwT" = (
@@ -30024,8 +30024,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bwU" = (
@@ -30034,8 +30034,8 @@
 "bwV" = (
 /obj/structure/rack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bwW" = (
@@ -30054,8 +30054,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bwZ" = (
@@ -30165,8 +30165,8 @@
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bxo" = (
@@ -30209,8 +30209,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bxv" = (
@@ -30234,8 +30234,8 @@
 	name = "Holding Cell 1"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bxx" = (
@@ -30272,16 +30272,16 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bxA" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bxB" = (
@@ -30289,8 +30289,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bxC" = (
@@ -30456,16 +30456,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "byb" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/food/snacks/chips,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "byc" = (
@@ -30745,8 +30745,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/yard)
 "byN" = (
@@ -30836,8 +30836,8 @@
 "byW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "byX" = (
@@ -30846,8 +30846,8 @@
 	req_access_txt = "0"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "byY" = (
@@ -31204,8 +31204,8 @@
 "bzX" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bzY" = (
@@ -31269,15 +31269,15 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bAf" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bAg" = (
@@ -31285,8 +31285,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bAh" = (
@@ -31300,8 +31300,8 @@
 /area/prison/security/monitoring/lowsec/sw)
 "bAi" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding1)
 "bAj" = (
@@ -31314,8 +31314,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding1)
 "bAk" = (
@@ -31342,8 +31342,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bAn" = (
@@ -31351,8 +31351,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bAo" = (
@@ -31381,8 +31381,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bAq" = (
@@ -31390,15 +31390,15 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bAr" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bAs" = (
@@ -31425,15 +31425,15 @@
 "bAx" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bAy" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bAz" = (
@@ -31445,14 +31445,14 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bAA" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bAB" = (
@@ -31469,8 +31469,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bAC" = (
@@ -31556,8 +31556,8 @@
 "bAQ" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bAR" = (
@@ -31688,8 +31688,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bBh" = (
@@ -31822,8 +31822,8 @@
 	name = "Prison Store"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/store)
 "bBz" = (
@@ -31843,8 +31843,8 @@
 	name = "Visitation"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/visitation)
 "bBB" = (
@@ -31860,8 +31860,8 @@
 	name = "East Hallway"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/entrance)
 "bBE" = (
@@ -31954,8 +31954,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bBP" = (
@@ -32031,8 +32031,8 @@
 /area/prison/cellblock/lowsec/sw)
 "bCb" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bCc" = (
@@ -32091,8 +32091,8 @@
 /area/prison/security/checkpoint/highsec/s)
 "bCj" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -32290,14 +32290,14 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/east)
 "bCH" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/east)
 "bCI" = (
@@ -32310,8 +32310,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bCK" = (
@@ -32319,8 +32319,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bCL" = (
@@ -32333,8 +32333,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bCM" = (
@@ -32353,15 +32353,15 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bCN" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bCO" = (
@@ -32388,8 +32388,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bCR" = (
@@ -32499,8 +32499,8 @@
 /area/prison/security/checkpoint/hangar)
 "bDi" = (
 /turf/closed/shuttle{
-	icon_state = "swall3";
-	dir = 2
+	dir = 2;
+	icon_state = "swall3"
 	},
 /area/prison/monorail/east)
 "bDj" = (
@@ -32553,8 +32553,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bDp" = (
@@ -32584,8 +32584,8 @@
 /area/prison/maintenance/residential/se)
 "bDr" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -32846,8 +32846,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bDX" = (
@@ -32977,8 +32977,8 @@
 "bEg" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bEh" = (
@@ -33064,8 +33064,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bEn" = (
@@ -33084,8 +33084,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/east)
 "bEo" = (
@@ -33123,8 +33123,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/east)
 "bEq" = (
@@ -33175,8 +33175,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/east)
 "bEs" = (
@@ -33236,8 +33236,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bEz" = (
@@ -33401,8 +33401,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bEX" = (
@@ -33425,8 +33425,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bFa" = (
@@ -33584,8 +33584,8 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bFA" = (
@@ -33610,8 +33610,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bFE" = (
@@ -33865,15 +33865,15 @@
 	name = "East Hallway"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bFW" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bFX" = (
@@ -34067,16 +34067,16 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bGz" = (
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bGA" = (
@@ -34085,15 +34085,15 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bGB" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bGC" = (
@@ -34184,8 +34184,8 @@
 "bGP" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bGQ" = (
@@ -34241,8 +34241,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bGZ" = (
@@ -34255,8 +34255,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bHb" = (
@@ -34484,8 +34484,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 8
@@ -34521,8 +34521,8 @@
 	name = "Parole"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/parole/main)
 "bHO" = (
@@ -34665,8 +34665,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bIk" = (
@@ -35145,8 +35145,8 @@
 /area/prison/cellblock/lowsec/se)
 "bIW" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
@@ -35169,21 +35169,21 @@
 "bIY" = (
 /obj/structure/bed,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bIZ" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bJa" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bJb" = (
@@ -35203,8 +35203,8 @@
 /area/prison/residential/south)
 "bJd" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding2)
 "bJe" = (
@@ -35217,8 +35217,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding2)
 "bJf" = (
@@ -35243,8 +35243,8 @@
 "bJk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bJl" = (
@@ -35301,8 +35301,8 @@
 	dir = 6
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bJr" = (
@@ -35313,8 +35313,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bJs" = (
@@ -35476,8 +35476,8 @@
 /obj/structure/bed,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bJT" = (
@@ -35494,8 +35494,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bJV" = (
@@ -35771,8 +35771,8 @@
 "bKD" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bKE" = (
@@ -35780,8 +35780,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bKF" = (
@@ -35794,8 +35794,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bKH" = (
@@ -35830,8 +35830,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/east)
 "bKK" = (
@@ -35880,8 +35880,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bKR" = (
@@ -35914,8 +35914,8 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bKU" = (
@@ -35939,8 +35939,8 @@
 	name = "Central Ring"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "bKV" = (
@@ -36028,8 +36028,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bLk" = (
@@ -36038,8 +36038,8 @@
 "bLl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bLm" = (
@@ -36048,8 +36048,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bLn" = (
@@ -36076,8 +36076,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bLq" = (
@@ -36286,8 +36286,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bLU" = (
@@ -36335,8 +36335,8 @@
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMa" = (
@@ -36345,8 +36345,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMb" = (
@@ -36354,8 +36354,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMc" = (
@@ -36364,23 +36364,23 @@
 	name = "Holding Cell 2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMd" = (
 /obj/effect/landmark/corpsespawner/prisoner,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMe" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMg" = (
@@ -36647,8 +36647,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bMP" = (
@@ -36715,8 +36715,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bMY" = (
@@ -36727,8 +36727,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bMZ" = (
@@ -36750,8 +36750,8 @@
 "bNc" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/yellow/full,
 /area/prison/security/checkpoint/medsec)
@@ -36931,15 +36931,15 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bNF" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bNG" = (
@@ -37021,8 +37021,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bNO" = (
@@ -37079,8 +37079,8 @@
 	opacity = 0
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding1)
 "bNU" = (
@@ -37170,8 +37170,8 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOb" = (
@@ -37193,23 +37193,23 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bOd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bOe" = (
 /obj/machinery/alarm,
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "bOf" = (
@@ -37235,8 +37235,8 @@
 	dir = 6
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bOh" = (
@@ -37252,8 +37252,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOi" = (
@@ -37331,8 +37331,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOu" = (
@@ -37419,8 +37419,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bOF" = (
@@ -37435,8 +37435,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/hallway/central)
 "bOG" = (
@@ -37452,8 +37452,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bOI" = (
@@ -37468,8 +37468,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/holding/holding2)
 "bOK" = (
@@ -37487,8 +37487,8 @@
 /area/prison/parole/main)
 "bOM" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -37526,14 +37526,14 @@
 	},
 /obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOR" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOS" = (
@@ -37544,8 +37544,8 @@
 	pixel_y = 28
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bOT" = (
@@ -37689,8 +37689,8 @@
 "bPj" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
@@ -37759,24 +37759,24 @@
 "bPt" = (
 /obj/structure/closet/wardrobe/orange,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bPu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bPv" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bPw" = (
@@ -37995,8 +37995,8 @@
 	name = "thermoelectric generator"
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/prison/engineering)
@@ -38192,8 +38192,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bQA" = (
@@ -38201,8 +38201,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bQB" = (
@@ -38237,22 +38237,22 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bQH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bQI" = (
 /obj/machinery/light,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bQJ" = (
@@ -38266,8 +38266,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bQL" = (
@@ -38333,8 +38333,8 @@
 /area/prison/recreation/highsec/s)
 "bQV" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bQW" = (
@@ -38342,15 +38342,15 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bQX" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bQY" = (
@@ -38367,8 +38367,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bRb" = (
@@ -38378,8 +38378,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bRc" = (
@@ -38699,8 +38699,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bSc" = (
@@ -38708,8 +38708,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bSd" = (
@@ -38720,8 +38720,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bSe" = (
@@ -38732,8 +38732,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bSg" = (
@@ -38748,8 +38748,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bSi" = (
@@ -38760,8 +38760,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bSj" = (
@@ -38791,8 +38791,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSo" = (
@@ -38803,8 +38803,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSp" = (
@@ -38817,8 +38817,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSq" = (
@@ -38834,8 +38834,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSr" = (
@@ -38850,8 +38850,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSs" = (
@@ -38865,8 +38865,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSt" = (
@@ -38882,8 +38882,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bSu" = (
@@ -38939,8 +38939,8 @@
 "bSA" = (
 /obj/structure/rack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSB" = (
@@ -38957,30 +38957,30 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSD" = (
 /obj/structure/rack,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSF" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSG" = (
@@ -38988,8 +38988,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bSH" = (
@@ -38997,8 +38997,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/yellow{
 	dir = 8
@@ -39258,8 +39258,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /turf/open/floor/prison/darkyellow{
 	dir = 1
@@ -39271,8 +39271,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/item/clothing/gloves/yellow,
 /turf/open/floor/prison/darkyellow{
@@ -39363,8 +39363,8 @@
 /area/prison/residential/south)
 "bTF" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/prison,
@@ -39554,8 +39554,8 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bUf" = (
@@ -39624,8 +39624,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bUl" = (
@@ -39641,8 +39641,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bUm" = (
@@ -39659,8 +39659,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bUn" = (
@@ -39675,8 +39675,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bUo" = (
@@ -40011,8 +40011,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bVp" = (
@@ -40038,8 +40038,8 @@
 	opacity = 0
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/holding/holding2)
 "bVs" = (
@@ -40061,8 +40061,8 @@
 	opacity = 0
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/toilet/security)
 "bVu" = (
@@ -40150,16 +40150,16 @@
 	dir = 8
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bVG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bVH" = (
@@ -40167,8 +40167,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bVI" = (
@@ -40425,8 +40425,8 @@
 "bWC" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bWD" = (
@@ -40436,8 +40436,8 @@
 "bWE" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bWF" = (
@@ -40483,8 +40483,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bWK" = (
@@ -40492,8 +40492,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bWL" = (
@@ -40502,8 +40502,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bWM" = (
@@ -40517,8 +40517,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bWN" = (
@@ -40529,8 +40529,8 @@
 /area/prison/maintenance/residential/access/south)
 "bWO" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -40630,8 +40630,8 @@
 "bXc" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/laundry)
 "bXd" = (
@@ -40749,8 +40749,8 @@
 /area/prison/storage/medsec)
 "bXu" = (
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "bXv" = (
@@ -40828,8 +40828,8 @@
 /area/prison/engineering/atmos)
 "bXL" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	icon_state = "map_universal";
-	dir = 4
+	dir = 4;
+	icon_state = "map_universal"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -40989,8 +40989,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "bYj" = (
@@ -41123,8 +41123,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bYu" = (
@@ -41306,8 +41306,8 @@
 "bYK" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "bYL" = (
@@ -41572,8 +41572,8 @@
 	dir = 6
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bZD" = (
@@ -41581,8 +41581,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bZE" = (
@@ -41591,8 +41591,8 @@
 	dir = 2
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bZF" = (
@@ -41606,8 +41606,8 @@
 	dir = 10
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "bZG" = (
@@ -41637,8 +41637,8 @@
 /area/prison/cellblock/highsec/south/south)
 "bZK" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/wood,
@@ -42975,8 +42975,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "cdb" = (
@@ -43481,8 +43481,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/prison/red{
 	dir = 8
@@ -43626,8 +43626,8 @@
 /area/prison/cellblock/mediumsec/north)
 "ceg" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/drained{
 	dir = 1
@@ -43847,8 +43847,8 @@
 	},
 /obj/machinery/light/small,
 /obj/structure/closet/walllocker/emerglocker/full{
-	icon_state = "emerg";
-	dir = 4
+	dir = 4;
+	icon_state = "emerg"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -44257,8 +44257,8 @@
 	},
 /obj/machinery/light/small,
 /obj/structure/closet/walllocker/emerglocker/full{
-	icon_state = "emerg";
-	dir = 8
+	dir = 8;
+	icon_state = "emerg"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -44941,8 +44941,8 @@
 /area/prison/disposal)
 "chM" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
-	icon_state = "map_universal";
-	dir = 4
+	dir = 4;
+	icon_state = "map_universal"
 	},
 /turf/open/floor/plating,
 /area/prison/disposal)
@@ -45283,8 +45283,8 @@
 "ciL" = (
 /obj/structure/bed,
 /obj/structure/closet/walllocker/emerglocker/full{
-	icon_state = "emerg";
-	dir = 4
+	dir = 4;
+	icon_state = "emerg"
 	},
 /turf/open/shuttle{
 	icon_state = "floor7"
@@ -45354,15 +45354,15 @@
 	on = 1
 	},
 /obj/structure/closet/walllocker/emerglocker/full{
-	icon_state = "emerg";
-	dir = 8
+	dir = 8;
+	icon_state = "emerg"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "ciW" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc,
 /turf/open/floor/plating,
@@ -45582,8 +45582,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "cjB" = (
@@ -45973,8 +45973,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bluefull";
-	dir = 8
+	dir = 8;
+	icon_state = "bluefull"
 	},
 /area/prison/cellblock/protective)
 "cky" = (
@@ -46858,8 +46858,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cmC" = (
@@ -47976,8 +47976,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cpA" = (
@@ -47996,8 +47996,8 @@
 	dir = 9
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cpC" = (
@@ -48029,8 +48029,8 @@
 	dir = 5
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cpG" = (
@@ -48038,8 +48038,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cpH" = (
@@ -48048,8 +48048,8 @@
 	on = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cpI" = (
@@ -48248,8 +48248,8 @@
 /area/prison/disposal)
 "cqp" = (
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "cqq" = (
@@ -48481,8 +48481,8 @@
 	dir = 4
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crc" = (
@@ -48517,8 +48517,8 @@
 	pixel_x = 24
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crg" = (
@@ -48535,8 +48535,8 @@
 /area/prison/cellblock/highsec/south/south)
 "crj" = (
 /obj/structure/shuttle/engine/router{
-	icon_state = "router";
-	dir = 1
+	dir = 1;
+	icon_state = "router"
 	},
 /turf/closed/wall/sulaco,
 /area/prison/pirate)
@@ -48692,15 +48692,15 @@
 /obj/item/healthanalyzer,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crH" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crI" = (
@@ -48709,8 +48709,8 @@
 	frequency = 1449
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crJ" = (
@@ -48718,8 +48718,8 @@
 	dir = 1
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/execution)
 "crK" = (
@@ -49889,8 +49889,8 @@
 /area/prison/engineering)
 "cuU" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable/empty,
 /turf/open/floor/prison/darkyellow/full,
@@ -49988,8 +49988,8 @@
 /area/prison/cellblock/mediumsec/east)
 "cvj" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable/empty,
 /obj/structure/cable{
@@ -50059,8 +50059,8 @@
 "cvs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "cvt" = (
@@ -50120,8 +50120,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/maintenance/residential/access/south)
 "cvA" = (
@@ -50670,17 +50670,17 @@
 /area/prison/security/monitoring/medsec/central)
 "cwZ" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	icon_state = "map_connector";
-	dir = 4
+	dir = 4;
+	icon_state = "map_connector"
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 4
+	dir = 4;
+	icon_state = "rwindow"
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -50692,8 +50692,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50706,13 +50706,13 @@
 /area/prison/pirate)
 "cxi" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	icon_state = "map_connector";
-	dir = 8
+	dir = 8;
+	icon_state = "map_connector"
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 8
+	dir = 8;
+	icon_state = "rwindow"
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -50740,13 +50740,13 @@
 /area/prison/cellblock/mediumsec/east)
 "cxn" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	icon_state = "map_connector";
-	dir = 4
+	dir = 4;
+	icon_state = "map_connector"
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 4
+	dir = 4;
+	icon_state = "rwindow"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50756,13 +50756,13 @@
 /area/prison/pirate)
 "cxv" = (
 /obj/machinery/atmospherics/components/unary/portables_connector{
-	icon_state = "map_connector";
-	dir = 8
+	dir = 8;
+	icon_state = "map_connector"
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 8
+	dir = 8;
+	icon_state = "rwindow"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50865,15 +50865,15 @@
 /area/prison/pirate)
 "cxY" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	icon_state = "map_off";
-	dir = 4
+	dir = 4;
+	icon_state = "map_off"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cyb" = (
 /obj/machinery/atmospherics/components/binary/pump{
-	icon_state = "map_off";
-	dir = 8
+	dir = 8;
+	icon_state = "map_off"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50959,8 +50959,8 @@
 /obj/structure/shuttle/engine/heater,
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50968,8 +50968,8 @@
 /obj/structure/shuttle/engine/heater,
 /obj/effect/decal/warning_stripes,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /obj/structure/cable/green,
 /turf/open/floor/plating,
@@ -50979,8 +50979,8 @@
 /obj/effect/decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/violet,
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /turf/open/floor/plating,
 /area/prison/pirate)
@@ -50996,8 +50996,8 @@
 /area/prison/cellblock/mediumsec/south)
 "cyK" = (
 /obj/structure/shuttle/engine/router{
-	icon_state = "router";
-	dir = 1
+	dir = 1;
+	icon_state = "router"
 	},
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/plating,
@@ -51532,8 +51532,8 @@
 "dOO" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "dPR" = (
@@ -51571,8 +51571,8 @@
 "eyF" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "eCA" = (
@@ -51692,8 +51692,8 @@
 "hwj" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/yard)
 "hEZ" = (
@@ -51845,8 +51845,8 @@
 "jYS" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "kja" = (
@@ -51981,8 +51981,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "neb" = (
@@ -52041,6 +52041,10 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
+"onD" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison,
+/area/prison/hangar_storage/research)
 "oRz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -52055,8 +52059,8 @@
 "peP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "pvO" = (
@@ -52074,8 +52078,8 @@
 "pLL" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/south)
 "pOU" = (
@@ -52114,8 +52118,8 @@
 "qlN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/prison{
-	icon_state = "bright_clean2";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean2"
 	},
 /area/prison/residential/north)
 "qsn" = (
@@ -52128,8 +52132,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "qxc" = (
@@ -52255,6 +52259,13 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/hangar_barracks)
+"tCq" = (
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison,
+/area/prison/hangar/civilian)
 "udZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -52265,8 +52276,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "ueY" = (
@@ -52370,8 +52381,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/prison{
-	icon_state = "bright_clean";
-	dir = 10
+	dir = 10;
+	icon_state = "bright_clean"
 	},
 /area/prison/hallway/central)
 "woW" = (
@@ -52416,6 +52427,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/checkpoint/hangar)
+"xyL" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean"
+	},
+/area/prison/yard)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -58776,7 +58795,7 @@ aAC
 aAC
 aAC
 aAC
-aAC
+tCq
 hHw
 aab
 aab
@@ -89859,7 +89878,7 @@ aWR
 aHp
 aWR
 hwj
-bjj
+xyL
 bny
 bgQ
 bpG
@@ -103952,7 +103971,7 @@ atU
 aur
 auI
 auI
-auI
+onD
 auI
 auI
 auI

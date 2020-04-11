@@ -11386,8 +11386,8 @@
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11626,8 +11626,8 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11796,8 +11796,8 @@
 /area/lv624/ground/jungle9)
 "aSh" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner{
@@ -13058,8 +13058,8 @@
 /area/shuttle/drop1/lz1)
 "aWr" = (
 /turf/open/floor{
-	icon_state = "warningcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warningcorner"
 	},
 /area/shuttle/drop1/lz1)
 "aWs" = (
@@ -13423,8 +13423,8 @@
 /area/lv624/lazarus/console)
 "aXF" = (
 /turf/open/floor{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /area/shuttle/drop1/lz1)
 "aXG" = (
@@ -16968,8 +16968,8 @@
 /area/lv624/lazarus/hop)
 "bjj" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
@@ -17654,8 +17654,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
@@ -17890,8 +17890,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -18178,8 +18178,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -18518,8 +18518,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -18741,8 +18741,8 @@
 /area/lv624/lazarus/secure_storage)
 "bot" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 4
+	dir = 4;
+	icon_state = "comfychair"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -18753,8 +18753,8 @@
 /area/lv624/lazarus/secure_storage)
 "bov" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 8
+	dir = 8;
+	icon_state = "comfychair"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -19296,8 +19296,8 @@
 /area/lv624/lazarus/atmos/outside)
 "bqj" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,
@@ -19969,6 +19969,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/mineral/sandstone,
 /area/lv624/ground/caves/east1)
+"ddz" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "dBG" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20112,6 +20116,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/west1)
+"hCs" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "hDA" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -20198,6 +20206,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand7)
+"kuv" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -29814,7 +29826,7 @@ axx
 aIZ
 aBP
 aKK
-aCr
+kuv
 aEa
 auU
 aNR
@@ -48999,7 +49011,7 @@ abe
 abe
 abe
 mWY
-abf
+ddz
 acS
 acS
 acS
@@ -54212,7 +54224,7 @@ arW
 azK
 aAk
 aAk
-aAk
+hCs
 aAk
 aAk
 aAk
