@@ -783,6 +783,7 @@
 		
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)
+	return ..()
 
 /obj/structure/dropship_equipment/operatingtable/update_equipment()
 	if(!deployed_table)
