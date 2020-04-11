@@ -495,17 +495,17 @@
 	return switch_modes(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
-	var/max_overcharge_mode = length(overcharge_datums)
+	var/max_overcharge_mode = length(mode_list)
 	if(current_mode >= max_overcharge_mode)
 		current_mode = 1
 	else
 		current_mode += 1
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
-	charge_cost = initial(overcharge_datums[current_mode].charge_cost)
-	ammo = GLOB.ammo_list[initial(overcharge_datums[current_mode].ammo)]
-	fire_delay = initial(overcharge_datums[current_mode].fire_delay)
-	fire_sound = initial(overcharge_datums[current_mode].fire_sound)
+	charge_cost = initial(mode_list[current_mode].charge_cost)
+	ammo = GLOB.ammo_list[initial(mode_list[current_mode].ammo)]
+	fire_delay = initial(mode_list[current_mode].fire_delay)
+	fire_sound = initial(mode_list[current_mode].fire_sound)
 
 	if(initial(mode_list[current_mode].fire_mode) != GUN_FIREMODE_SEMIAUTO)
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[current_mode].fire_mode, user.client)
@@ -513,7 +513,7 @@
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 	
 
-	to_chat(user, initial(overcharge_datums[current_mode].message_to_user))
+	to_chat(user, initial(mode_list[current_mode].message_to_user))
 
 
 	if(user)
