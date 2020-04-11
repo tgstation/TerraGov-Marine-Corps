@@ -112,16 +112,7 @@
 					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
 					/obj/item/reagent_containers/food/drinks/cans/cola = 10)
 
-	prices = list(/obj/item/reagent_containers/food/drinks/cans/souto = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/cherry/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/lime/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape = 5,
-					/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
-					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
-					/obj/item/reagent_containers/food/drinks/cans/cola = 10)
+	prices = list()
 	idle_power_usage = 200
 
 /obj/machinery/vending/cigarette
@@ -139,11 +130,7 @@
 	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
 
 	premium = list(/obj/item/storage/fancy/cigar = 25)
-	prices = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 15,
-					/obj/item/storage/box/matches = 1,
-					/obj/item/tool/lighter/random = 2,
-					/obj/item/tool/lighter/zippo = 20,
-					/obj/item/clothing/mask/cigarette/cigar/havana = 50)
+	prices = list()
 
 /obj/machinery/vending/cigarette/colony
 	product_slogans = "Koorlander Gold, for the refined palate.;Lady Fingers, for the dainty smoker.;Lady Fingers, treat your palete with pink!;The big blue K means a cool fresh day!;For the taste that cools your mood, look for the big blue K!;Refined smokers go for Gold!;Lady Fingers are preferred by women who appreciate a cool smoke.;Lady Fingers are the number one cigarette this side of Gateway!;The tobacco connoisseur prefers Koorlander Gold.;For the cool, filtered feel, Lady Finger Cigarettes provide the smoothest draw of any cigarette on the market.;For the man who knows his place is at the top, Koorlander Gold shows the world that you're the best and no-one can say otherwise.;The Colonial Administration Bureau would like to remind you that smoking kills."
@@ -152,10 +139,7 @@
 					/obj/item/storage/fancy/cigarettes/lady_finger = 15,
 					/obj/item/storage/box/matches = 10,
 					/obj/item/tool/lighter/random = 20)
-	prices = list(/obj/item/storage/fancy/cigarettes/kpack = 15,
-					/obj/item/storage/fancy/cigarettes/lady_finger = 15,
-					/obj/item/storage/box/matches = 1,
-					/obj/item/tool/lighter/random = 2)
+	prices = list()
 
 /obj/machinery/vending/medical
 	name = "NanotrasenMed Plus"
