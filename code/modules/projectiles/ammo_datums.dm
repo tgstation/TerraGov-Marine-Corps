@@ -718,7 +718,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-		flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	bonus_projectiles_amount = 3
 	bonus_projectiles_scatter = 10
