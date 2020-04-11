@@ -581,7 +581,7 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-///Called to update the stat var, returns a boolean to indicate if it needs further handling.
+///Called to update the stat var, returns a boolean to indicate if it has been handled.
 /mob/proc/update_stat()
 	return FALSE
 
