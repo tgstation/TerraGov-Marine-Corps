@@ -411,3 +411,113 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice/unique_action(mob/user)
 	return
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle
+	name = "\improper TX-78 Sunfury Lasgun MK1"
+	desc = "An multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
+	force = 20 //Large and hefty! Includes stock bonus.
+	icon = 'icons/obj/items/lasrifle.dmi'
+	icon_state = "lasrifle"
+	item_state = "lasrifle"
+	max_shots = 50 //codex stuff
+	load_method = CELL //codex stuff
+	ammo = /datum/ammo/energy/lasgun/M43
+	ammo_diff = null
+	cell_type = null
+	charge_cost = M43_STANDARD_AMMO_COST
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope/mini)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
+	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = 0.25
+	fire_delay = 3
+	var/current_mode = 1
+	var/mode_list = list(
+						/datum/lasrifle/base/standard,
+						/datum/lasrifle/base/auto,
+						/datum/lasrifle/base/overcharge,
+						/datum/lasrifle/base/heat)
+
+/datum/lasrifle/base
+	var/charge_cost = 0
+	var/ammo = null
+	var/fire_delay = 0
+	var/fire_sound = null
+	var/message_to_user = ""
+	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+
+/datum/lasrifle/base/standard
+	charge_cost = 10
+	ammo = /datum/ammo/energy/lasgun/M43
+	fire_delay = 3
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasgun's charge mode to standard fire."
+
+/datum/lasrifle/base/auto
+	charge_cost = 10
+	ammo = /datum/ammo/energy/lasgun/M43
+	fire_delay = 2
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasgun's charge mode to automatic fire."
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+
+/datum/lasrifle/base/overcharge
+	charge_cost = 20
+	ammo = /datum/ammo/energy/lasgun/M43/overcharge
+	fire_delay = 10
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasgun's charge mode to overcharge."
+
+/datum/lasrifle/base/heat
+	charge_cost = 20
+	ammo = /datum/ammo/energy/lasgun/M43/heat
+	fire_delay = 8
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasgun's charge mode to wave heat."
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
+	return switch_modes(user)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
+	var/max_overcharge_mode = length(overcharge_datums)
+	if(current_mode >= max_overcharge_mode)
+		current_mode = 1
+	else
+		current_mode += 1
+	
+	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+	charge_cost = initial(overcharge_datums[current_mode].charge_cost)
+	ammo = GLOB.ammo_list[initial(overcharge_datums[current_mode].ammo)]
+	fire_delay = initial(overcharge_datums[current_mode].fire_delay)
+	fire_sound = initial(overcharge_datums[current_mode].fire_sound)
+
+	if(initial(mode_list[current_mode].fire_mode) != GUN_FIREMODE_SEMIAUTO)
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[current_mode].fire_mode, user.client)
+	else
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
+	
+
+	to_chat(user, initial(overcharge_datums[current_mode].message_to_user))
+
+
+	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user)
+
+	return TRUE
