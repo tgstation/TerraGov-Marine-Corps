@@ -448,7 +448,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 3
 	var/current_mode = 1
-	var/mode_list = list(
+	var/list/datum/lasrifle/mode_list = list(
 						/datum/lasrifle/base/standard,
 						/datum/lasrifle/base/auto,
 						/datum/lasrifle/base/overcharge,
