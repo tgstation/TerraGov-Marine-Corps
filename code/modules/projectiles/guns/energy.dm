@@ -448,7 +448,7 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 3
 	var/current_mode = 1
-	var/mode_list = list(
+	var/list/mode_list = list(
 						/datum/lasrifle/base/standard,
 						/datum/lasrifle/base/auto,
 						/datum/lasrifle/base/overcharge,
@@ -468,6 +468,7 @@
 	fire_delay = 3
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to standard fire."
+	icon_state = "lasrifle"
 
 /datum/lasrifle/base/auto
 	charge_cost = 10
@@ -476,6 +477,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to automatic fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
+	icon_state = "lasrifle_auto"
 
 /datum/lasrifle/base/overcharge
 	charge_cost = 20
@@ -483,6 +485,7 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to overcharge."
+	icon_state = "lasrifle_overcharge"
 
 /datum/lasrifle/base/heat
 	charge_cost = 20
@@ -490,6 +493,7 @@
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to wave heat."
+	icon_state = "lasrifle_heat"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	return switch_modes(user)
@@ -508,10 +512,11 @@
 	fire_sound = initial(mode_list[current_mode].fire_sound)
 
 	if(initial(mode_list[current_mode].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[current_mode].fire_mode, user.client)
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[current_mode].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 	
+	icon_state = initial(mode_list[current_mode].icon_state)
 
 	to_chat(user, initial(mode_list[current_mode].message_to_user))
 
