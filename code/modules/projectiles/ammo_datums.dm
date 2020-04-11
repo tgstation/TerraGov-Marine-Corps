@@ -1340,7 +1340,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
-	victim.Paralyze(1 SECONDS)
+	victim.Paralyze(0.1 SECONDS)
+	victim.blur_eyes(1)
+	victim.adjustDrowsyness(1)
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
