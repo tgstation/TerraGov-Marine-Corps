@@ -104,7 +104,7 @@
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
 			return
-		if(X.IsStun() || X.IsKnockdown())
+		if(X.IsStun() || X.IsParalyzed())
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are disabled!</span>")
 			return
 		var/turf/T = get_turf(X)

@@ -38,7 +38,7 @@
 
 		if (radiation > 100)
 			radiation = 100
-			Knockdown(20 SECONDS)
+			Paralyze(20 SECONDS)
 			if(!lying)
 				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
@@ -54,7 +54,7 @@
 				adjustToxLoss(1)
 				if(prob(5))
 					radiation -= 5
-					Knockdown(60)
+					Paralyze(60)
 					if(!lying)
 						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")
