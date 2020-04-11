@@ -32,7 +32,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/bonus_projectiles_type 					// Type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
 	var/bonus_projectiles_scatter	= 8			// Degrees scattered per two projectiles, each in a different direction.
-	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
@@ -232,7 +231,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	debilitate = list(0,0,0,0,5,3,30,0)
+	damage = 25
+	damage_type = STAMINA
+
+/datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/victim, obj/projectile/proj)
+	if(iscarbon(victim))
+		var/mob/living/carbon/carbon_victim = victim
+		carbon_victim.reagents.add_reagent(/datum/reagent/toxin/potassium_chlorophoride, 1)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
@@ -272,7 +277,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_special"
-	debilitate = list(0,0,0,0,0,0,0,2)
 	accuracy = 15
 	damage = 32
 	penetration = 10
@@ -285,7 +289,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state_empty = "monkey_empty"
 	ping = null //no bounce off.
 	damage_type = BURN
-	debilitate = list(4,4,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	shell_speed = 2
 	damage = 15
@@ -815,8 +818,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "irradiated smartgun bullet"
 	hud_state = "smartgun_radioactive"
 	iff_signal = ACCESS_IFF_PMC
-	debilitate = list(0,0,0,3,0,0,0,1)
 	shrapnel_chance = 75
+
+/datum/ammo/bullet/smartgun/dirty/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	victim.radiation += 3 //Needs a refactor.
 
 /datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -1285,7 +1290,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "glob of gas"
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
-	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 	var/datum/effect_system/smoke_spread/xeno/smoke_system
 	var/danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into noxious fumes!</span>"
@@ -1293,8 +1297,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 10
 	max_range = 30
 
-/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(P), P.firer)
+/datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+	victim.Paralyze(4 SECONDS)
 
 /datum/ammo/xeno/boiler_gas/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(P), P.firer)
@@ -1324,13 +1329,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "boiler_gas"
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
-	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	armor_type = "acid"
 	danger_message = "<span class='danger'>A glob of acid lands with a splat and explodes into corrosive bile!</span>"
 	damage = 50
 	damage_type = BURN
 	penetration = 40
+
+/datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
+	drop_nade(get_turf(proj), proj.firer)
+	victim.Paralyze(1 SECONDS)
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)

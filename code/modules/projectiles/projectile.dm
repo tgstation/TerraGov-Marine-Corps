@@ -734,10 +734,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		bullet_ping(proj)
 		return
 
-	if(proj.ammo.debilitate && ( damage || (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
-		apply_bullet_effects(proj)
-		. = TRUE
-
 	if(!damage)
 		return
 
@@ -833,19 +829,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/get_living_armor(armor_type, proj_def_zone, proj_dir)
 	. = (armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus) * get_sunder()
-
-/mob/living/proc/apply_bullet_effects(obj/projectile/proj)
-	apply_effects(arglist(proj.ammo.debilitate))
-
-
-/mob/living/carbon/human/apply_bullet_effects(obj/projectile/proj)
-	if(issynth(src))
-		return
-	return ..()
-
-
-/mob/living/carbon/xenomorph/apply_bullet_effects(obj/projectile/proj)
-	return
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
