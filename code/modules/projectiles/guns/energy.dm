@@ -417,8 +417,8 @@
 	desc = "An multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/obj/items/lasrifle.dmi'
-	icon_state = "lasrifle"
-	item_state = "lasrifle"
+	icon_state = "tx73"
+	item_state = "tx73"
 	max_shots = 50 //codex stuff
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
@@ -448,11 +448,12 @@
 	damage_falloff_mult = 0.25
 	fire_delay = 3
 	var/current_mode = 1
-	var/list/mode_list = list(
+	var/mode_list = list(
 						/datum/lasrifle/base/standard,
 						/datum/lasrifle/base/auto,
 						/datum/lasrifle/base/overcharge,
-						/datum/lasrifle/base/heat)
+						/datum/lasrifle/base/heat,
+						/datum/lasrifle/base/spread)
 
 /datum/lasrifle/base
 	var/charge_cost = 0
@@ -461,6 +462,7 @@
 	var/fire_sound = null
 	var/message_to_user = ""
 	var/fire_mode = GUN_FIREMODE_SEMIAUTO
+	var/icon_state = "tx73"
 
 /datum/lasrifle/base/standard
 	charge_cost = 10
@@ -468,7 +470,7 @@
 	fire_delay = 3
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to standard fire."
-	icon_state = "lasrifle"
+	icon_state = "tx73"
 
 /datum/lasrifle/base/auto
 	charge_cost = 10
@@ -477,7 +479,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to automatic fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "lasrifle_auto"
+	icon_state = "tx73_auto"
 
 /datum/lasrifle/base/overcharge
 	charge_cost = 20
@@ -485,7 +487,7 @@
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to overcharge."
-	icon_state = "lasrifle_overcharge"
+	icon_state = "tx73_overcharge"
 
 /datum/lasrifle/base/heat
 	charge_cost = 20
@@ -493,7 +495,15 @@
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasgun's charge mode to wave heat."
-	icon_state = "lasrifle_heat"
+	icon_state = "tx73_heat"
+
+/datum/lasrifle/base/spread
+	charge_cost = 20
+	ammo = /datum/ammo/energy/lasgun/M43/blast
+	fire_delay = 8
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the Lasgun's charge mode to spread."
+	icon_state = "tx73_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	return switch_modes(user)
