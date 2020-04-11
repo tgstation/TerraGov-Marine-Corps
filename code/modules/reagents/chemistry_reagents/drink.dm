@@ -202,7 +202,7 @@
 	nutriment_factor = 0
 	overdose_threshold = REAGENTS_OVERDOSE * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
-	custom_metabolism = REAGENTS_METABOLISM * 2.5 //1u/tick
+	custom_metabolism = REAGENTS_METABOLISM * 5 //1u/tick
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
