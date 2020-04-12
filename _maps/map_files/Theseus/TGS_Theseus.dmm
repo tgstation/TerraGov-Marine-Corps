@@ -8999,24 +8999,6 @@
 	icon_state = "red"
 	},
 /area/mainship/shipboard/weapon_room)
-"auZ" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/machinery/reagentgrinder,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_side"
-	},
-/area/mainship/medical/chemistry)
 "ava" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -14648,22 +14630,6 @@
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "sterile_green_side"
-	},
-/area/mainship/medical/medical_science)
-"aGC" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/machinery/reagentgrinder,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_corner"
 	},
 /area/mainship/medical/medical_science)
 "aGD" = (
@@ -47451,6 +47417,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"qXx" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 5;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/reagentgrinder,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "sterile_green_side"
+	},
+/area/mainship/medical/chemistry)
 "qZC" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -47830,6 +47814,22 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/lower_medical)
+"tKT" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 10;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/reagentgrinder,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "sterile_green_corner"
+	},
+/area/mainship/medical/medical_science)
 "tQY" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
@@ -76686,7 +76686,7 @@ bsD
 aIZ
 bsA
 buq
-auZ
+qXx
 bxB
 byZ
 aJa
@@ -79652,7 +79652,7 @@ aoz
 aBW
 aDx
 alz
-aGC
+tKT
 aHV
 aJi
 aKT
