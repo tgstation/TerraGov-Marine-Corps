@@ -35,7 +35,7 @@
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
 	overdose_threshold = REAGENTS_OVERDOSE*2
-	custom_metabolism = REAGENTS_METABOLISM * 2 //0.4/tick
+	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
 	purge_rate = 1
 	taste_description = "water"
@@ -60,11 +60,11 @@
 
 /datum/reagent/water/on_mob_life(mob/living/L,metabolism)
 	switch(current_cycle)
-		if(10 to 13) //1 sip, starting at the end
-			L.adjustStaminaLoss(-2*REM)	
-			L.heal_limb_damage(REM, REM)
-		if(14 to 25) //sip 2
-			L.adjustStaminaLoss(-0.5*REM)
+		if(4 to 5) //1 sip, starting at the end
+			L.adjustStaminaLoss(-4*REM)	
+			L.heal_limb_damage(2*REM, 2*REM)
+		if(6 to 10) //sip 2
+			L.adjustStaminaLoss(-REM)
 			L.heal_limb_damage(0.2*REM, 0.2*REM)
 	return ..()
 
