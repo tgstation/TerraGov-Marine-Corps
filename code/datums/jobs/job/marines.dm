@@ -137,8 +137,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	req_admin_notify = TRUE
 	paygrade = "E4"
 	comm_title = "Spec"
-	total_positions = 4
-	max_positions = 6
+	total_positions = 0
+	max_positions = 0
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
