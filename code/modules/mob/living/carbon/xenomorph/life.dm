@@ -41,6 +41,18 @@
 	. = ..()
 	if(.)
 		return
+
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || health < get_crit_threshold())
+		if(stat != UNCONSCIOUS)
+			blind_eyes(1)
+		stat = UNCONSCIOUS
+		see_in_dark = 5
+	else if(stat == UNCONSCIOUS)
+		stat = CONSCIOUS
+		adjust_blindness(-1)
+		see_in_dark = 8
+	update_canmove()
+
 	//Deal with devoured things and people
 	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
 		empty_gut()
