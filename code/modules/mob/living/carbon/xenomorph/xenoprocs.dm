@@ -195,7 +195,7 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying || buckled)
+	if(incapacitated() || lying_angle || buckled)
 		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
 		return 0
 	return 1

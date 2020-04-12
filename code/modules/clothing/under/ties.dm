@@ -361,7 +361,7 @@
 /mob/living/carbon/human/proc/do_holster()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
-	if(incapacitated() || lying)
+	if(incapacitated() || lying_angle)
 		return
 
 	if(!istype(w_uniform, /obj/item/clothing/under))

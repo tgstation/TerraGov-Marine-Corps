@@ -100,7 +100,7 @@
 	. = ..()
 	if(isliving(A))
 		var/mob/living/L = A
-		if(!L.lying)//so dragged corpses don't trigger mines.
+		if(!L.lying_angle)//so dragged corpses don't trigger mines.
 			Bumped(A)
 
 /obj/item/explosive/mine/Bumped(mob/living/L)
