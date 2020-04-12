@@ -125,7 +125,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			Knockdown(80 * armor)
+			Paralyze(80 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -136,7 +136,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			Knockdown(40 * armor)
+			Paralyze(40 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR

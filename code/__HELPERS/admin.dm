@@ -28,7 +28,8 @@ params
 			active_admins.Add(C)
 
 	if(!length(active_admins)) // If no admin just return the default option
-		log_admin("Admin Approval: '[admin_message]' was marked [default_option] due to lack of online admin.")
+		log_admin("Admin Approval: '[admin_message]' was answered with [default_option] due to lack of online admin.")
+		send2tgs_adminless_only("Approval", "'[admin_message]' was answered with [default_option] due to lack of online admin")
 		return
 
 	var/approval_id = num2text(UNIQUEID)

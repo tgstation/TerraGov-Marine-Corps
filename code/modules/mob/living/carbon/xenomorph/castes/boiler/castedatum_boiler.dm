@@ -31,6 +31,9 @@
 
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
+	// *** Darksight *** ///
+	conscious_see_in_dark = 20
+
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD
 
@@ -136,7 +139,7 @@
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "A devestating piece of alien artillery."
+	caste_desc = "A devastating piece of alien artillery."
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 

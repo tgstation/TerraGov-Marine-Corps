@@ -267,7 +267,7 @@
 				simple_status_hud.icon_state = "hud_uncon_afk"
 				status_hud.icon_state = "hud_uncon_afk"
 				return TRUE
-			if(IsKnockdown()) //I've fallen and I can't get up.
+			if(IsParalyzed()) //I've fallen and I can't get up.
 				simple_status_hud.icon_state = "hud_con_kd"
 				status_hud.icon_state = "hud_con_kd"
 				return TRUE
@@ -324,8 +324,28 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 
+/mob/living/proc/hud_set_sunder()
+	return
+
+/mob/living/carbon/xenomorph/hud_set_sunder()
+	var/image/holder = hud_list[ARMOR_SUNDER_HUD]
+	if(!holder)
+		return
+
+	switch(round(sunder, 1))
+		if(-INFINITY to 0)
+			holder.icon_state = "sundering0"
+		if(1 to 35)
+			holder.icon_state = "sundering25"
+		if(36 to 65)
+			holder.icon_state = "sundering50"
+		if(66 to 95)
+			holder.icon_state = "sundering75"
+		if(96 to INFINITY)
+			holder.icon_state = "sundering100"
+	
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.

@@ -581,9 +581,9 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-
+///Called to update the stat var, returns a boolean to indicate if it has been handled.
 /mob/proc/update_stat()
-	return
+	return FALSE
 
 /mob/proc/can_inject()
 	return reagents
@@ -848,3 +848,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 		return
 	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/proc/set_stat(new_stat)
+	if(new_stat == stat)
+		return
+	. = stat //old stat
+	stat = new_stat
+	update_canmove()

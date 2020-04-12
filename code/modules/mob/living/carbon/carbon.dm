@@ -59,10 +59,10 @@
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
-			Knockdown(20)
+			Paralyze(20)
 		else
 			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
-			Knockdown(20 SECONDS)
+			Paralyze(20 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -160,10 +160,10 @@
 
 		AdjustUnconscious(-60)
 		AdjustStun(-60)
-		if(IsKnockdown())
+		if(IsParalyzed())
 			if(staminaloss)
 				adjustStaminaLoss(-20, FALSE)
-		AdjustKnockdown(-60)
+		AdjustParalyzed(-60)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 5)
 		return
@@ -327,7 +327,7 @@
 	to_chat(src, "<span class='warning'>You slipped on \the [slip_source_name? slip_source_name : "floor"]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 25, 1)
 	Stun(stun_level)
-	Knockdown(weaken_level)
+	Paralyze(weaken_level)
 	. = TRUE
 	if(slide_steps && lying)//lying check to make sure we downed the mob
 		var/slide_dir = dir
@@ -481,3 +481,14 @@
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with shift clicking.</span>")
 	else
 		to_chat(src, "<span class='notice'>The selected special ability will now be activated with middle mouse clicking.</span>")
+
+/mob/living/carbon/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == UNCONSCIOUS)
+		blind_eyes(1)
+		disabilities |= DEAF
+	else if(. == UNCONSCIOUS)
+		adjust_blindness(-1)
+		disabilities &= ~DEAF

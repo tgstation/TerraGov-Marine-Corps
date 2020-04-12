@@ -79,10 +79,7 @@
 
 
 //Return either pick(list) or null if list is not of type /list or is empty
-/proc/safepick(list/L)
-	if(!length(L))
-		return
-	return pick(L)
+#define SAFEPICK(L) (length(L) ? pick(L) : null)
 
 
 //Checks if the list is empty

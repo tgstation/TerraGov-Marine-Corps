@@ -66,10 +66,12 @@
 	update_stat()
 
 /mob/living/update_stat()
+	. = ..()
 	update_cloak()
 
 /mob/living/Initialize()
 	. = ..()
+	register_init_signals()
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -93,6 +95,21 @@
 	return ..()
 
 
+///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
+/mob/living/proc/register_init_signals()
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
+
+
+///Called when TRAIT_KNOCKEDOUT is added to the mob.
+/mob/living/proc/on_knockedout_trait_gain(datum/source)
+	if(stat < UNCONSCIOUS)
+		set_stat(UNCONSCIOUS)
+
+///Called when TRAIT_KNOCKEDOUT is removed from the mob.
+/mob/living/proc/on_knockedout_trait_loss(datum/source)
+	if(stat < DEAD)
+		update_stat()
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -570,7 +587,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
+	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
 		if(buckled && buckled.buckle_lying != -1)
@@ -717,7 +734,7 @@ below 100 is not dizzy
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
 		return
-	animate(pulled_mob, pixel_x = 0, pixel_y = 0, 0.1 SECONDS)
+	animate(pulled_mob, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
@@ -746,12 +763,6 @@ below 100 is not dizzy
 				GLOB.dead_mob_list += src
 	. = ..()
 	switch(var_name)
-		if("knockdown")
-			SetKnockdown(var_value)
-		if("stun")
-			SetStun(var_value)
-		if("sleeping")
-			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")

@@ -12,8 +12,6 @@
 
 	..()
 
-	adjust_sunder(sunder_recover * -1) 
-
 	if(stat == DEAD) //Dead, nothing else to do but this.
 		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
 			handle_decay()
@@ -31,6 +29,7 @@
 		update_evolving()
 		handle_aura_emiter()
 
+	adjust_sunder(xeno_caste.sunder_recover * -1) 
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -39,39 +38,13 @@
 
 
 /mob/living/carbon/xenomorph/update_stat()
-
-	update_cloak()
-
-	if(status_flags & GODMODE)
+	. = ..()
+	if(.)
 		return
-
-	if(stat == DEAD)
-		return
-
-	if(health <= xeno_caste.crit_health)
-		if(prob(gib_chance + 0.5*(xeno_caste.crit_health - health)))
-			gib()
-		else
-			death()
-		return
-
-	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
-		if(stat != UNCONSCIOUS)
-			blind_eyes(1)
-		stat = UNCONSCIOUS
-		see_in_dark = 5
-	else if(stat == UNCONSCIOUS)
-		stat = CONSCIOUS
-		adjust_blindness(-1)
-		see_in_dark = 8
-	update_canmove()
 
 	//Deal with devoured things and people
 	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
 		empty_gut()
-
-	return TRUE
-
 
 
 /mob/living/carbon/xenomorph/handle_status_effects()

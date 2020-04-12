@@ -22,7 +22,7 @@
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
-	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
+	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
 		get_up()
 
 /mob/living/proc/get_up()
