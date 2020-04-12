@@ -739,7 +739,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 10
-	damage = 50
+	damage = 40
 	damage_falloff = 1
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
