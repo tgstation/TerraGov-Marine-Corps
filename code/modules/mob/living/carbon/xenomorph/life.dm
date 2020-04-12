@@ -41,6 +41,7 @@
 	. = ..()
 	if(.)
 		return
+
 	//Deal with devoured things and people
 	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
 		empty_gut()

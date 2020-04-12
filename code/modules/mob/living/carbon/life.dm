@@ -62,13 +62,13 @@
 		death()
 		return
 
-	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
 		if(stat == UNCONSCIOUS)
 			return
 		set_stat(UNCONSCIOUS)
 	else if(stat == UNCONSCIOUS)
 		set_stat(CONSCIOUS)
-	update_canmove()
+
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()

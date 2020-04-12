@@ -71,6 +71,7 @@
 
 /mob/living/Initialize()
 	. = ..()
+	register_init_signals()
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -94,6 +95,21 @@
 	return ..()
 
 
+///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
+/mob/living/proc/register_init_signals()
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
+
+
+///Called when TRAIT_KNOCKEDOUT is added to the mob.
+/mob/living/proc/on_knockedout_trait_gain(datum/source)
+	if(stat < UNCONSCIOUS)
+		set_stat(UNCONSCIOUS)
+
+///Called when TRAIT_KNOCKEDOUT is removed from the mob.
+/mob/living/proc/on_knockedout_trait_loss(datum/source)
+	if(stat < DEAD)
+		update_stat()
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -571,7 +587,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || IsParalyzed() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
+	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
 		if(buckled && buckled.buckle_lying != -1)

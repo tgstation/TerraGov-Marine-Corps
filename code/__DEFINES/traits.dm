@@ -82,6 +82,7 @@
 #define TRAIT_XENO "xeno"
 
 //mob traits
+#define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_BATONIMMUNE		"baton_immunity"

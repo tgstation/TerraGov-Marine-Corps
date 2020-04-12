@@ -854,3 +854,4 @@
 		return
 	. = stat //old stat
 	stat = new_stat
+	update_canmove()
