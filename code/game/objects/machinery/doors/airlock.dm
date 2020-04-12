@@ -225,7 +225,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
+	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
 		if(locked)
 			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
 			return FALSE

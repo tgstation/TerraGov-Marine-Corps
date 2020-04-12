@@ -86,7 +86,7 @@
 
 	var/mob/living/carbon/human/H = AM
 
-	if(H.lying)
+	if(H.lying_angle)
 		return
 
 	H.next_move_slowdown += slow_amt
@@ -639,7 +639,7 @@ TUNNEL
 	attack_alien(user)
 
 /obj/structure/tunnel/attack_alien(mob/living/carbon/xenomorph/M)
-	if(!istype(M) || M.stat || M.lying)
+	if(!istype(M) || M.stat || M.lying_angle)
 		return
 
 	if(M.a_intent == INTENT_HARM && M == creator)

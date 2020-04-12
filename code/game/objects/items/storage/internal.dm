@@ -35,7 +35,7 @@
 /obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 
-		if(user.lying) //Can't use your inventory when lying
+		if(user.lying_angle) //Can't use your inventory when lying
 			return
 
 		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
@@ -89,7 +89,7 @@
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
 
-	if(user.lying)
+	if(user.lying_angle)
 		return 0
 
 	if(ishuman(user))

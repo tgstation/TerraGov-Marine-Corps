@@ -63,7 +63,7 @@
 		if(H.cooldowns[COOLDOWN_ACID])
 			return
 		H.cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(H.cooldowns, COOLDOWN_ACID, null), 1 SECONDS)
-		if(!H.lying)
+		if(!H.lying_angle)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			if(!(H.species.species_flags & NO_PAIN))
 				H.emote("pain")

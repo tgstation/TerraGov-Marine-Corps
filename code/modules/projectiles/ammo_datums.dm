@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
-	if(proj.distance_travelled > max_range || victim.lying) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
+	if(proj.distance_travelled > max_range || victim.lying_angle) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
 
 	else //Two tiles away or less.
 		shake_camera(victim, 3, 4)
@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
 	if(!isliving(victim))
 		return
-	if(shake && (proj.distance_travelled > max_range || victim.lying))
+	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
 		shake_camera(victim, shake + 1, shake)
 		return
 	var/impact_message = ""

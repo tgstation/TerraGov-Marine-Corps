@@ -514,7 +514,7 @@
 		DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 
 /obj/machinery/marine_turret/check_eye(mob/user)
-	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying_angle || !user.client)
 		user.unset_interaction()
 
 /obj/machinery/marine_turret/attackby(obj/item/I, mob/user, params)

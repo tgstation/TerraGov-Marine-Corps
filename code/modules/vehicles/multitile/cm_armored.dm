@@ -352,7 +352,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		throw_at(T, 3, 2, C, 1)
 		apply_damage(rand(5, 7.5), BRUTE)
 		return
-	if(!lying)
+	if(!lying_angle)
 		temp = get_step(T, facing)
 		T = temp
 		T = get_step(T, pick(GLOB.cardinals))
@@ -370,7 +370,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		H?.livingmob_interact(src)
 
 /mob/living/carbon/xenomorph/queen/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	if(lying || loc == C.loc)
+	if(lying_angle || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
 	T = temp
@@ -379,7 +379,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	visible_message("<span class='danger'>[C] bumps into [src], pushing [p_them()] away!</span>", "<span class='danger'>[C] bumps into you!</span>")
 
 /mob/living/carbon/xenomorph/crusher/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
-	if(lying || loc == C.loc)
+	if(lying_angle || loc == C.loc)
 		return ..()
 	temp = get_step(T, facing)
 	T = temp

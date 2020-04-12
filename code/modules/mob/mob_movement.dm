@@ -3,7 +3,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying)
+	return (!mover.density || !density || lying_angle)
 
 
 /client/verb/swap_hand()

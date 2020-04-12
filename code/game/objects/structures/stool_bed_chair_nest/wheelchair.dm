@@ -13,7 +13,7 @@
 	if(world.time <= last_move_time + move_delay)
 		return
 	// Redundant check?
-	if(user.incapacitated() || user.lying)
+	if(user.incapacitated() || user.lying_angle)
 		return
 
 	if(propelled) //can't manually move it mid-propelling.

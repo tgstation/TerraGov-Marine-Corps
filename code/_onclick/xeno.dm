@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(lying_angle)
 		return FALSE
 
 	if(xeno_caste)
@@ -16,7 +16,7 @@
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(lying_angle)
 		return FALSE
 
 	A.attack_larva(src)
@@ -27,7 +27,7 @@
 
 
 /mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(lying_angle)
 		return FALSE
 
 	A.attack_hivemind(src)

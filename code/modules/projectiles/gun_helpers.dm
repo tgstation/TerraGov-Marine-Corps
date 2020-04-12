@@ -267,7 +267,7 @@ should be alright.
 
 /mob/living/carbon/human/proc/do_unique_action()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	if(incapacitated() || lying)
+	if(incapacitated() || lying_angle)
 		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
