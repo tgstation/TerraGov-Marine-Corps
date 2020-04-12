@@ -6,6 +6,3 @@
 		return
 	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/smartgunner)
 	scaled_job.job_points_needed  = 6
-
-	scaled_job = SSjob.GetJobType(/datum/job/terragov/squad/specialist)
-	scaled_job.job_points_needed  = 6
