@@ -58,7 +58,7 @@
 			go_out(TRUE)
 			return
 		occupant.bodytemperature = 100 //Temp fix for broken atmos
-		occupant.stat = 1
+		occupant.set_stat(UNCONSCIOUS)
 		if(occupant.bodytemperature < T0C)
 			occupant.Paralyze(20 SECONDS)
 			if(occupant.getOxyLoss())

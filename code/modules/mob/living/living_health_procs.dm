@@ -276,7 +276,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 	updatehealth()
 
 	// make the icons look correct

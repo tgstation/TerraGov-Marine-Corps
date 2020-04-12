@@ -209,7 +209,7 @@
 	user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 	H.on_revive()
 	H.timeofdeath = 0
-	H.stat = UNCONSCIOUS
+	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.regenerate_icons()
 	H.reload_fullscreens()

@@ -36,9 +36,11 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/defender/update_stat()
+/mob/living/carbon/xenomorph/defender/set_stat()
 	. = ..()
-	if(stat && fortify)
+	if(isnull(.))
+		return
+	if(. == CONSCIOUS && fortify) //No longer conscious.
 		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
 
 
