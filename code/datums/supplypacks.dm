@@ -1623,18 +1623,6 @@ AMMO
 	containername = "ammo crate"
 	group = "Ammo"
 
-/datum/supply_packs/ammo_minigun
-	name = "Vindicator Minigun Ammo Drums (x3)"
-	contains = list(
-					/obj/item/ammo_magazine/minigun,
-					/obj/item/ammo_magazine/minigun,
-					/obj/item/ammo_magazine/minigun
-					)
-	cost = RO_PRICE_CHEAP
-	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper minigun ammo crate"
-	group = "Ammo"
-
 
 /*******************************************************************************
 ARMOR
