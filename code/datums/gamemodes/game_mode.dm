@@ -623,8 +623,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	player.close_spawn_windows()
 	player.spawning = TRUE
 	player.create_character()
-	player.mind.transfer_to(player.new_character)
 	SSjob.spawn_character(player, TRUE)
+	player.mind.transfer_to(player.new_character)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	qdel(player)

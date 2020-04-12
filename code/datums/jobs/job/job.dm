@@ -293,25 +293,10 @@ GLOBAL_PROTECT(exp_specialmap)
 
 
 /datum/job/proc/on_late_spawn(mob/living/late_spawner)
-
-	to_chat(world, "handle job on_late_spawn for [late_spawner]")
-
 	if(job_flags & JOB_FLAG_ADDTOMANIFEST)
 		if(!ishuman(late_spawner))
 			CRASH("on_late_spawn called for job with JOB_FLAG_ADDTOMANIFEST on non-human late_spawner: [late_spawner]")
 		GLOB.datacore.manifest_inject(late_spawner)
-	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
-		var/datum/money_account/bank_account = create_account(late_spawner.real_name, rand(50, 500) * 10)
-		var/list/remembered_info = list()
-		remembered_info += "<b>Your account number is:</b> #[bank_account.account_number]"
-		remembered_info += "<b>Your account pin is:</b> [bank_account.remote_access_pin]"
-		remembered_info += "<b>Your account funds are:</b> $[bank_account.money]"
-		if(length(bank_account.transaction_log))
-			var/datum/transaction/transaction_datum = bank_account.transaction_log[1]
-			remembered_info += "<b>Your account was created:</b> [transaction_datum.time], [transaction_datum.date] at [transaction_datum.source_terminal]"
-		late_spawner.mind.store_memory(remembered_info.Join("<br>"))
-		late_spawner.mind.initial_account = bank_account
-		to_chat(world, "set bank account")
 
 
 /datum/job/proc/return_spawn_type(datum/preferences/prefs)
