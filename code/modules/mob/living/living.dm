@@ -587,7 +587,7 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
+	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
 		if(buckled && buckled.buckle_lying != -1)
