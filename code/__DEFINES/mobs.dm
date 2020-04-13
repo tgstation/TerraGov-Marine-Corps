@@ -122,7 +122,7 @@
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
 #define GODMODE			(1<<4)
-#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define FAKEDEATH		(1<<5)	//Unused
 #define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 #define TK_USER			(1<<8)
