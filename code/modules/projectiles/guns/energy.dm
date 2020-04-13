@@ -526,7 +526,7 @@
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 	
-	icon_state = initial(mode_list[current_mode].icon_state)
+	base_gun_icon = initial(mode_list[current_mode].icon_state)
 	update_icon()
 
 	to_chat(user, initial(mode_list[current_mode].message_to_user))
