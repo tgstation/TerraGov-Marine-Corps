@@ -413,8 +413,8 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper TX-78 Sunfury Lasgun MK1"
-	desc = "An multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
+	name = "\improper TX-73 Sunfury Lasgun MK1"
+	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/lasrifle.dmi'
 	icon_state = "tx73"
@@ -465,7 +465,7 @@
 	var/icon_state = "tx73"
 
 /datum/lasrifle/base/standard
-	charge_cost = 10
+	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 3
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -473,7 +473,7 @@
 	icon_state = "tx73"
 
 /datum/lasrifle/base/auto
-	charge_cost = 10
+	charge_cost = 20
 	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 2
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -482,7 +482,7 @@
 	icon_state = "tx73_auto"
 
 /datum/lasrifle/base/overcharge
-	charge_cost = 20
+	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/overcharge
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -490,7 +490,7 @@
 	icon_state = "tx73_overcharge"
 
 /datum/lasrifle/base/heat
-	charge_cost = 20
+	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -498,7 +498,7 @@
 	icon_state = "tx73_heat"
 
 /datum/lasrifle/base/spread
-	charge_cost = 20
+	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/blast
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
