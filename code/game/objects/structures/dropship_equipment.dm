@@ -789,11 +789,11 @@
 	if(!deployed_table)
 		return
 	if(ship_base)
-		deployed_table.layer = 3.03
+		deployed_table.layer = 3.02
 		deployed_table.loc = loc
 		icon_state = "table2-idle"
 	else
-		deployed_table.layer = 3.03
+		deployed_table.layer = 3.02
 		deployed_table.loc = src
 		icon_state = "table2-idle"
 
