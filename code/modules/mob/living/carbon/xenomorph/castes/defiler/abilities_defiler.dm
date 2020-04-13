@@ -16,7 +16,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/larval_growth_sting/defiler/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 	var/mob/living/carbon/C = A
 	if(locate(/obj/item/alien_embryo) in C) // already got one, stops doubling up
 		return ..()
@@ -62,7 +62,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 
 	//give them fair warning
 	X.visible_message("<span class='danger'>Tufts of smoke begin to billow from [X]!</span>", \
@@ -98,7 +98,7 @@
 	dispense_gas()
 
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
+	var/mob/living/carbon/xenomorph/defiler/X = owner
 	set waitfor = FALSE
 	while(count)
 		if(X.stagger) //If we got staggered, return

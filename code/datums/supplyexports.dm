@@ -75,7 +75,7 @@
 
 /datum/supply_export/xemomorph/defiler
 	cost = 50
-	export_obj = /mob/living/carbon/xenomorph/Defiler
+	export_obj = /mob/living/carbon/xenomorph/defiler
 
 /datum/supply_export/xemomorph/shrike
 	cost = 50

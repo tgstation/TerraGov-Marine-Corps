@@ -186,13 +186,13 @@
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
 
-/mob/living/carbon/xenomorph/Defiler/mature
+/mob/living/carbon/xenomorph/defiler/mature
 	upgrade = XENO_UPGRADE_ONE
 
-/mob/living/carbon/xenomorph/Defiler/elder
+/mob/living/carbon/xenomorph/defiler/elder
 	upgrade = XENO_UPGRADE_TWO
 
-/mob/living/carbon/xenomorph/Defiler/ancient
+/mob/living/carbon/xenomorph/defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/shrike/mature
