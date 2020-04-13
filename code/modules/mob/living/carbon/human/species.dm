@@ -473,7 +473,7 @@
 	show_paygrade = TRUE
 	count_human = TRUE
 
-	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|IS_SECTOID_ALIEN|NO_DAMAGE_OVERLAY
+	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
 
 	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
 	death_sound = 'sound/voice/sectoid_death.ogg'

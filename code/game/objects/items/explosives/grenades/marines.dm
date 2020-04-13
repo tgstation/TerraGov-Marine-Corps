@@ -117,11 +117,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/alien/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 5)
-		qdel(src)
-	return
-
+	explosion(loc, -1, -1, 5)
+	qdel(src)
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
