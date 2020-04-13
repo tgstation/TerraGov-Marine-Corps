@@ -21,14 +21,3 @@
 	winset(chat.owner, "output", "is-visible=false")
 	winset(chat.owner, "browseroutput", "is-disabled=false;is-visible=true")
 
-
-/// Goon specific chat renderer (default for most clients)
-/datum/chatRenderer/goon
-	asset_datum = /datum/asset/group/goonchat
-
-/datum/chatRenderer/goon/get_main_page()
-	return file('code/modules/goonchat/browserOutput.html')
-
-/datum/chatRenderer/show_chat()
-	winset(chat.owner, "output", "is-visible=false")
-	winset(chat.owner, "browseroutput", "is-disabled=false;is-visible=true")

@@ -924,6 +924,8 @@
 #include "code\modules\buildmode\submodes\variable_edit.dm"
 #include "code\modules\chat\chat.dm"
 #include "code\modules\chat\chat_renderer.dm"
+#include "code\modules\chat\renderers\goon_renderer.dm"
+#include "code\modules\chat\renderers\vchat_renderer.dm"
 #include "code\modules\client\asset_cache.dm"
 #include "code\modules\client\client_defines.dm"
 #include "code\modules\client\client_procs.dm"

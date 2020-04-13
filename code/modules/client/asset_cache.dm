@@ -455,48 +455,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 
-/datum/asset/simple/jquery
-	verify = FALSE
-	assets = list(
-		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
-	)
-
-
-/datum/asset/simple/goonchat
-	verify = FALSE
-	assets = list(
-		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
-		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
-		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
-	)
-
-
-/datum/asset/spritesheet/goonchat
-	name = "chat"
-
-
-/datum/asset/spritesheet/goonchat/register()
-	InsertAll("emoji", 'icons/misc/emoji.dmi')
-
-	// pre-loading all lanugage icons also helps to avoid meta
-	InsertAll("language", 'icons/misc/language.dmi')
-	// catch languages which are pulling icons from another file
-	for(var/path in typesof(/datum/language))
-		var/datum/language/L = path
-		var/icon = initial(L.icon)
-		if(icon != 'icons/misc/language.dmi')
-			var/icon_state = initial(L.icon_state)
-			Insert("language-[icon_state]", icon, icon_state = icon_state)
-
-	return ..()
-
-
 /datum/asset/spritesheet/pipes
 	name = "pipes"
 

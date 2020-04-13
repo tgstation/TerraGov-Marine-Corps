@@ -2,9 +2,6 @@
 For the main html chat area
 *********************************/
 
-//Precaching a bunch of shit
-GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
-
 //Should match the value set in the browser js
 #define MAX_COOKIE_LENGTH 5
 /*

@@ -2,7 +2,7 @@
 For the main html chat area
 *********************************/
 
-//Precaching a bunch of shit
+//This is used to convert icons to base64 <image> strings, because byond stores icons in base64 in savefiles.
 GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of icons for the browser output
 
 //Should match the value set in the browser js
@@ -98,7 +98,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			data = doneLoading(arglist(params))
 
 		if("debug")
-			data = debug(arglist(params))
+			// TODO: VChat has different topics and handling
+			var/msg = params["message"]
+			if(params["message"] == "VChat Loaded!")
+				doneLoading()
+			else
+				data = debug(list2params(params))
 
 		if("analyzeClientData")
 			data = analyzeClientData(arglist(params))
@@ -126,7 +131,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	loaded = TRUE
 	showChat()
-
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
@@ -246,6 +250,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Called by js client on js error
 /datum/chatSystem/proc/debug(error)
+	to_chat(world, "FUCK: [error]")
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 
