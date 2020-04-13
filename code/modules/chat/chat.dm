@@ -7,15 +7,23 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Should match the value set in the browser js
 #define MAX_COOKIE_LENGTH 5
-/*
-	A chat renderer for chat output
 
-	The core rendering system for dynamic chat.
+
+#define CHAT_RENDERER_GOON(X) new /datum/chatRenderer/goon(X)
+#define DEFAULT_CHAT_RENDERER(X) CHAT_RENDERER_GOON(X)
+
+/*
+	The Chat system datum
+
+	This is the main system for chat in TGMC. All outgoing chat is sent via the chatSystem 
+	which is able to work with different renderers to support multiple outputs
+	
+	Currently supported are byond, goonchat, and vchat.
 
 */
-//On client, created on login
-/datum/chatOutput
-	var/client/owner	 //client ref
+/datum/chatSystem
+	var/client/owner ///Client ref
+	var/datum/chatRenderer/renderer /// Chat renderer
 	// How many times client data has been checked
 	var/total_checks = 0
 	// When to next clear the client data checks counter
@@ -27,13 +35,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
 	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
 
-/datum/chatOutput/New(client/C, datum/chatRenderer/renderer)
+/datum/chatSystem/New(client/C)
 	owner = C
 	messageQueue = list()
 	connectionHistory = list()
-	src.renderer = renderer
 
-/datum/chatOutput/proc/start()
+	//TODO: choose renderer this from prefs
+	renderer = DEFAULT_CHAT_RENDERER(src) 
+
+/datum/chatSystem/proc/start()
 	//Check for existing chat
 	if(QDELETED(owner))
 		return FALSE
@@ -57,18 +67,18 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	return TRUE
 
-/datum/chatOutput/proc/load()
+/datum/chatSystem/proc/load()
 	set waitfor = FALSE
 	if(!owner)
 		return
 
-	var/datum/asset/stuff = renderer.get_asset_datum()
+	var/datum/asset/stuff = renderer.get_assets()
 	stuff.send(owner)
 
 	var/main_page = renderer.get_main_page()
 	owner << browse(main_page, "window=browseroutput")
 
-/datum/chatOutput/Topic(href, list/href_list)
+/datum/chatSystem/Topic(href, list/href_list)
 	if(usr.client != owner)
 		return TRUE
 
@@ -107,7 +117,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 
 //Called on chat output done-loading by JS.
-/datum/chatOutput/proc/doneLoading()
+/datum/chatSystem/proc/doneLoading()
 	if(loaded)
 		return
 
@@ -130,18 +140,18 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
 
-/datum/chatOutput/proc/showChat()
+/datum/chatSystem/proc/showChat()
 	winset(owner, "output", "is-visible=false")
 	winset(owner, "browseroutput", "is-disabled=false;is-visible=true")
 
 /proc/syncChatRegexes()
 	for (var/user in GLOB.clients)
 		var/client/C = user
-		var/datum/chatOutput/Cchat = C.chatOutput
+		var/datum/chatSystem/Cchat = C.chatOutput
 		if (Cchat?.working && Cchat.loaded)
 			Cchat.syncRegex()
 
-/datum/chatOutput/proc/syncRegex()
+/datum/chatSystem/proc/syncRegex()
 	var/list/regexes = list()
 
 	if (config.ic_filter_regex)
@@ -154,12 +164,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if (regexes.len)
 		ehjax_send(data = list("syncRegex" = regexes))
 
-/datum/chatOutput/proc/ehjax_send(client/C = owner, window = "browseroutput", data)
+/datum/chatSystem/proc/ehjax_send(client/C = owner, window = "browseroutput", data)
 	if(islist(data))
 		data = json_encode(data)
 	C << output("[data]", "[window]:ehjaxCallback")
 
-/datum/chatOutput/proc/sendMusic(music, list/extra_data)
+/datum/chatSystem/proc/sendMusic(music, list/extra_data)
 	if(!findtext(music, GLOB.is_http_protocol))
 		return
 	var/list/music_data = list("adminMusic" = url_encode(url_encode(music)))
@@ -169,15 +179,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		music_data["musicHalt"] = extra_data["end"]
 	ehjax_send(data = music_data)
 
-/datum/chatOutput/proc/stopMusic()
+/datum/chatSystem/proc/stopMusic()
 	ehjax_send(data = "stopMusic")
 
-/datum/chatOutput/proc/setMusicVolume(volume = "")
+/datum/chatSystem/proc/setMusicVolume(volume = "")
 	if(volume)
 		adminMusicVolume = CLAMP(text2num(volume), 0, 100)
 
 //Sends client connection details to the chat to handle and save
-/datum/chatOutput/proc/sendClientData()
+/datum/chatSystem/proc/sendClientData()
 	//Get dem deets
 	var/list/deets = list("clientData" = list())
 	deets["clientData"]["ckey"] = owner.ckey
@@ -187,7 +197,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	ehjax_send(data = data)
 
 //Called by client, sent data to investigate (cookie history so far)
-/datum/chatOutput/proc/analyzeClientData(cookie)
+/datum/chatSystem/proc/analyzeClientData(cookie)
 	//Spam check
 	if(world.time  >  next_time_to_clear)
 		next_time_to_clear = world.time + (3 SECONDS)
@@ -235,7 +245,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 
 //Called by js client on js error
-/datum/chatOutput/proc/debug(error)
+/datum/chatSystem/proc/debug(error)
 	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
 
 
@@ -306,10 +316,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		return
 	SSchat.queue(target, message, handle_whitespace)
 
-/datum/chatOutput/proc/swaptolightmode()
+/datum/chatSystem/proc/swaptolightmode()
 	owner.force_white_theme()
 
-/datum/chatOutput/proc/swaptodarkmode()
+/datum/chatSystem/proc/swaptodarkmode()
 	owner.force_dark_theme()
 
 #undef MAX_COOKIE_LENGTH

@@ -128,7 +128,7 @@
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
-	chatOutput = new /datum/chatOutput(src)
+	chatOutput = new /datum/chatSystem(src)
 	TopicData = null	//Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.

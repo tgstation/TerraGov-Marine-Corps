@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(server_maint)
 		if(!thing)
 			continue
 		var/client/C = thing
-		var/datum/chatOutput/CO = C.chatOutput
+		var/datum/chatSystem/CO = C.chatOutput
 		if(SSticker.graceful && CO)
 			CO.ehjax_send(data = "shutdown")
 			continue

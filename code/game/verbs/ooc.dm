@@ -304,7 +304,7 @@
 		action = alert(src, "Invalid Chat Output data found!\nRecreate data?", "Recreate Chat Output data", "Yes", "Cancel")
 		if(action != "Yes")
 			return
-		chatOutput = new /datum/chatOutput(src)
+		chatOutput = new /datum/chatSystem(src)
 		chatOutput.start()
 		action = alert(src, "Goon chat reloading, wait a bit and state if it's fixed", "Fixed", "Yes", "No")
 		if(action == "Yes")
