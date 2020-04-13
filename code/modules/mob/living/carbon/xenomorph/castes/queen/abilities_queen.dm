@@ -429,7 +429,6 @@
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned.</span>")
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
-	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
 
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
@@ -443,7 +442,6 @@
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
 	xeno_ruler.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
-	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
 
 // ***************************************

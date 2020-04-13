@@ -38,10 +38,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
-	// *** Pheromones *** //
-	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
-	aura_allowed = list("frenzy", "warding", "recovery")
-
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -54,7 +50,6 @@
 		/datum/action/xeno_action/activable/salvage_plasma,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/larval_growth_sting,
-		/datum/action/xeno_action/toggle_pheromones
 		)
 
 /datum/xeno_caste/drone/young
@@ -90,9 +85,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 5, "bullet" = 3, "laser" = 3, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
-	// *** Pheromones *** //
-	aura_strength = 1.5
-
 /datum/xeno_caste/drone/elder
 	upgrade_name = "Elder"
 	caste_desc = "The workhorse of the hive. It looks a little more dangerous."
@@ -121,9 +113,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
-	// *** Pheromones *** //
-	aura_strength = 1.8
-
 /datum/xeno_caste/drone/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A very mean architect."
@@ -148,6 +137,3 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 6, "laser" = 6, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
-
-	// *** Pheromones *** //
-	aura_strength = 2

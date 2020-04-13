@@ -42,8 +42,8 @@
 	acid_spray_range = 4
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
-	aura_allowed = list("frenzy", "warding", "recovery")
+	aura_strength = 4
+	aura_allowed = list("recovery")
 
 	// *** Abilities *** //
 	actions = list(
@@ -53,7 +53,7 @@
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
-		/datum/action/xeno_action/toggle_pheromones
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/praetorian/young
@@ -93,7 +93,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
-	aura_strength = 3.5
+	aura_strength = 4.3
 
 /datum/xeno_caste/praetorian/elder
 	upgrade_name = "Elder"
@@ -127,7 +127,7 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 4.7
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
@@ -159,5 +159,5 @@
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
-	aura_strength = 4.5
+	aura_strength = 5
 

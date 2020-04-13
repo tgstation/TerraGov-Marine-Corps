@@ -43,10 +43,6 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
 
-	// *** Pheromones *** //
-	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
-
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -58,7 +54,6 @@
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/xeno_spit
 		)
 
@@ -98,9 +93,6 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
 
-	// *** Pheromones *** //
-	aura_strength = 2.5
-
 /datum/xeno_caste/hivelord/elder
 	upgrade_name = "Elder"
 	caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
@@ -131,9 +123,6 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 2.8
 
 /datum/xeno_caste/hivelord/ancient
 	upgrade_name = "Ancient"
@@ -166,7 +155,4 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
-
-	// *** Pheromones *** //
-	aura_strength = 3
 

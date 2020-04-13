@@ -297,10 +297,6 @@
 	xeno_leader_list -= X
 	X.queen_chosen_lead = FALSE
 
-/datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
-	for(var/i in xeno_leader_list)
-		var/mob/living/carbon/xenomorph/X = i
-		X.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
 // *********** Status changes
@@ -402,8 +398,7 @@
 
 
 /mob/living/carbon/xenomorph/queen/proc/on_becoming_ruler()
-	hive.update_leader_pheromones()
-
+	return
 
 /datum/hive_status/proc/handle_ruler_timer()
 	return

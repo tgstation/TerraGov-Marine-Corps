@@ -39,12 +39,17 @@
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
 
+	// *** Pheromones *** //
+	aura_strength = 4
+	aura_allowed = list("frenzy")
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
-		/datum/action/xeno_action/activable/ravage
+		/datum/action/xeno_action/activable/ravage,
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/ravager/young
@@ -79,6 +84,9 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 20, "acid" = 35)
+	
+	// *** Pheromones *** //
+	aura_strength = 4.3
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -107,6 +115,9 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 38, "bullet" = 38, "laser" = 38, "energy" = 38, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 25, "acid" = 38)
+	
+	// *** Pheromones *** //
+	aura_strength = 4.7
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -135,3 +146,6 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 28, "acid" = 40)
+	
+	// *** Pheromones *** //
+	aura_strength = 5

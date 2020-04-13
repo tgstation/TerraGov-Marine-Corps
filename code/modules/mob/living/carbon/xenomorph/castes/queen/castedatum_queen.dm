@@ -41,7 +41,7 @@
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	aura_strength = 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
@@ -105,7 +105,7 @@
 	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
-	aura_strength = 4
+	aura_strength = 4.7
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2
@@ -141,7 +141,7 @@
 	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
-	aura_strength = 4.7
+	aura_strength = 4.9
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 3

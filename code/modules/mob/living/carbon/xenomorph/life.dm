@@ -97,7 +97,7 @@
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.03) ) // 1 damage + 3% max health
 	if(recovery_aura)
-		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+		amount += recovery_aura * maxHealth * 0.01 /// +1% max health per recovery level, multiplied by recovery_aura
 	amount *= multiplier
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
@@ -108,14 +108,6 @@
 		return
 	if(plasma_stored == xeno_caste.plasma_max)
 		return
-
-	if(current_aura)
-		if(plasma_stored < 5)
-			use_plasma(plasma_stored)
-			current_aura = null
-			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
-		else
-			use_plasma(5)
 
 	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		if(lying_angle || resting)
@@ -132,7 +124,7 @@
 	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
 	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
 
-	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
+	if(!current_aura) //Gotta be emitting some pheromones to actually do something
 		return
 
 	if(on_fire) //Can't output pheromones if on fire
@@ -140,53 +132,20 @@
 
 	if(current_aura) //Plasma costs are already checked beforehand
 		var/phero_range = round(6 + xeno_caste.aura_strength * 2) //Don't need to do the distance math over and over for each xeno
-		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
-			var/mob/living/carbon/xenomorph/queen/Q = src
-			if(Q.observed_xeno)
-				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
-				for(var/xenos in Q.hive.get_all_xenos())
-					var/mob/living/carbon/xenomorph/Z = xenos
-					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
-						switch(current_aura)
-							if("frenzy")
-								if(xeno_caste.aura_strength > Z.frenzy_new)
-									Z.frenzy_new = xeno_caste.aura_strength
-							if("warding")
-								if(xeno_caste.aura_strength > Z.warding_new)
-									Z.warding_new = xeno_caste.aura_strength
-							if("recovery")
-								if(xeno_caste.aura_strength > Z.recovery_new)
-									Z.recovery_new = xeno_caste.aura_strength
-
-		else
-			for(var/xenos in hive.get_all_xenos())
-				var/mob/living/carbon/xenomorph/Z = xenos
-				if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-					switch(current_aura)
-						if("frenzy")
-							if(xeno_caste.aura_strength > Z.frenzy_new)
-								Z.frenzy_new = xeno_caste.aura_strength
-						if("warding")
-							if(xeno_caste.aura_strength > Z.warding_new)
-								Z.warding_new = xeno_caste.aura_strength
-						if("recovery")
-							if(xeno_caste.aura_strength > Z.recovery_new)
-								Z.recovery_new = xeno_caste.aura_strength
-	if(leader_current_aura)
-		var/phero_range = round(6 + leader_aura_strength * 2)
 		for(var/xenos in hive.get_all_xenos())
 			var/mob/living/carbon/xenomorph/Z = xenos
-			if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-				switch(leader_current_aura)
-					if("frenzy")
-						if(leader_aura_strength > Z.frenzy_new)
-							Z.frenzy_new = leader_aura_strength
-					if("warding")
-						if(leader_aura_strength > Z.warding_new)
-							Z.warding_new = leader_aura_strength
-					if("recovery")
-						if(leader_aura_strength > Z.recovery_new)
-							Z.recovery_new = leader_aura_strength
+			if(get_dist(src, Z) > phero_range || (z != Z.z) || Z.on_fire)
+				continue
+			switch(current_aura)
+				if("frenzy")
+					if(xeno_caste.aura_strength > Z.frenzy_new)
+						Z.frenzy_new = xeno_caste.aura_strength
+				if("warding")
+					if(xeno_caste.aura_strength > Z.warding_new)
+						Z.warding_new = xeno_caste.aura_strength
+				if("recovery")
+					if(xeno_caste.aura_strength > Z.recovery_new)
+						Z.recovery_new = xeno_caste.aura_strength
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)

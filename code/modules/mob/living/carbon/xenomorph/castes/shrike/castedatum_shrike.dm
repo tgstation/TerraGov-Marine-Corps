@@ -42,8 +42,8 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
 
 	// *** Pheromones *** //
-	aura_strength = 2 //The Shrike's aura is decent.
-	aura_allowed = list("frenzy", "warding", "recovery")
+	aura_strength = 3
+	aura_allowed = list("frenzy", "recovery")
 
 	// *** Abilities *** //
 	actions = list(
@@ -60,7 +60,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/shrike/young
@@ -97,7 +97,7 @@
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 10, "acid" = 15)
 
 	// *** Pheromones *** //
-	aura_strength = 2.5
+	aura_strength = 3.5
 
 /datum/xeno_caste/shrike/elder
 	upgrade_name = "Elder"
@@ -128,7 +128,7 @@
 	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 15, "acid" = 18)
 
 	// *** Pheromones *** //
-	aura_strength = 2.8
+	aura_strength = 4
 
 /datum/xeno_caste/shrike/ancient
 	upgrade_name = "Ancient"
@@ -159,4 +159,4 @@
 	armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 18, "acid" = 20)
 
 	// *** Pheromones *** //
-	aura_strength = 3
+	aura_strength = 4.5

@@ -479,20 +479,6 @@
 
 	. = ..()
 
-
-//When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
-/mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
-
-	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
-		leader_aura_strength = 0
-		leader_current_aura = ""
-		to_chat(src, "<span class='xenowarning'>Our pheromones wane. The Queen is no longer granting us her pheromones.</span>")
-	else
-		leader_aura_strength = Q.xeno_caste.aura_strength
-		leader_current_aura = Q.current_aura
-		to_chat(src, "<span class='xenowarning'>Our pheromones have changed. The Queen has new plans for the Hive.</span>")
-
-
 /mob/living/carbon/xenomorph/proc/update_spits()
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]

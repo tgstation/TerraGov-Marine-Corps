@@ -78,8 +78,8 @@
 	var/acid_spray_range = 0
 
 	// *** Pheromones *** //
-	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
+	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit any
+	var/aura_allowed = list() /// list of strings representing which auras are allowed
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
@@ -217,10 +217,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Leader vars
-	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
-	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
 	//Runner vars
 	var/savage = FALSE

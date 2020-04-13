@@ -269,49 +269,53 @@
 
 /datum/action/xeno_action/pheromones
 	name = "SHOULD NOT EXIST"
-	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
-	var/aura_type = null //String for aura to emit
+	ability_name = "pheromones"
+	plasma_cost = 30 ///Base plasma cost for begin to emit pheromones
+	cooldown_timer = 60 SECONDS
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+	var/aura_length = 10 SECONDS ///how long does the aura last for
+	var/aura_type = null //String for aura to emit
+
+/datum/action/xeno_action/pheromones/can_use_action(silent = FALSE, override_flags)
+	. = ..(silent, override_flags)
+	if(!.)
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.current_aura != null)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we are already emitting another pheromone!</span>")
+		return FALSE
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!aura_type)
 		return FALSE
 
-	if(X.current_aura == aura_type)
-		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>We stop emitting [X.current_aura] pheromones.</span>", null, 5)
-		X.current_aura = null
-		if(isxenoqueen(X))
-			X.hive?.update_leader_pheromones()
-		X.hud_set_pheromone()
-		return fail_activate() // dont use plasma
-
 	X.current_aura = aura_type
 	X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
 	"<span class='xenowarning'>We begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
 	playsound(X.loc, "alien_drool", 25)
 
-	if(isxenoqueen(X))
-		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
+	addtimer(VARSET_CALLBACK(X, current_aura, null), aura_length)
+	add_cooldown()
 	return succeed_activate()
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
+/datum/action/xeno_action/pheromones/recovery //Type casted for easy removal/adding
 	name = "Emit Recovery Pheromones"
 	action_icon_state = "emit_recovery"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
-/datum/action/xeno_action/pheromones/emit_warding
+/datum/action/xeno_action/pheromones/warding
 	name = "Emit Warding Pheromones"
 	action_icon_state = "emit_warding"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
 	aura_type = "warding"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
-/datum/action/xeno_action/pheromones/emit_frenzy
+/datum/action/xeno_action/pheromones/frenzy
 	name = "Emit Frenzy Pheromones"
 	action_icon_state = "emit_frenzy"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
@@ -560,7 +564,7 @@
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
-		return
+		return fail_activate()
 
 	var/obj/effect/xenomorph/acid/newacid = new acid_type(get_turf(A), A)
 

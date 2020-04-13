@@ -336,8 +336,6 @@
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()
-		if(hive.living_xeno_queen)
-			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)

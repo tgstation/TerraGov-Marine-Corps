@@ -37,6 +37,10 @@
 	// *** Defense *** //
 	armor = list("melee" = 70, "bullet" = 45, "laser" = 45, "energy" = 80, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 0, "acid" = 80)
 
+	// *** Pheromones *** //
+	aura_strength = 4
+	aura_allowed = list("warding")
+
 	// *** Crusher Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -44,6 +48,7 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
+		/datum/action/xeno_action/toggle_pheromones,
 		)
 
 /datum/xeno_caste/crusher/young
@@ -79,6 +84,9 @@
 	// *** Defense *** //
 	armor = list("melee" = 80, "bullet" = 47, "laser" = 50, "energy" = 90, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 0, "acid" = 90)
 
+	// *** Pheromones *** //
+	aura_strength = 4.3
+
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
 	caste_desc = "A huge tanky xenomorph. It looks pretty strong."
@@ -107,6 +115,9 @@
 	// *** Defense *** //
 	armor = list("melee" = 85, "bullet" = 51, "laser" = 55, "energy" = 95, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 0, "acid" = 95)
 
+	// *** Pheromones *** //
+	aura_strength = 4.7
+
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It always has the right of way."
@@ -131,3 +142,6 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 90, "bullet" = 56, "laser" = 60, "energy" = 100, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 100)
+
+	// *** Pheromones *** //
+	aura_strength = 5

@@ -385,14 +385,6 @@
 			if("warding")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
-		switch(leader_current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
-
 	hud_list[PHEROMONE_HUD] = holder
 
 

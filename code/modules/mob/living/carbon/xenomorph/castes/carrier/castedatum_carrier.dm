@@ -41,10 +41,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
-	// *** Pheromones *** //
-	aura_strength = 1.5
-	aura_allowed = list("frenzy", "warding", "recovery")
-
 	// *** Carrier Abilities *** //
 	huggers_max = 8
 	hugger_delay = 2.5 SECONDS
@@ -58,7 +54,6 @@
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones
 		)
 
 /datum/xeno_caste/carrier/young
@@ -94,9 +89,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
-	// *** Pheromones *** //
-	aura_strength = 2
-
 	// *** Carrier Abilities *** //
 	huggers_max = 9
 	hugger_delay = 2.0 SECONDS
@@ -130,9 +122,6 @@
 	// *** Defense *** //
 	armor = list("melee" = 7, "bullet" = 7, "laser" = 7, "energy" = 7, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
 
-	// *** Pheromones *** //
-	aura_strength = 2.3
-
 	// *** Carrier Abilities *** //
 	huggers_max = 10
 	hugger_delay = 1.5 SECONDS
@@ -165,9 +154,6 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
-
-	// *** Pheromones *** //
-	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
 	huggers_max = 11
