@@ -1,4 +1,0 @@
-author: "MrStonedOne"
-delete-after: True
-changes: 
-  - admin: "Admins can now issue a shutdown command mid round. It will automatically shut the server down at the end of the round."
