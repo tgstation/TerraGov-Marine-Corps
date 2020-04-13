@@ -1066,7 +1066,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	sundering = 2
+	sundering = 1
 
 /datum/ammo/energy/lasgun/M43
 	icon_state = "laser2"
@@ -1078,7 +1078,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	max_range = 40
 	penetration = 20
-	sundering = 10
+	sundering = 5
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
@@ -1087,7 +1087,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 12 //requires mod with -0.15 multiplier should math out to 10
 	penetration = 100 // It's a laser that burns the skin! The fire stacks go threw anyway. 
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING
-	sundering = 3
+	sundering = 1
 
 /datum/ammo/energy/lasgun/M43/blast
 	name = "wide range laser blast"
@@ -1103,7 +1103,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42 //requires mod with -0.15 multiplier should math out to 40
 	damage_falloff = 10
 	penetration = 0
-	sundering = 4
+	sundering = 2.5
 
 /datum/ammo/energy/lasgun/M43/spread
 	name = "additional laser blast"
