@@ -19,7 +19,7 @@
 	tier = XENO_TIER_ZERO
 	upgrade = XENO_UPGRADE_ZERO
 
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_invisible = SEE_INVISIBLE_LIVING
 	invisibility = INVISIBILITY_MAXIMUM
