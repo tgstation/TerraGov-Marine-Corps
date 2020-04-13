@@ -2,16 +2,14 @@
 	SHOULD_CALL_PARENT(0)
 	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
-
 		if(icon)
 			msg += "[icon2html(icon, user)] "
 		msg += "<b>[name]</b>!\n"
 
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
-
 		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated.\n"
+			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n" 
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
