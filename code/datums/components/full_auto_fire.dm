@@ -20,7 +20,7 @@
 
 /datum/component/automatic_fire/Initialize(autofire_shot_delay, burstfire_shot_delay, shots_to_fire, firemode, parent_loc)
 	. = ..()
-	if(!isgun(parent))
+	if(!isgun(parent) && !istankweapon(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_GUN_FIREMODE_TOGGLE, .proc/wake_up)
 	RegisterSignal(parent, COMSIG_GUN_FIREDELAY_MODIFIED, .proc/modify_firedelay)
@@ -119,6 +119,7 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_down(client/source, atom/target, turf/location, control, params)
+	to_chat(world, "mouse down")
 	var/list/modifiers = params2list(params) //If they're shift+clicking, for example, let's not have them accidentally shoot.
 	if(modifiers["shift"] && (world.time <= source.mob.next_click || source.mob.ShiftClickOn(target)))
 		source.click_intercepted = world.time
@@ -131,12 +132,14 @@
 		source.click_intercepted = world.time
 		return
 
+	to_chat(world, "after checks")
 	if(source.mob.in_throw_mode)
 		return
-	if(!isturf(source.mob.loc)) //No firing inside lockers and stuff.
+	if(!isturf(source.mob.loc) && !istype(source.mob.loc, /obj/vehicle/tank)) //No firing inside lockers and stuff.
 		return
 	if(get_dist(source.mob, target) < 2) //Adjacent clicking.
 		return
+	to_chat(world, "after 2ndchecks")
 
 	if(isnull(location)) //Clicking on a screen object.
 		if(target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
@@ -149,8 +152,10 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 
+	to_chat(world, "before signal")
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
+	to_chat(world, "after signal")
 
 	source.click_intercepted = world.time //From this point onwards Click() will no longer be triggered.
 
@@ -190,9 +195,13 @@
 		if(!shoota.on_autofire_start(shooter)) //This is needed because the minigun has a do_after before firing and signals are async.
 			stop_autofiring()
 			return
+	if(istankweapon(parent))
+		var/obj/item/tank_weapon/secondary_weapon/shoota = parent
+		if(!shoota.on_autofire_start(shooter))
+			stop_autofiring()
+			return
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return //Things may have changed while on_autofire_start() was being processed, due to do_after's sleep.
-
 	switch(component_fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC)
 			if(!process_shot()) //First shot is processed instantly.

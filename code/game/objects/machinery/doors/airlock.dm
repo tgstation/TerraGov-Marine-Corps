@@ -444,17 +444,14 @@
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
-	if(safe)
-		for(var/turf/turf in locs)
-			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60 + openspeed)
-					close()
+	for(var/i in bounds())
+		var/atom/thing = i
+		if(isliving(thing))
+			if(safe)
+				addtimer(CALLBACK(src, .proc/close), 6 SECONDS + openspeed)
 				return
-
-	for(var/turf/turf in locs)
-		for(var/mob/living/M in turf)
-			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
+			var/mob/living/M = thing
+			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)	//DOOR STUCK
 			M.Stun(10 SECONDS)
 			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))
@@ -466,6 +463,9 @@
 			if(istype(location, /turf))
 				location.add_mob_blood(M)
 			UPDATEHEALTH(M)
+		
+		if(thing.density)
+			return //Can't close with shit ontop
 
 	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
