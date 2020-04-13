@@ -1,0 +1,4 @@
+author: "factoryman942"
+delete-after: True
+changes: 
+  - tweak: "beakers can use 15/30/60u transfer amounts"
