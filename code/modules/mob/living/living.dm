@@ -61,6 +61,8 @@
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()

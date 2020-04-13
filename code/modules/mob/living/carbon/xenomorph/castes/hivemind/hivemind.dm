@@ -181,6 +181,18 @@
 /mob/living/carbon/xenomorph/hivemind/setBrainLoss(amount)
 	return FALSE
 
+/mob/living/carbon/xenomorph/hivemind/ex_act()
+	return
+	
+/mob/living/carbon/xenomorph/hivemind/fire_act()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/apply_damage()
+	return
+
+/mob/living/carbon/xenomorph/hivemind/updatehealth()
+	return
+
 // =================
 // hivemind core
 /obj/effect/alien/hivemindcore
