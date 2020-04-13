@@ -27,8 +27,8 @@
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43 = 20,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
@@ -116,7 +116,7 @@
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/explosive/mine = 2,
@@ -177,8 +177,8 @@
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/cell/lasgun/M43 = 15,
-					/obj/item/cell/lasgun/M43/highcap = 5,
+					/obj/item/cell/lasgun/lasrifle = 15,
+					/obj/item/cell/lasgun/lasrifle/highcap = 5,
 					/obj/item/shotgunbox = 3,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/shotgunbox/buckshot = 3,
@@ -230,8 +230,8 @@
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-					/obj/item/cell/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43/highcap = 2,
+					/obj/item/cell/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle/highcap = 2,
 					)
 
 	contraband =   list()

@@ -6897,9 +6897,9 @@
 /area/mainship/shipboard/firing_range)
 "tp" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/mainship{
 	dir = 6;
 	icon_state = "green"
@@ -7271,9 +7271,9 @@
 /area/mainship/shipboard/firing_range)
 "wJ" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /obj/machinery/light,
 /turf/open/floor/mainship{
 	icon_state = "green";
@@ -7285,11 +7285,11 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
 "wN" = (
@@ -7984,9 +7984,9 @@
 /area/lv624/ground/compound/se)
 "Bf" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 1
@@ -11169,9 +11169,9 @@
 /area/mainship/shipboard/firing_range)
 "Lx" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "red"
@@ -11703,10 +11703,10 @@
 /area/mainship/command/cic)
 "PR" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/mainship{
 	dir = 9;
 	icon_state = "red"
@@ -12120,10 +12120,10 @@
 /area/mainship/shipboard/firing_range)
 "UR" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/mainship{
 	icon_state = "green";
 	dir = 2
@@ -12321,7 +12321,7 @@
 /obj/structure/barricade/metal{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
@@ -12329,7 +12329,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/item/weapon/gun/energy/lasgun/M43/practice,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/practice,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
 "Xs" = (
