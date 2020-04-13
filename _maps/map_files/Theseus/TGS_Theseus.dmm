@@ -45943,7 +45943,7 @@
 /area/mainship/hallways/stern_hallway)
 "jqz" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/lasgun/lasrifle/stripped,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "blue"

@@ -150,7 +150,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
 	cell_type = null
-	charge_cost = M43_STANDARD_AMMO_COST
+	charge_cost = TX73_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -205,13 +205,13 @@
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
 			return
-		if(cell.charge < M43_OVERCHARGE_AMMO_COST)
+		if(cell.charge < TX73_OVERCHARGE_AMMO_COST)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
-		charge_cost = M43_OVERCHARGE_AMMO_COST
+		charge_cost = TX73_OVERCHARGE_AMMO_COST
 		ammo = GLOB.ammo_list[ammo_diff]
 		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
@@ -219,7 +219,7 @@
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
-		charge_cost = M43_STANDARD_AMMO_COST
+		charge_cost = TX73_STANDARD_AMMO_COST
 		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
@@ -263,7 +263,7 @@
 
 	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
-			if(overcharge && cell.charge < M43_OVERCHARGE_AMMO_COST && cell.charge >= M43_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
+			if(overcharge && cell.charge < TX73_OVERCHARGE_AMMO_COST && cell.charge >= TX73_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				toggle_chargemode(user)
 				return
 			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
@@ -382,7 +382,7 @@
 	ammo = /datum/ammo/energy/lasgun/pulsebolt
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	cell_type = /obj/item/cell/lasgun/pulse
-	charge_cost = M43_STANDARD_AMMO_COST
+	charge_cost = TX73_STANDARD_AMMO_COST
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
@@ -413,7 +413,7 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper TX-73 Sunfury Lasgun MK1"
+	name = "\improper TX-73 Lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/lasrifle.dmi'
@@ -424,7 +424,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
 	cell_type = null
-	charge_cost = M43_STANDARD_AMMO_COST
+	charge_cost = TX73_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -469,7 +469,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 3
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasgun's charge mode to standard fire."
+	message_to_user = "You set the Lasrifle's charge mode to standard fire."
 	icon_state = "tx73"
 
 /datum/lasrifle/base/auto
@@ -477,7 +477,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43
 	fire_delay = 2
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasgun's charge mode to automatic fire."
+	message_to_user = "You set the Lasrifle's charge mode to automatic fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	icon_state = "tx73_auto"
 
@@ -486,7 +486,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43/overcharge
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasgun's charge mode to overcharge."
+	message_to_user = "You set the Lasrifle's charge mode to overcharge."
 	icon_state = "tx73_overcharge"
 
 /datum/lasrifle/base/heat
@@ -494,7 +494,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43/heat
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasgun's charge mode to wave heat."
+	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
 
 /datum/lasrifle/base/spread
@@ -502,7 +502,7 @@
 	ammo = /datum/ammo/energy/lasgun/M43/blast
 	fire_delay = 8
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-	message_to_user = "You set the Lasgun's charge mode to spread."
+	message_to_user = "You set the Lasrifle's charge mode to spread."
 	icon_state = "tx73_spread"
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)

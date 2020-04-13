@@ -213,7 +213,7 @@
 	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
-	name = "ColMarTech Lasgun Field Charger"
+	name = "ColMarTech lasrifle Field Charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -228,7 +228,7 @@
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 
-	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
 					/obj/item/cell/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle/highcap = 2,
