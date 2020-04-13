@@ -187,7 +187,7 @@
 /mob/living/carbon/xenomorph/hivemind/fire_act()
 	return
 
-/mob/living/carbon/xenomorph/hivemind/apply_damage()
+/mob/living/carbon/xenomorph/hivemind/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	return
 
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
