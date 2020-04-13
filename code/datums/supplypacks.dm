@@ -388,7 +388,7 @@ WEAPONS
 					/obj/item/cell/lasgun/lasrifle,
 					/obj/item/cell/lasgun/lasrifle
 					)
-	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
+	name = "surplus lasrifle crate (TX-73 lasrifle x2, TX-73 battery packs x2)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper lasrifle crate"
@@ -1811,17 +1811,17 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasguncharger
-	name = "ColMarTech Lasgun Field Charger (M43 x10, M43 Highcap x2)"
+	name = "ColMarTech Lasrifle Field Charger (TX-73 x10, TX-73 Highcap x2)"
 	contains = list(
 					/obj/machinery/vending/lasgun
 					)
 	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper ColMarTech Lasgun Field Charger"
+	containername = "\improper ColMarTech Lasrifle Field Charger"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasgun
-	name = "M43 lasgun battery crate (M43 x15)"
+	name = "TX-73 lasrifle battery crate (TX-73 x15)"
 	contains = list(
 					/obj/item/cell/lasgun/lasrifle,
 					/obj/item/cell/lasgun/lasrifle,
@@ -1841,11 +1841,11 @@ AMMO
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "lasgun battery crate"
+	containername = "lasrifle battery crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasgun_highcap
-	name = "M43 lasgun highcap battery crate (M43 highcap x7)"
+	name = "TX-73 lasrifle highcap battery crate (TX-73 highcap x7)"
 	contains = list(
 					/obj/item/cell/lasgun/lasrifle/highcap,
 					/obj/item/cell/lasgun/lasrifle/highcap,
