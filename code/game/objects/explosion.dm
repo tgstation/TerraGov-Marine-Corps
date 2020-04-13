@@ -119,13 +119,7 @@
 				AM.ex_act(dist)
 
 
-		//------- TURF FIRES -------
-
-		if(T)
-			if(dist < flame_range && prob(40) && !isspaceturf(T))
-				var/obj/effect/particle_effect/fire/F = new /obj/effect/particle_effect/fire(T)
-				if(istype(F))
-					F.life = rand(6,10)
+	flame_radius(flame_range, epicenter)
 
 	sleep(8)
 
