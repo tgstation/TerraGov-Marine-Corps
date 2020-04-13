@@ -848,7 +848,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	icon_state 	= "bullet"
-	sundering = 5 // boolet go fasterr
+	sundering = 1
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
