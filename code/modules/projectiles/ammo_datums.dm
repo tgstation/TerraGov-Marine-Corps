@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 70
 	scatter = -15
 	penetration = 15
-	sundering = 5
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -511,7 +511,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 80
 	penetration = 40
-	sundering = 10
+	sundering = 7
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 4, knockback = 1)
@@ -571,7 +571,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_falloff = 0.5
 	penetration = 25
-	sundering = 3
+	sundering = 1.5
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -583,13 +583,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_falloff = 1
 	penetration = 25
-	sundering = 3
+	sundering = 1.5
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 	bonus_projectiles_amount = 5
 	bonus_projectiles_scatter = 10
@@ -600,7 +600,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 35
 	damage_falloff = 4
 	penetration = 0
-	sundering = 0.25
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
@@ -695,7 +694,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	damage_falloff = 0.25
 	penetration = 15
-	sundering = 3
+	sundering = 1.5
 
 /datum/ammo/bullet/shotgun/tx15_flechette/spread
 	name = "additional flechette"
@@ -713,7 +712,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 50
 	penetration = 30
-	sundering = 5
+	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, slowdown = 1, knockback = 1)
@@ -722,7 +721,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	bonus_projectiles_amount = 2
 	bonus_projectiles_scatter = 10
@@ -731,7 +730,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 10
 	damage = 50
 	damage_falloff = 1
-	sundering = 0.25
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	name = "additional buckshot"
@@ -751,7 +749,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	damage = 50
 	penetration = 40
-	sundering = 5
+	sundering = 3
 
 /datum/ammo/bullet/shotgun/mbx900_tracker
 	name = "light shotgun tracker round"
@@ -845,7 +843,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	scatter = -10
 	penetration = 20
-	sundering = 1.5
+	sundering = 1
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
