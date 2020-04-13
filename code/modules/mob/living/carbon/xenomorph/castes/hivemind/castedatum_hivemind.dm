@@ -44,7 +44,7 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
-	aura_allowed = list("recovery")
+	aura_allowed = list("recovery", "warding")
 
 	// *** Abilities *** //
 	actions = list(

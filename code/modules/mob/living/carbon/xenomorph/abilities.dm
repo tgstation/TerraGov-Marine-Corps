@@ -265,7 +265,8 @@
 		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
 		for(var/path in subtypeactions)
 			var/datum/action/xeno_action/pheromones/A = new path()
-			A.give_action(X)
+			if(A.aura_type in X.xeno_caste.aura_allowed)
+				A.give_action(X)
 
 /datum/action/xeno_action/pheromones
 	name = "SHOULD NOT EXIST"
