@@ -644,11 +644,12 @@
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/Fire(atom/target, mob/living/user, params, reflex)
 
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.species?.species_flags & IS_SECTOID_ALIEN)
-			. = ..()
-		else
-			to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
-			return
-	return
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(!(H.species?.species_flags & USES_ALIEN_WEAPONS))
+		to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		return
+	. = ..()
+
+

@@ -311,7 +311,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
 #define DETACHABLE_HEAD			(1<<16)
-#define IS_SECTOID_ALIEN		(1<<17)
+#define USES_ALIEN_WEAPONS		(1<<17)
 #define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
