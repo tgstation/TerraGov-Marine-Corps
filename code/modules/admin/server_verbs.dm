@@ -95,7 +95,6 @@
 		message_admins("[ADMIN_TPMONTY(usr)] decided against shutting down the server.")
 		shuttingdown = null
 		return
-			
 	to_chat(world, "<span class='danger'>Server shutting down [waitforroundend ? "after this round" : "in 30 seconds!"]</span> <span class='notice'>Initiated by: [usr.key]</span>")
 	message_admins("[ADMIN_TPMONTY(usr)] is shutting down the server[waitforroundend ? " after this round" : ""]. You may abort this by pressing the shutdown server button again within 30 seconds.")
 
