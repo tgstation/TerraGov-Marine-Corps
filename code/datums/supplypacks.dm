@@ -383,10 +383,10 @@ WEAPONS
 
 /datum/supply_packs/gun/lasrifle
 	contains = list(
-					/obj/item/weapon/gun/energy/lasgun/M43,
-					/obj/item/weapon/gun/energy/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43
+					/obj/item/weapon/gun/energy/lasgun/lasrifle,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle
 					)
 	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -1823,21 +1823,21 @@ AMMO
 /datum/supply_packs/ammo_lasgun
 	name = "M43 lasgun battery crate (M43 x15)"
 	contains = list(
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle,
+					/obj/item/cell/lasgun/lasrifle
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1847,13 +1847,13 @@ AMMO
 /datum/supply_packs/ammo_lasgun_highcap
 	name = "M43 lasgun highcap battery crate (M43 highcap x7)"
 	contains = list(
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap,
-					/obj/item/cell/lasgun/M43/highcap
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap,
+					/obj/item/cell/lasgun/lasrifle/highcap
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
