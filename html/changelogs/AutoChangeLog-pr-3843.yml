@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "eating a crayons will give you a small amount of toxin damage. Mime crayons will also mute you for 30 seconds."

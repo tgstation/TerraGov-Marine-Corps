@@ -65,7 +65,7 @@
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Sunder *** //
-	var/sunder_recover = 3 // How much sunder is recovered per tick
+	var/sunder_recover = 0.5 // How much sunder is recovered per tick
 	var/sunder_max = 100 // What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 
 	// *** Ranged Attack *** //
