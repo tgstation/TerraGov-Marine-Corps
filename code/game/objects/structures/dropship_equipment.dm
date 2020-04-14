@@ -788,14 +788,9 @@
 /obj/structure/dropship_equipment/operatingtable/update_equipment()
 	if(!deployed_table)
 		return
-	if(ship_base)
-		deployed_table.layer = ABOVE_OBJ_LAYER
-		deployed_table.loc = loc
-		icon_state = "table2-idle"
-	else
-		deployed_table.layer = ABOVE_OBJ_LAYER
-		deployed_table.loc = src
-		icon_state = "table2-idle"
+	deployed_table.layer = ABOVE_OBJ_LAYER
+	deployed_table.loc = loc
+	icon_state = "table2-idle"
 
 /obj/structure/dropship_equipment/medevac_system
 	name = "medevac system"
