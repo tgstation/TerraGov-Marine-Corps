@@ -762,10 +762,6 @@
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
 	var/mob/living/carbon/C = A
-	if (isnestedhost(C))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
-		return FALSE
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
