@@ -10,16 +10,13 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v1
+            - uses: actions/checkout@v2
             - name: Install dmdocs
               run: |
-                  wget https://github.com/SpaceManiac/SpacemanDMM/releases/download/suite-1.4/dmdoc
-                  sudo chmod +x ./dmdoc
+                  ./tools/travis/install_spaceman_dmm.sh dmdoc
                   mkdir -p ./tmp/dmdocs
-            - name: Show version
-              run: ./dmdoc --version
             - name: Build
-              run: ./dmdoc --output ./tmp/dmdocs
+              run: ~/dmdoc --output ./tmp/dmdocs
             - name: Deploy
               uses: peaceiris/actions-gh-pages@v3
               with:
