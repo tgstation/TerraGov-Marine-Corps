@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - balance: "Platforms are now destructible until xeno AI pathfinding is improved"
