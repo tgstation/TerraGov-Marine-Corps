@@ -1,0 +1,6 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - rscadd: "Water regens stamina and heals brute and burns slightly at the cost of purging all chems slowly."
+  - rscadd: "Coffee regens stamina and makes you run faster at the cost of purging oxy and removing stamina when it runs out."
+  - tweak: "Doubles metabolism rates of roulettium, polyhexanide, and synaptizine to match intended"
