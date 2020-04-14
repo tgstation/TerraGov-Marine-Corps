@@ -118,8 +118,8 @@
 					continue
 				AM.ex_act(dist)
 
-
-	flame_radius(flame_range, epicenter)
+	if(flame_range)
+		flame_radius(flame_range, epicenter)
 
 	sleep(8)
 
