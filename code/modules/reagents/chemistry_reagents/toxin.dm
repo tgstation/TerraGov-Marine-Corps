@@ -476,7 +476,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
-	purge_rate = 10
+	purge_rate = 0.2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
