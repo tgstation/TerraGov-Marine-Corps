@@ -12,6 +12,8 @@
 	icon_state = "mining_drill_active"
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
+	obj_integrity = 100
+	max_integrity = 100
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -50,71 +52,74 @@
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(miner_status == MINER_DESTROYED)
-		var/obj/item/tool/weldingtool/weldingtool= I
-		if(!(weldingtool.remove_fuel(1, user)))
-			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+	if(!(miner_status == MINER_DESTROYED))
+		return
+	var/obj/item/tool/weldingtool/weldingtool= I
+	if(!(weldingtool.remove_fuel(1, user)))
+		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+		return FALSE
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
-				return FALSE
-		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-		user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
-		"<span class='notice'>You start welding [src]'s internal damage.</span>")
-		if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
-			return FALSE
-		if(miner_status != MINER_DESTROYED )
-			return FALSE
-		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-		miner_status = MINER_MEDIUM_DAMAGE
-		user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
-		"<span class='notice'>You weld [src]'s internal damage.</span>")
-		update_icon()
-		return TRUE
+	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
+	user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
+	"<span class='notice'>You start welding [src]'s internal damage.</span>")
+	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
+		return FALSE
+	if(miner_status != MINER_DESTROYED )
+		return FALSE
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	obj_integrity += 33
+	set_miner_status()
+	user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
+	"<span class='notice'>You weld [src]'s internal damage.</span>")
+	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
-	if(miner_status == MINER_MEDIUM_DAMAGE)
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return FALSE
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-		user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
-		"<span class='notice'>You start securing [src]'s wiring.</span>")
-		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || miner_status != MINER_MEDIUM_DAMAGE)
+	if(!(miner_status == MINER_MEDIUM_DAMAGE))
+		return
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-		miner_status = MINER_SMALL_DAMAGE
-		user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
-		"<span class='notice'>You secure [src]'s wiring.</span>")
-		update_icon()
-		return TRUE
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
+	"<span class='notice'>You start securing [src]'s wiring.</span>")
+	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || miner_status != MINER_MEDIUM_DAMAGE)
+		return FALSE
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
+	obj_integrity += 33
+	set_miner_status()
+	user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
+	"<span class='notice'>You secure [src]'s wiring.</span>")
+	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
-	if(miner_status == MINER_SMALL_DAMAGE)
-		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
-			"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
-			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
-			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-				return FALSE
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-		user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
-		"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
-		if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && miner_status == MINER_SMALL_DAMAGE)
+	if(!(miner_status == MINER_SMALL_DAMAGE))
+		return
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
+		"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
-		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-		miner_status = MINER_RUNNING
-		user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
-		"<span class='notice'>You repair [src]'s tubing and plating.</span>")
-		start_processing()
-		update_icon()
-		return TRUE
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
+	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && miner_status == MINER_SMALL_DAMAGE)
+		return FALSE
+	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+	obj_integrity = max_integrity
+	set_miner_status()
+	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
+	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
+	start_processing()
+	return TRUE
 
 /obj/machinery/miner/examine(mob/user)
 	. = ..()
@@ -144,7 +149,7 @@
 	stored_mineral = 0
 
 /obj/machinery/miner/process()
-	if(!(miner_status == MINER_RUNNING))
+	if(miner_status != MINER_RUNNING || stored_mineral >= 50)
 		stop_processing()
 		return
 	if(add_tick >= required_ticks && stored_mineral <= 49)	//make one phoron per 60 ticks, or 3 seconds.
@@ -160,20 +165,25 @@
 	xeno_attacker.visible_message("<span class='danger'>[xeno_attacker] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
 	playsound(loc, "alien_claw_metal", 25, 1)
-	set_miner_status()
 	if(miner_status == MINER_DESTROYED)
 		to_chat(xeno_attacker, "<span class='warning'>[src] is already destroyed!</span>")
+		return
+	obj_integrity -= 25
+	set_miner_status()
 
 /obj/machinery/miner/proc/set_miner_status()
-	switch(miner_status)
-		if(MINER_RUNNING)
-			stop_processing()
+	var/health_percent = round((max_integrity / obj_integrity) * 100)
+	switch(health_percent)
+		if(-INFINITY to 0)
+			miner_status = MINER_DESTROYED
+			stored_mineral = 0
+		if(1 to 50)
+			stored_mineral = 0
+			miner_status = MINER_MEDIUM_DAMAGE
+		if(51 to 99)
 			stored_mineral = 0
 			miner_status = MINER_SMALL_DAMAGE
-		if(MINER_SMALL_DAMAGE)
-			miner_status = MINER_MEDIUM_DAMAGE
-		if(MINER_MEDIUM_DAMAGE)
-			miner_status = MINER_DESTROYED
-		if(MINER_DESTROYED)
-			return
+		if(100 to INFINITY)
+			start_processing()
+			miner_status = MINER_RUNNING
 	update_icon()
