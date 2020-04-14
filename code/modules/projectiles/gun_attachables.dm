@@ -360,10 +360,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.30
-	damage_mod = 0.30
-	delay_mod = 3
-	scatter_mod = 5
+	accuracy_mod = -0.45
+	damage_mod = 0.2
+	scatter_mod = 10
 	accuracy_unwielded_mod = -0.3
 
 
