@@ -485,7 +485,7 @@
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/overcharge
 	fire_delay = 10
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to overcharge."
 	icon_state = "tx73_overcharge"
 
@@ -493,7 +493,7 @@
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
 	fire_delay = 8
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
 
@@ -501,7 +501,7 @@
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/blast
 	fire_delay = 8
-	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to spread."
 	icon_state = "tx73_spread"
 
