@@ -16,22 +16,24 @@
 /turf/open/space,
 /area/space)
 "aac" = (
-/turf/open/space,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3";
+	dir = 8
 	},
+/turf/open/space,
 /area/space)
 "aad" = (
 /obj/structure/sign/prop1,
 /turf/open/space/basic,
 /area/space)
 "aae" = (
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 1;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/space)
 "aaf" = (
 /turf/closed/wall/sulaco,
@@ -44,11 +46,12 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/disposal)
 "aaj" = (
-/turf/open/space,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3";
+	dir = 8
 	},
+/turf/open/space/basic,
 /area/sulaco/maintenance/north_solar_maint)
 "aak" = (
 /turf/open/space/basic,
@@ -102,12 +105,13 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/north_solar_maint)
 "aax" = (
+/obj/structure{
+	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3"
+	},
 /turf/open/floor{
 	icon_state = "white"
-	},
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/sulaco/cryosleep)
 "aay" = (
@@ -209,11 +213,12 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aaL" = (
-/turf/open/space/basic,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 1;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space/basic,
 /area/space)
 "aaM" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -454,20 +459,18 @@
 	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
-"abA" = (
-/turf/closed/wall,
-/area/sulaco/disposal)
 "abB" = (
 /obj/machinery/door/window/southleft,
 /obj/machinery/door/window/northright,
 /turf/open/floor/plating,
 /area/sulaco/disposal)
 "abC" = (
-/turf/open/space/basic,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3";
+	dir = 8
 	},
+/turf/open/space/basic,
 /area/space)
 "abD" = (
 /turf/closed/wall/sulaco,
@@ -1240,10 +1243,6 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/showers)
 "ads" = (
 /turf/closed/wall/sulaco,
@@ -1297,12 +1296,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall2)
-"adz" = (
-/turf/closed/shuttle{
-	icon_state = "wall3";
-	dir = 4
-	},
-/area/sulaco/engineering/atmos)
 "adA" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor{
@@ -3049,10 +3042,11 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/turf/closed/shuttle{
-	icon_state = "wall3";
-	dir = 4
+/obj/structure/window/reinforced/toughened{
+	dir = 5
 	},
+/obj/structure/grille,
+/turf/open/floor,
 /area/sulaco/engineering/atmos)
 "ahm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
@@ -4111,10 +4105,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
 	},
-/turf/closed/shuttle{
-	icon_state = "wall3";
-	dir = 4
-	},
+/turf/closed/wall/sulaco,
 /area/sulaco/engineering/atmos)
 "ajv" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
@@ -4567,10 +4558,11 @@
 	},
 /area/sulaco/cryosleep)
 "aks" = (
-/turf/open/space/basic,
-/turf/closed/shuttle{
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space/basic,
 /area/space)
 "akt" = (
 /turf/closed/wall/sulaco,
@@ -4634,13 +4626,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/medbay/surgery_two)
-"akz" = (
-/turf/open/space/basic,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/maintenance/north_solar_maint)
 "akA" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -6411,13 +6396,6 @@
 "aof" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/central_hall)
-"aog" = (
-/turf/open/floor,
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/hallway/central_hall)
 "aoh" = (
 /obj/machinery/light{
 	dir = 8;
@@ -7502,10 +7480,11 @@
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "aqH" = (
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/space)
 "aqI" = (
 /obj/structure/table,
@@ -12041,10 +12020,6 @@
 /area/sulaco/engineering/engine)
 "ayZ" = (
 /turf/open/space,
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/engineering/atmos)
 "aza" = (
 /obj/structure/closet/firecloset,
@@ -13523,12 +13498,6 @@
 	dir = 8
 	},
 /area/sulaco/marine/delta)
-"aCh" = (
-/turf/open/floor/plating/mainship,
-/turf/closed/shuttle{
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/engineering/engine)
 "aCi" = (
 /turf/open/floor,
 /area/space)
@@ -13543,9 +13512,6 @@
 	opacity = 0
 	},
 /obj/structure/grille,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
 /turf/closed/wall/indestructible/fakeglass{
 	icon = 'icons/obj/structures/windows.dmi';
 	icon_state = "rwindow3";
@@ -15669,13 +15635,6 @@
 "aHc" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/central_hall3)
-"aHd" = (
-/turf/open/floor,
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/hallway/central_hall3)
 "aHe" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor,
@@ -16737,11 +16696,12 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/command/eva)
 "aJw" = (
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/space)
 "aJx" = (
 /obj/machinery/shower{
@@ -18408,10 +18368,6 @@
 /turf/open/floor{
 	icon_state = "dark"
 	},
-/turf/closed/shuttle{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/hangar)
 "aNA" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/visible{
@@ -19037,11 +18993,12 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/brig)
 "aOV" = (
-/turf/open/space/basic,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space/basic,
 /area/space)
 "aOW" = (
 /obj/structure/sign/science{
@@ -19439,11 +19396,12 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hangar)
 "aQc" = (
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 1;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/sulaco/hangar)
 "aQd" = (
 /obj/machinery/light{
@@ -20533,13 +20491,13 @@
 	},
 /area/sulaco/hangar/one)
 "aSK" = (
-/obj/structure/table{
-	dir = 4;
-	flipped = 1
-	},
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 4
+	},
+/obj/structure/table{
+	dir = 4;
+	flipped = 1
 	},
 /turf/open/floor,
 /area/sulaco/hangar/one)
@@ -21332,32 +21290,22 @@
 /area/sulaco/hangar/one)
 "aUP" = (
 /turf/open/floor,
-/turf/closed/shuttle{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
 /area/sulaco/maintenance/lower_maint)
 "aUQ" = (
 /obj/machinery/vending/marine_special,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
-"aUR" = (
-/turf/open/floor,
-/turf/closed/shuttle{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
-/area/sulaco/maintenance/lower_maint)
 "aUS" = (
 /obj/machinery/light,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUT" = (
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/sulaco/maintenance/lower_maint)
 "aUU" = (
 /obj/item/radio/intercom/general{
@@ -21407,11 +21355,12 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
 	},
-/turf/open/space,
-/turf/closed/shuttle{
+/obj/structure{
 	dir = 1;
+	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "diagonalWall3"
 	},
+/turf/open/space,
 /area/space)
 "aVc" = (
 /turf/closed/wall/sulaco/unmeltable,
@@ -21452,9 +21401,6 @@
 	opacity = 0
 	},
 /obj/structure/grille,
-/turf/open/floor/plating{
-	icon_state = "platebotc"
-	},
 /turf/closed/wall/indestructible/fakeglass{
 	icon = 'icons/obj/structures/windows.dmi';
 	icon_state = "rwindow3";
@@ -21559,6 +21505,11 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "aVH" = (
+/obj/structure{
+	dir = 1;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3"
+	},
 /turf/open/space,
 /area/sulaco/maintenance/lower_maint)
 "aVI" = (
@@ -23746,6 +23697,22 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"jxi" = (
+/obj/structure{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3";
+	dir = 8
+	},
+/turf/open/space,
+/area/sulaco/maintenance/north_solar_maint)
+"tSp" = (
+/obj/structure{
+	dir = 4;
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "diagonalWall3"
+	},
+/turf/open/space,
+/area/sulaco/engineering/engine)
 
 (1,1,1) = {"
 aaa
@@ -43883,13 +43850,13 @@ aaf
 aFG
 aFG
 aIz
-aaa
-aaa
+aks
+abC
 aIz
 aFG
 aFG
 aIz
-aaa
+aks
 aaa
 aaa
 aaa
@@ -46812,7 +46779,7 @@ aXp
 aMl
 aPB
 aas
-aaa
+aks
 aaa
 aaa
 aaa
@@ -48233,7 +48200,7 @@ ajD
 akC
 ale
 abD
-aog
+aoi
 aoi
 arc
 asQ
@@ -49247,7 +49214,7 @@ aaa
 aaa
 aaa
 aaa
-abC
+aaa
 aew
 acf
 acZ
@@ -50789,7 +50756,7 @@ aaa
 aaa
 aaa
 aaa
-aaL
+aaa
 aeZ
 acj
 adc
@@ -52888,7 +52855,7 @@ aBI
 aBI
 aBI
 aOU
-aaa
+aks
 aaa
 aaa
 aaa
@@ -55044,7 +55011,7 @@ aZa
 bct
 baT
 aPQ
-aaa
+aOV
 aaa
 aaa
 aaa
@@ -55425,7 +55392,7 @@ aaa
 aaa
 aaa
 aaa
-akz
+aaj
 abp
 ama
 ann
@@ -56450,7 +56417,7 @@ aaa
 aaa
 aaa
 aaa
-aaj
+jxi
 abp
 aiG
 aaW
@@ -56586,7 +56553,7 @@ aRA
 baT
 baT
 aPQ
-aaa
+aks
 aaa
 aaa
 aaa
@@ -57846,7 +57813,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaL
 aQI
 aPF
 aIZ
@@ -61703,7 +61670,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+aDS
 aPn
 aRW
 aSG
@@ -64023,7 +63990,7 @@ aSN
 aSN
 aSN
 aUr
-aUR
+aUP
 aUu
 aVG
 aMV
@@ -65466,7 +65433,7 @@ aBM
 aDV
 aFl
 azg
-aHd
+avV
 avV
 aJb
 avV
@@ -65829,7 +65796,7 @@ aWl
 aXX
 aNf
 aZx
-aaa
+aOV
 aaa
 aUt
 aaa
@@ -69333,7 +69300,7 @@ aLq
 aNG
 aOn
 aOP
-aJw
+aDS
 aaa
 aaa
 aaa
@@ -70321,7 +70288,7 @@ aak
 aar
 aaQ
 aaS
-abA
+aai
 abX
 acM
 aeq
@@ -71102,10 +71069,10 @@ afW
 afY
 afY
 ajq
-adz
-adz
-adz
-adz
+aeq
+aeq
+aeq
+aeq
 aqx
 aqz
 arQ
@@ -71362,7 +71329,7 @@ afY
 afY
 afY
 aly
-adz
+aeq
 aoN
 aoN
 aoN
@@ -71619,7 +71586,7 @@ afY
 afY
 afY
 aly
-adz
+aeq
 aoN
 aoN
 aoN
@@ -71876,7 +71843,7 @@ afY
 afY
 afY
 alz
-adz
+aeq
 aoN
 aoN
 aoN
@@ -72133,7 +72100,7 @@ afY
 afY
 afY
 alz
-adz
+aeq
 aoN
 aoN
 aoN
@@ -72390,7 +72357,7 @@ afY
 afY
 afY
 alA
-adz
+aeq
 aoN
 aoN
 aoN
@@ -72647,8 +72614,8 @@ afY
 afY
 afY
 alA
-adz
-aCh
+aeq
+aoN
 aoN
 aqg
 aqO
@@ -72904,7 +72871,7 @@ afY
 afY
 afY
 alB
-adz
+aeq
 apl
 aoN
 aoN
@@ -73161,7 +73128,7 @@ afY
 afY
 afY
 alB
-adz
+aeq
 apl
 aoN
 aqr
@@ -73411,14 +73378,14 @@ aaa
 aaa
 agZ
 afj
-adz
+agZ
 ahl
 afW
 aju
-adz
-adz
-adz
-adz
+aeq
+aeq
+aeq
+aeq
 apl
 aoN
 aqr
@@ -73430,7 +73397,7 @@ are
 arX
 aoN
 aEG
-aEb
+tSp
 aaa
 aaa
 aaa
@@ -73668,11 +73635,11 @@ aaa
 aaa
 agZ
 agZ
-adz
+agZ
 ahm
 aff
 ajv
-adz
+aeq
 aeq
 amT
 aeq
@@ -74189,7 +74156,7 @@ agZ
 agZ
 ayZ
 aaa
-aaL
+aaa
 aEG
 aEG
 aEG
