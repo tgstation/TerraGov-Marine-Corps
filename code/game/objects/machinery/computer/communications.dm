@@ -171,6 +171,10 @@
 
 		if("distress")
 			if(state == STATE_DISTRESS)
+				if(!CONFIG_GET(flag/distress_ert_allowed))
+					to_chat(usr, "<span class='warning'>The distress beacon doesn't seem to be working.</span>")
+					return FALSE
+					
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
