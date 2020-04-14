@@ -369,7 +369,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	accurate_range = 5
 	damage_falloff = 1
-	sundering = 1
+	sundering = 0.5
 	penetration = 5
 	
 /datum/ammo/bullet/smg/ap
