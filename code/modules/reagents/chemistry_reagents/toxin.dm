@@ -460,8 +460,8 @@
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustToxLoss(1) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
-	L.adjustOxyLoss(1)
+	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
+	L.adjustOxyLoss(REM)
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
