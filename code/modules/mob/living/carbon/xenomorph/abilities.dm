@@ -742,7 +742,7 @@
 	action_icon_state = "neuro_sting"
 	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	ability_name = "neurotoxin sting"
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 20 SECONDS
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 
