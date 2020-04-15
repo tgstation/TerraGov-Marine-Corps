@@ -453,11 +453,10 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/pain_damage = volume * REM
 	L.apply_damage(pain_damage, AGONY) //1st level neurotoxin effects: pain
+	L.adjustStaminaLoss(log(pain_damage)) //minor stamina damage based on a log of the volume. If the host is kept toxxed for long enough, debilitates.
 	if(volume > 5) //2nd level neurotoxin effects: stamina loss. Drug overlay, stuttering, kept to let you know you're stung.
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
-		L.adjustStaminaLoss(1*REM)
-		//pretty much just prevents stamina regen. A sufficiently tackled host will stay tackled as long as they are toxxed.
 	return ..()
 
 
