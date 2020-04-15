@@ -20030,10 +20030,18 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
+"eXV" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "fgu" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/east1)
+"fiA" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "flw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20395,6 +20403,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
+"rds" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -29814,7 +29826,7 @@ axx
 aIZ
 aBP
 aKK
-aCr
+eXV
 aEa
 auU
 aNR
@@ -48999,7 +49011,7 @@ abe
 abe
 abe
 mWY
-abf
+rds
 acS
 acS
 acS
@@ -54212,6 +54224,7 @@ arW
 azK
 aAk
 aAk
+fiA
 aAk
 aAk
 aAk

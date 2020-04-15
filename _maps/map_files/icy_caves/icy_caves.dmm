@@ -5879,6 +5879,10 @@
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
+"MV" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/ice,
@@ -5903,6 +5907,10 @@
 	},
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/outpost/outside)
+"PU" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
@@ -6006,6 +6014,14 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
+"Zk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
+"Zp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 
 (1,1,1) = {"
 aa
@@ -14175,7 +14191,7 @@ fs
 eb
 dc
 dF
-kv
+Zp
 dc
 de
 cZ
@@ -21834,7 +21850,7 @@ aJ
 aJ
 aJ
 aR
-aJ
+MV
 dm
 dP
 eh
@@ -32664,7 +32680,7 @@ ds
 ds
 ds
 fm
-ds
+PU
 fm
 ds
 ds
@@ -34755,7 +34771,7 @@ hv
 ds
 fn
 ds
-ds
+Zk
 nz
 ds
 lm

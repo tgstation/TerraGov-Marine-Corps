@@ -25137,6 +25137,10 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eIZ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "eQO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -25954,6 +25958,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
+"owM" = (
+/obj/machinery/miner,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/w)
 "oEN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
@@ -26129,6 +26137,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"qlr" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -33414,7 +33426,7 @@ aFv
 aFv
 aFv
 aQF
-aQF
+owM
 sBV
 aSB
 aVG
@@ -34655,6 +34667,7 @@ aeI
 aeI
 aeI
 aeI
+eIZ
 aeI
 aeI
 aeI
@@ -48607,7 +48620,7 @@ aKl
 aKl
 aIm
 aBR
-aBR
+qlr
 hlD
 aIn
 aIn
