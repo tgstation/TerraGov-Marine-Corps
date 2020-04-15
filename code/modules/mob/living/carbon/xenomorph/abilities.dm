@@ -761,7 +761,6 @@
 			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
-	var/mob/living/carbon/C = A
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

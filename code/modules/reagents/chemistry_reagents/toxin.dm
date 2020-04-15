@@ -453,12 +453,11 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/pain_damage = volume * REM
 	L.apply_damage(pain_damage, AGONY) //1st level neurotoxin effects: pain
-	if(volume > 5) //2nd level neurotoxin effects: drug overlay, stuttering, kept to let you know you're stung.
+	if(volume > 5) //2nd level neurotoxin effects: stamina loss. Drug overlay, stuttering, kept to let you know you're stung.
 		L.adjust_drugginess(1.1)
 		L.stuttering = max(L.stuttering, 1)
-	switch(current_cycle)
-		if(10 to INFINITY)
-			L.adjustStaminaLoss((current_cycle/1.5 - 5)*REM)
+		L.adjustStaminaLoss(1*REM)
+		//pretty much just prevents stamina regen. A sufficiently tackled host will stay tackled as long as they are toxxed.
 	return ..()
 
 
@@ -476,7 +475,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
-	purge_rate = 0.2
+	purge_rate = 0.4
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
