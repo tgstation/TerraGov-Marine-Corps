@@ -443,7 +443,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 2.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -453,17 +453,15 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/volume_damage = volume * REM
 	L.apply_damage(volume_damage, AGONY) //1st level neurotoxin effects: pain
-	if(volume > 10) //2nd level neurotoxin effects: stamina loss. Drug overlay, stuttering, kept to let you know you're stung.
-		L.adjust_drugginess(1.1)
-		L.stuttering = max(L.stuttering, 1)
-		L.adjustStaminaLoss(log(volume_damage)) //minor stamina damage based on a log of the volume. Mostly counteracted by passive stamina regen.
+	L.adjustStaminaLoss(volume_damage/10) //minor stamina damage based on the volume. Mostly serves to stop stamina regen.
+	L.adjust_drugginess(1.1)
+	L.stuttering = max(L.stuttering, 1) //drugginess and stuttering as a notifier that you're neuro'd.
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2) //Overdose starts applying more oxy damage
+	L.adjustToxLoss(REM) //Overdose starts applying toxin damage.
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
-
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(1) //Can't breathe; for punishing the bullies
@@ -474,7 +472,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
-	purge_rate = 0.4
+	purge_rate = 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
