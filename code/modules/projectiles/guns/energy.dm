@@ -447,7 +447,7 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 3
-	var/current_mode = 1
+	var/mode_index = 1
 	var/static/list/datum/lasrifle/base/mode_list = list(
 						/datum/lasrifle/base/standard,
 						/datum/lasrifle/base/auto,
@@ -509,23 +509,23 @@
 	return switch_modes(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
-	current_mode = WRAP(current_mode + 1, 1, length(mode_list))
+	mode_index = WRAP(mode_index + 1, 1, length(mode_list))
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
-	charge_cost = initial(mode_list[current_mode].charge_cost)
-	ammo = GLOB.ammo_list[initial(mode_list[current_mode].ammo)]
-	fire_delay = initial(mode_list[current_mode].fire_delay)
-	fire_sound = initial(mode_list[current_mode].fire_sound)
+	charge_cost = initial(mode_list[mode_index].charge_cost)
+	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
+	fire_delay = initial(mode_list[mode_index].fire_delay)
+	fire_sound = initial(mode_list[mode_index].fire_sound)
 
-	if(initial(mode_list[current_mode].fire_mode) != GUN_FIREMODE_SEMIAUTO)
-		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[current_mode].fire_mode), user.client)
+	if(initial(mode_list[mode_index].fire_mode) != GUN_FIREMODE_SEMIAUTO)
+		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
 	
-	base_gun_icon = initial(mode_list[current_mode].icon_state)
+	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()
 
-	to_chat(user, initial(mode_list[current_mode].message_to_user))
+	to_chat(user, initial(mode_list[mode_index].message_to_user))
 
 
 	if(user)
