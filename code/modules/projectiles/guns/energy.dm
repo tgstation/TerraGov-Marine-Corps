@@ -509,11 +509,7 @@
 	return switch_modes(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
-	var/max_overcharge_mode = length(mode_list)
-	if(current_mode >= max_overcharge_mode)
-		current_mode = 1
-	else
-		current_mode += 1
+	current_mode = WRAP(current_mode + 1, 1, length(mode_list))
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
 	charge_cost = initial(mode_list[current_mode].charge_cost)
