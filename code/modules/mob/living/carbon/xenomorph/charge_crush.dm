@@ -329,7 +329,7 @@
 	speed_per_step = 0.1
 	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 30 // This is multiplied by speed, which in this case will range from 0.1 to 1.
+	crush_living_damage = 30
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
