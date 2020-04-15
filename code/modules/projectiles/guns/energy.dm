@@ -509,6 +509,9 @@
 	return switch_modes(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
+	if(!user)
+		return FALSE
+	
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list))
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
@@ -527,9 +530,7 @@
 
 	to_chat(user, initial(mode_list[mode_index].message_to_user))
 
-
-	if(user)
-		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
-		A.update_hud(user)
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
 
 	return TRUE
