@@ -11200,14 +11200,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
-"Do" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_hallway)
 "Dp" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -18243,6 +18235,14 @@
 "Zw" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/command/self_destruct)
+"ZG" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/port_hallway)
 "ZM" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/card,
@@ -45398,7 +45398,7 @@ De
 oT
 pi
 nD
-Do
+ZG
 wU
 Df
 uM
@@ -45425,7 +45425,7 @@ gL
 gL
 gL
 gL
-Do
+ZG
 lG
 Cb
 wm
@@ -47195,7 +47195,7 @@ gL
 gL
 gL
 gL
-Do
+ZG
 AM
 gL
 xF
