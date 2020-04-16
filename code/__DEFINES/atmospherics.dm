@@ -23,9 +23,9 @@
 #define BODYTEMP_COLD_DAMAGE_LIMIT_TWO		240.15
 #define BODYTEMP_COLD_DAMAGE_LIMIT_THREE	120.15
 
-#define PRESSURE_DAMAGE_COEFFICIENT 4 //The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
-#define MAX_HIGH_PRESSURE_DAMAGE 4	//This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
-#define LOW_PRESSURE_DAMAGE 2 	//The amounb of damage someone takes when in a low pressure area (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
+#define PRESSURE_DAMAGE_COEFFICIENT 4 ///The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE
+#define MAX_HIGH_PRESSURE_DAMAGE 4	///Maximum amount of damage someone can take
+#define LOW_PRESSURE_DAMAGE 2 	///The amounb of damage someone takes when in a low pressure area (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
 
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)

@@ -6,19 +6,19 @@
 	var/resize = RESIZE_DEFAULT_SIZE //Badminnery resize
 
 	//Health and life related vars
-	var/maxHealth = 100 //Maximum health that should be possible.
-	var/health = 100 	//A mob's health
-	var/health_threshold_dead = -100
-	var/health_threshold_crit = 0
+	var/maxHealth = 100 ///Maximum health that should be possible.
+	var/health = 100 	/// Mob's current health
+	var/health_threshold_dead = -100 /// Health at which a mob dies
+	var/health_threshold_crit = 0 /// Health at which a mob goes into crit
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
-	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
-	var/oxyloss = 0	//Oxygen depravation damage (no air in lungs)
-	var/toxloss = 0	//Toxic damage caused by being poisoned or radiated
-	var/staminaloss = 0 //Stamina
-	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
-	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/bruteloss = 0	///Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	var/fireloss = 0	///Burn damage caused by being way too hot, too cold or burnt.
+	var/oxyloss = 0	///Oxygen depravation damage (no air in lungs)
+	var/toxloss = 0	///Toxic damage caused by being poisoned or radiated
+	var/staminaloss = 0 ///Stamina
+	var/cloneloss = 0	///Damage caused by being cloned or ejected from the cloner early
+	var/brainloss = 0	///Bbrain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
 	var/drowsyness = 0
 
