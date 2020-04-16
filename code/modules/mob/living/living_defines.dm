@@ -18,7 +18,7 @@
 	var/toxloss = 0	///Toxic damage caused by being poisoned or radiated
 	var/staminaloss = 0 ///Stamina
 	var/cloneloss = 0	///Damage caused by being cloned or ejected from the cloner early
-	var/brainloss = 0	///Bbrain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/brainloss = 0	///Brain damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/radiation = 0	//If the mob is irradiated.
 	var/drowsyness = 0
 
