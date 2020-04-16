@@ -2,7 +2,7 @@
 * Job related clothing
 */
 
-///Botonist
+//Botonist
 /obj/item/clothing/suit/apron
 	name = "apron"
 	desc = "A basic blue apron."
@@ -30,7 +30,7 @@
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
-///Captain
+//Captain
 /obj/item/clothing/suit/captunic
 	name = "captain's parade tunic"
 	desc = "Worn by a Captain to show their class."
@@ -48,7 +48,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
 
-///Chaplain
+//Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
 	name = "chaplain hoodie"
 	desc = "This suit says to you 'hush'!"
@@ -66,7 +66,7 @@
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
-///Chef
+//Chef
 /obj/item/clothing/suit/chef
 	name = "Chef's apron"
 	desc = "An apron used by a high class chef."
@@ -87,7 +87,7 @@
 	blood_overlay_type = "armor"
 	flags_armor_protection = 0
 
-///Security
+//Security
 /obj/item/clothing/suit/security/navyofficer
 	name = "security officer's jacket"
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
