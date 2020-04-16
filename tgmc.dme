@@ -1099,7 +1099,6 @@
 #include "code\modules\mob\mob_transformation_simple.dm"
 #include "code\modules\mob\mob_verbs.dm"
 #include "code\modules\mob\say.dm"
-#include "code\modules\mob\spooky.dm"
 #include "code\modules\mob\taste.dm"
 #include "code\modules\mob\typing_indicator.dm"
 #include "code\modules\mob\update_icons.dm"
