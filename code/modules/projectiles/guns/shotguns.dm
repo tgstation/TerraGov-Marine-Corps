@@ -712,7 +712,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
