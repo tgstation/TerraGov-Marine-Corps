@@ -510,11 +510,11 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
 	if(!user)
-		return FALSE
+		CRASH("switch_modes called with no user.")
 	
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list))
 	
-	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 	charge_cost = initial(mode_list[mode_index].charge_cost)
 	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
 	fire_delay = initial(mode_list[mode_index].fire_delay)
