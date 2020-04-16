@@ -20,7 +20,8 @@
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
-	RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
+	if(active)
+		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
 
 
 /datum/component/bump_attack/Destroy(force, silent)
