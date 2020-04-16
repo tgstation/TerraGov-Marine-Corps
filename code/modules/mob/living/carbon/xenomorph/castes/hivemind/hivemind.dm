@@ -109,9 +109,6 @@ If we want to be able to add other on click actions this would be where.
 /mob/living/carbon/xenomorph/hivemind/a_intent_change()
 	return //Unable to change intent, forced help intent
 
-/mob/living/carbon/xenomorph/hivemind/CanPass(atom/movable/mover, turf/target)
-	return TRUE // Anyone can pass a hivemind
-
 /// Hiveminds specifically have no health hud element
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_health()
 	return

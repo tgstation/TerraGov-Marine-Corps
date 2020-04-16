@@ -1,4 +1,6 @@
 /mob/CanPass(atom/movable/mover, turf/target)
+	if(status_flags & INCORPOREAL)
+		return TRUE
 	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
