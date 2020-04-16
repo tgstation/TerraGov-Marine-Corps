@@ -952,6 +952,8 @@
 #include "code\modules\clothing\masks\breath.dm"
 #include "code\modules\clothing\masks\gasmask.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
+#include "code\modules\clothing\modular\modular.dm"
+#include "code\modules\clothing\modular\armor_modules\armor_modules.dm"
 #include "code\modules\clothing\outfits\vv_outfit.dm"
 #include "code\modules\clothing\shoes\colour.dm"
 #include "code\modules\clothing\shoes\magboots.dm"
