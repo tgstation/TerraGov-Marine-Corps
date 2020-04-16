@@ -32,6 +32,8 @@
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
+	if(status_flags & INCORPOREAL)
+		return
 	if(!silent)
 		if(rest)
 			to_chat(src, "<span class='notice'>You are now resting.</span>")
