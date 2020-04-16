@@ -6,7 +6,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 5
+	storage_slots = 4
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -17,7 +17,6 @@
 	new /obj/item/weapon/gun/smartgun(src)
 	new /obj/item/smartgun_powerpack(src)
 	new /obj/item/clothing/suit/storage/marine/smartgunner(src)
-	new /obj/item/clothing/head/helmet/marine(src)
 
 /obj/item/smartgun_powerpack
 	name = "\improper M56 powerpack"
