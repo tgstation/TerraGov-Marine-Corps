@@ -9,7 +9,7 @@
 	var/spawn_delay = 0
 	///Cap to prevent a massive pile of mobs
 	var/max_mobs = 5
-	///In case players can see the spawning mob
+	///In case players can see the spawning mob, say if we stick the component on a xeno
 	var/spawn_text = "emerges from"
 	///Whether all the contents of mob_types should be spawned at once or not
 	var/squad_spawn = FALSE
@@ -34,35 +34,37 @@
 
 	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/stop_spawning)
 	START_PROCESSING(SSprocessing, src)
-	to_chat(world, "poststartprocess")
 
 /datum/component/spawner/process()
-	to_chat(world, "process")
 	try_spawn_mob()
 
 
 /datum/component/spawner/proc/stop_spawning(force)
 	STOP_PROCESSING(SSprocessing, src)
-	to_chat(world, "stopped processing")
 	spawned_mobs = null
 
-///Lets start trying to spawn the mob
+///Pro that checks whether we can spawn a mob and then spawns the mob in the specified fashion 
 /datum/component/spawner/proc/try_spawn_mob()
 	var/atom/P = parent
 	if(spawned_mobs.len >= max_mobs)	//too many mobs
-		return 0
+		return FALSE
 	if(spawn_delay > world.time)	//Not time to spawn yet
-		return 0
+		return FALSE
 	spawn_delay = world.time + spawn_time
-	to_chat(world, "spawndelay is [spawn_delay]")
 	if(squad_spawn == FALSE)	//for picking ONE mob to spawn
 		var/chosen_mob_type = pick(mob_types)
 		var/mob/living/L = new chosen_mob_type(P.loc)
-		spawned_mobs += L
+		set_info(L,P)
 	else
 		for(var/mob in mob_types)	//Spawn the entire list
+			if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest
+				break
 			var/mob/living/L = new mob(P.loc)
-			spawned_mobs += L
-	//spawned_mobs += L
-	//L.faction = src.faction
-	//P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")
+			set_info(L,P)
+
+///Sets the post-spawn info for the mob
+/datum/component/spawner/proc/set_info(mob/living/spawned, atom/parent)
+	spawned_mobs += spawned
+	if(faction)
+		spawned.faction = faction
+	parent.visible_message("<span class='danger'>[spawned] [spawn_text] [parent].</span>")

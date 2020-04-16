@@ -15,7 +15,7 @@
 
 /obj/effect/ai_spawner_node/Initialize()
 	. = ..()
-	AddComponent(AddComponent(/datum/component/spawner, mobtospawn, spawn_interval,"crawls out of", max_mobs_spawned, squad_spawner))
+	AddComponent(/datum/component/spawner, mobtospawn, spawn_interval,"crawls out of", max_mobs_spawned, squad_spawner)
 
 /**
  * Tier one spawners
@@ -25,7 +25,8 @@
 
 /obj/effect/ai_spawner_node/runner
 	mobtospawn = /mob/living/carbon/xenomorph/runner/ai
-/*
+
+/*	UNCOMMENT THESE AS MORE AIS ARE MERGED
 /obj/effect/ai_spawner_node/sentinel
 	mobtospawn = /mob/living/carbon/xenomorph/sentinel/ai
 
@@ -84,8 +85,7 @@
 	squad_spawner = TRUE
 
 /obj/effect/ai_spawner_node/group/runnergang	//RUNNER GANG RUNNER GANG
-	mobtospawn = list(/mob/living/carbon/xenomorph/runner = 5)
+	mobtospawn = list(/mob/living/carbon/xenomorph/runner/ai, /mob/living/carbon/xenomorph/runner/ai, /mob/living/carbon/xenomorph/runner/ai)
 
-/obj/effect/ai_spawner_node/group/tier_one_squad_small
-	mobtospawn = list(/mob/living/carbon/xenomorph/runner = 3, /mob/living/carbon/xenomorph/sentinel = 2, /mob/living/carbon/xenomorph/drone)
-	
+/obj/effect/ai_spawner_node/group/drone_and_runners
+	mobtospawn = list(/mob/living/carbon/xenomorph/runner/ai, /mob/living/carbon/xenomorph/runner/ai, /mob/living/carbon/xenomorph/drone/ai)
