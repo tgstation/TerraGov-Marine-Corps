@@ -25,7 +25,7 @@
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
 	var/glow = BOILER_LUMINOSITY_BASE + ammo_glow
 	var/color = BOILER_LUMINOSITY_BASE_COLOR
-	if(current_ammo > 0)
+	if(current_ammo)
 		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
 		color = BlendRGB(color, ammo_color, ammo_glow/glow)
 	set_light(glow, l_color = color)
