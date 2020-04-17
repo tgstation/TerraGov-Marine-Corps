@@ -75,4 +75,4 @@
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount, updating_health = TRUE)
-	adjust_sunder(-amount/5)
+	adjust_sunder(-amount/20)
