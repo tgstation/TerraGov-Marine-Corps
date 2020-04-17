@@ -213,7 +213,7 @@
 						continue
 					if(victim.client)
 						shake_camera(victim, 1, 1)
-					if(victim.loc != charger.loc || !victim.lying || isnestedhost(victim))
+					if(victim.loc != charger.loc || !victim.lying_angle || isnestedhost(victim))
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
@@ -327,9 +327,9 @@
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.1
-	steps_for_charge = 3
+	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 40 // This is multiplied by speed, which in this case will range from 0.1 to 1.
+	crush_living_damage = 30
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)

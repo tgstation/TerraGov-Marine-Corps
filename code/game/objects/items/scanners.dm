@@ -108,7 +108,7 @@ REAGENT SCANNER
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 
 	// Show overall
-	if(M.status_flags & FAKEDEATH)
+	if(HAS_TRAIT(M, TRAIT_FAKEDEATH))
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
 		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else

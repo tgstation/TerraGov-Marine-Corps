@@ -41,7 +41,7 @@
 /obj/item/storage/MouseDrop(obj/over_object as obj)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 
-		if(usr.lying)
+		if(usr.lying_angle)
 			return
 
 		if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech/tank

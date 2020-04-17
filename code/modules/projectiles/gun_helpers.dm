@@ -267,7 +267,7 @@ should be alright.
 
 /mob/living/carbon/human/proc/do_unique_action()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	if(incapacitated() || lying)
+	if(incapacitated() || lying_angle)
 		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
@@ -347,7 +347,7 @@ should be alright.
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5
-	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
+	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
@@ -520,7 +520,7 @@ should be alright.
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5 //Half normal time
-	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
+	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)

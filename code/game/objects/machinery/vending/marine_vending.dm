@@ -83,6 +83,7 @@
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
+					/obj/item/storage/belt/sparepouch = 5,
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
@@ -273,7 +274,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.restrained() || user.lying_angle)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
@@ -705,6 +706,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
+					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/storage/large_holster/t19 = 10,

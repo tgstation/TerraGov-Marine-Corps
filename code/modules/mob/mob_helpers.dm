@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	zone = check_zone(zone)
 
 	// you can only miss if your target is standing and not restrained
-	if(!target.buckled && !target.lying)
+	if(!target.buckled && !target.lying_angle)
 		var/miss_chance = 10
 		if (zone in GLOB.base_miss_chance)
 			miss_chance = GLOB.base_miss_chance[zone]
@@ -371,7 +371,8 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 //check if mob is lying down on something we can operate him on.
 /mob/living/carbon/can_be_operated_on()
-	if(!lying) return FALSE
+	if(!lying_angle)
+		return FALSE
 	if(locate(/obj/machinery/optable, loc) || locate(/obj/structure/bed/roller, loc))
 		return TRUE
 	var/obj/structure/table/T = locate(/obj/structure/table, loc)

@@ -153,7 +153,7 @@
 
 	for(var/mob/living/M in get_turf(src))
 
-		if(M.lying)
+		if(M.lying_angle)
 			return //No spamming this on people.
 
 		M.Paralyze(10 SECONDS)

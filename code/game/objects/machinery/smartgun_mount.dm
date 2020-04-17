@@ -509,7 +509,7 @@
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
-	if(user.lying || !Adjacent(user) || user.incapacitated())
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated())
 		user.unset_interaction()
 		return FALSE
 	if(user.get_active_held_item())
@@ -575,7 +575,7 @@
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
-	if(user.lying || !Adjacent(user) || user.incapacitated() || !user.client)
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
 
 /mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))

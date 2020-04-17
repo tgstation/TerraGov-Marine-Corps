@@ -89,7 +89,7 @@
 	else if(handcuffed || legcuffed)
 		icon_state = "[bloody][base_icon_state] Cuff"
 
-	else if(lying)
+	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 			icon_state = "[bloody][base_icon_state] Sleeping"
 		else

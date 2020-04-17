@@ -323,6 +323,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility Belt", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "orange"),
 		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
@@ -514,6 +515,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular Helmet", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),
@@ -803,7 +806,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 15, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
-		
+
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
@@ -1041,7 +1044,8 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
 						/obj/item/weapon/combat_knife,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/MRE,
+						/obj/item/clothing/gloves/marine/insulated
 						)
 
 /obj/effect/essentials_set/medic

@@ -124,7 +124,7 @@
 	taste_description = "death"
 
 /datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
-	L.status_flags |= FAKEDEATH
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
@@ -133,7 +133,7 @@
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
-	L.status_flags &= ~FAKEDEATH
+	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker

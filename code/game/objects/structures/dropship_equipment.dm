@@ -762,7 +762,35 @@
 
 //////////////// OTHER EQUIPMENT /////////////////
 
+/obj/structure/dropship_equipment/operatingtable
+	name = "Dropship Operating Table Deployment System"
+	desc = "Used for advanced medical procedures. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "table2-idle"
+	point_cost = 300
+	var/obj/machinery/optable/deployed_table
 
+/obj/structure/dropship_equipment/operatingtable/Initialize()
+	. = ..()
+	if(!deployed_table)
+		deployed_table = new(src)
+
+/obj/structure/dropship_equipment/operatingtable/examine(mob/user)
+	. = ..()
+	if(!deployed_table)
+		to_chat(user, "Its table is broken.")
+		
+/obj/structure/dropship_equipment/operatingtable/Destroy()
+	QDEL_NULL(deployed_table)
+	return ..()
+
+/obj/structure/dropship_equipment/operatingtable/update_equipment()
+	if(!deployed_table)
+		return
+	deployed_table.layer = ABOVE_OBJ_LAYER
+	deployed_table.loc = loc
+	icon_state = "table2-idle"
 
 /obj/structure/dropship_equipment/medevac_system
 	name = "medevac system"
