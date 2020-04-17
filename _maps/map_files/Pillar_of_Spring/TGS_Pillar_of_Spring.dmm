@@ -853,7 +853,7 @@
 /obj/machinery/reagentgrinder,
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 5;
+	amount = 25;
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -9752,7 +9752,7 @@
 "Ax" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 10
+	amount = 25
 	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30;
