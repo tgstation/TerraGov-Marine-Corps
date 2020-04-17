@@ -13,12 +13,10 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
-	//pulling a big dead xeno is hard
-	drag_delay = 6 
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/datum/effect_system/smoke_spread/xeno/smoke
-	//Boiler ammo
-	var/corrosive_ammo = 0
+	var/corrosive_ammo = 0 	//Boiler ammo
 	var/neuro_ammo = 0
 
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
