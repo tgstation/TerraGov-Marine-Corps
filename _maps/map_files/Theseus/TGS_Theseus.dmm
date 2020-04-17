@@ -9003,7 +9003,7 @@
 /obj/machinery/power/apc/mainship,
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
+	amount = 5;
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -9921,7 +9921,7 @@
 "axi" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25
+	amount = 10
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
@@ -14653,7 +14653,7 @@
 "aGC" = (
 /obj/structure/table/mainship,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
+	amount = 10;
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -15936,7 +15936,7 @@
 "aJE" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25
+	amount = 10
 	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30;
@@ -20503,7 +20503,7 @@
 	},
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25
+	amount = 10
 	},
 /obj/item/stack/sheet/glass{
 	amount = 50;
@@ -20511,7 +20511,7 @@
 	pixel_y = 3
 	},
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25
+	amount = 10
 	},
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship/mono,
