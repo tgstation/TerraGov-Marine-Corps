@@ -166,7 +166,7 @@
 
 /mob/living/carbon/xenomorph/boiler/ExtinguishMob()
 	. = ..()
-	set_light(BOILER_LUMINOSITY)
+	updateBoilerGlow()
 
 /mob/living/proc/update_fire()
 	return

@@ -20,14 +20,18 @@
 	var/corrosive_ammo = 0
 	var/neuro_ammo = 0
 
+/mob/living/carbon/xenomorph/boiler/proc/updateBoilerGlow()
+	var/current_ammo = corrosive_ammo + neuro_ammo 
+	set_light(current_ammo, l_color = BlendRGB(LIGHT_COLOR_GREEN, LIGHT_COLOR_YELLOW, neuro_ammo/current_ammo))
+
 // ***************************************
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/Initialize()
 	. = ..()
-	set_light(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+	updateBoilerGlow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
 
