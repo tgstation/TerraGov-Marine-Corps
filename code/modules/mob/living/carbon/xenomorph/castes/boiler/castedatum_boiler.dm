@@ -8,8 +8,7 @@
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
-	//used to match appropriate wound overlays
-	wound_type = "boiler" 
+	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage = 24
@@ -46,8 +45,7 @@
 
 	// *** Boiler Abilities *** //
 	max_ammo = 4
-	//Multiplier to the effectiveness of the boiler glob.
-	bomb_strength = 1 
+	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	acid_delay = 9 SECONDS
 	bomb_delay = 25 SECONDS
 

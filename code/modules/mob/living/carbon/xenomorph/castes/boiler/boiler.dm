@@ -13,8 +13,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	gib_chance = 100
-	//pulling a big dead xeno is hard
-	drag_delay = 6 
+	drag_delay = 6 //pulling a big dead xeno is hard
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/datum/effect_system/smoke_spread/xeno/smoke
 	//Boiler ammo
@@ -35,7 +34,6 @@
 // ***************************************
 // *********** Init
 // ***************************************
-
 /mob/living/carbon/xenomorph/boiler/Initialize()
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
