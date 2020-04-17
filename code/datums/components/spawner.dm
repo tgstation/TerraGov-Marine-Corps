@@ -2,7 +2,7 @@
 	///List of things we want to spawn at some point
 	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
 	///How long we want it to be between spawns
-	var/spawn_time = 300 //30 seconds default
+	var/spawn_time = 15	//The SS fires once every 2 seconds so just 2* whatever this number is for spawn times in seconds
 	///Keeps track of all our mobs
 	var/list/spawned_mobs = list()
 	///delay till a new mob spawns
@@ -20,31 +20,35 @@
 /datum/component/spawner/Initialize(_mob_types, _spawn_time, _spawn_text, _max_mobs, _squad_spawn, _faction)
 	. = ..()	//Just in case
 	if(_spawn_time)
-		spawn_time=_spawn_time
+		spawn_time = _spawn_time
 	if(_mob_types)
-		mob_types=_mob_types
+		mob_types = _mob_types
 	if(_spawn_text)
-		spawn_text=_spawn_text
+		spawn_text = _spawn_text
 	if(_max_mobs)
-		max_mobs=_max_mobs
+		max_mobs = _max_mobs
 	if(_squad_spawn)
 		squad_spawn = _squad_spawn
 	if(_faction)
-		faction=_faction
+		faction = _faction
 
 	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/stop_spawning)
-	START_PROCESSING(SSprocessing, src)
+	START_PROCESSING(SSspawning, src)
 
 /datum/component/spawner/process()
 	try_spawn_mob()
 
 
 /datum/component/spawner/proc/stop_spawning(force)
-	STOP_PROCESSING(SSprocessing, src)
+	STOP_PROCESSING(SSspawning, src)
 	spawned_mobs = null
 
-///Pro that checks whether we can spawn a mob and then spawns the mob in the specified fashion 
+///Proc that checks whether we can spawn a mob and then spawns the mob in the specified fashion 
 /datum/component/spawner/proc/try_spawn_mob()
+	for(var/spawned in spawned_mobs)
+		var/mob/tocheck = spawned
+		if(QDELETED(tocheck))	//Check if our mob was deleted
+			spawned_mobs -= tocheck	//and remove them if they were
 	var/atom/P = parent
 	if(spawned_mobs.len >= max_mobs)	//too many mobs
 		return FALSE
@@ -57,7 +61,7 @@
 		set_info(L,P)
 	else
 		for(var/mob in mob_types)	//Spawn the entire list
-			if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest
+			if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest of the list
 				break
 			var/mob/living/L = new mob(P.loc)
 			set_info(L,P)

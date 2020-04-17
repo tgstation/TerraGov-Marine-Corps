@@ -1148,6 +1148,8 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				v = SSoverlays
 			if("SSpathfinder")
 				v = SSpathfinder
+			if("SSspawning")
+				v = SSspawning
 			if("SSping")
 				v = SSping
 			if("SSpoints")
